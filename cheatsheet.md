@@ -30,7 +30,7 @@ If you are starting from scratch without a `build/conf` directory you can just:
 ```
 $ cd openbmc
 $ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-ibm/meta-palmetto/conf . oe-init-build-env
-$ obmc-phosphor-image
+$ bitbake obmc-phosphor-image
 ```
 
 ## Rebuilds & Reconfiguration
