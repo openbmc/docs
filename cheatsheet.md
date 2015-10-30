@@ -58,7 +58,7 @@ and running `oe-init-build-env` again (possibly with `TEMPLATE_CONF` set).
 
 http://www.freedesktop.org/software/systemd/man/busctl.html
 
-Great tool to issue rest commands via cli. That way you don't have to wait for
+Great tool to issue dbus commands via cli. That way you don't have to wait for
 the code to hit the path on the system. Great for running commands with QEMU
 too!
 
