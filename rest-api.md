@@ -73,26 +73,33 @@ A put operation on an object requires a complete object.  For partial updates th
 Make changes to the file and do a put (upload):
 
 ```
-curl -k -H "Content-Type: application/json" -X put -T bios.json https://bmc/org/openbmc/control/flash/bios
-curl -k -H "Content-Type: application/json" -X put -T flasher_path.json https://bmc/org/openbmc/control/flash/bios/attr/flasher_path
+curl -k -H "Content-Type: application/json" -X PUT -T bios.json https://bmc/org/openbmc/control/flash/bios
+curl -k -H "Content-Type: application/json" -X PUT -T flasher_path.json https://bmc/org/openbmc/control/flash/bios/attr/flasher_path
 ```
 
 Alternatively specify the json inline with -d:
 ```
-curl -k -H "Content-Type: application/json" -X put -d "{\"data\": <value>}" flasher_path.json https://bmc/org/openbmc/control/flash/bios/attr/flasher_path
+curl -k -H "Content-Type: application/json" -X PUT -d "{\"data\": <value>}" flasher_path.json https://bmc/org/openbmc/control/flash/bios/attr/flasher_path
 ```
 
 When using '-d' Just remember that json requires double quotes and any shell metacharacters need to be escaped.
 
 ## HTTP POST operations
-POST operations are for calling methods, but also for creating new resources when the client doesn't know where to put it.
+POST operations are for calling methods, but also for creating new resources when the client doesn't know where to put it.  OpenBMC does not support creating new resources via REST so any attempt to create a new resource will result in a HTTP 403 ( Forbidden ).
 These also require a json formatted payload.
 
 To invoke a method with parameters:
 ```
-curl -k -H "Content-Type: application/json" -x post -d "{\"data\": [<positional-parameters>]}" -k https://bmc/org/openbmc/control/fan0/action/setspeed
+curl -k -H "Content-Type: application/json" -X POST -d "{\"data\": [<positional-parameters>]}" https://bmc/org/openbmc/control/fan0/action/setspeed
 ```
 To invoke a method without parameters:
 ```
-curl -k -H "Content-Type: application/json" -x post -d "{\"data\": []}" -k https://bmc/org/openbmc/control/fan0/action/getspeed
+curl -k -H "Content-Type: application/json" -X POST -d "{\"data\": []}" https://bmc/org/openbmc/control/fan0/action/getspeed
+```
+
+## HTTP DELETE operations
+DELETE operations are for removing instances.  Only DBUS objects (instances) can be removed.  If the underlying DBUS object implements the org.openbmc.Object.Delete interface the REST server will call it.  If org.openbmc.Object.Delete is not implemented, HTTP 403 will be returned.
+
+```
+curl -k -X DELETE https://bmc/org/openbmc/events/record/0
 ```
