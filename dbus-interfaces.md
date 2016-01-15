@@ -151,4 +151,11 @@ properties:
 
   *  `state`
 
+# BMC
+
+## `/org/openbmc/control/bmc/bmc0`
+
+methods:
+
+  *  `cold_reset()`
 
