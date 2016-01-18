@@ -50,7 +50,7 @@ You can reconfigure your build by removing the build/conf dir:
 ```
 rm -rf build/conf
 ```
-and running `oe-init-build-env` again (possibly with `TEMPLATE_CONF` set).
+and running `oe-init-build-env` again (possibly with `TEMPLATECONF` set).
 
 ## Useful dbus CLI tools
 
