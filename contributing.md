@@ -11,7 +11,7 @@ Authors:
 Structure
 ---------
 
-OpenBMC has quite a module structure, consisting of small daemons with a
+OpenBMC has quite a modular structure, consisting of small daemons with a
 limited set of responsibilities. These communicate over dbus with other
 components, to implement the complete BMC system.
 
