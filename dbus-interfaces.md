@@ -87,6 +87,12 @@ properties:
 
   *  `worst_threshold_state`
 
+### `/org/openbmc/sensors/host/PowerCap`
+This object is used to set Host PowerCap. In turn a OCC "Set User PowerCap" command is sent to OCC.
+
+### `/org/openbmc/sensors/host/OccStatus`
+This object can set OCC state to either: "Enabled" or "Disabled".
+
 # Inventory
 
 ## `/org/openbmc/inventory/<item hierarchy>`
