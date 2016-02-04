@@ -151,4 +151,30 @@ properties:
 
   *  `state`
 
+# Event Logs
 
+## `/org/openbmc/records/events`
+
+methods:
+
+  *  `Clear()`
+
+## `/org/openbmc/records/events/<logid>`
+
+methods:
+
+  *  `delete()`
+
+properties:
+
+  *  `message`
+
+  *  `association`
+
+  *  `reported_by`
+
+  *  `severity`
+
+  *  `debug_data`
+
+  *  `time`
