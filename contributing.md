@@ -116,6 +116,9 @@ relevant to OpenBMC work:
  * Declare internal-only functions as `static`, declare read-only data
    as `const` where possble.
 
+ * Ensure that your code compiles without warnings, especially for changes
+   to the kernel.
+
 
 Developer's Certificate of Origin 1.1
 -------------------------------------
