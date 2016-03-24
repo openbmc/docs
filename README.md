@@ -17,3 +17,5 @@ be component-specific documentation in the repository for each component.
 
  - [rest-api.md](rest-api.md): Introduction to using the OpenBMC REST
    API
+
+ - [console.md](console.md): Using the host console
