@@ -35,7 +35,7 @@ start working with.
 
 Check out that list here:
 
- https://github.com/openbmc/openbmc/issues?q=is%3Aissue+is%3Aopen+label%3Abitesize
+ https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3Aopenbmc+label%3Abitesize
 
 If you need further details on any of these issues, feel free to add comments.
 
