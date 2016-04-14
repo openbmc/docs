@@ -25,6 +25,20 @@ For future development, keep this design in mind. Components' functionality
 should be logically grouped, and keep related parts together where it
 makes sense.
 
+Starting out
+------------
+
+If you're starting out with OpenBMC, you may want to take a look at the issues
+tagged with 'bitesize'. These are fixes or enhancements that don't require
+extensive knowledge of the OpenBMC codebase, and are easier for a newcomer to
+start working with.
+
+Check out that list here:
+
+ https://github.com/openbmc/openbmc/issues?q=is%3Aissue+is%3Aopen+label%3Abitesize
+
+If you need further details on any of these issues, feel free to add comments.
+
 Coding style
 ------------
 
