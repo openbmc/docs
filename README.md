@@ -13,6 +13,8 @@ interfaces to an OpenBMC system.
 
  - [console.md](console.md): Using the host console
 
+ - [code-update.md](code-update.md): Updating OpenBMC and host platform firmware
+
 
 OpenBMC Development
 -------------------
