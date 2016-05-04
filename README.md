@@ -31,3 +31,30 @@ These documents contain details on developing OpenBMC code itself
  - [kernel-development.md](kernel-development.md): Reference for common
    kernel development tasks
 
+
+OpenBMC Goals
+-------------
+
+The OpenBMC project's aim is to create a highly extensible framework for BMC
+software and implement for data-center computer systems.
+
+We have a few high-level objectives:
+
+ * The OpenBMC framework must be extensible, easily to learn, and usable in a
+   variety of programming languages.
+
+ * Provide a REST API for external management, and allow for "pluggable"
+   interfaces for other types of management interactions.
+
+ * Provide a remote host console, accessible over the network
+
+ * Persist network configuration settable from REST interface and host
+
+ * Provide a robust solution for RTC management, exposed to the host.
+
+ * Compatible with host firmware implementations for basic IPMI communication
+   between host and BMC
+
+ * Provide a flexible and hierarchical inventory tracking component
+
+ * Maintain a sensor database and track thresholds
