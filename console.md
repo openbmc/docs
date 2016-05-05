@@ -14,7 +14,7 @@ Remote console connections
 To connect to an OpenBMC console session remotely, just ssh to your BMC on port
 2200. Use the same login credentials you would for a normal ssh session:
 
-  $ ssh -p 2200 [user]@[bmc-hostname]
+    $ ssh -p 2200 [user]@[bmc-hostname]
 
 
 Local console connections
@@ -23,11 +23,11 @@ Local console connections
 If you're already logged into an OpenBMC machine, you can start a console
 session directly, using:
 
-  $ obmc-console-client
+    $ obmc-console-client
 
 To exit from a console, type:
 
-  return ~ .
+    return ~ .
 
 Note that if you're on an ssh connection, you'll need to 'escape' the ~
 character, by entering it twice.
@@ -37,7 +37,7 @@ Logging
 
 Console logs are kept in:
 
-  /var/log/obmc-console.log
+    /var/log/obmc-console.log
 
 This log is limited in size, and will wrap after hitting that limit (currently
 set at 16kB).
