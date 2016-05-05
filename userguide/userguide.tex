@@ -1,0 +1,30 @@
+\documentclass[]{article}
+
+% fonts: libertine for roman text, inconsolata for monospace
+\usepackage{fontspec}
+\setmainfont{Linux Libertine O}
+\setmonofont{Inconsolata}
+
+% page layout: full page, no paragraph indent
+\usepackage{fullpage}
+\usepackage{parskip}
+
+% document metadata
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle={OpenBMC User’s Guide},
+  colorlinks=true,
+  urlcolor=blue
+}
+
+\begin{document}
+
+\title{OpenBMC User's Guide}
+\maketitle
+
+\input{rest-api}
+\input{host-management}
+\input{console}
+\input{code-update}
+
+\end{document}
