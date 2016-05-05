@@ -13,6 +13,9 @@ interfaces to an OpenBMC system.
 
  - [console.md](console.md): Using the host console
 
+ - [host-management.md](host-management.md): Performing host management tasks
+   with OpenBMC
+
  - [code-update.md](code-update.md): Updating OpenBMC and host platform firmware
 
 
