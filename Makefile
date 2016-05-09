@@ -18,4 +18,4 @@ userguide/userguide.tex: rest-api.tex host-management.tex console.tex code-updat
 	pandoc -o $@ $^
 
 clean:
-	rm -f *.aux *.tex *.out *.pdf
+	rm -f *.tex userguide.*
