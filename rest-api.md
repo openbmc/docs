@@ -151,7 +151,7 @@ Alternatively specify the json inline with -d:
         -d '{"data": <value>}' \
         https://bmc/org/openbmc/control/flash/bios/attr/flasher_path
 
-When using '-d' Just remember that json requires quoting.
+When using '-d' just remember that json requires quoting.
 
 ## HTTP POST operations
 POST operations are for calling methods, but also for creating new resources
