@@ -102,7 +102,7 @@ They are:
         $ curl -b cjar -k https://palm5-bmc/list
         [output omitted]
 
- - Adding `/emumerate` instead of `/list` will also include the attributes of
+ - Adding `/enumerate` instead of `/list` will also include the attributes of
    the listed objects.
 
 
