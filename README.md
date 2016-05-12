@@ -45,7 +45,7 @@ software and implement for data-center computer systems.
 
 We have a few high-level objectives:
 
- * The OpenBMC framework must be extensible, easily to learn, and usable in a
+ * The OpenBMC framework must be extensible, easy to learn, and usable in a
    variety of programming languages.
 
  * Provide a REST API for external management, and allow for "pluggable"
