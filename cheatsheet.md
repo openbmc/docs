@@ -80,3 +80,29 @@ busctl call <path> <interface> <object> <method> <parameters>
 ```
 
 * \<parameters\> example : sssay "t1" "t2" "t3" 2 2 3
+
+## Using QEMU
+
+QEMU has a palmetto-bmc machine (as of v2.6.0) which implements the core
+devices to boot a Linux kernel. OpenBMC also [maintains a
+tree](https://github.com/openbmc/qemu) with patches on their way upstream or
+temporary work-arounds that add to QEMU's capabilities where appropriate.
+
+QEMU's wiki has instructions for [building from
+source](http://wiki.qemu.org/Documentation/GettingStartedDevelopers).
+
+Assuming the CWD is the root of the openbmc tree, a palmetto-bmc machine can be
+invoked with:
+
+```
+qemu-system-arm \
+    -M palmetto-bmc \
+    -m 256 \
+    -append "console=ttyS4" \
+    -nographic \
+    -kernel build/tmp/deploy/images/palmetto/cuImage-palmetto.bin \
+    -dtb build/tmp/deploy/images/palmetto/cuImage-aspeed-bmc-opp-palmetto.dtb \
+    -initrd build/tmp/deploy/images/palmetto/obmc-phosphor-image-palmetto.cpio.gz
+```
+
+To quit, type `Ctrl-a c` to switch to the QEMU monitor, and then `quit` to exit.
