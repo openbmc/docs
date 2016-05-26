@@ -9,6 +9,7 @@ all: userguide.pdf
 
 userguide.pdf: userguide/userguide.tex
 	$(tex) $(tflags) $^
+	$(tex) $(tflags) $^
 
 userguide/userguide.tex: rest-api.tex host-management.tex console.tex code-update.tex
 
