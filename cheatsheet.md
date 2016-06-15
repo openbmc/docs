@@ -91,18 +91,16 @@ temporary work-arounds that add to QEMU's capabilities where appropriate.
 QEMU's wiki has instructions for [building from
 source](http://wiki.qemu.org/Documentation/GettingStartedDevelopers).
 
-Assuming the CWD is the root of the openbmc tree, a palmetto-bmc machine can be
-invoked with:
+Assuming the current working directory is the `build` directory (from sourcing
+`oe-init-build-env`), a palmetto-bmc machine can be invoked with:
 
 ```
 qemu-system-arm \
     -M palmetto-bmc \
     -m 256 \
-    -append "console=ttyS4" \
     -nographic \
-    -kernel build/tmp/deploy/images/palmetto/cuImage-palmetto.bin \
-    -dtb build/tmp/deploy/images/palmetto/cuImage-aspeed-bmc-opp-palmetto.dtb \
-    -initrd build/tmp/deploy/images/palmetto/obmc-phosphor-image-palmetto.cpio.gz
+    -kernel tmp/deploy/images/palmetto/cuImage-palmetto.bin \
+    -initrd tmp/deploy/images/palmetto/obmc-phosphor-image-palmetto.cpio.gz
 ```
 
 To quit, type `Ctrl-a c` to switch to the QEMU monitor, and then `quit` to exit.
