@@ -84,6 +84,40 @@ The guidelines in the Linux kernel are very useful:
 
 Your contribution will generally need to be reviewed before being accepted.
 
+
+Submitting changes via Gerrit server
+------------------------------------
+
+The openbmc gerrit server is https://gerrit.openbmc-project.xyz/#/q/status:open
+
+You can login with your github credentials. Most repositories are supported by
+the Gerrit server, the current list can be found under Projects -> List:
+https://gerrit.openbmc-project.xyz/#/admin/projects/
+
+If you're going to be working with gerrit often, it's useful to create an SSH
+host block in ~/.ssh/config. Ex:
+```
+Host openbmc.gerrit
+        Hostname gerrit.openbmc-project.xyz
+        Port 29418
+        User your_github_id
+```
+
+From your openbmc git repository, add a remote to the gerrit server, where
+<openbmc_repo> is the current git repository you're working on, such as
+phosphor-rest-server:
+`remote add gerrit ssh://your_github_id@openbmc.gerrit/openbmc/openbmc_repo`
+
+Obtain the git hook commit-msg to automatically add a Change-Id to the commit
+message, which is needed by Gerrit:
+`gitdir=$(git rev-parse --git-dir)`
+`scp -p -P 29418 your_github_id@gerrit.openbmc-project.xyz:hooks/commit-msg ${gitdir}/hooks`
+
+To submit a change set, push to the gerrit server, where <gerrit> is the name
+of the remote added with the remote add command:
+`git push gerrit HEAD:refs/for/master`
+
+
 Avoid references to non-public resources
 ----------------------------------------
 
