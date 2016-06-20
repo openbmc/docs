@@ -84,6 +84,52 @@ The guidelines in the Linux kernel are very useful:
 
 Your contribution will generally need to be reviewed before being accepted.
 
+
+Submitting changes via Gerrit server
+------------------------------------
+
+The openbmc gerrit server supports Gihub credentials, its link is:
+
+  https://gerrit.openbmc-project.xyz/#/q/status:open
+
+_One time setup_: Login to the WebUI with your github credentials and verify on
+your account Settings that your SSH keys were imported:
+
+  https://gerrit.openbmc-project.xyz/#/settings/
+
+Most repositories are supported by the gerrit server, the current list can be
+found under Projects -> List:
+
+  https://gerrit.openbmc-project.xyz/#/admin/projects/
+
+If you're going to be working with gerrit often, it's useful to create an SSH
+host block in ~/.ssh/config. Ex:
+```
+Host openbmc.gerrit
+        Hostname gerrit.openbmc-project.xyz
+        Port 29418
+        User your_github_id
+```
+
+From your openbmc git repository, add a remote to the gerrit server, where
+'openbmc_repo' is the current git repository you're working on, such as
+phosphor-rest-server, and 'openbmc.gerrit' is the name of the Host previously added:
+
+  `git remote add gerrit ssh://your_github_id@openbmc.gerrit/openbmc/openbmc_repo`
+
+Obtain the git hook commit-msg to automatically add a Change-Id to the commit
+message, which is needed by gerrit:
+
+  `gitdir=$(git rev-parse --git-dir)`
+
+  `scp -p -P 29418 your_github_id@gerrit.openbmc-project.xyz:hooks/commit-msg ${gitdir}/hooks`
+
+To submit a change set, commit your changes, and push to the gerrit server,
+where 'gerrit' is the name of the remote added with the git remote add command:
+
+  `git push gerrit HEAD:refs/for/master`
+
+
 Avoid references to non-public resources
 ----------------------------------------
 
@@ -138,11 +184,11 @@ Developer's Certificate of Origin 1.1
 -------------------------------------
 
     By making a contribution to this project, I certify that:
-    
+
     (a) The contribution was created in whole or in part by me and I
         have the right to submit it under the open source license
         indicated in the file; or
-    
+
     (b) The contribution is based upon previous work that, to the best
         of my knowledge, is covered under an appropriate open source
         license and I have the right under that license to submit that
@@ -150,11 +196,11 @@ Developer's Certificate of Origin 1.1
         by me, under the same open source license (unless I am
         permitted to submit under a different license), as indicated
         in the file; or
-    
+
     (c) The contribution was provided directly to me by some other
         person who certified (a), (b) or (c) and I have not modified
         it.
-    
+
     (d) I understand and agree that this project and the contribution
         are public and that a record of the contribution (including all
         personal information I submit with it, including my sign-off) is
