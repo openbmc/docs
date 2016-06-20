@@ -140,3 +140,27 @@ Each boot parameter is represented by an individual property, and their hex
 value is displayed in a string format. For example, a boot flags parameter value
 of `0x8014000000` would be stored as a `8014000000` string in the
 `settings/host0/boot_flags` property.
+
+Host power control
+------------------
+
+The host can be controlled through the `chassis` object. It implements a number
+of actions including powerOn and powerOff. These correspond to the IPMI
+`chassis power on` and `chassis power off` commands.
+
+Assuming you have logged in, the following will issue a POST with an empty data
+payload that powers the host on:
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST \
+   -d '{"data": []}'  https://bmc/org/openbmc/control/chassis0/action/powerOn
+```
+
+Other actions available are:
+
+ * `setIdentify` / `clearIdentify`
+ * `powerOff`
+ * `softPowerOff`
+ * `reboot`
+ * `softReboot`
+ * `getPowerState`
