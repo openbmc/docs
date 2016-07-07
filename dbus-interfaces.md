@@ -306,13 +306,18 @@ notifications.
 The control.BmcFlash interface allows applications update the BMC firmware.
 
 ### methods
-| name            | in signature | out signature | description                 |
-| --------------- | ------------ | ------------- | --------------------------- |
-| `updateViaTftp` | `ss`         | `void`        | **Perform a BMC firmware update using a TFTP server.**|
-|                 | `s`          |               | The ipv4 address of the TFTP server hosting the firmware image file.|
-|                 | `s`          |               | The name of the file containing the BMC firmware image.|
-| `update`        | `s`          | `void`        | **Perform a BMC firmware update with a file already on the BMC.**|
-|                 | `s`          |               | The name of the file containing the BMC firmware image.|
+| name                | in signature | out signature | description                 |
+| ------------------- | ------------ | ------------- | --------------------------- |
+| `updateViaTftp`     | `ss`         | `void`        | **Perform a BMC firmware update using a TFTP server.**|
+|                     | `s`          |               | The ipv4 address of the TFTP server hosting the firmware image file.|
+|                     | `s`          |               | The name of the file containing the BMC firmware image.|
+| `update`            | `s`          | `void`        | **Perform a BMC firmware update with a file already on the BMC.**|
+|                     | `s`          |               | The name of the file containing the BMC firmware image.|
+| `PrepareForUpdate`  | `void`       | `void`        | **Reboot BMC with Flash content cached in RAM **|
+| `Abort`             | `void`       | `void`        | **Abort any pending, broken, or in-progress flash update**|
+| `Apply`             | `void`       | `void`        | **Initiate writing image into flash**|
+| `GetUpdateProgress` | `void`       | `s`           | **Display progress log `Apply` phase**|
+|                     |              | `s`           | The `state` and log output from `Apply` |
 
 ### signals
 | name           | signature | description                              |
@@ -324,12 +329,13 @@ The control.BmcFlash interface allows applications update the BMC firmware.
 ### properties
 | name                           | signature | description                     |
 | ------------------------------ | --------- | ------------------------------- |
-| `status`                       | `s`       | **?**                           |
+| `status`                       | `s`       | **Description of the phase of the update**        |
 | `filename`                     | `s`       | **The name of the file containing the BMC firmware image.**|
 | `preserve_network_settings`    | `b`       | **Perform a factory reset.**    |
-| `restore_application_defaults` | `b`       | **Perform a factory reset.**    |
-| `update_kernel_and_apps`       | `b`       | **Perform a factory reset.**    |
-| `clear_persistent_files`       | `b`       | **Perform a factory reset.**    |
+| `restore_application_defaults` | `b`       | **Clear modified files in read-write filesystem.**    |
+| `update_kernel_and_apps`       | `b`       | **Do not update bootloader (requires image pieces).**    |
+| `clear_persistent_files`       | `b`       | **Also remove persistent files when updating read-write filesystem.**    |
+| `auto_apply`                   | `b`       | **Attempt to apply image after unpacking (cleared if image verification fails)**    |
 
 ### namespace
 | path                             | required | description |
