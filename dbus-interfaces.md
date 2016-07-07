@@ -311,6 +311,8 @@ The control.BmcFlash interface allows applications update the BMC firmware.
 | `updateViaTftp` | `ss`         | `void`        | **Perform a BMC firmware update using a TFTP server.**|
 |                 | `s`          |               | The ipv4 address of the TFTP server hosting the firmware image file.|
 |                 | `s`          |               | The name of the file containing the BMC firmware image.|
+| `update`        | `s`          | `void`        | **Perform a BMC firmware update with a file already on the BMC.**|
+|                 | `s`          |               | The name of the file containing the BMC firmware image.|
 
 ### signals
 | name           | signature | description                              |
