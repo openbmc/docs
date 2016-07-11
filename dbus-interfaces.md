@@ -313,11 +313,11 @@ The control.BmcFlash interface allows applications update the BMC firmware.
 |                     | `s`          |               | The name of the file containing the BMC firmware image.|
 | `update`            | `s`          | `void`        | **Perform a BMC firmware update with a file already on the BMC.**|
 |                     | `s`          |               | The name of the file containing the BMC firmware image.|
-| `PrepareForUpdate`  | `void`       | `void`        | **Reboot BMC with Flash content cached in RAM **|
-| `Abort`             | `void`       | `void`        | **Abort any pending, broken, or in-progress flash update**|
-| `Apply`             | `void`       | `void`        | **Initiate writing image into flash**|
-| `GetUpdateProgress` | `void`       | `s`           | **Display progress log `Apply` phase**|
-|                     |              | `s`           | The `state` and log output from `Apply` |
+| `PrepareForUpdate`  | `void`       | `void`        | **Reboot BMC with Flash content cached in RAM.**|
+| `Abort`             | `void`       | `void`        | **Abort any pending, broken, or in-progress flash update.**|
+| `Apply`             | `void`       | `void`        | **Initiate writing image to flash.**|
+| `GetUpdateProgress` | `void`       | `s`           | **Display progress log `Apply` phase.**|
+|                     |              | `s`           | The `status` and log output from `Apply`|
 
 ### signals
 | name           | signature | description                              |
@@ -329,13 +329,13 @@ The control.BmcFlash interface allows applications update the BMC firmware.
 ### properties
 | name                           | signature | description                     |
 | ------------------------------ | --------- | ------------------------------- |
-| `status`                       | `s`       | **Description of the phase of the update**        |
+| `status`                       | `s`       | **Description of the phase of the update.**        |
 | `filename`                     | `s`       | **The name of the file containing the BMC firmware image.**|
 | `preserve_network_settings`    | `b`       | **Perform a factory reset.**    |
 | `restore_application_defaults` | `b`       | **Clear modified files in read-write filesystem.**    |
 | `update_kernel_and_apps`       | `b`       | **Do not update bootloader (requires image pieces).**    |
 | `clear_persistent_files`       | `b`       | **Also remove persistent files when updating read-write filesystem.**    |
-| `auto_apply`                   | `b`       | **Attempt to apply image after unpacking (cleared if image verification fails)**    |
+| `auto_apply`                   | `b`       | **Attempt to apply image after unpacking (cleared if image verification fails).**    |
 
 ### namespace
 | path                             | required | description |
@@ -474,8 +474,8 @@ Insert a description of the control.Power interface here.
 | `PowerLost` | `void`    | **The power is off.** |
 
 ### properties
-| name          | signature | description     |
-| ------------- | --------- | --------------- |
+| name            | signature | description     |
+| --------------- | --------- | --------------- |
 | `pgood`         | `i`     | **?**           |
 | `state`         | `i`     | **?**           |
 | `pgood_timeout` | `i`     | **?**           |
@@ -694,6 +694,6 @@ bookeeping to another application.
 | `WatchdogError` | `void`    | *The watchdog was not pinged before the timer expired.**|
 
 ### namespace
-| path                             | required | description                  |
-| -------------------------------- | -------- | ---------------------------------------- |
+| path                               | required | description                  |
+| ---------------------------------- | -------- | ---------------------------------------- |
 | `/org/openbmc/watchdog/<watchdog>` | No       | Any watchdog instances must be instantiated in the watchdog namespace. |
