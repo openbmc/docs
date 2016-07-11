@@ -50,7 +50,7 @@ the initramfs to copy the required contents of these filesystems into
 RAM so the images can be applied while the rest of the application stack
 is running and progress can be monitored over the network.  The
 `update` script can then be called to write the images while the
-system is operational and its progress ouput monitored.
+system is operational and its progress output monitored.
 
 Update from the OpenBMC shell
 -----------------------------
@@ -112,7 +112,7 @@ There are a few settings available to control the update process:
  * `preserve_network_settings`: Preserve network settings, only needed if updating the whole flash
  * `restore_application_defaults`: update (clear) the read-write file system
  * `update_kernel_and_apps_only`: update kernel and initramfs
- * `clear_persistent_files`: ignore the persistent file list when reseting applications defaults
+ * `clear_persistent_files`: ignore the persistent file list when resetting applications defaults
  * `auto_apply`: Attempt to write the images by invoking the `Apply` method after the images are unpacked.
 
 To configure the update settings, perform a REST PUT to
