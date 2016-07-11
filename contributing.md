@@ -88,7 +88,7 @@ Your contribution will generally need to be reviewed before being accepted.
 Submitting changes via Gerrit server
 ------------------------------------
 
-The openbmc gerrit server supports Gihub credentials, its link is:
+The openbmc gerrit server supports Github credentials, its link is:
 
   https://gerrit.openbmc-project.xyz/#/q/status:open
 
@@ -156,7 +156,7 @@ See also: http://dbus.freedesktop.org/doc/dbus-api-design.html
 Best practices for C
 --------------------
 
-There are numerous resources avaialble elsewhere, but a few items that are
+There are numerous resources available elsewhere, but a few items that are
 relevant to OpenBMC work:
 
  * You almost never need to use `system(<some shell pipeline>)`. Reading and
@@ -174,7 +174,7 @@ relevant to OpenBMC work:
    C types
 
  * Declare internal-only functions as `static`, declare read-only data
-   as `const` where possble.
+   as `const` where possible.
 
  * Ensure that your code compiles without warnings, especially for changes
    to the kernel.

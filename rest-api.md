@@ -178,7 +178,7 @@ To invoke a method without parameters:
 DELETE operations are for removing instances. Only DBUS objects (instances) can
 be removed. If the underlying DBUS object implements the
 `org.openbmc.Object.Delete` interface the REST server will call it. If
-`org.openbmc.Object.Delet`e is not implemented, the REST server will return a
+`org.openbmc.Object.Delete` is not implemented, the REST server will return a
 HTTP 403 (Forbidden) error.
 
 For example, to delete the event record with ID 0:
