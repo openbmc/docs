@@ -42,7 +42,18 @@ If you need further details on any of these issues, feel free to add comments.
 Coding style
 ------------
 
-Components of the OpenBMC sources should have consistent style.
+Components of the OpenBMC sources should have consistent style.  If source is
+coming from another project, we choose to follow the existing style of the
+upstream project.  Otherwise, conventions are chosen based on the language.
+
+### Python
+
+Python source should all conform to PEP8.  This style is well established
+within the Python community and can be verified with the 'pep8' tool.
+
+https://www.python.org/dev/peps/pep-0008/
+
+### C
 
 For C code, we typically use the Linux coding style, which is documented at:
 
