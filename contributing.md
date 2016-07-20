@@ -67,6 +67,9 @@ In short:
 
   - Opening braces on the end of a line, except for functions
 
+This style can mostly be verified with 'astyle' as follows:
+
+    astyle --style=linux --indent=tab=8 --indent=force-tab=8
 
 Submitting changes
 ------------------
