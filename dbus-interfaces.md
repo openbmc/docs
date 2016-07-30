@@ -44,7 +44,7 @@ firmware.
 ### signals
 | name          | signature | description                                      |
 | ------------- | --------- | ------------------------------------------------ |
-| `ReceivedMsg` | `yyyyay`  | **An IPMI message was received from the host processor firmware.**|
+| `ReceivedMessage` | `yyyyay`  | **An IPMI message was received from the host processor firmware.**|
 |               | `y`       | IPMI seq.                                        |
 |               | `y`       | IPMI netfn.                                      |
 |               | `y`       | IPMI lun.                                        |
