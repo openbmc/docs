@@ -42,7 +42,18 @@ If you need further details on any of these issues, feel free to add comments.
 Coding style
 ------------
 
-Components of the OpenBMC sources should have consistent style.
+Components of the OpenBMC sources should have consistent style.  If source is
+coming from another project, we choose to follow the existing style of the
+upstream project.  Otherwise, conventions are chosen based on the language.
+
+### Python
+
+Python source should all conform to PEP8.  This style is well established
+within the Python community and can be verified with the 'pep8' tool.
+
+https://www.python.org/dev/peps/pep-0008/
+
+### C
 
 For C code, we typically use the Linux coding style, which is documented at:
 
@@ -56,6 +67,32 @@ In short:
 
   - Opening braces on the end of a line, except for functions
 
+This style can mostly be verified with 'astyle' as follows:
+
+    astyle --style=linux --indent=tab=8 --indent=force-tab=8
+
+### C++
+
+Being an extensive and complicated language, there are often differences of
+opinions on "good" and "bad" C++ code.  The following are the approaches
+favored within the OpenBMC projects:
+
+  1. Favor syntax and techniques from the latest available C++ standard,
+     currently C++14.
+  2. Rely on well-recognized opinions on best practices:
+       1. C++ Core Guidelines - https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md
+       2. Effective Modern C++ - http://www.aristeia.com/books.html
+  3. Give preference to style decisions from the Google C++ Style Guide -
+     https://google.github.io/styleguide/cppguide.html
+
+In order to meet the chosen style for C++ code, files should pass through
+'astyle' unchanged when called as follows:
+
+    astyle --style=allman --add-brackets --convert-tabs --max-code-length=80 \
+        --indent=spaces=4 --indent-classes --indent-switches --indent-labels \
+        --indent-preproc-define --min-conditional-indent=0 --pad-oper \
+        --pad-header --unpad-paren --break-after-logical \
+        --align-pointer=type --align-reference=type
 
 Submitting changes
 ------------------
