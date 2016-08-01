@@ -88,22 +88,57 @@ devices to boot a Linux kernel. OpenBMC also [maintains a
 tree](https://github.com/openbmc/qemu) with patches on their way upstream or
 temporary work-arounds that add to QEMU's capabilities where appropriate.
 
-QEMU's wiki has instructions for [building from
-source](http://wiki.qemu.org/Documentation/GettingStartedDevelopers).
-
-Assuming the current working directory is the `build` directory (from sourcing
-`oe-init-build-env`), a palmetto-bmc machine can be invoked with:
+```
+qemu-system-arm -m 256 -M palmetto-bmc -nographic \
+-drive file=<path>/flash-palmetto,format=raw,if=mtd \
+-net nic \
+-net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostname=qemu \
+```
+If you get an error you likely need to build QEMU (see the section in this document).   If no error and QEMU starts up just change the port when interacting with the BMC...
 
 ```
-qemu-system-arm \
-    -M palmetto-bmc \
-    -m 256 \
-    -nographic \
-    -kernel tmp/deploy/images/palmetto/cuImage-palmetto.bin \
-    -initrd tmp/deploy/images/palmetto/obmc-phosphor-image-palmetto.cpio.gz
+curl -c cjar -b cjar -k -H "Content-Type: application/json" \
+-X POST https://localhost:2443/login -d "{\"data\": [ \"root\", \"0penBmc\" ] }"
+```
+or
+
+```
+ssh -p 2222 root@localhost
 ```
 
 To quit, type `Ctrl-a c` to switch to the QEMU monitor, and then `quit` to exit.
+
+## Building QEMU
+
+```
+git clone https://github.com/openbmc/qemu.git
+cd qemu
+git submodule update --init dtc
+mkdir build
+cd build
+../configure --target-list=arm-softmmu
+make
+```
+Built file will be located at: ```arm-softmmu/qemu-system-arm```
+
+### Use a bridge device
+Using a bridge device requires a bit of root access to set it up.  The benefit
+is your qemu session runs in the bridges subnet so no port forwarding is needed.
+There are packages needed to yourself a virbr0 such as...
+
+```
+apt-get install libvirt libvirt-bin bridge-utils uml-utilities qemu-system-common
+
+qemu-system-arm -m 256 -M palmetto-bmc -nographic \
+-drive file=<path>/flash-palmetto,format=raw,if=mtd \
+-net nic,macaddr=C0:FF:EE:00:00:02,model=ftgmac100  \
+-net bridge,id=net0,helper=/usr/lib/qemu-bridge-helper,br=virbr0
+```
+
+There are some other useful parms like that can redirect the console to another
+window.  This results in having an easily accessible qemu command session.
+```-monitor stdio -serial pty -nodefaults```
+
 
 ## Booting the host
 
