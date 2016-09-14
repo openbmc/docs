@@ -29,6 +29,16 @@ that can be updated on the BMC:
 
     The OpenBMC bootloader
 
+Additinally, there're two tar-balls created that can be updated via REST:
+
+ * `<platform>-<timestamp>.all.tar`
+
+    Contains a full BMC flash image
+
+ * `<platform>-<timestamp>.tar`
+
+    Contains individual images for u-boot, kernel, initramfs, ro, rw images.
+
 Preparing for BMC code Update
 -----------------------------
 
@@ -91,14 +101,15 @@ updates, controlled via REST. The general procedure is:
  2. Configure update settings
  3. Initiate update
  4. Check flash status
- 5. Reboot the BMC
+ 5. Apply update
+ 6. Reboot the BMC
 
 ### Prepare system for update
 
 Perform a POST to invoke the `PrepareForUpdate` method of the `/flash/bmc` object:
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data": ["<TFTP server IP address>", "<filename>"]}' \
+        -d '{"data":  []}' \
         https://bmc/org/openbmc/control/flash/bmc/action/prepareForUpdate
 
 This will setup the u-boot environment and reboot the BMC.   If no other
@@ -130,6 +141,8 @@ Perform a POST to invoke the `updateViaTftp` method of the `/flash/bmc` object:
         -d '{"data": ["<TFTP server IP address>", "<filename>"]}' \
         https://bmc/org/openbmc/control/flash/bmc/action/updateViaTftp
 
+Note the `<filename>` shall be a tar-ball.
+
 ### Check flash status
 
 You can query the progress of the download and image verificaton with
@@ -143,19 +156,28 @@ Or perform a POST to invoke the `GetUpdateProgress` method of the `/flash/bmc` o
         -d '{"data": []}' \
         https://bmc/org/openbmc/control/flash/bmc/action/GetUpdateProgress
 
+Note:
+ * During downloading the tar-ball, the progress status is `Downloading`
+ * After the ta-ball is downloaded and verified, the progress status becomes `Image ready to apply`.
 
-Note: the status will not advance from `Writing images to flash` without
-calling the `GetUpdateProgress` method.
-
+### Apply update
 If the status is `Image ready to apply.` then you can either initiate
 a reboot or call the Apply method to start the process of writing the
-flash.
+flash:
+
+    curl -b cjar -k -H "Content-Type: application/json" -X POST \
+        -d '{"data": []}' \
+        https://bmc/org/openbmc/control/flash/bmc/action/Apply
+
+Now the image is being flashed, you can check the progress with above step’s command as well.
+
+* During flashing the image, the status looks like `Writing images to flash\nupdate:\nUpdating bmc...\nErasing block: 25/8192 (0%)`
+* After it’s flashed and verified, the status becomes `Apply Complete. Reboot to take effect.\nupdate:\nUpdating bmc...\nErasing block: 8192/8192 (100%) \nWriting kb: 32768/32768 (100%) \nVerifying kb: 32768/32768 (100%) \nUpdating u-boot-env...\nErasing block: 32/32 (100%) \nWriting kb: 128/128 (100%) \nVerifying kb: 128/128 (100%) \n`
 
 ### Reboot the BMC
 
 To start using the new images, reboot the BMC using the warmReset method
 of the BMC control object:
-
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
         -d '{"data": []}' \
