@@ -29,6 +29,17 @@ that can be updated on the BMC:
 
     The OpenBMC bootloader
 
+Additionally, there are two tar-balls created that can be deloyed and unpacked by REST:
+
+ * `<platform>-<timestamp>.all.tar`
+
+    The complete BMC flash content: A single file wrapped in a tar archive
+
+ * `<platform>-<timestamp>.tar`
+
+    Partitioned BMC flash content: Multiple files wrapped in a tar archive,
+    one for each of the u-boot, kernel, initramfs, ro and rw partitions.
+
 Preparing for BMC code Update
 -----------------------------
 
@@ -91,14 +102,15 @@ updates, controlled via REST. The general procedure is:
  2. Configure update settings
  3. Initiate update
  4. Check flash status
- 5. Reboot the BMC
+ 5. Apply update
+ 6. Reboot the BMC
 
 ### Prepare system for update
 
 Perform a POST to invoke the `PrepareForUpdate` method of the `/flash/bmc` object:
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data": ["<TFTP server IP address>", "<filename>"]}' \
+        -d '{"data":  []}' \
         https://bmc/org/openbmc/control/flash/bmc/action/prepareForUpdate
 
 This will setup the u-boot environment and reboot the BMC.   If no other
@@ -111,7 +123,10 @@ There are a few settings available to control the update process:
 
  * `preserve_network_settings`: Preserve network settings, only needed if updating the whole flash
  * `restore_application_defaults`: update (clear) the read-write file system
- * `update_kernel_and_apps_only`: update kernel and initramfs
+ * `update_kernel_and_apps`: update kernel and initramfs.
+                             If the partitioned tarball will be used for update then this option
+                             must be set. Otherwise, if the complete tarball will be used then
+                             this option must not be set.
  * `clear_persistent_files`: ignore the persistent file list when resetting applications defaults
  * `auto_apply`: Attempt to write the images by invoking the `Apply` method after the images are unpacked.
 
@@ -130,6 +145,8 @@ Perform a POST to invoke the `updateViaTftp` method of the `/flash/bmc` object:
         -d '{"data": ["<TFTP server IP address>", "<filename>"]}' \
         https://bmc/org/openbmc/control/flash/bmc/action/updateViaTftp
 
+Note the `<filename>` shall be a tar-ball.
+
 ### Check flash status
 
 You can query the progress of the download and image verificaton with
@@ -143,19 +160,29 @@ Or perform a POST to invoke the `GetUpdateProgress` method of the `/flash/bmc` o
         -d '{"data": []}' \
         https://bmc/org/openbmc/control/flash/bmc/action/GetUpdateProgress
 
+Note:
 
-Note: the status will not advance from `Writing images to flash` without
-calling the `GetUpdateProgress` method.
+ * During downloading the tar-ball, the progress status is `Downloading`
+ * After the tar-ball is downloaded and verified, the progress status becomes `Image ready to apply`.
 
+### Apply update
 If the status is `Image ready to apply.` then you can either initiate
 a reboot or call the Apply method to start the process of writing the
-flash.
+flash:
+
+    curl -b cjar -k -H "Content-Type: application/json" -X POST \
+        -d '{"data": []}' \
+        https://bmc/org/openbmc/control/flash/bmc/action/Apply
+
+Now the image is being flashed, you can check the progress with above step’s command as well.
+
+* During flashing the image, the status becomes `Writing images to flash`
+* After it’s flashed and verified, the status becomes `Apply Complete. Reboot to take effect.`
 
 ### Reboot the BMC
 
 To start using the new images, reboot the BMC using the warmReset method
 of the BMC control object:
-
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
         -d '{"data": []}' \
