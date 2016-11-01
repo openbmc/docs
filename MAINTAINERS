@@ -1,0 +1,224 @@
+List of maintainers for OpenBMC
+===============================
+
+How to use this list:
+    Find the most specific section entry (described below) that matches where
+    your change lives and add the reviewers (R) and maintainers (M) as
+    reviewers. You can use the same method to track down who knows a particular
+    code base best.
+
+    Your change/query may span multiple entries; that is okay.
+
+    If you do not find an entry that describes your request at all, someone
+    forgot to update this list; please at least file an issue or send an email
+    to a maintainer, but preferably you should just update this document.
+
+Description of section entries:
+
+    Section entries are structured according to the following scheme:
+
+    @REPO_NAME://FILE_PATH
+    X:  NAME <EMAIL_USERNAME@DOMAIN> <IRC_USERNAME!>
+    X:  ...
+    .
+    .
+    .
+
+    Where REPO_NAME is the name of the repository within the OpenBMC github
+    organization; FILE_PATH is a file path within the repository, possibly with
+    wildcards; X is a tag of one of the following types:
+
+    M:  Denotes maintainer; has fields NAME <EMAIL_USERNAME@DOMAIN> <IRC_USERNAME!>;
+        if ommitted from an entry, assume one of the maintainers from the
+        MAINTAINERS entry.
+    R:  Denotes reviewer; has fields NAME <EMAIL_USERNAME@DOMAIN> <IRC_USERNAME!>;
+        these people are to be added as reviewers for a change matching the repo
+        path.
+    F:  Denotes forked from external repository; has fields URL.
+
+    Line comments are to be denoted "# SOME COMMENT" (typical shell style
+    comment); it is important to follow the correct syntax and semantics as we
+    may want to use automated tools with this file in the future.
+
+    The first section is special; it denotes the MAINTAINERS who have the
+    privilege to approve something to be added to a OpenBMC repository. A change
+    will cannot be added to an OpenBMC repository without a MAINTAINER's
+    approval; thus, a MAINTAINER should always be listed as a reviewer.
+
+START OF MAINTAINERS LIST
+-------------------------
+
+# As mentioned above, this is a special entry that denotes the MAINTAINER for
+# all repositories that do not list one explicitly; you need one of these people
+# to approve your change (currently that is a +2 in gerrit for all this entry
+# applies to).
+MAINTAINERS
+M:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+M:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+
+@btbridge://*
+R:  Cyril Bur <cyril.bur@au1.ibm.com>
+R:  Joel Stanley <joel@jms.id.au> <shenki!>
+
+@docs://*
+R:  Adriana Kobylak <anoo@us.ibm.com> <anoo!>
+R:  Andrew Jeffery <andrew@aj.id.au> <amboar!>
+
+@inarp://*
+M:  Jeremy Kerr <jk@ozlabs.org> <jk!>
+R:  Joel Stanley <joel@jms.id.au> <shenki!>
+
+@ipmi-fru-parser://*
+
+@ipmitool://*
+F:  https://sourceforge.net/p/ipmitool/source/ci/master/tree/
+M:  Jeremy Kerr <jk@ozlabs.org> <jk!>
+M:  # TODO: Did not see a clear candidate for who should be the backup
+R:  Jeremy Kerr <jk@ozlabs.org> <jk!>
+
+# THIS REPOSITORY HAS A DIFFERENT SUBMISSION PROCESS: please send patches using
+# "git send-email"
+# TO: Joel Stanley <joel@jms.id.au>
+# and
+# CC: <openbmc@lists.ozlabs.org>
+@linux://*
+F:  https://github.com/torvalds/linux
+M:  Joel Stanley <joel@jms.id.au> <shenki!>
+R:  Andrew Jeffery <andrew@aj.id.au> <amboar!>
+R:  Cédric Le Goater <clg@kaod.org> <cdrx!>
+
+# THIS REPOSITORY HAS A DIFFERENT SUBMISSION PROCESS: this is a subtree in
+# @openbmc and is synced by the maintainer using git-subtree. Please submit
+# changes aginst @openbmc.
+@meta-aspeed://*
+
+# THIS REPOSITORY HAS A DIFFERENT SUBMISSION PROCESS: this is a subtree in
+# @openbmc and is synced by the maintainer using git-subtree. Please submit
+# changes aginst @openbmc.
+@meta-openpower://*
+
+# THIS REPOSITORY HAS A DIFFERENT SUBMISSION PROCESS: this is a subtree in
+# @openbmc and is synced by the maintainer using git-subtree. Please submit
+# changes aginst @openbmc.
+@meta-phosphor://*
+
+@obmc-console://*
+R:  Jeremy Kerr <jk@ozlabs.org> <jk!>
+R:  Joel Stanley <joel@jms.id.au> <shenki!>
+
+@openbmc-build-scripts://*
+R:  Joel Stanley <joel@jms.id.au> <shenki!>
+R:  Andrew Geissler <andrewg@us.ibm.com> <andrewg!>
+
+@openbmc-test-automation://*
+R:  George Keishing <gkeishin@in.ibm.com> # TODO: MISSING IRC HANDLE
+R:  Rahul Maheshwari <rahulmaheshwari@in.ibm.com> # TODO: MISSING IRC HANDLE
+
+@openbmc://*
+R:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+
+@openpower-host-ipmi-oem://*
+R:  Tom Joseph <tomjoseph@in.ibm.com> <tomjose!>
+R:  William Li (Nan Li, 李楠) <william.bjlinan@hotmail.com> # TODO: MISSING IRC HANDLE (william?)
+
+@openpower-inventory-upload://*
+R:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+
+@phosphor-dbus-interfaces://*
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+R:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+
+@phosphor-event://*
+R:  Adriana Kobylak <anoo@us.ibm.com> <anoo!>
+R:  Andrew Geissler <andrewg@us.ibm.com> <andrewg!>
+
+@phosphor-host-ipmid://*
+R:  Chris Austen <austenc@us.ibm.com> <causten!>
+R:  Adriana Kobylak <anoo@us.ibm.com> <anoo!>
+R:  Tom Joseph <tomjoseph@in.ibm.com> <tomjose!>
+R:  William Li (Nan Li, 李楠) <william.bjlinan@hotmail.com> # TODO: MISSING IRC HANDLE (william?)
+
+@phosphor-hwmon://*
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+R:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+
+@phosphor-inventory-manager://*
+R:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+
+@phosphor-led-manager://*
+R:  Vishwanatha Subbanna <vishwanath@in.ibm.com> <vishwa!>
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+
+@phosphor-logging://*
+R:  Adriana Kobylak <anoo@us.ibm.com> <anoo!>
+R:  Andrew Geissler <andrewg@us.ibm.com> <andrewg!>
+
+@phosphor-mrw-tools://*
+R:  Matt Spinler <mspinler@linux.vnet.ibm.com> <mspinler!>
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+
+@phosphor-net-ipmid://*
+R:  Tom Joseph <tomjoseph@in.ibm.com> <tomjose!>
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+
+@phosphor-networkd://*
+R:  Ratan Gupta <ratagupt@linux.vnet.ibm.com> # TODO: MISSING IRC HANDLE
+R:  Adriana Kobylak <anoo@us.ibm.com> <anoo!>
+
+@phosphor-objmgr://*
+R:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+
+@phosphor-rest-server://*
+R:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+
+@phosphor-settingsd://*
+R:  Adriana Kobylak <anoo@us.ibm.com> <anoo!>
+R:  Vishwanatha Subbanna <vishwanath@in.ibm.com> <vishwa!>
+
+@phosphor-time-manager://*
+R:  Vishwanatha Subbanna <vishwanath@in.ibm.com> <vishwa!>
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+
+@pyphosphor://*
+R:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+
+# THIS REPOSITORY HAS A DIFFERENT SUBMISSION PROCESS: please send patches using
+# "git send-email"
+# TO: Joel Stanley <joel@jms.id.au>
+# and
+# CC: <openbmc@lists.ozlabs.org>
+@qemu://*
+F:  https://github.com/qemu/qemu
+M:  Andrew Jeffery <andrew@aj.id.au> <amboar!>
+M:  Cédric Le Goater <clg@kaod.org> <cdrx!>
+R:  Cédric Le Goater <clg@kaod.org> <cdrx!>
+R:  Andrew Jeffery <andrew@aj.id.au> <amboar!>
+
+@rest-dbus://*
+R:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+R:  Jeremy Kerr <jk@ozlabs.org> <jk!>
+
+@sdbusplus://*
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+R:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+
+@skeleton://*
+R:  Brad Bishop <bradleyb@fuzziesquirrel.com> <radsquirrel!>
+R:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
+R:  Xo Wang <xow@google.com> <ghf!>
+
+# THIS REPOSITORY HAS A DIFFERENT SUBMISSION PROCESS: please send patches using
+# "git send-email"
+# TO: Joel Stanley <joel@jms.id.au>
+# and
+# CC: <openbmc@lists.ozlabs.org>
+@u-boot://*
+F:  https://github.com/u-boot/u-boot
+M:  Joel Stanley <joel@jms.id.au> <shenki!>
+M:  Cédric Le Goater <clg@kaod.org> <cdrx!>
