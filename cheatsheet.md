@@ -29,7 +29,7 @@ The Palmetto target is `palmetto`.
 If you are starting from scratch without a `build/conf` directory you can just:
 ```
 $ cd openbmc
-$ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-ibm/meta-palmetto/conf . oe-init-build-env
+$ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-ibm/meta-palmetto/conf . openbmc-env
 $ bitbake obmc-phosphor-image
 ```
 
@@ -40,7 +40,7 @@ The Barreleye target is `barreleye`.
 If you are starting from scratch without a `build/conf` directory you can just:
 ```
 $ cd openbmc
-$ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-rackspace/meta-barreleye/conf . oe-init-build-env
+$ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-rackspace/meta-barreleye/conf . openbmc-env
 $ bitbake obmc-phosphor-image
 ```
 
@@ -61,7 +61,7 @@ You can reconfigure your build by removing the build/conf dir:
 ```
 rm -rf build/conf
 ```
-and running `oe-init-build-env` again (possibly with `TEMPLATECONF` set).
+and running `openbmc-env` again (possibly with `TEMPLATECONF` set).
 
 ## Useful dbus CLI tools
 
