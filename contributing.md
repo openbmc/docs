@@ -73,26 +73,7 @@ This style can mostly be verified with 'astyle' as follows:
 
 ### C++
 
-Being an extensive and complicated language, there are often differences of
-opinions on "good" and "bad" C++ code.  The following are the approaches
-favored within the OpenBMC projects:
-
-  1. Favor syntax and techniques from the latest available C++ standard,
-     currently C++14.
-  2. Rely on well-recognized opinions on best practices:
-       1. C++ Core Guidelines - https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md
-       2. Effective Modern C++ - http://www.aristeia.com/books.html
-  3. Give preference to style decisions from the Google C++ Style Guide -
-     https://google.github.io/styleguide/cppguide.html
-
-In order to meet the chosen style for C++ code, files should pass through
-'astyle' unchanged when called as follows:
-
-    astyle --style=allman --add-brackets --convert-tabs --max-code-length=80 \
-        --indent=spaces=4 --indent-classes --indent-switches --indent-labels \
-        --indent-preproc-define --min-conditional-indent=0 --pad-oper \
-        --pad-header --unpad-paren --break-after-logical \
-        --align-pointer=type --align-reference=type
+See [C++ Style and Conventions](./cpp-style-and-conventions.md).
 
 Submitting changes
 ------------------
