@@ -63,11 +63,11 @@ represented in the inventory.
 
 To enumerate all sensors in the system:
 
-    curl -c cjar -k https://bmc/org/openbmc/sensors/enumerate
+    curl -b cjar -k https://bmc/org/openbmc/sensors/enumerate
 
 List properties of one inventory item:
 
-    curl -c cjar -k https://bmc/org/openbmc/sensors/temperature/ambient
+    curl -b cjar -k https://bmc/org/openbmc/sensors/temperature/ambient
 
 Event Logs
 ----------
