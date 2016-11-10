@@ -156,3 +156,27 @@ Power on:
 ```
 curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST     -d '{"data": []}'  https://palm5-bmc/org/openbmc/control/chassis0/action/powerOn
 ```
+
+## GDB
+
+[SDK build](#building-the-openbmc-sdk) provides GDB and debug symbols:
+
+* `$GDB` is available to use once SDK environment is setup
+* Debug symbols are located in `.debug/` directory of each executable
+
+To use GDB:
+
+1. Setup SDK environment;
+2. Run below GDB commands:
+   ```
+   cd <sysroot_of_sdk_build>
+   $GDB <relative_path_to_exeutable> <path_to_core_file>
+   ```
+
+## Coredump
+
+By default coredump is disabled in OpenBMC. To enable coredump:
+```
+echo '/tmp/core_%e.%p' | tee /proc/sys/kernel/core_pattern
+```
+
