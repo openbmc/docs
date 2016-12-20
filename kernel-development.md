@@ -5,6 +5,7 @@ The OpenBMC project maintains a fork of upstream Linux for patches that are not 
 The kernel tree hosted at https://github.com/openbmc/linux contains the set of patches that we carry. Ideally there would be no patches carried, as everything should be upstream.
 
 Your code will make it into the OpenBMC tree in these ways, from most to least desirable:
+
 1. When the OpenBMC kernel moves to a new upstream release
 2. By backporting upstream commits from a newer kernel version to the OpenBMC kernel
 3. Patches included in the OpenBMC tree temporarily
@@ -30,7 +31,7 @@ Once the driver has been accepted upstream, send the good news to the OpenBMC li
 
 There are cases where waiting for upstream acceptance will delay the bring-up of a new system. This should be avoided through careful planning and early development of the features upstream, but where this has not happened we can chose to carry the patches in the OpenBMC tree while the upstream development is ongoing.
 
-Another exception to the upstream first rule is where patches are modifying files that are not upstream. This currently includes the aspeed board file `arch/arm/mach-aspeed/aspeed.c`, and the device tree source files `dtbs`. The board file should go away when we get drivers written for all of the functionaltiy; for now it contains some hacks relating to LPC and early init.
+Another exception to the upstream first rule is where patches are modifying files that are not upstream. This currently includes the aspeed board file `arch/arm/mach-aspeed/aspeed.c`, and the device tree source files `dts`. The board file should go away when we get drivers written for all of the functionaltiy; for now it contains some hacks relating to LPC and early init.
 
 ## Getting existing code in the tree
 
@@ -38,7 +39,7 @@ The OpenBMC kernel is currently based on the 4.7 series. If there is upstream co
 
 ## Testing
 
-When moifying the tree we currently test on the following platforms:
+When modifying the tree we currently test on the following platforms:
 
  - Palmetto, an OpenPower Power8 box containing an ast2400 with NCSI networking
  - ast2500-evb, the Aspeed dev board with two PHYs
@@ -65,7 +66,8 @@ make ARCH=arm \
 
 (adjust `O` and `CROSS_COMPILE` parameters as appropriate).
 
-You'll need to use `aspeed_defconfig` as your base kernel configuration.
+You'll need to use `aspeed_g4_defconfig` or `aspeed_g5_defconfig` as your base
+kernel configuration.
 
 The cpio can be found in the following yocto output directory:
 
