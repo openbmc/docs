@@ -1,8 +1,8 @@
 # OpenBMC kernel development
 
-The OpenBMC project maintains a fork of upstream Linux for patches that are not yet in the upstream kernel. The general policy is that code must be upstream first. Exceptions can be made on a case-by-case basis. If in doubt, start a dicsusion on the mailing list.
+The OpenBMC project maintains a kernel tree providing the necessary interfaces for the OpenBMC userspace. The tree's general development policy is that code must be upstream first. This is a strong requirement, not a hard requirement, and exceptions will be made on a case-by-case basis. If in doubt, start a discussion on the mailing list.
 
-The kernel tree hosted at https://github.com/openbmc/linux contains the set of patches that we carry. Ideally there would be no patches carried, as everything should be upstream.
+The OpenBMC kernel tree is hosted at https://github.com/openbmc/linux and contains the set of patches that we carry. Ideally there would be no patches carried, as everything should be upstream.
 
 Your code will make it into the OpenBMC tree in these ways, from most to least desirable:
 
@@ -21,11 +21,11 @@ If you require a patch added to the tree, follow these steps:
 
 When developing a new driver, your goal is to have the code accepted upstream. The first step should be to check that there is no existing driver for the hardware you wish to support. Check the OpenBMC `-dev` tree, check upstream, and if you do not find support there ask on the mailing list.
 
-Once you are sure a driver needs to be written, you should develop and test the driver, before sending it upstream to the relevant maintainers. You should feel welcome to cc the OpenBMC list when sending upstream, so other kernel developers can provide input where appropraite. Be sure to follow the (upstream development process)[https://www.kernel.org/doc/Documentation/SubmittingPatches].
+Once you are sure a driver needs to be written, you should develop and test the driver, before sending it upstream to the relevant maintainers. You should feel welcome to cc the OpenBMC list when sending upstream, so other kernel developers can provide input where appropriate. Be sure to follow the (upstream development process)[https://www.kernel.org/doc/Documentation/SubmittingPatches].
 
 In the past patches underwent 'pre-review' on the OpenBMC mailing list. While this is useful for developers who are not familiar with writing kenrel code, it has lead to confusion about the upstreaming process, so now we do all of our development in the community.
 
-Once the driver has been accepted upstream, send the good news to the OpenBMC list with a reference to the upstream tree. This may be Linus' tree, or it might be one of the subsystem maintainers. From there the OpenBMC kenrel team can decide how best to include your code in the OpenBMC tree.
+Once the driver has been accepted upstream, send the good news to the OpenBMC list with a reference to the upstream tree. This may be Linus' tree, or it might be one of the subsystem maintainers. From there the OpenBMC kernel team can decide how best to include your code in the OpenBMC tree.
 
 ### Exceptions
 
@@ -33,9 +33,11 @@ There are cases where waiting for upstream acceptance will delay the bring-up of
 
 Another exception to the upstream first rule is where patches are modifying files that are not upstream. This currently includes the aspeed board file `arch/arm/mach-aspeed/aspeed.c`, and the device tree source files `dts`. The board file should go away when we get drivers written for all of the functionaltiy; for now it contains some hacks relating to LPC and early init.
 
+If you find yourself adding to `arch/arm/mach-aspeed/aspeed.c`, first send an email to the OpenBMC list to get the opinion of the kernel developers. Patches to `aspeed.c` will be treated with some prejudice.
+
 ## Getting existing code in the tree
 
-The OpenBMC kernel is currently based on the 4.7 series. If there is upstream code you would like backported, send it to hte list. Be sure to include the upstream commit SHA in the commit message.
+The OpenBMC kernel is currently based on the 4.7 series. If there is upstream code you would like backported, send it to the list. Be sure to include the upstream commit SHA in the commit message.
 
 ## Testing
 
@@ -96,3 +98,6 @@ cat obj/arch/arm/boot/zImage \
     -a 0x40008000 -e 0x40008000 -n $USER-`date +%Y%m%d%H%M` \
     -d obj/aspeed-zimage obj/uImage
 ```
+
+Note that some systems may have upgraded to a FIT-based u-boot, where the old
+uImage format is no longer accepted.
