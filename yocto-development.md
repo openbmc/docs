@@ -46,5 +46,66 @@ from the devtool Yocto layer.
 
 Further information on [devtool][0] can be found in the [Yocto Mega Manual][1].
 
+
+### Adding a file to your image ###
+
+There are a lot of examples of working with bitbake out there the [recipe
+example] (http://docs.openembedded.org/usermanual/html/recipes_examples.html)
+from openembedded is a great one and the premise of this OpenBMC tailored
+section.
+
+So you wrote some code.  You've been scp'ing the compiled binary on to the
+openbmc system for a while and you know there is a better way.  Have it built
+as part of your flash image.
+
+Run the devtool command to add your repo to the workspace.  In my example I
+have a repo out on github that contains my code.
+
+```
+devtool add welcome https://github.com/causten/hello.git
+```
+
+Now edit the the bb file it created for you.  You can just use `vim` but
+`devtool` can also edit the recipe `devtool edit-recipe welcome` without
+having to type the complete path.
+
+Add/Modify these lines.
+
+```
+RPROVIDES_${PN} = "welcome"
+do_install () {
+        install -m 0755 -d ${D}${bindir} ${D}${datadir}/welcome
+        install -m 0644 ${S}/hello ${D}${bindir}
+        install -m 0644 ${S}/README.md ${D}${datadir}/welcome/
+}
+```
+
+The `RPROVIDES_${PN}` is used by bitbake to know what the recipe creates.  The
+install directives create directories and then copies the files in to them.
+Now bitbake will pick them up from the traditional `/usr/bin` and
+`/usr/shared/doc/hello/README.md`.
+
+
+The Final Step is to tell bitbake that you need the `welcome` recipe
+
+```
+vim conf/local.conf
+IMAGE_INSTALL_append = " welcome"
+```
+
+That's it, recompile and boot your system, the binary `hello` will be in
+`/usr/bin` and the `README.md` will be in `/usr/shared/doc/welcome`.
+
+
+There is another neat way to find if your package made it in to the image
+without the labourous effort of flashing and booting a system.  NXP wrote a
+few examples of [useful] (https://community.nxp.com/docs/DOC-94953) commands.
+
+
+### Know what your image has ###
+```
+bitbake -g obmc-phosphor-image && cat pn-depends.dot |grep welcome
+```
+
 [0]: (http://www.yoctoproject.org/docs/2.1/mega-manual/mega-manual.html#devtool-use-devtool-modify-to-enable-work-on-code-associated-with-an-existing-recipe) "devtool"
 [1]: (http://www.yoctoproject.org/docs/2.1/mega-manual/mega-manual.html) "Yocto Mega Manual"
