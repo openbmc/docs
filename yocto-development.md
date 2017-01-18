@@ -46,5 +46,72 @@ from the devtool Yocto layer.
 
 Further information on [devtool][0] can be found in the [Yocto Mega Manual][1].
 
+
+### Adding a file to your image ###
+
+There are a lot of examples of working with bitbake out there.  The [recipe
+example](http://docs.openembedded.org/usermanual/html/recipes_examples.html)
+from openembedded is a great one and the premise of this OpenBMC tailored
+section.
+
+So you wrote some code.  You've been scp'ing the compiled binary on to the
+openbmc system for a while and you know there is a better way.  Have it built
+as part of your flash image.
+
+Run the devtool command to add your repo to the workspace.  In my example I
+have a repo out on github that contains my code.
+
+```
+devtool add welcome https://github.com/causten/hello.git
+```
+
+Now edit the bb file it created for you.  You can just use `vim` but
+`devtool` can also edit the recipe `devtool edit-recipe welcome` without
+having to type the complete path.
+
+Add/Modify these lines.
+
+```
+do_install () {
+        install -m 0755 -d ${D}${bindir} ${D}${datadir}/welcome
+        install -m 0644 ${S}/hello ${D}${bindir}
+        install -m 0644 ${S}/README.md ${D}${datadir}/welcome/
+}
+```
+
+The install directives create directories and then copies the files into them.
+Now bitbake will pick them up from the traditional `/usr/bin` and
+`/usr/shared/doc/hello/README.md`.
+
+The Final Step is to tell bitbake that you need the `welcome` recipe
+
+```
+vim conf/local.conf
+IMAGE_INSTALL_append = " welcome"
+```
+
+That's it, recompile and boot your system, the binary `hello` will be in
+`/usr/bin` and the `README.md` will be in `/usr/shared/doc/welcome`.
+
+
+### Know what your image has ###
+
+Sure you could flash and boot your system to see if your file made it, but there
+is a faster way.  The `rootfs` directory down in the depths of the `build/tmp`
+path is the staging area where files are placed to be packaged.
+
+In my example to check if README.md was going to be added just do...
+
+```
+ls build/tmp/work/${MACHINE}-openbmc-linux-gnueabi/obmc-phosphor-image/1.0-r0/rootfs/usr/share/welcome/README.md
+```
+
+NXP wrote a few examples of [useful] (https://community.nxp.com/docs/DOC-94953)
+commands with bitbake that find the file too
+
+```
+bitbake -g obmc-phosphor-image && cat pn-depends.dot |grep welcome
+```
+
 [0]: (http://www.yoctoproject.org/docs/2.1/mega-manual/mega-manual.html#devtool-use-devtool-modify-to-enable-work-on-code-associated-with-an-existing-recipe) "devtool"
 [1]: (http://www.yoctoproject.org/docs/2.1/mega-manual/mega-manual.html) "Yocto Mega Manual"
