@@ -180,3 +180,41 @@ By default coredump is disabled in OpenBMC. To enable coredump:
 echo '/tmp/core_%e.%p' | tee /proc/sys/kernel/core_pattern
 ```
 
+
+## Yocto Tips ##
+
+### Adding a file to your image ###
+Once you have a recipe built with `devtool` (as described [here] (yocto-development.md#Yocto-in-OpenBMC)) you are going to have to make a couple of edits to 1) tell the recipe what to do and 2) tell bitbake why  to build with your new package.  For the example we can just copy a file from your local tmp dir.
+
+```
+touch /tmp/hello
+devtool add welcome file:///tmp/hello
+```
+
+That will create a welcome.bb file; open it up.  Tell the recipe what to do by adding commands to the do_install() function and tell bitbake what the bb file provides.
+
+```
+vim workspace/recipes/welcome/welcome.bb
+
+RPROVIDES_${PN} = "welcome"
+do_install () {
+        # Specify install commands here
+        install -d ${D}/home/root
+        install -m 0644 ${S}/hello ${D}/home/root
+}
+FILES_${PN} = "/home/root/hello"
+```
+Final Step is to tell bitbake... what the recipe is cooking!
+
+```
+vim conf/local.conf
+IMAGE_INSTALL_append = " welcome"
+```
+
+That's it, recompile and boot your system, the file `hello` will be in `/home/root`.
+
+There is another neat way to find if your package made it in to the image without the labourous effort of flashing and booting a system.  NXP wrote a few examples of [useful] (https://community.nxp.com/docs/DOC-94953) commands.
+
+```
+bitbake -g obmc-phosphor-image && cat pn-depends.dot |grep welcome
+```
