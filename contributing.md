@@ -142,10 +142,12 @@ message, which is needed by gerrit:
 
   `scp -p -P 29418 openbmc.gerrit:hooks/commit-msg ${gitdir}/hooks`
 
-To submit a change set, commit your changes, and push to the gerrit server,
-where 'gerrit' is the name of the remote added with the git remote add command:
+To submit a change set, commit your changes, and push to the gerrit
+server.  Use 'gerrit' since it is the name of the remote added with
+the git remote add command and \<local branch\> is the branch where
+you made the changes:
 
-  `git push gerrit HEAD:refs/for/master`
+  `git push gerrit <local branch>:refs/for/master`
 
 
 Avoid references to non-public resources
