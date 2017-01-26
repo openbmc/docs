@@ -259,6 +259,16 @@ void foo()
 ### Naming Conventions.
 
 * We generally abstain from any prefix or suffix on names.
+* Acronyms should be same-case throughout and follow the requirements as
+  in their appropriate section.
+
+```
+/// Correct.
+SomeBMCType someBMCVariable = bmcFunction();
+
+/// Wrong: type and variable are mixed-case, function isn't lowerCamelCase.
+SomeBmcType someBmcVariable = BMCFunction();
+```
 
 #### Files
 
