@@ -1,5 +1,10 @@
 OpenBMC DBUS API
 ================
+
+Please **note** that the v1.99.xx and greater code now has all of it's
+interfaces defined in [this](https://github.com/openbmc/phosphor-dbus-interfaces)
+repository.  The below information in this document is for all v1.0.xx code.
+
 This document aims to specify the OpenBMC DBUS API.
 
 The Phosphor distribution provides sample applications that implement off all
