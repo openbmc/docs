@@ -19,7 +19,7 @@ connect to a service with a well known name.  The well known name is
 associated with a fixed schema.  In OpenBMC, without any standardization of
 well known names, applications lose the knowledge of what applications provide
 which objects.  To address this, the Phosphor distribution provides the
-objectmapper service.  See the `org.openbmc.objectmapper.ObjectMapper`
+objectmapper service.  See the `org.openbmc.objectmapper.object_mapper`
 interface below for more information.
 
 The OpenBMC DBUS API is still alpha.  If you have questions or suggestions
@@ -514,7 +514,7 @@ Insert a description of the Led interface here.
 | -------------------------------- | -------- | ------------------------------ |
 | `/org/openbmc/control/led/<led>` | No       | Any LED instances must be instantiated in the control/led namespace.|
 
-`org.openbmc.objectmapper.ObjectMapper`
+`org.openbmc.objectmapper.object_mapper`
 ---------------------------------------
 The ObjectMapper interface enables applications to discover the DBUS unique
 connection name(s) for a given object path.
