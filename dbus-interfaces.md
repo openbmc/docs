@@ -1,7 +1,7 @@
 OpenBMC DBUS API
 ================
 
-Please **note** that the v1.99.xx and greater code now has all of it's
+Please **note** that the v1.99.xx and greater code now has all of its
 interfaces defined in [this](https://github.com/openbmc/phosphor-dbus-interfaces)
 repository.  The below information in this document is for all v1.0.xx code.
 
@@ -12,12 +12,12 @@ the interfaces and objects listed below.  Alternative or more feature complete
 applications are possible by implementing parts of this DBUS API.
 
 OpenBMC typically adheres to DBUS best practices and usage models; however, one
-deviation is that OpenBMC places no requirements on well known service names.
+deviation is that OpenBMC places no requirements on well-known service names.
 This allows developers to structure their object implementations in whatever
 processes they choose.  In the standard DBUS programming model, applications
-connect to a service with a well known name.  The well known name is
+connect to a service with a well-known name.  The well-known name is
 associated with a fixed schema.  In OpenBMC, without any standardization of
-well known names, applications lose the knowledge of what applications provide
+well-known names, applications lose the knowledge of what applications provide
 which objects.  To address this, the Phosphor distribution provides the
 objectmapper service.  See the `org.openbmc.objectmapper.ObjectMapper`
 interface below for more information.
@@ -64,7 +64,7 @@ firmware.
 `org.openbmc.HostServices`
 ------------------------
 The HostServices interface allows applications to interact with the host
-processor firmware.  Applications should use the high level APIs provided here
+processor firmware.  Applications should use the high-level APIs provided here
 in favor of `org.openbmc.HostIpmi` where applicable.
 
 ### methods
@@ -682,7 +682,7 @@ interface.
 `org.openbmc.Watchdog`
 ----------------------
 The Watchdog interface enables health monitoring applications to offload timer
-bookeeping to another application.
+bookkeeping to another application.
 
 ### methods
 | name    | in signature | out signature | description                    |
