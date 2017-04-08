@@ -24,24 +24,24 @@ Description of section entries:
     .
     .
 
-    Where REPO_NAME is the name of the repository within the OpenBMC github
+    Where REPO_NAME is the name of the repository within the OpenBMC GitHub
     organization; FILE_PATH is a file path within the repository, possibly with
     wildcards; X is a tag of one of the following types:
 
     M:  Denotes maintainer; has fields NAME <EMAIL_USERNAME@DOMAIN> <IRC_USERNAME!>;
-        if ommitted from an entry, assume one of the maintainers from the
+        if omitted from an entry, assume one of the maintainers from the
         MAINTAINERS entry.
     R:  Denotes reviewer; has fields NAME <EMAIL_USERNAME@DOMAIN> <IRC_USERNAME!>;
         these people are to be added as reviewers for a change matching the repo
         path.
-    F:  Denotes forked from external repository; has fields URL.
+    F:  Denotes forked from an external repository; has fields URL.
 
     Line comments are to be denoted "# SOME COMMENT" (typical shell style
     comment); it is important to follow the correct syntax and semantics as we
     may want to use automated tools with this file in the future.
 
     The first section is special; it denotes the MAINTAINERS who have the
-    privilege to approve something to be added to a OpenBMC repository. A change
+    privilege to approve something to be added to an OpenBMC repository. A change
     will cannot be added to an OpenBMC repository without a MAINTAINER's
     approval; thus, a MAINTAINER should always be listed as a reviewer.
 
@@ -50,7 +50,7 @@ START OF MAINTAINERS LIST
 
 # As mentioned above, this is a special entry that denotes the MAINTAINER for
 # all repositories that do not list one explicitly; you need one of these people
-# to approve your change (currently that is a +2 in gerrit for all this entry
+# to approve your change (currently that is a +2 in Gerrit for all this entry
 # applies to).
 MAINTAINERS
 M:  Patrick Williams <patrick@stwcx.xyz> <stwcx!>
