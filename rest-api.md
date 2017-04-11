@@ -174,15 +174,16 @@ To invoke a method without parameters:
         https://bmc/org/openbmc/control/fan0/action/getspeed
 
 
-## HTTP DELETE operations
-DELETE operations are for removing instances. Only DBUS objects (instances) can
-be removed. If the underlying DBUS object implements the
-`org.openbmc.Object.Delete` interface the REST server will call it. If
-`org.openbmc.Object.Delete` is not implemented, the REST server will return a
-HTTP 403 (Forbidden) error.
+## Uploading images
+It is possible to upload software upgrade images (for example to upgrade the BMC
+or host software) via REST.
+This is implemented via the '/upload' route.
 
-For example, to delete the event record with ID 0:
+For example, to upload an image:
 
-   curl -b cjar -k -X DELETE \
-       https://bmc/org/openbmc/events/record/0
+    curl -c cjar -b cjar -k -X PUT -T <file_to_upload> https://bmc/upload
 
+In the example, the filename on the BMC will be chosen by the REST server,
+although it is possible to provide the destination filename as well:
+
+    curl -c cjar -b cjar -k -X PUT -T <file_to_upload> https://bmc/upload/myfile
