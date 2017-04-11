@@ -186,3 +186,27 @@ For example, to delete the event record with ID 0:
    curl -b cjar -k -X DELETE \
        https://bmc/org/openbmc/events/record/0
 
+
+## Uploading images
+It is possible to upload software upgrade images (for example to upgrade the BMC
+or host software) via REST. The content-type should be set to
+"application/octet-stream".
+
+For example, to upload an image:
+
+    curl -c cjar -b cjar -k -H "Content-Type: application/octet-stream" \
+        -X POST -T <file_to_upload> https://bmc/upload/image
+
+In above example, the filename on the BMC will be chosen by the REST server,
+although it is possible to provide the destination filename as well:
+
+    curl -c cjar -b cjar -k -H "Content-Type: application/octet-stream" \
+        -X POST -T foo https://bmc/upload/image/
+
+In above example, the file foo will be saved with the same name on the BMC.
+Note the '/' after upload/image.
+
+    curl -c cjar -b cjar -k -H "Content-Type: application/octet-stream" \
+        -X POST -T foo https://bmc/upload/image/bar
+
+In above example, the file foo will be saved with the name bar on the BMC.
