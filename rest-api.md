@@ -186,3 +186,17 @@ For example, to delete the event record with ID 0:
    curl -b cjar -k -X DELETE \
        https://bmc/org/openbmc/events/record/0
 
+
+## Uploading images
+It is possible to upload software upgrade images (for example to upgrade the BMC
+or host software) via REST.
+This is implemented via the '/upload' route.
+
+For example, to upload an image:
+
+    curl -c cjar -b cjar -k -X PUT -T <file_to_upload> https://bmc/upload
+
+In the example, the filename on the BMC will be chosen by the REST server,
+although it is possible to provide the destination filename as well:
+
+    curl -c cjar -b cjar -k -X PUT -T <file_to_upload> https://bmc/upload/myfile
