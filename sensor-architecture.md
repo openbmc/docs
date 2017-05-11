@@ -212,7 +212,7 @@ Here is an example of a Fan sensor.  If the RPMs go above 80000 or below 1000
 addition signals will be sent over D-Bus.  Note that neither CRIT\_LOW or
 CRIT\_HIGH is set so `xyz.org.openbmc_project.Threshold.Critical` will not be
 added.  The instance path will be `/xyz/openbmc_project/Sensors/fan/fan0`.
-
+ 
 ```
 <targetInstance>
 	<id>MAX31785.hwmon2</id>
@@ -231,6 +231,72 @@ added.  The instance path will be `/xyz/openbmc_project/Sensors/fan/fan0`.
 	</attribute>
 ```
 
+## IPMI ##
+
+The DBus sensor interface can be accessed from the host over IPMI. This
+functionality needs to be configured by creating a configuration file specific
+to your board, with an entry for each sensor that will be accessed
+
+#### Configuring DBus Interfaces over IPMI Without an MRW ####
+
+An example of the IPMI configuration can be found in
+[Zaius](https://github.com/openbmc/openbmc/tree/master/meta-openbmc-machines/meta-openpower/meta-ingrasys/meta-zaius/recipes-phosphor/ipmi),
+in zaius-ipmi-sensor-inventory-map and
+zaius-ipmi-sensor-inventory-map-native.bbappend. In brief, the format for the
+config.yaml is as follows:
+
+```
+# The following block defines a single sensor.
+
+# This is the sensor ID, used exclusively within the scope of IPMI. It's defined
+# here, so it can be arbitrarily decided here, or based on the ID scheme used by
+# the host.
+0xA0:
+  # This type code comes from the IPMI spec, page 505. In this case, we have a
+  # voltage sensor.
+  sensorType: 0x02
+  # The full DBus path to the interface. This is the same path you can use to
+  # read from busctl introspect or from the REST API.
+  path: /xyz/openbmc_project/sensors/voltage/vout1
+  # The reading type comes from the IPMI spec, page 503. In this case, we
+  # indicate a threshold-based sensor.
+  sensorReadingType: 0x01
+  # The following three fields are used to scale values from DBus down to fit
+  # into the 8 bits available during raw sensor reads. See the spec, page 483.
+  # ipmid will apply the inverse of the formula in the spec to the DBus reading
+  # before returning the raw sensor result.  Choose values below to ensure your
+  # reading will fit into an 8 bit unsigned integer. Take care not to exceed the
+  # size constraints shown.
+  # For discrete sensors, the next three fields are unused.
+  multiplierM: 14  # 10 bits, signed
+  offsetB: 0  # 10 bits, signed
+  bExp: 0  # 4 bits, signed
+  # Today, multiple interfaces are not supported.
+  # https://unix.stackexchange.com/questions/4140/markdown-viewer
+  # For more information on interfaces, it's easiest to look at the types
+  # generated from this file.
+  # https://github.com/openbmc/phosphor-host-ipmid/blob/master/types.hpp
+  interfaces:
+    # This is the DBus interface type, see https://github.com/openbmc/phosphor-dbus-interfaces
+    # It is represented as a string once compiled into C++.
+    xyz.openbmc_project.Sensor.Value:
+      Value:
+        # This indicates an offset within the field. Unnecessary in this case.
+        0x0:
+          type: int
+```
+
+The [IPMI
+specification](http://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/ipmi-second-gen-interface-spec-v2-rev1-1.pdf)
+explains some of the type codes used. Page numbers listed above refer to the
+number printed on the page of the spec, regardless of what page of the PDF that
+is.
+
+This config.yaml is compiled into C++ by a
+[script](https://github.com/openbmc/phosphor-host-ipmid/blob/master/scripts/sensor_gen.py)
+and ultimately shows up for use as
+[this](https://github.com/openbmc/phosphor-host-ipmid/blob/master/sensorhandler.cpp#L15)
+map.  IPMI commands destined for sensors are handled within that file.
 
 ## Additional Reading ##
 Mailing List [Comments on Sensor design](https://lists.ozlabs.org/pipermail/openbmc/2016-November/005309.html)
