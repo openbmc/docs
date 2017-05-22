@@ -189,6 +189,15 @@ WARNHI_temp2=80000
 With that level of system information, the sensor infrastructure code can
 provide all needed D-Bus properties.
 
+Optionally you can provide an interval value in microseconds for a sensor
+configuration file:
+
+```
+INTERVAL=1000000
+```
+
+This configures how often the sensors listed in this configuration should be
+read.
 
 #### My sensors are defined in an MRW ####
 
