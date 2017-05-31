@@ -44,6 +44,17 @@ $ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-rackspace/meta-barreley
 $ bitbake obmc-phosphor-image
 ```
 
+## Building for Barreleye
+
+The Barreleye target is `barreleye`.
+
+If you are starting from scratch without a `build/conf` directory you can just:
+```
+$ cd openbmc
+$ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-rackspace/meta-barreleye/conf . oe-init-build-env
+$ bitbake obmc-phosphor-image
+```
+
 ## Building the OpenBMC SDK
 Looking for a way to compile your programs for 'ARM' but you happen to be running on a 'PPC' or 'x86' system?  You can build the sdk receive a fakeroot environment.  
 ```
