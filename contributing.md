@@ -57,7 +57,7 @@ https://www.python.org/dev/peps/pep-0008/
 
 For C code, we typically use the Linux coding style, which is documented at:
 
-  http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/CodingStyle
+  http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst
 
 In short:
 
