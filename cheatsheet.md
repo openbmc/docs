@@ -180,3 +180,12 @@ By default coredump is disabled in OpenBMC. To enable coredump:
 echo '/tmp/core_%e.%p' | tee /proc/sys/kernel/core_pattern
 ```
 
+## Cleaning up read-write file system changes
+
+You may want to investigate which file(s) are persisting through the overlay
+rwfs.  To do this, you can list this path and then remove those files which
+you'd prefer the originals or remove the deletion overlay to restore files.
+
+```
+/run/initramfs/rw/cow/
+```
