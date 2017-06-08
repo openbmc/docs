@@ -1,0 +1,94 @@
+# Run OpenBMC Test Automation Using Docker
+
+Running OpenBMC automation using Docker involves creating Docker image and
+then running automation test with Docker container.
+
+
+## Build Docker Image
+
+1. Create a workspace folder.
+`mkdir ${HOME}/OpenBMC_Automation`
+
+2. Go inside workspace folder.
+
+`cd ${HOME}/OpenBMC_Automation`
+
+3. Clone openbmc-build-scripts repository
+
+`git clone https://gerrit.openbmc-project.xyz/openbmc/openbmc-build-scripts`
+
+4. Go inside openbmc-build-scripts folder
+
+`cd openbmc-build-scripts`
+
+5. Build docker image required to execute the robot tests (it may take
+close to 15 mins for the first time). Docker image will get created
+with "openbmc/ubuntu-robot-qemu" as name. You can check images using
+"docker images" command.
+
+`./scripts/build-qemu-robot-docker.sh`
+
+
+## Start Code update
+
+1. Go inside workspace folder.
+
+`cd ${HOME}/OpenBMC_Automation`
+
+2. Clone openbmc-test-automation repository.
+
+`git clone https://github.com/openbmc/openbmc-test-automation`
+
+3. Run docker container to do code update.
+
+`docker run --user root \
+            --env HOME=${HOME} \
+            --workdir ${HOME} \
+            --volume ${HOME}/OpenBMC_Automation:${HOME} \
+            --tty openbmc/ubuntu-robot-qemu python -m robot \
+                -v OPENBMC_HOST=<BMC IP> \
+                -v FILE_PATH:<BMC_IMG_PATH> \
+                -i Initiate_Code_Update_BMC \
+                ${HOME}/openbmc-test-automation/extended/code_update/update_bmc.robot`
+
+4. After the execution, test results will be available in below files
+
+`${HOME}/OpenBMC_Automation/log.html
+${HOME}/OpenBMC_Automation/report.html
+${HOME}/OpenBMC_Automation/output.xml`
+
+
+## Start Automation Test
+
+1. Run docker container to execute OpenBMC automation test cases.
+
+`docker run --user root \
+            --env HOME=${HOME} \
+            --env IP_ADDR=<BMC IP> \
+            --env SSH_PORT=22 \
+            --env HTTPS_PORT=443 \
+            --env ROBOT_TEST_CMD="tox -e <System Type> -- <Robot Cmd>" \
+            --workdir ${HOME} \
+            --volume ${WORKSPACE}:${HOME} \
+            --tty openbmc/ubuntu-robot-qemu \
+                ${HOME}/openbmc-build-scripts/scripts/run-robot.sh`
+
+Example to run entire test suite:
+
+`docker run --user root \
+            --env HOME=${HOME} \
+            --env IP_ADDR=1.11.222.333 \
+            --env SSH_PORT=22 \
+            --env HTTPS_PORT=443 \
+            --env ROBOT_TEST_CMD="tox -e witherspoon -- tests" \
+            --workdir ${HOME} \
+            --volume ${HOME}/OpenBMC_Automation:${HOME}
+            --tty openbmc/ubuntu-robot-qemu \
+                ${HOME}/openbmc-build-scripts/scripts/run-robot.sh`
+
+2. After the execution, test results will be available in below files.
+
+`${HOME}/OpenBMC_Automation/log.html
+${HOME}/OpenBMC_Automation/report.html
+${HOME}/OpenBMC_Automation/output.xml`
+
