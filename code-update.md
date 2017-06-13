@@ -192,18 +192,30 @@ of the BMC control object:
 Host code update
 ================
 
-The host firmware (or "BIOS") can be updated in a similar method.  Because
-the BMC does not use the host firmware it is updated when the download is
-completed.  This assumes the host is not accessing its firmware.
+Reference:
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Software
 
-Perform a POST request to call the `updateViaTftp` method of
-`/control/flash/bios` (instead of `/control/flash/bmc` used above). To initiate
-the update:
+Following are the steps to update the host firmware (or "BIOS"). This assumes
+the host is not accessing its firmware.
 
-    curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data": ["<TFTP server IP address>", "<filename>"]}' \
-        https://bmc/org/openbmc/control/flash/bios/action/updateViaTftp
+Generate a squashfs image. You'll need:
+  * A PNOR image: https://github.com/open-power/op-build
+  * The generate-squashfs script: https://github.com/openbmc/openpower-pnor-code-mgmt/blob/master/generate-squashfs
+  * Run: ```generate-squashfs <pnor-image>```
 
-And to check the flash status:
+Transfer the generated squashfs image to the BMC via one of two methods:
+  * Via REST Upload: https://github.com/openbmc/docs/blob/master/rest-api.md#uploading-images
+  * Via TFTP: Perform a POST request to call the `DownloadViaTFTP` method of `/xyz/openbmc_project/software`.
 
-    curl -b cjar -k https://bmc/org/openbmc/control/flash/bios
+
+      curl -b cjar -k -H "Content-Type: application/json" -X POST \
+        -d '{"data": ["<filename>", "<TFTP server IP address"]}' \ https://bmc/xyz/openbmc_project/software/action/DownloadViaTFTP
+
+To initiate the update, set the `RequestedActivation` property of the desired image to `Active`.
+
+    curl -b cjar -k -H "Content-Type: application/json" -X PUT \
+      -d '{"data": "xyz.openbmc_project.Software.Activation.RequestedActivations.Active"}' \ https://bmc/xyz/openbmc_project/software/<id>/attr/RequestedActivation
+
+Check the flash progress:
+
+    curl -b cjar -k https://bmc/xyz/openbmc_project/software/<id>/attr/Progress
