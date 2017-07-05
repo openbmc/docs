@@ -131,7 +131,7 @@ To clear all logs, call the top-level `clear` method:
 BIOS boot options
 -----------------
 
-With OpenBMC, the BIOS boot options are stored as dbus properties under the
+With OpenBMC, the BIOS boot options are stored as D-Bus properties under the
 `settings/host0` path, in the `boot_flags` property. Their format adheres to the
 Boot Options Parameters table specified in the IPMI Specification Document,
 section 28.13.
