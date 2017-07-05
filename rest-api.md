@@ -3,9 +3,9 @@
 The primary management interface for OpenBMC is REST. This document provides
 some basic structure and usage examples for the REST interface.
 
-The schema for the rest interface is directly defined by the OpenBMC dbus
+The schema for the rest interface is directly defined by the OpenBMC D-Bus
 structure. Therefore, the objects, attributes and methods closely map to those
-in the dbus schema.
+in the D-Bus schema.
 
 For a quick explanation of HTTP verbs and how they relate to a RESTful API, see
 <http://www.restapitutorial.com/lessons/httpmethods.html>.
@@ -175,8 +175,8 @@ To invoke a method without parameters:
 
 
 ## HTTP DELETE operations
-DELETE operations are for removing instances. Only DBUS objects (instances) can
-be removed. If the underlying DBUS object implements the
+DELETE operations are for removing instances. Only D-Bus objects (instances) can
+be removed. If the underlying D-Bus object implements the
 `org.openbmc.Object.Delete` interface the REST server will call it. If
 `org.openbmc.Object.Delete` is not implemented, the REST server will return a
 HTTP 403 (Forbidden) error.
