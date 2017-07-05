@@ -2,7 +2,7 @@
 
 The Yocto Project is an open source collaboration project that provides
 templates, tools and methods to help you create custom Linux-based systems for
-embedded products regardless of the hardware architecture
+embedded products regardless of the hardware architecture.
 
 OpenBMC uses the Yocto tools to manage configuration and creation of BMC
 images.
@@ -27,7 +27,7 @@ applied in several ways.
 If you have an existing source tree you'd like to integrate, running
 `devtool modify -n ${PACKAGE} ${SRCTREE}` first creates a new Yocto layer in
 your build directory where devtool stores recipe modifications. It then
-constructs a `.bbappend` for the the package recipe and uses the
+constructs a `.bbappend` for the package recipe and uses the
 `externalsource` class to replace the download, fetch, and patch steps with
 no-ops. The result is that when you build the package, it will use the local
 source directory as is. Keep in mind that the package recipe may not perform a
@@ -36,7 +36,7 @@ build system's clean command in `${SRCTREE}` to clear any built objects. Also
 if you change the source, you may need to run
 `bitbake -c cleansstate ${PACKAGE}` to clear BitBake's caches.
 
-Alternatively if you don't already have a local source tree but would still
+Alternatively, if you don't already have a local source tree but would still
 like to modify the package, invoking `devtool modify ${PACKAGE}` will handle
 the fetch, unpack and patch phases for you and drop a source tree into your
 default workspace location.
@@ -49,13 +49,13 @@ Further information on [devtool][0] can be found in the [Yocto Mega Manual][1].
 
 ### Adding a file to your image ###
 
-There are a lot of examples of working with bitbake out there.  The [recipe
+There are a lot of examples of working with BitBake out there.  The [recipe
 example](http://docs.openembedded.org/usermanual/html/recipes_examples.html)
-from openembedded is a great one and the premise of this OpenBMC tailored
+from OpenEmbedded is a great one and the premise of this OpenBMC tailored
 section.
 
 So you wrote some code.  You've been scp'ing the compiled binary on to the
-openbmc system for a while and you know there is a better way.  Have it built
+OpenBMC system for a while and you know there is a better way.  Have it built
 as part of your flash image.
 
 Run the devtool command to add your repo to the workspace.  In my example I
@@ -80,10 +80,10 @@ do_install () {
 ```
 
 The install directives create directories and then copies the files into them.
-Now bitbake will pick them up from the traditional `/usr/bin` and
+Now BitBake will pick them up from the traditional `/usr/bin` and
 `/usr/shared/doc/hello/README.md`.
 
-The Final Step is to tell bitbake that you need the `welcome` recipe
+The Final Step is to tell BitBake that you need the `welcome` recipe
 
 ```
 vim conf/local.conf
@@ -107,7 +107,7 @@ ls build/tmp/work/${MACHINE}-openbmc-linux-gnueabi/obmc-phosphor-image/1.0-r0/ro
 ```
 
 NXP wrote a few examples of [useful] (https://community.nxp.com/docs/DOC-94953)
-commands with bitbake that find the file too
+commands with BitBake that find the file too
 
 ```
 bitbake -g obmc-phosphor-image && cat pn-depends.dot |grep welcome
