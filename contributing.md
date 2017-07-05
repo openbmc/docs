@@ -42,7 +42,7 @@ If you need further details on any of these issues, feel free to add comments.
 Coding style
 ------------
 
-Components of the OpenBMC sources should have consistent style.  If source is
+Components of the OpenBMC sources should have a consistent style.  If the source is
 coming from another project, we choose to follow the existing style of the
 upstream project.  Otherwise, conventions are chosen based on the language.
 
@@ -106,7 +106,7 @@ Your contribution will generally need to be reviewed before being accepted.
 Submitting changes via Gerrit server
 ------------------------------------
 
-The openbmc gerrit server supports GitHub credentials, its link is:
+The OpenBMC Gerrit server supports GitHub credentials, its link is:
 
   https://gerrit.openbmc-project.xyz/#/q/status:open
 
@@ -115,12 +115,12 @@ your account Settings that your SSH keys were imported:
 
   https://gerrit.openbmc-project.xyz/#/settings/
 
-Most repositories are supported by the gerrit server, the current list can be
+Most repositories are supported by the Gerrit server, the current list can be
 found under Projects -> List:
 
   https://gerrit.openbmc-project.xyz/#/admin/projects/
 
-If you're going to be working with gerrit often, it's useful to create an SSH
+If you're going to be working with Gerrit often, it's useful to create an SSH
 host block in ~/.ssh/config. Ex:
 ```
 Host openbmc.gerrit
@@ -129,20 +129,20 @@ Host openbmc.gerrit
         User your_github_id
 ```
 
-From your openbmc git repository, add a remote to the gerrit server, where
+From your OpenBMC git repository, add a remote to the Gerrit server, where
 'openbmc_repo' is the current git repository you're working on, such as
 phosphor-rest-server, and 'openbmc.gerrit' is the name of the Host previously added:
 
   `git remote add gerrit ssh://openbmc.gerrit/openbmc/openbmc_repo`
 
 Obtain the git hook commit-msg to automatically add a Change-Id to the commit
-message, which is needed by gerrit:
+message, which is needed by Gerrit:
 
   `gitdir=$(git rev-parse --git-dir)`
 
   `scp -p -P 29418 openbmc.gerrit:hooks/commit-msg ${gitdir}/hooks`
 
-To submit a change set, commit your changes, and push to the gerrit server,
+To submit a change set, commit your changes, and push to the Gerrit server,
 where 'gerrit' is the name of the remote added with the git remote add command:
 
   `git push gerrit HEAD:refs/for/master`
