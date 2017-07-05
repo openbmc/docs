@@ -31,7 +31,7 @@ These documents contain details on developing OpenBMC code itself
    OpenBMC
 
  - [dbus-interfaces.md](dbus-interfaces.md): Reference for APIs exposed
-   to dbus
+   to D-Bus
 
  - [kernel-development.md](kernel-development.md): Reference for common
    kernel development tasks
