@@ -63,13 +63,13 @@ rm -rf build/conf
 ```
 and running `openbmc-env` again (possibly with `TEMPLATECONF` set).
 
-## Useful dbus CLI tools
+## Useful D-Bus CLI tools
 
 ## `busctl`
 
 http://www.freedesktop.org/software/systemd/man/busctl.html
 
-Great tool to issue dbus commands via cli. That way you don't have to wait for
+Great tool to issue D-Bus commands via cli. That way you don't have to wait for
 the code to hit the path on the system. Great for running commands with QEMU
 too!
 
