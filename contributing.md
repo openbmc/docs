@@ -106,11 +106,11 @@ Your contribution will generally need to be reviewed before being accepted.
 Submitting changes via Gerrit server
 ------------------------------------
 
-The openbmc gerrit server supports Github credentials, its link is:
+The openbmc gerrit server supports GitHub credentials, its link is:
 
   https://gerrit.openbmc-project.xyz/#/q/status:open
 
-_One time setup_: Login to the WebUI with your github credentials and verify on
+_One time setup_: Login to the WebUI with your GitHub credentials and verify on
 your account Settings that your SSH keys were imported:
 
   https://gerrit.openbmc-project.xyz/#/settings/

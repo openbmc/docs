@@ -59,7 +59,7 @@ openbmc system for a while and you know there is a better way.  Have it built
 as part of your flash image.
 
 Run the devtool command to add your repo to the workspace.  In my example I
-have a repo out on github that contains my code.
+have a repo out on GitHub that contains my code.
 
 ```
 devtool add welcome https://github.com/causten/hello.git
