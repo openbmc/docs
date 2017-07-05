@@ -1,20 +1,20 @@
-OpenBMC DBUS API
+OpenBMC D-Bus API
 ================
 
 Please **note** that the v1.99.xx and greater code now has all of its
 interfaces defined in [this](https://github.com/openbmc/phosphor-dbus-interfaces)
 repository.  The below information in this document is for all v1.0.xx code.
 
-This document aims to specify the OpenBMC DBUS API.
+This document aims to specify the OpenBMC D-Bus API.
 
 The Phosphor distribution provides sample applications that implement off all
 the interfaces and objects listed below.  Alternative or more feature complete
-applications are possible by implementing parts of this DBUS API.
+applications are possible by implementing parts of this D-Bus API.
 
-OpenBMC typically adheres to DBUS best practices and usage models; however, one
+OpenBMC typically adheres to D-Bus best practices and usage models; however, one
 deviation is that OpenBMC places no requirements on well-known service names.
 This allows developers to structure their object implementations in whatever
-processes they choose.  In the standard DBUS programming model, applications
+processes they choose.  In the standard D-Bus programming model, applications
 connect to a service with a well-known name.  The well-known name is
 associated with a fixed schema.  In OpenBMC, without any standardization of
 well-known names, applications lose the knowledge of what applications provide
@@ -22,7 +22,7 @@ which objects.  To address this, the Phosphor distribution provides the
 objectmapper service.  See the `org.openbmc.objectmapper.ObjectMapper`
 interface below for more information.
 
-The OpenBMC DBUS API is still alpha.  If you have questions or suggestions
+The OpenBMC D-Bus API is still alpha.  If you have questions or suggestions
 please [let the community know](https://lists.ozlabs.org/listinfo/openbmc).
 
 `org.openbmc.HostIpmi`
@@ -516,23 +516,23 @@ Insert a description of the Led interface here.
 
 `org.openbmc.objectmapper.ObjectMapper`
 ---------------------------------------
-The ObjectMapper interface enables applications to discover the DBUS unique
+The ObjectMapper interface enables applications to discover the D-Bus unique
 connection name(s) for a given object path.
 
 ### methods
 | name              | in signature | out signature | description               |
 | ----------------- | ------------ | ------------- | ------------------------- |
-| `GetObject`       | `s`          | `a{sas}`      | **Determine the DBUS unique connection name(s) implementing a single object and the interfaces implemented by those services.**|
+| `GetObject`       | `s`          | `a{sas}`      | **Determine the D-Bus unique connection name(s) implementing a single object and the interfaces implemented by those services.**|
 |                   | `s`          |               | The path of the object to query.|
-|                   |              | `a{sas}`      | A dictionary with DBUS unique connection names as keys, and interfaces as values.|
-| `GetAncestors`    | `s`          | `a{sa{sas}}`  | **Determine the DBUS unique connection name(s) implementing any ancestor objects and the interfaces implemented by those services.**|
+|                   |              | `a{sas}`      | A dictionary with D-Bus unique connection names as keys, and interfaces as values.|
+| `GetAncestors`    | `s`          | `a{sa{sas}}`  | **Determine the D-Bus unique connection name(s) implementing any ancestor objects and the interfaces implemented by those services.**|
 |                   | `s`          |               | The point in the namespace from which to provide results.|
-|                   |              | `a{sa{sas}}`  | A dictionary of dictionaries, with object paths as outer keys, DBUS unique connection names as inner keys, and implemented interfaces as values.|
-| `GetSubTree`      | `si`         | `a{sa{sas}}`  | **Determine the DBUS unique connection name(s) implementing an entire subtree of objects in the DBUS namespace.**|
+|                   |              | `a{sa{sas}}`  | A dictionary of dictionaries, with object paths as outer keys, D-Bus unique connection names as inner keys, and implemented interfaces as values.|
+| `GetSubTree`      | `si`         | `a{sa{sas}}`  | **Determine the D-Bus unique connection name(s) implementing an entire subtree of objects in the D-Bus namespace.**|
 |                   | `s`          |               | The point in the namespace from which to provide results.|
 |                   | `i`          |               | The number of path elements to descend.|
-|                   |              | `a{sa{sas}}`  | A dictionary of dictionaries, with object paths as outer keys, DBUS unique connection names as inner keys, and interfaces implemented by those services as values.|
-| `GetSubTreePaths` | `si`         | `as`          | **List all known DBUS objects.**|
+|                   |              | `a{sa{sas}}`  | A dictionary of dictionaries, with object paths as outer keys, D-Bus unique connection names as inner keys, and interfaces implemented by those services as values.|
+| `GetSubTreePaths` | `si`         | `as`          | **List all known D-Bus objects.**|
 |                   | `s`          |               | The point in the namespace from which to provide results.|
 |                   | `i`          |               | The number of path elements to descend.|
 |                   |              | `as`          | An array of object paths. |
@@ -590,13 +590,13 @@ instance or a user account instance.
 ### methods
 | name     | in signature | out signature | description                        |
 | -------- | ------------ | ------------- | ---------------------------------- |
-| `delete` | `void`       | `void`        | **Remove the object from the DBUS namespace.**|
+| `delete` | `void`       | `void`        | **Remove the object from the D-Bus namespace.**|
 
 `org.openbmc.Associations`
 --------------------------
 Applications wishing to create an association between two or more objects
 implement can this interface.  Associations exist to provide a stable but
-extendable DBUS API.
+extendable D-Bus API.
 
 ### properties
 | name           | signature | description                              |
@@ -627,7 +627,7 @@ would result in the following associations:
 
 `org.openbmc.Association`
 -------------------------
-Applications use this interface to inject associations into the DBUS namespace.
+Applications use this interface to inject associations into the D-Bus namespace.
 
 ### properties
 | name        | signature | description                            |
