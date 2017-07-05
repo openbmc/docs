@@ -98,7 +98,7 @@ accidental whitespace changes - this makes review unnecessarily difficult.
 
 The guidelines in the Linux kernel are very useful:
 
- http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/SubmittingPatches
+ https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst
 
 Your contribution will generally need to be reviewed before being accepted.
 
