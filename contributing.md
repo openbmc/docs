@@ -12,11 +12,11 @@ Structure
 ---------
 
 OpenBMC has quite a modular structure, consisting of small daemons with a
-limited set of responsibilities. These communicate over dbus with other
+limited set of responsibilities. These communicate over D-Bus with other
 components, to implement the complete BMC system.
 
 The BMC's interfaces to the external world are typically through a separate
-daemon, which then translates those requests to dbus messages.
+daemon, which then translates those requests to D-Bus messages.
 
 These separate projects are then compiled into the final system by the
 overall 'openbmc' build infrastructure.
@@ -156,15 +156,15 @@ or systems (including bug trackers). Other developers may not have access to
 these, making future maintenance difficult.
 
 
-Best practices for dbus interfaces
+Best practices for D-Bus interfaces
 ----------------------------------
 
- * New dbus interfaces should be reusable
+ * New D-Bus interfaces should be reusable
 
  * Type signatures should and use the simplest types possible, appropriate
    for the data passed. For example, don't pass numbers as ASCII strings.
 
- * New dbus interfaces should be documented in the 'docs' repository, at:
+ * New D-Bus interfaces should be documented in the 'docs' repository, at:
 
      https://github.com/openbmc/docs/blob/master/dbus-interfaces.md
 
