@@ -226,3 +226,10 @@ image to `Active`.
 Check the flash progress:
 
     curl -b cjar -k https://bmc/xyz/openbmc_project/software/<id>/attr/Progress
+
+### Patching the host firmware
+
+Copy the partition binary file to `/usr/local/share/pnor/` on the BMC.
+
+The partition binary file must be named the same as the partition name that
+intends to patch, ex: `ATTR_TMP`.
