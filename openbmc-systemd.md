@@ -33,30 +33,29 @@ Within Phosphor OpenBMC, obmc-standby.target is wanted by multi-user.target and
 is where you'll find all Phosphor services associated.
 
 ## Server Power On
-When OpenBMC is used within a server, the [obmc-chassis-start@.target](https://github.com/openbmc/openbmc/blob/171031d20c7ed03900739d51ba53ad0001f98fa5/meta-phosphor/common/recipes-core/systemd/obmc-targets/obmc-chassis-start%40.target)
+When OpenBMC is used within a server, the [obmc-host-start@.target](https://github.com/openbmc/openbmc/blob/171031d20c7ed03900739d51ba53ad0001f98fa5/meta-phosphor/common/recipes-core/systemd/obmc-targets/obmc-host-start%40.target)
 is what drives the boot of the system.
 
-If you dig into its .wants relationship, you'll see the following in the file
+If you dig into its .requires relationship, you'll see the following in the file
 system
 
 ```
-ls -1 /lib/systemd/system/obmc-chassis-start@0.target.wants/
-obmc-power-chassis-on@0.target
-obmc-start-host@0.service
-...
+ls -1 /lib/systemd/system/obmc-host-start@0.target.requires
+obmc-chassis-poweron@0.target
+start_host@0.service
 ```
 
-You can see we have another target in here, obmc-power-chassis-on@0.target,
-along with some services that will all be started by systemd when you do a
-"systemctl start obmc-chassis-start@0.target".
+You can see we have another target in here, obmc-chassis-poweron@0.target,
+along with a service that will all be started by systemd when you do a
+"systemctl start obmc-host-start@0.target".
 
 The target has corresponding services associated with it:
 ```
-ls -1 /lib/systemd/system/obmc-power-chassis-on\@0.target.wants/
+ls -1 /lib/systemd/system/obmc-chassis-poweron\@0.target.requires/
 op-power-start@0.service
 op-wait-power-on@0.service
 ```
-So basically, if you run `systemctl start obmc-chassis-start@0.target` then
+So basically, if you run `systemctl start obmc-host-start@0.target` then
 systemd will start execution of all associated services.
 
 The services have dependencies within them that control the execution of each
@@ -64,9 +63,22 @@ service (for example, the op-power-start.service will run prior to the
 op-wait-power-on.service).  These dependencies are set using targets and the
 Wants,Before,After keywords.
 
-## Server Power Off
-The server power off function is encapsulated in the obmc-chassis-stop@0.target.
-You can do a similar exercise with the power on to see its dependent services.
+## Server Power Off (Soft)
+The soft server power off function is encapsulated in the
+obmc-host-shutdown@.target.  This target is soft in that it notifies the host
+of the power off request and gives it a certain amount of time to shut itself
+down.
+
+## Server Power Off (Hard)
+The hard server power off is encapsulated in the
+obmc-chassis-hard-poweroff@.target. This target will force the stopping
+of the soft power off service if running, and immediately cut power to the
+system.
+
+## Server Reboot
+The reboot of the server is encapsulated in the obmc-host-reboot@.target.
+This target will utilize the soft power off target and then, once that
+completes, start the host power on target.
 
 ## Systemd Control in OpenBMC
 There are a collection of services within OpenBMC that interact with systemd and
@@ -81,7 +93,7 @@ the following:
 xyz.openbmc_project.State.Host RequestedHostTransition s
 xyz.openbmc_project.State.Host.Transition.On
 
-Underneath the covers, this is calling systemd with obmc-chassis-start@0.target
+Underneath the covers, this is calling systemd with the server power on target.
 
 ## Error Handling of Systemd
 With great numbers of targets and services, come great chances for failures.
@@ -123,8 +135,8 @@ the halt vs. automatic reboot functionality.
 
 Targets which are not host related, will need special thought in regards to
 their error handling.  For example, the target responsible for applying chassis
-power, obmc-power-chassis-on@0.target, will have a
-"OnFailure=obmc-power-chassis-off@%i.target" error path.  That is, if the
+power, obmc-chassis-poweron@0.target, will have a
+"OnFailure=obmc-chassis-poweroff@%i.target" error path.  That is, if the
 chassis power on target fails then power off the chassis.
 
 The above info sets up some general **guidelines** for our host related
@@ -150,3 +162,4 @@ obmc-chassis-start@.target twice.  If you execute it when the operating system
 is up and running, and the service which toggles the pgood pin is re-executed,
 you're going to crash your system.  Given this info, the goal should always be
 to write "oneshot" services that have RemainAfterExit set to yes.
+
