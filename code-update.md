@@ -198,33 +198,106 @@ https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_proj
 Following are the steps to update the host firmware (or "BIOS"). This assumes
 the host is not accessing its firmware.
 
-Get a squashfs image:
+1. Get a squashfs image:
   * Build op-build: https://github.com/open-power/op-build
   * After building, the image should be a tarball in the output/images
     directory called <system type>.pnor.squashfs.tar
 
-Transfer the generated squashfs image to the BMC via one of two methods:
+2. Transfer the generated squashfs image to the BMC via one of the following
+methods:
+  * Via scp: Copy the generated squashfs image to the `/tmp/images/` directory
+    on the BMC.
   * Via REST Upload:
   https://github.com/openbmc/docs/blob/master/rest-api.md#uploading-images
   * Via TFTP: Perform a POST request to call the `DownloadViaTFTP` method of
   `/xyz/openbmc_project/software`.
 
+        ```
+        curl -b cjar -k -H "Content-Type: application/json" -X POST \
+          -d '{"data": ["<filename>", "<TFTP server IP address"]}' \
+          https://bmc/xyz/openbmc_project/software/action/DownloadViaTFTP
+        ```
 
-      curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data": ["<filename>", "<TFTP server IP address"]}' \
-        https://bmc/xyz/openbmc_project/software/action/DownloadViaTFTP
+3. Note the version id generated for that image file, which is a hash value of 8
+hexadecimal numbers generated from the version string contained in the image:
 
-To initiate the update, set the `RequestedActivation` property of the desired
-image to `Active`.
+  * From the BMC command line, note the most recent directory name created under
+  `/tmp/images/`, in this example it'd be `2a1022fe`:
 
-    curl -b cjar -k -H "Content-Type: application/json" -X PUT \
-      -d '{"data":
-      "xyz.openbmc_project.Software.Activation.RequestedActivations.Active"}' \
-      https://bmc/xyz/openbmc_project/software/<id>/attr/RequestedActivation
+        ```
+        # ls -l /tmp/images/
+        total 0
+        drwx------    2 root     root            80 Aug 22 07:54 2a1022fe
+        drwx------    2 root     root            80 Aug 22 07:53 488449a2
+        ```
 
-Check the flash progress:
+  * Using the REST API, note the object that has its Activation property set to
+  Ready, in this example it'd be `2a1022fe`:
 
-    curl -b cjar -k https://bmc/xyz/openbmc_project/software/<id>/attr/Progress
+        ```
+        $ curl -b cjar -k https://bmc/xyz/openbmc_project/software/enumerate
+        {
+          "data": {
+            "/xyz/openbmc_project/software/2a1022fe": {
+              "Activation": "xyz.openbmc_project.Software.Activation.Activations.Ready",
+        ```
+
+4. To initiate the update, set the `RequestedActivation` property of the desired
+image to `Active`, substitue ``<id>`` with the hash value noted on the previous
+step, this will write the contents of the image to a UBI volume in the pnor chip:
+
+  * From the BMC command line:
+
+      ```
+      busctl set-property org.open_power.Software.Host.Updater \
+        /xyz/openbmc_project/software/<id> \
+        xyz.openbmc_project.Software.Activation RequestedActivation s \
+        xyz.openbmc_project.Software.Activation.RequestedActivations.Active
+
+      ```
+
+  * Using the REST API:
+
+      ```
+      curl -b cjar -k -H "Content-Type: application/json" -X PUT \
+        -d '{"data":
+        "xyz.openbmc_project.Software.Activation.RequestedActivations.Active"}' \
+        https://bmc/xyz/openbmc_project/software/<id>/attr/RequestedActivation
+      ```
+
+5. (Optional) Check the flash progress. This interface is only available during
+the activation progress and is not present once the activation is completed:
+
+  * From the BMC command line:
+
+      ```
+      busctl get-property org.open_power.Software.Host.Updater \
+        /xyz/openbmc_project/software/<id> \
+        xyz.openbmc_project.Software.Activation Progress
+      ```
+
+  * Using the REST API:
+
+      ```
+      curl -b cjar -k https://bmc/xyz/openbmc_project/software/<id>/attr/Progress
+      ```
+
+6. Check the activation is complete by verifying the Activation property is set
+to Active:
+
+  * From the BMC command line:
+
+      ```
+      busctl get-property org.open_power.Software.Host.Updater \
+        /xyz/openbmc_project/software/<id> \
+        xyz.openbmc_project.Software.Activation Activation
+      ```
+
+  * Using the REST API:
+
+      ```
+      curl -b cjar -k https://bmc/xyz/openbmc_project/software/<id>
+      ```
 
 ### Patching the host firmware
 
