@@ -204,7 +204,9 @@ Generate a squashfs image. You'll need:
   https://github.com/openbmc/openpower-pnor-code-mgmt/blob/master/generate-squashfs
   * Run: `generate-squashfs <pnor-image>`
 
-Transfer the generated squashfs image to the BMC via one of two methods:
+Transfer the generated squashfs image to the BMC via one of three methods:
+  * Via scp: Copy the generated squashfs image to the `/tmp/images/` directory
+    on the BMC.
   * Via REST Upload:
   https://github.com/openbmc/docs/blob/master/rest-api.md#uploading-images
   * Via TFTP: Perform a POST request to call the `DownloadViaTFTP` method of
@@ -216,12 +218,27 @@ Transfer the generated squashfs image to the BMC via one of two methods:
         https://bmc/xyz/openbmc_project/software/action/DownloadViaTFTP
 
 To initiate the update, set the `RequestedActivation` property of the desired
-image to `Active`.
+image to `Active` either using the REST API or from the BMC command line:
 
-    curl -b cjar -k -H "Content-Type: application/json" -X PUT \
-      -d '{"data":
-      "xyz.openbmc_project.Software.Activation.RequestedActivations.Active"}' \
-      https://bmc/xyz/openbmc_project/software/<id>/attr/RequestedActivation
+* From the BMC command line:
+
+
+      busctl set-property org.open_power.Software.Host.Updater \
+        /xyz/openbmc_project/software/<id> \
+        xyz.openbmc_project.Software.Activation RequestedActivation s \
+        xyz.openbmc_project.Software.Activation.RequestedActivations.Active
+
+
+
+* Using the REST API:
+
+
+      curl -b cjar -k -H "Content-Type: application/json" -X PUT \
+        -d '{"data":
+        "xyz.openbmc_project.Software.Activation.RequestedActivations.Active"}' \
+        https://bmc/xyz/openbmc_project/software/<id>/attr/RequestedActivation
+
+
 
 Check the flash progress:
 
