@@ -29,7 +29,7 @@ that can be updated on the BMC:
 
     The OpenBMC bootloader
 
-Additionally, there are two tar-balls created that can be deloyed and unpacked by REST:
+Additionally, there are two tarballs created that can be deployed and unpacked by REST:
 
  * `<platform>-<timestamp>.all.tar`
 
@@ -50,13 +50,13 @@ as complete file system images, these filesystems have to be unmounted
 to replace them with new images.  To unmount these file systems all
 applications must be stopped.
 
-By default an orderly `reboot` will stop all applications and unmount
+By default, an orderly `reboot` will stop all applications and unmount
 the root filesystem, and the images copied into the `/run/initramfs`
 directory will be applied at that point before restarting.  This also
 applied to the `shutdown` and `halt` commands -- they will write the
 flash before stopping.
 
-As an alternative, the an option can be parsed by the `init` script in
+As an alternative, an option can be parsed by the `init` script in
 the initramfs to copy the required contents of these filesystems into
 RAM so the images can be applied while the rest of the application stack
 is running and progress can be monitored over the network.  The
@@ -85,7 +85,7 @@ then reboot to finish applying:
 
     reboot
 
-During the reboot process the `update` script will be invoked after
+During the reboot process, the `update` script will be invoked after
 the file systems are unmounted to complete the update process.
 
 Some optional features are available, see the help for more details:
@@ -145,11 +145,11 @@ Perform a POST to invoke the `updateViaTftp` method of the `/flash/bmc` object:
         -d '{"data": ["<TFTP server IP address>", "<filename>"]}' \
         https://bmc/org/openbmc/control/flash/bmc/action/updateViaTftp
 
-Note the `<filename>` shall be a tar-ball.
+Note the `<filename>` shall be a tarball.
 
 ### Check flash status
 
-You can query the progress of the download and image verificaton with
+You can query the progress of the download and image verification with
 a simple GET request:
 
     curl -b cjar -k https://bmc/org/openbmc/control/flash/bmc
@@ -162,8 +162,8 @@ Or perform a POST to invoke the `GetUpdateProgress` method of the `/flash/bmc` o
 
 Note:
 
- * During downloading the tar-ball, the progress status is `Downloading`
- * After the tar-ball is downloaded and verified, the progress status becomes `Image ready to apply`.
+ * During downloading the tarball, the progress status is `Downloading`
+ * After the tarball is downloaded and verified, the progress status becomes `Image ready to apply`.
 
 ### Apply update
 If the status is `Image ready to apply.` then you can either initiate
