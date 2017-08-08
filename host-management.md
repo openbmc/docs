@@ -132,14 +132,22 @@ BIOS boot options
 -----------------
 
 With OpenBMC, the BIOS boot options are stored as D-Bus properties under the
-`settings/host0` path, in the `boot_flags` property. Their format adheres to the
-Boot Options Parameters table specified in the IPMI Specification Document,
-section 28.13.
+`xyz/openbmc_project/control/host0/boot_mode` and
+`xyz/openbmc_project/control/host0/boot_source`.
 
-Each boot parameter is represented by an individual property, and their hex
-value is displayed in a string format. For example, a boot flags parameter value
-of `0x8014000000` would be stored as a `8014000000` string in the
-`settings/host0/boot_flags` property.
+IPMI V2.0 can take only single value from either
+`xyz/openbmc_project/control/host0/boot_mode` OR `xyz/openbmc_project/control/host0/boot_source`
+as part of `bootparam`. If both `host0/boot_mode` and `host0/boot_source` are set,
+then the IPMI daemon chooses what is in `host0/boot_source`.
+
+Both `xyz/openbmc_project/control/host0/boot_mode` and `xyz/openbmc_project/control/host0/boot_source`
+have a property called `persist`. Setting that to `boolean true` would indicate that the chosen
+boot parameter will be **applied to all future boots**.
+Setting `persist` to a `boolean false` would indicate that the chosen boot
+parameter will be **applied only for the next boot**.
+
+Their format adheres to the Boot Options Parameters table specified in the IPMI
+Specification Document, section 28.13.
 
 Host power control
 ------------------
