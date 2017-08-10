@@ -1,7 +1,7 @@
 # Sensor Support for OpenBMC #
 OpenBMC makes it easy to add sensors for your hardware and is compliant with
 the traditional Linux HWMon sensor format.  The architecture of OpenBMC
-sensors is to map sensors to [D-Bus](https://dbus.freedesktop.org/doc/dbus-tutorial.html)
+sensors is to map sensors to [D-Bus][1]
 objects.  The D-Bus object will broadcast the `PropertiesChanged` signal when either
 the sensor or threshold value changes. It is the responsibility of other
 applications to determine the effect of the signal on the system.
@@ -18,14 +18,14 @@ Signals: All properties for an interface will broadcast signal changed
 
 **Path definitions**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**\<type>** : The [HWMon class]
-(https://www.kernel.org/doc/Documentation/hwmon/sysfs-interface) name in lower
-case. Examples include `temperature, fan, voltage`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**\<type>** :
+The [HWMon class][2] name in lower case.
+Examples include `temperature, fan, voltage`.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**\<label>** : User defined
 name of the sensor.  Examples include `ambient, cpu0, fan5`
 
-**Note**: The label shall comply with "Valid Object Paths" of [DBus Spec][1],
+**Note**: The label shall comply with "Valid Object Paths" of [DBus Spec][3],
 that shall only contain the ASCII characters "[A-Z][a-z][0-9]_".
 
 
@@ -33,15 +33,14 @@ that shall only contain the ASCII characters "[A-Z][a-z][0-9]_".
 
 Sensor properties are standardized based on the type of sensor.  A Threshold
 sensor contains specific properties associated with the rise and fall of a
-sensor value.  The [Sensor Interfaces](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/Sensor)
+sensor value.  The [Sensor Interfaces][4]
 are described in their respective YAML files.  The path location in the source
 tree is identical to the interface being described below the
-[phosphor-dbus-interfaces](https://github.com/openbmc/phosphor-dbus-interfaces)
-parent directory.
+[phosphor-dbus-interfaces][5] parent directory.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;example:
-[openbmc/phosphor-dbus-interfaces/xyz/openbmc_project/Sensor/Threshold/Warning.yaml]
-(https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Sensor/Threshold/Warning.interface.yaml)
+[openbmc/phosphor-dbus-interfaces/xyz/openbmc_project/Sensor/Threshold/Warning.yaml][6]
+
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maps to D-Bus interface
 `xyz.openbmc_project.Sensor.Threshold.Warning`
@@ -50,8 +49,7 @@ Each 'name' property in the YAML file maps directly to D-Bus properties.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;example:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Warning.interface.yaml]
-(https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Sensor/Threshold/Warning.interface.yaml)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Warning.interface.yaml][6]
 
 ```
 properties:
@@ -124,11 +122,11 @@ Workbook) or not.
 ### My sensors are not defined in an MRW ###
 
 HWMon sensors are defined in the `recipes-phosphor/sensor/phosphor-hwmon%`
-path within the [machine configuration](https://github.com/openbmc/openbmc/tree/master/meta-openbmc-machines).
+path within the [machine configuration][7].
 The children of the `obmc/hwmon` directory should follow the children of the
 `devicetree/base` directory path on the system as defined by the kernel.
 
-As an example, the Palmetto [configuration](https://github.com/openbmc/openbmc/blob/master/meta-openbmc-machines/meta-openpower/meta-ibm/meta-palmetto/recipes-phosphor/sensors/phosphor-hwmon%25/obmc/hwmon/ahb/apb/i2c%401e78a000/i2c-bus%40c0/tmp423%404c.conf)
+As an example, the Palmetto [configuration][8]
 file for the ambient temperature sensor.
 
 ```
@@ -162,7 +160,7 @@ yyy = HWMon sensor type (i.e. temp, pwm)
 
 The HWMon sensor type
 
-| [HWMon sensor type](https://www.kernel.org/doc/Documentation/hwmon/sysfs-interface) | type |
+| [HWMon sensor type][9] | type |
 |---|---|
 | temp | temperature |
 | in | voltage |
@@ -170,7 +168,7 @@ The HWMon sensor type
 
 
 
-See the [HWMon interface](https://www.kernel.org/doc/Documentation/hwmon/sysfs-interface)
+See the [HWMon interface][9]
 definitions for more definitions and keyword details
 
 
@@ -245,6 +243,16 @@ added.  The instance path will be `/xyz/openbmc_project/Sensors/fan/fan0`.
 
 
 ## Additional Reading ##
-Mailing List [Comments on Sensor design](https://lists.ozlabs.org/pipermail/openbmc/2016-November/005309.html)
+Mailing List [Comments on Sensor design][10]
 
-[1]: https://dbus.freedesktop.org/doc/dbus-specification.html#basic-types
+
+[1]: https://dbus.freedesktop.org/doc/dbus-tutorial.html
+[2]: https://www.kernel.org/doc/Documentation/hwmon/sysfs-interface
+[3]: https://dbus.freedesktop.org/doc/dbus-specification.html#basic-types
+[4]: https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/Sensor
+[5]: https://github.com/openbmc/phosphor-dbus-interfaces
+[6]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Sensor/Threshold/Warning.interface.yaml
+[7]: https://github.com/openbmc/openbmc/tree/master/meta-openbmc-machines
+[8]: https://github.com/openbmc/openbmc/blob/master/meta-openbmc-machines/meta-openpower/meta-ibm/meta-palmetto/recipes-phosphor/sensors/phosphor-hwmon%25/obmc/hwmon/ahb/apb/i2c%401e78a000/i2c-bus%40c0/tmp423%404c.conf
+[9]: https://www.kernel.org/doc/Documentation/hwmon/sysfs-interface
+[10]: https://lists.ozlabs.org/pipermail/openbmc/2016-November/005309.html
