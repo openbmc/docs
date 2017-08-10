@@ -25,6 +25,9 @@ case. Examples include `temperature, fan, voltage`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**\<label>** : User defined
 name of the sensor.  Examples include `ambient, cpu0, fan5`
 
+**Note**: The label shall comply with "Valid Object Paths" of [DBus Spec][1],
+that shall only contain the ASCII characters "[A-Z][a-z][0-9]_".
+
 
 ## Development Details ##
 
@@ -243,3 +246,5 @@ added.  The instance path will be `/xyz/openbmc_project/Sensors/fan/fan0`.
 
 ## Additional Reading ##
 Mailing List [Comments on Sensor design](https://lists.ozlabs.org/pipermail/openbmc/2016-November/005309.html)
+
+[1]: https://dbus.freedesktop.org/doc/dbus-specification.html#basic-types
