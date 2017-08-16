@@ -198,11 +198,10 @@ https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_proj
 Following are the steps to update the host firmware (or "BIOS"). This assumes
 the host is not accessing its firmware.
 
-Generate a squashfs image. You'll need:
-  * A PNOR image: https://github.com/open-power/op-build
-  * The generate-squashfs script:
-  https://github.com/openbmc/openpower-pnor-code-mgmt/blob/master/generate-squashfs
-  * Run: `generate-squashfs <pnor-image>`
+Get a squashfs image:
+  * Build op-build: https://github.com/open-power/op-build
+  * After building, the image should be a tarball in the output/images
+    directory called <system type>.pnor.squashfs.tar
 
 Transfer the generated squashfs image to the BMC via one of two methods:
   * Via REST Upload:
