@@ -68,8 +68,11 @@ Update from the OpenBMC shell
 
 To update from the OpenBMC shell, follow the steps in this section.
 
-It is recommended that the BMC be prepared for update:
+It is recommended that the BMC be prepared for update (note that the
+environment variable needs to be set twice for initramfs be able to
+read it due to the U-Boot redundant environments):
 
+    fw_setenv openbmconce copy-files-to-ram copy-base-filesystem-to-ram
     fw_setenv openbmconce copy-files-to-ram copy-base-filesystem-to-ram
     reboot
 
