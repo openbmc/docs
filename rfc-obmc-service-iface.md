@@ -135,7 +135,7 @@ busctl call org.openbmc.LogManager /org/openbmc/LogManager/rsyslog org.freedeskt
 busctl call org.openbmc.LogManager /org/openbmc/LogManager/rsyslog org.freedesktop.DBus.Properties Get ss org.openbmc.Errl port
 ```
 
-#### Get All configuration properties of the logging sevice.
+#### Get All configuration properties of the logging service.
 ```
 busctl call org.openbmc.LogManager /org/openbmc/LogManager/rsyslog org.freedesktop.DBus.Properties GetAll s org.openbmc.Errl
 ```

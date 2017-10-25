@@ -23,7 +23,7 @@ When developing a new driver, your goal is to have the code accepted upstream. T
 
 Once you are sure a driver needs to be written, you should develop and test the driver, before sending it upstream to the relevant maintainers. You should feel welcome to cc the OpenBMC list when sending upstream, so other kernel developers can provide input where appropriate. Be sure to follow the (upstream development process)[https://www.kernel.org/doc/Documentation/process/submitting-patches.rst].
 
-In the past patches underwent 'pre-review' on the OpenBMC mailing list. While this is useful for developers who are not familiar with writing kenrel code, it has lead to confusion about the upstreaming process, so now we do all of our development in the community.
+In the past patches underwent 'pre-review' on the OpenBMC mailing list. While this is useful for developers who are not familiar with writing kernel code, it has lead to confusion about the upstreaming process, so now we do all of our development in the community.
 
 Once the driver has been accepted upstream, send the good news to the OpenBMC list with a reference to the upstream tree. This may be Linus' tree, or it might be one of the subsystem maintainers. From there the OpenBMC kernel team can decide how best to include your code in the OpenBMC tree.
 
@@ -48,7 +48,7 @@ When modifying the tree we currently test on the following platforms:
  - Witherspoon, an OpenPower Power9 box containing an ast2500 with NCSI networking
  - qemu-plametto and qemu-romulus
 
-Before submitting patches it is recommended you boot test on at least the Qemu platforms, and whatever hardware you have availaible.
+Before submitting patches it is recommended you boot test on at least the Qemu platforms, and whatever hardware you have available.
 
 # Tips and Tricks
 

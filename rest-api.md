@@ -225,7 +225,7 @@ b) The client needs to open a secure websocket with the URL <BMC IP>/subscribe.
 
 c) The client needs to send, over the websocket, a JSON dictionary, comprising
    of key-value pairs. This dictionary serves as the "events filter". All the
-   keys are optinal, so the dictionary can be empty if no filtering is desired.
+   keys are optional, so the dictionary can be empty if no filtering is desired.
    The filters represented by each of the key-value pairs are ORed.
 
    One of the supported keys is "paths". The corresponding value is an array of
@@ -282,7 +282,7 @@ c) The client needs to send, over the websocket, a JSON dictionary, comprising
 
 d) The rest server on the BMC will respond over the websocket when a D-Bus event
    occurs, considering the client supplied filters. The rest servers notifies
-   about InterfacesAdded and PropertiesChanged events. The reponse is a JSON
+   about InterfacesAdded and PropertiesChanged events. The response is a JSON
    dictionary as follows :
 
    InterfacesAdded
