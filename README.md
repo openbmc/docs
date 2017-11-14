@@ -30,9 +30,6 @@ These documents contain details on developing OpenBMC code itself
  - [contributing.md](contributing.md): Guidelines for contributing to
    OpenBMC
 
- - [dbus-interfaces.md](dbus-interfaces.md): Reference for APIs exposed
-   to D-Bus
-
  - [kernel-development.md](kernel-development.md): Reference for common
    kernel development tasks
 
