@@ -1,6 +1,8 @@
 OpenBMC D-Bus API
 ================
 
+***WARNING*** **DEPRECATED API** The /org/openbmc API is deprecated and will *stop working* in a future OpenBMC release.
+
 Please **note** that the v1.99.xx and greater code now has all of its
 interfaces defined in [this](https://github.com/openbmc/phosphor-dbus-interfaces)
 repository.  The below information in this document is for all v1.0.xx code.
