@@ -1,6 +1,8 @@
 Host Management with OpenBMC
 ============================
 
+***WARNING*** **DEPRECATED API** The /org/openbmc API is deprecated and will *stop working* in a future OpenBMC release.
+
 This document describes the host-management interfaces of the OpenBMC object
 structure, accessible over REST.
 
