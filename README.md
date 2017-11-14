@@ -9,7 +9,7 @@ OpenBMC Usage
 These documents describe how to use OpenBMC, including using the programmatic
 interfaces to an OpenBMC system.
 
- - [rest-api.md](rest-api.md): Introduction to using the OpenBMC REST API
+ - [rest-api/introduction.md](rest-api/introduction.md): Introduction to using the OpenBMC REST API
 
  - [console.md](console.md): Using the host console
 
