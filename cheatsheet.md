@@ -153,6 +153,8 @@ ssh -p 2200 root@bmc
 ```
 
 Power on:
+***WARNING*** **DEPRECATED API** This API is deprecated and will *stop working* in a future OpenBMC release.
+
 ```
 curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST     -d '{"data": []}'  https://palm5-bmc/org/openbmc/control/chassis0/action/powerOn
 ```
