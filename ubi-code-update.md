@@ -10,12 +10,21 @@ Two BMC Code Updates layouts are available:
 This document describes the UBI code update. The non-UBI code update can be
 found here: https://github.com/openbmc/docs/blob/master/code-update.md#openbmc--host-code-update
 
+### Steps to Update
+
 The following are the steps to update the BMC if the UBI layout is enabled.
 
 1. Get a UBI BMC image tar:
 After building OpenBMC, you will end up with a set of image files in
 `tmp/deploy/images/<platform>/`. `obmc-phosphor-image-<platform>.ubi.mtd.tar` is
-the UBI BMC tar image.
+the UBI BMC tar image. The UBI BMC tar image contains 5 files: u-boot,
+kernel, ro, and rw partitions and the MANIFEST file, which contains information
+about the image such as the image purpose and version. A MANIFEST file might
+look like
+```
+purpose=xyz.openbmc_project.Software.Version.VersionPurpose.BMC
+version=v1.99.10
+```
 
 2. Transfer the generated UBI BMC image to the BMC via one of the following
 methods:
@@ -102,3 +111,8 @@ via one of the following:
       curl -b cjar -k https://bmc/xyz/openbmc_project/software/<id>/attr/Progress
       ```
 
+### Implementation
+
+More information about the implementation of the UBI code update can be found at
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Software
+and https://github.com/openbmc/phosphor-bmc-code-mgmt
