@@ -146,12 +146,32 @@ These require a json formatted payload. To get an example of what that looks
 like:
 
     curl -b cjar -k \
-        https://bmc/org/openbmc/control/flash/bios > bios.json
+        https://bmc/xyz/openbmc_project/state/host0 > host.json
+
+    $ cat host.json
+    {
+      "data": {
+        "AttemptsLeft": 0,
+        "BootProgress": "xyz.openbmc_project.State.Boot.Progress.ProgressStages.Unspecified",
+        "CurrentHostState": "xyz.openbmc_project.State.Host.HostState.Off",
+        "OperatingSystemState": "xyz.openbmc_project.State.OperatingSystem.Status.OSStatus.Inactive",
+        "RequestedHostTransition": "xyz.openbmc_project.State.Host.Transition.Off"
+      },
+      "message": "200 OK",
+      "status": "ok"
+    }
 
 or
 
     curl -b cjar -k \
-        https://bmc/org/openbmc/control/flash/bios/attr/flasher_path > flasher_path.json
+        https://bmc/xyz/openbmc_project/state/host0/attr/RequestedHostTransition > requested_host.json
+
+    $ cat requested_host.json
+    {
+      "data": "xyz.openbmc_project.State.Host.Transition.Off",
+      "message": "200 OK",
+      "status": "ok"
+    }
 
 When turning around and sending these as requests, delete the message and status
 properties.
@@ -159,29 +179,26 @@ properties.
 To make curl use the correct content type header use the -H option to specify
 that we're sending JSON data:
 
-    curl -b cjar -k -H "Content-Type: application/json" -X POST -d <json> <url>
+    curl -b cjar -k -H "Content-Type: application/json" -X PUT -d <json> <url>
 
 A PUT operation on an object requires a complete object. For partial updates
 there is PATCH but that is not implemented yet. As a workaround individual
 attributes are PUTable.
 
-For example, make changes to the file and do a PUT (upload):
+For example, make changes to the requested_host.json file and do a PUT (upload):
 
-
-    curl -b cjar -k -H "Content-Type: application/json" \
-        -X PUT -T bios.json \
-        https://bmc/org/openbmc/control/flash/bios
+    $ cat requested_host.json
+    {"data": "xyz.openbmc_project.State.Host.Transition.On"}
 
     curl -b cjar -k -H "Content-Type: application/json" \
-        -X PUT -T flasher_path.json \
-        https://bmc/org/openbmc/control/flash/bios/attr/flasher_path
-
+        -X PUT -T requested_host.json \
+        https://bmc/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 
 Alternatively specify the json inline with -d:
 
-    curl -b cjar -k -H "Content-Type: application/json" -X PUT
-        -d '{"data": <value>}' \
-        https://bmc/org/openbmc/control/flash/bios/attr/flasher_path
+    curl -b cjar -k -H "Content-Type: application/json" -X PUT \
+        -d '{"data": "xyz.openbmc_project.State.Host.Transition.On"}' \
+        https://bmc/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 
 When using '-d' just remember that json requires quoting.
 
