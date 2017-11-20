@@ -210,18 +210,17 @@ HTTP 403 (Forbidden).
 
 These also require a json formatted payload.
 
-To invoke a method with parameters:
+To invoke a method with parameters (Downloading a Tar image via TFTP):
 
-    curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data": [<positional-parameters>]}' \
-        https://bmc/org/openbmc/control/fan0/action/setspeed
+    curl -b cjar -k -X POST -H "Content-Type: application/json" \
+       -d '{"data": ["<Image Tarball>", "<TFTP Server>"]}' \
+       https://bmc/xyz/openbmc_project/software/action/DownloadViaTFTP
 
-To invoke a method without parameters:
+To invoke a method without parameters (Factor Reset of BMC and Host):
 
-    curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data": []}' \
-        https://bmc/org/openbmc/control/fan0/action/getspeed
-
+    curl -b cjar -k -H 'Content-Type: application/json' -X POST \
+        -d '{"data":[]}' \
+        https://bmc//xyz/openbmc_project/software/action/Reset
 
 ## HTTP DELETE operations
 DELETE operations are for removing instances. Only D-Bus objects (instances) can
