@@ -337,13 +337,13 @@ d) The rest server on the BMC will respond over the websocket when a D-Bus event
    ```
    "event": InterfacesAdded
    "path": <string : new D-Bus path that was created>
-   "intfMap": <dict : a dictionary of interfaces> (similar to org.freedesktop.DBus.ObjectManager.InterfacesAdded )
+   "interfaces": <dict : a dictionary of interfaces> (similar to org.freedesktop.DBus.ObjectManager.InterfacesAdded )
    ```
 
    PropertiesChanged
    ```
    "event": PropertiesChanged
    "path": <string : D-Bus path whose property changed>
-   "intf": <string : D-Bus interface to which the changed property belongs>
-   "propMap": <dict : a dictionary of properties> (similar to org.freedesktop.DBus.Properties.PropertiesChanged)
+   "interface": <string : D-Bus interface to which the changed property belongs>
+   "properties": <dict : a dictionary of properties> (similar to org.freedesktop.DBus.Properties.PropertiesChanged)
    ```
