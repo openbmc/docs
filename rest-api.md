@@ -209,14 +209,14 @@ To invoke a method without parameters:
 ## HTTP DELETE operations
 DELETE operations are for removing instances. Only D-Bus objects (instances) can
 be removed. If the underlying D-Bus object implements the
-`org.openbmc.Object.Delete` interface the REST server will call it. If
-`org.openbmc.Object.Delete` is not implemented, the REST server will return a
-HTTP 403 (Forbidden) error.
+`xyz.openbmc_project.Object.Delete` interface the REST server will call it. If
+`xyz.openbmc_project.Object.Delete` is not implemented, the REST server will
+return a HTTP 403 (Forbidden) error.
 
-For example, to delete the event record with ID 0:
+For example, to delete the event record with ID 1:
 
    curl -b cjar -k -X DELETE \
-       https://bmc/org/openbmc/events/record/0
+       https://bmc/xyz/openbmc_project/logging/entry/1
 
 
 ## Uploading images
