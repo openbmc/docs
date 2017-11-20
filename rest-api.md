@@ -28,7 +28,7 @@ To log out:
 
     curl -c cjar -b cjar -k -X POST -H "Content-Type: application/json" \
         -d '{"data": [ ] }' \
-	https://bmc/logout
+        https://bmc/logout
 
 (or just delete your cookie jar file)
 
@@ -40,29 +40,19 @@ They are:
  - To query the attributes of an object, perform a GET request on the object
    name, with no trailing slash. For example:
 
-        $ curl -b cjar -k https://bmc/org/openbmc/inventory/system
+        $ curl -b cjar -k https://bmc/xyz/openbmc_project/inventory/system
         {
           "data": {
-            "Asset Tag": [],
-            "Custom Field 1": "\tbuildroot-dcb6dc3",
-            "Custom Field 2": "\tskiboot-5.1.15",
-            "Custom Field 3": "\thostboot-c223637-017f5fd",
-            "Custom Field 4": "\tlinux-4.4.6-openpower1-2291fe8",
-            "Custom Field 5": "\tpetitboot-72928ed-a75299d",
-            "Custom Field 6": "\tpalmetto-xml-8281868-6b8b2bb",
-            "Custom Field 7": "\tocc-1093bf9",
-            "Custom Field 8": "\thostboot-binaries-7f593a3",
-            "FRU File ID": [],
-            "Manufacturer": [],
-            "Model Number": [],
-            "Name": "OpenPOWER Firmware",
-            "Serial Number": [],
-             "Version": "open-power-palmetto-5a4a3d9",
-            "fault": "False",
-            "fru_type": "SYSTEM",
-            "is_fru": 1,
-            "present": "False",
-            "version": ""
+            "AssetTag": "",
+            "BuildDate": "",
+            "Cached": 0,
+            "FieldReplaceable": 0,
+            "Manufacturer": "",
+            "Model": "0000000000000000",
+            "PartNumber": "",
+            "Present": 1,
+            "PrettyName": "",
+            "SerialNumber": "0000000000000000"
           },
           "message": "200 OK",
           "status": "ok"
@@ -71,9 +61,9 @@ They are:
  - To query a single attribute, use the `attr/<name>` path. Using the
    `system` object from above, we can query just the `Name` value:
 
-        $ curl -b cjar -k https://bmc/org/openbmc/inventory/system/attr/Name
+        $ curl -b cjar -k https://bmc/xyz/openbmc_project/inventory/system/attr/Model
         {
-          "data": "OpenPOWER Firmware",
+          "data": "0000000000000000",
           "message": "200 OK",
           "status": "ok"
         }
@@ -82,29 +72,71 @@ They are:
    the URL. For example, using the same object path as above, but adding a
    slash:
 
-        $ curl -b cjar -k https://bmc/org/openbmc/inventory/system/
+        $ curl -b cjar -k https://bmc/xyz/openbmc_project/
         {
           "data": [
-            "/org/openbmc/inventory/system/systemevent",
-            "/org/openbmc/inventory/system/chassis"
+            "/xyz/openbmc_project/dump",
+            "/xyz/openbmc_project/software",
+            "/xyz/openbmc_project/control",
+            "/xyz/openbmc_project/network",
+            "/xyz/openbmc_project/logging",
+            "/xyz/openbmc_project/sensors",
+            "/xyz/openbmc_project/inventory",
+            "/xyz/openbmc_project/user",
+            "/xyz/openbmc_project/time",
+            "/xyz/openbmc_project/led",
+            "/xyz/openbmc_project/state"
+
           ],
           "message": "200 OK",
           "status": "ok"
         }
 
-   This shows that there are two children of the `system/` object: `systemevent`
-   and `chassis`. This can be used with the base REST URL (ie., `http://bmc/`),
-   to discover all objects in the hierarchy.
+   This shows that there are 11 children of the `openbmc_project/` object:
+   `dump`, `software`, `control`, `network`, `logging`, `sensors`, `inventory`,
+   `user`, `time`, `led`, and `state`. This can be used with the base REST URL
+   (ie., `http://bmc/`), to discover all objects in the hierarchy.
 
  - Performing the same query with `/list` will list the child objects
    *recursively*.
 
-        $ curl -b cjar -k https://palm5-bmc/list
-        [output omitted]
+        $ curl -b cjar -k https://bmc/xyz/openbmc_project/network/list
+        {
+          "data": [
+            "/xyz/openbmc_project/network/config",
+            "/xyz/openbmc_project/network/eth0",
+            "/xyz/openbmc_project/network/eth0/ipv4/3cf9573",
+            "/xyz/openbmc_project/network/eth0/ipv6/c354c06",
+            "/xyz/openbmc_project/network/host0/intf",
+            "/xyz/openbmc_project/network/host0/intf/addr",
+            "/xyz/openbmc_project/network/config/dhcp"
+          ],
+          "message": "200 OK",
+          "status": "ok"
+        }
 
  - Adding `/enumerate` instead of `/list` will also include the attributes of
    the listed objects.
 
+        $ curl -b cjar -k https://bmc/xyz/openbmc_project/time/enumerate
+        {
+          "data": {
+            "/xyz/openbmc_project/time/bmc": {
+              "Elapsed": 1511205212119165
+            },
+            "/xyz/openbmc_project/time/host": {
+              "Elapsed": 1511205212134372
+            },
+            "/xyz/openbmc_project/time/owner": {
+              "TimeOwner": "xyz.openbmc_project.Time.Owner.Owners.BMC"
+            },
+            "/xyz/openbmc_project/time/sync_method": {
+              "TimeSyncMethod": "xyz.openbmc_project.Time.Synchronization.Method.NTP"
+            }
+          },
+          "message": "200 OK",
+          "status": "ok"
+        }
 
 ## HTTP PUT operations
 
