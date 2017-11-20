@@ -144,7 +144,7 @@ window.  This results in having an easily accessible qemu command session.
 
 Login:
 ```
-curl -c cjar -k -X POST -H "Content-Type: application/json" -d '{"data": [ "root", "0penBmc" ] }' https://palm5-bmc/login
+curl -c cjar -k -X POST -H "Content-Type: application/json" -d '{"data": [ "root", "0penBmc" ] }' https://bmc/login
 ```
 
 Connect to host console:
@@ -154,7 +154,9 @@ ssh -p 2200 root@bmc
 
 Power on:
 ```
-curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST     -d '{"data": []}'  https://palm5-bmc/org/openbmc/control/chassis0/action/powerOn
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
+  -d '{"data": "xyz.openbmc_project.State.Host.Transition.On"}' \
+  https://bmc/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 ```
 
 ## GDB
