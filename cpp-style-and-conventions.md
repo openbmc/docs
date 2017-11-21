@@ -96,19 +96,23 @@ features or libraries.
 
 We do use exceptions as a basis for error handling within OpenBMC.
 
-### Boost, QT, etc.
+### Boost
 
-> If you give a mouse a cookie...
-
-While, in general, we appreciate reuse over rewriting, we are not using large
-general-purpose libraries such as Boost.  Due to 'Code should be performant:
-code size' we do not want to utilize the entirety of Boost.  If approval is
-given for a single part of a large general-purpose library it becomes much more
-difficult to disapprove of another part of the library.  Before long, we may
-have effectively approved of the entire library.
-
-We do look for single feature libraries that can be used in place of our own
-implementations.
+Use of boost is allowed, under the following circumstances:
+1. Use is done as a header-only library.  This allows unused functions and
+   methods to be removed by the compiler at link time, and avoids adding large
+amounts of overhead and flash usage.
+2. Implementers should include the lowest level header required to solve the
+   problem at hand.  This allows uses to be found and moved forward when new
+standards are available, as well as reduce compile times, and decrease the
+possibility of accidental use.  (ie, #include <boost/container/flat_map.hpp>
+not #include <boost/container.hpp>)
+3. The module used should not have an equivalent in the std namespace that meets
+   the same requirements for implementation or clarity:  For example,
+std::chrono should be preferred over boost::chrono.  std::array over
+boost::array.
+4. Use does not conflict with any of the core tenants of this coding standard
+   (clarity, modern practices, or performance).
 
 ### iostream
 
