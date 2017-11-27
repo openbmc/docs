@@ -114,7 +114,7 @@ Perform a POST to invoke the `PrepareForUpdate` method of the `/flash/bmc` objec
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
         -d '{"data":  []}' \
-        https://bmc/org/openbmc/control/flash/bmc/action/prepareForUpdate
+        https://${bmc}/org/openbmc/control/flash/bmc/action/prepareForUpdate
 
 This will setup the u-boot environment and reboot the BMC.   If no other
 images were pending the BMC should return in about 2 minutes.
@@ -138,7 +138,7 @@ To configure the update settings, perform a REST PUT to
 
     curl -b cjar -k -H "Content-Type: application/json" -X PUT \
         -d '{"data": 1}' \
-        https://bmc/org/openbmc/control/flash/bmc/attr/preserve_network_settings
+        https://${bmc}/org/openbmc/control/flash/bmc/attr/preserve_network_settings
 
 ### Initiate update
 
@@ -146,7 +146,7 @@ Perform a POST to invoke the `updateViaTftp` method of the `/flash/bmc` object:
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
         -d '{"data": ["<TFTP server IP address>", "<filename>"]}' \
-        https://bmc/org/openbmc/control/flash/bmc/action/updateViaTftp
+        https://${bmc}/org/openbmc/control/flash/bmc/action/updateViaTftp
 
 Note the `<filename>` shall be a tarball.
 
@@ -155,13 +155,13 @@ Note the `<filename>` shall be a tarball.
 You can query the progress of the download and image verification with
 a simple GET request:
 
-    curl -b cjar -k https://bmc/org/openbmc/control/flash/bmc
+    curl -b cjar -k https://${bmc}/org/openbmc/control/flash/bmc
 
 Or perform a POST to invoke the `GetUpdateProgress` method of the `/flash/bmc` object:
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
         -d '{"data": []}' \
-        https://bmc/org/openbmc/control/flash/bmc/action/GetUpdateProgress
+        https://${bmc}/org/openbmc/control/flash/bmc/action/GetUpdateProgress
 
 Note:
 
@@ -175,7 +175,7 @@ flash:
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
         -d '{"data": []}' \
-        https://bmc/org/openbmc/control/flash/bmc/action/Apply
+        https://${bmc}/org/openbmc/control/flash/bmc/action/Apply
 
 Now the image is being flashed, you can check the progress with above step’s command as well.
 
@@ -189,7 +189,7 @@ of the BMC control object:
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
         -d '{"data": []}' \
-        https://bmc/org/openbmc/control/bmc0/action/warmReset
+        https://${bmc}/org/openbmc/control/bmc0/action/warmReset
 
 
 Host code update
@@ -218,7 +218,7 @@ methods:
       ```
       curl -b cjar -k -H "Content-Type: application/json" -X POST \
         -d '{"data": ["<filename>", "<TFTP server IP address"]}' \
-        https://bmc/xyz/openbmc_project/software/action/DownloadViaTFTP
+        https://${bmc}/xyz/openbmc_project/software/action/DownloadViaTFTP
       ```
 
 3. Note the version id generated for that image file, which is a hash value of 8
@@ -240,7 +240,7 @@ to calculate it externally openbmc/openbmc#2274) via one of the following method
     property set to Ready, in this example it'd be `2a1022fe`:
 
       ```
-      $ curl -b cjar -k https://bmc/xyz/openbmc_project/software/enumerate
+      $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/software/enumerate
       {
         "data": {
           "/xyz/openbmc_project/software/2a1022fe": {
@@ -268,7 +268,7 @@ via one of the following methods:
       curl -b cjar -k -H "Content-Type: application/json" -X PUT \
         -d '{"data":
         "xyz.openbmc_project.Software.Activation.RequestedActivations.Active"}' \
-        https://bmc/xyz/openbmc_project/software/<id>/attr/RequestedActivation
+        https://${bmc}/xyz/openbmc_project/software/<id>/attr/RequestedActivation
       ```
 
 5. (Optional) Check the flash progress. This interface is only available during
@@ -286,7 +286,7 @@ via one of the following:
   * Method 2: Using the REST API:
 
       ```
-      curl -b cjar -k https://bmc/xyz/openbmc_project/software/<id>/attr/Progress
+      curl -b cjar -k https://${bmc}/xyz/openbmc_project/software/<id>/attr/Progress
       ```
 
 6. Check the activation is complete by verifying the Activation property is set
@@ -303,7 +303,7 @@ to Active via one of the following methods:
   * Method 2: Using the REST API:
 
       ```
-      curl -b cjar -k https://bmc/xyz/openbmc_project/software/<id>
+      curl -b cjar -k https://${bmc}/xyz/openbmc_project/software/<id>
       ```
 
 ### Patching the host firmware
