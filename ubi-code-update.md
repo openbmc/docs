@@ -55,7 +55,7 @@ version id via one of the following methods:
     has its Activation property set to Ready, in this example it'd be `2a1022fe`:
 
       ```
-      $ curl -b cjar -k https://bmc/xyz/openbmc_project/software/enumerate
+      $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/software/enumerate
       {
         "data": {
           "/xyz/openbmc_project/software/2a1022fe": {
@@ -90,7 +90,7 @@ via one of the following methods:
       curl -b cjar -k -H "Content-Type: application/json" -X PUT \
         -d '{"data":
         "xyz.openbmc_project.Software.Activation.RequestedActivations.Active"}' \
-        https://bmc/xyz/openbmc_project/software/<id>/attr/RequestedActivation
+        https://${bmc}/xyz/openbmc_project/software/<id>/attr/RequestedActivation
       ```
 
 5. (Optional) Check the flash progress. This interface is only available during
@@ -108,7 +108,7 @@ via one of the following:
   * Method 2: Using the REST API:
 
       ```
-      curl -b cjar -k https://bmc/xyz/openbmc_project/software/<id>/attr/Progress
+      curl -b cjar -k https://${bmc}/xyz/openbmc_project/software/<id>/attr/Progress
       ```
 
 ### Implementation
