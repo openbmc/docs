@@ -1,4 +1,4 @@
-BMC UBI Code Update
+OpenBMC UBI Code Update
 ==============
 
 Two BMC Code Updates layouts are available:
@@ -8,7 +8,7 @@ Two BMC Code Updates layouts are available:
  * UBI layout - enabled via obmc-ubi-fs machine feature
 
 This document describes the UBI code update. The non-UBI code update can be
-found here: https://github.com/openbmc/docs/blob/master/code-update.md#openbmc--host-code-update
+found here: [code-update.md](code-update.md)
 
 ### Steps to Update
 
