@@ -16,7 +16,7 @@ interfaces to an OpenBMC system.
  - [host-management.md](host-management.md): Performing host management tasks
    with OpenBMC
 
- - [code-update.md](code-update.md): Updating OpenBMC and host platform firmware
+ - [code-update](code-update): Updating OpenBMC and host platform firmware
 
 
 OpenBMC Development
