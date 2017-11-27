@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba65a107_6c4a4385",
+        "filename": "testing-rfc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2017-11-27T21:25:57Z",
+      "side": 1,
+      "message": "Def agree on this one.  One thing we try to focus on is writing the code in a testable way.  Put your software logic in a very independent function which can be tested with a variety of inputs.  Have the code that has all the dependencies call that function.  You can\u0027t necessarily test the higher level function but you can test the pieces it calls.",
+      "revId": "ea1d95850c2010c6c827e68dd6812d5d1dabb6d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba65a107_0c5b8755",
+        "filename": "testing-rfc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2017-11-27T21:25:57Z",
+      "side": 1,
+      "message": "We use the x86 SDK for the unit testing, but this end to end section requires something more like https://openpower.xyz/job/openbmc-repository-ci/ which uses docker, and a build script (https://github.com/openbmc/openbmc-build-scripts/blob/master/scripts/unit-test.py) to install all dependencies and run the unit tests.  Running on a dev workstation seems difficult unless it\u0027s in a docker or qemu based session?",
+      "revId": "ea1d95850c2010c6c827e68dd6812d5d1dabb6d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba65a107_cc54af23",
+        "filename": "testing-rfc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2017-11-27T21:25:57Z",
+      "side": 1,
+      "message": "We\u0027ve had multiple issues in this area lately (not responding to REST fast enough, mapper call timeouts, failure to respond to host in time, ...).  We have nothing currently in this area to quantify the impact changes have on performance.  Be very nice to have.",
+      "revId": "ea1d95850c2010c6c827e68dd6812d5d1dabb6d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba65a107_2c3bebec",
+        "filename": "testing-rfc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2017-11-27T21:25:57Z",
+      "side": 1,
+      "message": "What is this?",
+      "range": {
+        "startLine": 100,
+        "startChar": 38,
+        "endLine": 100,
+        "endChar": 41
+      },
+      "revId": "ea1d95850c2010c6c827e68dd6812d5d1dabb6d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba65a107_4c409f56",
+        "filename": "testing-rfc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2017-11-27T21:25:57Z",
+      "side": 1,
+      "message": "Ideally this is run on all supported openbmc systems",
+      "range": {
+        "startLine": 105,
+        "startChar": 52,
+        "endLine": 105,
+        "endChar": 63
+      },
+      "revId": "ea1d95850c2010c6c827e68dd6812d5d1dabb6d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    }
+  ]
+}
