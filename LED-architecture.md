@@ -27,7 +27,7 @@ The LED group state can be changed by setting the Asserted value to boolean 0 or
 In the following example, the lamp_test group is being asserted...
 ```
  curl -b cjar -k -X PUT -H "Content-Type: application/json" -d '{"data":  1}' \
-  https://bmc/xyz/openbmc_project/led/groups/lamp_test/attr/Asserted
+  https://${bmc}/xyz/openbmc_project/led/groups/lamp_test/attr/Asserted
 ```
 
 
