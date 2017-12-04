@@ -7,37 +7,37 @@ structure, accessible over REST.
 Inventory
 ---------
 
-The system inventory structure is under the `/org/openbmc/inventory` hierarchy.
+The system inventory structure is under the `/xyz/openbmc_project/inventory` hierarchy.
 
 In OpenBMC the inventory is represented as a path which is hierarchical to the
 physical system topology. Items in the inventory are referred to as inventory
-items and are not necessarily FRUs. If the system contains one chassis, a
-motherboard, and a CPU on the motherboard, then the path to that inventory item
-would be:
+items and are not necessarily FRUs (field-replaceable units). If the system
+contains one chassis, a motherboard, and a CPU on the motherboard, then the
+path to that inventory item would be:
 
    inventory/system/chassis0/motherboard0/cpu0
 
-The properties associated with an inventory item are specific to that item with
-the addition of these common properties:
+The properties associated with an inventory item are specific to that item.
+Some common properties are:
 
- * `version`: a code version associated with this item
- * `fault`: indicates whether this item has reported an error condition (True/False)
- * `present`: indicates whether this item is present in the system (True/False)
+ * `Version`: A code version associated with this item.
+ * `Present`: Indicates whether this item is present in the system (True/False).
+ * `Functional`: Indicates whether this item is functioning in the system (True/False).
 
 The usual `list` and `enumerate` REST queries allow the system inventory
 structure to be accessed. For example, to enumerate all inventory items and
 their properties:
 
-    curl -b cjar -k https://bmc/org/openbmc/inventory/enumerate
+    curl -b cjar -k https://${bmc}/xyz/openbmc_project/inventory/enumerate
 
 To list the properties of one item:
 
-    curl -b cjar -k https://bmc/org/openbmc/inventory/system/chassis/motherboard
+    curl -b cjar -k https://${bmc}/xyz/openbmc_project/inventory/system/chassis/motherboard
 
 Sensors
 -------
 
-The system inventory structure is under the `/org/openbmc/sensors` hierarchy.
+The system sensor structure is under the `/xyz/openbmc_project/sensors` hierarchy.
 
 This interface allows monitoring of system attributes like temperature or
 altitude, and are represented similar to the inventory, by object paths under
@@ -48,53 +48,82 @@ topology of the system.
 For example, all temperature sensors are under `sensors/temperature`. CPU
 temperature sensors would be `sensors/temperature/cpu[n]`.
 
-These are the common properties associated all sensors:
+These are some common properties:
 
- * `value`: current value of sensor
- * `units`: units of value
- * `warning_upper` & `warning_lower`: upper & lower threshold for a warning error
- * `critical_upper` & `critical_lower`: upper & lower threshold for a critical error
- * `threshold_state`: current threshold state (normal, warning, critical)
- * `worst_threshold_state`: highest threshold state seen for all time. There is
-   a REST call to reset this state to normal.
+ * `Value`: Current value of the sensor
+ * `Unit`: Unit of the value and "Critical" and "Warning" values
+ * `Scale`: The scale of the value and "Critical" and "Warning" values
+ * `CriticalHigh` & `CriticalLow`: Sensor device upper/lower critical threshold bound
+ * `CriticalAlarmHigh` & `CriticalAlarmLow`: True if the sensor has exceeded the
+critical threshold bound
+ * `WarningHigh` & `WarningLow`: Sensor device upper/lower warning threshold bound
+ * `WarningAlarmHigh` & `WarningAlarmLow`: True if the sensor has exceeded the
+warning threshold bound
+
+A temperature sensor might look like:
+
+    curl -b cjar -k https://${bmc}/xyz/openbmc_project/sensors/temperature/pcie
+    {
+      "data": {
+        "CriticalAlarmHigh": 0,
+        "CriticalAlarmLow": 0,
+        "CriticalHigh": 70000,
+        "CriticalLow": 0,
+        "Scale": -3,
+        "Unit": "xyz.openbmc_project.Sensor.Value.Unit.DegreesC",
+        "Value": 28187,
+        "WarningAlarmHigh": 0,
+        "WarningAlarmLow": 0,
+        "WarningHigh": 60000,
+        "WarningLow": 0
+      },
+      "message": "200 OK",
+      "status": "ok"
+    }
+
+Note the value of this sensor is 28.187C (28187 * 10^-3).
 
 Unlike IPMI, there are no "functional" sensors in OpenBMC; functional states are
 represented in the inventory.
 
 To enumerate all sensors in the system:
 
-    curl -c cjar -k https://bmc/org/openbmc/sensors/enumerate
+    curl -b cjar -k https://${bmc}/xyz/openbmc_project/sensors/enumerate
 
 List properties of one inventory item:
 
-    curl -c cjar -k https://bmc/org/openbmc/sensors/temperature/ambient
+    curl -b cjar -k https://${bmc}/xyz/openbmc_project/sensors/temperature/ambient
 
 Event Logs
 ----------
 
-The event log structure is under the `/org/openbmc/records/events` hierarchy.
+The event log structure is under the `/xyz/openbmc_project/logging/entry` hierarchy.
 Each event is a separate object under this structure, referenced by number.
 
-BMC and host firmware on POWER-based servers can report logs to the BMC.
-Typically, these logs are reported in cases where host firmware cannot start the
+BMC and host firmware on POWER-based servers can report event logs to the BMC.
+Typically, these event logs are reported in cases where host firmware cannot start the
 OS, or cannot reliably log to the OS.
 
-The properties associated with an error log are as follows:
+The properties associated with an event log are as follows:
 
- * `Association`: a uri to the failing inventory part
- * `Message`: An English text string indicating the failure
- * `Reported By`: Firmware region that created the log ('Host', 'BMC')
- * `Severity`: level of problem (Info, Predictive Error, etc)
- * `Development Data`: Data dump for use by Development to analyze the failure
+ * `Message`: The type of event log (e.g. "xyz.openbmc_project.Inventory.Error.NotPresent").
+ * `Resolved` : Indicates whether the event has been resolved.
+ * `Severity`: The level of problem ("Info", "Error", etc.).
+ * `Timestamp`: The date of the event log in epoch time.
+ * `associations`: A URI to the failing inventory part.
 
-To list all reported events:
+To list all reported event logs:
 
-    $ curl -b cjar -k https://bmc/org/openbmc/records/events/
+    $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/logging/entry/
     {
       "data": [
-        "/org/openbmc/records/events/1",
-        "/org/openbmc/records/events/2",
-        "/org/openbmc/records/events/3",
+        "/xyz/openbmc_project/logging/entry/3",
+        "/xyz/openbmc_project/logging/entry/2",
+        "/xyz/openbmc_project/logging/entry/1",
+        "/xyz/openbmc_project/logging/entry/7",
+        "/xyz/openbmc_project/logging/entry/6",
+        "/xyz/openbmc_project/logging/entry/5",
+        "/xyz/openbmc_project/logging/entry/4"
       ],
       "message": "200 OK",
       "status": "ok"
@@ -102,65 +131,88 @@ To list all reported events:
 
 To read a specific event log:
 
-    $ curl -b cjar -k https://bmc/org/openbmc/records/events/1
+    $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/logging/entry/1
     {
       "data": {
-        "association": "/org/openbmc/inventory/system/systemevent",
-        "debug_data": [ ... ],
-        "message": "A systemevent has experienced a unrecoverable error",
-        "reported_by": "Host",
-        "severity": "unrecoverable error",
-        "time": "2016:05:04 01:43:57"
+        "AdditionalData": [
+          "CALLOUT_INVENTORY_PATH=/xyz/openbmc_project/inventory/system/chassis/powersupply0",
+          "_PID=1136"
+        ],
+        "Id": 1,
+        "Message": "xyz.openbmc_project.Inventory.Error.NotPresent",
+        "Resolved": 0,
+        "Severity": "xyz.openbmc_project.Logging.Entry.Level.Error",
+        "Timestamp": 1512154612660,
+        "associations": [
+          [
+            "callout",
+            "fault",
+            "/xyz/openbmc_project/inventory/system/chassis/powersupply0"
+          ]
+        ]
       },
       "message": "200 OK",
       "status": "ok"
     }
 
-To delete an event log (log 1 in his example), call the `delete` method on the event:
+To delete an event log (log 1 in this example), call the `delete` method on the event:
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
         -d '{"data" : []}' \
-        https://bmc/org/openbmc/records/events/1/action/delete
+        https://${bmc}/xyz/openbmc_project/logging/entry/1/action/Delete
 
-To clear all logs, call the top-level `clear` method:
+To clear all event logs, call the top-level `deleteAll` method:
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
         -d '{"data" : []}' \
-        https://bmc/org/openbmc/records/events/action/clear
+        https://${bmc}/xyz/openbmc_project/logging/action/deleteAll
 
-BIOS boot options
+Host Boot Options
 -----------------
 
-With OpenBMC, the BIOS boot options are stored as D-Bus properties under the
-`settings/host0` path, in the `boot_flags` property. Their format adheres to the
-Boot Options Parameters table specified in the IPMI Specification Document,
-section 28.13.
+With OpenBMC, the Host boot options are stored as D-Bus properties under the
+`control/host0/boot` path. Properties include `BootMode` and `BootSource`.
 
-Each boot parameter is represented by an individual property, and their hex
-value is displayed in a string format. For example, a boot flags parameter value
-of `0x8014000000` would be stored as a `8014000000` string in the
-`settings/host0/boot_flags` property.
 
-Host power control
+Host State Control
 ------------------
 
-The host can be controlled through the `chassis` object. It implements a number
-of actions including powerOn and powerOff. These correspond to the IPMI
-`chassis power on` and `chassis power off` commands.
+The host can be controlled through the `host` object. The object implements a number
+of actions including power on and power off. These correspond to the IPMI
+`power on` and `power off` commands.
 
-Assuming you have logged in, the following will issue a POST with an empty data
-payload that powers the host on:
+Assuming you have logged in, the following will power on the host:
 
 ```
-curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST \
-   -d '{"data": []}'  https://bmc/org/openbmc/control/chassis0/action/powerOn
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
+  -d '{"data": "xyz.openbmc_project.State.Host.Transition.On"}' \
+  https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 ```
 
-Other actions available are:
+To power off the host:
 
- * `setIdentify` / `clearIdentify`
- * `powerOff`
- * `softPowerOff`
- * `reboot`
- * `softReboot`
- * `getPowerState`
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
+  -d '{"data": "xyz.openbmc_project.State.Host.Transition.Off"}' \
+  https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
+```
+
+To issue a hard power off (accomplished by powering off the chassis):
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
+  -d '{"data": "xyz.openbmc_project.State.Chassis.Transition.Off"}' \
+  https://${bmc}/xyz/openbmc_project/state/chassis0/attr/RequestedPowerTransition
+```
+
+To reboot the host:
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
+  -d '{"data": "xyz.openbmc_project.State.Host.Transition.Reboot"}' \
+  https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
+```
+
+
+More information about Host State Management can be found here:
+https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/State
