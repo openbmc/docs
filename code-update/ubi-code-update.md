@@ -242,6 +242,26 @@ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET  \
 }
 ```
 
+### MANIFEST File
+
+A file named "MANIFEST" must be included in any image tar uploaded, downloaded
+via TFTP, or copied to the BMC.
+
+The MANIFEST file format must be key=value (e.g. version=v1.99.10).
+It should include the following fields:
+
+* version - The version of the image
+* purpose - The image's purpose (e.g.
+xyz.openbmc_project.Software.Version.VersionPurpose.BMC or
+xyz.openbmc_project.Software.Version.VersionPurpose.Host). Accepted purpose
+values can be found at
+[Version interface](https://github.com/openbmc/phosphor-dbus-interfaces/blob/6f69ae5b33ee224358cb4c2061f4ad44c6b36d70/xyz/openbmc_project/Software/Version.interface.yaml)
+under "VersionPurpose" values.
+
+Other optional fields are:
+* extended_version - A more detailed version, which could include versions of
+different components in the image.
+
 ### Deleting an Image
 
 To delete an image:
