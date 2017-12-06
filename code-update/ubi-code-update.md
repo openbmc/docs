@@ -242,6 +242,28 @@ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET  \
 }
 ```
 
+### Deleting an Image
+
+To delete an image:
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" \
+    -X POST https://${bmc}/xyz/openbmc_project/software/<$id>/action/delete \
+    -d "{\"data\": [] }"
+```
+
+Note: The image must be non-functional ("non-running").
+
+To delete all non-functional images, whether BMC or host images:
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" \
+    -X POST https://${bmc}/xyz/openbmc_project/software/action/deleteAll \
+    -d "{\"data\": [] }"
+```
+
+
+
 ### Implementation
 
 More information about the implementation of the UBI code update can be found at
