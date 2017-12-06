@@ -262,6 +262,37 @@ curl -c cjar -b cjar -k -H "Content-Type: application/json" \
     -d "{\"data\": [] }"
 ```
 
+### Software Field Mode
+
+Field mode is meant for systems shipped from manufacturing to a customer.
+Field mode offers a way to provide security and ensure incorrect patches don't
+get loaded on the system by accident. The software implementation of the field mode
+interface disables patching of the BMC by not mounting `/usr/local`, therefore,
+also disabling host patching at `/usr/local/share/pnor/`.
+Enabling field mode is intended to be a one-way operation which means that once
+enabled, there is not a provided REST API to disable it.
+
+Field mode can be enabled by running the following command:
+
+```
+curl -b cjar -k -H 'Content-Type: application/json' -X PUT -d '{"data":1}'  \
+    https://${bmc}/xyz/openbmc_project/software/attr/FieldModeEnabled
+
+```
+
+Although field mode is meant to be a one-way operation, it can be disabled
+by a user with admin privileges by running the following commands on the BMC:
+
+```
+fw_setenv fieldmode
+
+systemctl unmask usr-local.mount
+
+reboot
+```
+
+More information on field mode can be found here:
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/FieldMode.interface.yaml
 
 
 ### Implementation
