@@ -259,6 +259,33 @@ curl -c cjar -b cjar -k -H "Content-Type: application/json" \
     -d "{\"data\": [] }"
 ```
 
+### Field mode
+
+Field mode disables patching of the BMC by not mounting /usr/local
+Enabling field mode is intended to be one way.
+
+Field mode can be enabled by
+
+```
+curl -b cjar -k -H 'Content-Type: application/json' -X PUT -d '{"data":1}'  \
+    https://bmc/xyz/openbmc_project/software/attr/FieldModeEnabled
+
+```
+Then rebooting the BMC.
+
+Although, fieldmode is meant to be one way it can disabled by running the
+following commands on the BMC:
+
+```
+fw_setenv fieldmode
+
+systemctl unmask usr-local.mount
+```
+
+Then rebooting the BMC.
+
+More information on field mode can be found here:
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/FieldMode.interface.yaml
 
 
 ### Implementation
