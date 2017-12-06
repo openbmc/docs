@@ -111,6 +111,134 @@ via one of the following:
       curl -b cjar -k https://${bmc}/xyz/openbmc_project/software/<id>/attr/Progress
       ```
 
+6. Check the activation is complete by verifying the Activation property is set
+to Active via one of the following methods:
+
+  * Method 1: From the BMC command line:
+
+      ```
+      busctl get-property xyz.openbmc_project.Software.BMC.Updater \
+        /xyz/openbmc_project/software/<id> \
+        xyz.openbmc_project.Software.Activation Activation
+      ```
+
+  * Method 2: Using the REST API:
+
+      ```
+      curl -b cjar -k https://${bmc}/xyz/openbmc_project/software/<id>
+      ```
+
+7. Reboot the BMC for the image to take effect.
+
+  * Method 1: From the BMC command line:
+
+      ```
+      reboot
+      ```
+
+  * Method 2: Using the REST API:
+
+      ```
+      curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
+          -d '{"data": "xyz.openbmc_project.State.BMC.Transition.Reboot"}' \
+          https://${bmc}/xyz/openbmc_project/state/bmc0/attr/RequestedBMCTransition
+      ```
+
+### Associations
+
+As well as all software images, serveral associations are listed at
+`/xyz/openbmc_project/software/`:
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET  \
+    https://${bmc}/xyz/openbmc_project/software/
+{
+  "data": [
+    "/xyz/openbmc_project/software/46e65782",
+    "/xyz/openbmc_project/software/493a00ad",
+    "/xyz/openbmc_project/software/88c153b1",
+    "/xyz/openbmc_project/software/active",
+    "/xyz/openbmc_project/software/functional"
+  ],
+  "message": "200 OK",
+  "status": "ok"
+}
+```
+
+1. A "functional" association to the "running" BMC and host images. There is only
+one functional association per BMC and one functional association per host.
+The functional/running BMC image is the BMC image with the lowest priority when
+rebooting the BMC. The functional image does not update until the BMC is rebooted.
+The functional host image behaves the same only updating on a power on or reboot
+of the host.
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET \
+    https://${bmc}/xyz/openbmc_project/software/functional
+{
+  "data": {
+    "endpoints": [
+      "/xyz/openbmc_project/software/46e65782",
+      "/xyz/openbmc_project/software/493a00ad"
+    ]
+  },
+  "message": "200 OK",
+  "status": "ok"
+}
+```
+
+2. An "active" association to the active BMC and host images. Note: Several BMC
+images might be active, this is true for the host images as well.
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET \
+    https://${bmc}/xyz/openbmc_project/software/active
+{
+  "data": {
+    "endpoints": [
+      "/xyz/openbmc_project/software/46e65782",
+      "/xyz/openbmc_project/software/493a00ad",
+      "/xyz/openbmc_project/software/88c153b1"
+    ]
+  },
+  "message": "200 OK",
+  "status": "ok"
+}
+```
+
+An additional association is located at `/xyz/openbmc_project/software/<id>/inventory`
+for "associating" a software image with an inventory item
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET \
+   https://${bmc}/xyz/openbmc_project/software/493a00ad/inventory
+{
+  "data": {
+    "endpoints": [
+      "/xyz/openbmc_project/inventory/system/chassis/motherboard/boxelder/bmc"
+    ]
+  },
+  "message": "200 OK",
+  "status": "ok"
+}
+```
+
+To get all software images associated with an inventory item:
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET  \
+    https://${bmc}/xyz/openbmc_project/inventory/system/chassis/activation
+{
+  "data": {
+    "endpoints": [
+      "/xyz/openbmc_project/software/46e65782"
+    ]
+  },
+  "message": "200 OK",
+  "status": "ok"
+}
+```
+
 ### Implementation
 
 More information about the implementation of the UBI code update can be found at
