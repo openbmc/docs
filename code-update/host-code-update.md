@@ -126,7 +126,8 @@ Copy the partition binary file to `/usr/local/share/pnor/` on the BMC.
 The partition binary file must be named the same as the partition name that
 intends to patch, ex: `ATTR_TMP`.
 
-### Associations
+### Associations, MANIFEST File, Deleting an Image, Software Field Mode, and Software Factory Reset
 
-Information about Associations can be found at
+Information about associations, the MANIFEST file, deleting an image, software
+field mode, and software factory reset can be found at
 [ubi-code-update.md#associations](ubi-code-update.md#associations)
