@@ -311,6 +311,25 @@ reboot
 More information on field mode can be found here:
 https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/FieldMode.interface.yaml
 
+### Software Factory Reset
+
+Software factory reset resets the BMC and host firmware to its factory state
+by clearing out any read/write data.
+To software factory reset run the following command and then reboot the BMC:
+
+```
+curl -b cjar -k -H 'Content-Type: application/json' -X POST -d '{"data":[]}' \
+    https://${bmc}/xyz/openbmc_project/software/action/Reset
+
+```
+
+The factory reset on the BMC side will clear `/var`, `/home`, and `/etc`.
+On the host side, the factory reset will clear the read/write volume for each
+host image on the system, clear the shared preserve host volume, pnor-prsv, and
+clear any host patches located in `/usr/local/share/pnor/`.
+
+The factory reset interface can be found here:
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/02b39246d45ea029a1652a49cc20eab7723dd63b/xyz/openbmc_project/Common/FactoryReset.interface.yaml
 
 ### Implementation
 
