@@ -131,3 +131,5 @@ intends to patch, ex: `ATTR_TMP`.
 Information about associations, the MANIFEST file, deleting an image, software
 field mode, and software factory reset can be found at
 [ubi-code-update.md#associations](ubi-code-update.md#associations)
+
+d
