@@ -334,6 +334,15 @@ clear any host patches located in `/usr/local/share/pnor/`.
 The factory reset interface can be found here:
 https://github.com/openbmc/phosphor-dbus-interfaces/blob/02b39246d45ea029a1652a49cc20eab7723dd63b/xyz/openbmc_project/Common/FactoryReset.interface.yaml
 
+### Image Storage Location
+
+When a BMC image is activated (done when "RequestedActivation" is set to "Active"),
+UBI volumes are created on the BMC chip for the image. The alternate BMC chip
+can also be used to store images, this is determined by "BMC_RO_MTD". Using both
+the alternate BMC chip and the BMC chip allows for multiple BMC images to be
+stored. By default, the BMC chip only is used. To use both set "BMC_RO_MTD" to
+"alt-bmc+bmc".
+
 ### Implementation
 
 More information about the implementation of the UBI code update can be found at
