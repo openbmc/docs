@@ -60,3 +60,13 @@ We have a few high-level objectives:
  * Provide a flexible and hierarchical inventory tracking component
 
  * Maintain a sensor database and track thresholds
+
+
+Technical Steering Committee
+---------------------------
+
+ * Brad Bishop (chair), IBM
+ * Nancy Yuen, Google
+ * Sai Dasari, Facebook
+ * James Mihm, Intel
+ * Ali Larijani, Microsoft
