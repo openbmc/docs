@@ -33,6 +33,9 @@ These documents contain details on developing OpenBMC code itself
  - [kernel-development.md](kernel-development.md): Reference for common
    kernel development tasks
 
+ - [REST-cheatsheet.md](REST-cheatsheet.md): Quick reference for some common
+   curl commands usage.
+
 
 OpenBMC Goals
 -------------
