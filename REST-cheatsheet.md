@@ -52,3 +52,15 @@ This document is intended to provide a set of REST client commands for OpenBMC u
     ```
     $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/one_time/attr/BootSource -d '{"data": "xyz.openbmc_project.Control.Boot.Source.Sources.Default"}
     ```
+* Set NTP and Nameserver:
+
+    Examples using public server.
+    - NTP Server:
+    ```
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT -d '{"data": ["pool.ntp.org"] }' https://${bmc}/xyz/openbmc_project/network/eth0/attr/NTPServers
+    ```
+
+    - Name Server:
+    ```
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT -d '{"data": ["time.google.com"] }' https://${bmc}/xyz/openbmc_project/network/eth0/attr/Nameservers
+    ```
