@@ -86,12 +86,25 @@ usually better. However, if there is no clear division, a larger patch is
 okay. During development, it can be useful to consider how your change can be
 submitted as logical units.
 
+Each commit is expected to be tested. The expectation of testing may vary from
+subproject to subproject, but will typically include running all applicable
+automated tests and performing manual testing. Each commit should be tested
+separately, even if they are submitted together (an exception is when commits
+to different projects depend on each other).
+
 Commit messages are important. They should describe why the change is needed,
 and what effects it will have on the system. Do not describe the actual
 code change made by the patch; that's what the patch itself is for.
 
 Use your full name for contributions, and include a "Signed-off-by" line,
 to indicate that you agree to the Developer's Certificate of Origin (see below).
+
+Commit messages should include a "Tested" field describing how you tested the
+code changes in the patch. Example:
+```
+    Tested: I ran unit tests with "make check" (added 2 new tests) and manually
+    tested on Witherspoon that Foo daemon no longer crashes at boot.
+```
 
 Ensure that your patch doesn't change unrelated areas. Be careful of
 accidental whitespace changes - this makes review unnecessarily difficult.
