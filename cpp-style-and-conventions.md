@@ -144,6 +144,119 @@ astyle --style=allman --add-brackets --convert-tabs --max-code-length=80 \
 * Line length should be limited to 80 characters.
 * Indentation should be done with 4 space characters.
 
+### Clang Formatting
+
+Individual OpenBMC repositories can use [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
+if desired. The OpenBMC CI infrastructure will automatically verify the
+code formatting on code check-in if a .clang_format file is found
+within the root directory of the repository. This allows for automatic
+validation of code formatting upon check-in.
+
+OpenBMC requires a clang-format of version 5.0 or greater. An example of
+how to run clang-format against all code in your repo can be found by
+referencing the [tool](https://github.com/openbmc/openbmc-build-scripts/blob/master/scripts/format-code.sh) used by CI.
+
+A .clang-format file that closely approximates our coding style is:
+```
+---
+Language:        Cpp
+# BasedOnStyle:  LLVM
+AccessModifierOffset: -2
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignEscapedNewlinesLeft: false
+AlignOperands:   true
+AlignTrailingComments: true
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortBlocksOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: false
+BinPackArguments: true
+BinPackParameters: true
+BraceWrapping:
+  AfterClass:      true
+  AfterControlStatement: true
+  AfterEnum:       true
+  AfterFunction:   true
+  AfterNamespace:  true
+  AfterObjCDeclaration: true
+  AfterStruct:     true
+  AfterUnion:      true
+  BeforeCatch:     true
+  BeforeElse:      true
+  IndentBraces:    false
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Custom
+BreakBeforeTernaryOperators: true
+BreakConstructorInitializers: AfterColon
+ColumnLimit:     80
+CommentPragmas:  '^ IWYU pragma:'
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
+Cpp11BracedListStyle: true
+DerivePointerAlignment: true
+PointerAlignment: Left
+DisableFormat:   false
+ExperimentalAutoDetectBinPacking: false
+FixNamespaceComments: true
+ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH ]
+IndentCaseLabels: true
+IndentWidth:     4
+IndentWrappedFunctionNames: false
+KeepEmptyLinesAtTheStartOfBlocks: true
+MacroBlockBegin: ''
+MacroBlockEnd:   ''
+MaxEmptyLinesToKeep: 1
+NamespaceIndentation: None
+ObjCBlockIndentWidth: 2
+ObjCSpaceAfterProperty: false
+ObjCSpaceBeforeProtocolList: true
+PenaltyBreakBeforeFirstCallParameter: 19
+PenaltyBreakComment: 300
+PenaltyBreakFirstLessLess: 120
+PenaltyBreakString: 1000
+PenaltyExcessCharacter: 1000000
+PenaltyReturnTypeOnItsOwnLine: 60
+PointerAlignment: Right
+ReflowComments:  true
+SortIncludes:    false
+SpaceAfterCStyleCast: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 1
+SpacesInAngles:  false
+SpacesInContainerLiterals: true
+SpacesInCStyleCastParentheses: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+Standard:        Cpp11
+TabWidth:        4
+UseTab:          Never
+...
+```
+### Python Formatting
+
+If a repository has a setup.cfg file present in its root directory,
+then CI will automatically verify the Python code meets the [pycodestyle](http://pycodestyle.pycqa.org/en/latest/intro.html)
+requirements. This enforces PEP 8 standards on all Python code.
+
+OpenBMC standards for Python match with PEP 8 so in general, a blank setup.cfg
+file is all that's needed. If so desired, an enforcement of 80
+(vs. the default 79) chars is fine as well:
+```
+[pycodestyle]
+max-line-length = 80
+```
+
 ### Bracket style
 
 * Utilize 'Allman' style brackets.  Brackets are on their own line at the same
