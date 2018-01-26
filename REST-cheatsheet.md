@@ -80,3 +80,20 @@ This document is intended to provide a set of REST client commands for OpenBMC u
     $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT -d '{"data": ["time.google.com"] }' https://${bmc}/xyz/openbmc_project/network/eth0/attr/Nameservers
     ```
 
+* Configure time ownership and time sync method:
+
+    - Read:
+    ```
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET  -d '{"data": [] }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET  -d '{"data": [] }' https://${bmc}/xyz/openbmc_project/time/sync_method/attr/TimeSyncMethod
+    ```
+    - Write:
+    ```
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Synchronization.Method.NTP" }' https://${bmc}/xyz/openbmc_project/time/sync_method/attr/TimeSyncMethod
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Synchronization.Method.Manual" }' https://${bmc}/xyz/openbmc_project/time/sync_method/attr/TimeSyncMethod
+
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.BMC" }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.Host” }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.Split" }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.Both” }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    ```
