@@ -86,3 +86,16 @@ This document is intended to provide a set of REST client commands for OpenBMC u
     $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT -d '{"data": ["time.google.com"] }' https://${bmc}/xyz/openbmc_project/network/eth0/attr/Nameservers
     ```
 
+* Power Supply Redundancy:
+
+    - Read:
+    ```
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST https://${bmc}/xyz/openbmc_project/sensors/chassis/PowerSupplyRedundancy/action/getValue -d '{"data": []}'
+    ```
+
+    - Write (Enable/Disable):
+    ```
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST https://${bmc}/xyz/openbmc_project/sensors/chassis/PowerSupplyRedundancy/action/setValue -d '{"data": ["Enabled"]}'
+
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST https://${bmc}/xyz/openbmc_project/sensors/chassis/PowerSupplyRedundancy/action/setValue -d '{"data": ["Disabled"]}'
+    ```
