@@ -90,16 +90,42 @@ This document is intended to provide a set of REST client commands for OpenBMC u
 
     - Read:
     ```
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET  -d '{"data": [] }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET  -d '{"data": [] }' https://${bmc}/xyz/openbmc_project/time/sync_method/attr/TimeSyncMethod
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET https://${bmc}/xyz/openbmc_project/time/sync_method/attr/TimeSyncMethod
     ```
     - Write:
     ```
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Synchronization.Method.NTP" }' https://${bmc}/xyz/openbmc_project/time/sync_method/attr/TimeSyncMethod
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Synchronization.Method.Manual" }' https://${bmc}/xyz/openbmc_project/time/sync_method/attr/TimeSyncMethod
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT -d '{"data": "xyz.openbmc_project.Time.Synchronization.Method.NTP" }' https://${bmc}/xyz/openbmc_project/time/sync_method/attr/TimeSyncMethod
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT -d '{"data": "xyz.openbmc_project.Time.Synchronization.Method.Manual" }' https://${bmc}/xyz/openbmc_project/time/sync_method/attr/TimeSyncMethod
 
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.BMC" }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.Host” }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.Split" }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT  -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.Both” }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.BMC" }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.Host” }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.Split" }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X  PUT -d '{"data": "xyz.openbmc_project.Time.Owner.Owners.Both” }' https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    ```
+
+* Power Supply Redundancy:
+
+    - Read:
+    ```
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST https://${bmc}/xyz/openbmc_project/sensors/chassis/PowerSupplyRedundancy/action/getValue -d '{"data": []}'
+    ```
+
+    or
+
+    ```
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET https://${bmc}/xyz/openbmc_project/control/power_supply_redundancy
+    ```
+
+    - Write (Enable/Disable):
+    ```
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST https://${bmc}/xyz/openbmc_project/sensors/chassis/PowerSupplyRedundancy/action/setValue -d '{"data": ["Enabled"]}'
+
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST https://${bmc}/xyz/openbmc_project/sensors/chassis/PowerSupplyRedundancy/action/setValue -d '{"data": ["Disabled"]}'
+    ```
+    or
+
+    ```
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/power_supply_redundancy/attr/PowerSupplyRedundancyEnabled -d '{"data": 1}'
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/power_supply_redundancy/attr/PowerSupplyRedundancyEnabled -d '{"data": 0}'
     ```
