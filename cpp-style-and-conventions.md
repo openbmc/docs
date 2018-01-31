@@ -256,6 +256,16 @@ file is all that's needed. If so desired, an enforcement of 80
 [pycodestyle]
 max-line-length = 80
 ```
+By default, pycodestyle does not enforce the following rules: E121, E123, E126,
+E133, E226, E241, E242, E704, W503, and W504. These rules are ignored because
+they are not unanimously accepted and PEP 8 does not enforce them. It is at
+the repository maintainer's discretion as to whether to enforce rules E121,
+E123, E126, E133, E226, E241, E242, E704, W503, and W504. These rules can be
+enforced by adding the following to the setup.cfg:
+```
+[pycodestyle]
+ignore= NONE
+```
 
 ### Bracket style
 
