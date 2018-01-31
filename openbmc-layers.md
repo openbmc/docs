@@ -1,3 +1,69 @@
+Adding a new system
+================
+
+1) Create a new directory following the
+meta-openbmc-machines/meta-[architecture]/meta-[company]/meta-[system]
+structure.
+
+2) Create the following files and directories in the newly created directory.
+Many examples can be found under
+meta-openbmc-machines/meta-[architecture]/meta-[company]/meta-[system](https://github.com/openbmc/openbmc/tree/master/meta-openbmc-machines)
+
+ * `conf/bblayers.conf.sample` which will define the BitBake layers for the
+system. This should include the layers mentioned below: Yocto, OpenBMC, BSP,
+architecture, and machine layers.
+
+ * `conf/conf-notes.txt` will define the common targets of the system.
+`conf-notes.txt` should include `obmc-phosphor-image`, the OpenBMC image.
+The `conf-notes.txt` file might look like:
+
+```
+Common targets are:
+      obmc-phosphor-image
+```
+
+ * `conf/layer.conf` which allows recipes in the layer to be located.
+An example of layer.conf from the Zaius system:
+
+```
+# We have a conf and classes directory, add to BBPATH
+BBPATH .= ":${LAYERDIR}"
+
+# We have recipes-* directories, add to BBFILES
+BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+            ${LAYERDIR}/recipes-*/*/*.bbappend"
+
+BBFILE_COLLECTIONS += "zaius"
+BBFILE_PATTERN_zaius = ""
+```
+
+ * `conf/local.conf.sample` is where all local user settings are placed. A
+sample is located
+[here](https://git.yoctoproject.org/cgit.cgi/poky/plain/meta-poky/conf/local.conf.sample).
+
+ * `conf/machine/<system>.conf` Since we are creating a new machine
+
+ * `recipes.txt` which documents any recipe directories in the layer.
+A system that includes the `recipes-phosphor` (OpenBMC user space application
+and configuration recipes) and `recipes-kernel` directories would look like:
+
+```
+recipes-kernel       - The kernel and generic applications/libraries withstrong kernel dependencies
+recipes-phosphor     - Phosphor OpenBMC applications and configuration
+
+```
+
+TODO: recipes-kernel and recipes-phosphor
+
+TODO: kernel config
+
+
+ * Any recipes directories (e.g. recipes-kernel and recipes-phosphor)
+
+ * A README with information regarding what's contained in the layer and any
+dependencies
+
+
 OpenBMC BitBake layers
 ================
 
