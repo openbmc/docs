@@ -5,7 +5,7 @@ Two BMC Code Updates layouts are available:
 
  * Static, non-UBI layout - The default code update
 
- * UBI layout - enabled via obmc-ubi-fs machine feature
+ * UBI layout - enabled via `obmc-ubi-fs` distro feature
 
 This document describes the UBI code update. The non-UBI code update can be
 found here: [code-update.md](code-update.md)
