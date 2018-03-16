@@ -254,6 +254,25 @@ It is possible for the user to choose the uploaded file's remote name:
 
 In above example, the file foo will be saved with the name bar on the BMC.
 
+The operation will either return the version id (hash) of the uploaded file
+on success:
+
+    {
+        "data": "ffdaab9b",
+        "message": "200 OK",
+        "status": "ok"
+    }
+
+or an error message:
+
+    {
+        "data": {
+            "description": "Version already exists or failed to be extracted"
+        },
+        "message": "400 Bad Request",
+        "status": "error"
+    }
+
 ## Event subscription protocol
 It is possible to subscribe to events, of interest, occurring on the BMC. The
 implementation on the BMC uses WebSockets for this purpose, so that clients
