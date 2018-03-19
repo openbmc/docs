@@ -9,7 +9,7 @@ customisation tasks, without having to know the full yocto build process.
 The kernel recipe is in:
 
 ```
- meta-phosphor/common/recipes-kernel/linux/linux-obmc_4.2.bb
+ meta-phosphor/common/recipes-kernel/linux/linux-obmc_X.Y.bb
 ```
 
 To use a local git tree, change the `SRC_URI` to a git:// URL without
