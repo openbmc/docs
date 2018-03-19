@@ -33,14 +33,14 @@ $ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-ibm/meta-palmetto/conf 
 $ bitbake obmc-phosphor-image
 ```
 
-## Building for Barreleye
+## Building for Zaius
 
-The Barreleye target is `barreleye`.
+The Zaius target is `zaius`.
 
 If you are starting from scratch without a `build/conf` directory you can just:
 ```
 $ cd openbmc
-$ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-rackspace/meta-barreleye/conf . openbmc-env
+$ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-ingrasys/meta-zaius/conf . openbmc-env
 $ bitbake obmc-phosphor-image
 ```
 
