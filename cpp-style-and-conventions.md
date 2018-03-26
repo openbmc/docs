@@ -152,6 +152,13 @@ code formatting on code check-in if a .clang_format file is found
 within the root directory of the repository. This allows for automatic
 validation of code formatting upon check-in.
 
+If a custom configuration is desired, such as using different clang formatting
+for C and C++ files, a format-code.sh script can be created, which can for
+example use different .clang* files as input depending on the file type.
+The format-code.sh script will be executed as part of CI if found in the root
+directory of the repository, and will check that there are no files that were
+modified after running it (same check as running clang).
+
 OpenBMC requires a clang-format of version 5.0 or greater. An example of
 how to run clang-format against all code in your repo can be found by
 referencing the [tool](https://github.com/openbmc/openbmc-build-scripts/blob/master/scripts/format-code.sh) used by CI.
