@@ -125,6 +125,16 @@ The OpenBMC Gerrit server supports GitHub credentials, its link is:
 
   https://gerrit.openbmc-project.xyz/#/q/status:open
 
+_One time only_: Execute one of the OpenBMC Contributor License Agreements:
+
+* [Individual CLA](https://github.com/openbmc/openbmc/files/1860742/OpenBMC.ICLA.pdf)
+* [Corporate CLA](https://github.com/openbmc/openbmc/files/1860741/OpenBMC.CCLA.pdf)
+
+If you work for someone, consider asking them to execute the corporate CLA.  This
+allows other contributors that work for your employer to skip the CLA signing process.
+
+After signing a CLA, send it to openbmc@lists.ozlabs.org.
+
 _One time setup_: Login to the WebUI with your GitHub credentials and verify on
 your account Settings that your SSH keys were imported:
 
