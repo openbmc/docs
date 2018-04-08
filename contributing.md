@@ -49,9 +49,32 @@ upstream project.  Otherwise, conventions are chosen based on the language.
 ### Python
 
 Python source should all conform to PEP8.  This style is well established
-within the Python community and can be verified with the 'pep8' tool.
+within the Python community and can be verified with the 'pycodestyle' tool.
 
 https://www.python.org/dev/peps/pep-0008/
+
+### Python Formatting
+
+If a repository has a setup.cfg file present in its root directory,
+then CI will automatically verify the Python code meets the [pycodestyle](http://pycodestyle.pycqa.org/en/latest/intro.html)
+requirements. This enforces PEP 8 standards on all Python code.
+
+OpenBMC standards for Python match with PEP 8 so in general, a blank setup.cfg
+file is all that's needed. If so desired, an enforcement of 80
+(vs. the default 79) chars is fine as well:
+```
+[pycodestyle]
+max-line-length = 80
+```
+By default, pycodestyle does not enforce the following rules: E121, E123, E126,
+E133, E226, E241, E242, E704, W503, and W504. These rules are ignored because
+they are not unanimously accepted and PEP 8 does not enforce them. It is at the
+repository maintainer's discretion as to whether to enforce the aforementioned
+rules. These rules can be enforced by adding the following to the setup.cfg:
+```
+[pycodestyle]
+ignore= NONE
+```
 
 ### C
 
