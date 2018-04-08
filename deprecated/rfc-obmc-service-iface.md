@@ -49,7 +49,7 @@ are provided as a dictionary / map.
 corresponding to the name of the property and the value respectively.
 + OUT x return_value : 0 on Success, else Failure.
 
-An empty dictionary may be passed to reenable a service post a disable operation.
+An empty dictionary may be passed to re-enable a service post a disable operation.
 
 ### Disable method
 ```
