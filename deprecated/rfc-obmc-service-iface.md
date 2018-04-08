@@ -43,7 +43,7 @@ Enable (IN a{sv} argv_dict,
     OUT x return_code);
 ```
 Configure and Enable the service. Parameters for configuration of the service
-are provided as a dictionary / map. 
+are provided as a dictionary / map.
 
 + IN a{av} argv_dict: Each dictionary entry is a name variant pair
 corresponding to the name of the property and the value respectively.
