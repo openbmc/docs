@@ -24,6 +24,10 @@ Some common properties are:
  * `Present`: Indicates whether this item is present in the system (True/False).
  * `Functional`: Indicates whether this item is functioning in the system (True/False).
 
+`/xyz/openbmc_project/inventory/system` is the "system" inventory item. It
+contains properties about the system such as the system's model and serial
+number.
+
 The usual `list` and `enumerate` REST queries allow the system inventory
 structure to be accessed. For example, to enumerate all inventory items and
 their properties:
