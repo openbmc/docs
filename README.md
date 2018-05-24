@@ -27,7 +27,7 @@ These documents contain details on developing OpenBMC code itself
  - [cheatsheet.md](cheatsheet.md): Quick reference for some common
    development tasks
 
- - [contributing.md](contributing.md): Guidelines for contributing to
+ - [CONTRIBUTING.md](CONTRIBUTING.md): Guidelines for contributing to
    OpenBMC
 
  - [kernel-development.md](kernel-development.md): Reference for common
