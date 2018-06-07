@@ -171,7 +171,10 @@ Host Boot Options
 -----------------
 
 With OpenBMC, the Host boot options are stored as D-Bus properties under the
-`control/host0/boot` path. Properties include `BootMode` and `BootSource`.
+`control/host0/boot` path. Properties include
+[`BootMode`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/Boot/Mode.interface.yaml)
+and
+[`BootSource`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/Boot/Source.interface.yaml).
 
 
 Host State Control
