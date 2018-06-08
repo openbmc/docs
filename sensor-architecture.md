@@ -18,12 +18,11 @@ Signals: All properties for an interface will broadcast signal changed
 
 **Path definitions**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**\<type>** :
-The [HWMon class][2] name in lower case.
-Examples include `temperature, fan_tach, voltage`.
+* **<type\>** : The [HWMon class][2] name in lower case.
+    - Examples include `temperature, fan_tach, voltage`.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**\<label>** : User defined
-name of the sensor.  Examples include `ambient, cpu0, fan5`
+* **<label\>** : User defined name of the sensor.
+    - Examples include `ambient, cpu0, fan5`
 
 **Note**: The label shall comply with "Valid Object Paths" of [D-Bus Spec][3],
 that shall only contain the ASCII characters "[A-Z][a-z][0-9]_".
