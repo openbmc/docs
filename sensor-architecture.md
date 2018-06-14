@@ -1,4 +1,4 @@
-# Sensor Support for OpenBMC #
+# Sensor Support for OpenBMC
 OpenBMC makes it easy to add sensors for your hardware and is compliant with
 the traditional Linux HWMon sensor format.  The architecture of OpenBMC
 sensors is to map sensors to [D-Bus][1]
@@ -6,7 +6,7 @@ objects.  The D-Bus object will broadcast the `PropertiesChanged` signal when ei
 the sensor or threshold value changes. It is the responsibility of other
 applications to determine the effect of the signal on the system.
 
-## D-Bus ##
+## D-Bus
 
 ```
 Service     xyz.openbmc_project.Hwmon-<hash>.Hwmon1
@@ -33,7 +33,7 @@ The hash value in the service name is used to give the service a unique
 and stable name.  It is a decimal number that is obtained by hashing
 characteristics of the device it is monitoring using std::hash().
 
-## Development Details ##
+## Development Details
 
 Sensor properties are standardized based on the type of sensor.  A Threshold
 sensor contains specific properties associated with the rise and fall of a
@@ -81,7 +81,7 @@ busctl --system introspect xyz.openbmc_project.Hwmon-3301914901.Hwmon1 \
 
 ```
 
-### REST ###
+### REST
 
 ```
 "/xyz/openbmc_project/Sensors/temperature/ambient": {
@@ -95,7 +95,7 @@ busctl --system introspect xyz.openbmc_project.Hwmon-3301914901.Hwmon1 \
 }
 ```
 
-### Other Interfaces ###
+### Other Interfaces
 
 Aside from the `xyz.openbmc_project.Sensor` interfaces, the sensor D-Bus objects
 may also expose the following interfaces:
@@ -107,7 +107,7 @@ may also expose the following interfaces:
 3.  `xyz.openbmc_project.State.Decorator.OperationalStatus`
     - Provides a Functional property that tracks the state of any fault files
 
-### Signals ###
+### Signals
 
 Any property value change broadcasts a signal on D-Bus.  When a value trips
 past a threshold, an additional D-Bus signal is sent.
@@ -122,20 +122,20 @@ Example, if the value of WarningLow is 5...
 | 6 | 1 | "xyz.openbmc\_project.Sensor.Value" : value = 1 ,<br>"xyz.openbmc\_project.Sensor.Threshold.Warning" : WarningAlarmLow = 1 |
 
 
-### System Configuration ###
+### System Configuration
 
 On the BMC each sensor's configuration is located in a file.  These files
 can be found as a child of the `/etc/default/obmc/hwmon` path.
 
 
-## Creating a Sensor ##
+## Creating a Sensor
 
 There are two techniques to add a sensor to your system and which to use
 depends on if your system defines sensors via an MRW (Machine Readable
 Workbook) or not.
 
 
-### My sensors are not defined in an MRW ###
+### My sensors are not defined in an MRW
 
 HWMon sensors are defined in the `recipes-phosphor/sensor/phosphor-hwmon%`
 path within the [machine configuration][7].
@@ -223,7 +223,7 @@ WARNLO_temp2=10000
 WARNHI_temp2=80000
 ```
 
-#### Additional Config File Entries ####
+#### Additional Config File Entries
 The phosphor-hwmon code supports these additional config file entries:
 
 **INTERVAL**
@@ -304,7 +304,7 @@ Will write a value to a pwmN\_enable file on startup if present.
 ENABLE_fan1 = 2 #Write a 2 to pwm1_enable
 ```
 
-### My sensors are defined in an MRW ###
+### My sensors are defined in an MRW
 
 Setting up sensor support with an MRW is done by adding a unit-hwmon-feature
 unit, for each hwmon feature needing to be monitored and then filling in the
@@ -346,7 +346,7 @@ added.  The instance path will be `/xyz/openbmc_project/Sensors/fan/fan0`.
 ```
 
 
-## Additional Reading ##
+## Additional Reading
 Mailing List [Comments on Sensor design][9]
 
 

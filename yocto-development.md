@@ -1,4 +1,4 @@
-# Yocto in OpenBMC #
+# Yocto in OpenBMC
 
 The Yocto Project is an open source collaboration project that provides
 templates, tools and methods to help you create custom Linux-based systems for
@@ -7,7 +7,7 @@ embedded products regardless of the hardware architecture.
 OpenBMC uses the Yocto tools to manage configuration and creation of BMC
 images.
 
-## Developing with Yocto ##
+## Developing with Yocto
 
 There are two main use-cases for Yocto in OpenBMC:
 
@@ -47,7 +47,7 @@ from the devtool Yocto layer.
 Further information on [devtool][0] can be found in the [Yocto Mega Manual][1].
 
 
-### Adding a file to your image ###
+### Adding a file to your image
 
 There are a lot of examples of working with BitBake out there.  The [recipe
 example](http://docs.openembedded.org/usermanual/html/recipes_examples.html)
@@ -94,7 +94,7 @@ That's it, recompile and boot your system, the binary `hello` will be in
 `/usr/bin` and the `README.md` will be in `/usr/shared/doc/welcome`.
 
 
-### Know what your image has ###
+### Know what your image has
 
 Sure you could flash and boot your system to see if your file made it, but there
 is a faster way.  The `rootfs` directory down in the depths of the `build/tmp`
