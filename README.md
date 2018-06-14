@@ -36,6 +36,8 @@ These documents contain details on developing OpenBMC code itself
  - [REST-cheatsheet.md](REST-cheatsheet.md): Quick reference for some common
    curl commands usage.
 
+ - [Security](security/README.md): Root of the security documentation
+
 
 OpenBMC Goals
 -------------
