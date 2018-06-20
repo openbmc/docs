@@ -1,0 +1,504 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "201a41f7_c043d17f",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "I don\u0027t have a strong hardware background.  AHB refers to Advanced High-performance Bus (https://en.wikipedia.org/wiki/Advanced_Microcontroller_Bus_Architecture) that bridge the BMC to ??? the host processors?",
+      "range": {
+        "startLine": 122,
+        "startChar": 27,
+        "endLine": 122,
+        "endChar": 30
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e686fbc_1005c42c",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "What\u0027s a ROM boot block?  Alternatively, can you describe the point during the boot process when this work must be done by?",
+      "range": {
+        "startLine": 143,
+        "startChar": 8,
+        "endLine": 143,
+        "endChar": 24
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a03ef11_49fb5ae4",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "How does this mesh with the use case for when the BMC does not trust the host, such as when someone rents bare-metal hardware?",
+      "range": {
+        "startLine": 209,
+        "startChar": 51,
+        "endLine": 210,
+        "endChar": 41
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8a43466_ee4a51c0",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Same question as above, et.seq.",
+      "range": {
+        "startLine": 216,
+        "startChar": 42,
+        "endLine": 217,
+        "endChar": 40
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f536407a_16ed1c70",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Agreed.  But, ... notwithstanding security features such as a switch that gets triggered when the physical case is opened, and the signal can only be turned off by an administrator (i.e., closing the case does not reset the signal).  (I think OpenBMC has this feature???)",
+      "range": {
+        "startLine": 366,
+        "startChar": 31,
+        "endLine": 366,
+        "endChar": 47
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87873b5a_7f4f28d4",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Examples: Code from the service team to collect additional diagnostics, or a test (i.e., temporary experimental) fix from the service team.",
+      "range": {
+        "startLine": 404,
+        "startChar": 13,
+        "endLine": 404,
+        "endChar": 23
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cc45cd3d_ac7dd549",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "I am confused by the markdown syntax that was used here, specifically, using \"###\" to introduce this subsection (\"Attack methods and Threats\").  The ### at the start of a line introduces a subsection, but its meaning is not clear when intented as it appears here.\n\nI assume this is meant to be a subsection of the section titled \"Asset: BMC Firmware Integrity\".",
+      "range": {
+        "startLine": 451,
+        "startChar": 4,
+        "endLine": 451,
+        "endChar": 7
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c76047e_2e685b86",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Would it be useful to separate?: (1) the difficulty of performing the attack, i.e., the level of capabilities required by an attacker from (2) the additional access the attacker would get from a successful attack.\nSomething closer to CVSS - https://en.wikipedia.org/wiki/Common_Vulnerability_Scoring_System",
+      "range": {
+        "startLine": 457,
+        "startChar": 22,
+        "endLine": 457,
+        "endChar": 30
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d7c8d838_52c3eb72",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Would OpenBMC log the failed attempt, or does there need to be some way for the BMC to notify an external agent?",
+      "range": {
+        "startLine": 462,
+        "startChar": 22,
+        "endLine": 462,
+        "endChar": 39
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a4aa6fc_c9035ef6",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Would this redundant image have the same content (same byte sequence) as the primary image?  For example, does this imply that the redundant image is written to immediately after the active/primary image is successfully written?",
+      "range": {
+        "startLine": 518,
+        "startChar": 24,
+        "endLine": 518,
+        "endChar": 33
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c59305ac_2da558b7",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Formatting error.  I assume a new paragraph here.",
+      "range": {
+        "startLine": 532,
+        "startChar": 40,
+        "endLine": 532,
+        "endChar": 42
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5785496_13ad7fae",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "I assume TCP and UDP ports?",
+      "range": {
+        "startLine": 542,
+        "startChar": 68,
+        "endLine": 542,
+        "endChar": 75
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da535710_7aef7f88",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "I assume DOS \u003d denial of service",
+      "range": {
+        "startLine": 551,
+        "startChar": 6,
+        "endLine": 551,
+        "endChar": 9
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a0a56f8e_61d67107",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Would it be better to address this topic (the signing and private key storage aspects) in a document that addresses BMC development security topics, and merely assume away the problem from the BMC\u0027s point of view?",
+      "range": {
+        "startLine": 565,
+        "startChar": 4,
+        "endLine": 565,
+        "endChar": 30
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34097995_3aa8c84d",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Did you want to talk about using the HSM properly, such as protecting physical access, and ensuring there is enough randomness when generating key pairs?",
+      "range": {
+        "startLine": 565,
+        "startChar": 65,
+        "endLine": 565,
+        "endChar": 68
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a523457_76505da8",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "This doesn\u0027t read right.  Does this mean?:\nUse a HSM to generate the key pair, keep the private key confidential, and protect the integrity of the public key.  Access to the HSM for signing the firmware image should be strictly limited.",
+      "range": {
+        "startLine": 566,
+        "startChar": 0,
+        "endLine": 566,
+        "endChar": 33
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "67c0141c_206f72fd",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "delete this word?",
+      "range": {
+        "startLine": 606,
+        "startChar": 47,
+        "endLine": 606,
+        "endChar": 52
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8b0e89a_613fe45a",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Another non-goal?  Have a way for the BMC to validate the integrity of the PSU firmware.",
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2083b5f8_3c2aef50",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "I don\u0027t understand this attack.  Does this apply only to using IPMI commands from the host to change IPMI passwords?",
+      "range": {
+        "startLine": 819,
+        "startChar": 57,
+        "endLine": 819,
+        "endChar": 67
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "636e2ef0_a3e89404",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Remove this attack?  This is covered by the non-goals",
+      "range": {
+        "startLine": 846,
+        "startChar": 11,
+        "endLine": 846,
+        "endChar": 35
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd56ce4a_85aee1b5",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Remove this attack?  This should be covered by the non-goals.",
+      "range": {
+        "startLine": 854,
+        "startChar": 16,
+        "endLine": 854,
+        "endChar": 40
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e10974c_24201916",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-20T21:42:51Z",
+      "side": 1,
+      "message": "Remove this attack?  This is covered by the non-goals",
+      "range": {
+        "startLine": 952,
+        "startChar": 17,
+        "endLine": 952,
+        "endChar": 35
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    }
+  ]
+}
