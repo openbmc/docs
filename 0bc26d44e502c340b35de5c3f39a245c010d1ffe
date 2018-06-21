@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5bc9f1d4_31973361",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-21T16:20:44Z",
+      "side": 1,
+      "message": "FYI, I have updated the \"using OpenBMC\" document \"modify and configure\" section to reference this text.  It reads:\n\nThe BMC hardware may have features with security related implications that should be taken into consideration when creating a firmware distribution because they increase the attack surface of the BMC.  These are identified in the OpenBMC functional specification and are specific to the hardware model, for example ASPEED AST2500 or Nuvoton W83795 series.  Example items include:\n - disable unneeded bridges between the BMC and host server such as PCIe-to-AHB, LPC-to-AHB, and UART-to-AHB.\n - disable debug or trace modes",
+      "range": {
+        "startLine": 117,
+        "startChar": 40,
+        "endLine": 117,
+        "endChar": 77
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "201a41f7_c043d17f",
         "filename": "security/obmc-securityarchitecture.md",
         "patchSetId": 2
@@ -71,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "12a67437_c7ab69f1",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-21T16:20:44Z",
+      "side": 1,
+      "message": "Would it be better to move this statement to the top of the section and make it a blanket statement?\nShould this talk about a use case to disable the BMC\u0027s IPMI host function when the host is not trusted?",
+      "parentUuid": "0a03ef11_49fb5ae4",
+      "range": {
+        "startLine": 209,
+        "startChar": 51,
+        "endLine": 210,
+        "endChar": 41
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8a43466_ee4a51c0",
         "filename": "security/obmc-securityarchitecture.md",
         "patchSetId": 2
@@ -87,6 +134,29 @@
         "startChar": 42,
         "endLine": 217,
         "endChar": 40
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22c1b119_a3ed3457",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-21T16:20:44Z",
+      "side": 1,
+      "message": "FYI, I updated the \"Using OpenBMC\" guide to reference this section.  It reads:\n\nThe functional security spec makes explicit security assumptions in the form of non-goals.  Carefully consider each of them.  To provide security, the operating environment must address these.",
+      "range": {
+        "startLine": 364,
+        "startChar": 2,
+        "endLine": 364,
+        "endChar": 11
       },
       "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
