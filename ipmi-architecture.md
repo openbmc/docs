@@ -66,7 +66,7 @@ or otherwise runtime linkable so that external provider libraries can be used
 to add IPMI commands.
 
 
-## **Details and Implementation**
+## Details and Implementation
 
 For session-less channels (like BT, KCS, and IPMB), the only privilege check
 will be to see that the requested privilege is less than or equal to the
