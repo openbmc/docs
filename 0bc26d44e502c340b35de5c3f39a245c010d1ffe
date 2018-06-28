@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "ef97d127_3cc7f8a9",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-28T14:55:55Z",
+      "side": 1,
+      "message": "Here is how the Common Criteria model addresses this:\n\nFirst establish the scope of what you working on, then identify security risks within that scope, and finally address those risks in different ways.\n\nThe document identifies the scope as the BMC and its firmware, and does not include the BMC\u0027s environment or data center.  That sounds right to me.\n\nFor items in scope, the security docs address risks in the form of requirements and recommendations.  A justification must be provided for an implementation that goes against the recommendations.\n\nItems out of scope (such as the \"non goals\" below) form an important part of the overall security model and become \"guidance\" for downstream teams.  The downstream teams typically interpret this guidance as requirements and recommendations for items such as the operational environment, operator training, etc.",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 17
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e686fbc_1005c42c",
         "filename": "security/obmc-securityarchitecture.md",
         "patchSetId": 2
@@ -740,6 +763,30 @@
       "writtenOn": "2018-06-28T00:56:30Z",
       "side": 1,
       "message": "Should probably reference BMC FW/HW configuration mitigations.",
+      "range": {
+        "startLine": 870,
+        "startChar": 12,
+        "endLine": 872,
+        "endChar": 15
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "968382c7_f9a9ae54",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-06-28T14:55:55Z",
+      "side": 1,
+      "message": "Can this item be expanded?  The ability of malware on the host to read BMC memory gives that malware more information about how to attack the BMC, so in general, it is a bad thing",
+      "parentUuid": "f60c268c_e76324a0",
       "range": {
         "startLine": 870,
         "startChar": 12,
