@@ -19,6 +19,23 @@ corporate) has been uploaded to the CLA repository.
 	* The ICLA form can be found [here]
 	(https://github.com/openbmc/openbmc/files/1860742/OpenBMC.ICLA.pdf).
 
+An executed OpenBMC CLA is _not_ required to accept contributions to
+OpenBMC forks of upstream projects, like the Linux kernel or U-Boot.
+
+Review the maintainers' responsibilities in the [contributing
+guidelines](./contributing.md).  Maintainers are ultimately
+responsible for sorting out open source license issues, issues with
+using code copied from the web, and maintaining the quality of the
+code.
+
+Good repository maintainers are recognized by a consensus of their
+peers as having the following traits:
+ - responsible: have a continuing desire to ensure only high-quality
+   code goes into the repo
+ - leadership: foster open-source aware practices such as [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software)
+ - expertise: typically demonstrated by significant contributions to
+   the code or code reviews
+
 (1) The semantics of accepting a patch depend on the sub-project contribution
 process.
 
@@ -26,5 +43,4 @@ process.
 * Gerrit - +2.
 * email - Merging the patch.
 
-An executed OpenBMC CLA is _not_ required to accept contributions to
-OpenBMC forks of upstream projects, like the Linux kernel or U-Boot.
+Ensure that accepted changes actually merge into OpenBMC repositories.
