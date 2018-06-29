@@ -28,3 +28,9 @@ process.
 
 An executed OpenBMC CLA is _not_ required to accept contributions to
 OpenBMC forks of upstream projects, like the Linux kernel or U-Boot.
+
+Review the maintainers' responsibilities in the [contributing
+guidelines](./contributing.md).  Maintainers are ultimately
+responsible for sorting out open source license issues, issues with
+using code copied from the web, and maintaining the quality of the
+code.

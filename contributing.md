@@ -39,6 +39,13 @@ Check out that list here:
 
 If you need further details on any of these issues, feel free to add comments.
 
+Performing code reviews is another good way to get started.  Go to
+https://gerrit.openbmc-project.xyz and click on the "all" and "open"
+menu items, or if you are interested in a particular repository, for
+example "bmcweb", type "status:open project:openbmc/bmcweb" into the
+search bar and press the "search" button.  Then select a review.
+Remember to be positive and add value with every review comment.
+
 Coding style
 ------------
 
@@ -194,6 +201,38 @@ To submit a change set, commit your changes, and push to the Gerrit server,
 where 'gerrit' is the name of the remote added with the git remote add command:
 
   `git push gerrit HEAD:refs/for/master`
+
+Gerrit will assign a "change id" to your commit (which is different
+from the git commit id) and will show you the URL link to your review.
+You can also find your reviews from Gerrit's search bar or menu.
+
+Adding reviewers.  You'll probably need to invite folks to your
+review.  Each OpenBMC repository has a `MAINTAINERS` file which lists
+required reviewers who are subject matter experts.  Those reviewers
+will add additional reviewers as appropriate.  The mechanism to add
+reviewers is from that change's web page.
+
+About maintainers.  Each repository is governed by a small group of
+maintainer who are responsible leaders with expertise in that area
+and are responsible for maintaining the quality of the code.
+The criteria to become a maintainer are:
+ - responsible: have a continuing desire to ensure only high-quality
+   code goes into the repo
+ - leadership: recognized by consensus of peers that they foster
+   open-source aware practices such as [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software)
+ - expertise: typically demonstrated by significant contributions to
+   the code or code reviews
+
+You are expected to address all comments, and do so in a positive way.
+And remember to use the "reply" button to publish your replies for
+others to see.
+
+The review results in the proposed change being accepted, rejected for
+rework, or abandoned.  To re-work your change, simply `git add` your
+changes as usual and use the `git commit --amend` command.  Using the
+`--amend` flag replaces your old commit with a new one (different git
+commmit id), but Gerrit handles the update as a new patch of the same
+review.
 
 
 Avoid references to non-public resources
