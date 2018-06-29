@@ -39,6 +39,13 @@ Check out that list here:
 
 If you need further details on any of these issues, feel free to add comments.
 
+Performing code reviews is another good way to get started.  Go to
+https://gerrit.openbmc-project.xyz and click on the "all" and "open"
+menu items, or if you are interested in a particular repository, for
+example "bmcweb", type "status:open project:openbmc/bmcweb" into the
+search bar and press the "search" button.  Then select a review.
+Remember to be positive and add value with every review comment.
+
 Coding style
 ------------
 
@@ -97,6 +104,26 @@ This style can mostly be verified with 'astyle' as follows:
 ### C++
 
 See [C++ Style and Conventions](./cpp-style-and-conventions.md).
+
+Planning changes
+----------------
+
+If you are making a nontrivial change, you should plan how to
+introduce it to the OpenBMC development community.
+
+If you are planning a new function, you should get agreement that your
+change will be accepted.  As early as you can, introduce the change
+via the OpenBMC community call, IRC channel, or email list to start
+the discussion.  You may find a better way to do what you need.
+
+Stage your change in small pieces to make them easy to review:
+ - If your change has a specification, sketch out your ideas first
+   and work to get that accepted before completing the details.
+ - Work at most a few days before seeking review.
+ - Commit and review header files before writing code.
+ - Commit and review each implementation module separately.
+
+Make each commit simple to review.
 
 Submitting changes
 ------------------
@@ -183,8 +210,9 @@ phosphor-rest-server, and 'openbmc.gerrit' is the name of the Host previously ad
 
   `git remote add gerrit ssh://openbmc.gerrit/openbmc/openbmc_repo`
 
-Obtain the git hook commit-msg to automatically add a Change-Id to the commit
-message, which is needed by Gerrit:
+Gerrit uses [Change-Ids](https://gerrit-review.googlesource.com/Documentation/user-changeid.html) to identify commits that belong to the same
+review.  Configure your git repository to automatically add a
+Change-Id to your commit messages.  The steps are:
 
   `gitdir=$(git rev-parse --git-dir)`
 
@@ -194,6 +222,31 @@ To submit a change set, commit your changes, and push to the Gerrit server,
 where 'gerrit' is the name of the remote added with the git remote add command:
 
   `git push gerrit HEAD:refs/for/master`
+
+Gerrit will show you the URL link to your review.  You can also find
+your reviews from the [OpenBMC Gerrit server](https://gerrit.openbmc-project.xyz) search bar
+or menu (All > Open, or My > Changes).
+
+Invite reviewers to review your changes.  Each OpenBMC repository has
+a `MAINTAINERS` file which lists required reviewers who are subject
+matter experts.  Those reviewers may add additional reviewers.  To add
+reviewers from the Gerrit web page, click the "add reviewers" icon by
+the list of reviewers.
+
+You are expected to respond to all comments.  And remember to use the
+"reply" button to publish your replies for others to see.
+
+The review results in the proposed change being accepted, rejected for
+rework, or abandoned.  When you re-work your change, remember to use
+`git commit --amend` so Gerrit handles the update as a new patch of
+the same review.
+
+Each repository is governed by a small group of maintainers who are
+leaders with expertise in their area.  They are responsible for
+reviewing changes and maintaining the quality of the code.  You'll
+need a maintainer to accept your change, and they will look to the
+other reviewers for guidance.  When accepted, your change will merge
+into the OpenBMC project.
 
 
 Avoid references to non-public resources
