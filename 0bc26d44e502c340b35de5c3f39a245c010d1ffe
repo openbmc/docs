@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "5eb8f1c4_70feab92",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-16T17:22:38Z",
+      "side": 1,
+      "message": "I\u0027ve identified the audnence in the security/README.md file (excerpted below).  To help readers, I think maybe each of the 4 security architecture documents (i.e. this doc and the 3 others in the README) should either have a (mostly) common introduction and/or back to the README.\n\nExcerpt from https://gerrit.openbmc-project.xyz/#/c/openbmc/docs/+/11120/5/security/README.md:\nThe audience is the OpenBMC development team, projects that use OpenBMC, and IT security professionals.  Readers are assumed to have general familiarity with the firmware development process and with OpenBMC\u0027s capabilities.",
+      "parentUuid": "1dec574e_f6e1d1fe",
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76dd180d_36e41a55",
         "filename": "security/obmc-securityarchitecture.md",
         "patchSetId": 2
@@ -47,6 +65,24 @@
       "writtenOn": "2018-07-16T02:40:17Z",
       "side": 1,
       "message": "Everything in this paragraph seems true enough, but I wonder why it is needed here?\nWhat about putting a doc that isn\u0027t in the security folder called \u0027what is a bmc?\u0027 for\npeople that need that?  I guess its back to my first comment...who is the intended\naudience here?",
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "36691571_9974f006",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-16T17:22:38Z",
+      "side": 1,
+      "message": "(I\u0027ve gotten similar comments about BMC architecture in my reviews.)\nThe precise definition of what a BMC is (including its boundaries) is critical for talking about security boundaries, so it is defined here.  This is not defined anywhere else, so it is written here.  I think it can be moved to a non-security  directory and linked to from here, if you think that is needed.\nMy first impulse was to incubate the description here, and move it to another file when it is mature.",
+      "parentUuid": "76dd180d_36e41a55",
       "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
@@ -98,6 +134,24 @@
       "writtenOn": "2018-07-16T02:40:17Z",
       "side": 1,
       "message": "Should each SOC whose security implications that we document get its own page?\nThanks for compiling this list!",
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8dcc32cf_aa9f5ae0",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-16T17:22:38Z",
+      "side": 1,
+      "message": "Having it all in one document makes it easier to get started.  Maybe we can break it apart when we document a third SOC?",
+      "parentUuid": "a0ad66ab_f2482e7c",
       "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
@@ -184,6 +238,30 @@
       "writtenOn": "2018-06-28T14:55:55Z",
       "side": 1,
       "message": "Here is how the Common Criteria model addresses this:\n\nFirst establish the scope of what you working on, then identify security risks within that scope, and finally address those risks in different ways.\n\nThe document identifies the scope as the BMC and its firmware, and does not include the BMC\u0027s environment or data center.  That sounds right to me.\n\nFor items in scope, the security docs address risks in the form of requirements and recommendations.  A justification must be provided for an implementation that goes against the recommendations.\n\nItems out of scope (such as the \"non goals\" below) form an important part of the overall security model and become \"guidance\" for downstream teams.  The downstream teams typically interpret this guidance as requirements and recommendations for items such as the operational environment, operator training, etc.",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 17
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "638a37ca_a9ac83d2",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-16T17:22:38Z",
+      "side": 1,
+      "message": "In other words, I agree.   Change this subsection title to:\nSecurity Recommendations.\nand then explain somewhere that \"recommends\" is used per RCF2119.",
+      "parentUuid": "ef97d127_3cc7f8a9",
       "range": {
         "startLine": 141,
         "startChar": 0,
@@ -346,6 +424,24 @@
     },
     {
       "key": {
+        "uuid": "2acda09f_49067505",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-16T17:22:38Z",
+      "side": 1,
+      "message": "The OpenBMC security docs are not yet ready for this level of detailed discussion.  For this first pass of documentation, I think we should limit the work to listing all security relevant interfaces based on a systematic architectural review of the BMC.  In other words, identify all the items that need to be addressed.",
+      "parentUuid": "5a42969a_cd51100c",
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a03ef11_49fb5ae4",
         "filename": "security/obmc-securityarchitecture.md",
         "patchSetId": 2
@@ -502,6 +598,24 @@
     },
     {
       "key": {
+        "uuid": "5d90c48e_e3d79dd1",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-16T17:22:38Z",
+      "side": 1,
+      "message": "In this context, the \"non-goals\" are the same as Common Criteria \"security assumptions\" (which must be listed explicitly).\nThe main idea is to delineate what the OpenBMC project is doing and what must be provided somewhere else.  Examples:\n - OpenBMC is not doing anything to protect against bricking.  Yes this is a security concern (DoS attack).  This item explicitly mentions that fact.  Possible uses of this item are: raise the alarm for a implementation, or input into requirements for a BMC OEM.\n - OpenBMC is not protecting against physical attacks.  This is a legitimate security concern, and listing it as a non-goal is where we mention it.",
+      "parentUuid": "15395148_521d4713",
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0561a468_3b2ecf92",
         "filename": "security/obmc-securityarchitecture.md",
         "patchSetId": 2
@@ -536,6 +650,24 @@
       "writtenOn": "2018-07-16T02:40:17Z",
       "side": 1,
       "message": "Frankly I don\u0027t really understand the concept of a non-goal in an open source project.\nEveryone has different goals.  Why do we need to make assertions about things that\nnoone wants, if noone truly wants them?  What does the project gain by having\nthese things listed here?  If there is a good answer to this question and I just\ndon\u0027t get it...then explain why in the document itself.",
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "460cfcf4_90e8f3a2",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-16T17:22:38Z",
+      "side": 1,
+      "message": "IMO, this should be a goal of the BMC\u0027s firmware.\nBrad: See my previous comment above.  The idea is to list items that a BMC installation may want but the OpenBMC team cannot provide.",
+      "parentUuid": "b5745bea_6574d1d9",
       "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
@@ -992,6 +1124,23 @@
         "endLine": 967,
         "endChar": 15
       },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "12fd3084_ba8021cd",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-16T17:22:38Z",
+      "side": 1,
+      "message": "FYI: The OpenBMC architecture from the Linux device files (/dev) and above (D-Bus, REST, and Web) are described here:\nhttps://gerrit.openbmc-project.xyz/#/c/11452/1/security/obmc-firmware-security.md \nLet\u0027s collaborate more closely when we start to overlap.",
       "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
