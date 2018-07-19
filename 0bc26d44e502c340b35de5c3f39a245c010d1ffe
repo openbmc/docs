@@ -258,6 +258,30 @@
     },
     {
       "key": {
+        "uuid": "4a2f1d06_cc9b8add",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2018-07-19T03:22:18Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t have a strong hardware background.  AHB refers to Advanced High-performance Bus (https://en.wikipedia.org/wiki/Advanced_Microcontroller_Bus_Architecture) that bridge the BMC to ??? the host processors?\n\nThe ASPEED BMC SoCs have an ARM core, and the AHB is the high-speed internal bus connecting the ARM core to some \"peripherals\" in the SoC such as the network MAC, USB and SPI controllers. Other \"peripherals\" that hang off the AHB are devices that straddle the AHB and other buses - e.g. PCI-to-AHB and LPC-to-AHB. These bridges perform access translation between the two separate domains. Somewhat relevant is that the PCI and LPC buses are mastered (controlled) by the host (there\u0027s a bit of handwaving there on the LPC part).\n\nSo to answer your question, the AHB does not bridge the BMC to the host directly. Rather, one or more bridge devices that sit on the AHB allow accesses that cross domains between BMC and host buses.\n\nPart of the picture here is the BMC\u0027s \"physical address space\". In the BMC\u0027s case, each of the peripherals exposed on the internal buses can be addressed by the ARM core\u0027s load and store instructions. Despite the hardware being physically arranged in a tree topology, this tree is flattened into a \"physical\" linear address space by the AHB controller (in the SoC). The PCI-to-AHB and LPC-to-AHB bridges translate commands from the relevant bus (PCI or LPC) into accesses on this linear, physical address space internal to the BMC.",
+      "parentUuid": "201a41f7_c043d17f",
+      "range": {
+        "startLine": 122,
+        "startChar": 27,
+        "endLine": 122,
+        "endChar": 30
+      },
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "486bc54a_accd0370",
         "filename": "security/obmc-securityarchitecture.md",
         "patchSetId": 2
