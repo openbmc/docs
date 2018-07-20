@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "d423adb5_5fab4395",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-20T16:35:16Z",
+      "side": 1,
+      "message": "If I understand correctly: add a paragraph like this:\n\nThis document gives the security considerations for the OpenBMC\u0027s hardware environment.  This is a part of the [OpenBMC security documentation](../security/README.md).",
+      "parentUuid": "3ebae3cd_611009bf",
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76dd180d_36e41a55",
         "filename": "security/obmc-securityarchitecture.md",
         "patchSetId": 2
@@ -730,6 +748,24 @@
     },
     {
       "key": {
+        "uuid": "3bcd5339_c803c138",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-20T16:35:16Z",
+      "side": 1,
+      "message": "Think of it this way: The non-goals are telling the downstream development teams the security relevant items that OpenBMC does not address, so they had better address it.  They have real options here: make a custom change for their particular situation, address the issue through environmental or procedural constraints, or live with the exposure.\n\nIn the happy chance that OpenBMC does address the issue in the future, we will remove this non-goal from the list.",
+      "parentUuid": "487b7e23_847a273f",
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0561a468_3b2ecf92",
         "filename": "security/obmc-securityarchitecture.md",
         "patchSetId": 2
@@ -800,6 +836,42 @@
       "side": 1,
       "message": "\u003e OpenBMC team cannot provide\n\nI\u0027m struggling to understand this.  I wonder if there is a faulty premise buried in the meaning of the \"OpenBMC team\".\n\nIdentify some interval of time (the next six months for example).  A number of code contributions will be made to the project during that time.  Now identify the authors of said code contributions.  This is the \"OpenBMC team\".  \n\nLooking at it this way - non goals are just things that noone wanted to work on (or was willing to allocate resources to).  why do those things need to be documented?  Doesn\u0027t their absence from the documentation make it pretty clear that they aren\u0027t implemented?",
       "parentUuid": "460cfcf4_90e8f3a2",
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e7f7095_ed8ed39a",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-20T16:35:16Z",
+      "side": 1,
+      "message": "In a formal security review you would explicitly list all security relevant items including those that are not addressed by the project.  IMO, that\u0027s what the list of non-goals is trying to accomplish.",
+      "parentUuid": "4ae2b382_da923685",
+      "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6aef145a_740ac20e",
+        "filename": "security/obmc-securityarchitecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2018-07-20T16:35:16Z",
+      "side": 1,
+      "message": "\u003e Why do we need to make assertions about things that no one wants, if noone truly wants them?\n\nI think the misunderstanding here is: non-goals are things that we *do* want or downstream users want, but OpenBMC has not provided.",
+      "parentUuid": "b5745bea_6574d1d9",
       "revId": "0bc26d44e502c340b35de5c3f39a245c010d1ffe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
