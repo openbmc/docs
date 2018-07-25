@@ -17,19 +17,15 @@ After building OpenBMC, you will end up with a set of image files in
 `tmp/deploy/images/<platform>/`. The `image-*` symlinks correspond to components
 that can be updated on the BMC:
 
- * `image-bmc` → `flash-<platform>-<timestamp>`
+ * `image-bmc` → `obmc-phosphor-image-<platform>-<timestamp>.static.mtd`
 
-    The whole-of-flash image for the BMC
+    The complete flash image for the BMC
 
- * `image-initramfs` → `core-image-minimal-initramfs-palmetto.cpio.lzma.u-boot`
+ * `image-kernel` → `fitImage-obmc-phosphor-initramfs-<platform>.bin`
 
-    The small initramfs image; used for early init and flash management
+    The OpenBMC kernel FIT image (including the kernel, device tree, and initramfs)
 
- * `image-kernel` → `cuImage`
-
-    The OpenBMC kernel cuImage (combined kernel and device tree)
-
- * `image-rofs` → `obmc-phosphor-image-palmetto.squashfs-xz`
+ * `image-rofs` → `obmc-phosphor-image-<platform>.squashfs-xz`
 
     The read-only OpenBMC filesystem
 
@@ -45,12 +41,13 @@ Additionally, there are two tarballs created that can be deployed and unpacked b
 
  * `<platform>-<timestamp>.all.tar`
 
-    The complete BMC flash content: A single file wrapped in a tar archive
+    The complete BMC flash content: A single file (`image-bmc`) wrapped in a
+    tar archive.
 
  * `<platform>-<timestamp>.tar`
 
     Partitioned BMC flash content: Multiple files wrapped in a tar archive,
-    one for each of the u-boot, kernel, initramfs, ro and rw partitions.
+    one for each of the u-boot, kernel, ro and rw partitions.
 
 Preparing for BMC code Update
 -----------------------------
