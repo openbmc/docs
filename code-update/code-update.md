@@ -21,10 +21,6 @@ that can be updated on the BMC:
 
     The whole-of-flash image for the BMC
 
- * `image-initramfs` → `core-image-minimal-initramfs-palmetto.cpio.lzma.u-boot`
-
-    The small initramfs image; used for early init and flash management
-
  * `image-kernel` → `cuImage`
 
     The OpenBMC kernel cuImage (combined kernel and device tree)
