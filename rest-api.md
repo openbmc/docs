@@ -273,6 +273,26 @@ or an error message:
         "status": "error"
     }
 
+## Uploading LDAP config file
+It is possible to upload LDAP config file via REST. The content-type should be
+set to "application/octet-stream".
+
+For example, to upload a file ldap.conf:
+
+    curl -c cjar -b cjar -k -H "Content-Type: application/octet-stream" \
+        -X PUT -T <file_to_upload> https://${bmc}/upload/ldapconf/ldap.conf
+
+In above example, the file ldap.conf will be saved with the name ldap.conf on
+the BMC.
+
+The operation will return the below given message on success:
+
+    {
+        "data": null,
+        "message": "200 OK",
+        "status": "ok"
+    }
+
 ## Event subscription protocol
 It is possible to subscribe to events, of interest, occurring on the BMC. The
 implementation on the BMC uses WebSockets for this purpose, so that clients
