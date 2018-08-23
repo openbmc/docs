@@ -279,6 +279,19 @@ if required                         |                                    |
 --------------------------------------------------------------------------
 ```
 
+## LDAP user accounts
+
+The LDAP user accounts can be used to authenticate with the ssh, redfish and the web interface. The
+privilege roles assigned to the user accounts on the OpenBMC applies to the LDAP user accounts as
+well. Since the LDAP user accounts are provisioned on the LDAP server, there will be no D-Bus
+object created for every LDAP user account on the BMC.To assign privilege role for the LDAP user
+account the preferred way is to assign privilege roles to the LDAP group. The LDAP user will
+inherit the privilege role of the LDAP group.
+
+A D-Bus API will be provided to assign privilege role to the LDAP group. D-Bus object will express
+the privilege role of the LDAP groups and can be consumed by the external interfaces to authorize
+the operations.
+
 ## Recommended Implementation
 1. As per IPMI spec the max user list can be 15 (+1 for NULL User). Hence
 implementation has to be done in such a way that no more than 15 users are
