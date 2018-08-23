@@ -279,6 +279,36 @@ if required                         |                                    |
 --------------------------------------------------------------------------
 ```
 
+## LDAP
+
+SSH, Redfish and Webserver interface allows the user to authenticate against an LDAP directory.
+IPMI interface cannot be used to authenticate against LDAP, since IPMI needs the password in clear
+text at the time of session setup.
+
+In OpenBMC, PAM based authentication is implemented, so for both LDAP users and local users the
+authentication flow is the same.
+
+For the LDAP user accounts there is no LDAP attribute type that corresponds to the OpenBMC
+privilege roles. The preferred way is to group LDAP user accounts into LDAP groups. D-Bus API is
+provided for the user to assign privilege role to the LDAP group.
+
+## Authorisation Flow
+
+This section tries to explain how the privilege roles of the user accounts is consumed by the
+webserver interface. The privilege role is a property of the user D-Bus object for the local users.
+For the LDAP user accounts the privilege role will be inherited the LDAP group. The LDAP group to
+privilege role mapping needs to be configured prior to authenticating with the LDAP user accounts.
+
+1. Invoke PAM API's for authenticating with user credentials. Proceed if the authentication
+succeeds.
+2. Check if the user is a local user account. If the user account is local, fetch the privilege
+role from the D-Bus object and update the session information.
+3. If the user account is not local, read the groupname for the user.
+4. Fetch the privilege role corresponding to the groupname, update the session information with the
+privilege role.
+5. If there is no mapping for groupname to privilege role, default to `user` privilege role for the
+session.
+
 ## Recommended Implementation
 1. As per IPMI spec the max user list can be 15 (+1 for NULL User). Hence
 implementation has to be done in such a way that no more than 15 users are
