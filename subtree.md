@@ -13,7 +13,7 @@ https://github.com/openbmc?utf8=✓&q=meta
 
 Instead, please follow this workflow:
 ```
-$ git clone git@github.com:openbmc/openbmc.git
+$ git clone https://gerrit.openbmc-project.xyz/openbmc/openbmc
 # Make changes
 $ bitbake obmc-phosphor-image # Test out your changes
 $ git commit
@@ -46,9 +46,9 @@ $ git cherry-pick --strategy=subtree <SHA you just captured>
 ### Automation to test the ref
 Where $1 is the repo name, and $2 is a ref to a pointer
 ```
-git clone git@github.com:openbmc/openbmc.git
+git clone https://gerrit.openbmc-project.xyz/openbmc/openbmc
 cd openbmc
-git remote add subtree-remote git@github.com:openbmc/$1
+git remote add subtree-remote https://gerrit.openbmc-project.xyz/openbmc/$1
 git fetch ssh://openbmc.gerrit/openbmc/$1 refs/changes/$2
 git cherry-pick --strategy=subtree FETCH_HEAD
 ```
@@ -57,9 +57,9 @@ git cherry-pick --strategy=subtree FETCH_HEAD
 Once +2 is given, this script will run where $1 is the repo name, and $2 is a
 full path to subtree from top level
 ```
-git clone git@github.com:openbmc/openbmc.git
+git clone ssh://<user>@gerrit.openbmc-project.xyz:29418/openbmc/openbmc
 cd openbmc
-git remote add subtree-remote git@github.com:openbmc/$1
+git remote add subtree-remote https://gerrit.openbmc-project.xyz/openbmc/$1
 
 git subtree pull --prefix=$2 subtree-remote master
 git push
