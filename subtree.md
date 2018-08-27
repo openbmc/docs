@@ -17,7 +17,9 @@ $ git clone https://gerrit.openbmc-project.xyz/openbmc/openbmc
 # Make changes
 $ bitbake obmc-phosphor-image # Test out your changes
 $ git commit
-$ git checkout -b featureBranch ssh://openbmc.gerrit/openbmc/<repo_name>/master
+$ git remote add <repo_name> ssh://openbmc.gerrit/openbmc/<repo_name>/
+$ git fetch <repo_name>
+$ git checkout -b featureBranch <repo_name>/master
 $ git cherry-pick --strategy=subtree <SHA> # My commit from master
 $ git push ssh://openbmc.gerrit/openbmc/<repo_name> HEAD:refs/for/master
 
