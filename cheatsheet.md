@@ -29,7 +29,7 @@ The Palmetto target is `palmetto`.
 If you are starting from scratch without a `build/conf` directory you can just:
 ```
 $ cd openbmc
-$ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-ibm/meta-palmetto/conf . openbmc-env
+$ TEMPLATECONF=meta-ibm/meta-palmetto/conf . openbmc-env
 $ bitbake obmc-phosphor-image
 ```
 
@@ -40,7 +40,7 @@ The Zaius target is `zaius`.
 If you are starting from scratch without a `build/conf` directory you can just:
 ```
 $ cd openbmc
-$ TEMPLATECONF=meta-openbmc-machines/meta-openpower/meta-ingrasys/meta-zaius/conf . openbmc-env
+$ TEMPLATECONF=meta-ingrasys/meta-zaius/conf . openbmc-env
 $ bitbake obmc-phosphor-image
 ```
 
