@@ -159,7 +159,7 @@ The format-code.sh script will be executed as part of CI if found in the root
 directory of the repository, and will check that there are no files that were
 modified after running it (same check as running clang).
 
-OpenBMC requires a clang-format of version 5.0 or greater. An example of
+OpenBMC requires a clang-format of version 6.0 or greater. An example of
 how to run clang-format against all code in your repo can be found by
 referencing the [tool](https://github.com/openbmc/openbmc-build-scripts/blob/master/scripts/format-code.sh) used by CI.
 
@@ -215,6 +215,20 @@ DisableFormat:   false
 ExperimentalAutoDetectBinPacking: false
 FixNamespaceComments: true
 ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH ]
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex:           '^[<"](gtest|gmock)'
+    Priority:        5
+  - Regex:           '^"config.h"'
+    Priority:        -1
+  - Regex:           '^".*\.hpp"'
+    Priority:        1
+  - Regex:           '^<.*\.h>'
+    Priority:        2
+  - Regex:           '^<.*'
+    Priority:        3
+  - Regex:           '.*'
+    Priority:        4
 IndentCaseLabels: true
 IndentWidth:     4
 IndentWrappedFunctionNames: true
@@ -234,7 +248,7 @@ PenaltyExcessCharacter: 1000000
 PenaltyReturnTypeOnItsOwnLine: 60
 PointerAlignment: Right
 ReflowComments:  true
-SortIncludes:    false
+SortIncludes:    true
 SpaceAfterCStyleCast: false
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
@@ -380,6 +394,25 @@ SomeBMCType someBMCVariable = bmcFunction();
 /// Wrong: type and variable are mixed-case, function isn't lowerCamelCase.
 SomeBmcType someBmcVariable = BMCFunction();
 ```
+
+### Header Ordering
+
+Header inclusion order for a header file:
+```
+local headers (e.g. "daemon_sys.hpp")
+c-libraries
+cpp-libraries (including openbmc libraries)
+```
+
+Header inclusion order for a source file:
+```
+source.hpp (if applicable)
+local headers
+c-libraries
+cpp-libraries
+```
+
+All in alphabetically sorted order.
 
 #### Files
 
