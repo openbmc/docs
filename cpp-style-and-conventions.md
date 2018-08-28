@@ -215,6 +215,16 @@ DisableFormat:   false
 ExperimentalAutoDetectBinPacking: false
 FixNamespaceComments: true
 ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH ]
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex:           '^".*\.hpp"'
+    Priority:        1
+  - Regex:           '^<.*\.h>'
+    Priority:        2
+  - Regex:           '^<.*'
+    Priority:        3
+  - Regex:           '.*'
+    Priority:        4
 IndentCaseLabels: true
 IndentWidth:     4
 IndentWrappedFunctionNames: true
@@ -234,7 +244,7 @@ PenaltyExcessCharacter: 1000000
 PenaltyReturnTypeOnItsOwnLine: 60
 PointerAlignment: Right
 ReflowComments:  true
-SortIncludes:    false
+SortIncludes:    true
 SpaceAfterCStyleCast: false
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
@@ -380,6 +390,25 @@ SomeBMCType someBMCVariable = bmcFunction();
 /// Wrong: type and variable are mixed-case, function isn't lowerCamelCase.
 SomeBmcType someBmcVariable = BMCFunction();
 ```
+
+### Header Ordering
+
+Header inclusion order for a header file:
+```
+local headers (e.g. "daemon_sys.hpp")
+c-libraries
+cpp-libraries (including openbmc libraries)
+```
+
+Header inclusion order for a source file:
+```
+source.hpp (if applicable)
+local headers
+c-libraries
+cpp-libraries
+```
+
+All in alphabetically sorted order.
 
 #### Files
 
