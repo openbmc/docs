@@ -381,6 +381,25 @@ SomeBMCType someBMCVariable = bmcFunction();
 SomeBmcType someBmcVariable = BMCFunction();
 ```
 
+### Header Ordering
+
+Header inclusion order for a header file:
+```
+local headers (e.g. "daemon_sys.hpp")
+c-libraries
+cpp-libraries (including openbmc libraries)
+```
+
+Header inclusion order for a source file:
+```
+source.hpp (if applicable)
+local headers
+c-libraries
+cpp-libraries
+```
+
+All in alphabetically sorted order.
+
 #### Files
 
 * C++ headers should end in ".hpp".  C headers should end in ".h".
