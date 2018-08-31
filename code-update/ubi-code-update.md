@@ -102,7 +102,7 @@ via one of the following:
       ```
       busctl get-property xyz.openbmc_project.Software.BMC.Updater  \
         /xyz/openbmc_project/software/<id> \
-        xyz.openbmc_project.Software.Activation Progress
+        xyz.openbmc_project.Software.ActivationProgress Progress
       ```
 
   * Method 2: Using the REST API:
