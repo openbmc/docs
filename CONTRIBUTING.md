@@ -265,11 +265,7 @@ Best practices for D-Bus interfaces
  * Type signatures should and use the simplest types possible, appropriate
    for the data passed. For example, don't pass numbers as ASCII strings.
 
- * New D-Bus interfaces should be documented in the 'docs' repository, at:
-
-     https://github.com/openbmc/docs/blob/master/dbus-interfaces.md
-
-See also: http://dbus.freedesktop.org/doc/dbus-api-design.html
+See: http://dbus.freedesktop.org/doc/dbus-api-design.html
 
 
 Best practices for C
