@@ -11,14 +11,14 @@ This document is intended to provide a set of REST client commands for OpenBMC u
 
 * List and enumerate:
     ```
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" https://${bmc}/xyz/openbmc_project/list
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" https://${bmc}/xyz/openbmc_project/enumerate
+    $ curl -c cjar -b cjar -k https://${bmc}/xyz/openbmc_project/list
+    $ curl -c cjar -b cjar -k https://${bmc}/xyz/openbmc_project/enumerate
     ```
 
 * List sub-objects:
     ```
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" https://${bmc}/xyz/openbmc_project/
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" https://${bmc}/xyz/openbmc_project/state/
+    $ curl -c cjar -b cjar -k https://${bmc}/xyz/openbmc_project/
+    $ curl -c cjar -b cjar -k https://${bmc}/xyz/openbmc_project/state/
     ```
 
 * Host soft power off:
@@ -102,8 +102,8 @@ This document is intended to provide a set of REST client commands for OpenBMC u
 
     - Read:
     ```
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET https://${bmc}/xyz/openbmc_project/time/sync_method/attr/TimeSyncMethod
+    $ curl -c cjar -b cjar -k -X GET https://${bmc}/xyz/openbmc_project/time/owner/attr/TimeOwner
+    $ curl -c cjar -b cjar -k -X GET https://${bmc}/xyz/openbmc_project/time/sync_method/attr/TimeSyncMethod
     ```
     - Write:
     ```
@@ -126,7 +126,7 @@ This document is intended to provide a set of REST client commands for OpenBMC u
     or
 
     ```
-    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET https://${bmc}/xyz/openbmc_project/control/power_supply_redundancy
+    $ curl -c cjar -b cjar -k -X GET https://${bmc}/xyz/openbmc_project/control/power_supply_redundancy
     ```
 
     - Write (Enable/Disable):
