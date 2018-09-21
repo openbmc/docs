@@ -85,6 +85,9 @@ ignore= NONE
 
 ### JavaScript
 
+We follow the
+[Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html).
+
 A .clang-format file that closely approximates our JavaScript coding style is:
 ```
 ---
