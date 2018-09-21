@@ -85,6 +85,33 @@ ignore= NONE
 
 ### JavaScript
 
+We follow the
+[Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+except in the following areas:
+
+#### Naming Conventions
+
+* Follows our C++ Naming Conventions
+* We generally abstain from any prefix or suffix on names.
+* Acronyms should be same-case throughout and follow the requirements as
+  in their appropriate section.
+* Variables should all be lowerCamelCase, including class members, with no
+  underscores.
+
+```
+/// Correct.
+SomeBMCType someBMCVariable = bmcFunction();
+
+/// Wrong: type and variable are mixed-case, function isn't lowerCamelCase.
+SomeBmcType someBmcVariable = BMCFunction();
+```
+
+#### Files
+
+* JavaScript file names should end in ".js".
+* JavaScript file names must be all lowercase and should be named with hyphens
+  if longer than one word (e.g. something-with-hyphens.js).
+
 A .clang-format file that closely approximates our JavaScript coding style is:
 ```
 ---
