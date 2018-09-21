@@ -83,6 +83,16 @@ rules. These rules can be enforced by adding the following to the setup.cfg:
 ignore= NONE
 ```
 
+### JavaScript
+
+A .clang-format file that closely approximates our JavaScript coding style is:
+```
+---
+Language:        JavaScript
+BasedOnStyle:    Google
+ColumnLimit:     80
+```
+
 ### C
 
 For C code, we typically use the Linux coding style, which is documented at:
