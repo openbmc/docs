@@ -45,7 +45,7 @@ following the C++ Core Guidelines.
 thinking for us wherever possible.  This means having Continuous Integration
 tests on each repository so that regressions are quickly identified prior to
 merge. It also means having as much of this document enforced by tools as
-possible by, for example, astyle/clang-format and clang-tidy.
+possible by, for example, clang-format and clang-tidy.
 
 For those coming to the project from pre-C++11 environments we strongly
 recommend the book "Effective Modern C++" as a way to get up to speed on the
@@ -127,17 +127,6 @@ clearer and similar-sized code.  iostream may be used in those situations.
 ## Coding Style
 
 Indentation, naming practices, etc.
-
-[[ These should be codified as much as possible with astyle / clang-format. ]]
-
-An astyle-invocation that closely approximates our indentation style is:
-```
-astyle --style=allman --add-brackets --convert-tabs --max-code-length=80 \
-    --indent=spaces=4 --indent-classes --indent-switches --indent-labels \
-    --indent-preproc-define --min-conditional-indent=0 --pad-oper \
-    --pad-header --unpad-paren --break-after-logical \
-    --align-pointer=type --align-reference=type
-```
 
 ### General
 
