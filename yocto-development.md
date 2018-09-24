@@ -50,9 +50,8 @@ Further information on [devtool][0] can be found in the [Yocto Mega Manual][1].
 ### Adding a file to your image
 
 There are a lot of examples of working with BitBake out there.  The [recipe
-example](http://docs.openembedded.org/usermanual/html/recipes_examples.html)
-from OpenEmbedded is a great one and the premise of this OpenBMC tailored
-section.
+example][2] from OpenEmbedded is a great one and the premise of this OpenBMC
+tailored section.
 
 So you wrote some code.  You've been scp'ing the compiled binary on to the
 OpenBMC system for a while and you know there is a better way.  Have it built
@@ -106,12 +105,13 @@ In my example to check if README.md was going to be added just do...
 ls build/tmp/work/${MACHINE}-openbmc-linux-gnueabi/obmc-phosphor-image/1.0-r0/rootfs/usr/share/welcome/README.md
 ```
 
-NXP wrote a few examples of [useful] (https://community.nxp.com/docs/DOC-94953)
+NXP wrote a few examples of [useful](https://community.nxp.com/docs/DOC-94953)
 commands with BitBake that find the file too
 
 ```
 bitbake -g obmc-phosphor-image && cat pn-depends.dot |grep welcome
 ```
 
-[0]: (http://www.yoctoproject.org/docs/2.1/mega-manual/mega-manual.html#devtool-use-devtool-modify-to-enable-work-on-code-associated-with-an-existing-recipe) "devtool"
-[1]: (http://www.yoctoproject.org/docs/2.1/mega-manual/mega-manual.html) "Yocto Mega Manual"
+[0]: https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#using-devtool-in-your-sdk-workflow "devtool"
+[1]: http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html "Yocto Mega Manual"
+[2]: http://www.embeddedlinux.org.cn/OEManual/recipes_examples.html "Recipe Example"
