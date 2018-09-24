@@ -120,6 +120,11 @@ BasedOnStyle:    Google
 ColumnLimit:     80
 ```
 
+### HTML/CSS
+
+We follow the
+[Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html).
+
 ### C
 
 For C code, we typically use the Linux coding style, which is documented at:
