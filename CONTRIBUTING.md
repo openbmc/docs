@@ -108,13 +108,7 @@ SomeBmcType someBmcVariable = BMCFunction();
 * JavaScript file names must be all lowercase and should be named with hyphens
   if longer than one word (e.g. something-with-hyphens.js).
 
-A .clang-format file that closely approximates our JavaScript coding style is:
-```
----
-Language:        JavaScript
-BasedOnStyle:    Google
-ColumnLimit:     80
-```
+[Example .clang-format](https://www.github.com/openbmc/docs/blob/master/style/javascript/.clang-format)
 
 ### HTML/CSS
 
