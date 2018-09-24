@@ -84,13 +84,7 @@ ignore= NONE
 We follow the
 [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html).
 
-A .clang-format file that closely approximates our JavaScript coding style is:
-```
----
-Language:        JavaScript
-BasedOnStyle:    Google
-ColumnLimit:     80
-```
+[Example .clang-format](https://www.github.com/openbmc/docs/blob/master/style/javascript/.clang-format)
 
 ### HTML/CSS
 
