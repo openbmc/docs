@@ -4,10 +4,6 @@ Contributing to OpenBMC
 Here's a little guide to working on OpenBMC. This document will always be
 a work-in-progress, feel free to propose changes.
 
-Authors:
-
-  Jeremy Kerr <jk@ozlabs.org>
-
 Structure
 ---------
 
