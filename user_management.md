@@ -80,29 +80,30 @@ for detailed user management D-Bus API and interfaces.
     ||  |PAM for user   | |  |Create new user| |   | Redfish specific 1:1 | ||
     ||  |authentication | |  |or delete or   | |   | user settings storage| ||
     ||  |_|_____________| |  |update________|| |   |**********************| ||
-    ||====|===============|=================|===========^===================||
-          |                                 |           |
-          V   Storage                       |           |
-    |**************|********************|   V           ^              NET-IPMID
-    |  pam_unix -  | pam_ipmi- encrypted|   |           |    ===========================
-    |  /etc/shadow | password (only if  |   |           |    ||                        ||
-    |  (hashed)    | user in ipmi group)|   |           |    || _____________________  ||
-    |***********************|***********|   |           |    || | RMCP+ login using  | ||
-                            +---<-----------------<---------<---- clear text password| ||
-                                            |           |    || |____________________| ||
-                                            |           |    ||________________________||
-                                D-Bus Call  |           |    || _____________________  ||
-                                +------------+          ^    || | Create new user    | ||
-                                |                       |    || | or delete or       | ||
-           Common user manager  |      D-Bus Call       |    || | update             | ||
-    ||==========================V==||<---------------------<----|(Note: Host-IPMID   | ||
-    ||     phosphor-user-manager   ||                   |    || | must use same logic| ||
-    ||                             ||                   |    || |____________________| ||
-    ||======================|======||                   |    ||                        ||
-                            V                           |    || |********************| ||
-                            |                           ^    || | IPMI specific 1:1  | ||
-                            |                           |    || | user mappings      | ||
-                            +------>-------------->-----+------>| storage            | ||
+    ||====|===============|=================|===========^===================||            Network
+          |                                 |           |                          ||**********************||
+          V   Storage                       |           |--------------------------|| MaxPrivilege - max   ||
+    |**************|********************|   V           ^                          || allowed privilege on ||
+    |  pam_unix -  | pam_ipmi- encrypted|   |           |                          || channel              ||
+    |  /etc/shadow | password (only if  |   |           |              NET-IPMID   **************************
+    |  (hashed) or | user in ipmi group)|   |           |    ===========================       |
+    |  nss_ldap_pam|                    |   |           |    || _____________________  ||      |
+    |***********************|***********|   |           |    || | RMCP+ login using  | ||      |
+                            +---<-----------------<---------<---- clear text password| ||      |
+                                            |           |    || |____________________| ||      |
+                                            |           |    ||________________________||      |
+                                D-Bus Call  |           |    || _____________________  ||      |
+                                +------------+          ^    || | Create new user    | ||      |
+                                |                       |    || | or delete or       | ||      |
+           Common user manager  |      D-Bus Call       |    || | update             | ||      |
+    ||==========================V==||<---------------------<----|(Note: Host-IPMID   | ||      |
+    ||     phosphor-user-manager   ||                   |    || | must use same logic| ||      |
+    ||                             ||                   |    || |____________________| ||      |
+    ||======================|======||                   |    ||                        ||      |
+                            V                           |    || |********************| ||      |
+                            |                           ^    || | IPMI specific 1:1  | ||      |
+                            |                           |    || | user mappings      | ||      |
+                            +------>-------------->-----+------>| storage            |<--------|
                             PropertiesChanged /              || | Note: Either Host  | ||
                             InterfacesAdded /                || | / Net IPMID must   | ||
                             InterfacesRemoved /              || | implement signal   | ||
@@ -111,6 +112,42 @@ for detailed user management D-Bus API and interfaces.
                                                              ||========================||
 
 ```
+
+## phosphor-user-manager - overview
+
+```
+                           Phosphor-user-manager
+          +---------------------------------------------------------+
+          |                Local User Management                    |
+          |    +---------------------------------------------+      |
+          |    | I: Manager                                  |      |
+          |    | M: CreateUser, RenameUser                   |      |
+          |    | P: AllPrivileges, AllGroups                 |      |
+          |    | S: UserRenamed                              |      |
+          |    |                                             |      |
+          |    | I: Attributes                               |      |
+          |    | PATH: /xyz/openbmc_project/user/<name>      |      |
+          |    | P: UserGroups, UserPrivilege, UserEnabled,  |      |
+          |    | UserLockedForFailAttempt                    |      |
+          |    |                                             |      |
+          |    | I: AccountPolicy                            |      |
+          |    | P: MaxLoginBeforeLockout, MinPasswordLength |      |
+          |    | AccountUnlockDTimeout, RememberOldPassword  |      |
+          |    +---------------------------------------------+      |
+          |                                                         |
+          |        Remote User Management - Configuration           |
+          |    +--------------------------+------------------+      |
+          |    |  Provides interface to configure any        |      |
+          |    |  remote user management configuration       |      |
+          |    |  (LDAP / NIS / KRB5)                        |      |
+          |    +---------------------------------------------+      |
+          |                                                         |
+          |     M: GetUserInfo()                                    |
+          |                                                         |
+          +---------------------------------------------------------+
+
+```
+
 
 ## OpenBMC - User Management - User creation from webserver flow - with all groups
 
@@ -278,6 +315,92 @@ if required                         |                                    |
                                     |                                    |
 --------------------------------------------------------------------------
 ```
+## Authentication flow
+Applications must use pam_authenticate() API to authenticate user.
+Stacked PAM modules are used such that pam_authenticate() can be used
+for both local & remote users.
+
+```
+                +----------------------------------+
+                |    Stacked PAM Authentication    |
+                |     +-----------------------+    |
+                |     | pam_unix.so / local   |    |
+                |     | user authentication   |    |
+                |     | module.               |    |
+                |     +-----------------------+    |
+                |               ...                |
+                |     +-----------------------+    |
+                |     | nss_pam_ldap.so / any |    |
+                |     | remote authentication |    |
+                |     | pam modules           |    |
+                |     +-----------------------+    |
+                +----------------------------------+
+```
+## Password update
+Applications must use pam_chauthtok() API to set / change user password.
+Stacked PAM modules allow all 'ipmi' group users password to be stored
+in encrypted form, which will be used by IPMI. The same has been performed
+by pam_ipmicheck and pam_ipmisave modules loaded as first & last modules
+in stacked pam modules.
+
+```
+                +------------------+---------------+
+                |      Stacked PAM - Password      |
+                |                                  |
+                |  +----------------------------+  |
+                |  | pam_ipmicheck.so. Checks   |  |
+                |  | password acceptance for    |  |
+                |  | 'ipmi' group users         |  |
+                |  +----------------------------+  |
+                |                                  |
+                |  +-------------+--------------+  |
+                |  | pam_unix.so - to update    |  |
+                |  | local users password       |  |
+                |  |                            |  |
+                |  +----------------------------+  |
+                |                                  |
+                |  +-----------------+----------+  |
+                |  | pam_ipmisave.so - stores   |  |
+                |  | 'ipmi' group users password|  |
+                |  | in encrypted form          |  |
+                |  +----------------------------+  |
+                |                                  |
+                +----------------------------------+
+```
+
+## Authorization flow
+
+```
+                                +
+                                |
+                                |
+                  +-------------v--------------+
+                  |pam_authenticate() to       |
+                  |authenticate the user       |
+                  |(local / remote)            |
+                  +-------------+--------------+
+                                |
+                                |
+                  +-------------v--------------+
+                  |Read user properties using  |
+                  |GetUserInfo() (for local &  |
+                  |remote users).              |
+                  |Allow group access based on |
+                  |group property              |
+                  +-------------+--------------+
+                                |
+                                |
+                  +-------------v--------------+
+                  |Read Channel MaxPrivilege   |
+                  |from /xyz/openbmc_project/  |
+                  |network/ethX. Use the       |
+                  |minimum of user & channel   |
+                  |privilege as the privilege  |
+                  +----------------------------+
+
+
+```
+
 
 ## Recommended Implementation
 1. As per IPMI spec the max user list can be 15 (+1 for NULL User). Hence
