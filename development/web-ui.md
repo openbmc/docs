@@ -6,7 +6,7 @@
 
 **Prerequisites:** Current Linux, Mac, or Windows system
 
-### Overview
+## Overview
 
 The [phosphor-webui](https://github.com/openbmc/phosphor-webui) repository
 provides a web-based interface for an OpenBMC. The phosphor-webui uses the
@@ -17,7 +17,7 @@ more.
 A common use case for changes to the web UI is to put some system specific
 branding into it. This lesson will focus on how to do that.
 
-### Load web UI against QEMU
+## Load web UI against QEMU
 
 1. Connect to web UI in QEMU
 
@@ -33,7 +33,7 @@ branding into it. This lesson will focus on how to do that.
   connect. OpenBMC is running with a self-signed SSL certificate. Accepting
   this is key for the next steps.
 
-### Customize web UI code
+## Customize web UI code
 
 1. Clone the repository
 
