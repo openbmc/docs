@@ -5,7 +5,7 @@ in QEMU.
 
 **Prerequisites:** Completed Development Environment Setup [Document](https://github.com/openbmc/docs/blob/master/development/dev-environment.md)
 
-### Clone and Build a Repo
+## Clone and Build a Repo
 
 This lesson uses
 [openbmc/phosphor-state-manager](https://github.com/openbmc/phosphor-state-manager)
@@ -49,7 +49,7 @@ common directory like ~/Code/.
   make
   ```
 
-### Load the Application Into QEMU
+## Load the Application Into QEMU
 
   1. Strip the binary you generated
 
@@ -77,7 +77,7 @@ common directory like ~/Code/.
   scp -P 2222 phosphor-bmc-state-manager root@127.0.0.1:/usr/local/bin/
   ```
 
-### Run the Application in QEMU
+## Run the Application in QEMU
 
   1. Run the application in your QEMU session:
   ```
