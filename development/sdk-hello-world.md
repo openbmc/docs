@@ -94,7 +94,7 @@ common directory like ~/Code/.
   on this, but for now just run the following to restart the BMC state service
   and have it pick up your new application:
   ```
-  systemctl restart xyz.openbmc_project.State.service
+  systemctl restart xyz.openbmc_project.State.BMC.service
   ```
 
   Since systemd started your service, the
