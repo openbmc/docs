@@ -6,7 +6,7 @@
 
 **Prerequisites:** Current Linux, Mac, or Windows system
 
-### Overview
+## Overview
 
 OpenBMC uses the [Yocto](https://www.yoctoproject.org/) Project as its
 underlying building and distribution generation framework. The main
@@ -32,7 +32,7 @@ development environment and installing the needed SDK.
 For testing purposes, this guide uses the Romulus system as the default because
 this is the system tested for each CI job, which means it's the most stable.
 
-### Install Linux Environment
+## Install Linux Environment
 
 If you are running Linux, and are ok with installing some additional packages,
 then you can skip to step 3.
@@ -75,7 +75,7 @@ onto your computer (Mac, Windows, Linux)
   **Note** - In Ubuntu, a "sudo apt-get update" will probably be needed before
   installing the packages.
 
-### Download and Start QEMU Session
+## Download and Start QEMU Session
 
 1. Download latest openbmc/qemu fork of QEMU application
 
@@ -118,7 +118,7 @@ onto your computer (Mac, Windows, Linux)
 
     **Note** To exit (and kill) your QEMU session run: `ctrl+a x`
 
-### Download and Install SDK
+## Download and Install SDK
 
 To keep things organized, create a directory to store your SDK install scripts
 and directories.
