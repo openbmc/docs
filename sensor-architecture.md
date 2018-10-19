@@ -304,6 +304,53 @@ Will write a value to a pwmN\_enable file on startup if present.
 ENABLE_fan1 = 2 #Write a 2 to pwm1_enable
 ```
 
+### Defining sensors in an IPMI YAML configuration file
+For an example of how sensors entries are defined, consult the [example
+YAML](https://github.com/openbmc/phosphor-host-ipmid/blob/master/scripts/sensor-example.yaml)
+
+#### How to best choose coefficients
+Sensor reading, according to IPMI spec, is calculated as:
+
+y = L[(Mx + B * 10^(bExp)) * 10^(rExp)]
+
+y: the 'final value' as reported by IPMItool
+x: 8 bits, unsigned, reading data encoded in IPMI response packet
+M: 10 bits, signed integer multiplier, 'multiplierM' in YAML
+B: 10 bits, signed additive offset, 'offsetB' in YAML
+bExp: 4 bits, signed, 'bExp' in YAML
+rExp: 4 bits, signed, 'rExp' in YAML
+
+In addition, phosphor-ipmi-host configuration also supports 'scale' property,
+which applies for analog sensors, meaning the value read over DBus should be
+scaled by 10^S.
+
+As you can tell, one should choose the coefficients based on possible sensor
+reading range and desired resolution. Commonly, B=0, we would have
+
+Supported range: [0, 255 * M * 10^(scale - rExp)]
+Resolution: M * 10^(scale - rExp)
+
+For a concrete example, let's say a voltage sensor reports between 0 to 5.0V.
+hwmon sysfs scales the value by 1000, so the sensor value read over DBus is
+between 0 and 5000. A possible configuration for this is:
+
+multiplierM: 20
+offsetB: 0
+bExp: 0
+rExp: -3
+scale: -3
+
+so for a DBus sensor value of 4986 meaning 4.986V, phosphor-ipmi-host would
+encode it as
+x: 4986 / 20 = 249
+M: 20
+rExp: -3
+
+When ipmitool sensor list is called, the tool fetches sensor factors and
+computes value as:
+
+y = 20 * 249 * 10^-3 = 4.98 (V)
+
 ### My sensors are defined in an MRW
 
 Setting up sensor support with an MRW is done by adding a unit-hwmon-feature
