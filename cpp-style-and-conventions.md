@@ -325,12 +325,12 @@ All in alphabetically sorted order.
 
 ```
 template <typename T>
-class foo
+class Foo
 {
     using type = std::decay_t<T>;
 };
 
-template <typename T> using foo_t = foo<T>::type;
+template <typename T> using foo_t = Foo<T>::type;
 ```
 
 #### Variables
