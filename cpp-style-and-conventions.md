@@ -325,7 +325,7 @@ All in alphabetically sorted order.
 
 ```
 template <typename T>
-class foo
+class Foo
 {
     using type = std::decay_t<T>;
 };
