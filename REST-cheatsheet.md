@@ -46,6 +46,11 @@ This document is intended to provide a set of REST client commands for OpenBMC u
     $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.BMC.Transition.Reboot"}' https://${bmc}//xyz/openbmc_project/state/bmc0/attr/RequestedBMCTransition
     ```
 
+* Display logging entries:
+    ```
+    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET https://${bmc}/xyz/openbmc_project/logging/entry/enumerate
+    ```
+
 * Delete logging entries:
     ```
     $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X DELETE https://${bmc}/xyz/openbmc_project/logging/entry/<entry_id>
