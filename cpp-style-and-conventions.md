@@ -272,7 +272,10 @@ void foo()
 
 ### Naming Conventions.
 
-* We generally abstain from any prefix or suffix on names.
+* We generally abstain from any prefix or suffix on names. When useful to add
+  clarity, projects may standardize prefixes for global and class member
+  variables. The use of prefixes on local variables is discouraged.
+
 * Acronyms should be same-case throughout and follow the requirements as
   in their appropriate section.
 
