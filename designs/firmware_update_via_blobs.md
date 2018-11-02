@@ -1,4 +1,4 @@
-# BMC Firmware Update using OEM IPMI Blob Transport
+# In-Band Update of BMC Firmware using OEM IPMI Blob Transport
 
 Author: Patrick Venture <venture!>
 
