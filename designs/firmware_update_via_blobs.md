@@ -82,7 +82,7 @@ The blob ids for the mechanisms will be as follows:
 
 Flash Blob Id  | Type
 -------------- | ------
-/flash/image   | Legacy
+/flash/image   | Legacy (Static)
 /flash/tarball | UBI
 
 The flash handler will determine what commands it should expect to receive and
@@ -93,7 +93,7 @@ The following blob ids are defined for storing the hash for the image:
 
 Hash Blob           | Id Mechanism
 ------------------- | ------------
-/flash/hash         | Legacy
+/flash/hash         | Legacy (Static) or UBI
 
 The flash handler will only allow one open file at a time, such that if the host
 attempts to send a firmware image down over IPMI BlockTransfer, it won't allow
@@ -102,6 +102,9 @@ the host to start a PCI send until the BlockTransfer file is closed.
 There is only one hash "file" mechanism.  The exact hash used will only be
 important to your verification service.  The value provided will be written to
 a known place.
+
+When a transfer is active, it'll create a blob\_id of `/flash/active/image`
+and `/flash/active/hash`.
 
 ### Caching Images
 
@@ -186,7 +189,7 @@ enum OpenFlags
 enum FirmwareUpdateFlags
 {
     bt = (1 << 8),   /* Expect to send contents over IPMI BlockTransfer. */
-    p2c = (1 << 9),  /* Expect to send contents over P2A bridge. */
+    p2a = (1 << 9),  /* Expect to send contents over P2A bridge. */
     lpc = (1 << 10), /* Expect to send contents over LPC bridge. */
 };
 ```
@@ -195,7 +198,7 @@ An open request must specify that it is opening for writing and one transport
 mechanism, otherwise it is rejected. If the request is also set for reading,
 this is not rejected but currently provides no additional value.
 
-Once opened a new file will appear in the blob_id list (for both the image and
+Once opened a new file will appear in the blob\_id list (for both the image and
 hash) indicating they are in progress.  The name will be `flash/{item}/0` and
 `flash/hash/0` which has no meaning beyond representing the current update in
 progress.  Closing the file does not delete the staged images.  Only delete
@@ -245,7 +248,7 @@ If this command is called on the session of the firmware image itself, nothing
 will happen at present. It will return a no-op success.
 
 If this command is called on the session for the hash image, it'll trigger a
-systemd service `verify_image.service` to attempt to verify the image. Before
+systemd service `verify\_image.service` to attempt to verify the image. Before
 doing this, if the transport mechanism is not IPMI BT, it'll shut down the
 mechanism used for transport preventing the host from updating anything.
 
@@ -257,9 +260,9 @@ Details on that response are below under BmcBlobSessionStat.
 Close must be called on the firmware image before triggering verification via
 commit. Once the verification is complete, you can then close the hash file.
 
-If the `verify_image.service` returned success, closing the hash file will have
+If the `verify\_image.service` returned success, closing the hash file will have
 a specific behavior depending on the update. If it's UBI, it'll perform the
-install. If it's legacy, it'll do nothing. The verify_image service in the
+install. If it's legacy, it'll do nothing. The verify\_image service in the
 legacy case is responsible for placing the file in the correct staging position.
 A BMC warm reset command will initiate the firmware update process.
 
@@ -274,7 +277,7 @@ to change this behavior.
 
 Aborts any update that's in progress:
 
-1. Stops the verify_image.service if started.
+1. Stops the verify\_image.service if started.
 1. Deletes any staged files.
 
 In the event the update is already in progress, such as the tarball mechanism
