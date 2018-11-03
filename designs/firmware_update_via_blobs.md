@@ -82,7 +82,7 @@ The blob ids for the mechanisms will be as follows:
 
 Flash Blob Id  | Type
 -------------- | ------
-/flash/image   | Legacy
+/flash/image   | Legacy (Static)
 /flash/tarball | UBI
 
 The flash handler will determine what commands it should expect to receive and
@@ -93,7 +93,7 @@ The following blob ids are defined for storing the hash for the image:
 
 Hash Blob           | Id Mechanism
 ------------------- | ------------
-/flash/hash         | Legacy
+/flash/hash         | Legacy (Static) or UBI
 
 The flash handler will only allow one open file at a time, such that if the host
 attempts to send a firmware image down over IPMI BlockTransfer, it won't allow
@@ -103,12 +103,15 @@ There is only one hash "file" mechanism.  The exact hash used will only be
 important to your verification service.  The value provided will be written to
 a known place.
 
+When a transfer is active, it'll create a blob_id of `/flash/active/image`
+and `/flash/active/hash`.
+
 ### Caching Images
 
 Similarly to the OEM IPMI Flash protocol, the flash image will be staged in a
 compile-time configured location.
 
-Other mechanisms can readily be added by adding more blob\_ids or flags to the
+Other mechanisms can readily be added by adding more blob_ids or flags to the
 handler.
 
 ### Commands
@@ -183,10 +186,11 @@ enum OpenFlags
     write = (1 << 1),
 };
 
+/* These bits start in the blob specific range of the flags. */
 enum FirmwareUpdateFlags
 {
     bt = (1 << 8),   /* Expect to send contents over IPMI BlockTransfer. */
-    p2c = (1 << 9),  /* Expect to send contents over P2A bridge. */
+    p2a = (1 << 9),  /* Expect to send contents over P2A bridge. */
     lpc = (1 << 10), /* Expect to send contents over LPC bridge. */
 };
 ```
@@ -282,8 +286,8 @@ is used and in the middle of updating the files, it cannot be aborted.
 
 #### BmcBlobStat
 
-Blob stat on a blob\_id (not SessionStat) will return the capabilities of the
-blob\_id handler.
+Blob stat on a blob_id (not SessionStat) will return the capabilities of the
+blob_id handler.
 
 ```
 struct BmcBlobStatRx {
