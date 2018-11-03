@@ -38,9 +38,10 @@ Please read the IPMI BLOB protocol design as primer
 
 The following statements are reflective of the initial requirements.
 
-*   Any update mechanism must provide support for UBI tarballs and legacy flash
-    images. Leveraging the BLOB protocol allows a system to provide support for
-    any image type simply by implementing a mechanism for handling it.
+*   Any update mechanism must provide support for UBI tarballs and legacy
+    (static layout) flash images. Leveraging the BLOB protocol allows a system
+    to provide support for any image type simply by implementing a mechanism
+    for handling it.
 
 *   Any update mechanism must allow for triggering an image verification step
     before the image is used.
@@ -73,16 +74,16 @@ current approach to centralize on one flexible handler.
 ### Defining Blobs
 
 The BLOB protocol allows a handler to specify a list of blob ids. This list
-will be leveraged to specify whether the platform supports either the legacy or
-the UBI mechanism, or both. The flags provided to the open command identify the
-mechanism selected by the client-side.  The stat command will return the list of
-supported mechanisms for the blob.
+will be leveraged to specify whether the platform supports either the legacy
+(static layout) or the UBI mechanism, or both. The flags provided to the open
+command identify the mechanism selected by the client-side.  The stat command
+will return the list of supported mechanisms for the blob.
 
 The blob ids for the mechanisms will be as follows:
 
 Flash Blob Id  | Type
 -------------- | ------
-/flash/image   | Legacy
+/flash/image   | Static Layout
 /flash/tarball | UBI
 
 The flash handler will determine what commands it should expect to receive and
@@ -93,7 +94,7 @@ The following blob ids are defined for storing the hash for the image:
 
 Hash Blob           | Id Mechanism
 ------------------- | ------------
-/flash/hash         | Legacy
+/flash/hash         | Static Layout or UBI
 
 The flash handler will only allow one open file at a time, such that if the host
 attempts to send a firmware image down over IPMI BlockTransfer, it won't allow
@@ -103,12 +104,15 @@ There is only one hash "file" mechanism.  The exact hash used will only be
 important to your verification service.  The value provided will be written to
 a known place.
 
+When a transfer is active, it'll create a blob_id of `/flash/active/image`
+and `/flash/active/hash`.
+
 ### Caching Images
 
 Similarly to the OEM IPMI Flash protocol, the flash image will be staged in a
 compile-time configured location.
 
-Other mechanisms can readily be added by adding more blob\_ids or flags to the
+Other mechanisms can readily be added by adding more blob_ids or flags to the
 handler.
 
 ### Commands
@@ -159,9 +163,9 @@ mechanisms in place to ensure cleanup.  If a session is left open after the
 blob timeout period it'll be closed.  Because expiration is not the same action
 as closing, the cache will be flushed and any staged pieces deleted.
 
-The image itself, in legacy mode will be placed and named in such a way that it
-will disappear if the BMC reboots.  In the UBI case, the file will be stored in
-`/tmp` and deleted accordingly.
+The image itself, in legacy (static layout) mode will be placed and named in
+such a way that it will disappear if the BMC reboots.  In the UBI case, the
+file will be stored in `/tmp` and deleted accordingly.
 
 At any point during the upload process, one can abort by closing the open blobs
 and deleting them by name.
@@ -183,10 +187,11 @@ enum OpenFlags
     write = (1 << 1),
 };
 
+/* These bits start in the blob specific range of the flags. */
 enum FirmwareUpdateFlags
 {
     bt = (1 << 8),   /* Expect to send contents over IPMI BlockTransfer. */
-    p2c = (1 << 9),  /* Expect to send contents over P2A bridge. */
+    p2a = (1 << 9),  /* Expect to send contents over P2A bridge. */
     lpc = (1 << 10), /* Expect to send contents over LPC bridge. */
 };
 ```
@@ -259,9 +264,10 @@ commit. Once the verification is complete, you can then close the hash file.
 
 If the `verify_image.service` returned success, closing the hash file will have
 a specific behavior depending on the update. If it's UBI, it'll perform the
-install. If it's legacy, it'll do nothing. The verify_image service in the
-legacy case is responsible for placing the file in the correct staging position.
-A BMC warm reset command will initiate the firmware update process.
+install. If it's legacy (static layout), it'll do nothing. The verify_image
+service in the legacy case is responsible for placing the file in the correct
+staging position. A BMC warm reset command will initiate the firmware update
+process.
 
 If the image verification fails, it will automatically delete any files
 associated with the update.
@@ -282,8 +288,8 @@ is used and in the middle of updating the files, it cannot be aborted.
 
 #### BmcBlobStat
 
-Blob stat on a blob\_id (not SessionStat) will return the capabilities of the
-blob\_id handler.
+Blob stat on a blob_id (not SessionStat) will return the capabilities of the
+blob_id handler.
 
 ```
 struct BmcBlobStatRx {
@@ -379,4 +385,3 @@ BMC without user intervention.
 A required functional test is one whereby an image is sent down to the BMC with
 a valid signature. The expected result is that the verification step will return
 success.
-
