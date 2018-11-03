@@ -82,7 +82,7 @@ The blob ids for the mechanisms will be as follows:
 
 Flash Blob Id  | Type
 -------------- | ------
-/flash/image   | Legacy
+/flash/image   | Legacy (Static)
 /flash/tarball | UBI
 
 The flash handler will determine what commands it should expect to receive and
@@ -93,7 +93,7 @@ The following blob ids are defined for storing the hash for the image:
 
 Hash Blob           | Id Mechanism
 ------------------- | ------------
-/flash/hash         | Legacy
+/flash/hash         | Legacy (Static) or UBI
 
 The flash handler will only allow one open file at a time, such that if the host
 attempts to send a firmware image down over IPMI BlockTransfer, it won't allow
