@@ -314,6 +314,15 @@ struct BmcBlobStatRx {
 };
 ```
 
+If it's called and the data mechanism is P2A, it'll return a 32-bit address for
+use to configure the P2A region.
+
+```
+struct P2ARegion {
+    uint32_t address;
+};
+```
+
 If called post-commit on the hash file session, it'll return:
 
 ```
