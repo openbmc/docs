@@ -163,3 +163,78 @@ is up and running, and the service which toggles the pgood pin is re-executed,
 you're going to crash your system.  Given this info, the goal should always be
 to write "oneshot" services that have RemainAfterExit set to yes.
 
+## Target and Service Dependency Details
+There are some tools available out there to visualize systemd service and
+target dependencies (systemd-analyze) but due to the complexity of our design,
+they do not generate anything very useful.
+
+For now, document the current dependencies on a witherspoon system for
+reference.
+
+```
+R = Requires
+W = Wants
+A = After
+B = Before
+S = Start (runs a command to start another target or service)
+(S) = Synchronization Target
+```
+
+### Soft Power Off
+```
+obmc-host-shutdown.target
+  R: xyz.openbmc_project.Ipmi.Internal.SoftPowerOff.service
+     W: obmc-host-stopping.target (S)
+     B: obmc-host-stopping.target (S)
+  R: obmc-chassis-poweroff.target
+     R: obmc-host-stop.target
+        R: op-occ-disable.service
+           B: obmc-host-stop-pre.target
+     R: op-power-stop.service
+        W: obmc-power-stop.target (S)
+        B: obmc-power-stop.target (S)
+        W: obmc-power-stop-pre.target (S)
+        A: obmc-power-stop-pre.target (S)
+        W: mapper-wait@-org-openbmc-control-power.service
+        A: mapper-wait@-org-openbmc-control-power.service
+     R: op-wait-power-off.service
+        B: obmc-power-off.target (S)
+        W: obmc-power-stop.target (S)
+        B: obmc-power-stop.target (S)
+        W: obmc-power-stop-pre.target (S)
+        A: obmc-power-stop-pre.target (S)
+        W: mapper-wait@-org-openbmc-control-power.service
+        A: mapper-wait@-org-openbmc-control-power.service
+     R: op-powered-off.service
+        A: op-wait-power-off.service
+        R: op-wait-power-off.service
+        S: obmc-chassis-powered-off.target
+     W: pcie-poweroff.service
+        B: op-power-stop.service
+        A: obmc-power-stop-pre@.target
+```
+
+#### Synchronization Target Dependencies
+```
+obmc-power-stop.target
+  W: obmc-power-stop-pre.target
+  A: obmc-power-stop-pre.target
+  W: obmc-standby.target
+
+obmc-power-stop-pre.target
+  W: obmc-host-stopped.target
+  A: obmc-host-stopped.target
+
+obmc-host-stopped.target
+  W: obmc-host-stopping.target
+  A: obmc-host-stopping.target
+  B: obmc-power-stop-pre.target
+
+obmc-host-stopping.target
+  W: obmc-host-stop-pre.target
+  A: obmc-host-stop-pre.target
+  B: obmc-host-stopped.target
+
+obmc-host-stop-pre.target
+  B: obmc-host-stopping.target
+```
