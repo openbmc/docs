@@ -201,10 +201,13 @@ mechanism, otherwise it is rejected. If the request is also set for reading,
 this is not rejected but currently provides no additional value.
 
 Once opened a new file will appear in the blob_id list (for both the image and
-hash) indicating they are in progress.  The name will be `flash/{item}/0` and
-`flash/hash/0` which has no meaning beyond representing the current update in
-progress.  Closing the file does not delete the staged images.  Only delete
-will.
+hash) indicating they are in progress.  The name will be `flash/active/image`
+and `flash/active/hash` which has no meaning beyond representing the current
+update in progress.  Closing the file does not delete the staged images.  Only
+delete will.
+
+***Note*** The active image blob_ids cannot be opened.  This can be
+reconsidered later.
 
 #### BmcBlobRead
 
@@ -311,6 +314,22 @@ struct BmcBlobStatRx {
     uint16_t blob_state; /* OpenFlags::write | (one of the interfaces) */
     uint32_t size; /* Size in bytes so far written */
     uint8_t  metadata_len; /* 0. */
+};
+```
+
+If it's called and the data transport mechanism is P2A, it'll return a 32-bit
+address for use to configure the P2A region as part of the metadata portion of
+the `BmcBlobStatRx`.
+
+```
+struct BmcBlobStatRx {
+    uint16_t crc16;
+    uint16_t blob_state; /* OpenFlags::write | (one of the interfaces) */
+    uint32_t size; /* Size in bytes so far written */
+    uint8_t  metadata_len = sizeof(struct P2ARegion);
+    struct P2ARegion {
+        uint32_t address;
+    };
 };
 ```
 
