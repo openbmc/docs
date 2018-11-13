@@ -80,7 +80,7 @@ onto your computer (Mac, Windows, Linux)
 1. Download latest openbmc/qemu fork of QEMU application
 
   ```
-  wget https://openpower.xyz/job/openbmc-qemu-build-merge-x86/lastSuccessfulBuild/artifact/qemu-build/arm-softmmu/qemu-system-arm
+  wget https://openpower.xyz/job/openbmc-qemu-build-merge-x86/lastSuccessfulBuild/artifact/qemu/arm-softmmu/qemu-system-arm
 
   chmod u+x qemu-system-arm
   ```
