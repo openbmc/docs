@@ -107,6 +107,15 @@ a known place.
 When a transfer is active, it'll create a blob_id of `/flash/active/image`
 and `/flash/active/hash`.
 
+The following blob id is always defined.  Its purpose is to trigger and
+monitor the firmware update process.  Therefore, the BmcBlobOpen command will
+fail until both the hash and image file are closed.  Further on the ideal
+command sequence below.
+
+Trigger Blob   | Note
+-------------- | ----
+/flash/verify  | Verify Trigger Mechanism
+
 ### Caching Images
 
 Similarly to the OEM IPMI Flash protocol, the flash image will be staged in a
@@ -125,21 +134,27 @@ the transport mechanism selected. Some mechanisms require a handshake.
 1.  Open (for Image or tarball)
 1.  Write
 1.  Close
-1.  Open (for Hash)
+1.  Open (/flash/hash)
 1.  Write
+1.  Close
+1.  Open (/flash/verify)
 1.  Commit
+1.  SessionStat (to read back verification status)
 1.  Close
 
 #### P2A Sequence
 
 1.  Open (for Image or tarball)
-1.  SessionStat (Request Region for P2A mapping)
+1.  SessionStat (P2A Region for P2A mapping)
 1.  Write
 1.  Close
-1.  Open (for hash)
-1.  SessionStat
+1.  Open (/flash/hash)
+1.  SessionStat (P2A Region)
 1.  Write
+1.  Close
+1.  Open (/flash/verify)
 1.  Commit
+1.  SessionStat (to read back verification status)
 1.  Close
 
 #### LPC Sequence
@@ -149,11 +164,14 @@ the transport mechanism selected. Some mechanisms require a handshake.
 1.  SessionStat (verify the contents from the above)
 1.  Write
 1.  Close
-1.  Open (for hash)
-1.  WriteMeta (...)
-1.  SessionStat (...)
+1.  Open (/flash/hash)
+1.  WriteMeta (LPC Region)
+1.  SessionStat (verify LPC config)
 1.  Write
+1.  Close
+1.  Open (/flash/verify)
 1.  Commit
+1.  SessionStat (to read back verification status)
 1.  Close
 
 ### Stale Images
@@ -252,8 +270,11 @@ struct ExtChunkHdr
 If this command is called on the session of the firmware image itself, nothing
 will happen at present. It will return a no-op success.
 
-If this command is called on the session for the hash image, it'll trigger a
-systemd service `verify_image.service` to attempt to verify the image. Before
+If this command is called on the session for the hash image, nothing will
+happen at present.  It will return a no-op success.
+
+If this command is called on the session for the verify blob id, it'll trigger
+a systemd service `verify_image.service` to attempt to verify the image. Before
 doing this, if the transport mechanism is not IPMI BT, it'll shut down the
 mechanism used for transport preventing the host from updating anything.
 
@@ -262,12 +283,12 @@ Details on that response are below under BmcBlobSessionStat.
 
 #### BmcBlobClose
 
-Close must be called on the firmware image before triggering verification via
-commit. Once the verification is complete, you can then close the hash file.
+Close must be called on the firmware image and the hash file before opening the
+verify blob.
 
-If the `verify_image.service` returned success, closing the hash file will have
-a specific behavior depending on the update. If it's UBI, it'll perform the
-install. If it's legacy (static layout), it'll do nothing. The verify_image
+If the `verify_image.service` returned success, closing the verify file will
+have a specific behavior depending on the update. If it's UBI, it'll perform
+the install. If it's legacy (static layout), it'll do nothing. The verify_image
 service in the legacy case is responsible for placing the file in the correct
 staging position. A BMC warm reset command will initiate the firmware update
 process.
@@ -333,7 +354,7 @@ struct BmcBlobStatRx {
 };
 ```
 
-If called post-commit on the hash file session, it'll return:
+If called post-commit on the verify file session, it'll return:
 
 ```
 struct BmcBlobStatRx {
