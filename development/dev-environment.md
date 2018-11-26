@@ -110,13 +110,14 @@ onto your computer (Mac, Windows, Linux)
   the obmcutil tool to check the state of the OpenBMC state services. When you
   see the following then you have successfully booted to "Ready" state.
 
-  `obmcutil state`
+  ```
+  root@openbmc:~# obmcutil state
+  CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Ready
+  CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.Off
+  CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Off
+  ```
 
-  > CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Ready
-  > CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.Off
-  > CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Off
-
-    **Note** To exit (and kill) your QEMU session run: `ctrl+a x`
+  **Note** To exit (and kill) your QEMU session run: `ctrl+a x`
 
 ## Download and Install SDK
 
