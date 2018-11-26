@@ -1,0 +1,83 @@
+---
+layout: default
+---
+
+{% include breadcrumbs.html %}
+
+{% include page-header.html %}
+
+<ul>
+
+    {% for componentPage in site.pages %}
+
+        <li>
+
+    		<section class="c-section u-margin-bottom-none">
+
+    			<div class="c-section__body">
+
+    				<div class="c-pattern-example">
+
+                        <ul class="c-lined-list">
+
+                        	{% for variation in componentPage.variations %}
+
+                        	<li class="c-lined-list__item">
+
+                        		<section class="c-section u-margin-bottom-none">
+                        			<header class="c-section__header c-section__header--bare">
+                        				<h5 class="c-section__title">{{ variation.title }} <code class="u-font-size-med">{{ variation.styleModifier }}</code></h5>
+                        				<p class="u-margin-bottom">{{ variation.description }} </p>
+                        			</header>
+
+                        			<div class="c-section__body">
+
+                        				<div class="c-pattern-example u-margin-bottom-double">
+
+                        					{% if variation.includeClassification == 'atoms' %}
+                        					{% assign atomicNumber = "00" %}
+                        					{% elsif variation.includeClassification == 'molecules' %}
+                        					{% assign atomicNumber = "01" %}
+                        					{% elsif variation.includeClassification == 'organisms' %}
+                        					{% assign atomicNumber = "02" %}
+                        					{% endif %}
+
+                        					{% capture componentString %}{{ atomicNumber }}-{{ variation.includeClassification }}-{{ variation.includeCategory }}-{{ variation.includeName }}{% endcapture %}
+
+                        					{% capture iframePath %}/patterns/{{ componentString }}/{{ componentString }}.html{% endcapture %}
+
+											<div class="iffframe">
+
+											    <iframe class="iffframe__iframe" frameBorder="0" width="100%" height="100%" src="{{ iframePath  | prepend: site.baseurl }}"></iframe>
+
+											    <div class="iffframe__handle"></div>
+
+											</div><!--end iffframe-->
+
+
+                        				</div><!-- end c-pattern-example -->
+
+                        				<a href="{{ componentPage.permalink  | prepend: site.baseurl }}" class="c-btn c-btn--small c-btn--primary">See code and usage</a>
+
+                        			</div><!-- end l-section__body -->
+
+                        		</section>
+
+                        	</li><!--end c-lined-list__item -->
+
+                        	{% endfor %}
+
+                        </ul><!--end c-lined-list-->
+
+
+    				</div><!-- end c-pattern-example -->
+
+                </div><!-- end c-section__body -->
+
+            </section><!-- end c-section__body -->
+
+    	</li><!--end c-lined-list__item -->
+
+    {% endfor %}
+
+</ul><!--end c-lined-list-->

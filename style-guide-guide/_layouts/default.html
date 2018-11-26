@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	{% include head.html %}
+
+	<body>
+
+        <div class="l-page-layout l-page-layout--two-column-fixed">
+
+            <div class="l-page-layout__secondary">
+
+                {% include header.html %}
+
+            </div><!--end l-page-layout__secondary-->
+
+            <div class="l-page-layout__main">
+
+                <main role="main">
+                	<div class="l-container">
+
+                        {{ content }}
+
+	                </div><!--end l-container-->
+				</main><!--end role=main-->
+
+                {% include footer.html %}
+
+            </div><!--end l-page-layout__main-->
+
+        </div><!--end l--two-column-fixed-->
+
+	</body>
+
+</html>

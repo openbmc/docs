@@ -1,0 +1,17 @@
+{% if page.status %}
+{% assign status = page.status %}
+{% elsif componentPage.status %}
+{% assign status = componentPage.status %}
+{% endif %}
+
+{% if status == 'Deprecated' %}
+{% assign badge = "negative" %}
+{% elsif status == 'Complete' %}
+{% assign badge = "positive" %}
+{% else %}
+{% assign badge = "caution" %}
+{% endif %}
+
+{% if status %}
+<span class="c-badge c-badge--{{ badge }}">{{ status }}</span>
+{% endif %}

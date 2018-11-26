@@ -1,0 +1,52 @@
+---
+layout: default
+---
+
+{% include page-header.html %}
+
+<section class="c-section">
+	<ul class="c-card-list l-grid l-grid--3up ">
+
+		{% for componentPage in site.pages %}
+    		{% if componentPage.group == page.group %}
+        		{% if componentPage.subgroup == page.subgroup %}
+            		{% if componentPage.layout != "component-category" and componentPage.layout != "component-category2" and componentPage.status != "Planned" %}
+
+					<li class="c-card-list__item l-grid__item">
+						<a href="{{ componentPage.permalink | prepend: site.baseurl }}" class="c-card ">
+
+							<div class="c-card__header">
+								{{ componentPage.subgroup | replace: '-', ' ' | capitalize }}
+							</div>
+
+							<div class="c-card__body">
+
+								<h2 class="c-card__title">
+									<span class="c-card__title-text">{{ componentPage.title }}</span>
+									{% if componentPage.status %}
+									{% include badge.html %}
+									{% endif %}
+									<svg class="c-icon c-card__icon">
+										<use href="{{ "/icons.svg#chevron-right" | prepend: site.baseurl }}"></use>
+									</svg>
+								</h2><!-- end c-card__title -->
+
+								<p class="c-card__desc">{{ componentPage.description }}</p>
+
+							</div><!-- end c-card__body -->
+
+
+						</a><!-- end c-card -->
+					</li>
+
+					{% endif %}
+
+				{% endif %}
+
+			{% endif %}
+
+		{% endfor %}
+
+	</ul><!-- end c-card-list -->
+
+</section>
