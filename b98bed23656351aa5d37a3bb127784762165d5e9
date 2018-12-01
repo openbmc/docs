@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "2032fbe9_b2ac0f45",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "Using something dynamic like entity manager?  Or are you thinking a more fixed sensor list?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 63
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0589257d_e4f59466",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "Doesn\u0027t this cause really strange behavior in PID loops?  If the sensor with the least available margin changes, doesn\u0027t that invalidate the derivative and integral coefficients of the PID controller?\nDoes it make more sense to, in this case, run an identical control loop on the main processor (in band), and have the control loop \"request\" pwm outputs of the BMC?  The BMC would then set the fans to the maximum of\u003cbmc requested pwm\u003e and \u003chost requested pwm\u003e.\n\nWould this fast-changing sensor mechanism be used for anything more than main system processor or dimm temperature?  In a perfect world, it seems like it would be easier to just poll the CPU DTS margin directly from PECI (for Intel CPUs).  I\u0027m not an expert on OpenPower CPUs, but I think they have a similar out of band mechanism.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 65
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56be024a_57eea32b",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "Not really following this.  Are you advocating for a fixed sensor number of 0XD0 for all platforms?  What does the below data structure represent?  What\u0027s transferred between the BMC and the host?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad3e4172_88776bdd",
         "filename": "designs/thermal-zone-config.md",
         "patchSetId": 2
@@ -18,6 +87,254 @@
         "startChar": 0,
         "endLine": 71,
         "endChar": 34
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "beecc0a2_384635d5",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "/s/hardware/driver/g/",
+      "parentUuid": "ad3e4172_88776bdd",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 34
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d313a5b3_8ce2ecc8",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "This paragraph feels very redundant to the requirements section.  Could they be collapsed?  Does the requirements section need to be amended a bit?",
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77e12704_22cbc11e",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "the definition of the entity instance field is very subjective, and very few companies actually agree on that the definition is, given the number of corner cases.  We can try to walk through and define exactly what entity instance should be used for, and how to handle it in complicated cases (like 3 hot swap backplanes, each with 3 drives for example)\nOr... I would recommend just not using the instance field at all, and just rely on the fact that SDR records are unique.",
+      "range": {
+        "startLine": 85,
+        "startChar": 37,
+        "endLine": 85,
+        "endChar": 52
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a60eb44_58a6be73",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "Would prefer to not put fixed definitions in a single file, given that system configurations will change, even at runtime, as hardware is installed and removed.  While we could have the superset, it\u0027s unlikely we\u0027ll catch it all.\nEntity-manager is an attempt to try to define this kind of stuff at a component level, and expose it to dbus.  I would really like to see us use that (or something similar to that) rather than a flat file.",
+      "range": {
+        "startLine": 109,
+        "startChar": 29,
+        "endLine": 109,
+        "endChar": 72
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e2efc21_649eb8fa",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "if this is the way you want to go, a more complicated example would be good.   How are add in cards defined?  What about components with multiple sensors?  What about components detected at runtime.\n\nPer my comment above, I\u0027d like to do away with the flat file, and use something more dynamic;  However, I\u0027m open to what that could be.",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 10
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b770f72a_2dda444a",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "After having read this commands description, I\u0027m not really following what it\u0027s for.  isn\u0027t all of this information (entity ID, and name) in the Type 1 SDR sensor records?",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 77
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34188bb8_49d7dcec",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "Is this proposal being proposed for OpenBMC standardization, or as a google specific thing?",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 30
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84d82133_e9653d4c",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "Json would be preferred, but not sure if you guys want to tackle that.",
+      "range": {
+        "startLine": 142,
+        "startChar": 53,
+        "endLine": 142,
+        "endChar": 64
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9771bb79_6427b012",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "If all entities are returned in a single command, aren\u0027t we going to hit IPMI payload limits pretty quickly as the entity list gets larger?  (I haven\u0027t done the math, so feel free to call me on it if you think I\u0027m wrong) For the systems I\u0027m on, my gut says that they would overflow the ipmi payload limit of ipmitool (which is artificially low in most distributed versions and was only fixed recently).  Most other IPMI frameworks have similar limitations.",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 20
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "660ff809_3f7a9211",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "Maybe I\u0027m really overthinking it, but is there anything in the above payloads that the host system doesn\u0027t already have?  I would hope the host knows PCIe card counts, Processor core counts, and dimm counts without needing to ask the BMC.  Is the goal here for the host to map the in-band sensors to ipmi automatically?\nHow would a host differentiate between a system where the BMC has direct access to DIMM temps or PECI, and a system where the BMC needed those values provided by in-band.",
+      "range": {
+        "startLine": 194,
+        "startChar": 28,
+        "endLine": 194,
+        "endChar": 59
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "531e78de_3e57af99",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2018-12-01T02:50:20Z",
+      "side": 1,
+      "message": "typo.",
+      "range": {
+        "startLine": 197,
+        "startChar": 7,
+        "endLine": 197,
+        "endChar": 9
       },
       "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
