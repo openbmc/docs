@@ -68,6 +68,26 @@ scp -p -P 29418 openbmc.gerrit:hooks/commit-msg ${gitdir}/hooks
 This will enhance the `git commit` command to add a `Change-Id` to your commit
 message which Gerrit uses to track the review.
 
+##### Push Code Change to Gerrit
+Now that your workstation and Gerrit are configured, you are ready to make code
+changes and push them to Gerrit for code review. Here is what the basic workflow
+will look like.
+* Make your code changes
+* Add those files to the index to be committed:
+  `git add [file1 file2 ... fileN]`
+* Commit your changes, adding a Signed-off-by line to it (more on
+  [writing good commit messages](https://github.com/openbmc/docs/blob/master/CONTRIBUTING.md#submitting-changes)):
+  `git commit --signoff`
+* Push your changes to Gerrit for code review:
+  `git push HEAD:refs/for/master`
+* Go to [Gerrit web interface](https://gerrit.openbmc-project.xyz/), click on
+  your new review, and add reviewers based on `MAINTAINERS` file in the repo.
+
 ##### Conclusion
-If you've completed all of the above steps successfully, that's it! You are now
-set up to push your changes up to Gerrit for code review!
+If you've completed all of the above steps successfully, that's it! You have now
+set up Gerrit and know how to submit your code changes for review!
+
+Submitting changes for review is just one of many steps in the contributing
+process. Please see
+[CONTRIBUTING](https://github.com/openbmc/docs/blob/master/CONTRIBUTING.md)
+for best practices.
