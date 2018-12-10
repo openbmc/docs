@@ -37,7 +37,8 @@ To list the properties of one item:
 Sensors
 -------
 
-The system sensor structure is under the `/xyz/openbmc_project/sensors` hierarchy.
+The system sensor structure is under the `/xyz/openbmc_project/sensors`
+hierarchy.
 
 This interface allows monitoring of system attributes like temperature or
 altitude, and are represented similar to the inventory, by object paths under
@@ -53,10 +54,12 @@ These are some common properties:
  * `Value`: Current value of the sensor
  * `Unit`: Unit of the value and "Critical" and "Warning" values
  * `Scale`: The scale of the value and "Critical" and "Warning" values
- * `CriticalHigh` & `CriticalLow`: Sensor device upper/lower critical threshold bound
+ * `CriticalHigh` & `CriticalLow`: Sensor device upper/lower critical threshold
+bound
  * `CriticalAlarmHigh` & `CriticalAlarmLow`: True if the sensor has exceeded the
 critical threshold bound
- * `WarningHigh` & `WarningLow`: Sensor device upper/lower warning threshold bound
+ * `WarningHigh` & `WarningLow`: Sensor device upper/lower warning threshold
+bound
  * `WarningAlarmHigh` & `WarningAlarmLow`: True if the sensor has exceeded the
 warning threshold bound
 
@@ -97,12 +100,13 @@ List properties of one inventory item:
 Event Logs
 ----------
 
-The event log structure is under the `/xyz/openbmc_project/logging/entry` hierarchy.
-Each event is a separate object under this structure, referenced by number.
+The event log structure is under the `/xyz/openbmc_project/logging/entry`
+hierarchy. Each event is a separate object under this structure, referenced by
+number.
 
 BMC and host firmware on POWER-based servers can report event logs to the BMC.
-Typically, these event logs are reported in cases where host firmware cannot start the
-OS, or cannot reliably log to the OS.
+Typically, these event logs are reported in cases where host firmware cannot
+start the OS, or cannot reliably log to the OS.
 
 The properties associated with an event log are as follows:
 
@@ -180,8 +184,8 @@ and
 Host State Control
 ------------------
 
-The host can be controlled through the `host` object. The object implements a number
-of actions including power on and power off. These correspond to the IPMI
+The host can be controlled through the `host` object. The object implements a
+number of actions including power on and power off. These correspond to the IPMI
 `power on` and `power off` commands.
 
 Assuming you have logged in, the following will power on the host:
