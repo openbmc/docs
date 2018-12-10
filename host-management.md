@@ -225,7 +225,7 @@ More information about Host State Management can be found here:
 https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/State
 
 Host Clear GARD
-================
+---------------
 
 On OpenPOWER systems, the host maintains a record of bad or non-working
 components on the GARD partition. This record is referenced by the host on
