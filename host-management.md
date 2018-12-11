@@ -249,3 +249,44 @@ can be called as follows:
       ```
 
 Implementation: https://github.com/openbmc/openpower-pnor-code-mgmt
+
+Host Watchdog
+-------------
+
+The host watchdog service is responsible for ensuring the host starts and boots
+within a reasonable time. On host start, the watchdog is started and it is
+expected that the host will ping the watchdog via the inband interface
+periodically as it boots. If the host fails to ping the watchdog within the
+timeout then the host watchdog will start a systemd target to go to the quiesce
+target. System settings will then determine the recovery behavior from that
+state.
+
+The host watchdog utilizes the generic [phosphor-watchdog][1] repository. The
+host watchdog service provides 2 files as configuration options into
+phosphor-watchdog:
+
+    /lib/systemd/system/phosphor-watchdog@poweron.service.d/poweron.conf
+    /etc/default/obmc/watchdog/poweron
+
+`poweron.conf` contains the "Conflicts" relationships to ensure the watchdog
+service is stopped at the correct times. `poweron` contains the required
+information for phosphor-watchdog (more information on these can be found in the
+[phosphor-watchdog][1] repository).
+
+The 2 service files involved with the host watchdog are:
+
+    phosphor-watchdog@poweron.service
+    obmc-enable-host-watchdog@0.service
+
+`phosphor-watchdog@poweron` starts the host watchdog service and
+`obmc-enable-host-watchdog` starts the watchdog timer. Both are run as a part
+of the `obmc-host-startmin@.target`. Service dependencies ensure the service is
+started before the enable is called.
+
+The default watchdog timeout can be found within the [dbus interface
+specification][2] (Interval property).
+
+The host controls the watchdog timeout and enable/disable once it starts.
+
+[1]: https://github.com/openbmc/phosphor-watchdog
+[2]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Watchdog.interface.yaml
