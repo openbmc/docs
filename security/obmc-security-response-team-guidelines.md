@@ -40,6 +40,10 @@ Workflow highlights:
     - Inform contacts this is private work as part of the OpenBMC
       security response team.  For example, link these guidelines.
     - Coordinate with all stakeholders and keep them informed.
+   The decision to forward information about the problem or bring in
+   contributors should be made by the security response team.
+   The focus should be on informing only those groups who need to
+   mitigate damage or help provide fixes.
 
 4. For OpenBMC problems:
     1. Determine if this is a high severity problem.  Example using
@@ -58,16 +62,17 @@ Workflow highlights:
        https://github.com/openbmc/openbmc/issues and email list
        openbmc@lists.ozlabs.org.
        Make the gerrit review publicly viewable.
+       Email the Security Advisory to the OpenBMC community (see below).
     5. Improve OpenBMC processes to avoid future problems.
 
-## DRAFT Template: Initial response to the problem submitter
+## Template: Initial response to the problem submitter
 The OpenBMC security response team has received the problem.
 - Thank you for reporting this.
 - Share preliminary results of the analysis.
 - Share preliminary OpenBMC plans or that we are analyzing the problem.
 - Set expectations for follow-up communications.
 
-## DRAFT Template: OpenBMC Security Advisory
+## Template: OpenBMC Security Advisory
 ```
 OpenBMC Security Advisory
 Title: ...
@@ -77,14 +82,6 @@ Title: ...
 The CVSS score for these vulnerabilities is "...", with temporal score
 "...", with the following notes:
 https://www.first.org/cvss/calculator/3.0
-- AV:
-- AC:
-- PR:
-- UI:
-- S:
-- C/I/A:
-- E:
-- RC:
 
 The fix is in the https://github.com/openbmc/... repository as git
 commit ID ....
@@ -95,11 +92,29 @@ https://github.com/openbmc/openbmc file README.md.
 Credit for finding these problems: ...
 ```
 
+## Template: Security Advisory notice
+When the Security Advisory is created, inform the OpenBMC community by
+sending email like this:
+
+```
+TO: openbmc-security@lists.ozlabs.org, openbmc@lists.ozlabs.org
+SUBJECT: [Security Advisory] ${subject}
+
+The OpenBMC Security Response team has released an OpenBMC Security Advisory:
+${url}
+
+An OpenBMC Security Advisory explains a security vulnerability, its severity,
+and how to protect systems that are built on OpenBMC.  For more information
+about OpenBMC Security Response, see:
+https://github.com/openbmc/docs/blob/master/security/obmc-security-response-team.md
+```
+
 ## Reference
 Some of these guidelines were collected from:
  - https://bestpractices.coreinfrastructure.org/en/projects/34
  - https://www.kernel.org/doc/html/v4.16/admin-guide/security-bugs.html
  - https://oss-security.openwall.org/wiki/mailing-lists/distros
+ - [ISO/IEC 29147:2018 vulnerability disclosure](https://www.iso.org/standard/72311.html)
 
 ## Team composition and email maintenance
 
