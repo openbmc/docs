@@ -40,6 +40,8 @@ Workflow highlights:
     - Inform contacts this is private work as part of the OpenBMC
       security response team.  For example, link these guidelines.
     - Coordinate with all stakeholders and keep them informed.
+   The decision to forward information about the proboem or bring in
+   contributors should be made by the security response team.
 
 4. For OpenBMC problems:
     1. Determine if this is a high severity problem.  Example using
