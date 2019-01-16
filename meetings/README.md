@@ -1,4 +1,4 @@
-OPENBMC MEETINGS
+OpenBMC Meetings
 ================
 
 This takes the YAML formatted `meetings.yaml` file and converts to a `.ics`
