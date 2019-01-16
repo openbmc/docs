@@ -3,6 +3,10 @@
 This repository contains documentation for OpenBMC as a whole. There may
 be component-specific documentation in the repository for each component.
 
+The [Feature TOC](feature-toc.md) lists the project's major features
+with links to more information.
+
+
 OpenBMC Usage
 -------------
 
