@@ -3,11 +3,74 @@
 This document is intended to provide a set of REST client commands for OpenBMC usage.
 
 ## Using CURL commands
-* Establish REST connection session:
+
+### Notes on authentication:
+The original REST server, from the phosphor-rest-server repository, uses
+authentication handled by the curl cookie jar files. The bmcweb REST server
+can use the same cookie jar files for read-only REST methods like GET, but
+requires either an authentication token or the username and password passed in
+as part of the URL for non-read-only methods.
+
+The phosphor-rest server will no longer be the default REST server after the
+2.6 OpenBMC release.
+
+### Establish REST connection session
+* Using just the cookie jar files for the phosphor-rest server:
     ```
    $ export bmc=xx.xx.xx.xx
    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d "{\"data\": [ \"root\", \"0penBmc\" ] }"
     ```
+* If passing in the username/password as part of the URL, no unique login call
+  is required.  The URL format is:
+  ```
+    <username>:<password>@<hostname>/<path>...
+  ```
+  For example:
+  ```
+  $ export bmc=xx.xx.xx.xx
+  curl -k -X GET https://root:0penBmc@${bmc}/xyz/openbmc_project/list
+  ```
+* Token based authentication.  There are two slightly different formats,
+  which return the token differently.  In either case, the token is then
+  passed in to future REST calls via the 'X-Auth-Token' or 'Authorization'
+  headers.
+
+  1. Get the authentication token from the header that comes back from the
+     login when using the `data` username/password JSON dictionary and a
+     `-i` argument to show headers:
+     ```
+     $ export bmc=xx.xx.xx.xx
+     $ curl -i -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d "{\"data\": [ \"root\", \"0penBmc\" ] }"
+       HTTP/1.1 200 OK
+       Set-Cookie: XSRF-TOKEN=4bmZdLP7OXgreUbazXN3; Secure
+       Set-Cookie: SESSION=vnTdgYnvhTnnbirQizrr; Secure; HttpOnly
+       ...
+
+       $ curl -H "X-Auth-Token: vnTdgYnvhTnnbirQizrr" -X POST ...
+       $ curl -H "Authorization: Token vnTdgYnvhTnnbirQizrr" -X POST ...
+     ```
+  2. Get the authentication token as part of the response when using a JSON
+     dictionary with 'username' and 'password' keys:
+
+     ```
+     $ export bmc=xx.xx.xx.xx
+     $ curl -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d '{"username" :  "root", "password" :  "0penBmc"}'
+      {
+        "token": "g47HgLLlZWKLwiyuUwJM"
+      }
+
+      $ curl -H "X-Auth-Token: g47HgLLlZWKLwiyuUwJM -X POST ...
+      $ curl -H "Authorization: Token g47HgLLlZWKLwiyuUwJM -X POST ...
+     ```
+
+### Commands
+Note: To keep the syntax below common between the phosphor-rest and bmcweb
+      implementations as described above, this assumes that if bmcweb
+      is used it is using the `<username>:<password>@<host>` login method
+      as desribed above:
+   ```
+      export bmc=<username>:<password>@xx.xx.xx.xx
+   ```
 
 * List and enumerate:
     ```
