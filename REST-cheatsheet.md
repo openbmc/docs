@@ -8,6 +8,26 @@ This document is intended to provide a set of REST client commands for OpenBMC u
    $ export bmc=xx.xx.xx.xx
    $ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d "{\"data\": [ \"root\", \"0penBmc\" ] }"
     ```
+    For PUT, PATCH, POST, and DELETE operations, the CSRF (Cross Site Request
+    Forgery) protection mechanism in the bmcweb REST server requires that
+    either:
+    1. The username/password is passed in like:  `<user>:<pass>@<hostname>`, or
+    2. The SESSION token, returned in the headers from /login, is passed in via
+       the X-Auth-Token header.  An example of this is
+       ```
+       $ curl -i -c cjar -b cjar -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d "{\"data\": [ \"root\", \"0penBmc\" ] }"
+       HTTP/1.1 200 OK
+       Set-Cookie: XSRF-TOKEN=4bmZdLP7OXgreUbazXN3; Secure
+       Set-Cookie: SESSION=vnTdgYnvhTnnbirQizrr; Secure; HttpOnly
+       ...
+
+       $ curl -H "X-Auth-Token: vnTdgYnvhTnnbirQizrr" -X POST ...
+       ```
+    For these examples, we will use 1) above.  It is OK to still pass this in on
+    methods that don't modify anything, like GETs.
+    ```
+    export bmc=root:0penBmc@$bmc
+    ```
 
 * List and enumerate:
     ```
