@@ -12,25 +12,15 @@ For a quick explanation of HTTP verbs and how they relate to a RESTful API, see
 
 ## Logging in
 
-Before you can do anything you first need to log in:
+See the details on logging in at
+https://github.com/openbmc/docs/blob/master/REST-cheatsheet.md
 
-    curl -c cjar -k -X POST -H "Content-Type: application/json" \
-        -d '{"data": [ "root", "0penBmc" ] }' \
-        https://${bmc}/login
+For the purposes of this tutorial, just pass in the user name and password
+as part of the URL and no separate login/logout commands are required:
 
-
-This performs a login using the provided username and password, and stores the
-newly-acquired authentication credentials in the `curl` "Cookie jar" file (named
-`cjar` in this example). We will use this file (with the `-b` argument) for
-future requests.
-
-To log out:
-
-    curl -c cjar -b cjar -k -X POST -H "Content-Type: application/json" \
-        -d '{"data": [ ] }' \
-        https://${bmc}/logout
-
-(or just delete your cookie jar file)
+```
+export bmc=<username>:<password>@<hostname>
+```
 
 ## HTTP GET operations & URL structure
 
@@ -40,7 +30,7 @@ They are:
  - To query the attributes of an object, perform a GET request on the object
    name, with no trailing slash. For example:
 
-        $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/inventory/system
+        $ curl -k https://${bmc}/xyz/openbmc_project/inventory/system
         {
           "data": {
             "AssetTag": "",
@@ -61,7 +51,7 @@ They are:
  - To query a single attribute, use the `attr/<name>` path. Using the
    `system` object from above, we can query just the `Name` value:
 
-        $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/inventory/system/attr/Model
+        $ curl -k https://${bmc}/xyz/openbmc_project/inventory/system/attr/Model
         {
           "data": "0000000000000000",
           "message": "200 OK",
@@ -72,7 +62,7 @@ They are:
    the URL. For example, using the same object path as above, but adding a
    slash:
 
-        $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/
+        $ curl -k https://${bmc}/xyz/openbmc_project/
         {
           "data": [
             "/xyz/openbmc_project/dump",
@@ -100,7 +90,7 @@ They are:
  - Performing the same query with `/list` will list the child objects
    *recursively*.
 
-        $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/network/list
+        $ curl -k https://${bmc}/xyz/openbmc_project/network/list
         {
           "data": [
             "/xyz/openbmc_project/network/config",
@@ -118,7 +108,7 @@ They are:
  - Adding `/enumerate` instead of `/list` will also include the attributes of
    the listed objects.
 
-        $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/time/enumerate
+        $ curl -k https://${bmc}/xyz/openbmc_project/time/enumerate
         {
           "data": {
             "/xyz/openbmc_project/time/bmc": {
@@ -145,8 +135,7 @@ for creating a new resource when the client already knows where to put it.
 These require a json formatted payload. To get an example of what that looks
 like:
 
-    curl -b cjar -k \
-        https://${bmc}/xyz/openbmc_project/state/host0 > host.json
+    curl -k https://${bmc}/xyz/openbmc_project/state/host0 > host.json
 
     $ cat host.json
     {
@@ -163,7 +152,7 @@ like:
 
 or
 
-    curl -b cjar -k \
+    curl -k \
         https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition > requested_host.json
 
     $ cat requested_host.json
@@ -179,7 +168,7 @@ properties.
 To make curl use the correct content type header use the -H option to specify
 that we're sending JSON data:
 
-    curl -b cjar -k -H "Content-Type: application/json" -X PUT -d <json> <url>
+    curl -k -X PUT -d <json> <url>
 
 A PUT operation on an object requires a complete object. For partial updates
 there is PATCH but that is not implemented yet. As a workaround individual
@@ -190,13 +179,12 @@ For example, make changes to the requested_host.json file and do a PUT (upload):
     $ cat requested_host.json
     {"data": "xyz.openbmc_project.State.Host.Transition.On"}
 
-    curl -b cjar -k -H "Content-Type: application/json" \
-        -X PUT -T requested_host.json \
+    curl -k -X PUT -T requested_host.json \
         https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 
 Alternatively specify the json inline with -d:
 
-    curl -b cjar -k -H "Content-Type: application/json" -X PUT \
+    curl -k -X PUT \
         -d '{"data": "xyz.openbmc_project.State.Host.Transition.On"}' \
         https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 
@@ -212,14 +200,12 @@ These also require a json formatted payload.
 
 To invoke a method with parameters (Downloading a Tar image via TFTP):
 
-    curl -b cjar -k -X POST -H "Content-Type: application/json" \
-       -d '{"data": ["<Image Tarball>", "<TFTP Server>"]}' \
+    curl -k -X POST -d '{"data": ["<Image Tarball>", "<TFTP Server>"]}' \
        https://${bmc}/xyz/openbmc_project/software/action/DownloadViaTFTP
 
 To invoke a method without parameters (Factory Reset of BMC and Host):
 
-    curl -b cjar -k -H 'Content-Type: application/json' -X POST \
-        -d '{"data":[]}' \
+    curl -k -X POST -d '{"data":[]}' \
         https://${bmc}/xyz/openbmc_project/software/action/Reset
 
 ## HTTP DELETE operations
@@ -231,8 +217,7 @@ return a HTTP 403 (Forbidden) error.
 
 For example, to delete the event record with ID 1:
 
-   curl -b cjar -k -X DELETE \
-       https://${bmc}/xyz/openbmc_project/logging/entry/1
+   curl -k -X DELETE https://${bmc}/xyz/openbmc_project/logging/entry/1
 
 
 ## Uploading images
@@ -242,14 +227,14 @@ or host software) via REST. The content-type should be set to
 
 For example, to upload an image:
 
-    curl -c cjar -b cjar -k -H "Content-Type: application/octet-stream" \
+    curl -k -H "Content-Type: application/octet-stream" \
         -X POST -T <file_to_upload> https://${bmc}/upload/image
 
 In above example, the filename on the BMC will be chosen by the REST server.
 
 It is possible for the user to choose the uploaded file's remote name:
 
-    curl -c cjar -b cjar -k -H "Content-Type: application/octet-stream" \
+    curl -k -H "Content-Type: application/octet-stream" \
         -X PUT -T foo https://${bmc}/upload/image/bar
 
 In above example, the file foo will be saved with the name bar on the BMC.
