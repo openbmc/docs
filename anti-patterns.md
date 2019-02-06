@@ -98,3 +98,31 @@ launched.  For example, given an application in /usr/bin:
 ```
 sed -i s/\/usr\/bin\/env\/ /usr\/bin\//g foo.service
 ```
+
+## Explict listing of shared library packages in RDEPENDS in bitbake metadata
+
+### Identification
+```
+RDEPENDS_${PN} = "libsystemd"
+```
+
+### Description
+Out of the box bitbake examines built applications, automatically adds runtime
+dependencies and thus ensures any library packages dependencies are
+automatically added to images, sdks, etc.  There is no need to list them
+explicitly in a recipe.
+
+
+Dependencies change over time, and listing them explicitly is likely prone to
+errors - the net effect being unnecessary shared library packages being
+installed into images.
+
+### Background
+The initial bitbake metadata author for OpenBMC was not aware that bitbake
+added these dependencies automatically.  Initial bitbake metadata therefore
+listed shared library dependencies explictly, and was subsequently copy pasted.
+
+### Resolution
+Do not list shared library packages in RDEPENDS.  This eliminates the
+possibility of installing unnecessary shared library packages due to
+unmaintained library dependency lists in bitbake metadata.
