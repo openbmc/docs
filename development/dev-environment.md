@@ -99,6 +99,12 @@ onto your computer (Mac, Windows, Linux)
   ```
   ./qemu-system-arm -m 256 -M romulus-bmc -nographic -drive file=./obmc-phosphor-image-romulus.static.mtd,format=raw,if=mtd -net nic -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostname=qemu
   ```
+  
+   **Note** - By default Jenkins or/and openbmc-test-automation uses. Ssh connection to 2222 might not be successful.
+   SSH_PORT:22 and PORT_HTTPS:443.
+   ```
+   ./qemu-system-arm -m 256 -machine romulus-bmc -nographic -drive file=./obmc-phosphor-image-romulus.static.mtd,format=raw,if=mtd -net nic -net user,hostfwd=:127.0.0.1:22-:22,hostfwd=:127.0.0.1:443-:443,hostfwd=tcp:127.0.0.1:80-:80,hostfwd=tcp:127.0.0.1:2200-:2200,hostfwd=udp:127.0.0.1:623-:623,hostfwd=udp:127.0.0.1:664-:664,hostname=qemu
+   ```
 
 4. Wait for your QEMU-based BMC to boot
 
