@@ -5,7 +5,7 @@ starting with the 2.6 release. Prior release tag notes are also listed here
 for completeness.
 
 Read more about the release process here:
-https://github.com/openbmc/docs/blob/master/release_process.md
+https://github.com/openbmc/docs/blob/master/release/release-process.md
 
 For information on how to checkout a particular branch or tag, see:
 https://github.com/openbmc/openbmc/wiki/Releases
