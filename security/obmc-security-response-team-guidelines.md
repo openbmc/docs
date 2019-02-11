@@ -57,7 +57,7 @@ Workflow highlights:
     4. When agreed, publish a security advisory to
        https://github.com/openbmc/openbmc/issues and email list
        openbmc@lists.ozlabs.org.
-       Make the gerrit review publicly viewable.
+       Make the Gerrit review publicly viewable.
     5. Improve OpenBMC processes to avoid future problems.
 
 ## DRAFT Template: Initial response to the problem submitter
