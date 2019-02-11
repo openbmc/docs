@@ -27,10 +27,13 @@ ____
 
 Author:
   < Name and IRC nic >
+
 Primary assignee:
   < Name and/or IRC nic or None >
+
 Other contributors:
   < Name and/or IRC nic or None >
+
 Created:
   < Date initially created, revisions in will be tracked in Gerrit >
 
