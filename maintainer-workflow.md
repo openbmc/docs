@@ -39,7 +39,7 @@ recognized by a consensus of their peers:
 (1) The semantics of accepting a patch depend on the sub-project contribution
 process.
 
-* Github pull requests - Merging the pull request.
+* GitHub pull requests - Merging the pull request.
 * Gerrit - +2.
 * email - Merging the patch.
 
