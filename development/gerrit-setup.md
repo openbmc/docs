@@ -24,7 +24,7 @@ Create keys: ```ssh-keygen -t rsa -C "your_email@your-domain"```
 * Recommended to use the defaults instead of picking your own directory/file
   names.
 
-Add Keys to Github:
+Add Keys to GitHub:
 * <https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/>
 
 Add Keys to OpenBMC's Gerrit Server:
