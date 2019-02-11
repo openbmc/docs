@@ -67,7 +67,7 @@ The phosphor-rest server will no longer be the default REST server after the
 Note: To keep the syntax below common between the phosphor-rest and bmcweb
       implementations as described above, this assumes that if bmcweb
       is used it is using the `<username>:<password>@<host>` login method
-      as desribed above:
+      as described above:
    ```
       export bmc=<username>:<password>@xx.xx.xx.xx
    ```

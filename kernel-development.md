@@ -31,7 +31,7 @@ Once the driver has been accepted upstream, send the good news to the OpenBMC li
 
 There are cases where waiting for upstream acceptance will delay the bring-up of a new system. This should be avoided through careful planning and early development of the features upstream, but where this has not happened we can chose to carry the patches in the OpenBMC tree while the upstream development is ongoing.
 
-Another exception to the upstream first rule is where patches are modifying files that are not upstream. This currently includes the aspeed board file `arch/arm/mach-aspeed/aspeed.c`, and the device tree source files `dts`. The board file should go away when we get drivers written for all of the functionaltiy; for now it contains some hacks relating to LPC and early init.
+Another exception to the upstream first rule is where patches are modifying files that are not upstream. This currently includes the aspeed board file `arch/arm/mach-aspeed/aspeed.c`, and the device tree source files `dts`. The board file should go away when we get drivers written for all of the functionality; for now it contains some hacks relating to LPC and early init.
 
 If you find yourself adding to `arch/arm/mach-aspeed/aspeed.c`, first send an email to the OpenBMC list to get the opinion of the kernel developers. Patches to `aspeed.c` will be treated with some prejudice as the file will be removed once we have drivers for all of the Aspeed peripherals.
 

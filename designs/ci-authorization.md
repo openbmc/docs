@@ -32,7 +32,7 @@ the general-developers team, manual intervention (ok-to-test) is required by a
 project maintainer to trigger the automated CI processes.
 
 
-Additonal reading:
+Additional reading:
 https://en.wikipedia.org/wiki/Continuous_integration
 https://jenkins.io/
 https://help.github.com/articles/about-organizations/
