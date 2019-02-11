@@ -20,7 +20,7 @@ Attribute: Asserted (boolean)
 ## REST
 
 ```
-PUT /xyz/openbmc_project/led/groups/\<label\>/attr/Asserted
+PUT /xyz/openbmc_project/led/groups/<label>/attr/Asserted
 ```
 
 The LED group state can be changed by setting the Asserted value to boolean 0 or 1.
@@ -41,9 +41,9 @@ interfaces for the individual LEDs that are part of the group.
 ### Defining the physical LED
 
 Physical LED wiring is defined in the `leds` section of the machine's
-[device tree](https://github.com/openbmc/linux/tree/dev-4.10/arch/arm/boot/dts).
+[device tree](https://github.com/openbmc/linux/tree/dev-4.19/arch/arm/boot/dts).
 See the
-[Palmetto dts](https://github.com/openbmc/linux/blob/dev-4.10/arch/arm/boot/dts/aspeed-bmc-opp-palmetto.dts#L39)
+[Palmetto dts](https://github.com/openbmc/linux/blob/dev-4.19/arch/arm/boot/dts/aspeed-bmc-opp-palmetto.dts#L45)
 as an example.
 
 _Add a fault LED to the device tree with a corresponding gpio pin..._
@@ -72,14 +72,14 @@ lrwxrwxrwx    1 root     root             0 Jun 21 20:04 subsystem -> ../../../.
 ```
 
 ### Defining Groups
-A LED Group can contain zero or more LEDs and defined in the machines
+An LED Group can contain zero or more LEDs and defined in the machines
 [led.yaml](https://github.com/openbmc/phosphor-led-manager/blob/master/led.yaml).
 The default one will likely need to be tailored to your machines layout.
 Customized yaml files are placed into the machines specific Yocto location.  As
-an example....
+an example...
 
 ```
-meta-openbmc-machines/meta-openpower/meta-ibm/meta-palmetto/recipes-phosphor/leds/palmetto-led-manager-config/led.yaml
+meta-ibm/meta-palmetto/recipes-phosphor/leds/palmetto-led-manager-config/led.yaml
 ```
 
 The parent properties in the yaml file will be created below `/xyz/openbmc_project/led/groups/`.
@@ -89,7 +89,7 @@ In the example, below two URIs would be created:
 `/xyz/openbmc_project/led/groups/enclosure_fault` and
 `/xyz/openbmc_project/led/groups/lamp_test`.  Both act on the same physical
 LED `fault` but do so differently.  The lamp_test would also drive a blink
-signal to the physical `power` led if one was created.
+signal to the physical `power` LED if one was created.
 
 
 ```
@@ -113,39 +113,38 @@ lamp_test:
 ### Required Groups
 OpenBMC Architecture requires specific LED Groups to be created and are
 documented in the
-[dbus interface](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Led/README.md)
+[D-Bus interface](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Led/README.md).
 
 
 ## Yocto packaging
 1.  Create a tailored LED manager file
 
-`meta-openbmc-machines/meta-openpower/meta-ibm/meta-romulus/recipes-phosphor/leds/romulus-led-manager-config-native.bb`
-```
-SUMMARY = "Phosphor LED Group Management for Romulus"
-PR = "r1"
+    E.g. `meta-ibm/meta-romulus/recipes-phosphor/leds/romulus-led-manager-config-native.bb`
+    ```
+    SUMMARY = "Phosphor LED Group Management for Romulus"
+    PR = "r1"
 
-inherit native
-inherit obmc-phosphor-utils
-inherit obmc-phosphor-license
+    inherit native
+    inherit obmc-phosphor-utils
+    inherit obmc-phosphor-license
 
-PROVIDES += "virtual/phosphor-led-manager-config-native"
+    PROVIDES += "virtual/phosphor-led-manager-config-native"
 
-SRC_URI += "file://led.yaml"
-S = "${WORKDIR}"
+    SRC_URI += "file://led.yaml"
+    S = "${WORKDIR}"
 
-# Overwrites the default led.yaml
-do_install() {
-    SRC=${S}
-    DEST=${D}${datadir}/phosphor-led-manager
-    install -D ${SRC}/led.yaml ${DEST}/led.yaml
-}
-```
-2. Change your machine's peferred provider for the led-manager in the conf file
+    # Overwrites the default led.yaml
+    do_install() {
+        SRC=${S}
+        DEST=${D}${datadir}/phosphor-led-manager
+        install -D ${SRC}/led.yaml ${DEST}/led.yaml
+    }
+    ```
+2. Change your machine's preferred provider for the led-manager in the conf file
 
-_i.e. meta-openbmc-machines/meta-openpower/meta-ibm/meta-romulus/conf/machine/romulus.conf_
+    E.g. `meta-ibm/meta-romulus/conf/machine/romulus.conf`
 
-`PREFERRED_PROVIDER_virtual/phosphor-led-manager-config-native = "romulus-led-manager-config-native"`
-
+    ```PREFERRED_PROVIDER_virtual/phosphor-led-manager-config-native = "romulus-led-manager-config-native"```
 
 
 ## Additional Reading
