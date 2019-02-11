@@ -180,6 +180,7 @@ To use GDB:
 By default coredump is disabled in OpenBMC. To enable coredump:
 ```
 echo '/tmp/core_%e.%p' | tee /proc/sys/kernel/core_pattern
+ulimit -c unlimited
 ```
 
 ## Cleaning up read-write file system changes
