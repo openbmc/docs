@@ -72,3 +72,38 @@ listed shared library dependencies explicitly, and was subsequently copy pasted.
 Do not list shared library packages in RDEPENDS.  This eliminates the
 possibility of installing unnecessary shared library packages due to
 unmaintained library dependency lists in bitbake metadata.
+
+## Placement of applications in /sbin or /usr/sbin
+
+### Identification
+OpenBMC applications that are installed in /usr/sbin.  $sbindir in bitbake
+metadata, makefiles or configure scripts.
+
+### Description
+Installing OpenBMC applications in /usr/sbin violates the [princple of least
+astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment) and
+more importantly violates the
+[FHS](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard).
+
+### Background
+The sbin anti-pattern exists because the FHS was misinterpreted at an early point
+in OpenBMC project history, and has proliferated ever since.
+
+From the hier(7) man page:
+
+```
+/usr/bin This is the primary directory for executable programs.  Most programs
+executed by normal users which are not needed for booting or for repairing the
+system and which are not installed locally should be placed in this directory.
+
+/usr/sbin This directory contains program binaries for system administration
+which are not essential for the boot process, for mounting /usr, or for system
+repair.
+```
+The FHS description for /usr/sbin refers to "system administration" but the
+de-facto interpretation of the system being administered refers to the OS
+installation and not a system in the OpenBMC sense of managed system.  As such
+OpenBMC applications should be installed in /usr/bin.
+
+### Resolution
+Install OpenBMC applications in /usr/bin/.
