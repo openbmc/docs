@@ -42,6 +42,37 @@ anti-pattern and the positive effects of solving it in the manner described.
 
 <!-- end copy/paste on previous line -->
 
+## Explicit AC_MSG_ERROR on PKG_CHECK_MODULES failure
+
+### Identification
+```
+PKG_CHECK_MODULES(
+    [PHOSPHOR_LOGGING],
+    [phosphor-logging],
+    [],
+    [AC_MSG_ERROR([Could not find phosphor-logging...openbmc/phosphor-logging package required])])
+```
+
+### Description
+
+The autotools PKG_CHECK_MODULES macro provides the ability to specify an
+"if found" and "if not found" behavior.  By default, the "if not found"
+behavior will list the package not found.  In many cases, this is sufficient
+to a developer to know what package is missing.  In most cases, it's another
+OpenBMC package.
+
+If the library sought's name isn't related to the package providing it, then
+the failure message should be set to something more useful to the developer.
+
+### Resolution
+
+Use the default macro behavior when it is clear that the missing package is
+another OpenBMC package.
+
+```
+PKG_CHECK_MODULES([PHOSPHOR_LOGGING], [phosphor-logging])
+```
+
 ## Explicit listing of shared library packages in RDEPENDS in bitbake metadata
 
 ### Identification
