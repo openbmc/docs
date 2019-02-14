@@ -21,6 +21,8 @@ ____
   ASCII diagrams.  Plain text will allow the review to proceed without
   having to look at additional files which can not be viewed in Gerrit.  It
   will also allow inline feedback on the diagram itself.
+* Once ready for review, submit to gerrit and set the topic of the review
+  to "design"
 ____
 
 # Example design - this is the design title
