@@ -42,6 +42,32 @@ anti-pattern and the positive effects of solving it in the manner described.
 
 <!-- end copy/paste on previous line -->
 
+## Custom ArgumentParser object
+
+### Identification
+
+The ArgumentParser object is typically present to wrap calls to get options.
+It abstracts away the parsing and provides a `[]` operator to access the
+parameters.
+
+### Description
+
+Writing a custom ArgumentParser object creates nearly duplicate code in a
+repository.  The ArgumentParser itself is the same, however, the options
+provided differ.  Writing a custom argument parser re-invents the wheel on
+c++ command line argument parsing.
+
+### Background
+
+The ArgumentParser exists because it was in place early and then copied into
+each new repository as an easy way to handle argument parsing.
+
+### Resolution
+
+The CLI11 library was designed and implemented specifically to support modern
+argument parsing.  It handles the cases seen in OpenBMC daemons and has some
+handy built-in validators, and allows easy customizations to validation.
+
 ## Explicit AC_MSG_ERROR on PKG_CHECK_MODULES failure
 
 ### Identification
