@@ -30,31 +30,31 @@ commands for OpenBMC usage.
 
 * Host soft power off:
     ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/1/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulShutdown"}'
+    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulShutdown"}'
     ```
 
 * Host hard power off:
     ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/1/Actions/ComputerSystem.Reset -d '{"ResetType": "ForceOff"}'
+    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "ForceOff"}'
     ```
 
 * Host power on:
     ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/1/Actions/ComputerSystem.Reset -d '{"ResetType": "On"}'
+    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "On"}'
     ```
 
 * Reboot Host:
     ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/1/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulRestart"}'
+    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulRestart"}'
     ```
 
 * Display logging entries:
     ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X GET https://${bmc}/redfish/v1/Systems/1/LogServices/SEL/Entries
+    $ curl -k -H "X-Auth-Token: $bmc_token" -X GET https://${bmc}/redfish/v1/Systems/system/LogServices/EventLog/Entries
     ```
 
 * Delete logging entries:
     ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/1/LogServices/SEL/Actions/LogService.Reset
+    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/system/LogServices/EventLog/Actions/LogService.Reset
     ```
 [1]: https://www.dmtf.org/standards/redfish
