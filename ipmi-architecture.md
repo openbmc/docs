@@ -88,6 +88,13 @@ has the opportunity to return any valid IPMI completion code. Any non-zero
 completion code would prevent the command from executing and would be returned
 to the caller.
 
+Session is managed by net-ipmid but we need  to get the active session
+information and  manage the session in system interface also. So,
+net-ipmid is currently creating session and the same will be published
+as objects with all properities filled. so that all active session details
+can be accessed /configured in system interface (ipmid) and
+we can close the active session in system interface also.
+
 The next phase is parameter unpacking and validation. This is done by
 compiler-generated code with variadic templates at handler registration time.
 The registration function is a templated function that allows any type of
