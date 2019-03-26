@@ -16,16 +16,30 @@ channels and the IPMI queue.
 
 
 ```
-___________          ___________________
-| KCS/BT  |          |                 |
-| Channel | <------> |                 |
-----------/          | IPMI Daemon     |
------------          |   (ipmid)       |
-| RMCP+   |          |                 |
-| Channel | <------> |                 |
-----------/          ------------------/
-```
+                                                     /------------------\
+    /---------------------------\                    |                  |
+    |      KCS - HOST            | <-All IPMI cmds-> |                  |
+    |                            |                   |                  |
+    \---------------------------/                    |   IPMI Daemon    |
+                                                     |    (ipmid)       |
+                                                     |                  |
+    /---------------------------\                    |                  |
+   |            LAN - RMCP+      |                   |                  |
+   | /--------------------------\|                   |                  |
+   | |*Process the Session &    || <-All IPMI cmds-> |                  |
+   | |SOL commands.             ||  except session   |                  |
+   | |*Create Session Objs      ||  & SOL cmds       |                  |
+   | \--------------------------/|                   |                  |
+   \-----------------------------/                   \------------------/
+                :                                             ^
+                :                                             |
+                :                                             |
+     /-------------------------\                              |
+     | Active session/SOL Objs | <---------Query the session and SOL data
+     | - Properities           |              via Dbus
+     \ ------------------------/
 
+```
 
 The IPMI messages that get passed to and from the IPMI daemon (ipmid) are
 basically the equivalent of ipmitool's "raw" commands with a little more
@@ -87,6 +101,13 @@ be passed in the context of the IPMI call and the raw content of the call and
 has the opportunity to return any valid IPMI completion code. Any non-zero
 completion code would prevent the command from executing and would be returned
 to the caller.
+
+phosphor-ipmi-net manages session(RMCP+) & SOL commands directly and responses
+to those commands. As these commands can also be requested through host
+(KCS) interface, phosphor-ipmi-host daemon must also need details about session &
+SOL. In order to maintain sync between phosphor-ipmi-net & phosphor-ipmi-host daemon,
+session & SOL are exposed in D-Bus, which phosphor-ipmi-host can query and respond
+to commands issued through host interface (KCS).
 
 The next phase is parameter unpacking and validation. This is done by
 compiler-generated code with variadic templates at handler registration time.
