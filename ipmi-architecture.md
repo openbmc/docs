@@ -16,14 +16,28 @@ channels and the IPMI queue.
 
 
 ```
-___________          ___________________
-| KCS/BT  |          |                 |
-| Channel | <------> |                 |
-----------/          | IPMI Daemon     |
------------          |   (ipmid)       |
-| RMCP+   |          |                 |
-| Channel | <------> |                 |
-----------/          ------------------/
+                                                     /------------------\
+    /----------------------------\                   |                  |
+    |      KCS/BT - Host         | <-All IPMI cmds-> |                  |
+    |                            |                   |                  |
+    \----------------------------/                   |   IPMI Daemon    |
+                                                     |    (ipmid)       |
+                                                     |                  |
+   /-----------------------------\                   |                  |
+   |            LAN - RMCP+      |                   |                  |
+   | /--------------------------\|                   |                  |
+   | |*Process the Session and  || <-All IPMI cmds-> |                  |
+   | | SOL commands.            ||  except session   |                  |
+   | |*Create Session Objs      ||  and SOL cmds     |                  |
+   | \--------------------------/|                   |                  |
+   \-----------------------------/                   \------------------/
+                :                                             ^
+                :                                             |
+                :                                             |
+     /-------------------------\                              |
+     | Active session/SOL Objs | <---------Query the session-/
+     | - Properities           |           and SOL data via Dbus
+     \-------------------------/
 ```
 
 
@@ -87,6 +101,14 @@ be passed in the context of the IPMI call and the raw content of the call and
 has the opportunity to return any valid IPMI completion code. Any non-zero
 completion code would prevent the command from executing and would be returned
 to the caller.
+
+The network channel bridges (netipmid), executing one process per interface,
+handle session (RMCP+) and SOL commands and responses to those commands.
+Get/Set SOL configuration, Get session info, close session commands can also be
+requested through KCS/BT interface, ipmid daemon must also need details about
+session and SOL. In order to maintain sync between ipmid and netipmid
+daemon, session and SOL are exposed in D-Bus, which ipmid can query and respond
+to commands issued through host interface (KCS/BT).
 
 The next phase is parameter unpacking and validation. This is done by
 compiler-generated code with variadic templates at handler registration time.
