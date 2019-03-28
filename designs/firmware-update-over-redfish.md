@@ -80,12 +80,14 @@ later.
 - Support firmware update for other targets (power supplies, voltage regulators,
   ...)
 - Support to update multiple targets with the same firmware image at once
-- Support scheduling of when update occurs
+- Support scheduling of when update occurs (Maintenance windows)
 - Support remaining TransferProtocolTypes in UpdateService (CIFS, FTP, SFTP,
   HTTP, HTTPS, NSF, SCP, NFS)
   - TODO: Any update mechanism that doesn't have transport security on its own,
     like FTP, needs a secondary verification mechanism. Update mechanisms that
     have transport security need a way to adjust the trusted root certificates.
+- Support the Task schema to provide progress to user during upload and
+  activation phases
 
 ## Proposed Design
 
@@ -95,14 +97,24 @@ The pseudo flow for an update is:
 ```
 Discover UpdateService location
 HttpPushUri = GET https://${bmc}/redfish/v1/UpdateService
-POST <image> https://${bmc}/${HttpPushUri} ApplyTime=Immediate
+POST ApplyTime property in
+  UpdateService/HttpPushUriOptions->HttpPushUriApplyTime object
+  (Immediate or OnReset)
+POST <image> https://${bmc}/${HttpPushUri}
 ```
 This will cause the following on the back-end:
 - Receive the image
 - Copy it internally to the required location in the filesystem (/tmp/images)
 - Wait for the InterfacesAdded signal from /xyz/openbmc_project/software
-- Activate the new image (which may involve a reboot of the BMC)
+- Activate the new image
+- If ApplyTime is Immediate, reboot the BMC or Host
+- If ApplyTime is OnReset, do nothing (user will need to initiate host or bmc
+    reboot to apply image)
 
+Note that the ApplyTime property will be processed by the software management
+stack at the end of the activation.
+Note that the ApplyTime property is global to all firmware update packages and
+will be used for all subsequent firmware update packages.
 
 ### Change the Priority of an Image
 
