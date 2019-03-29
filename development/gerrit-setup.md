@@ -79,7 +79,7 @@ will look like.
   [writing good commit messages](https://github.com/openbmc/docs/blob/master/CONTRIBUTING.md#submitting-changes)):
   `git commit --signoff`
 * Push your changes to Gerrit for code review:
-  `git push HEAD:refs/for/master`
+  `git push origin HEAD:refs/for/master`
 * Go to [Gerrit web interface](https://gerrit.openbmc-project.xyz/), click on
   your new review, and add reviewers based on `MAINTAINERS` file in the repo.
 
