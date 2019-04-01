@@ -1,9 +1,9 @@
 # IPMI Architecture
 
-IPMI is a hard problem to solve. New bits bolted onto legacy stuff makes for
-quite the Frankensteinian monster. If we break it apart again and look at each
-piece, maybe we can sleep with fewer nightmares.
-
+IPMI is made up of commands and channels. Commands are provided by providers
+and channels are processes called bridges. Commands are received from external
+sources (system admin users) via the bridges and routed to the providers'
+command handlers via the main IPMI daemon.
 
 ## High-Level Overview
 
@@ -16,14 +16,16 @@ channels and the IPMI queue.
 
 
 ```
-___________          ___________________
-| KCS/BT  |          |                 |
-| Channel | <------> |                 |
-----------/          | IPMI Daemon     |
------------          |   (ipmid)       |
-| RMCP+   |          |                 |
-| Channel | <------> |                 |
-----------/          ------------------/
+---------------\          --------------------\
+|  KCS/BT      |          |                   |
+|  Channel     | <------> |  IPMI Daemon      |       -----------\
+| (kcsbridged) |          |  (ipmid)          |       |          |
+---------------/          |                   | <---> | D-Bus    |
+---------------\          |  (libipmi20.so)   |       | services |
+| RMCP+        |          | (libproviderB.so) |       |          |
+| Channel      | <------> | (libproviderB.so) |       -----------/
+| (netipmid)   |          |  ...              |
+---------------/          --------------------/
 ```
 
 
@@ -33,37 +35,40 @@ information about the message.
 
 ```less
 Message Data:
-  byte:userID - IPMI user ID of caller (0 for session-less channels)
-  enum:privilege - ADMIN, USER, OPERATOR, CALLBACK; will be less than or
-    equal to the privilege of the user and less than or equal to the max
-    privilege of this channel
-  enum:channel - what channel the request came in on (LAN0, LAN1, KCS/BT,
-    IPMB0, etc.), also used to route the response back to the caller.
-  integer:msgID - identifier for the message to match with the response
   byte:LUN - LUN from netFn/LUN pair (0-3, as per the IPMI spec)
   byte:netFn - netFn from netFn/LUN pair (as per the IPMI spec)
   byte:cmd - IPMI command ID (as per the IPMI spec)
   array<byte>:data - optional command data (as per the IPMI spec)
+  dict<string:variant>:options - optional additional meta-data
+    "userId":int - IPMI user ID of caller (0 for session-less channels)
+    "privilege": enum:privilege - ADMIN, USER, OPERATOR, CALLBACK;
+      must be less than or equal to the privilege of the user and less
+      than or equal to the max privilege of this channel
 ```
 
 ```less
 Response Data:
-  enum:channel - what channel the request came in on
-  integer:msgID - what request this response matches
   byte:CC - IPMI completion code
   array<byte>:data - optional response data
 ```
+
+The channel bridge, upon receiving a new IPMI command, will extract the
+necessary fields from whatever transport format (RMCP+, IPMB, KCS, etc.) and
+encode them in a D-Bus method call to send to the IPMI daemon, ipmid. The
+daemon will take the message, and attempt to find an appropriate handler in
+its handler tables. If a handler is found, it will attempt to extract the
+required parameters for the handler and pass them along. The handler will
+return a tuple of response parameters, which will get packed back into a
+D-Bus response message and sent back to the calling channel's bridge. The
+bridge will then re-package the response into its transport protocol and
+send it off.
 
 The next part is to provide a higher-level, strongly-typed, modern C++
 mechanism for registering handlers. Each handler will specify exactly what
 arguments are needed for the command and what types will be returned in the
 response. This way, the ipmid queue can unpack requests and pack responses in a
-safe manner.
-
-To be able to operate in a manner like the current IPMI provider system works,
-the registration mechanism will need to be able to either be mostly header-only
-or otherwise runtime linkable so that external provider libraries can be used
-to add IPMI commands.
+safe manner. Because the handler packing and unpacking code is templated, it
+is written mostly in headers.
 
 
 ## Details and Implementation
@@ -94,45 +99,56 @@ The registration function is a templated function that allows any type of
 handler to be passed in so that the types of the handler can be extracted and
 unpacked.
 
-This can be done with something along these lines:
-
+This is done in the core IPMI library (from a high level) like this:
 ```cpp
-class ipmiQueue {
-  template <typename MessageHandler, typename... InputArgs>
-  auto register_ipmi_handler(
-      const std::vector<enum ipmiChannel>& channelList,
-      uint8_t lun, uint8_t netFn, uint8_t cmd,
-      MessageHandler handler) {
-    ...
-  }
-  template <typename MessageHandler, typename... InputArgs>
-  auto register_ipmi_handler_async(
-      const std::vector<enum ipmiChannel>& channelList,
-      uint8_t lun, uint8_t netFn, uint8_t cmd,
-      MessageHandler handler) {
-    ...
-  }
-  template <typename MessageHandler, typename... ReplyArgs>
-  auto async_reply(ipmi::handlerContext&, ReplyArgs) {
-    ...
-  }
+template <typename Handler>
+class IpmiHandler
+{
+  public:
+    explicit IpmiHandler(Handler&& handler) :
+        handler_(std::forward<Handler>(handler))
+    {
+    }
+    message::Response::ptr call(message::Request::ptr request)
+    {
+        message::Response::ptr response = request->makeResponse();
+        // < code to deduce UnpackArgsType and ResultType from Handler >
+        UnpackArgsType unpackArgs;
+        ipmi::Cc unpackError = request->unpack(unpackArgs);
+        if (unpackError != ipmi::ccSuccess)
+        {
+            response->cc = unpackError;
+            return response;
+        }
+        ResultType result = std::apply(handler_, unpackArgs);
+        response->cc = std::get<0>(result);
+        auto payload = std::get<1>(result);
+        response->pack(*payload);
+        return response;
+    }
+  private:
+    Handler handler_;
 };
  ...
  namespace ipmi {
-   constexpr uint8_t appNetFn = 6;
-   class handlerContext {
-     enum ipmiChannel channel;
-     uint32_t msgId;
-     uint8_t userId;
-     enum ipmiPriv privilege;
-   };
-   namespace app {
-     constexpr uint8_t setUserAccessCmd = 0x43;
-   }
+   constexpr NetFn netFnApp = 0x06;
+ namespace app {
+   constexpr Cmd cmdSetUserAccessCommand = 0x43;
  }
-
-std::tuple<ipmi::compCode> setUserAccess(
-    ipmi::handlerContext& context,
+  class Context {
+     NetFn netFn;
+     Cmd cmd;
+     int channel;
+     int userId;
+     Privilege priv;
+     boost::asio::yield_context* yield; // for async operations
+   };
+ }
+```
+While some IPMI handlers would look like this:
+```cpp
+ipmi::RspType<> setUserAccess(
+    std::shared_ptr<ipmi::Context> context,
     uint1_t changeBit, // one bit integer type
     uint1_t callbackRestricted,
     uint1_t linkAuth,
@@ -145,55 +161,62 @@ std::tuple<ipmi::compCode> setUserAccess(
     std::optional<uint4_t> reserved3,
     std::optional<uint4_t> userSessionLimit) {
   ...
-  return std::tuple<ipmi::compCodeNormal>;
+  return ipmi::ResponseSuccess();
 }
 
-ipmi::register_ipmi_handler(ipmi::lun0, ipmi::appNetFn,
-                            ipmi::app::setUserAccessCmd,
-                            setUserAccess);
-void getUserAccess(
-    ipmi::handlerContext& context,
-    uint4_t reserved1,
-    uint4_t channelNumber,
-    uint2_t reserved2,
-    uint6_t userId) {
-  ...
-    auto reply = std::make_shared<std::tuple<ipmi::compCode,
-      uint2_t, uint6_t, uint2_t, uint6_t, uint2_t, uint6_t, uint1_t,
-      uint1_t, uint4_t>>();
-    async_call([&]() {
-      std::get<0>(*reply) = ipmi::compCodeNormal;
-      std::get<2>(*reply) = ...;
-      ipmi::async_reply(context, *reply);
-    });
- ...
- }
+ipmi::RspType<uint8_t, // max user IDs
+              uint2_t, // user ID enable status
+              uint6_t, // count of enabled user IDs
+              uint8_t, // count of fixed user IDs
+              bool,    // callback access
+              bool,    // link authentication enabled
+              bool,    // ipmi messaging enabled
+              uint4_t  // user privilege for given channel
+              >
+    getUserAccess(std::shared_ptr<ipmi::Context> context, uint8_t channelNumber,
+                  uint8_t userId)
+{
+    if (<some error condition>)
+    {
+        return ipmi::response(ipmi::ccParmOutOfRange);
+    }
+    // code to get
+    const auto& [usersMax, status, usersEnabled, usersFixed, access, priv] =
+        getSdBus()->yield_method_call(*context->yield, ...);
+    return ipmi::responseSuccess(usersMax, status, usersEnabled, usersFixed,
+                                 access.callback, access.linkAuth,
+                                 access.messaging, priv);
+}
 
-ipmi::register_ipmi_handler_async(ipmi::lun0, ipmi::appNetFn,
-                            ipmi::app::setUserAccessCmd,
-                            setUserAccess);
+void providerInitFn()
+{
+    ipmi::registerHandler(ipmi::prioOpenBmcBase, ipmi::netFnApp,
+                          ipmi::app::cmdSetUserAccessCommand,
+                          ipmi::Privilege::Admin,
+                          setUserAccess);
+    ipmi::registerHandler(ipmi::prioOpenBmcBase, ipmi::netFnApp,
+                          ipmi::app::cmdGetUserAccessCommand,
+                          ipmi::Privilege::Operator,
+                          getUserAccess);
+}
 ```
 
 
-Ideally, we would have support for asynchronous handling of IPMI calls. This
-means that the queue could have multiple in-flight calls that are waiting on
-another D-Bus call to return. With asynchronous calls, this will not block the
-rest of the queue's operation, allowing for maximum throughput and minimum
-delay. Synchronous calls would emit warnings if they hold up the queue for too
-long. If it is possible to do, it would be nice to abstract the D-Bus interface
-call interface so that it could put off returning the result to a function and
-handle other stuff while waiting. Then if the IPMI method only had D-Bus calls,
-it could be written in a synchronous method but still allow the rest of the
-queue to behave as if it was written as an asynchronous callback.
+Ipmid providers are all executed as boost::asio::coroutines. This means that
+they can take advantage of any of the boost::asio async method calls in a way
+that looks like synchronous code, but will execute asynchronously by yielding
+control of the processor to the run loop via the yield_context object. Use
+the yield_context object by passing it as a 'callback' which will then cause
+the calling coroutine to yield the processor until its IO is ready, at which
+point it will 'return' much like a synchronous call.
 
-Passing the reply tuple in as a shared pointer allows for multiple levels of
-nested lambdas so that the owner is never destroyed and the lifetime of the
-object is preserved. This is helpful if multiple D-Bus calls need to be made to
-gather information. Alternately, it might only need to be generated in the last
-stage when something of value is generated. Either way, the tuple is ultimately
-passed into the templated async_reply function that packs the parameters back
-into a vector to send back to the requester. The context is guaranteed to be
-valid until either a synchronous call returns or async_reply is called.
+Ideally, all handlers would take advantage of the asynchronous capabilities of
+ipmid via the boost::asio::yield_context. This means that the queue could have
+multiple in-flight calls that are waiting on another D-Bus call to return. With
+asynchronous calls, this will not block the rest of the queue's operation,
+The sdbusplus::asio::connection that is available to all providers via the
+getSdBus() function provides yield_method_call() which is an asynchronous
+D-Bus call mechanism that 'looks' like a synchronous call.
 
 Using templates, it is possible to extract the return type and argument types
 of the handlers and use that to unpack (and validate) the arguments from the
@@ -203,37 +226,52 @@ has unpacked and then compare it with the total number of bits that the method
 is requesting. In the example, we are assuming that the non-full-byte integers
 are packed bits in the message in most-significant-bit first order (same order
 the specification describes them in). Optional arguments can be used easily
-with C++17's std::optional (or using boost::optional for earlier C++). Actually
-calling the handler with the extracted tuple of arguments is easy with C++17's
-std::apply (or can be written by hand if necessary). The moral of the story
-here is that we should use C++17 since it is available with Yocto 2.4.
+with C++17's std::optional.
 
-For multi-byte parameters, endianness matters, so we should define some types
-that can denote that: be_int32_t be_uint32_t, le_int32_t, le_uint32_t.
-Alternately, we could only specify big-endian variants because most of the IPMI
-spec uses little-endian representations.
+Some types that are supported are as follows:
+* standard integer types (uint8_t, uint16_t, uint32_t, int, long, etc.)
+* bool (extracts a single bit, same as uint1_t)
+* multi-precision integers (uint<N>)
+* std::bitset<N>
+* std::optional<T> - extracts T if there are enough remaining bits/bytes
+* std::array<T, N> - extracts N elements of T if possible
+* std::vector<T> - extracts elements of T from the remaining bytes
+* any additional types can be created by making a pack/unpack template
 
-To start with, we can implement the templated registration scheme, but still
-allow for a legacy registration method so that all the currently implemented
-IPMI handlers can still work until they have been rewritten to use the new
-mechanism. When all the current commands have been rewritten, we can remove the
-legacy interface. All commands registering with the legacy interface will get
-logged with a message saying that interface is deprecated.
+For partial byte types, the most significant bits of the next full byte are
+extracted first, in order to behave more like the IPMI specification is
+written. Multi-byte fields are extracted as LSByte first (little-endian) to
+match the IPMI specification.
 
-Things that would be nice to have are as follows:
+As an example this is how a bitset is unpacked
+```cpp
+/** @brief Specialization of UnpackSingle for std::bitset<N>
+ */
+template <size_t N>
+struct UnpackSingle<std::bitset<N>>
+{
+    static int op(Payload& p, std::bitset<N>& t)
+    {
+        static_assert(N <= (details::bitStreamSize - CHAR_BIT));
+        size_t count = N;
+        // acquire enough bits in the stream to fulfill the Payload
+        if (p.fillBits(count))
+        {
+            return -1;
+        }
+        fixed_uint_t<details::bitStreamSize> bitmask = ((1 << count) - 1);
+        t |= (p.bitStream & bitmask).convert_to<unsigned long long>();
+        p.bitStream >>= count;
+        p.bitCount -= count;
+        return 0;
+    }
+};
+```
 
-
-
-*   nested types for arguments: e.g., std::array<std::tuple<uint1_t, uint1_t,
-    uint2_t, uint4_t>, 4>
-*   a nested callback mechanism (the one that comes to mind is set/get lan
-    parameters) where the handler is really ultimately split into subhandlers
-    with different trailing parameters by examining the first few bytes. In
-    this case, you read a few common bytes and then need to re-interpret the
-    large trailing buffer. If we can provide the message parser to the
-    handlers, then they can re-parse the big buffer using compiler-generated
-    code rather than re-writing their own sub-parser.
-*   C++17 (as noted above for std::apply and std::optional (and possibly other
-    shiny goodness)
-
-
+If a handler needs to unpack a variable payload, it is possible to request
+the Payload parameter. When the Payload parameter is present, any remaining,
+unpacked bytes are available for inspection. Using the same unpacking calls
+that were used to unpack the other parameters, the remaining parameters can
+be manually unpacked. This is helpful for multi-function commands like Set
+LAN Configuration Parameters, where the first two bytes are fixed, but the
+remaining 3:N bytes vary based on the selected parameter.
