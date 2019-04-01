@@ -435,3 +435,42 @@ able to differentiate between new user request or request to extend an existing
 user to 'ipmi' group. Use OEM Commands to extend existing users to 'ipmi' group.
 Note: 'Set User Name' IPMI command will return CCh 'Invalid data field in
 Request' completion code, if tried to add existing user in the system.
+
+## Deployment - Out of factory
+### Guidelines
+As per [SB-327 Information Privacy](https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180SB327), Connected devices must avoid
+shipping with generic user name & password. The reasonable security expected is
+1. Preprogrammed password unique to each device
+2. Forcing user to generate new authentication account, before using the device.
+
+### Generating user during deployment:
+To adhere above mentioned guideline and to make OpenBMC more secure, this design
+specifies about forcing end-user to generate a new account, during deployment
+through any of the system in-band interfaces (like KCS etc.).
+IPMI 2.0 specification provides commands like `SetUserName`, `SetUserPassword`,
+`SetUserAccess`, which must be used to create a new user account instead of
+using any generic default user name and password. Accounts created through this
+method have access to IPMI, REDFISH & Webserver and can be used to create more
+accounts through out-of-band interfaces.
+
+### Special user - root – user id 0:
+Exposing root account (user id 0) to end-user by default (other than debug /
+developer scenario) is security risk. Hence current architecture recommends not
+to enable root user by default for end-user.
+For general login for debug / developer builds, a new default user with password
+can be created by specifying the same in local.conf.sample file. This can be
+used to establish a session by default (CI systems etc. can use this account).
+From OpenBMC package user name `openbmc` with password `0penBmc$` can be added.
+
+#### Debugging use-case
+`root` user / sudo privilege access are required during development / debug
+phase of the program. For this purpose a new IPMI OEM command (TBD) / REDFISH
+OEM action(TBD) to can be used to set password for the root user, after which
+`root` user can be used to login to the serial console and for further debugging
+(Note: `root` user will not be listed as user account in any interfaces like
+IPMI / REDFISH from user management point of view).
+
+### Deployment for systems without in-band interfaces:
+Any systems which doesn’t have in-band system interface can generate passwords
+uniquely for each & every device or can expose a default user name & password
+forcing end-user to update the same, before using the device (TBD).
