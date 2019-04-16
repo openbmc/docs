@@ -29,8 +29,8 @@ the main tool you use to interact with systemd and its units.
 When an OpenBMC system first has power applied, it starts the "default.target"
 unless an alternate target is specified on the kernel command line.  In
 Phosphor OpenBMC, there is a link from default.target to multi-user.target.
-Within Phosphor OpenBMC, obmc-standby.target is wanted by multi-user.target and
-is where you'll find all Phosphor services associated.
+
+You'll find all the phosphor services associated with multi-user.target.
 
 ## Server Power On
 When OpenBMC is used within a server, the [obmc-host-start@.target](https://github.com/openbmc/openbmc/blob/171031d20c7ed03900739d51ba53ad0001f98fa5/meta-phosphor/common/recipes-core/systemd/obmc-targets/obmc-host-start%40.target)
@@ -219,7 +219,6 @@ obmc-host-shutdown.target
 obmc-power-stop.target
   W: obmc-power-stop-pre.target
   A: obmc-power-stop-pre.target
-  W: obmc-standby.target
 
 obmc-power-stop-pre.target
   W: obmc-host-stopped.target
