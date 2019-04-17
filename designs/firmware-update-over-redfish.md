@@ -129,6 +129,39 @@ Setting the priority higher for an image will cause it to be activated
 automatically. The activation will involve a BMC reboot if the image was for the
 BMC.
 
+### Remote Image Download Based Update ###
+
+As noted above, Redfish supports a SimpleUpdate object under the UpdateService.
+The SimpleUpdate schema supports a variety of transfer protocols (CIFS, FTP,
+TFTP, ...). The existing back end of OpenBMC only supports TFTP so initially
+that is all that will be supported via Redfish on OpenBMC.
+
+The Redfish API takes a parameter, ImageURI, which contains both the server
+address information and the name of the file. The back end software manager
+interface on OpenBMC requires two parameters, the TFTP server address and the
+file name so there will be some parsing required.
+
+The pseudo flow for an update is:
+```
+# Discover SimpleUpdate URI Action location
+GET https://${bmc}/redfish/v1/UpdateService
+
+# Configure when the new image should be applied
+POST ApplyTime property in
+  UpdateService/HttpPushUriOptions->HttpPushUriApplyTime object
+  (Immediate or OnReset)
+
+# Request OpenBMC to download from TFTP server and activate the image
+POST https://${bmc}/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate
+    [ImageURI=<tftp server ip>/<file name>, TransferProtocol=TFTP]
+```
+
+TFTP is an insecure protocol. There is no username or password associated with
+it and no validation of the input URL. OpenBMC does have signed image support
+which is, by default, part of the update process. The user must have
+administration authority to request this update so it is assumed they know what
+they are doing and the level of security available with TFTP.
+
 ### Delete an Image
 No support for deleting an image will be provided (until the DMTF provides it).
 Want to reduce OEM interfaces and the ability to set priority will allow the
