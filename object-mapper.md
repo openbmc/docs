@@ -201,10 +201,11 @@ Find a parent object that implements a specific interface.
 
 Associations are special D-Bus objects created by the mapper to associate two
 objects with each other.  For this to occur, some application must implement
-the `org.openbmc.Associations` interface, and then when an association is
-desired, the `associations` property on that interface needs to be written.
+the `xyz.openbmc_project.Association.Definitions` interface, and then when an
+association is desired, the `Associations` property on that interface needs to
+be written.
 
-This `associations` property is an array of tuples of the form:
+This `Associations` property is an array of tuples of the form:
 ```
 [forward, reverse, object path]
 ```
@@ -236,6 +237,13 @@ These new objects will match the lifetime of the associated objects.
 For example, if `pathA` is deleted, then `pathA/foo` will also be deleted,
 and `pathA` will be removed from the endpoints property of `pathB/bar`.  If
 that was the last entry in that property, then `pathB/bar` will also be deleted.
+In addition, if the endpoint path is removed from D-Bus, in this case `pathB`,
+then the mapper will remove the 2 association paths until `pathB` shows back
+up again.
+
+Note: The original name of the association definition interface was
+`org.openbmc.Associations`. While the mapper still supports this interface as
+well for the time being, new code should use the `xyz` version.
 
 #### Example Use Case
 
