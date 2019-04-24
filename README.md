@@ -77,3 +77,4 @@ Technical Steering Committee
  * Sai Dasari, Facebook
  * James Mihm, Intel
  * Ali Larijani, Microsoft
+ * Supreeth Venkatesh, Arm
