@@ -30,7 +30,12 @@ To exit from a console, type:
     return ~ .
 
 Note that if you're on an ssh connection, you'll need to 'escape' the ~
-character, by entering it twice.
+character, by entering it twice:
+
+    return ~ ~ .
+
+This is because obmc-console-client is an ssh session, and a double `~` is
+required to escape the "inner" (obmc-console-client) ssh session.
 
 Logging
 -------
