@@ -88,12 +88,14 @@ The MCTP core specification just provides the packetisation, routing and
 addressing mechanisms. The actual transmit/receive of those packets is
 up to the hardware binding of the MCTP transport.
 
-For OpenBMC, we would introduce a "MCTP+applications" daemon, which
-implements the transport over a configurable hardware channel (eg.,
-Serial UART, I2C or PCI), and provides handlers for any incoming MCTP
-application requests. This daemon is responsible for the packetisation
-and routing of MCTP messages from external endpoints, and handling the
-application layer requests.
+For OpenBMC, we would introduce a MCTP daemon, which implements the transport
+over a configurable hardware channel (eg., Serial UART, I2C or PCIe), and
+provides a socket-based interface for other processes to send and
+receive complete MCTP messages. This daemon is responsible for the
+packetisation and routing of MCTP messages from external endpoints, and
+handling the forwarding these messages to and from individual handler
+applications. This includes handling local MCTP-stack configuration,
+like local EID assignments.
 
 This daemon has a few components:
 
@@ -102,11 +104,7 @@ This daemon has a few components:
  2) one or more binding implementations (eg, MCTP-over-serial), which
     interact with the hardware channel(s).
 
- 3) one or more MCTP message handlers (eg PLDM or NVME-MI), to handle incoming
-    MCTP messages of specific types
-
- 4) the core application, consisting of main loop, handler management and
-    MCTP binding management
+ 3) an interface to handler applications over a unix-domain socket.
 
 The proposed implementation here is to produce an MCTP "library" which
 provides the packetisation and routing functions, between:
@@ -142,25 +140,59 @@ implemented through read()/write() syscalls to a PTY device. An I2C
 binding for use in low-level host firmware environments may interact
 directly with hardware registers to perform packet transfers.
 
-The application-specific handlers (listed as (3) above) implement the
-actual functionality provided over the MCTP channel. Each of these would
-register with the MCTP core library to receive MCTP messages of a
-certain type, and would transmit MCTP messages of that same type. While
-the handlers themselves are out of scope for this design, there are a
-few elements that are important here:
+The application-specific handlers implement the actual functionality
+provided over the MCTP channel, and connect to the central daemon over a
+UNIX domain socket. Each of these would register with the MCTP daemon to
+receive MCTP messages of a certain type, and would transmit MCTP
+messages of that same type.
 
- - Handlers are likely to perform IO to other components of the BMC
-   (such as sending and receiving dbus messages). To allow multiple
-   handlers to co-exist, this IO should be implemented using
-   non-blocking interfaces (eg, using poll()).
+The daemon's sockets to these handlers is configured for non-blocking
+IO, to allow the daemon to be decoupled from any blocking behaviour of
+handlers. The daemon would use a message queue to enable message
+reception/transmission to a blocked daemon, but this would be of a
+limited size. Handlers whose sockets exceed this queue would be
+disconnected from the daemon.
 
- - Handlers should be implemented as separate components from the main
-   daemon, so as not to require completely separate functionality (such
-   as PLDM and NVME-MI) existing in the same codebase. Having the core
-   daemon load handlers as shared objects would allow this.
+One design intention of the multiplexer daemon is to allow a future
+kernel-based MCTP implementation without requiring major structural
+changes to handler applications. The socket-based interface facilitates
+this, as the unix-domain socket interface could be fairly easily swapped
+out with a new kernel-based socket type.
 
 MCTP is intended to be an optional component of OpenBMC. Platforms using
 OpenBMC are free to adopt it as they see fit.
+
+### Demultiplexer daemon interface
+
+MCTP handlers (ie, clients of the demultiplexer) connect using a
+unix-domain socket, at the abstract socket address:
+
+  \0mctp-demux
+
+The socket type used should be `SOCK_SEQPACKET`.
+
+Once connected, the client sends a single byte message, indicating what
+type of MCTP messages should be forwarded to the client. Types must be
+greater than zero.
+
+Subsequent messages sent over the socket are MCTP messages sent/received
+by the demultiplexer, that match the specified MCTP message type.
+Clients should use the send/recv syscalls to interact with the socket.
+
+Each message has a fixed small header:
+
+   `uint8_t eid`
+
+For messages coming from the demux daemon, this indicates the source EID
+of the outgoing MCTP message. For messages going to the demux daemon,
+this indicates the destination EID.
+
+The rest of the message data is the complete MCTP message, including
+MCTP message type field.
+
+The daemon does not provide a facility for clients to specify or
+retrieve values for the tag field in individual MCTP packets.
+
 
 ## Alternatives Considered
 
@@ -182,13 +214,22 @@ Redfish-over-MCTP channel (DSP0218), which uses simplified serialisation
 format and no requirement on HTTP. However, this may involve a large
 amount of complexity in host firmware.
 
-In terms of an MCTP daemon implementation, an alternative is to have the
-core MCTP stack exist in a different process from the application
-handlers. For example, the MCTP core could be only responsible for
-proxying MCTP messages to and from a dbus interface, as is currently
-done for IPMI messages. However, the complexity, messaging overheads and
-state management involved here has indicated that the added separation
-has not been a clear advantage.
+In terms of an MCTP daemon structure, an alternative is to have the
+MCTP implementation contained within a single process, using the libmctp
+API directly for passing messages from the core code to
+application-level handlers. The drawback of this approach is that this
+single process needs to implement all possible functionality that is
+available over MCTP, which may be quite a disjoint set. This would
+likely lead to unnecessary restrictions on the implementation of those
+application-level handlers (programming language, frameworks used, etc).
+Also, this single-process approach would likely need more significant
+modifications if/when MCTP protocol support is moved to the kernel.
+
+The interface between the demultiplexer daemon and clients is currently
+defined as a socket-based interface. However, an alternative here would
+be to pass MCTP messages over dbus instead. The reason for the choice of
+sockets rather than dbus is that the former allows a direct transition
+to a kernel-based socket API when suitable.
 
 ## Impacts
 
