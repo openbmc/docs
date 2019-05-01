@@ -76,5 +76,5 @@ Technical Steering Committee
  * Nancy Yuen, Google
  * Sai Dasari, Facebook
  * James Mihm, Intel
- * Ali Larijani, Microsoft
+ * Sagar Dharia, Microsoft
  * Supreeth Venkatesh, Arm
