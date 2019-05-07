@@ -1,14 +1,11 @@
-OpenBMC non-UBI Code Update
+OpenBMC Code Update
 ===================
 
-Two BMC Code Updates layouts are available:
-
- * Static, non-UBI layout - The default code update
-
- * UBI layout - enabled via obmc-ubi-fs machine feature
-
-This document describes the non-UBI, default code update. The UBI code update
-can be found here: [ubi-code-update.md](ubi-code-update.md)
+**Important Note:**
+* The REST APIs described below are deprecated.
+  Please follow [code-update.md](code-update.md) for the new APIs to do code
+  update.
+* The rest part of this document is still valid.
 
 The host code update can be found here:
 [host-code-update.md](host-code-update.md)
