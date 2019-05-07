@@ -1,202 +1,350 @@
-OpenBMC non-UBI Code Update
-===================
+OpenBMC UBI Code Update
+==============
 
 Two BMC Code Updates layouts are available:
 
  * Static, non-UBI layout - The default code update
 
- * UBI layout - enabled via obmc-ubi-fs machine feature
+ * UBI layout - enabled via `obmc-ubi-fs` distro feature
 
-This document describes the non-UBI, default code update. The UBI code update
-can be found here: [ubi-code-update.md](ubi-code-update.md)
+This document describes the UBI code update. The non-UBI code update can be
+found here: [code-update.md](code-update.md)
 
-The host code update can be found here:
-[host-code-update.md](host-code-update.md)
+### Steps to Update
 
+The following are the steps to update the BMC if the UBI layout is enabled.
+
+1. Get a UBI BMC image tar:
 After building OpenBMC, you will end up with a set of image files in
-`tmp/deploy/images/<platform>/`. The `image-*` symlinks correspond to components
-that can be updated on the BMC:
-
- * `image-bmc` → `obmc-phosphor-image-<platform>-<timestamp>.static.mtd`
-
-    The complete flash image for the BMC
-
- * `image-kernel` → `fitImage-obmc-phosphor-initramfs-<platform>.bin`
-
-    The OpenBMC kernel FIT image (including the kernel, device tree, and initramfs)
-
- * `image-rofs` → `obmc-phosphor-image-<platform>.squashfs-xz`
-
-    The read-only OpenBMC filesystem
-
- * `image-rwfs` → `rwfs.jffs2`
-
-    The read-write filesystem for persistent changes to the OpenBMC filesystem
-
- * `image-u-boot` → `u-boot.bin`
-
-    The OpenBMC bootloader
-
-Additionally, there are two tarballs created that can be deployed and unpacked by REST:
-
- * `<platform>-<timestamp>.all.tar`
-
-    The complete BMC flash content: A single file (`image-bmc`) wrapped in a
-    tar archive.
-
- * `<platform>-<timestamp>.tar`
-
-    Partitioned BMC flash content: Multiple files wrapped in a tar archive,
-    one for each of the u-boot, kernel, ro and rw partitions.
-
-Preparing for BMC code Update
------------------------------
-
-The BMC normally runs with the read-write and read-only file systems
-mounted, which means these images may be read (and written, for the
-read-write filesystem) at any time.  Because the updates are distributed
-as complete file system images, these filesystems have to be unmounted
-to replace them with new images.  To unmount these file systems all
-applications must be stopped.
-
-By default, an orderly `reboot` will stop all applications and unmount
-the root filesystem, and the images copied into the `/run/initramfs`
-directory will be applied at that point before restarting.  This also
-applied to the `shutdown` and `halt` commands -- they will write the
-flash before stopping.
-
-As an alternative, an option can be parsed by the `init` script in
-the initramfs to copy the required contents of these filesystems into
-RAM so the images can be applied while the rest of the application stack
-is running and progress can be monitored over the network.  The
-`update` script can then be called to write the images while the
-system is operational and its progress output monitored.
-
-Update from the OpenBMC shell
------------------------------
-
-To update from the OpenBMC shell, follow the steps in this section.
-
-It is recommended that the BMC be prepared for update (note that the
-environment variable needs to be set twice for initramfs be able to
-read it due to the U-Boot redundant environments):
-
-    fw_setenv openbmconce copy-files-to-ram copy-base-filesystem-to-ram
-    fw_setenv openbmconce copy-files-to-ram copy-base-filesystem-to-ram
-    reboot
-
-Copy one or more of these `image-*` files to the directory:
-
-    /run/initramfs/
-
-(preserving the filename), then run the `update` script to apply the images:
-
-    /run/initramfs/update
-
-then reboot to finish applying:
-
-    reboot
-
-During the reboot process, the `update` script will be invoked after
-the file systems are unmounted to complete the update process.
-
-Some optional features are available, see the help for more details:
-
-    /run/initramfs/update --help
-
-Update via REST
----------------
-
-An OpenBMC system can download an update image from a TFTP server, and apply
-updates, controlled via REST. The general procedure is:
-
- 1. Prepare system for update
- 2. Configure update settings
- 3. Initiate update
- 4. Check flash status
- 5. Apply update
- 6. Reboot the BMC
-
-### Prepare system for update
-
-Perform a POST to invoke the `PrepareForUpdate` method of the `/flash/bmc` object:
-
-    curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data":  []}' \
-        https://${bmc}/org/openbmc/control/flash/bmc/action/prepareForUpdate
-
-This will setup the u-boot environment and reboot the BMC.   If no other
-images were pending the BMC should return in about 2 minutes.
-
-
-### Configure update settings
-
-There are a few settings available to control the update process:
-
- * `preserve_network_settings`: Preserve network settings, only needed if updating the whole flash
- * `restore_application_defaults`: update (clear) the read-write file system
- * `update_kernel_and_apps`: update kernel and initramfs.
-                             If the partitioned tarball will be used for update then this option
-                             must be set. Otherwise, if the complete tarball will be used then
-                             this option must not be set.
- * `clear_persistent_files`: ignore the persistent file list when resetting applications defaults
- * `auto_apply`: Attempt to write the images by invoking the `Apply` method after the images are unpacked.
-
-To configure the update settings, perform a REST PUT to
-`/control/flash/bmc/attr/<setting>`. For example:
-
-    curl -b cjar -k -H "Content-Type: application/json" -X PUT \
-        -d '{"data": 1}' \
-        https://${bmc}/org/openbmc/control/flash/bmc/attr/preserve_network_settings
-
-### Initiate update
-
-Perform a POST to invoke the `updateViaTftp` method of the `/flash/bmc` object:
-
-    curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data": ["<TFTP server IP address>", "<filename>"]}' \
-        https://${bmc}/org/openbmc/control/flash/bmc/action/updateViaTftp
-
-Note the `<filename>` shall be a tarball.
-
-### Check flash status
-
-You can query the progress of the download and image verification with
-a simple GET request:
-
-    curl -b cjar -k https://${bmc}/org/openbmc/control/flash/bmc
-
-Or perform a POST to invoke the `GetUpdateProgress` method of the `/flash/bmc` object:
-
-    curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data": []}' \
-        https://${bmc}/org/openbmc/control/flash/bmc/action/GetUpdateProgress
-
-Note:
-
- * During downloading the tarball, the progress status is `Downloading`
- * After the tarball is downloaded and verified, the progress status becomes `Image ready to apply`.
-
-### Apply update
-If the status is `Image ready to apply.` then you can either initiate
-a reboot or call the Apply method to start the process of writing the
-flash:
-
-    curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data": []}' \
-        https://${bmc}/org/openbmc/control/flash/bmc/action/Apply
-
-Now the image is being flashed, you can check the progress with above steps command as well.
-
-* During flashing the image, the status becomes `Writing images to flash`
-* After it's flashed and verified, the status becomes `Apply Complete. Reboot to take effect.`
-
-### Reboot the BMC
-
-To start using the new images, reboot the BMC using the warmReset method
-of the BMC control object:
-
-    curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data": []}' \
-        https://${bmc}/org/openbmc/control/bmc0/action/warmReset
-
+`tmp/deploy/images/<platform>/`. `obmc-phosphor-image-<platform>.ubi.mtd.tar` is
+the UBI BMC tar image. The UBI BMC tar image contains 5 files: u-boot,
+kernel, ro, and rw partitions and the MANIFEST file, which contains information
+about the image such as the image purpose and version. A MANIFEST file might
+look like
+```
+purpose=xyz.openbmc_project.Software.Version.VersionPurpose.BMC
+version=v1.99.10
+```
+
+2. Transfer the generated UBI BMC image to the BMC via one of the following
+methods:
+  * Method 1: Via scp: Copy the generated UBI BMC image to the `/tmp/images/`
+    directory on the BMC.
+  * Method 2: Via REST Upload:
+  https://github.com/openbmc/docs/blob/master/rest-api.md#uploading-images
+  * Method 3: Via TFTP: Perform a POST request to call the `DownloadViaTFTP`
+    method of `/xyz/openbmc_project/software`.
+
+3. Note the version id generated for that image file. The version id is a hash
+value of 8 hexadecimal numbers, generated by SHA-512 hashing the version
+string contained in the image and taking the first 8 characters. Get the
+version id via one of the following methods:
+
+  * Method 1: From the BMC command line, note the most recent directory name
+    created under `/tmp/images/`, in this example it'd be `2a1022fe`:
+
+      ```
+      # ls -l /tmp/images/
+      total 0
+      drwx------    2 root     root            80 Aug 22 07:54 2a1022fe
+      drwx------    2 root     root            80 Aug 22 07:53 488449a2
+      ```
+
+  * Method 2: This method *only* works if there are no `Ready` images at the
+    start of transferring the image. Using the REST API, note the object that
+    has its Activation property set to Ready, in this example it'd be `2a1022fe`:
+
+      ```
+      $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/software/enumerate
+      {
+        "data": {
+          "/xyz/openbmc_project/software/2a1022fe": {
+            "Activation": "xyz.openbmc_project.Software.Activation.Activations.Ready",
+      ```
+
+ * Method 3: Calculate the version id beforehand from the image with:
+
+      ```
+      tar xfO <UBI BMC tar image> MANIFEST | sed -ne '/version=/ {s/version=//;p}' | head -n1 | tr -d '\n' | sha512sum | cut -b 1-8
+      ```
+
+
+4. To initiate the update, set the `RequestedActivation` property of the desired
+image to `Active`, substitute ``<id>`` with the hash value noted on the previous
+step, this will write the contents of the image to a UBI volume in the BMC chip
+via one of the following methods:
+
+  * Method 1: From the BMC command line:
+
+      ```
+      busctl set-property xyz.openbmc_project.Software.BMC.Updater \
+        /xyz/openbmc_project/software/<id> \
+        xyz.openbmc_project.Software.Activation RequestedActivation s \
+        xyz.openbmc_project.Software.Activation.RequestedActivations.Active
+
+      ```
+
+  * Method 2: Using the REST API:
+
+      ```
+      curl -b cjar -k -H "Content-Type: application/json" -X PUT \
+        -d '{"data":
+        "xyz.openbmc_project.Software.Activation.RequestedActivations.Active"}' \
+        https://${bmc}/xyz/openbmc_project/software/<id>/attr/RequestedActivation
+      ```
+
+5. (Optional) Check the flash progress. This interface is only available during
+the activation progress and is not present once the activation is completed
+via one of the following:
+
+  * Method 1: From the BMC command line:
+
+      ```
+      busctl get-property xyz.openbmc_project.Software.BMC.Updater  \
+        /xyz/openbmc_project/software/<id> \
+        xyz.openbmc_project.Software.ActivationProgress Progress
+      ```
+
+  * Method 2: Using the REST API:
+
+      ```
+      curl -b cjar -k https://${bmc}/xyz/openbmc_project/software/<id>/attr/Progress
+      ```
+
+6. Check that the activation is complete by verifying the "Activation" property
+is set to "Active" via one of the following methods:
+
+  * Method 1: From the BMC command line:
+
+      ```
+      busctl get-property xyz.openbmc_project.Software.BMC.Updater \
+        /xyz/openbmc_project/software/<id> \
+        xyz.openbmc_project.Software.Activation Activation
+      ```
+
+  * Method 2: Using the REST API:
+
+      ```
+      curl -b cjar -k https://${bmc}/xyz/openbmc_project/software/<id>
+      ```
+
+7. Reboot the BMC for the image to take effect.
+
+  * Method 1: From the BMC command line:
+
+      ```
+      reboot
+      ```
+
+  * Method 2: Using the REST API:
+
+      ```
+      curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
+          -d '{"data": "xyz.openbmc_project.State.BMC.Transition.Reboot"}' \
+          https://${bmc}/xyz/openbmc_project/state/bmc0/attr/RequestedBMCTransition
+      ```
+
+### Associations
+
+In addition to all software images, several associations are listed at
+`/xyz/openbmc_project/software/`:
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET  \
+    https://${bmc}/xyz/openbmc_project/software/
+{
+  "data": [
+    "/xyz/openbmc_project/software/46e65782",
+    "/xyz/openbmc_project/software/493a00ad",
+    "/xyz/openbmc_project/software/88c153b1",
+    "/xyz/openbmc_project/software/active",
+    "/xyz/openbmc_project/software/functional"
+  ],
+  "message": "200 OK",
+  "status": "ok"
+}
+```
+
+1. A "functional" association to the "running" BMC and host images
+
+There is only one functional association per BMC and one functional association per host.
+The functional/running BMC image is the BMC image with the lowest priority when
+rebooting the BMC. The functional image does not update until the BMC is rebooted.
+The functional host image behaves the same way except that it updates on a
+power on or reboot of the host.
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET \
+    https://${bmc}/xyz/openbmc_project/software/functional
+{
+  "data": {
+    "endpoints": [
+      "/xyz/openbmc_project/software/46e65782",
+      "/xyz/openbmc_project/software/493a00ad"
+    ]
+  },
+  "message": "200 OK",
+  "status": "ok"
+}
+```
+
+2. An "active" association to the active BMC and host images
+
+Note: Several BMC images might be active, this is true for the host images
+as well.
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET \
+    https://${bmc}/xyz/openbmc_project/software/active
+{
+  "data": {
+    "endpoints": [
+      "/xyz/openbmc_project/software/46e65782",
+      "/xyz/openbmc_project/software/493a00ad",
+      "/xyz/openbmc_project/software/88c153b1"
+    ]
+  },
+  "message": "200 OK",
+  "status": "ok"
+}
+```
+
+An additional association is located at `/xyz/openbmc_project/software/<id>/inventory`
+for "associating" a software image with an inventory item.
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET \
+   https://${bmc}/xyz/openbmc_project/software/493a00ad/inventory
+{
+  "data": {
+    "endpoints": [
+      "/xyz/openbmc_project/inventory/system/chassis/motherboard/boxelder/bmc"
+    ]
+  },
+  "message": "200 OK",
+  "status": "ok"
+}
+```
+
+To get all software images associated with an inventory item:
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET  \
+    https://${bmc}/xyz/openbmc_project/inventory/system/chassis/activation
+{
+  "data": {
+    "endpoints": [
+      "/xyz/openbmc_project/software/46e65782"
+    ]
+  },
+  "message": "200 OK",
+  "status": "ok"
+}
+```
+
+### MANIFEST File
+
+A file named "MANIFEST" must be included in any image tar uploaded, downloaded
+via TFTP, or copied to the BMC.
+
+The MANIFEST file format must be key=value (e.g. version=v1.99.10).
+It should include the following fields:
+
+* version - The version of the image
+* purpose - The image's purpose (e.g.
+xyz.openbmc_project.Software.Version.VersionPurpose.BMC or
+xyz.openbmc_project.Software.Version.VersionPurpose.Host). Accepted purpose
+values can be found at
+[Version interface](https://github.com/openbmc/phosphor-dbus-interfaces/blob/6f69ae5b33ee224358cb4c2061f4ad44c6b36d70/xyz/openbmc_project/Software/Version.interface.yaml)
+under "VersionPurpose" values.
+
+Other optional fields are:
+* extended_version - A more detailed version, which could include versions of
+different components in the image.
+
+### Deleting an Image
+
+To delete an image:
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" \
+    -X POST https://${bmc}/xyz/openbmc_project/software/<$id>/action/delete \
+    -d "{\"data\": [] }"
+```
+
+Note: The image must be non-functional ("non-running").
+
+To delete all non-functional images, whether BMC or host images:
+
+```
+curl -c cjar -b cjar -k -H "Content-Type: application/json" \
+    -X POST https://${bmc}/xyz/openbmc_project/software/action/deleteAll \
+    -d "{\"data\": [] }"
+```
+
+### Software Field Mode
+
+Field mode is meant for systems shipped from manufacturing to a customer.
+Field mode offers a way to provide security and ensure incorrect patches don't
+get loaded on the system by accident. The software implementation of the field
+mode interface disables patching of the BMC by not mounting `/usr/local`, which
+in turn disables host patching at `/usr/local/share/pnor/`.
+Enabling field mode is intended to be a one-way operation which means that once
+enabled, there is no REST API provided to disable it.
+
+Field mode can be enabled by running the following command:
+
+```
+curl -b cjar -k -H 'Content-Type: application/json' -X PUT -d '{"data":1}'  \
+    https://${bmc}/xyz/openbmc_project/software/attr/FieldModeEnabled
+
+```
+
+Although field mode is meant to be a one-way operation, it can be disabled
+by a user with admin privileges by running the following commands on the BMC:
+
+```
+fw_setenv fieldmode
+
+systemctl unmask usr-local.mount
+
+reboot
+```
+
+More information on field mode can be found here:
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/FieldMode.interface.yaml
+
+### Software Factory Reset
+
+Software factory reset resets the BMC and host firmware to its factory state
+by clearing out any read/write data.
+To software factory reset run the following command and then reboot the BMC:
+
+```
+curl -b cjar -k -H 'Content-Type: application/json' -X POST -d '{"data":[]}' \
+    https://${bmc}/xyz/openbmc_project/software/action/Reset
+
+```
+
+The factory reset on the BMC side will clear `/var`, `/home`, and `/etc`.
+On the host side, the factory reset will clear the read/write volume for each
+host image on the system, clear the shared preserve host volume, pnor-prsv, and
+clear any host patches located in `/usr/local/share/pnor/`.
+
+The factory reset interface can be found here:
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/02b39246d45ea029a1652a49cc20eab7723dd63b/xyz/openbmc_project/Common/FactoryReset.interface.yaml
+
+### Image Storage Location
+
+When a BMC image is activated (i.e. when "RequestedActivation" is set to "Active"),
+UBI volumes are created on the BMC chip for the image. The alternate BMC chip
+can also be used to store images. This is determined by "BMC_RO_MTD". Using both
+the alternate BMC chip and the BMC chip allows for multiple BMC images to be
+stored. By default, only the BMC chip is used. To use both, set "BMC_RO_MTD" to
+"alt-bmc+bmc".
+
+### Implementation
+
+More information about the implementation of the UBI code update can be found at
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Software
+and https://github.com/openbmc/phosphor-bmc-code-mgmt
