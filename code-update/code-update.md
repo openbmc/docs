@@ -1,23 +1,26 @@
-OpenBMC UBI Code Update
+OpenBMC Code Update
 ==============
 
-Two BMC Code Updates layouts are available:
+Two BMC Code layouts are available:
 
- * Static, non-UBI layout - The default code update
-
+ * Static, non-UBI layout
  * UBI layout - enabled via `obmc-ubi-fs` distro feature
 
-This document describes the UBI code update. The non-UBI code update can be
-found here: [code-update.md](code-update.md)
+This document describes the code update that supports both layouts.
 
 ### Steps to Update
 
-The following are the steps to update the BMC if the UBI layout is enabled.
+The following are the steps to update the BMC.
 
-1. Get a UBI BMC image tar:
+1. Get a BMC image tar:
 After building OpenBMC, you will end up with a set of image files in
-`tmp/deploy/images/<platform>/`. `obmc-phosphor-image-<platform>.ubi.mtd.tar` is
-the UBI BMC tar image. The UBI BMC tar image contains 5 files: u-boot,
+`tmp/deploy/images/<platform>/`.
+* The UBI layout image is
+   `obmc-phosphor-image-<platform>-<timestamp>.ubi.mtd.tar`
+* The static layout image is
+   `obmc-phosphor-image-<platform>-<timestamp>.static.mtd.tar`
+
+The BMC tar image contains 5 files: u-boot,
 kernel, ro, and rw partitions and the MANIFEST file, which contains information
 about the image such as the image purpose and version. A MANIFEST file might
 look like
@@ -26,9 +29,9 @@ purpose=xyz.openbmc_project.Software.Version.VersionPurpose.BMC
 version=v1.99.10
 ```
 
-2. Transfer the generated UBI BMC image to the BMC via one of the following
+2. Transfer the generated BMC image to the BMC via one of the following
 methods:
-  * Method 1: Via scp: Copy the generated UBI BMC image to the `/tmp/images/`
+  * Method 1: Via scp: Copy the generated BMC image to the `/tmp/images/`
     directory on the BMC.
   * Method 2: Via REST Upload:
   https://github.com/openbmc/docs/blob/master/rest-api.md#uploading-images
@@ -65,14 +68,14 @@ version id via one of the following methods:
  * Method 3: Calculate the version id beforehand from the image with:
 
       ```
-      tar xfO <UBI BMC tar image> MANIFEST | sed -ne '/version=/ {s/version=//;p}' | head -n1 | tr -d '\n' | sha512sum | cut -b 1-8
+      tar xfO <BMC tar image> MANIFEST | sed -ne '/version=/ {s/version=//;p}' | head -n1 | tr -d '\n' | sha512sum | cut -b 1-8
       ```
 
 
 4. To initiate the update, set the `RequestedActivation` property of the desired
 image to `Active`, substitute ``<id>`` with the hash value noted on the previous
-step, this will write the contents of the image to a UBI volume in the BMC chip
-via one of the following methods:
+step, this will write the contents of the image to the BMC chip via one of the
+following methods:
 
   * Method 1: From the BMC command line:
 
@@ -336,6 +339,18 @@ https://github.com/openbmc/phosphor-dbus-interfaces/blob/02b39246d45ea029a1652a4
 
 ### Image Storage Location
 
+#### Static layout
+
+When a BMC image is activated, each `image-<name>` is written to the BMC chip's
+partitions indicated by the `<name>`:
+
+- image-u-boot
+- image-kernel
+- image-rofs
+- image-rwfs
+
+#### UBI layout
+
 When a BMC image is activated (i.e. when "RequestedActivation" is set to "Active"),
 UBI volumes are created on the BMC chip for the image. The alternate BMC chip
 can also be used to store images. This is determined by "BMC_RO_MTD". Using both
@@ -345,6 +360,6 @@ stored. By default, only the BMC chip is used. To use both, set "BMC_RO_MTD" to
 
 ### Implementation
 
-More information about the implementation of the UBI code update can be found at
+More information about the implementation of the code update can be found at
 https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Software
 and https://github.com/openbmc/phosphor-bmc-code-mgmt
