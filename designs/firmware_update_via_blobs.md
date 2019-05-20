@@ -108,13 +108,27 @@ When a transfer is active, it'll create a blob_id of `/flash/active/image`
 and `/flash/active/hash`.
 
 The following blob id is always defined.  Its purpose is to trigger and
-monitor the firmware update process.  Therefore, the BmcBlobOpen command will
-fail until both the hash and image file are closed.  Further on the ideal
+monitor the firmware verification process.  Therefore, the BmcBlobOpen command
+will fail until both the hash and image file are closed.  Further on the ideal
 command sequence below.
 
 Trigger Blob   | Note
 -------------- | ----
 /flash/verify  | Verify Trigger Mechanism
+
+When the verification file is closed, if verification was completed without
+error, it delete the active blob ids, and set the state machine to update in
+progress.
+
+The update blob id is available once /flash/verify is closed with a valid image
+or tarball.  The update blob needs to be opened and commit() called on that
+blob id to trigger the update mechanism.
+
+The update process can be checked periodically by calling stat() on the update blob id.
+
+Update Blob   | Note
+------------- | ----
+/flash/update | Trigger Update Mechanism
 
 ### Caching Images
 
@@ -141,6 +155,10 @@ the transport mechanism selected. Some mechanisms require a handshake.
 1.  Commit
 1.  SessionStat (to read back verification status)
 1.  Close
+1.  Open (/fash/update)
+1.  Commit
+1.  SessionStat (to read back update status)
+1.  Close
 
 #### P2A Sequence
 
@@ -155,6 +173,10 @@ the transport mechanism selected. Some mechanisms require a handshake.
 1.  Open (/flash/verify)
 1.  Commit
 1.  SessionStat (to read back verification status)
+1.  Close
+1.  Open (/fash/update)
+1.  Commit
+1.  SessionStat (to read back update status)
 1.  Close
 
 #### LPC Sequence
@@ -172,6 +194,10 @@ the transport mechanism selected. Some mechanisms require a handshake.
 1.  Open (/flash/verify)
 1.  Commit
 1.  SessionStat (to read back verification status)
+1.  Close
+1.  Open (/fash/update)
+1.  Commit
+1.  SessionStat (to read back update status)
 1.  Close
 
 ### Stale Images
@@ -373,6 +399,29 @@ enum VerifyCheckResponses
     VerifyOther   = 0x03,
 };
 ```
+
+If called post-commit on the update file session, it'll return:
+
+```
+struct BmcBlobStatRx {
+    uint16_t crc16;
+    uint16_t blob_state; /* OPEN_W | (one of the interfaces) */
+    uint32_t size; /* Size in bytes so far written */
+    uint8_t  metadata_len; /* 1. */
+    uint8_t  update_response; /* one by from the below enum */
+};
+
+enum UpdateStatus
+{
+    UpdateRunning = 0x00,
+    UpdateSuccessful = 0x01,
+    UpdateFailed = 0x02,
+    UpdateStatusUnknown = 0x03
+};
+```
+
+The `UpdateStatus` and `VerifyCheckResponses` are currently identical, but this
+ may change over time.
 
 #### BmcBlobWriteMeta
 
