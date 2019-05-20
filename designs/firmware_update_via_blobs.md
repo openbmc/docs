@@ -40,8 +40,8 @@ The following statements are reflective of the initial requirements.
 
 *   Any update mechanism must provide support for UBI tarballs and legacy
     (static layout) flash images. Leveraging the BLOB protocol allows a system
-    to provide support for any image type simply by implementing a mechanism
-    for handling it.
+    to provide support for any image type simply by implementing a mechanism for
+    handling it.
 
 *   Any update mechanism must allow for triggering an image verification step
     before the image is used.
@@ -71,18 +71,25 @@ Sending the firmware image over the BLOB protocol will be done via routing the
 through a BLOB handler. This is meant to supplant `phosphor-ipmi-flash`'s
 current approach to centralize on one flexible handler.
 
+### Sequencing Control
+
+To enforce sequencing control, the design requires that only one blob be open at
+a time. If the verification blob is open, the other blobs cannot be opened, and
+likewise if a client has a data blob open, the verification blob cannot be
+opened.
+
 ### Defining Blobs
 
-The BLOB protocol allows a handler to specify a list of blob ids. This list
-will be leveraged to specify whether the platform supports either the legacy
-(static layout) or the UBI mechanism, or both. The flags provided to the open
-command identify the mechanism selected by the client-side.  The stat command
-will return the list of supported mechanisms for the blob.
+The BLOB protocol allows a handler to specify a list of blob ids. This list will
+be leveraged to specify whether the platform supports either the legacy (static
+layout) or the UBI mechanism, or both. The flags provided to the open command
+identify the mechanism selected by the client-side. The stat command will return
+the list of supported mechanisms for the blob.
 
 The blob ids for the mechanisms will be as follows:
 
 Flash Blob Id  | Type
--------------- | ------
+-------------- | -------------
 /flash/image   | Static Layout
 /flash/tarball | UBI
 
@@ -92,36 +99,58 @@ open.
 
 The following blob ids are defined for storing the hash for the image:
 
-Hash Blob           | Id Mechanism
-------------------- | ------------
-/flash/hash         | Static Layout or UBI
+Hash Blob   | Id Mechanism
+----------- | --------------------
+/flash/hash | Static Layout or UBI
 
 The flash handler will only allow one open file at a time, such that if the host
 attempts to send a firmware image down over IPMI BlockTransfer, it won't allow
 the host to start a PCI send until the BlockTransfer file is closed.
 
-There is only one hash "file" mechanism.  The exact hash used will only be
-important to your verification service.  The value provided will be written to
-a known place.
+There is only one hash "file" mechanism. The exact hash used will only be
+important to your verification service. The value provided will be written to a
+known place.
 
-When a transfer is active, it'll create a blob_id of `/flash/active/image`
-and `/flash/active/hash`.
+When a transfer is active, it'll create a blob_id of `/flash/active/image` and
+`/flash/active/hash`.
 
-The following blob id is always defined.  Its purpose is to trigger and
-monitor the firmware update process.  Therefore, the BmcBlobOpen command will
-fail until both the hash and image file are closed.  Further on the ideal
-command sequence below.
+#### Verification Blob
 
-Trigger Blob   | Note
--------------- | ----
-/flash/verify  | Verify Trigger Mechanism
+The following blob id is defined once the image or hash upload has started. Its
+purpose is to trigger and monitor the firmware verification process. Therefore,
+the BmcBlobOpen command will fail until both the hash and image file are closed.
+Further on the ideal command sequence below.
+
+Trigger Blob  | Note
+------------- | ------------------------
+/flash/verify | Verify Trigger Mechanism
+
+When the verification file is closed, if verification was completed
+successfully, it'll add an update blob id, defined below.
+
+The verification process used is not defined by this design.
+
+#### Update Blob
+
+The update blob id is available once /flash/verify is closed with a valid image
+or tarball. The update blob needs to be opened and commit() called on that blob
+id to trigger the update mechanism.
+
+The update process can be checked periodically by calling stat() on the update
+blob id.
+
+Update Blob   | Note
+------------- | ------------------------
+/flash/update | Trigger Update Mechanism
+
+The update process used is not defined by this design.
 
 ### Caching Images
 
 Similarly to the OEM IPMI Flash protocol, the flash image will be staged in a
 compile-time configured location.
 
-Other mechanisms can readily be added by adding more blob_ids or flags to the
+Other mechanisms can readily be added by adding more blob ids or flags to the
 handler.
 
 ### Commands
@@ -141,6 +170,10 @@ the transport mechanism selected. Some mechanisms require a handshake.
 1.  Commit
 1.  SessionStat (to read back verification status)
 1.  Close
+1.  Open (/flash/update)
+1.  Commit
+1.  SessionStat (to read back update status)
+1.  Close
 
 #### P2A Sequence
 
@@ -155,6 +188,10 @@ the transport mechanism selected. Some mechanisms require a handshake.
 1.  Open (/flash/verify)
 1.  Commit
 1.  SessionStat (to read back verification status)
+1.  Close
+1.  Open (/flash/update)
+1.  Commit
+1.  SessionStat (to read back update status)
 1.  Close
 
 #### LPC Sequence
@@ -173,17 +210,21 @@ the transport mechanism selected. Some mechanisms require a handshake.
 1.  Commit
 1.  SessionStat (to read back verification status)
 1.  Close
+1.  Open (/flash/update)
+1.  Commit
+1.  SessionStat (to read back update status)
+1.  Close
 
 ### Stale Images
 
 If an image update process is started but goes stale there are multiple
-mechanisms in place to ensure cleanup.  If a session is left open after the
-blob timeout period it'll be closed.  Because expiration is not the same action
-as closing, the cache will be flushed and any staged pieces deleted.
+mechanisms in place to ensure cleanup. If a session is left open after the blob
+timeout period it'll be closed. Because expiration is not the same action as
+closing, the cache will be flushed and any staged pieces deleted.
 
 The image itself, in legacy (static layout) mode will be placed and named in
-such a way that it will disappear if the BMC reboots.  In the UBI case, the
-file will be stored in `/tmp` and deleted accordingly.
+such a way that it will disappear if the BMC reboots. In the UBI case, the file
+will be stored in `/tmp` and deleted accordingly.
 
 At any point during the upload process, one can abort by closing the open blobs
 and deleting them by name.
@@ -219,13 +260,13 @@ mechanism, otherwise it is rejected. If the request is also set for reading,
 this is not rejected but currently provides no additional value.
 
 Once opened a new file will appear in the blob_id list (for both the image and
-hash) indicating they are in progress.  The name will be `flash/active/image`
-and `flash/active/hash` which has no meaning beyond representing the current
-update in progress.  Closing the file does not delete the staged images.  Only
-delete will.
+hash) indicating they are in progress. The name will be `flash/active/image` and
+`flash/active/hash` which has no meaning beyond representing the current update
+in progress. Closing the file does not delete the staged images. Only delete
+will.
 
-***Note*** The active image blob_ids cannot be opened.  This can be
-reconsidered later.
+***Note*** The active image blob_ids cannot be opened. This can be reconsidered
+later.
 
 #### BmcBlobRead
 
@@ -236,8 +277,8 @@ bytes.
 
 The write command's contents will depend on the transport mechanism. This
 command must not return until it has copied the data out of the mapped region
-into either a staging buffer or written down to a staging file.  How the
-command reads from the mapped region is beyond the scope of this design.
+into either a staging buffer or written down to a staging file. How the command
+reads from the mapped region is beyond the scope of this design.
 
 ##### If BT
 
@@ -270,16 +311,16 @@ struct ExtChunkHdr
 If this command is called on the session of the firmware image itself, nothing
 will happen at present. It will return a no-op success.
 
-If this command is called on the session for the hash image, nothing will
-happen at present.  It will return a no-op success.
+If this command is called on the session for the hash image, nothing will happen
+at present. It will return a no-op success.
 
-If this command is called on the session for the verify blob id, it'll trigger
-a systemd service `verify_image.service` to attempt to verify the image. Before
+If this command is called on the session for the verify blob id, it'll trigger a
+systemd service `verify_image.service` to attempt to verify the image. Before
 doing this, if the transport mechanism is not IPMI BT, it'll shut down the
 mechanism used for transport preventing the host from updating anything.
 
-When this is started, only the BmcBlobSessionStat command will respond.
-Details on that response are below under BmcBlobSessionStat.
+When this is started, only the BmcBlobSessionStat command will respond. Details
+on that response are below under BmcBlobSessionStat.
 
 #### BmcBlobClose
 
@@ -287,8 +328,8 @@ Close must be called on the firmware image and the hash file before opening the
 verify blob.
 
 If the `verify_image.service` returned success, closing the verify file will
-have a specific behavior depending on the update. If it's UBI, it'll perform
-the install. If it's legacy (static layout), it'll do nothing. The verify_image
+have a specific behavior depending on the update. If it's UBI, it'll perform the
+install. If it's legacy (static layout), it'll do nothing. The verify_image
 service in the legacy case is responsible for placing the file in the correct
 staging position. A BMC warm reset command will initiate the firmware update
 process.
@@ -297,18 +338,18 @@ If the image verification fails, it will automatically delete any files
 associated with the update.
 
 ***Note:*** During development testing, a developer will want to upload files
-that are not signed.  Therefore, an additional bit will be added to the flags
-to change this behavior.
+that are not signed. Therefore, an additional bit will be added to the flags to
+change this behavior.
 
 #### BmcBlobDelete
 
 Aborts any update that's in progress:
 
-1. Stops the verify_image.service if started.
-1. Deletes any staged files.
+1.  Stops the verify_image.service if started.
+1.  Deletes any staged files.
 
-In the event the update is already in progress, such as the tarball mechanism
-is used and in the middle of updating the files, it cannot be aborted.
+In the event the update is already in progress, such as the tarball mechanism is
+used and in the middle of updating the files, it cannot be aborted.
 
 #### BmcBlobStat
 
@@ -374,6 +415,29 @@ enum VerifyCheckResponses
 };
 ```
 
+If called post-commit on the update file session, it'll return:
+
+```
+struct BmcBlobStatRx {
+    uint16_t crc16;
+    uint16_t blob_state; /* OPEN_W | (one of the interfaces) */
+    uint32_t size; /* Size in bytes so far written */
+    uint8_t  metadata_len; /* 1. */
+    uint8_t  update_response; /* one by from the below enum */
+};
+
+enum UpdateStatus
+{
+    UpdateRunning = 0x00,
+    UpdateSuccessful = 0x01,
+    UpdateFailed = 0x02,
+    UpdateStatusUnknown = 0x03
+};
+```
+
+The `UpdateStatus` and `VerifyCheckResponses` are currently identical, but this
+may change over time.
+
 #### BmcBlobWriteMeta
 
 The write metadata command is meant to allow the host to provide specific
@@ -417,8 +481,8 @@ well as states and sequences.
 
 A required functional test is one whereby an image is sent down to the BMC,
 however the signature is invalid for that image. The expected result is that the
-verification step will return failure and the files will be deleted from the
-BMC without user intervention.
+verification step will return failure and the files will be deleted from the BMC
+without user intervention.
 
 #### Sending an image with a good hash
 
@@ -428,4 +492,5 @@ success.
 
 ## Configuration
 
-See the configuration section of [Secure Flash Update Mechanism](https://github.com/openbmc/phosphor-ipmi-flash/blob/master/README.md)
+See the configuration section of
+[Secure Flash Update Mechanism](https://github.com/openbmc/phosphor-ipmi-flash/blob/master/README.md)
