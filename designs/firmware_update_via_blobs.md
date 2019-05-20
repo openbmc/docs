@@ -108,9 +108,15 @@ When a transfer is active, it'll create a blob_id of `/flash/active/image`
 and `/flash/active/hash`.
 
 The following blob id is always defined.  Its purpose is to trigger and
-monitor the firmware update process.  Therefore, the BmcBlobOpen command will
-fail until both the hash and image file are closed.  Further on the ideal
+monitor the firmware verification process.  Therefore, the BmcBlobOpen command
+will fail until both the hash and image file are closed.  Further on the ideal
 command sequence below.
+
+When the verification file is closed, if verification was completed without
+error, it will trigger the update mechanism, delete the active blob ids, and
+reset the state machine.  It is possible for a client to attempt to trigger
+two updates sequentially, however, it is up to the client to avoid this case
+and the update mechanism to protect against this.
 
 Trigger Blob   | Note
 -------------- | ----
