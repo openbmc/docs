@@ -70,6 +70,7 @@ with what the existing OpenBMC REST api's provide.
     implemented by OpenBMC once approved. The existing API will continue to be
     supported within the Redfish specification so the OpenBMC 2.7 release will
     support this.
+  - Must provide status to user on their image during an update
 - Support a subset of ApplyTime (Immediate, OnReset)
 - Support a TFTP based SimpleUpdate
 
@@ -123,6 +124,24 @@ Note that the ApplyTime property will be processed by the software management
 stack at the end of the activation.
 Note that the ApplyTime property is global to all firmware update packages and
 will be used for all subsequent firmware update packages.
+
+### Status of an Image
+
+The user needs to know the status of their firmware images, especially during
+an update. The Task concept is still being defined within the DMTF and will
+provide the full status of an image during upload and activate.
+Using the Status object associated with the software inventory items will be
+used as a mechanism to provide status of inventory items back to the user.
+Here is the mapping of [phosphor activation states][13] to
+[Redfish Status States][14].
+```
+NotReady   -> UnavailableOffline
+Invalid    -> Disabled
+Ready      -> StandbyOffline
+Activating -> Updating
+Active     -> Enabled
+Failed     -> Disabled
+```
 
 ### Change the Priority of an Image
 
@@ -181,3 +200,5 @@ D-Bus API's mocked to ensure proper code coverage.
 [10]: https://github.com/DMTF/Redfish/issues/3357
 [11]: https://github.com/DMTF/Redfish/pull/3296
 [12]: https://github.com/DMTF/Redfish/pull/3420
+[13]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Software/Activation.interface.yaml
+[14]: http://redfish.dmtf.org/schemas/v1/Resource.json#/definitions/Status
