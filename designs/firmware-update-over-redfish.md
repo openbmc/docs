@@ -29,7 +29,8 @@ Some differences between the Redfish API and OpenBMC's existing API:
   an image with one API and then activating with another.
 - Redfish does not support multiple firmware images being associated with the
   same target. OpenBMC does have support for this concept (for example when a
-  target like the BMC has multiple flash chips associated with it)
+  target like the BMC has multiple flash chips associated with it). A discussion
+  has been started with the DMTF on this within [Issue 3357][10]
   - OpenBMC has the concept of a priority that allows a user to chose an
     image associated with a target for activation. This allows a user to easily
     switch back and forth between multiple images for a single target without
@@ -64,11 +65,14 @@ with what the existing OpenBMC REST api's provide.
   - Support BiosVersion under Systems/system
 - Support firmware update for all supported targets (BMC, BIOS) using existing
   Redfish API's (/redfish/v1/UpdateService)
+  - Note that after further discussion with the DMTF, the existing UpdateService
+    is considered to be OEM. [Issue 3296][11] addresses this and will be
+    implemented by OpenBMC once approved. The existing API will continue to be
+    supported within the Redfish specification so the OpenBMC 2.7 release will
+    support this.
 - Support a subset of ApplyTime (Immediate, OnReset)
 - Support a TFTP based SimpleUpdate
   - This must be configurable (enable/disable) via compile option within bmcweb
-- Support an OEM (or get upstream to DMTF) to select the priority of an existing
-  image associated with a target
 
 ### Future Requirements
 
@@ -78,6 +82,10 @@ will be required before these requirements are implemented. They are here to
 ensure nothing in the base design would inhibit the ability to implement these
 later.
 
+- Support new concept defined in [PR 3420][12] to be able to support multiple
+  firmware images for a single target.
+- Support new UpdateService firmware update implementation defined in
+  [Issue 3296][11]
 - Support firmware update for other targets (power supplies, voltage regulators,
   ...)
 - Support to update multiple targets with the same firmware image at once
@@ -125,10 +133,14 @@ to a system, written to flash chip 0, and activated. If another image is
 uploaded, it will be written to flash chip 1 and activated. The first image
 still exists in flash chip 0 and could be re-activated by the user.
 
-A new OpenBMC OEM property will be created, "Priority" under the UpdateService.
-Setting the priority higher for an image will cause it to be activated
-automatically. The activation will involve a BMC reboot if the image was for the
-BMC.
+As defined in DMTF issue [3357][10], use the ActiveSoftwareImage concept within
+the Redfish Settings object to allow the user to select the image to activate
+during the next activation window. Internally OpenBMC has the concept of a
+priority being assigned to each image associated with a target. OpenBMC firmware
+will continue to do this, but will simply set the "ActiveSoftwareImage" image to
+priority 0 (highest) to ensure it is activated during the next activation
+window. After setting the priority to 0, the software manager automatically
+updates the priority of the other images as needed.
 
 ### Remote Image Download Based Update ###
 
@@ -169,9 +181,11 @@ bmcweb repository for details).
 
 ### Delete an Image
 No support for deleting an image will be provided (until the DMTF provides it).
-Want to reduce OEM interfaces and the ability to set priority will allow the
-user to select which image is replaced upon a new update request. The lowest
-priority image will be automatically deleted when a new one is updated.
+When new images are uploaded, they by default have no priority. When they are
+activated, they are given the highest priority and all other images have their
+priority updated as needed. When no more space is available in flash filesystem,
+the lowest priority image will be deleted when a new one is uploaded and
+activated.
 
 ## Alternatives Considered
 Could simply create Redfish OEM api's that look like OpenBMC's current custom
@@ -204,3 +218,6 @@ D-Bus API's mocked to ensure proper code coverage.
 [7]: https://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/update_service.hpp
 [8]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Software/README.md
 [9]: https://github.com/openbmc/openbmc-test-automation
+[10]: https://github.com/DMTF/Redfish/issues/3357
+[11]: https://github.com/DMTF/Redfish/pull/3296
+[12]: https://github.com/DMTF/Redfish/pull/3420
