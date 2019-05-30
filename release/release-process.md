@@ -60,6 +60,22 @@ release milestone.
 How the release freeze will be done with regard to freeze and branch
 immediately or to freeze and test, branching on the release date is still TBD.
 
+The [security working group][] should provide guidance to the
+community about security aspects of the planned release.  The idea is
+to provide input for the release notes and actionable advice to the
+[test work group][].
+
+The [test work group][] should indicate what testing was performed and
+the results of that testing.
+
+Contributors should continue to improve the [Changelog][] for use as
+source material for the [Release Notes][].
+
+[security working group]: https://github.com/openbmc/openbmc/wiki/Security-working-group
+[test work group]: https://github.com/openbmc/openbmc/wiki/Test-work-group
+[Changelog]: https://github.com/openbmc/openbmc/wiki/Changelog
+[Release Notes]: https://github.com/openbmc/docs/blob/master/release/release-notes.md
+
 #### Release
 The release milestone is the release date. It is defined as happening some
 time within a targeted release week. It is desired to have the release happen
@@ -71,6 +87,8 @@ The release date is a fixed time frame and cannot be moved. If a feature is
 not done by the freeze milestone, then it will not be in that release, it will
 have to be included in the next release cycle. The release date will not float
 out until the feature is complete.
+
+The updated [Release Notes][] should be merged into the project.
 
 ## Release Content
 
