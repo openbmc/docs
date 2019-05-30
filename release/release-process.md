@@ -109,6 +109,23 @@ Work groups can be formal or not depending on the work needing to be done and
 the community member style. They can consist of email to the list or formal
 weekly meetings via IRC or call to discuss designs and progress.
 
+#### Security Working Group
+The [security working group][] should provide guidance to the
+community about security aspects of the planned release.  This can
+happen around code freeze.  The guidance should be transmitted to the
+community email list.  The guidance can cover, for example:
+ - Removing broken ciphers and other evolving standards.
+ - Newly implemented or modified security features.
+ - Significant newly discovered security vulnerabilities.
+
+The idea is to provide input for the release notes and actionable
+advice to the [test work group][].  Ideally test groups will report
+findings to the community which confirm security functions work as
+intended.
+
+[security working group]: https://github.com/openbmc/openbmc/wiki/Security-working-group
+[test work group]: https://github.com/openbmc/openbmc/wiki/Test-work-group
+
 ### Backlog
 The backlog is simply the proposed release features that did not make the
 release plan. They will be additional input for the next release cycle. They
