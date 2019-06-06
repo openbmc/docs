@@ -1,8 +1,11 @@
-# OpenBMC State Management and Redfish
+# OpenBMC State Management and External Interfaces
 
 Author: Andrew Geissler (geissonator)
 
 Primary assignee: Andrew Geissler (geissonator)
+
+Other contributors:
+  Jason Bills (jmbills)
 
 Created: Jan 22, 2020
 
@@ -15,6 +18,8 @@ design is to get that support more complete.
 
 Please note that the focus of this document is on the following `ResetType`
 instance: `redfish/v1/Systems/system/Actions/ComputerSystem.Reset`
+
+This support will also map to the existing IPMI Chassis Control command.
 
 ## Background and References
 
@@ -35,6 +40,8 @@ Currently phosphor-state-manager supports the following:
   - Host: On/Off/Reboot
 
 The `Reboot` to the host currently causes a power cycle to the chassis.
+
+### Redfish
 
 The Redfish [ResetType][1] has the following operations associated with it:
 ```
@@ -69,10 +76,19 @@ The Redfish [ResetType][1] has the following operations associated with it:
 },
 ```
 
-Certain concepts in this proposal were also within the
-[IPMI and Redfish chassis control design ][4]. That design
-is mostly focused on the Chassis side of things but the two designs could
-potentially be merged into one.
+### IPMI
+
+The IPMI specification defines a Chassis Control Command with a chassis
+control parameter as follows:
+
+| Option | Description |
+| --- | --- |
+| power down | Force system into soft off (S4/S45) state. This is for ‘emergency’ management power down actions. The command does not initiate a clean shut-down of the operating system prior to powering down the system. |
+| power up |  |
+| power cycle | This command provides a power off interval of at least 1 second following the deassertion of the system’s POWERGOOD status from the main power subsystem. It is recommended that no action occur if system power is off (S4/S5) when this action is selected, and that a D5h “Request parameter(s) not supported in present state.” error completion code be returned. |
+| hard reset | In some implementations, the BMC may not know whether a reset will cause any particular effect and will pulse the system reset signal regardless of power state. |
+| pulse Diagnostic Interrupt | Pulse a version of a diagnostic interrupt that goes directly to the processor(s). This is typically used to cause the operating system to do a diagnostic dump (OS dependent). |
+| Initiate a soft-shutdown of OS |  |
 
 ## Requirements
 
@@ -124,6 +140,20 @@ To summarize the new Redfish to xyz.openbmc_project.State.* mappings:
   - If host on: `xyz.openbmc_project.State.Host.Transition.Reboot`
   - If host off: `xyz.openbmc_project.State.Chassis.Transition.PowerCycle`
 
+The full mapping of Redfish and IPMI to xyz.openbmc_project.State.* is as
+follows:
+
+| Redfish | IPMI | xyz.openbmc_project.State.Transition |
+| --- | --- | --- |
+| ForceOff | power down | Chassis.Off |
+| ForceOn | power up | Host.On |
+| ForceRestart | hard reset | Host.ForceWarmReboot |
+| GracefulRestart |  | Host.GracefulWarmReboot |
+| GracefulShutdown | soft off | Host.Off |
+| On | power up | Host.On |
+| PowerCycle (host on) | power cycle | Host.Reboot |
+| PowerCycle (host off) |  | Chassis.PowerCycle |
+
 ## Alternatives Considered
 
 No other alternatives considered.
@@ -133,6 +163,9 @@ No other alternatives considered.
 Existing interfaces will be kept the same. Some changes in x86-power-control
 would be needed to ensure the bmcweb mappings work as expected with the new
 interfaces.
+
+Some changes in phosphor-host-ipmid would be needed to support the new state
+transitions.
 
 ## Testing
 
