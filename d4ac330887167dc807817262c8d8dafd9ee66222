@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76e2e597_9704332a",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-06-10T15:45:21Z",
+      "side": 1,
+      "message": "Add: How a Web agent connects to the BMC.  Options:\n A. Web agent connects directly to the BMC (specifically BMCWeb) from where it downloads the Web app; the web app creates a session to the BMC, and makes REST API calls directly to the BMC.   This is the canonical use case.\n B. Web agent connects to a server (specifically BMCWeb running with BMCWEB_INSECURE_DISABLE_CSRF_PREVENTION, but not necessarily running on the target BMC) from where it downloads Web app, then gets a session directly to a BMC, and makes REST API calls directly to the BMC.  This is a classic setup in a cross site scripting attack.\n C. Are there other configurations?  At the 2019-06-10 community call we discussed the idea of enhancing OpenBMC to support: Web agent connects to the BMC from where it downloads Web app, then gets a session directly from that BMC, and makes REST API calls directly to that BMC.  But those requests are forwarded to another BMC.",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
