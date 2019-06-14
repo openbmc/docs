@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9791cb97_bc1aac62",
+        "filename": "security_modes_design_doc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-06-14T10:35:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9502d2d9_d3654637",
+      "revId": "8d03c74feb043e67dd01ffd80896c6e54bca3103",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d12afe3e_9436d669",
         "filename": "security_modes_design_doc.md",
         "patchSetId": 1
@@ -76,6 +94,54 @@
         "startChar": 55,
         "endLine": 34,
         "endChar": 65
+      },
+      "revId": "8d03c74feb043e67dd01ffd80896c6e54bca3103",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e785f830_51dec257",
+        "filename": "security_modes_design_doc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-06-14T10:35:06Z",
+      "side": 1,
+      "message": "More than admin authority actually. Recommendation is not to provide any commands directly to update this value, but instead updating these using special privileges, which will be available during debug / validation etc.",
+      "parentUuid": "80ce06e1_2eb780bf",
+      "range": {
+        "startLine": 34,
+        "startChar": 55,
+        "endLine": 34,
+        "endChar": 65
+      },
+      "revId": "8d03c74feb043e67dd01ffd80896c6e54bca3103",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c72f2ab4_22600ffd",
+        "filename": "security_modes_design_doc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-06-14T10:35:06Z",
+      "side": 1,
+      "message": "Yes. We will not store this value, reason being to return back to original state after some operations are done.\n\nNote: We can enter to this mode in automatic manner too, say based on certificate / key we can assume we are in manufacturing mode or using some other condition, but that condition will be evaluated for every boot.\nOr it  can be something like setting the value through busctl through SSH",
+      "parentUuid": "d12afe3e_9436d669",
+      "range": {
+        "startLine": 34,
+        "startChar": 36,
+        "endLine": 34,
+        "endChar": 50
       },
       "revId": "8d03c74feb043e67dd01ffd80896c6e54bca3103",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
