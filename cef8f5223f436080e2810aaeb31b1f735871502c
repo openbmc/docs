@@ -2,6 +2,333 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba09212c_9ec63834",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "nitpick: U-Boot if you want to change, https://en.wikipedia.org/wiki/Das_U-Boot",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 8
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "030035b9_efdc9702",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "nitpick: move the to? or maybe \n\"Some OpenBMC applications require access to U-Boot environmental variables.\" ?",
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4bf1859_fe94dcb6",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "nitpick: As there is no D-Bus interface to access U-Boot environmental variables?\n\nMaybe\n\"Since there is no D-Bus interface to access U-Boot environmental variables, OpenBMC applications are forced to read or write the variables using the fw_printenv or fw_setenv tools.\"",
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7975250a_21b808ac",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "repeat of the above if you want to remove or shorten.",
+      "range": {
+        "startLine": 19,
+        "startChar": 41,
+        "endLine": 21,
+        "endChar": 69
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad683d5f_6f1c2e3a",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "Could move this sentence above or shorten, mostly a repeat. \n\nMaybe rewrite this paragraph like\n\n## Background and References\n\t\nU-Boot environmental variables are used during firmware update and to preserve data during a factory reset. Since, no D-Bus interface exists these applications call the fw_printenv or fw_setenv tools directly and handle the output.",
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "281b7b9f_b774c7e8",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "Maybe \"Expose a D-Bus interface method to read all U-Boot environment variables and return them in a dictionary form.\" ?",
+      "range": {
+        "startLine": 27,
+        "startChar": 3,
+        "endLine": 29,
+        "endChar": 5
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a140f8d_876b9a33",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "Nitpick: Provide a method to write U-Boot environment variables",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 30,
+        "endChar": 26
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b65d193_1cabfe7f",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "nitpick: don\u0027t capitalize",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 9
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d87cfec6_cb880350",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "Does UBoot fit more with what is here now, https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project ?",
+      "range": {
+        "startLine": 36,
+        "startChar": 46,
+        "endLine": 36,
+        "endChar": 52
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00baaf81_71cfd5b6",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "3 D-Bus methods ?",
+      "range": {
+        "startLine": 37,
+        "startChar": 15,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9804895a_20a79d11",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "Can you have a new line before 1, so \"1. ReadAllVariables\" will be on a new line?\nI use https://jbt.github.io/markdown-editor/ to test",
+      "range": {
+        "startLine": 37,
+        "startChar": 22,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdf3a407_0a97d83d",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "Can you have a new line before 2 so \"2. ReadVarible\" will be on its own line ?",
+      "range": {
+        "startLine": 38,
+        "startChar": 57,
+        "endLine": 38,
+        "endChar": 58
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2114411_04efd083",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "nitpick: as a string, and return the data as a string.",
+      "range": {
+        "startLine": 39,
+        "startChar": 31,
+        "endLine": 39,
+        "endChar": 71
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f539cf2_68bc81f2",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "space before which",
+      "range": {
+        "startLine": 40,
+        "startChar": 18,
+        "endLine": 40,
+        "endChar": 24
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a229bcef_b34ec6fe",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "variable ?",
+      "range": {
+        "startLine": 41,
+        "startChar": 43,
+        "endLine": 41,
+        "endChar": 47
+      },
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4414032d_a09ce312",
         "filename": "designs/u-boot-env-mgr.md",
         "patchSetId": 2
@@ -31,6 +358,29 @@
       "side": 1,
       "message": "yes will check the same.\nNote: Will push our the first patch set which i have, which \nstill uses the fw_setenv / fw_printenv tools and execute it by fork, instead of calling it as library. But thought that we can make progress in that and fixing the interface properly to start with",
       "parentUuid": "4414032d_a09ce312",
+      "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01ad4409_cbea292b",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2019-06-18T15:46:03Z",
+      "side": 1,
+      "message": "nitpick: doesn\u0027t read quite right. \nMaybe something like\n\"This requires an interface to be defined, a daemon to be implemented, and the applications currently using the U-Boot environment variables to move over to this new interface.\"",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 31
+      },
       "revId": "cef8f5223f436080e2810aaeb31b1f735871502c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
