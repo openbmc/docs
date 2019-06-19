@@ -88,10 +88,10 @@ the list of supported mechanisms for the blob.
 
 The blob ids for the mechanisms will be as follows:
 
-Flash Blob Id  | Type
--------------- | -------------
-/flash/image   | Static Layout
-/flash/tarball | UBI
+Flash Blob Id    | Type
+---------------- | -------------
+`/flash/image`   | Static Layout
+`/flash/tarball` | UBI
 
 The flash handler will determine what commands it should expect to receive and
 responses it will return given the blob opened, based on the flags provided to
@@ -99,9 +99,9 @@ open.
 
 The following blob ids are defined for storing the hash for the image:
 
-Hash Blob   | Id Mechanism
------------ | --------------------
-/flash/hash | Static Layout or UBI
+Hash Blob     | Id Mechanism
+------------- | --------------------
+`/flash/hash` | Static Layout or UBI
 
 The flash handler will only allow one open file at a time, such that if the host
 attempts to send a firmware image down over IPMI BlockTransfer, it won't allow
@@ -121,9 +121,9 @@ purpose is to trigger and monitor the firmware verification process. Therefore,
 the BmcBlobOpen command will fail until both the hash and image file are closed.
 Further on the ideal command sequence below.
 
-Trigger Blob  | Note
-------------- | ------------------------
-/flash/verify | Verify Trigger Mechanism
+Trigger Blob    | Note
+--------------- | ------------------------
+`/flash/verify` | Verify Trigger Mechanism
 
 When the verification file is closed, if verification was completed
 successfully, it'll add an update blob id, defined below.
@@ -139,9 +139,9 @@ id to trigger the update mechanism.
 The update process can be checked periodically by calling stat() on the update
 blob id.
 
-Update Blob   | Note
-------------- | ------------------------
-/flash/update | Trigger Update Mechanism
+Update Blob     | Note
+--------------- | ------------------------
+`/flash/update` | Trigger Update Mechanism
 
 The update process used is not defined by this design.
 
@@ -163,14 +163,14 @@ the transport mechanism selected. Some mechanisms require a handshake.
 1.  Open (for Image or tarball)
 1.  Write
 1.  Close
-1.  Open (/flash/hash)
+1.  Open (`/flash/hash`)
 1.  Write
 1.  Close
-1.  Open (/flash/verify)
+1.  Open (`/flash/verify`)
 1.  Commit
 1.  SessionStat (to read back verification status)
 1.  Close
-1.  Open (/flash/update)
+1.  Open (`/flash/update`)
 1.  Commit
 1.  SessionStat (to read back update status)
 1.  Close
@@ -181,15 +181,15 @@ the transport mechanism selected. Some mechanisms require a handshake.
 1.  SessionStat (P2A Region for P2A mapping)
 1.  Write
 1.  Close
-1.  Open (/flash/hash)
+1.  Open (`/flash/hash`)
 1.  SessionStat (P2A Region)
 1.  Write
 1.  Close
-1.  Open (/flash/verify)
+1.  Open (`/flash/verify`)
 1.  Commit
 1.  SessionStat (to read back verification status)
 1.  Close
-1.  Open (/flash/update)
+1.  Open (`/flash/update`)
 1.  Commit
 1.  SessionStat (to read back update status)
 1.  Close
@@ -201,16 +201,16 @@ the transport mechanism selected. Some mechanisms require a handshake.
 1.  SessionStat (verify the contents from the above)
 1.  Write
 1.  Close
-1.  Open (/flash/hash)
+1.  Open (`/flash/hash`)
 1.  WriteMeta (LPC Region)
 1.  SessionStat (verify LPC config)
 1.  Write
 1.  Close
-1.  Open (/flash/verify)
+1.  Open (`/flash/verify`)
 1.  Commit
 1.  SessionStat (to read back verification status)
 1.  Close
-1.  Open (/flash/update)
+1.  Open (`/flash/update`)
 1.  Commit
 1.  SessionStat (to read back update status)
 1.  Close
