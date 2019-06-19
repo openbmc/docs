@@ -145,6 +145,29 @@ Update Blob     | Note
 
 The update process used is not defined by this design.
 
+#### Cleanup Blob
+
+The cleanup blob id is always present.  The goal of this blob is to handle
+deletion of update artifacts on failure, or success.  It can be implemented to
+do any manner of cleanup required, but for systems under memory pressure, it is
+a convenient cleanup mechanism.
+
+The cleanup blob has no state or knowledge and is meant to provide a simple
+system cleanup mechanism.  This could also be accomplished by warm rebooting
+the BMC.  The cleanup blob will delete a list of files.  The cleanup blob has
+no state recognition for the update process, and therefore can interfere with
+an update process.  The host tool will only use it on failure cases.  Any other
+tool developed should respect this and not employ it unless the goal is to
+cleanup artifacts.
+
+To trigger the cleanup, simply open the blob, commit, and close.  It has no
+knowledge of the update process.  This simplification is done through the
+design of a convenience mechanism instead of a required mechanism.
+
+Cleanup Blob     | Note
+---------------- | -------------------------
+`/flash/cleanup` | Trigger Cleanup Mechanism
+
 ### Caching Images
 
 Similarly to the OEM IPMI Flash protocol, the flash image will be staged in a
