@@ -33,6 +33,78 @@ The hash value in the service name is used to give the service a unique
 and stable name.  It is a decimal number that is obtained by hashing
 characteristics of the device it is monitoring using std::hash().
 
+## Redfish
+
+The [BMCWeb Redfish][10] support returns information about sensors.  The
+support depends on two types of [ObjectMapper associations][11] to find the
+necessary sensor information on D-Bus.
+
+### Association Type #1: Linking a chassis to all sensors within the chassis
+
+Sensors are grouped by chassis in Redfish.  An ObjectMapper association is used
+to link a chassis to all the sensors within the chassis.  This includes the
+sensors for all hardware that is considered to be within the chassis.  For
+example, a chassis might contain two fan sensors, an ambient temperature
+sensor, and a VRM output voltage sensor.
+
+#### D-Bus object paths
+
+The association links the following D-Bus object paths together:
+* Chassis inventory item object path
+* List of sensor object paths for sensors within the chassis
+
+#### Association names
+* "all_sensors"
+  * Contains the list of all sensors for this chassis
+* "chassis"
+  * Contains the chassis associated with this sensor
+
+#### Example associations
+* /xyz/openbmc_project/inventory/system/chassis/all_sensors
+  * "endpoints" property contains
+    * /xyz/openbmc_project/sensors/fan_tach/fan0_0
+    * /xyz/openbmc_project/sensors/fan_tach/fan0_1
+    * /xyz/openbmc_project/sensors/temperature/ambient
+    * /xyz/openbmc_project/sensors/voltage/p0_vdn_voltage
+* /xyz/openbmc_project/sensors/fan_tach/fan0_0/chassis
+  * "endpoints" property contains
+    * /xyz/openbmc_project/inventory/system/chassis
+
+### Association Type #2: Linking a low-level hardware item to its sensors
+
+A sensor is usually related to a low-level hardware item, such as a fan, power
+supply, VRM, or CPU.  The Redfish sensor support can obtain the following
+information from the related hardware item:
+* Presence ([Inventory.Item interface][12])
+* Functional state ([OperationalStatus interface][13])
+* Manufacturer, Model, PartNumber, SerialNumber ([Decorator.Asset interface][14])
+
+For this reason, an ObjectMapper association is used to link a low-level
+hardware item to its sensors.  For example, a processor VRM could have
+temperature and output voltage sensors, or a dual-rotor fan could have
+two tach sensors.
+
+#### D-Bus object paths
+
+The association links the following D-Bus object paths together:
+* Low-level hardware inventory item object path
+* List of sensor object paths for sensors related to that hardware item
+
+#### Association names
+* "sensors"
+  * Contains the list of sensors for this low-level hardware item
+* "inventory"
+  * Contains the low-level hardware inventory item for this sensor
+
+#### Example associations
+* /xyz/openbmc_project/inventory/system/chassis/motherboard/fan0/sensors
+  * "endpoints" property contains
+    * /xyz/openbmc_project/sensors/fan_tach/fan0_0
+    * /xyz/openbmc_project/sensors/fan_tach/fan0_1
+* /xyz/openbmc_project/sensors/fan_tach/fan0_0/inventory
+  * "endpoints" property contains
+    * /xyz/openbmc_project/inventory/system/chassis/motherboard/fan0
+
 ## Development Details
 
 Sensor properties are standardized based on the type of sensor.  A Threshold
@@ -413,3 +485,8 @@ Mailing List [Comments on Sensor design][9]
 [7]: https://github.com/openbmc/openbmc/tree/master/meta-openbmc-machines
 [8]: https://github.com/openbmc/openbmc/blob/master/meta-openbmc-machines/meta-openpower/meta-ibm/meta-palmetto/recipes-phosphor/sensors/phosphor-hwmon%25/obmc/hwmon/ahb/apb/i2c%401e78a000/i2c-bus%40c0/tmp423%404c.conf
 [9]: https://lists.ozlabs.org/pipermail/openbmc/2016-November/005309.html
+[10]: https://github.com/openbmc/bmcweb/blob/master/DEVELOPING.md#redfish
+[11]: https://github.com/openbmc/docs/blob/master/object-mapper.md#associations
+[12]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Inventory/Item.interface.yaml
+[13]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml
+[14]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Inventory/Decorator/Asset.interface.yaml
