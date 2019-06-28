@@ -58,6 +58,15 @@ commands for OpenBMC usage.
     $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/system/LogServices/EventLog/Actions/LogService.Reset
     ```
 
+* Firmware ApplyTime:
+    ```
+    $ curl -k -H "X-Auth-Token: $bmc_token" -X PATCH -d '{ "ApplyTime":"Immediate"}' https://${bmc}/redfish/v1/UpdateService
+    ```
+
+    ```
+    $ curl -k -H "X-Auth-Token: $bmc_token" -X PATCH -d '{ "ApplyTime":"OnReset"}' https://${bmc}/redfish/v1/UpdateService
+    ```
+
 * Firmware update:
     ```
     $ curl -k -H "X-Auth-Token: $bmc_token" -H "Content-Type: application/octet-stream" -X POST -T <image file path> https://${bmc}/redfish/v1/UpdateService
