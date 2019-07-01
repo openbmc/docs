@@ -52,7 +52,7 @@ These entities may be any element of the platform that communicates
 over MCTP - for example, the host device, the BMC, or any other
 system peripheral - static or hot-pluggable.
 
-This document is focussed on the "transport" part of the platform design.
+This document is focused on the "transport" part of the platform design.
 While this does enable new messaging protocols (mainly PLDM), those
 components are not covered in detail much; we will propose those parts
 in separate design efforts. For example, the PLDM design at

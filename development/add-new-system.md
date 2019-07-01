@@ -626,7 +626,7 @@ The fan control service requires 4 yaml configuration files:
    ```
 * `events-config` defines the various events and its handlers, e.g. which fan
    targets shall be set in which temperature.
-   This config is a bit complicated, the [exmaple event yaml][17] provides
+   This config is a bit complicated, the [example event yaml][17] provides
    documents and examples.
    Romulus example:
    ```

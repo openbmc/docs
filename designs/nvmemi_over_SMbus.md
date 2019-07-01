@@ -48,7 +48,7 @@ The implementation should:
 
 Create a D-bus service "xyz.openbmc_project.nvme.manager" with object paths for
 each NVMe sensor: "/xyz/openbmc_project/sensors/temperature/nvme0",
-"/xyz/openbmc_project/sensors/temperature/nvme1", ect.
+"/xyz/openbmc_project/sensors/temperature/nvme1", etc.
 There is a JSON configuration file for drive index, bus ID, and the fault LED
 object path for each drive.
 For example,

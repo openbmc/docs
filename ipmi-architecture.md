@@ -36,7 +36,7 @@ channels and the IPMI queue.
                 :                                             |     |
      /-------------------------\                              |     |
      | Active session/SOL Objs | <---------Query the session-/      |
-     | - Properities           |           and SOL data via Dbus    |
+     | - Properties            |           and SOL data via Dbus    |
      \-------------------------/                                    |
                                                                     V
                                                      ---------------------\
