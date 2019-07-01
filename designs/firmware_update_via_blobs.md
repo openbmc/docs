@@ -1,4 +1,4 @@
-# In-Band Update of BMC Firmware using OEM IPMI Blob Transport
+# In-Band Update of BMC Firmware (and others) using OEM IPMI Blob Transport
 
 Author: Patrick Venture <venture!>
 
@@ -92,16 +92,22 @@ Flash Blob Id    | Type
 ---------------- | -------------
 `/flash/image`   | Static Layout
 `/flash/tarball` | UBI
+`/flash/bios`    | Host BIOS image
 
 The flash handler will determine what commands it should expect to receive and
 responses it will return given the blob opened, based on the flags provided to
 open.
 
+The flash handler will only allow one of the above blobs to be opened for a
+sequence of commands, such that you cannot open `/flash/image` and then open
+`/flash/bios` without completing (or later aborting) the first update process
+started.
+
 The following blob ids are defined for storing the hash for the image:
 
 Hash Blob     | Id Mechanism
 ------------- | --------------------
-`/flash/hash` | Static Layout or UBI
+`/flash/hash` | Whichever flash blob was opened
 
 The flash handler will only allow one open file at a time, such that if the host
 attempts to send a firmware image down over IPMI BlockTransfer, it won't allow
