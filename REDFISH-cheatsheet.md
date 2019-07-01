@@ -72,4 +72,14 @@ commands for OpenBMC usage.
     $ curl -k -H "X-Auth-Token: $bmc_token" -H "Content-Type: application/octet-stream" -X POST -T <image file path> https://${bmc}/redfish/v1/UpdateService
     ```
 
+* Firmware update via TFTP:
+    ```
+    curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate -d '{"TransferProtocol":"TFTP","ImageURI":"<image file path>"}'
+    ```
+
+* Firmware update via ImageURI:
+    ```
+    curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate -d '{"ImageURI":"<tftp url image path>"}'
+    ```
+
 [1]: https://www.dmtf.org/standards/redfish
