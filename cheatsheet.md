@@ -52,13 +52,11 @@ If the system you want to build contains different machine configurations:
     meta-<layer>/meta-<system>/conf/machine/machineB.conf
 
 You can specify the machine configuration you want to build by setting the
-MACHINE environment variable. Then add `MACHINE` to the BB_ENV_EXTRAWHITE
-environment variable to make the new MACHINE value available to BitBake:
+MACHINE environment variable.
 
     $ cd openbmc
     $ TEMPLATECONF=meta-<layer>/meta-<system>/conf . openbmc-env
     $ export MACHINE="machineB"
-    $ export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE MACHINE"
     $ bitbake obmc-phosphor-image
 
 ## Building the OpenBMC SDK
