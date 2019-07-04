@@ -144,6 +144,24 @@
     },
     {
       "key": {
+        "uuid": "f72b87b3_06d4db58",
+        "filename": "designs/security-modes-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-07-04T08:13:01Z",
+      "side": 1,
+      "message": "RestrictionMode (should be HostIntfRestrictionMode but can\u0027t rename this now.) affects the commands executed through Host interface. \n1. Install a new BMC and turn it on (It can be default in provisioning - allowing all system interface commands) (or can be in any other mode, as desired by the vendor).\n2. Boot the host(power button), configure all the things needed, included users (if needed), and update the RestrictionMode property to a new mode (ProvionedHostWhitelist or ProvisionedHostDisabled). Going forward, system interface commands will be restricted based on this setting.",
+      "parentUuid": "22138b1a_3f071a15",
+      "revId": "3f99499198de87df829b51eadf9f9a21c379cd12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f07de445_7d35a9c9",
         "filename": "designs/security-modes-design.md",
         "patchSetId": 2
@@ -155,6 +173,30 @@
       "writtenOn": "2019-06-20T23:02:02Z",
       "side": 1,
       "message": "It may be worth mentioning that if no network users are created before leaving provisioning mode, provisioning is now locked out because only authenticated network sessions may be used to re-enter provisioning mode (same would apply if only admin user were to forget his credentials). In this case a method would be provided where the system owner could demonstrate ownership or physical presence with a jumper setting, etc. to enable a KCS command to re-enter provisioning mode.",
+      "range": {
+        "startLine": 65,
+        "startChar": 9,
+        "endLine": 65,
+        "endChar": 71
+      },
+      "revId": "3f99499198de87df829b51eadf9f9a21c379cd12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6af003f2_8847925a",
+        "filename": "designs/security-modes-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-07-04T08:13:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f07de445_7d35a9c9",
       "range": {
         "startLine": 65,
         "startChar": 9,
