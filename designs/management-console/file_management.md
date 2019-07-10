@@ -1,0 +1,189 @@
+# File Management through the REST interface.
+Author: Ratan Gupta <ratagupt@linux.vnet.ibm.com>
+
+Primary assignee: Ratan Gupta
+
+Created: 2019-07-10
+
+## Problem Description
+
+Each partition data will be saved as config file in the BMC file system.
+
+Partition data is not being stored on the host firmware due to
+the following reason:
+- host firmware doesn't have storage
+- host firmware doesn't have interfaces to manage the files.
+
+In a fully configured system, there can be 1000 partitions which will require
+an equal number of partition config files. The BMC should provide the interface
+for CRUD (create/read/update/delete) operations for config files.
+
+BMC should notify other management consoles which are connected to the BMC
+in case if there is any change in the partition files.
+
+This shall be done via asynchronous event handling mechanisms.
+
+BMC doesn't need to understand or parse these files, BMC will act as a storage
+for the config files.
+
+OpenBMC is moving to [Redfish] as its standard for out of band management.
+Redfish does not have the schema for file management, this is a IBM requirement.
+
+#### Use cases:
+
+- When the virtualization firmware is down, the management console needs to
+  create the logical partitions on a destination system using the
+  configuration details stored in the config files.
+
+- Restore configuration using the config files when the system is in an error
+  state. The system may have up to 1,000 configuration that need to be restored.
+
+The goal of this document is to define the REST interfaces for the files.
+
+
+## Requirements
+- BMC shall provide 15MB reserved space for the config files.
+- Individual config file size can not be more than 200KB.
+- list of all the config files.
+- read a specific config file.
+- delete a specific config file.
+- create/update of the config file.
+- Send the event notification to the connected clients(MC) for
+  creation/deletion/updation of the config file.
+
+## Rest Interfaces
+
+### List of all the config files
+The following interface would list all the config files.
+```
+GET https://${bmc}/ibm/v1/Host/ConfigFiles/
+```
+- Success – The JSON response with 200 OK status. The data field will
+  contain the objects which represents the config files.
+```
+{
+  "Members": ["ibm/v1/Host/ConfigFiles/<filename>",
+                 "ibm/v1/Host/ConfigFiles/<filename>",
+                 ...],
+}
+```
+- Failure – The JSON response with 4xx or 5xx status. The message field
+  will contain the failure reason description. For example :
+```
+{
+  {
+    "Description": "No JSON object could be decoded"
+  },
+}
+```
+### Create/upload the config file
+The following interface would create/upload the config file.
+```
+PUT https://${bmc}/ibm/v1/Host/ConfigFiles/<filename> <filedata as octet
+stream>
+```
+We have two ways:
+
+- Make this blocking API, and returns once it writes the file
+                  or
+- Return it immediately saying that operation in progress, then
+  send the event once the file has been created.
+
+
+As the individual file can not be more than 200KB so go with first
+approach for simplicity, return error if the file size is greater
+then 200KB.
+
+- Success – The JSON response with 200 OK status.
+```
+{
+
+    "Description": "File created"
+
+}
+```
+- Failure – The JSON response with 4xx or 5xx status. The message field will
+  contain the failure reason description. For example :
+```
+{
+    "Description": "No JSON object could be decoded"
+}
+```
+### Delete the config file
+Deletion of config file will be supported and it will be initiated
+by the connected client by issuing the following request.
+```
+DELETE https://${bmc}/ibm/v1/Host/ConfigFiles/<filename>
+```
+This will delete the config file from the persistent location.
+
+- Success – The JSON response with 200 OK status.
+```
+{
+    "Description": "File deleted"
+
+}
+```
+- Failure – The JSON response with 4xx or 5xx status. The message field will
+  contain the failure reason description. For example :
+```
+{
+    "Description": "No JSON object could be decoded"
+}
+```
+### Read the config file
+Partition file can be read by the following request.
+```
+GET https://${bmc}/ibm/v1/Host/ConfigFiles/<filename>
+```
+- Success – The JSON response with 200 OK status. The data field will contain
+  the actual file data.
+```
+{
+  "Data": "<actual file data>",
+}
+```
+- Failure – The JSON response with 4xx or 5xx status. The message field will
+  contain the failure reason description. For example :
+```
+{
+    "Description": "No JSON object could be decoded"
+}
+```
+## Proposed Design
+
+The proposal here is to at the startup of the bmcweb,
+- some module in bmcweb will monitor the location having these files
+- Send the Redfish notification to the connected clients
+  about the config file updates.
+
+## List the config files:
+Write the functionality as part of bmcweb route handling.
+- Iterate over the location having the files.
+- Prepare a rest response which has a list of the config files.
+
+## Read the config file
+Write the functionality as part of bmcweb route handling.
+- Verify the file exist.
+- Read the file from the persistent location and send
+  it as part of the response.
+
+## Delete the config file
+Write the functionality as part of bmcweb route handling.
+- Verify the file exist.
+- Delete the file from the persistent location.
+
+## Alternatives Considered
+The following alternative designs were considered:
+
+### create separate D-Bus app to do CRUD operations on the config files
+
+An application would provide the D-Bus interfaces to
+- Read the config file.
+- Write the config file.
+- Create/update the config file.
+- Delete the config file(DeleteFile(fileName))
+
+Cons of above approach:
+- Too many D-BUS object for config files.
+- There is no IPC required so creation of D-bus object is not required.
