@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f0caa51c_aee76a9d",
+        "filename": "designs/vmi-ip-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-07-11T06:28:30Z",
+      "side": 1,
+      "message": "we should not keep the file in /etc/systemd/network. This is the location where systemd keeps the network configuration.\nWe can use the /var/lib/ path for the host network configuration, currecntly we are keeping it over there.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "43fb411e5a63f56e6d71d141ce66e76b6ec75200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "097d3f42_e4405f9c",
         "filename": "designs/vmi-ip-config.md",
         "patchSetId": 1
@@ -18,6 +41,168 @@
         "startChar": 0,
         "endLine": 50,
         "endChar": 85
+      },
+      "revId": "43fb411e5a63f56e6d71d141ce66e76b6ec75200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90605648_2c4c8fc7",
+        "filename": "designs/vmi-ip-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-07-11T06:28:30Z",
+      "side": 1,
+      "message": "Computer system schema have the ethernet interfaces, which represens the ethernet interfaces for the system.\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nEthernetInterfaces\t\n$ref\t\"http://redfish.dmtf.org/schemas/v1/EthernetInterfaceCollection.json#/definitions/EthernetInterfaceCollection\"\ndescription\t\"A reference to the collection of Ethernet interfaces associated with this system.\"\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d",
+      "parentUuid": "097d3f42_e4405f9c",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 85
+      },
+      "revId": "43fb411e5a63f56e6d71d141ce66e76b6ec75200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d7c43eb_4e413f95",
+        "filename": "designs/vmi-ip-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-07-11T06:28:30Z",
+      "side": 1,
+      "message": "we can have single GET commnad for the above.",
+      "range": {
+        "startLine": 87,
+        "startChar": 1,
+        "endLine": 153,
+        "endChar": 1
+      },
+      "revId": "43fb411e5a63f56e6d71d141ce66e76b6ec75200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83dd8d0f_d6b031fb",
+        "filename": "designs/vmi-ip-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-07-11T06:28:30Z",
+      "side": 1,
+      "message": "How do we create the VMI interfaces? what would be the interface name? Are we hardcoding the interface names? \n\nwhich application would create the D-bus object for the VMI interface?\n\nCurrently, in BMC, phosphor-settings-manager creates the host network object so hardcoded the interface and the IP address, but in e-BMC we may have multiple NCSI interfaces.",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 81
+      },
+      "revId": "43fb411e5a63f56e6d71d141ce66e76b6ec75200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b93c5f4e_a47593a3",
+        "filename": "designs/vmi-ip-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-07-11T06:28:30Z",
+      "side": 1,
+      "message": "Do we need to mention the MACaddress and the EthernetInterface here?",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 109
+      },
+      "revId": "43fb411e5a63f56e6d71d141ce66e76b6ec75200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5ae8b70_3c2d38ce",
+        "filename": "designs/vmi-ip-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-07-11T06:28:30Z",
+      "side": 1,
+      "message": "This is a PATCH request, why the action is there in the URL? I am hoping it should have been like below.\n\ncurl -c cjar -b cjar -k -H \"Content-Type: application/json\" -H \"X-Auth-Token: $bmc_token -X PATCH \nhttps://${bmc}/xyz/openbmc_project/network/host0/eth0/ipv4/\u003cobjectId -d ‘{“data”: [\"xyz.openbmc_project.Network.IP.Protocol.IPv4/IPv6\", \"address\", \"gateway\",\"prefixlength\"]}’",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 69
+      },
+      "revId": "43fb411e5a63f56e6d71d141ce66e76b6ec75200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7ffe4f2_3ecba3dc",
+        "filename": "designs/vmi-ip-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-07-11T06:28:30Z",
+      "side": 1,
+      "message": "At line no-171 we were using the PATCH request to update the properties and here we are having the PUT request for updating the DHCP enabled property.",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 96
+      },
+      "revId": "43fb411e5a63f56e6d71d141ce66e76b6ec75200",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d73bc37_741cefc7",
+        "filename": "designs/vmi-ip-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-07-11T06:28:30Z",
+      "side": 1,
+      "message": "Currently, in BMC, phosphor-settings-manager creates the host network object which is consumed by the host through IPMI.\nNow in ebmc where there could be multiple NCSI interfaces, how we are planning to handle this?",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 98
       },
       "revId": "43fb411e5a63f56e6d71d141ce66e76b6ec75200",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
