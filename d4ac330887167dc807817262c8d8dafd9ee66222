@@ -632,6 +632,23 @@
     },
     {
       "key": {
+        "uuid": "8e81312a_5514c0ec",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-07-12T15:18:55Z",
+      "side": 1,
+      "message": "Add: Firmware update use cases.\nOrganizations may use OpenBMC to create one stable release, and another newer stable release, and have BMC admins perform [code update](https://github.com/openbmc/docs/blob/master/code-update/code-update.md) to update their systems.\n\nAlternative use cases:\n- No firmware update is supported.  (Example: must re-flash to update)\n- Replace the entire firmware image (and clear any read-write file systems).\n- Replace the entire read-only firmware image but leave read-write overlays (overlayfs).\n- All of these require the BMC to reboot.\n\nOrganizations may restrict code update to supported paths have been designed and tested together.  Here are some considerations:\n- Code update from an older to a newer release.\n- Code update from a newer to an older release (downgrade).\n- Code update to the same release, for example, to fix a corrupted image.\n- The BMC may have a mechanism to prevent unsupported updates.\n- An update may be safe to perform while the BMC\u0027s host continues to run, or it may require the BMC\u0027s host be stopped to perform safely.\n- Code update to an inappropriate release, for example, for a different model BMC.  Note that this may be detected when the firmware\u0027s digital signature is validated (provided different signing keys are used for BMCs intended for different hosts).",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5f9c4939_0ec1aad5",
         "filename": "security/threat-model-considerations.md",
         "patchSetId": 1
