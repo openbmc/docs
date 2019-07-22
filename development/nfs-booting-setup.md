@@ -1,0 +1,42 @@
+﻿# NFS booting steps for Aspeed AST2400 platform
+
+**Document Purpose:** How to setup NFS booting for AST2400 in OpenBMC 
+
+**Audience:** Programmer familiar with AST2400 platform and OpenBMC
+
+**Prerequisites:** Completed Development Environment Setup
+
+## Overview
+
+1. **Set /tftpboot server:**  
+sudo chmod -R 777 /tftpboot  
+sudo chown –R nobody /tftpboot
+
+2. **Convert created zImage format to uImage**  
+mkimage -A arm -O linux -T kernel -C none -a 0x40008000 -e 0x40008000 \
+-n "Linux kernel" \
+-d tmp/work/olympus-openbmc-linux-gnueabi/linux-obmc/[ver]+gitAUTOINC+[tag]-r0/linux-olympus-standard-build/arch/arm/boot/zImage uImage
+
+3. **Copy uImage and aspeed-bmc-opp-palmetto.dtb to /tftpboot**
+
+4. **Set  nfs server /etc/exports as to:**  
+/home/  *(rw,sync,no_root_squash)
+
+5. **Boot to uboot, using following commands to get BMC ip address:**  
+setenv ethaddr  
+setenv eth1addr  
+setenv ethact FTGMAC100#0  
+dhcp   
+
+6. **Set bootargs as below:**  
+setenv bootargs root=/dev/nfs rw nfsroot=< nfsserverip >:< rootfs path > 
+ip=< BMC ip >:< nfs serverip >:< gateway ip >:< netmask > console=ttyS4,115200  
+For example:  
+setenv bootargs root=/dev/nfs rw nfsroot=172.16.99.98:/root/openbmc/build/tmp/work/olympus-openbmc-linux-gnueabi/obmc-phosphor-image/1.0-r0/rootfs ip=172.16.97.231:172.16.99.98:172.16.96.1:255.255.248.0 console=ttyS4,115200
+
+7. **Load the uImage and dtb files of platform to the RAM:**  
+tftp 0x41700000 aspeed-bmc-opp-palmetto.dtb; tftp 0x42000000 uImage;
+
+8. **Use the bootm command to boot from the loaded uImage:**  
+bootm  0x42000000 - 0x41700000
+
