@@ -269,6 +269,63 @@
       "revId": "9fd4d7a48dff001f683358d0e8e0d3b27efc8443",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "55938624_8aad1c3b",
+        "filename": "designs/metrics.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-07-23T09:08:37Z",
+      "side": 1,
+      "message": "So we have something that are collected by \u0027collectd\u0027 and stored somewhere -and- some that are collected via \u0027librrd\u0027 and stored in RRD files. \n\nSorry, but I am missing something here.. Are these rrd files bridged back to collectd somehow ?. I thought collectd will aggregate all.\n\nIf not, we will have rrd files stored by collectd and rrd files stored by daemons. How do we operate with these ?\n\nAlso, is it necessary to store collectd metric as RRD files ?. I have seen a lot of comments about IO-hell associated with RRD.",
+      "revId": "9fd4d7a48dff001f683358d0e8e0d3b27efc8443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0e18775_f19516a5",
+        "filename": "designs/metrics.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-07-23T09:08:37Z",
+      "side": 1,
+      "message": "Does it mean the implementation need to have protobuf enabled ?.. How are the systems not using the protobuf use this ?.\n\nFor example: How will a host send some via PLDM / IPMI OEM ?",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 9
+      },
+      "revId": "9fd4d7a48dff001f683358d0e8e0d3b27efc8443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd7d5427_c3f623b2",
+        "filename": "designs/metrics.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-07-23T09:08:37Z",
+      "side": 1,
+      "message": "Should we also weigh-in StatsD ?",
+      "revId": "9fd4d7a48dff001f683358d0e8e0d3b27efc8443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
