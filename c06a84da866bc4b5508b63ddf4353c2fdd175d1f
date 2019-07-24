@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9ad44ff1_8c21528b",
+        "filename": "designs/redfish-telemetry-interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-07-24T23:14:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc6a9dc2_c47e0a58",
+      "range": {
+        "startLine": 5,
+        "startChar": 17,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa6c5cfc_69401f96",
         "filename": "designs/redfish-telemetry-interface.md",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "573b03bd_73eaf6c7",
+        "filename": "designs/redfish-telemetry-interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-07-24T23:14:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa6c5cfc_69401f96",
+      "range": {
+        "startLine": 12,
+        "startChar": 33,
+        "endLine": 12,
+        "endChar": 43
+      },
+      "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "51fe11f9_be7de44d",
+        "filename": "designs/redfish-telemetry-interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-07-24T23:14:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffb9eb41_4e8cafd5",
+      "range": {
+        "startLine": 14,
+        "startChar": 66,
+        "endLine": 14,
+        "endChar": 79
+      },
+      "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "806db6ff_8d07a8ab",
         "filename": "designs/redfish-telemetry-interface.md",
         "patchSetId": 1
@@ -87,6 +159,76 @@
         "startChar": 68,
         "endLine": 42,
         "endChar": 13
+      },
+      "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c44be1aa_1ea62715",
+        "filename": "designs/redfish-telemetry-interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-07-24T23:14:17Z",
+      "side": 1,
+      "message": "The filter algorithm is specified in the CalculationAlgorithm property which is\nan Enum in Redfish.  Unfortunately, you cannot add oem values to an Enum.\nCurrently, only Average, Minimum, and Maximum  is defined in the enum.\nWe can add more filters to Redfish -- they take additional enum values easily.\nI think Redfish should also add \"OEM\" to the CalculationAlgorithm property, and\nthen support a consistent way to specify an OemCalculationAlgorithm property\nsimilar to how OEM Custom Privileges were done.\nIn the current model, you would just leave the filter undefined which is not good.\nAs I look at the model, I\u0027m finding several issues like this that can be fixed quickly.",
+      "parentUuid": "806db6ff_8d07a8ab",
+      "range": {
+        "startLine": 41,
+        "startChar": 68,
+        "endLine": 42,
+        "endChar": 13
+      },
+      "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7df15b7e_edbc137f",
+        "filename": "designs/redfish-telemetry-interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-07-24T23:14:17Z",
+      "side": 1,
+      "message": "Correction here:  The Metric Report Definition can fully define what is in the report.\nIt can specify: \n 1) a list of any properties in the Redfish model (standard or oem properties),\n 2) calculated properties where the result is not stored as a property\n     (such as max CPU temp over all cpus for the day)\n 3) and it \"can\" define an array of \"oem MetricIds with values\" \n(where the only thing that tells a client what the data means is the MetricId\n which could be described in some other oem document.)\n\nSo think about MetricDefinitions as (primarily) additional metadata that describes\nmetric report properties (even if they are in the standard model) for a \nclient to understand data returned in the report better, and how to display or\nuse the data (eg units, range, isLinear, etc)",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 11
+      },
+      "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0709e3f8_2cf4a0bb",
+        "filename": "designs/redfish-telemetry-interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-07-24T23:14:17Z",
+      "side": 1,
+      "message": "Regarding whether to create sensors / properties for any metric data we want to send out:\n - As I noted, Redfish currently does not require this,\n - Some companies wanted to require it, and will implement oem properties for any\n   metric data they return in a report.\n - Some companies were strongly against requiring properties and will send reports that \n   include data along the lines of \"3)\" above.  \n - So the model accommodates both. \n - Long-term, this may change. \n\nLikewise, Redfish does not require ANY MetricDefinitions. \n - MetricDefinitions are additional metadata for clients.\n - the metric report definition (it turns out) does NOT identify properties based on the\n   MetricDefinition Id (or link) in the MetricDefinitionsCollection.  \n    -The Report Definition only references Redfish Properties, or allows the\n      implementation to just send data out under a made-up MetricId (\"3)\" avove).\n\nWe should have discussion on this and decide what the OpenBMC model should be.\n - At first, I was thinking it is more Redfish-like to define any data included in a\n   Metric Report in the MetricDefinitions Collection, and then let the\n   MetricReportDefinition just reference the MetricDefinition Ids.\n - This is do-able, but it turns-out that the MetricIds used by MetricReportDefinition \n   are not (necessarily) (or required to be) (unfortunately) mapped to\n   the MetricDefinitions.\n - It looks like the most clean to understand (and probably most inter-operable) \n   (and probably the most testable and debug-able) implementation is to make any \n   metrics that are included in a report a Redfish property.\n   Could be a standard property or oem property anywhere in the schema\n    - This would make it easy to access the data with http GET independent of \n      the logging and Push implementation\n - It likely will make integration with backend collectd easier.\n   -- if the backend saves any collected data in Dbus, the Redfish frontend \n      could handle the logging and pushing",
+      "range": {
+        "startLine": 62,
+        "startChar": 33,
+        "endLine": 62,
+        "endChar": 34
       },
       "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -117,6 +259,53 @@
     },
     {
       "key": {
+        "uuid": "6eb83525_244c7ad4",
+        "filename": "designs/redfish-telemetry-interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-07-24T23:14:17Z",
+      "side": 1,
+      "message": "should be AveConsumedWatts  \nDone",
+      "parentUuid": "9f3be74f_f2eb3a1c",
+      "range": {
+        "startLine": 146,
+        "startChar": 17,
+        "endLine": 146,
+        "endChar": 22
+      },
+      "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98faff42_3bc00379",
+        "filename": "designs/redfish-telemetry-interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-07-24T23:14:17Z",
+      "side": 1,
+      "message": "See my long comment in background.\nIf we save collected data in DBus, Redfish could more easily model any data in the \nreports as a Redfish property and could get whatever data it wanted from DBus to include\nin the report based on the MetricReportDefinition JSON file.  \nCollectd could be saving more or less than Redfish supports and things could still work.",
+      "range": {
+        "startLine": 361,
+        "startChar": 1,
+        "endLine": 362,
+        "endChar": 38
+      },
+      "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee604ad4_1e1cba7d",
         "filename": "designs/redfish-telemetry-interface.md",
         "patchSetId": 1
@@ -140,6 +329,30 @@
     },
     {
       "key": {
+        "uuid": "5e8d6937_95dd1ee3",
+        "filename": "designs/redfish-telemetry-interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-07-24T23:14:17Z",
+      "side": 1,
+      "message": "I see you listed several options in the connectd design",
+      "parentUuid": "ee604ad4_1e1cba7d",
+      "range": {
+        "startLine": 422,
+        "startChar": 0,
+        "endLine": 422,
+        "endChar": 87
+      },
+      "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5b569abf_1f9ee112",
         "filename": "designs/redfish-telemetry-interface.md",
         "patchSetId": 1
@@ -151,6 +364,30 @@
       "writtenOn": "2019-07-24T04:39:32Z",
       "side": 1,
       "message": "As we are introducing Redfish Telemetry model for the first time, Could you recomment on how we can verify. For eg. Can we use IPMI ? or other interfaces whether data what we had collect is correct etc..",
+      "range": {
+        "startLine": 434,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 10
+      },
+      "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3711213e_8b652b97",
+        "filename": "designs/redfish-telemetry-interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-07-24T23:14:17Z",
+      "side": 1,
+      "message": "Good question. In fact the Push delivery may be the more complicated thing to get\nworking reliably. I have added some add additional discussion in \"Background and References\" \nunder \"The Redfish Telemetry model supports the following features\",\nwhere I explain that we can decide to implement readable metric properties for\nany metric results that we want to include in a report.  Redfish does not require it,\nbut if we went that approach, we could more easily read the metrics directly using other\nprotocols, and we could 1st verify that we could PULL them with Redfish with http GET.",
+      "parentUuid": "5b569abf_1f9ee112",
       "range": {
         "startLine": 434,
         "startChar": 0,
@@ -198,6 +435,30 @@
       "side": 1,
       "message": "Thank you for adding this. Is your organization planning to contribute to test automation?",
       "parentUuid": "d9d2b3d3_5a398947",
+      "range": {
+        "startLine": 435,
+        "startChar": 1,
+        "endLine": 438,
+        "endChar": 25
+      },
+      "revId": "c06a84da866bc4b5508b63ddf4353c2fdd175d1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f22e3fa_a0276de7",
+        "filename": "designs/redfish-telemetry-interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1000455
+      },
+      "writtenOn": "2019-07-24T23:14:17Z",
+      "side": 1,
+      "message": "FYI-I work at Dell ESI.  Im using gmail here as I had issues getting the gerrit email\nback to my Dell email.\nI am interested in understanding how we could help with the test automation - especially\naround anything Redfish related.  I would like to get Redfish more interoperable.",
+      "parentUuid": "66a00153_b9c97e45",
       "range": {
         "startLine": 435,
         "startChar": 1,
