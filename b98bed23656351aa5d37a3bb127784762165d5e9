@@ -462,6 +462,30 @@
     },
     {
       "key": {
+        "uuid": "e52a9865_e47ac1be",
+        "filename": "designs/thermal-zone-config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000466
+      },
+      "writtenOn": "2019-07-25T20:15:21Z",
+      "side": 1,
+      "message": "The reason we use the silkscreen names for the PCIe connectors is so that we can be agnostic to the various plugin cards which could be attached there on our platforms. The intent is essentially to say \"there may be something plugged into this PCIe slot which the host must monitor on behalf of the BMC\".\n\nSome possible examples could be a network card or SSD where thermal sensors are read by the host and cannot be read by a BMC (on our specific platform).\n\nFor your platforms with hot swap backplanes, OCP modules, SAS modules, etc., are these all components which must be monitored by the host? If so, is it possible for them to have a silkscreen name?",
+      "parentUuid": "6fda1a71_3bb6710e",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 10
+      },
+      "revId": "b98bed23656351aa5d37a3bb127784762165d5e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b770f72a_2dda444a",
         "filename": "designs/thermal-zone-config.md",
         "patchSetId": 2
