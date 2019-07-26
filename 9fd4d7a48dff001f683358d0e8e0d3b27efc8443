@@ -131,6 +131,30 @@
     },
     {
       "key": {
+        "uuid": "cec65c26_e8c2d70c",
+        "filename": "designs/metrics.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-07-26T06:32:13Z",
+      "side": 1,
+      "message": "Re-worded one looks neat",
+      "parentUuid": "c4938676_f2b1bad3",
+      "range": {
+        "startLine": 49,
+        "startChar": 43,
+        "endLine": 50,
+        "endChar": 80
+      },
+      "revId": "9fd4d7a48dff001f683358d0e8e0d3b27efc8443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5d1c948b_68a88e69",
         "filename": "designs/metrics.md",
         "patchSetId": 2
@@ -283,6 +307,30 @@
       "writtenOn": "2019-07-22T17:02:58Z",
       "side": 1,
       "message": "Are we looking at having a control over preserving different kinds of data for different time span ?",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 70
+      },
+      "revId": "9fd4d7a48dff001f683358d0e8e0d3b27efc8443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d5539b01_02757357",
+        "filename": "designs/metrics.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-07-26T06:32:13Z",
+      "side": 1,
+      "message": "Wonder if you had any feedback on this ?",
+      "parentUuid": "3c713ad4_330ff0da",
       "range": {
         "startLine": 92,
         "startChar": 12,
@@ -565,6 +613,24 @@
     },
     {
       "key": {
+        "uuid": "3d664a06_b562114a",
+        "filename": "designs/metrics.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-07-26T06:32:13Z",
+      "side": 1,
+      "message": "I did not see how collectd can look into arbitrary location.",
+      "parentUuid": "a105de4f_db8ec681",
+      "revId": "9fd4d7a48dff001f683358d0e8e0d3b27efc8443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b0e18775_f19516a5",
         "filename": "designs/metrics.md",
         "patchSetId": 2
@@ -600,6 +666,30 @@
       "side": 1,
       "message": "I should expand on the IPMI blobs design here, but in short, yes, this design expects a host to compile a binary protobuf as the IPMI OEM blob payload.\n\nI think our design decision here favors protobuf because of several aspects:\n- flexibility and able to expand the protocol\n- relatively fast (de)serialization\n- binary format so fewer bytes transmitted over the wire\n\nI\u0027d like to hear from you on possible limitations that could prevent a host from using protobuf.\n\nAlso, this is in additional to Redfish metrics, so systems already using Redfish wouldn\u0027t necessarily need to worry about this.",
       "parentUuid": "b0e18775_f19516a5",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 9
+      },
+      "revId": "9fd4d7a48dff001f683358d0e8e0d3b27efc8443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9868e3d7_81477ce1",
+        "filename": "designs/metrics.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-07-26T06:32:13Z",
+      "side": 1,
+      "message": "So in the implementations that we have, basically, we could not afford to contain C++ environment to support protobuf due to space constraints.\n\nSome amount of the host side implementations are pure C \n( Like: https://github.com/open-power/skiboot )\n\nWe had some limitations coming from power hypervisor to contain protobuf. I can investigate more on that.\n\n----------------\n\nFor systems that are not managed by an Out Of Band entity, are we saying protobuf is what is proposed ?. \n\nI mean, can this not be done via PLDM ?.",
+      "parentUuid": "df32282b_10aac8dc",
       "range": {
         "startLine": 163,
         "startChar": 0,
