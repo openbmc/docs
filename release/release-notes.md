@@ -12,6 +12,26 @@ https://github.com/openbmc/openbmc/wiki/Releases
 
 
 ## OpenBMC Releases
+### 2.7 Aug 5, 2019
+#### Features:
+ - Yocto refresh to "Warrior" version 2.7
+ - Removal of Python for footprint reduction: python is no longer required
+for the meta-phosphor layer and it's defaults
+ -  Finished up KVM over IP: adds the infrastructure to allow KVM sessions
+through the webui
+ - NVMe-MI over SMBus
+ - ECC logging for BMC: service to monitor EDAC driver and BMC log
+ - Partial PLDM Support
+ - Partial MCTP Support
+ - Redfish support for: partial Certificates, local user management, partial
+LDAP, network, event logging, DateTime, boot devices, firmware update,
+inventory and sensors
+ - phosphor-ipmi-flash support: sending firmware bmc and bios images
+over ipmi, pci-aspeed, and other mechanisms for host-driven updates
+ - GUI enhancements: multiple user support, virtual media, KVM
+
+#### Fixes and Known Issues/Limitations:
+ - Yocto Warrior subtree refresh applied (24230)
 
 ### 2.6 Feb 4, 2019
 ***First Release as Linux Foundation Project***
