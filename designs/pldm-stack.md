@@ -189,22 +189,36 @@ of the device on the other side. There could also be an app that does fan
 control on a remote device, based on sensors from that device and algorithms
 specific to that device.
 
-The PLDM daemon would have to implement D-Bus interfaces to form the requester
-functions: a method to send a PLDM message over the underlying transport (again,
-this will have two versions: one that accepts a byte stream, and the other that
-accepts an fd, for large messages) and a signal to indicate a PLDM response from
-the remote PLDM device. The signal would comprise of the transport headers, PLDM
-headers, and the PLDM payload.
+##### Proposed requester design
 
-The typical flow for a requester app would be to send the PLDM message via the
-D-Bus API (the PLDM daemon would have to assign an instance id), and add a
-handler for the D-Bus signal containing the response. As this flow is
-asynchronous, the requester app can execute other scheduled work, if any, in its
-event loop, while it waits for the D-Bus signal containing the response. The
-D-Bus API to send a PLDM message to the remote PLDM device would call the
-underlying transport's send API. If that API blocks for too long, the call may
-have to run in a thread of it's own. The D-Bus signal containing a response
-message is emitted by the receiver (see above).
+A requester app/flow comprises of the following :
+
+- Linkage with PLDM encode/decode libraries, to be able to pack PLDM requests
+  and unpack PLDM responses.
+
+- A D-Bus API to generate a unique PLDM instance id. The id needs to be unique
+  acrosss all outgoing PLDM messages (from potentially different processes).
+
+- A requester client library that provides blocking and non-blocking APIs to
+  transfer a pldm request message and to receive the corresponding respond
+  message, over MCTP.
+
+##### Alternative to the proposed requester design
+
+a) Define D-Bus interfaces to send and receive PLDM messages :
+
+```
+method sendPLDM(uint8 mctp_eid, uint8 msg[])
+
+signal recvPLDM(uint8 mctp_eid, uint8 pldm_instance_id, uint8 msg[])
+```
+
+PLDM requester apps can then invoke the above applications. While this
+simplifies things for the user, it has two disadvantages :
+- the app implementing such an interface could be a single point of failure,
+  plus sending messages concurrently would be a challenge.
+- the message payload could be large (several pages), and copying the same for
+  D-Bus transfers might be undesirable.
 
 ### Multiple transport channels
 The PLDM daemon might have to talk to remote PLDM devices via different
