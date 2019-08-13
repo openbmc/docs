@@ -27,10 +27,14 @@ Follow links to learn more about OpenBMC features:
 * [Certificate management][]: [Phosphor Certificate Manager][]
 * [Simulation][] via QEMU
 * [Firmware update support][]
-* [POWER OCC Support][POWER OCC Implementation] (On Chip Controller)
 * [Automated Testing][]
 * LDAP
 * Remote syslog
+
+## OpenPOWER Features
+
+* [POWER OCC Support][POWER OCC Implementation] (On Chip Controller)
+* [Hardware Diagnostics][] for POWER Systems fatal hardware errors.
 
 [Automated Testing]: https://github.com/openbmc/openbmc-test-automation/blob/master/README.md
 [BMCWeb]: https://github.com/openbmc/bmcweb/blob/master/README.md
@@ -42,6 +46,7 @@ Follow links to learn more about OpenBMC features:
 [Entity manager]: https://github.com/openbmc/entity-manager/blob/master/README.md
 [Factory reset]: https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/Common/FactoryReset/README.md
 [Firmware update support]: https://github.com/openbmc/docs/blob/master/code-update/code-update.md
+[Hardware Diagnostics]: https://github.com/openbmc/openpower-hw-diags/blob/master/README.md
 [Host management]: https://github.com/openbmc/docs/blob/master/host-management.md
 [Host management REST APIs]: https://github.com/openbmc/docs/blob/master/host-management.md
 [IPMI in band]: https://github.com/openbmc/docs/blob/master/ipmi-architecture.md
