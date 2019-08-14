@@ -216,6 +216,7 @@ A requester app/flow comprises of the following :
 
 a) With blocking API
 
+```
 +---------------+               +----------------+            +----------------+               +-----------------+
 |BMC requester/ |               |PLDM requester  |            |PLDM responder  |               |PLDM Daemon      |
 |client app     |               |lib (part of    |            |                |               |                 |
@@ -265,10 +266,12 @@ a) With blocking API
         +------------------------------>+                              |                                 |
         |close_connection()             |                              |                                 |
         +                               +                              +                                 +
+```
 
 
 b) With non-blocking API
 
+```
 +---------------+               +----------------+            +----------------+             +---------------+
 |BMC requester/ |               |PLDM requester  |            |PLDM responder  |             |PLDM daemon    |
 |client app     |               |lib (part of    |            |                |             |               |
@@ -320,6 +323,7 @@ b) With non-blocking API
         +------------------------------>+                              |                              |
         |close_connection()             |                              |                              |
         +                               +                              +                              +
+```
 
 ##### Alternative to the proposed requester design
 
