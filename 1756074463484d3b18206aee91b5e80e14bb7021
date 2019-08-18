@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "07d11e3b_2b47515f",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-08-18T05:00:26Z",
+      "side": 1,
+      "message": "Hi Andrew, can you explain here, what do you meant by D-Bus type string here?\nbasically it will be return dictionary of [string,string].",
+      "parentUuid": "9f45cd8b_8e30c574",
+      "range": {
+        "startLine": 35,
+        "startChar": 40,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "1756074463484d3b18206aee91b5e80e14bb7021",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9c63531e_3deb87aa",
         "filename": "designs/u-boot-env-mgr.md",
         "patchSetId": 3
@@ -89,6 +113,30 @@
       "writtenOn": "2019-08-01T05:35:13Z",
       "side": 1,
       "message": "Why not just use the generic properties interface?\n\nhttps://dbus.freedesktop.org/doc/dbus-specification.html#standard-interfaces-properties",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "1756074463484d3b18206aee91b5e80e14bb7021",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3427a598_5e219941",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-08-18T05:00:26Z",
+      "side": 1,
+      "message": "Didn\u0027t used the properties interfaces for the following reason.\n1. U-Boot param will not be constant\n2. Number of parameters differ from vendor to vendor\n3. GetAll will be ultimately used, hence the same is done through method specific interface.\nLet me know if you think any other advantage over properties interface, if needed can introduce the same.",
+      "parentUuid": "0917fc00_e3cb6d15",
       "range": {
         "startLine": 35,
         "startChar": 0,
