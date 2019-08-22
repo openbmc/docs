@@ -46,11 +46,11 @@ Add the following to `~/.ssh/config`:
 Host openbmc.gerrit
     Hostname gerrit.openbmc-project.xyz
     Port 29418
-    User <YOUR-GERRIT-ID>
+    User <Your Gerrit Username>
 ```
 * **NOTE**: There is a bug in AFS that requires `AFSTokenPassing no` to be
             added to the SSH entry if using AFS.
-* Your Gerrit ID can be found in Gerrit under Settings -> Profile -> Username
+* Your Gerrit Username can be found in Gerrit under Settings -> Profile -> Username
 * Ensure proper permissions for for your .ssh directory: `chmod 600 ~/.ssh/*`
 
 ##### Confirm Setup Success
