@@ -66,6 +66,30 @@
     },
     {
       "key": {
+        "uuid": "88b9e6cb_763a621d",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-08-23T04:04:30Z",
+      "side": 1,
+      "message": "+1.",
+      "parentUuid": "7040db1a_d7df36e6",
+      "range": {
+        "startLine": 16,
+        "startChar": 44,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "56d43eee235819aafe11e40ab9dbf903a8595453",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "46dcb15e_1c96135c",
         "filename": "designs/VMI_Certificate_Exchange.md",
         "patchSetId": 8
@@ -77,6 +101,24 @@
       "writtenOn": "2019-08-13T13:22:16Z",
       "side": 1,
       "message": "Why must this go through the BMC? The previous step is VMI network config, so post that why can\u0027t the HMC use existing internal inband authentication mechanisms?",
+      "revId": "56d43eee235819aafe11e40ab9dbf903a8595453",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95d87ff8_bd93104a",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-08-23T04:04:30Z",
+      "side": 1,
+      "message": "Deepak, There is not an internal authentication mechanism in PHYP/VMI.\n\nthis certificate exchange will allow the HMC to get its client certificate which is signed by the VMI and with this certificate HMC will connect to the VMI.\n\nHMC has two connections\n1) HMC-BMC (SSL followed by the authentication)\n2) HMC-VMI (client certificate-based authentication)",
+      "parentUuid": "46dcb15e_1c96135c",
       "revId": "56d43eee235819aafe11e40ab9dbf903a8595453",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
@@ -106,6 +148,30 @@
     },
     {
       "key": {
+        "uuid": "93468c50_3e92aa3e",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-08-23T04:04:30Z",
+      "side": 1,
+      "message": "Yes, but that would impact pldm,The flow would be same.\nHTTP time out is greater than PLDM.",
+      "parentUuid": "62a416f5_b897631d",
+      "range": {
+        "startLine": 49,
+        "startChar": 33,
+        "endLine": 49,
+        "endChar": 56
+      },
+      "revId": "56d43eee235819aafe11e40ab9dbf903a8595453",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25614f4a_aae50fd7",
         "filename": "designs/VMI_Certificate_Exchange.md",
         "patchSetId": 8
@@ -117,6 +183,24 @@
       "writtenOn": "2019-08-13T13:22:16Z",
       "side": 1,
       "message": "Why can\u0027t this use a Redfish API?",
+      "revId": "56d43eee235819aafe11e40ab9dbf903a8595453",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b46356a_981efee1",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-08-23T04:04:30Z",
+      "side": 1,
+      "message": "We don\u0027t have the redfish API for the same.",
+      "parentUuid": "25614f4a_aae50fd7",
       "revId": "56d43eee235819aafe11e40ab9dbf903a8595453",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
@@ -139,6 +223,29 @@
         "startChar": 40,
         "endLine": 68,
         "endChar": 64
+      },
+      "revId": "56d43eee235819aafe11e40ab9dbf903a8595453",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77925c72_5add7a44",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-08-23T04:04:30Z",
+      "side": 1,
+      "message": "Ravi, I want you to put the alternatives here.\n\nLike how can PHYP/VMI use the BMC authentication module through PLDM to avoid the client certificate exchange?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 25
       },
       "revId": "56d43eee235819aafe11e40ab9dbf903a8595453",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
