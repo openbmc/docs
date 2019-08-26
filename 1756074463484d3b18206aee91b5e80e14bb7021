@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "950e5022_186c5a68",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2019-08-26T02:39:54Z",
+      "side": 1,
+      "message": "I was suggesting you use the type strings from the specification:\n\nhttps://dbus.freedesktop.org/doc/dbus-specification.html#basic-types\n\nIn this case you want a DICT_ENTRY of strings, so it would be \"{ss}\".",
+      "parentUuid": "07d11e3b_2b47515f",
+      "range": {
+        "startLine": 35,
+        "startChar": 40,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "1756074463484d3b18206aee91b5e80e14bb7021",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9c63531e_3deb87aa",
         "filename": "designs/u-boot-env-mgr.md",
         "patchSetId": 3
@@ -137,6 +161,30 @@
       "side": 1,
       "message": "Didn\u0027t used the properties interfaces for the following reason.\n1. U-Boot param will not be constant\n2. Number of parameters differ from vendor to vendor\n3. GetAll will be ultimately used, hence the same is done through method specific interface.\nLet me know if you think any other advantage over properties interface, if needed can introduce the same.",
       "parentUuid": "0917fc00_e3cb6d15",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "1756074463484d3b18206aee91b5e80e14bb7021",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a734cb34_8a3ac1f4",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2019-08-26T02:39:54Z",
+      "side": 1,
+      "message": "\u003e Didn\u0027t used the properties interfaces for the following reason.\n\nOkay, if you have reasons for not doing it some way you should outline them either here in the document or in the Alternatives Considered section. That way we have your complete reasoning for taking a particular direction captured, which is a primary goal of the design documents.\n\n\u003e 1. U-Boot param will not be constant\n\u003e 2. Number of parameters differ from vendor to vendor\n\nCan you explain why you think these two points are problematic?\n\n\u003e 3. GetAll will be ultimately used, hence the same is done through method specific interface.\n\nI don\u0027t follow this last point. The standard interface defines a GetAll() method, why can\u0027t that be used?\n\nEssentially I don\u0027t see why we can\u0027t have \"dynamic\" properties (i.e. properties added to the object on the fly based on the content of the u-boot environment). It\u0027s all just code, you just need to accept writes to variables that might not yet exist, and issue a PropertiesChanged event when any variables are written. GetAll() will give the user the complete set of properties, and if they know a particular one exists they can just use the Get() interface.\n\nThis makes it all very standard to interact with from the client side, especially from the perspective of receiving signals when specific properties are updated.",
+      "parentUuid": "3427a598_5e219941",
       "range": {
         "startLine": 35,
         "startChar": 0,
