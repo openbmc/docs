@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "c0a65dda_3f81e1c4",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-08-26T15:20:11Z",
+      "side": 1,
+      "message": "yes, was representing the same using DICT[string, string], the way it is represented in our D-Bus interface yaml file",
+      "parentUuid": "950e5022_186c5a68",
+      "range": {
+        "startLine": 35,
+        "startChar": 40,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "1756074463484d3b18206aee91b5e80e14bb7021",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9c63531e_3deb87aa",
         "filename": "designs/u-boot-env-mgr.md",
         "patchSetId": 3
@@ -185,6 +209,30 @@
       "side": 1,
       "message": "\u003e Didn\u0027t used the properties interfaces for the following reason.\n\nOkay, if you have reasons for not doing it some way you should outline them either here in the document or in the Alternatives Considered section. That way we have your complete reasoning for taking a particular direction captured, which is a primary goal of the design documents.\n\n\u003e 1. U-Boot param will not be constant\n\u003e 2. Number of parameters differ from vendor to vendor\n\nCan you explain why you think these two points are problematic?\n\n\u003e 3. GetAll will be ultimately used, hence the same is done through method specific interface.\n\nI don\u0027t follow this last point. The standard interface defines a GetAll() method, why can\u0027t that be used?\n\nEssentially I don\u0027t see why we can\u0027t have \"dynamic\" properties (i.e. properties added to the object on the fly based on the content of the u-boot environment). It\u0027s all just code, you just need to accept writes to variables that might not yet exist, and issue a PropertiesChanged event when any variables are written. GetAll() will give the user the complete set of properties, and if they know a particular one exists they can just use the Get() interface.\n\nThis makes it all very standard to interact with from the client side, especially from the perspective of receiving signals when specific properties are updated.",
       "parentUuid": "3427a598_5e219941",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "1756074463484d3b18206aee91b5e80e14bb7021",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b7dba77_2aafbb4d",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-08-26T15:20:11Z",
+      "side": 1,
+      "message": "1. Our regular sdbusplus code doesn\u0027t support adding dynamic property directly (if needed, the underlying code needs to be written). Note: sdbusplus asio (async) model supports the same, and it is easier to implement dynamic properties. \nBut the problem will be writing generic code / handler for the same. \nHaving said that one, yes, we can go ahead and extend the same as part of extension, such that this will be exposed (Actually, i want to expose all param\u0027s as property and based on file io monitor on the mtd partition, the update can be captured and accordingly, signals can be sent out). But didn\u0027t do it in the first round, concerning the community feedback on the same. \nAs i see some interest, can submit a separate update review on this document, to include the same. But want to keep both, as implementars will be allowed to choose either one or both.",
+      "parentUuid": "a734cb34_8a3ac1f4",
       "range": {
         "startLine": 35,
         "startChar": 0,
