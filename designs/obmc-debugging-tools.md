@@ -1,4 +1,3 @@
-----
 # OBMC Debugging tools
 
 Author:
@@ -61,7 +60,3 @@ hierarchies.
 
 [^1]:	[https://github.com/openbmc/openbmc/wiki/Platform-telemetry-and
                  -health-monitoring-Work-Group][1]
-
-[1]:	https://github.com/openbmc/openbmc/wiki/Platform-telemetry
-                -and-health-monitoring-Work-Group "Platform Telemetry
-                and Health Monitoring Workgroup"
