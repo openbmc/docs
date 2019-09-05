@@ -1,85 +1,290 @@
-# OpenBMC Redfish cheat sheet
+# Redfish cheat sheet
+This chapter is intended to provide a set of Redfish client commands for OpenBMC usage.
+(Using CURL commands)
 
-This document is intended to provide a set of [Redfish][1] client
-commands for OpenBMC usage.
-
-## Using CURL commands
-* Query Root
+## 1 Query Root
+```
+$ export bmc=xx.xx.xx.xx
+$ curl -b cjar -k https://${bmc}/redfish/v1
+```
+## 2 Establish Redfish connection session
++ Method 1
    ```
-   $ export bmc=xx.xx.xx.xx
-   $ curl -b cjar -k https://${bmc}/redfish/v1
+$ export bmc=xx.xx.xx.xx
+$ curl --insecure -X POST -D headers.txt https://${bmc}/redfish/v1/SessionService/Sessions -d '{"UserName":"root", "Password":"0penBmc"}'
    ```
+   A file, headers.txt, will be created. Find the `"X-Auth-Token"`
+   in that file. Save it away in an env variable like so:
+   ```
+export bmc_token=<token>
+   ```
+- Method 2
+   ```
+$ export bmc=xx.xx.xx.xx
+$ export token=`curl -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d '{"username" :  "root", "password" :  "0penBmc"}' | grep token | awk '{print $2;}' | tr -d '"'`
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                                                    Dload  Upload   Total   Spent    Left  Speed
+  100     85     100    37  100    48  109  141  --:--:-- --:--:-- --:--:--     250
+  ```
+Note: Method 2 is used in this document.
+## 3 View Redfish Objects
+```
+$ curl -k -H "X-Auth-Token: $token" -X GET https://${bmc}/redfish/v1/Chassis
+$ curl -k -H "X-Auth-Token: $token" -X GET https://${bmc}/redfish/v1/Managers
+$ curl -k -H "X-Auth-Token: $token" -X GET https://${bmc}/redfish/v1/Systems
+```
+## 4 Host power
+- Host soft power off:
+   ```
+$ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulShutdown"}'
+   ```
+- Host hard power off:
+   ```
+$ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "ForceOff"}'
+   ```
+- Host power on:
+   ```
+$ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "On"}'
+   ```
+- Reboot Host:
+   ```
+$ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulRestart"}'
+   ```
+## 5 Log entry
+- Display logging entries:
+   ```
+  $ curl -k -H "X-Auth-Token: $token" -X GET https://${bmc}/redfish/v1/Systems/system/LogServices/EventLog/Entries
+  {
+    "@odata.context": "/redfish/v1/$metadata#LogEntryCollection.LogEntryCollection",
+    "@odata.id": "/redfish/v1/Systems/system/LogServices/EventLog/Entries",
+    "@odata.type": "#LogEntryCollection.LogEntryCollection",
+    "Description": "Collection of System Event Log Entries",
+    "Members": [
+      {
+        "@odata.context": "/redfish/v1/$metadata#LogEntry.LogEntry",
+        "@odata.id": "/redfish/v1/Systems/system/LogServices/EventLog/Entries/1",
+        "@odata.type": "#LogEntry.v1_4_0.LogEntry",
+        "Created": "2019-07-15T11:48:51+00:00",
+        "EntryType": "Event",
+        "Id": "1",
+        "Message": "xyz.openbmc_project.Common.Error.InternalFailure",
+        "Name": "System Event Log Entry",
+        "Severity": "Critical"
+      }
+    ],
+    "Members@odata.count": 1,
+    "Name": "System Event Log Entries"
+  }
+  ```
+- Delete logging entries:
+   ```
+$ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/system/LogServices/EventLog/Actions/LogService.Reset
+   ```
+## 6 Firmware ApplyTime:
+```
+$ curl -k -H "X-Auth-Token: $token" -X PATCH -d '{ "ApplyTime":"Immediate"}' https://${bmc}/redfish/v1/UpdateService
+{
+  "@Message.ExtendedInfo": [
+    {
+      "@odata.type": "/redfish/v1/$metadata#Message.v1_0_0.Message",
+      "Message": "Successfully Completed Request",
+      "MessageArgs": [],
+      "MessageId": "Base.1.4.0.Success",
+      "Resolution": "None",
+      "Severity": "OK"
+    }
+  ]
+}
+```
+```
+$ curl -k -H "X-Auth-Token: $token" -X PATCH -d '{ "ApplyTime":"OnReset"}' https://${bmc}/redfish/v1/UpdateService
+{
+  "@Message.ExtendedInfo": [
+    {
+      "@odata.type": "/redfish/v1/$metadata#Message.v1_0_0.Message",
+      "Message": "Successfully Completed Request",
+      "MessageArgs": [],
+      "MessageId": "Base.1.4.0.Success",
+      "Resolution": "None",
+      "Severity": "OK"
+    }
+  ]
+}
+```
+## 7 Firmware update
+- Firmware update:
+  Note the `<image file path>` shall be a tarball.
+   ```
+$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/octet-stream" -X POST -T <image file path> https://${bmc}/redfish/v1/UpdateService
+  {
+    "@Message.ExtendedInfo": [
+      {
+        "@odata.type": "/redfish/v1/$metadata#Message.v1_0_0.Message",
+        "Message": "Successfully Completed Request",
+        "MessageArgs": [],
+        "MessageId": "Base.1.4.0.Success",
+        "Resolution": "None",
+        "Severity": "OK"
+      }
+    ]
+  }
+   ```
+- TFTP Firmware update using TransferProtocol: 
+  Note: The `<image file path>` contains the address of the TFTP service: `xx.xx.xx.xx/obmc-phosphor-xxxxx-xxxxxxxxx.static.mtd.tar`
+ ```
+  $ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate -d '{"TransferProtocol":"TFTP","ImageURI":"<image file path>"}'
+  {
+  "@Message.ExtendedInfo": [
+    {
+      "@odata.type": "/redfish/v1/$metadata#Message.v1_0_0.Message",
+      "Message": "Successfully Completed Request",
+      "MessageArgs": [],
+      "MessageId": "Base.1.4.0.Success",
+      "Resolution": "None",
+      "Severity": "OK"
+    }
+]
+  }
+ ```
+- TFTP Firmware update with protocol in ImageURI: 
+   ```
+$ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate -d '{"ImageURI":"tftp://<image file path>"}'
+{
+  "@Message.ExtendedInfo": [
+    {
+      "@odata.type": "/redfish/v1/$metadata#Message.v1_0_0.Message",
+      "Message": "Successfully Completed Request",
+      "MessageArgs": [],
+      "MessageId": "Base.1.4.0.Success",
+      "Resolution": "None",
+      "Severity": "OK"
+    }
+  ]
+}
+  ```
+## 8 Update "root" password
+Change password to "0penBmc1":
+```
+$ curl -k -H "X-Auth-Token: $token" -X PATCH -d '{"Password": "0penBmc1"}' https://${bmc}/redfish/v1/AccountService/Accounts/root
+```
+# Redfish Event Logging in bmcweb
+This guide is intended to help developers add new messages to the bmcweb
+Redfish event log.
+Redfish Message Objects can be represented in different ways. In bmcweb, we
+have chosen to use Message Registries with Message Objects that are referenced
+using a MessageId and MessageArgs fields.
+Additional details can be found in the
+[Redfish Specification](http://redfish.dmtf.org/schemas/DSP0266_1.6.1.html).
 
-* Establish Redfish connection session:
-    ```
-   $ export bmc=xx.xx.xx.xx
-   $ curl --insecure -X POST -D headers.txt https://${bmc}/redfish/v1/SessionService/Sessions -d '{"UserName":"root", "Password":"0penBmc"}'
-    ```
-    A file, headers.txt, will be created. Find the "X-Auth-Token"
-    in that file. Save it away in an env variable like so:
-    ```
-    export bmc_token=<token>
-    ```
+## Message Registries
+The first step when adding a new message to the Redfish event log is to find
+or add an appropriate message in a Message Registry.
+The bmcweb Message Registries are located under
+"\redfish-core\include\registries" in source code, and they can be examined
+through Redfish under "/redfish/v1/Registries".
+If an appropriate message exists, note the
 
-* View Redfish Objects
-    ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X GET https://${bmc}/redfish/v1/Chassis
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X GET https://${bmc}/redfish/v1/Managers
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X GET https://${bmc}/redfish/v1/Systems
-    ```
+1. Title of the Message Object (required as the MessageKey in the MessageId).
+2. Args (notated as "%x") in the "Message" field
+   (required for the MessageArgs).
+If an appropriate message does not exist, new messages can be added as follows:
+1. Choose a Message Registry for the new message
+2. Choose a MessageKey to use as the title for the new Message entry
+3. Insert a new Message entry (preferably with the title in alphabetical order)
+4. Add a `description` and `resolution`
+5. Set the `severity` to "Critical", "Warning", or "OK"
+6. Define the `message` with any necessary args
+7. Set the `numberOfArgs` and `paramTypes` to match the message args
+## Logging Messages
+Logging messages is done by providing a Redfish MessageId and any
+corresponding MessageArgs to bmcweb.
+A Redfish MessageId is represented in this format:
+`RegistryName.MajorVersion.MinorVersion.MessageKey`
+bmcweb will search the specified Message Registry for the MessageKey,
+construct the final message using the MessageArgs, and display that in the
+event log.
 
-* Host soft power off:
-    ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulShutdown"}'
-    ```
-
-* Host hard power off:
-    ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "ForceOff"}'
-    ```
-
-* Host power on:
-    ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "On"}'
-    ```
-
-* Reboot Host:
-    ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulRestart"}'
-    ```
-
-* Display logging entries:
-    ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X GET https://${bmc}/redfish/v1/Systems/system/LogServices/EventLog/Entries
-    ```
-
-* Delete logging entries:
-    ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/Systems/system/LogServices/EventLog/Actions/LogService.Reset
-    ```
-
-* Firmware ApplyTime:
-    ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X PATCH -d '{ "ApplyTime":"Immediate"}' https://${bmc}/redfish/v1/UpdateService
-    ```
-
-    ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -X PATCH -d '{ "ApplyTime":"OnReset"}' https://${bmc}/redfish/v1/UpdateService
-    ```
-
-* Firmware update:
-    ```
-    $ curl -k -H "X-Auth-Token: $bmc_token" -H "Content-Type: application/octet-stream" -X POST -T <image file path> https://${bmc}/redfish/v1/UpdateService
-    ```
-
-* TFTP Firmware update using TransferProtocol:
-    ```
-    curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate -d '{"TransferProtocol":"TFTP","ImageURI":"<image file path>"}'
-    ```
-
-* TFTP Firmware update with protocol in ImageURI:
-    ```
-    curl -k -H "X-Auth-Token: $bmc_token" -X POST https://${bmc}/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate -d '{"ImageURI":"tftp://<image file path>"}'
-    ```
-
-[1]: https://www.dmtf.org/standards/redfish
+### journal-based Redfish Logging
+The journal is the current mechanism used to log Redfish Messages. bmcweb
+looks for two fields in the journal metadata:
+- `REDFISH_MESSAGE_ID`: A string holding the MessageId
+- `REDFISH_MESSAGE_ARGS`: A string holding a comma-separated list of args
+These fields can be added to a journal entry using either the
+`phosphor::logging::entry()` command or directly using the
+`sd_journal_send()` command.
+### Examples
+#### Logging a ResourceCreated event
+The
+[Resource Event Message Registry](https://redfish.dmtf.org/registries/ResourceEvent.1.0.0.json)
+holds the ResourceCreated message:
+```json
+{
+    "ResourceCreated": {
+        "Description": "Indicates that all conditions of a successful
+        creation operation have been met.",
+        "Message": "The resource has been created successfully.",
+        "NumberOfArgs": 0,
+        "Resolution": "None",
+        "Severity": "OK"
+    }
+},
+```
+Since there are no parameters, no MessageArgs are required, so this message
+can be logged to the journal as follows:
+```cpp
+phosphor::logging::log<log::level>(
+        "journal text",
+        phosphor::logging::entry("REDFISH_MESSAGE_ID=%s",
+        "ResourceEvent.1.0.ResourceCreated"));
+```
+or
+```cpp
+sd_journal_send("MESSAGE=%s", "journal text", "PRIORITY=%i", <LOG_LEVEL>,
+                "REDFISH_MESSAGE_ID=%s",
+                "ResourceEvent.1.0.ResourceCreated", NULL);
+```
+#### Logging a ResourceErrorThresholdExceeded event
+The
+[Resource Event Message Registry](https://redfish.dmtf.org/registries/ResourceEvent.1.0.0.json)
+holds the ResourceErrorThresholdExceeded message:
+```json
+{
+    "ResourceErrorThresholdExceeded": {
+        "Description": "The resource property %1 has exceeded error
+        threshold of value %2. Examples would be drive IO errors, or
+        network link errors.",
+        "Message": "The resource property %1 has exceeded error
+        threshold of value %2.",
+        "NumberOfArgs": 2,
+        "ParamTypes": [
+            "string",
+            "value"
+        ],
+        "Resolution": "None.",
+        "Severity": "Critical"
+    }
+},
+```
+This message has two parameters, `%1` and `%2`, as indicated in the
+`"NumberOfArgs"` field. The meaning and types of these parameters are derived
+from the `"Message"` and `"ParamTypes"` fields in the Message Registry.
+In this example, `%1` is a string holding the property name and `%2` is a
+number holding the threshold value.
+The parameters are filled from a comma-separated list of the MessageArgs, so
+this message can be logged to the journal as follows:
+```cpp
+phosphor::logging::log<log::level>(
+        "journal text",
+        phosphor::logging::entry("REDFISH_MESSAGE_ID=%s",
+        "ResourceEvent.1.0.ResourceErrorThresholdExceeded"),
+        phosphor::logging::entry("REDFISH_MESSAGE_ARGS=%s,%d",
+        "Property Name", propertyValue));
+```
+or
+```cpp
+sd_journal_send("MESSAGE=%s", "journal text", "PRIORITY=%i", <LOG_LEVEL>,
+                "REDFISH_MESSAGE_ID=%s",
+                "ResourceEvent.1.0.ResourceErrorThresholdExceeded",
+                "REDFISH_MESSAGE_ARGS=%s,%d", "Property Name",
+                propertyValue, NULL);
+```
