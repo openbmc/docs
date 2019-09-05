@@ -22,18 +22,18 @@ through Redfish under "/redfish/v1/Registries".
 If an appropriate message exists, note the
 
 1. Title of the Message Object (required as the MessageKey in the MessageId).
-1. Args (notated as "%x") in the "Message" field
+2. Args (notated as "%x") in the "Message" field
 (required for the MessageArgs).
 
 If an appropriate message does not exist, new messages can be added as follows:
 
 1. Choose a Message Registry for the new message
-1. Choose a MessageKey to use as the title for the new Message entry
-1. Insert a new Message entry (preferably with the title in alphabetical order)
-1. Add a `description` and `resolution`
-1. Set the `severity` to "Critical", "Warning", or "OK"
-1. Define the `message` with any necessary args
-1. Set the `numberOfArgs` and `paramTypes` to match the message args
+2. Choose a MessageKey to use as the title for the new Message entry
+3. Insert a new Message entry (preferably with the title in alphabetical order)
+4. Add a `description` and `resolution`
+5. Set the `severity` to "Critical", "Warning", or "OK"
+6. Define the `message` with any necessary args
+7. Set the `numberOfArgs` and `paramTypes` to match the message args
 
 ## Logging Messages
 
@@ -53,8 +53,8 @@ event log.
 The journal is the current mechanism used to log Redfish Messages. bmcweb
 looks for two fields in the journal metadata:
 
-* `REDFISH_MESSAGE_ID`: A string holding the MessageId
-* `REDFISH_MESSAGE_ARGS`: A string holding a comma-separated list of args
+- `REDFISH_MESSAGE_ID`: A string holding the MessageId
+- `REDFISH_MESSAGE_ARGS`: A string holding a comma-separated list of args
 
 These fields can be added to a journal entry using either the
 `phosphor::logging::entry()` command or directly using the
@@ -67,6 +67,7 @@ These fields can be added to a journal entry using either the
 The
 [Resource Event Message Registry](https://redfish.dmtf.org/registries/ResourceEvent.1.0.0.json)
 holds the ResourceCreated message:
+
 ```json
 {
     "ResourceCreated": {
@@ -82,13 +83,16 @@ holds the ResourceCreated message:
 
 Since there are no parameters, no MessageArgs are required, so this message
 can be logged to the journal as follows:
+
 ```cpp
 phosphor::logging::log<log::level>(
         "journal text",
         phosphor::logging::entry("REDFISH_MESSAGE_ID=%s",
         "ResourceEvent.1.0.ResourceCreated"));
 ```
+
 or
+
 ```cpp
 sd_journal_send("MESSAGE=%s", "journal text", "PRIORITY=%i", <LOG_LEVEL>,
                 "REDFISH_MESSAGE_ID=%s",
@@ -99,6 +103,7 @@ sd_journal_send("MESSAGE=%s", "journal text", "PRIORITY=%i", <LOG_LEVEL>,
 The
 [Resource Event Message Registry](https://redfish.dmtf.org/registries/ResourceEvent.1.0.0.json)
 holds the ResourceErrorThresholdExceeded message:
+
 ```json
 {
     "ResourceErrorThresholdExceeded": {
@@ -127,6 +132,7 @@ number holding the threshold value.
 
 The parameters are filled from a comma-separated list of the MessageArgs, so
 this message can be logged to the journal as follows:
+
 ```cpp
 phosphor::logging::log<log::level>(
         "journal text",
@@ -135,7 +141,9 @@ phosphor::logging::log<log::level>(
         phosphor::logging::entry("REDFISH_MESSAGE_ARGS=%s,%d",
         "Property Name", propertyValue));
 ```
+
 or
+
 ```cpp
 sd_journal_send("MESSAGE=%s", "journal text", "PRIORITY=%i", <LOG_LEVEL>,
                 "REDFISH_MESSAGE_ID=%s",
