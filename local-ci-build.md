@@ -2,7 +2,13 @@
 
 These instructions pertain to running the upstream OpenBMC CI locally.
 
-Please install and configure Docker.
+Please install and configure Docker. The installation of Docker CE (Community
+Edition) varies by platform and may differ in your organization, but the
+[Docker Docs](https://docs.docker.com/install/) are a good place to start
+looking.
+
+Check that the installation was successful by running `sudo docker run
+hello-world`.
 
 Each repository is built locally within the CI using the bootstrap.sh and
 automake toolchain.
