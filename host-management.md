@@ -1,11 +1,21 @@
-Host Management with OpenBMC
-============================
+# Host Management with OpenBMC
 
 This document describes the host-management interfaces of the OpenBMC object
 structure, accessible over REST.
 
-Inventory
----------
+Note: Authentication
+
+See the details on authentication at [REST-cheatsheet](https://github.com/openbmc/docs/blob/master/REST-cheatsheet.md#establish-rest-connection-session).
+
+This document uses token based authentication method:
+
+```
+$ export bmc=xx.xx.xx.xx
+$ export token=`curl -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d '{"username" :  "root", "password" :  "0penBmc"}' | grep token | awk '{print $2;}' | tr -d '"'`
+$ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/...
+```
+
+## Inventory
 
 The system inventory structure is under the `/xyz/openbmc_project/inventory` hierarchy.
 
@@ -15,7 +25,7 @@ items and are not necessarily FRUs (field-replaceable units). If the system
 contains one chassis, a motherboard, and a CPU on the motherboard, then the
 path to that inventory item would be:
 
-   inventory/system/chassis0/motherboard0/cpu0
+   `inventory/system/chassis0/motherboard0/cpu0`
 
 The properties associated with an inventory item are specific to that item.
 Some common properties are:
@@ -28,14 +38,13 @@ The usual `list` and `enumerate` REST queries allow the system inventory
 structure to be accessed. For example, to enumerate all inventory items and
 their properties:
 
-    curl -b cjar -k https://${bmc}/xyz/openbmc_project/inventory/enumerate
+    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/inventory/enumerate
 
 To list the properties of one item:
 
-    curl -b cjar -k https://${bmc}/xyz/openbmc_project/inventory/system/chassis/motherboard
+    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/inventory/system/chassis/motherboard
 
-Sensors
--------
+## Sensors
 
 The system sensor structure is under the `/xyz/openbmc_project/sensors`
 hierarchy.
@@ -65,40 +74,42 @@ warning threshold bound
 
 A temperature sensor might look like:
 
-    curl -b cjar -k https://${bmc}/xyz/openbmc_project/sensors/temperature/pcie
+    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/sensors/temperature/ocp_zone
     {
       "data": {
-        "CriticalAlarmHigh": 0,
-        "CriticalAlarmLow": 0,
-        "CriticalHigh": 70000,
+        "CriticalAlarmHigh": false,
+        "CriticalAlarmLow": false,
+        "CriticalHigh": 65000,
         "CriticalLow": 0,
+        "Functional": true,
+        "MaxValue": 0,
+        "MinValue": 0,
         "Scale": -3,
         "Unit": "xyz.openbmc_project.Sensor.Value.Unit.DegreesC",
-        "Value": 28187,
-        "WarningAlarmHigh": 0,
-        "WarningAlarmLow": 0,
-        "WarningHigh": 60000,
+        "Value": 34625,
+        "WarningAlarmHigh": false,
+        "WarningAlarmLow": false,
+        "WarningHigh": 63000,
         "WarningLow": 0
       },
       "message": "200 OK",
       "status": "ok"
     }
 
-Note the value of this sensor is 28.187C (28187 * 10^-3).
+Note the value of this sensor is 34.625C (34625 * 10^-3).
 
 Unlike IPMI, there are no "functional" sensors in OpenBMC; functional states are
 represented in the inventory.
 
 To enumerate all sensors in the system:
 
-    curl -b cjar -k https://${bmc}/xyz/openbmc_project/sensors/enumerate
+    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/sensors/enumerate
 
 List properties of one inventory item:
 
-    curl -b cjar -k https://${bmc}/xyz/openbmc_project/sensors/temperature/ambient
+    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/sensors/temperature/outlet
 
-Event Logs
-----------
+## Event Logs
 
 The event log structure is under the `/xyz/openbmc_project/logging/entry`
 hierarchy. Each event is a separate object under this structure, referenced by
@@ -114,11 +125,11 @@ The properties associated with an event log are as follows:
  * `Resolved` : Indicates whether the event has been resolved.
  * `Severity`: The level of problem ("Info", "Error", etc.).
  * `Timestamp`: The date of the event log in epoch time.
- * `associations`: A URI to the failing inventory part.
+ * `Associations`: A URI to the failing inventory part.
 
 To list all reported event logs:
 
-    $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/logging/entry/
+    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/logging/entry
     {
       "data": [
         "/xyz/openbmc_project/logging/entry/3",
@@ -135,44 +146,34 @@ To list all reported event logs:
 
 To read a specific event log:
 
-    $ curl -b cjar -k https://${bmc}/xyz/openbmc_project/logging/entry/1
+    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/logging/entry/1
     {
       "data": {
         "AdditionalData": [
-          "CALLOUT_INVENTORY_PATH=/xyz/openbmc_project/inventory/system/chassis/powersupply0",
-          "_PID=1136"
+          "_PID=183"
         ],
         "Id": 1,
-        "Message": "xyz.openbmc_project.Inventory.Error.NotPresent",
-        "Resolved": 0,
+        "Message": "xyz.openbmc_project.Common.Error.InternalFailure",
+        "Purpose": "xyz.openbmc_project.Software.Version.VersionPurpose.BMC",
+        "Resolved": false,
         "Severity": "xyz.openbmc_project.Logging.Entry.Level.Error",
-        "Timestamp": 1512154612660,
-        "associations": [
-          [
-            "callout",
-            "fault",
-            "/xyz/openbmc_project/inventory/system/chassis/powersupply0"
-          ]
-        ]
+        "Timestamp": 1563191362822,
+        "Version": "2.8.0-dev-132-gd1c1b74-dirty",
+        "associations": []
       },
       "message": "200 OK",
       "status": "ok"
     }
 
-To delete an event log (log 1 in this example), call the `delete` method on the event:
+To delete an event log (log 1 in this example), call the `Delete` method on the event:
 
-    curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data" : []}' \
-        https://${bmc}/xyz/openbmc_project/logging/entry/1/action/Delete
+    $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data" : []}' https://${bmc}/xyz/openbmc_project/logging/entry/1/action/Delete
 
 To clear all event logs, call the top-level `DeleteAll` method:
 
-    curl -b cjar -k -H "Content-Type: application/json" -X POST \
-        -d '{"data" : []}' \
-        https://${bmc}/xyz/openbmc_project/logging/action/DeleteAll
+    $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data" : []}' https://${bmc}/xyz/openbmc_project/logging/action/DeleteAll
 
-Host Boot Options
------------------
+## Host Boot Options
 
 With OpenBMC, the Host boot options are stored as D-Bus properties under the
 `control/host0/boot` path. Properties include
@@ -180,9 +181,16 @@ With OpenBMC, the Host boot options are stored as D-Bus properties under the
 and
 [`BootSource`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/Boot/Source.interface.yaml).
 
+- Set boot mode:
+   ```
+$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/one_time/attr/BootMode -d '{"data": "xyz.openbmc_project.Control.Boot.Mode.Modes.Regular"}'
+   ```
+- Set boot source:
+   ```
+$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/one_time/attr/BootSource -d '{"data": "xyz.openbmc_project.Control.Boot.Source.Sources.Default"}'
+   ```
 
-Host State Control
-------------------
+## Host State Control
 
 The host can be controlled through the `host` object. The object implements a
 number of actions including power on and power off. These correspond to the IPMI
@@ -191,41 +199,32 @@ number of actions including power on and power off. These correspond to the IPMI
 Assuming you have logged in, the following will power on the host:
 
 ```
-curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
-  -d '{"data": "xyz.openbmc_project.State.Host.Transition.On"}' \
-  https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
+$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -d '{"data": "xyz.openbmc_project.State.Host.Transition.On"}' -X PUT https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 ```
 
 To power off the host:
 
 ```
-curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
-  -d '{"data": "xyz.openbmc_project.State.Host.Transition.Off"}' \
-  https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
+$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -d '{"data": "xyz.openbmc_project.State.Host.Transition.Off"}' -X PUT https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 ```
 
 To issue a hard power off (accomplished by powering off the chassis):
 
 ```
-curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
-  -d '{"data": "xyz.openbmc_project.State.Chassis.Transition.Off"}' \
-  https://${bmc}/xyz/openbmc_project/state/chassis0/attr/RequestedPowerTransition
+$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Chassis.Transition.Off"}' https://${bmc}//xyz/openbmc_project/state/chassis0/attr/RequestedPowerTransition
 ```
 
 To reboot the host:
 
 ```
-curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
-  -d '{"data": "xyz.openbmc_project.State.Host.Transition.Reboot"}' \
-  https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
+$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Host.Transition.Reboot"}' https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 ```
 
 
 More information about Host State Management can be found here:
 https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/State
 
-Host Clear GARD
----------------
+## Host Clear GARD
 
 On OpenPOWER systems, the host maintains a record of bad or non-working
 components on the GARD partition. This record is referenced by the host on
@@ -245,13 +244,12 @@ can be called as follows:
   * Method 2: Using the REST API:
 
       ```
-      curl -b cjar -k -H 'Content-Type: application/json' -X POST -d '{"data":[]}' https://${bmc}/org/open_power/control/gard/action/Reset
+      $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data":[]}' https://${bmc}/org/open_power/control/gard/action/Reset
       ```
 
 Implementation: https://github.com/openbmc/openpower-pnor-code-mgmt
 
-Host Watchdog
--------------
+## Host Watchdog
 
 The host watchdog service is responsible for ensuring the host starts and boots
 within a reasonable time. On host start, the watchdog is started and it is
