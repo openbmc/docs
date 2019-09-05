@@ -20,7 +20,7 @@ automake toolchain.
 Start by making a place for your CI repositories to live, and clone the CI
 scripts first:
 
-```
+```shell
 mkdir ci_test_area
 cd ci_test_area
 git clone https://github.com/openbmc/openbmc-build-scripts.git
@@ -36,7 +36,7 @@ everything and this includes running `make check` if available. It will also run
 `.clang-format` file present in the target repository, or if there is a script
 in the repo named `format-code.sh`.
 
-```
+```shell
 cd ci_test_area
 git clone https://github.com/openbmc/phosphor-hwmon
 WORKSPACE=$(pwd) UNIT_TEST_PKG=phosphor-hwmon \
@@ -63,7 +63,7 @@ more about worktree by running `git help worktree` if you're curious.
 This example demonstrates how to make a worktree of `phosphor-host-ipmid` in
 your Docker container.
 
-```
+```shell
 cd /my/dir/for/phosphor-host-ipmid
 git worktree add /path/to/ci_test_area/phosphor-host-ipmid
 ```
@@ -92,7 +92,7 @@ docker run --blah-blah-existing-flags \
 Then commit this, so you can make sure not to lose it if you update the scripts
 repo:
 
-```
+```shell
 cd openbmc-build-scripts
 git add run-unit-test-docker.sh
 git commit -m "mount phosphor-host-ipmid"
@@ -100,7 +100,7 @@ git commit -m "mount phosphor-host-ipmid"
 
 The easiest workflow in this situation now looks something like this:
 
-```
+```shell
 # Hack in the main worktree.
 cd /my/dir/for/phosphor-host-ipmid
 git checkout -b add-foo
