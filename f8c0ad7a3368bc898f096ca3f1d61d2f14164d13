@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "2afa6459_07a011e4",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-09-09T15:58:47Z",
+      "side": 1,
+      "message": "I would be happy if all browsers tried HTTPS first.  But, alas, this design must prescribe what happens if we get an HTTP request.",
+      "parentUuid": "7e13a503_43f9bcfe",
+      "range": {
+        "startLine": 17,
+        "startChar": 33,
+        "endLine": 17,
+        "endChar": 39
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee0b3a3e_553e52ba",
         "filename": "designs/http-redirect.md",
         "patchSetId": 2
@@ -98,6 +122,29 @@
         "startChar": 5,
         "endLine": 40,
         "endChar": 18
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf43fb1f_86072f8f",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-09-09T15:58:47Z",
+      "side": 1,
+      "message": "More detail is needed:\nOnly HTTP: URIs which exist on the server should be redirected 301 (moved permanently).\nThe HTTP: URIs which don\u0027t exist should get 401 (not found).\nFor example, we don\u0027t want to redirect http://bmc/non/existent/page to https://bmc/non/existent/page only to have https://bmc/non/existent/page return code 401.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 13
       },
       "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
