@@ -149,6 +149,29 @@
       "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94b48f38_393d712b",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-09-09T16:35:36Z",
+      "side": 1,
+      "message": "The question is which URIs to redirect?  Only `/` and `/index.html`?  All Web app URI?  All valid URIs including Redfish APIs?  Or a blanket redirect that does not even look at the URI?\n\nThere are two additional concerns:\n1. We don\u0027t want to encourage users to POST their secret password to create a session via the insecure http protocol.  For example, if we redirected POSTS to http://BMCIP/redfish/v1/SessionService/ to https, then the Redfish user might unknowingly disclose their password every time they create a new session.  We cannot stop them from doing so, but we can help them discontinue this practice if we fail to redirect.\n2. The security vulnerabilities surrounding redirection seem to involve modifying the URL (more than just changing the protocol to https).  The OWASP best practices (https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html and especially https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards) suggest we can be safe if we ensure the destination URL is valid.\n\nThat suggests we can safely forward all valid URIs including Redfish APIs (noting that the design of BMCWeb is such that the authorization check will happen as part of the subsequent HTTPS request).",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 4
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
