@@ -840,6 +840,24 @@
     },
     {
       "key": {
+        "uuid": "95f26894_c76526d8",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-09-13T18:49:34Z",
+      "side": 1,
+      "message": "Add https://github.com/openbmc/docs/blob/master/user_management.md.\nWe should briefly outline the phosphor-user-management authorization model here becasue it is needed to explain multiple interfaces (IPMI, SSH, Redfish).  Something like:\nOpenBMC user management defines Privilege Roles and Groups.  Each user has exactly one Privilege Role which says what functions that user can access.  Each user can be in multiple groups which says what interfaces they can use to access the BMC (SSH, Redfish, etc.)\n\nThen the https://github.com/openbmc/docs/blob/master/security/network-security-considerations.md should be updated to talk about how Redfish Roles are related to OpenBMC Privilege Roles.",
+      "parentUuid": "5a41ae10_81b96067",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f81667e0_a46a3fe0",
         "filename": "security/threat-model-considerations.md",
         "patchSetId": 1
