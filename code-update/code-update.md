@@ -22,11 +22,17 @@ After building OpenBMC, you will end up with a set of image files in
 
 The BMC tar image contains 5 files: u-boot,
 kernel, ro, and rw partitions and the MANIFEST file, which contains information
-about the image such as the image purpose and version. A MANIFEST file might
-look like
+about the image such as the image purpose, version, KeyType (Key type used for 
+signature), HashType (SHA type used for key generation) and
+MachineName (name of machine used while building image).
+A MANIFEST file might look like
 ```
 purpose=xyz.openbmc_project.Software.Version.VersionPurpose.BMC
 version=v1.99.10
+version=2.7.0-dev
+KeyType=OpenBMC
+HashType=RSA-SHA256
+MachineName=tiogapass
 ```
 
 2. Transfer the generated BMC image to the BMC via one of the following
