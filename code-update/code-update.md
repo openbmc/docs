@@ -22,11 +22,17 @@ After building OpenBMC, you will end up with a set of image files in
 
 The BMC tar image contains 5 files: u-boot,
 kernel, ro, and rw partitions and the MANIFEST file, which contains information
-about the image such as the image purpose and version. A MANIFEST file might
-look like
+about the image such as the image purpose, version, KeyType (Key type used for
+signature), HashType (SHA type used for key generation) and MachineName
+(name of machine used while building image, and this will be used for
+validation of image build).
+A MANIFEST file might look like
 ```
 purpose=xyz.openbmc_project.Software.Version.VersionPurpose.BMC
-version=v1.99.10
+version=2.7.0-dev
+KeyType=OpenBMC
+HashType=RSA-SHA256
+MachineName=tiogapass
 ```
 
 2. Transfer the generated BMC image to the BMC via one of the following
@@ -260,6 +266,14 @@ xyz.openbmc_project.Software.Version.VersionPurpose.Host). Accepted purpose
 values can be found at
 [Version interface](https://github.com/openbmc/phosphor-dbus-interfaces/blob/6f69ae5b33ee224358cb4c2061f4ad44c6b36d70/xyz/openbmc_project/Software/Version.interface.yaml)
 under "VersionPurpose" values.
+* MachineName - The name of machine (platform) for which this image is
+                built for. This value will be compared against
+                OPENBMC_TARGET_MACHINE value defined in os-release file
+                of running image. Image will not be upgraded if this
+                check fails. For backward compatibility this check
+                skips failure if MachineName is not defined for current
+                released images but it will be made mandatory field
+                from 2.9 onward releases.
 
 Other optional fields are:
 * extended_version - A more detailed version, which could include versions of
