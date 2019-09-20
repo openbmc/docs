@@ -108,74 +108,79 @@ This design has three main parts:
    Otherwise the usual security protocols apply (giving no additional
    information).
 
-   The `/login` URI is enhanced.  If it is used with correct
-   credentials (userid and password) and the password needs to be
-   changed the request will fail to create a session and indicate a
-   password change is needed.  If it is used with correct userid and
-   incorrect password, or with an incorrect userid, the behavior must
-   not change.  Note the `/login` URI is deprecated.
+   The `/login` and `/redfish/v1/SessionService/Sessions/<session>`
+   URIs are enhanced to allow a user with an expired password to
+   create a session.  That session is restricted to operations needed
+   to change that user's password, and a message returned with the
+   session credentials indicates the restriction and how to change the
+   password.  Details are below.
 
-   The '/redfish/v1/SessionService/Sessions/<session>' and
-   '/redfish/v1/AccountService/Accounts/<account>' resources are
-   enhanced to indicate PasswordChangeRequired per the Redfish spec.
+   Basic auth will not indicate the password is expired and will give
+   an authentication failure.
 
-   The `ipmitool` command treats an expired password the same as an
-   invalid password.  Note the RMCP+ standard, such as used for the
-   BMC's network IPMI interface, does not support changing the
-   password when establishing a session.  The ipmitool is not being
+   Note that Cookie and Token authentication are not affected and will
+   continue to work as before.
+
+   The `ipmitool` does not differentiate the case where the password
+   is expired.  The IPMI spec does not allow the fact that password is
+   expired to be related to the user.  The ipmitool is not being
    enhanced by this design.
 
    The Secure Shell access (via the `ssh` command) already correctly
    indicates when the password is expired.  No change is needed.  But
    see the next bullet for the expired password dialog.
 
-3. There is a way for an account owner to change their own expired
-   password.  This can be either from a network-facing or in-band
-   password changing protocol.  For example:
-    - Redfish: This design adds the Redfish PasswordChangeRequired
-      handling to BMCWeb.  See below for details.
-    - SSH server: The SSH servers may have an expired password change
-      dialog.  For example, OpenSSH implement this feature.  However,
-      the Dropbear SSH server announces the password is expired, but
-      does not implement the dialog to change it.
-    - Access via the BMC's host: for example, via the `ipmitool user
-      set password` command when accessed in-band.
+   The BMC's serial console allows logins.  When used with an expired
+   password, it indicates the password is expired, and implements the
+   password change dialog.
 
-When Redfish creates a session with PasswordChangeRequired, every
-response contains a PasswordChangeRequired message.  The session
-effectively has only the ConfigureSelf privilege which allows it to
-only change the password and terminate the session.  The usage
-pattern is:
- 1. Create a session.
- 2. If the PasswordChangeRequired message is present:
-     1. PATCH the new password into the ManagerAccount object.
-     2. Any other use of the session will get HTTP status code 403
-        Forbidden.
-     3. DELETE the Session object to terminate the session.
-     4. Create a new session and continue.
+3. There is a way for an account owner to change their own expired
+   password as part of a password changing protocol, or there is a
+   non-network vector to change the password.  For example:
+    - Serial access to the BMC allows login and implements the
+      expired password change dialog.
+    - Redfish: Implement the PasswordChangeRequired handling:
+      PATCH `/redfish/v1/AccountService/Accounts/<account>`
+      with the `Password` property.  See details below.
+    - The `/login` URI: Implement changes which parallel the
+      Redfish PasswordChangeRequired handling.
+    - SSH server: Implement the expired password change dialog.  The
+      default SSH server implementation is provided by Dropbear which
+      recoginizes an expired password, but does not implement the
+      password change dialog.  If this function is needed, a
+      [Dropbear patch][] could be added, or OpenSSH could be used.
+    - Access via the BMC's host: for example, via the `ipmitool user
+      set password` command when accessed in-band.  Note the RMCP+
+      standard, such as used for the BMC's network IPMI interface,
+      does not support changing the password when establishing a
+      session.
+
+[Dropbear patch]: https://lists.ucc.gu.uwa.edu.au/pipermail/dropbear/2016q2/001895.html
+
+The usage pattern for creating a session and handling an expired
+password is the same for sessions created via HTTPS POST to
+`/redfish/v1/SessionService/Sessions` or `/login`.
+
+1. The initial JSON response will contain the Redfish
+   PasswordChangeRequired message.  Users should use the presence of
+   this message to determine if the password is expired.  This message
+   gives the URI needed to PATCH the new Password.
+2. If the PasswordChangeRequired message is present, use the session
+   to perform only the following operations because any other use of
+   the session will get an authority failure:
+     1. PATCH the new password into the ManagerAccount indicated by
+        the PasswordChangeRequired message.
+     2. DELETE the Session object to terminate the session.
+     3. Create a new session and continue.
+
+This design is intended to enable the phosphor-webui web application
+to change an expired password.  The web app can follow the logic for
+creating a session with an expired password and will need a little
+extra logic for the signon screen expired password dialog.
 
 This design is intended to cover any cause of expired password,
 including both the BMC's initial expired password and password expired
 for another cause such as aging or via the `passwd --expire` command.
-
-This design is intended to enable the phosphor-webui web application
-to implement a password change dialog for the signon screen.
-
-Per the above design, when the web app uses either `/login` or
-`/redfish/v1/SessionService` to establish a session and the account
-has an expired password:
- - If the `/login` URI was used, the HTTP response indicates the
-   password must be changed, and will not establish a session.  In
-   this case, the web app must use the Redfish API to establish a
-   session.
- - POST to `/redfish/v1/SessionService/Sessions` will establish a
-   session which will have the PasswordChangeRequired message.
- - At this point the web app can display a message that the password
-   is expired and must be changed, then get the new password.
- - PATCH the password to the account specified in the
-   PasswordChangeRequired message.
- - DELETE the Session object to terminate the session.
- - Create a new session and continue.
 
 ## Alternatives Considered
 The following alternate designs were considered:
@@ -226,15 +231,21 @@ authority immediately without requiring a new session.  This is
 allowed by the Redfish spec, but was not implemented because it would
 be more difficult to code and test.
 
+Considered added the PasswordChangeRequired property to the Redfish
+ManagerAccount resource per the spec.  This information is not readily
+available to the server.
+
 ## Impacts
 Having to change an expired password is annoying and breaks
 operational procedures and scripts.  Documentation, lifecycle review,
 and test are needed.  Expect pain when this is enabled.
 
-To help with this, the [REDFISH-cheatsheet][] will be updated with
-commands needed to detect and change an expired password.
+To help with this, the [REDFISH-cheatsheet][] and [REST-chestsheet][]
+will be updated with commands needed to detect and change an expired
+password.
 
 [REDFISH-cheatsheet]: https://github.com/openbmc/docs/blob/master/REDFISH-cheatsheet.md
+[REST-cheatsheet]: https://github.com/openbmc/docs/blob/master/REST-cheatsheet.md
 
 This design does not affect other policies such as password aging.
 
@@ -263,3 +274,8 @@ Scenarios:
 7. Validate you can to change an IPMI user's expired password, such as
    with: ipmitool user set password 1 NEWPASSWORD.  This can be from
    another IPMI user's session or from unauthenticated access.
+8. Ensure that a session created with PasswordChangeRequired:
+    - Can access operations it needs to change the password and
+      terminate the session.
+    - Can access operations which do not require authentication.
+    - Cannot access other operations.
