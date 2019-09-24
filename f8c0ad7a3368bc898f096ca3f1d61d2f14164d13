@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "f1e57828_8fff9504",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2019-09-24T00:12:46Z",
+      "side": 1,
+      "message": "What browsers?  The only exception to a browser \"defaulting\" to HTTPS is when the HSTS header is applied correctly, which isn\u0027t really a default.\n\nIs there a common browser (I tried a quick search) that does HTTPS by default?",
+      "parentUuid": "f0c84546_620a5e8f",
+      "range": {
+        "startLine": 16,
+        "startChar": 38,
+        "endLine": 17,
+        "endChar": 18
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee0b3a3e_553e52ba",
         "filename": "designs/http-redirect.md",
         "patchSetId": 2
@@ -89,6 +113,46 @@
     },
     {
       "key": {
+        "uuid": "bf4fd063_052d3011",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2019-09-24T00:12:46Z",
+      "side": 1,
+      "message": "Might want to also add a link to the previous nginx implementation that did this already.",
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f762874_9bdc132b",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2019-09-24T00:12:46Z",
+      "side": 1,
+      "message": "Why is this one required?  URI \"/\" should be all that\u0027s needed, right?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "895a2b1a_49eb314e",
         "filename": "designs/http-redirect.md",
         "patchSetId": 2
@@ -100,6 +164,29 @@
       "writtenOn": "2019-08-14T20:09:19Z",
       "side": 1,
       "message": "That is, implement HSTS Section 7.2 (\"HTTP request type\").\nPer the RFC, the Strict-Transport-Security HTTP Response Header Field should not be provided when the transport protocol is HTTP.",
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16b1fedf_fe9ac559",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2019-09-24T00:12:46Z",
+      "side": 1,
+      "message": "Replace with 404.  400 is really for requests for endpoints that exist, but had a malformed input.  The endpoints were truly \"not found\" in this case.",
+      "range": {
+        "startLine": 36,
+        "startChar": 29,
+        "endLine": 37,
+        "endChar": 65
+      },
       "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -152,6 +239,23 @@
     },
     {
       "key": {
+        "uuid": "162cfdc2_f3509f4f",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2019-09-24T00:12:46Z",
+      "side": 1,
+      "message": "This section needs waaaaaaaaaaay more detail.  You\u0027ve described the external interfaces pretty well in the requirements.   This section is for \"here\u0027s how I intend to implement this in code\".\n\nSome things I would like to see addressed:\n1. Will you use socket files?  How will we disambiguate http from https sockets?\n2. Which service will handle these requests?\n3. How will we verify the security?\n4. What headers will be required of the HTTP connection (might be more of a requirement, but needs addressed)",
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "94b48f38_393d712b",
         "filename": "designs/http-redirect.md",
         "patchSetId": 2
@@ -168,6 +272,76 @@
         "startChar": 0,
         "endLine": 44,
         "endChar": 4
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "596ea884_29669f82",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2019-09-24T00:12:46Z",
+      "side": 1,
+      "message": "Come on.......   You didn\u0027t consider any alternatives?",
+      "parentUuid": "94b48f38_393d712b",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 4
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "080b81cb_46d0750b",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2019-09-24T00:12:46Z",
+      "side": 1,
+      "message": "Give this a better shot.  I can think of several impacts:\n1. There will be an extra port open in the BMC\n2. There will need to be additions to any test plan\n3. The BMC will now be hosting an unencrypted interface.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 5
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec57796a_7eda483d",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2019-09-24T00:12:46Z",
+      "side": 1,
+      "message": "Please make a better attempt here:\nWhat browsers are you going to test\nwhat URLs are you going to test\nAre you going to test security at all?\nAre you going to test response headers?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 69
       },
       "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
