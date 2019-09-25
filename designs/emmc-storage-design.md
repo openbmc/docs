@@ -50,7 +50,10 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
 
   The AST2600 supports executing U-Boot from the eMMC, so that provides the
   flexibility of just having the eMMC chip on a system, or still have U-Boot in
-  a separate chip for recovery in cases where the eMMC goes bad.
+  a separate chip for recovery in cases where the eMMC goes bad. If just the
+  eMMC is used, a ext4 (or vfat) partition would hold the FIT image containing
+  the kernel, initrd and device tree. This volume would be mounted as /boot.
+  This allows U-Boot to load the kernel since it doesn't have support for LVM.
 
 - Filesystem: ext4. This is a stable and widely used filesystem for eMMC. See
   the Alternatives section below for additional options.
@@ -62,11 +65,12 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
   similar way, so it would not be complex to implement LVM management in the
   code update application.
 
-- Partitioning: Model the full eMMC as a single device containing logical
-  volumes, instead of fixed-size partitions. This provides flexibility for cases
-  where the contents of a partition outgrow its size. This also means that other
-  firmware images, such as BIOS and PSU, would be stored in volume in the single
-  eMMC device.
+- Partitioning: After the ext4 (or vfat) partition holding the FIT, model the
+  remaining eMMC flash as a single device containing logical volumes, instead
+  of fixed-size partitions. This provides flexibility for cases where the
+  contents of a partition outgrow its size. This also means that other firmware
+  images, such as BIOS and PSU, would be stored in volume in the single eMMC
+  device.
 
 - Initramfs: Use an initramfs, which is the default in OpenBMC, to boot the
   rootfs from a logical volume. An initramfs allows for flexibility if
@@ -87,15 +91,19 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
   current UBI implementation.
 
 - Provisioning: The eMMC vendor would be provided with an OpenBMC image that can
-  be flashed into the eMMC. The image must have the BMC rootfs, and optionally
-  any additional partitions that the system owner decides to have. Then the
-  vendor would deliver the BMC cards with the eMMC already flashed to
+  be flashed into the eMMC. Since the LVM userspace tools don't offer an offline
+  mode, it's not straightforward to assemble an LVM disk image from a bitbake
+  task. Therefore, the rootfs image would be added to the partition where the
+  FIT resides, leaving the initramfs the task to create the LVM volume and use
+  that rootfs file to populate it.
+
+  Then the vendor would deliver the BMC cards with the eMMC already flashed to
   manufacturing. At this stage, the system can be code updated to a newer
   version of firmware. If a use case existed where systems with blank eMMCs
   would be provided to developers for example, a method of flashing the eMMC
-  from the NOR could be developed, such as adding a rootfs to the NOR.
-  This provisioning is needed since, unlike a NOR chip, the eMMC cannot be
-  removed from the board and flashed by a standard flash programmer.
+  from the NOR could be developed, such as adding a rootfs to the NOR. This
+  provisioning is needed since, unlike a NOR chip, the eMMC cannot be removed
+  from the board and flashed by a standard flash programmer.
 
 ## Alternatives Considered
 - Filesystem: f2fs (Flash-Friendly File System). The f2fs is an up-and-coming
