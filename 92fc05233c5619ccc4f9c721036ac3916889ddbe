@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "184e378d_e81a6409",
+        "filename": "designs/expired-password.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-09-25T14:59:17Z",
+      "side": 1,
+      "message": "Add:\n- Redfish login responses have the Redfish `PasswordChangeRequired` message.\n- The `/login` URI responses have the `errorExtendedInfo` field.",
+      "revId": "92fc05233c5619ccc4f9c721036ac3916889ddbe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c1098b7_5d9ba11c",
+        "filename": "designs/expired-password.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-09-25T14:59:17Z",
+      "side": 1,
+      "message": "Insert new paragraph here:\nTo clarify, when BMCWeb returns HTTP status 403 Forbidden -and- the session has the special PasswordChangeRequired condition, the HTTP response body may have additional information to help the user diagnose the problem.\n- For Redfish APIs (under the /redfish URI), the Redfish PasswordChangeRequired extended message is sent.\n- For APIs which return a JSON object (such as the DBus REST APIs), the HTTP response message body will contain a top-level JSON field: \"errorExtendedInfo\" \u003d \"The password for this account must be changed.  PATCH the \u0027Password\u0027 property for the account under URI: /redfish/v1/AccountService/Accounts/\u003caccountID\u003e\", with the appropriate accountID.\n- For other APIs, no additional information is sent.  Please note this is simply a straw-man design point which was added to help explain the design; such APIs can be enhanced as needed.",
+      "revId": "92fc05233c5619ccc4f9c721036ac3916889ddbe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
