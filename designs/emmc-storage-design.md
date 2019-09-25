@@ -50,7 +50,10 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
 
   The AST2600 supports executing U-Boot from the eMMC, so that provides the
   flexibility of just having the eMMC chip on a system, or still have U-Boot in
-  a separate chip for recovery in cases where the eMMC goes bad.
+  a separate chip for recovery in cases where the eMMC goes bad. If just the
+  eMMC is used, a ext4 (or vfat) partition would hold the FIT image containing
+  the kernel, initrd and device tree. This volume would be mounted as /boot.
+  This allows U-Boot to load the kernel since it doesn't have support for LVM.
 
 - Filesystem: ext4. This is a stable and widely used filesystem for eMMC. See
   the Alternatives section below for additional options.
@@ -62,21 +65,24 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
   similar way, so it would not be complex to implement LVM management in the
   code update application.
 
-- Partitioning: Model the full eMMC as a single device containing logical
-  volumes, instead of fixed-size partitions. This provides flexibility for cases
-  where the contents of a partition outgrow its size. This also means that other
-  firmware images, such as BIOS and PSU, would be stored in volume in the single
+- Partitioning: After the ext4 (or vfat) partition holding the FIT, assign the
+  remaining eMMC flash as a single physical volume containing logical volumes,
+  instead of fixed-size partitions. This provides flexibility for cases where
+  the contents of a partition outgrow a fixed size. This also means that other
+  firmware images, such as BIOS and PSU, can be stored in volumes in the single
   eMMC device.
+
+  Two volumes to hold two roofs versions would be created with well known names
+  such as A and B which would be populated during a code update, instead of
+  creating volumes on the fly. This would allow U-Boot to know the name of the
+  available rootfs volumes to boot from.
 
 - Initramfs: Use an initramfs, which is the default in OpenBMC, to boot the
   rootfs from a logical volume. An initramfs allows for flexibility if
   additional boot actions are needed, such as mounting overlays. It also
   provides a point of departure (environment) to provision and format the eMMC
   volume(s). To boot the rootfs, the initramfs would search for the desired
-  rootfs volume to be mounted, instead of using the U-Boot environments. Exact
-  details on how the volumes will be named and how the initramfs would determine
-  which one to use are still being developed, and the proposal will be updated
-  for review once that is done.
+  rootfs volume to be mounted, instead of using the U-Boot environments.
 
 - Mount points: For firmware images such as BIOS that currently reside in
   separate SPI NOR modules, the logical volume in the eMMC would be mounted in
@@ -87,15 +93,39 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
   current UBI implementation.
 
 - Provisioning: The eMMC vendor would be provided with an OpenBMC image that can
-  be flashed into the eMMC. The image must have the BMC rootfs, and optionally
-  any additional partitions that the system owner decides to have. Then the
-  vendor would deliver the BMC cards with the eMMC already flashed to
-  manufacturing. At this stage, the system can be code updated to a newer
-  version of firmware. If a use case existed where systems with blank eMMCs
-  would be provided to developers for example, a method of flashing the eMMC
-  from the NOR could be developed, such as adding a rootfs to the NOR.
-  This provisioning is needed since, unlike a NOR chip, the eMMC cannot be
-  removed from the board and flashed by a standard flash programmer.
+  be flashed into the eMMC. Since the LVM userspace tools don't offer an offline
+  mode, it's not straightforward to assemble an LVM disk image from a bitbake
+  task. Therefore, have the initramfs create the LVM volume and fetch the
+  rootfs file into tmpfs from an external source to flash the volume. The
+  rootfs file can be fetched using DHCP, UART, USB key, etc.
+
+  Once the image is flashed into the eMMC, the vendor would deliver the BMC
+  cards with the eMMC already flashed to manufacturing. At this stage, the
+  system can be code updated to a newer version of firmware. If a use case
+  existed where systems with blank eMMCs would be provided to developers for
+  example, a method of flashing the eMMC from the NOR could be developed, such
+  as adding a rootfs to the NOR. This provisioning is needed since, unlike a NOR
+  chip, the eMMC cannot be removed from the board and flashed by a standard
+  flash programmer.
+
+- Filesystem layout: The root filesystem would be hosted in a read-only volume.
+  The /var directory would be mounted in a read-write volume that persists
+  through code updates. The /home directory would be a bind mount to the read-
+  write volume. And the /etc directory would be an overlayfs to have the ability
+  to restore its configuration content on a factory reset.
+
+        +------------------+ +-------------------+
+        | Read-only volume | | Read-write volume |
+        |------------------| |-------------------|
+        |                  | |                   |
+        | / (rootfs)       | | /var              |
+        |                  | |                   |
+        | /etc  +------------->/etc  (overlayfs) |
+        |                  | |                   |
+        | /home +------------->/home (bind mount)|
+        |                  | |                   |
+        |                  | |                   |
+        +------------------+ +-------------------+
 
 ## Alternatives Considered
 - Filesystem: f2fs (Flash-Friendly File System). The f2fs is an up-and-coming
@@ -119,6 +149,10 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
   store the kernel images, but additional work would be required to introduce a
   new method to select the desired kernel image, because the static layout does
   not currently have dual image support.
+
+- Alternative options to provision an LVM image are to build the image from
+  QEMU, this would require booting QEMU as part of the build process to setup
+  the LVM volume and create the image file.
 
 ## Impacts
 This design would impact the OpenBMC build process and code update
