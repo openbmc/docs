@@ -165,11 +165,11 @@ To delete an event log (log 1 in this example), call the `delete` method on the 
         -d '{"data" : []}' \
         https://${bmc}/xyz/openbmc_project/logging/entry/1/action/Delete
 
-To clear all event logs, call the top-level `deleteAll` method:
+To clear all event logs, call the top-level `DeleteAll` method:
 
     curl -b cjar -k -H "Content-Type: application/json" -X POST \
         -d '{"data" : []}' \
-        https://${bmc}/xyz/openbmc_project/logging/action/deleteAll
+        https://${bmc}/xyz/openbmc_project/logging/action/DeleteAll
 
 Host Boot Options
 -----------------
