@@ -137,9 +137,9 @@ and directories.
   mkdir -p ~/sdk
   cd ~/sdk
 
-  wget https://openpower.xyz/job/openbmc-build-sdk/distro=ubuntu,target=romulus/lastSuccessfulBuild/artifact/deploy/sdk/oecore-x86_64-armv6-toolchain-nodistro.0.sh
+  wget https://openpower.xyz/job/openbmc-build-sdk/distro=ubuntu,target=romulus/lastSuccessfulBuild/artifact/deploy/sdk/oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
 
-  chmod u+x oecore-x86_64-armv6-toolchain-nodistro.0.sh
+  chmod u+x oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
   ```
 
 2. Install the SDK
@@ -156,7 +156,7 @@ and directories.
   previous step.
 
   ```
-  ./oecore-x86_64-armv6-toolchain-nodistro.0.sh
+  ./oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
   ```
 
   The installation script will indicate progress and give completion messages
@@ -164,7 +164,7 @@ and directories.
   ```
   SDK has been successfully set up and is ready to be used.
   Each time you wish to use the SDK in a new shell session, you need to source
-  the environment setup script e.g. $ . /...path-to-sdk.../environment-setup-armv6-openbmc-linux-gnueabi
+  the environment setup script e.g. $ . /...path-to-sdk.../environment-setup-arm1176jzs-openbmc-linux-gnueabi
   ```
 
 3. Source yourself into the SDK
