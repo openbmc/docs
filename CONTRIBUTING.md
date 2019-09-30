@@ -257,13 +257,15 @@ other reviewers for guidance.  When accepted, your change will merge
 into the OpenBMC project.
 
 
-Avoid references to non-public resources
+References to non-public resources
 ----------------------------------------
 
-Code and commit messages should not refer to companies' internal documents
+Code and commit messages shall not refer to companies' internal documents
 or systems (including bug trackers). Other developers may not have access to
 these, making future maintenance difficult.
 
+Code contributed to OpenBMC must build from the publicly amiable sources,
+with no dependencies on non-public resources (URLs, repositories, etc).
 
 Best practices for D-Bus interfaces
 ----------------------------------
