@@ -69,6 +69,23 @@
       "revId": "92fc05233c5619ccc4f9c721036ac3916889ddbe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b293dea_c1dc0853",
+        "filename": "designs/expired-password.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-10-03T14:48:52Z",
+      "side": 1,
+      "message": "Add new paragraph:\nThis is an alternate mechanism to cause the initial expired password.\nThe main idea is to disable the EXPIRED_PASSWORD image feature, which means the password will not be expired by default.  Then add a new service that runs before the system reaches the multi-user target which administratively expires the password if the BMC\u0027s file system looks like its first boot.  For example, if a network server has not written its persistent data to files.  \u003d\u003d\u003e That causes the password to be expired\n\nWhy? This way change the behavior in this edge case scenario:\n- The BMC is running an older version of OpenBMC.\n- The BMC still has its default password.\n- The BMC performs code update to a version of OpenBMC which implements this new design.\n\nThe new behavior will NOT expire the default password during the upgrade, whereas the EXPIRED_PASSWORD image feature would have expired the password.",
+      "revId": "92fc05233c5619ccc4f9c721036ac3916889ddbe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
