@@ -654,6 +654,23 @@
     },
     {
       "key": {
+        "uuid": "9b53e24c_edd09366",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-10-07T08:53:37Z",
+      "side": 1,
+      "message": "Host configuration option. i.e BMC can change boot order etc.",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efc8d78b_86e56afa",
         "filename": "security/threat-model-considerations.md",
         "patchSetId": 1
@@ -759,6 +776,46 @@
     },
     {
       "key": {
+        "uuid": "69735228_51665c6a",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-10-07T08:53:37Z",
+      "side": 1,
+      "message": "host BIOS communication ? which includes querying / storing of data which may be used by upper layer including OS Software management agent",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99f4c94f_2ecdd28f",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-10-07T08:53:37Z",
+      "side": 1,
+      "message": "BMC still manages fan right? Host can manage P-State / T-State but it won\u0027t manage system thermal as such. \nSo, BMC is still in charge of Power \u0026 thermal(through fans).",
+      "range": {
+        "startLine": 183,
+        "startChar": 7,
+        "endLine": 184,
+        "endChar": 70
+      },
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03ef181a_b9628ef5",
         "filename": "security/threat-model-considerations.md",
         "patchSetId": 1
@@ -770,6 +827,24 @@
       "writtenOn": "2019-08-14T19:23:30Z",
       "side": 1,
       "message": "Add: For example, no access to the host\u0027s memory, storage, or similar devices.  The purpose is to reduce the attack surface from the BMC to its host.  Various BMC/host combinations may enforce this restriction, for example, the host can restrict traffic originating from the BMC.",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54f86d0d_431dab17",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-10-07T08:53:37Z",
+      "side": 1,
+      "message": "BIOS configuration? through existing IPMI command",
+      "parentUuid": "03ef181a_b9628ef5",
       "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -820,6 +895,23 @@
       "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54ba0486_7a87cc0e",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2019-10-07T08:53:37Z",
+      "side": 1,
+      "message": "Do we need add a statement saying.\nAny extra interfaces provided by the BMC Hardware which allows host to access it\u0027s memory etc, must be blocked / properly protected from security point of it?",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
