@@ -31,6 +31,11 @@ then running automation tests inside the Docker container.
 
     `./scripts/build-qemu-robot-docker.sh`
 
+    ###### *Note: When your Docker is behind a proxy, add the following parameters to the build command (use proper IP and PORT values.)*
+
+    ```
+    --build-arg http_proxy=<IP>:<PORT> --build-arg https_proxy=<IP>:<PORT>
+    ```
 
 ## Code update process using robot test code
 
@@ -111,7 +116,7 @@ then running automation tests inside the Docker container.
                --env HTTPS_PORT=443 \
                --env ROBOT_TEST_CMD="tox -e witherspoon -- tests" \
                --workdir ${HOME} \
-               --volume ${HOME}/OpenBMC_Automation:${HOME}
+               --volume ${HOME}/OpenBMC_Automation:${HOME} \
                --tty openbmc/ubuntu-robot-qemu \
                    ${HOME}/openbmc-build-scripts/scripts/run-robot.sh
     ```
