@@ -671,6 +671,24 @@
     },
     {
       "key": {
+        "uuid": "05fac509_fcbbd736",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-10-10T19:46:20Z",
+      "side": 1,
+      "message": "Good point.  Thanks!",
+      "parentUuid": "9b53e24c_edd09366",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efc8d78b_86e56afa",
         "filename": "security/threat-model-considerations.md",
         "patchSetId": 1
@@ -793,6 +811,24 @@
     },
     {
       "key": {
+        "uuid": "7e8a51e7_378ba70c",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-10-10T19:46:20Z",
+      "side": 1,
+      "message": "My knowledge is weak in that area, so thanks for your input.  This is part of the \"special relationship\" between the BMC and host, so I\u0027ll add it to that section below.",
+      "parentUuid": "69735228_51665c6a",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99f4c94f_2ecdd28f",
         "filename": "security/threat-model-considerations.md",
         "patchSetId": 1
@@ -804,6 +840,30 @@
       "writtenOn": "2019-10-07T08:53:37Z",
       "side": 1,
       "message": "BMC still manages fan right? Host can manage P-State / T-State but it won\u0027t manage system thermal as such. \nSo, BMC is still in charge of Power \u0026 thermal(through fans).",
+      "range": {
+        "startLine": 183,
+        "startChar": 7,
+        "endLine": 184,
+        "endChar": 70
+      },
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a49ab6a9_aeb2406b",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-10-10T19:46:20Z",
+      "side": 1,
+      "message": "I understand this varies by platform.  I\u0027ll add the details and change this to the BMC and host may share control.",
+      "parentUuid": "99f4c94f_2ecdd28f",
       "range": {
         "startLine": 183,
         "startChar": 7,
@@ -845,6 +905,24 @@
       "side": 1,
       "message": "BIOS configuration? through existing IPMI command",
       "parentUuid": "03ef181a_b9628ef5",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2486289b_ff358d93",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-10-10T19:46:20Z",
+      "side": 1,
+      "message": "I\u0027ll rewrite this to clarify:\n- which host elements the BMC is intended to operate\n- which BMC elements the host is intended to operate (such as loading host BIOS)",
+      "parentUuid": "54f86d0d_431dab17",
       "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -909,6 +987,24 @@
       "writtenOn": "2019-10-07T08:53:37Z",
       "side": 1,
       "message": "Do we need add a statement saying.\nAny extra interfaces provided by the BMC Hardware which allows host to access it\u0027s memory etc, must be blocked / properly protected from security point of it?",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6cc7cd7e_3887e462",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-10-10T19:46:20Z",
+      "side": 1,
+      "message": "Like CVE-2019-6260?  Yes, that is what I trying to say here.  I think the doc should talk about BMC interfaces which allow access to the BMC\u0027s internal resources.  And yes, these need to be identified and secured or blocked in some way.",
+      "parentUuid": "54ba0486_7a87cc0e",
       "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
@@ -1101,6 +1197,30 @@
       "side": 1,
       "message": "Right, so this isn\u0027t something the BMC is driving, rather something else. Would be good to clarify the text.",
       "parentUuid": "5423aefc_a27cac58",
+      "range": {
+        "startLine": 246,
+        "startChar": 7,
+        "endLine": 246,
+        "endChar": 32
+      },
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d7b49cb_9331418c",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-10-10T19:46:20Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "218393b1_9a788431",
       "range": {
         "startLine": 246,
         "startChar": 7,
