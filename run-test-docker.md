@@ -31,6 +31,10 @@ then running automation tests inside the Docker container.
 
     `./scripts/build-qemu-robot-docker.sh`
 
+    > When your docker stands behind proxy edit above script and add following parameters to docker build command. (using proper IP and PORT values.)
+
+        --build-arg http_proxy=<IP>:<PORT> --build-arg https_proxy=<IP>:<PORT>
+
 
 ## Code update process using robot test code
 
