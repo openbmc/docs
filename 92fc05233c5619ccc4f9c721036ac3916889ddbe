@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "2e152d96_c83dfd8a",
+        "filename": "designs/expired-password.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-10-10T19:19:36Z",
+      "side": 1,
+      "message": "Two answers:\n - Basic Auth (https://en.wikipedia.org/wiki/Basic_access_authentication) performs one request without returning any session credentials to the caller. \n - Using the /login URI creates a session and returns session credentials which can then be used for subsequent requests.\n\nThis design point was added simply to clarify the design.  It could be enhanced if needed.\nThe BMCWeb implementation of Basic Auth is in https://github.com/openbmc/bmcweb/blob/master/include/token_authorization_middleware.hpp function performBasicAuth().  It could be re-structured so that an account that has an expired password and uses Basic Auth\n - will be limited to the ConfigureSelf privilege.\n - will get the same results (same auth and same messages) as from /login users.\n\nBut that would be more work.  Is this function needed? \u003c-- real question",
+      "parentUuid": "b4e440ce_fc9ea88e",
+      "revId": "92fc05233c5619ccc4f9c721036ac3916889ddbe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c1098b7_5d9ba11c",
         "filename": "designs/expired-password.md",
         "patchSetId": 2
