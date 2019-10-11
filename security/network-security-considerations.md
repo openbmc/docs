@@ -77,7 +77,17 @@ OpenBMC's [phosphor-user-manager][] provides the underlying
 authentication and authorization functions and ties into IPMI, Linux
 PAM, LDAP, and logging.  Some of OpenBMC services use phosphor-user-manager.
 
+OpenBMC's [phosphor-certificate-manager][] provides [BMC certificate
+Management][] flows for certificate upload and generating certificate
+signing requests (CSR).  For example, this include X.509 certificates
+used by OpenBMC's HTTP server and as an LDAP client.  Recommendations
+such as from [NIST publication SP800-131A Rev.2][] apply to these
+certificates.
+
 [phosphor-user-manager]: https://github.com/openbmc/docs/blob/master/user_management.md
+[phosphor-certificate-manager]: https://github.com/openbmc/phosphor-certificate-manager
+[BMC certificate Management]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Certs/README.md
+[NIST publication SP800-131A Rev.2]: https://www.nist.gov/publications/transitioning-use-cryptographic-algorithms-and-key-lengths
 
 Transport layer security (TLS) protocols are configured for each
 service at compile time, become part of the image, and cannot be
