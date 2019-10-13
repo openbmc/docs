@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "b3b09b8b_ba79234d",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2019-10-13T23:55:21Z",
+      "side": 1,
+      "message": "Okay, maybe I haven\u0027t paid enough attention to the yaml files.",
+      "parentUuid": "c0a65dda_3f81e1c4",
+      "range": {
+        "startLine": 35,
+        "startChar": 40,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "1756074463484d3b18206aee91b5e80e14bb7021",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9c63531e_3deb87aa",
         "filename": "designs/u-boot-env-mgr.md",
         "patchSetId": 3
@@ -144,6 +168,24 @@
       "side": 1,
       "message": "Ok that clarification that the daemon is not user interfacing helps. Thanks.",
       "parentUuid": "4671f645_f7af9ac6",
+      "revId": "1756074463484d3b18206aee91b5e80e14bb7021",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e464a75_3861b1b0",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2019-10-13T23:55:21Z",
+      "side": 1,
+      "message": "I disagree with the idea that we should protect the BMC from itself. If something wants to write the root property it should be able to, but whatever it is needs to understand the risk of doing so.",
+      "parentUuid": "58c44f55_d19d0090",
       "revId": "1756074463484d3b18206aee91b5e80e14bb7021",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -233,6 +275,30 @@
       "side": 1,
       "message": "1. Our regular sdbusplus code doesn\u0027t support adding dynamic property directly (if needed, the underlying code needs to be written). Note: sdbusplus asio (async) model supports the same, and it is easier to implement dynamic properties. \nBut the problem will be writing generic code / handler for the same. \nHaving said that one, yes, we can go ahead and extend the same as part of extension, such that this will be exposed (Actually, i want to expose all param\u0027s as property and based on file io monitor on the mtd partition, the update can be captured and accordingly, signals can be sent out). But didn\u0027t do it in the first round, concerning the community feedback on the same. \nAs i see some interest, can submit a separate update review on this document, to include the same. But want to keep both, as implementars will be allowed to choose either one or both.",
       "parentUuid": "a734cb34_8a3ac1f4",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "1756074463484d3b18206aee91b5e80e14bb7021",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03b86602_814baa91",
+        "filename": "designs/u-boot-env-mgr.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2019-10-13T23:55:21Z",
+      "side": 1,
+      "message": "Code needs to be written either way. One approach provides a standard interface to dbus properties while the other requires we maintain the interface and implementation ourselves. I think it\u0027s beneficial to do the work necessary to support dynamic properties that can be fetched with GetAll().",
+      "parentUuid": "1b7dba77_2aafbb4d",
       "range": {
         "startLine": 35,
         "startChar": 0,
