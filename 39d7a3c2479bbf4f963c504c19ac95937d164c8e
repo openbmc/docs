@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "67e2e286_312dad50",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2019-10-14T15:15:25Z",
+      "side": 1,
+      "message": "Done. updated why BMC needs to do certificate exchange and updated Background section with more details.",
+      "parentUuid": "2fa21ede_1c5aa61d",
+      "revId": "39d7a3c2479bbf4f963c504c19ac95937d164c8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0639b0a4_41dbcb49",
         "filename": "designs/VMI_Certificate_Exchange.md",
         "patchSetId": 11
@@ -48,6 +66,30 @@
       "writtenOn": "2019-10-14T07:11:04Z",
       "side": 1,
       "message": "rephrase?",
+      "range": {
+        "startLine": 26,
+        "startChar": 41,
+        "endLine": 26,
+        "endChar": 62
+      },
+      "revId": "39d7a3c2479bbf4f963c504c19ac95937d164c8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c99db09_de414069",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2019-10-14T15:15:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0639b0a4_41dbcb49",
       "range": {
         "startLine": 26,
         "startChar": 41,
@@ -77,6 +119,24 @@
     },
     {
       "key": {
+        "uuid": "97f900ad_04b95a51",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2019-10-14T15:15:25Z",
+      "side": 1,
+      "message": "I dont think we need point to any doc.\nAdded little more background for this design here",
+      "parentUuid": "fd801871_4c4d42b4",
+      "revId": "39d7a3c2479bbf4f963c504c19ac95937d164c8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "af7f0cca_56508b49",
         "filename": "designs/VMI_Certificate_Exchange.md",
         "patchSetId": 11
@@ -88,6 +148,24 @@
       "writtenOn": "2019-10-14T07:11:04Z",
       "side": 1,
       "message": "Some more details are needed I think :\n\n- How does HMC know when to send the signCSR request?\n- How should the BMC respond when VMI is not up?\n- What kind of errors are expected and how are they handled?",
+      "revId": "39d7a3c2479bbf4f963c504c19ac95937d164c8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa7ede84_5718f61c",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2019-10-14T15:15:25Z",
+      "side": 1,
+      "message": "HMC can connect and send request once bmc reaches standby/ready state.\nyes we will consider all possible errors like vmi is not up or sign CSR failures.\nwe wanted map to PLDM command errors, will be decided during pldm command implementation.\nwe will update this document once we complete pldm command implementation",
+      "parentUuid": "af7f0cca_56508b49",
       "revId": "39d7a3c2479bbf4f963c504c19ac95937d164c8e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
@@ -117,6 +195,30 @@
     },
     {
       "key": {
+        "uuid": "184238bc_f782e1b6",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2019-10-14T15:15:25Z",
+      "side": 1,
+      "message": "We have not decided which pldm command to use yet, created github issue for the same\nhttps://github.com/ibm-openbmc/dev/issues/1271",
+      "parentUuid": "1c0ee058_b2665220",
+      "range": {
+        "startLine": 57,
+        "startChar": 33,
+        "endLine": 57,
+        "endChar": 50
+      },
+      "revId": "39d7a3c2479bbf4f963c504c19ac95937d164c8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcbd62aa_e712f917",
         "filename": "designs/VMI_Certificate_Exchange.md",
         "patchSetId": 11
@@ -128,6 +230,30 @@
       "writtenOn": "2019-10-14T00:28:16Z",
       "side": 1,
       "message": "But how are you planning to do this? Manually? Automated? What about testing failure cases? Testing the happy case isn\u0027t enough. What about certificate expiry, revocation, incorrect date/time issues, incorrect certificates etc?",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 25
+      },
+      "revId": "39d7a3c2479bbf4f963c504c19ac95937d164c8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8003fa5f_62ce282e",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2019-10-14T15:15:25Z",
+      "side": 1,
+      "message": "yes, we test this manually once we develop this feature,\nif there are issues like certificate expiry, revocation, incorrect date/time issues, incorrect certificates, then management console fails to establish connection to VMI.\nThen hmc needs to run signCSR again to initiate certificate exchange.\nbmc does not store/generate any certificate, this interface just allows certificate exchange between VMI and HMC.\nwe will update all error cases once we decide on pldm command.",
+      "parentUuid": "bcbd62aa_e712f917",
       "range": {
         "startLine": 163,
         "startChar": 0,
