@@ -172,6 +172,24 @@
     },
     {
       "key": {
+        "uuid": "a9a1002e_95ff0447",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2019-10-15T00:09:49Z",
+      "side": 1,
+      "message": "Errors provided by the public interface need to be defined at the time that the public API is designed. Errors are a fundamental part of API design. We can\u0027t delay their definition until later.\n\nIt\u0027s fine to be *wrong* about the errors and need to fix them up before this goes into production, but you can\u0027t just punt on that aspect of the API design.",
+      "parentUuid": "aa7ede84_5718f61c",
+      "revId": "39d7a3c2479bbf4f963c504c19ac95937d164c8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c0ee058_b2665220",
         "filename": "designs/VMI_Certificate_Exchange.md",
         "patchSetId": 11
@@ -254,6 +272,30 @@
       "side": 1,
       "message": "yes, we test this manually once we develop this feature,\nif there are issues like certificate expiry, revocation, incorrect date/time issues, incorrect certificates, then management console fails to establish connection to VMI.\nThen hmc needs to run signCSR again to initiate certificate exchange.\nbmc does not store/generate any certificate, this interface just allows certificate exchange between VMI and HMC.\nwe will update all error cases once we decide on pldm command.",
       "parentUuid": "bcbd62aa_e712f917",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 25
+      },
+      "revId": "39d7a3c2479bbf4f963c504c19ac95937d164c8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85612f9f_3525e324",
+        "filename": "designs/VMI_Certificate_Exchange.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2019-10-15T00:09:49Z",
+      "side": 1,
+      "message": "\u003e yes, we test this manually once we develop this feature,\n\nManual testing means it will be broken.\n\nPlease consider adding tests to openbmc-test-automation given it\u0027s an integration test.\n\n\u003e if there are issues like certificate expiry, revocation, incorrect date/time issues, incorrect certificates, then management console fails to establish connection to VMI.\n\nRight, so that\u0027s a host firmware test, no worries.\n\n\u003e we will update all error cases once we decide on pldm command.\n\nPlease see my comment above about errors in the context of API design.",
+      "parentUuid": "8003fa5f_62ce282e",
       "range": {
         "startLine": 163,
         "startChar": 0,
