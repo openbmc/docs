@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ef82c8ec_f3acc80d",
+        "filename": "designs/management-console/VMI_Certificate_Exchange.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-10-15T09:36:53Z",
+      "side": 1,
+      "message": "We can specify that IBM systems may have the IBM specific host-firmware(PHYP) and the KVM and this API would be used only for the PHYP based machine.\nEnable/disable of this API would be controlled by the build time configure variable.",
+      "parentUuid": "7d6320e4_4bd353d5",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "54af0430c40faa661dacd775fdd02c51be7c331e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d4dc4973_7483285d",
         "filename": "designs/management-console/VMI_Certificate_Exchange.md",
         "patchSetId": 13
@@ -152,6 +176,30 @@
       "writtenOn": "2019-10-15T00:09:49Z",
       "side": 1,
       "message": "Please expand this as per the discussion on PS11.",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 25
+      },
+      "revId": "54af0430c40faa661dacd775fdd02c51be7c331e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "268cd2c6_cb5ffee4",
+        "filename": "designs/management-console/VMI_Certificate_Exchange.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-10-15T09:36:53Z",
+      "side": 1,
+      "message": "This interface perspective the HTTP error code could be 4XX/5XX.\nBut it would be mapped depending on the PLDM error response.\nPLDM has to throw error in the following scenario\n-\u003e PHYP is not up.\n-\u003e PHYP throws error for certificate validation which in turn comes to PLDM and PLDM gives it to web server\n   Which webserver will map it to 4xx/5xx depends on the error.\nRegarding testing of this interface you can verify that the string which was sent by the client has been correctly received by the web server\nIf PLDM throws an error send the error response, for now you can map to Internal server Error(500).",
+      "parentUuid": "cc56883c_ad64ed1f",
       "range": {
         "startLine": 178,
         "startChar": 0,
