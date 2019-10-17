@@ -16,9 +16,9 @@ There are two main use-cases for Yocto in OpenBMC:
 
 The first is the easy case, and largely involves picking the system
 configuration to build before invoking `bitbake`. Examples for
-[Palmetto](cheatsheet.md#building-for-palmetto) and
-[Zaius](cheatsheet.md#building-for-zaius) are in the
-[cheatsheet](cheatsheet.md).
+[Palmetto](https://github.com/openbmc/docs/blob/master/cheatsheet.md#building-for-palmetto)
+and [Zaius](https://github.com/openbmc/docs/blob/master/cheatsheet.md#building-for-zaius)
+are in the [cheatsheet](https://github.com/openbmc/docs/blob/master/cheatsheet.md).
 
 The second case can be helped with Yocto's `devtool`. After running
 `.  openbmc-env`, a tool called `devtool` will be in your path, and can be

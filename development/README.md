@@ -27,3 +27,7 @@ any order you like, but the recommended flow can be found below.
 
    This shows how to setup your environment to utilize Gerrit for submitting
    your changes for code review.
+
+Other Developer Documentation:
+
+[Yocto Development](yocto-development.md)
