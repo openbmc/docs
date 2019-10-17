@@ -244,7 +244,7 @@ General security considerations for service discovery apply.
 ### UDP port 623 - IPMI RCMP
 
 The IPMI network-facing design is described here:
-https://github.com/openbmc/docs/blob/master/ipmi-architecture.md and
+https://github.com/openbmc/docs/blob/master/architecture/ipmi-architecture.md and
 the implementation is described here:
 https://github.com/openbmc/phosphor-net-ipmid.
 Note that host IPMI is outside the scope of this document.

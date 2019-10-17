@@ -49,7 +49,7 @@ Follow links to learn more about OpenBMC features:
 [Hardware Diagnostics]: https://github.com/openbmc/openpower-hw-diags/blob/master/README.md
 [Host management]: https://github.com/openbmc/docs/blob/master/host-management.md
 [Host management REST APIs]: https://github.com/openbmc/docs/blob/master/host-management.md
-[IPMI in band]: https://github.com/openbmc/docs/blob/master/ipmi-architecture.md
+[IPMI in band]: https://github.com/openbmc/docs/blob/master/architecture/ipmi-architecture.md
 [IPMI out of band]: https://github.com/openbmc/ipmitool/blob/master/README
 [LED Groups]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Led/README.md
 [LEDs]: https://github.com/openbmc/docs/blob/master/LED-architecture.md
