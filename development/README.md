@@ -31,3 +31,5 @@ any order you like, but the recommended flow can be found below.
 Other Developer Documentation:
 
 [Yocto Development](yocto-development.md)
+
+[Subtree Development](subtree.md)
