@@ -367,7 +367,7 @@ Hwmon sensors include sensors on board (e.g. temperature sensors, fans) and
 OCC sensors.
 The config files path and name shall match the devices in device tree.
 
-There is detailed document in openbmc [doc/sensor-architecture][6].
+There is detailed document in openbmc [doc/architecture/sensor-architecture][6].
 
 Here let's take Romulus as an example.
 The config files are in [meta-romulus/recipes-phosphor/sensors][7] which
@@ -780,7 +780,7 @@ or button presses.
 [3]: https://github.com/openbmc/skeleton
 [4]: https://github.com/openbmc/openbmc/tree/master/meta-quanta/meta-q71l/recipes-phosphor/workbook
 [5]: https://github.com/openbmc/skeleton/blob/master/configs/Romulus.py
-[6]: https://github.com/openbmc/docs/blob/master/sensor-architecture.md
+[6]: https://github.com/openbmc/docs/blob/master/architecture/sensor-architecture.md
 [7]: https://github.com/openbmc/openbmc/tree/master/meta-ibm/meta-romulus/recipes-phosphor/sensors
 [8]: https://github.com/openbmc/openbmc/blob/298c4328fd20fcd7645da1565c143b1b668ef541/meta-ibm/meta-romulus/recipes-phosphor/sensors/phosphor-hwmon/obmc/hwmon/ahb/apb/i2c%401e78a000/i2c-bus%40440/w83773g%404c.conf
 [9]: https://github.com/openbmc/linux/blob/aca92be80c008bceeb6fb62fd1d450b5be5d0a4f/arch/arm/boot/dts/aspeed-bmc-opp-romulus.dts#L208
