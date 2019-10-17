@@ -42,7 +42,7 @@ Follow links to learn more about OpenBMC features:
 [Certificate management]: https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/Certs/README.md
 [Chassis Power control]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Chassis/README.md
 [D-Bus interfaces]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/README.md
-[D-Bus Object Mapper]: https://github.com/openbmc/docs/blob/master/object-mapper.md
+[D-Bus Object Mapper]: https://github.com/openbmc/docs/blob/master/architecture/object-mapper.md
 [Entity manager]: https://github.com/openbmc/entity-manager/blob/master/README.md
 [Factory reset]: https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/Common/FactoryReset/README.md
 [Firmware update support]: https://github.com/openbmc/docs/blob/master/code-update/code-update.md

@@ -486,7 +486,7 @@ Mailing List [Comments on Sensor design][9]
 [8]: https://github.com/openbmc/openbmc/blob/master/meta-openbmc-machines/meta-openpower/meta-ibm/meta-palmetto/recipes-phosphor/sensors/phosphor-hwmon%25/obmc/hwmon/ahb/apb/i2c%401e78a000/i2c-bus%40c0/tmp423%404c.conf
 [9]: https://lists.ozlabs.org/pipermail/openbmc/2016-November/005309.html
 [10]: https://github.com/openbmc/bmcweb/blob/master/DEVELOPING.md#redfish
-[11]: https://github.com/openbmc/docs/blob/master/object-mapper.md#associations
+[11]: https://github.com/openbmc/docs/blob/master/architecture/object-mapper.md#associations
 [12]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Inventory/Item.interface.yaml
 [13]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml
 [14]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Inventory/Decorator/Asset.interface.yaml
