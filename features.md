@@ -52,7 +52,7 @@ Follow links to learn more about OpenBMC features:
 [IPMI in band]: https://github.com/openbmc/docs/blob/master/architecture/ipmi-architecture.md
 [IPMI out of band]: https://github.com/openbmc/ipmitool/blob/master/README
 [LED Groups]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Led/README.md
-[LEDs]: https://github.com/openbmc/docs/blob/master/LED-architecture.md
+[LEDs]: https://github.com/openbmc/docs/blob/master/architecture/LED-architecture.md
 [Logging Callouts]: https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/Common/Callout/README.md
 [MSL application]: https://github.com/openbmc/phosphor-dbus-monitor/blob/master/mslverify/README.md
 [Network management]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Network/README.md
