@@ -82,9 +82,8 @@ paths may be required for commands in the "User Data and Configuration"
 STATUS_MFR_SPECIFIC and any other "MFR" command.
 
 ## Proposed Design
-The proposal is to create a single new power supply application in some new
-OpenBMC repository, such as `phosphor-power-monitor`. The application would be
-written in C++17.
+The proposal is to create a single new power supply application in the OpenBMC 
+[phosphor-power][6] repository. The application would be written in C++17.
 
 Upon startup, the power supply application would be passed a parameter
 consisting of the location of some kind of configuration file, some JSON format
@@ -147,5 +146,6 @@ unsupported or faulted configuration.
 [1]: https://github.com/openbmc/witherspoon-pfault-analysis
 [2]: https://en.wikipedia.org/wiki/Power_Management_Bus
 [3]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/README.msl.md
-[4]: https://github.com/openbmc/linux/blob/dev-5.1/drivers/hwmon/pmbus/ibm-cffps.c
+[4]: https://github.com/openbmc/linux/blob/dev-5.3/drivers/hwmon/pmbus/ibm-cffps.c
 [5]: https://github.com/openbmc/witherspoon-pfault-analysis/tree/master/power-supply
+[6]: https://github.com/openbmc/phosphor-power/
