@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "6aea4f0d_830ba945",
+        "filename": "designs/management-console/VMI_Certificate_Exchange.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-10-18T04:43:20Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "176b299c_a9a33aa3",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 3
+      },
+      "revId": "66620cc320b851e7aad72966aaade238e5590527",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a2d33c4f_22f30d8e",
         "filename": "designs/management-console/VMI_Certificate_Exchange.md",
         "patchSetId": 14
@@ -285,6 +309,30 @@
     },
     {
       "key": {
+        "uuid": "27e0dc03_8cc80e49",
+        "filename": "designs/management-console/VMI_Certificate_Exchange.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-10-18T04:43:20Z",
+      "side": 1,
+      "message": "Andrew, PLDM API investigation has not been done yet, Ravi would be working on it. and the HTTP error codes would be mapped depending on the PLDM error code.",
+      "parentUuid": "fed4f919_291a018e",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 56
+      },
+      "revId": "66620cc320b851e7aad72966aaade238e5590527",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e6ded9b3_84604ac5",
         "filename": "designs/management-console/VMI_Certificate_Exchange.md",
         "patchSetId": 14
@@ -367,6 +415,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "daf64bd7_aeff513b",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 84
+      },
+      "revId": "66620cc320b851e7aad72966aaade238e5590527",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d684ce8_1d516166",
+        "filename": "designs/management-console/VMI_Certificate_Exchange.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-10-18T04:43:20Z",
+      "side": 1,
+      "message": "Ravi, it could be 4XX/5XX?\n4XX: user provided invalid data(invalid key size/certificate expiry date etc).\n5xx: PHYP throws some error which is not specific to certificate data but some thing else.\n      or\n      There is some error in BMC during this cmd processing.",
+      "parentUuid": "f409829a_ccd112d1",
       "range": {
         "startLine": 74,
         "startChar": 0,
@@ -462,6 +534,30 @@
       "side": 1,
       "message": "\u003e Why hasn\u0027t this been done? I think this document should link to the relevant PLDM proposal, or define the relevant PLDM commands itself. Otherwise, how do we know that we\u0027re not making mistakes with the external interface if we haven\u0027t thought through how this might be implemented at the PLDM layer?\n\nThis is exactly my concern. At the moment we\u0027re presuming that the out of band API proposed here will not be impacted by the inband PLDM API. It will be worthwhile to spend effort on what the PLDM commands should be as part of this design doc - I don\u0027t see this as an external interface design only. Ravi - I\u0027ve spoken to Ratan about this and I can help facilitate the PLDM discussion, for eg with the host firmware tram. Let me know if you need me to do that.",
       "parentUuid": "e9051650_b2215af9",
+      "range": {
+        "startLine": 193,
+        "startChar": 2,
+        "endLine": 193,
+        "endChar": 35
+      },
+      "revId": "66620cc320b851e7aad72966aaade238e5590527",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aff2f6c9_760b4109",
+        "filename": "designs/management-console/VMI_Certificate_Exchange.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-10-18T04:43:20Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "bee4ed37_2fea6e05",
       "range": {
         "startLine": 193,
         "startChar": 2,
@@ -616,6 +712,30 @@
     },
     {
       "key": {
+        "uuid": "00c4953f_db800c87",
+        "filename": "designs/management-console/VMI_Certificate_Exchange.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-10-18T04:43:20Z",
+      "side": 1,
+      "message": "As part of testing this interface, Client will send some string(CSR) and as a response client will get some string(Certificate).\nSo check that the given certificate is valid and it is wrt to the CSR given.",
+      "parentUuid": "5edccda6_c6d6c51b",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 27
+      },
+      "revId": "66620cc320b851e7aad72966aaade238e5590527",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01fd035b_59145c51",
         "filename": "designs/management-console/VMI_Certificate_Exchange.md",
         "patchSetId": 14
@@ -627,6 +747,30 @@
       "writtenOn": "2019-10-15T23:28:54Z",
       "side": 1,
       "message": "Can we enumerate what might cause the certificate to be considered invalid and how these conditions impact the error codes returned to the user?",
+      "range": {
+        "startLine": 209,
+        "startChar": 4,
+        "endLine": 209,
+        "endChar": 52
+      },
+      "revId": "66620cc320b851e7aad72966aaade238e5590527",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee8336a6_ea11a981",
+        "filename": "designs/management-console/VMI_Certificate_Exchange.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-10-18T04:43:20Z",
+      "side": 1,
+      "message": "Andrew, My expectation is from the PHYP/VMI is that they would be giving a different error for Invalid Certificate Data v/s some other PHYP specific error.",
+      "parentUuid": "01fd035b_59145c51",
       "range": {
         "startLine": 209,
         "startChar": 4,
@@ -698,6 +842,30 @@
       "side": 1,
       "message": "What are the appropriate error codes for the PLDM errors?",
       "parentUuid": "c7fa0063_e4314077",
+      "range": {
+        "startLine": 210,
+        "startChar": 41,
+        "endLine": 210,
+        "endChar": 68
+      },
+      "revId": "66620cc320b851e7aad72966aaade238e5590527",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "446a2780_372d18c2",
+        "filename": "designs/management-console/VMI_Certificate_Exchange.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-10-18T04:43:20Z",
+      "side": 1,
+      "message": "Andrew, What Ravi wanted to say that if there is Invalid CSR data, could be \nInvalid expiry Date,\nInvalid start Date.\nInvalid Key length,\nInvalid Type(other then PEM/DER)\n\nthey all would be mapped to 4XX, Other then user data would be mapped to 5XX(BMC/PHYP/VMI internal error).",
+      "parentUuid": "84956c73_72dbe6a4",
       "range": {
         "startLine": 210,
         "startChar": 41,
