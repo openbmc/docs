@@ -68,18 +68,27 @@ properties and resources. ComputerSystem schema doesn't cover the properties
 associated with Platform Firmware Resilience but it provides OEM objects for
 manufacturer/provider specific extension moniker.
 
-Below are two OEM properties defined to represent the Platform Firmware
+Below are property is defined to represent the Platform Firmware
 Resilience provisioning status.
 
-  - Provisioned: The value of this property shall be a boolean indicating
-    provisioned state of platform firmware.
+  - ProvisiongStatus: The value of this property indicates the provisioning
+    status of platform firmware. It is of Enum Type with below values.
 
-  - Locked: The value of this property shall be a boolean indicating platform
-    firmware provisioning is locked.
+    1) NotProvisioned: Indicates platform firmware is not provisioned.
+       This is an unsecured state.
+
+    2) ProvisionedButNotLocked: Indicates that the platform firmware is
+       provisioned but not locked. So re-provisioning is allowed in this
+       state.
+
+    3) ProvisionedAndLocked: Indicates that the platform firmware is
+       provisioned and locked. So re-provisioning is not allowed in this
+       state.
 
 PFR enabled platforms can provision or re-provision the platform resilience
-multiple times without Locking. But once the platform is locked by provisioning
-agent after, it can not be re-provisioned.
+multiple times when it is in "NotProvisioned" or "ProvisionedButNotLocked"
+states. But once the platform is transitioned to "ProvisionedAndLocked" state,
+it can not be re-provisioned.
 
 New OemComputerSystem schema can be found at
 [link](https://gerrit.openbmc-project.xyz/#/c/openbmc/bmcweb/+/24253/)
@@ -148,8 +157,7 @@ RESPONSE:
   "Oem": {
     "OpenBmc": {
       "FirmwareProvisioning": {
-        "Locked": true,
-        "Provisioned": true
+        "ProvisioningStatus": "NotProvisioned"
       }
     }
   },
