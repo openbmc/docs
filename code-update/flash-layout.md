@@ -126,7 +126,7 @@ machines, but are provided primarily for code development and exploration. Code
 update for these environments is not supported.
 
 [Das U-Boot]: https://www.denx.de/wiki/U-Boot
-[systemd]: https://github.com/openbmc/docs/blob/master/openbmc-systemd.md
+[systemd]: https://github.com/openbmc/docs/blob/master/architecture/openbmc-systemd.md
 [systemd File Hierarchy Requirements]: https://www.freedesktop.org/wiki/Software/systemd/FileHierarchy/
 [FHS]: https://refspecs.linuxfoundation.org/fhs.shtml
 [obmc-phosphor-initfs]: https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/initrdscripts/obmc-phosphor-initfs.bb
