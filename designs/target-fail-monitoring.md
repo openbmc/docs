@@ -136,6 +136,6 @@ Need to cause all targets mentioned within this design to fail. They should fail
 for each of the reasons defined within this design and the error generated for
 each scenario should be verified.
 
-[1]: https://github.com/openbmc/docs/blob/master/openbmc-systemd.md
+[1]: https://github.com/openbmc/docs/blob/master/architecture/openbmc-systemd.md
 [2]: https://github.com/openbmc/phosphor-state-manager
 [3]: https://www.freedesktop.org/wiki/Software/systemd/dbus/
