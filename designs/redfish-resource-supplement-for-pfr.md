@@ -90,31 +90,92 @@ for redfish event logging capability. For more details on how to log redfish
 events can be found at document [Redfish logging in bmcweb
 ](https://github.com/openbmc/docs/blob/master/redfish-logging-in-bmcweb.md).
 
+Below type of events should be logged as part of PFR:
+
+  1) Platform Firmware Resiliency Errors:
+     This is used to log the platform firmware resiliency errors
+     associated with different components like BIOS, BMC, CPLD and
+     ME along with specific reason. Each component will have its own
+     Message ID as below.
+
+     Severity: Critical
+
+     MessageID's:
+
+       - BIOSFirmwareResiliencyError
+       - BMCFirmwareResiliencyError
+       - CPLDFirmwareResiliencyError
+       - MEFirmwareResiliencyError
+
+  2) Platform Firmware Panic events:
+     This is used to log the platform firmware panic events
+     associated with different components like BIOS, BMC, CPLD and
+     ME along with specific reason. Each component will have its own
+     Message ID as below.
+
+     Severity: Critical
+
+     MessageID's:
+
+       - BIOSFirmwarePanicEvent
+       - BMCFirmwarePanicEvent
+       - CPLDFirmwarePanicEvent
+       - MEFirmwarePanicEvent
+
+  3) Platform Firmware Recovery events:
+     This is used to log the platform firmware recovery events
+     associated with different components like BIOS, BMC, CPLD and
+     ME along with specific reason. Each component will have its own
+     Message ID as below.
+
+     Severity: OK
+
+     MessageID's:
+
+       - BIOSFirmwareRecoveryEvent
+       - BMCFirmwareRecoveryEvent
+       - CPLDFirmwareRecoveryEvent
+       - MEFirmwareRecoveryEvent
+
+Event logs associated with BMC component is specified here as example.
 
 ```
-MessageEntry{
-        "PlatformFirmwareError",
-        {
-            .description = "Indicates that the specific error occurred in "
-                           "platform firmware.",
-            .message = "Error occurred in platform firmware. ErrorCode=%1",
-            .severity = "Critical",
-            .numberOfArgs = 1,
-            .paramTypes = {"string"},
-            .resolution = "None.",
-        }},
-    MessageEntry{
-        "PlatformFirmwareEvent",
-        {
-            .description = "Indicates that the platform firmware events like "
-                           "panic or recovery occurred for the specified "
-                           "reason.",
-            .message = "Platform firmware %1 event triggered due to %2.",
-            .severity = "Critical",
-            .numberOfArgs = 2,
-            .paramTypes = {"string", "string"},
-            .resolution = "None.",
-        }},
+    MessageEntry{"BMCFirmwareResiliencyError",
+                 {
+                     "Indicates that the specific error occurred in "
+                     "BMC firmware.",
+                     "Error occurred in BMC firmware. Error reason: %1.",
+                     "Critical",
+                     1,
+                     {
+                         "string",
+                     },
+                     "None.",
+                 }},
+    MessageEntry{"BMCFirmwarePanicEvent",
+                 {
+                     "Indicates that the BMC firmware panic event "
+                     "occurred for the specified reason.",
+                     "BMC firmware panic event triggered due to %1.",
+                     "Critical",
+                     1,
+                     {
+                         "string",
+                     },
+                     "None.",
+                 }},
+    MessageEntry{"BMCFirmwareRecoveryEvent",
+                 {
+                     "Indicates that the BMC firmware recovery event "
+                     "occurred for the specified reason.",
+                     "BMC firmware recovery event triggered due to %1.",
+                     "OK",
+                     1,
+                     {
+                         "string",
+                     },
+                     "None.",
+                 }},
 ```
 
 
