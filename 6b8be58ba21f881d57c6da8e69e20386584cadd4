@@ -2,6 +2,305 @@
   "comments": [
     {
       "key": {
+        "uuid": "6449a3f4_178a1721",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "nit: you already defined HMC above on line 17 and again on line 28.  You could just refer to it as HMC from here on out...\n\nFWIW from a purely separation of concerns point of view the overall focus of this document could be more on the API itself and less on the user of it (HMC).  I\u0027m not asking for changes...just something to keep in mind the next time.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 68
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d96df4ca_6486974d",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "nit: are you referring to the interface between the hmc and the end-user?  I\u0027d suggest leaving this out as it is irrelevant to the interface between the hmc and the bmc, and may potentially add confusion.",
+      "range": {
+        "startLine": 33,
+        "startChar": 26,
+        "endLine": 34,
+        "endChar": 29
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bde0136e_339bc7a1",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "nit: there is only one link listed.",
+      "range": {
+        "startLine": 39,
+        "startChar": 21,
+        "endLine": 39,
+        "endChar": 22
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8811d78_88a58379",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "\"should\" indicates that what is being described is recommended but not required.  the correct word here and in the rest of the items is \"must\"",
+      "range": {
+        "startLine": 44,
+        "startChar": 39,
+        "endLine": 44,
+        "endChar": 45
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74e75610_0f80ac95",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "this is confusing.  How about:\n\n There must be a provision to unlock all resources under the current resource level.\n\n?",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 85
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad4d1723_8ff5057f",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "nit: should not be capitalized.",
+      "range": {
+        "startLine": 89,
+        "startChar": 38,
+        "endLine": 89,
+        "endChar": 39
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3de07da_6c700337",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "there is no dash here.  Is this a continuation of the previous requirement or a different requirement?   I don\u0027t understand how this is different from \"There should be a provision to lock all resources under current resource level\"  Please explain?",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 2
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dfcaa82_64b4a11c",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "Which requirement is this an example of?\n\n  There should also be a provision to Lock all resources under current resource level.\n\nor\n\n  There should be a provision to acquire the lock on all the children under a parent resource\n\n?\n\nI wonder if numbering the requirements would help?",
+      "range": {
+        "startLine": 91,
+        "startChar": 2,
+        "endLine": 91,
+        "endChar": 9
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e8a2644_e1478803",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "What happens if a non-hmc session makes a call to the API?  If that isn\u0027t described somewhere it should be.",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 28
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dfb316b_d1149f6e",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "What is the session header exactly?  Is there a document I should have read before I read this that explains what an HMC-ID is and where it is stored?",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 105,
+        "endChar": 24
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f4f422d_e6f2a7bd",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "Based on design point one, this also happens if an hmc account logs out for any reason, right?  I think that is worth documenting.",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 45
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae0d2aae_086ff2d0",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "nit: There weren\u0027t any requirements listed for this.  If we are going to provide the rationale for some of the endpoints (the requirements) then all of them should be provided.",
+      "range": {
+        "startLine": 116,
+        "startChar": 2,
+        "endLine": 116,
+        "endChar": 13
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d12dfba1_c44e5c80",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-23T20:41:46Z",
+      "side": 1,
+      "message": "nit: capitalized",
+      "range": {
+        "startLine": 120,
+        "startChar": 5,
+        "endLine": 120,
+        "endChar": 6
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0749ab5_024ea8ad",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
