@@ -121,7 +121,7 @@ introduce it to the OpenBMC development community.
 
 If you are planning a new function, you should get agreement that your
 change will be accepted.  As early as you can, introduce the change
-via the OpenBMC community call, IRC channel, or email list to start
+via the OpenBMC IRC channel or email list to start
 the discussion.  You may find a better way to do what you need.
 
 Stage your change in small pieces to make them easy to review:
