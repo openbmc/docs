@@ -1,8 +1,17 @@
 Contributing to OpenBMC
 =======================
 
-Here's a little guide to working on OpenBMC. This document will always be
-a work-in-progress, feel free to propose changes.
+First off, thanks for taking the time to contribute! The following is a set of
+guidelines for contributing to an OpenBMC repository which are hosted in the
+[OpenBMC Organization](https://github.com/openbmc) on GitHub. Feel free to
+propose changes to this document.
+
+## Code of Conduct
+
+We enthusiastically adhere to our
+[Code of Conduct](https://github.com/openbmc/docs/blob/master/code-of-conduct.md).
+If you have any concerns, please check that document for guidelines on who can
+help you resolve them.
 
 Structure
 ---------
@@ -124,38 +133,92 @@ change will be accepted.  As early as you can, introduce the change
 via the OpenBMC IRC channel or email list to start
 the discussion.  You may find a better way to do what you need.
 
-Stage your change in small pieces to make them easy to review:
+Submitting changes
+------------------
+
+We use git for almost everything. Most projects in OpenBMC use Gerrit to review
+patches. Changes to an upstream project (e.g. Yocto Project, systemd, or the
+Linux kernel) might need to be sent as patches or a git pull request.
+
+### Organizing Commits
+
+A good commit does exactly one thing. We prefer many small, atomic commits to
+one large commit which makes many functional changes.
+ - Too large: "convert foo to new API; also fix CVE 1234 in bar"
+ - Too small: "move abc.h to top of include list" and "move xyz.h to bottom of
+   include list"
+ - Just right: "convert foo to new API" and "convert foo from tab to space"
+
+Other commit tips:
  - If your change has a specification, sketch out your ideas first
    and work to get that accepted before completing the details.
  - Work at most a few days before seeking review.
  - Commit and review header files before writing code.
  - Commit and review each implementation module separately.
 
-Make each commit simple to review.
+Often, creating small commits this way results in many commits that are
+dependent on prior commits; Gerrit handles this situation well, so feel free to
+push commits which are based on your change still in review. However, when
+possible, your commit should stand alone on top of master - "Fix whitespace in
+bar()" does not need to depend on "refactor foo()". Said differently, ensure
+that topics that are not related to each other semantically are also not
+related to each other in Git until they are merged into master.
 
-Submitting changes
-------------------
+When pushing a stack of patches, these commits will show up with that same
+relationship in Gerrit. This means that each patch must be merged in order of
+that relationship. So if one of the patches in the middle needs to be changed,
+all the patches from that point on would need to be pushed to maintain the
+relationship. This will effectively rebase the unchanged patches, which would
+in turn trigger a new CI build. Ideally, changes from the entire patchset could 
+be done all in one go to reduce unnecessary rebasing.
 
-We use git for almost everything. Changes should be sent as patches to their
-relevant source tree - or a git pull request for convenience.
+When someone makes a comment on your commit in Gerrit, modify that commit and
+send it again to Gerrit. This typically involves `git rebase --interactive` or
+`git commit --amend`, for which there are many guides online. As mentioned in
+the paragraph above, when possible you should make changes to multiple patches
+in the same stack before you push, in order to minimize CI and notification
+churn from the rebase operations.
 
-Each commit should be a self-contained logical unit, and smaller patches are
-usually better. However, if there is no clear division, a larger patch is
-okay. During development, it can be useful to consider how your change can be
-submitted as logical units.
+Commits which include changes that can be tested by a unit test should also
+include a unit test to exercise that change, within the same commit. Unit tests
+should be clearly written - even more so than production code, unit tests are
+meant primarily to be read by humans - and should test both good and bad
+behaviors. Refer to the
+[testing documentation](https://github.com/openbmc/docs/blob/master/testing/local-ci-build.md)
+for help writing tests, as well as best practices.
+
+### Formatting Commit Messages
+
+Your commit message should explain:
+
+ - Concisely, *what* change are you making? e.g. "libpldm: Add APIs to enable
+   PLDM Requester" This first line of your commit message is the subject line.
+ - Comprehensively, *why* are you making that change? In some cases, like a
+   small refactor, the why is fairly obvious. But in cases like the inclusion of
+   a new feature, you should explain why the feature is needed.
+ - Concisely, *how* did you test? (see below).
+
+Try to include the component you are changing at the front of your subject line;
+this typically comes in the form of the class, module, handler, or directory you
+are modifying. e.g. "apphandler: refactor foo to new API"
+
+Loosely, we try to follow the 50/72 rule for commit messages - that is, the
+subject line should not exceed 50 characters and the body should not exceed 72
+characters. This is common practice in many projects which use Git.
+
+All commit messages must include a Signed-off-by line, which indicates that you
+the contributor have agreed to the Developer Certificate of Origin  (see below).
+This line must include the full name you commonly use, often a given name and a
+family name or surname. (ok: Sam Samuelsson, Robert A. Heinlein; not ok:
+xXthorXx, Sam, RAH)
+
+### Testing
 
 Each commit is expected to be tested. The expectation of testing may vary from
 subproject to subproject, but will typically include running all applicable
 automated tests and performing manual testing. Each commit should be tested
 separately, even if they are submitted together (an exception is when commits
 to different projects depend on each other).
-
-Commit messages are important. They should describe why the change is needed,
-and what effects it will have on the system. Do not describe the actual
-code change made by the patch; that's what the patch itself is for.
-
-Use your full name for contributions, and include a "Signed-off-by" line,
-to indicate that you agree to the Developer's Certificate of Origin (see below).
 
 Commit messages should include a "Tested" field describing how you tested the
 code changes in the patch. Example:
@@ -164,8 +227,12 @@ code changes in the patch. Example:
     tested on Witherspoon that Foo daemon no longer crashes at boot.
 ```
 
-Ensure that your patch doesn't change unrelated areas. Be careful of
-accidental whitespace changes - this makes review unnecessarily difficult.
+If the change required manual testing, describe what you did and what happened;
+if it used to do something else before your change, describe that too.  If the
+change can be validated entirely by running unit tests, say so in the "Tested:"
+field.
+
+### Linux Kernel
 
 The guidelines in the Linux kernel are very useful:
 
@@ -176,8 +243,8 @@ https://www.kernel.org/doc/html/latest/process/submit-checklist.html
 Your contribution will generally need to be reviewed before being accepted.
 
 
-Submitting changes via Gerrit server
-------------------------------------
+Submitting changes via Gerrit server to OpenBMC
+-----------------------------------------------
 
 The OpenBMC Gerrit server supports GitHub credentials, its link is:
 
@@ -308,6 +375,29 @@ relevant to OpenBMC work:
  * Ensure that your code compiles without warnings, especially for changes
    to the kernel.
 
+## Pace of Review
+
+Contributors who are used to code reviews by their team internal to their own
+company, or who are not used to code reviews at all, are sometimes surprised by
+the pace of code reviews in open source projects. Try to keep in mind that those
+reviewing your patch may be contributing to OpenBMC in a volunteer or
+partial-time capacity, may be in a timezone far removed from your own, and may
+have very deep review queues already of patches which have been waiting longer
+than yours.
+
+If you feel your patch has been missed entirely, of course, it's
+alright to email the maintainers (addresses available in MAINTAINERS file) or
+ping them on IRC- but a reasonable timeframe to do so is on the order of a week,
+not on the order of hours.
+
+The maintainers' job is to ensure that incoming patches are as correct and easy
+to maintain as possible. Part of the nature of open source is attrition -
+contributors can come and go easily - so maintainers tend not to put stock in
+promises such as "I will add unit tests in a later patch" or "I will be
+implementing this proposal by the end of next month." This often manifests as
+reviews which may seem harsh or exacting; please keep in mind that the community
+is trying to collaborate with you to build a patch that will benefit the project
+on its own.
 
 Developer's Certificate of Origin 1.1
 -------------------------------------
