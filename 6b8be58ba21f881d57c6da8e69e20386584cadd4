@@ -348,6 +348,587 @@
     },
     {
       "key": {
+        "uuid": "5d2cd9cc_d2098a3d",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "Also, I\u0027m not seeing any way for the HMC to introspect the API to figure out what is supported.  e.g. something like the redfish actions property on the locks resource.  Do we need something like that?",
+      "parentUuid": "8dd4a8dc_0b40faeb",
+      "range": {
+        "startLine": 124,
+        "startChar": 243,
+        "endLine": 124,
+        "endChar": 255
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "365fbbb8_c9bf5df3",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "Should we should add some restrictions on this parameter?  allowed characters/format?  length?  if it is opaque to the BMC would an integer be easier to deal with?",
+      "range": {
+        "startLine": 131,
+        "startChar": 16,
+        "endLine": 131,
+        "endChar": 22
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0008212c_f9ee3de3",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "The idea of segments and flags to realize a multi level lock structure seems unnecessarily complex IMO.  I would guess that anyone that stumbles onto this API description will wonder why a single level lock structure (much like the one described in the fcntl manpages) would not work.  It is worth documenting why that would not work in the alternatives considered section.\n\nYet another alternative to multi-level locks, if multiple locks do need to be acquired at the same time (which I do not understand why but I will blindly accept that as a requirement for the moment) would be to accept an array argument of resource IDs instead of a single one.  that way the API consumer can manage and own the hierarchical relationship between the resources without any assistance from the BMC and the Segmentflags argument eliminated completely.",
+      "range": {
+        "startLine": 137,
+        "startChar": 5,
+        "endLine": 137,
+        "endChar": 17
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4348d42_91cc8d83",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "why not true / false or lock(s) acquired / lock(s) not acquired?  What is the purpose of this token?  Is it related to the resource id somehow?\n\nwhy is it a list?  of strings?  and not a single bool?\n\nfrom wikipedia on http 200:\n\nStandard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request, the response will contain an entity describing or containing the result of the action.\n\nhow about just http 200 with a single json True if the lock is acquired, and the data structure below if it is not acquired?",
+      "range": {
+        "startLine": 169,
+        "startChar": 11,
+        "endLine": 169,
+        "endChar": 21
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec4a591e_634b2e62",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "This says Failure but below it says \"status\": \"Error\"...which one is it?",
+      "range": {
+        "startLine": 177,
+        "startChar": 62,
+        "endLine": 177,
+        "endChar": 69
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2e4f5f3_6b5d0bda",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "this is not appropriate: http 400 bad request means:\n\nmalformed request syntax, size too large, invalid request message framing, or deceptive request routing\n\nnone of which are true in this scenario.\n\nIn general http 4xx means \"client error\".  Is it an error of the client to try to lock a resource that is already locked?  I don\u0027t really think so.  Not with the API semantics we have here anyway.\n\nI would suggest you just do something similar to the table in section 7.10 (POST for actions) of the Redfish spec:\n\nhttps://www.dmtf.org/sites/default/files/standards/documents/DSP0266_1.7.1.pdf",
+      "range": {
+        "startLine": 187,
+        "startChar": 11,
+        "endLine": 187,
+        "endChar": 28
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0aa020cd_d948b263",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "this says string but you have an array on line 205.  is it an array of strings?  if it is an array should the method be called ReleaseLocks instead of ReleaseLock ?",
+      "range": {
+        "startLine": 203,
+        "startChar": 14,
+        "endLine": 203,
+        "endChar": 20
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb42b904_b105c508",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "What does the HMCID being in the request enable you to do?  Are you going to compare it with the ID in the session table of the calling session?  Why?\n\nif the argument has both the HMCID and the RequestID should it be a json object?  { \"RequestID\" : \"abc123\", \"HMCID\" : \"xyz\" }",
+      "range": {
+        "startLine": 210,
+        "startChar": 37,
+        "endLine": 210,
+        "endChar": 42
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daed3ecb_262803b2",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "this looks like the old OpenBMC REST API response.  I honestly don\u0027t know why I duplicated the http response code in the body.\n\nHow about just returning a json true?  What about something from the table on page 47 in the Redfish spec?",
+      "range": {
+        "startLine": 218,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 1
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2c07985_3b79a841",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "this isn\u0027t descriptive enough IMO.  Every single error condition needs to be explicitly stated so that the caller can appropriately handle the error.\n\nWhat 4xx HTTP responses specifically do you intend to send and in what conditions?\nWhat 5xx HTTP responses specifically do you intend to send and in what conditions?\n\nHTTP 500 makes sense for code bugs (failed asserts, whatever).  you can probably use that for failed kernel calls too (e.g. open/read/write errno).\n\nI don\u0027t really think any HTTP 4xx codes make sense here.  For the case where some locks aren\u0027t already locked, can you just return HTTP 200 + False + those resource IDs \u0026 HMCIDs?  Blank for resource IDs not owned by anyone?",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 1
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afdaad47_68bb8650",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "I wonder why the HMC would want to do this in place of just trying to take the lock?  It might be worth explaining to other readers.",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 34
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6456d9df_b1f5ba27",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "Where can I learn more about SessionIDs?  Is this a Redfish thing?  Might want to link the the redfish schema that covers these in the \"background\" section if that is true.",
+      "range": {
+        "startLine": 249,
+        "startChar": 33,
+        "endLine": 249,
+        "endChar": 44
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19c09049_2fa23762",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "Aha.  More about sessionIDs here, thanks.  Might still be worth mentioning the relevant Redfish schema as background information.",
+      "range": {
+        "startLine": 258,
+        "startChar": 5,
+        "endLine": 258,
+        "endChar": 14
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ac7c7d7_01a12a9d",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "is the curl command missing here?",
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2d047a3_0311908c",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "missing the curl command?",
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac57803a_06a2ae02",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "what is the mapping being referred to?  I thought the resource ID was just an opaque handle?",
+      "range": {
+        "startLine": 304,
+        "startChar": 38,
+        "endLine": 305,
+        "endChar": 24
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac2d99ec_b4d498e4",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "I don\u0027t understand what drives bmc code changes here...",
+      "range": {
+        "startLine": 306,
+        "startChar": 35,
+        "endLine": 308,
+        "endChar": 44
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2959b2c7_56776ff2",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "did we consider a design where the client (HMC) owns the hierarchy?  e.g. more abstract resources are locked and then more concrete resources are locked?  sequentially?\n\ndid we consider an array of locks instead of multi-level locks?",
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae95c085_cc1571ac",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "why in openbmc_dbus_rest ?  I don\u0027t\u0027 think that makes sense does it?  openbmc_dbus_rest is for the legacy dbus \u003c-\u003e REST bridging API isn\u0027t it?",
+      "range": {
+        "startLine": 316,
+        "startChar": 52,
+        "endLine": 316,
+        "endChar": 69
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b227c29_484a15eb",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "there isn\u0027t anyone from bmcweb on review...lets add someone (probably james)",
+      "range": {
+        "startLine": 316,
+        "startChar": 36,
+        "endLine": 316,
+        "endChar": 42
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7041ac3c_cc78efc5",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "what makes a route \"custom\" exactly?  as opposed to non-custom.",
+      "range": {
+        "startLine": 345,
+        "startChar": 13,
+        "endLine": 345,
+        "endChar": 19
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42d68fab_729d1ae4",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "Did we consider just implementing it in-process?  I doubt we\u0027d ever need an alternative HMC lock implementation and dbus is just going to add latency with no benefit.  James what do you think?",
+      "range": {
+        "startLine": 346,
+        "startChar": 32,
+        "endLine": 346,
+        "endChar": 75
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bee1abaa_5b7051c1",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "I\u0027ve not seen any justification for a dedicated \"HMCD\" why not just go directly to the applications that implement the function?",
+      "range": {
+        "startLine": 358,
+        "startChar": 71,
+        "endLine": 358,
+        "endChar": 75
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "718e9138_1b5c5298",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "doesn\u0027t a schema require resources?  I didn\u0027t see any resources defined?  And we don\u0027t seem to be using the Redfish model at all here...  What aspects of this design are based on the Redfish model?",
+      "range": {
+        "startLine": 376,
+        "startChar": 3,
+        "endLine": 376,
+        "endChar": 85
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fc26894_551145f9",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "I\u0027m confused.  The \"alternatives considered\" section was above.  So what is this section?  Are there still two designs on the table for consideration?\n\nIn the future, when filling out design templates please just include a single proposal.  If there are multiple proposals, find the interested collaborators and figure out which proposal is preferred (with discussion happening somewhere like the mailing list) before filling out the template.",
+      "range": {
+        "startLine": 405,
+        "startChar": 0,
+        "endLine": 405,
+        "endChar": 30
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d04e185d_43cbe77e",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "I have a very slight preference for the first option.  It seems more explicit and easier to validate the arguments.  In the end the information conveyed is the same.",
+      "range": {
+        "startLine": 421,
+        "startChar": 1,
+        "endLine": 421,
+        "endChar": 29
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0749ab5_024ea8ad",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -364,6 +945,46 @@
         "startChar": 147,
         "endLine": 443,
         "endChar": 149
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd5d5fab_1f932828",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "which repositories are impacted?  are any new repositories required?  You mentioned dbus interfaces - will there be new ones added for this?",
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49ac86e1_0c765899",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-10-28T18:07:12Z",
+      "side": 1,
+      "message": "hopefully we can do this testing without actual hmcs?",
+      "range": {
+        "startLine": 588,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 19
       },
       "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
