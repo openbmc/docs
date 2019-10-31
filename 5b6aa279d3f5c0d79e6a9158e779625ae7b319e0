@@ -106,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "8f896f81_b5678156",
+        "filename": "designs/management-console/know_your_client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-10-31T14:10:24Z",
+      "side": 1,
+      "message": "\u003e I am trying to understand this design.  Is this design simply adding an OEM property (namely: IBM HMC ClientID) to the Redfish SessionResource?  I didn\u0027t see any content beyond that.\n\nYes,we are trying to add the OEM property here.\n\n\u003e Does this design assume all BMC Redfish clients will cooperate (meaning that all clients will supply a clientID).  I didn\u0027t see any enforcement of this condition.\n\nIn Redfish OEM section would be an optional property,Client may give or not, In our case, MC has to supply the HMC ID so that MC an uniquely identify which HMC is managing the server.\n\n\u003e The POST /redfish/v1/SessionService/Sessions seems to follow the Redfish Resource extensibility specification (section 9.7).\nShould this design follow the Redfish (section 9.8.2.1) Extended object information and return the ClientID in a Session@Message.ExtendedInfo object?\n\nExtend Info object is used during if we are updating any resource and if there is a failure then we use the extend info to tell more about the error.\n\nRegarding how the redfish clinet would be getting this OEM client ID, They need to make the GET request on a specific session which will get the OEM property for that resource.",
+      "parentUuid": "ca625d18_0892e387",
+      "revId": "5b6aa279d3f5c0d79e6a9158e779625ae7b319e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad58c5fd_91a4938e",
         "filename": "designs/management-console/know_your_client.md",
         "patchSetId": 3
@@ -254,6 +272,30 @@
       "revId": "5b6aa279d3f5c0d79e6a9158e779625ae7b319e0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9d84ad4_f88e90e4",
+        "filename": "designs/management-console/know_your_client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2019-10-31T14:10:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c49ab1d5_38597ee7",
+      "range": {
+        "startLine": 58,
+        "startChar": 10,
+        "endLine": 58,
+        "endChar": 16
+      },
+      "revId": "5b6aa279d3f5c0d79e6a9158e779625ae7b319e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
