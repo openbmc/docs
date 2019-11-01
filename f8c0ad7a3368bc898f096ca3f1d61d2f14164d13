@@ -130,6 +130,24 @@
     },
     {
       "key": {
+        "uuid": "d753d8b7_6bb7d409",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-11-01T14:46:28Z",
+      "side": 1,
+      "message": "Good idea.  The nginx server was brought in by the meta-ibm layer and used as a reverse proxy, serving both BMCWeb and the phosphor-rest APIs.  Use of nginx was discontinued around 2/2019 for the OpenBMC 2.7 release, in favor of BMCWeb which is the only web server for release 2.7.\nYou can find one of the latest nginx configuration files here.\nhttps://github.com/openbmc/openbmc/blob/837851ae37a67b84f0f8c0fd310d33b5a731cc80/meta-ibm/recipes-httpd/nginx/files/nginx.conf",
+      "parentUuid": "bf4fd063_052d3011",
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3f762874_9bdc132b",
         "filename": "designs/http-redirect.md",
         "patchSetId": 2
@@ -141,6 +159,30 @@
       "writtenOn": "2019-09-24T00:12:46Z",
       "side": 1,
       "message": "Why is this one required?  URI \"/\" should be all that\u0027s needed, right?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b55de4ad_9667a211",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-11-01T14:46:28Z",
+      "side": 1,
+      "message": "I think so.  I don\u0027t know the answer.",
+      "parentUuid": "3f762874_9bdc132b",
       "range": {
         "startLine": 36,
         "startChar": 0,
@@ -181,6 +223,30 @@
       "writtenOn": "2019-09-24T00:12:46Z",
       "side": 1,
       "message": "Replace with 404.  400 is really for requests for endpoints that exist, but had a malformed input.  The endpoints were truly \"not found\" in this case.",
+      "range": {
+        "startLine": 36,
+        "startChar": 29,
+        "endLine": 37,
+        "endChar": 65
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ab8a121_e586e2f7",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-11-01T14:46:28Z",
+      "side": 1,
+      "message": "I can agree to that.  In this view, HTTP and HTTPS offer different endpoints.",
+      "parentUuid": "16b1fedf_fe9ac559",
       "range": {
         "startLine": 36,
         "startChar": 29,
@@ -256,6 +322,24 @@
     },
     {
       "key": {
+        "uuid": "46e70623_52e724a7",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-11-01T14:46:28Z",
+      "side": 1,
+      "message": "\u003cYa, we need a better design template\u003e I didn\u0027t get the idea this was for the internal design.  Also, I don\u0027t have anything to contribute here.  :-(",
+      "parentUuid": "162cfdc2_f3509f4f",
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "94b48f38_393d712b",
         "filename": "designs/http-redirect.md",
         "patchSetId": 2
@@ -303,6 +387,30 @@
     },
     {
       "key": {
+        "uuid": "a5c6a4fe_b30e474b",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-11-01T14:46:28Z",
+      "side": 1,
+      "message": "I didn\u0027t consider alternate external designs, and don\u0027t have a good feel for the internal design (that is, the best way to implement this).",
+      "parentUuid": "596ea884_29669f82",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 4
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "080b81cb_46d0750b",
         "filename": "designs/http-redirect.md",
         "patchSetId": 2
@@ -326,6 +434,30 @@
     },
     {
       "key": {
+        "uuid": "9b2ba165_047d4eda",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-11-01T14:46:28Z",
+      "side": 1,
+      "message": "All good points.",
+      "parentUuid": "080b81cb_46d0750b",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 5
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec57796a_7eda483d",
         "filename": "designs/http-redirect.md",
         "patchSetId": 2
@@ -337,6 +469,30 @@
       "writtenOn": "2019-09-24T00:12:46Z",
       "side": 1,
       "message": "Please make a better attempt here:\nWhat browsers are you going to test\nwhat URLs are you going to test\nAre you going to test security at all?\nAre you going to test response headers?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 69
+      },
+      "revId": "f8c0ad7a3368bc898f096ca3f1d61d2f14164d13",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42e4d16f_94f2fcc3",
+        "filename": "designs/http-redirect.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-11-01T14:46:28Z",
+      "side": 1,
+      "message": "In general, the existing HTTPS tests for the items listed should be adapted (copied and modified) to test the HTTP interface.",
+      "parentUuid": "ec57796a_7eda483d",
       "range": {
         "startLine": 50,
         "startChar": 0,
