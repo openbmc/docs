@@ -90,3 +90,5 @@ Change password to "0penBmc1":
 ```
 $ curl -k -H "X-Auth-Token: $token" -X PATCH -d '{"Password": "0penBmc1"}' https://${bmc}/redfish/v1/AccountService/Accounts/root
 ```
+
+[1]: https://www.dmtf.org/standards/redfish
