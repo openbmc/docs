@@ -214,7 +214,8 @@ Host openbmc.gerrit
 
 From your OpenBMC git repository, add a remote to the Gerrit server, where
 'openbmc_repo' is the current git repository you're working on, such as
-phosphor-rest-server, and 'openbmc.gerrit' is the name of the Host previously added:
+phosphor-state-manager, and 'openbmc.gerrit' is the name of the Host previously
+added:
 
   `git remote add gerrit ssh://openbmc.gerrit/openbmc/openbmc_repo`
 
