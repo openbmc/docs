@@ -62,7 +62,8 @@ of time.
 |1     | admin           | Users are allowed to configure all OpenBMC (including user-management, network and all configurations). Users will have full administrative access.|
 |2     | operator        | Users are allowed to view and control basic operations. This includes reboot of the host, etc. But users are not allowed to change other configuration like user, network, etc.|
 |3     | user            | Users only have read access and can't change any behavior of the system.|
-|4     | callback        | Lowest privilege level, only allowed to initiate IPMI 2.0 specific callbacks.|
+|4     | no-access       | Users having empty or no privilege will be reported as no-access, from IPMI & REDFISH point of it.|
+|5     | callback        | `Deprecated`. To support backward compatibility users in this privilege will be reported as no-access privilege. Commands will error out, if tried to set callback privilege.|
 
 ## Common User Manager - D-Bus API (phosphor-user-manager)
 User Manager service exposes D-Bus methods for user-management operations.
