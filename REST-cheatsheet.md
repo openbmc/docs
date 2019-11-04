@@ -184,23 +184,10 @@ Note: To keep the syntax below common between the phosphor-rest and bmcweb
 
     - Read:
    ```
-   $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/xyz/openbmc_project/sensors/chassis/PowerSupplyRedundancy/action/getValue -d '{"data": []}'
-   ```
-
-    or
-
-   ```
    $ curl -k -H "X-Auth-Token: $token" -X GET https://${bmc}/xyz/openbmc_project/control/power_supply_redundancy
    ```
 
     - Write (Enable/Disable):
-   ```
-   $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/xyz/openbmc_project/sensors/chassis/PowerSupplyRedundancy/action/setValue -d '{"data": ["Enabled"]}'
-   $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/xyz/openbmc_project/sensors/chassis/PowerSupplyRedundancy/action/setValue -d '{"data": ["Disabled"]}'
-   ```
-
-    or
-
    ```
    $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/power_supply_redundancy/attr/PowerSupplyRedundancyEnabled -d '{"data": 1}'
    $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/power_supply_redundancy/attr/PowerSupplyRedundancyEnabled -d '{"data": 0}'
