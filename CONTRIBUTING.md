@@ -37,8 +37,8 @@ If you need further details on any of these issues, feel free to add comments.
 
 Performing code reviews is another good way to get started.  Go to
 https://gerrit.openbmc-project.xyz and click on the "all" and "open"
-menu items, or if you are interested in a particular repository, for
-example "bmcweb", type "status:open project:openbmc/bmcweb" into the
+menu items, or if you are interested in a particular repository - for
+example, "bmcweb" - type "status:open project:openbmc/bmcweb" into the
 search bar and press the "search" button.  Then select a review.
 Remember to be positive and add value with every review comment.
 
@@ -63,7 +63,7 @@ then CI will automatically verify the Python code meets the [pycodestyle](http:/
 requirements. This enforces PEP 8 standards on all Python code.
 
 OpenBMC standards for Python match with PEP 8 so in general, a blank setup.cfg
-file is all that's needed. If so desired, an enforcement of 80
+file is all that's needed. If so desired, enforcement of 80
 (vs. the default 79) chars is fine as well:
 ```
 [pycodestyle]
@@ -194,7 +194,7 @@ allows other contributors that work for your employer to skip the CLA signing pr
 After signing a CLA, send it to openbmc@lists.ozlabs.org.
 
 _One time setup_: Login to the WebUI with your GitHub credentials and verify on
-your account Settings that your SSH keys were imported:
+your Account Settings that your SSH keys were imported:
 
   https://gerrit.openbmc-project.xyz/#/settings/
 
@@ -237,7 +237,7 @@ your reviews from the [OpenBMC Gerrit server](https://gerrit.openbmc-project.xyz
 or menu (All > Open, or My > Changes).
 
 Invite reviewers to review your changes.  Each OpenBMC repository has
-a `MAINTAINERS` file which lists required reviewers who are subject
+a `MAINTAINERS` file that lists required reviewers who are subject
 matter experts.  Those reviewers may add additional reviewers.  To add
 reviewers from the Gerrit web page, click the "add reviewers" icon by
 the list of reviewers.
@@ -289,8 +289,8 @@ Best practices for C
 There are numerous resources available elsewhere, but a few items that are
 relevant to OpenBMC work:
 
- * You almost never need to use `system(<some shell pipeline>)`. Reading and
-   writing from files should be done with the appropriate system calls.
+ * Do not use `system(<some shell pipeline>)`. Reading and writing from
+   files should be done with the appropriate system calls.
 
    Generally, it's much better to use `fork(); execve()` if you do need to
    spawn a process, especially if you need to provide variable arguments.
