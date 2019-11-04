@@ -11,8 +11,8 @@ can use the same cookie jar files for read-only REST methods like GET, but
 requires either an authentication token or the username and password passed in
 as part of the URL for non-read-only methods.
 
-The phosphor-rest server will no longer be the default REST server after the
-2.6 OpenBMC release.
+Starting with the 2.7 OpenBMC release (August 2019), bmcweb is the default REST
+server.
 
 ### Establish REST connection session
 * Using just the cookie jar files for the phosphor-rest server:
