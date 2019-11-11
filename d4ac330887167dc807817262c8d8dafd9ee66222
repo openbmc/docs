@@ -200,6 +200,24 @@
     },
     {
       "key": {
+        "uuid": "6901bacb_a4d5b557",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-11-11T18:01:28Z",
+      "side": 1,
+      "message": "More details: The default for `useradd` is `$6$` which denotes SHA512 (which is good).  We should update the custom recipes which define the root password, which hard-codes `$1$`.  See recipes which use EXTRA_USERS_PARAMS such as https://github.com/openbmc/openbmc/blob/69fca2e8c2549eb4e40417343603f9ce24eba38d/meta-phosphor/conf/distro/include/phosphor-defaults.inc#L243",
+      "parentUuid": "4494f2dc_d005646f",
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fd3f60b3_7b93f883",
         "filename": "security/threat-model-considerations.md",
         "patchSetId": 1
