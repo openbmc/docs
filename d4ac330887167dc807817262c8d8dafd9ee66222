@@ -1029,6 +1029,30 @@
     },
     {
       "key": {
+        "uuid": "8f8e4877_cd60319b",
+        "filename": "security/threat-model-considerations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2019-11-18T17:41:44Z",
+      "side": 1,
+      "message": "I think we need to clearly articulate differences in the intended access from the hardware interfaces (like KCS ans BT) and the interfaces such as host IPMI which operate over the hardware interfaces.  Maybe something like:\n- Interfaces such as in-band host IPMI are intended.  The BMC may have function like IPMI firmware firewall (or the OpenBMC Phosphor host IPMI whitelist support) to restrict which IPMI commands are allowed.  The use case is a bare-metal server.\n- Underlying hardware interfaces (such as KCS and BT) are intended to provide support only for higher-level interfaces (such as in-band IPMI or PLDM).  For example, the interfaces may have functions which allow the host system to have access to the BMC (memory, buses, etc).  This level of access to the BMC is not intended and should (must?) be disabled.  Note that disabling the BMC\u0027s debug function is likely required to achieve this, but it may not be sufficient; for example, any interfaces which can access the BMC\u0027s memory must be carefully examined.",
+      "parentUuid": "353bb6c0_496b735e",
+      "range": {
+        "startLine": 199,
+        "startChar": 49,
+        "endLine": 199,
+        "endChar": 52
+      },
+      "revId": "d4ac330887167dc807817262c8d8dafd9ee66222",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "54ba0486_7a87cc0e",
         "filename": "security/threat-model-considerations.md",
         "patchSetId": 1
