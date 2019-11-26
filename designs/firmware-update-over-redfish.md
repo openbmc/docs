@@ -1,10 +1,11 @@
 # Firmware update over Redfish
 
-Author: Andrew Geissler (geissonator)
+Author: Andrew Geissler (geissonator), Vikram Bodireddy(vbodired)
 
-Primary assignee: Andrew Geissler (geissonator)
+Primary assignee: Andrew Geissler (geissonator), Vikram Bodireddy(vbodired)
 
 Created: 2019-02-11
+Updated: 2019-26-11
 
 ## Problem Description
 OpenBMC is moving to [Redfish][1] as its standard for out of band management.
@@ -37,8 +38,6 @@ Some differences between the Redfish API and OpenBMC's existing API:
     uploading each image every time.
 - Redfish does not support deleting a firmware image (this happens by default
   when a new image is uploaded)
-- Redfish does support the ability to update multiple targets with the same
-  image with the same command. OpenBMC does not support this currently.
 - Redfish has support via a SimpleUpdate action which allows the user to
   pass in a variety of remote locations to retrieve a file from
   (FTP, HTTP, SCP, ...). Existing OpenBMC only has support for TFTP.
@@ -74,6 +73,13 @@ with what the existing OpenBMC REST api's provide.
 - Support a subset of ApplyTime (Immediate, OnReset)
 - Support a TFTP based SimpleUpdate
   - This must be configurable (enable/disable) via compile option within bmcweb
+- Support to update multiple targets with the same firmware image at once
+  - Support to allow users to specify the targets to which the uploaded image to
+    be applied. This is implemented by using the redfish property
+    'HttpPushUriTargets'.
+  - Support redfish clients to find out if firmware targets are in use for
+    updates or available for updates. Redfish property 'HttpPushUriTargetsBusy'
+    is used for implement this.
 
 ### Future Requirements
 
@@ -89,7 +95,6 @@ later.
   [Issue 3296][11]
 - Support firmware update for other targets (power supplies, voltage regulators,
   ...)
-- Support to update multiple targets with the same firmware image at once
 - Support scheduling of when update occurs (Maintenance windows)
 - Support remaining TransferProtocolTypes in UpdateService (CIFS, FTP, SFTP,
   HTTP, HTTPS, NSF, SCP, NFS)
@@ -205,6 +210,220 @@ activated, they are given the highest priority and all other images have their
 priority updated as needed. When no more space is available in flash filesystem,
 the lowest priority image will be deleted when a new one is uploaded and
 activated.
+
+### Multiple firmware target update with one image
+
+This design proposes to use the Redfish objects 'HttpPushUriTargets',
+'HttpPushUriTargetsBusy' and 'HttPushUri' in conjunctions for allowing users to
+specify the targets to which the uploaded firmware image to be applied.
+
+Redfish Specification defines 'HttpPushUriTargets' and
+'HttpPushUriTargetsBusy' objects for supporting target specific firmware
+updates and also for synchronization between multiple redfish clients using the
+'HttPushUri' URI.
+
+The firmware update design and flow using 'HttPushUri' is covered by
+https://github.com/openbmc/docs/blob/master/designs/firmware-update-over-redfish.md
+and this document doesn't cover it redundantly.
+
+Below given steps describes the flow of how a redfish client can start firmware
+update for specific firmware target in this new proposed design and
+implementation.
+
+1. set 'HttpPushUriTargetsBusy' property to 'true' by PATCH method.
+2. set 'HttpPushUriTargets' property with the desired firmware target URIs to
+which the firmware to be updated. set is done by PATCH method.
+3. Upload the firmware image to the URI pointed by 'HttPushUri' using POST
+method.
+
+After the above steps phosphor-software-manager processes the uploaded image and
+applies the image to appropriate targets. Once the update process is complete
+with success or failure, the ImageTargetsBusy attribute is set to false by
+phosphor-software-manager. And "HttpPushUriTargetsBusy" reflects the value of
+'ImageTargetsBusy' when its queried by redfish clients.
+
+With the 'HttpPushUriTargets' and 'HttpPushUriTargetsBusy' properties included
+in UpdateService URI, the GET response of
+https://${bmc-ip}/redfish/v1/updateservice is as below, with empty target array.
+(shown the new properties in bold)
+
+```
+{
+  "@odata.context": "/redfish/v1/$metadata#UpdateService.UpdateService",
+  "@odata.id": "/redfish/v1/UpdateService",
+  "@odata.type": "#UpdateService.v1_2_0.UpdateService",
+  "Description": "Service for Software Update",
+  "FirmwareInventory": {
+    "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory"
+  },
+
+  "HttpPushUri": "/redfish/v1/UpdateService",
+  **"HttpPushUriTargets": [],**
+  **"HttpPushUriTargetsBusy": "false"**
+  "Id": "UpdateService",
+  "Name": "Update Service",
+  "ServiceEnabled": true
+}
+```
+
+1. Get 'HttpPushUriTargetsBusy' property from UpdateService URI to check and set
+it to true if its false. A 'True' on this property indicates that another
+redfish client is using the 'HttpPushUriTargets' to upload image for specific
+firmware target. This design doesn't allow setting 'HttpPushUriTargets' if
+'HttpPushUriTargetsBusy' is false. This works as lock on 'HttpPushUriTargets' so
+that no two redfish clients can use 'HttpPushUriTargets' simultaneously.
+
+Set 'HttpPushUriTargetsBusy' to true.
+
+```
+PATCH -d '{ "HttpPushUriTargetsBusy":
+{ "true"}}'
+https://${bmc}/redfish/v1/UpdateService
+
+{
+  "@Message.ExtendedInfo": [
+    {
+      "@odata.type": "/redfish/v1/$metadata#Message.v1_0_0.Message",
+      "Message": "Successfully Completed Request",
+      "MessageArgs": [],
+      "MessageId": "Base.1.4.0.Success",
+      "Resolution": "None",
+      "Severity": "OK"
+    }
+  ]
+}
+```
+Set of HttpPushUriTargetsBusy in turn sets the D-Bus attribute
+ImageTargetsBusy and will be in sync with that.
+
+2. Set 'HttpPushUriTargets' to update bmc active firmware.
+
+```
+PATCH -d '{ "HttpPushUriTargets":
+{ "/redfish/v1/UpdateService/FirmwareInventory/bmc_active"}}'
+https://${bmc}/redfish/v1/UpdateService
+
+{
+  "@Message.ExtendedInfo": [
+    {
+      "@odata.type": "/redfish/v1/$metadata#Message.v1_0_0.Message",
+      "Message": "Successfully Completed Request",
+      "MessageArgs": [],
+      "MessageId": "Base.1.4.0.Success",
+      "Resolution": "None",
+      "Severity": "OK"
+    }
+  ]
+}
+```
+
+The list of firmware targets which supports firmware update to be found out from
+the FirmwareInventory URI and the specific firmware target by GET method as
+below. The firmware targets which has "Updateable" field set to "true" is to be
+used for setting it in 'HttpPushUriTargets'.
+
+GET https://${bmc-ip}/redfish/v1/updateService/FirmwareInventory
+
+```
+{
+  "@odata.context": "/redfish/v1/$metadata#SoftwareInventoryCollection.SoftwareInventoryCollection",
+  "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory",
+  "@odata.type": "#SoftwareInventoryCollection.SoftwareInventoryCollection",
+  "Members": [
+    {
+      "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/bmc_active"
+    },
+    {
+      "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/bmc_recovery"
+    }
+  ],
+  "Members@odata.count": 2,
+  "Name": "Software Inventory Collection"
+}
+```
+
+GET https://${bmc_ip}/redfish/v1/UpdateService/FirmwareInventory/bmc_active
+```
+{
+  "@odata.context": "/redfish/v1/$metadata#SoftwareInventory.SoftwareInventory",
+  "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/bmc_active",
+  "@odata.type": "#SoftwareInventory.v1_1_0.SoftwareInventory",
+  "Description": "BMC image",
+  "Id": "bmc_active",
+  "Members@odata.count": 1,
+  "Name": "Software Inventory",
+  "RelatedItem": [
+    {
+      "@odata.id": "/redfish/v1/Managers/bmc"
+    }
+  ],
+  "Status": {
+    "Health": "OK",
+    "HealthRollup": "OK",
+    "State": "Enabled"
+  },
+  "Updateable": true,
+  "Version": "00.18-00-b946b8"
+}
+```
+
+Also, the firmware update service in BMC validates the uploaded image against
+'HttpPushUriTargets' validity with image. If there is no targets are being set
+then the update service in BMC applies the image as to applicable target as
+found from image.
+
+3. Upload the firmware image for the target bmc_active
+
+POST <image> https://${bmc}/redfish/v1/UpdateService
+
+This uploads the image and installs onto bmc_active firmware target.
+
+4. Wait until Image upload is success and clear 'HttpPushUriTargetsBusy' by
+setting it to 'false'.
+
+```
+PATCH -d '{ "HttpPushUriTargetsBusy":
+{ "false"}}'
+https://${bmc}/redfish/v1/UpdateService
+
+{
+  "@Message.ExtendedInfo": [
+    {
+      "@odata.type": "/redfish/v1/$metadata#Message.v1_0_0.Message",
+      "Message": "Successfully Completed Request",
+      "MessageArgs": [],
+      "MessageId": "Base.1.4.0.Success",
+      "Resolution": "None",
+      "Severity": "OK"
+    }
+  ]
+}
+```
+
+D-Bus property:
+
+BMC exposes the below given D-Bus attributes for making sure the upload and
+updates are in sync with the external clients.
+
+1. "xyz.openbmc_project.Software.ImageTargetsBusy"
+    This can be set to 'true' when it is 'false' and 'HttpPushUriTargetsBusy' is
+    being set to 'true' by PATCH method. And ImageTargetsBusy attribute is set
+    to 'false' by the phosphor-software-manager module when the image upload and
+    update process is successful or failed for any reason.
+    Setting 'HttpPushUriTargetsBusy' to false by any redfish clients are not
+    allowed when 'ImageTargetsBusy' attribute is still set to 'true'.
+
+2. "xyz.openbmc_project.Software.ImageTargets"
+This is set with image targets as retrieved from 'HttpPushUriTargets' and its
+used by phosphor-software-manager updates the uploaded firmware update to the
+targets in 'ImageTargets' attribute. phosphor-software-manager validates the set
+"ImageTargets" property against the target detected in the uploaded image for
+image matching.
+
+Please refer "ImageTarget.interface.yaml" and "ImageTargetsBusy.interface.yaml"
+for details.
+[Yaml property for Image Target](https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/27303)
+[Yaml property for ImageTargetsBusy](https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/27534)
 
 ## Alternatives Considered
 Could simply create Redfish OEM api's that look like OpenBMC's current custom
