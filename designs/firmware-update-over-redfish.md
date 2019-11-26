@@ -1,10 +1,11 @@
 # Firmware update over Redfish
 
-Author: Andrew Geissler (geissonator)
+Author: Andrew Geissler (geissonator), Vikram Bodireddy(vbodired)
 
-Primary assignee: Andrew Geissler (geissonator)
+Primary assignee: Andrew Geissler (geissonator), Vikram Bodireddy(vbodired)
 
 Created: 2019-02-11
+Updated: 2019-11-26
 
 ## Problem Description
 OpenBMC is moving to [Redfish][1] as its standard for out of band management.
@@ -37,8 +38,6 @@ Some differences between the Redfish API and OpenBMC's existing API:
     uploading each image every time.
 - Redfish does not support deleting a firmware image (this happens by default
   when a new image is uploaded)
-- Redfish does support the ability to update multiple targets with the same
-  image with the same command. OpenBMC does not support this currently.
 - Redfish has support via a SimpleUpdate action which allows the user to
   pass in a variety of remote locations to retrieve a file from
   (FTP, HTTP, SCP, ...). Existing OpenBMC only has support for TFTP.
@@ -74,6 +73,13 @@ with what the existing OpenBMC REST api's provide.
 - Support a subset of ApplyTime (Immediate, OnReset)
 - Support a TFTP based SimpleUpdate
   - This must be configurable (enable/disable) via compile option within bmcweb
+- Support to update multiple targets with the same firmware image at once
+  - Support to allow users to specify the targets to which the uploaded image to
+    be applied. This is implemented by using the redfish property
+    'HttpPushUriTargets'.
+  - Support redfish clients to find out if the firmware targets are in use for
+    updates or available for updates. Redfish property 'HttpPushUriTargetsBusy'
+    is used for implementing this.
 
 ### Future Requirements
 
@@ -89,7 +95,6 @@ later.
   [Issue 3296][11]
 - Support firmware update for other targets (power supplies, voltage regulators,
   ...)
-- Support to update multiple targets with the same firmware image at once
 - Support scheduling of when update occurs (Maintenance windows)
 - Support remaining TransferProtocolTypes in UpdateService (CIFS, FTP, SFTP,
   HTTP, HTTPS, NSF, SCP, NFS)
@@ -205,6 +210,220 @@ activated, they are given the highest priority and all other images have their
 priority updated as needed. When no more space is available in flash filesystem,
 the lowest priority image will be deleted when a new one is uploaded and
 activated.
+
+### Multiple firmware target update with one image
+### Allow users to specify the firmware target to be updated
+
+The firmware update flow using 'HttPushUri' is described above in this document
+which gives how a user uploads the image and activates it.
+
+This design proposes to use the Redfish objects 'HttpPushUriTargets',
+'HttpPushUriTargetsBusy' and 'HttPushUri' in conjunctions for allowing users to
+specify the targets to which the uploaded firmware image to be applied.
+
+Redfish Specification defines 'HttpPushUriTargets' and
+'HttpPushUriTargetsBusy' objects for supporting target specific firmware
+updates and also for synchronization between multiple redfish clients using the
+'HttPushUri' URI.
+
+Below given steps that describes the flow for how a redfish client can set the
+firmware target for update and uploads the image.
+
+1. set 'HttpPushUriTargetsBusy' property to 'true' by PATCH method.
+2. set 'HttpPushUriTargets' property with the firmware target URIs or related
+string to which the firmware to be updated by PATCH method.
+3. Upload the firmware image to the UriTarget using 'HttPushUri' by POST
+method.
+
+```
++----------------+              +----------------+            +-----------------+              +-----------------+
+|Redfish client  |              |     bmcweb     |            |phosphor-software|              |   fwupd script  |
+|app like postman|              | (redfish_core) |            |-manager         |              |                 |
++-------+--------+              +-------+--------+            +--------+--------+              +---------+-------+
+        |                               |                              |                                 |
+  check |'HttpPushUriTargetsBusy'       |                              |                                 |
+     as |'false' by GET                 |                              |                                 |
+        |                               |                              |                                 |
+        |                               |                              |                                 |
+    set | 'HttpPushUriTargets' also with|                              |                                 |
+        | 'HttpPushUriTargetsBusy'      |                              |                                 |
+        +------------------------------->                              |                                 |
+        | as true by PATCH              | validate and set internal    |                                 |
+        |                               | parameters in update service |                                 |
+        |                               |                              |                                 |
+        +<-------+return_code-----------+                              |                                 |
+        |                               |                              |                                 |
+        |                               |                              |                                 |
+ upload |image to 'HttPushUri'          |                              |                                 |
+     by | POST                          |                              |                                 |
+        |                               + Update Service writes        |                                 |
+        |                               | image to '/tmp/images'       |                                 |
+        |                               | waits for software interface |                                 |
+        |                               | to be added by               |                                 |
+        |                               | phosphor-software-manager    |                                 |
+        |                               |                              + Image Watch routine finds       |
+        +<------------------------------+                              | new image in '/tmp/images'      |
+        |                               |                              | and triggers image_manager      |
+        |                               |                              |                                 |
+        |                               |                              + image_manager processes image   |
+        |                               |                              | and if image is good then, adds |
+        |                               |                              | image object as new software    |
+        |                               |                              | interface for activation.       |
+        |                               |<-----------------------------+                                 |
+        |                               + Update Service finds         |                                 |
+        |                               | the new software interface   |                                 |
+        |                               | for the uploaded image.      |                                 |
+        |                               | And does the image activation|                                 |
+        |                               | by setting the appropriate   |                                 |
+        |                               | redundancy priority for the  |                                 |
+        |                               | uploaded image. Redundancy   |                                 |
+        |                               | priority matches with        |                                 |
+        |                               | as given by FirmwareInventory|                                 |
+        |                               +----------------------------->|                                 |
+        |                               |                              |                                 |
+        |                               |                              + Activation module in bmcweb     |
+        |                               |                              | matches the software interface  |
+        |                               |                              | added with 'HttpPushUriTargets' |
+        |                               |                              | and sets the appropriate        |
+        |                               |                              | redundancy priority to the image|
+        |                               |                              | object and sets the             |
+        |                               |                              | RequestedActivations to image   |
+        |                               |                              | object.                         |
+        |                               |                              |                                 |
+        |                               |                              +-------------------------------->+
+        |                               |                              |                                 | Activation code in
+        |                               |                              |                                 | phosphor-bmc-code-mgmt gets
+        |                               |                              |                                 | notified about the
+        |                               |                              |                                 | RequestedActivations and calls
+        |                               |                              |                                 | appropriate flashwrite routine.
+        |                               |                              |                                 |
+        |                               |                              |                                 |
+        +                               +                              +                                 +
+```
+
+The above steps from redfish interface makes phosphor-software-manager to read
+and process the uploaded image. After the image being posted to
+phosphor-software-manager, it acknowledges that the image being identified by
+creating image object under /tmp/images/ which is monitored and
+softwareInterfaceAdded is called in UpdateService. softwareInterfaceAdded
+function matches the set 'HttpPushUriTargets' with the FirmwareInventory list
+and sets the appropriate redundancy priority to the uploaded image object.
+
+With the 'HttpPushUriTargets' and 'HttpPushUriTargetsBusy' properties included
+in UpdateService URI, the GET response of
+https://${bmc-ip}/redfish/v1/updateservice is as below, with empty target array.
+(shown the new properties in bold)
+
+```
+{
+  "@odata.context": "/redfish/v1/$metadata#UpdateService.UpdateService",
+  "@odata.id": "/redfish/v1/UpdateService",
+  "@odata.type": "#UpdateService.v1_2_0.UpdateService",
+  "Description": "Service for Software Update",
+  "FirmwareInventory": {
+    "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory"
+  },
+
+  "HttpPushUri": "/redfish/v1/UpdateService",
+  **"HttpPushUriTargets": [],**
+  **"HttpPushUriTargetsBusy": "false"**
+  "Id": "UpdateService",
+  "Name": "Update Service",
+  "ServiceEnabled": true
+}
+```
+
+1. Get 'HttpPushUriTargetsBusy' property from UpdateService URI to check and set
+it to true if its false. A 'True' on this property indicates that another
+redfish client is using the 'HttpPushUriTargets' to upload image for specific
+firmware target. This design doesn't allow setting 'HttpPushUriTargets' if
+'HttpPushUriTargetsBusy' is false. This works as lock on 'HttpPushUriTargets' so
+that no two redfish clients can use 'HttpPushUriTargets' simultaneously.
+
+Set 'HttpPushUriTargetsBusy' to true and also set 'HttpPushUriTargets' to the
+desired image target in the same PATCH command.
+
+```
+PATCH -d '{"HttpPushUriTargetsBusy": true,
+"HttpPushUriTargets": "bmc_recovery"}'
+https://${bmc}/redfish/v1/UpdateService
+```
+'HttpPushUriTargetsBusy' property need to be cleared by the redfish client after
+the firmware update is done.
+
+The list of firmware targets which supports firmware update to be found out from
+the FirmwareInventory URI and the specific firmware target by GET method as
+below. The firmware targets which has "Updateable" field set to "true" is to be
+used for setting it in 'HttpPushUriTargets'.
+
+GET https://${bmc-ip}/redfish/v1/updateService/FirmwareInventory
+
+```
+{
+  "@odata.context": "/redfish/v1/$metadata#SoftwareInventoryCollection.SoftwareInventoryCollection",
+  "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory",
+  "@odata.type": "#SoftwareInventoryCollection.SoftwareInventoryCollection",
+  "Members": [
+    {
+      "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/bmc_active"
+    },
+    {
+      "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/bmc_recovery"
+    }
+  ],
+  "Members@odata.count": 2,
+  "Name": "Software Inventory Collection"
+}
+```
+
+GET https://${bmc_ip}/redfish/v1/UpdateService/FirmwareInventory/bmc_recovery
+```
+{
+  "@odata.context": "/redfish/v1/$metadata#SoftwareInventory.SoftwareInventory",
+  "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/bmc_recovery",
+  "@odata.type": "#SoftwareInventory.v1_1_0.SoftwareInventory",
+  "Description": "BMC image",
+  "Id": "bmc_recovery",
+  "Members@odata.count": 1,
+  "Name": "Software Inventory",
+  "RelatedItem": [
+    {
+      "@odata.id": "/redfish/v1/Managers/bmc"
+    }
+  ],
+  "Status": {
+    "Health": "OK",
+    "HealthRollup": "OK",
+    "State": "Enabled"
+  },
+  "Updateable": true,
+  "Version": "00.18-00-b946b8"
+}
+```
+
+Also, the firmware update service in BMC validates the uploaded image against
+set 'HttpPushUriTargets' validity with image. If there is no targets are being
+set then the update service in BMC applies the image to the default applicable
+firmware target.
+
+3. Upload the firmware image for the target bmc_recovery
+
+POST <image> https://${bmc}/redfish/v1/UpdateService
+
+This uploads the image and installs onto bmc_recovery firmware target.
+
+D-Bus property:
+
+Activation.interface.yaml of D-Bus is modified to add "Staged" for Activations.
+
+"xyz.openbmc_project.Software.Activation.interface.yaml"
+   Activations:
+        - name: Staged
+          description: >
+            The Software.Version is currently in staged flash area. This will
+            be moved from staged flash area to active upon reset.
+
+[Activations.interface Yaml change](https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/27632)
 
 ## Alternatives Considered
 Could simply create Redfish OEM api's that look like OpenBMC's current custom
