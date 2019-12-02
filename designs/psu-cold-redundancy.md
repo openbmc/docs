@@ -1,0 +1,172 @@
+# Cold Redundancy
+
+Author: Yang Cheng C
+
+Primary assignee: Bills Jason M
+
+Other contributors: None
+
+Created: 2019-6-20
+
+## Problem Description
+To support Power Supply Cold Redundancy feature, BMC needs to check and rotate
+ranking orders, BMC also needs to create some interface for IPMI and Redfish
+commands to set or get configurations of Cold Redundancy.
+
+## Background and References
+Power supplies that support Cold Redundancy can be enabled to go into a
+low-power state in order to provide increased power usage efficiency when system
+loads are such that both power supplies are not needed. When the power subsystem
+is in Cold Redundant mode; only the needed power supplies to support the best
+power delivery efficiency are ON. Any additional power supplies, including the
+redundant power supply, are in Cold Standby state.
+
+## Requirements
+To support rank order rotation, BMC needs to write PSU register through I2C
+interface. BMC also needs to create a D-Bus interface with some properties
+for IPMI Command and Redfish to set or get configuration of Cold Redundancy.
+
+## Proposed Design
+There are some D-Bus properties stored in settings daemon, Cold Redundancy
+service will use sdbusplus match to monitor these properties. If user changed
+these properties through D-Bus interface, Cold Redundancy service will know it
+and then the service will reload the parameters from settings daemon.
+Cold Redundancy will check entity-manager first to get the bus and address of
+the power supplies on system and keep monitoring the PSU OperationalStatus
+through D-Bus interface to find which PSUs are in normal status.
+According to the configure parameters getting from settings daemon, Cold
+Redundancy Service will set the rank orders to Cold Redundancy Config
+register(0xd0) in PSUs through I2C driver.
+If PSU OperationalStatus has been changed, Cold Redundancy service needs to
+reset rank orders and set them to PSU again. If any PSU is not in normal status,
+the rank order of it will always be 0 which means that PSU will never go into
+cold standby state.
+Power Supplies will decide whether to go into cold standby state by themselves,
+if current power usage is higher than one PSU can support, then one more PSU
+will leave cold standby state. Cold Redundancy service can only decide the rank
+orders for PSUs in normal status.
+
+### Automatic Cycling of Redundancy Ranking
+
+If RotationEnabled is true and RotationAlgorithm is not user specific(value 1)
+then BMC will periodically rotate the rank assignments according to the value of
+PeriodOfRotation. The original rank order in PSU will be added one order and the
+last rank order PSU will be set to rank order 1. If any PSU Event happen, rank
+order will be reset. Rotation period will be restarted whenever there is a
+change in the Master BMC or BMC reset happens.
+
+### Ipmi command
+
+cmdSetColdRedundancyConfig = 0x2d
+cmdGetColdRedundancyConfig = 0x2e
+
+### Redfish
+API     : /redfish/v1/Chassis/Power/Oem/ColdRedundancy
+METHOD  : PATCH
+PAYLOAD :
+{
+  "Enabled" : true,
+  "RotationEnabled" : true,
+  "RotationAlgorithm" : "BMCSpecific",
+  "RotationRankOrder" : [
+    {
+      "@odata.id": "/redfish/v1/Chassis/Flextronics_S_1100ADU00_201_PSU_1"
+    },
+    {
+      "@odata.id": "/redfish/v1/Chassis/Flextronics_S_1100ADU00_201_PSU_2"
+    }
+  ],
+  "PeriodOfRotation" : PT86400S
+}
+
+RotationAlgorithm can only be "BMCSpecific" or "UserSpecific"
+
+### Properties in settings
+
+PATH: "/xyz/openbmc_project/control/power_supply_redundancy",
+INTERFACE: "xyz.openbmc_project.Control.PowerSupplyRedundancy"
+
+Property: "ColdRedundancyStatus"
+Default Value:
+"xyz.openbmc_project.Control.PowerSupplyRedundancy.Status.complete");
+
+Property: "ColdRedundancyEnabled"
+Default Value: true
+
+Property: "RotationEnabled"
+Default Value: true
+
+Property: "RotationAlgorithm"
+Default Value:
+"xyz.openbmc_project.Control.PowerSupplyRedundancy.Algo.bmcSpecific"
+
+Property: "RotationRankOrder"
+Default Value: {0}
+
+Property: "PeriodOfRotation"
+Default Value: 86400
+
+RotationRankOrder is an array which user want to set rank order in user
+specific RotationAlgorithm. For example, if user want to set rank order 1, 3, 2
+to PSU 1, 2, 3, then RotationRankOrder needs to be {1, 3 , 2}
+
+### D-Bus interface in Cold Redundancy Service
+
+/xyz/openbmc_project/Control:
+    - Interface: xyz.openbmc_project.Control.PowerSupplyRedundancy
+      Properties:
+        PSUNumber: byte
+PSUNumber here is the number of PSUs currently inserted on system.
+
+## Alternatives Considered
+Cold Redundancy service get PSU status such as AC Lost, failure, predictive
+directly from PSU registers instead of get them from PSU Event D-Bus interface.
+
+## Impacts
+The feature is an independent process, which will set a PSU register, so before
+PSU Firmware update start, need to stop this daemon from reading and writing
+PSU register so that it will not impact PSU Firmware update.
+Both this daemon and PSU Sensor will access same I2C bus, need to make sure
+no conflict will happen when access I2C bus at same time.
+Since every time PSU is inserted or removed, PSU manager will ask entity-manager
+rescan all the FRU on system, if this happen very frequent, it will bring too
+many workloads to the system.
+
+## Testing
+
+### Ipmi command test
+
+Run Get Cold Redundancy Configuration command to check all the Cold Redundancy
+related properties.
+For example: Check if ColdRedundancy is enabled
+ipmitool raw 0x30 0x2e 0x01, returns 00 01 01.
+
+Run Set Cold Redundancy Configuration command to change the properties and then
+use Get Cold Redundancy Configuration command again to see if the properties are
+really changed.
+For example: Disable ColdRedundancy
+ipmitool raw 0x30 0x2d 0x01 0x00, returns 00 00.
+
+## Redfish command test
+
+Run below command in Restful API Client such as Postman
+PATCH
+https://ip/redfish/v1/Chassis/Power/Oem/ColdRedundancy
+Body:
+{
+    "ColdRedundancyEnabled": false
+}
+The property ColdRedundancyEnabled in settings should also be changed to false.
+Then test all other properties by such way.
+
+### Rank order test
+
+With two normal PSUs, set PeriodOfRotation to 1 minute(this is only for test,
+for normal use, PeriodOfRotation are not allowed to lower than 1 day). Check
+current PSU orders by reading 0xd0 register in PSUs. After 1 minute, the
+original rank order 1 PSU should be changed to rank order 2, and original rank
+order 2 should be changed to 1.
+Disable ColdRedundancyEnabled or RotationEnabled, rank order will not change any
+more.
+Remove AC cable from one PSU. The rank order of this PSU is always 0. Another
+normal status PSU will always keep to rank order 1.
