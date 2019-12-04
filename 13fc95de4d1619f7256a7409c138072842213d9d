@@ -36,6 +36,98 @@
     },
     {
       "key": {
+        "uuid": "872a9b25_8d50ef47",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2019-12-04T23:08:19Z",
+      "side": 1,
+      "message": "This opens up a potential TOCTOU-like situation - usually you\u0027d want your previous boot stage to measure the next one, to make sure this \"self-reporting\" isn\u0027t prone to manipulation (e.g. there may be a bug in the U-Boot, that would allow an attacker to take control over loaded code and then make it report whatever the \"right\" value is). That would require ROM support however.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 61
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b695f770_9a09bc63",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2019-12-04T23:08:19Z",
+      "side": 1,
+      "message": "I\u0027m not 100% sure, but I think 2600 may not have the SPL-level Verified Boot enabled, have you by chance checked that?\n\nI\u0027d also suggest to explicitly mention that the use of \"signed configuration\" (as opposed to \"signed image\") way of configuring the Verified Boot is to be used, to prevent image swapping attacks.",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34b619b5_816b477d",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2019-12-04T23:08:19Z",
+      "side": 1,
+      "message": "Probably a Device Tree binary could be added here as well?",
+      "range": {
+        "startLine": 84,
+        "startChar": 26,
+        "endLine": 84,
+        "endChar": 39
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3712171_d7746a2f",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2019-12-04T23:08:19Z",
+      "side": 1,
+      "message": "If implemented literally, this would lead to TOCTOU-like situation with the jumper measurement time vs the \"use value for the decision\" time and the attacker could try to use that to force the GPIO value just at the right time to disable Verified boot without admin\u0027s knowledge. I\u0027d suggest to spell this out in more detail (decision time vs TPM extension time) to avoid this.",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 77
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05a2c95d_9ca5a985",
         "filename": "security/OpenBMCSecureBoot.md",
         "patchSetId": 1
@@ -65,6 +157,144 @@
       "side": 1,
       "message": "I think the design document captures the software that will be involved, and how it works to provide secure boot.\n\nWhat you\u0027re describing is a way to provision the machine in manufacturing, which is useful, but it is not part of this design document.",
       "parentUuid": "05a2c95d_9ca5a985",
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcedf4a7_b9afced6",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2019-12-04T23:08:19Z",
+      "side": 1,
+      "message": "There could be some external, platform-level RoT entity securing the BMC FW, like Google\u0027s Titan, Apple\u0027s T2, Microsoft\u0027s Cerberus or Intel\u0027s PFR, to name a few. I think it would be too much to describe the interaction with such entities in this document (I think it should focus on using AST2600+U-Boot\u0027s Verified Boot as it is right now), but I think it\u0027s worth mentioning as an alternative.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 4
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "715c1a0b_089e6a78",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2019-12-04T23:08:19Z",
+      "side": 1,
+      "message": "I think this needs some elaboration in this design document as it\u0027s currently unclear how those development and production keys would co-exist (if that\u0027s what is being suggested here) and what logic will be used to boot using dev vs. prod.",
+      "range": {
+        "startLine": 112,
+        "startChar": 2,
+        "endLine": 115,
+        "endChar": 23
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80daaedc_02533bf5",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2019-12-04T23:08:19Z",
+      "side": 1,
+      "message": "I\u0027d suggest to add a \"swapped image\" attack test (if you agree with adding the \"signed configuration\" as the recommended way to configure U-Boot), where a properly signed, but different than the one listed in the FIT config, image is used.",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 15
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6c51834_e2088ce3",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2019-12-04T23:08:19Z",
+      "side": 1,
+      "message": "Is this an existing feature? I don\u0027t think U-Boot\u0027s Verified Boot has anything like that, does it?",
+      "range": {
+        "startLine": 123,
+        "startChar": 32,
+        "endLine": 123,
+        "endChar": 66
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7faa2495_22a4433e",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2019-12-04T23:08:19Z",
+      "side": 1,
+      "message": "I\u0027d suggest to add:\n\n\u003e \"and values extended to the TPM registers must be different from the normal secure boot with this jumper set to \u0027enable security\u0027\"\n\nto make sure this is tested and the admin can distinguish those situations and act accordingly.",
+      "range": {
+        "startLine": 124,
+        "startChar": 52,
+        "endLine": 124,
+        "endChar": 78
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "838fca1e_43a4311b",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2019-12-04T23:08:19Z",
+      "side": 1,
+      "message": "\"Kernel/initrd (initramfs)/Device Tree\" would be more explicit, to make sure all three main components are tested.",
+      "range": {
+        "startLine": 125,
+        "startChar": 10,
+        "endLine": 125,
+        "endChar": 16
+      },
       "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
