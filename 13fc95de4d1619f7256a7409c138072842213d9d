@@ -36,6 +36,29 @@
     },
     {
       "key": {
+        "uuid": "3498b152_d6fcdb62",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000561
+      },
+      "writtenOn": "2019-12-06T20:23:00Z",
+      "side": 1,
+      "message": "Is this BMC dedicated TPM?",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 40
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "872a9b25_8d50ef47",
         "filename": "security/OpenBMCSecureBoot.md",
         "patchSetId": 1
@@ -47,6 +70,30 @@
       "writtenOn": "2019-12-04T23:08:19Z",
       "side": 1,
       "message": "This opens up a potential TOCTOU-like situation - usually you\u0027d want your previous boot stage to measure the next one, to make sure this \"self-reporting\" isn\u0027t prone to manipulation (e.g. there may be a bug in the U-Boot, that would allow an attacker to take control over loaded code and then make it report whatever the \"right\" value is). That would require ROM support however.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 61
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96883116_9d578fb5",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000561
+      },
+      "writtenOn": "2019-12-06T20:23:00Z",
+      "side": 1,
+      "message": "At this boot stage, it can be a valid approach. The U-Boot SPL is loaded by the ROM firmware which is intended to be as small as possible. Any bugs in the ROM firmware may lead to re-spin the actual silicon and it\u0027s quite expensive. Adding the TPM driver to the ROM firmware is possible but may not be desirable. It is also possible that the ROM firmware measures the U-Boot SPL image and passes the measurement to the U-Boot SPL but the U-Boot SPL code still can manipulate with it. I guess we can trust U-Boot SPL as it\u0027s been already verified by ROM firmware.",
+      "parentUuid": "872a9b25_8d50ef47",
       "range": {
         "startLine": 80,
         "startChar": 0,
@@ -98,6 +145,29 @@
         "startChar": 26,
         "endLine": 84,
         "endChar": 39
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fa528f6_ce8daca1",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000561
+      },
+      "writtenOn": "2019-12-06T20:23:00Z",
+      "side": 1,
+      "message": "Will the BMC platform chain of trust be based on public key stored in OTP and public key(s) in EEProm will be signed by the private part of the OTP public key?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 74
       },
       "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
