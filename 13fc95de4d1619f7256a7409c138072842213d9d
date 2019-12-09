@@ -106,6 +106,30 @@
     },
     {
       "key": {
+        "uuid": "6ce1ff42_3fab5c72",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2019-12-09T11:35:01Z",
+      "side": 1,
+      "message": "\u003e \u003c...\u003e I guess we can trust U-Boot SPL as it\u0027s been already verified by ROM firmware.\n\nWell, ideally we shouldn\u0027t, as there may be ways to compromise it (if there are bugs as I mentioned in my previous comment). But I agree the ROM limitations may prevent this from happening. Do we have any communicaton or IO interfaces (except naturally flash) that SPL opens up or services? If there\u0027s no option of ROM measurements, we could limit those to the bare minimum and harden those that left, to have better assurance.\n\nAnd yes, I agree passing the value measured by ROM is no better than just self-measurement, so not worth it. Unless we devise some scheme with keyed MAC, for which only ROM and the measurement consumer would have the key, but that would rather be unrealistically complex.",
+      "parentUuid": "96883116_9d578fb5",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 61
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b695f770_9a09bc63",
         "filename": "security/OpenBMCSecureBoot.md",
         "patchSetId": 1
