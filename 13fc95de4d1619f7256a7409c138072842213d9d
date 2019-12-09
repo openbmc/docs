@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "83022afc_ed70b178",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000452
+      },
+      "writtenOn": "2019-12-09T17:20:11Z",
+      "side": 1,
+      "message": "We usually use the term secure boot however U-boot uses verified boot that is why I had both.  My preference would be Secure and Trusted Boot",
+      "parentUuid": "8bcc96c9_6738021a",
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cdcc7609_e669bee6",
         "filename": "security/OpenBMCSecureBoot.md",
         "patchSetId": 1
@@ -47,6 +65,30 @@
       "writtenOn": "2019-12-06T20:23:00Z",
       "side": 1,
       "message": "Is this BMC dedicated TPM?",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 40
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42dda376_a19200e9",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000452
+      },
+      "writtenOn": "2019-12-09T17:20:11Z",
+      "side": 1,
+      "message": "Yes the BMC will have it\u0027s own dedicated TPM which is not tied to the host TPM",
+      "parentUuid": "3498b152_d6fcdb62",
       "range": {
         "startLine": 79,
         "startChar": 0,
@@ -130,6 +172,30 @@
     },
     {
       "key": {
+        "uuid": "47358b45_1c83f53f",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000452
+      },
+      "writtenOn": "2019-12-09T17:20:11Z",
+      "side": 1,
+      "message": "Ideally we would go with the path of having the ROM measure the SPL into the TPM as mentioned above.  The current AST2600 ROM doesn\u0027t support that but it is definitely something we would like to investigate in the future.  My feeling is that this current design does have limitation from a security standpoint if there was a way to compromise the self-measurement but if there are less severe vulnerabilities to the SPL (which has been validated by the ROM) for example a compromise to the verification of U-Boot but no ability to compromise the self-measurement you would be able to detect you are running this vulnerable level of SPL.",
+      "parentUuid": "6ce1ff42_3fab5c72",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 61
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b695f770_9a09bc63",
         "filename": "security/OpenBMCSecureBoot.md",
         "patchSetId": 1
@@ -176,6 +242,30 @@
     },
     {
       "key": {
+        "uuid": "e28220fa_72e9601b",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000452
+      },
+      "writtenOn": "2019-12-09T17:20:11Z",
+      "side": 1,
+      "message": "I\u0027m not familiar with all the components that make up a full OpenBMC image.  I\u0027m assuming by this statement that the dev tree is static and not built up via U-boot ?",
+      "parentUuid": "34b619b5_816b477d",
+      "range": {
+        "startLine": 84,
+        "startChar": 26,
+        "endLine": 84,
+        "endChar": 39
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5fa528f6_ce8daca1",
         "filename": "security/OpenBMCSecureBoot.md",
         "patchSetId": 1
@@ -187,6 +277,30 @@
       "writtenOn": "2019-12-06T20:23:00Z",
       "side": 1,
       "message": "Will the BMC platform chain of trust be based on public key stored in OTP and public key(s) in EEProm will be signed by the private part of the OTP public key?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 74
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78e2db68_7b1bcaae",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000452
+      },
+      "writtenOn": "2019-12-09T17:20:11Z",
+      "side": 1,
+      "message": "That wasn\u0027t part of the design but is a very interesting idea.  With the current design there is a break in the key chain here.  A compromised EEProm key can only be detected through attestation of the TPM.  One issue with your idea is the fact that in our development flows we always have to main sets of keys (production and development).  The AST2600 allows for production and development (low security) keys but since the keys are in OTP memory they can\u0027t be changed.  At some point during our development process we will have to disable the development key in OTP memory at which point we can only use production signed SPL images.  However this point is way too soon in our development cycle such that we can\u0027t run the entire U-Boot/Linux stack with production keys.  My plan is that we will start running with production signed SPL with the remainder of the stack development signed.  So the BMC will have only production keys enabled in OTP and then development keys in the EEProm.  So to enable that with your idea of signed keys in EEPRom I would have to sign the well known development keys with the production OTP key.  As soon as that happens you essentially break the chain as anyone could put these keys into EEProm and flash development signed U-boot.  Which takes you back to verification of the keys through attestation.",
+      "parentUuid": "5fa528f6_ce8daca1",
       "range": {
         "startLine": 94,
         "startChar": 0,
@@ -268,6 +382,30 @@
       "writtenOn": "2019-12-04T23:08:19Z",
       "side": 1,
       "message": "There could be some external, platform-level RoT entity securing the BMC FW, like Google\u0027s Titan, Apple\u0027s T2, Microsoft\u0027s Cerberus or Intel\u0027s PFR, to name a few. I think it would be too much to describe the interaction with such entities in this document (I think it should focus on using AST2600+U-Boot\u0027s Verified Boot as it is right now), but I think it\u0027s worth mentioning as an alternative.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 4
+      },
+      "revId": "13fc95de4d1619f7256a7409c138072842213d9d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "119eb0a0_6552417a",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000452
+      },
+      "writtenOn": "2019-12-09T17:20:11Z",
+      "side": 1,
+      "message": "Added a snippet on Google Titan which we have looked at for various use cases.",
+      "parentUuid": "dcedf4a7_b9afced6",
       "range": {
         "startLine": 105,
         "startChar": 0,
