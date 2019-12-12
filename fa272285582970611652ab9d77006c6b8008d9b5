@@ -55,6 +55,29 @@
     },
     {
       "key": {
+        "uuid": "acca6982_6a637c92",
+        "filename": "designs/firmware-update-over-redfish.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2019-12-12T20:09:57Z",
+      "side": 1,
+      "message": "This and bmc_recovery confuse me a bit. Is this an implementation thing? On our systems, these are just 8 byte hash value that correlate to the level of firmware. Does your implementation name them bmc_active and bmc_recovery? Are there any requirements that other do this or can these be anything?\n\n$ curl -k -H \"X-Auth-Token: $TOKEN\" -X GET https://${BMC_IP}/redfish/v1/UpdateService/FirmwareInventory\n{\n  \"@odata.context\": \"/redfish/v1/$metadata#SoftwareInventoryCollection.SoftwareInventoryCollection\",\n  \"@odata.id\": \"/redfish/v1/UpdateService/FirmwareInventory\",\n  \"@odata.type\": \"#SoftwareInventoryCollection.SoftwareInventoryCollection\",\n  \"Members\": [\n    {\n      \"@odata.id\": \"/redfish/v1/UpdateService/FirmwareInventory/0d2c90c3\"\n    },\n    {\n      \"@odata.id\": \"/redfish/v1/UpdateService/FirmwareInventory/224cd310\"\n    },\n    {\n      \"@odata.id\": \"/redfish/v1/UpdateService/FirmwareInventory/74544408\"\n    }\n  ],\n  \"Members@odata.count\": 3,\n  \"Name\": \"Software Inventory Collection\"\n}",
+      "range": {
+        "startLine": 377,
+        "startChar": 64,
+        "endLine": 377,
+        "endChar": 74
+      },
+      "revId": "fa272285582970611652ab9d77006c6b8008d9b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e038cd6_abc7d3d0",
         "filename": "designs/firmware-update-over-redfish.md",
         "patchSetId": 3
@@ -173,6 +196,24 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "ca08a1b7_cb20c1dd",
+      "revId": "fa272285582970611652ab9d77006c6b8008d9b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "227ee3d7_17d7105b",
+        "filename": "designs/firmware-update-over-redfish.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2019-12-12T20:09:57Z",
+      "side": 1,
+      "message": "Our implementation has a single BMC with 2 flash chips. Each flash chip can have a separate BMC image. Would you consider the flash chip the BMC is not booted from, the StandbySpare? Or is a StandbySpare really a separate BMC?",
+      "parentUuid": "9ef62e78_b87c8aa0",
       "revId": "fa272285582970611652ab9d77006c6b8008d9b5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
