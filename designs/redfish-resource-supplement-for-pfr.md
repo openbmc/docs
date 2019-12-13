@@ -37,7 +37,7 @@ resiliency and event logs associated with it.
 
  - [NIST.SP.180-193](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-193.pdf)
  - [Redfish schema supplement](https://www.dmtf.org/sites/default/files/standards/documents/DSP0268_2019.1a.pdf)
- - [Redfish Logging in bmcweb](https://github.com/openbmc/docs/blob/master/redfish-logging-in-bmcweb.md)
+ - [Redfish Logging in bmcweb](https://github.com/openbmc/docs/blob/master/architecture/redfish-logging-in-bmcweb.md)
 
 ## Requirements
 
