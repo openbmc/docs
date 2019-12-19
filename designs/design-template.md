@@ -37,7 +37,8 @@ Other contributors:
   < Name and/or IRC nic or None >
 
 Created:
-  < Date initially created, revisions in will be tracked in Gerrit >
+  < Date initially created in Month D, Yr format (e.g. June 17, 2020 or Dec 19,
+  2019)>
 
 ## Problem Description
 (1 paragraph) What are we doing and why? What problem are you trying to
