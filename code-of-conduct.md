@@ -6,7 +6,7 @@ LF Projects, LLC (“LF Projects”) supports and hosts open source and open
 standards projects (each a “Project”) and undertakes such other activities as is
 consistent with its mission and purpose.
 
-## Introduction 
+## Introduction
 
 The purposes of LF Projects, LLC (“LF Projects”) are to:
 
@@ -83,7 +83,7 @@ email you are potentially sending to a large number of people.
 Projects is no different. When you leave or disengage from the project, in whole
 or in part, we ask that you do so in a way that minimizes disruption to the
 project. This means you should tell people you are leaving and take the proper
-steps to ensure that others can pick up where you left off. 
+steps to ensure that others can pick up where you left off.
 
 ## Glossary
 
