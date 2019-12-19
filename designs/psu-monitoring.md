@@ -60,34 +60,34 @@ device).
 maintenance (CM).
 8. The power supply application should create and update average and maximum
 power consumption metric interfaces for telemetry data.
-9. The power supply application must be able to detect how many power supplies 
+9. The power supply application must be able to detect how many power supplies
 are present in the system, what type of power supply is present (maximum output
 power such as 900W, 1400W, 2200W, etc.), and what type of input power is being
 supplied (AC input, DC input, input voltage, etc.).
 10. The application must be able to recognize if the power supplies present
 consist of a valid configuration. Certain invalid combinations may result in the
 application updating properties for a Minimum Ship Level ([MSL][3]) check.
-11. The application must create error logs for invalid configurations, or for 
+11. The application must create error logs for invalid configurations, or for
 power supplies experiencing some other faulted condition (no input power, output
 over voltage, output over current, etc.).
-12. The application would periodically communicate with the power supplies via 
-the sysfs file system files updated via a PMBus device driver (currently only 
-known to be created and updated by the [ibm-cffps][4] device driver). Certain 
+12. The application would periodically communicate with the power supplies via
+the sysfs file system files updated via a PMBus device driver (currently only
+known to be created and updated by the [ibm-cffps][4] device driver). Certain
 device driver updates may be necessary to support some power supplies or power
-supply features. Any power supply that communicates using the PMBus 
+supply features. Any power supply that communicates using the PMBus
 specification should be able to be supported, some manufacturing specific code
-paths may be required for commands in the "User Data and Configuration" 
+paths may be required for commands in the "User Data and Configuration"
 (USER_DATA_00 through USER_DATA_15) and the "Manufacturer Specific Commands"
 (MFR_SPECIFIC_00 through MFR_SPECIFIC_45), as well as bit definitions for
 STATUS_MFR_SPECIFIC and any other "MFR" command.
 
 ## Proposed Design
-The proposal is to create a single new power supply application in the OpenBMC 
+The proposal is to create a single new power supply application in the OpenBMC
 [phosphor-power][6] repository. The application would be written in C++17.
 
 Upon startup, the power supply application would be passed a parameter
 consisting of the location of some kind of configuration file, some JSON format
-file. This file would contain information such as the D-Bus object name(s), 
+file. This file would contain information such as the D-Bus object name(s),
 possible power supply types, possible system types that the various power
 supplies are valid to be used in, I2C/PMBus file location data, read retries,
 deglitch counts, etc.
