@@ -37,7 +37,7 @@ Other contributors:
   < Name and/or IRC nic or None >
 
 Created:
-  < Date initially created, revisions in will be tracked in Gerrit >
+  < Date initially created in YYYY-MM-DD format >
 
 ## Problem Description
 (1 paragraph) What are we doing and why? What problem are you trying to
