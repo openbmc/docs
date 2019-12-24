@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8abcbb8c_2cdcb263",
+        "filename": "designs/psu-cold-redundancy.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2019-12-24T06:04:51Z",
+      "side": 1,
+      "message": "Better to describe this as something like you are going to add some D-Bus properties to the settings service, otherwise, it reads as there are existing D-Bus properties.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 61
+      },
+      "revId": "fc55b81075ce174f69142dece3c78ecffbb98afd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4fa6809_25ee1b5d",
+        "filename": "designs/psu-cold-redundancy.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2019-12-24T06:04:51Z",
+      "side": 1,
+      "message": "Remove trailing spaces.",
+      "range": {
+        "startLine": 74,
+        "startChar": 33,
+        "endLine": 74,
+        "endChar": 35
+      },
+      "revId": "fc55b81075ce174f69142dece3c78ecffbb98afd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb6ec132_46f38438",
+        "filename": "designs/psu-cold-redundancy.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2019-12-24T06:04:51Z",
+      "side": 1,
+      "message": "I do not think this is valid markdown format, probably you would use a single ` here?",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 12
+      },
+      "revId": "fc55b81075ce174f69142dece3c78ecffbb98afd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b5ab9ea_e8900c6c",
+        "filename": "designs/psu-cold-redundancy.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2019-12-24T06:04:51Z",
+      "side": 1,
+      "message": "Which service is responsible to do this?\n* If it is PSU firmware update daemon, then it needs extra logic to stop the PSU Cold Redundancy service;\n* If it is PSU Cold Redundancy service, e.g. it could listen to the PSU software object\u0027s properties, it could stop itself as well.\n\nI would prefer the latter, so it does not impact other services. But I am also OK if the former one is done in the vendor-specific tools.",
+      "range": {
+        "startLine": 148,
+        "startChar": 17,
+        "endLine": 148,
+        "endChar": 80
+      },
+      "revId": "fc55b81075ce174f69142dece3c78ecffbb98afd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
