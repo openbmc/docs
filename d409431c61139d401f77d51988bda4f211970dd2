@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "78f5ccaf_da12e164",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-01-02T17:54:53Z",
+      "side": 1,
+      "message": "I\u0027m slightly concerned that we\u0027re signing the SPL directly from the OTP.  I don\u0027t have the AST2600 datasheet handy to be able to know what capabilities are available in hardware.\n\nI recently worked on another project using the Marvell Armada 3700.  The way secure boot works there is that there was an additional indirection from the OTP to SPL.  OTP key -\u003e SW keychain key -\u003e SPL key.  It also had ability to put in up to 4 OTP keys and to later on expire them in the field (invalidate the valid bit).\n\nThere are a few reasons for this:\n\n1. Having a few OTP slots allows you to expire hardware keys.  A single key does not give you any mechanism if your key has been leaked or cracked.\n\n2. There is some concern that the more times you use a key to sign the less secure that key becomes.  Having the indirection gives you a higher order of signings you can do.\n\nDoes the AST2600 give us any mechanism for an indirection like this?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 25
+      },
+      "revId": "d409431c61139d401f77d51988bda4f211970dd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d49bfb1f_6e690aa0",
         "filename": "security/OpenBMCSecureBoot.md",
         "patchSetId": 2
@@ -13,6 +36,41 @@
       "writtenOn": "2019-12-16T22:08:46Z",
       "side": 1,
       "message": "Are you sure AST2600 supports a TPM over SPI?  We\u0027re finding out that the AST2500 doesn\u0027t really because it is a half-duplex SPI master and the TCG spec requires full-duplex.",
+      "revId": "d409431c61139d401f77d51988bda4f211970dd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5087d6d0_e8df15d3",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-01-02T17:54:53Z",
+      "side": 1,
+      "message": "I have some patches that will hopefully be public soon that enable interaction with spi-tpm chips using a half-duplex master, but it violates a small aspect of the TCG spec.  It seems that at least one part vendor\u0027s parts do not care.\n\nI\u0027ll follow up when those are public and also will be striking up a conversation upstream with how to deal with half-duplex masters, since there are about 3 options (and I only implemented one of them).",
+      "parentUuid": "d49bfb1f_6e690aa0",
+      "revId": "d409431c61139d401f77d51988bda4f211970dd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3e1995b_0c926fc8",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-01-02T17:54:53Z",
+      "side": 1,
+      "message": "I\u0027m not understanding how this is \"key transition support\".  Doesn\u0027t the SPL always get verified against OTP keys?",
       "revId": "d409431c61139d401f77d51988bda4f211970dd2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
