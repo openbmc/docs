@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "539caf40_83a958ab",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000452
+      },
+      "writtenOn": "2020-01-07T16:37:38Z",
+      "side": 1,
+      "message": "The AST2600 supports 8 keys with the ability to retire keys.  The HW itself doesn\u0027t provide a layer of indirection like you referred to.  If you wanted that you would have to architect that with a thin layer of FW that is loaded by the AST2600 and verified with OTP keys and which in turn then loads the SPL with a new set of keys.",
+      "parentUuid": "78f5ccaf_da12e164",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 25
+      },
+      "revId": "d409431c61139d401f77d51988bda4f211970dd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d49bfb1f_6e690aa0",
         "filename": "security/OpenBMCSecureBoot.md",
         "patchSetId": 2
@@ -77,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "8fc11fab_d4513b74",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000452
+      },
+      "writtenOn": "2020-01-07T16:37:38Z",
+      "side": 1,
+      "message": "Thanks for this information.  Unfortunately due to other priorities we haven\u0027t been able to attempt communicating to the TPM.  I will see what I can find out about this on my end as well.",
+      "parentUuid": "5087d6d0_e8df15d3",
+      "revId": "d409431c61139d401f77d51988bda4f211970dd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d3e1995b_0c926fc8",
         "filename": "security/OpenBMCSecureBoot.md",
         "patchSetId": 2
@@ -88,6 +130,24 @@
       "writtenOn": "2020-01-02T17:54:53Z",
       "side": 1,
       "message": "I\u0027m not understanding how this is \"key transition support\".  Doesn\u0027t the SPL always get verified against OTP keys?",
+      "revId": "d409431c61139d401f77d51988bda4f211970dd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "558b11d9_bc356fc5",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000452
+      },
+      "writtenOn": "2020-01-07T16:37:38Z",
+      "side": 1,
+      "message": "Yes, there is no way to transition the keys used to verified the SPL other than through expiring the limited set of 8 keys that the AST2600 has support for.  This key transition is for the remainder of the stack above the SPL.  I will update the document to clarify",
+      "parentUuid": "d3e1995b_0c926fc8",
       "revId": "d409431c61139d401f77d51988bda4f211970dd2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
