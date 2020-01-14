@@ -5,6 +5,7 @@ Author: Adriana Kobylak < anoo! >
 Primary assignee: Adriana Kobylak
 
 Other contributors: Joel Stanley < shenki! >
+                    Milton Miller
 
 Created: 2019-06-20
 
@@ -31,82 +32,54 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
   the wheel.
 
 ## Proposed Design
-- Store U-Boot and the Linux kernel in a separate SPI NOR flash device, since
-  SOCs such as the AST2500 do not support executing U-Boot from an eMMC. In
-  addition, having the Linux kernel on the NOR saves from requiring U-Boot
-  support for the eMMC. The U-Boot and kernel are less than 10MB in size, so a
-  fairly small chip such as a 32MB one would suffice. Therefore, in order to
-  support two firmware versions, the kernel for each version would need to be
-  stored in the NOR. A second NOR device could be added as redundancy in case
-  U-Boot or the kernel failed to run.
+- For secure boot, use [dm-verity][], which provides the kernel with a way to
+  verify the content of the root filesystem before executing it.
 
-  Format the NOR as it is currently done for a system that supports UBI: a fixed
-  MTD partition for U-Boot, one for its environment, and a UBI volume spanning
-  the remaining of the flash. Store the dual kernel volumes in the UBI partition.
-  This approach allows the re-use of the existing code update interfaces, since
-  the static approach does not currently support storing two kernel images.
-  Selection of the desired kernel image would be done with the existing U-Boot
-  environment approach.
+  dm-verity only exposes verified blocks with no provison to change them.
+  Therefore the rootfs will be distributed as a read-only file system (see
+  also "Filesystem layout" below).
 
-  The AST2600 supports executing U-Boot from the eMMC, so that provides the
-  flexibility of just having the eMMC chip on a system, or still have U-Boot in
-  a separate chip for recovery in cases where the eMMC goes bad. If just the
-  eMMC is used, a ext4 (or vfat) partition would hold the FIT image containing
-  the kernel, initrd and device tree. This volume would be mounted as /boot.
-  This allows U-Boot to load the kernel since it doesn't have support for LVM.
+- Code update: Support two versions on flash.  This allows a known good image
+  to be retained and a new image to be validated.
 
-- Filesystem: ext4. This is a stable and widely used filesystem for eMMC. See
-  the Alternatives section below for additional options.
+- Static partitioning for the eMMC: This is chosen over dynamic partitioning
+  due to the lack of offline tools to build an LVM image (see Logical Volumes
+  in the Alternatives section below).
 
-- Volume management: LVM. This allows for dynamic partition/removal, similar to
-  the current UBI implementation. LVM support increases the size of the kernel
-  by ~100kB, but the increase in size is worth the ability of being able to
-  resize the partition if needed. In addition, UBI volume management works in a
-  similar way, so it would not be complex to implement LVM management in the
-  code update application.
+  A limitation is that having static partitioning requires committing to a
+  fixed size, without the ability to be able to resize in the future if more
+  space is needed for a partition.
 
-- Partitioning: After the ext4 (or vfat) partition holding the FIT, assign the
-  remaining eMMC flash as a single physical volume containing logical volumes,
-  instead of fixed-size partitions. This provides flexibility for cases where
-  the contents of a partition outgrow a fixed size. This also means that other
-  firmware images, such as BIOS and PSU, can be stored in volumes in the single
-  eMMC device.
+  This can be mitigated by placing the two read-only partitions at the
+  beginning and end, and the read-write in the middle, allowing a field
+  update to adjust the tradeoff between read-only and read-write with only
+  risk to the read-write volume.  Doing so will require a full size image
+  if both sides are to be provisioned during manifacturing.
 
-  Two volumes to hold two roofs versions would be created with well known names
-  such as A and B which would be populated during a code update, instead of
-  creating volumes on the fly. This would allow U-Boot to know the name of the
-  available rootfs volumes to boot from.
+- The dm-verity parameters will be embedded in the FIT.
 
-- Initramfs: Use an initramfs, which is the default in OpenBMC, to boot the
-  rootfs from a logical volume. An initramfs allows for flexibility if
-  additional boot actions are needed, such as mounting overlays. It also
-  provides a point of departure (environment) to provision and format the eMMC
-  volume(s). To boot the rootfs, the initramfs would search for the desired
-  rootfs volume to be mounted, instead of using the U-Boot environments.
+  The dm-verity parameters will be stored in the FIT, either as a fdt
+  overlay to be exposed via the device tree or though a ramdisk file to be
+  combined into the initramfs (Ramdisk overlay is expected by the kernel
+  but not in the current U-boot FIT documentation, while device tree
+  overlays are documented and supported).  Alternatitively, two short U-boot
+  scripts can set the bootargs parameter with the dm-verity invocation,
+  one script for each of the two image partitions on the eMMC.
 
-- Mount points: For firmware images such as BIOS that currently reside in
-  separate SPI NOR modules, the logical volume in the eMMC would be mounted in
-  the same paths as to prevent changes to the applications that rely on that
-  data.
+  The dm-verity mapper exposes a range of blocks on a block device as
+  a device mapper block device.  To provide secured storage, a second
+  range of blocks is used to store a hash tree, which may be on the same
+  or a different block (partiton).  These block numbers, along with the
+  hash algorithm, a salt, and the initial root hash are all required to
+  access the root file system.  The parameters must be passed securely to
+  the kernel; the images in the FIT (including the kernel) are signed
+  and verified by U-boot.
 
-- Code update: Support multiple versions on flash, default to two like the
-  current UBI implementation.
+- Read-only filesystem: squashfs. dm-verity applies to read-only filesystems.
+  squashfs has a proven track record with OpenBMC.
 
-- Provisioning: The eMMC vendor would be provided with an OpenBMC image that can
-  be flashed into the eMMC. Since the LVM userspace tools don't offer an offline
-  mode, it's not straightforward to assemble an LVM disk image from a bitbake
-  task. Therefore, have the initramfs create the LVM volume and fetch the
-  rootfs file into tmpfs from an external source to flash the volume. The
-  rootfs file can be fetched using DHCP, UART, USB key, etc.
-
-  Once the image is flashed into the eMMC, the vendor would deliver the BMC
-  cards with the eMMC already flashed to manufacturing. At this stage, the
-  system can be code updated to a newer version of firmware. If a use case
-  existed where systems with blank eMMCs would be provided to developers for
-  example, a method of flashing the eMMC from the NOR could be developed, such
-  as adding a rootfs to the NOR. This provisioning is needed since, unlike a NOR
-  chip, the eMMC cannot be removed from the board and flashed by a standard
-  flash programmer.
+- Read-write filesystem: ext4. This is a stable and widely used filesystem for
+  eMMC.
 
 - Filesystem layout: The root filesystem would be hosted in a read-only volume.
   The /var directory would be mounted in a read-write volume that persists
@@ -127,7 +100,81 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
         |                  | |                   |
         +------------------+ +-------------------+
 
+- All Code update artifacts combined into a sigle image.
+
+  This provides simple code maintence where an image is intact or not,
+  and works or not, with no additional fragments lying around.  U-boot has
+  once choice to make - which image to load, and one piece of information
+  to forward to the kernel.
+
+  To reduce boot time by elimiting IO bringing in uneeded sectors into
+  memory, a small FS will be placed at the beginning of the partition to
+  contain any artifacts that must be accessed by U-boot, such as the FIT
+  and, if u-boot is split into a SPL, the primary U-boot image.  Using a
+  file system gives U-boot information to the actual size of the FIT.
+
+  This file system will be selected from ext2, FAT12, and cramfs, as these
+  are all supported in both the Linux kernel and U-boot.  (If we desire
+  the U-boot environment to be per-side, then chose one of ext2 or FAT12
+  (squashfs support has not been merged, last updated two years ago).
+
+- FAT MBR partitoniing
+  FAT is a simple and well understood partition table format.  There is space
+  for 4 independent partitions.  Alternativly one slot can be chained into
+  extended partitions, but each partition in the chan depends on the prior
+  partition.  However, we have a demand for at most 4 partitions.
+
+  If common space is needed for the U-boot environment, is is redundantly
+  stored as file in partition 1.  The U-boot SPL will be located here.  If
+  this is not needed, partition 1 can remain unallocated.
+
+  The two code sides are created in slots 2 and 3.
+
+  The read-write filsystem occupies in partiton 4.
+
+  If in the future there is demand for additional partitions, partition can
+  be moved into an extended partition in a future code udpate.
+
+- Provisioning: The eMMC vendor will be provided with an OpenBMC image that can
+  be flashed into the eMMC.
+
+  Once the image is flashed into the eMMC, the vendor will deliver the BMC
+  cards with the eMMC already flashed to manufacturing. At this stage, the
+  system can be code updated to a newer version of firmware.
+
 ## Alternatives Considered
+  If a use case existed where systems with blank eMMCs would be provided to
+  developers for example, a method of flashing the eMMC from the NOR could
+  be developed, such as adding a rootfs to the NOR.  This provisioning
+  is needed since, unlike a NOR chip, the eMMC cannot be removed from the
+  board and flashed by a standard flash programmer.
+
+- Store U-Boot and the Linux kernel in a separate SPI NOR flash device, since
+  SOCs such as the AST2500 do not support executing U-Boot from an eMMC. In
+  addition, having the Linux kernel on the NOR saves from requiring U-Boot
+  support for the eMMC. The U-Boot and kernel are less than 10MB in size, so a
+  fairly small chip such as a 32MB one would suffice. Therefore, in order to
+  support two firmware versions, the kernel for each version would need to be
+  stored in the NOR. A second NOR device could be added as redundancy in case
+  U-Boot or the kernel failed to run.
+
+  Format the NOR as it is currently done for a system that supports UBI: a fixed
+  MTD partition for U-Boot, one for its environment, and a UBI volume spanning
+  the remaining of the flash. Store the dual kernel volumes in the UBI partition.
+  This approach allows the re-use of the existing code update interfaces, since
+  the static approach does not currently support storing two kernel images.
+  Selection of the desired kernel image would be done with the existing U-Boot
+  environment approach.
+
+  Static MTD partitions could be created to store the kernel images, but
+  additional work would be required to introduce a new method to select the
+  desired kernel image, because the static layout does not currently have dual
+  image support.
+
+  The AST2600 supports executing U-Boot from the eMMC, so that provides the
+  flexibility of just having the eMMC chip on a system, or still have U-Boot in
+  a separate chip for recovery in cases where the eMMC goes bad.
+
 - Filesystem: f2fs (Flash-Friendly File System). The f2fs is an up-and-coming
   filesystem, and therefore it may be seen as less mature and stable than the
   ext4 filesystem, although it is unknown how any of the two would perform in an
@@ -135,24 +182,49 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
   for OpenBMC.
 
 - No initramfs: It may be possible to boot the rootfs by passing the UUID of the
-  logical volume to the kernel, although a pre-init script[1] will likely still
+  logical volume to the kernel, although a [pre-init script][] will likely still
   be needed. Therefore, having an initramfs would offer a more standard
   implementation for initialization.
 
-- Static partitioning for the eMMC: This would avoid the kernel memory overhead
-  to cache the extents mapping the LVM volume where the rootfs resides, but this
-  is probably not significant. In addition, having static partitioning requires
-  committing to a fixed size, without the ability to be able to resize in the
-  future if more space is needed for that partition.
+- Logical Volumes:
 
-- Static partitioning for the NOR: Static MTD partitions could be created to
-  store the kernel images, but additional work would be required to introduce a
-  new method to select the desired kernel image, because the static layout does
-  not currently have dual image support.
+  - Volume management: LVM. This allows for dynamic partition/removal, similar
+    to the current UBI implementation. LVM support increases the size of the
+    kernel by ~100kB, but the increase in size is worth the ability of being
+    able to resize the partition if needed. In addition, UBI volume management
+    works in a similar way, so it would not be complex to implement LVM
+    management in the code update application.
 
-- Alternative options to provision an LVM image are to build the image from
-  QEMU, this would require booting QEMU as part of the build process to setup
-  the LVM volume and create the image file.
+  - Partitioning:  If the eMMC is used to store the boot loader, a ext4
+    (or vfat) partition would hold the FIT image containing the kernel, initrd
+    and device tree. This volume would be mounted as /boot. This allows U-Boot
+    to load the kernel since it doesn't have support for LVM. After the boot
+    partition, assign the remaining eMMC flash as a single physical volume
+    containing logical volumes, instead of fixed-size partitions. This provides
+    flexibility for cases where the contents of a partition outgrow a fixed
+    size. This also means that other firmware images, such as BIOS and PSU, can
+    be stored in volumes in the single eMMC device.
+
+  - Initramfs: Use an initramfs, which is the default in OpenBMC, to boot the
+    rootfs from a logical volume. An initramfs allows for flexibility if
+    additional boot actions are needed, such as mounting overlays. It also
+    provides a point of departure (environment) to provision and format the eMMC
+    volume(s). To boot the rootfs, the initramfs would search for the desired
+    rootfs volume to be mounted, instead of using the U-Boot environments.
+
+  - Mount points: For firmware images such as BIOS that currently reside in
+    separate SPI NOR modules, the logical volume in the eMMC would be mounted in
+    the same paths as to prevent changes to the applications that rely on the
+    location of that data.
+
+  - Provisioning: Since the LVM userspace tools don't offer an offline
+    mode, it's not straightforward to assemble an LVM disk image from a bitbake
+    task. Therefore, have the initramfs create the LVM volume and fetch the
+    rootfs file into tmpfs from an external source to flash the volume. The
+    rootfs file can be fetched using DHCP, UART, USB key, etc. An alternative
+    option include to build the image from QEMU, this would require booting QEMU
+    as part of the build process to setup the LVM volume and create the image
+    file.
 
 ## Impacts
 This design would impact the OpenBMC build process and code update
@@ -169,4 +241,5 @@ internal implementations but should not affect the external interfaces.
 Verify OpenBMC functionality in a system containing an eMMC. This system could
 be added to the CI pool.
 
-[1]: https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/preinit-mounts/preinit-mounts/init
+[dm-verity]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/admin-guide/device-mapper/verity.rst?h=v5.4
+[pre-init script]: https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/preinit-mounts/preinit-mounts/init
