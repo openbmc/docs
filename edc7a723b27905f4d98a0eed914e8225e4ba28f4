@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f43644d7_c884e163",
+        "filename": "designs/mctp_design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2020-01-16T10:13:49Z",
+      "side": 1,
+      "message": "it\u0027s the same. In this angle there won\u0027t be major difference.",
+      "parentUuid": "04d41ce4_fda82b7d",
+      "revId": "edc7a723b27905f4d98a0eed914e8225e4ba28f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "803be4db_e2c042e6",
         "filename": "designs/mctp_design.md",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2020-01-15T22:06:14Z",
       "side": 1,
       "message": "Please elaborate how BMC\u0027s MCTP service will be used in Endpoint role?",
+      "revId": "edc7a723b27905f4d98a0eed914e8225e4ba28f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eac0f28d_6421dd13",
+        "filename": "designs/mctp_design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2020-01-16T10:13:49Z",
+      "side": 1,
+      "message": "Even in endpoint role, upper layers need to use the same, hence it will be used as MCTP service (upper layers who is interested can monitor any MCTP EID change, if they need, else can come and request it to advertise supported message types based on need).",
+      "parentUuid": "803be4db_e2c042e6",
       "revId": "edc7a723b27905f4d98a0eed914e8225e4ba28f4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "2cb84f51_8b750229",
+        "filename": "designs/mctp_design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2020-01-16T10:13:49Z",
+      "side": 1,
+      "message": "We are talking about PCI VDM Message type 0x7E. I thought Message type 0x7E is different from the transport binding (if both are same), then we can remove it from here.",
+      "parentUuid": "827b34e1_e19cbb74",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 22
+      },
+      "revId": "edc7a723b27905f4d98a0eed914e8225e4ba28f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eb5f5398_87fb8fc8",
         "filename": "designs/mctp_design.md",
         "patchSetId": 1
@@ -70,6 +130,30 @@
       "writtenOn": "2020-01-15T10:30:21Z",
       "side": 1,
       "message": "How this pool will be defined? Shall it be provisioned to MCTP service by the entity manager?",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 36
+      },
+      "revId": "edc7a723b27905f4d98a0eed914e8225e4ba28f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8105902a_d7bdf311",
+        "filename": "designs/mctp_design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2020-01-16T10:13:49Z",
+      "side": 1,
+      "message": "yes, we want to do it from entity-manager, but we are also ok, to do it from configuration file for those who are not using entity-manager.",
+      "parentUuid": "eb5f5398_87fb8fc8",
       "range": {
         "startLine": 85,
         "startChar": 12,
