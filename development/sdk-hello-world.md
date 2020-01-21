@@ -41,12 +41,10 @@ common directory like ~/Code/.
 
 3. Build the Repository
 
-  This is an automake based repository so it will have a bootstrap.sh script
-  for doing the basic build setups.
+  This is a meson based repository
   ```
-  ./bootstrap.sh
-  ./configure ${CONFIGURE_FLAGS}
-  make
+  meson build
+  ninja -C build
   ```
 
 ## Load the Application Into QEMU
@@ -79,7 +77,12 @@ common directory like ~/Code/.
 
 ## Run the Application in QEMU
 
-  1. Run the application in your QEMU session:
+  1. Stop the BMC state manager service
+  ```
+  systemctl stop xyz.openbmc_project.State.BMC.service
+  ```
+
+  2. Run the application in your QEMU session:
   ```
   phosphor-bmc-state-manager
   ```
@@ -88,7 +91,7 @@ common directory like ~/Code/.
   application. In general, this is not how you will test new applications.
   Instead, you'll be using systemd services.
 
-  2. Start application via systemd service
+  3. Start application via systemd service
 
   OpenBMC uses systemd to manage its applications. There will be later tutorials
   on this, but for now just run the following to restart the BMC state service
