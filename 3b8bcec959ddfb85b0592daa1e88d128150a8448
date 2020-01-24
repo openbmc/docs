@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "cb556e50_0d8f4e0b",
+        "filename": "designs/management-console/vmi-ip-config.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2020-01-24T13:36:39Z",
+      "side": 1,
+      "message": "We have plugged in the EthernetInterface collection and the resources to the /ibm/v1/Host path. \n\nThis is to avoid the impact to the user interfaces - both HMC \u0026 GUI. They can now use the same APIs for configuring the BMC interface and the VMI interface. The only change here is the URL path.\n\nWhen it comes to redfish validator - The interfaces under /ibm/v1 are IBM only. So i believe that we need not be in line with the redfish validator.",
+      "parentUuid": "22fa8f5c_1e55f19a",
+      "revId": "3b8bcec959ddfb85b0592daa1e88d128150a8448",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "85cf8acd_c3f7c775",
         "filename": "designs/management-console/vmi-ip-config.md",
         "patchSetId": 11
@@ -64,6 +82,24 @@
       "writtenOn": "2020-01-23T19:17:06Z",
       "side": 1,
       "message": "Redfish dropped this, I think you should as well \nhttps://github.com/DMTF/Redfish/commit/d446de8a86c2cba5a5d5c3090cba718617c55790",
+      "revId": "3b8bcec959ddfb85b0592daa1e88d128150a8448",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fdf2ea2_b0f50047",
+        "filename": "designs/management-console/vmi-ip-config.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2020-01-24T13:36:39Z",
+      "side": 1,
+      "message": "I can not access this path. It complains as Not Found",
+      "parentUuid": "85cf8acd_c3f7c775",
       "revId": "3b8bcec959ddfb85b0592daa1e88d128150a8448",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -121,6 +157,24 @@
     },
     {
       "key": {
+        "uuid": "b2985584_3adad1c7",
+        "filename": "designs/management-console/vmi-ip-config.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2020-01-24T13:36:39Z",
+      "side": 1,
+      "message": "The VMI can not be modeled as ComputerSystem , since it does not have the characteristics of a complete Host. We don\u0027t want to expose this VMI to all the customers, which may lead to create an impression in the community as we are modeling the Host(linux/aix etc) itself. \n\nThere is no duplication of the work. The EthernetInterfaceCollection is plugged under the /ibm/v1/host to minimize the bmcweb,HMC and GUI work.",
+      "parentUuid": "c6a329a3_4b34d891",
+      "revId": "3b8bcec959ddfb85b0592daa1e88d128150a8448",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6d8e5e62_c7107b76",
         "filename": "designs/management-console/vmi-ip-config.md",
         "patchSetId": 11
@@ -132,6 +186,30 @@
       "writtenOn": "2020-01-23T19:17:06Z",
       "side": 1,
       "message": "management",
+      "range": {
+        "startLine": 305,
+        "startChar": 46,
+        "endLine": 305,
+        "endChar": 59
+      },
+      "revId": "3b8bcec959ddfb85b0592daa1e88d128150a8448",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d20719f_0a61f455",
+        "filename": "designs/management-console/vmi-ip-config.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2020-01-24T13:36:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d8e5e62_c7107b76",
       "range": {
         "startLine": 305,
         "startChar": 46,
