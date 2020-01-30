@@ -218,6 +218,47 @@ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X GET \
 }
 ```
 
+3. An "updateable" association to the programmable components
+
+This is used for identifying firmware components which are programmable via BMC
+OOB interfaces like Redfish/IPMI.
+
+To know the updateable software components:
+```
+# busctl call xyz.openbmc_project.ObjectMapper \
+  /xyz/openbmc_project/software/updatable org.freedesktop.DBus.Properties \
+  Get ss xyz.openbmc_project.Association endpoints
+v as 1 "/xyz/openbmc_project/software/1201fc36"
+```
+
+Redfish interface uses 'updateable' association in SoftwareInventory schema.
+```
+URI: /redfish/v1/UpdateService/FirmwareInventory/1201fc36
+RESPONSE:
+{
+  "@odata.context": "/redfish/v1/$metadata#SoftwareInventory.SoftwareInventory",
+  "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/1201fc36",
+  "@odata.type": "#SoftwareInventory.v1_1_0.SoftwareInventory",
+  "Description": "BMC image",
+  "Id": "1201fc36",
+  "Members@odata.count": 1,
+  "Name": "Software Inventory",
+  "RelatedItem": [
+    {
+      "@odata.id": "/redfish/v1/Managers/bmc"
+    }
+  ],
+  "Status": {
+    "Health": "OK",
+    "HealthRollup": "OK",
+    "State": "Enabled"
+  },
+  "Updateable": true,
+  "Version": "NA"
+}
+```
+
+
 An additional association is located at `/xyz/openbmc_project/software/<id>/inventory`
 for "associating" a software image with an inventory item.
 
