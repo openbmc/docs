@@ -327,11 +327,17 @@ for both local & remote users.
                 +----------------------------------+
                 |    Stacked PAM Authentication    |
                 |     +-----------------------+    |
+                |     | pam_tally2.so         |    |
+                |     | user failed attempt   |    |
+                |     | tracking module.      |    |
+                |     +-----------------------+    |
+                |                                  |
+                |     +-----------------------+    |
                 |     | pam_unix.so / local   |    |
                 |     | user authentication   |    |
                 |     | module.               |    |
                 |     +-----------------------+    |
-                |               ...                |
+                |                                  |
                 |     +-----------------------+    |
                 |     | nss_pam_ldap.so / any |    |
                 |     | remote authentication |    |
@@ -351,9 +357,21 @@ in stacked pam modules.
                 |      Stacked PAM - Password      |
                 |                                  |
                 |  +----------------------------+  |
+                |  | pam_cracklib.so.           |  |
+                |  | Strength checking the      |  |
+                |  | password for acceptance    |  |
+                |  +----------------------------+  |
+                |                                  |
+                |  +----------------------------+  |
                 |  | pam_ipmicheck.so. Checks   |  |
                 |  | password acceptance for    |  |
                 |  | 'ipmi' group users         |  |
+                |  +----------------------------+  |
+                |                                  |
+                |  +----------------------------+  |
+                |  | pam_pwhistory.so. Checks   |  |
+                |  | to avoid last used         |  |
+                |  | passwords                  |  |
                 |  +----------------------------+  |
                 |                                  |
                 |  +-------------+--------------+  |
