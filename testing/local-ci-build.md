@@ -53,6 +53,22 @@ don't work on very often, but is more difficult to use if you would rather use
 an active development branch. If you plan to develop regularly on a repo, use
 the next technique instead.
 
+## Run CI on local changed Repo
+
+If you have local changes in the repo, and you do not want to commit yet, it's
+possible to run local CI as well by setting `NO_FORMAT_CODE=1` before running
+the script.
+
+E.g.
+
+```shell
+WORKSPACE=$(pwd) UNIT_TEST_PKG=phosphor-hwmon NO_FORMAT_CODE=1 \
+./openbmc-build-scripts/run-unit-test-docker.sh
+```
+
+`NO_FORMAT_CODE=1` tells the script to skip the `format-code.sh` so that it
+will not format the code and thus your repo could contain un-committed changes.
+
 ## Reference an Existing Repo with `git worktree`
 
 If you're actively developing on a local copy of a repo already, or you want to
