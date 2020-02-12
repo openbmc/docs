@@ -158,7 +158,7 @@ This is set to "yes" for most OpenBMC services to handle the situation where
 someone starts the same target twice.   If the associated service with that
 target is not running (i.e. RemainAfterExit=no), then the service will be
 executed again.  Think about someone accidentally running the
-obmc-chassis-start@.target twice.  If you execute it when the operating system
+obmc-chassis-poweron@.target twice.  If you execute it when the operating system
 is up and running, and the service which toggles the pgood pin is re-executed,
 you're going to crash your system.  Given this info, the goal should always be
 to write "oneshot" services that have RemainAfterExit set to yes.
