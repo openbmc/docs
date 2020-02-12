@@ -33,7 +33,7 @@ Phosphor OpenBMC, there is a link from default.target to multi-user.target.
 You'll find all the phosphor services associated with multi-user.target.
 
 ## Server Power On
-When OpenBMC is used within a server, the [obmc-host-start@.target](https://github.com/openbmc/openbmc/blob/171031d20c7ed03900739d51ba53ad0001f98fa5/meta-phosphor/common/recipes-core/systemd/obmc-targets/obmc-host-start%40.target)
+When OpenBMC is used within a server, the [obmc-host-start@.target](https://github.com/openbmc/phosphor-state-manager/blob/master/target_files/obmc-host-start%40.target)
 is what drives the boot of the system.
 
 If you dig into its .requires relationship, you'll see the following in the file
