@@ -95,6 +95,26 @@ xyz.openbmc_project.State.Host.Transition.On
 
 Underneath the covers, this is calling systemd with the server power on target.
 
+## Systemd Services or Monitoring Applications
+A common question when creating new OpenBMC applications which need to be
+execute some logic in the context of systemd targets is whether they should
+be triggered by systemd services or by monitoring for the appropriate
+D-Bus signal indicating the start/stop of the target they are interested in.
+
+The basic guidelines for when to create a systemd service are the following:
+- If your application logic depends on other systemd based services then
+  make it a systemd service and utilize the Wants/After/Before service
+  capabilities.
+- If other applications depend on your application logic then it should be a
+  systemd service.
+- If your application failing during the target start could impact targets or
+  services that run after it, then it should be a systemd service. This ensures
+  dependent targets are not started if your application fails.
+
+In general, systemd services should call applications, not shell scripts or
+busctl directly. This is to ensure proper error logging and handling is being
+done in cases where the command fails.
+
 ## Error Handling of Systemd
 With great numbers of targets and services, come great chances for failures.
 To make OpenBMC a robust and productive system, it needs to be sure to have an
