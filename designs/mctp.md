@@ -2,32 +2,23 @@
 
 Author: Jeremy Kerr <jk@ozlabs.org> <jk>
 
+Other contributors: Sumanth Bhat, Richard Thomaiyar
+
 ## Problem Description
 
-Currently, we have a few different methods of communication between host
-and BMC. This is primarily IPMI-based, but also includes a few
-hardware-specific side-channels, like hiomap. On OpenPOWER hardware at
-least, we've definitely started to hit some of the limitations of IPMI
-(for example, we have need for >255 sensors), as well as the hardware
-channels that IPMI typically uses.
+With IPMI standards body no longer operational, DMTF's PMCI working group
+defines standards to address `inside the box` communication interfaces between
+the components of the platform management subsystem, including host-BMC
+communication.
 
-This design aims to use the Management Component Transport Protocol
-(MCTP) to provide a common transport layer over the multiple channels
-that OpenBMC platforms provide. Then, on top of MCTP, we have the
+This design aims to implement Management Component Transport Protocol (MCTP)
+to provide a common transport layer protocol for application layer
+protocols providing platform manageability solutions and to provide an
 opportunity to move to newer host/BMC messaging protocols to overcome
-some of the limitations we've encountered with IPMI.
+some of the limitations we've encountered with IPMI (Sensor limit, h/w channel
+limitations etc.).
 
 ## Background and References
-
-Separating the "transport" and "messaging protocol" parts of the current
-stack allows us to design these parts separately. Currently, IPMI
-defines both of these; we currently have BT and KCS (both defined as
-part of the IPMI 2.0 standard) as the transports, and IPMI itself as the
-messaging protocol.
-
-Some efforts of improving the hardware transport mechanism of IPMI have
-been attempted, but not in a cross-implementation manner so far. This
-does not address some of the limitations of the IPMI data model.
 
 MCTP defines a standard transport protocol, plus a number of separate
 physical layer bindings for the actual transport of MCTP packets. These
@@ -68,7 +59,7 @@ implementation, and reassembled at the receive implementation.
 
 ## Requirements
 
-Any channel between host and BMC should:
+Any channel supported on BMC should:
 
  - Have a simple serialisation and deserialisation format, to enable
    implementations in host firmware, which have widely varying runtime
@@ -81,6 +72,24 @@ Any channel between host and BMC should:
    for higher bandwidth messaging on platforms that require it.
 
  - Ideally, integrate with newer messaging protocols
+
+The MCTP protocol supports these requirements.
+
+When BMC implements the MCTP protocol as a transport service,
+it should:
+
+* Support both MCTP Bus Owner and Endpoint roles.
+* Support multiple physical bindings (PCIe, SMBus, Serial, OEM etc.).
+* Provide a way for the upper layer protocols to send messages to an endpoint
+(EID) and receive messages from endpoints. (Tx/Rx mechanism)
+* Discover MCTP protocol supported devices when BMC is the Bus Owner of the
+physical medium and assign Endpoint IDs (EID)
+* Advertise the supported MCTP types, when BMC is the endpoint device of the
+physical medium.
+
+To enable implementation of MCTP on both host and BMC, a fairly platform
+independent library(libmctp) can be produced. The MCTP service can leverage
+libmctp to provide transport services to upper layer protocols.
 
 ## Proposed Design
 
@@ -104,9 +113,49 @@ This daemon has a few components:
  2) one or more binding implementations (eg, MCTP-over-serial), which
     interact with the hardware channel(s).
 
- 3) an interface to handler applications over a unix-domain socket.
+ 3) Two types of interfaces - d-bus based, and unix-domain socket. Currently,
+demux-daemon implements the unix-domain socket interface; however it has
+limitations. Add-In-Card use case needs mechanisms to handle discovery of cards
+,removal of cards, discover card supported protocols (MCTP Message Types) etc;
+and these can be better handled in d-bus. Option to choose D-bus OR socket
+interface can be a compile time flag.
 
-The proposed implementation here is to produce an MCTP "library" which
+ 4) Control Message library - The control commands get activated based on BMC
+configuration - If BMC is bus owner, then BMC is Control Command Requester.
+If BMC is end-point device, then BMC will be Control Command Responder.
+
+ 5) MCTP Device Discovery - In case BMC is the bus owner on the physical medium,
+it will discover other MCTP capable devices on the bus.
+
+<pre>
++--------------------------------------------------------------------------+
+|                                                                          |
+|                                                                          |
+|                          MCTP Daemon - Demux with socket                 |
+|                                       OR                                 |
+|                          MCTP Daemon - D-bus based                       |
+|                                                                          |
+|        +---------------------------------------------------------+       |
+|        |  +------------------------------------------------+     |       |
+|        |  |                Control Commands                |     |       |
+|        |  +------------------------------------------------+     |       |
+|        |  +------------------------------------------------+     |       |
+|        |  |                Device Discovery                |     |       |
+|        |  +------------------------------------------------+     |       |
+|        |  +------------------------------------------------+     +--------------> libmctp
+|        |  |            Message TX/RX Handlers              |     |       |
+|        |  +------------------------------------------------+     |       |
+|        |                                                         |       |
+|        | +-------+  +--------+   +----------+   +----------+     |       |
+|        | |  LPC  |  | Serial |   |  SMBus   |   |   PCIe   |     |       |
+|        | +-------+  +--------+   +----------+   +----------+     |       |
+|        +---------------------------------------------------------+       |
+|                                                                          |
++--------------------------------------------------------------------------+
+
+</pre>
+
+The proposed implementation produces an MCTP "library" component which
 provides the packetisation and routing functions, between:
 
  - an "upper" messaging transmit/receive interface, for tx/rx of a full
@@ -140,9 +189,11 @@ implemented through read()/write() syscalls to a PTY device. An I2C
 binding for use in low-level host firmware environments may interact
 directly with hardware registers to perform packet transfers.
 
-The application-specific handlers implement the actual functionality
-provided over the MCTP channel, and connect to the central daemon over a
-UNIX domain socket. Each of these would register with the MCTP daemon to
+The application specific handlers can connect to MCTP Daemon over two
+options : either over a UNIX domain socket OR over d-bus.
+
+### Connect to the MCTP daemon over a UNIX domain socket
+Each of these would register with the MCTP daemon to
 receive MCTP messages of a certain type, and would transmit MCTP
 messages of that same type.
 
@@ -158,11 +209,6 @@ kernel-based MCTP implementation without requiring major structural
 changes to handler applications. The socket-based interface facilitates
 this, as the unix-domain socket interface could be fairly easily swapped
 out with a new kernel-based socket type.
-
-MCTP is intended to be an optional component of OpenBMC. Platforms using
-OpenBMC are free to adopt it as they see fit.
-
-### Demultiplexer daemon interface
 
 MCTP handlers (ie, clients of the demultiplexer) connect using a
 unix-domain socket, at the abstract socket address:
@@ -193,6 +239,122 @@ MCTP message type field.
 The daemon does not provide a facility for clients to specify or
 retrieve values for the tag field in individual MCTP packets.
 
+
+### Connect to the MCTP Daemon over D-Bus interface
+
+The applications can also connect to the MCTP Daemon over D-Bus.
+
+The design principles behind MCTP Daemon:
+
+1. Support multiple binding in single (MCTP Daemon) application.
+2. Execute separate instance (of MCTP Daemon) for each physical interface.
+This is to limit any problems of the offending bus isolated to that application.
+This also enables parallel execution as many limitations apply to the physical
+medium.
+3. Start MCTP Daemon as user space application, which will be exposing
+D-Bus objects for the MCTP devices discovered.
+4.  Binding support (smbus, pcie) and control commands will be added to libmctp.
+5.  Entity-manager will be used to advertise the configuration required, which
+the mctp-start.service(more details on this below) will use to instantiate the
+needed MCTP Daemons by querying the objects exposed and calling the instance.
+MCTP Daemons, will query the object to know further about whether it must work
+as bus owner/endpoint,and under what physical interface (SMBUS/ PCIE) etc.
+Option to do the same using configuration file instead of Entity-manager.
+6.  PLDM, SPDM, PCI VDM, NVME-MI application will run as separate daemon
+interacting with the MCTP Daemons (through D-BUS / Socket – abstracted
+library).
+
+Entity Manager will advertise MCTP configurations specific to the platform. This
+will be used by mctp-start.service which will start multiple instances
+of MCTP Daemons. The same mctp-start.service can be used to start upper layer
+protocols (PLDM/SPDM etc.) based on the platform configurations.
+
+The MCTP Daemon instance can either start in `Endpoint mode` or in `Bus Owner
+mode`. When the MCTP daemon instance comes up in `Endpoint mode`, BMC will
+come up with the special EID 0; the bus owner in that physical medium needs to
+assign EID to BMC. When the MCTP daemon instance comes up in `Bus Owner mode`,
+BMC will discover MCTP capable devices on the physical medium and assigns
+EIDs from a pre-configured EID pool.
+
+#### D-Bus Interfaces
+
+* binding interface: This interface will have properties related to a MCTP
+binding; and it will expose a method for upper layer protocols to transmit
+MCTP message. It will also provide a signal to indicating upper layers about
+arrival of a MCTP message. In case the upper layer needs to transfer/receive a
+large payload, then instead of dumping the payload on D-Bus, the payload can be
+dumped into a file and file descriptor can be passed to/from the MCTP Service.
+
+* physical layer specific interface: This interface will have properties/methods
+/signals specific to the physical layer. (E.g. - SMBus ARP method can be exposed
+if ARP master daemon needs to be run and assign SMBus addresses)
+
+* bus owner interface: This interface will have properties/methods/signals when
+the daemon runs in bus owner mode. (E.g. - EID pool)
+
+* mctp_device interface: This interface will have properties/methods/signals
+when the daemon runs in endpoint device mode (E.g. - EID, Supported MCTP
+Types etc.)
+
+An illustration of how D-Bus interfaces would look like on the MCTP is shown
+below (BMC as PCIe endpoint and BMC as SMBus bus owner).
+
+![MCTP D-Bus interfaces](media/MCTP.jpg)
+
+![Flow Diagram](media/StateFlow.jpg)
+
+### D-Bus interfaces
+
+#### MCTP Base Interface: xyz.openbmc_project.mctp.base
+
+This is a mandatory interface for each instance of the MCTP Daemon to expose
+the base MCTP binding interfaces.
+
+| Method/Property name |      Type      |        Applicable Values             |
+|----------------------|----------------|--------------------------------------|
+|     EID              |    uint8_t     |           8-255                      |
+|    Network ID        |    uint16_t    |                                      |
+|  Binding Medium ID   |      enum      |     As per DSP0239 Table 3           |
+|   Supported media    |      enum      |    Physical Medium specific          |
+| MCTP Message Types   | array[uint8_t] |  Supported MCTP Message types        |
+| Static/Dynamic EID   |   boolean      |  Support for statically allocated IDs|
+|       UUID           |    16 bytes    |             GUIDs                    |
+|    Send Message      |    method      | params:Dst EID,MsgTag,TO,payload/fd  |
+|   Message received   |    signal      | arg-MsgType,srcEID,MsgTag,TO,payload |
+|   Binding Mode       |    enum        |    Bus Owner, endpoint device        |
+|      BTU             |   uint8_t      |     Baseline Transmission Unit       |
+
+#### Bus Owner Interface: xyz.openbmc_project.mctp.busowner
+
+This interface is exposed by mctp object instance started in bus owner mode.
+
+| Method/Property name |      Type      |        Applicable Values             |
+|----------------------|----------------|--------------------------------------|
+|     EID pool         | array[uint8_t] |           pool of EIDs               |
+|   Topmost BusOwner   |    boolean     |To indicate whether BMC is topmost BO |
+| Use Static EID Pools |    boolean     |To indicate if BMC use static EID pool|
+|  Discover Device     |    boolean     |Dynamic device discovery support      |
+
+#### Device Interfaces: xyz.openbmc_project.mctp.device
+
+This interface is exposed by mctp object for each discovered device on the
+mctp network.
+
+| Method/Property name |      Type      |        Applicable Values             |
+|----------------------|----------------|--------------------------------------|
+|     EID              |    uint8_t     |           8-255                      |
+|    MCTP Types        | array[uint8_t] |   MCTP Types supported by device     |
+|      UUID            |       GUID     |                                      |
+
+#### Medium Specific Interfaces: xyz.openbmc_project.mctp.smbus
+
+This interface is exposed by mctp binding object for physical medium specific
+information.
+
+| Method/Property name |      Type      |        Applicable Values             |
+|----------------------|----------------|--------------------------------------|
+|   ARP Master Support |     boolean    |                                      |
+|    Bus Number        |     uint8_t    |      i2c bus number on the BMC       |
 
 ## Alternatives Considered
 
@@ -226,10 +388,13 @@ Also, this single-process approach would likely need more significant
 modifications if/when MCTP protocol support is moved to the kernel.
 
 The interface between the demultiplexer daemon and clients is currently
-defined as a socket-based interface. However, an alternative here would
-be to pass MCTP messages over dbus instead. The reason for the choice of
+defined as a socket-based interface. The reason for the choice of
 sockets rather than dbus is that the former allows a direct transition
-to a kernel-based socket API when suitable.
+to a kernel-based socket API when suitable. However, dbus option is also
+provided to enable certain usecases like Add-In-Cards. Socket interface
+currently does not provide a way to discover addition of a card, removal of a
+card to upper layers, and thus dbus based solution is provided until
+kernel-based socket API has these capabilities.
 
 ## Impacts
 
