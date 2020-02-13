@@ -221,3 +221,97 @@ OpenBMC applications should be installed in /usr/bin.
 
 ### Resolution
 Install OpenBMC applications in /usr/bin/.
+
+## Handling unexpected error codes and exceptions
+
+### Identification
+The anti-pattern is for an application to continue processing after it
+encounters unexpected conditions in the form of error codes and exceptions and
+not capturing the data needed to resolve the problem.
+
+Example C++ code:
+```
+using InternalFailure = sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
+try
+{
+  ... use d-Bus APIs...
+}
+catch (InternalFailure& e)
+{
+    phosphor::logging::commit<InternalFailure>();
+}
+```
+
+### Description
+Suppressing unexpected errors can lead an application to incorrect or erratic
+behavior which can affect the service it provides and the overall system.
+
+Writing a log entry instead of a core dump may not give enough information to
+debug a truly unexpected problem, so developers do not get a chance to
+investigate problems and the system's reliability does not improve over time.
+
+### Background
+Programmers want their application to continue processing when it encounters
+conditions it can recover from.  Sometimes they try too hard and continue when
+it is not appropriate.
+
+Programmers also want to log what is happening in the application, so they
+write log entries that give debug data when something goes wrong, typically
+targeted for their use.  They don't consider how the log entry is consumed
+by the BMC administrator or automated service tools.
+
+The `InternalFailure` in the [Phosphor logging README][] is overused.
+
+[Phosphor logging README]: https://github.com/openbmc/phosphor-logging/blob/master/README.md
+
+### Resolution
+
+Several items are needed:
+1. Check all places where a return code or errno value is given.  Strongly
+   consider that a default error handler should throw an exception, for
+   example `std::system_error`.
+2. Have a good reason to handle specific error codes.  See below.
+3. Have a good reason to handle specific exceptions.  Allow other exceptions
+   to propagate.
+4. Document (in terms of impacts to other services) what happens when this
+   service fails, stops, or is restarted.  Use that to inform the recovery
+   strategy.
+
+In the error handler:
+
+1. Consider what data (if any) should be logged.  Determine who will consume
+   the log entry: BMC developers, administrator, or an analysis tool.  Usually
+   the answer is more than one of these.
+
+   The following example log entries use an IPMI request to set network access
+   on, but the user input is invalid.
+
+    - BMC Developer: Reference internal applications, services, pids, etc.
+      the developer would be familiar with.
+
+      Example: `ipmid service successfully processed a network setting packet,
+      however the user input of USB0 is not a valid network interface to
+      configure.`
+
+    - Administrator: Reference the external interfaces of the BMC such as the
+      REST API.  They can respond to feedback about invalid input, or a need
+      to restart the BMC.
+
+      Example: `The network interface of USB0 is not a valid option. Retry the
+      IPMI command with a valid interface.`
+
+    - Analyzer tool: Consider breaking the log down and including several
+      properties which an analyzer can leverage.  For instance, tagging the
+      log with 'Internal' is not helpful.  However, breaking that down into
+      something like [UserInput][IPMI][Network] tells at a quick glance that
+      the input received for configuring the network via an IPMI command was
+      invalid.  Categorization and system impact are key things to focus on
+      when creating logs for an analysis application.
+
+      Example: `[UserInput][IPMI][Network][Config][Warning] Interface USB0 not
+      valid.`
+
+2. Determine if the application can fully recover from the condition.  If not,
+   don't continue.  Allow the system to determine if it writes a core dump or
+   restarts the service.  If there are severe impacts when the service fails,
+   consider using a better error recovery mechanism.
