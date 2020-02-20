@@ -335,7 +335,7 @@ interface, which will be defined as follow:
 | Name     | type     | input | return  | description                                                         |
 | -------- | -------- | ----- | ------- | ------------------------------------------------------------------- |
 | Active   | Property | -     | BOOLEAN | `True`, if object is occupied by active process, `False` otherwise  |
-| ExitCode | Property | -     | BYTE    | If process terminates this property will contain returned exit code |
+| ExitCode | Property | -     | INT32   | If process terminates this property will contain returned exit code |
 
 Each object will also expose configuration of its own under
 ``xyz.openbmc_project.VirtualMedia.MountPoint`` (all properties are RO)
@@ -349,6 +349,7 @@ Each object will also expose configuration of its own under
 | Timeout                    | Property | -     | UINT16 | As per configuration                                                      |
 | BlockSize                  | Property | -     | UINT16 | As per configuration                                                      |
 | RemainingInactivityTimeout | Property | -     | UINT16 | Seconds to drop connection by server, for activated endpoint, 0 otherwise |
+| ImageURL                   | Property | -     | STRING | URL to mounted image                                                      |
 
 Another interface exposed by each object are stats under
 ```xyz.openbmc_project.VirtualMedia.Stats``` (all properties are RO):
@@ -372,7 +373,9 @@ For Legacy its ```xyz.openbmc_project.VirtualMedia.Legacy```, defined as follow:
 | Name    | type   | input  | return  | description                                                                                |
 | ------- | ------ | ------ | ------- | ------------------------------------------------------------------------------------------ |
 | Mount   | Method | STRING | BOOLEAN | Perform a mount to HOST operation on given object, with location given as STRING parameter |
+| Mount   | Method | STRING<br>BOOLEAN<br>VARIANT<UNIX_FD,INT> | BOOLEAN | Perform a mount to HOST operation on given object, with parameters:<br><br>`STRING` : url to image. It should start with either `smb://` or `https://` prefix<br>`BOOLEAN` : RW flag for mounted gadget (should be consistent with remote image capabilities)<br>`VARIANT<UNIX_FD,INT>` : file descriptor of named pipe used for passing null-delimited secret data (username and password). When there is no data to pass `-1` should be passed as `INT`|
 | Unmount | Method | -      | BOOLEAN | Perform an unmount from HOST on given object                                               |
+
 ## Alternatives Considered
 Existing implementation in OpenBMC
 
