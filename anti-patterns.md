@@ -221,3 +221,39 @@ OpenBMC applications should be installed in /usr/bin.
 
 ### Resolution
 Install OpenBMC applications in /usr/bin/.
+
+## Non standard debug application options and logging
+
+### Identification
+An application uses non-standard methods on startup to indicate verbose
+logging and/or does not utilize standard systemd-journald debug levels for
+logging.
+
+### Description
+When debugging issues within OpenBMC that cross multiple applications, it's
+very difficult to enable the appropriate debug when different applications
+have different mechanisms for enabling debug. For example, different OpenBMC
+applications take the following as command line parameters to enable extra
+debug:
+- 0xff, --vv, -vv, --verbose, <and more>
+
+Along these same lines, some applications then have their own internal methods
+of writing debug data. They use std::cout, printf, fprintf, ...
+Doing this causes other issues when trying to compare debug data across
+different applications that may be having their buffers flushed at different
+times (and picked up by journald).
+
+### Background
+Everyone has their own ways to debug. There was no real standard within
+OpenBMC on how to do it so everyone came up with whatever they were familiar
+with.
+
+### Resolution
+If an OpenBMC application is to support enhanced debug via a command line then
+it will support the standard "-v,--verbose" option.
+
+In general, OpenBMC developers should utilize the "debug" journald level for
+debug messages. This can be enabled/disabled globally and would apply to
+all applications. If a developer believes this would cause too much debug
+data in certain cases then they can protect these journald debug calls around
+a --verbose command line option.
