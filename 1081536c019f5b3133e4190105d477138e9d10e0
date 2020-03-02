@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "656e9a62_52df5840",
+        "filename": "designs/mctp.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1000587
+      },
+      "writtenOn": "2020-03-02T11:15:51Z",
+      "side": 1,
+      "message": "How about having this as enum ?\nenumerations:\n  - name: BindingTypes\n    description: \u003e\n      All other values than described are reserved.\n    values:\n      - name: MctpOverSmbus \u003d 0x01\n      - name: MctpOverPcieVdm \u003d 0x02\n      - name: MCTPOverUsb \u003d 0x03\n        description: Reserved for MCTP over USB\n      - name: MctpOverKcs \u003d 0x04\n      - name: MctpOverSerial \u003d 0x05\n      - name: VendorDefined \u003d 0xFF",
+      "revId": "1081536c019f5b3133e4190105d477138e9d10e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8beb2546_a1d307f1",
+        "filename": "designs/mctp.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1000587
+      },
+      "writtenOn": "2020-03-02T11:15:51Z",
+      "side": 1,
+      "message": "Sam here, how about enum ?\n- name: MctpPhysicalMediumIdentifiers\n      description: \u003e\n        Identifies MCTP physical medium identifiers. see DSP0239.\n      values:\n        - name: Smbus \u003d 0x01\n          descritpion: SMBus 2.0 100 kHz compatible\n        - name: SmbusI2c \u003d 0x02\n          descritpion: SMBus 2.0 + I2C 100 kHz compatible\n        - name: I2cCompatible \u003d 0x03\n\n...",
+      "revId": "1081536c019f5b3133e4190105d477138e9d10e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
