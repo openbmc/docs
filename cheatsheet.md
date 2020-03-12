@@ -9,9 +9,11 @@ customisation tasks, without having to know the full yocto build process.
 The kernel recipe is in:
 
 ```
- meta-phosphor/common/recipes-kernel/linux/linux-obmc_X.Y.bb
+# meta-phosphor/common/recipes-kernel/linux/linux-obmc_X.Y.bb
+meta-aspeed/recipes-kernel/linux/linux-aspeed_git.bb
 ```
 
+This bitbake file includes linux-aspeed.inc, where you can modify the environment parameters. 
 To use a local git tree, change the `SRC_URI` to a git:// URL without
 a hostname. For example:
 
@@ -37,12 +39,27 @@ $ bitbake obmc-phosphor-image
 
 The Zaius target is `zaius`.
 
+
 If you are starting from scratch without a `build/conf` directory you can just:
 ```
 $ cd openbmc
 $ TEMPLATECONF=meta-ingrasys/meta-zaius/conf . openbmc-env
 $ bitbake obmc-phosphor-image
 ```
+The image was generated in `build-backup/tmp/deploy/images/`
+
+## Fixing build error about TEMPLATECONF
+A hint here: when you run
+```
+$ . openbmc-evn
+```
+
+There will be a file`build/conf/templateconf.cfg` created, where the $TEMPLATECONF is saved. If you set TEMPLATECONF wrongly by any typo mistake, you will see build error:
+```
+Error: TEMPLATECONF value points to nonexistent directory 'wrong $TEMPLATECONF'
+```
+After that, even you correct $TEMPLATECONF, the error will still be reported until you remove the `build/conf` dir, because `openbmc-evn` reads the $TEMPLATECONF from `templateconf.cfg`.
+ 
 
 ## Building a specific machine configuration
 
@@ -63,11 +80,13 @@ MACHINE environment variable.
 Looking for a way to compile your programs for 'ARM' but you happen to be running on a 'PPC' or 'x86' system?  You can build the sdk receive a fakeroot environment.
 ```
 $ bitbake -c populate_sdk obmc-phosphor-image
-$ ./tmp/deploy/sdk/openbmc-phosphor-glibc-x86_64-obmc-phosphor-image-armv5e-toolchain-2.1.sh
+
+$ ./tmp/deploy/sdk/oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
 ```
-Follow the prompts.  After it has been installed the default to setup your env will be similar to this command
+Follow the prompts.  You can enter target directory for SDK (`default: /usr/local/oecore-x86_64`).
+After it has been installed to the default path, you can also setup your env with this command
 ```
-. /opt/openbmc-phosphor/2.1/environment-setup-armv5e-openbmc-linux-gnueabi
+. /usr/local/oecore-x86_64/environment-setup-armv6-openbmc-linux-gnueabi
 ```
 
 ## Rebuilds & Reconfiguration
