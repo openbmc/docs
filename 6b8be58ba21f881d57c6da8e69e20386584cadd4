@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a7832d1d_aa7f9556",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "sure,i will modify it accordingly.",
+      "parentUuid": "6449a3f4_178a1721",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 68
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d96df4ca_6486974d",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "269c5c42_b96ba3bf",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Will Remove",
+      "parentUuid": "d96df4ca_6486974d",
+      "range": {
+        "startLine": 33,
+        "startChar": 26,
+        "endLine": 34,
+        "endChar": 29
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bde0136e_339bc7a1",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -59,6 +107,30 @@
       "writtenOn": "2019-10-23T20:41:46Z",
       "side": 1,
       "message": "nit: there is only one link listed.",
+      "range": {
+        "startLine": 39,
+        "startChar": 21,
+        "endLine": 39,
+        "endChar": 22
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49618e7e_f255f838",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bde0136e_339bc7a1",
       "range": {
         "startLine": 39,
         "startChar": 21,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "7ec5d5a6_a4cf3982",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Yeah, true makes sense..my bad..will modify that.",
+      "parentUuid": "a8811d78_88a58379",
+      "range": {
+        "startLine": 44,
+        "startChar": 39,
+        "endLine": 44,
+        "endChar": 45
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "74e75610_0f80ac95",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -114,6 +210,30 @@
       "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91efd8cb_49fbd03c",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "No Brad.\n\nwhen you say, unlock all resources - that conveys that those set of resources are already locked, and we are trying to unlock all of them - This will be same as calling the releaselock api.\n\nBut not lock all - Means that the client(HMC) can send a lock request and explicitly mention to not lock all the resources under a particular segment.\n\nUse Case:\n\nFor a particular segment(level), we don\u0027t lock anything. But we need to lock the next segment(level).\n\nExample:\n\nEach segment is for one level. For example, the first segment can be CEC (segment size 1, value 1). The second Segment can be a resource under CEC. It can be processor (segment size 1, value 1) or memory (segment size 1, value 2) or partitions (segment size 2, value is the partition id) or a physical IO adapter (segment size 4, value is the adapter\u0027s drc index). The third level can be a resource under the second level. For example, if the second level is a partition, the virtual IO adapters for that partition can the the third level (segment size 2, value is the adpapter id). \n\nIf we want to lock all adapters under a partition, The first segment data is 2 bytes data, for that segment we don\u0027t lock any resource. But in the next segment is the 4 bytes drc index, we can lock one adapter or lock all adapters. Hope this explains the reason for not lock all resources under current resource level.",
+      "parentUuid": "74e75610_0f80ac95",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 85
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "7352767f_0dfc629e",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "ad4d1723_8ff5057f",
+      "range": {
+        "startLine": 89,
+        "startChar": 38,
+        "endLine": 89,
+        "endChar": 39
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3de07da_6c700337",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -160,6 +304,30 @@
       "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d705cd8_d67cf905",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "both are same, my bad... i will modify accordingly",
+      "parentUuid": "e3de07da_6c700337",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 2
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "37591b0d_f322c272",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Brad, these API\u0027s would be specific for the hmcuser and would be unauthorised for all the other users. But with that said , these API\u0027s would also be accessible for all the Admin users as well (even when they are not HMC Sessions).\n\nThis should be covered as a part of Know your client functionality which ratan is proposing, But i will also add a point here to that it would be clear.",
+      "parentUuid": "2e8a2644_e1478803",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 28
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3dfb316b_d1149f6e",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -229,6 +421,30 @@
       "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a074a2fc_f8f6445c",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "yes brad,I think Know your client should be place where this should be documented.",
+      "parentUuid": "3dfb316b_d1149f6e",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 105,
+        "endChar": 24
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +471,30 @@
     },
     {
       "key": {
+        "uuid": "e220bee2_60ad9099",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Sure Brad, i will add another point describing that.",
+      "parentUuid": "1f4f422d_e6f2a7bd",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 45
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ae0d2aae_086ff2d0",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -266,6 +506,30 @@
       "writtenOn": "2019-10-23T20:41:46Z",
       "side": 1,
       "message": "nit: There weren\u0027t any requirements listed for this.  If we are going to provide the rationale for some of the endpoints (the requirements) then all of them should be provided.",
+      "range": {
+        "startLine": 116,
+        "startChar": 2,
+        "endLine": 116,
+        "endChar": 13
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3061105_9cd77811",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Sure Brad, added a requirement.",
+      "parentUuid": "ae0d2aae_086ff2d0",
       "range": {
         "startLine": 116,
         "startChar": 2,
@@ -395,6 +659,30 @@
     },
     {
       "key": {
+        "uuid": "8f9c5d42_ec963b8c",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Done, modified to uint64_t",
+      "parentUuid": "365fbbb8_c9bf5df3",
+      "range": {
+        "startLine": 131,
+        "startChar": 16,
+        "endLine": 131,
+        "endChar": 22
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0008212c_f9ee3de3",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -406,6 +694,30 @@
       "writtenOn": "2019-10-28T18:07:12Z",
       "side": 1,
       "message": "The idea of segments and flags to realize a multi level lock structure seems unnecessarily complex IMO.  I would guess that anyone that stumbles onto this API description will wonder why a single level lock structure (much like the one described in the fcntl manpages) would not work.  It is worth documenting why that would not work in the alternatives considered section.\n\nYet another alternative to multi-level locks, if multiple locks do need to be acquired at the same time (which I do not understand why but I will blindly accept that as a requirement for the moment) would be to accept an array argument of resource IDs instead of a single one.  that way the API consumer can manage and own the hierarchical relationship between the resources without any assistance from the BMC and the Segmentflags argument eliminated completely.",
+      "range": {
+        "startLine": 137,
+        "startChar": 5,
+        "endLine": 137,
+        "endChar": 17
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1bdae82_37b1cb9e",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "I do understand that it is unnecessarily complex IMO, but this is legacy implementation and it is hard to modify it at this point in time.",
+      "parentUuid": "0008212c_f9ee3de3",
       "range": {
         "startLine": 137,
         "startChar": 5,
@@ -441,6 +753,30 @@
     },
     {
       "key": {
+        "uuid": "3059d488_5035bc16",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "I do understand that generating a unique ID for every transaction and sending to HMC is unnecessary complication, but this is a legacy implementation and it would be very tuff to modify it at this point in time.",
+      "parentUuid": "f4348d42_91cc8d83",
+      "range": {
+        "startLine": 169,
+        "startChar": 11,
+        "endLine": 169,
+        "endChar": 21
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec4a591e_634b2e62",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -461,6 +797,30 @@
       "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9de06843_eae7366a",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ec4a591e_634b2e62",
+      "range": {
+        "startLine": 177,
+        "startChar": 62,
+        "endLine": 177,
+        "endChar": 69
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -487,6 +847,30 @@
     },
     {
       "key": {
+        "uuid": "7983395c_da181f2b",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "The HyperText Transfer Protocol (HTTP) 400 Bad Request response status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).\n\nWhen the JSON in the Input, does not adhere to the Spec/Invalid Json, we send 400 BadRequest.\n\nIncase of acquirelock failure due to resource conflict, we return 409 Conflcit.\n\nThe HTTP 409 Conflict response status code indicates a request conflict with current state of the server.",
+      "parentUuid": "d2e4f5f3_6b5d0bda",
+      "range": {
+        "startLine": 187,
+        "startChar": 11,
+        "endLine": 187,
+        "endChar": 28
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0aa020cd_d948b263",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -498,6 +882,30 @@
       "writtenOn": "2019-10-28T18:07:12Z",
       "side": 1,
       "message": "this says string but you have an array on line 205.  is it an array of strings?  if it is an array should the method be called ReleaseLocks instead of ReleaseLock ?",
+      "range": {
+        "startLine": 203,
+        "startChar": 14,
+        "endLine": 203,
+        "endChar": 20
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b841bf7a_214aaa73",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "The input for the ReleaseLock API would be a Request ID / List of RequestID\u0027s.\n\nTrue, it makes sense to make it as ReleaseLocks instead of ReleaseLock.",
+      "parentUuid": "0aa020cd_d948b263",
       "range": {
         "startLine": 203,
         "startChar": 14,
@@ -533,6 +941,30 @@
     },
     {
       "key": {
+        "uuid": "ff9d1bea_f40e580e",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "The HMC-ID is an implicit parameter obtained from the session header(It is the client identifier that we need to capture during authentication and store it in session table).\n\nThe HMC-ID(is the additional client identifier) would be captured in the Know your client design.\n\nIf that is the implicit parameter , we will be just left with RequestID as input right ?",
+      "parentUuid": "bb42b904_b105c508",
+      "range": {
+        "startLine": 210,
+        "startChar": 37,
+        "endLine": 210,
+        "endChar": 42
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "daed3ecb_262803b2",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -556,6 +988,30 @@
     },
     {
       "key": {
+        "uuid": "d804eeea_39aa4e30",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Sure brad, i have changed this.",
+      "parentUuid": "daed3ecb_262803b2",
+      "range": {
+        "startLine": 218,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 1
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c2c07985_3b79a841",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -576,6 +1032,30 @@
       "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbfec668_ce0f4c0b",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c2c07985_3b79a841",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 1
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -625,6 +1105,30 @@
     },
     {
       "key": {
+        "uuid": "fbc5ca39_5b58727c",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6456d9df_b1f5ba27",
+      "range": {
+        "startLine": 249,
+        "startChar": 33,
+        "endLine": 249,
+        "endChar": 44
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19c09049_2fa23762",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -648,6 +1152,30 @@
     },
     {
       "key": {
+        "uuid": "a953c303_29dbab4e",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "19c09049_2fa23762",
+      "range": {
+        "startLine": 258,
+        "startChar": 5,
+        "endLine": 258,
+        "endChar": 14
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ac7c7d7_01a12a9d",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -659,6 +1187,24 @@
       "writtenOn": "2019-10-28T18:07:12Z",
       "side": 1,
       "message": "is the curl command missing here?",
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e3cea50_42cabeda",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "This is onyl just the curl response output in-case of Success \u0026 failure.",
+      "parentUuid": "6ac7c7d7_01a12a9d",
       "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -682,6 +1228,24 @@
     },
     {
       "key": {
+        "uuid": "303c741f_bcda53d5",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e2d047a3_0311908c",
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac57803a_06a2ae02",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -693,6 +1257,30 @@
       "writtenOn": "2019-10-28T18:07:12Z",
       "side": 1,
       "message": "what is the mapping being referred to?  I thought the resource ID was just an opaque handle?",
+      "range": {
+        "startLine": 304,
+        "startChar": 38,
+        "endLine": 305,
+        "endChar": 24
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c170b43c_7c0a2843",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "This is an alternative design that we thought of , before implementing the leagacy design.\n\nWhere , we try to map the HMC resource -ID with the BMC resources , so that the whole level if resourceID based multi-level locking complexity reduces, but the downside of it is that now when ever HMC adds a new lock(resourceid), the BMC should also update the mappings, which does not seem to a reliable solution to the problem.",
+      "parentUuid": "ac57803a_06a2ae02",
       "range": {
         "startLine": 304,
         "startChar": 38,
@@ -728,6 +1316,30 @@
     },
     {
       "key": {
+        "uuid": "3a2c3906_a4057a9d",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Suppose, if we have the mapping for resourceids to the BMC resources, then HMC resources drive the bmc code change right ?",
+      "parentUuid": "ac2d99ec_b4d498e4",
+      "range": {
+        "startLine": 306,
+        "startChar": 35,
+        "endLine": 308,
+        "endChar": 44
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2959b2c7_56776ff2",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -739,6 +1351,24 @@
       "writtenOn": "2019-10-28T18:07:12Z",
       "side": 1,
       "message": "did we consider a design where the client (HMC) owns the hierarchy?  e.g. more abstract resources are locked and then more concrete resources are locked?  sequentially?\n\ndid we consider an array of locks instead of multi-level locks?",
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd1e7a0f_350f8e0b",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Brad, not sure if it is wrongly conveyed somewhere...even now HMC is the one who controls the resource hierarchy, BMC will have no control over the resources that HMC would manage.\n\nAs per the spec, BMC would not understand the resourceid at all, that is totally controlled by HMC.\n\nBMC would merely check the bytes in the resourceids for two requests to tell if the lock request is conflicting or not..but BMC would never know what Virtual resource is actually locked.",
+      "parentUuid": "2959b2c7_56776ff2",
       "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -791,6 +1421,54 @@
     },
     {
       "key": {
+        "uuid": "db82f36a_1cf1c676",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "sure brad, got your point..we have created a new folder \u003cibm\u003e,and created new header files for this purpose.",
+      "parentUuid": "ae95c085_cc1571ac",
+      "range": {
+        "startLine": 316,
+        "startChar": 52,
+        "endLine": 316,
+        "endChar": 69
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2265b5b8_62ba6019",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "sure",
+      "parentUuid": "4b227c29_484a15eb",
+      "range": {
+        "startLine": 316,
+        "startChar": 36,
+        "endLine": 316,
+        "endChar": 42
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7041ac3c_cc78efc5",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -811,6 +1489,30 @@
       "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a20cb39_5fae6ae4",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "by custom -\u003e i meant that , it is a rest route handle that routes the request to /ibm/v1 rather than the standard /redfish/v1",
+      "parentUuid": "7041ac3c_cc78efc5",
+      "range": {
+        "startLine": 345,
+        "startChar": 13,
+        "endLine": 345,
+        "endChar": 19
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -837,6 +1539,30 @@
     },
     {
       "key": {
+        "uuid": "9c6299c3_c04edc95",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Correct, there will be a lot of overhead. And this is also an discarded alternative design which thought of",
+      "parentUuid": "42d68fab_729d1ae4",
+      "range": {
+        "startLine": 346,
+        "startChar": 32,
+        "endLine": 346,
+        "endChar": 75
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bee1abaa_5b7051c1",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -848,6 +1574,30 @@
       "writtenOn": "2019-10-28T18:07:12Z",
       "side": 1,
       "message": "I\u0027ve not seen any justification for a dedicated \"HMCD\" why not just go directly to the applications that implement the function?",
+      "range": {
+        "startLine": 358,
+        "startChar": 71,
+        "endLine": 358,
+        "endChar": 75
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09390a95_ad1748d3",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "This is also a discarded alternative design.\n\nI have removed these to make sure ..i don\u0027t add unnecessary confusions.",
+      "parentUuid": "bee1abaa_5b7051c1",
       "range": {
         "startLine": 358,
         "startChar": 71,
@@ -883,6 +1633,30 @@
     },
     {
       "key": {
+        "uuid": "bdd2c870_4e520d16",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "This is the first approach, which we thought. And i remember ratan talking with the redfish community folks to see if locks can be proposed as new schema..but this is entirely propriety which no one else uses, so discarded this implementation.",
+      "parentUuid": "718e9138_1b5c5298",
+      "range": {
+        "startLine": 376,
+        "startChar": 3,
+        "endLine": 376,
+        "endChar": 85
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9fc26894_551145f9",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -906,6 +1680,30 @@
     },
     {
       "key": {
+        "uuid": "06007742_156206c9",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "I just wanted to put out all the designs that we thought, to get the intial review comments..but yeah..you are correct should have sent this in the mailing list first.",
+      "parentUuid": "9fc26894_551145f9",
+      "range": {
+        "startLine": 405,
+        "startChar": 0,
+        "endLine": 405,
+        "endChar": 30
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d04e185d_43cbe77e",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -917,6 +1715,30 @@
       "writtenOn": "2019-10-28T18:07:12Z",
       "side": 1,
       "message": "I have a very slight preference for the first option.  It seems more explicit and easier to validate the arguments.  In the end the information conveyed is the same.",
+      "range": {
+        "startLine": 421,
+        "startChar": 1,
+        "endLine": 421,
+        "endChar": 29
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e8af8a1_4944464b",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Removed this discarded design completely, so that i dont add unnecessary confusions to the readers",
+      "parentUuid": "d04e185d_43cbe77e",
       "range": {
         "startLine": 421,
         "startChar": 1,
@@ -969,6 +1791,24 @@
     },
     {
       "key": {
+        "uuid": "3e2dae42_f87a6045",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "bmcweb is the only repo, which will be impacted. Having a Dbus interface was proposed as an alternate design(but was discarded, as it includes more overhead).",
+      "parentUuid": "dd5d5fab_1f932828",
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49ac86e1_0c765899",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 18
@@ -989,6 +1829,30 @@
       "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b2b1afc_4a472149",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-12T05:43:20Z",
+      "side": 1,
+      "message": "Yes Brad, we have already implemented the unit test of all the API\u0027s.",
+      "parentUuid": "49ac86e1_0c765899",
+      "range": {
+        "startLine": 588,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 19
+      },
+      "revId": "6b8be58ba21f881d57c6da8e69e20386584cadd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
