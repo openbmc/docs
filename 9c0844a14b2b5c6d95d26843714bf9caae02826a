@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2ca287d8_0b1009e6",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-17T07:59:27Z",
+      "side": 1,
+      "message": "No patrick, all the redfish resources are tied up with a backend dbus which takes only one request at a time.\n\nThe way HMC locks is little different than how a normal redfish resource management work,all the HMC resources are not BMC resources, they are hypervisor resources and the BMC does not know about them.",
+      "parentUuid": "3d1ee2e8_b536764d",
+      "range": {
+        "startLine": 18,
+        "startChar": 54,
+        "endLine": 19,
+        "endChar": 55
+      },
+      "revId": "9c0844a14b2b5c6d95d26843714bf9caae02826a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "47d0cbe4_8a5a8f4e",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 21
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "592ec8b1_106b2560",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-17T07:59:27Z",
+      "side": 1,
+      "message": "The HMC is responsible for creating locks with the level(hierarcy) information embedded in it, that information is contained in the ResourceID \u0026 Segment Flags.BMC does not know anything about the resource that it is actually locking, but it merely checks for conflicts between two lock requests.\n\nInfact these parent-child hierarchies are neither Redfish hierarchies nor DBus object paths.These are completely owned \u0026 maintained by the HMC and is not at all bothered by BMC",
+      "parentUuid": "47d0cbe4_8a5a8f4e",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "9c0844a14b2b5c6d95d26843714bf9caae02826a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b8dae82b_19a6c20f",
         "filename": "designs/management-console/hmc-lock-management.md",
         "patchSetId": 21
@@ -59,6 +107,24 @@
       "writtenOn": "2020-03-12T13:43:42Z",
       "side": 1,
       "message": "Perhaps this should go before you lay out requirements then?\n\nI\u0027m not sure why this is the \"hierarchy\".  Is this hierarchy currently modeled by the BMC in any way?",
+      "revId": "9c0844a14b2b5c6d95d26843714bf9caae02826a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b579de6_0b0342fc",
+        "filename": "designs/management-console/hmc-lock-management.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-03-17T07:59:27Z",
+      "side": 1,
+      "message": "This is just a sample resource hierarchy that i have mentioned for the users to get better understanding.\n\nThis resource hierarchy is actually maintained with-in the HMC and BMC does not even know about what resources are present in the hierarchy when the lock request comes in, but it merely checks for the conflicts between the incoming request \u0026 the existing ones.",
+      "parentUuid": "b8dae82b_19a6c20f",
       "revId": "9c0844a14b2b5c6d95d26843714bf9caae02826a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
