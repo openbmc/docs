@@ -13,14 +13,14 @@ The kernel recipe is in:
 ```
 
 To use a local git tree, change the `SRC_URI` to a git:// URL without
-a hostname. For example:
+a hostname, and remove the `protocol=git` parameter. For example:
 
 ```
-SRC_URI = "git:///home/jk/devel/linux;protocol=git;branch=${KBRANCH}"
+SRC_URI = "git:///home/jk/devel/linux;branch=${KBRANCH}"
 ```
 
-The `SRCREV` variable can be used to set an explicit git commit. The
-default (`${AUTOREV}`) will use the latest commit in `KBRANCH`.
+The `SRCREV` variable can be used to set an explicit git commit, or
+set to `"${AUTOREV}"` to use the latest commit in `KBRANCH`.
 
 ## Building for Palmetto
 
