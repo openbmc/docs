@@ -342,6 +342,11 @@ currently does not provide a way to discover addition of a card, removal of a
 card to upper layers, and thus D-Bus based solution is provided until
 kernel-based socket API has these capabilities.
 
+
+### Core MCTP lib - Daemon - flow
+
+![Core MCTP lib - Daemon - flow](media/MCTP_lib_daemon_flow.jpg)
+
 ## Impacts
 
 Development would be required to implement the MCTP transport, plus any
