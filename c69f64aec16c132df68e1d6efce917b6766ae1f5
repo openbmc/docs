@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "17310784_e798fdd7",
+        "filename": "designs/boot_mailbox.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-07T18:13:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "40831c5a_910f56bc",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "c69f64aec16c132df68e1d6efce917b6766ae1f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc36006f_f7951953",
         "filename": "designs/boot_mailbox.md",
         "patchSetId": 1
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "6dc21ae3_ba999450",
+        "filename": "designs/boot_mailbox.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-07T18:13:23Z",
+      "side": 1,
+      "message": "We\u0027ll look into that.",
+      "parentUuid": "bc36006f_f7951953",
+      "revId": "c69f64aec16c132df68e1d6efce917b6766ae1f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c3f68bce_26ca059f",
         "filename": "designs/boot_mailbox.md",
         "patchSetId": 1
@@ -53,6 +95,30 @@
       "writtenOn": "2020-03-19T13:41:12Z",
       "side": 1,
       "message": "To be honest, the whole thing seems a little heavy and IPMI-specific for what is basically a free-form extended field on top of Control.Boot.Source.  Can we simply add a free-form string or array[uint8] field into Control.Boot.Source called \"ExtendedBootSource\" or something like that?",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 5
+      },
+      "revId": "c69f64aec16c132df68e1d6efce917b6766ae1f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0556dab2_b58a0da9",
+        "filename": "designs/boot_mailbox.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-07T18:13:23Z",
+      "side": 1,
+      "message": "Well, actually the boot initiator mailbox does not neccessarily contain extended boot source information. It may as well contain other boot parameters such as, for instance, whether or not to turn on vga to serial console redirection or other things like that.\n\nBasically, the interface that we introduce is a free-form array[uint8] field. The thing is that at least phosphor-*-ipmid needs to know the size of that field and the supported IANA Enterprise number of the Boot Initiator. Hence the new interface and not just a new field. Are you suggesting moving those data inside the IPMI daemon somehow and only adding a free-form array in an existing D-Bus interface?",
+      "parentUuid": "c3f68bce_26ca059f",
       "range": {
         "startLine": 70,
         "startChar": 0,
