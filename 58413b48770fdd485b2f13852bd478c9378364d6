@@ -42,6 +42,23 @@
     },
     {
       "key": {
+        "uuid": "7c2d036a_136b113d",
+        "filename": "designs/guard_on_bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-04-14T20:52:57Z",
+      "side": 1,
+      "message": "Since this design is restricting all guard records to being host created and host oriented (it seems like you\u0027re not covering fans and power supplies for example with this design), why is the BMC involved at all?  Why can\u0027t this be covered by the \"Remote BIOS Configuration\" design document that is also in flight: https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/29320\n\nWhy aren\u0027t we covering BMC-centric hardware elements with this design?",
+      "revId": "58413b48770fdd485b2f13852bd478c9378364d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "828bbb7f_70a88221",
         "filename": "designs/guard_on_bmc.md",
         "patchSetId": 7
@@ -77,6 +94,30 @@
       "side": 1,
       "message": "right, these documents should adhere to RFC2119\n\nhttps://tools.ietf.org/html/rfc2119",
       "parentUuid": "828bbb7f_70a88221",
+      "range": {
+        "startLine": 42,
+        "startChar": 20,
+        "endLine": 42,
+        "endChar": 30
+      },
+      "revId": "58413b48770fdd485b2f13852bd478c9378364d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "657a31b5_9d718e77",
+        "filename": "designs/guard_on_bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-04-14T20:52:57Z",
+      "side": 1,
+      "message": "I don\u0027t think this sentence is correct anyhow because you want the host to be able to create records, which contradicts the requirement that they not be altered while the host is running.\n\nIt seems like the requirement is that the \"information given to the host is consistent for the duration of that host\u0027s execution\", right?  Is there a reason to not hold a current/pending view of the records, so a user to issue a clear while the host is running but it doesn\u0027t take effect until the next reboot?\n\nBIOS settings have a similar requirement.",
+      "parentUuid": "3220cb18_293a02f9",
       "range": {
         "startLine": 42,
         "startChar": 20,
