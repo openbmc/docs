@@ -1,0 +1,238 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf289375_807910b4",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "What\u0027s the use in overriding the reserved bits if we can tell that DTLS is supported just by looking at OpenBMC id in bytes 6:8 and some bits in byte 9?\nI\u0027m worried that treating reserved bits in the proposed way may bring some incompatibility with existing BMC implementations for the IPMI tools like ipmitool et. al.",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ec5d795_88b1b112",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "strictly speaking, it is \"IANA PEN\", not just \"IANA\".",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe704a14_91307937",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "I would right away define some OEM command to fetch the version of encoding of this byte.\nThat is, if bytes 6-8 are OpenBMC PEN, then fetch the version via an OEM command and then based on that data decode this byte 9. That version could also be used to differentiate other OEM field meanings.",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49a83fe3_5a86c2ae",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "I\u0027d say \"If ... provides OpenBMC IANA PEN in bytes 6-8 and \u003csomething else\u003e\", leaving those reserved bits alone.",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ee15bb5_d1889cae",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "Why accept 4 with \u0027STARTTLS\u0027 ? Let\u0027s limit it to just 5.",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65a90c52_eacab947",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "I suppose, if we only leave 5 (OEM proprietary auth), then the BMC would respond with a CCh completion code (Invalid data field in request) if no OEM proprietary auth is supported or with a 81h (invalid user name) indeed if there is some OEM auth, but there was no user named STARTTLS. An IPMI client though should not attempt to request a session challenge for STARTTLS \u0027user\u0027 if Get Channel Auth Capabilities didn\u0027t report an OpenBMC identification and the corresponding OEM command mentioned earlier didn\u0027t indicate support for RMCP+DTLS.",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "458d9ece_5efb0de3",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "I guess we\u0027ll need a separate document to capture all the OEM / Device-specific completion codes (range 01h-7Eh) used by OpenBMC. Also, doesn\u0027t this specific case fall under 06h (No matching authentication payload) ?",
+      "range": {
+        "startLine": 125,
+        "startChar": 49,
+        "endLine": 125,
+        "endChar": 52
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d675bfd5_af75715c",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "Looks very much like RMCP+ 04h (Invalid authentication algorithm).",
+      "range": {
+        "startLine": 128,
+        "startChar": 28,
+        "endLine": 128,
+        "endChar": 66
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7f190b7_e2455181",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "How exactly that is specified in the request? I suppose auth type 5 (OEM) implies password auth, doesn\u0027t it? I don\u0027t see any other options.",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 40
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0c8833d_ab35b922",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "Again, how exactly in that command anyone could request a certificate authentication?",
+      "range": {
+        "startLine": 138,
+        "startChar": 3,
+        "endLine": 138,
+        "endChar": 74
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "983f6b69_0219757b",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "Won\u0027t CCh (Invalid data field in request) or C1h (Invalid command) suffice? I don\u0027t like the idea of hi-jacking reserved entities, be it bits or completion codes.",
+      "range": {
+        "startLine": 143,
+        "startChar": 69,
+        "endLine": 143,
+        "endChar": 72
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bee4186_afcfb12f",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-23T11:26:54Z",
+      "side": 1,
+      "message": "There is also an option to run OpenVPN on OpenBMC and tunnel all the IPMI traffic inside a VPN. Not very convenient if there are multiple BMCs to communicate with.",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
