@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "e6bea048_025b2546",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2020-04-23T12:37:45Z",
+      "side": 1,
+      "message": "Looks like Oracle has implemented something along the same lines, but it\u0027s not open source. Maybe they would be willing to open it, if they\u0027re participating in OpenBMC? :)\nhttps://docs.oracle.com/cd/E37444_01/html/E37451/z40000061645388.html",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cf289375_807910b4",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -13,6 +30,24 @@
       "writtenOn": "2020-04-23T11:26:54Z",
       "side": 1,
       "message": "What\u0027s the use in overriding the reserved bits if we can tell that DTLS is supported just by looking at OpenBMC id in bytes 6:8 and some bits in byte 9?\nI\u0027m worried that treating reserved bits in the proposed way may bring some incompatibility with existing BMC implementations for the IPMI tools like ipmitool et. al.",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7be8b8a7_e04d6aef",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2020-04-23T12:37:45Z",
+      "side": 1,
+      "message": "While I\u0027m also wary of using the reserved bits, tying this to OpenBMC identification may limit the proliferation of this - what if other BMC stack vendors would want to implement this? In addition, not all OpenBMC versions would support this mechanism, so some sort of dynamic discovery is I think preferred.",
+      "parentUuid": "cf289375_807910b4",
       "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -173,6 +208,29 @@
     },
     {
       "key": {
+        "uuid": "3a5e9459_a9964ef6",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2020-04-23T12:37:45Z",
+      "side": 1,
+      "message": "I wonder how does this match the foundational idea of no longer storing passwords on the BMC? Do you mean that something like \"straight password\" would be used here and the BMC would check that against PAM? Just trying to understand the idea.",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 69
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c0c8833d_ab35b922",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -189,6 +247,29 @@
         "startChar": 3,
         "endLine": 138,
         "endChar": 74
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d047d5eb_3fa069a1",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2020-04-23T12:37:45Z",
+      "side": 1,
+      "message": "That would be \"TLS\" (the protocol), not OpenSSL (the library)",
+      "range": {
+        "startLine": 139,
+        "startChar": 45,
+        "endLine": 139,
+        "endChar": 52
       },
       "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -213,6 +294,46 @@
         "endLine": 143,
         "endChar": 72
       },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb6b229e_97da7258",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2020-04-23T12:37:45Z",
+      "side": 1,
+      "message": "nit: this should be \"to\"",
+      "range": {
+        "startLine": 144,
+        "startChar": 14,
+        "endLine": 144,
+        "endChar": 15
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c439fa3c_ae5c1caf",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000443
+      },
+      "writtenOn": "2020-04-23T12:37:45Z",
+      "side": 1,
+      "message": "In the name of making as few changes into protocols as possible (because that may have unforeseen security consequences), I wonder if we could simply do a first-message analysis at the BMC side and if it\u0027s the DTLS ClientHello - we do RMCP+ over DTLS with appropriate authentication mechanism modifications (because we know it\u0027s the DTLS-enabled client that\u0027s talking to us), but if it\u0027s a standard IPMI RMCP+ message, we then turn to the legacy flows (if enabled by BMC admin). When user runs a tool, they would anyway specify the mode they want to run in explicitly (or the tool would have it in the defaults), so it seems to me we could avoid this dynamic determination/fallback with Get Channel Authentication Capabilities changes.",
       "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
