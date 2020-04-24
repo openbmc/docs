@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "75495781_1c21798a",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "\u003e What\u0027s the use in overriding the reserved bits if we can tell that DTLS is supported just by looking at OpenBMC id in bytes 6:8 and some bits in byte 9?\nI\u0027m worried that treating reserved bits in the proposed way may bring some incompatibility with existing BMC implementations for the IPMI tools like ipmitool et. al.\n\nThis entire thing is \"off-spec\". We are creating a de-facto standard here for running RMCP+ over DTLS. That won\u0027t currently work with any tool. I was hoping that since we have ipmitool contributors, the ipmitool maintainer, OpenBMC IPMI contributors and OpenBMC IPMI maintainers here in the same room, we could come to a reasonable implementation on both ends of the wire.\n\nThere are no plans for an updated IPMI specification, so it is very unlikely that any reserved bits would get used in a future specification. Even if they were, we could probably convince the spec writers to include this de-facto standard in the IPMI specification, especially if it has wide acceptance.\n\nThat being said, I am not tied to exactly *this* version of the standard. I just wanted to get something rolling. It is time we get rid of RMCP+.",
+      "parentUuid": "7be8b8a7_e04d6aef",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ec5d795_88b1b112",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -85,6 +103,24 @@
       "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fa2af5a_591041c1",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ec5d795_88b1b112",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -139,6 +175,24 @@
     },
     {
       "key": {
+        "uuid": "41b96bdf_aaf0d923",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "The idea was that if 4 is set, then the session would not by attempting to use mutual TLS authentication. But we could just stick with 5 and then require some sort of authentication after the TLS session is started (assuming that mTLS auth did not happen).",
+      "parentUuid": "9ee15bb5_d1889cae",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "65a90c52_eacab947",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -179,6 +233,30 @@
     },
     {
       "key": {
+        "uuid": "089ca80f_e352a6e5",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "This is a bonafide IPMI command and needs to respond with an IPMI completion code, not a RAKP status code. It might be possible to use Invalid Parameter or something instead.",
+      "parentUuid": "458d9ece_5efb0de3",
+      "range": {
+        "startLine": 125,
+        "startChar": 49,
+        "endLine": 125,
+        "endChar": 52
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d675bfd5_af75715c",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -199,6 +277,30 @@
       "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "006ab5af_bbeb5b32",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "This is a bonafide IPMI command and needs to respond with an IPMI completion code, not a RAKP status code. It might be possible to use Invalid Parameter or something instead.",
+      "parentUuid": "d675bfd5_af75715c",
+      "range": {
+        "startLine": 128,
+        "startChar": 28,
+        "endLine": 128,
+        "endChar": 66
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -225,6 +327,30 @@
     },
     {
       "key": {
+        "uuid": "5bbcd906_3af786d9",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "I intended 4 to be password auth and 5 to be mTLS auth.",
+      "parentUuid": "d7f190b7_e2455181",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 40
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a5e9459_a9964ef6",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -245,6 +371,30 @@
       "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56d1839d_97873b83",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "Yes. While not perfect, a straight password (once the TLS session is established) could be used by PAM to authenticate the user. This way, we would no longer need to store the plaintext password on the BMC.",
+      "parentUuid": "3a5e9459_a9964ef6",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 69
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -295,6 +445,30 @@
     },
     {
       "key": {
+        "uuid": "3c812cc2_3dd296d0",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "I guess at this point, it is more a question of how do we detect if the user has been authenticated after the session has been established.\n\nThe client knows if it has attempted mTLS auth. I assume they will get some sort of error if that does not succeed. If it failed and the BMC supports password authentication, they need to then start that. If the BMC does not support password authentication, it would need to bail on the connection then.",
+      "parentUuid": "7138f993_307bf3ee",
+      "range": {
+        "startLine": 138,
+        "startChar": 3,
+        "endLine": 138,
+        "endChar": 74
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d047d5eb_3fa069a1",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -315,6 +489,30 @@
       "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a421396c_835a1149",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d047d5eb_3fa069a1",
+      "range": {
+        "startLine": 139,
+        "startChar": 45,
+        "endLine": 139,
+        "endChar": 52
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -341,6 +539,30 @@
     },
     {
       "key": {
+        "uuid": "208f1fd9_64af4d27",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "The error code here corresponds to byte 2 of the RAKP2/RAKP4 responses, not a standard IPMI completion code. The codes are defined in Section 13.24 of the IPMI spec (RMCP+ and RAKP Message Status Codes). Maybe 12h (Illegal or unrecognized parameter?)",
+      "parentUuid": "983f6b69_0219757b",
+      "range": {
+        "startLine": 143,
+        "startChar": 69,
+        "endLine": 143,
+        "endChar": 72
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb6b229e_97da7258",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -364,6 +586,30 @@
     },
     {
       "key": {
+        "uuid": "f0c3a88d_05a98900",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb6b229e_97da7258",
+      "range": {
+        "startLine": 144,
+        "startChar": 14,
+        "endLine": 144,
+        "endChar": 15
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c439fa3c_ae5c1caf",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -381,6 +627,24 @@
     },
     {
       "key": {
+        "uuid": "5cef533e_8340541e",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "This was actually the first idea I had come up with, but then abandoned it. When I was coming up with this idea, I was reading about other solutions and I came across the SMTP STARTTLS extension to upgrade the unencrypted connection to an encrypted one. I modeled it after that because I figured that there may have been some issues with doing what you propose here.\n\nIf there are not any technical issues with this idea, I would agree that we should promote this to the chosen solution to avoid the messaging changes I came up with.",
+      "parentUuid": "c439fa3c_ae5c1caf",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6bee4186_afcfb12f",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -395,6 +659,24 @@
       "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c9886e6_e99b9689",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-24T22:36:12Z",
+      "side": 1,
+      "message": "I will add that as an option. I had not considered it.",
+      "parentUuid": "6bee4186_afcfb12f",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
