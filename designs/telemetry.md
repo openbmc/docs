@@ -108,8 +108,8 @@ along with aggregated operations:
 * MIN - min reading value during defined time period
 * SUM - sum of reading values over defined time period
 
-The time period for calculating aggregated is taken from the Redfish Metric
-Definition resource for each sensor's metric.
+The time period for calculating aggregated metric is taken from the Redfish
+Metric Definition resource for each sensor's metric.
 
 Telemetry service supports creating and managing metric report, which may
 contain single or multiple metrics from sensors. This metric report is mapped
@@ -229,7 +229,7 @@ The diagram below shows the flows for creation and update of metric report.
 | |                    |                       |                          |   |
 | |                    |  Invoke the Update    |                          |   |
 | |                    |  method for report    |                          |   |
-| |                    |  D+Bus object         |                          |   |
+| |                    |  D-Bus object         |                          |   |
 | |                    +----------------------->                          |   |
 | |                    |                       +-+Update method triggers  |   |
 | |                    |                       | |report to be updated    |   |
@@ -285,46 +285,78 @@ management.
 The reading report management D-Bus object:
 
 ```ascii
-xyz.openbmc_project.Telemetry.ReportsManagement
+xyz.openbmc_project.Telemetry.ReportManager
 /xyz/openbmc_project/Telemetry/Reports
 ```
-The ```ReportsManagement``` supports the following interface apart from
+The ```ReportManager``` supports the following interface apart from
 standard D-Bus interface.
 
 | Name | Type | Signature | Result/Value | Flags |
 |------|------|-----------|--------------|-------|
-|```xyz.openbmc_project.Telemetry.ReportsManagement``` | interface | - | - | - |
-|```.AddReport```                          | method    | ssuas | s | - |
+|```xyz.openbmc_project.Telemetry.ReportManager``` | interface | - | - | - |
+|```.AddReport```                          | method    | sssasuubsa(osss) | s | - |
 |```.MaxReports```                         | property  | u | 50 | emits-change |
 |```.PollRateResolution```                 | property  | u | 100 | emits-change |
 
-The ```AddReport``` method is used to create metric report. The report
-may contain single or multiple sensor readings. It is stored in the BMC's
-volatile memory. The method has the following arguments:
+The ```AddReport``` method is used to create a metric report. The report
+may contain a single or multiple sensor readings. The way how the report will be
+stored by the BMC is defined by one of this method's parameters (see below).
+The method has the following arguments:
 
 | Argument | Type | Description |
 |----------|------|-------------|
-| Prefix | string | Defines prefix for report so it will be "<prefix\><randomString\>" i.e.: for prefix "test" -> testqrapndyY |
-| ReportingType | string | Reporting type: <br> "xyz.openbmc_project.Telemetry.Metric.Periodic" - For periodic update "xyz.openbmc_project.Telemetry.Metric.OnChange" - For update when value changes "xyz.openbmc_project.Telemetry.Metric.OnRequest" - For update when user requests data |
+| Name | string | Defines the name of reading report to be exposed over D-Bus |
+| Domain | string | Defines the domain for which the reading report will be collected|
+| ReportingType | string | Reporting type: <br> "Periodic" - For periodic update<br>"OnChange" - For update when value changes<br>"OnRequest" - For update when user requests data |
+| ReportAction | array of strings | Any combination of two strings:<br>"Log" - report shall be stored by the Telemetry for later retrieval via the Redfish API<br>"Event" - report shall be sent as an event or telemetry stream. |
 | ScanPeriod | uint32_t | Scan period used when Periodic type is set (in milliseconds) |
+| AppendLimit | uint32_t | Maximum number of entries that can be <u>appended</u> to this report. |
+| UpdatePolicy | string | One of the following strings:<br>"AppendStopWhenFull" - records are appended to the report at update until AppendLimit is reached. Then report updates stops.<br>"AppendWrapWhenFull" -  records are appended to the report at update. When AppendLimit is reached, new record overwrites the first one.<br>"Overwrite" - report is overwritten at update. |
+| Enabled | boolean | true - readings in report will be updated<br>false - no updates will be performed - report will be inactive |
+| Persistency | string | "None" - either, the configuration and report data are volatile<br>"ConfigurationOnly" - only the configuration is non-volatile, data is volatile<br>"ConfigurationAndData" - either, the configuration and report data are non-volatile
 | MetricsParams | array of structures | Collection of metric parameters.  |
 
 The ```MetricParams``` array entry is a structure containing:
+
 | Field | Type | Description |
 |----------|------|-------------|
 | Sensor's path | object | D-Bus path, path to the sensor providing readings. |
-| Operation's type | enum | {SINGLE, MAX, MIN, AVG, SUM} - information about aggregated operation. |
-| Metric id | string | Contains unique metric id, that can be mapped to Redfish MetricId. |
+| Operation's type | string | {SINGLE, MAX, MIN, AVG, SUM} - information about aggregated operation. |
+| Metric id | string | Contains metric id, that can be mapped to Redfish MetricId. |
+| Metadata | string | Contains client metadata. In case of Redfish this field contains metric's URI. |
 
-The ```ScanPeriod``` is defined per report, thus all sensors listed in the MetricsParams
-collection will be scanned wit the same frequency. Also the ReportingType is
-defined per report. In case when *xyz.openbmc_project.Telemetry.Metric.OnChange*
-ReportingType was defined, metric report will emit signal when at least one
-reading has changed.
+The ```ScanPeriod``` is defined per report, thus all sensors listed in the
+MetricsParams collection will be scanned with the same frequency. Also the
+ReportingType is defined per report. In case when *OnChange* ReportingType was
+defined, metric report will emit a signal when at least one reading has
+changed.
+
+The ```UpdatePolicy``` defines how the report shall behave at update. User
+defines the ```AppendLimit``` value, which, when set to non-zero value, allows
+report data to be appended. This property, with the number of monitored metrics
+defines the maximal number of records in the report and is meaningful for two
+types of ```UpdatePolicy``` property, the "AppendStopWhenFull" and
+"AppendWrapsWhenFull". First one allows adding new metric records to the report
+until all records are filled, then report updates stops. The second one, when
+all records in the report are filled, allows the next record to overwrite
+the first one and so on. The "Overwrite" policy causes metric records to be 
+overwritten every time the report is updated.
+
+The ```Persistency``` property defines how the report shall be stored. If
+"None" is set, the entire report shall be stored only in the volatile memory.
+In the event when "ConfigurationOnly" is set, the report configuration,
+that is, all report properties, except ```.Readings``` and the
+```.ReportTimestamp```, shall be stored to the non-volatile memory. And when
+"ConfigurationAndData" is set, all report's properties shall be stored to the
+non-volatile memory. After BMC reset the report D-Bus objects shall be created
+from saved configurations. Those object shall contain metrics data if
+persistency option was set to the "ConfigurationAndData". When persistent
+report is removed using the ```.Delete``` method, all report's data stored to
+the non-volatile memory shall be also removed.
 
 The ```AddReport``` method returns:
 ```ascii
-String for created report - ie. '/xyz/openbmc_project/Telemetry/Reports/testqrapndyY'
+String for created report - ie. '/xyz/openbmc_project/Telemetry/Reports/{Domain}/{Name}'
 ```
 
 Such created metric report implements the following interfaces, methods and
@@ -336,31 +368,48 @@ properties (apart from standard D-Bus interface):
 |```.Delete```                             | method    | - | - | - |
 |```xyz.openbmc_project.Telemetry.Report``` | interface | - | - | - |
 |```.Update```                             | method    | - | - | - |
-|```.ReadingParameters```                  | property  | a(sos) | 1 "/" | emits-change writable |
+|```.ReportUpdate```                       | signal | - | - | - |
+|```.ReadingParameters```                  | property  | a(osss) | 1 "/" | emits-change writable |
 |```.Readings```                           | property  | a(svs) | 0 | emits-change read-only |
 |```.ReportingType```                      | property  | s | One of reporting type strings| emits-change writable |
+|```.ReportAction```                       | property  | as | Array of report action strings | emits-change writable |
 |```.ScanPeriod```                         | property  | u | 100 | emits-change writable |
+|```.AppendLimit```                        | property  | u | Limit set by user | emits-change |
+|```.UpdatePolicy```                       | property  | s | One of update policy strings | emits-change writable |
+|```.ReportTimestamp```                    | property  | s |     | emits-change writable |
+|```.Enabled```                            | property  | b | true/false | emits-change writable |
+|```.Persistency```                        | property  | s | One of persistency strings | emits-change writeable |
 
 The ```Update``` method is defined for the on demand metric report update. It
 shall trigger the ```Readings``` property to be updated and send
 PropertiesChanged signal.
 
+The ```.ReportAction``` property defines whether reading report was defined to
+be stored by the Telemetry service or shall be sent as an event. This property
+is useful from the Redfish API perspective.
+
+The ```.ReportUpdate``` signal shall be generated only for reports that contain
+action "Event" when report is updated. The purpose of this is to integrate with
+the Event Service.
+
 The ```ReadingParameters``` property contains an array of structures containing
-unique metric id, D-Bus sensor path and aggregated operation type. This
-property is made writable in order to support metric report modifications.
+metric id, D-Bus sensor path, aggregated operation type and user's metadata.
+This property is made writable in order to support metric report modifications.
 
 | Field Type  | Field Description          |
 |-------------|----------------------------|
-| string      | Unique metric id           |
 | object path | D-Bus sensor's path        |
 | string      | Aggregated operation type  |
+| string      | Metric id                  |
+| string      | User's metadata            |
 
 The Readings property contains the array of the structures containing metric
-unique id, sensor's reading value and reading timestamp.
+id, user's metadata, sensor's reading value and reading timestamp.
 
 | Field Type | Field Description          |
 |------------|----------------------------|
-| string     | Unique metric id           |
+| string     | Metric id                  |
+| string     | User's metadata            |
 | variant    | Sensor's reading value     |
 | string     | Sensor's reading timestamp |
 
@@ -368,26 +417,26 @@ The ```ScanPeriod``` property has single value for the whole metric report.
 The Delete method results in deleting the whole metric report.
 
 The ```MaxReports``` property of
-the ```xyz.openbmc_project.Telemetry.ReportsManagement``` interface contains the
-max number of metric reports supported by the Telemetry service. This property
-is added to be compliant with the Redfish Telemetry Service schema, that
-contains ```MaxReports``` property.
+the ```xyz.openbmc_project.Telemetry.ReportManager``` interface
+contains the max number of metric reports supported by the Telemetry service.
+This property is added to be compliant with the Redfish Telemetry Service
+schema, that contains ```MaxReports``` property.
 
 **Trigger management**
 
 The trigger management D-Bus object:
 
 ```ascii
-xyz.openbmc_project.Telemetry.TriggersManagement
+xyz.openbmc_project.Telemetry.TriggerManager
 /xyz/openbmc_project/Telemetry/Triggers
 ```
-The ```TriggersManagement``` supports the following interface apart from
+The ```TriggerManager``` supports the following interface apart from
 standard D-Bus interface.
 
 | Name | Type | Signature | Result/Value | Flags |
 |------|------|-----------|--------------|-------|
-|```xyz.openbmc_project.Telemetry.TriggersManagement``` | interface | - | - | - |
-|```.AddTrigger```                         | method    | sssv(os) | s | - |
+|```xyz.openbmc_project.Telemetry.TriggerManager``` | interface | - | - | - |
+|```.AddTrigger```                         | method    | sssbv(os) | s | - |
 
 The ```AddTrigger``` method shall be used to create new trigger for the
 certain metric. Triggers are stored in BMC's volatile memory. The method
@@ -395,25 +444,25 @@ has the following arguments:
 
 | Argument | Type | Description |
 |----------|------|-------------|
-| Prefix | string | Defines prefix for report so it will be "<prefix\><randomString\>" i.e.: for prefix "test" -> trigger0dfvAgVt6 |
-| ActionType | string | Action type: <br> "xyz.openbmc_project.Telemetry.Trigger.Log" - For logging to log service "xyz.openbmc_project.Telemetry.Trigger.Event" - For sending Redfish event "xyz.openbmc_project.Telemetry.Trigger.Update" - For trigger metric report update |
-| MetricType | string | Metric type: <br> "xyz.openbmc_project.Telemetry.Trigger.Discrete" - for discrete sensors "xyz.openbmc_project.Telemetry.Trigger.Numeric" - for numeric sensors |
+| Name | string | Defines the name of trigger to be exposed over D-Bus |
+| Domain | string | Defines the domain for which trigger will be defined |
+| ActionType | string | Action type: <br> "Log" - For logging to log service<br> "Event" - For sending Redfish event<br> "Update" - For trigger metric report update |
+| MetricType | string | Metric type: <br> "Discrete" - for discrete sensors<br> "Numeric" - for numeric sensors |
+| Persistent | boolean | true - trigger shall be stored to non-volatile memory<br>false - trigger shall be volatile |
 | TriggerParams | variant | Variant containing structure with either discrete triggers or numeric thresholds. |
 | MetricParam | structure | Structure containing D-Bus sensor's path and unique metric Id and optional D-Bus path to metric report to trigger. |
 
 The ```TriggerParams``` is variant type, which shall contain structure
 depending on the ```MetricType``` value. In case when ```MetricType``` contains
-the ```xyz.openbmc_project.Telemetry.Trigger.Discrete``` value,
- ```TriggerParams``` shall contain structure with discrete triggers.
-When ```MetricType``` contains
-the ```xyz.openbmc_project.Telemetry.Trigger.Numeric``` value,
- ```TriggerParams``` shall contain structure with numeric thresholds.
+the "Discrete" value, ```TriggerParams``` shall contain structure with discrete
+triggers. When ```MetricType``` contains the "Numeric" value, 
+```TriggerParams``` shall contain structure with numeric thresholds.
 
 Discrete triggers structure:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| TriggerCondition | string | Discrete trigger condition: <br> "xyz.openbmc_project.Telemetry.Trigger.Discrete.Changed" - trigger ocurs when value of metric has changed; <br> "xyz.openbmc_project.Telemetry.Trigger.Discrete.Specified" - trigger occurs when value of metric becomes one of the values listed in the discrete triggers. |
+| TriggerCondition | string | Discrete trigger condition: <br> "Changed" - trigger occurs when value of metric has changed; <br> "Specified" - trigger occurs when value of metric becomes one of the values listed in the discrete triggers. |
 | DiscreteTriggers | array of structures | Array of discrete trigger structures. |
 
 Member of DiscreteTriggers array:
@@ -421,7 +470,7 @@ Member of DiscreteTriggers array:
 | Field | Type | Description |
 |-------|------|-------------|
 | TriggerId| string     | Unique trigger Id |
-| Severity | string     | Severity: <br> "xyz.openbmc_project.Telemetry.Trigger.Discrete.Severity.OK" - normal, "xyz.openbmc_project.Telemetry.Trigger.Discrete.Severity.Warning" - requires attention, "xyz.openbmc_project.Telemetry.Trigger.Discrete.Severity.Critical" - requires immediate attention |
+| Severity | string     | Severity: <br> "OK" - normal<br> "Warning" - requires attention<br> "Critical" - requires immediate attention |
 | Value | variant    | Value of discrete metric, that constitutes a trigger event. |
 | DwellTime | uint64     | Time in milliseconds that a trigger occurrence persists before the action defined in the ```ActionType``` is performed. |
 
@@ -430,31 +479,11 @@ lower warning and lower critical. Thus it will contain up to 4 structures shown 
 
 | Field | Type | Description |
 |-------|------|-------------|
-| ThresholdType | string | Numeric trigger type: <br> "xyz.openbmc_project.Telemetry.Trigger.Numeric.UpperCritical","xyz.openbmc_project.Telemetry.Trigger.Numeric.UpperWarning","xyz.openbmc_project.Telemetry.Trigger.Numeric.LowerCritical","xyz.openbmc_project.Telemetry.Trigger.Numeric.LowerWarning"|
+| ThresholdType | string | Numeric trigger type: <br> "UpperCritical" - reading is above normal range and requires immediate attention<br>"UpperWarning" - reading is above normal range and may require attention<br>"LowerCritical" - reading is below normal range and requires immediate attention<br>"LowerWarning" - reading is below normal range and may require attention|
 | DwellTime | uint64 | Time in milliseconds that a trigger occurrence persists before the action defined in the ```ActionType``` is performed. |
-| Activation | string | Indicates direction of crossing the threshold value that trigger the threshold's action: "xyz.openbmc_project.Telemetry.Trigger.Numeric.Activation.Increasing", "xyz.openbmc_project.Telemetry.Trigger.Numeric.Activation.Decreasing", "xyz.openbmc_project.Telemetry.Trigger.Numeric.Activation.Either" |
+| Activation | string | Indicates direction of crossing the threshold value that trigger the threshold's action:<br> "Increasing" - trigger action when reading is changing from below to above the threshold's value<br> "Decreasing" - trigger action when reading is changing from above to below the threshold's value<br> "Either" - trigger action when reading is crossing the threshold's value in either direction described above |
 | ThresholdValue | variant | Value of reading that will trigger the threshold |
 
-The numeric threshold trigger type meaning:
-
-- "xyz.openbmc_project.Telemetry.Trigger.Numeric.UpperCritical" -
-indicates the reading is above normal range and requires immediate attention
-- "xyz.openbmc_project.Telemetry.Trigger.Numeric.UpperWarning" -
-indicates the reading is above normal range and may require attention
-- "xyz.openbmc_project.Telemetry.Trigger.Numeric.LowerCritical" -
-indicates the reading is below normal range and requires immediate attention
-- "xyz.openbmc_project.Telemetry.Trigger.Numeric.LowerWarning" -
-indicates the reading is below normal range and may require attention
-
-The numeric threshold activation meaning:
-
-- "xyz.openbmc_project.Telemetry.Trigger.Numeric.Activation.Increasing" -
-trigger action when reading is changing from below to above the threshold's value
-- "xyz.openbmc_project.Telemetry.Trigger.Numeric.Activation.Decreasing" -
-trigger action when reading is changing from above to below the threshold's value
-- "xyz.openbmc_project.Telemetry.Trigger.Numeric.Activation.Either" -
-trigger action when reading is crossing the threshold's value in either direction
-described above
 
 The ```MetricParam``` structure contains the following data:
 
@@ -462,11 +491,11 @@ The ```MetricParam``` structure contains the following data:
 |-------|------|-------------|
 | SensorPath | object path | D-Bus path to sensor, for which trigger is defined. |
 | MetricId   | string | Contains unique metric id, that can be mapped to Redfish MetricId. |
-| ReportPath | object path | D-Bus path to Telemetry's reading report which update shall be triggered when trigger condition occurs. This is optional and shall be filled when trigger's ActionType is set to "xyz.openbmc_project.Telemetry.Trigger.Update". |
+| ReportPath | object path | D-Bus path to Telemetry's reading report which update shall be triggered when trigger condition occurs. This is optional and shall be filled when trigger's ActionType is set to "Update". |
 
 The ```AddTrigger``` method returns:
 ```ascii
-String for created trigger - ie. '/xyz/openbmc_project/Telemetry/Triggers/trigger0dfvAgVt6'
+String for created trigger - ie. '/xyz/openbmc_project/Telemetry/Triggers/{Domain}/{Name}'
 ```
 Such created trigger implements the following interfaces, methods and
 properties (apart from standard D-Bus interface):
@@ -480,6 +509,7 @@ properties (apart from standard D-Bus interface):
 |```.Triggers```                           | property | {sa{ssvu64}} or a{su64sv} | The structure containing triggers. It depends on ```.MetricType``` property how the structure is defined. | emits-change writable |
 |```.ActionType```                         | property | s | One of ActionType strings | emits-change writable |
 |```.Metric```                             | property | (oso) | Structure containing details of metric, for which trigger is defined. | emits-change writable |
+|```.Persistent```                         | property | b | true/false | emits-change writable |
 
 The ```.MetricType``` property contains information about metric type for which
 trigger was created. It can be either discrete or numeric. This property is
@@ -487,12 +517,12 @@ read-only, thus created trigger cannot be changed from discrete to numeric or
 from numeric to discrete. This also determines how the ```.Triggers``` property
 looks like on D-Bus.
 
-If ```.MetricType``` is equal to "xyz.openbmc_project.Telemetry.Trigger.Discrete"
-then ```.Triggers``` property contains discrete trigger that looks like this:
+If ```.MetricType``` is equal to "Discrete" then ```.Triggers``` property
+contains discrete trigger that looks like this:
 
 | Type | Description |
 |------|-------------|
-| string | Discrete trigger condition: <br> "xyz.openbmc_project.Telemetry.Trigger.Discrete.Changed" - trigger ocurs when value of metric has changed; "xyz.openbmc_project.Telemetry.Trigger.Discrete.Specified" - trigger occurs when value of metric becomes one of the values listed in the discrete triggers. |
+| string | Discrete trigger condition: <br> "Changed" - trigger ocurs when value of metric has changed;<br>"Specified" - trigger occurs when value of metric becomes one of the values listed in the discrete triggers. |
 | array of structures | Array of discrete trigger structures. |
 
 Member of DiscreteTriggers array:
@@ -500,19 +530,18 @@ Member of DiscreteTriggers array:
 | Type | Description |
 |------|-------------|
 | string     | Unique trigger Id |
-| string     | Severity: <br> "xyz.openbmc_project.Telemetry.Trigger.Discrete.Severity.OK" - normal, "xyz.openbmc_project.Telemetry.Trigger.Discrete.Severity.Warning" - requires attention, "xyz.openbmc_project.Telemetry.Trigger.Discrete.Severity.Critical" - requires immediate attention |
+| string     | Severity: <br> "OK" - normal<br>"Warning" - requires attention<br> "Critical" - requires immediate attention |
 | variant    | Value of discrete metric, that constitutes a trigger event. |
 | uint64     | Time in milliseconds that a trigger occurrence persists before the action defined in the ```ActionType``` is performed. |
 
-If ```.MetricType``` is equal to "xyz.openbmc_project.Telemetry.Trigger.Numeric"
-then ```.Triggers``` property contains numeric trigger that is an array of 4 structures
-presented below:
+If ```.MetricType``` is equal to "Numeric" then ```.Triggers``` property
+contains numeric trigger that is an array of 4 structures presented below:
 
 | Type | Description |
 |------|-------------|
-| string | Numeric trigger type: <br> "xyz.openbmc_project.Telemetry.Trigger.Numeric.UpperCritical", "xyz.openbmc_project.Telemetry.Trigger.Numeric.UpperWarning", "xyz.openbmc_project.Telemetry.Trigger.Numeric.LowerCritical", "xyz.openbmc_project.Telemetry.Trigger.Numeric.LowerWarning"|
+| string | Numeric trigger type: <br> "UpperWarning"<br>"UpperWarning"<br>"LowerCritical"<br>"LowerWarning"|
 | uint64 | Time in milliseconds that a trigger occurrence persists before the action defined in the ```ActionType``` is performed. |
-| string | Indicates direction of crossing the threshold value that trigger the threshold's action: "xyz.openbmc_project.Telemetry.Trigger.Numeric.Activation.Increasing", "xyz.openbmc_project.Telemetry.Trigger.Numeric.Activation.Decreasing", "xyz.openbmc_project.Telemetry.Trigger.Numeric.Activation.Either" |
+| string | Indicates direction of crossing the threshold value that trigger the threshold's action:<br> "Increasing"<br>"Decreasing"<br>"Either" |
 | variant | Value of reading that will trigger the threshold |
 
 The ```.Metric``` property stores the details about reading, for which trigger was defined.
@@ -621,11 +650,11 @@ The following diagram shows relations between these resources.
 +-------------+  +-------------+  +----------------+                    |
      |   |                                |                             |
      |   | Triggers report update         |                             |
-	 |   | (when applicable)              |                             |
+     |   | (when applicable)              |                             |
      |   +--------------------------------+                             |
      |                                                                  |
      |   Monitors PowerConsumedWatts to check                           |
-	 |   whether trigger value is exceeded                              |
+     |   whether trigger value is exceeded                              |
      +------------------------------------------------------------------+
 ```
 
