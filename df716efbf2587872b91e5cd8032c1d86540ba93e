@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d3212a56_1ce368b2",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-28T18:54:05Z",
+      "side": 1,
+      "message": "It looks like they are using TCP (just TLS, not DTLS). They have apparently modified ipmitool, but since ipmitool uses a BSD-style license, they are not required to provide their changes. So I am not sure on the details of their protocol. As far as I know, Oracle is not participating in OpenBMC.",
+      "parentUuid": "e6bea048_025b2546",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a48dda8c_eef4d254",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0afcfde4_50f976bb",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-04-28T18:54:05Z",
+      "side": 1,
+      "message": "Yes, this would leave you open to an initial MitM attack in this scenario.\n\nI know that ipmitool is not the only client, but it is the one that I am most familiar with. With ipmitool, you must request which \u0027interface\u0027 you want. So this would be a scenario where you request to connect with dtls and if the remote BMC (or the MitM) did not support that it would fail to connect.\n\nThat being said, I think I agree with Alexander Tereschenko that we should just skip straight to the TLS handshake and then perform all IPMI session initiation and discovery within that secure session.",
+      "parentUuid": "a48dda8c_eef4d254",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
