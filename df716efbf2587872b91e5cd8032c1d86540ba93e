@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "38d6de0a_6266e7a8",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-29T13:15:01Z",
+      "side": 1,
+      "message": "Do we also have OpenIPMI and ipmiutil maintaners in the same room with us?\nI realize that if we hijack those bits and make them a de facto standard, those products will have to become compatible, but it\u0027s a kind of old Microsoft way, which I personally have always hated. If there is a way to introduce a more secure and overall better protocol while keeping as much compatibilty as possible, I would prefer that way. That\u0027s why I asked what was the purpose of using those bits. If you really think we can\u0027t do without them, then fine. But so far it looks to me like we can go without hijacking the reserved bits by just using the hooks for extensions that are already in IPMI 2.0.",
+      "parentUuid": "75495781_1c21798a",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ec5d795_88b1b112",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -387,6 +405,30 @@
     },
     {
       "key": {
+        "uuid": "180a977f_eac9334d",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-29T13:15:01Z",
+      "side": 1,
+      "message": "Well, ok... But then I don\u0027t get it how it is supposed to pass both a username and a password if the username field is used to pass the `STARTTLS` greeting. At least that needs to be elaborated on in this document.",
+      "parentUuid": "5bbcd906_3af786d9",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 40
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a5e9459_a9964ef6",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -599,6 +641,30 @@
     },
     {
       "key": {
+        "uuid": "5dddeed3_1b1cacd3",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-29T13:15:01Z",
+      "side": 1,
+      "message": "Yes, that could do I guess",
+      "parentUuid": "208f1fd9_64af4d27",
+      "range": {
+        "startLine": 143,
+        "startChar": 69,
+        "endLine": 143,
+        "endChar": 72
+      },
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb6b229e_97da7258",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 2
@@ -675,6 +741,24 @@
       "side": 1,
       "message": "This was actually the first idea I had come up with, but then abandoned it. When I was coming up with this idea, I was reading about other solutions and I came across the SMTP STARTTLS extension to upgrade the unencrypted connection to an encrypted one. I modeled it after that because I figured that there may have been some issues with doing what you propose here.\n\nIf there are not any technical issues with this idea, I would agree that we should promote this to the chosen solution to avoid the messaging changes I came up with.",
       "parentUuid": "c439fa3c_ae5c1caf",
+      "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "555e3960_f5e92f71",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-04-29T13:15:01Z",
+      "side": 1,
+      "message": "I like this idea too (\"in the name if making as feq changes into protocols as possible\").",
+      "parentUuid": "5cef533e_8340541e",
       "revId": "df716efbf2587872b91e5cd8032c1d86540ba93e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
