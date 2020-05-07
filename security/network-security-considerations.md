@@ -126,7 +126,7 @@ for example, [CA Law SB-327].
 
 [CA Law SB-327]: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180SB327
 
-## Services provided on TCP and UPD ports
+## Services provided on TCP and UDP ports
 
 ### TCP port 22 - Secure Shell (SSH) access to the BMC
 
