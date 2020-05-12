@@ -233,6 +233,40 @@
       "revId": "f33ed8c6ddcc2fdfe05572fc8dcf15f44e16b677",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2df64840_aa5415cc",
+        "filename": "designs/health-nonitor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2020-05-12T23:45:51Z",
+      "side": 1,
+      "message": "For \"how to stage the health data\" FFDC stores dumps as files for transferring out of the BMC (rather than DBus objects), so that might be considered an alternative (for staging) too? This file-based approach may also be \"upgraded\" to file-based databases or structured files, and can be compressed, stored in the memory, partially streamed and synced with the host or some remote entity, or be managed by phosphor-ipmi-blobs-binarystore.\n\nFor \"how to get the data out of the BMC\" perhaps IPMI is needed when, for example, RedFish is not yet deployed. So IPMI might be another alternative for data transfer?",
+      "revId": "f33ed8c6ddcc2fdfe05572fc8dcf15f44e16b677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "92eb0a32_1fd1de6f",
+        "filename": "designs/health-nonitor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2020-05-12T23:45:51Z",
+      "side": 1,
+      "message": "I guess the impact may be divided into 2 parts, and it looks very similar to the situation with sensors:\n1) maintaining the DBus objects and\n2) collecting the health data.\n\nFor 1) the cost should be very low according to known benchmarking results and the fact that sensor daemons are already updating sensor-related DBus objects many times per second on the BMC right now.\nThe cost of 2) might depend on the cost of generating that particular monitoring data, and the cost might be high or low. For example: a high-cost metric would be \"list all files on the BMC whose size is larger than 500 KB\" or \"iterate through system logs and count the number of error messages that match a particular regex\". Fortunately the 2-step nature of the DBus object-based design means the delay would not affect the reading of the data but just the update; plus, the cost can be mitigated by designing carefully (such as allowing levels of detail, down-sampling) and allowing the metric to be updated less frequently. Or if the metric is an aggregate it may be easily updated by computing the deltas and not full updates, just like search indices trade rebuild cost with loss of freshness resulting from partial updates?\n\nSo overall the impacts should be small, if the health metrics are easy to collect.",
+      "revId": "f33ed8c6ddcc2fdfe05572fc8dcf15f44e16b677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
