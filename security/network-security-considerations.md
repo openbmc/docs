@@ -77,7 +77,7 @@ OpenBMC's [phosphor-user-manager][] provides the underlying
 authentication and authorization functions and ties into IPMI, Linux
 PAM, LDAP, and logging.  Some of OpenBMC services use phosphor-user-manager.
 
-[phosphor-user-manager]: https://github.com/openbmc/docs/blob/master/architecture/user_management.md
+[phosphor-user-manager]: https://github.com/openbmc/docs/blob/master/architecture/user-management.md
 
 Transport layer security (TLS) protocols are configured for each
 service at compile time, become part of the image, and cannot be

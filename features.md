@@ -61,7 +61,7 @@ Follow links to learn more about OpenBMC features:
 [Phosphor inventory manager]: https://github.com/openbmc/phosphor-inventory-manager/blob/master/README.md
 [Phosphor Logging]: https://github.com/openbmc/phosphor-logging/blob/master/README.md
 [Phosphor REST APIs]: https://github.com/openbmc/docs/blob/master/rest-api.md
-[Phosphor User Management]: https://github.com/openbmc/docs/blob/master/architecture/user_management.md
+[Phosphor User Management]: https://github.com/openbmc/docs/blob/master/architecture/user-management.md
 [Phosphor Watchdog Implementation]: https://github.com/openbmc/phosphor-watchdog
 [Phosphor WebUI]: https://github.com/openbmc/phosphor-webui/blob/master/README.md
 [Power OCC Implementation]: https://github.com/openbmc/openpower-occ-control
