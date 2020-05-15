@@ -12,6 +12,30 @@ https://github.com/openbmc/openbmc/wiki/Releases
 
 
 ## OpenBMC Releases
+### 2.8 June, 2020
+#### Features:
+ - Yocto refresh to "Dunfell" version 3.1
+ - Redfish support for:
+   - full certificate management
+   - complete LDAP management
+   - full sensor support
+   - event service schema
+   - task schema
+ - Move to Redfish Specification 1.9.0
+ - Redfish support for 2020.1 Schemas
+ - GUI enhancements:
+    - LDAP
+    - certificate management
+ - mTLS HTTPS authentication
+ - Partial PLDM Support
+ - Partial MCTP Support
+
+#### Fixes and Known Issues/Limitations:
+ - Enabling and disabling DHCP via Redfish is not working (openbmc/bmcweb #127)
+ - LDAP login will fail for users belonging to the redfish group
+ - Unable to configure IP address on VLAN interface (openbmc/openbmc #3668)
+ - Unable create VLAN via IPMI (openbmc/phosphor-net-ipmid #12)
+
 ### 2.7 Aug 5, 2019
 #### Features:
  - Yocto refresh to "Warrior" version 2.7
