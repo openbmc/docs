@@ -350,6 +350,41 @@ transport channel, so that requester apps on the BMC can send messages over
 that transport. Also, it should be possible to plug-in platform specific D-Bus
 objects that implement an interface to target a platform specific transport.
 
+### Processing PLDM FRU information sent down by the host firmware
+
+Note: while this is specific to the host BMC communication, most of this might
+apply to processing PLDM FRU information received from a device connected to the
+BMC as well.
+
+The requirement is for the BMC to consume PLDM FRU information received from the
+host firmware and then have the same exposed via Redfish. An example can be the
+host firmware sending down processor and core information via PLDM FRU commands,
+and the BMC making this information available via the Processor and
+ProcessorCollection schemas.
+
+This design is built around the pldmd and entity-manager applications on the
+BMC:
+
+- The pldmd asks the host firmware's PLDM stack for the host's FRU record table,
+  by sending it the PLDM GetFRURecordTable command. The pldmd should send this
+  command if the host indicates support for the PLDM FRU spec. The pldmd
+  receives a PLDM FRU record table from the host firmware (
+  www.dmtf.org/sites/default/files/standards/documents/DSP0257_1.0.0.pdf). The
+  daemon parses the FRU record table and hosts raw PLDM FRU information on
+  D-Bus. It will house the PLDM FRU properties for a certain FRU under an
+  xyz.openbmc_project.Inventory.Source.PLDM.FRU D-Bus interface, and house the
+  PLDM entity info extracted from the FRU record set PDR under an
+  xyz.openbmc_project.Source.PLDM.Entity interface.
+
+- Configurations can be written for entity-manager to probe an interface like
+  xyz.openbmc_project.Inventory.Source.PLDM.FRU, and create FRU inventory D-Bus
+  objects. Inventory interfaces from the xyz.openbmc_project. Inventory
+  namespace can be applied on these objects, by converting PLDM FRU property
+  values into xyz.openbmc_project.Invnetory.Decorator.Asset property values,
+  such as Part Number and Serial Number, in the entity manager configuration
+  file. Bmcweb can find these FRU inventory objects based on D-Bus interfaces,
+  as it does today.
+
 ## Alternatives Considered
 Continue using IPMI, but start making more use of OEM extensions to
 suit the requirements of new platforms. However, given that the IPMI
