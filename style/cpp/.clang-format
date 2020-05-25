@@ -63,8 +63,12 @@ IncludeCategories:
     Priority:        -1
   - Regex:           '^".*\.h"'
     Priority:        1
+  - Regex:           '^<[^/\\]+\.hpp>'
+    Priority:        2
+    SortPriority:    1
   - Regex:           '^".*\.hpp"'
     Priority:        2
+    SortPriority:    2
   - Regex:           '^<.*\.h>'
     Priority:        3
   - Regex:           '^<.*\.hpp>'
