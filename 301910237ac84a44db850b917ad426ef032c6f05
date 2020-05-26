@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05c5c554_0d6c8bda",
+        "filename": "development/data-driven.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000331
+      },
+      "writtenOn": "2020-05-26T21:37:51Z",
+      "side": 1,
+      "message": "Do we need to discuss build time configuration that is achieved via build options (-Dfoo\u003dbar) in recipes/bbappends that are passed to meson/autoconf/etc?\n\nThese can be high level (like which power sequencer to use), but they are not YAML files.",
+      "revId": "301910237ac84a44db850b917ad426ef032c6f05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c48b307_2648dab6",
+        "filename": "development/data-driven.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000331
+      },
+      "writtenOn": "2020-05-26T21:37:51Z",
+      "side": 1,
+      "message": "I\u0027m not clear on the distinction between this category and \"Runtime configuration\".  Both describe files that are read at runtime to configure an application.\n\nThe phosphor-regulators JSON config file is read at runtime to configure application behavior.  Which JSON file is loaded depends on the current system type, but I\u0027m not sure I\u0027d call the file a \u0027hardware database\u0027.",
+      "revId": "301910237ac84a44db850b917ad426ef032c6f05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "771aabac_8fcebbd3",
+        "filename": "development/data-driven.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000331
+      },
+      "writtenOn": "2020-05-26T21:37:51Z",
+      "side": 1,
+      "message": "The phosphor-regulators application looks in two places for its JSON config file:\n\n* /etc/phosphor-regulators: Writable file system directory where new versions of the config file can be manually installed and tested.  Used by system integrators/system engineers/developers.  Not required to exist.\n* /usr/share/phosphor-regulators: Read-only file system directory where the standard version of the config file exists.  Installed there as part of the firmware image.  Required to exist.\n\nCan this approach (looking in both /etc and /usr/share) be included as an option within this document?  I feel it has several advantages:\n* Makes testing new config files easier.  Can just scp to /etc.  Doesn\u0027t require system integrators/system engineers to work with file system overlays to test config file changes in /usr/share.\n* Simple to revert to the standard config file.  Just remove the /etc directory/file.\n* Makes it clearer when a test config file is in use.  You can tell by checking if the /etc/ directory/file exists, and the application can put an entry in the journal giving the path to the config file that was used.  This is very helpful for debugging.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 27
+      },
+      "revId": "301910237ac84a44db850b917ad426ef032c6f05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
