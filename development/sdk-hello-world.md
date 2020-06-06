@@ -57,13 +57,22 @@ common directory like ~/Code/.
   arm-openbmc-linux-gnueabi-strip phosphor-bmc-state-manager
   ```
 
-  2. Create the directory in your QEMU session
-  for you to copy your binary too
+  2. Create a safe file system for your application
 
-  OpenBMC overrides the PATH variable to always look in /usr/local/bin/ first so
-  that's where we put patches for testing. From your QEMU session:
+  Now is time to load your Hello World application in to QEMU virtual hardware.
+  The OpenBMC overrides the PATH variable to always look in /usr/local/bin/
+  first so you could simply scp your application in to /usr/local/bin, run it
+  and be done.  That works fine for command line tests, but when you start
+  launching your applications via systemd services you will hit problems since
+  application paths are hardcoded in the service files. Let's start our journey
+  doing what the professionals do and create an overlay file system.  Overlays
+  will save you time and grief.  No more renaming and recovering original files,
+  no more forgetting which files you messed with during debug, and of course, no
+  more bricking the system.  Log in to the QEMU instance and run these commands.
   ```
-  mkdir -p /usr/local/bin
+  mkdir -p /tmp/persist/usr
+  mkdir -p /tmp/persist/work/usr
+  mount -t overlay -o lowerdir=/usr,upperdir=/tmp/persist/usr,workdir=/tmp/persist/work/usr overlay /usr
   ```
 
   3. scp this binary onto your QEMU instance
@@ -72,7 +81,7 @@ common directory like ~/Code/.
   to run from your phosphor-state-manager directory. If you chose your own port
   then substitute that here for the 2222.
   ```
-  scp -P 2222 phosphor-bmc-state-manager root@127.0.0.1:/usr/local/bin/
+  scp -P 2222 phosphor-bmc-state-manager root@127.0.0.1:/usr/bin/
   ```
 
 ## Run the Application in QEMU
