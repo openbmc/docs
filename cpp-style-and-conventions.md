@@ -347,7 +347,7 @@ template <typename T> using foo_t = Foo<T>::type;
 
 #### Constants
 
-* Constants and enums should be named like variables in lowerCamelCase.
+* Constants and enum members should be named like variables in lowerCamelCase.
 
 #### Namespaces
 
