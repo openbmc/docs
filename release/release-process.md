@@ -4,8 +4,7 @@ work group. This documents the set of topics that have been discussed and
 agreed upon to date, defining such things as the release process and schedule,
 milestones, content definition and feature prioritization. All the decisions
 were made in the work group meetings, with representatives from each member
-company. You are encouraged to get involved and contribute. The meeting
-information is available on the OpenBMC wiki:
+company. 
 
 https://github.com/openbmc/openbmc/wiki/Release-Planning
 
@@ -14,8 +13,9 @@ https://github.com/openbmc/openbmc/wiki/Release-Planning
 ### Schedule
 OpenBMC has its initial formal release branch as a Linux Foundation project
 in February 2019, with a new release branch following every 6 months. Releases
-are purposefully offset from Yocto releases by a few months to allow for
-integration and testing.
+are purposefully offset from Yocto releases by a few weeks to allow for
+integration and testing. Member companies are expected to test a release
+candidate on their platform and report their findings.
 
 ### Versioning
 The OpenBMC release will follow the Yocto numbering with slight modification
@@ -25,13 +25,13 @@ Major.Minor.Fix.obmc-build. For example:
 `2.6.4.obmc-2`
 
 This would be interpreted as major release 2, minor release 6, fix release 4,
-build 2. Even though OpenBMC will follow the Yocto release numbering, code
-names for OpenBMC releases are still TBD.
+build 2. 
 
 ### Milestones
 Milestones are important dates within a release cycle. The milestone dates
 agreed to are as follows: Design, Code, Freeze, and Release. The milestones
-will each have entry and exit criteria.
+will each have entry and exit criteria. Milestone dates currently are not
+yet implemented.
 
 #### Design
 This is the date in the release cycle when a feature's design must be discussed
@@ -54,11 +54,9 @@ This is the date where the release content is frozen, that is, no new major
 content will be accepted. This is necessary to allow time for the new features
 to be fully tested. Any defects found will be evaluated to be included or not,
 based on how close the release milestone is, and how much the defect impacts
-other components and features. Feature freeze will occur 4 weeks before the
-release milestone.
-
-How the release freeze will be done with regard to freeze and branch
-immediately or to freeze and test, branching on the release date is still TBD.
+other components and features. Feature freeze will occur 2 weeks before the
+release milestone. Release tagging/branching can accommodate master development
+efforts to continue while a release candidate is being tested.
 
 The [security working group][] should provide guidance to the
 community about security aspects of the planned release.  The idea is
@@ -131,6 +129,8 @@ are also available for new community members looking for a new project to
 drive if none of the current work is within their expertise.
 
 ### Release Management Tools
-We are initially using a Google spreadsheet, but the desire is to move to a
-better tool to track and manage content and schedules. Several have been
-proposed but selection is still TBD.
+Initially a Google spreadsheet was used, then Github issues/labels, but neither
+found acceptance or traction in the community. Currently broad features are
+listed in the wiki:
+
+https://github.com/openbmc/openbmc/wiki/Current-Release-Content
