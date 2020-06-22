@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03dbe325_cacc6384",
+        "filename": "designs/admin-account.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-06-22T14:58:04Z",
+      "side": 1,
+      "message": "Isn\u0027t this the \u0027wheel\u0027 group?  AFAIK, only Debian distributions have a group called \u0027sudo\u0027.",
+      "range": {
+        "startLine": 41,
+        "startChar": 31,
+        "endLine": 41,
+        "endChar": 35
+      },
+      "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f42a9332_ea57390e",
+        "filename": "designs/admin-account.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-06-22T14:58:04Z",
+      "side": 1,
+      "message": "I don\u0027t see anything here to require logging of sudo operations.  If all we\u0027re doing is requiring someone to insert \u0027sudo\u0027 in front of \u0027sudo /bin/bash\u0027, this is a whole lot of work for nothing in my opinion.  We should have a requirement in the design that all \u0027sudo\u0027 operations are logged to journal/syslog.\n\nI would also suggest that we consider prohibiting \u0027sudo \u003cshell\u003e\u0027 operations rather than allowing all commands, so that we get better logging on what is being ran and the logging isn\u0027t subverted by someone running \u0027sudo /bin/bash\u0027.",
+      "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fe431eb_eda020c1",
+        "filename": "designs/admin-account.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-06-22T14:58:04Z",
+      "side": 1,
+      "message": "Why?  I don\u0027t know what \"and enabled later\" means here.  Why not just enable it immediately?",
+      "range": {
+        "startLine": 91,
+        "startChar": 62,
+        "endLine": 92,
+        "endChar": 52
+      },
+      "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f8fe118_53fcb1c5",
+        "filename": "designs/admin-account.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-06-22T14:58:04Z",
+      "side": 1,
+      "message": "Do we need another option for it?  Shouldn\u0027t this be included in the option which switches to an \u0027admin\u0027 account?",
+      "range": {
+        "startLine": 94,
+        "startChar": 3,
+        "endLine": 94,
+        "endChar": 61
+      },
+      "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9e89755_df2ff243",
+        "filename": "designs/admin-account.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-06-22T14:58:04Z",
+      "side": 1,
+      "message": "Another alternative would be to prohibit direct escalation to root entirely.  Tools like `systemctl` already have facilities to prompt for group membership and/or passwords to confirm doing operations which would require root access.  In what other cases do we need to allow root?",
+      "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08328003_f9368824",
+        "filename": "designs/admin-account.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-06-22T14:58:04Z",
+      "side": 1,
+      "message": "I think you should list the impacts to development here.  Today developers can scp test / development programs on and run them.  There is some impact to those workflows.",
+      "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
