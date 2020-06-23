@@ -49,6 +49,9 @@ contain hardware callouts.
   - The chassis/host instance pair will not be allowed to power on until
     the log that caused the halt is resolved or deleted
       - A BMC reset will clear this power on prevention
+- Ensure the mechanism used to halt firmware on inventory callouts can also be
+  utilized by phosphor-logging extensions to halt firmware for other causes
+  - These causes will be defined within the extensions documentation
 - Quiesce the associated host during this failure
 
 **Special Note:** Initially the associated host and chassis will be hard coded to
@@ -98,6 +101,17 @@ The goal is to build upon this concept when future design work is done to allow
 developers to associate certain error logs with causing a halt to the system
 until a log is handled.
 
+## Host Errors
+
+In certain scenarios, it is desirable to also halt the boot, and prevent it
+from rebooting, when the host sends down certain errors to the BMC.
+
+These errors may be of SEL format, or may be OEM specific, such as the
+[PEL format][5] used by IBM.
+
+The interfaces provided within phosphor-logging to handle the hardware callout
+scenarios can be repurposed for this use case.
+
 ## Alternatives Considered
 Currently this feature is a part of the base phosphor-logging design. If no
 one other then IBM sees value, we could roll this into the PEL-specific
@@ -126,3 +140,4 @@ appropriately.
 [2]: https://github.com/openbmc/phosphor-settingsd
 [3]: https://github.com/openbmc/docs/blob/master/architecture/object-mapper.md#associations
 [4]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Common/Callout/README.md
+[5]: https://github.com/openbmc/phosphor-logging/blob/master/extensions/openpower-pels/README.md
