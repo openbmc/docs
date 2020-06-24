@@ -14,7 +14,7 @@ userguide.pdf: userguide/userguide.tex
 	$(tex) $(tflags) $^
 	$(tex) $(tflags) $^
 
-userguide/userguide.tex: rest-api.tex host-management.tex console.tex code-update/code-update.tex
+userguide/userguide.tex: rest-api.tex host-management.tex console.tex architecture/code-update/code-update.tex
 
 %.tex: %.md
 	pandoc -o $@ $^

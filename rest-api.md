@@ -296,7 +296,7 @@ or an error message
 ```
 
 For more details on uploading and updating software, see:
-https://github.com/openbmc/docs/tree/master/code-update
+https://github.com/openbmc/docs/tree/master/architecture/code-update
 
 ## Event subscription protocol
 It is possible to subscribe to events, of interest, occurring on the BMC.

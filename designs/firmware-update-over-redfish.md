@@ -229,7 +229,7 @@ firmware, these must pass. Also unit tests must be written with the required
 D-Bus API's mocked to ensure proper code coverage.
 
 [1]: https://redfish.dmtf.org/
-[2]: https://github.com/openbmc/docs/blob/master/code-update/ubi-code-update.md#steps-to-update
+[2]: https://github.com/openbmc/docs/blob/master/architecture/code-update/code-update.md#steps-to-update
 [3]: http://redfish.dmtf.org/schemas/v1/UpdateService.json
 [4]: http://redfish.dmtf.org/schemas/v1/UpdateService.v1_4_0.json#/definitions/UpdateService
 [5]: https://www.supermicro.com/manuals/other/RedfishRefGuide.pdf

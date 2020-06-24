@@ -35,7 +35,7 @@ These documents contain details on developing OpenBMC code itself
 These documents describe how to use OpenBMC, including using the programmatic
 interfaces to an OpenBMC system.
 
- - [code-update](code-update): Updating OpenBMC and host platform firmware
+ - [code-update](architecture/code-update): Updating OpenBMC and host platform firmware
 
  - [console.md](console.md): Using the host console
 

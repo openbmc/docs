@@ -45,7 +45,7 @@ Follow links to learn more about OpenBMC features:
 [D-Bus Object Mapper]: https://github.com/openbmc/docs/blob/master/architecture/object-mapper.md
 [Entity manager]: https://github.com/openbmc/entity-manager/blob/master/README.md
 [Factory reset]: https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/Common/FactoryReset/README.md
-[Firmware update support]: https://github.com/openbmc/docs/blob/master/code-update/code-update.md
+[Firmware update support]: https://github.com/openbmc/docs/blob/master/architecture/code-update/code-update.md
 [Hardware Diagnostics]: https://github.com/openbmc/openpower-hw-diags/blob/master/README.md
 [Host management]: https://github.com/openbmc/docs/blob/master/host-management.md
 [Host management REST APIs]: https://github.com/openbmc/docs/blob/master/host-management.md
