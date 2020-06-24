@@ -76,6 +76,23 @@
     },
     {
       "key": {
+        "uuid": "0c48d027_af63fd58",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000539
+      },
+      "writtenOn": "2020-06-24T17:12:58Z",
+      "side": 1,
+      "message": "Do we consider chaining virtual sensors? For example physical sensor 1 and 2 generates virtual sensor 1 that we need, and we also need virtual sensor 2 generated from virtual sensor 1 and physical sensor 3. If we don\u0027t consider chaining at the moment, can we make a note to architecture the code so that it would be easy to be extended for chaining?",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1314d27f_b64d8b98",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -110,6 +127,23 @@
     },
     {
       "key": {
+        "uuid": "f7203069_82234435",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000539
+      },
+      "writtenOn": "2020-06-24T17:12:58Z",
+      "side": 1,
+      "message": "Do we prefer the variables to have dollar sign before them? Do we need to support parentheses and functions like max(), min()? One of my concerns with JSON config file is that we may be trying to implement a script language parser in every daemon reading them. And one of my asks on sensor aggregation is to get the maximum temperature reading among dozens of them to save sensor number, especially for IPMI sensor space. In this design, Do we consider the functionality to hide them in dbus when superseded by a virtual sensor?",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1a9590c4_5519d016",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -121,6 +155,41 @@
       "writtenOn": "2020-06-09T19:13:36Z",
       "side": 1,
       "message": "\"Val\": \"/xyz/openbmc_project/sensor/temperature/\"Inlet_Temp\"",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33aafb24_77edcbb8",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000539
+      },
+      "writtenOn": "2020-06-24T17:12:58Z",
+      "side": 1,
+      "message": "Agree. I\u0027d like the virtual sensor not bidden to individual sensors.",
+      "parentUuid": "1a9590c4_5519d016",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80f3bc56_60bbb09d",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000539
+      },
+      "writtenOn": "2020-06-24T17:12:58Z",
+      "side": 1,
+      "message": "I\u0027m too familiar with stuffs with dbus; does that mean if we drop the \u0027Path\u0027 parameter in the design, either we have to specify which sensor change event to listen to, or we are getting much more sensor update frequency with this virtual sensor due to listening to update events of multiple sensors?",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
