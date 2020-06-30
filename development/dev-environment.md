@@ -80,7 +80,7 @@ onto your computer (Mac, Windows, Linux)
 1. Download latest openbmc/qemu fork of QEMU application
 
   ```
-  wget https://openpower.xyz/job/openbmc-qemu-build-merge-x86/lastSuccessfulBuild/artifact/qemu/arm-softmmu/qemu-system-arm
+  wget https://jenkins.openbmc.org/job/latest-qemu-x86/lastSuccessfulBuild/artifact/qemu/arm-softmmu/qemu-system-arm
 
   chmod u+x qemu-system-arm
   ```
@@ -88,7 +88,7 @@ onto your computer (Mac, Windows, Linux)
 2. Download the Romulus image.
 
   ```
-  wget https://openpower.xyz/job/openbmc-build/distro=ubuntu,label=builder,target=romulus/lastSuccessfulBuild/artifact/deploy/images/romulus/obmc-phosphor-image-romulus.static.mtd
+  wget https://jenkins.openbmc.org/job/latest-master/label=docker-builder,target=romulus/lastSuccessfulBuild/artifact/openbmc/build/tmp/deploy/images/romulus/obmc-phosphor-image-romulus.static.mtd
   ```
 
 3. Start QEMU with downloaded Romulus image
@@ -137,8 +137,7 @@ and directories.
   mkdir -p ~/sdk
   cd ~/sdk
 
-  wget https://openpower.xyz/job/openbmc-build-sdk/distro=ubuntu,target=romulus/lastSuccessfulBuild/artifact/deploy/sdk/oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
-
+  wget https://jenkins.openbmc.org/job/latest-master-sdk/label=docker-builder,target=romulus/lastSuccessfulBuild/artifact/deploy/sdk/oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
   chmod u+x oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
   ```
 
