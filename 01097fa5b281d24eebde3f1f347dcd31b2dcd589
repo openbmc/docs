@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "31233887_f8abe1ea",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-06-30T00:56:03Z",
+      "side": 1,
+      "message": "1. This sensor exists today in dbus-sensors, and has quite a bit of state for handling power state, fans that are dual rotor, and sensor error conditions.  Handling all those states properly in a generic case here would be difficult, if not impossible.\n2. This seems like a specific case that ADCSensor could simply have added to its implementation.  The current ADC sensor takes \"Index\": 0 to define which input to use, \"DiffIndex\": 1 could be added as an optional parameter to support differential mode.  In this way, for the ADCs that actually support differential measurement, ADCSensor can do that in the ADC preamp hardware, instead of relying on software.  In the proposal you\u0027ve given, you\u0027re locked into software only, and you will have unintended noise skew between samples when the readings change rapidly.  Double check with your hardware engineers if back to back samples are clean enough to be compared, and they didn\u0027t intend for you to use the differential mode.\n3. You haven\u0027t defined any integral operators, or defined how you would time bound them for what you would need that to do power consumption measurements from a current monitor.  With that said, I think that\u0027s much better done in code, in the relevant daemon that already knows the sample rate, and can update the value much more accurately.  Also, considering this would likely need to persist somewhere to be accurate between bmc reboots, again, the virtual sensor daemon seems like the wrong place to do doing that.\n4. (trying to remember thermodynamics class from college)  Yep, energy transfer from a flowing liquid is a 3rd order transfer function of the flow rate.  Of all these cases, this seems like the best fit for something like this proposal, but it seems easily solved in code with a declaration of 3 coefficients, as well as sensor names in a config file.  If you did that it would be, better documented (in code), and easier to debug.\n\nFor what it\u0027s worth I think adding code to the appropriate place is much easier in the long run (and more efficient).",
+      "parentUuid": "01ec8842_3630d39c",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0e7d1c54_3933c5b2",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -124,6 +142,23 @@
         "endLine": 20,
         "endChar": 6
       },
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2312c178_523d1038",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-06-30T00:56:03Z",
+      "side": 1,
+      "message": "try a little bit here.  Some references on existing solutions?  A link to the wiki page for how fluid transfer is the cubic of the flow rate?",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -255,6 +290,23 @@
     },
     {
       "key": {
+        "uuid": "8418be69_f3b8311a",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-06-30T00:56:03Z",
+      "side": 1,
+      "message": "This is 2X the dbus transactions on an already overworked bus.  This wont scale at all for systems with lots of sensors.",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1314d27f_b64d8b98",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -283,6 +335,24 @@
       "writtenOn": "2020-06-26T23:17:04Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "1314d27f_b64d8b98",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "620f36fa_fd65c895",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-06-30T00:56:03Z",
+      "side": 1,
+      "message": "Entity manager has a very similar sensor for calculating exit air temp, and does so by simply requiring the sensor names as input.  Are there enough cases to really need a new daemon and justify the dbus overhead that having a separate virtual sensor daemon creates?  I\u0027m imagining a system that I\u0027ve tuned, with every sensor having some kind of simple offset.  Sensor-\u003evirtual-\u003edbus for every single one seems like a lot of extra overhead.",
       "parentUuid": "1314d27f_b64d8b98",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -360,6 +430,23 @@
     },
     {
       "key": {
+        "uuid": "fa2416e8_67150c09",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-06-30T00:56:03Z",
+      "side": 1,
+      "message": "If you\u0027re going to define a DSL, you need to do a better job of specifying the syntax rules for it.  What types are allowed?  Only int, or bool as well?  What operators are allowed?  What\u0027s the operator precedence?  What precision are the numbers calculated?  Does it support float values?  Strings?",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1a9590c4_5519d016",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -413,6 +500,41 @@
     },
     {
       "key": {
+        "uuid": "0a91ddc1_126c52d3",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-06-30T00:56:03Z",
+      "side": 1,
+      "message": "What is the behavior if a sensor doesn\u0027t exist?",
+      "parentUuid": "1a9590c4_5519d016",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "822026f8_64a753d2",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-06-30T00:56:03Z",
+      "side": 1,
+      "message": "Lots of questions still.  How do you plan to hide the \"real\" sensor values from user-facing interfaces?  Have you done any performance benchmarking to show this is possible?",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "80f3bc56_60bbb09d",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -460,6 +582,23 @@
       "side": 1,
       "message": "So now path has been covered in parameter itself. Every parameter would be considered as either path or absolute value.",
       "parentUuid": "80f3bc56_60bbb09d",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67e8117e_35759e7c",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-06-30T00:56:03Z",
+      "side": 1,
+      "message": "With respect, you can do better than this.  Off the top of my head:\n1. You\u0027re creating an arbitrary expression parser.  It will need to be fuzzed.\n2. You need a test for each possible operator, as well as operator chaining order.\n3. You will need to simulate sensors in error states.\n4. You will need to simulate overflows.\n5. You will need to test that webui, Redfish, rest-dbus, and others don\u0027t display the child sensors that make up your \"virtual sensor\".\n6. You will need to performance test it with reasonable numbers of sensors running through it.",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
