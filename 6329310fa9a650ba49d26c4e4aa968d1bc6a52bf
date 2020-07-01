@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "13df20f6_b39f0234",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-01T02:09:25Z",
+      "side": 1,
+      "message": "This is the generic case of the differential ADC issue that I mentioned in another comment.  In some cases, like CFM measurement, it\u0027s tolerable (and realistically, needs a low pass filter on the output anyway, to account for fan pressure waves, but I digress).\n\nThis is something that today is easily handled in code, based on physical assumptions in the measurement it\u0027s trying to do, and can account for things like sample rate and sample hold delays.  I\u0027m not sure how you would handle that in a daemon like this.",
+      "parentUuid": "421b6ed2_e0d8b94b",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 52
+      },
+      "revId": "6329310fa9a650ba49d26c4e4aa968d1bc6a52bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "087feefa_5c02d24f",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 3
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "7f2996fd_280f57c1",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-01T02:09:25Z",
+      "side": 1,
+      "message": "I had assumed Vijay would use some combination of bison/flex or other parsers.  The exact parser to use feels like an implementation detail.",
+      "parentUuid": "087feefa_5c02d24f",
+      "revId": "6329310fa9a650ba49d26c4e4aa968d1bc6a52bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f4607ef5_60cd8fab",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 3
@@ -53,6 +95,30 @@
       "writtenOn": "2020-06-30T15:16:54Z",
       "side": 1,
       "message": "Have you considered this: https://lists.ozlabs.org/pipermail/openbmc/2020-January/020394.html ?",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 4
+      },
+      "revId": "6329310fa9a650ba49d26c4e4aa968d1bc6a52bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dae18332_f9c72658",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-01T02:09:25Z",
+      "side": 1,
+      "message": "I don\u0027t think telemetry solves it.  If you look at Vijays examples, he\u0027s trying to do:\n1. Transfer functions (offsets, gains, ect) to go from electrical readings to calibrated \"real\" values.\n2. Equations to calculate an differential or integral order above or below what the physical reading is (like going from current, to current/time (watts) or current * voltage * time (Power VA).\n3. Combining a lot of sensors, to form a totally new measurement (ex, combining fan speeds, power usage, and incoming air temp to form a new sensor, exit air temp)",
+      "parentUuid": "f4607ef5_60cd8fab",
       "range": {
         "startLine": 80,
         "startChar": 0,
