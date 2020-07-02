@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ba0d32f7_08eebfe0",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2020-07-02T01:43:27Z",
+      "side": 1,
+      "message": "I agree, I have to think on synchronization of all dependent sensor before calculating this sensor, I am not sure what approach will be best for this synchronization. But my assumption is if all other sensors are updated at the same rate then I would have fresh data if I add small delay.\n\nYes you are right about shortest period.",
+      "parentUuid": "421b6ed2_e0d8b94b",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 52
+      },
+      "revId": "6329310fa9a650ba49d26c4e4aa968d1bc6a52bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "087feefa_5c02d24f",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 3
@@ -78,6 +102,24 @@
       "side": 1,
       "message": "I had assumed Vijay would use some combination of bison/flex or other parsers.  The exact parser to use feels like an implementation detail.",
       "parentUuid": "087feefa_5c02d24f",
+      "revId": "6329310fa9a650ba49d26c4e4aa968d1bc6a52bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9eee436_08de344d",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2020-07-02T01:43:27Z",
+      "side": 1,
+      "message": "We have some parser code to do this",
+      "parentUuid": "7f2996fd_280f57c1",
       "revId": "6329310fa9a650ba49d26c4e4aa968d1bc6a52bf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -119,6 +161,30 @@
       "side": 1,
       "message": "I don\u0027t think telemetry solves it.  If you look at Vijays examples, he\u0027s trying to do:\n1. Transfer functions (offsets, gains, ect) to go from electrical readings to calibrated \"real\" values.\n2. Equations to calculate an differential or integral order above or below what the physical reading is (like going from current, to current/time (watts) or current * voltage * time (Power VA).\n3. Combining a lot of sensors, to form a totally new measurement (ex, combining fan speeds, power usage, and incoming air temp to form a new sensor, exit air temp)",
       "parentUuid": "f4607ef5_60cd8fab",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 4
+      },
+      "revId": "6329310fa9a650ba49d26c4e4aa968d1bc6a52bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "598e43ac_56345f1c",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2020-07-02T01:43:27Z",
+      "side": 1,
+      "message": "It caters a simple arithmetic calculation based on predefined algorithm.",
+      "parentUuid": "dae18332_f9c72658",
       "range": {
         "startLine": 80,
         "startChar": 0,
