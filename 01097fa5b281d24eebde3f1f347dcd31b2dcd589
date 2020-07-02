@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "c4f18866_436c1626",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2020-07-02T01:35:33Z",
+      "side": 1,
+      "message": "I am not trying to make it complex here, the whole idea here is create a new sensor and calculates its value based on  existing sensor and some other parameters. This can be max of multiple sensor along with some coefficient.",
+      "parentUuid": "31233887_f8abe1ea",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0e7d1c54_3933c5b2",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -307,6 +325,24 @@
     },
     {
       "key": {
+        "uuid": "52a1abc5_90ee9e87",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2020-07-02T01:35:33Z",
+      "side": 1,
+      "message": "other options here as polling at egular interval and that way we may end up having very old data for chained sensors. Given an example if a sensor nested virtual sensors and each individual sensors are polled every 10 second then based on depth of nesting, new sensor may have multiplied delay in current values.",
+      "parentUuid": "8418be69_f3b8311a",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1314d27f_b64d8b98",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -354,6 +390,24 @@
       "side": 1,
       "message": "Entity manager has a very similar sensor for calculating exit air temp, and does so by simply requiring the sensor names as input.  Are there enough cases to really need a new daemon and justify the dbus overhead that having a separate virtual sensor daemon creates?  I\u0027m imagining a system that I\u0027ve tuned, with every sensor having some kind of simple offset.  Sensor-\u003evirtual-\u003edbus for every single one seems like a lot of extra overhead.",
       "parentUuid": "1314d27f_b64d8b98",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "414bbc6b_cfe1edfe",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2020-07-02T01:35:33Z",
+      "side": 1,
+      "message": "I agree but this is not only handling exit airflow, that was just an example, it simply does airthmatic calculation based on configured function.",
+      "parentUuid": "620f36fa_fd65c895",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -447,6 +501,24 @@
     },
     {
       "key": {
+        "uuid": "2b7e9b7e_4c6bc346",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2020-07-02T01:35:33Z",
+      "side": 1,
+      "message": "Yes, I have not yet thought of this advanced feature in first phase. Yes we can certainly define syntax and as you know design document can change once you do implementation. Because you have clear picture of data structure.",
+      "parentUuid": "fa2416e8_67150c09",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1a9590c4_5519d016",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -518,6 +590,24 @@
     },
     {
       "key": {
+        "uuid": "3ca719e1_ea648b01",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2020-07-02T01:35:33Z",
+      "side": 1,
+      "message": "My understanding is we should not create this virtual sensor if any of given parameter is invalid. I am open for all the suggestions and implementing those.",
+      "parentUuid": "0a91ddc1_126c52d3",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "822026f8_64a753d2",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -529,6 +619,24 @@
       "writtenOn": "2020-06-30T00:56:03Z",
       "side": 1,
       "message": "Lots of questions still.  How do you plan to hide the \"real\" sensor values from user-facing interfaces?  Have you done any performance benchmarking to show this is possible?",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f73ec0f1_e3ab6de8",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2020-07-02T01:35:33Z",
+      "side": 1,
+      "message": "Honestly speaking, haven\u0027t thought of hiding existing sensor and there is no code yet so no performance evaluation.",
+      "parentUuid": "822026f8_64a753d2",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -599,6 +707,24 @@
       "writtenOn": "2020-06-30T00:56:03Z",
       "side": 1,
       "message": "With respect, you can do better than this.  Off the top of my head:\n1. You\u0027re creating an arbitrary expression parser.  It will need to be fuzzed.\n2. You need a test for each possible operator, as well as operator chaining order.\n3. You will need to simulate sensors in error states.\n4. You will need to simulate overflows.\n5. You will need to test that webui, Redfish, rest-dbus, and others don\u0027t display the child sensors that make up your \"virtual sensor\".\n6. You will need to performance test it with reasonable numbers of sensors running through it.",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb730748_06b264d1",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2020-07-02T01:35:33Z",
+      "side": 1,
+      "message": "I agree Ed, all of these are valid points. It would be much easier for me to address once I have some simple implementation.",
+      "parentUuid": "67e8117e_35759e7c",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
