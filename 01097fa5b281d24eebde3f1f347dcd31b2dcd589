@@ -126,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "2a0d72ed_5181a5f3",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-03T05:45:15Z",
+      "side": 1,
+      "message": "Vijay,\nI get you\u0027re not making this too complex, but my point is you\u0027re over simplifying it to the point of it not being useful.  I\u0027m not sure how you\u0027d properly handle error states, or power states on any of these sensors.\n\nAmithash\nI\u0027m not following?  Many ADCs (BMC and non BMC alike) have a built in differential mode, that generally takes 2 adjacent GPIO bank pins, and turns them into a single ADC differential channel.  I\u0027m not recommending you change your hardware, just that you use the ADC the way its intended, rather than relying on the timing of 2 independent samples.\nIf your IC ADCs aren\u0027t capable of that mode, it\u0027s still valid, as other ADCs might have that mode, so we don\u0027t want to duplicate the \"how to do a differential measurement\" code in 2 places.  Also, done in the ADC sensor, in the case where your IC doesn\u0027t support it, it can be sure to synchronize the two ADC channel scans to reduce the skid between them.",
+      "parentUuid": "102c33ad_d730621b",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0e7d1c54_3933c5b2",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -361,6 +379,24 @@
     },
     {
       "key": {
+        "uuid": "4f38398c_3a8ce34e",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-03T05:45:15Z",
+      "side": 1,
+      "message": "Polling at a regular interval still results in 2X the number of dbus paths, and significantly more dbus traffic.  A sensor that updates every 10 seconds isn\u0027t very useful for thresholding or fan control, as it can easily outrun most thermal masses in a common server.",
+      "parentUuid": "52a1abc5_90ee9e87",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1314d27f_b64d8b98",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -426,6 +462,24 @@
       "side": 1,
       "message": "I agree but this is not only handling exit airflow, that was just an example, it simply does airthmatic calculation based on configured function.",
       "parentUuid": "620f36fa_fd65c895",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccc8d055_7b1a2861",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-03T05:45:15Z",
+      "side": 1,
+      "message": "I get that, but as I said in another comment, you\u0027ve oversimplified it.  It would be good if you walked through something that already does this (like the CFM sensor) and make sure that every branch and error in it is covered in your design.",
+      "parentUuid": "414bbc6b_cfe1edfe",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -555,6 +609,24 @@
     },
     {
       "key": {
+        "uuid": "40775609_98228c0d",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-03T05:45:15Z",
+      "side": 1,
+      "message": "This kind of thing is exactly what the design doc is for.  The difference between a toy parser, and something that actually handles sub expressions and operator precedence is pretty vast.  Knowing that you need one up front will save you time on the backend.  If you disagree, feel free to go ahead, but I believe that these kinds of things will need to be better defined before it hits master.\n\nConsidering binary free space is at an all time low in the BMC these days, I would go with whatever parser compiles to the smallest binary.",
+      "parentUuid": "2fdf3a29_50e9775a",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1a9590c4_5519d016",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -644,6 +716,24 @@
     },
     {
       "key": {
+        "uuid": "4ffdb49b_cc2635d7",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-03T05:45:15Z",
+      "side": 1,
+      "message": "I was hoping for a better answer.  Please think about it some more.  Proper error handling is a significant portion of most sensor code in openbmc.  If we were simply reading sensors, the code would be much much much simpler.",
+      "parentUuid": "3ca719e1_ea648b01",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "822026f8_64a753d2",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -673,6 +763,24 @@
       "side": 1,
       "message": "Honestly speaking, haven\u0027t thought of hiding existing sensor and there is no code yet so no performance evaluation.",
       "parentUuid": "822026f8_64a753d2",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66fd67f7_4877f4e2",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-03T05:45:15Z",
+      "side": 1,
+      "message": "Definitely something you will need to research.  I suspect that \"hiding\" sensors and having a duplicate of most/all sensor is not going to pan out performance wise, but you\u0027re free to come to your own conclusions.",
+      "parentUuid": "f73ec0f1_e3ab6de8",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -761,6 +869,24 @@
       "side": 1,
       "message": "I agree Ed, all of these are valid points. It would be much easier for me to address once I have some simple implementation.",
       "parentUuid": "67e8117e_35759e7c",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68c26af6_f41198ec",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-03T05:45:15Z",
+      "side": 1,
+      "message": "Frankly, it frustrates me, as it feels like you didn\u0027t even try on this section.  Sure, a simple implementation would be great, but if you don\u0027t plan on testing it, then it\u0027s going to be a hard sell that it should be merged.",
+      "parentUuid": "bb730748_06b264d1",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
