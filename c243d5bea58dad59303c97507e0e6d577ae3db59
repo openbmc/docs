@@ -48,6 +48,99 @@
     },
     {
       "key": {
+        "uuid": "e35a445d_322a1434",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-07-14T17:22:29Z",
+      "side": 1,
+      "message": "I don\u0027t recall what reasons were cited when the ipmbbridged was created. I would be fine if they were split apart.",
+      "parentUuid": "30f930f1_7ef22885",
+      "range": {
+        "startLine": 31,
+        "startChar": 27,
+        "endLine": 31,
+        "endChar": 41
+      },
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b89dafb1_d193f87d",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-07-14T17:22:29Z",
+      "side": 1,
+      "message": "`\"host\" : 1`",
+      "range": {
+        "startLine": 71,
+        "startChar": 57,
+        "endLine": 71,
+        "endChar": 67
+      },
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d58d0c1_3995f329",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-07-14T17:22:29Z",
+      "side": 1,
+      "message": "`\"host\" : 1`",
+      "range": {
+        "startLine": 72,
+        "startChar": 5,
+        "endLine": 72,
+        "endChar": 15
+      },
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b1b2315_c5b01842",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-07-14T17:22:29Z",
+      "side": 1,
+      "message": "How are RMCP+ commands differentiating what host? Are they to use LUN? If so, maybe ipmbbridged should use LUN as well?\n\nIf not, then what? It would be nice to be able to use a common mechanism.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 9
+      },
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d2918e81_4118885b",
         "filename": "designs/multihost-ipmi-design.md",
         "patchSetId": 2
@@ -65,6 +158,47 @@
         "endLine": 93,
         "endChar": 62
       },
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d4d3ae0_c5b2bda5",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-07-14T17:22:29Z",
+      "side": 1,
+      "message": "The set selector is to choose which item, while the block selector is to choose which block within that item for large items. It has nothing to do with multiple host support.\n\nI don\u0027t think IPMI was ever designed to handle this sort of host aggregation. There is also LUN in every command, but that only goes to 4, which could limit high-density multi-host situations.\n\nRequiring the hosts to do something special (pass an ID or LUN or whatever) for every command seems like it could break things. If the ID is already implicitly encoded in the link the command was received on, why not use that?",
+      "parentUuid": "d2918e81_4118885b",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 62
+      },
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88bc3881_7aaf6933",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2020-07-14T17:22:29Z",
+      "side": 1,
+      "message": "LUN? multiple instances of ipmid? Please do some discovery in these areas.\n\nSurely there were other alternatives considered. If you have not considered any other alternatives, it is hard to convince oneself that this is the best solution.",
       "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
