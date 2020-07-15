@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6d172652_7b25380b",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000866
+      },
+      "writtenOn": "2020-07-15T17:49:14Z",
+      "side": 1,
+      "message": "There are many oem commands specific to the Host, for example DIMM infor, POST code buffer for a host, Processor info etc.",
+      "parentUuid": "8c059c32_1f70b860",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 24
+      },
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30f930f1_7ef22885",
         "filename": "designs/multihost-ipmi-design.md",
         "patchSetId": 2
@@ -69,6 +93,30 @@
       "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8833b777_4844bce6",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000866
+      },
+      "writtenOn": "2020-07-15T17:49:14Z",
+      "side": 1,
+      "message": "We tried using separate instances of ipmbbridged, each instance will have a ipmi channel assigned. There are 2 things considered, 1. only 8 channels can be configured not more than that. 2. Running multiple instances with no advantage, single instance with the config file does the same.",
+      "parentUuid": "e35a445d_322a1434",
+      "range": {
+        "startLine": 31,
+        "startChar": 27,
+        "endLine": 31,
+        "endChar": 41
+      },
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -141,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "d68643c2_ca2d0ee4",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000866
+      },
+      "writtenOn": "2020-07-15T17:49:14Z",
+      "side": 1,
+      "message": "We have addressed only the in-band ipmi communication with this design. Can we take up the out of band little later?\n\nI dont think LUNs can be used as we have only 4 LUNs and 2 is already assigned for BMC and SMIC. only remaining 2 can be used and that wont be sufficient for multi-host.",
+      "parentUuid": "5b1b2315_c5b01842",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 9
+      },
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2918e81_4118885b",
         "filename": "designs/multihost-ipmi-design.md",
         "patchSetId": 2
@@ -188,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "e615e954_cf8a2074",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000866
+      },
+      "writtenOn": "2020-07-15T17:49:14Z",
+      "side": 1,
+      "message": "Sorry for the confusion here, I did not mean the Get/Set system boot option. There is a different oem command to get/set boot sequence of individual host. Each host information is stored in a different array in BMC. Based on which host is requesting the data will be fetched and responded from BMC.",
+      "parentUuid": "3d4d3ae0_c5b2bda5",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 62
+      },
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88bc3881_7aaf6933",
         "filename": "designs/multihost-ipmi-design.md",
         "patchSetId": 2
@@ -199,6 +295,24 @@
       "writtenOn": "2020-07-14T17:22:29Z",
       "side": 1,
       "message": "LUN? multiple instances of ipmid? Please do some discovery in these areas.\n\nSurely there were other alternatives considered. If you have not considered any other alternatives, it is hard to convince oneself that this is the best solution.",
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bccf756_c197d9dd",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000866
+      },
+      "writtenOn": "2020-07-15T17:49:14Z",
+      "side": 1,
+      "message": "We have considered other alternative approches as well. I Will update the details.",
+      "parentUuid": "88bc3881_7aaf6933",
       "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
