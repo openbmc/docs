@@ -492,6 +492,26 @@ Several parts are involved for LED.
 [phosphor-mrw-tools][13] from its MRW, see [Witherspoon example][14].
 
 
+***Support for JSON configuration file - Recommended***
+If the application wants to use the runtime JSON configuration instead of
+using generated code from yaml at build time, here are the steps.
+
+- Create a .bbappend file for phosphor-led-manager in the machine layer to install led-group-config.json into:
+  /usr/share/phosphor-led-manager/
+
+Example:
+FILES_${PN}-ledmanager += “\${bindir}/phosphor-ledmanager \${datadir}/${BPN}/led-group-config.json"
+
+do_install_append() {
+        install -d \$\{D}/\${datadir}/${BPN}
+        install -m 0755 ${WORKDIR}/led-group-config.json \${D}/\${datadir}/${BPN}/led-group-config.json
+}
+
+- Put this line in that .bbappend file
+EXTRA_OECONF += "--enable-use_json"
+
+Refer: [led-group-config.json][33] for an example json
+
 ### Inventories and other sensors
 
 Inventories, other sensors (e.g. CPU/DIMM temperature), and FRUs are defined
@@ -807,3 +827,4 @@ or button presses.
 [30]: https://github.com/openbmc/docs/blob/master/development/dev-environment.md
 [31]: https://github.com/openbmc/docs/blob/master/kernel-development.md
 [32]: https://github.com/openbmc/docs/blob/master/development/dev-environment.md
+[33]: https://github.com/openbmc/phosphor-led-manager/tree/master/example/led-group-config.json
