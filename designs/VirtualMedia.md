@@ -7,7 +7,7 @@ Primary assignee:
 None
 
 Other contributors:
-None
+Przemyslaw Czarnowski <przemyslaw.hawrylewicz.czarnowski@intel.com>
 
 Created:
 6/4/2019
@@ -237,7 +237,6 @@ next sections. And will be visible despite media is inserted or not.
             "@odata.id": "/redfish/v1/Managers/BMC/VirtualMedia/1"
         }
     ],
-    "Oem": { } ,
     "@odata.context": "/redfish/v1/$metadata#VirtualMediaCollection.VirtualMediaCollection",
     "@odata.id": "/redfish/v1/Managers/BMC/VirtualMedia"
 }
@@ -260,7 +259,13 @@ next sections. And will be visible despite media is inserted or not.
     "Inserted": true,
     "WriteProtected": false,
     "@odata.context": "/redfish/v1/$metadata#VirtualMedia.VirtualMedia",
-    "@odata.id": "/redfish/v1/Managers/BMC/VirtualMedia/ISO0"
+    "@odata.id": "/redfish/v1/Managers/BMC/VirtualMedia/ISO0",
+    "Oem": {
+        "OpenBMC": {
+             "@odata.type": "#OemVirtualMedia.v1_0_0.VirtualMedia",
+             "WebSocketEndpoint": "/nbd/0"
+        }
+    },
 }
 ```
 
@@ -275,6 +280,18 @@ differences as follows:
 | ConnectedVia         | "Applet"   | as described by DMTF spec        | applies only for connected media    |
 | TransferMethod       | "Stream"   | "Stream"                         | "upload" is not supported by design |
 | TransferProtocolType | "OEM"      | as described by DMTF spec        |                                     |
+
+#### Virtual Media OEM Extension
+
+Virtual Media schema is adapted to Legacy Mode where image is given by user
+directly via Redfish action and whole connection is processed between service
+and web server.
+
+For [Proxy Mode](#Proxy-Mode) nbd data is
+served by client web browser. Having multiple connections, in order to setup
+connection, client needs the information about the location of websocket
+created by web server. This value is exposed as OEM ``WebSocketEndpoint``
+property for each item.
 
 ### Inactivity timeout
 
