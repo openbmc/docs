@@ -357,6 +357,30 @@
     },
     {
       "key": {
+        "uuid": "a2a4fd05_00e38c64",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000866
+      },
+      "writtenOn": "2020-07-24T13:34:44Z",
+      "side": 1,
+      "message": "Hi Vernon, I have analyzed the RMCP+ commands, We will be able to use the same design proposed for ipmb channels for RMCP+ as well. The \"options\" parameter can be used for sending the host information. There will not be further changes required in ipmid. The net-ipmid can have multiple approaches to handle multi host Like 1. Virtual Ethernet interfaces - One virtual interface per host. 2. Different port numbers - Can have different port numbers for each host. 3. VLAN Id- VLAN IDs can be used to support multi host. Please suggest shall we proceed on ipmbbridged and ipmid changes.",
+      "parentUuid": "2d8a8991_7d44744a",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 9
+      },
+      "revId": "c243d5bea58dad59303c97507e0e6d577ae3db59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d2918e81_4118885b",
         "filename": "designs/multihost-ipmi-design.md",
         "patchSetId": 2
