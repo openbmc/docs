@@ -88,10 +88,7 @@ Ex: Updating the BIOS password should be support only before end of post.
 |                                             +--------------------------------+                                 |
 +----------------------------------------------------------------------------------------------------------------+
 ```
-
-
-
-##Intel uses the following logic
+## Intel uses the following logic
 
 BIOS send data in as Proprietary format to the BMC via IPMI interface.
 There are two types of proprietary XML format files in BIOS configuration.
@@ -125,7 +122,8 @@ non-volatile storage.
 Pending attributes list will be cleared whenever new attributes data received.
 
 ```
-#Intel uses the following logic for BIOS first boot
+Intel uses the following logic for BIOS first boot
+
    +---------------------------------------------------------------------------------------------------------------------+
    |                                                                                                                     |
    | +-----------------------+             +----------------------------------------------------------------------------+|
@@ -161,7 +159,8 @@ Pending attributes list will be cleared whenever new attributes data received.
    +---------------------------------------+-----------------------------------------------------------------------------+
 ```
 ```
-#Intel uses the following logic for BIOS reset
+Intel uses the following logic for BIOS reset
+
    +---------------------------------------------------------------------------------------------------------------------+
    |                                                                                                                     |
    | +-----------------------+             +----------------------------------------------------------------------------+|
@@ -197,7 +196,8 @@ Pending attributes list will be cleared whenever new attributes data received.
    +---------------------------------------+-----------------------------------------------------------------------------+
 ```
 ```
-#Intel uses the following logic for BIOS reset and BMC have new values
+Intel uses the following logic for BIOS reset and BMC have new values
+
    +---------------------------------------------------------------------------------------------------------------------+
    |                                                                                                                     |
    | +-----------------------+             +----------------------------------------------------------------------------+|
@@ -238,10 +238,8 @@ Pending attributes list will be cleared whenever new attributes data received.
    | +-----------------------+             |  +-------------------------------+         +-----------------------------+ ||
    |                                       +----------------------------------------------------------------------------+|
    +---------------------------------------+-----------------------------------------------------------------------------+
-
 ```
-
-##BIOS send the data in BIOS configuration PLDM via MCTP
+## BIOS send the data in BIOS configuration PLDM via MCTP
 
 BIOS should update the BIOS settings via Set BIOS table PLDM command-
 BIOS string table, Attribute name table, Attribute value table via MCTP.
@@ -261,8 +259,8 @@ non-volatile storage. PLDM daemon should preserve BIOS tables in non-volatile
 storage. RBC and PLDM should restored the data whenever BMC reset.
 
 
-
-#BIOS first boot
+## BIOS first boot
+```
    +--------------------------------------------------------------------------------------------------------------------+
    | +-----------------------+             +---------------------------------------------------------------------------+|
    | | BIOS                  |             |   BMC                                                                     ||
@@ -293,9 +291,10 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
    | +-----------------------+             |  +-------------------------------+         +-----------------------------+||
    |                                       +---------------------------------------------------------------------------+|
    +---------------------------------------+----------------------------------------------------------------------------+
+```
 
-
-#BIOS reset
+## BIOS reset
+```
    +--------------------------------------------------------------------------------------------------------------------+
    | +-----------------------+             +---------------------------------------------------------------------------+|
    | | BIOS                  |             |   BMC                                                                     ||
@@ -325,8 +324,10 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
    | +-----------------------+             |  +-------------------------------+         +-----------------------------+||
    |                                       +---------------------------------------------------------------------------+|
    +---------------------------------------+----------------------------------------------------------------------------+
+```
 
-##Complete BIOS BMC flow for BIOS configuration in deferred update model
+## Complete BIOS BMC flow for BIOS configuration in deferred update model
+
 ```
 +----------------------------------------+                    +----------------------------------------+
 |                BIOS                    |                    |                  BMC                   |
@@ -370,8 +371,7 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
 |  +----------------------------------+  |                    |                                        |
 +----------------------------------------+                    +----------------------------------------+
 ```
-
-##Complete BIOS BMC flow for BIOS configuration in immediate update model
+## Complete BIOS BMC flow for BIOS configuration in immediate update model
 ```
 +----------------------------------------+                    +----------------------------------------+
 |                BIOS                    |                    |                  BMC                   |
@@ -416,9 +416,7 @@ RBC should preserve the Pending Attributes list across the BMC reset and
 RBC should clear the Pending Attributes list whenever new AllBaseBIOSTables
 received from BIOS.
 
-
-#Redfish interfaces for remote Bios configuration
-
+## Redfish interfaces for remote Bios configuration
 ```
  +-----------------------------------------------------------------------------------------------------------+
  | +-------------------------+             +----------------------------------------------------------------+|
@@ -451,6 +449,7 @@ received from BIOS.
  |                                         +---------------------------------------------------------------+||
  +-----------------------------------------+-----------------------------------------------------------------+
 ```
+
 1. Get Current Attributes name and value list:
    Get the current BIOS settings attribute name and value pair list.
    GET Method - "https://<BMC IP address>/redfish/v1/Systems/system/Bios"
