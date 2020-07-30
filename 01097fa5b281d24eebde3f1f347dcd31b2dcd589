@@ -162,6 +162,24 @@
     },
     {
       "key": {
+        "uuid": "71eacbc7_41ccd293",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-30T14:23:27Z",
+      "side": 1,
+      "message": "With respect, we already have \"a way of recalculating existing sensors values with platform specific rules\" in a lot of the entity manager sensor types.  It\u0027s just baked into the sensors to avoid the overhead of extra dbus traffic.",
+      "parentUuid": "83630d29_c75a1f30",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0e7d1c54_3933c5b2",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -451,6 +469,24 @@
     },
     {
       "key": {
+        "uuid": "f24f91e6_de5927ca",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-30T14:23:27Z",
+      "side": 1,
+      "message": "Integrate these functions into the sensor implementations themselves, rather than making a generic, high overhead service.",
+      "parentUuid": "adc222cf_3f3f8527",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1314d27f_b64d8b98",
         "filename": "designs/virtual-sensors.md",
         "patchSetId": 1
@@ -552,6 +588,24 @@
       "side": 1,
       "message": "I will start with simple design and add more functionalities to get perfection.",
       "parentUuid": "ccc8d055_7b1a2861",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20a71860_e3b3535f",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-30T14:23:27Z",
+      "side": 1,
+      "message": "Please make sure that you\u0027ve added non-trivial error handling and performance before this gets merged.  I suspect those will be VERY difficult to retrofit in later.",
+      "parentUuid": "e19530ee_e7e02bf4",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -836,6 +890,24 @@
       "side": 1,
       "message": "If any of sensors doesn\u0027t exist then we can log as an error. I agree with you for proper error handling and I will give more thought on this",
       "parentUuid": "4ffdb49b_cc2635d7",
+      "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df817e2d_af85919b",
+        "filename": "designs/virtual-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-07-30T14:23:27Z",
+      "side": 1,
+      "message": "What if one of the sensors doesn\u0027t exist on purpose?  Like in the case of dual-rotor, or single-rotor fans.  You can\u0027t just blindly log an error.",
+      "parentUuid": "db2bf983_8aab155b",
       "revId": "01097fa5b281d24eebde3f1f347dcd31b2dcd589",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
