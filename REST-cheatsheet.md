@@ -71,7 +71,7 @@ Note: To keep the syntax below common between the phosphor-rest and bmcweb
 
 * Host hard power off:
    ```
-   $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Chassis.Transition.Off"}' https://${bmc}//xyz/openbmc_project/state/chassis0/attr/RequestedPowerTransition
+   $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Chassis.Transition.Off"}' https://${bmc}/xyz/openbmc_project/state/chassis0/attr/RequestedPowerTransition
    ```
 
 * Host power on:
