@@ -266,7 +266,6 @@ The host watchdog utilizes the generic [phosphor-watchdog][1] repository. The
 host watchdog service provides 2 files as configuration options into
 phosphor-watchdog:
 
-
     /lib/systemd/system/phosphor-watchdog@poweron.service.d/poweron.conf
     /etc/default/obmc/watchdog/poweron
 
