@@ -214,7 +214,7 @@ $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -d '{"da
 To issue a hard power off (accomplished by powering off the chassis):
 
 ```
-$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Chassis.Transition.Off"}' https://${bmc}//xyz/openbmc_project/state/chassis0/attr/RequestedPowerTransition
+$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Chassis.Transition.Off"}' https://${bmc}/xyz/openbmc_project/state/chassis0/attr/RequestedPowerTransition
 ```
 
 To reboot the host:
@@ -265,6 +265,7 @@ state, for example, attempting to reboot the system.
 The host watchdog utilizes the generic [phosphor-watchdog][1] repository. The
 host watchdog service provides 2 files as configuration options into
 phosphor-watchdog:
+
 
     /lib/systemd/system/phosphor-watchdog@poweron.service.d/poweron.conf
     /etc/default/obmc/watchdog/poweron
