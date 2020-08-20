@@ -46,6 +46,30 @@
       "revId": "b46dacacf4cc1da62dc516943719213adcd4b789",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b2092a8_632b8edd",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-08-20T12:27:06Z",
+      "side": 1,
+      "message": "\u003e As we responded in the earlier comment I do not think LUNs can be used as we have only 4 LUNs and 2 is already assigned for BMC and SMIC. only remaining 2 can be used and that wont be sufficient for multi-host.\n\nThanks for clarifying that LUN does not fit your usecase. \n\n\u003e As per my understanding netipmid is the bridge for all IPMI LAN packets, So proposing a design with netipmid. This design is similar to the ipmbbrige where we use a ipmb bus Id to get the host details. In the same manner the netipmid can get the host details from any one of the listed approaches. Please let me know if I am missing something.\n\nnetipmid instances are run typically per ethernet interface. Do you mean to run different instances of netipmid? If so, how does each instance forward host information to the ipmi daemon? \n\nAtleast for me this section is vague, it will need a block diagram and some more details on how the host information is forwarded by netipmid (instance/instances) to ipmid just like how ipmbbridged forwards the host specific information to ipmi daemon.",
+      "parentUuid": "8043d405_cb9b0de1",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 56
+      },
+      "revId": "b46dacacf4cc1da62dc516943719213adcd4b789",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
