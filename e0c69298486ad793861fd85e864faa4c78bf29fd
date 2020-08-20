@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2ba5d8c7_d211cb8d",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-08-20T19:01:22Z",
+      "side": 1,
+      "message": "We couldn\u0027t find the single host postcode design document in the openbmc/docs. Hence, this design document will be the first commit into the openbmc/docs.",
+      "parentUuid": "5fa8481d_e9007973",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 38
+      },
+      "revId": "e0c69298486ad793861fd85e864faa4c78bf29fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c115260c_dd2b12db",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "28f3a8e8_274b0370",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-08-20T19:01:22Z",
+      "side": 1,
+      "message": "Yes. The existing single host system service name will be changed as xyz.openbmc_project.State.Boot.Raw0.\n\nIn order to comply the existing naming convention as \u0027host0\u0027reserved for single host, changing the service name \"Raw\" as \"Raw0\". Also this is easily scalable to multi-host system.",
+      "parentUuid": "c115260c_dd2b12db",
+      "range": {
+        "startLine": 39,
+        "startChar": 38,
+        "endLine": 39,
+        "endChar": 72
+      },
+      "revId": "e0c69298486ad793861fd85e864faa4c78bf29fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c611375f_841e3641",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 3
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "6d6ec53b_2097db5a",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-08-20T19:01:22Z",
+      "side": 1,
+      "message": "The implementation in callback function is generic in the phoshor-host-postd to read the postcode.\n\nThe postcode is handled through Bridge IC(BIC) in OEM specific(Facebook) IPMI command.Hence, this needs to handled in OEM handler.",
+      "parentUuid": "c611375f_841e3641",
+      "revId": "e0c69298486ad793861fd85e864faa4c78bf29fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9d44e32_38b72cf3",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 3
@@ -79,6 +145,24 @@
       "revId": "e0c69298486ad793861fd85e864faa4c78bf29fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ef6b5c8_28672df6",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-08-20T19:01:22Z",
+      "side": 1,
+      "message": "Updated the document with below details.\n\nThe new method needs to be created for ipmisnoop based postcode implementation to interact between phosphor-host-postd and ipmi handler.\n\nThe new D-Bus method added in the below path,\n  https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Boot/Raw.interface.yaml\n\nmethods:\n    - name: readPostcode\n      description: \u003e\n          Method to get the post codes .\n      parameters:\n        - name: postcode\n          type: uint16\n          description: \u003e\n              postcode indicates which host postcode.\n        - name: host\n          type: uint16\n          description: \u003e\n              host indicates host number.",
+      "parentUuid": "f9d44e32_38b72cf3",
+      "revId": "e0c69298486ad793861fd85e864faa4c78bf29fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "49d93f02_10632239",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-08-20T19:01:22Z",
+      "side": 1,
+      "message": "updated in the design document.",
+      "parentUuid": "e2ed4f60_ab2cf21b",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 57
+      },
+      "revId": "e0c69298486ad793861fd85e864faa4c78bf29fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff741040_90c9c128",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 3
@@ -125,6 +233,30 @@
       "revId": "e0c69298486ad793861fd85e864faa4c78bf29fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc3e2bd3_052485cf",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-08-20T19:01:22Z",
+      "side": 1,
+      "message": "service name   -- xyz.openbmc_project.State.Boot.PostCode1 \nobject name    -- /xyz/openbmc_project/State/Boot/PostCode\nInterface name -- xyz.openbmc_project.State.Boot.PostCode\n\nroot@yosemitev2:/lib/systemd/system# busctl introspect xyz.openbmc_project.State.Boot.PostCode1 /xyz/openbmc_project/State/Boot/PostCode\nNAME                                     TYPE      SIGNATURE  RESULT/VALUE  FLAGS\norg.freedesktop.DBus.Introspectable      interface -          -             -\n.Introspect                              method    -          s             -\norg.freedesktop.DBus.ObjectManager       interface -          -             -\n.GetManagedObjects                       method    -          a{oa{sa{sv}}} -\n.InterfacesAdded                         signal    oa{sa{sv}} -             -\n.InterfacesRemoved                       signal    oas        -             -\norg.freedesktop.DBus.Peer                interface -          -             -\n.GetMachineId                            method    -          s             -\n.Ping                                    method    -          -             -\norg.freedesktop.DBus.Properties          interface -          -             -\n.Get                                     method    ss         v             -\n.GetAll                                  method    s          a{sv}         -\n.Set                                     method    ssv        -             -\n.PropertiesChanged                       signal    sa{sv}as   -             -\nxyz.openbmc_project.Collection.DeleteAll interface -          -             -\n.DeleteAll                               method    -          -             -\nxyz.openbmc_project.State.Boot.PostCode  interface -          -             -\n.GetPostCodes                            method    q          at            -\n.GetPostCodesWithTimeStamp               method    q          a{tt}         -\n.CurrentBootCycleCount                   property  q          1             emits-change writable\n.MaxBootCycleNum                         property  q          100           emits-change writable",
+      "parentUuid": "ff741040_90c9c128",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 49
+      },
+      "revId": "e0c69298486ad793861fd85e864faa4c78bf29fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -151,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "16d634b2_3a2d1f71",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-08-20T19:01:22Z",
+      "side": 1,
+      "message": "Details updated in the phosphor-dbus-interfaces section",
+      "parentUuid": "03dbaf2d_c42d1b1c",
+      "range": {
+        "startLine": 201,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 70
+      },
+      "revId": "e0c69298486ad793861fd85e864faa4c78bf29fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f5ca3815_c0373c28",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 3
@@ -171,6 +327,30 @@
       "revId": "e0c69298486ad793861fd85e864faa4c78bf29fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2616c4b8_a298e871",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-08-20T19:01:22Z",
+      "side": 1,
+      "message": "We also prefer to go with multi-process approach as we did analysis below,\n \nMulti process approach\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\nAdvantages :\n\n1. It will not affect the existing design. No need to update the design.\n2. Code changes is minimal for multi process.\n3. Just need to provide multiple service to launch multiple process in the machine layer based on number of host in chasis.\n4. It will not affect the single host systems. we can use host0 reserved for single host.\n5. x86-power-control,obmc-console already using this multi service apporch.. it would be common for all multi-host applciation.\n \nDisadvantages :\n1. Service files needs to be changed as dynamic.",
+      "parentUuid": "f5ca3815_c0373c28",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 219,
+        "endChar": 34
+      },
+      "revId": "e0c69298486ad793861fd85e864faa4c78bf29fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
