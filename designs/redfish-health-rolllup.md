@@ -96,6 +96,12 @@ xyz.openbmc_project.Inventory.Item.Global.
 
 ### Chassis / System Health Rollup
 
+Any other associations ending in "fault_led_group" is found, and searched for
+LEDManager(https://github.com/openbmc/phosphor-led-manager). Then
+update the rollup value according to Asserted
+(https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Led/Group.interface.yaml#L4)
+property status. If the value is OK, continue to the following.
+
 Any other associations ending in "critical" or "warning" are combined, and
 searched for inventory. The worst inventory item in the Chassis is the rollup
 for the Chassis. System is treated the same.
@@ -118,4 +124,5 @@ to reuse to track individual component health.
 
 ## Testing
 
-Testing will be performed using sensor values and the status LED.
+Testing will be performed using sensor values, the status LED and the fault
+group LED.
