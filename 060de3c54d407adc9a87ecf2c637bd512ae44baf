@@ -46,6 +46,30 @@
       "revId": "060de3c54d407adc9a87ecf2c637bd512ae44baf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5f60968_8ad85b2c",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-08-26T14:17:30Z",
+      "side": 1,
+      "message": "Asserted is.a property of a LED group D-Bus object that represents a part. For example: xyz/openbmc/project/led/groups/fan0. If the asserted property on that is true, then \"fan0\" part is having error and we want to see that as critical.\n\nFor IBM systems, we want to say assetrted_fault \u003d\u003d Health:Critical. We will not light the LED if the part is not faulty.\n\nDoes that help ?\n\nNow the challenge is how to contain this into the existing health design.\n\nIf you see this way of inferring health-roll-up based on its fault_led being lit-up  is not appropriate, please let me know what are the alternatives.",
+      "parentUuid": "fc953db2_6d2472a0",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 16
+      },
+      "revId": "060de3c54d407adc9a87ecf2c637bd512ae44baf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
