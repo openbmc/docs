@@ -59,6 +59,29 @@
     },
     {
       "key": {
+        "uuid": "96507e06_1fe29d4b",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-04T18:28:11Z",
+      "side": 1,
+      "message": "Until I saw the changes (at https://gerrit.openbmc-project.xyz/c/openbmc/fb-ipmi-oem/+/36112/2/src/biccommands.cpp), I completely misunderstood what you\u0027re proposing here.  A big part of the reason why is that you\u0027ve used the opposite verb.\n\nA method called \u0027readPostcode\u0027 means to me that you are asking the \u0027Raw\u0027 object to do a read.  In this case, you\u0027re actually trying to \u0027POST\u0027 a postcode (I\u0027ve used HTTP terminology).\n\nThe current \u0027Raw\u0027 interface holds a single postcode.  Existing implementations of it receive their value from hardware and they should not get this new method (because we would not want someone to \u0027post\u0027 an additional postcode).  If we really need this method, I think we need a new interface.\n\nHaving said that, I have two alternative proposals:\n\n1. Is there any reason the IPMI daemon cannot host this object and update the \u0027Raw.Value\u0027 on its own?  Why do we need a separate daemon to hold a single integer?\n\n2. Can we make \u0027Raw.Value\u0027 writable in the current implementation?  A compile or config value could be the switch between \"get Raw.Value from hardware\" or \"get Raw.Value from property write operations\".",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 17
+      },
+      "revId": "b3b00212cfb6c843a23cb1d0b5f53ddad56a5a1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "deb4a491_ee03b187",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 5
