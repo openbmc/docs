@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "90db6660_aea6942f",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-09-07T17:55:20Z",
+      "side": 1,
+      "message": "This section explains the existing single host design. The Actual multi host design is proposed in section(## phosphor-post-code-manager, Line : 185). The same section covers both Boot.Raw and Boot.Postcode.",
+      "parentUuid": "2f18f7bd_fb45e955",
+      "revId": "b3b00212cfb6c843a23cb1d0b5f53ddad56a5a1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db594a3c_9765189c",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 5
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "06e72b6b_3231ca22",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-09-07T17:55:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db594a3c_9765189c",
+      "range": {
+        "startLine": 164,
+        "startChar": 10,
+        "endLine": 164,
+        "endChar": 21
+      },
+      "revId": "b3b00212cfb6c843a23cb1d0b5f53ddad56a5a1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "165c72be_9aac686d",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 5
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "1a27cf5a_cf017b95",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-09-07T17:55:20Z",
+      "side": 1,
+      "message": "Updated \u0027Obj path name\u0027 as /xyz/openbmc_project/State/Boot/PostCodeX(0,1,2,..N)",
+      "parentUuid": "165c72be_9aac686d",
+      "revId": "b3b00212cfb6c843a23cb1d0b5f53ddad56a5a1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96507e06_1fe29d4b",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 5
@@ -70,6 +130,30 @@
       "writtenOn": "2020-09-04T18:28:11Z",
       "side": 1,
       "message": "Until I saw the changes (at https://gerrit.openbmc-project.xyz/c/openbmc/fb-ipmi-oem/+/36112/2/src/biccommands.cpp), I completely misunderstood what you\u0027re proposing here.  A big part of the reason why is that you\u0027ve used the opposite verb.\n\nA method called \u0027readPostcode\u0027 means to me that you are asking the \u0027Raw\u0027 object to do a read.  In this case, you\u0027re actually trying to \u0027POST\u0027 a postcode (I\u0027ve used HTTP terminology).\n\nThe current \u0027Raw\u0027 interface holds a single postcode.  Existing implementations of it receive their value from hardware and they should not get this new method (because we would not want someone to \u0027post\u0027 an additional postcode).  If we really need this method, I think we need a new interface.\n\nHaving said that, I have two alternative proposals:\n\n1. Is there any reason the IPMI daemon cannot host this object and update the \u0027Raw.Value\u0027 on its own?  Why do we need a separate daemon to hold a single integer?\n\n2. Can we make \u0027Raw.Value\u0027 writable in the current implementation?  A compile or config value could be the switch between \"get Raw.Value from hardware\" or \"get Raw.Value from property write operations\".",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 17
+      },
+      "revId": "b3b00212cfb6c843a23cb1d0b5f53ddad56a5a1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4d09b75_a667d0b5",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-09-07T17:55:20Z",
+      "side": 1,
+      "message": "The below is the understand on your suggested approach,\n\nApproach 1: \n   IPMI daemon(fb-ipmi-oem) may not right approach as postcode needs to write value in GPIO connected seven segment display based on host selection position read from the front panel connected to BMC.\n\n Approach 2: \n   I understand that \u0027Raw.Value\u0027 already read/write property and will investigate on how to write postcode in to \u0027Raw.Value\u0027 from IPMI daemon(fb-ipmi-oem) using set-property or other method.",
+      "parentUuid": "96507e06_1fe29d4b",
       "range": {
         "startLine": 208,
         "startChar": 0,
@@ -105,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "2ff919c8_08702929",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-09-07T17:55:20Z",
+      "side": 1,
+      "message": "This name \u0027postcode\u0027 is the one of the parameter of postd readPostCode() to pass the postcode into phosphor-host- defined in the YAML file. \n\nWill remove this method when IPMI daemon updates \u0027Raw.Value\u0027 directly.",
+      "parentUuid": "deb4a491_ee03b187",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 53
+      },
+      "revId": "b3b00212cfb6c843a23cb1d0b5f53ddad56a5a1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aa6b4919_9a529899",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 5
@@ -116,6 +224,30 @@
       "writtenOn": "2020-09-04T18:20:28Z",
       "side": 1,
       "message": "I don\u0027t understand why this is needed.  We have different service names (and I\u0027ve suggested above object paths) for different hosts.  Why do we also need as a parameter?",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 40
+      },
+      "revId": "b3b00212cfb6c843a23cb1d0b5f53ddad56a5a1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e4ff06a_80d6898b",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000538
+      },
+      "writtenOn": "2020-09-07T17:55:20Z",
+      "side": 1,
+      "message": "The proposed D-bus objects for multi-host created under one service because of display the postcode in the single seven segment display based on host selection position.\n\nroot@yosemitev2:~# busctl tree xyz.openbmc_project.State.Boot.Raw \n`-/xyz\n  `-/xyz/openbmc_project\n    `-/xyz/openbmc_project/state\n      `-/xyz/openbmc_project/state/boot\n        |-/xyz/openbmc_project/state/boot/raw1\n        |-/xyz/openbmc_project/state/boot/raw2\n        |-/xyz/openbmc_project/state/boot/raw3\n        `-/xyz/openbmc_project/state/boot/raw4",
+      "parentUuid": "aa6b4919_9a529899",
       "range": {
         "startLine": 228,
         "startChar": 0,
