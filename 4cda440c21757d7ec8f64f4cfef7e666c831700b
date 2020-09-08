@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4e1df62_f6e10a50",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-08T07:57:27Z",
+      "side": 1,
+      "message": "Please see DEVELOPING.md for rules on why you\u0027re not allowed to do that.  Startup times matter in these contexts.",
+      "range": {
+        "startLine": 49,
+        "startChar": 27,
+        "endLine": 49,
+        "endChar": 66
+      },
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ea60387_8ce75d90",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-08T07:57:27Z",
+      "side": 1,
+      "message": "In the above design you\u0027re making the critical flaw that Redfish resources map 1:1 with dbus resources.  This is in no way the case.  If it were, the Node-specific handler code would not exist, and could be replaced with a simple map.\n\nI think you\u0027re oversimplifying the problem.\n\n\nAlso, the above is going to generate a lot of DBus matches for what is used rarely, which will reduce system performance overall.",
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce935ca2_5810b855",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-08T07:57:27Z",
+      "side": 1,
+      "message": "Can you start with some more complex examples, like a sensor threshold?  I think you\u0027ll find what I\"m talking about above about over simplifying this.",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 65
+      },
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40c7c7eb_98aa83c1",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-08T07:57:27Z",
+      "side": 1,
+      "message": "There was a design for this once a long time ago.  Nothing was fundamentally wrong with the idea side from the added memory usage, and that\u0027s probably doable to optimize.\n\n\nThere was another design that intended to create a new dbus-interface class such that every Resource GET could track the dbus calls and properties that were required to create that response, then you could add watch expressions for them.  That way, we could continue to use our existing dbus-\u003eresource code for generating event properties.\n\nThis is still a hard problem, but at least we\u0027re not hardcoding a static list of matches.  If it were up to me, this would be the one I would try to tackle this, as it scales with the resource code in bmcweb, and doesn\u0027t require every author to go edit this config file.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 78
+      },
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7d0a39d_c334f0c4",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-08T07:57:27Z",
+      "side": 1,
+      "message": "Please avoid focusing on the Redfish Node class.  This will need to exist outside the conventional Request-Response callbacks, which is what the Node class encapsulates.\n\nAlso, I\u0027d like to see the Node class deprecated at some point.  It does very little today.",
+      "range": {
+        "startLine": 76,
+        "startChar": 56,
+        "endLine": 76,
+        "endChar": 68
+      },
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e7f27dc_adb16a68",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-08T07:57:27Z",
+      "side": 1,
+      "message": "What about for the resources not based on redfish properties?",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 77,
+        "endChar": 65
+      },
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
