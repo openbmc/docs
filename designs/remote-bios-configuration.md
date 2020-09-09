@@ -62,16 +62,16 @@ Ex: Updating the BIOS password should be support only before end of post.
 | |             |       |             |       |   RBC daemon                   |      |       |    +----------+  |
 | | NET/ Tools  +<-LAN->+ LAN-IPMID/  +<Dbus->+                                |      |       |    |Web client|  |
 | |             |       | REDFISH     |       |  Provide following Methods     |      |       |    |          |  |
-| +-------------+       +-------------+       |     -SetPendingAttributes()    |      |       |    +----^-----+  |
-|                                             |     -GetPendingAttributes()    |      |       |         |        |
-| +-------------+       +-------------+       |     -SetAttribute()            |      |       |        LAN       |
-| |             |       |             |       |     -GetAttribute()            |      |       |         |        |
+| +-------------+       +-------------+       |     -SetAttribute()            |      |       |    +----^-----+  |
+|                                             |     -GetAttribute()            |      |       |         |        |
+| +-------------+       +-------------+       |     -VerifyPassword()          |      |       |        LAN       |
+| |             |       |             |       |     -ChangePassword()          |      |       |         |        |
 | | HOST/ BIOS  +<-KCS->+  HOST-IPMID +<Dbus->+                                |      |Redfish|    +----V-----+  |
-| |             |       |             |       | Properities                    +<Dbus>+  API  |    |Redfish & |  |
-| +-----+-------+       +-------------+       |     -AllBaseAttributes         |      |       +<-->+BMCWeb    |  |
-|       |                                     |     -ResetBIOSSettings         |      |       |    +----^-----+  |
-|       |                                     |                                |      |       |         |        |
-|       |                                     |                                |      |       |         |        |
+| |             |       |             |       | Properties                     +<Dbus>+  API  |    |Redfish & |  |
+| +-----+-------+       +-------------+       |     -BaseBIOSTable             |      |       +<-->+BMCWeb    |  |
+|       |                                     |     -PendingAttributes         |      |       |    +----^-----+  |
+|       |                                     |     -ResetBIOSSettings         |      |       |         |        |
+|       |                                     |     -IsPasswordInitDone        |      |       |         |        |
 |       |                                     |                                |      |       |    +----V-----+  |
 |       |                                     |                                |      |       |    | Redfish  |  |
 |       |                                     |                                |      |       |    |  Host    |  |
@@ -187,7 +187,7 @@ Pending attributes list will be cleared whenever new attributes data received.
    | |Get the XML Type 0 info|<---Req-/Res--> | Provide the XML Type 0 Info   |         |                             | ||
    | |Generate & compress    |             |  |                               |         |                             | ||
    | |XML type 0 file.       |             |  |                               |         |Collect the Attributes Info  | ||
-   | |Check XML file Chksum. |             |  | Validate the XML Type 0       |--dbus-->| AllBaseAttributes           | ||
+   | |Check XML file Chksum. |             |  | Validate the XML Type 0       |--dbus-->| BaseBIOSTable               | ||
    | |If Chksum mismatch     |<---Req-/Res--->| Unzip XML Type 0 & convert    |         |                             | ||
    | |then send the payload  |             |  | into D-bus format and send to |         |                             | ||
    | |via SetPayload.        |             |  | the RBC                       |         |                             | ||
@@ -260,9 +260,10 @@ RBC daemon should preserve the AllBaseAttributes, PendingAttributes list in
 non-volatile storage. PLDM daemon should preserve BIOS tables in non-volatile
 storage. RBC and PLDM should restored the data whenever BMC reset.
 
-
-
 #BIOS first boot
+
+```
+
    +--------------------------------------------------------------------------------------------------------------------+
    | +-----------------------+             +---------------------------------------------------------------------------+|
    | | BIOS                  |             |   BMC                                                                     ||
@@ -326,6 +327,7 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
    |                                       +---------------------------------------------------------------------------+|
    +---------------------------------------+----------------------------------------------------------------------------+
 
+```
 ##Complete BIOS BMC flow for BIOS configuration in deferred update model
 ```
 +----------------------------------------+                    +----------------------------------------+
@@ -356,7 +358,7 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
 |                  |                     |      |             |  +----------------------------------+  |
 |   +--------------V------------------+  |      |             |  |                                  |  |
 |   |  Send the updated data to BMC   |  |      |             |  | Update the BIOS attributes       |  |
-|   |                                 |------------------------->| (AllBaseBiosTables)              |  |
+|   |                                 |------------------------->| (BaseBIOSTable)                  |  |
 |   +---------------------------------+  |      |             |  +----------------------------------+  |
 |                                        |      |             |                                        |
 |                                        |      |             |                                        |
@@ -430,21 +432,21 @@ received from BIOS.
  | |                         |             |  +-----------------------+       +---------------------------+ ||
  | +-------------------------+             |  +-----------------------+       +---------------------------+ ||
  | |                         |             |  |                       |       |                           | ||
- | |1.Get Current attributes |<---Req-/Res--> | Read AllBaseAttributes|<-dbus-| AllBaseAttributes         | ||
+ | |1.Get Current attributes |<---Req-/Res--> | Read BaseBIOSTable    |<-dbus-| BaseBIOSTable             | ||
  | |   name & value list     |             |  |                       |       |                           | ||
  | |                         |             |  |                       |       |                           | ||
- | |2.Get Attribute Registry |<---Req-/Res--> | Read AllBaseAttributes|<-dbus-| AllBaseAttributes         | ||
+ | |2.Get Attribute Registry |<---Req-/Res--> | Read BaseBIOSTable    |<-dbus-| BaseBIOSTable             | ||
  | |                         |             |  |                       |       |                           | ||
  | |3.Change BIOS Password   |<---Req-/Res--> | Call RBC D-bus Method |-dbus->| ChangePassword()          | ||
  | |                         |             |  |                       |       |                           | ||
- | |4.Reset To default       |<---Req-/Res--> | Call RBC D-bus Method |-dbus->| ResetBiosSettings()       | ||
+ | |4.Reset To default       |<---Req-/Res--> | Set ResetBIOSSettings |-dbus->| ResetBiosSettings         | ||
  | |            settings     |             |  |                       |       |     -ResetFlag            | ||
  | |5.Update new BIOS setting|<---Req-/Res--->| Call RBC D-bus Method |-dbus->| SetAttribute()            | ||
  | |  (For single attribute) |             |  |                       |       |                           | ||
  | |                         |             |  |                       |       |                           | ||
- | |6.Get Pending attributes |<---Req-/Res--->| Call RBC D-bus Method |<-dbus-| GetPendingAttributes()    | ||
+ | |6.Get Pending attributes |<---Req-/Res--->| Get PendingAttributes |<-dbus-| PendingAttributes         | ||
  | |           list          |             |  |                       |       |                           | ||
- | |7.Update new BIOS setting|<---Req-/Res--->| Call RBC D-bus Method |<-dbus-| SetPendingAttributes()    | ||
+ | |7.Update new BIOS setting|<---Req-/Res--->| Set PendingAttributes |<-dbus-| PendingAttributes         | ||
  | |           list          |             |  |                       |       |                           | ||
  | |  For multiple attributes|             |  |                       |       |                           | ||
  | +-------------------------+             |  +-----------------------+       +---------------------------+ ||
