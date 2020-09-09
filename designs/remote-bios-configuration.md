@@ -261,7 +261,7 @@ non-volatile storage. PLDM daemon should preserve BIOS tables in non-volatile
 storage. RBC and PLDM should restored the data whenever BMC reset.
 
 
-
+```
 #BIOS first boot
    +--------------------------------------------------------------------------------------------------------------------+
    | +-----------------------+             +---------------------------------------------------------------------------+|
@@ -326,6 +326,7 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
    |                                       +---------------------------------------------------------------------------+|
    +---------------------------------------+----------------------------------------------------------------------------+
 
+```
 ##Complete BIOS BMC flow for BIOS configuration in deferred update model
 ```
 +----------------------------------------+                    +----------------------------------------+
