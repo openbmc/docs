@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "5ef2092c_c61a63b6",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-10T13:45:47Z",
+      "side": 1,
+      "message": "\u003e postcode needs to write value in GPIO connected seven segment display based on host selection position read from the front panel connected to BMC.\n\nThis can be done by subscribing to the PropertyChanged event on the Raw.Value interface being hosted by the IPMI daemon.  postcode doesn\u0027t need to host the object in order to also write the GPIOs.  (I would actually suggest that writing the GPIOs is the responsibility of entirely different process, unless it already has that behavior, but I\u0027m not the maintainer of that codebase.)\n\n\u003e I understand that \u0027Raw.Value\u0027 already read/write property and will investigate on how to write postcode in to \u0027Raw.Value\u0027 from IPMI daemon(fb-ipmi-oem) using set-property or other method.\n\nOk.",
+      "parentUuid": "d4d09b75_a667d0b5",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 17
+      },
+      "revId": "b3b00212cfb6c843a23cb1d0b5f53ddad56a5a1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "deb4a491_ee03b187",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 5
@@ -213,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "228ed89e_b40f45df",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-10T13:45:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2ff919c8_08702929",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 53
+      },
+      "revId": "b3b00212cfb6c843a23cb1d0b5f53ddad56a5a1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aa6b4919_9a529899",
         "filename": "designs/multi-host-postcode.md",
         "patchSetId": 5
@@ -248,6 +296,30 @@
       "side": 1,
       "message": "The proposed D-bus objects for multi-host created under one service because of display the postcode in the single seven segment display based on host selection position.\n\nroot@yosemitev2:~# busctl tree xyz.openbmc_project.State.Boot.Raw \n`-/xyz\n  `-/xyz/openbmc_project\n    `-/xyz/openbmc_project/state\n      `-/xyz/openbmc_project/state/boot\n        |-/xyz/openbmc_project/state/boot/raw1\n        |-/xyz/openbmc_project/state/boot/raw2\n        |-/xyz/openbmc_project/state/boot/raw3\n        `-/xyz/openbmc_project/state/boot/raw4",
       "parentUuid": "aa6b4919_9a529899",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 40
+      },
+      "revId": "b3b00212cfb6c843a23cb1d0b5f53ddad56a5a1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "184244e2_6ed46e66",
+        "filename": "designs/multi-host-postcode.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-10T13:45:47Z",
+      "side": 1,
+      "message": "That isn\u0027t what was suggested earlier in the design because the \u0027service name\u0027 was listed as N different service names, which implies N different processes.\n\nIn any case, you have a different \u0027raw\u0027 interface, so that can be written directly which indicates a different host position.",
+      "parentUuid": "3e4ff06a_80d6898b",
       "range": {
         "startLine": 228,
         "startChar": 0,
