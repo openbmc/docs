@@ -131,4 +131,4 @@ update for these environments is not supported.
 [FHS]: https://refspecs.linuxfoundation.org/fhs.shtml
 [obmc-phosphor-initfs]: https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/initrdscripts/obmc-phosphor-initfs.bb
 [preinit-mounts]: https://github.com/openbmc/openbmc/tree/master/meta-phosphor/recipes-phosphor/preinit-mounts
-[eMMC Design Document]: https://github.com/openbmc/docs/blob/master/designs/emmc-storage-design.md
+[eMMC Design Document]: https://github.com/openbmc/docs/blob/master/architecture/code-update/emmc-storage-design.md
