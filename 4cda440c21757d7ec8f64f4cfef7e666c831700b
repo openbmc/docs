@@ -136,6 +136,30 @@
     },
     {
       "key": {
+        "uuid": "6f3775d1_16bc89a8",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-11T02:37:10Z",
+      "side": 1,
+      "message": "\u003e \u003e There was a design for this once a long time ago.  Nothing was fundamentally wrong with the idea side from the added memory usage, and that\u0027s probably doable to optimize.\n\u003e \n\u003e I agree on the same.\n\u003e \n\u003e \u003e There was another design that intended to create a new dbus-interface class such that every Resource GET could track the dbus calls and properties that were required to create that response,\n\u003e \n\u003e You mean to say that in bmcweb, we can write this dbus-interface class and whenever any resource get operation happens, it has to go through with this class and then we can add the watch expression for them.\n\u003e \n\u003e In that case we need to have to do GET request on all the redfish endpoints before bmcweb- comes up, so that bmcweb can start watching all the required D-bus endpoints.\n\nThis is what I meant, although you don\u0027t need to do this on startup, only when the EventService is connected or subscribed to, and only for the resources that have been subscribed.  It\u0027s not perfect, I\u0027ll admit, but it means we\u0027re writing the dbus-\u003ejson code once, not twice, and we don\u0027t have to rewrite everything we have (which took a long time to do).\n\n\u003e \n\u003e or \n\u003e \n\u003e do you want to merge both the approach.\n\u003e \n\u003e 1) Cache the properties\n\u003e 2) When the bmcweb comes up it has to fill those properties so it needs to make the D-bus calls to fill these properties.\n\nThat\u0027s one possible solution that would work.\n\n\u003e \n\u003e One more thing we have to do reverse mapping to get the Redfish Resource/ property from the Dbus events, To handle this- whenever resource get happens- Each Resource can provide its Redfish specific deatils(Redfish Resource Path, Redfish Property etc).\n\nYour property cache would become your mapping to a Resource.  There are multiple DBus properties that make up any given Redfish property, and a few DBUS properties couple apply to multiple redfish properties simultaneously.   The biggest hurdle becomes the mapper, so you might have to watch for those events as well and invalidate the cache on changes?\n\nThis is once of the harder problems in computer science in general.  I\u0027d recommend looking into go-redfish to see how it solved it, so we can either copy it, or use it as learning.",
+      "parentUuid": "a8b7da67_5c0632ca",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 78
+      },
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7d0a39d_c334f0c4",
         "filename": "redfish-event-generation-proposal.md",
         "patchSetId": 2
@@ -183,6 +207,30 @@
     },
     {
       "key": {
+        "uuid": "c3a82c34_dda7aa4a",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-11T02:37:10Z",
+      "side": 1,
+      "message": "Even if you were sticking with this plan, the Node class is the wrong place to do it.  It has a concept of routes (which include wildcards), not resources.",
+      "parentUuid": "01f734fc_27b952cc",
+      "range": {
+        "startLine": 76,
+        "startChar": 56,
+        "endLine": 76,
+        "endChar": 68
+      },
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1e7f27dc_adb16a68",
         "filename": "redfish-event-generation-proposal.md",
         "patchSetId": 2
@@ -218,6 +266,30 @@
       "side": 1,
       "message": "I didn\u0027t get this.\n\nDo you mean to say that D-bus Resources not based on the redfish properties?\n  for us those D-bus objects are not interested objects.\n\nDo you mean to say that Redfish Resources not based on the D-bus ?\n   Those cases can be handled in the bmcweb code itself and we don\u0027t need any watch expressions on them.\n\nIf these are not the cases, please get me an example.",
       "parentUuid": "1e7f27dc_adb16a68",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 77,
+        "endChar": 65
+      },
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c272ef4_430678e3",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-11T02:37:10Z",
+      "side": 1,
+      "message": "No, I mean to say there are Redfish resources that are not based on DBus.\n\nLog services for example, reads from a file:\nhttps://github.com/openbmc/bmcweb/blob/d206b437e3fb79a89205a9fbe748b017d312ddfa/redfish-core/lib/log_services.hpp",
+      "parentUuid": "90691c2e_a12f98b0",
       "range": {
         "startLine": 77,
         "startChar": 34,
