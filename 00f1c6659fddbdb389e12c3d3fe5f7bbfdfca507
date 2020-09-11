@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "bc0b3afe_524eab08",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-09-11T21:01:17Z",
+      "side": 1,
+      "message": "The re-word is good. This assumes that it should be able to program the flash, but may not necessarily have a full image, maybe it\u0027s stripped down with minimum logic to be able to boot and flash the primary flash.",
+      "parentUuid": "738100e3_ccfa53dd",
+      "range": {
+        "startLine": 30,
+        "startChar": 73,
+        "endLine": 31,
+        "endChar": 56
+      },
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16a12a1f_836f3c97",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 1
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "Because ubifs already uses the two flash chips at the same time, it is not possible to put a static, un-changed image in the golden image.",
       "parentUuid": "16a12a1f_836f3c97",
+      "range": {
+        "startLine": 43,
+        "startChar": 45,
+        "endLine": 43,
+        "endChar": 69
+      },
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5d18490_ed9b7bfc",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-09-11T21:01:17Z",
+      "side": 1,
+      "message": "We could if the flash chips were bigger but we don\u0027t have the space to have 2 versions plus a golden one. On eMMC we have the space, but that\u0027d be a slightly different approach, where all the versions are in the same chip.",
+      "parentUuid": "8c7d7380_1c82d50c",
       "range": {
         "startLine": 43,
         "startChar": 45,
@@ -260,6 +308,30 @@
       "side": 1,
       "message": "Nope, this is something new and to be implemented.\n\nFor UBI I think there is a similar implementation to sync the rwfs",
       "parentUuid": "919be03a_59850da2",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 46
+      },
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e1afd823_2692c2e5",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-09-11T21:01:17Z",
+      "side": 1,
+      "message": "It can be re-used. It\u0027s enabled via the sync-bmc-files compile option and uses rsync to copy files from the \u0027synclist\u0027 file from current bmc to a specified directory (in this case the other flash\u0027s rw filesystem), it may just need to get the other flash mounted on the static layout.",
+      "parentUuid": "d7bf7a8d_3f196eeb",
       "range": {
         "startLine": 56,
         "startChar": 8,
