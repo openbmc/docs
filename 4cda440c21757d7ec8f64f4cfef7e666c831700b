@@ -112,6 +112,30 @@
     },
     {
       "key": {
+        "uuid": "a8b7da67_5c0632ca",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2020-09-11T02:16:07Z",
+      "side": 1,
+      "message": "\u003e There was a design for this once a long time ago.  Nothing was fundamentally wrong with the idea side from the added memory usage, and that\u0027s probably doable to optimize.\n\nI agree on the same.\n\n\u003e There was another design that intended to create a new dbus-interface class such that every Resource GET could track the dbus calls and properties that were required to create that response,\n\nYou mean to say that in bmcweb, we can write this dbus-interface class and whenever any resource get operation happens, it has to go through with this class and then we can add the watch expression for them.\n\nIn that case we need to have to do GET request on all the redfish endpoints before bmcweb- comes up, so that bmcweb can start watching all the required D-bus endpoints.\n\nor \n\ndo you want to merge both the approach.\n\n1) Cache the properties\n2) When the bmcweb comes up it has to fill those properties so it needs to make the D-bus calls to fill these properties.\n\nOne more thing we have to do reverse mapping to get the Redfish Resource/ property from the Dbus events, To handle this- whenever resource get happens- Each Resource can provide its Redfish specific deatils(Redfish Resource Path, Redfish Property etc).",
+      "parentUuid": "725d46a3_08148df9",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 78
+      },
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7d0a39d_c334f0c4",
         "filename": "redfish-event-generation-proposal.md",
         "patchSetId": 2
