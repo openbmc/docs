@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5446ab4c_ed00c694",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-09-11T21:01:17Z",
+      "side": 1,
+      "message": "Are you interested in a secondary golden flash to address hw failures on the primary chip, or are you looking to having a golden image even if it\u0027s in the same flash chip if size permits like in an eMMC? Sounds like we want to have a backup in case the primary image fails to boot? If that\u0027s the case we can mention that this is a design in general for having a secondary golden image that is not updated but as a backup to failover if primary fails to boot, but the implementation will begin with a dual flash configuration running the static layout.",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "722d03ff_02a5344b",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-09-11T21:01:17Z",
+      "side": 1,
+      "message": "This may not be needed, would other applications besides code update use this value? It\u0027s already exposed, so it can be queried when the bmc starts up, ex on ast2500:\nroot@romulus:~# cat /sys/class/watchdog/watchdog1/bootstatus\n0\n\nIf booted on the secondary chip the value would be 32.\n\nRegardless if we add it or not, it may be useful to log an error if we boot from the golden flash unexpectedly. This commit is proposing an error if the bmc didn\u0027t boot from the version specified by the user but could be adapted to be logged if the bmc booted from the gold flash as well: https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/36309",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e93cd2a_5a09f5b3",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-09-11T21:01:17Z",
+      "side": 1,
+      "message": "Sounds we end up in this scenario if there was an error. Maybe we need to specify that if BMC is running on the golden image because it failed to boot from the primary image. Also we could add the trigger to switch on kernel panics for example.",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50f46009_58d5424e",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-09-11T21:01:17Z",
+      "side": 1,
+      "message": "By \"full image\" you mean that we use the golden image and we copy it to the primary flash, or does a user still need to upload an image to update?\nAlso do you see this update being done automatically if BMC detects it booted from the golden flash or would this be user initiated?",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
