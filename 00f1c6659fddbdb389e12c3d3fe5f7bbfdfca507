@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "14977302_48879d1e",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-11T08:47:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcf07199_b6766205",
+      "range": {
+        "startLine": 23,
+        "startChar": 13,
+        "endLine": 23,
+        "endChar": 15
+      },
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c74095bc_e01e1df8",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2020-09-11T08:15:48Z",
       "side": 1,
       "message": "Not following this, could you please elaborate?",
+      "range": {
+        "startLine": 30,
+        "startChar": 73,
+        "endLine": 31,
+        "endChar": 56
+      },
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "738100e3_ccfa53dd",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-11T08:47:10Z",
+      "side": 1,
+      "message": "Right, it\u0027s a bit unclear.\nThe idea is that the BMC running on golden image should be able to flash the primary flash, instead of its own flash.\nWill re-word.",
+      "parentUuid": "c74095bc_e01e1df8",
       "range": {
         "startLine": 30,
         "startChar": 73,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8c7d7380_1c82d50c",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-11T08:47:10Z",
+      "side": 1,
+      "message": "Because ubifs already uses the two flash chips at the same time, it is not possible to put a static, un-changed image in the golden image.",
+      "parentUuid": "16a12a1f_836f3c97",
+      "range": {
+        "startLine": 43,
+        "startChar": 45,
+        "endLine": 43,
+        "endChar": 69
+      },
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3167612f_3a019f42",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2020-09-11T08:15:48Z",
       "side": 1,
       "message": "is this a u-boot env read?",
+      "range": {
+        "startLine": 52,
+        "startChar": 27,
+        "endLine": 52,
+        "endChar": 54
+      },
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7c18bdf_b2277f05",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-11T08:47:10Z",
+      "side": 1,
+      "message": "Nope, in aspeed, the watchdog driver puts `access_cs0` in sysfs when wdt2 expires and BMC boots into the golden image.\n\nI did not use other BMC SoC (like nuvoton) but I believe there is a way to check the wdt status.\n\nI did not mention aspeed because this design should be natural and not depend on the BMC SoC.",
+      "parentUuid": "3167612f_3a019f42",
       "range": {
         "startLine": 52,
         "startChar": 27,
@@ -111,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "deaa1115_5fc848e4",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-11T08:47:10Z",
+      "side": 1,
+      "message": "It is for the behavior of phosphor-bmc-code-mgmt.",
+      "parentUuid": "297fdbf1_443cab38",
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "919be03a_59850da2",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 1
@@ -122,6 +236,30 @@
       "writtenOn": "2020-09-11T08:15:48Z",
       "side": 1,
       "message": "Do you mean this is already performed today by the bmc-code-mgmt app?",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 46
+      },
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d7bf7a8d_3f196eeb",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-11T08:47:10Z",
+      "side": 1,
+      "message": "Nope, this is something new and to be implemented.\n\nFor UBI I think there is a similar implementation to sync the rwfs",
+      "parentUuid": "919be03a_59850da2",
       "range": {
         "startLine": 56,
         "startChar": 8,
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "579a9145_a439104b",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-11T08:47:10Z",
+      "side": 1,
+      "message": "This makes sure the BMC running on golden image does not mount any partition of the primary flash, so that it is safe to do the update.\nWill add some details here to explain why.",
+      "parentUuid": "636fe779_cc5da889",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 59
+      },
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95ed3d86_05eb656a",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 1
@@ -180,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "0adf9ca6_e42667fe",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-11T08:47:10Z",
+      "side": 1,
+      "message": "Yup, the above wording is a bit confusing, the idea is to not mount before the programming primary flash, but it needs to sync the rwfs back to primary flash, so it needs to mount here.\nWill update the wording.",
+      "parentUuid": "95ed3d86_05eb656a",
+      "range": {
+        "startLine": 68,
+        "startChar": 6,
+        "endLine": 69,
+        "endChar": 30
+      },
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "747ada58_bc58c124",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 1
@@ -191,6 +377,30 @@
       "writtenOn": "2020-09-11T08:15:48Z",
       "side": 1,
       "message": "single BMC flash?",
+      "range": {
+        "startLine": 86,
+        "startChar": 23,
+        "endLine": 86,
+        "endChar": 38
+      },
+      "revId": "00f1c6659fddbdb389e12c3d3fe5f7bbfdfca507",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4bf4132_8cf1d894",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-11T08:47:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "747ada58_bc58c124",
       "range": {
         "startLine": 86,
         "startChar": 23,
