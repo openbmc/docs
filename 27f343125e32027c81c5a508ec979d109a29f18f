@@ -19,6 +19,69 @@
     },
     {
       "key": {
+        "uuid": "809f415c_8cd89548",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-09-13T20:33:20Z",
+      "side": 1,
+      "message": "In fact in some systems (e.g. YADRO VESNIN) it may even be made read-only in hardware or it\u0027s write-ability may be controlled via a dedicated GPIO.",
+      "range": {
+        "startLine": 30,
+        "startChar": 51,
+        "endLine": 30,
+        "endChar": 67
+      },
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "036f89e8_ad1812f4",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-09-13T20:33:20Z",
+      "side": 1,
+      "message": "I wouldn\u0027t put this as a requirement. It kind of defeats the purpose of Golden flash. See comments below.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "796f9ba3_914f1c3a",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-09-13T20:33:20Z",
+      "side": 1,
+      "message": "This is for ASPEED chips only. That must be noted somewhere in this document. There are still BMC chips from other vendors that may use a different mechanism.",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "722d03ff_02a5344b",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 2
@@ -30,6 +93,29 @@
       "writtenOn": "2020-09-11T21:01:17Z",
       "side": 1,
       "message": "This may not be needed, would other applications besides code update use this value? It\u0027s already exposed, so it can be queried when the bmc starts up, ex on ast2500:\nroot@romulus:~# cat /sys/class/watchdog/watchdog1/bootstatus\n0\n\nIf booted on the secondary chip the value would be 32.\n\nRegardless if we add it or not, it may be useful to log an error if we boot from the golden flash unexpectedly. This commit is proposing an error if the bmc didn\u0027t boot from the version specified by the user but could be adapted to be logged if the bmc booted from the gold flash as well: https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/36309",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72d6d000_9d3861d8",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-09-13T20:33:20Z",
+      "side": 1,
+      "message": "For us this is an undesired behavior. The golden flash must stay intact by definition. Booting from golden flash is an emergency situation and the customer is warned in the user manual that if they can\u0027t reach the BMC after update, then they must look for it at the default settings (which is by the way DHCP for us, so in most cases the network settings will remain the same).",
+      "range": {
+        "startLine": 56,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 36
+      },
       "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -64,6 +150,70 @@
       "writtenOn": "2020-09-11T21:01:17Z",
       "side": 1,
       "message": "By \"full image\" you mean that we use the golden image and we copy it to the primary flash, or does a user still need to upload an image to update?\nAlso do you see this update being done automatically if BMC detects it booted from the golden flash or would this be user initiated?",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0cf2588_3c3b9524",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-09-13T20:33:20Z",
+      "side": 1,
+      "message": "In our implementation, it just boots into Golden image and lets the user to update the primary flash.",
+      "parentUuid": "50f46009_58d5424e",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e6b49ad_9e47ac36",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-09-13T20:33:20Z",
+      "side": 1,
+      "message": "This is achieved for us by modification of the u-boot environment on the golden flash chip.",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 34
+      },
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd13da82_2e0688e8",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000192
+      },
+      "writtenOn": "2020-09-13T20:33:20Z",
+      "side": 1,
+      "message": "This is not needed if the golden flash chip is r/o.",
+      "range": {
+        "startLine": 70,
+        "startChar": 6,
+        "endLine": 71,
+        "endChar": 67
+      },
       "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
