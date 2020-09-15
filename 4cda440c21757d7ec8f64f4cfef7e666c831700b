@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cd3d0c54_431919b2",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2020-09-15T15:39:34Z",
+      "side": 1,
+      "message": "will move it over there..",
+      "parentUuid": "261ca91c_9a3818d5",
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d4e1df62_f6e10a50",
         "filename": "redfish-event-generation-proposal.md",
         "patchSetId": 2
@@ -213,6 +231,30 @@
       "side": 1,
       "message": "Looks like it moved to here:\nhttps://github.com/sailfishdell/sailfish",
       "parentUuid": "08993f57_031a9def",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 78
+      },
+      "revId": "4cda440c21757d7ec8f64f4cfef7e666c831700b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85e9097d_b412ec7e",
+        "filename": "redfish-event-generation-proposal.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2020-09-15T15:39:34Z",
+      "side": 1,
+      "message": "Ed, I took a look on the above repo, I didn\u0027t get how they plugged the back end. The documentation is very minimal.\n\nhttps://github.com/sailfishdell/sailfish/blob/master/doc/hld.txt#L41\n\nThe strategy for maintaining this internal data\nstore is by listening to a stream of events that represent all of the\nactions/activity happening in the system.  This stream of events is produced\nby the sailfish pump and injected into the localhost/internal http api\nendpoint. This stream of events is currently encoded in JSON (see the pump HLD\nsection)\n\nThe sailfish server listens on the internal-only HTTP endpoint /api/EventInject\nand takes all events submitted and puts them onto the internal event bus.\n\nNot sure where I can get the sailfish pump code.\n\nI want to know the format of the message which is coming to this internal HTTP endpoint.. \n\nThey had it something for openBMC as it is written here https://github.com/sailfishdell/sailfish#where-to-start\n\nBut I didn\u0027t find the plugins/obmc/bmc.go file which can help.\n\nDo you have any idea on the same?",
+      "parentUuid": "2fa00c43_e0e0d55a",
       "range": {
         "startLine": 75,
         "startChar": 0,
