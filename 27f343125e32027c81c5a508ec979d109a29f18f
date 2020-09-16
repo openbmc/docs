@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c10d5d0f_cecde768",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T10:10:13Z",
+      "side": 1,
+      "message": "Yup, the golden image is a full-functional BMC as well, it\u0027s just that we do not update it in the field.\nIn case the primary chip is broken and can not be fixed, it could provide the BMC functions as well, as described in below step 7 in \"The code update when BMC is running in the golden image\"",
+      "parentUuid": "5446ab4c_ed00c694",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "809f415c_8cd89548",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2020-09-13T20:33:20Z",
       "side": 1,
       "message": "In fact in some systems (e.g. YADRO VESNIN) it may even be made read-only in hardware or it\u0027s write-ability may be controlled via a dedicated GPIO.",
+      "range": {
+        "startLine": 30,
+        "startChar": 51,
+        "endLine": 30,
+        "endChar": 67
+      },
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9de22f9c_fc17d42e",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T10:10:13Z",
+      "side": 1,
+      "message": "So the wording is OK here, is it?",
+      "parentUuid": "809f415c_8cd89548",
       "range": {
         "startLine": 30,
         "startChar": 51,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "06f45dfb_acceff58",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T10:10:13Z",
+      "side": 1,
+      "message": "OK, got it.\nHow about making it an optional requirement?\n\nIn our case, the BMC gets IP from DHCP when it\u0027s first-time deployed, and after that it\u0027s using the static IP in the life time. That\u0027s why we want to sync the networking settings.\n\nI agree that the \"default\" behavior should not sync anything to the golden image.",
+      "parentUuid": "036f89e8_ad1812f4",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "796f9ba3_914f1c3a",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 2
@@ -82,6 +148,24 @@
     },
     {
       "key": {
+        "uuid": "ae13e0b6_88f554f7",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T10:10:13Z",
+      "side": 1,
+      "message": "Right.\nNot sure how other vendors do. Will update the wording and take wdt2 in aspeed as an example.",
+      "parentUuid": "796f9ba3_914f1c3a",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "722d03ff_02a5344b",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 2
@@ -93,6 +177,24 @@
       "writtenOn": "2020-09-11T21:01:17Z",
       "side": 1,
       "message": "This may not be needed, would other applications besides code update use this value? It\u0027s already exposed, so it can be queried when the bmc starts up, ex on ast2500:\nroot@romulus:~# cat /sys/class/watchdog/watchdog1/bootstatus\n0\n\nIf booted on the secondary chip the value would be 32.\n\nRegardless if we add it or not, it may be useful to log an error if we boot from the golden flash unexpectedly. This commit is proposing an error if the bmc didn\u0027t boot from the version specified by the user but could be adapted to be logged if the bmc booted from the gold flash as well: https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/36309",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "913e7565_bb1b9119",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T10:10:13Z",
+      "side": 1,
+      "message": "\u003e If booted on the secondary chip the value would be 32.\n\nGood to know.\n\n\u003e Regardless if we add it or not, it may be useful to log an error if we boot from the golden flash unexpectedly. This commit is proposing an error if the bmc didn\u0027t boot from the version specified by the user but could be adapted to be logged if the bmc booted from the gold flash as well: https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-bmc-code-mgmt/+/36309\n\nSomehow, the commit is slightly different. With UBI design, there are *always* two *different* versions, and there is a config to tell which image to boot, so the interface is applicable.\nWith golden image concept, it *is* possible that the two versions in primary and golden are the same, but we still want to know which flash the BMC is booted from.\n\nMaybe we could come up with an interface to fit for both cases.",
+      "parentUuid": "722d03ff_02a5344b",
       "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -122,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "648d863f_f28861eb",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T10:10:13Z",
+      "side": 1,
+      "message": "OK.\nMake this an optional step.",
+      "parentUuid": "72d6d000_9d3861d8",
+      "range": {
+        "startLine": 56,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 36
+      },
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e93cd2a_5a09f5b3",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 2
@@ -133,6 +259,24 @@
       "writtenOn": "2020-09-11T21:01:17Z",
       "side": 1,
       "message": "Sounds we end up in this scenario if there was an error. Maybe we need to specify that if BMC is running on the golden image because it failed to boot from the primary image. Also we could add the trigger to switch on kernel panics for example.",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67e95b14_a4199fa7",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T10:10:13Z",
+      "side": 1,
+      "message": "Will update this info",
+      "parentUuid": "2e93cd2a_5a09f5b3",
       "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -174,6 +318,24 @@
     },
     {
       "key": {
+        "uuid": "f2705d1f_3b2c0eab",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T10:10:13Z",
+      "side": 1,
+      "message": "For now I think let the user (e.g. system admin) to update the primary flash manually, by uploading the full image that will erase and program the whole primary flash.",
+      "parentUuid": "a0cf2588_3c3b9524",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e6b49ad_9e47ac36",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 2
@@ -194,6 +356,30 @@
       "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "091d259a_1457ddd9",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T10:10:13Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "9e6b49ad_9e47ac36",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 34
+      },
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -243,6 +429,30 @@
     },
     {
       "key": {
+        "uuid": "41de573f_60d7cf71",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T10:10:13Z",
+      "side": 1,
+      "message": "Let\u0027s make it an optional step.",
+      "parentUuid": "720f98eb_28c98d9e",
+      "range": {
+        "startLine": 71,
+        "startChar": 5,
+        "endLine": 71,
+        "endChar": 29
+      },
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "12ac670b_5c8fa162",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 2
@@ -254,6 +464,24 @@
       "writtenOn": "2020-09-14T13:01:33Z",
       "side": 1,
       "message": "It can be done just by reboot, it will be switched automatically into primary without setting anything.",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cdf9ddd_722ed25f",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T10:10:13Z",
+      "side": 1,
+      "message": "From aspeed doc:\nIn the 2nd flash booting mode, the address mapping to CE0 and CE1 would be swapped. To restore\nthe address mapping, firmware should clear the 2nd boot mode register in the WDT2 status register WDT30.bit[1].\n\nThat\u0027s why I think it is necessary to clear that by writing bit0 of WDT34.\n\nBut I will re-word this anyway since it\u0027s too aspeed specific.",
+      "parentUuid": "12ac670b_5c8fa162",
       "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
