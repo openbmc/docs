@@ -503,6 +503,24 @@
       "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b19c3f33_83f050e8",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-16T11:58:45Z",
+      "side": 1,
+      "message": "hmm... That part of code is not to clear the WDT30 bit0/1, but make SoC to boot from primary after the watchdog times out.\nSo I think we still need to clear the WDT30 bit0/1 by writing 1 to WDT34 bit0, according to the datasheet.",
+      "parentUuid": "b7bba33b_9bc601aa",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
