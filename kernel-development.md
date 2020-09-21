@@ -101,3 +101,58 @@ cat obj/arch/arm/boot/zImage \
 
 Note that some systems may have upgraded to a FIT-based u-boot, where the old
 uImage format is no longer accepted.
+
+# A to Z of working on a change in kernel tree, patching and submitting
+Let us consider the task of updating the device tree. Here are the steps to be
+followed.
+
+## Cloning and making the changes
+- Know what is the current linux branch that is being used. Example: dev-5.8
+- git clone -b dev-5.8 git@github.com:openbmc/linux
+- Make the changes to device tree and commit the changes
+
+## Creating a patch
+- Create a patch using "git format-patch -N --subject-prefix="PATCH linux dev-5.8" -v 1"
+  where "N" is the number of commits starting HEAD on which a patch is needed.
+  "v" is the version.  Make sure to increase the value of "v" for each rework.
+  Example: git format-patch -1 --subject-prefix="PATCH linux dev-5.8" -v 1
+
+  Generated: v1-0001-ARM-dts-aspeed-rainier-Add-LEDs-that-are-off-9551.patch
+- Run "scripts/checkpatch.pl <patch_file>" and make sure it does not show any
+  errors. The script will ask to remove the gerrit commit id. Make sure to do so.
+
+## Validating the patch
+- Make sure the patch can be applied cleanly to the tree
+  Save the work to a branch: "git branch <my_branch>"
+  Reset the HEAD to origin: "git reset --hard origin/dev-5.8"
+  Apply the patch: "git am <patch_file>" and make sure it is successful
+
+## Building the kernel
+- Copy the patch file to :
+  openbmc/meta-aspeed/recipes-kernel/linux/linux-aspeed/
+
+  Also, update: openbmc/meta-aspeed/recipes-kernel/linux/linux-aspeed.inc
+  SRC_URI += " file://<patch_file>"
+- run "bitbake obmc-phosphor-image" and test the image
+
+## Submitting the patch file
+- Get the maintainer's email: "scripts/get_maintainer.pl <patch_file>"
+- "git send-email --to <your own email> <patch_file>" and make sure you
+   receive the patch appropriately.
+-  To be very sure, you can download the **raw email** and apply the downloaded
+   raw email using "git am <downloaded_raw_email>" and make sure it applies.
+- "git send-email --to <mailtainer's email> --cc <others> <patch_file>"
+
+- If you run into problems sending email, make sure the gitconfig is
+  appropriate. Example: ~/.gitconfig
+[sendmail]
+		smtpserver = <smtp server>
+		smtpserverport = <smtp server port number>
+		confirm = auto
+		chainreplyto = false
+		smtppass = no
+		multiedit=yes
+		#suppresscc = all
+		#confirm = always
+		#smtpuser = <submitter's mail id>
+		#smtpencryption=no
