@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aed33ec2_e4717b4c",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-23T18:00:17Z",
+      "side": 1,
+      "message": "Why did you choose to make the secondary flash the golden image?\n\nFor verified-boot reasons we make the primary flash the golden, so that we are always running the U-boot SPL from the fixed/golden image.  The SPL switches to the secondary flash chip as necessary/available.\n\nI think you need to propose how verified-boot can be supported if the secondary flash is the golden.",
+      "range": {
+        "startLine": 13,
+        "startChar": 57,
+        "endLine": 14,
+        "endChar": 37
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c19103f8_8b2c595b",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-23T18:00:17Z",
+      "side": 1,
+      "message": "We have this assumption for any image, don\u0027t we?\n\nWhat I can\u0027t tell (and I\u0027ve not read fully through) is if this implies the golden image will always use the default.  What we do in our golden image is still mount the RW-FS from the non-golden image to get these settings.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 75
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b55cfff3_2ed296bf",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-23T18:00:17Z",
+      "side": 1,
+      "message": "Why is this the case?  This seems not be required.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 46
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bffaf2c4_dca09871",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-23T18:00:17Z",
+      "side": 1,
+      "message": "Is this Linux dts or U-boot dts?  I think you need to clarify where the responsibility lies.",
+      "range": {
+        "startLine": 46,
+        "startChar": 5,
+        "endLine": 46,
+        "endChar": 8
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec283d6b_f4004033",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-23T18:00:17Z",
+      "side": 1,
+      "message": "The unfortunate side-effect of this proposal seems to be that the version of the non-golden image cannot be displayed by the golden side because the dts doesn\u0027t seem to have the layout of the other chip.  That means we get none of the xyz/openbmc_project/Software objects created for the opposite side.\n\nIs this something that can be resolved?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03b0ebe9_06ed16bc",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-23T18:00:17Z",
+      "side": 1,
+      "message": "I think that there were some properties added for PFR support by Intel recently (or maybe me) that should cover what you need here without defining a new property.  Let me know if it doesn\u0027t and we can discuss.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16443538_c51047b2",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-23T18:00:17Z",
+      "side": 1,
+      "message": "You could take care of this by copying the rwfs into a ramfs before mounting it.",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 34
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89ceeb92_e0e443c7",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-23T18:00:17Z",
+      "side": 1,
+      "message": "You keep mentioning networking settings, but why are networking settings the only ones which are special enough to do this with?\n\nGenerally we would not want the machine to automatically go to the default username and password unless there is serious file system corruption.  Otherwise, rooting a machine is as simple as triggering the WDT.",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 34
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "077ec62c_94c5b36c",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-23T18:00:17Z",
+      "side": 1,
+      "message": "I suspect you\u0027re going to need u-boot changes as well.",
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
