@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "205cfa21_8e7d4319",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-24T15:31:57Z",
+      "side": 1,
+      "message": "\u003e e.g. in your case, a root user is able to modify the u-boot SPL on the primary flash, and compromise the verified boot\n\nI mentioned this in response to another comment but this is not true.\n\nWe have implemented and publicly available code for a static-layout + golden-image + secure/verified boot.  I don\u0027t really think we should pursue a *different* design if it has obvious shortcomings.  There are learnings we\u0027ve already accomplished so why not leverage that?",
+      "parentUuid": "a3d7016b_54f3e466",
+      "range": {
+        "startLine": 13,
+        "startChar": 57,
+        "endLine": 14,
+        "endChar": 37
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c19103f8_8b2c595b",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "In this design, we do want to use the default username/password, it\u0027s meant to be used only for disaster recovery.",
       "parentUuid": "c19103f8_8b2c595b",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 75
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5412ccb6_879cf9de",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-24T15:31:57Z",
+      "side": 1,
+      "message": "I would suggest we keep that as an option then.  You can check the integrity of any file system as you mount it, so I don\u0027t know why we wouldn\u0027t attempt to mount the rwfs.\n\nYou said it is meant for disaster recovery but we also have part of the design indicating that the WDT will be used to switch over to it, so certain crashes can also cause a failover.",
+      "parentUuid": "0e6f95fa_8cae2d49",
       "range": {
         "startLine": 40,
         "startChar": 0,
@@ -140,6 +188,30 @@
       "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0eece7dc_decc42af",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-24T15:31:57Z",
+      "side": 1,
+      "message": "But that is just an implementation of how we\u0027re using UBI now.  There isn\u0027t any reason why you couldn\u0027t use UBI and define a golden image (or make one of the devices hardware read-only), right?\n\nMaybe this is a subtlety of the way this sentence is structured.  There is UBI as an underlying technology and there is the current openbmc flash layout that utilizes UBI.  I think you\u0027re referring to the later but my question is why the technology can\u0027t still be used to accomplish what you desire.",
+      "parentUuid": "af82209e_80becde0",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 46
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
@@ -237,6 +309,30 @@
     },
     {
       "key": {
+        "uuid": "33f84a7d_0a7de0b9",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-24T15:31:57Z",
+      "side": 1,
+      "message": "\u003e It is intended. In this design, the BMC only sees a single version on the running flash.\n\nWhy is that a good thing?  We have a utility in fb-openbmc\u0027s golden image implementation to be able to read the version of the golden and we use it quite frequently.  It is good to know what vintage of firmware you have on your systems for the cases where they do fail back to the golden side, so that you know what versions you need to support and test.",
+      "parentUuid": "43543c67_29f0a1e8",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "03b0ebe9_06ed16bc",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -272,6 +368,30 @@
       "side": 1,
       "message": "The PFR is a different story, it adds the StandbySpare part.\n\nA candidate dbus change is https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/36587, and we are discussing there.",
       "parentUuid": "03b0ebe9_06ed16bc",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eee73a15_195a2981",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-24T15:31:57Z",
+      "side": 1,
+      "message": "My relation to PFR was that they had an \u0027Active\u0027, \u0027Backup\u0027 and \u0027Staged\u0027 image locations.  The golden image is, effectively, a form of \u0027Backup\u0027, right?\n\nAlternatively, I think that the RedundancyPriority could equally be used to represent an image which is in the golden flash bank, couldn\u0027t it?",
+      "parentUuid": "7343db5c_0492e25a",
       "range": {
         "startLine": 52,
         "startChar": 0,
@@ -378,6 +498,30 @@
     },
     {
       "key": {
+        "uuid": "28eec3fb_fbf1cb8b",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-24T15:31:57Z",
+      "side": 1,
+      "message": "The data we have suggests that it isn\u0027t always due to a flash corruption that we\u0027re ending up running on the golden image.\n\nBut, wouldn\u0027t the \u0027mount\u0027 operation and/or fsck tell you if the flash+filesystem are good?\n\n\u003e This is a requirement of our BMC that fits our usage.\n\nWe need to be careful about this kind of direction.  If this is a Bytedance-only design, we should be clear about that.  Ideally if you have specific requirements that are not generally applicable we should be able to PACKAGECONFIG that in/out.",
+      "parentUuid": "acea74a8_fe9d6b96",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 34
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "077ec62c_94c5b36c",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -407,6 +551,24 @@
       "side": 1,
       "message": "I think no need for u-boot changes, but not 100% sure...\n@Joel @Ivan Mikhaylov could you kindly help to check if this would involve u-boot changes?",
       "parentUuid": "077ec62c_94c5b36c",
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "325aafe3_ce2e493d",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-24T15:31:57Z",
+      "side": 1,
+      "message": "The u-boot changes I am suggesting would be necessary to accomplish verified boot correctly.  We have the code available for that but I don\u0027t think it is upstreamed.\n\nWould you like me to set up some time with our verified boot developer to discuss what we have implemented already?",
+      "parentUuid": "c2571506_55c486be",
       "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
