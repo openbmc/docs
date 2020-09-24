@@ -219,6 +219,24 @@
     },
     {
       "key": {
+        "uuid": "900b2327_78ce2586",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-24T07:34:38Z",
+      "side": 1,
+      "message": "Yup, we do want to use golden image because it makes sure the BMC could be restored when something bad happens on the primary flash (assuming the golden flash is not broken).\n\n\u003e We use a golden image because it is the way we implement verified boot pre-AST2600\u0027s hardware root of trust.\n\nGood to know. However, I doubt it is not really a trusted root-of-trust, e.g. the u-boot in primary chip could be compromised by a root user, is it?",
+      "parentUuid": "453241e5_dcd3c969",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "72d6d000_9d3861d8",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 2
@@ -590,6 +608,24 @@
       "side": 1,
       "message": "There is some subtlety between the AST2400 and AST2500 that I recall Milton explaining to me once.  Might need his feedback on how to do this in a portable way.",
       "parentUuid": "db65f4b4_e657bf28",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a93377b0_ea4dac28",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-24T07:34:38Z",
+      "side": 1,
+      "message": "The wording here is updated, so there is not need for SoC specific details in the design doc here.",
+      "parentUuid": "72087cca_da60e082",
       "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
