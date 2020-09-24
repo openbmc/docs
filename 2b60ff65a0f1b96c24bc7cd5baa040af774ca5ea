@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a3d7016b_54f3e466",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-24T07:34:38Z",
+      "side": 1,
+      "message": "This document does not resolve the problems related to secure/verified boot.\nOn ast2500, there is no \"real\" secure boot (e.g. in your case, a root user is able to modify the u-boot SPL on the primary flash, and compromise the verified boot).\nSo we accept the fact that there is no secure boot in this design.",
+      "parentUuid": "aed33ec2_e4717b4c",
+      "range": {
+        "startLine": 13,
+        "startChar": 57,
+        "endLine": 14,
+        "endChar": 37
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c19103f8_8b2c595b",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-09-23T18:00:17Z",
       "side": 1,
       "message": "We have this assumption for any image, don\u0027t we?\n\nWhat I can\u0027t tell (and I\u0027ve not read fully through) is if this implies the golden image will always use the default.  What we do in our golden image is still mount the RW-FS from the non-golden image to get these settings.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 75
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e6f95fa_8cae2d49",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-24T07:34:38Z",
+      "side": 1,
+      "message": "In this design, we do want to use the default username/password, it\u0027s meant to be used only for disaster recovery.",
+      "parentUuid": "c19103f8_8b2c595b",
       "range": {
         "startLine": 40,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "af82209e_80becde0",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-24T07:34:38Z",
+      "side": 1,
+      "message": "With UBI, there is only u-boot on primary flash and alt-u-boot in the secondary flash. The UBI\u0027s ro/rw fs could reside in either primary or secondary flash.\nSo it does not really have the golden concept.",
+      "parentUuid": "b55cfff3_2ed296bf",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 46
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bffaf2c4_dca09871",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "2cbd4219_bed15469",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-24T07:34:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bffaf2c4_dca09871",
+      "range": {
+        "startLine": 46,
+        "startChar": 5,
+        "endLine": 46,
+        "endChar": 8
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec283d6b_f4004033",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -105,6 +201,30 @@
       "writtenOn": "2020-09-23T18:00:17Z",
       "side": 1,
       "message": "The unfortunate side-effect of this proposal seems to be that the version of the non-golden image cannot be displayed by the golden side because the dts doesn\u0027t seem to have the layout of the other chip.  That means we get none of the xyz/openbmc_project/Software objects created for the opposite side.\n\nIs this something that can be resolved?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43543c67_29f0a1e8",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-24T07:34:38Z",
+      "side": 1,
+      "message": "It is intended.\nIn this design, the BMC only sees a single version on the running flash.\n* When it\u0027s the primary flash, the BMC does not manage the golden flash at all (except it could optionally sync networking settings);\n* When it\u0027s the golden flash, the BMC only shows the running version, and the code update will program the primary flash.\n\nIn any case, the bmc software object is created only for the running version.",
+      "parentUuid": "ec283d6b_f4004033",
       "range": {
         "startLine": 48,
         "startChar": 0,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "7343db5c_0492e25a",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-24T07:34:38Z",
+      "side": 1,
+      "message": "The PFR is a different story, it adds the StandbySpare part.\n\nA candidate dbus change is https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/36587, and we are discussing there.",
+      "parentUuid": "03b0ebe9_06ed16bc",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16443538_c51047b2",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -160,6 +304,30 @@
       "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5060b165_dd53e3ed",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-24T07:34:38Z",
+      "side": 1,
+      "message": "It\u0027s a good point.\nBut when the BMC is running on the golden image, it could mean the primary flash is broken, and the rwfs could be broken too.\nThe idea is really to not touch the primary flash, and just do a full erase and program.\nUpdated this part to describe why the golden image should not mount the primary\u0027s rwfs.",
+      "parentUuid": "16443538_c51047b2",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 34
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "acea74a8_fe9d6b96",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-24T07:34:38Z",
+      "side": 1,
+      "message": "\u003e You keep mentioning networking settings, but why are networking settings the only ones which are special enough to do this with?\n\nThis is a requirement of our BMC that fits our usage.\n\n\u003e Generally we would not want the machine to automatically go to the default username and password unless there is serious file system corruption.  Otherwise, rooting a machine is as simple as triggering the WDT.\n\nAs previously noted, the golden image is meant to be used for disaster recovery, so (in production) it does mean there is a serious corruption of the primary flash.",
+      "parentUuid": "89ceeb92_e0e443c7",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 34
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "077ec62c_94c5b36c",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -197,6 +389,24 @@
       "writtenOn": "2020-09-23T18:00:17Z",
       "side": 1,
       "message": "I suspect you\u0027re going to need u-boot changes as well.",
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2571506_55c486be",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-24T07:34:38Z",
+      "side": 1,
+      "message": "I think no need for u-boot changes, but not 100% sure...\n@Joel @Ivan Mikhaylov could you kindly help to check if this would involve u-boot changes?",
+      "parentUuid": "077ec62c_94c5b36c",
       "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
