@@ -237,6 +237,24 @@
     },
     {
       "key": {
+        "uuid": "bfe3a6af_d1746bbd",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-24T11:48:20Z",
+      "side": 1,
+      "message": "There are only physical attacks that would compromise our verified-boot implementation, not remote.  It is not a hardware ROT in the sense that the chip itself isn\u0027t checking the initial code, but we have protection mechanisms to ensure that the initial code cannot ever be written by a user.\n\nWe have two flavors of how we implement this but both use the same u-boot code.\n1. We use a physical resistor to lock the NOR.\n2. In the u-boot SPL we send a command to the NOR to disable writes to the first N kb of the NOR.\n\nThe flow is:\n1. Chip boots from the primary (golden) chip\u0027s u-boot SPL.\n    a. In flavor 1 this is guaranteed to have only been written at MFG.\n    b. In flavor 2 this is protected by step 2.\n2. U-boot SPL sends command to disable writes to the first N kb of the NOR, which contains the entire SPL code.\n3. U-boot SPL checks secondary (non-golden) chip for a valid u-boot image.\n4. If found, perform signature check and switch to u-boot.\n5. If not found, or signature check fails, repeat for primary (golden).\n6. If still not found, hang.\n7. We are now running a valid, signature-checked u-boot.\n8. Do normal u-boot things.\n9. Load kernel/userspace FIT from the same chip we are running on and check signatures.\n10. Switch to kernel.\n\nAt this point, we\u0027re running code that has been digitally signed and verified, except for the u-boot SPL.  We protect the u-boot SPL by the two mechanisms mentioned above, so that no user can re-write the SPL.  The only attack is to be physically present and either de-pop the resistor and use a flash programmer.",
+      "parentUuid": "900b2327_78ce2586",
+      "revId": "27f343125e32027c81c5a508ec979d109a29f18f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "72d6d000_9d3861d8",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 2
