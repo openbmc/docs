@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "a62c67b6_868f0f08",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-25T05:58:56Z",
+      "side": 1,
+      "message": "Thanks for the information, we did not know there is such a design because it\u0027s not mentioned in the upstream doc/code...\n\nDoes the implementation depend on specific hardware (e.g. some resistor to lock NOR)?\nIf there is no dependency, would you kindly upstream the implementation so that we could share the same design in the upstreamed code?",
+      "parentUuid": "205cfa21_8e7d4319",
+      "range": {
+        "startLine": 13,
+        "startChar": 57,
+        "endLine": 14,
+        "endChar": 37
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c19103f8_8b2c595b",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -144,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "d1926eb6_57a69ed4",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-25T05:58:56Z",
+      "side": 1,
+      "message": "OK, will update this part to make it optional.",
+      "parentUuid": "5412ccb6_879cf9de",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 75
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b55cfff3_2ed296bf",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -203,6 +251,30 @@
       "side": 1,
       "message": "But that is just an implementation of how we\u0027re using UBI now.  There isn\u0027t any reason why you couldn\u0027t use UBI and define a golden image (or make one of the devices hardware read-only), right?\n\nMaybe this is a subtlety of the way this sentence is structured.  There is UBI as an underlying technology and there is the current openbmc flash layout that utilizes UBI.  I think you\u0027re referring to the later but my question is why the technology can\u0027t still be used to accomplish what you desire.",
       "parentUuid": "af82209e_80becde0",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 46
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23a8a4e7_dd7a3d65",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-25T05:58:56Z",
+      "side": 1,
+      "message": "Yes, the wording does mention it as \"UBI flash layout\" which is how the current OpenBMC\u0027s implementation using UBI and dynamic flash layout.\n\nI want to add the note that this design does not work with the above UBI (and dynamic) flash layout.",
+      "parentUuid": "0eece7dc_decc42af",
       "range": {
         "startLine": 43,
         "startChar": 0,
@@ -333,6 +405,30 @@
     },
     {
       "key": {
+        "uuid": "3fbeda41_5ac9b356",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-25T05:58:56Z",
+      "side": 1,
+      "message": "\u003e Why is that a good thing?\n\nIt is easier to implement, really just that :)\nAnd I think Yadro uses a similar design as described in this doc.\n\nIf you could upstream fb-openbmc\u0027s golden image implemention, I would love to try it and possibly use it that way.",
+      "parentUuid": "33f84a7d_0a7de0b9",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "03b0ebe9_06ed16bc",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -392,6 +488,30 @@
       "side": 1,
       "message": "My relation to PFR was that they had an \u0027Active\u0027, \u0027Backup\u0027 and \u0027Staged\u0027 image locations.  The golden image is, effectively, a form of \u0027Backup\u0027, right?\n\nAlternatively, I think that the RedundancyPriority could equally be used to represent an image which is in the golden flash bank, couldn\u0027t it?",
       "parentUuid": "7343db5c_0492e25a",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "13291eb5_057f7473",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-25T05:58:56Z",
+      "side": 1,
+      "message": "\u003e My relation to PFR was that they had an \u0027Active\u0027, \u0027Backup\u0027 and \u0027Staged\u0027 image locations.  The golden image is, effectively, a form of \u0027Backup\u0027, right?\n\nYes, the PFR requires 3 parts, and the \"Backup\" is something like golden image. But I do not really want to mention that, because it requires special CPLD/FPGA to program the \u0027Active\u0027, it\u0027s too specific.\n\n\u003e I think that the RedundancyPriority could equally be used to represent an image which is in the golden flash bank, couldn\u0027t it?\n\nYes, it\u0027s a good idea. I will update the doc to suggest to use a read-only RedundancyPriority to represent the status.",
+      "parentUuid": "eee73a15_195a2981",
       "range": {
         "startLine": 52,
         "startChar": 0,
@@ -522,6 +642,30 @@
     },
     {
       "key": {
+        "uuid": "37716b1b_03c5bb29",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-25T05:58:56Z",
+      "side": 1,
+      "message": "Yes, that\u0027s why it\u0027s mentioned as \"Optional\", and it could be enabled by PACKAGECONFIG.\nBy default it does not sync anything like how Yadro uses the golden image.\nWe want to sync the networking settings because it\u0027s required for our BMC to have the static IP when it\u0027s running on golden image.",
+      "parentUuid": "28eec3fb_fbf1cb8b",
+      "range": {
+        "startLine": 75,
+        "startChar": 15,
+        "endLine": 75,
+        "endChar": 34
+      },
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "077ec62c_94c5b36c",
         "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
         "patchSetId": 3
@@ -569,6 +713,24 @@
       "side": 1,
       "message": "The u-boot changes I am suggesting would be necessary to accomplish verified boot correctly.  We have the code available for that but I don\u0027t think it is upstreamed.\n\nWould you like me to set up some time with our verified boot developer to discuss what we have implemented already?",
       "parentUuid": "c2571506_55c486be",
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae71fc99_d3b6ecce",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2020-09-25T05:58:56Z",
+      "side": 1,
+      "message": "\u003e Would you like me to set up some time with our verified boot developer to discuss what we have implemented already?\n\nPlease do!\nAnd if possible, please upstream the implementation if it does not require specific hardware.\nThanks!",
+      "parentUuid": "325aafe3_ce2e493d",
       "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
