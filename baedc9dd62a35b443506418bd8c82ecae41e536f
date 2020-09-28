@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a114608_1fe824ff",
+        "filename": "development/HowTo/OpenBMC_Health_statistics.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000472
+      },
+      "writtenOn": "2020-09-28T10:33:02Z",
+      "side": 1,
+      "message": "Since a lot of the following comments refer to the fundamental question whether this is how-to guide or design doc I will leave response here. We\u0027ve never planned to deliver the code for this feature, thus this document was supposed to be a guide how to retrieve the required metrics and advice how to implement them to be compliant with existing telemetry and Redfish mechanisms. The document was created on customer\u0027s request to meet his specific requirements (the section with requirements). \nAs for the duplication of some other documentations (Linux man pages or phosphor-dbus-interfaces), the goal was to give the customer all in the single document. The description how to collect the required data and how they can be exposed outside (Redfish). \nI see, that we have different understanding of how-to document. What would be your advice in this particular case? Should this document be changed to design document? In such case what about existing design (https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/31957/5/designs/bmc-health-monitor.md)?",
+      "parentUuid": "b40e6d51_7d203ea5",
+      "range": {
+        "startLine": 5,
+        "startChar": 6,
+        "endLine": 5,
+        "endChar": 18
+      },
+      "revId": "baedc9dd62a35b443506418bd8c82ecae41e536f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ff215a2_23637cd7",
         "filename": "development/HowTo/OpenBMC_Health_statistics.md",
         "patchSetId": 1
@@ -53,6 +77,30 @@
       "writtenOn": "2020-09-21T18:08:06Z",
       "side": 1,
       "message": "Can we avoid mentioning bmcweb here by name?  If you want to mention the Redfish telemetry schema, I think that\u0027s more called for, but considering there are likely a lot of consumers of this, I\u0027d be worried about calling one out by name in a doc like this.",
+      "range": {
+        "startLine": 23,
+        "startChar": 40,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "baedc9dd62a35b443506418bd8c82ecae41e536f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cbd5c03_e898a4aa",
+        "filename": "development/HowTo/OpenBMC_Health_statistics.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000472
+      },
+      "writtenOn": "2020-09-28T10:33:02Z",
+      "side": 1,
+      "message": "I understand, that you would like to avoid metioning the consumers of these metrics by name? If yes, I will rephrase that.",
+      "parentUuid": "9d7855da_24fb8405",
       "range": {
         "startLine": 23,
         "startChar": 40,
@@ -237,6 +285,30 @@
       "writtenOn": "2020-09-21T18:08:06Z",
       "side": 1,
       "message": "Post codes have something to do with discrete sensors?",
+      "range": {
+        "startLine": 169,
+        "startChar": 35,
+        "endLine": 170,
+        "endChar": 41
+      },
+      "revId": "baedc9dd62a35b443506418bd8c82ecae41e536f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59d29325_3afaef42",
+        "filename": "development/HowTo/OpenBMC_Health_statistics.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000472
+      },
+      "writtenOn": "2020-09-28T10:33:02Z",
+      "side": 1,
+      "message": "I think that BIOS POST codes could be exposed as discrete sensors. This was recommendation how it can be adopted to health metrics, as customer required them.",
+      "parentUuid": "05fafeb3_faec9274",
       "range": {
         "startLine": 169,
         "startChar": 35,
