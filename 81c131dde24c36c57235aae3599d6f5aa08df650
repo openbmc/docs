@@ -1,0 +1,671 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1655f6a_01fa92dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "I originally went through and commented through this before I realized.... this needs to be a mailing list discussion.  We can\u0027t have questions in a design/architecture doc, nor can we have it describe things that don\u0027t exist yet.  Wrong documentation is worse than no documentation in this case.\n\nCan we move this to the mailing list?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 81
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d1aa7d0_d9939824",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "Entity manager already has a requirements section in the readme.  Can we deduplicate that with this.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 32
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8493fc38_25dd8371",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "This seems like redfish documentation, not entity manager documentation.  With that said, I think more correct language is already in the EM readme.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 6
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd89a0d1_4b0a9a47",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "This isn\u0027t an intent.  New hardware _types_ will always require new code.  EM tries to reduce the effort to describe a specific arrangement of hardware that is already supported.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 158
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a81f7b7e_964e2796",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "Neither of those are required, although they are common.",
+      "range": {
+        "startLine": 21,
+        "startChar": 66,
+        "endLine": 21,
+        "endChar": 156
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5249efd3_fa1eba21",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "This is an implementation detail and not the only case where Entity-manager saves this.  I would phrase this as \"Entity manager will make every attempt to keep the inventory interfaces correct, although detection may be deferred in some cases.\"",
+      "range": {
+        "startLine": 25,
+        "startChar": 101,
+        "endLine": 25,
+        "endChar": 208
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10ef3a8a_854dda40",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "This is great documentation for Redfish.  I\u0027d much rather something like \"Redfish is has a schema that tends to be a large user of Inventory interfaces\".\n\nTo say an EM interface MUST be in Redfish, or a Redfish interface MUST be in EM is an oversimplification.\n\nI would also avoid making statements about the webui.  phosphor-webui uses a few non-Redfish resources, webui-vue uses fewer.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 0
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94ab7459_778cb2ab",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "This is kind of nonsensical.  The SDR defines a given set of inventory that points to FRU commands.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 86
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e69a20d8_331b2db1",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "FruDevice definitely generates a \"virtual\" fru as you call it.",
+      "range": {
+        "startLine": 31,
+        "startChar": 88,
+        "endLine": 31,
+        "endChar": 114
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df84eb26_f7bfb7af",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "I\u0027m not sure I understand this question.",
+      "range": {
+        "startLine": 33,
+        "startChar": 133,
+        "endLine": 33,
+        "endChar": 222
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "287c51fe_f00e8f3e",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "There\u0027s no requirement that types have common interfaces nor share handling code.  Code will use the handling code that best fits its design.",
+      "range": {
+        "startLine": 41,
+        "startChar": 119,
+        "endLine": 41,
+        "endChar": 190
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad3abd07_b09038c9",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "This should read \"no code changes for a new platform\"",
+      "range": {
+        "startLine": 41,
+        "startChar": 55,
+        "endLine": 41,
+        "endChar": 62
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b75478fc_2f95cd31",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "Disagree.  I have no desire to test and maintain two different implementations.  bmcweb/Redfish was built against entity manager.  The existing contract is between the implementations and webserver/ipmi.  The reasons EM doesn\u0027t use phopshor-dbus-interfaces is a much longer discussion (that reminds me I need to send an email out so we can start that discussion).",
+      "range": {
+        "startLine": 42,
+        "startChar": 50,
+        "endLine": 42,
+        "endChar": 96
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "085d4d59_51d84e46",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "This is not a requirement, but an implementation detail, and is a little abstract for my taste.  Requirements are user facing.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 111
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9cc641c_63df1613",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "I struggle with this heading, because entity manager has an implementation already.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 29
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3adc1b74_16966af9",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "No.  It doesn\u0027t.  It relies on dbus interfaces and publishes config data to dbus.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 112
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee8c4023_fcae41f0",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "With respect, one central inventory daemon is only \"more logical\" in the simplest of cases, and is one of the reasons phosphor-inventory-manager doesn\u0027t meet a lot of use cases.  In the cases where inventory information is \"expensive\" to acquire, or requires a backend, such as is the case in PLDM/MCTP, entity-manager should not be in charge of that code, and inventory should be owned by the component actually communicating with the information store.",
+      "range": {
+        "startLine": 50,
+        "startChar": 175,
+        "endLine": 50,
+        "endChar": 645
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e05650c7_4e843c2f",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "What does \"Central element\" mean in this context?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 40
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6caab0a_9d09dd3d",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "Disagree that EM should be the only inventory interface.  It is the software configuration interface.  Ideally reactors would publish their own inventory interfaces, but that got complicated, so today we have a hybrid.",
+      "range": {
+        "startLine": 50,
+        "startChar": 42,
+        "endLine": 50,
+        "endChar": 174
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38f1b3c0_af7b59e8",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "I\u0027d love if this \"passthrough\" interface were removed at some point, and only contained an association back to the interfaces that influenced the probe.",
+      "range": {
+        "startLine": 53,
+        "startChar": 191,
+        "endLine": 53,
+        "endChar": 264
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59ccdbc2_7957d23d",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "I would like to see this happen in the future.  We prioritize the config file writer over the backend writer intentionally.",
+      "range": {
+        "startLine": 57,
+        "startChar": 172,
+        "endLine": 57,
+        "endChar": 218
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d7e18e3_764119c8",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "Not in all cases.  Overarching statements like this should be avoided.",
+      "range": {
+        "startLine": 58,
+        "startChar": 152,
+        "endLine": 58,
+        "endChar": 238
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f438bfcc_c20437d2",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "Disagree with putting \"must\" on anything like this, or trying to add a new definition of \"inventory entity\".  Entities will have the interfaces that are required to implement the features they need and support.  In some cases that includes inventory Item, but not always.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 64
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "467a4834_587b9aca",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "This is more an implementation detail.  Given that we have _some_ systems that need dynamic configurability, that should be preferred to avoid duplication of code between the static and dynamic cases.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 139
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "111cc3f0_07c88c76",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "This should be the first item, as it is the most important.  The readme phrases this in the context of how long it takes to add a piece of hardware  to the supported list.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 65
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e648af9_7236b8a1",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "Configuration files should describe the software resources needed for this entity.  It is not limited to hardware.  Hypervisor implementations or host scanning implementations might desire to implement sensors, and have a detection mechanism from the host, in which case, they would be a first class entity just as if they had been plugged in.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 111
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0914e06f_147dfea3",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "configuration files should contain the minimum amount of information required to describe how they differ from other entities.  Intelligent defaults should always be preferred.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 106
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e494a58b_465150e5",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "The current EM implementation takes this as an acceptable risk.",
+      "range": {
+        "startLine": 75,
+        "startChar": 345,
+        "endLine": 75,
+        "endChar": 409
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19cc41ae_6a9cf71b",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T21:29:23Z",
+      "side": 1,
+      "message": "EM configurations describe the differences between platforms/hardware/software.  It doesn\u0027t \"just\" define hardware configuration.",
+      "range": {
+        "startLine": 75,
+        "startChar": 65,
+        "endLine": 75,
+        "endChar": 124
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
