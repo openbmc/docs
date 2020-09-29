@@ -854,6 +854,24 @@
       "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02719a5b_7385bc49",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-29T15:36:54Z",
+      "side": 1,
+      "message": "\u003e @Dan Zhang would you please upstream the design and code?\n\nLei, I think you asked me this earlier also.  \n\nKeep in mind that all of our code is in facebook/openbmc for our current production systems and is an entirely different codebase than openbmc/openbmc.  Remember that facebook/openbmc predates openbmc/openbmc and the community was fractured about 4-5 years ago.  We\u0027re working to migrate over to openbmc/openbmc (see Tiogapass and YosemiteV2 efforts) but it is a slow moving process.\n\nI say this because there isn\u0027t an \"upstream\" in the sense of this code.  It isn\u0027t like we forked openbmc and are keeping this code to ourselves.  But also it isn\u0027t high on our priority right now to have Dan port our verified-boot implementation to openbmc/openbmc.\n\nHaving said that, if there are pieces you think would be useful to have us work together, we can discuss that and see what our ability is to assist.  Dan has a lot of expertise in the changes done in u-boot for verified-boot and I agree it would be great to get those upstreamed into u-boot proper (and then back down into openbmc).",
+      "parentUuid": "54bb974a_b9322b76",
+      "revId": "2b60ff65a0f1b96c24bc7cd5baa040af774ca5ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
