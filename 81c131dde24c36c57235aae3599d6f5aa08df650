@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4ef4f5bf_009ab316",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "\u003e We can\u0027t have questions in a design/architecture doc\n\nSure, not in submitted version, but during WIP - why not if this is really open questions?\n\n\u003e nor can we have it describe things that don\u0027t exist yet\n\nI think we can, if we all agree that this should be done and it explicitly marked as ToDo.\n\n\u003e Can we move this to the mailing list?\n\nI think, we can have particular threads there. But final document (or documents if discussion will be more productive )) should be somewhere here.",
+      "parentUuid": "b1655f6a_01fa92dc",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 81
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d1aa7d0_d9939824",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2020-09-29T21:29:23Z",
       "side": 1,
       "message": "Entity manager already has a requirements section in the readme.  Can we deduplicate that with this.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 32
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62fa16fa_a429af5e",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "That document you talking about describes EM as separate software, but actually it doesn\u0027t work isolated.\nI want to have global inventory subsystem picture and description for EM as part of the system.\nProbably filename/location was chosen wrongly, we can adjust this.",
+      "parentUuid": "9d1aa7d0_d9939824",
       "range": {
         "startLine": 6,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "16f65898_356e88d1",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "What you mean \"correct language\"?",
+      "parentUuid": "8493fc38_25dd8371",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 6
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd89a0d1_4b0a9a47",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2020-09-29T21:29:23Z",
       "side": 1,
       "message": "This isn\u0027t an intent.  New hardware _types_ will always require new code.  EM tries to reduce the effort to describe a specific arrangement of hardware that is already supported.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 158
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6d85b90_85d98998",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Idea was mostly about representation part. Saying we want to add support for inventorization of pizza pieces for our \"Pizza Box\". We have to implement new detection/communication code which can tell us that we have two pieces of Margatita. But then we want to show this information for user and this we can do almost automatically in bmcweb if EM exposes right interfaces.\nProblem here mostly about we do need to implement different Redfish schemes, which likely can\u0027t be automated, but anyway, I would it be only because of Redfish scheme encoding, not because the same information for different device types is represented in different ways...",
+      "parentUuid": "bd89a0d1_4b0a9a47",
       "range": {
         "startLine": 19,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "66c3c036_ce31892b",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Agree, actually I didn\u0027t say \"required\". \nHowever, I would like to make \"xyz.openbmc_project.Inventory.Item\" with both \"PrettyName\" and \"Present\" to be mandatory.",
+      "parentUuid": "a81f7b7e_964e2796",
+      "range": {
+        "startLine": 21,
+        "startChar": 66,
+        "endLine": 21,
+        "endChar": 156
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5249efd3_fa1eba21",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "22103a83_b90b09ed",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5249efd3_fa1eba21",
+      "range": {
+        "startLine": 25,
+        "startChar": 101,
+        "endLine": 25,
+        "endChar": 208
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10ef3a8a_854dda40",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -160,6 +304,30 @@
       "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c75d4124_1e3cdb1b",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "10ef3a8a_854dda40",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 0
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "25748655_691e76fb",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "I\u0027d say FruDevice acts as proxy, reading real FRU data in runtime and cache it for future use. While on Power platform we assemble FRUs for hardware components which physically doesn\u0027t even have FRU memory.",
+      "parentUuid": "e69a20d8_331b2db1",
+      "range": {
+        "startLine": 31,
+        "startChar": 88,
+        "endLine": 31,
+        "endChar": 114
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "df84eb26_f7bfb7af",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -220,6 +412,30 @@
       "writtenOn": "2020-09-29T21:29:23Z",
       "side": 1,
       "message": "I\u0027m not sure I understand this question.",
+      "range": {
+        "startLine": 33,
+        "startChar": 133,
+        "endLine": 33,
+        "endChar": 222
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a24a27f_70e0e48e",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Well, here is example on how ipmitool fru list looks on our Power-based platform:\n\n\u003e FRU Device Description : Builtin FRU Device (ID 0)\n Board Mfg Date        : Mon Jan  1 03:00:00 1996\n Board Mfg             : YADRO\n Board Product         : Management board\n Board Serial          : 002B0DH1000\n Board Part Number     : MANOP8\nFRU Device Description : cpu0 (ID 1)\n Board Mfg Date        : Mon Jan  1 03:00:00 1996\n Board Mfg             : IBM\n Board Product         : PROCESSOR MODULE\n Board Serial          : YA1933264756\n Board Part Number     : 00UL866\n[...]\nFRU Device Description : system (ID 5)\n Chassis Type          : Unspecified\n Chassis Part Number   : VESNIN\n Chassis Serial        : 1809000001\n Board Mfg Date        : Fri Sep 21 03:00:00 2018\n Board Mfg             : YADRO\n Board Product         : Motherboard\n Board Serial          : Y001B0DH1000\n Board Part Number     : MBDOP8740001\nFRU Device Description : membuf1 (ID 6)\n Board Mfg Date        : Mon Sep  9 03:00:00 2019\n Board Mfg             : YADRO\n Board Product         : Memory Riser\n Board Serial          : Y00AC037K2000\n Board Part Number     : MEMDDR740001\n[...]\nFRU Device Description : dimm8 (ID 22)\n Product Manufacturer  : Samsung Electronics\n Product Name          : DDR4-2400 32GiB 64-bit ECC RDIMM\n Product Part Number   : M393A4K40BB1-CRC    \n Product Serial        : 3617984e\n[...]\nFRU Device Description : dimm127 (ID 149)\n Device not present (Requested sensor, data, or record not found)\n[...]\nFRU Device Description : fan0 (ID 152)\n Product Manufacturer  : SanyoDenki\n Product Name          : fan0\n Product Part Number   : 9HV0812PG001\n[...]\nFRU Device Description : opfw (ID 254)\n Product Name          : OpenPOWER Firmware\n Product Version       : open-power-vesnin-v3.0-x16_rc1-g57e5a1b\n\nMore then 150 entries in total. Same for x86 system looks, let\u0027s say, more compact.",
+      "parentUuid": "df84eb26_f7bfb7af",
       "range": {
         "startLine": 33,
         "startChar": 133,
@@ -278,6 +494,30 @@
     },
     {
       "key": {
+        "uuid": "b24abc9d_27e6ada8",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "I noticed this, yes. But I would like we have such requirement for future development.",
+      "parentUuid": "287c51fe_f00e8f3e",
+      "range": {
+        "startLine": 41,
+        "startChar": 119,
+        "endLine": 41,
+        "endChar": 190
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b75478fc_2f95cd31",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -289,6 +529,30 @@
       "writtenOn": "2020-09-29T21:29:23Z",
       "side": 1,
       "message": "Disagree.  I have no desire to test and maintain two different implementations.  bmcweb/Redfish was built against entity manager.  The existing contract is between the implementations and webserver/ipmi.  The reasons EM doesn\u0027t use phopshor-dbus-interfaces is a much longer discussion (that reminds me I need to send an email out so we can start that discussion).",
+      "range": {
+        "startLine": 42,
+        "startChar": 50,
+        "endLine": 42,
+        "endChar": 96
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29e0c39a_0a38b1db",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "What \"two different implementations\" you talking about? \nI can see your inputs against using phopshor-dbus-interfaces generated code, but not against to be compatible with this interfaces. We all working on big system with lot of components interacting each other. Let\u0027s keep contracts in phopshor-dbus-interfaces. If we somewhere feel the interface doesn\u0027t suit our needs we should explicitly change it, but not silently break like was done in EM.",
+      "parentUuid": "b75478fc_2f95cd31",
       "range": {
         "startLine": 42,
         "startChar": 50,
@@ -324,6 +588,30 @@
     },
     {
       "key": {
+        "uuid": "35959a29_849200fd",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Agree, this is not important, can remove\n\u003e Requirements are user facing.\n\nIt was about \"export to XML/JSON/etc\" function for end user to download inventory report.",
+      "parentUuid": "085d4d59_51d84e46",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 111
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b9cc641c_63df1613",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -344,6 +632,30 @@
       "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8b4de21_2af62778",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b9cc641c_63df1613",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 29
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -439,6 +751,30 @@
     },
     {
       "key": {
+        "uuid": "534d0a67_c8d8e685",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Good, then I misunderstood idea from EM readme.\nShould we then say that \"All hardware-related configuration should be handled by EM\" instead?",
+      "parentUuid": "ee8c4023_fcae41f0",
+      "range": {
+        "startLine": 50,
+        "startChar": 175,
+        "endLine": 50,
+        "endChar": 645
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "38f1b3c0_af7b59e8",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -462,6 +798,30 @@
     },
     {
       "key": {
+        "uuid": "a5fea782_862a18b9",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Added this as ToDo item and moved to EM section.",
+      "parentUuid": "38f1b3c0_af7b59e8",
+      "range": {
+        "startLine": 53,
+        "startChar": 191,
+        "endLine": 53,
+        "endChar": 264
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59ccdbc2_7957d23d",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -473,6 +833,30 @@
       "writtenOn": "2020-09-29T21:29:23Z",
       "side": 1,
       "message": "I would like to see this happen in the future.  We prioritize the config file writer over the backend writer intentionally.",
+      "range": {
+        "startLine": 57,
+        "startChar": 172,
+        "endLine": 57,
+        "endChar": 218
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16d01ff8_b1be7a0d",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Added as ToDo to EM section.",
+      "parentUuid": "59ccdbc2_7957d23d",
       "range": {
         "startLine": 57,
         "startChar": 172,
@@ -508,6 +892,30 @@
     },
     {
       "key": {
+        "uuid": "9311560d_558ddf4c",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "What other ways are? Let\u0027s standardize this.",
+      "parentUuid": "3d7e18e3_764119c8",
+      "range": {
+        "startLine": 58,
+        "startChar": 152,
+        "endLine": 58,
+        "endChar": 238
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f438bfcc_c20437d2",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -519,6 +927,30 @@
       "writtenOn": "2020-09-29T21:29:23Z",
       "side": 1,
       "message": "Disagree with putting \"must\" on anything like this, or trying to add a new definition of \"inventory entity\".  Entities will have the interfaces that are required to implement the features they need and support.  In some cases that includes inventory Item, but not always.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 64
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c36f5edf_90cb7522",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "What are the cons against to add this interfaces to all inventory items?",
+      "parentUuid": "f438bfcc_c20437d2",
       "range": {
         "startLine": 59,
         "startChar": 0,
@@ -554,6 +986,30 @@
     },
     {
       "key": {
+        "uuid": "2bb9cb3a_c5dcbd91",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "I don\u0027t mind to have here implementation details if they help to understand how does the system work and why.",
+      "parentUuid": "467a4834_587b9aca",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 139
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "111cc3f0_07c88c76",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -574,6 +1030,30 @@
       "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c8d3111_1763acc0",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "111cc3f0_07c88c76",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 65
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -600,6 +1080,30 @@
     },
     {
       "key": {
+        "uuid": "1093b5f7_ae8eab93",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "well, this makes the scope much wider... Is there any limitations on what kind of software resources should use EM for configuration and what - no?",
+      "parentUuid": "3e648af9_7236b8a1",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 111
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0914e06f_147dfea3",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -611,6 +1115,30 @@
       "writtenOn": "2020-09-29T21:29:23Z",
       "side": 1,
       "message": "configuration files should contain the minimum amount of information required to describe how they differ from other entities.  Intelligent defaults should always be preferred.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 106
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61dabb29_1118c39e",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "is it new item or replacement for this one about \"sweeping architecture changes\"? You comment this line, but I don\u0027t see how they intersect",
+      "parentUuid": "0914e06f_147dfea3",
       "range": {
         "startLine": 71,
         "startChar": 0,
@@ -662,6 +1190,54 @@
         "startChar": 65,
         "endLine": 75,
         "endChar": 124
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d60252cd_d5465d0c",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "19cc41ae_6a9cf71b",
+      "range": {
+        "startLine": 75,
+        "startChar": 65,
+        "endLine": 75,
+        "endChar": 124
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6883baf2_bf798a93",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-09-30T19:19:21Z",
+      "side": 1,
+      "message": "How about \"future implementation\"? Is there any plans?",
+      "parentUuid": "e494a58b_465150e5",
+      "range": {
+        "startLine": 75,
+        "startChar": 345,
+        "endLine": 75,
+        "endChar": 409
       },
       "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
