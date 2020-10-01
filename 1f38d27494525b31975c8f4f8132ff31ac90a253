@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d062eb5a_1a7bfcdd",
+        "filename": "designs/webserver-test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-10-01T16:16:43Z",
+      "side": 1,
+      "message": "nope.  Having wildcards leads to abuse, and the possibility that a serial number could change, and not get caught by the test harness.  Also, it means that the generated test files can no longer be used to build/look at an example implementation of a machine anymore, and I think that\u0027s important to be able to compare exact machines.\n\nI would be hard against any kind of fuzzy matching.  The only exception I see could be for sensors values, which are expected to vary a bit, but those are going to be a range, not a regex.",
+      "parentUuid": "bb64d18f_7d90b4ad",
+      "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6875094e_0a6c292c",
         "filename": "designs/webserver-test.md",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "5788dad6_f77dd7b0",
+        "filename": "designs/webserver-test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-10-01T16:16:43Z",
+      "side": 1,
+      "message": "I think that\u0027s explicitly covered on #6.  I\u0027d rather not have a user-settable time window, because it will lead to arbitrary decisions.  Overall, I\u0027d like to intentionally limit the degrees of freedom to avoid conditions where one machine runs the tool one way, one machine runs the tool another way.  With that said, if we really need it, I\u0027d like to see it be a per-machine thing.",
+      "parentUuid": "6875094e_0a6c292c",
+      "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8eee8ee0_939f69e2",
         "filename": "designs/webserver-test.md",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2020-10-01T15:50:56Z",
       "side": 1,
       "message": "If the test tool is running on the BMC itself, what are your thoughts of having the logs optionally be saved on a remote machine?",
+      "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf730592_1f625973",
+        "filename": "designs/webserver-test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-10-01T16:16:43Z",
+      "side": 1,
+      "message": "I don\u0027t expect the logs to be very big, but I had imagined a mode where instead of writing actual files, it just wrote files to one big tar.gz that you could scp off the machine later, just to avoid running out of ram.  I\u0027d probably say that how/where to get logs off the machine is out of scope for this tool.  You can specify where you want the logs to go, and the tool will write them there, be it an NFS share, an sshfs implementation, or just a tmpfs in ram, I\u0027d like the tool not to be in charge of that to keep it simple.",
+      "parentUuid": "8eee8ee0_939f69e2",
       "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
