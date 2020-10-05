@@ -325,6 +325,46 @@ b) With non-blocking API
         +                               +                              +                              +
 ```
 
+
+##### PLDM Requester flow with monolithic daemon
+
+This flow discusses a PLDM Daemon which implements handles a connected pldm
+capable device.
+
+![PLDM_Requester_Flow](PMCI.jpg)
+
+Representation of PLDM objects on D-Bus:
+
+Once a connected PLDM device is discovered by PLDMD, it runs through PLDM base
+commands to discover PLDM type capabilities and supported PLDM commands
+for the device. Subsequently, these PLDM types related information is
+represented on D-Bus.
+
+- PLDM FRU representation
+
+The PLDM FRU information needs to be exposed on D-Bus so that interested
+FRU information consumers can use the D-Bus abstraction of the FRU Data
+as per their requirement. (Eg- Entity Manager can probe on PLDM FRU interface
+to create inventory objects).
+
+The object path hierarchy would look like this -
+
+Each PLDM terminus might have one or more FRU record set identifiers.
+Each of the FRU Record Set identifiers would form the basis of object paths.
+Note that only General FRU record fields are covered by PLDM FRU interface.
+OEMs wishing to implement OEM FRU record would have to implement OEM interfaces
+to represent OEM FRU information (if required).
+
+/xyz/openbmc_project/pldm​
+|_/xyz/openbmc_project/pldm/<tid>​
+  |_/xyz/openbmc_project/pldm/<tid>/fru​
+     |_/xyz/openbmc_project/pldm/<tid>/fru/<FRU-Record-Set-ID>​
+         - PLDM FRU interface​
+         - Entity association interface​
+
+More information on the interfaces are available in phosphor-dbus-interfaces.
+
+
 ##### Alternative to the proposed requester design
 
 a) Define D-Bus interfaces to send and receive PLDM messages :
