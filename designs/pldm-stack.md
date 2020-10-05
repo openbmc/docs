@@ -325,6 +325,15 @@ b) With non-blocking API
         +                               +                              +                              +
 ```
 
+
+##### PLDM Requester flow with monolithic daemon
+
+This flow discusses a PLDM Daemon which implements handles a connected pldm
+capable device.
+
+![PLDM_Requester_Flow](PMCI.jpg)
+
+
 ##### Alternative to the proposed requester design
 
 a) Define D-Bus interfaces to send and receive PLDM messages :
