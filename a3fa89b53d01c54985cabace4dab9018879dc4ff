@@ -16,6 +16,58 @@
       "revId": "a3fa89b53d01c54985cabace4dab9018879dc4ff",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "350a058d_c3748370",
+        "filename": "designs/admin-account.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2020-10-06T14:31:38Z",
+      "side": 1,
+      "message": "Correction: The interface to manage which users are in the ipmi group is the D-Bus implementation for group roles \"groups\" property:\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/User/Manager.interface.yaml\n\nThe D-Bus interface is \"equivalent\" to the Redfish AccountManager AccountTypes property which needs to be enhanced per https://redfishforum.com/thread/219/account-groups-property",
+      "parentUuid": "b2be4ad8_11505e47",
+      "revId": "a3fa89b53d01c54985cabace4dab9018879dc4ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "114e877b_0a8cd2ff",
+        "filename": "designs/admin-account.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2020-10-06T14:31:38Z",
+      "side": 1,
+      "message": "Do we need a way to ensure the \"admin\" account cannot be deleted?  In other words, is this account built-in or is it pre-created?\nIMHO, it is cleaner to treat pre-created accounts as regular accounts.\n\nOn the other hand, I have a use case for a built-in account that cannot be deleted, namely the built-in \"service\" account that gives the manufacturer special privileged access to the system.  See https://github.com/ibm-openbmc/dev/issues/1737\n\nIs there a better way to do this?",
+      "revId": "a3fa89b53d01c54985cabace4dab9018879dc4ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbb88587_2616e00f",
+        "filename": "designs/admin-account.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2020-10-06T14:31:38Z",
+      "side": 1,
+      "message": "4. Try to delete the pre-created users and then re-create them.",
+      "revId": "a3fa89b53d01c54985cabace4dab9018879dc4ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
