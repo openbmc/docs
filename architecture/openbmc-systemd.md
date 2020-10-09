@@ -36,27 +36,45 @@ You'll find all the phosphor services associated with multi-user.target.
 When OpenBMC is used within a server, the [obmc-host-start@.target](https://github.com/openbmc/phosphor-state-manager/blob/master/target_files/obmc-host-start%40.target)
 is what drives the boot of the system.
 
+To start it you would run `systemctl start obmc-host-start@0.target`.
+
 If you dig into its .requires relationship, you'll see the following in the file
 system
 
 ```
-ls -1 /lib/systemd/system/obmc-host-start@0.target.requires
+ls -1 /lib/systemd/system/obmc-host-start@0.target.requires/
+obmc-host-startmin@0.target
+phosphor-reset-host-reboot-attempts@0.service
+```
+The [obmc-host-startmin@.target](https://github.com/openbmc/phosphor-state-manager/blob/master/target_files/obmc-host-startmin%40.target)
+represents the bare minimum of services and targets required to start the host.
+This target is also utilized in host reboot scenarios. It allows the user to put
+any services in the `obmc-host-start@.target` that should only be run on an
+initial host boot (and not run on host reboots). For example, in the output
+above you can see the user only wants to run the
+`phosphor-reset-host-reboot-attempts@0.service` on a fresh host boot attempt.
+
+Next if we look at the `obmc-host-startmin@0.target`, we see this:
+```
+ls -1 /lib/systemd/system/obmc-host-startmin@0.target.requires/
 obmc-chassis-poweron@0.target
 start_host@0.service
 ```
 
-You can see we have another target in here, obmc-chassis-poweron@0.target,
-along with a service that will all be started by systemd when you do a
-"systemctl start obmc-host-start@0.target".
+You can see within `obmc-host-startmin@0.target` that we have another target in
+there, `obmc-chassis-poweron@0.target`, along with a service aptly named
+`start_host@0.service`.
 
-The target has corresponding services associated with it:
+The `obmc-chassis-poweron@0.target` has corresponding services associated with
+it:
 ```
-ls -1 /lib/systemd/system/obmc-chassis-poweron\@0.target.requires/
+ls -1 /lib/systemd/system/obmc-chassis-poweron@0.target.requires/
 op-power-start@0.service
 op-wait-power-on@0.service
 ```
-So basically, if you run `systemctl start obmc-host-start@0.target` then
-systemd will start execution of all associated services.
+
+If you run `systemctl start obmc-host-start@0.target` then systemd will start
+execution of all of the above associated target and services.
 
 The services have dependencies within them that control the execution of each
 service (for example, the op-power-start.service will run prior to the
