@@ -59,6 +59,30 @@
     },
     {
       "key": {
+        "uuid": "0bc20870_cfd9de5c",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-14T20:38:55Z",
+      "side": 1,
+      "message": "Yes, the docker container will have the required libraries, and dependencies to run the tests.",
+      "parentUuid": "00fb1f97_4f8e9512",
+      "range": {
+        "startLine": 41,
+        "startChar": 238,
+        "endLine": 41,
+        "endChar": 258
+      },
+      "revId": "4a75c29ed82da65c06f8604f77cdb04e03eacfa1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a0bdaf0_20a96651",
         "filename": "designs/dbus-mocking-integration-testing.md",
         "patchSetId": 1
@@ -70,6 +94,30 @@
       "writtenOn": "2020-10-14T19:39:04Z",
       "side": 1,
       "message": "So daemon repos would have something like a integration-test folder where they could put their mock code and the test infrastructure will auto load and run it all?",
+      "range": {
+        "startLine": 42,
+        "startChar": 125,
+        "endLine": 42,
+        "endChar": 214
+      },
+      "revId": "4a75c29ed82da65c06f8604f77cdb04e03eacfa1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55f2e521_ebad041d",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-14T20:38:55Z",
+      "side": 1,
+      "message": "We hope that most of the common mock objects and services will be implemented in a separate and new shared repository, and daemon repos only implement the actual integration test and only change the default behavior of the mock services if necessary.  \nThe plan is that the test infrastructure, (docker/python script), prepare the environment and when the tests are run, the in-repo build system will decide what tests to run according to the configuration (e.g., what \u0027make check\u0027 runs in pid-control).",
+      "parentUuid": "0a0bdaf0_20a96651",
       "range": {
         "startLine": 42,
         "startChar": 125,
@@ -116,6 +164,24 @@
       "writtenOn": "2020-10-14T19:39:04Z",
       "side": 1,
       "message": "I\u0027d be interested in what the meta data looks like in the daemon repos. How do you define what tests are run? How do you define if they pass? Are we using a standard test suite to execute the tests?",
+      "revId": "4a75c29ed82da65c06f8604f77cdb04e03eacfa1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad55ea73_21f9df62",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-14T20:38:55Z",
+      "side": 1,
+      "message": "So, our main contribution is to enable the users to run a mock d-bus and and run mock services on it and interact with the services on their daemon tests. \nThe integration test part can be planned by the users. However, we plan to provide examples of integration tests that use the mock services and this is how it would look like:\n\nFor example, consider swampd (https://github.com/openbmc/phosphor-pid-control/blob/master/test/Makefile.am). Developers listed the unit tests in this make file, e.g., \"sensor_manager_unittest\", etc. They can add integration tests to the list of files that should be run with a \u0027make check\u0027. And, it only will be run if it is enabled. Standard python (c++) test suits can be used that will print the details of the test results in a log file (similar to unit tests).",
+      "parentUuid": "18271c8f_76b8b190",
       "revId": "4a75c29ed82da65c06f8604f77cdb04e03eacfa1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
