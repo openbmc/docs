@@ -105,6 +105,20 @@ The `obmc-host-quiesce@.target` is utilized in host error scenarios. When the
 [object][https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Host.interface.yaml]
 in a `Quiesced` state.
 
+## Server Emergency Power Off due to Error
+The `obmc-chassis-emergency-poweroff@.target` is a wrapper target around the
+`obmc-chassis-hard-poweroff@.target` and `obmc-host-quiesce@.target`. It is
+utilized by applications that have detected critical thermal or power errors
+which require an immediate shutdown of the system. It will turn the chassis off
+and put the host into Quiesce (if the host is running). Certain non-critical
+services in the shutdown path can conflict with this target to ensure only the
+most critical services are run in this path.
+
+Automated error recovery (i.e. host reboot) will not be done if this target is
+started. User intervention is required to exit from it. The user could request
+a power on if they wished or a host stop / power off if they wanted to get out
+of quiesce.
+
 ## Systemd Control in OpenBMC
 There are a collection of services within OpenBMC that interact with systemd and
 its unit files, providing somewhat of an abstraction layer from the user of the
