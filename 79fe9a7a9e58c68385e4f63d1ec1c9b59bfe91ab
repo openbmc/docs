@@ -2,6 +2,92 @@
   "comments": [
     {
       "key": {
+        "uuid": "56efae6c_d394f3b6",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-10-16T21:29:53Z",
+      "side": 1,
+      "message": "Generally speaking we use the words as follows on this project:\n\n\"unit test\" - tests ran at a repository level when a piece of code is checked into a repository.\n\n\"integration test\" - tests ran on a whole image level on a real piece of hardware to indicate that the whole image \"integrates well\".\n\nMy casual reading here suggests to me you\u0027re talking about \"unit test\" and not \"integration test\".  Amirite?",
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a6b306e_765f28ad",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-10-16T21:29:53Z",
+      "side": 1,
+      "message": "I would contest that this is not a true statement.\n\nIt is trivial to take a phosphor-dbus-interface defined-YAML file and mock up a service to implement it using the sdbus++ generated bindings.  We have examples here: https://github.com/openbmc/sdbusplus/blob/master/example/calculator-server.cpp",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 49
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7fca598_ce1ab21c",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-10-16T21:29:53Z",
+      "side": 1,
+      "message": "Martin definitely uses \"integration tests\" in a different way than we do in this project.  I think we should be careful about that.",
+      "range": {
+        "startLine": 23,
+        "startChar": 26,
+        "endLine": 23,
+        "endChar": 43
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c89cf91b_a3911e94",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-10-16T21:29:53Z",
+      "side": 1,
+      "message": "I\u0027m having trouble understanding what the value of this becomes.  If most of the time we cannot run the real daemon(s) we are interacting with, why are we bothering to mock at a dbus level?  The fact that you went across dbus to talk to a fake daemon doesn\u0027t really seem to hold any more testing value than simply mocking the call before it enters the dbus libraries.",
+      "range": {
+        "startLine": 26,
+        "startChar": 58,
+        "endLine": 39,
+        "endChar": 42
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e0ca3d3_97e5bcfb",
         "filename": "designs/dbus-mocking-integration-testing.md",
         "patchSetId": 3
@@ -65,6 +151,52 @@
     },
     {
       "key": {
+        "uuid": "7862ebde_66593043",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-10-16T21:29:53Z",
+      "side": 1,
+      "message": "This is the first time you\u0027ve said *where* this code will run and to me you\u0027re not really describing anything above unit testing except that you\u0027re providing a method to launch mock-daemons?\n\nThere are a few serious issues with launching anything dbus-related in the unit-test environment:\n\n- Most of our dbus applications use the system bus but that requires root permissions.  You said it wouldn\u0027t require root permissions in the requirements above.  So, that means you now have to switch the application-under-test to use the user bus in these special test cases.\n\n- Service names need to be unique per-bus.  We have had problems with applications spawning dbus services in testing because we run the builds in parallel.  You can get a machine with multiple jobs running at the same time, some of which expect to use (or mock) the same service name.  We\u0027ve fixed that in test-cases by often adding some random number to the reserved service name, but now you\u0027re again not testing the real connection between the applications-under-test.\n\n- The most widely used dbus service is mapper.  You will want a \"real\" mapper for your test environment because that is how many applications get to the service they really want and we don\u0027t want duplicate copies of mapper mocks in every repository.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 58
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07dae39d_266f7ff0",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-10-16T21:29:53Z",
+      "side": 1,
+      "message": "We do not run python on the BMC.  If you choose to do this with python you\u0027re significantly limiting the value of this framework.\n\nI again would suggest looking at what sdbusplus already provides for quickly creating objects and interfaces from our existing definitions.  I glanced at the python-dbusmock homepage and I\u0027m not seeing much it provides that sdbus++-generated server bindings don\u0027t already.  (If there are features you need, I might even be convinced to develop them for you.)",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 35
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "93975eeb_196d2a71",
         "filename": "designs/dbus-mocking-integration-testing.md",
         "patchSetId": 3
@@ -82,6 +214,23 @@
         "endLine": 84,
         "endChar": 72
       },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14336611_15405266",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-10-16T21:29:53Z",
+      "side": 1,
+      "message": "Need to add sdbus++/sdbusplus here if you rule it out. ;)",
       "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
