@@ -98,6 +98,11 @@ The reboot of the server is encapsulated in the `obmc-host-reboot@.target`.
 This target will utilize the soft power off target and then, once that
 completes, start the host power on target.
 
+## Server Quiesce
+The `obmc-host-quiesce@.target` is utilized in host error scenarios. When it
+is entered, it puts the host state D-Bus [object][https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Host.interface.yaml]
+in a `Quiesced` state.
+
 ## Systemd Control in OpenBMC
 There are a collection of services within OpenBMC that interact with systemd and
 its unit files, providing somewhat of an abstraction layer from the user of the
