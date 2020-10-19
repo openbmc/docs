@@ -105,6 +105,24 @@
     },
     {
       "key": {
+        "uuid": "5bc46e2a_34abd3d8",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-19T16:45:59Z",
+      "side": 1,
+      "message": "Do you mean run the tests on a real/simulated OpenBMC? What kinds of examples do you have in mind specifically?",
+      "parentUuid": "9e0ca3d3_97e5bcfb",
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5e649dbd_22b8c7ab",
         "filename": "designs/dbus-mocking-integration-testing.md",
         "patchSetId": 3
@@ -116,6 +134,30 @@
       "writtenOn": "2020-10-14T21:20:54Z",
       "side": 1,
       "message": "Don\u0027t we already have that?  I thought CI runs unit tests already?",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 65
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4830940_e24fc702",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-19T16:45:59Z",
+      "side": 1,
+      "message": "Yes we do have that for the current unit tests. I just wanted to emphasize that we resolve the new dependencies related to the mock library.",
+      "parentUuid": "5e649dbd_22b8c7ab",
       "range": {
         "startLine": 67,
         "startChar": 0,
@@ -174,6 +216,30 @@
     },
     {
       "key": {
+        "uuid": "c446552e_ac67faa1",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-19T16:45:59Z",
+      "side": 1,
+      "message": "I couldn\u0027t understand this question. Do you mean that we include the common functionalities in an existing repository such as \"sdbusplus\" or \"phosphor-dbus-interfaces\" and not add a new repository?",
+      "parentUuid": "dee60eae_e2845c69",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 58
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07dae39d_266f7ff0",
         "filename": "designs/dbus-mocking-integration-testing.md",
         "patchSetId": 3
@@ -208,6 +274,30 @@
       "writtenOn": "2020-10-14T21:20:54Z",
       "side": 1,
       "message": "This assumes that the build infrastructure has a dbus-broker running, and the CI infrastructure has the ability to spin up new dbus session buses, or connect to the system bus, which might not always be the case.  If that\u0027s an expected constraint, you might want to call it out explicitly.",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 72
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11da338f_b358ce2c",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-19T16:45:59Z",
+      "side": 1,
+      "message": "I\u0027m not sure if I understood your questions correctly. When I use the build-script repo to create the environment, I can run dbus in the docker container and I can use the mock library to start session/system buses. see (https://github.com/martinpitt/python-dbusmock/blob/a2cbc43ade19d265ad9fd2301599f44162ce8d07/dbusmock/testcase.py#L51).\nAre you saying that I should tell the user that if they are not using the docker script from the build-script repo, how they should prepare the environment?",
+      "parentUuid": "93975eeb_196d2a71",
       "range": {
         "startLine": 83,
         "startChar": 0,
