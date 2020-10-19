@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4b25475f_be0f51c5",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-19T16:50:43Z",
+      "side": 1,
+      "message": "My understanding is that, currently, in openbmc, there are mainly two categories of tests:\n- Unit testing:  a single function/module of a program is separated and its interface to rest of the program will be tested. For example, this one on the pid-control repository (https://github.com/openbmc/phosphor-pid-control/blob/ca791156e2594ce7d25b42793a0a1b60d922fefd/test/pid_fancontroller_unittest.cpp#L89) verifies if the correct value is selected from multiple fan inputs. And, these tests in openbmc, are not necessarily run on a real BMC or simulator. There are docker scripts that can setup the environment and build images to run those tests. These tests are handled by this repository: https://github.com/openbmc/openbmc-build-scripts\n- End to end testing: where the entire system is run to make sure it functions correctly as a whole. I believe this repository is mainly responsible for these kinds of tests: https://github.com/openbmc/openbmc-test-automation\n\n\nBy \"integration testing\", we mean something in between of these two levels. Particularly, we want to run a single OpenBMC daemon (e.g., swampd) and make sure it operates as expected. These tests are intended to be run similar to unit tests, i.e., use a docker script to prepare the environment and build a container that can run the integration tests against a single daemon. We don\u0027t expect it to be run on a real/simulated BMC.\n\nMaybe an example would help clear things up. Let\u0027s say we want to run swampd and see if it operates as expected in response to its environment. We can have arbitrary initial values for sensors (i.e., temperature, fan RPM, fan PWM, etc.) and see how swampd operates in this environment. This will probably involve multiple functions inside this daemon. e.g., configuring zones, sensors, etc., interactions with dbus, tuning algorithms, deciding about how to change PWM, etc. And, in the test, we would probably check multiple things. For example, was the fan PWM set as intended according to the algorithm?",
+      "parentUuid": "56efae6c_d394f3b6",
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a6b306e_765f28ad",
         "filename": "designs/dbus-mocking-integration-testing.md",
         "patchSetId": 3
@@ -30,6 +48,30 @@
       "writtenOn": "2020-10-16T21:29:53Z",
       "side": 1,
       "message": "I would contest that this is not a true statement.\n\nIt is trivial to take a phosphor-dbus-interface defined-YAML file and mock up a service to implement it using the sdbus++ generated bindings.  We have examples here: https://github.com/openbmc/sdbusplus/blob/master/example/calculator-server.cpp",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 49
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "982f489e_d2ead15b",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-19T16:50:43Z",
+      "side": 1,
+      "message": "Thanks for pointing this out. Yes, this seems to be helpful in building mock services, especially with unit tests. I\u0027m hoping that the proposed solution would make it more convenient to test a daemon that just needs a few services around it and you want to set it up in different states for each test.",
+      "parentUuid": "9a6b306e_765f28ad",
       "range": {
         "startLine": 15,
         "startChar": 0,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "23d83e1c_743727ec",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-19T16:50:43Z",
+      "side": 1,
+      "message": "I put this reference to clarify what we meant by \"integration testing\": \"They test the integration of your application with all the parts that live outside of your application.\" Probably, I should emphasize that, here, by \"application\" we mean \"a single daemon\" within OpenBMC and not the \"whole  OpenBMC OS image\".",
+      "parentUuid": "a7fca598_ce1ab21c",
+      "range": {
+        "startLine": 23,
+        "startChar": 26,
+        "endLine": 23,
+        "endChar": 43
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c89cf91b_a3911e94",
         "filename": "designs/dbus-mocking-integration-testing.md",
         "patchSetId": 3
@@ -76,6 +142,30 @@
       "writtenOn": "2020-10-16T21:29:53Z",
       "side": 1,
       "message": "I\u0027m having trouble understanding what the value of this becomes.  If most of the time we cannot run the real daemon(s) we are interacting with, why are we bothering to mock at a dbus level?  The fact that you went across dbus to talk to a fake daemon doesn\u0027t really seem to hold any more testing value than simply mocking the call before it enters the dbus libraries.",
+      "range": {
+        "startLine": 26,
+        "startChar": 58,
+        "endLine": 39,
+        "endChar": 42
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "397704d8_9a1635dd",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-19T16:50:43Z",
+      "side": 1,
+      "message": "I think \"mocking the call before it enters the dbus libraries\" would work very well mainly in unit tests that we want to test a single function/unit/module. For example this one verifies a single functionality without calling dbus (https://github.com/openbmc/phosphor-pid-control/blob/ca791156e2594ce7d25b42793a0a1b60d922fefd/test/pid_fancontroller_unittest.cpp#L149). Probably, some of the functionalities that can be tested by integration testing, are already verified by various unit tests. But the goal of integration testing is to verify that the daemon as a whole functions as expected. I would expect that it will add more values to the testing infrastructure and improves the software quality.\n\nFor example, in my prototype, it helped reveal an issue that happened because of an inconsistency between the versions of different repositories that I used. I created a mock sensor using an older spec (https://github.com/openbmc/phosphor-dbus-interfaces/blob/05375b14e5a68ac249da6a8cd68e3d522a7ed022/xyz/openbmc_project/Sensor/Value.interface.yaml) and used int64 type for values, but when I tested it with swampd, it expected a double value and that resulted in unexpected behaviors.\n\nI\u0027m optimistic that having integration testing similar to this, would help find more issues in OpenBMC daemons and improves their quality.",
+      "parentUuid": "c89cf91b_a3911e94",
       "range": {
         "startLine": 26,
         "startChar": 58,
@@ -240,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "2b7ee5e3_b4b3523a",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-19T16:50:43Z",
+      "side": 1,
+      "message": "- The dbusmock library allows us to start a \"local system bus\". (see https://github.com/martinpitt/python-dbusmock/blob/a2cbc43ade19d265ad9fd2301599f44162ce8d07/dbusmock/testcase.py#L51) and daemons can interact with it similar to a real system bus. Also, it does not interfere with system services, because it is a separate local bus.\n- I didn\u0027t see this issue in my quick prototypes, because each process that \"starts a fake system bus\", will start on a unique address. So, this means that, for example, we can run two tests at same time. swampd interacts with its own bus that has sensors and other services and impid interacts with another bus that separate sensors and services customized for its specific tests. We can have services with the same name on these two tests, because they are running on separate buses.\n- You are right, it doesn\u0027t make sense to fake the mapper service. We will use the \"real mapper\" and it is available in the docker environment. It will operate on the fake bus that we create, so it can find objects on each bus that it connects to.",
+      "parentUuid": "7862ebde_66593043",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 58
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07dae39d_266f7ff0",
         "filename": "designs/dbus-mocking-integration-testing.md",
         "patchSetId": 3
@@ -251,6 +365,30 @@
       "writtenOn": "2020-10-16T21:29:53Z",
       "side": 1,
       "message": "We do not run python on the BMC.  If you choose to do this with python you\u0027re significantly limiting the value of this framework.\n\nI again would suggest looking at what sdbusplus already provides for quickly creating objects and interfaces from our existing definitions.  I glanced at the python-dbusmock homepage and I\u0027m not seeing much it provides that sdbus++-generated server bindings don\u0027t already.  (If there are features you need, I might even be convinced to develop them for you.)",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 35
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c5b9393_51242cec",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-19T16:50:43Z",
+      "side": 1,
+      "message": "I think the main goal is to run these tests similar to unit tests, i.e., provide the environment, e.g., using a docker container. We are not planning to run this on a real/simulated BMC. The python-dbusmock allows for running an arbitrary bus for the duration of the test that does not interfere with other services. It also provides some convenience functions to deal with dbus and mock services on it. I think it is convenient for writing quick mock services with just the minimal required functionalities with desired properties/behaviors.",
+      "parentUuid": "07dae39d_266f7ff0",
       "range": {
         "startLine": 78,
         "startChar": 0,
@@ -321,6 +459,24 @@
       "writtenOn": "2020-10-16T21:29:53Z",
       "side": 1,
       "message": "Need to add sdbus++/sdbusplus here if you rule it out. ;)",
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8fcdff3_866fb19c",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000913
+      },
+      "writtenOn": "2020-10-19T16:50:43Z",
+      "side": 1,
+      "message": "Thanks for mentioning this. I will add it.",
+      "parentUuid": "14336611_15405266",
       "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
