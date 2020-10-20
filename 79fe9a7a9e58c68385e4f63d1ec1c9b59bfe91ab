@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "a3edbd86_2d054e45",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2020-10-20T10:00:30Z",
+      "side": 1,
+      "message": "I agree with the above and somewhat like this use of terminology. It separates most current unit tests from these tests where we stand up the entire unit and make sure it behaves correctly. We can think of mosts tests being unit of unit tests given how OpenBMC might define a unit. These tests are end2end for a single unit of the OpenBMC system. I guess the unit / integration / end2end terminology doesn\u0027t really fit all that well in describing this.",
+      "parentUuid": "4b25475f_be0f51c5",
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a6b306e_765f28ad",
         "filename": "designs/dbus-mocking-integration-testing.md",
         "patchSetId": 3
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "Thanks for pointing this out. Yes, this seems to be helpful in building mock services, especially with unit tests. I\u0027m hoping that the proposed solution would make it more convenient to test a daemon that just needs a few services around it and you want to set it up in different states for each test.",
       "parentUuid": "9a6b306e_765f28ad",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 49
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b2dc784_1a36be1c",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2020-10-20T10:00:30Z",
+      "side": 1,
+      "message": "+1. You could do the above work one off for every single project, but we want to provide convenient tooling to make it easier for any given project to do that.",
+      "parentUuid": "982f489e_d2ead15b",
       "range": {
         "startLine": 15,
         "startChar": 0,
@@ -166,6 +208,30 @@
       "side": 1,
       "message": "I think \"mocking the call before it enters the dbus libraries\" would work very well mainly in unit tests that we want to test a single function/unit/module. For example this one verifies a single functionality without calling dbus (https://github.com/openbmc/phosphor-pid-control/blob/ca791156e2594ce7d25b42793a0a1b60d922fefd/test/pid_fancontroller_unittest.cpp#L149). Probably, some of the functionalities that can be tested by integration testing, are already verified by various unit tests. But the goal of integration testing is to verify that the daemon as a whole functions as expected. I would expect that it will add more values to the testing infrastructure and improves the software quality.\n\nFor example, in my prototype, it helped reveal an issue that happened because of an inconsistency between the versions of different repositories that I used. I created a mock sensor using an older spec (https://github.com/openbmc/phosphor-dbus-interfaces/blob/05375b14e5a68ac249da6a8cd68e3d522a7ed022/xyz/openbmc_project/Sensor/Value.interface.yaml) and used int64 type for values, but when I tested it with swampd, it expected a double value and that resulted in unexpected behaviors.\n\nI\u0027m optimistic that having integration testing similar to this, would help find more issues in OpenBMC daemons and improves their quality.",
       "parentUuid": "c89cf91b_a3911e94",
+      "range": {
+        "startLine": 26,
+        "startChar": 58,
+        "endLine": 39,
+        "endChar": 42
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc434ebd_2d35ddde",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2020-10-20T10:00:30Z",
+      "side": 1,
+      "message": "Another part of the value is a sanity check that the daemon actually works at presubmit time, which we don\u0027t typically do today even with pretty good unit test coverage. We can also avoid non-trivial mocks of the sd_bus API that end up being convoluted for the reader and pretty rigid.",
+      "parentUuid": "397704d8_9a1635dd",
       "range": {
         "startLine": 26,
         "startChar": 58,
@@ -408,6 +474,30 @@
       "side": 1,
       "message": "I mean, rather than creating a new repository, is there an existing repository that could be used instead?",
       "parentUuid": "c446552e_ac67faa1",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 58
+      },
+      "revId": "79fe9a7a9e58c68385e4f63d1ec1c9b59bfe91ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8705daee_10b59388",
+        "filename": "designs/dbus-mocking-integration-testing.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2020-10-20T10:00:30Z",
+      "side": 1,
+      "message": "Between the build-scripts repository and phosphor-dbus-interfaces we can probably find a good home for most of the changes.",
+      "parentUuid": "f2b9e749_471c14c4",
       "range": {
         "startLine": 74,
         "startChar": 0,
