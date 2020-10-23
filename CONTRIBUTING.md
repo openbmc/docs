@@ -273,6 +273,9 @@ found under Projects -> List:
 
   https://gerrit.openbmc-project.xyz/#/admin/projects/
 
+Please note that all meta-\* layers are separate repositories, so you need to
+follow the [subtree workflow](./subtree.md) when contributing there.
+
 If you're going to be working with Gerrit often, it's useful to create an SSH
 host block in ~/.ssh/config. Ex:
 ```
