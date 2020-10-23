@@ -51,27 +51,62 @@ For example,
 
 ```json
   {
-    "Name": "Virtual_Inlet_Temp",
-    "Algo": "P1 + P2 + 5 - P3 * 0.1",
+    "Desc" :
+    {
+        "Name" : "Virtual_Inlet_Temp",
+        "SensorType" : "temperature"
+    },
     "Params":
     {
-      "P1": "/xyz/openbmc_project/sensor/temperature/"Inlet_Temp",
-      "P2": "/xyz/openbmc_project/sensor/fan/fan_0",
-      "P3": "200"
+      "ConstParam" :
+      [
+        {
+          "ParamName" : "P1",
+          "Value" : 1.1
+        }
+      ],
+      "DbusParam" :
+      [
+        {
+          "ParamName" : "P2",
+          "Desc" :
+          {
+              "Name" : "MB_INLET_TEMP",
+              "SensorType" : "temperature"
+          }
+        },
+        {
+          "ParamName" : "P3",
+          "Desc" :
+          {
+            "Name" : "MB_FAN0_TACH",
+            "SensorType" : "fan_tach"
+          }
+        }
+      ]
     },
+    "Expression": "P1 + P2 + 5 - P3 * 0.1",
     "Thresholds":
     {
-	"CriticalHigh": 90,
-	"CriticalLow": 20,
-	"WarningHigh": 70,
-	"WarningLow": 30
+      "CriticalHigh": 90,
+      "CriticalLow": 20,
+      "WarningHigh": 70,
+      "WarningLow": 30
     }
   }
 
+Desc:       It defines name and unit of a sensor. Main Desc object defines
+            details about new virtual sensor and inside DbusParam object,
+            it defines details about existing dbus sensors. 
 Name:       Name of virtual sensor
-Algo:       An algorithm to be used to calculate value
-Params:     It can be an existing/virtual sensor dbus path to read value or it
-            can be a value to be used in calculation
+SensorType: Unit type of sensors and supported
+Expression: An algorithm to be used to calculate sensor value
+Params:     There are currently 2 types of parameter supported ConstParam
+            and DbusParam. Every pamas should have a name to be reffered
+            in expression
+ConstParam: This is a parameter which has a constant value defined here
+DbusParam:  This is an existing/virtual sensor which is listed in dbus and 
+            it's value can be read from dbus path
 Thresholds: It has critical and warning high/low value to monitor sensor
             value and used as per sensor interface defined in
             phosphor-dbus-interfaces.
