@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b29f1ccd_8a08fdb5",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-11-03T23:53:46Z",
+      "side": 1,
+      "message": "Bit of a nit-pick, but this isn\u0027t really part of the problem description.",
+      "range": {
+        "startLine": 21,
+        "startChar": 52,
+        "endLine": 24,
+        "endChar": 44
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a678188_496a4217",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-11-03T23:53:46Z",
+      "side": 1,
+      "message": "What does it mean to mock out non-existing hardware? What are we trying to achieve?",
+      "range": {
+        "startLine": 79,
+        "startChar": 3,
+        "endLine": 80,
+        "endChar": 41
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5814968_5d22962b",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-11-03T23:53:46Z",
+      "side": 1,
+      "message": "As Zev pointed out, this isn\u0027t strictly true. The list of conditions for ptracing is documented in the man page: https://man7.org/linux/man-pages/man2/ptrace.2.html",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 15
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bed55ef_29eb4ec6",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-11-03T23:53:46Z",
+      "side": 1,
+      "message": "What about inotify or sighup?",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 10
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6837afbb_b8e1e5f5",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-11-03T23:53:46Z",
+      "side": 1,
+      "message": "Only half-serious here, but if we have to use a tool to change the mock configuration the config file seems like just an intermediate representation. In which case, why not use dbus instead? Is there a reason to persist mock configs?",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 74
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee1b4622_7077ce21",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-11-03T23:53:46Z",
+      "side": 1,
+      "message": "Why?",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 61
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92170478_f0843677",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-11-03T23:53:46Z",
+      "side": 1,
+      "message": "Okay, so from a high level I\u0027d expect that to test the system using mocks you\u0027d want the smallest configuration delta possible to the actual platform firmware. From there:\n\nHow would you design this? It sounds like you\u0027re proposing a generic mock hwmon module, in which case how would you represent the module configuration? You\u0027d want to make it look like what\u0027s exposed by sensor hardware used in the platform, which feels like you would wind up with a lot of tedious descriptions for devices.\n\nFurther, what userspace interface would you use to manipulate the sensor values once the sensors to expose have been described? These are different problems: one is a driver-bind-time configuration problem, the other is run-time configuration problem.\n\nFor seamless interaction with e.g. phosphor-hwmon and the existing systemd units you\u0027d need the sysfs paths to remain the same, in which case you\u0027d need to convince the mock driver to bind to the real device at a higher priority than the real driver for the device. Was this what you had in mind, or were you anticipating more invasive changes to the system configuration to stand up the mocks in this manner?\n\nI realise this proposal is a rejected alternative but I\u0027d still like to see it explored some more. I think further exploration would make a stronger case for not going this route.",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 56
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa8509bd_48a3b170",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-11-03T23:53:46Z",
+      "side": 1,
+      "message": "This is the sentence that drove me to more thoroughly review this proposal :)\n\nI feel like you\u0027re a bit caught up in the ideas for the mock strategies you\u0027ve outlined. There\u0027s no need to write additional (mock) kernel drivers: QEMU mocks an entire machine/platform. At that point you just use the real device drivers from your real BMC firmware to drive your QEMU models and inject whatever sensor values you wish via the monitor interface[1]. The only requirement is that you model your platform and as many of its associated devices as needed in QEMU, as described by the relevant hardware specifications. Ideally you\u0027d do this anyway as it would be a strong contribution to the project\u0027s CI efforts.\n\n[1] Here\u0027s an example, the tmp421, where you have the ability to set the sensor temperature values: https://git.qemu.org/git/qemu.git/?p\u003dqemu.git;a\u003dblob;f\u003dhw/misc/tmp421.c;h\u003d49abe2d246a67cbea21998cc68f853b41a86bce6;hb\u003dd0ed6a69d399ae193959225cdeaa9382746c91cc#l343",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 33
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c428e135_08a8e990",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-11-03T23:53:46Z",
+      "side": 1,
+      "message": "Given that you\u0027re mocking the sensors, what benefit is there to _not_ running the firmware in QEMU for the purposes of these tests?",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 55
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
