@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "5e2f95a0_b74a2ca2",
+        "filename": "lint/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-04T22:10:58Z",
+      "side": 1,
+      "message": "Do we really want to be explicit about every individual check?  It seems immensely wordy and constantly requiring updating.  What I\u0027ve done on other projects is:\n\nbugprone-*\nclang-diagnostic-*\nclang-analyzer-*\ncppcoreguidelines-*\nhicpp-excxeption-baseclass\nmisc-*\nmodernize-*\nperformance-*\nreadability-*\n-modernize-concat-nested-namespaces\n-modernize-use-trailing-return-type",
+      "revId": "91fa74ada29694f9835e9f43594ae3933eaf0b18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e14fa1c_898e430f",
         "filename": "lint/cpp/.clang-tidy",
         "patchSetId": 1
@@ -90,6 +107,46 @@
         "startChar": 0,
         "endLine": 242,
         "endChar": 30
+      },
+      "revId": "91fa74ada29694f9835e9f43594ae3933eaf0b18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "343110c0_a50d4056",
+        "filename": "lint/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-04T22:10:58Z",
+      "side": 1,
+      "message": "Elsewhere I\u0027ve had to do \u0027AnalyzeTemporaryDtors: false\u0027, but I don\u0027t recall why.",
+      "revId": "91fa74ada29694f9835e9f43594ae3933eaf0b18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b318a35c_e0684c6c",
+        "filename": "lint/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-04T22:10:58Z",
+      "side": 1,
+      "message": "I think you intended \u0027camelBack\u0027 here.  There is no \u0027lowerCamel\u0027 value.\n\nIt\u0027s unfortunate that clang doesn\u0027t allow \"value: A | B | C\" for cases when we have multiple but specific options.",
+      "range": {
+        "startLine": 250,
+        "startChar": 63,
+        "endLine": 250,
+        "endChar": 73
       },
       "revId": "91fa74ada29694f9835e9f43594ae3933eaf0b18",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
