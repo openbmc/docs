@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "92fb4937_92abd714",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T01:58:20Z",
+      "side": 1,
+      "message": "+1.  Maybe move to the requirements section?",
+      "parentUuid": "b29f1ccd_8a08fdb5",
+      "range": {
+        "startLine": 21,
+        "startChar": 52,
+        "endLine": 24,
+        "endChar": 44
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a678188_496a4217",
         "filename": "mock-sensors.md",
         "patchSetId": 1
@@ -41,6 +65,93 @@
         "startChar": 3,
         "endLine": 80,
         "endChar": 41
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6f25a96_b0f18975",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T01:58:20Z",
+      "side": 1,
+      "message": "+1.  Presumably the kernel interface needs to exist that we\u0027re mocking, right?  Maybe providing some examples would help elaborate?",
+      "parentUuid": "6a678188_496a4217",
+      "range": {
+        "startLine": 79,
+        "startChar": 3,
+        "endLine": 80,
+        "endChar": 41
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c68aa199_56ea0228",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T01:58:20Z",
+      "side": 1,
+      "message": "You might also want to comment on how you\u0027re planning on creating the correct inodes for the descriptor to open if the hardware isn\u0027t physically present.",
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4839894e_84242638",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T01:58:20Z",
+      "side": 1,
+      "message": "a little nitpicky, but not all sensors pull from something physical.  I suspect you\u0027re planning on limiting this to physical sensors that utilize sysfs but that wasn\u0027t the most clear in reading this.",
+      "range": {
+        "startLine": 127,
+        "startChar": 69,
+        "endLine": 128,
+        "endChar": 6
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ab6dc2d_915a127e",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T01:58:20Z",
+      "side": 1,
+      "message": "nit: I\u0027d remove all mention of ifstream;  It\u0027s an implementation detail that\u0027s unimportant at this level.  The important part here is that you\u0027re overriding the return of the read() call.",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 14
       },
       "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -71,6 +182,23 @@
     },
     {
       "key": {
+        "uuid": "c7e56902_eeb69250",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T01:58:20Z",
+      "side": 1,
+      "message": "That means that this level of testing would require a special build to accomplish?  I\u0027d highly recommend avoiding that if technically possible (it sounds like Zev had some ideas for you) as it limits the availability of this.  In a perfect world, dbus-sensors \"override\" mode could simply be adjusted to use this instead of overriding in userspace, thus testing more code, and making it testable by anyone.",
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8bed55ef_29eb4ec6",
         "filename": "mock-sensors.md",
         "patchSetId": 1
@@ -82,6 +210,30 @@
       "writtenOn": "2020-11-03T23:53:46Z",
       "side": 1,
       "message": "What about inotify or sighup?",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 10
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cca932ae_67046f6b",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T01:58:20Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "8bed55ef_29eb4ec6",
       "range": {
         "startLine": 151,
         "startChar": 0,
@@ -117,6 +269,30 @@
     },
     {
       "key": {
+        "uuid": "f21b0eec_b680d40c",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T01:58:20Z",
+      "side": 1,
+      "message": "+1 to Andrews comment.  If this works out, I\u0027d be willing to simply use this mechanism to replace the dbus-sensors DBus override code for the sensors that poll from sysfs.  The config file seems a little redundant, but might be useful for phosphor-hwmon use cases?",
+      "parentUuid": "6837afbb_b8e1e5f5",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 74
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee1b4622_7077ce21",
         "filename": "mock-sensors.md",
         "patchSetId": 1
@@ -128,6 +304,30 @@
       "writtenOn": "2020-11-03T23:53:46Z",
       "side": 1,
       "message": "Why?",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 61
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "053db210_3fe69f3c",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T01:58:20Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "ee1b4622_7077ce21",
       "range": {
         "startLine": 154,
         "startChar": 0,
@@ -197,6 +397,30 @@
       "writtenOn": "2020-11-03T23:53:46Z",
       "side": 1,
       "message": "Given that you\u0027re mocking the sensors, what benefit is there to _not_ running the firmware in QEMU for the purposes of these tests?",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 55
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddd42cc2_d649f3f4",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T01:58:20Z",
+      "side": 1,
+      "message": "Not the author of this, but in the past I\u0027ve seen wanting to test other pieces of bmc behavior at a system/hardware level, without having adequate ways to simulate the condition.  For example the requirement:\n\"If the intake air temperature exceeds 50C, the system should automatically and forcefully shut down\"\nhas been a requirement on past systems I\u0027ve worked on.  Being able to mock a sensor, and simulate a 51C intake temp allows testing the rest of the system behavior, without needing to break out a heat gun is highly useful.  Unless qemu has a perfectly accurate model of all CPLDs, BIOS, and devices on the system, it\u0027s really hard to test the above to a level of certainty at system level.",
+      "parentUuid": "c428e135_08a8e990",
       "range": {
         "startLine": 223,
         "startChar": 0,
