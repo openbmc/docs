@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "15fac74b_8201d607",
+        "filename": "lint/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T22:22:02Z",
+      "side": 1,
+      "message": "Yes, I did that explicitly for the actual checked in files because new versions of clang-tidy add new checks, so \"bugprone-*\" will mean something different tomorrow than it does today, and very likely would prevent us upgrading freely.  bmcweb has been running clang-tidy for a while now (never in CI until recently) and having wildcards burned us a couple times.  I really want repos to be explicit about what checks are turned on and enforced.  It also makes it really nice for non-CI users to have a warning that you\u0027re not checking all the checks expected of you if your distro has an older version of clang-tidy.\n\nIt also makes a very nice diff in the commit when someone goes and fixes all the issues with a given check, and adds the check to the list.  Having both makes it much more apparent why the seemingly meaningless changes were made, and atomically turns them on at the same time they\u0027re fixed.",
+      "parentUuid": "5e2f95a0_b74a2ca2",
+      "revId": "91fa74ada29694f9835e9f43594ae3933eaf0b18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e14fa1c_898e430f",
         "filename": "lint/cpp/.clang-tidy",
         "patchSetId": 1
@@ -131,6 +149,24 @@
     },
     {
       "key": {
+        "uuid": "45a04f9d_5bd9276a",
+        "filename": "lint/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T22:22:02Z",
+      "side": 1,
+      "message": "Apparently that only applies to clang-tidy before 6.0.  That option has been removed (then added back and deprecated because everyones config files broke, but that\u0027s a different story).  I wouldn\u0027t expect a modern .clang-tidy file to need that key.",
+      "parentUuid": "343110c0_a50d4056",
+      "revId": "91fa74ada29694f9835e9f43594ae3933eaf0b18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b318a35c_e0684c6c",
         "filename": "lint/cpp/.clang-tidy",
         "patchSetId": 1
@@ -142,6 +178,30 @@
       "writtenOn": "2020-11-04T22:10:58Z",
       "side": 1,
       "message": "I think you intended \u0027camelBack\u0027 here.  There is no \u0027lowerCamel\u0027 value.\n\nIt\u0027s unfortunate that clang doesn\u0027t allow \"value: A | B | C\" for cases when we have multiple but specific options.",
+      "range": {
+        "startLine": 250,
+        "startChar": 63,
+        "endLine": 250,
+        "endChar": 73
+      },
+      "revId": "91fa74ada29694f9835e9f43594ae3933eaf0b18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cf8629c_ec07ab91",
+        "filename": "lint/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-04T22:22:02Z",
+      "side": 1,
+      "message": "Yep.  I had noticed this and fixed it when I did this for dbus-sensors.\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/dbus-sensors/+/37294/20/.clang-tidy\n\nBut bmcweb is still wrong.  It\u0027s on my list to put together a commit to fix it.",
+      "parentUuid": "b318a35c_e0684c6c",
       "range": {
         "startLine": 250,
         "startChar": 63,
