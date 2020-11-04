@@ -59,6 +59,29 @@ bmcweb does below operations:
 - If found, set the `asserted` property on the D-Bus object that is pointed
   to by `identify_led_group`
 
+### Representing resource faults
+For representing the fault status of a resource, Redfish `Health` property is
+used.
+All applicable Inventory D-Bus objects would have a forward association mapping
+to LED Group D-Bus object, namely;
+```
+ - fault_led_group
+```
+All applicable LED Group D-Bus objects would have an association mapping to
+inventory D-Bus object, namely:
+```
+ - fault_inventory_object
+```
+
+When ledmanager gets a request to set/clear the fault indicator status, it does below
+operations:
+- Turn on/off the Fault LED group
+- Look for an association `fault_inventory_object` on the LED Group D-Bus object
+- If found, set `Functional` property of `xyz.openbmc_project.State.Decorator.OperationalStatus`
+  to `false` or `true`
+
+- bmcweb already has a design to look for `Functional` property and set the
+  `Health` property.
 
 ## Development Details
 There are two significant layers for LED operations.  The physical and the
