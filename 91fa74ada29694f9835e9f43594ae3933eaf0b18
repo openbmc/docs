@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "1782abef_089b3982",
+        "filename": "lint/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-05T03:08:56Z",
+      "side": 1,
+      "message": "I understand the opinion.  I don\u0027t have strong feelings on it.  The bad thing about not using foo-* enablement is that we have to regularly re-review all the documentation for each new Clang release to see what new shiny toys there might be for us.\n\nIf we are going to enable them individually, I think there is a significant number of these that should be disabled because they are not relevant to BMC code.  The osx and fuchsia ones are obvious examples.  By having them here we\u0027re just wasting time running analyses that aren\u0027t going to flag anything.\n\nI\u0027d be willing to take a second stab at pruning the list down a bit if requested.",
+      "parentUuid": "15fac74b_8201d607",
+      "revId": "91fa74ada29694f9835e9f43594ae3933eaf0b18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e14fa1c_898e430f",
         "filename": "lint/cpp/.clang-tidy",
         "patchSetId": 1
@@ -161,6 +179,24 @@
       "side": 1,
       "message": "Apparently that only applies to clang-tidy before 6.0.  That option has been removed (then added back and deprecated because everyones config files broke, but that\u0027s a different story).  I wouldn\u0027t expect a modern .clang-tidy file to need that key.",
       "parentUuid": "343110c0_a50d4056",
+      "revId": "91fa74ada29694f9835e9f43594ae3933eaf0b18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "812fe1df_d64374fa",
+        "filename": "lint/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-05T03:08:56Z",
+      "side": 1,
+      "message": "Interesting.",
+      "parentUuid": "45a04f9d_5bd9276a",
       "revId": "91fa74ada29694f9835e9f43594ae3933eaf0b18",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
