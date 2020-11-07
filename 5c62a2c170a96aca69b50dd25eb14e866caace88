@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "c680ba08_1cc20b31",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "Went ahead and moved this to the requirements section - will be reflected in the next version of the design doc",
+      "parentUuid": "92fb4937_92abd714",
+      "range": {
+        "startLine": 21,
+        "startChar": 52,
+        "endLine": 24,
+        "endChar": 44
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a678188_496a4217",
         "filename": "mock-sensors.md",
         "patchSetId": 1
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "97e7623c_a0c5dfa2",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "After some discussion, we decided that it would be best to focus on the first requirement provided in this section (mocking out values/error cases of existing sensors) - realized that adding custom virtual sensors would require changes at the kernel level and we want to avoid that for the scope of this project.",
+      "parentUuid": "c6f25a96_b0f18975",
+      "range": {
+        "startLine": 79,
+        "startChar": 3,
+        "endLine": 80,
+        "endChar": 41
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c68aa199_56ea0228",
         "filename": "mock-sensors.md",
         "patchSetId": 1
@@ -113,6 +161,24 @@
     },
     {
       "key": {
+        "uuid": "f3875331_c5da249a",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "Scope has been refocused onto the first requirement above - we won\u0027t be mocking hardware that isn\u0027t physically present for this design.",
+      "parentUuid": "c68aa199_56ea0228",
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4839894e_84242638",
         "filename": "mock-sensors.md",
         "patchSetId": 1
@@ -124,6 +190,30 @@
       "writtenOn": "2020-11-04T01:58:20Z",
       "side": 1,
       "message": "a little nitpicky, but not all sensors pull from something physical.  I suspect you\u0027re planning on limiting this to physical sensors that utilize sysfs but that wasn\u0027t the most clear in reading this.",
+      "range": {
+        "startLine": 127,
+        "startChar": 69,
+        "endLine": 128,
+        "endChar": 6
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d47317f1_3c0f1a42",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "I wasn\u0027t aware that there were sensors that are part of the sensor stack that don\u0027t utilize sysfs - the design currently focuses on the sensors that write to a path in sysfs, but as long as other sensors are writing to some file, the mock sensor tool should be able to overwrite the value returned from the file just as it would do for the files in sysfs. For now, I think it\u0027s appropriate to limit this to physical sensors that utilize sysfs but I can definitely look into the other sensors later on.",
+      "parentUuid": "4839894e_84242638",
       "range": {
         "startLine": 127,
         "startChar": 69,
@@ -159,6 +249,30 @@
     },
     {
       "key": {
+        "uuid": "935c0c7c_84412c87",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "will be reflected in the next commit!",
+      "parentUuid": "3ab6dc2d_915a127e",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 14
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5814968_5d22962b",
         "filename": "mock-sensors.md",
         "patchSetId": 1
@@ -182,6 +296,53 @@
     },
     {
       "key": {
+        "uuid": "96cedf52_a75e2314",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "Ah this was a reading error on my part: it looks like we can use ptrace through just the PID of the tracee program, but there isn\u0027t a strong guarantee that using ptrace with a PID would work (dependent on the PTRACE_MODE_ATTACH permissions). I\u0027ve been able to strace through phosphor-hwmon, so the tool should work with PID on the static stack and I believe it should work with dbus-sensors as well but I will investigate.",
+      "parentUuid": "b5814968_5d22962b",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 15
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03a8b879_5e793bd6",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "Squashing commits, Zev\u0027s comment from the other one: This seems to imply that ptrace is only possible between a parent process and its child, but the existence of things like `gdb -p` and `strace -p` would indicate otherwise.  If there\u0027s a reason that this really cannot be implemented through non-parent/child ptrace I think it might be good to explain why here.",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 68
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c7e56902_eeb69250",
         "filename": "mock-sensors.md",
         "patchSetId": 1
@@ -193,6 +354,24 @@
       "writtenOn": "2020-11-04T01:58:20Z",
       "side": 1,
       "message": "That means that this level of testing would require a special build to accomplish?  I\u0027d highly recommend avoiding that if technically possible (it sounds like Zev had some ideas for you) as it limits the availability of this.  In a perfect world, dbus-sensors \"override\" mode could simply be adjusted to use this instead of overriding in userspace, thus testing more code, and making it testable by anyone.",
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "107b60dc_c4a0618b",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "I\u0027ve found above that ptrace can be used to trace a tracee by PID instead of being a parent process (with some conditions), this makes it really easy now to pull the tool into any testing instance - the binary just needs to be pulled in and we don\u0027t need to have any special build. This will be written in the next version of the design doc.",
+      "parentUuid": "c7e56902_eeb69250",
       "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -234,6 +413,30 @@
       "side": 1,
       "message": "+1",
       "parentUuid": "8bed55ef_29eb4ec6",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 10
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6520e742_a39d3165",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "I wasn\u0027t aware about inotify - it looks pretty perfect for the use-case here and simplifies the implementation quite a bit. Thank you!",
+      "parentUuid": "cca932ae_67046f6b",
       "range": {
         "startLine": 151,
         "startChar": 0,
@@ -293,6 +496,30 @@
     },
     {
       "key": {
+        "uuid": "e4eb92e1_d98c6eee",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "Being on a limited timeframe (about 4/5 weeks of internship remaining), I wanted to prioritize having a tested, working build of the tool - the config file was the \u0027easiest\u0027 solution I could think of as I don\u0027t know all the mechanics behind dbus. You\u0027re right in that the goal of the config file is really just to serve as an intermediate representation between the user and the ptrace tool and dbus could serve that purpose - for someone that has never worked with dbus, do you think it would be feasible to get it integrated into the tool within the timeframe?",
+      "parentUuid": "f21b0eec_b680d40c",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 74
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee1b4622_7077ce21",
         "filename": "mock-sensors.md",
         "patchSetId": 1
@@ -340,6 +567,30 @@
     },
     {
       "key": {
+        "uuid": "59b70d43_7e88e1e5",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "We needed a temporary store of data that could be accessed relatively quickly and persist throughout the lifetime of the ptrace tool. /tmp and /var/tmp seemed to fill the roles pretty well and I decided that /tmp would be a bit better since /var/tmp is a bit slower (but persists through reboots) - is there any better place you\u0027d recommend? (assuming we don\u0027t go with dbus as per the comments above)",
+      "parentUuid": "053db210_3fe69f3c",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 61
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92170478_f0843677",
         "filename": "mock-sensors.md",
         "patchSetId": 1
@@ -363,6 +614,30 @@
     },
     {
       "key": {
+        "uuid": "39b6bfc6_a004d23f",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "We do want the smallest configuration delta possible to the actual platform firmware - with the new ptrace/pid changes above (line 139), we see that making use of the tool requires 0 build changes (just need to pull the binary in). With this in mind, going this route would require changes to the kernel which is a pretty large reason it\u0027s a rejected alternative (will be written in the next version of the design doc). The original design of this approach was to modify what device drivers would write to their respective sysfs files - creating a custom mock sensor/driver is out of the requirements now (line 80).",
+      "parentUuid": "92170478_f0843677",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 56
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aa8509bd_48a3b170",
         "filename": "mock-sensors.md",
         "patchSetId": 1
@@ -374,6 +649,30 @@
       "writtenOn": "2020-11-03T23:53:46Z",
       "side": 1,
       "message": "This is the sentence that drove me to more thoroughly review this proposal :)\n\nI feel like you\u0027re a bit caught up in the ideas for the mock strategies you\u0027ve outlined. There\u0027s no need to write additional (mock) kernel drivers: QEMU mocks an entire machine/platform. At that point you just use the real device drivers from your real BMC firmware to drive your QEMU models and inject whatever sensor values you wish via the monitor interface[1]. The only requirement is that you model your platform and as many of its associated devices as needed in QEMU, as described by the relevant hardware specifications. Ideally you\u0027d do this anyway as it would be a strong contribution to the project\u0027s CI efforts.\n\n[1] Here\u0027s an example, the tmp421, where you have the ability to set the sensor temperature values: https://git.qemu.org/git/qemu.git/?p\u003dqemu.git;a\u003dblob;f\u003dhw/misc/tmp421.c;h\u003d49abe2d246a67cbea21998cc68f853b41a86bce6;hb\u003dd0ed6a69d399ae193959225cdeaa9382746c91cc#l343",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 33
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "250e8036_bfc8f222",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "My bad - I realize now that I wouldn\u0027t need to touch any of the kernel code to add virtual sensors to QEMU. With the focus of this design now on requirement 1 (injecting custom sensor values and error cases into existing sensors), we don\u0027t need to add any custom sensors via QEMU, and looking through the link provided it doesn\u0027t seem like there\u0027s a way to inject user configurable error values at the QEMU level using the monitor interface.",
+      "parentUuid": "aa8509bd_48a3b170",
       "range": {
         "startLine": 220,
         "startChar": 0,
@@ -421,6 +720,30 @@
       "side": 1,
       "message": "Not the author of this, but in the past I\u0027ve seen wanting to test other pieces of bmc behavior at a system/hardware level, without having adequate ways to simulate the condition.  For example the requirement:\n\"If the intake air temperature exceeds 50C, the system should automatically and forcefully shut down\"\nhas been a requirement on past systems I\u0027ve worked on.  Being able to mock a sensor, and simulate a 51C intake temp allows testing the rest of the system behavior, without needing to break out a heat gun is highly useful.  Unless qemu has a perfectly accurate model of all CPLDs, BIOS, and devices on the system, it\u0027s really hard to test the above to a level of certainty at system level.",
       "parentUuid": "c428e135_08a8e990",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 55
+      },
+      "revId": "5c62a2c170a96aca69b50dd25eb14e866caace88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2abfc093_ea4b26b0",
+        "filename": "mock-sensors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-07T00:01:53Z",
+      "side": 1,
+      "message": "We wanted the tool to be able to be ran on as many builds/platforms as possible, not necessarily limited by QEMU, to increase the number of use-cases it may have.",
+      "parentUuid": "ddd42cc2_d649f3f4",
       "range": {
         "startLine": 223,
         "startChar": 0,
