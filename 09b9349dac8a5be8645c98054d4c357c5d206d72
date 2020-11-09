@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fe2f80c_4e699f8c",
+        "filename": "designs/multi-host-bios-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-11-09T20:33:34Z",
+      "side": 1,
+      "message": "Is this a compile-time option, or how would the phosphor-bmc-code-mgmt app have access to this number to create the hostX d-bus interfaces?",
+      "revId": "09b9349dac8a5be8645c98054d4c357c5d206d72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f884c8db_bebb9a06",
+        "filename": "designs/multi-host-bios-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-11-09T20:33:34Z",
+      "side": 1,
+      "message": "Could a system support a different number of host instances? Are there any concerns that for example there is a meta-yosemitev2 configuration with 2 hosts and one with 4 hosts, or if in the future more host instances are supported?",
+      "revId": "09b9349dac8a5be8645c98054d4c357c5d206d72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d87fcc1_4418ec85",
+        "filename": "designs/multi-host-bios-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-11-09T20:33:34Z",
+      "side": 1,
+      "message": "These should probably be /xyz/openbmc_project/software/hostX/\u003cid\u003e",
+      "revId": "09b9349dac8a5be8645c98054d4c357c5d206d72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08fab211_c8a833b9",
+        "filename": "designs/multi-host-bios-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-11-09T20:33:34Z",
+      "side": 1,
+      "message": "If they don\u0027t, should the Redfish API return an error because nothing was updated, or success and the user can figure out themselves?",
+      "revId": "09b9349dac8a5be8645c98054d4c357c5d206d72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bd3f7fb_1ec3ddd9",
+        "filename": "designs/multi-host-bios-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-11-09T20:33:34Z",
+      "side": 1,
+      "message": "With openbmc adopting Redfish, we\u0027ll need this property to be available in the Redfish schema. Are there any reasons not to use the BiosUpdate value you list below? (you mentioned that it could be considered). Perhaps also you could investigate to see if the DMTF has already solved how to select resources for parallel updates.",
+      "revId": "09b9349dac8a5be8645c98054d4c357c5d206d72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
