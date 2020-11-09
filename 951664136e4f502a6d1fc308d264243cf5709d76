@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ccc3bf13_1c4d6171",
+        "filename": "designs/refactor-static-configs.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-09T21:41:40Z",
+      "side": 1,
+      "message": "Rather than creating a new repository, have you considering just using one of the existing repositories, and having them publish the generated files as part of their install step?\n\nThat would allow other tools to use said files, but wouldn\u0027t require moving (a least one repos worth) the existing code, or creating a new repo, and mechanincally seems like it would be pretty minimal to execute.\n\nOff the top of my head, phosphor-host-ipmid could publish the generated headers files then declaring a DEPENDS for ipmi-fru-parser and openpower-host-ipmi-oem on phosphor-host-ipmid would give you access to said files.\n\nWhat do you think?",
+      "range": {
+        "startLine": 42,
+        "startChar": 38,
+        "endLine": 42,
+        "endChar": 52
+      },
+      "revId": "951664136e4f502a6d1fc308d264243cf5709d76",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5485f0c6_eab85d72",
+        "filename": "designs/refactor-static-configs.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-09T21:41:40Z",
+      "side": 1,
+      "message": "Openbmc upstream pre-submit infrastructure probably isn\u0027t enough in this case.  I\u0027d recommend using something that dumps the FRUs/SDRs as an example that this works properly, something like ipmitool fru print is likely enough of a test to verify we haven\u0027t broken anything, as well as dumping the ipmi sdr to a file and comparing it before and after to verify the SDR didn\u0027t change.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 64
+      },
+      "revId": "951664136e4f502a6d1fc308d264243cf5709d76",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
