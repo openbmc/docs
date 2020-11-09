@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f5bd845a_2c841f8f",
+        "filename": "designs/multi-host-bios-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-09T22:02:46Z",
+      "side": 1,
+      "message": "The problem is really more fundamental than \u0027single host\u0027 vs \u0027multi-host\u0027.  The problem is anytime we want to activate a software update which could be applicable for multiple devices.\n\nI don\u0027t think creating a new interface called \u0027biosUpdate\u0027 is the right approach because it doesn\u0027t solve the general problem.  BIOS is really specific to x86 architectures anyhow.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "09b9349dac8a5be8645c98054d4c357c5d206d72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6fe2f80c_4e699f8c",
         "filename": "designs/multi-host-bios-update.md",
         "patchSetId": 3
@@ -53,6 +76,24 @@
     },
     {
       "key": {
+        "uuid": "9447b28c_af3f7b89",
+        "filename": "designs/multi-host-bios-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-09T22:02:46Z",
+      "side": 1,
+      "message": "I don\u0027t think that we should create software/\u003centity\u003e subdirectories unless we get sign-off from the Redfish implementation.  No other firmware update subsystems have done this and the Redfish / WebUI code doesn\u0027t know to interrogate subdirectories.\n\nWhat specifically is solved by having a subdirectory?  Can that be solved by an association instead?",
+      "parentUuid": "8d87fcc1_4418ec85",
+      "revId": "09b9349dac8a5be8645c98054d4c357c5d206d72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08fab211_c8a833b9",
         "filename": "designs/multi-host-bios-update.md",
         "patchSetId": 3
@@ -64,6 +105,29 @@
       "writtenOn": "2020-11-09T20:33:34Z",
       "side": 1,
       "message": "If they don\u0027t, should the Redfish API return an error because nothing was updated, or success and the user can figure out themselves?",
+      "revId": "09b9349dac8a5be8645c98054d4c357c5d206d72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfff3403_563b26a6",
+        "filename": "designs/multi-host-bios-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-09T22:02:46Z",
+      "side": 1,
+      "message": "Again, this is a more fundamental problem.\n\nThe image should really only be deleted when \"there are no more entities for which this image could be applied but is not yet applied\".  This is really an implementation flaw in the single-host implementation and not an interface change.",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 75
+      },
       "revId": "09b9349dac8a5be8645c98054d4c357c5d206d72",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
