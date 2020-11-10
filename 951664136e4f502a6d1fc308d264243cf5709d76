@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "c7c39ab4_8e89e5a0",
+        "filename": "designs/refactor-static-configs.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-10T22:01:16Z",
+      "side": 1,
+      "message": "I can\u0027t tell if this is a proposal for a specific set of repositories or ALL repositories that use any static configuration.  Can you clarify?\n\nIt seems like this is centered around IPMI-related repositories.  If it is IPMI-centric, can you please rename the file to indicate this.  I expect this \"design document\" to be somewhat short-lived while the work is going on, if we need to even merge it at all, and I don\u0027t want someone confusing this as an over-arching design if that isn\u0027t what it is.",
+      "revId": "951664136e4f502a6d1fc308d264243cf5709d76",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ccc3bf13_1c4d6171",
         "filename": "designs/refactor-static-configs.md",
         "patchSetId": 3
@@ -18,6 +35,29 @@
         "startChar": 38,
         "endLine": 42,
         "endChar": 52
+      },
+      "revId": "951664136e4f502a6d1fc308d264243cf5709d76",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b22f1cb_10582c21",
+        "filename": "designs/refactor-static-configs.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-10T22:01:16Z",
+      "side": 1,
+      "message": "This isn\u0027t necessarily a bad thing.  The code is the same right now because the requirements happen to align.  As time moves on it is possible that these repositories will end up with different data needs, which may necessitate a different format.\n\nHaving all the parsing code in one repository may reduce the duplication but it also ties these repositories together tighter.  Code duplication is also less coupling.\n\nI\u0027m not suggesting one approach is better than another but I think this aspect should be discussed in the pros/cons.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 54
       },
       "revId": "951664136e4f502a6d1fc308d264243cf5709d76",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
