@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "149ef735_9335152b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-10T22:08:28Z",
+      "side": 1,
+      "message": "Suggest adjusting your \u0027git config\u0027 with a legal-ish name here.  This looks like a user-id which isn\u0027t what signed-off-bys should be.",
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cd8943e_f9c2b841",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-10T22:08:28Z",
+      "side": 1,
+      "message": "One piece I\u0027m missing in reading this is who is the intended user.  Is this to debug an application like `phosphor-hwmon` or are you intending on creating integration tests of some sort?  How does the proposal end up being used in a real system?",
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cddd899_e377c82a",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-10T22:08:28Z",
+      "side": 1,
+      "message": "Is there any concern with `ptrace` w.r.t. security settings?  Could we end up with an SELinux config where your tool doesn\u0027t work (or similar to SELinux).",
+      "range": {
+        "startLine": 138,
+        "startChar": 16,
+        "endLine": 138,
+        "endChar": 22
+      },
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab6edc18_e4486f9e",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-10T22:08:28Z",
+      "side": 1,
+      "message": "I don\u0027t think I agree with this.\n\nLots of kernel subsystems create debug drivers exactly like this.  Often the driver exposes debugfs entries to set the values from userspace.  I think you could easily formulate a generic driver that takes a deliminated string of hwmon sensors (ex. \"in0;in1;out0;temp0\") in the bind call and populates both the standard hwmon entries and custom debugfs to modify the values.",
+      "range": {
+        "startLine": 188,
+        "startChar": 48,
+        "endLine": 190,
+        "endChar": 56
+      },
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
