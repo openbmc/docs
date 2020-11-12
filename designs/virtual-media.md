@@ -8,6 +8,7 @@ None
 
 Other contributors:
 Przemyslaw Czarnowski <przemyslaw.hawrylewicz.czarnowski@intel.com>
+Anna Platash <anna.platash@intel.com>
 
 Created:
 6/4/2019
@@ -357,16 +358,17 @@ interface, which will be defined as follow:
 Each object will also expose configuration of its own under
 ``xyz.openbmc_project.VirtualMedia.MountPoint`` (all properties are RO)
 
-| Name                       | type     | input | return | description                                                               |
-| -------------------------- | -------- | ----- | ------ | ------------------------------------------------------------------------- |
-| EndPointId                 | Property | -     | STRING | As per configuration                                                      |
-| Mode                       | Property | -     | BYTE   | As per configuration                                                      |
-| Device                     | Property | -     | STRING | As per configuration                                                      |
-| Socket                     | Property | -     | STRING | As per configuration                                                      |
-| Timeout                    | Property | -     | UINT16 | As per configuration                                                      |
-| BlockSize                  | Property | -     | UINT16 | As per configuration                                                      |
-| RemainingInactivityTimeout | Property | -     | UINT16 | Seconds to drop connection by server, for activated endpoint, 0 otherwise |
-| ImageURL                   | Property | -     | STRING | URL to mounted image                                                      |
+| Name                       | type     | input | return  | description                                                               |
+| -------------------------- | -------- | ----- | ------- | ------------------------------------------------------------------------- |
+| EndPointId                 | Property | -     | STRING  | As per configuration                                                      |
+| Mode                       | Property | -     | BYTE    | As per configuration                                                      |
+| Device                     | Property | -     | STRING  | As per configuration                                                      |
+| Socket                     | Property | -     | STRING  | As per configuration                                                      |
+| Timeout                    | Property | -     | UINT16  | As per configuration                                                      |
+| BlockSize                  | Property | -     | UINT16  | As per configuration                                                      |
+| RemainingInactivityTimeout | Property | -     | UINT16  | Seconds to drop connection by server, for activated endpoint, 0 otherwise |
+| ImageURL                   | Property | -     | STRING  | URL to mounted image                                                      |
+| WriteProtected             | Property | -     | BOOLEAN | 'True', if the image is mounted as read only, 'False' otherwise           |
 
 Another interface exposed by each object are stats under
 ```xyz.openbmc_project.VirtualMedia.Stats``` (all properties are RO):
