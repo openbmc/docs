@@ -24,7 +24,7 @@ cases to be injected into the dynamic sensor stack.
 
 phosphor-hwmon[1] - the static sensor stack
 dbus-sensors[2] - the dynamic sensor stack
-Error cases we may want to inject at the kernel level read syscall: [3]
+Error cases we may want to inject at the kernel level read syscall:[3]
 
 High level diagram of the sensor stack:
 
@@ -71,13 +71,10 @@ The goal of this design is to build a lightweight tool that can allow for
 custom value and error injection into the sensor stack at the kernel level
 to mock out faulty sensors to test various corner cases within the BMC.
 
-This implementation should:
+This implementation should provide a user the ability to choose existing
+sensors and mock out their sensor values or error values through the static
+and dynamic sensor stack.
 
-1. Provide a user the ability to choose existing sensors and mock out their
-sensor values or error values through the static and dynamic sensor stack.
-
-2. Allow the user to mock out a custom virtual sensor with user-specified
-values to mock out non-existing hardware.
 
 ## Proposed Design
 
@@ -124,34 +121,36 @@ what error value they'd want to return back to the sensor stack.
 
 ## How Sensor Values are Retrieved
 
+The design focuses on physical sensors that utilize sysfs.
+
 Each sensor interacts with a linux driver that reads values from the physical
 sensor and populates a file within sysfs[4] with the value read in. When the
 sensor stack wants to retrieve these values, they're passed in a direct path
-to the file within sysfs and a long value is read out of that file using the
-STL's ifstream library. Since ifstream uses a read() syscall to retrieve the
-value from the file in sysfs, we can use ptrace to either skip the read()
-syscall and return a custom value, or to override the value returned from the
-read() syscall and the buffer associated with it.
+to the file within sysfs and a long value is read out of that file a read()
+syscall. Once the value is retrieved, we can use ptrace to either skip the
+read() syscall and return a custom value, or to override the value returned
+from the read() syscall and the buffer associated with it.
 
-## Enabling ptrace
+## Using Ptrace
 
-In order to use ptrace, the tracee program must be a child process of the
-tracer program. For our ptrace tool, we must spawn phosphor-hwmon or
-dbus-sensors as a child process using of the ptrace tool through the use of
-execve (or execvp)[5]. This would require some build changes - for phosphor-
-hwmon, this can be accomplished by using a drop-in[6] within ptrace-tool's
-bitbake file to overload the ExecStart argument in phosphor-hwmon's .service
-file[7]. A similar approach for dbus-sensors could probably be applied, but
-more research would have to be done.
+The mock sensor tool will not require any special build/build changes, making 
+the tool very lightweight and portable. For someone using the tool to mock out
+values/errors in the static stack, the mock sensor tool will attach itself to
+phosphor-hwmon using its PID (similar to strace) and begin overloading
+user-specified sensor values. This method of tracing by PID only works if the
+correct permissions are allowed (kernel.yama.ptrace_scope in
+/etc/sysctl.d/10-ptrace.conf must be set to 0).
 
-## User Config Tool
+Users can dynamically choose which sensors to mock and specify the values and
+errors they want to inject into that specific sensor. Users will also be able
+to specify a latency value which adds a delay between the polling from the
+sensor stack and the response from the userspace.
 
-We want users to be able to dynamically change what sensors and sensor values
-to mock. We believe the best way to enable this would be through the use of
-a config file that ptrace-tool would periodically read from to determine its
-arguments. The user would interact with a different tool that allows the user
-to modify this config file without having to worry about formatting errors.
-The config file could live in the /tmp directory of Linux[8].
+For now, users will run the tool and enter the PID of the phosphor-hwmon
+instance they want to overload and the injection will persist throughout the
+lifetime of the instance of the mock sensor tool. Further research will be
+required to see how the tool would be used with dbus-sensors, but ideally
+would be identical to how the tool is used with the static stack.
 
 
 ## Alternatives Considered
@@ -160,7 +159,7 @@ There were two other design alternatives considered for this project:
 
 ## New Linux Driver using the Hwmon Framework
 
-This idea is to build a custom linux driver that the user can control to
+This idea is to build a custom debug linux driver that the user can control to
 mock the existence of a sensor. Values would be mocked at the following level:
 
 ```
@@ -187,7 +186,10 @@ This approach is fairly easy to implement and doesn't require modifying any
 existing functionality within phosphor-hwmon or dbus-sensors and also doesn't
 require changing the build order using drop-in. However, to overload values of
 existing sensors, a custom driver or driver patch would have to be built for
-each sensor and this solution would not scale very well.
+the sensors and would require kernel changes, which would require build changes.
+We want to maintain the smallest configuration delta possible to the actual
+platform firmware, and the ptrace approach does a better job of that than this
+approach.
 
 
 ## Adding Emulated Sensor Devices to QEMU using their i2c Framework
@@ -217,15 +219,17 @@ QEMU. The values would be mocked at the following level:
 
 ```
 
-While this approach would provide us the most accurate mock sensor, we would
-still need to build a compatible linux driver for each mocked sensor leading
-to the same scaling issues above. Furthermore, this approach would only work
-for BMC instances specifically emulated on top of QEMU.
+While this approach would provide us the most accurate mock sensors and we could
+inject sensor values through the use of the monitor framework, there doesn't
+seem to be any way to inject user-specified error values at this level.
+Furthermore, this approach would only work for BMC instances specifically
+emulated on top of QEMU, and we want this tool to be as portable as possible to
+serve the most use-cases possible.
 
 ## Additional Design Considerations
 
 There may be opportunity to blend the approaches above, specifically the main
-ptrace approach to mock out existing sensors, and the custom linux kernel
+ptrace approach to mock out existing sensors, and the custom linux drivers
 to mock out completely new sensors. More research would have to be done in
 how sensors are added to the sensor stack however.
 
@@ -233,10 +237,11 @@ how sensors are added to the sensor stack however.
 
 ***Security Impact***
 There may be some security concerns in a malicious entity hijacking the
-configuration file that feeds arguments into the ptrace tool, however this
-tool is meant to be used strictly in a test environment and not in any
-production environment. With this in mind, there shouldn't be any security
-issues.
+mock sensor tool to inject erroneous values, but this tool is meant to be used
+for testing and development purposes and probably shouldn't be built into any
+production environments otherwise. In the case that the tool is to be built in
+to some environment, it can be disabled by disabling PTRACE-ATTACH permissions
+in /proc/sys/kernel/yama/ptrace_scope.
 
 ***Performance Impact***
 Using the ptrace tool will introduce some overhead - every time there's a
@@ -253,7 +258,3 @@ reads from these sensor files.
 [2]: (https://github.com/openbmc/dbus-sensors)
 [3]: (https://man7.org/linux/man-pages/man2/read.2.html)
 [4]: (https://man7.org/linux/man-pages/man5/sysfs.5.html)
-[5]: (https://man7.org/linux/man-pages/man2/execve.2.html)
-[6]: (https://coreos.com/os/docs/latest/using-systemd-drop-in-units.html)
-[7]: (https://github.com/openbmc/meta-phosphor/blob/master/recipes-phosphor/sensors/phosphor-hwmon/xyz.openbmc_project.Hwmon%40.service)
-[8]: (https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/tmp.html)
