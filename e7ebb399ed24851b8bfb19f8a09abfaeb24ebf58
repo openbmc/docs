@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "73880d8b_6bf36029",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-12T22:32:52Z",
+      "side": 1,
+      "message": "Will be reflected in the next iteration of the design document!",
+      "parentUuid": "149ef735_9335152b",
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2cd8943e_f9c2b841",
         "filename": "designs/mock-sensors.md",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2020-11-10T22:08:28Z",
       "side": 1,
       "message": "One piece I\u0027m missing in reading this is who is the intended user.  Is this to debug an application like `phosphor-hwmon` or are you intending on creating integration tests of some sort?  How does the proposal end up being used in a real system?",
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e35d304_71732af2",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-12T22:32:52Z",
+      "side": 1,
+      "message": "We uploaded this design document to gauge interest/receive feedback and see if anyone would find use-cases for it. Users could choose to install the binary for the tool into their build (doesn\u0027t require any special build anymore) and use it to overload the values returned by sensors or inject error cases in both the static stack (currently working on phosphor-hwmon) and the dynamic stack. It\u0027s current use is for debugging/development purposes but there was a stretch goal to integrate it into some form of integration testing for phosphor-hwmon.",
+      "parentUuid": "2cd8943e_f9c2b841",
       "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "44cdfe6a_79d51c36",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-12T22:32:52Z",
+      "side": 1,
+      "message": "the ptrace tool may bring security threats if brought into a build, but users can choose whether to include it into their build or not - it probably shouldn\u0027t be built into any production BMC unless it\u0027s for debugging/development purposes. That being said, if built in it can be disabled by disabling permissions for PTRACE-ATTACH in /proc/sys/kernel/yama/ptrace_scope.",
+      "parentUuid": "2cddd899_e377c82a",
+      "range": {
+        "startLine": 138,
+        "startChar": 16,
+        "endLine": 138,
+        "endChar": 22
+      },
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ab6edc18_e4486f9e",
         "filename": "designs/mock-sensors.md",
         "patchSetId": 3
@@ -70,6 +130,30 @@
       "writtenOn": "2020-11-10T22:08:28Z",
       "side": 1,
       "message": "I don\u0027t think I agree with this.\n\nLots of kernel subsystems create debug drivers exactly like this.  Often the driver exposes debugfs entries to set the values from userspace.  I think you could easily formulate a generic driver that takes a deliminated string of hwmon sensors (ex. \"in0;in1;out0;temp0\") in the bind call and populates both the standard hwmon entries and custom debugfs to modify the values.",
+      "range": {
+        "startLine": 188,
+        "startChar": 48,
+        "endLine": 190,
+        "endChar": 56
+      },
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f557c531_12249576",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000948
+      },
+      "writtenOn": "2020-11-12T22:32:52Z",
+      "side": 1,
+      "message": "You\u0027re right - I previously wasn\u0027t aware of all the approaches around this. We\u0027ve decided that a big priority for this tool is to make sure it doesn\u0027t require any build changes and we want to avoid adding kernel code - that\u0027s the biggest case against this approach now.",
+      "parentUuid": "ab6edc18_e4486f9e",
       "range": {
         "startLine": 188,
         "startChar": 48,
