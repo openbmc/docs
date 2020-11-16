@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "c59335d7_a7e339bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-16T22:38:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73880d8b_6bf36029",
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2cd8943e_f9c2b841",
         "filename": "designs/mock-sensors.md",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "We uploaded this design document to gauge interest/receive feedback and see if anyone would find use-cases for it. Users could choose to install the binary for the tool into their build (doesn\u0027t require any special build anymore) and use it to overload the values returned by sensors or inject error cases in both the static stack (currently working on phosphor-hwmon) and the dynamic stack. It\u0027s current use is for debugging/development purposes but there was a stretch goal to integrate it into some form of integration testing for phosphor-hwmon.",
       "parentUuid": "2cd8943e_f9c2b841",
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e37a309_427e5ad7",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-16T22:38:43Z",
+      "side": 1,
+      "message": "TBH, this seems somewhat backwards to me.  Why would we approve a design for and write code for something for which there are no uses cases?\n\n\u003e It\u0027s current use is for debugging/development purposes but there was a stretch goal to integrate it into some form of integration testing for phosphor-hwmon.\n\nPlease record this.",
+      "parentUuid": "6e35d304_71732af2",
       "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -154,6 +190,30 @@
       "side": 1,
       "message": "You\u0027re right - I previously wasn\u0027t aware of all the approaches around this. We\u0027ve decided that a big priority for this tool is to make sure it doesn\u0027t require any build changes and we want to avoid adding kernel code - that\u0027s the biggest case against this approach now.",
       "parentUuid": "ab6edc18_e4486f9e",
+      "range": {
+        "startLine": 188,
+        "startChar": 48,
+        "endLine": 190,
+        "endChar": 56
+      },
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08865288_bd4bec6a",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-16T22:38:43Z",
+      "side": 1,
+      "message": "\u003e We\u0027ve decided that a big priority for this tool is to make sure it doesn\u0027t require any build changes and we want to avoid adding kernel code - that\u0027s the biggest case against this approach now.\n\nWhy do you want to avoid adding kernel code?  If this is the typical path the kernel teams have already plowed for making dummy drivers why would we do something different?",
+      "parentUuid": "f557c531_12249576",
       "range": {
         "startLine": 188,
         "startChar": 48,
