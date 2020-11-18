@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "d0e6aa79_61db6ce6",
+        "filename": "designs/multi-host-bios-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000867
+      },
+      "writtenOn": "2020-11-18T17:47:51Z",
+      "side": 1,
+      "message": "Agree, we can make software-manager to determine all the available devices from inventory that needs firmware update. Currently, updating the design document which uses the inventory. Need clarifications considering couple of approaches.\n\n1. Use of ExtendedVersion:\n a) How does the ExtendedVersion be used to determine which device needs an firmware update considering multiple device scenario.\n b) Could the ExtendedVersion value in MANIFEST file be mapped with inventory objects.\n c) Do we expect to update the firmware image for all the devices that matches the ExtendedVersion.\n d) Is the ExtendedVersion value in the MANIFEST file be factroy ship out or to be modified by the user before each update.\n\n2. As an alternate, can create new interfaces for each of the object identified from the inventory. Then user can sets the new \"biosUpdate\" property to \"true\" for devices that needs firmware update. After successfull activation the image will be deleted at the end.",
+      "parentUuid": "99d6b0f0_28683a98",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "09b9349dac8a5be8645c98054d4c357c5d206d72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6fe2f80c_4e699f8c",
         "filename": "designs/multi-host-bios-update.md",
         "patchSetId": 3
