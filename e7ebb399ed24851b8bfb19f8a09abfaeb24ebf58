@@ -55,6 +55,29 @@
     },
     {
       "key": {
+        "uuid": "a7de8538_497323a1",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-20T22:28:53Z",
+      "side": 1,
+      "message": "nit.  It does, your way just enables a larger range of errors, which is good.",
+      "range": {
+        "startLine": 19,
+        "startChar": 45,
+        "endLine": 21,
+        "endChar": 51
+      },
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2cd8943e_f9c2b841",
         "filename": "designs/mock-sensors.md",
         "patchSetId": 3
@@ -108,6 +131,64 @@
     },
     {
       "key": {
+        "uuid": "5492789a_a5d84175",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-20T22:28:53Z",
+      "side": 1,
+      "message": "\u003e TBH, this seems somewhat backwards to me.  Why would we approve a design for and write code for something for which there are no uses cases?\n\nI think you misread what he said.  One of the primary use cases in user story format would be:\n\nAs an OpenBMC developer, I would like a tool that allows me to test all  userspace code north of the hwmon driver, by simulating hardware interactions that require a lot of hardware (ovens/cooling chambers) or require physically destroying the machine to replicate.\n\nA possible later use case would be:\n\nAs an OpenBMC developer/QA tester, I would like to be able to simulate all driver/userspace interactions in a unit test, without relying on the behavior of the underlying hardware to verify the software behavior.\n\n\u003e \n\u003e \u003e It\u0027s current use is for debugging/development purposes but there was a stretch goal to integrate it into some form of integration testing for phosphor-hwmon.\n\u003e \n\u003e Please record this.\n\nRecord the things he\u0027s not going to do?  We could put down \"this could be used for\" type stuff, but in general, we just amend the design docs later to add things like that.",
+      "parentUuid": "8e37a309_427e5ad7",
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15eba4e8_ea746b78",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-20T22:28:53Z",
+      "side": 1,
+      "message": "I\u0027m curious what form this would take.",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 41
+      },
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e411bd69_7ebbe5ed",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-20T22:28:53Z",
+      "side": 1,
+      "message": "nice diagram.",
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2cddd899_e377c82a",
         "filename": "designs/mock-sensors.md",
         "patchSetId": 3
@@ -143,6 +224,30 @@
       "side": 1,
       "message": "the ptrace tool may bring security threats if brought into a build, but users can choose whether to include it into their build or not - it probably shouldn\u0027t be built into any production BMC unless it\u0027s for debugging/development purposes. That being said, if built in it can be disabled by disabling permissions for PTRACE-ATTACH in /proc/sys/kernel/yama/ptrace_scope.",
       "parentUuid": "2cddd899_e377c82a",
+      "range": {
+        "startLine": 138,
+        "startChar": 16,
+        "endLine": 138,
+        "endChar": 22
+      },
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b7af15e_e6247054",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-20T22:28:53Z",
+      "side": 1,
+      "message": "Today, OpenBMC doesn\u0027t implement SELinux, so any answer Junho would give is conjecture based on \"if Openbmc did SELinux\" we could certainly go into that level of detail in this kind of design review, but that seems like overkill, and we would have to cover a whole lot more \"what if\" type scenarios.\n\nThe tool itself existing just makes the permissions issue more obvious, it doesn\u0027t open any new vulnerabilities that didn\u0027t exist before by running processes as root.\n\nIf Junho put \"In the future, this tool might require special user privileges to function\" would that mitigate your concerns?",
+      "parentUuid": "44cdfe6a_79d51c36",
       "range": {
         "startLine": 138,
         "startChar": 16,
@@ -214,6 +319,30 @@
       "side": 1,
       "message": "\u003e We\u0027ve decided that a big priority for this tool is to make sure it doesn\u0027t require any build changes and we want to avoid adding kernel code - that\u0027s the biggest case against this approach now.\n\nWhy do you want to avoid adding kernel code?  If this is the typical path the kernel teams have already plowed for making dummy drivers why would we do something different?",
       "parentUuid": "f557c531_12249576",
+      "range": {
+        "startLine": 188,
+        "startChar": 48,
+        "endLine": 190,
+        "endChar": 56
+      },
+      "revId": "e7ebb399ed24851b8bfb19f8a09abfaeb24ebf58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0e3769f_d135b39a",
+        "filename": "designs/mock-sensors.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-20T22:28:53Z",
+      "side": 1,
+      "message": "\u003e \u003e We\u0027ve decided that a big priority for this tool is to make sure it doesn\u0027t require any build changes and we want to avoid adding kernel code - that\u0027s the biggest case against this approach now.\n\u003e \n\u003e Why do you want to avoid adding kernel code?  If this is the typical path the kernel teams have already plowed for making dummy drivers why would we do something different?\n\nJust a guess (I haven\u0027t asked Junho directly): Because adding kernel code would significantly increase the scope of what\u0027s required to execute this design, and reduces the usefulness as a generic debugging/unit testing tool.  To my understanding, Junho is planning on using existing kernel mechanisms for doing this work, so it\u0027s not like we\u0027re reinventing the wheel, we\u0027re just attaching the wheel to a bicycle instead of a jeep.\n\nWith all that said, I think the statement above could probably be removed, and the previous sentence would stand up as a defense why this is less desirable.",
+      "parentUuid": "08865288_bd4bec6a",
       "range": {
         "startLine": 188,
         "startChar": 48,
