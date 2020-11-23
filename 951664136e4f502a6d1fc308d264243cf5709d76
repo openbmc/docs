@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "811b0dad_9e3e9ec5",
+        "filename": "designs/refactor-static-configs.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-11-23T21:40:05Z",
+      "side": 1,
+      "message": "I\u0027m intrigued by the idea of make install installing a bunch of generated headers...\n\n\u003e phosphor-host-ipmid could publish the generated headers\n\nthe yaml-\u003emako-\u003ecpp pattern extends way beyond the ipmi domain so this probably doesn\u0027t make sense.",
+      "parentUuid": "ccc3bf13_1c4d6171",
+      "range": {
+        "startLine": 42,
+        "startChar": 38,
+        "endLine": 42,
+        "endChar": 52
+      },
+      "revId": "951664136e4f502a6d1fc308d264243cf5709d76",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5b22f1cb_10582c21",
         "filename": "designs/refactor-static-configs.md",
         "patchSetId": 3
@@ -53,6 +77,30 @@
       "writtenOn": "2020-11-10T22:01:16Z",
       "side": 1,
       "message": "This isn\u0027t necessarily a bad thing.  The code is the same right now because the requirements happen to align.  As time moves on it is possible that these repositories will end up with different data needs, which may necessitate a different format.\n\nHaving all the parsing code in one repository may reduce the duplication but it also ties these repositories together tighter.  Code duplication is also less coupling.\n\nI\u0027m not suggesting one approach is better than another but I think this aspect should be discussed in the pros/cons.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 54
+      },
+      "revId": "951664136e4f502a6d1fc308d264243cf5709d76",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d30048b5_2311a8e3",
+        "filename": "designs/refactor-static-configs.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-11-23T21:40:05Z",
+      "side": 1,
+      "message": "\u003e but it also ties these repositories together tighter\n\nIMO OpenBMC is already tightly coupled because of things like our (lack of) API stability guarantee and esoteric DBus patterns like the mapper.  Do we really care about loose coupling?",
+      "parentUuid": "5b22f1cb_10582c21",
       "range": {
         "startLine": 48,
         "startChar": 0,
