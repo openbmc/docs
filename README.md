@@ -14,7 +14,6 @@ with links to more information.
 - Mail: openbmc@lists.ozlabs.org https://lists.ozlabs.org/listinfo/openbmc
 - List Archive: https://lore.kernel.org/openbmc/
 - Discord: https://discord.gg/69Km47zH98
-- IRC: #openbmc on freenode.net
 
 ## OpenBMC Development
 

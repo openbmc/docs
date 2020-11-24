@@ -31,7 +31,7 @@ be provided.
 ### Background
 (1 paragraph) Describe why the anti-pattern exists.  If you don't know, try
 running git blame and look at who wrote the code originally, and ask them on the
-mailing list or in IRC what their original intent was, so it can be documented
+mailing list or in Discord what their original intent was, so it can be documented
 here (and you may possibly discover it isn't as much of an anti-pattern as you
 thought).  If you are unable to determine why the anti-pattern exists, put:
 "Unknown" here.

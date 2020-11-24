@@ -28,13 +28,13 @@ ____
 # Example design - this is the design title
 
 Author:
-  < Name and IRC nic >
+  < Name and Discord nic >
 
 Primary assignee:
-  < Name and/or IRC nic or None >
+  < Name and/or Discord nic or None >
 
 Other contributors:
-  < Name and/or IRC nic or None >
+  < Name and/or Discord nic or None >
 
 Created:
   < Date initially created in Month D, Yr format (e.g. June 17, 2020 or Dec 19,

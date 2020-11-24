@@ -1,10 +1,10 @@
 # Voltage Regulator Configuration
 
-Author: Shawn McCarney (IRC ShawnMcCarney)
+Author: Shawn McCarney (Discord ShawnMcCarney)
 
 Primary assignee: Shawn McCarney
 
-Other contributors: Derek Howard (IRC derekh55), Matt Spinler (IRC mspinler)
+Other contributors: Derek Howard (Discord derekh55), Matt Spinler (Discord mspinler)
 
 Created: 2019-07-13
 

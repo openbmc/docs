@@ -120,7 +120,7 @@ deliver a well designed and tested feature.
 
 Work groups can be formal or not depending on the work needing to be done and
 the community member style. They can consist of email to the list or formal
-weekly meetings via IRC or call to discuss designs and progress.
+weekly meetings via Discord or call to discuss designs and progress.
 
 ### Backlog
 The backlog is simply the proposed release features that did not make the

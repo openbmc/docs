@@ -130,7 +130,7 @@ introduce it to the OpenBMC development community.
 
 If you are planning a new function, you should get agreement that your
 change will be accepted.  As early as you can, introduce the change
-via the OpenBMC IRC channel or email list to start
+via the OpenBMC Discord server or email list to start
 the discussion.  You may find a better way to do what you need.
 
 Submitting changes
@@ -395,8 +395,8 @@ your contribution.
 
 If you feel your patch has been missed entirely, of course, it's
 alright to email the maintainers (addresses available in MAINTAINERS file) or
-ping them on IRC - but a reasonable timeframe to do so is on the order of a week,
-not on the order of hours.
+ping them on Discord - but a reasonable timeframe to do so is on the order of a
+week, not on the order of hours.
 
 The maintainers' job is to ensure that incoming patches are as correct and easy
 to maintain as possible. Part of the nature of open source is attrition -
