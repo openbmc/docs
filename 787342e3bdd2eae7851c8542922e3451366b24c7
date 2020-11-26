@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14e8bd9f_3282a411",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-11-26T07:53:30Z",
+      "side": 1,
+      "message": "Does this imply an alternate implementation to the existing pldm daemon?",
+      "range": {
+        "startLine": 331,
+        "startChar": 20,
+        "endLine": 331,
+        "endChar": 32
+      },
+      "revId": "787342e3bdd2eae7851c8542922e3451366b24c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "012f64de_c3eeb625",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-11-26T07:53:30Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 331,
+        "startChar": 40,
+        "endLine": 331,
+        "endChar": 58
+      },
+      "revId": "787342e3bdd2eae7851c8542922e3451366b24c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4fe79b5_5cd5f966",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-11-26T07:53:30Z",
+      "side": 1,
+      "message": "Will it be possible for you to make an ascii diagram? That will be inline with the rest of the doc, and is easier to post comments against as well.\n\nLooking at the diagram you have now, I have the following comments:\n\n- There are assumptions about the MCTP daemon design, which still haven\u0027t been closed in terms of getting them approved in the MCTP design doc.\n- It isn\u0027t clear to me what APIs will the pldmd device manager use to talk to the connected device.\n- If the device supports FRU PDRs, there shouldn\u0027t be a need to expose PLDM FRU contents on D-Bus.\n- So the crux of the requester flow is - pldmd gets awoken by D-Bus activity indicating a new MCTP connection, then it sends a series of requests and hosts the responses on D-Bus, right? Some of the flows (initial PLDM discovery, PDR, M\u0026C) would need more details in terms of what the D-Bus API is supposed to do. This can be via additional commits though.\n- How will effecters, state sensors and events be handled?\n- What is the PDR interface?\n- Which OpenBMC apps do you expect to talk to pldmd in terms of its capacity as a PLDM requester? How would this interface look like?\n- Have we thought about multiple requester daemon apps, for eg one per device? With the current scheme it looks like the BMC can engage with only one device at a time.\n- Does this design mandate that the connected PLDM device must have a FRU EEPROM?",
+      "revId": "787342e3bdd2eae7851c8542922e3451366b24c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ee1d3ac_27405c5d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-11-26T07:53:30Z",
+      "side": 1,
+      "message": "nit:pldmd",
+      "range": {
+        "startLine": 338,
+        "startChar": 46,
+        "endLine": 338,
+        "endChar": 51
+      },
+      "revId": "787342e3bdd2eae7851c8542922e3451366b24c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf472e40_8ae235a2",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-11-26T07:53:30Z",
+      "side": 1,
+      "message": "Will you be adding details for this? Or just new D-Bus interfaces in the future?",
+      "range": {
+        "startLine": 340,
+        "startChar": 16,
+        "endLine": 341,
+        "endChar": 21
+      },
+      "revId": "787342e3bdd2eae7851c8542922e3451366b24c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    }
+  ]
+}
