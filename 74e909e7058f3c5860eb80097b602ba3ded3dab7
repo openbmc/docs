@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "74bc29a5_adcd7c50",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-10T21:30:30Z",
+      "side": 1,
+      "message": "Why is this called \u0027OPNL\u0027?  That seems like an arbitrary acronym.\n\nIs this design exclusively unique to IBM or do you intend it to be able to support other panel designs?  Have you looked at the OCP Debug Card and determined if you would be able to easily extend to support to an OCP card?\n\nIf this is IBM-only design and code, and you have no intention on this working with anyone else\u0027s hardware, please put into an IBM subdirectory.",
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6211ea07_c908e39c",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-10T21:30:30Z",
+      "side": 1,
+      "message": "Please don\u0027t include pictures in the docs repository.  I would prefer you use either an ascii art or embedded UML using gravizo.com.",
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3b1119c3_20c35a03",
         "filename": "OPNL-design.md",
         "patchSetId": 1
@@ -22,6 +56,69 @@
       "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "837af0ca_91951f11",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-10T21:30:30Z",
+      "side": 1,
+      "message": "How are you going to do this?  I don\u0027t think there are any \"i2c slave device in userspace\" driver support in the kernel.  It seems to me like you have to do your \"alternative design\" below and write a driver that turns your i2c slave device commands into an input device.",
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8208a784_62f50362",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-10T21:30:30Z",
+      "side": 1,
+      "message": "This assumes that upstream would accept it.  I think you need to get commitment from the upstream i2c subsystem maintainers that they would accept this before we commit to this design.",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 28
+      },
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee70fad6_c56f4940",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-10T21:30:30Z",
+      "side": 1,
+      "message": "I have no idea what this sentence means.\n\nYou could turn the input device into a keycodes like we do for GPIO or a keyboard, or you could do a real \"HID\" device driver.  What do you mean about \"cannot give only single events\"?",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 42
+      },
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
