@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b2a83dda_84c830d9",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2020-12-11T17:34:46Z",
+      "side": 1,
+      "message": "Why is this called \u0027OPNL\u0027?  That seems like an arbitrary acronym.\n- YES, Just for ease of use or do i need to use IOPMA ?\n\nIs this design exclusively unique to IBM or do you intend it to be able to support other panel designs?  Have you looked at the OCP Debug Card and determined if you would be able to easily extend to support to an OCP card?\n- The way I see it , yes it is , I am not pretty sure if there will be other panels like this, seems outdated and one of a kind. Yes have looked at the OCP debug card and it did not look easy enough to plug my requirements into that, Both does things totally different and it also depends on the code within the micro. \n\nIf this is IBM-only design and code, and you have no intention on this working with anyone else\u0027s hardware, please put into an IBM subdirectory.\n- I had mailed the mailing list asking if anyone had any interest in such a thing and I had got no response. If someone else hardware is the OCP debug card , then I do nto see any easy way, but if someone wants to use the IBM operator panel or wants to design one similar to it, then they could, and since I cannot force the future in that , I placed the design here.\n\nI am hoping for you guys to steer me in the right direction.",
+      "parentUuid": "74bc29a5_adcd7c50",
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6211ea07_c908e39c",
         "filename": "OPNL-design.md",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2020-12-10T21:30:30Z",
       "side": 1,
       "message": "Please don\u0027t include pictures in the docs repository.  I would prefer you use either an ascii art or embedded UML using gravizo.com.",
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8157464_b1862395",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2020-12-11T17:34:46Z",
+      "side": 1,
+      "message": "since I saw a svg file already in the design folder , I added the picture, it is not easy to use the ascii art, but can be done later, I guess.",
+      "parentUuid": "6211ea07_c908e39c",
       "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "a7be6f69_476a6c02",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2020-12-11T17:34:46Z",
+      "side": 1,
+      "message": "I am not keen on removing the white space without reason, as it is following the basic syntax of markdown, \n\nPlease read \nhttps://www.markdownguide.org/basic-syntax#line-breaks\n\nPlease specify where the tabs are.",
+      "parentUuid": "3b1119c3_20c35a03",
+      "range": {
+        "startLine": 13,
+        "startChar": 72,
+        "endLine": 13,
+        "endChar": 74
+      },
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "837af0ca_91951f11",
         "filename": "OPNL-design.md",
         "patchSetId": 1
@@ -70,6 +130,24 @@
       "writtenOn": "2020-12-10T21:30:30Z",
       "side": 1,
       "message": "How are you going to do this?  I don\u0027t think there are any \"i2c slave device in userspace\" driver support in the kernel.  It seems to me like you have to do your \"alternative design\" below and write a driver that turns your i2c slave device commands into an input device.",
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00b4480c_e69464ba",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2020-12-11T17:34:46Z",
+      "side": 1,
+      "message": "I just meant that I will have an event loop which can capture the raw I2C data from the hardware,\nMy thought was more on something like \nhttps://lkml.org/lkml/2019/6/5/707\n\nor maybe \nhttp://patchwork.ozlabs.org/patch/1113278/\n\nAs mentioned below there is an issue as the input subsystem does not cater to the exceptional requirement of the hardware.if that is solved , I will go by the alternate design.",
+      "parentUuid": "837af0ca_91951f11",
       "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -99,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "012e269c_9affadf9",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2020-12-11T17:34:46Z",
+      "side": 1,
+      "message": "I just mentioned that will try to upstream it, it can also stay downstream, I guess. or maybe use the IPMB driver http://patchwork.ozlabs.org/patch/1113278/",
+      "parentUuid": "8208a784_62f50362",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 28
+      },
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee70fad6_c56f4940",
         "filename": "OPNL-design.md",
         "patchSetId": 1
@@ -110,6 +212,30 @@
       "writtenOn": "2020-12-10T21:30:30Z",
       "side": 1,
       "message": "I have no idea what this sentence means.\n\nYou could turn the input device into a keycodes like we do for GPIO or a keyboard, or you could do a real \"HID\" device driver.  What do you mean about \"cannot give only single events\"?",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 42
+      },
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ba35e71_90df1d67",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2020-12-11T17:34:46Z",
+      "side": 1,
+      "message": "The linux kernel caches the button state, it requires both a press and release event, even if that is a delayed release, but it does not accept repeated press event without a release event. Our requirement is a mix of buttons having either press and release events or only press events. we have this path tested and also have a custom driver between the input subsystem and i2c driver to cater to our needs and also upstreamed, only issue I that the driver/kernel doesn\u0027t support single execution (either only press events or only release events and not both) . If a way is found this will be the choice of design.",
+      "parentUuid": "ee70fad6_c56f4940",
       "range": {
         "startLine": 153,
         "startChar": 0,
