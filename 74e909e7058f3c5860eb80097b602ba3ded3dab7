@@ -185,6 +185,30 @@
     },
     {
       "key": {
+        "uuid": "7db40280_79b86281",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-12T11:54:37Z",
+      "side": 1,
+      "message": "@Jinu,\n\nI think you misunderstand the Markdown spec here. Two trailing spaces forces a line break. I don’t see any circumstances here where you should be forcing a line break in the middle of your paragraph. You shouldn’t be forcing the generated markdown to be at 80 characters, but let it flow the paragraphs however the user has set their screen width. \n\nWhat you are doing here is foreign to all our other documentation, so that is why it was noticed and called out. Generally we simply use a paragraph break, which you’ve also used, as a blank new-line. If your document really needs forced line breaks they should be rare and likely quite obvious and in that case we would ignore the Gerrit highlighting.",
+      "parentUuid": "5de0a330_9c9d22a1",
+      "range": {
+        "startLine": 13,
+        "startChar": 72,
+        "endLine": 13,
+        "endChar": 74
+      },
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "837af0ca_91951f11",
         "filename": "OPNL-design.md",
         "patchSetId": 1
