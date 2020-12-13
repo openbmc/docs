@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "2c45cd0e_76593c16",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-13T19:30:26Z",
+      "side": 1,
+      "message": "\u003e\u003e Why is this called \u0027OPNL\u0027?  That seems like an arbitrary acronym.\n\u003e YES, Just for ease of use or do i need to use IOPMA ?\n\nPlease avoid making up new acronyms here.  Just refer to this by its repository name when/if appropriate.\n\n\u003e Yes have looked at the OCP debug card and it did not look easy enough to plug my requirements into that, Both does things totally different and it also depends on the code within the micro.\n\nI somewhat disagree but I understand if you\u0027re not willing to implement.  The transport mechanism (your protocol vs OCP) are different, but the ability to display things and handle user requests is fairly common.  A framework for adding op-panel style user interfaces would be more work but more generally applicable.\n\nIt is up to you to decide what you want to work on.  You could contact some of the HCL team working on Facebook\u0027s Yosemite-v2 server if you wanted to see if they could work together with you on it.  (Kumar Thangavel \u003cthangavel.k@hcl.com\u003e is the first name I find in my email.)",
+      "parentUuid": "e8df907c_86ddafb0",
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6211ea07_c908e39c",
         "filename": "OPNL-design.md",
         "patchSetId": 1
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "since I saw a svg file already in the design folder , I added the picture, it is not easy to use the ascii art, but can be done later, I guess.",
       "parentUuid": "6211ea07_c908e39c",
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5492bc8b_76c349a5",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-13T19:30:26Z",
+      "side": 1,
+      "message": "We\u0027re trying to remove all graphics from this repository.  It looks like the MCTP one got left.\n\nLike I said, you can also use gravizo, which allows you to embed UML directly into the document and renders the picture when the markdown is rendered.  Let me know if you need help with this.",
+      "parentUuid": "d8157464_b1862395",
       "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -268,6 +304,24 @@
     },
     {
       "key": {
+        "uuid": "ac8611fb_d48838dc",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-13T19:30:26Z",
+      "side": 1,
+      "message": "Is slave-mqueue going to be accepted upstream?",
+      "parentUuid": "00b4480c_e69464ba",
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8208a784_62f50362",
         "filename": "OPNL-design.md",
         "patchSetId": 1
@@ -397,6 +451,30 @@
       "side": 1,
       "message": "The linux kernel caches the button state, it requires both a press and release event, even if that is a delayed release, but it does not accept repeated press event without a release event. Our requirement is a mix of buttons having either press and release events or only press events. we have this path tested and also have a custom driver between the input subsystem and i2c driver to cater to our needs and also upstreamed, only issue I that the driver/kernel doesn\u0027t support single execution (either only press events or only release events and not both) . If a way is found this will be the choice of design.",
       "parentUuid": "ee70fad6_c56f4940",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 42
+      },
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa7722ab_a6c3f8e0",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-13T19:30:26Z",
+      "side": 1,
+      "message": "How do you have a press without a release?  I still don\u0027t understand what the issue is.\n\nHID is widely used for game controllers with force-feedback and variable pressure sensing and mice and graphics tablets.  I can\u0027t imagine that it is unusable for a simple low-button panel interface.",
+      "parentUuid": "3ba35e71_90df1d67",
       "range": {
         "startLine": 153,
         "startChar": 0,
