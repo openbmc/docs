@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8e9cc521_2a4a8bd0",
+        "filename": "architecture/LED-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-14T16:00:47Z",
+      "side": 1,
+      "message": "\u003e But I know you asked me to put \"with\" there\n\nI also suggested a word reordering so that Redfish was part of the first phrase.  This is the Yoda aspect.",
+      "parentUuid": "cb923d5e_a4dd9a08",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 25
+      },
+      "revId": "646bf1219a00dba8b30c3cdcbc64e3e144f97050",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1e702476_5f968616",
         "filename": "architecture/LED-architecture.md",
         "patchSetId": 2
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "1- Get who implements the OperationalStatus interface on the Inventory D-Bus path\n2- Set the property with the service gotten by #1",
       "parentUuid": "f05174d1_a56c95b5",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 22
+      },
+      "revId": "646bf1219a00dba8b30c3cdcbc64e3e144f97050",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "567abd2b_4cade3c5",
+        "filename": "architecture/LED-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-14T16:00:47Z",
+      "side": 1,
+      "message": "\u003e Yes.. we have discussed this in great detail with Brad \u0027et al and also suggestions from Ed to use Operational Status and we agree this is the path forward.\n\nOther than here, is that discussion documented anywhere?\n\nI don\u0027t have any concern with Redfish using OperationalStatus as the way to display some Redfish information.  What I am concerned with is a design where one process sets OperationalStatus to \"not operational\" and a different process sets it to \"operational\". \n\nIf, for example, Fan owns an object with an OperationalStatus and sets it to \"not operational\" when there is a failure, why would we allow LED to know when to turn it back off?  That doesn\u0027t make any sense to me.  Shouldn\u0027t Fan know when the fan becomes operational again and both disable OperationalStatus and maybe de-assert the LED?\n\nWe could even go down a path where certain \"functional\" LED groups are triggered automatically from the original OperationalStatus rather than forcing the Fan code to know to signal the LED group, right?",
+      "parentUuid": "9be34dc8_a548fdeb",
       "range": {
         "startLine": 78,
         "startChar": 0,
