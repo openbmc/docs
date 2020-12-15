@@ -213,6 +213,30 @@
       "revId": "646bf1219a00dba8b30c3cdcbc64e3e144f97050",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c91aa1fe_bb70f751",
+        "filename": "architecture/LED-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-15T16:01:43Z",
+      "side": 1,
+      "message": "Nobody else sees how complicated this design is?\n\n----\n\nOn error:\n* Fan Code creates log.\n* Log code triggers LED code.\n* LED code triggers Fan code to set OperationalStatus\n\nWhen error is resolved:\n* Fan code deasserts LED\n* LED code triggers Fan code to clear OperationalStatus\n\n----\n\nWhy would we do this to ourselves?  If the Fan code knows about the OperationalStatus, why isn\u0027t it setting it itself?\n\nWhat happens to systems without these fault LEDs?  Now I can\u0027t get Redfish status on my hardware unless I create definitions for fake LEDs so the plumbing between Fan and LED works?  This makes no sense.\n\n----\n\n\u003e We have another usecase, where we need to turn off all the Indicator LEDs as part of Power_On. When we do that, we will turn off all indicator LEDs and also mark part as functional.\n\nThis is fairly unique to your system design, I suspect.  But, again, why doesn\u0027t the Fan(*) code know that we\u0027ve started a new power on and to retry all hardware?  I don\u0027t see anything in this proposed use-case that requires LEDs to be involved directly.\n\n* Fan, or CPU, or whatever entity you have OperationalStatus on in this context.\n\n----\n\n\u003e We have another usecase, where PHYP will detect some issue with PCIE slot for example. When they do it, they will just say turn on the LED for PCIeSlot. As part of that, we need to turn ON LED and also set OperationalStatus. \n\nThis really sounds like a legacy API which was previously poorly designed and now you\u0027re trying to shoehorn in.  If your hypervisor detects an error on a PCIe slot, why wouldn\u0027t they tell you they detected an error on the PCIe slot rather than a round-about way of telling you that by asking you to turn on an LED?  Can\u0027t you just assume certain requests \"turn on LED x\" really mean \"PCIe slot Y is now in a bad state\"?\n\nWho holds the OperationalStatus for these PCIe slots?  Again, my opinion is that should be the primary receiver of the request and control the OperationalStatus directly.  LED assertions are a secondary response to OperationalStatus changes.",
+      "parentUuid": "c3d150c5_71fe4684",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 22
+      },
+      "revId": "646bf1219a00dba8b30c3cdcbc64e3e144f97050",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
