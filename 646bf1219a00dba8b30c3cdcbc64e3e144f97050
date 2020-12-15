@@ -261,6 +261,30 @@
       "revId": "646bf1219a00dba8b30c3cdcbc64e3e144f97050",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "451d9151_7f279739",
+        "filename": "architecture/LED-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-15T17:23:17Z",
+      "side": 1,
+      "message": "\u003e\u003e What happens to systems without these fault LEDs?  Now I can\u0027t get Redfish status on my hardware unless I create definitions for fake LEDs so the plumbing between Fan and LED works?  This makes no sense.\n\n\u003e That is not correct. Redfish is merely going by OperationalStatus as opposed to \"how that gets set\". If an implementation choses to set the \"OperationalStatus\" explicitly without LED,  that is still fine.. Redfish will just go by OperationalStatus and not by LED state.\n\nYou\u0027ve said the way the OperationalStatus gets updated is via the LED design.  What am I missing?  If we continue down this path, there will be no implementation where OperationalStatus is set correctly without your LED application, right?\n\n----\n\n\u003e\u003e This is fairly unique to your system design, I suspect.  But, again, why doesn\u0027t the Fan(*) code know that we\u0027ve started a new power on and to retry all hardware?  I don\u0027t see anything in this proposed use-case that requires LEDs to be involved directly.\n\n\u003e Sure.. May be it\u0027s an IBM need. But a usecase that IBM need to support. However, it does not break any other implementations that don\u0027t want to tie LED to OperationalStatus.\n\nI\u0027m not sure what you\u0027re getting at here.  You can also implement this use case via the method I proposed without this cumbersome cyclic dependency between LED and \"the owner of the OperationalStatus\".\n\n----\n\n\u003e\u003e This really sounds like a legacy API which was previously poorly designed and now you\u0027re trying to shoehorn in.  If your hypervisor detects an error on a PCIe slot, why wouldn\u0027t they tell you they detected an error on the PCIe slot rather than a round-about way of telling you that by asking you to turn on an LED?  \n\n\u003e Well, we have debated this really well within IBM. However, what we have is what we all agreed to pursue. One of the reasoning is that , all the change about using Redfish etc are all internal to BMC. That should not cause an upper layer to do differently __because__ the underlying BMC implementation changed to using OpenBMC. Upper layers like Power Hypervisor , AIX, I5OS don\u0027t really care.\n\nI think you missed what I was trying to say.  Changing your interface to your hypervisor is your business and not what I was suggesting.\n\nIf \"Hypervisor requests to light LED\" really means \"Hypervisor detected issue with PCIe slot\", which is what your original use case suggested, then there is no reason *on the BMC* to have this have anything to do with LEDs.  Set the OperationalStatus directly and the LEDs become a side-effect.",
+      "parentUuid": "703471eb_b3054e41",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 22
+      },
+      "revId": "646bf1219a00dba8b30c3cdcbc64e3e144f97050",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
