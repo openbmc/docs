@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "b92de956_d9e55172",
+        "filename": "architecture/LED-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-12-15T15:16:06Z",
+      "side": 1,
+      "message": "Sure.",
+      "parentUuid": "8e9cc521_2a4a8bd0",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 25
+      },
+      "revId": "646bf1219a00dba8b30c3cdcbc64e3e144f97050",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1e702476_5f968616",
         "filename": "architecture/LED-architecture.md",
         "patchSetId": 2
@@ -156,6 +180,30 @@
       "side": 1,
       "message": "\u003e Yes.. we have discussed this in great detail with Brad \u0027et al and also suggestions from Ed to use Operational Status and we agree this is the path forward.\n\nOther than here, is that discussion documented anywhere?\n\nI don\u0027t have any concern with Redfish using OperationalStatus as the way to display some Redfish information.  What I am concerned with is a design where one process sets OperationalStatus to \"not operational\" and a different process sets it to \"operational\". \n\nIf, for example, Fan owns an object with an OperationalStatus and sets it to \"not operational\" when there is a failure, why would we allow LED to know when to turn it back off?  That doesn\u0027t make any sense to me.  Shouldn\u0027t Fan know when the fan becomes operational again and both disable OperationalStatus and maybe de-assert the LED?\n\nWe could even go down a path where certain \"functional\" LED groups are triggered automatically from the original OperationalStatus rather than forcing the Fan code to know to signal the LED group, right?",
       "parentUuid": "9be34dc8_a548fdeb",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 22
+      },
+      "revId": "646bf1219a00dba8b30c3cdcbc64e3e144f97050",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3d150c5_71fe4684",
+        "filename": "architecture/LED-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-12-15T15:16:06Z",
+      "side": 1,
+      "message": "\u003e\u003e If, for example, Fan owns an object with an OperationalStatus and sets it to \"not operational\" when there is a failure, why would we allow LED to know when to turn it back off?  That doesn\u0027t make any sense to me.  Shouldn\u0027t Fan know when the fan becomes operational again and both disable OperationalStatus and maybe de-assert the LED?\n\n--------------\n\nHere is how the flow is :\n\n- Fan Code detects the fan is bad and logs an error calling out the FAN\n- Errorlog code parses the callout section and gets the Inventory D-Bus object for what has been called out ( In this case: Fan )\n- Errorlog daemon then gets the \"fault_led\" association from Inventory D-Bus object\n- Errorlog makes a call to LED manager to turn [ON] Led for that group.\n- LED manager then sets OperationalStatus to [false] and also turns [ON] LED.\n\n-------------\n\nIf Fan determines the Fan is good, then they have a need to turn off the LED also and thus make a call to LED manager anyway. It would not make sense to have the fan marked \"Operational\" yet having the Amber LED [ON]. \n\n--------------\n\nWe have another usecase, where we need to turn off all the Indicator LEDs as part of Power_On. When we do that, we will turn off all indicator LEDs and also mark part as functional. If the part is then deemed NonFunctional, then we get into the path that I mentioned before\n\n---------------------\n\nWe have another usecase, where PHYP will detect some issue with PCIE slot for example. When they do it, they will just say turn on the LED for PCIeSlot. As part of that, we need to turn ON LED and also set OperationalStatus.  Similarly, if they are fine, then they ask to turn the LED off and by that, we also set OperationalStatus to true.\n\n-------\n\nNet: We won\u0027t have OperationalStatus as Good _plus_ also have Amber LED on.",
+      "parentUuid": "567abd2b_4cade3c5",
       "range": {
         "startLine": 78,
         "startChar": 0,
