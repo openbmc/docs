@@ -22,6 +22,30 @@
       "revId": "95093e49dd8b01865b3e3ef11fb0c52919f1c510",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9495b260_702e4c79",
+        "filename": "designs/multihost-ipmi-design.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000866
+      },
+      "writtenOn": "2020-12-16T13:00:15Z",
+      "side": 1,
+      "message": "Thanks Vernon for your review and the comments. This is a good idea to have a config file where in we can configure what is the interface and it belongs to which host. The interface can be a physical or virtual.\n\nI think it is possible to have two (or more) network interfaces per host. The config file needs to be flexible to support more than one interface per host.\n\nWe can have a config file for the netipmid with the following example. Please let me know your thoughts on this.\n\n{ \"Host\": \"1\",\n\"Interface-1\": \"eth0\",\n\"Interface-2\": \"eth1\",\n\"Interface-3\": \"veth4\",\n\"Interface-4\": \"veth5\"\n},\n{ \"Host\": \"2\",\n\"Interface-1\": \"eth2\",\n\"Interface-2\": \"eth3\",\n\"Interface-3\": \"veth1\",\n\"Interface-4\": \"veth2\"\n},",
+      "parentUuid": "8e1c92a9_2798df7c",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 52
+      },
+      "revId": "95093e49dd8b01865b3e3ef11fb0c52919f1c510",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
