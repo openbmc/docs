@@ -29,6 +29,36 @@ In the following example, the lamp_test group is being asserted...
   https://${bmc}/xyz/openbmc_project/led/groups/lamp_test/attr/Asserted
 ```
 
+## REDFISH
+
+### Resource identify Operation
+Starting with Redfish v2020.3, Redfish resources have **LocationIndicatorActive** property,
+which is used to identify a particular resource. This is for LED Identify
+operation only.
+
+All applicable Inventory D-Bus objects would have a forward association mapping to
+LED Group D-Bus object, namely:
+```
+ - identify_led_group
+```
+All applicable LED Group D-Bus objects would have an association mapping to
+inventory D-Bus object, namely:
+```
+ - fru_identify
+```
+
+When a `LocationIndicatorActive` GET operation is performed on the resource,
+bmcweb does below operations:
+- Look for an association `identify_led_group` on the Inventory D-Bus object
+- If found, read the `asserted` property from the D-Bus object that is pointed
+  to by `identify_led_group`
+
+When a `LocationIndicatorActive` PATCH operation is performed on the resource,
+bmcweb does below operations:
+- Look for an association `identify_led_group` on the Inventory D-Bus object
+- If found, set the `asserted` property on the D-Bus object that is pointed
+  to by `identify_led_group`
+
 
 ## Development Details
 There are two significant layers for LED operations.  The physical and the
