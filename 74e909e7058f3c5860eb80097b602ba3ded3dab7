@@ -127,6 +127,24 @@
     },
     {
       "key": {
+        "uuid": "502fa384_b9d38ca7",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-18T13:16:19Z",
+      "side": 1,
+      "message": "\u003e We can create a common framework but will be at a cost of time and effort. Let me see the OCP card code and can give a better picture.\n\nYes, often open source takes more time and effort for 1 solution but the advantage is if you and Kumar are both working on it, then it reduces the overall effort for both of you.\n\n\u003e I am more inclined to opnl-design.md, and would like it that way unless it causes an issue.\n\nI agree with Vishwa here.  4 letter acronyms are part of your FSP implementation and not what we do in OpenBMC.  We strive for readability and understandability.  \u0027opnl-design\u0027 vs \u0027operator-panel.md\u0027.  The second is clearly more understandable to someone new.",
+      "parentUuid": "612fac8a_11a4fe02",
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6211ea07_c908e39c",
         "filename": "OPNL-design.md",
         "patchSetId": 1
@@ -929,6 +947,30 @@
       "side": 1,
       "message": "The press and release is actually the change in the line , so for example the rising edge specifies a press and the falling edge specifies a release , and the code which detects this takes a decision to either send both the events out or only one. So in this way you can have only press events or you can have both press and release events.\n\nwe do not not need something as complex as an HID driver. just a plane i2c slave backend would be good enough as it is raw i2c messages in this case.",
       "parentUuid": "aa7722ab_a6c3f8e0",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 42
+      },
+      "revId": "74e909e7058f3c5860eb80097b602ba3ded3dab7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91ed0acb_888889c2",
+        "filename": "OPNL-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-12-18T13:16:19Z",
+      "side": 1,
+      "message": "\u003e we do not not need something as complex as an HID driver. just a plane i2c slave backend would be good enough as it is raw i2c messages in this case.\n\nI think this is the big catch.  You *can* get something working with raw i2c messages, but in general that is *not* the Linux way.  We strive to work in ways that are acceptable upstream so we don\u0027t have to keep maintaining support.  We *could* implement SPI drivers by bit-banging GPIO lines too, but instead we choose to work within the frameworks provided by upstream.\n\nI\u0027m not saying HID is the right solution here, but if we *can* use an appropriate framework from upstream we should.  At a minimum, to me, that seems like i2c slave support should go in the kernel and maybe it ties into HID to get information to userspace, but the appropriate kernel-\u003euserspace layer is for you to investigate (as long as we use an existing one).\n\n\u003e The press and release is actually the change in the line , so for example the rising edge specifies a press and the falling edge specifies a release , and the code which detects this takes a decision to either send both the events out or only one. So in this way you can have only press events or you can have both press and release events.\n\nI think you\u0027re describing how the micro-controller in your op-panel works?  I don\u0027t see why you couldn\u0027t change this into a quick press/release combination at the driver level before it gets into your userspace application.",
+      "parentUuid": "624fb141_222aa656",
       "range": {
         "startLine": 153,
         "startChar": 0,
