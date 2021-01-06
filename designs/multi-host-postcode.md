@@ -16,47 +16,62 @@ contingent and needs multiple-host post code access to be implemented.
 
 ## Background and References
 
-**Existing postcode implementation for single host**
+The below component diagram shows the design for single-host postcode and history at
+high-level overview. The single-host design is updated slightly from the
+original to better comply with community conventions (using suffix 0 on D-Bus
+objects).
 
-The below component diagram shows the present implementation for postcode and
-history at high-level overview
+Diagram Legend:
+|Label|Signifies|
+|-----|---------|
+|`I:` |D-Bus interface|
+|`S:` |D-Bus service name (well-known bus name)|
+|`R:` |Repository name|
+|`U:` |Systemd service unit name|
+|`A:` |Executable name|
+|`H:` |HW Module|
 
 ```
-+----------------------------------+              +--------------------+
-|BMC                               |              |                    |
-|  +-------------------------------+              |                    |
-|  |Phosphor-host-postd            |              |                    |
-|  |                    +----------+              +------------+       |
-|  |                    | LPC      |              |            |       |
-|  |                    |          +<-------------+            |       |
-|  |                    +----------+              |  LPC       |       |
-|  |                               |              |            |       |
-|  |xyz.openbmc_project.State.     +<-------+     +------------+       |
-|  |Boot.Raw.Value                 |        |     |                    |
-|  +------+------------------------+        |     |         Host       |
-|         |                        |        |     |                    |
-|         |                        |        |     |                    |
-|   postcode change event          |        +     +--------------------+
-|         |                        | xyz.openbmc_project.State.Boot.Raw
-|         |                        |        +
-|         |                        |        |      +------------------+
-|  +------v------------------------+        +----->+                  |
-|  |Phosphor-postcode-manager      |               |   CLI            |
-|  |                 +-------------+               |                  |
-|  |                 |   postcode  +<------------->+                  |
-|  |                 |   history   |               |                  |
-|  |                 +-------------+               +------------------+
-|  +-------------------------------+ xyz.openbmc_project.State.Boot.PostCode
-|                                  |
-|                                  |
-|  +-------------------------------+             +----------------------+
-|  |                               |  8GPIOs     |                      |
-|  |     SGPIO                     +------------>+                      |
-|  |                               |             |     7 segment        |
-|  +-------------------------------+             |     Display          |
-|                                  |             |                      |
-+----------------------------------+             +----------------------+
+                                         +-----------+
+                       +------+          | 7 segment |
+                       | Host |          |  display  |
+                       +--+---+          +-----^-----+
+                          |                    |
++-------------------------+--------------------+--------+
+| BMC                     |                    |        |
+|                      +--v----+         +-----+-----+  |
+|                      | H:LPC +---------> H:(S)GPIO |  |
+|                      +--+----+         +-----------+  |
+|                         |                             |
+| +-----------------------v--------------+              |
+| | U:lpcsnoop                           |              |
+| |                                      |              |
+| | Current POST code:                   |              |
+| | /xyz/openbmc_project/state/boot/raw0 |              |
+| | I:xyz.openbmc_project.State.Boot.Raw >----+         |
+| +--------------------------------------+    |         |
+|                                             |         |
+| +-------------------------------------------v---+     |
+| | U:xyz.openbmc_project.State.Boot.PostCode     |     |
+| | +-------------------------------------------+ |     |
+| | | POST code history:                        | |     |
+| | | /xyz/openbmc_project/State/Boot/PostCode0 | |     |
+| | | I:xyz.openbmc_project.State.Boot.PostCode >----+  |
+| | +-------------------------------------------+ |  |  |
+| +-----------------------------------------------+  |  |
+|                                                    |  |
+|      +--------------------------------+            |  |
+|      | Other consumers of POST codes: <------------+  |
+|      | Redfish, etc...                |               |
+|      +--------------------------------+               |
++-------------------------------------------------------+
 ```
+
+Since multiple hosts cannot coherently write their POST codes to the same place,
+an additional datapath is needed to receive POST codes from each host. Since
+this new datapath would not have built-in support in ASPEED hardware, additional
+logic is also needed drive the 7-segment display.
+
 ## Requirements
 
  - Read postcode from all servers.
@@ -71,103 +86,96 @@ history at high-level overview
 ## Proposed Design
 
 This document proposes a new design engaging the IPMB interface to read the
-port-80 post code from multiple-host. The existing single host LPC interface
-remains unaffected. This design also supports host discovery including the
-hot-plug-able host connected in the slot.
+port-80 post code from multiple-host. This design also supports host
+discovery including the hot-plug-able host connected in the slot.
 
 Following modules will be updated for this implementation
 
  - phosphor-host-postd.
  - phosphor-post-code-manager.
  - platform specific OEM handler (fb-ipmi-oem).
- - bmcweb(redfish logging service).
+ - bmcweb (redfish logging service).
 
 **Interface Diagram**
 
 Provided below the post code interface diagram with flow sequence
 ```
-+-------------------------------------------+
-|                  BMC                      |
-|                                           |
-| +--------------+     +-----------------+  |    I2C/IPMI  +----+-------------+
-| |              |     |                 |  |  +---------->|BIC |             |
-| |              |     |   ipmbbridged   <--+--+           |    |     Host1   |
-| |              |     |                 |  |  |           +------------------+
-| | oem handlers |     +-------+---------+  |  | I2C/IPMI  +------------------+
-| |              |             |            |  +---------->|BIC |             |
-| |              |             |            |  |           |    |     Host2   |
-| |              |     +-------v---------+  |  |           +------------------+
-| | (fb-ipmi-oem)|     |                 |  |  | I2C/IPMI  +------------------+
-| |              +<----+     ipmid       |  |  +---------->|BIC |             |
-| |              |     |                 |  |  |           |    |     Host3   |
-| +-+----+-------+     +-----------------+  |  |           +------------------+
-|   |    |                                  |  | I2C/IPMI  +------------------+
-|   |    |             +-----------------+  |  +---------->|BIC |             |
-|   |    |             | Host position   |  |              |    |     HostN   |
-| event  |             |  from D-Bus     |  |              +----+-------------+
-|   |    |             +-------+---------+  |
-|   |  event                   |            |             +-----------------+
-|   |    |                     |            |             |                 |
-|   |  +-v---------------------v---------+  |             | seven segment   |
-|   |  |   phosphor-host-postd           +--+------------>+ display         |
-|   |  |     (ipmisnoop)                 |  |             |                 |
-|   |  |   xyz.openbmc_project.State.    |  |             |                 |
-|   |  |   Boot.RawX(1,2,..N).Value      |  |             +-----------------+
-|   |  +---------------------------------+  |
-|   |                                       |    xyz.openbmc_project.
-|   |                                       |    State.Boot.
-| +-v------------------------------------+  |    PostcodeX(1,2..N)    +-----+
-| | +----------------+  +--------------+ |  |                         |     |
-| | |                |  |              | +<-+------------------------>+     |
-| | |  Process1      |  | Process N    | |  |                         | CLI |
-| | |   (host1)      |  |  (hostN)     | |  |                         |     |
-| | |                |  |              | +<-+------------------------>+     |
-| | +----------------+  +--------------+ |  | /redfish/v1/Systems/    |     |
-| |                                      |  | system/LogServices/     +-----+
-| | Phosphor-post-code-manager@@         |  | PostCodesX(1,2..N)
-| +--------------------------------------+  |
-+-------------------------------------------+
-
++---------------------------------------------------+
+| BMC                                               |
+|                                                   |
+|  +-----------------------+    +----------------+  |         +----+-------------+
+|  | A:ipmid               |    | IPMB Bridge    <--+--IPMB-+-|BIC |             |
+|  |                       |    | (R:ipmbbridge) |  |       | |    |     Host1   |
+|  | +-------------------+ |    +--------+-------+  |       | +------------------+
+|  | | OEM IPMI Handlers | |             |          |       |           .
+|  | | (R:fb-ipmi-oem)   <-+-------------+          |       |           .
+|  | --------------------+ |   +----------------+   |       |           .
+|  +-+---------------------+   | Host selection |   |       | +------------------+
+|    |                         | monitoring     <---+--+    +-|BIC |             |
+|    |                         +---------+------+   |  |      |    |     HostN   |
+|    |                                   |          |  |      +------------------+
+|    | +---------------------------------v------+   |  |
+|    | | R:phosphor-host-postd (1 process)      |   |  |      +---------------+
+|    | | Per-host POST code object:             |   |  +-GPIO-| Button/switch |
+|    | | /xyz/openbmc_project/state/boot/raw<N> |   |         | input device  |
+|    +-> I:xyz.openbmc_project.State.Boot.Raw   >-+ |         +---------------+
+|      +---------------------------------+------+ | |
+|                                        |        | |         +-------------------+
+|                                        +--------+-+----GPIO-> 7-segment display |
+|                                                 | |         +-------------------+
+|                                                 | +------+
+|                                                 |        |
+|  +----------------------------------------------v---+    |
+|  | R:phosphor-post-code-manager (N processes)       |    |
+|  | Per-host POST code history:                      |    |
+|  | +----------------------------------------------+ |    |
+|  | | S:xyz.openbmc_project.State.Boot.PostCode<N> | |    |
+|  | | /xyz/openbmc_project/State/Boot/PostCode<N>  | |    |
+|  | | I:xyz.openbmc_project.State.Boot.PostCode    >-+-+  |
+|  | +----------------------------------------------+ | |  |
+|  +--------------------------------------------------+ |  |
+|                                                       |  |
+|       +--------------------------------+              |  |
+|       | Other consumers of POST codes: <--------------+  |
+|       | Redfish, CLI, etc...           |                 |
+|       +--------------------------------+                 |
+|                                                          |
++----------------------------------------------------------+
 ```
 
 **Postcode Flow:**
 
  - BMC power-on the host.
  - Host starts sending the postcode IPMI message continuously to the BMC.
- - The ipmbbridged(phosphor-ipmi-ipmb) extracts postcode from IPMI message.
- - The ipmbd(phosphor-ipmi-host) appends host information with postcode and
-   sends to the phosphor-host-postd.
- - platform specific OEM handler(fb-ipmi-oem) sends postcode by emit-change
-   event to the phosphor-host-postd and phosphor-post-code-manager.
+ - The ipmbbridged (phosphor-ipmi-ipmb) passes along the message to IPMI daemon.
+ - The ipmid (phosphor-ipmi-host) appends host information with postcode and
+   writes value to appropriate D-Bus object hosted by phosphor-host-postd.
  - phosphor-host-postd displays postcode in the seven segment display based on
    host position reads through D-bus interface.
- - phosphor-post-code-manager stores the postcode as history in the /var
-   directory.
+ - phosphor-post-code-manager receives new POST codes via D-Bus signal and
+   stores the postcode as history in the /var directory.
 
 ##  Platform Specific OEM Handler (fb-ipmi-oem)
 
-This library is part of the [phosphor-ipmi-host]
-(https://github.com/openbmc/phosphor-host-ipmid)
+This library is part of the [phosphor-ipmi-host](https://github.com/openbmc/phosphor-host-ipmid)
 and gets the postcode from host through
 [phosphor-ipmi-ipmb](https://github.com/openbmc/ipmbbridge).
 
  - Register IPMI OEM postcode callback handler.
  - Extract postcode from IPMI message (phosphor-ipmi-host/phosphor-ipmi-ipmb).
- - Generate emit-change event to phosphor-host-postd and post-code-manager
-   based on which host's postcode received from IPMB
-   interface(xyz.openbmc_project.State.Boot.RawX(1,2,3..N).Value).
+ - Sets `Value` property on appropriate D-Bus `Raw` object hosted by
+   `phosphor-host-postd`. Other programs (e.g. `phosphor-post-code-manager`) can
+   subscribe to `PropertiesChanged` signals on this object to get the updates.
 
 ## phosphor-host-postd
 
 This implementation involves the following changes in the phosphor-host-postd.
 
- - Create D-Bus service names for single-host and multi-host system
-   accordingly. The community follows conventions Host0 for single host and
-   Host1 to N for multi-host.
- - phosphor-host-postd reads the postcode when emit-change event
-   in 'Raw.Value'.
+ - `phosphor-host-postd` handles property set events for the `Value` property on
+   each instance of the `xyz.openbmc_project.State.Boot.Raw` interface.
  - phosphor-host-postd reads the host selection from the dbus property.
- - Display the latest postcode of the selected host read through D-Bus.
+ - Display the latest postcode of the selected host read through D-Bus on a
+   7-segment display.
 
  **D-Bus interface**
 
@@ -184,13 +192,13 @@ This implementation involves the following changes in the phosphor-host-postd.
 
 The phosphor-post-code-manager is a multi service design for multi-host.
 The single host postcode handling D-bus naming conventions will be updated
-to comply the community naming scheme.
+to comply with the community naming scheme.
 
  - Create D-Bus service names for single-host and multi-host system
-   accordingly.The community follows conventions Host0 for single host
+   accordingly. The community follows conventions Host0 for single host
    and Host1 to N for multi-host.
- - phosphor-post-code-manager reads the postcode when emit-change
-   event in 'Raw.Value'.
+ - phosphor-post-code-manager subscribes to changes on the `Raw<N>` object
+   hosted by `phosphor-host-postd`.
  - Store/retrieve post-code from directory (/var/lib/phosphor-post-code-manager/
    hostX(1,2,3..N)) based on event received from phosphor-host-postd.
 
