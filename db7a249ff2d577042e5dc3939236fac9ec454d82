@@ -713,6 +713,30 @@
     },
     {
       "key": {
+        "uuid": "77efd48a_00f03b54",
+        "filename": "designs/bios-update-for-multiple-devices.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-06T21:57:35Z",
+      "side": 1,
+      "message": "\u003e The user should not be responsible for knowing which devices a firmware image can apply to.  Is that what you\u0027re suggesting?\n\nWhat I understand is that this doc is trying to solve how to selectively update a subset of items, in this case the bios, by allowing the user to select which of the multiple bios instances should be updated and leaving the other bios instances untouched.\n\n\u003e You already suggested this new property to select which instance to update does not map to redfish. But I think the user should have the knowledge or should select which are the devices are getting updated\n\nI\u0027m just pointing out that any interface or property should be mapped to redfish, since that\u0027s what bmcweb and openbmc in general supports as an external interface.",
+      "parentUuid": "348fd478_ca8f2e6a",
+      "range": {
+        "startLine": 70,
+        "startChar": 36,
+        "endLine": 71,
+        "endChar": 38
+      },
+      "revId": "db7a249ff2d577042e5dc3939236fac9ec454d82",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "814a218b_c2247afc",
         "filename": "designs/bios-update-for-multiple-devices.md",
         "patchSetId": 4
@@ -724,6 +748,24 @@
       "writtenOn": "2020-12-14T15:35:30Z",
       "side": 1,
       "message": "@Adriana, are you ok with this approach?  I\u0027d tend to prefer we improve Activation to handle multiple items, but I don\u0027t have a good way to do it.",
+      "revId": "db7a249ff2d577042e5dc3939236fac9ec454d82",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73f4bbe2_55ebdd54",
+        "filename": "designs/bios-update-for-multiple-devices.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-01-06T21:57:35Z",
+      "side": 1,
+      "message": "Agree that we should try to fit this in the current Activation interface. Maybe some way via expanding the inventory associations, i think it\u0027s been discussed to use the inventory items as triggers. Need to think about this some more.",
+      "parentUuid": "814a218b_c2247afc",
       "revId": "db7a249ff2d577042e5dc3939236fac9ec454d82",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
