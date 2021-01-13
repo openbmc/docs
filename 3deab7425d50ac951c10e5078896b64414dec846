@@ -45,6 +45,30 @@
       "revId": "3deab7425d50ac951c10e5078896b64414dec846",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3d85510_c1afc97a",
+        "filename": "designs/management-console/VMI_Certificate_Exchange.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2021-01-13T10:44:46Z",
+      "side": 1,
+      "message": "Please try to expand the design flow(line no:78) to include this design.\n\n\u003d\u003e Bmcweb creates the Dbus Object for each sign CSR request\n\u003d\u003e pldm would be monitoring the Dbus object for interface added signal.\n\u003d\u003e After getting the interface added signal pldm(BMC) will fetch the CSR from the dbus object itself and send it to PHYP.\n\u003d\u003e Once PLDM on BMC will get the certficate as a response of signCSR , it updates the Dbus object property named certificate and update the status property to complete in the Dbus object.\n\u003d\u003e bmcweb will be monitoring the status property to send the response to the client... (edited)",
+      "parentUuid": "fcbab645_e2063097",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 42
+      },
+      "revId": "3deab7425d50ac951c10e5078896b64414dec846",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
