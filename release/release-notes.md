@@ -12,6 +12,20 @@ https://github.com/openbmc/openbmc/wiki/Releases
 
 
 ## OpenBMC Releases
+### 2.9 January, 2021
+#### Features:
+ - Yocto refresh to "Gatesgarth" 3.2
+ - Partial Redfish support for properties from the 2020.1, 2020.2, and 2020.3 Schemas
+ - Redfish support for: Dump, Multiple Firmware Image Support
+ - Added webui-vue, a web-based user interface built of Vue.js
+   - A replacement for phosphor-webui
+   - Uses Redfish
+   - Ability to easily theme to meet brand guidelines
+   - Language translation-ready
+   - Improved user experience
+#### Fixes and Known Issues/Limitations:
+#### Security audit results:
+
 ### 2.8 June, 2020
 #### Features:
  - Yocto refresh to "Dunfell" version 3.1
