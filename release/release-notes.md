@@ -12,6 +12,14 @@ https://github.com/openbmc/openbmc/wiki/Releases
 
 
 ## OpenBMC Releases
+### Release 2.9
+#### Features:
+ - Yocto refresh to "Gatesgarth" 3.2
+ - Redfish support for 2020.1, 2020.2, and 2020.3 Schemas
+ - Redfish support for: Dump, Multiple Firmware Image Support
+#### Fixes and Known Issues/Limitations:
+#### Security audit results:
+
 ### 2.8 June, 2020
 #### Features:
  - Yocto refresh to "Dunfell" version 3.1
