@@ -33,8 +33,8 @@ out.
 ### Code should be written with modern practices
 
 We strive to keep our code conforming to and utilizing of the latest in C++
-standards.  Today, that means all C++ code should be compiled using C++14
-compiler settings.  As the C++17 standard is finalized and compilers support
+standards.  Today, that means all C++ code should be compiled using C++17
+compiler settings.  As the C++20 standard is finalized and compilers support
 it, we will move to it as well.
 
 We also strive to keep the codebase up-to-date with the latest recommended
@@ -49,7 +49,7 @@ possible by, for example, clang-format and clang-tidy.
 
 For those coming to the project from pre-C++11 environments we strongly
 recommend the book "Effective Modern C++" as a way to get up to speed on the
-differences between C++98/03 and C++11/14/17.
+differences between C++98/03 and C++11/14/17/20.
 
 ### Code should be performant.
 
