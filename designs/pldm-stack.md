@@ -385,6 +385,179 @@ BMC:
   file. Bmcweb can find these FRU inventory objects based on D-Bus interfaces,
   as it does today.
 
+### PLDM firmware update
+The primary goals of the proposed design are:
+- Enable firmware update of PLDM devices via the PLDM firmware update
+specification, DSP0267. Specifically, the BMC's PLDM service acts as a
+User Agent (UA) and can update firmware of a connected firmware device (FD)
+that supports DSP0267.
+- Enable the use of Redfish to target an FD for PLDM-based firmware update.
+- Avoid Redfish specifics in the PLDM design and vice-versa. This is made
+possible by basing the design on the existing D-Bus APIs defined in the
+xyz.openbmc_project.Software namespace.
+- While details below reference MCTP, the design is contained within the
+boundary of PLDM and hence applies to PLDM running on MCTP, NC-SI and other
+transports.
+
+Following are non-goals and TODO items:
+- This section doesn't cover PLDM/MCTP discovery. The same will/is being worked
+on via other design update commits.
+- This section will not get into the minute details of the PLDM firmware update
+protocol. For that, refer DSP0267.
+- Firmware Device Proxies (FDP) from DSP2067 are yet to be incorporated in the
+design.
+- The design for the BMC acting as an FD (for eg when it's connected to another
+BMC acting as a UA) is not yet covered in this section.
+
+The following diagram and associated text describes the main elements of the
+proposed design, by walking through the PLDM firmware update flow. In terms of
+the terminology defined in the xyz/openbmc_project/Software namespace,
+this design expects the PLDM service to act both as the *ImageManager* and the
+*ItemUpdater*.
+
+                     **BMC**
+                     +--------------------------------------------------------------------------------------------+
+                     |                                                                                            |
+                     |                                                                                            |
+**Redfish Client**   |        bmcweb                             pldmd(UA)                      mctpd             |         **PLDM device(FD)**
+      +              |           +                                 +                              +               |                 +
+      |              |           |                                 |                              |     1) Find MCTP endpoints      |
+      |              |           |                                 |                              +--------------------------------->
+      |              |           |                                 |                              <---------------------------------+
+      |              |           |                                 |                              |               |                 |
+      |              |           |                                 |  2) Find PLDM capabilities and PLDM FW params|                 |
+      |              |           |                                 +---------------------------------------------------------------->
+      |              |           |                                 <----------------------------------------------------------------+
+      |              |           |                                 |                              |               |                 |
+      |              |           |                                 +----+                         |               |                 |
+      |              |           |                                 |    | 3) Map PLDM FW info to  |               |                 |
+      |              |           |                                 |    | D-Bus objects           |               |                 |
+      |              |           |                                 +----+                         |               |                 |
+      | 4) Fetch FW inventory    |  4) Find D-Bus objects from 3)  |                              |               |                 |
+      +------------------------> +--------------------------------->                              |               |                 |
+      <------------------------+ <---------------------------------+                              |               |                 |
+      |              |           |                                 |                              |               |                 |
+      |              |           |                                 |                              |               |                 |
+      |              |           |                                 |                              |               |                 |
+      |              |           |                                 |                              |               |                 |
+      |              |           |                                 |                              |               |                 |
+      | 5) POST image to endpoint|   5)Activate FW endpoint        |                              |               |                 |
+      +------------------------> +--------------------------------->                              |               |                 |
+      <------------------------+ <---------------------------------+                              |               |                 |
+      |              |           |                                 +---+                          |               |                 |
+      |              |           |                                 |   | 6) Create Activation D-Bus object        |                 |
+      |              |           |                                 +---+                          |               |                 |
+      |              |           |                                 |     7) Request update        |               |                 |
+      |              |           |                                 +---------------------------------------------------------------->
+      |              |           |                                 <----------------------------------------------------------------+
+      |              |           |                                 |                              |               |                 |
+      |              |           |                                 |     8) Fetch image           |               |                 |
+      |              |           |                                 <----------------------------------------------------------------+
+      |              |           |                                 +---------------------------------------------------------------->
+      |              |           |                                 |                              |               |                 |
+      |              |           |         9) Monitor progress ----+                              |               |                 |
+      |              |           |         and report on D-Bus|    |                              |               |                 |
+      |  Progress on FW update task                           +----+                              |               |                 |
+      <--------------+---------+ <---------------------------------+     10) Apply and activate image             |                 |
+      |              |           |                                 +---------------------------------------------------------------->
+      |              |           |                                 <----------------------------------------------------------------+
+      |              |           |                                 |                              |               |                 |
+      |              |           |                                 |                              |               |                 |
+      |              |           |                                 +----+                         |               |                 |
+      |              |           |                                 |    | 11) Modify PLDM FW info |               |                 |
+      |              |           |                                 +----+ D-Bus objects           |               |                 |
+      |              |           |                                 |                              |               |                 |
+      +              +-----------+---------------------------------+------------------------------+---------------+                 +
+
+1) The first step involves discovery of devices based on the transport protocol
+being used.
+
+2) Based on the transport channels established in 1), the BMC PLDM service will
+determine if the connected devices (FDs) support PLDM, and in addition will
+determine:
+- whether they support PLDM based firmware update
+- their current firmware version
+- firmware update relate metadata (image activation mechanism, recovery
+capabilities, etc.)
+- from a DSP0267 perspective, relevant commands are (not necessarily limited to
+these): *QueryDeviceIdentifiers*, *GetFirmwareParameters*
+
+3) Based on the information retrieved in 2), the PLDM service will create
+certain D-Bus objects implementing the following interfaces:
+a) xyz.openbmc_project.Inventory.Item.<Type> to depict an FD.
+b) xyz.openbmc_project.Software.Version, to denote the current version of the
+firmware on the FD.
+c) xyz.openbmc_project.Software.Activation, to denote the current state of the
+firmware on the FD.
+d) xyz.openbmc_project.Association.Definitions to form an association between
+the object implementing a) and the object implementing b) and c)
+e) xyz.openbmc_project.Common.FilePath or similar to denote the staging area for
+fiwmware images directed at the object that implements a). The object that
+implements a) will also implement this interface. Alternatively, this can be a
+new interface in the the xyz.openbmc_project.Software namespace, and in that
+case the object that implements d) would implement this interface as well.
+The PLDM service will maintain a mapping of FD identifiers to the D-Bus objects
+created.
+
+4) At this stage a Redfish client should be able to view the FDs as part of the
+SoftwareInventory collection. The webserver can find these FDs and the related
+inventory items based on the D-Bus interfaces from 3). The webserver based on
+this information can also prepare endpoints to be pushed into the
+*HttpPushUriTargets* (part of the UpdateService schema) array for these FDs
+(for the purpose of using the UpdateService to update firmware of these FDs).
+For example the webserver might find an /xyz/openbmc_project/inventory/nic0
+object (for a NIC that implements PLDM) that implements
+xyz.openbmc_project.Inventory.Item.<Type> and is also associated
+to the xyz.openbmc_project.Software interfaces from 3). The webserver can make a
+*SoftwareInventory* endpoint and determine its *RelatedItem* based on this info.
+The webserver can also make a *HttpPushUri* such as
+/redfish/v1/UpdateService/inventory/nic0 - the scheme can be based on pathnames
+or derived out of an appropriate D-Bus property on the nic0 object.
+
+
+5) At this stage a Redfish client should be able to POST an image to a
+*HTTPPushURI* endpoint from 4) to target firmware update of a specific FD. The
+webserver can copy this image over to a staging area, as determined by the
+property from 3e). The image here could be a tarball consisting of the image
+payload and minimal metadata, in the form of a Manifest file (for eg the
+version), as expected by the PLDM service.
+
+6) The PLDM service will watch for images to appear in the stating area. Based
+on the staging area, the PLDM service can determine the relevant inventory D-Bus
+object and the related FD info. The PLDM service will create a new D-Bus object
+implementing the Software D-Bus interfaces from 3). These will be associated to
+the inventory D-Bus object by means of D-Bus associations (as described in 3).
+The *Activation* property would be set to *Ready*. In addition the PLDM service
+will also add the xyz.openbmc_project.Software.ActivationProgress interface on
+this object to denote progress of the firmware update.
+The webserver will monitor for the creation of the D-Bus object described above.
+Once notified, the webserver can create a Task to monitor progress, and will
+also request an Activation on the created object.
+
+7) - 10) The PLDM daemon will then initiate a firmware update to the FD as a
+reaction to the webserver setting the *RequestedActivation* to *Active*. The
+set of commands to be exchanged between the UA and the FD are detailed in
+DSP0267. The typical exchanges are:
+- The UA initiates the update via the *RequestUpdate* command.
+- The UA sends firmware image metadata via the *PassCompoenentTable* command.
+- Based on the metadata, the FD retrieves the image via the
+*RequestFirmwareData* command.
+- Once the entire firmware image has been received, the FD sends the
+*TransferComplete* command.
+- The FD proceeds to verify the image. The UA can query status via the
+*GetStatus* command.
+- Once verified, the FD sends a *ApplyComplete* request. The UA proceeds to send
+a *ActivateFirmware* request. The FD performs activation, or might indicate that
+it relies on the UA to perform a reset for activation. The latter case must be
+handled by the PLDM service. During the activation (if the FD is
+self-activating), the UA can retrieve status via *GetStatus*.
+The PLDM service will keep updating the Software.Activation and
+Software.ActivationProgress interfaces. The webserver can relay the same via a
+Redfish task.
+
+11) Once the firmware activation is complete, the PLDM service will clean-up the
+D-Bus model in order to reflect the latest firmware version.
+
 ## Alternatives Considered
 Continue using IPMI, but start making more use of OEM extensions to
 suit the requirements of new platforms. However, given that the IPMI
