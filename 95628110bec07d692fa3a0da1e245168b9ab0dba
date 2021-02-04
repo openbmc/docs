@@ -16,6 +16,75 @@
       "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "176bf2de_ffe28c0a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-02-04T18:44:17Z",
+      "side": 1,
+      "message": "could be an array of FDs?",
+      "range": {
+        "startLine": 519,
+        "startChar": 61,
+        "endLine": 519,
+        "endChar": 73
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a597e2f_6d1b7f0d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-02-04T18:44:17Z",
+      "side": 1,
+      "message": "Would we need Manifest file for PLDM update? The image payload should be self descriptive, no? \n\nFigure 6 of DSP0267 v1.1 provides the \"image payload\" details - it consists of a package header that describes the target FDs, Image Set version, individual component version numbers. This should give us an option to skip keeping the manifest file altogether.",
+      "range": {
+        "startLine": 522,
+        "startChar": 12,
+        "endLine": 523,
+        "endChar": 41
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35aff88b_194127cd",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-02-04T18:44:17Z",
+      "side": 1,
+      "message": "Agree with the high level flow. However, additional things can be taken care of:\n\n1) The update package could target multiple FDs and each of those FDs could have only a subset of component images applicable to them. \nIn section 7.1 of DSP0267 v1.1 describes this. Thus we could potentially loop over the list of FD, and update all the matched FDs before we proceed with the activation step.\n\n2) There could be multiple instances of the FD in the system (ex: multiple NIC cards from the same vendor would have same FDs). Are we going to update only the inventory item targeted by *HttpPushUri* ?\n\nAlso this section could benefit from a flow diagram describing UA - FD interactions, I think.",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 556,
+        "endChar": 13
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
