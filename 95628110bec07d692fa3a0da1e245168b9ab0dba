@@ -298,6 +298,30 @@
       "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9093d990_2a507858",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-02-05T07:55:28Z",
+      "side": 1,
+      "message": "Yes, with the mechanisms provided in the FWU specification, (since the update package is self descriptive) we wouldn\u0027t require an external agent informing pldmd about the target of the update package. This just means that pldmd can simply determine the target FD just by parsing the update package headers.\n\nWhat this could essentially mean is that the current update service can stage the pldm update packages in a predetermined area and not bother about the target FD at all. We would still require the software.version, software.activation and other interfaces mentioned in 3, this would be required for Firmware Inventory, as you have noted.",
+      "parentUuid": "3e0c6bbe_1b5b156e",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 556,
+        "endChar": 13
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
