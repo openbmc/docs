@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "e60495f5_6ec888cf",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-08T08:39:48Z",
+      "side": 1,
+      "message": "why? So far we are using Phosphor-software-manager to do the update? Any specific reason for bmcweb to directly communicate with PLDMd?\nNote: \nThis will cause certain limitations\n1. Full image update level support will require changes in bmcweb (relying on phosphor-software-manager will not have this issue)\n2. what if BMC level image verification is required for certain devices?\n\nBasically, irrespective of whether the device uses Pldm or any other methodologies, the update mechanism from BMC must stand same, the diversification etc. must happen in terms of phosphor-software-manager and not in bmcweb.\nE.g. Whether BIOS is updated as normal image or PLDM model, flow from bmcweb must remain the same, and phosphor-software-manager, after doing image verification etc, and based on the header it can direct the required update mechanism (i.e. if it is PLDM request to PLDM daemon).",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "176bf2de_ffe28c0a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
@@ -337,6 +360,30 @@
       "side": 1,
       "message": "Also, any thoughts on security aspects? The PLDM firmware update specification doesn\u0027t mandate anything on the UA (onus is on the FD), however if device vendors decide to add security related headers in the update package, where would we handle it? (Perhaps a provision in pldmd to handle custom headers in the update package? or handle it in phosphor-software-manager?)",
       "parentUuid": "9093d990_2a507858",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 556,
+        "endChar": 13
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "406d5b8e_6cfcaf72",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-08T08:39:48Z",
+      "side": 1,
+      "message": "Yes. This is needed, esp. option to allow vendor signing is essential to avoid compatibility issues.",
+      "parentUuid": "1464d97a_ff3b2df7",
       "range": {
         "startLine": 537,
         "startChar": 0,
