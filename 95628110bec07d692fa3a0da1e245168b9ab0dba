@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "7839b2a0_a3031d1c",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-08T08:51:07Z",
+      "side": 1,
+      "message": "Richard - What is exposed to bmcweb is a D-Bus API. This design is not proposing a change to how bmcweb activates firmware for PLDM images (please see details below in the description section). So, I am not sure I followed your concern. I don\u0027t think there is a guideline/reason that one application must house all varying implementations of a D-Bus API. For eg - bmcweb queries sensors/FRUs via well-known D-BUs APIs. Such sensor/FRU D-Bus objects can be housed by multiple daemons (that\u0027s the whole premise of having standard D-Bus APIs and bmcweb using mapper to find objects). In fact my concern with what you described above is we need phosphor-software-manager to deal with PLDM specifics - I want to avoid that.",
+      "parentUuid": "e60495f5_6ec888cf",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "176bf2de_ffe28c0a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
