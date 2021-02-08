@@ -155,6 +155,24 @@
     },
     {
       "key": {
+        "uuid": "f9dd9322_43547097",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-08T16:37:59Z",
+      "side": 1,
+      "message": "My thought (noted in 3e and 4 below) was to come up with a D-Bus interface that is something like xyz.openbmc_project.Software.ImageTarget (or a better name) that provides at least one property - the staging area of an image. The PLDM daemon would monitor one such staging area.\n\nPLDM could implement an /xyz/openbmc_project/software/pldm_imaget_target with the staging area set to /tmp/images/pldm. The BMC code udpate could host an /xyz/openbmc_project/software/bmc_image_target. The webserver could from this API make corresponding HTTP push targets.\n\nWe might have to deal with a case where the user pushes a \u0027single image\u0027 package to the BMC. In this scenario we might need bmcweb or some other entity to split the singe image and copy contained images into relevant staging areas.\n\nI will discuss your thoughts on this on Discord.",
+      "parentUuid": "bdddc27f_2df3381a",
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "176bf2de_ffe28c0a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
