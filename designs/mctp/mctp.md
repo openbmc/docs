@@ -91,7 +91,8 @@ The MCTP infrastrcuture in OpenBMC is implemented in two approaches:
    described in [MCTP Userspace](mctp-userspace.md).
 
  - A kernel-based approach, using a sockets API for client and server
-   applications. This approach is in a design stage.
+   applications. This approach is in a design stage, and is described
+   in [MCTP Kernel](mctp-kernel.md)
 
 Design details for both approaches are covered in their relevant
 documents, but both share the same Problem Description, Background and
