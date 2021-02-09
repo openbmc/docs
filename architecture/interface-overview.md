@@ -87,6 +87,7 @@ protocols:
  - Host IPMI.
  - PLDM (DMTF document DSP0240).
  - Custom OEM solution.
+ - SMBus.
 
 ### Network services provided
 
@@ -109,7 +110,7 @@ in sections below or in the appendix.
         | |                                |
         | +-+ UDP ports                    |
         |   +- 427 SLP                     |
-        |   +- 623 RCMP+ IPMI              |
+        |   +- 623 RMCP+ IPMI              |
         |   +- 5355 mDNS service discovery |
         |                                  |
         +----------------------------------+
@@ -357,9 +358,9 @@ Refers to the unicast service discovery protocol provided by `slpd`.  For
 example, you can find the BMC via the `slptool -u ${ip} findsrvtypes or
 findsrvs` command.
 
-### RCMP+, IPMI, and ipmitool
+### RMCP+, IPMI, and ipmitool
 
-Refers to the RCMP+ protocol and IPMI implementation provided by `netipmid`
+Refers to the RMCP+ protocol and IPMI implementation provided by `netipmid`
 with source here: `https://github.com/openbmc/phosphor-net-ipmid` and some
 details provided by [IPMI Session management][].  Network IPMI provides access
 to many resources including host IPMI access, SOL (access to the host
@@ -367,7 +368,7 @@ console), and more.  Also known as out of band IPMI.  Contrast with host-IPMI
 which interacts with the host and with Redfish which provides alternate
 function.
 
-The BMC's RCMP+ IPMI interface is designed to be operated by the
+The BMC's RMCP+ IPMI interface is designed to be operated by the
 `[ipmitool][]` external command.
 
 [IPMI Session management]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Ipmi/SESSION_README.md
@@ -378,7 +379,7 @@ The BMC's RCMP+ IPMI interface is designed to be operated by the
 Refers to the host-facing IPMI service provided by the `ipmid` program with
 source here: `https://github.com/openbmc/phosphor-host-ipmid`.  The systemd
 service is `phosphor-ipmi-host` implemented by the `ipmid` program.  Also
-known as in-band IPMI.  Contrast with RCMP+ which faces the network and with
+known as in-band IPMI.  Contrast with RMCP+ which faces the network and with
 PLDM which provides alternate function.
 
 ### BMC shell
