@@ -173,6 +173,24 @@
     },
     {
       "key": {
+        "uuid": "56d22fb3_f9a3d7d7",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-02-09T04:52:55Z",
+      "side": 1,
+      "message": "@Patrick - PLDM Firmware Update specification provides a notion of Device Identifier record. This is unique to a class of device, this could something like PCIe Vendor ID-Device ID. Table 8 of DSP0267 describes the device descriptors supported for PLDM Firmware update.\n\nThe pldmd can query the device descriptors from a PLDM device during its discovery phase. During the update phase, the update package itself would contain the target device descriptors. Thus the update package (image blob) is self sufficient for pldmd to determine to which FD the update package is for.",
+      "parentUuid": "f9dd9322_43547097",
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "176bf2de_ffe28c0a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
