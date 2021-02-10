@@ -162,6 +162,30 @@
     },
     {
       "key": {
+        "uuid": "a8af9b74_fc68bbb8",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-02-10T06:41:54Z",
+      "side": 1,
+      "message": "@Deepak- Agree with your flow on the pldmd and bmcweb on FirmwareInventory flow. \n\nHowever, for the update flow, we think having the \"item manager\" functionality implemented in phosphor-software-manager would provide different BMC vendors to handle the update package the way they deem fit, and pldmd would still have the \"item updater\" functionality. Ex - A PLDM update package can be a signed one. Signature verification can be done in phosphor-software-manager. Phosphor-software-manager could also probe and find out the type of update package sent down by the user using some sort of meta-data like manifest file or probing into image headers.[Image could BMC/BIOS or others like PLDM/PSU/CPLD].\n\nIn the case of PLDM, we have a notion of IMAGE SET versioning. The PLDM update package could have multiple components targeted for multiple FDs (described in figure 6 of the spec). A typical use case could be A NIC vendor providing a single PLDM update package for different SKUs of a single generation of cards; the update package would have different component images targeting different FDs (that may or may not be in the server). The IMAGE SET version could be a good candidate for the phosphor-software-manager\u0027s version interface, and p-s-m could also host the update package\u0027s activation and activation-progress interface. The bmcweb user ,who initiated the update package, could get overall progress wrt to the entire bundle\u0027s update status.\n\nThus, in short, p-s-m can take care of vendor specific implementations like signature verification and host the version interface (based on the IMAGE SET version for pldm update package),activation and activation progress interface, and then place the PLDM only update package in a staging area (/tmp/images/pldm may be) which is compliant to Figure 6 in the spec. It could proceed to make a method call (from fwupd script ot any other mechanism) to pldmd with filepath of the PLDM only update package (if required, we could also pass the d-bus service name/object who is hosting the activation, activation-progress interfaces). \n\nFor pldmd, the update package is self descriptive and would be able to parse the headers and findout the intendent recipient of the update package (using the Device descriptors area) and then proceed with the update flow. It can update the activation state and progress interfaces hosted by p-s-m accordingly.\n\nThe advantage with this method is that pldmd would remain pure \"protocol\" daemon and customizations required by different vendors do not creep into pldmd.",
+      "parentUuid": "cf49ef67_79f3e322",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdddc27f_2df3381a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
