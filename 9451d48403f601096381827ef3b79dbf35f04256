@@ -139,6 +139,24 @@
       "revId": "9451d48403f601096381827ef3b79dbf35f04256",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cae2224_1e1a002f",
+        "filename": "designs/guard_on_bmc.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-02-10T12:25:01Z",
+      "side": 1,
+      "message": "I really hope not.  Adding arbitrary strings presents lots of problems for anyone trying to consume this property.  Were do the acceptable and possible values of this field get documented?  Translation at the external interface level is a huge issue, but it also tends to create tight-coupling between your code and some consumer and that coupling is often machine-specific (since only your machine will have sub-units A, B, and C).\n\nIf you have a sub-unit of a FRU (or device) that you want to perform guard on, my suggestion would be to add the sub-unit to the inventory model.  We do this already for processor cores, so why not any other unit?  If it is a unit specific to IBM or even a specific processor generation, put it in the `com.ibm` namespace.",
+      "parentUuid": "6ff7d372_0a0602bc",
+      "revId": "9451d48403f601096381827ef3b79dbf35f04256",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
