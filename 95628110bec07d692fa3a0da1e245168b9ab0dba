@@ -186,6 +186,30 @@
     },
     {
       "key": {
+        "uuid": "28e96b6b_a3b6b77d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-10T08:30:35Z",
+      "side": 1,
+      "message": "@Sumanth - I understand what you\u0027re saying, but there are other ways to solve this problem:\n\n\u003e  pldmd would remain pure \"protocol\" daemon and customizations required by different vendors do not creep into pldmd.\nFor eg, we could come up with an image sign verification D-Bus API that p-s-m or something else can implement.\n\nWe have examples of separate process handling software management on their own - openpower PNOR and PSU code mgr. My concerns with the alternate approach are:\n- p-s-m needs to know about specific firmware update packages format, or we need to come up with additional manifest files and image purpose fields and p-s-m needs to know and maintain information that a certain image was PSU/BIOS/PLDM, etc.\n- Every item updater must provide/implement a D-Bus API for p-s-m to call into, at least to kick start activation and provide information about the objects implementing the version interface, activation interface, progress interface, etc.\n- Since pldm will not own the activation objects, creating associations with inventory objects becomes complex. We would need to provide more details on how the D-Bus APIs would look like.\n- while this approach claims that p-s-m is doing the imagemanager, in reality that image and version management has to be done by pldmd as well (for things like downstream devices).",
+      "parentUuid": "a8af9b74_fc68bbb8",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdddc27f_2df3381a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
