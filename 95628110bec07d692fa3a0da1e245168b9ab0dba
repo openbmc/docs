@@ -210,6 +210,30 @@
     },
     {
       "key": {
+        "uuid": "ff8e887a_1319f08d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-02-11T08:14:21Z",
+      "side": 1,
+      "message": "My responses -\n\n\"p-s-m needs to know about specific firmware update packages format, or we need to come up with additional manifest files and image purpose fields and p-s-m needs to know and maintain information that a certain image was PSU/BIOS/PLDM, etc.\"\n- So the question here is whether the onus should be on the user to inform BMC about the update package type (via parameters in httpPushUri) or BMC to do self determination of the update package type. Take the case of PLDM only update package; a NIC vendor could have provided a pldmd update package with different component images for different SKUs. Some of the components might not be applicable to the target platform if they do not have such devices. In this scenario, should the user still need to list out all the FDs in httpPushUri ? Or should the user mention PLDM as the target? \n\n\"Every item updater must provide/implement a D-Bus API for p-s-m to call into, at least to kick start activation and provide information about the objects implementing the version interface, activation interface, progress interface, etc.\"\nEvery item updater can provide the same D-Bus API, quite similar to the FilePath interface you have proposed.\n\n\"Since pldm will not own the activation objects, creating associations with inventory objects becomes complex. We would need to provide more details on how the D-Bus APIs would look like.\nwhile this approach claims that p-s-m is doing the imagemanager, in reality that image and version management has to be done by pldmd as well (for things like downstream devices).\"\n\nAgree to this, I think we could move this to item updater.\n\nProbably we can traceout the update flow for the scenario for -\n1. Single PLDM update package which consists of multiple component images \u0026 images for downstream devices\n2. Same scenario as above, with the update package being signed\n\nFrom the user perspective how would the activation progress look like? Are we going to have D-Bus interfaces (like activation/progress) for each of the individual components that make up an PLDM update package?",
+      "parentUuid": "28e96b6b_a3b6b77d",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdddc27f_2df3381a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
