@@ -91,4 +91,14 @@ Change password to "0penBmc1":
 $ curl -k -H "X-Auth-Token: $token" -X PATCH -d '{"Password": "0penBmc1"}' https://${bmc}/redfish/v1/AccountService/Accounts/root
 ```
 
+## BIOS firmware boot control
+- Enter into BIOS setup on boot
+  ```
+  $ curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Systems/system -d '{"Boot":{"BootSourceOverrideEnabled": "Continuous","BootSourceOverrideTarget": "BiosSetup"}}'
+  ```
+- Fully boot
+  ```
+  $ curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Systems/system -d '{"Boot":{"BootSourceOverrideEnabled": "Disabled","BootSourceOverrideTarget": "None"}}'
+  ```
+
 [1]: https://www.dmtf.org/standards/redfish
