@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "80d7d916_9f775ee5",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "Yep, that\u0027s why I\u0027ve added \u0027likely\u0027 there, to allow for non-hardware-backed interfaces, like lookback.",
+      "parentUuid": "203ea45d_193bfb15",
+      "range": {
+        "startLine": 64,
+        "startChar": 41,
+        "endLine": 64,
+        "endChar": 57
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7499fa9_7d13c07b",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "92dcf84f_e5162934",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "All net devices have an system-unique index, and may be used in addressing data elsewhere (see struct sockaddr_mctp_ext here, and struct sockaddr_ll). It\u0027s unrelated to the EID.",
+      "parentUuid": "f7499fa9_7d13c07b",
+      "range": {
+        "startLine": 66,
+        "startChar": 9,
+        "endLine": 66,
+        "endChar": 15
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b0c67b3_0f93e388",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2021-02-12T03:37:01Z",
       "side": 1,
       "message": "Why are both required?",
+      "range": {
+        "startLine": 69,
+        "startChar": 56,
+        "endLine": 70,
+        "endChar": 4
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6c5858f_d201986d",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "Andrew has raised this a little in his comment, and I\u0027ll add a section in the alternatives for this. Basically, a UUID is required by the spec, but fairly difficult to handle for inclusion in every `struct sockaddr_mctp`, so I\u0027m proposing an integer to allow references to a particular network.\n\nIf that creates problems though, we can look at using UUIDs directly. It\u0027ll mean that we overrun the size of `struct sockaddr`, but I think that might be OK.",
+      "parentUuid": "0b0c67b3_0f93e388",
       "range": {
         "startLine": 69,
         "startChar": 56,
@@ -117,6 +189,54 @@
     },
     {
       "key": {
+        "uuid": "9aac2fed_8df841f8",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "Yep, any application that sends/receives messages that the kernel does not have a protocol handler will need to use MCTP_PROTO_ANY, otherwise the socket() call would fail. This would include vendor-defined message formats.",
+      "parentUuid": "da953251_0e866743",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 7
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2590a1c1_5b31cdfa",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "Yep, good plan.",
+      "parentUuid": "f2d66a09_dbc36204",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "525e8176_2b8da698",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 1
@@ -128,6 +248,30 @@
       "writtenOn": "2021-02-12T00:31:01Z",
       "side": 1,
       "message": "Solid nit-pick: This should be `addr.smctp_addr.s_addr \u003d 9;` according to your earlier struct definitions.",
+      "range": {
+        "startLine": 388,
+        "startChar": 12,
+        "endLine": 388,
+        "endChar": 54
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2db34530_bcf7fc64",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "Good catch, and brings up a decent design question on whether or not we have s_addr as its own type, or just put the uint8_t directly in struct sockaddr_mctp. There\u0027s slightly more precedence for the former, but both do exist in other protocol implementations.",
+      "parentUuid": "525e8176_2b8da698",
       "range": {
         "startLine": 388,
         "startChar": 12,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "669ceea5_62aaae17",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "901b8c39_1cf348f7",
+      "range": {
+        "startLine": 433,
+        "startChar": 12,
+        "endLine": 433,
+        "endChar": 43
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0cd47d20_d62956b0",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 1
@@ -174,6 +342,30 @@
       "writtenOn": "2021-02-12T00:31:01Z",
       "side": 1,
       "message": "The example should probably use connect() as discussed elsewhere.",
+      "range": {
+        "startLine": 490,
+        "startChar": 0,
+        "endLine": 491,
+        "endChar": 44
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abec0d7f_70f5d8ab",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "In this case, we\u0027re only sending one broadcast message, so there\u0027s no benefit to connect(). I will add a comment to indicate that for other cases you\u0027d probably want connect() too.",
+      "parentUuid": "0cd47d20_d62956b0",
       "range": {
         "startLine": 490,
         "startChar": 0,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "9793a564_ffa3f340",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "The entire control protocol would be handled by userspace, yes. The kernel does not have any knowledge of EID pools, or EID allocations to other machines - only the routing table. This is covered briefly at line 50.\n\nThe facilities are present to enable a userspace process access to the relevant MCTP stack data though; a control message implementation would use MCTP_ADDR_EXT for low-level addressing data, and would be updating the route table through the netlink interface. I\u0027ll add an overview of a proposed userspace implementation to this document.",
+      "parentUuid": "163b78c1_fe165d84",
+      "range": {
+        "startLine": 572,
+        "startChar": 5,
+        "endLine": 572,
+        "endChar": 15
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "44b00441_e6842bcb",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 1
@@ -220,6 +436,30 @@
       "writtenOn": "2021-02-12T00:31:01Z",
       "side": 1,
       "message": "The network UUID gets a brief mention earlier, and it appears to not be what we\u0027re using for `smctp_network`. Can you talk about the trade-offs between using a mapping and not? It feels like ergonomics and UX vs implementation concepts that aren\u0027t part of the spec and the added mapping between kernel network IDs and UUIDs.\n\nProbably another thing for the Alternatives Considered section?",
+      "range": {
+        "startLine": 580,
+        "startChar": 0,
+        "endLine": 583,
+        "endChar": 25
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e60856b_29972cad",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "Yep, sounds good, I\u0027ll add that.",
+      "parentUuid": "44b00441_e6842bcb",
       "range": {
         "startLine": 580,
         "startChar": 0,
@@ -278,6 +518,54 @@
     },
     {
       "key": {
+        "uuid": "5ef7024d_9e45602c",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "The bus-physical address goes there, yes. The method of populating it is covered in the next paragraph, or are you after other details? None of that is really binding-specific, other than that the binding provides that information.",
+      "parentUuid": "2d496e70_22e8ee4c",
+      "range": {
+        "startLine": 660,
+        "startChar": 27,
+        "endLine": 660,
+        "endChar": 42
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f2ecec5_078d3d09",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "Yup. None of the transport-level addressing requires a UUID, so I\u0027m fine to leave that to the userspace control protocol implementation. Unless you have other requirements on this?",
+      "parentUuid": "3df8de85_a0c80b46",
+      "range": {
+        "startLine": 660,
+        "startChar": 0,
+        "endLine": 660,
+        "endChar": 77
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "91b746b7_176cf8fa",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 1
@@ -289,6 +577,30 @@
       "writtenOn": "2021-02-12T03:39:30Z",
       "side": 1,
       "message": "This command is typically sent to the bus-owner (which is usually the BMC).",
+      "range": {
+        "startLine": 681,
+        "startChar": 9,
+        "endLine": 681,
+        "endChar": 38
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28eaa6c4_261e7e5b",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-12T04:35:01Z",
+      "side": 1,
+      "message": "Yep - in fact the spec requires it to be sent to the bus owner.\n\nI\u0027m not restricting this design to BMC implementations - it may be used for bridges, simple endpoints, etc, some of which may not be the bus owner.",
+      "parentUuid": "91b746b7_176cf8fa",
       "range": {
         "startLine": 681,
         "startChar": 9,
