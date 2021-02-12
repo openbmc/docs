@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2d66a09_dbc36204",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-12T00:31:01Z",
+      "side": 1,
+      "message": "Section 7 of DSP0236 says:\n\n\u003e MCTP is designed to be able to transfer multiple Message Types in an interleaved manner using the same protocol. MCTP Message Types identified using a Message Type number. The use of the message type number is similar to a well-known port number in Internet Protocol. It identifies MCTP Messages that are all associated with a particular specification.\n\nI think we should include an \"Alternatives Considered\" section that discusses why we\u0027re not using a port-based representation.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "525e8176_2b8da698",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-12T00:31:01Z",
+      "side": 1,
+      "message": "Solid nit-pick: This should be `addr.smctp_addr.s_addr \u003d 9;` according to your earlier struct definitions.",
+      "range": {
+        "startLine": 388,
+        "startChar": 12,
+        "endLine": 388,
+        "endChar": 54
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "901b8c39_1cf348f7",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-12T00:31:01Z",
+      "side": 1,
+      "message": "Again with .s_addr?",
+      "range": {
+        "startLine": 433,
+        "startChar": 12,
+        "endLine": 433,
+        "endChar": 43
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cd47d20_d62956b0",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-12T00:31:01Z",
+      "side": 1,
+      "message": "The example should probably use connect() as discussed elsewhere.",
+      "range": {
+        "startLine": 490,
+        "startChar": 0,
+        "endLine": 491,
+        "endChar": 44
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44b00441_e6842bcb",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-12T00:31:01Z",
+      "side": 1,
+      "message": "The network UUID gets a brief mention earlier, and it appears to not be what we\u0027re using for `smctp_network`. Can you talk about the trade-offs between using a mapping and not? It feels like ergonomics and UX vs implementation concepts that aren\u0027t part of the spec and the added mapping between kernel network IDs and UUIDs.\n\nProbably another thing for the Alternatives Considered section?",
+      "range": {
+        "startLine": 580,
+        "startChar": 0,
+        "endLine": 583,
+        "endChar": 25
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3df8de85_a0c80b46",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-12T00:31:01Z",
+      "side": 1,
+      "message": "Have you considered whether/where we should store device UUIDs?",
+      "range": {
+        "startLine": 660,
+        "startChar": 0,
+        "endLine": 660,
+        "endChar": 77
+      },
+      "revId": "da77a8a2d94a93dfb5f46420727d94aeda157c7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
