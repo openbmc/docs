@@ -60,6 +60,29 @@
     },
     {
       "key": {
+        "uuid": "5f0a4e73_39921c53",
+        "filename": "REDFISH-cheatsheet.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-15T20:39:33Z",
+      "side": 1,
+      "message": "In a redfish cheatsheet, we should be using a redfish login endpoint, not a rest-dbus one.  We should really just remove method 2 entirely.",
+      "range": {
+        "startLine": 28,
+        "startChar": 81,
+        "endLine": 28,
+        "endChar": 87
+      },
+      "revId": "4ab24ecdf0d20d659cdd495436d65a9e5b29f7ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a00cd62_962d246f",
         "filename": "REDFISH-cheatsheet.md",
         "patchSetId": 1
@@ -107,6 +130,52 @@
       "side": 1,
       "message": "So change BMC reboot to \"curl -k  -H \"X-Auth-Token: $bmc_token\" -X POST https://${bmc}/redfish/v1/Managers/bmc/Actions/Manager.Reset -d \u0027{\"ResetType\": \"GracefulRestart\"}\u0027\" or add the -H \"X-Auth-Token: $bmc_token\" to the rest of the curl commands?",
       "parentUuid": "54ae2419_075a8969",
+      "revId": "4ab24ecdf0d20d659cdd495436d65a9e5b29f7ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ef7e305_25d76dbe",
+        "filename": "REDFISH-cheatsheet.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-15T20:39:33Z",
+      "side": 1,
+      "message": "There\u0027s 4 different logging logging endpoints under the various configure options.  It would be good if you could over all of them.  This implies that there\u0027s only one.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 3
+      },
+      "revId": "4ab24ecdf0d20d659cdd495436d65a9e5b29f7ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f80dd3b9_d675ddb4",
+        "filename": "REDFISH-cheatsheet.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-15T20:39:33Z",
+      "side": 1,
+      "message": "Remove the final trailing slash from all your uris.  It\u0027s technically undefined behavior in Redfish to not be following the hypermedia links.  Unfortunately, in terms of redfish that makes this whole file undefined behavior, however, that isn\u0027t your fault, and this patchset arguably makes it no worse.",
+      "range": {
+        "startLine": 106,
+        "startChar": 47,
+        "endLine": 106,
+        "endChar": 56
+      },
       "revId": "4ab24ecdf0d20d659cdd495436d65a9e5b29f7ee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
