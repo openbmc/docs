@@ -158,6 +158,24 @@
       "revId": "06605e87cdeac828de59bc93356c78bd44487a2d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "208fa93f_a74b18f1",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-17T10:30:26Z",
+      "side": 1,
+      "message": "\u003e Do you mean this to say that you expect AF_MCTP to work (and be used) over any struct net_device, or is it intended for your specific lpc/pcie/pigeon interfaces?\n\nYes, the latter; we are only able to use AF_MCTP sockets to communicate to MCTP-specific netdevices.\n\n[I say that now, but it\u0027s entirely possible that someone wants an MCTP-over-{ethernet,ip,whatever} implementation in future. In that case, there\u0027d still be a MCTP-specific netdevice to represent the tunnel; we wouldn\u0027t be leaking \"actual\" network devices into the set of MCTP-specific ones]\n\n\u003e I think you could clarify if you\u0027re proposing/designing those drivers in this document, or if you wish to keep this just about the mctp address/protocol family? (What struct net_device do you plan to test with?)\n\nYep, that sounds good to clarify; I\u0027ll add a little about the interface implementations. I do want to focus on the sockets API here, but that interface context would definitely help. I\u0027ll add that in the next patchset.\n\n(The first net_device would be a MCTP loopback interface; I suspect serial and i2c bindings would be the next. Let\u0027s see if we can convince Andrew to do an astlpc one 😄)",
+      "parentUuid": "7a967e84_f313555d",
+      "revId": "06605e87cdeac828de59bc93356c78bd44487a2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
