@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c987be62_d155f045",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-17T07:18:19Z",
+      "side": 1,
+      "message": "But this document doesn\u0027t have any images 😊\n\nI\u0027m not sure that would help in the most useful case though, where the proposed change actually adds (or alters) the image, as that won\u0027t be reflected in the \"current version\" link. I suspect it\u0027s just something we\u0027d have to deal with as a consequence of using gerrit for review.",
+      "parentUuid": "1256db1f_0c2ca9aa",
+      "revId": "06605e87cdeac828de59bc93356c78bd44487a2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "18b1b2bd_5a894837",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0c248691_cd652d44",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-17T07:18:19Z",
+      "side": 1,
+      "message": "Good call, I\u0027ll introduce the acronym on first usage.",
+      "parentUuid": "18b1b2bd_5a894837",
+      "revId": "06605e87cdeac828de59bc93356c78bd44487a2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "054ce6e4_e42459ea",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2021-02-17T06:35:48Z",
       "side": 1,
       "message": "Having read the document, I understand the socket interface for mctp messages, and I realise that the most common use of the socket API is talking to network devices. I am missing the bit that links mctp to network devices.\n\nMy confusion comes about because I thought we were generally talking about sending mctp over devices other than network (Ethernet) devices? Does this mean we will have network drivers that instead of Ethernet are backed by eg a LPC device?",
+      "revId": "06605e87cdeac828de59bc93356c78bd44487a2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbeee4b5_2707ddb2",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-17T07:18:19Z",
+      "side": 1,
+      "message": "\u003e Having read the document, I understand the socket interface for mctp messages, and I realise that the most common use of the socket API is talking to network devices.\n\nSort of - there are many protocol families that the socket API supports - AF_INET and AF_INET6 being the most common, but there\u0027s a whole bunch more that aren\u0027t related to the kind of \"networks\" you\u0027re referring to, like Unix-domain sockets (AF_UNIX), CAN bus (AF_CAN), bluetooth (AF_BLUETOOTH) and the kernel-internal netlink messaging (AF_NETLINK).\n\nHere we\u0027d introduce a new address/protocol family, AF_MCTP.\n\n\u003e I am missing the bit that links mctp to network devices.\n\nThat kinda depends on what you\u0027re calling a \"network device\"; we\u0027re still complying with that here in that the MCTP networks will be represented by a `struct net_device`.\n\nHowever, that\u0027s distinct from the implication that these will be the kind of network devices that carry IP/ethernet/etc packets; `struct net_device`s are used for non-\"networky\" endpoints too; bluetooth, CAN, etc.\n\n\u003e My confusion comes about because I thought we were generally talking about sending mctp over devices other than network (Ethernet) devices? Does this mean we will have network drivers that instead of Ethernet are backed by eg a LPC device?\n\nThe MCTP devices mentioned here won\u0027t be in the same set as your traditional network devices; much like your bluetooth endpoints (eg \"hci0\") don\u0027t appear in those sets either.\n\nThis spec doesn\u0027t define any interaction between ethernet/ip/etc-style networks and MCTP networks.",
+      "parentUuid": "054ce6e4_e42459ea",
       "revId": "06605e87cdeac828de59bc93356c78bd44487a2d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
