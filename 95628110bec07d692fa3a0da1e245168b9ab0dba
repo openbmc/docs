@@ -258,6 +258,30 @@
     },
     {
       "key": {
+        "uuid": "21b61f35_8eeced41",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-18T18:03:52Z",
+      "side": 1,
+      "message": "Hi Deepak,\nTechnically implementing the Verification / update logic in PLDMD is possible, but it has the following limitations.\n1. Image update will happen without the target (which is how BMC must be designed to eliminate any user mismatch errors and currently companies already doing the same). Target based approach is used when trying to update with a specific purpose.\n2. D-Bus API are designed for modularization, and you already stated that 2 modules already implement the same. Question is do we need to follow that suite ? I am worried in coming future, when we add further support, we will end up defining more complex D-Bus rather than current abstraction.\n3. Staging area / Image download / Synchronized firmware update across multiple user-level interfaces are always needed (including clean up). \n\nWhat i meant to say is abstraction, such that our major usage flow \u0026 future implementation will not have problem\n\nSoftware-Updater being the abstraction - purpose is to verify the image needed, protect it against multiple interface update request, clean up the image etc. Based on the image or requested target communicate it to the corresponding daemon.\n\nin short  Redfish / IPMI / etc. \u003c--\u003e software-updater \u003c--\u003e FW updating daemons (BMC / BIOS / PLDM / etc.)\n\nWith proper D-Bus API defined for both, flow will be simple and easy to maintain ? We can discuss the same in discord / meeting further",
+      "parentUuid": "f46dcd26_ecd1d37e",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdddc27f_2df3381a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
