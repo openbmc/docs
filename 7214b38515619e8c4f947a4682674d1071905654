@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "4e9c2b11_102b7831",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T06:32:35Z",
+      "side": 1,
+      "message": "Ah wait! I think I was tripped up on the interpretation of this sentence with its use of \"previous\". I read it as ordering setsockopt() after sendmsg(), but that\u0027s not the intent at all. Instead the expected sequence is:\n\n sock \u003d socket(...);\n setsockopt(..., MCTP_TAG_CONTROL, ...);\n sendmsg(...);\n sendmsg(...);\n\nand for all sendmsg() calls the tags are accumulated against the socket.",
+      "range": {
+        "startLine": 399,
+        "startChar": 0,
+        "endLine": 400,
+        "endChar": 73
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8b4bd196_51ba821d",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 3
