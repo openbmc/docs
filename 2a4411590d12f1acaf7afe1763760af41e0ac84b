@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb2fdebc_59964970",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "Maybe \"The `connect()` address and tag\", which will help out with my next comment",
+      "range": {
+        "startLine": 294,
+        "startChar": 41,
+        "endLine": 294,
+        "endChar": 64
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce4a36ec_460d26bb",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "So as it stands this mostly reiterates the previous sentence. To address my questions on in PS3 I think it would be more useful if it said something like your reply to my comment:\n\n\"The tag allocated through a call to `sendto()` or `sendmsg()` on a connected socket is subject to the same invalidation logic as on an unconnected socket: It is expired either by timeout or by a subsequent `sendto()`.\"",
+      "range": {
+        "startLine": 295,
+        "startChar": 58,
+        "endLine": 298,
+        "endChar": 31
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "439cc78d_b170cf41",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "what do you think about removing \"previous\" here? It caused me some confusion when reading PS3.",
+      "range": {
+        "startLine": 402,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 8
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4885f5f_88c71d6e",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "Thanks for adding the timeout handling.",
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5382c7b_fea2856e",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "I still think this should be something like (\u0027destination EID\u0027, \u0027source EID\u0027, ...) for consistent language and to differentiate from other types of address like physical addresses.\n\nI also asked about the TO bit, but I wasn\u0027t necessarily advocating for it\u0027s inclusion, was just asking whether you intended it to be. So now I have to ask whether we need to capture the TO bit? We don\u0027t need to correlate for a responder, so it seems to me it\u0027s implicit that the tag-owner value is always 1?",
+      "range": {
+        "startLine": 684,
+        "startChar": 66,
+        "endLine": 685,
+        "endChar": 14
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}

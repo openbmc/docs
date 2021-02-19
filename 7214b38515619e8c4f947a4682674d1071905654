@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "b3038939_6a01b28b",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0315d2bb_30fc4bc0",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 6
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7eef9f8_f5a93daa",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 3
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "330a7247_43af19f5",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "\u003e Like the non-connected sendto-case, any tag allocated here would also be subject to the same invalidation logic, either on timeout or by a further sendto.\n\nRight, the behaviour in the connected sendto-case was what I was trying to wrap my head around.\n\n\u003e \n\u003e I think the `MCTP_TAG_CONTROL` sockopt might have caused some confusion there, which I\u0027ll address below.\n\nThanks.",
+      "parentUuid": "23248921_2830e070",
+      "range": {
+        "startLine": 295,
+        "startChar": 58,
+        "endLine": 296,
+        "endChar": 30
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e9c2b11_102b7831",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 3
@@ -166,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "4f668f39_18d675ec",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e9c2b11_102b7831",
+      "range": {
+        "startLine": 399,
+        "startChar": 0,
+        "endLine": 400,
+        "endChar": 73
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b4bd196_51ba821d",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 3
@@ -186,6 +258,30 @@
       "revId": "7214b38515619e8c4f947a4682674d1071905654",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c64c90d_be4e471e",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "\u003e Should we be setting a timeout via setsockopt(..., MCTP_TAG_CONTROL, ...) so that the broadcast tag can be released without close()?\n\nNo, PS4 clarifies there\u0027s a default (longish) timeout.\n\n\u003e \n\u003e Actually, do we have a way to learn that a tag configured to expire via MCTP_TAG_CONTROL has in fact expired?\n\nThis is unnecessary as userspace should be aware of the required timeouts and use appropriate APIs to enforce them.",
+      "parentUuid": "8b4bd196_51ba821d",
+      "range": {
+        "startLine": 584,
+        "startChar": 0,
+        "endLine": 590,
+        "endChar": 15
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -283,6 +379,30 @@
     },
     {
       "key": {
+        "uuid": "94e52677_bb107314",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "75eeb428_5204435a",
+      "range": {
+        "startLine": 664,
+        "startChar": 3,
+        "endLine": 664,
+        "endChar": 49
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42e29fcf_279498e0",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 3
@@ -327,6 +447,30 @@
       "revId": "7214b38515619e8c4f947a4682674d1071905654",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5d354b0_b6be82d9",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "08baa4f8_d20a467b",
+      "range": {
+        "startLine": 665,
+        "startChar": 3,
+        "endLine": 665,
+        "endChar": 20
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -421,6 +565,30 @@
       "revId": "7214b38515619e8c4f947a4682674d1071905654",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2931c256_e87fbbc4",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T09:49:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3b50add1_90428e4f",
+      "range": {
+        "startLine": 891,
+        "startChar": 0,
+        "endLine": 892,
+        "endChar": 75
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
