@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb808b9b_56f2ac50",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T06:15:27Z",
+      "side": 1,
+      "message": "smctp",
+      "range": {
+        "startLine": 125,
+        "startChar": 32,
+        "endLine": 125,
+        "endChar": 36
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6f5fb61_6cabadb0",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T06:15:27Z",
+      "side": 1,
+      "message": "Define it before use? :)",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 6
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7eef9f8_f5a93daa",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T06:15:27Z",
+      "side": 1,
+      "message": "Can you clarify this sentence?\n\nSo the tag allocated on connect() won\u0027t be dropped until close() or another connect() as I understand it.\n\nWhat\u0027s the behaviour of the tag allocated for the sendto()/sendmsg() after connect? I think you\u0027re proposing it\u0027s retained until another sendto()/sendmsg(), so we\u0027re accumulating tags in the set associated with the socket in the manner that\u0027s suggested by `setsockopt(..., MCTP_TAG_CONTROL, ...)` without calling `setsockopt()`?\n\nHow does `setsockopt(..., MCTP_TAG_CONTROL, ...)` behave in the connect()-then-(sendto()/sendmsg()) case? I guess it only applies to the tag allocated with the most recent sendto()/sendmsg() call? This is partially a question about whether we should explicitly include the tag we want to control in the struct associated with MCTP_TAG_CONTROL. However, we would have to extract that information using getsockname() in order to provided it back to setsockopt(), so maybe that\u0027s not a good idea?",
+      "range": {
+        "startLine": 295,
+        "startChar": 58,
+        "endLine": 296,
+        "endChar": 30
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b4bd196_51ba821d",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T06:15:27Z",
+      "side": 1,
+      "message": "Should we be setting a timeout via setsockopt(..., MCTP_TAG_CONTROL, ...) so that the broadcast tag can be released without close()?\n\nActually, do we have a way to learn that a tag configured to expire via MCTP_TAG_CONTROL has in fact expired?",
+      "range": {
+        "startLine": 584,
+        "startChar": 0,
+        "endLine": 590,
+        "endChar": 15
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d543f6fa_a553d067",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T06:15:27Z",
+      "side": 1,
+      "message": "I find the use of \u0027endpoint\u0027 and \u0027source address\u0027 unclear here. DSP0236 defines the message terminus as the (Message Tag, Tag Owner, Source Endpoint ID) tuple in 8.5. To use DSP0236-style terminology, by \u0027endpoint\u0027 do you mean \u0027Destination Endpoint ID\u0027 and \u0027source address\u0027 to mean \u0027Source Endpoint ID\u0027?\n\nAlso given that the smctp_tag member of struct sockaddr_mctp includes the TO bit, without thinking too much it feels unclear whether the use of \u0027tag\u0027 here includes the TO bit (in the manner of the message terminus definition). The following sentence suggests it\u0027s excluded. Maybe using \u0027tag value\u0027 in the tuple description is an improvement?",
+      "range": {
+        "startLine": 654,
+        "startChar": 66,
+        "endLine": 655,
+        "endChar": 14
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "954cddf5_82fa93cf",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T06:15:27Z",
+      "side": 1,
+      "message": "even to a destination that we connect()ed to prior to sendto()? Or just another non-connected sendto()?",
+      "range": {
+        "startLine": 664,
+        "startChar": 3,
+        "endLine": 664,
+        "endChar": 49
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42e29fcf_279498e0",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T06:15:27Z",
+      "side": 1,
+      "message": "... if set by `setsockopt(sock, 0, MCTP_TAG_CONTROL, ...);`",
+      "range": {
+        "startLine": 665,
+        "startChar": 3,
+        "endLine": 665,
+        "endChar": 20
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0ce8545_d3fbc2d9",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T06:15:27Z",
+      "side": 1,
+      "message": "Broken line wrap here.\n\nHowever, we\u0027re still considering the idea of protocols to handle the message-type/integrity-check data, right? Is that worth mentioning here?",
+      "range": {
+        "startLine": 832,
+        "startChar": 0,
+        "endLine": 834,
+        "endChar": 41
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54d30919_b5d71a8d",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-19T06:15:27Z",
+      "side": 1,
+      "message": "I think it\u0027s a good idea to provide explicit examples here, e.g:\n\n* MCTP broadcasts\n* NVMe repeat last message",
+      "range": {
+        "startLine": 891,
+        "startChar": 0,
+        "endLine": 892,
+        "endChar": 75
+      },
+      "revId": "7214b38515619e8c4f947a4682674d1071905654",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
