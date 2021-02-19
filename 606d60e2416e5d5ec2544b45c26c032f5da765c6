@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ce9de9c6_bf824788",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-19T04:19:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54e7e085_337dea29",
+      "range": {
+        "startLine": 392,
+        "startChar": 0,
+        "endLine": 392,
+        "endChar": 10
+      },
+      "revId": "606d60e2416e5d5ec2544b45c26c032f5da765c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "edf28fdf_ca44d93f",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2021-02-18T18:03:52Z",
       "side": 1,
       "message": "These words little bit confusing (better to rewrite to make it clear)\nDSP0267 doesn\u0027t talk about how all the downstream devices with it\u0027s instances must be updated. I meant, the structure of the PLDM \u0026 DSP0267, states, how matching of the FD and it\u0027s device descriptors has to be done, but limiting the same to single device or single instance of a device types etc. is beyond the scope of the DSP0267, i meant that will be part of OpenBMC / Redfish UpdateService usage scenario --\u003e where how we will update multiple targeted device.",
+      "range": {
+        "startLine": 413,
+        "startChar": 0,
+        "endLine": 417,
+        "endChar": 31
+      },
+      "revId": "606d60e2416e5d5ec2544b45c26c032f5da765c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b67232ff_e9a8f15b",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-19T04:19:23Z",
+      "side": 1,
+      "message": "DSP0267 does talk about this in section 7.",
+      "parentUuid": "edf28fdf_ca44d93f",
       "range": {
         "startLine": 413,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e9a6c37a_1737bd7d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-19T04:19:23Z",
+      "side": 1,
+      "message": "The proposed design is not precluding an image-preprocessor. Please see special case below.",
+      "parentUuid": "ec911aa9_5e5ba8b5",
+      "range": {
+        "startLine": 466,
+        "startChar": 34,
+        "endLine": 470,
+        "endChar": 77
+      },
+      "revId": "606d60e2416e5d5ec2544b45c26c032f5da765c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce803bba_c444512d",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2021-02-18T18:03:52Z",
       "side": 1,
       "message": "This is the new flow, and the same requires changes in the bmcweb too, as the download is done by bmcweb to a proper staging area\nThis also brings further problems\n1. How user level interface determines staging area, when the target is not known -\u003e We require a general daemon to handle the same.\n2. If we proceed this way then many staging areas will be needed, also cleaning up those is required\n3. Backward compatibility - by saying if advertised target device doesn\u0027t expose stagingArea dir then do it in normal form. \n\nThese designs support the model with specified target, but in reality firmware update in the industry are specified or even redfish client\nsupport model is to update the image, without specifying target and BMC takes care of implementing the same. \n\nConsider a scenario of board having 5 Add-on-card or some more components, now in those, few cards can support PLDM, and few won\u0027t. In majority of the cases\nredfish client must send out the image and BMC must take care which target must be updated etc. and only in limited number of cases target will be specified. Hence my view is to choose the design / flow which supports the majority use-case and rest needs to be solved.",
+      "range": {
+        "startLine": 571,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 49
+      },
+      "revId": "606d60e2416e5d5ec2544b45c26c032f5da765c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ba3f41b_6981f698",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-19T04:19:23Z",
+      "side": 1,
+      "message": "Please see line 472.",
+      "parentUuid": "ce803bba_c444512d",
       "range": {
         "startLine": 571,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "be3cb9cb_d016801a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-19T04:19:23Z",
+      "side": 1,
+      "message": "We can update this document. Can you elaborate?",
+      "parentUuid": "1136961d_beddb104",
+      "range": {
+        "startLine": 587,
+        "startChar": 0,
+        "endLine": 596,
+        "endChar": 14
+      },
+      "revId": "606d60e2416e5d5ec2544b45c26c032f5da765c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d636504f_e58b01e8",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 2
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "e4819820_31f0c2f1",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-19T04:19:23Z",
+      "side": 1,
+      "message": "Right, that\u0027s why I said \"might\". I can add other examples.",
+      "parentUuid": "d636504f_e58b01e8",
+      "range": {
+        "startLine": 612,
+        "startChar": 55,
+        "endLine": 613,
+        "endChar": 79
+      },
+      "revId": "606d60e2416e5d5ec2544b45c26c032f5da765c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd21e69a_b26aa5db",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 2
@@ -151,6 +295,30 @@
       "writtenOn": "2021-02-18T18:03:52Z",
       "side": 1,
       "message": "what if there is another NIC, which doesn\u0027t support PLDM, but firmware update through IPMB? Now when that image is sent what we will be doing?",
+      "range": {
+        "startLine": 653,
+        "startChar": 136,
+        "endLine": 653,
+        "endChar": 183
+      },
+      "revId": "606d60e2416e5d5ec2544b45c26c032f5da765c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6606b011_e13b8b70",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-19T04:19:23Z",
+      "side": 1,
+      "message": "Please see line 472.",
+      "parentUuid": "bd21e69a_b26aa5db",
       "range": {
         "startLine": 653,
         "startChar": 136,

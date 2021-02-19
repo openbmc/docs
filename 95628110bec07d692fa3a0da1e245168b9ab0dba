@@ -282,6 +282,30 @@
     },
     {
       "key": {
+        "uuid": "999924b5_706f2c73",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-19T04:19:23Z",
+      "side": 1,
+      "message": "\u003e 1. Image update will happen without the target (which is how BMC must be designed to eliminate any user mismatch errors and currently companies already doing the same). Target based approach is used when trying to update with a specific purpose.\n\nNot following this.\n\n\u003e 2. D-Bus API are designed for modularization, and you already stated that 2 modules already implement the same. Question is do we need to follow that suite ? I am worried in coming future, when we add further support, we will end up defining more complex D-Bus rather than current abstraction.\n\nWhy do you think so? This design is not changing the existing D-Bus API.\n\n\u003e 3. Staging area / Image download / Synchronized firmware update across multiple user-level interfaces are always needed (including clean up). \n\nThis design is not precluding the possibility of an image \"pre-processor\".",
+      "parentUuid": "21b61f35_8eeced41",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdddc27f_2df3381a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
