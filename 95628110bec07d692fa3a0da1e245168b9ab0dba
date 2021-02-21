@@ -306,6 +306,30 @@
     },
     {
       "key": {
+        "uuid": "9e6f2f10_28129ffc",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-21T17:39:10Z",
+      "side": 1,
+      "message": "Majority of the redfish client update will happen without target\n\ni.e. Post the image to the https://{bmcip}/redfish/v1/UpdateService and BMC must take care of updating the right component.",
+      "parentUuid": "999924b5_706f2c73",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdddc27f_2df3381a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
@@ -371,6 +395,24 @@
       "side": 1,
       "message": "\u003e During the update phase, the update package itself would contain the target device descriptors. Thus the update package (image blob) is self sufficient for pldmd to determine to which FD the update package is for.\n\nIdeally we would not be parsing every image that is ever uploaded to the BMC though.  We have some information in the VERSION and EXTENDED_VERSION fields of update files which give some indication which devices these are for.  There are also the \u0027VersionPurpose\u0027 field in the Software.Version interface.  My thinking is that we need to reconcile all these different fields against what/how PLDM will consume them.  I strongly suspect there are device types not already covered by \u0027VersionPurpose\u0027 and I\u0027m not keen on adding additional ones, so I\u0027d like to have another schema to handle the relationships between Versions and Devices.",
       "parentUuid": "56d22fb3_f9a3d7d7",
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4d5f69e_763f099d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-21T17:39:10Z",
+      "side": 1,
+      "message": "Hi Patrick, \nUnfortunately, images already exists with this header usage and it can\u0027t be changed. i.e. BMC must be aware about this PLDM header and make use of it. \nIt can internally use the VERSION / EXTENDED_VERSION / PURPOSE, but we can\u0027t use the same here, as there can be different vendors / different models under vendor and sometimes same image working for different models of particular vendor.\n\nNow one of the thing which we need to integrate is to protect against in-compatible firmware update of a device. i.e. Say same network controller can be used by 2 different companies and we need to provide options for vendor verification, such that motherboard vendor approved images are only updatable (if needed for better security \u0026 compatibility control).",
+      "parentUuid": "08a406dd_310d2727",
       "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
