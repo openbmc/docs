@@ -359,6 +359,24 @@
     },
     {
       "key": {
+        "uuid": "08a406dd_310d2727",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-02-21T13:14:16Z",
+      "side": 1,
+      "message": "\u003e During the update phase, the update package itself would contain the target device descriptors. Thus the update package (image blob) is self sufficient for pldmd to determine to which FD the update package is for.\n\nIdeally we would not be parsing every image that is ever uploaded to the BMC though.  We have some information in the VERSION and EXTENDED_VERSION fields of update files which give some indication which devices these are for.  There are also the \u0027VersionPurpose\u0027 field in the Software.Version interface.  My thinking is that we need to reconcile all these different fields against what/how PLDM will consume them.  I strongly suspect there are device types not already covered by \u0027VersionPurpose\u0027 and I\u0027m not keen on adding additional ones, so I\u0027d like to have another schema to handle the relationships between Versions and Devices.",
+      "parentUuid": "56d22fb3_f9a3d7d7",
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "176bf2de_ffe28c0a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
