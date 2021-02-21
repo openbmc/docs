@@ -2,6 +2,190 @@
   "comments": [
     {
       "key": {
+        "uuid": "3d65858a_0498db63",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-21T18:54:16Z",
+      "side": 1,
+      "message": "We do consider the possibility of acting as a bridge.\nI\u0027m aware that MCTP bridge \u003d\u003d router, and this matches \"customizable routing configurations within a network\", but it\u0027s worth spelling this out explicitly here.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 0
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43fe387e_e8aadd02",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-21T18:54:16Z",
+      "side": 1,
+      "message": "We don\u0027t include discovery code in-kernel, right? We just leave it up to the userspace (as described in \"MCTP Control Protocol implementation\" and \"Neighbour and routing implementation\" sections).\nPerhaps you just mean endpoints with static EID here? It\u0027s worth spelling it out explicitly.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57464f89_863140b1",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-21T18:54:16Z",
+      "side": 1,
+      "message": "We operate directly at the transport layer (L3), and yet we expose the type (L4) both in the address and in the packet. If we include IC bit in the address, we could drop message type byte (with IC bit) from the messages exposed to userspace. The integrity check at the end is problematic. We\u0027re still not separating the layers clearly (because it\u0027s not fully defined in L4 and depends on L5 - we\u0027d need to have knowledge of all L5 protocols in kernel in order to compute the integrity... and as you already mentioned elsewhere in this document - we don\u0027t want to do that), but at least we\u0027re only leaking the \"trailer\" part of L4 and we won\u0027t need to check whether first byte of every sent message matches what\u0027s in the address.\n\nIncluding a drawing as reference for further comments:\n \n+---------------------------------------------------+\n|              medium specific header (L2)          |\n+---------------------------------------------------+\n|               transport header (L3)               |\n+-------------+-------------------------------------+\n|msg type (L4)|     message (L5)                    |\n+-------------+                      +--------------+\n|                                    | msg IC (L4)  |\n+------------------------------------+--------------+\n|            medium specific trailer (L2)           |\n+---------------------------------------------------+",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 30
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39b6430b_ae65b92e",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-21T18:54:16Z",
+      "side": 1,
+      "message": "I understand that we need to expose tag owner bit to the userspace, but what\u0027s the requirement for exposing the tag value?\nYou mention that \"If the `MCTP_TAG_OWNER` bit is set in this field, the `MCTP_TAG_VALUE`\nbits are ignored, and will be set by the kernel.\".\nWhat\u0027s the point of populating it on the receive side? In other words - how is userspace expected to use this information?\nDo we have a use case where both sides are using TO\u003d0 and using TAGs to match requests and responses? Or is it something else entirely?\nIf it\u0027s not needed, perhaps we could keep this limited to tag-owner bit?",
+      "range": {
+        "startLine": 125,
+        "startChar": 1,
+        "endLine": 125,
+        "endChar": 42
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f159b9f_4d44a0d8",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-21T18:54:16Z",
+      "side": 1,
+      "message": "Are we also going to only send messages with TO bit clear (responses) through the bound socket?",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 16
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37c2dc6a_6b891094",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-21T18:54:16Z",
+      "side": 1,
+      "message": "I understand the need for *ANY* on network and source address, but what\u0027s the use case for *ANY* type?\n\nIt feels like we\u0027re trying to fit all of the MCTP layers inside a single protocol.\nIf we\u0027re implementing MCTP L4 - we should leave \"MCTP_TYPE_ANY\" to clients that operate directly on L3, similar to how there\u0027s no \"TCP/UDP wildcard\" for listening on all ports.\nI guess in our case a catch-all type would also mean implementing SOCK_RAW? Or we could also express that using protocol field?\n\nFor example:\n    struct sockaddr_mctp addr;\n\n    int sd \u003d socket(AF_MCTP, SOCK_DGRAM, 0);\n    addr.smctp_network \u003d MCTP_NET_ANY;\n    addr.smctp_addr.s_addr \u003d MCTP_ADDR_ANY;\n    addr.smctp_type \u003d MCTP_TYPE_ANY;\n    int rc \u003d bind(sd, (struct sockaddr *)\u0026addr, sizeof(addr));\n\nCould become:\n    struct sockaddr_mctp addr;\n\n    int sd \u003d socket(AF_MCTP, SOCK_DGRAM, MCTPPROTO_L3);\n    /* Or socket(AF_MCTP, SOCK_RAW, 0) */\n    addr.smctp_network \u003d MCTP_NET_ANY;\n    addr.smctp_addr.s_addr \u003d MCTP_ADDR_ANY;\n    /* This would be ignored by the kernel: addr.smctp_type \u003d MCTP_TYPE_ANY; */\n    int rc \u003d bind(sd, (struct sockaddr *)\u0026addr, sizeof(addr));\n\nThe userspace would need to deal with handling the full transport (L3) header. And we can also require CAP_NET_RAW, similar to IP protocol.",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 68
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "495ebb58_7225ec43",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-21T18:54:16Z",
+      "side": 1,
+      "message": "What if it\u0027s not set?\nSay we\u0027re doing a \"connect()\" with tag owner bit cleared and send a message.\nWhat do we use to get this message on the receive side?",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33a77682_6dd36336",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-21T18:54:16Z",
+      "side": 1,
+      "message": "nit: You should probably just use MCTP_TYPE_ECHO here ;) Unless this is a \"negative\" example that\u0027s going to return -EPROTO on sendto().",
+      "range": {
+        "startLine": 266,
+        "startChar": 1,
+        "endLine": 266,
+        "endChar": 28
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb2fdebc_59964970",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
