@@ -426,6 +426,30 @@
     },
     {
       "key": {
+        "uuid": "3b977c9e_d10a9ed2",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-22T07:31:39Z",
+      "side": 1,
+      "message": "I think the pros/cons I mentioned are buried in a comment somewhere to Sumanth. I think I should update the doc with the same. I can do that.",
+      "parentUuid": "f97710ac_7349329e",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdddc27f_2df3381a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
@@ -617,6 +641,24 @@
       "side": 1,
       "message": "Question is who will be cleaning up the staging area / maintaining it (with the optional proposal). \nAs of today,\n1. Phosphor-software-manager\n2. Power supply\n3. Optional intermediatery\n\nnow, if the image is not matching any of this, how each process knows the same and cleans it up ?",
       "parentUuid": "aa9d2fad_66f7a536",
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04b1c00b_2252550c",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-22T07:31:39Z",
+      "side": 1,
+      "message": "Each process does not need to know of the image. A process receives an image when someone delivers it to the staging area that the process watches. The process is responsible for cleaning up that staging area. If you mean to ask about a process that\u0027s responsible to catch images where the target has not been specified, then yes that\u0027s the intermediate service I\u0027ve been talking about. That has it\u0027s own staging area, which based on the implementation can be the same staging area that p-s-m watches today (and p-s-m could be the intermediate service as well).",
+      "parentUuid": "6825e891_7236996c",
       "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
