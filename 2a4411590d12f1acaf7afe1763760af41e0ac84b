@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "570f6126_81fb18d9",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "Better to remove \"(non-bridged)\" here (I believe your intention is to say that different networks bridging is not allowed).\n\nBut inside the distinct network there can be bridge too (inside that network system).",
+      "range": {
+        "startLine": 26,
+        "startChar": 24,
+        "endLine": 26,
+        "endChar": 37
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6fd9ae9_810ab235",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "Each network can have multiple physical interfaces too. \n\nI meant, BMC to PCIe Add-on controller can have I2C, and Add-on-controller FW can have it\u0027s own Network to query lot of information internally, and can have I2C, Serial, I3C etc.",
+      "range": {
+        "startLine": 29,
+        "startChar": 26,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3d65858a_0498db63",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -49,6 +95,47 @@
     },
     {
       "key": {
+        "uuid": "bc4d8918_2ecbe927",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "Between network bridging is not allowed. Only inside that network it is allowed.",
+      "parentUuid": "3d65858a_0498db63",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 0
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ffc818a_44a380c8",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "From the above, I infer that Infrastructure configuration for the following will be supported and expect it should be our goal.\n1. MCTP device acting like a static / dynamic Endpoint\n2. MCTP device acting like B.O and using the programmable EID Pool, or EID pool queried from Topmost B.O.\n(In this providing mechanism to detect new device presence or reset using physical interface logic or through MCTP protocol logic (discovery)).\n3. MCTP device acting as Topmost B.O.\n4. MCTP device working in multiple physical interfaces \u0026 providing Bridging functionality within that network\n5. MCTP device in multiple network (multiple sub-system).",
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "43fe387e_e8aadd02",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -93,6 +180,30 @@
       "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "43007263_551f169b",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "How about handling all MCTP control through MCTPD process in first phase \u0026 in later phase for better optimization simple commands can be responded (say responding GetEID / GetMCTP message types) etc. with options for MCTPD to configure it in kernel.\n\nI see following is specified to be covered in Kernel\n\n1. MCTP packets assembly / disassembly and accordingly forwarding / receiving to/from user space based on Message Type. \n2. MCTP bridge, and forwarding the packet directly in kernel\n3. Kernel providing configuration facility such that MCTPD process / configuration is sent to Kernel (related to network, Endpoint or Bridge-B.O (or Topmost) - using static EID / EID Pool / dynamic query etc.) with multiple network.\n\nAny way for Peer-to-peer setting static EID configuration is fine and none of the MCTP control packet message needs to be handled?",
+      "parentUuid": "43fe387e_e8aadd02",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
@@ -183,6 +294,29 @@
         "startChar": 1,
         "endLine": 125,
         "endChar": 42
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29e460cf_cf18a3b1",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "nit: typo smctp_addr",
+      "range": {
+        "startLine": 179,
+        "startChar": 1,
+        "endLine": 179,
+        "endChar": 10
       },
       "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -284,6 +418,53 @@
     },
     {
       "key": {
+        "uuid": "15bcb383_882f3863",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "Iwona, in that case how we will specify the needed TYPE? With any full match is possible, but what about restricted. Say PLDM daemon want to monitor only PLDM message types, how that can be specified here? we need to specify smctp_type. \nThe only question is are we plan to map it to the bit position so that multiple combination is possible (Even though not sure, who will use it like that).",
+      "parentUuid": "37c2dc6a_6b891094",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 68
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a59611de_7562221c",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "how about communication in which EID is not set yet. In that case, how the device will be differentiated?",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 30
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "495ebb58_7225ec43",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -324,6 +505,29 @@
         "startChar": 8,
         "endLine": 236,
         "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be8765a9_d0142ace",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "thought this will do the substitution to the MCTP message type, so @266 is redundant right? or is it limited only to filtering?",
+      "range": {
+        "startLine": 263,
+        "startChar": 4,
+        "endLine": 263,
+        "endChar": 37
       },
       "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -472,6 +676,52 @@
     },
     {
       "key": {
+        "uuid": "b768a6b6_f06e94e3",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "You meant to say for the current sent packet. So, if we do multiple commands are sent, with TagOwner set, then in order to know the tagValue, getsockname() needs to be called after each send()",
+      "range": {
+        "startLine": 350,
+        "startChar": 0,
+        "endLine": 352,
+        "endChar": 6
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8aa58a96_ecee2095",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "to be used in case of NULL EID right?",
+      "range": {
+        "startLine": 358,
+        "startChar": 0,
+        "endLine": 384,
+        "endChar": 0
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "439cc78d_b170cf41",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -516,6 +766,29 @@
       "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef60a17e_521a6ca9",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T09:14:08Z",
+      "side": 1,
+      "message": "Not clear when this is required.\nI meant once response with multiple MCTP Packets(SOM to EOM - i.e. Proper MCTP message response), is received then the tag value can be cleaned and reused as per the timeout. Why do we expect to hold it, even after receiving the response?",
+      "range": {
+        "startLine": 401,
+        "startChar": 0,
+        "endLine": 404,
+        "endChar": 36
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
