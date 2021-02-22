@@ -354,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "f368d82b_1be10179",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T05:43:55Z",
+      "side": 1,
+      "message": "My question, which one will be a better option (related to Pros / Cons \u0026 simplicity).\n\n1. Have a intermediate which will determine things and accordingly forward the same to necessary update service\nor\n2. Maintaining both direct models for target and intermediator too?",
+      "parentUuid": "794a9017_36c75474",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdddc27f_2df3381a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
@@ -491,6 +515,24 @@
       "side": 1,
       "message": "I think we might be talking about multiple things here. This is my take away:\n- PLDM fw update package is self-describing\n- We don\u0027t want to enforce PLDM-processing capabilities to be implemented in the phosphor-sfotware-manager code\n- I know this is Redfish specific, but we must talk about it in this design. Redfish\u0027s update service says *both*: a) A user must be able to upload an image to the BMC without specifying a target (and the BMC must determine and then apply that to appropriate targets). 2) A user must be able to specify the target for an image. The proposed design here enables both possibilites.",
       "parentUuid": "84f9fa5c_c2f647a8",
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b53ce81b_d326ab7f",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T05:43:55Z",
+      "side": 1,
+      "message": "Not saying it needs to be implemented in phosphor-software-manager. Because the earlier design requires some D-Bus API update which needs to be taken care.\n\nWhat i meant to say is why can\u0027t we go for a Intermediator, which takes care and define proper D-Bus API (Acceptable) to the update service ? (whether the phosphor-software-manager / or new daemon is also fine).",
+      "parentUuid": "5935e44e_e17c117c",
       "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
