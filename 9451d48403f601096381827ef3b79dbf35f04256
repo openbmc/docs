@@ -211,6 +211,24 @@
       "revId": "9451d48403f601096381827ef3b79dbf35f04256",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbf5868c_755c4d2c",
+        "filename": "designs/guard_on_bmc.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-02-22T16:38:28Z",
+      "side": 1,
+      "message": "I’m still confused then.  I missed that you wrote “no requirement to _manually_ guard a sub-unit” but I guess that means you still want to be able to guard them.  Why aren’t they their own inventory items then?\n\nYou used “memory controller” as an example, but most of the Power chips have multiple memory controllers.  You’re going to need some way to indicate _which_ MC is guarded so that the right one is taken offline.  I think you need an inventory item to represent that entity.",
+      "parentUuid": "ff649346_4488a86a",
+      "revId": "9451d48403f601096381827ef3b79dbf35f04256",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
