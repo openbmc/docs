@@ -330,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "794a9017_36c75474",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-22T05:06:14Z",
+      "side": 1,
+      "message": "From the Redfish update service schema on the use of HttpPushUriTargets:\n\n\"This property shall contain zero or more URIs that indicate where to apply the update image when using the URI specified by the HttpPushUri property to push a software image. These targets should correspond to SoftwareInventory instances or their related items. If this property is not present or contains no targets, the service shall apply the software image to all applicable targets, as determined by the service.\"\n\nSo a target may or may not be specified. The proposed design handles both scenarios. I don\u0027t want to comment on which is the majority. I know of platforms where we will rely on the target. I think that statistic is irrelevant as long as we make both options possible.",
+      "parentUuid": "9e6f2f10_28129ffc",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdddc27f_2df3381a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
@@ -449,6 +473,24 @@
       "side": 1,
       "message": "PLDM spec already defined how to correlate an image to the device (through it\u0027s meta data). i.e. Say a NIC device binary blob will be encapsulated with PLDM header (which will be used to tell, to what devices it supports). It also has a header to differentiate between PLDM \u0026 any other image type.\nNote: This is without any image verification / signing which BMC may be required. \n\nhttps://github.com/Intel-BMC/openbmc/blob/intel/meta-openbmc-mods/meta-common/recipes-phosphor/flash/phosphor-software-manager/0016-Process-PLDM-image-type.patch#L75",
       "parentUuid": "e9ff5139_4ad42557",
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5935e44e_e17c117c",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-22T05:06:14Z",
+      "side": 1,
+      "message": "I think we might be talking about multiple things here. This is my take away:\n- PLDM fw update package is self-describing\n- We don\u0027t want to enforce PLDM-processing capabilities to be implemented in the phosphor-sfotware-manager code\n- I know this is Redfish specific, but we must talk about it in this design. Redfish\u0027s update service says *both*: a) A user must be able to upload an image to the BMC without specifying a target (and the BMC must determine and then apply that to appropriate targets). 2) A user must be able to specify the target for an image. The proposed design here enables both possibilites.",
+      "parentUuid": "84f9fa5c_c2f647a8",
       "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
