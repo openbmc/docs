@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "94a3f23e_7107dff6",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-22T09:49:20Z",
+      "side": 1,
+      "message": "\u003e Each network can have multiple physical interfaces too. \n\u003e \n\nThis is covered by the bullet on line 23 right?",
+      "parentUuid": "a6fd9ae9_810ab235",
+      "range": {
+        "startLine": 29,
+        "startChar": 26,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3d65858a_0498db63",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -136,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "779daa2e_4134f60d",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-22T09:49:20Z",
+      "side": 1,
+      "message": "Yes, all of these cases should be supported.",
+      "parentUuid": "7ffc818a_44a380c8",
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "43fe387e_e8aadd02",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -195,6 +237,30 @@
       "side": 1,
       "message": "How about handling all MCTP control through MCTPD process in first phase \u0026 in later phase for better optimization simple commands can be responded (say responding GetEID / GetMCTP message types) etc. with options for MCTPD to configure it in kernel.\n\nI see following is specified to be covered in Kernel\n\n1. MCTP packets assembly / disassembly and accordingly forwarding / receiving to/from user space based on Message Type. \n2. MCTP bridge, and forwarding the packet directly in kernel\n3. Kernel providing configuration facility such that MCTPD process / configuration is sent to Kernel (related to network, Endpoint or Bridge-B.O (or Topmost) - using static EID / EID Pool / dynamic query etc.) with multiple network.\n\nAny way for Peer-to-peer setting static EID configuration is fine and none of the MCTP control packet message needs to be handled?",
       "parentUuid": "43fe387e_e8aadd02",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b847e58_b7269eee",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-22T09:49:20Z",
+      "side": 1,
+      "message": "\u003e How about handling all MCTP control through MCTPD process in first phase \u0026 in later phase for better optimization simple commands can be responded (say responding GetEID / GetMCTP message types) etc. with options for MCTPD to configure it in kernel.\n\nI\u0027d want to see evidence of needing the lower latency before pushing more complexity into the kernel.",
+      "parentUuid": "43007263_551f169b",
       "range": {
         "startLine": 55,
         "startChar": 0,
@@ -465,6 +531,30 @@
     },
     {
       "key": {
+        "uuid": "cb2575f0_4098a6e0",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-22T09:49:20Z",
+      "side": 1,
+      "message": "I think this should be covered by `MCTP_ADDR_EXT`?",
+      "parentUuid": "a59611de_7562221c",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 30
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "495ebb58_7225ec43",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -523,6 +613,30 @@
       "writtenOn": "2021-02-22T09:14:08Z",
       "side": 1,
       "message": "thought this will do the substitution to the MCTP message type, so @266 is redundant right? or is it limited only to filtering?",
+      "range": {
+        "startLine": 263,
+        "startChar": 4,
+        "endLine": 263,
+        "endChar": 37
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6778bd5_87494748",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-22T09:49:20Z",
+      "side": 1,
+      "message": "The current thought is to later add more `protocol` options for the socket() call which would include manipulating the message to check the IC and strip the type byte based on the protocol. Conflicting values for addr.smctp_type and the first byte of the message for socket(AF_MCTP, SOCK_DGRAM, 0) is an error.",
+      "parentUuid": "be8765a9_d0142ace",
       "range": {
         "startLine": 263,
         "startChar": 4,
@@ -699,6 +813,30 @@
     },
     {
       "key": {
+        "uuid": "3d7171b5_ccf98866",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-22T09:49:20Z",
+      "side": 1,
+      "message": "Yeah I think this needs some clarification. Another straw-person idea is only allowing it for connected sockets?",
+      "parentUuid": "b768a6b6_f06e94e3",
+      "range": {
+        "startLine": 350,
+        "startChar": 0,
+        "endLine": 352,
+        "endChar": 6
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8aa58a96_ecee2095",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -710,6 +848,30 @@
       "writtenOn": "2021-02-22T09:14:08Z",
       "side": 1,
       "message": "to be used in case of NULL EID right?",
+      "range": {
+        "startLine": 358,
+        "startChar": 0,
+        "endLine": 384,
+        "endChar": 0
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94ad7f6e_d687e1be",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-22T09:49:20Z",
+      "side": 1,
+      "message": "Yes",
+      "parentUuid": "8aa58a96_ecee2095",
       "range": {
         "startLine": 358,
         "startChar": 0,
@@ -780,6 +942,30 @@
       "writtenOn": "2021-02-22T09:14:08Z",
       "side": 1,
       "message": "Not clear when this is required.\nI meant once response with multiple MCTP Packets(SOM to EOM - i.e. Proper MCTP message response), is received then the tag value can be cleaned and reused as per the timeout. Why do we expect to hold it, even after receiving the response?",
+      "range": {
+        "startLine": 401,
+        "startChar": 0,
+        "endLine": 404,
+        "endChar": 36
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e52db383_75620f12",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-22T09:49:20Z",
+      "side": 1,
+      "message": "See the discussion on line 922 onwards.",
+      "parentUuid": "ef60a17e_521a6ca9",
       "range": {
         "startLine": 401,
         "startChar": 0,
@@ -871,6 +1057,30 @@
       "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f02c2db7_3135fb81",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-22T09:49:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "88ffdd95_d4d5a00c",
+      "range": {
+        "startLine": 684,
+        "startChar": 66,
+        "endLine": 685,
+        "endChar": 14
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
