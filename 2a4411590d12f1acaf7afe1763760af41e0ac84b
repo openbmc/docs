@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e91da901_8f9ba6af",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "Yep, good point, I\u0027ll be explicit about the bridging too.",
+      "parentUuid": "3d65858a_0498db63",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 0
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "43fe387e_e8aadd02",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "f6050bed_0106ac18",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "Yes, that\u0027s correct - discovery would be implemented in mctpd. I\u0027ll include the \u0027static\u0027 qualifier there.",
+      "parentUuid": "43fe387e_e8aadd02",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57464f89_863140b1",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2021-02-21T18:54:16Z",
       "side": 1,
       "message": "We operate directly at the transport layer (L3), and yet we expose the type (L4) both in the address and in the packet. If we include IC bit in the address, we could drop message type byte (with IC bit) from the messages exposed to userspace. The integrity check at the end is problematic. We\u0027re still not separating the layers clearly (because it\u0027s not fully defined in L4 and depends on L5 - we\u0027d need to have knowledge of all L5 protocols in kernel in order to compute the integrity... and as you already mentioned elsewhere in this document - we don\u0027t want to do that), but at least we\u0027re only leaking the \"trailer\" part of L4 and we won\u0027t need to check whether first byte of every sent message matches what\u0027s in the address.\n\nIncluding a drawing as reference for further comments:\n \n+---------------------------------------------------+\n|              medium specific header (L2)          |\n+---------------------------------------------------+\n|               transport header (L3)               |\n+-------------+-------------------------------------+\n|msg type (L4)|     message (L5)                    |\n+-------------+                      +--------------+\n|                                    | msg IC (L4)  |\n+------------------------------------+--------------+\n|            medium specific trailer (L2)           |\n+---------------------------------------------------+",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 30
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e92b790b_5774b551",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "I\u0027ve been considering a lot of options here; as you\u0027ve mentioned, there\u0027s a bit of difficulty here in that there\u0027s a bit of cross-layer dependencies as defined in the spec. I like your diagram, thanks for that!\n\nI would really prefer for the kernel to strip the message type byte, as it\u0027s redundant if we\u0027re also including it in the addressing information, and slightly more onerous for the applications to have to handle it themselves.\n\nDespite this though, I don\u0027t think that the other options are an improvement. If we\u0027re stripping the msg type byte, but not the IC, then the kernel interface is half-L3, half-L4.\n\nSo, having the kernel/userspace boundary correspond to the L3/L4 boundary seems to be the neatest approach. This has the advantage of corresponding to how the L5 specs are written - they all include the message type \u0026 IC bytes in their message descriptions.\n\nKeep in mind too that the message type specification may be larger than a byte; the vendor-defined types will be up to 5 bytes long. If we can avoid splitting those up, that would be slightly better.\n\nIf we do find a neat way to strip the message-type byte, I\u0027d be keen to adopt it, but all my approaches so far have just involved a whole lot of layering-violations!\n\nMy intention for allowing the kernel to work on the layer-4 data is by adding specific protocol support, via the \u0027protocol\u0027 option to socket(), allowing L4-specific message handling, which may handle the type and IC as required for that protocol. Those implementations aren\u0027t covered by this though, so I don\u0027t want to specify too much there.",
+      "parentUuid": "57464f89_863140b1",
       "range": {
         "startLine": 109,
         "startChar": 0,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "637356af_3897be6a",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "\u003e I understand that we need to expose tag owner bit to the userspace, but what\u0027s the requirement for exposing the tag value?\n\u003e What\u0027s the point of populating it on the receive side? In other words - how is userspace expected to use this information?\n\nUserspace needs to specify the tag value of an outgoing TO\u003d0 message.\n\nConsider a responder, performing a recvmsg() to receive incoming requests. Those request messages will have TO\u003d1, and a tag value generated by the remote peer.\n\nThe responder is required to use the same tag value in the response; so it will pass the incoming tag value, but with TO\u003d0, to the sendmsg() call to transmit the reply. The kernel will transmit this message with the TO and tag value as-is.\n\nEssentially, we need some way for userspace to provide an outgoing TO\u003d0 value, which comes from the original request. So, the struct sockaddr_mctp needs to provide this on the receive side.\n\nBecause there may be multiple requests in-flight, the kernel cannot handle the outgoing tag values automatically; only userspace has the knowledge of which responses correspond to which requests.\n\n\u003e Do we have a use case where both sides are using TO\u003d0 and using TAGs to match requests and responses?\n\nThe tag value needs to come from somewhere, so I can\u0027t see how both sides using TO\u003d0 would be possible...\n\n\u003e If it\u0027s not needed, perhaps we could keep this limited to tag-owner bit?\n\nI can\u0027t see a way to avoid needing it.",
+      "parentUuid": "39b6430b_ae65b92e",
+      "range": {
+        "startLine": 125,
+        "startChar": 1,
+        "endLine": 125,
+        "endChar": 42
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f159b9f_4d44a0d8",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -105,6 +201,30 @@
       "writtenOn": "2021-02-21T18:54:16Z",
       "side": 1,
       "message": "Are we also going to only send messages with TO bit clear (responses) through the bound socket?",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 16
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "695d1276_36fb2bb4",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "Not necessarily; it\u0027s still possible to send TO\u003d1 messages through that bound socket. This will elicit the same behaviour as any other TO\u003d1 transmit.\n\n[it doesn\u0027t sound like a fantastic idea, but no specific reason for the kernel to forbid it]",
+      "parentUuid": "0f159b9f_4d44a0d8",
       "range": {
         "startLine": 183,
         "startChar": 0,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "47a7b301_99db34fc",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "A potential use-case for the ANY type is to allow a single application to handle all MCTP traffic. I wouldn\u0027t encourage the design, but some folks may find it useful.\n\nMy original intention for SOCK_RAW was for packet-level headers, but that\u0027s probably better handled by a packet socket instead.\n\nWe could instead do this with SOCK_RAW, yes; I\u0027m OK with either option, and happy to remove the ANY type. In fact, it may be better to remove the ANY type regardless, until we have a solid use-case.",
+      "parentUuid": "37c2dc6a_6b891094",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 68
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "495ebb58_7225ec43",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -151,6 +295,30 @@
       "writtenOn": "2021-02-21T18:54:16Z",
       "side": 1,
       "message": "What if it\u0027s not set?\nSay we\u0027re doing a \"connect()\" with tag owner bit cleared and send a message.\nWhat do we use to get this message on the receive side?",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "184e8932_c6f84bc7",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "Like the send functions, specifying a tag value with TO\u003d0 will use the tag value as-is.\n\nI\u0027ll add this case in the text.",
+      "parentUuid": "495ebb58_7225ec43",
       "range": {
         "startLine": 236,
         "startChar": 8,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "bba6e62f_3d7134a9",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "Ah, good catch! This isn\u0027t supposed to be a negative example, I\u0027ll fix this up.",
+      "parentUuid": "33a77682_6dd36336",
+      "range": {
+        "startLine": 266,
+        "startChar": 1,
+        "endLine": 266,
+        "endChar": 28
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb2fdebc_59964970",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -206,6 +398,30 @@
       "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b0badda_77cf87e2",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "Good call, changed.",
+      "parentUuid": "bb2fdebc_59964970",
+      "range": {
+        "startLine": 294,
+        "startChar": 41,
+        "endLine": 294,
+        "endChar": 64
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "f9475a7c_3a8e147a",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "That\u0027s much better, thanks.",
+      "parentUuid": "ce4a36ec_460d26bb",
+      "range": {
+        "startLine": 295,
+        "startChar": 58,
+        "endLine": 298,
+        "endChar": 31
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "439cc78d_b170cf41",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "a71a55b9_337c5e3a",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "Ah yes, I was planning this and it slipped through. Deleted.",
+      "parentUuid": "439cc78d_b170cf41",
+      "range": {
+        "startLine": 402,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 8
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4885f5f_88c71d6e",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -272,6 +536,24 @@
     },
     {
       "key": {
+        "uuid": "8d5d3c3f_b70ea364",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b4885f5f_88c71d6e",
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5382c7b_fea2856e",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -283,6 +565,30 @@
       "writtenOn": "2021-02-19T09:49:31Z",
       "side": 1,
       "message": "I still think this should be something like (\u0027destination EID\u0027, \u0027source EID\u0027, ...) for consistent language and to differentiate from other types of address like physical addresses.\n\nI also asked about the TO bit, but I wasn\u0027t necessarily advocating for it\u0027s inclusion, was just asking whether you intended it to be. So now I have to ask whether we need to capture the TO bit? We don\u0027t need to correlate for a responder, so it seems to me it\u0027s implicit that the tag-owner value is always 1?",
+      "range": {
+        "startLine": 684,
+        "startChar": 66,
+        "endLine": 685,
+        "endChar": 14
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88ffdd95_d4d5a00c",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-22T04:12:30Z",
+      "side": 1,
+      "message": "Yep, good call, I\u0027ll adjust the terms there to be consistent.\n\nI think it\u0027s better to include tag-owner in that set there; even though it may not exist in the kernel data structure for these mappings, we do need to match TO on the incoming packets.",
+      "parentUuid": "c5382c7b_fea2856e",
       "range": {
         "startLine": 684,
         "startChar": 66,
