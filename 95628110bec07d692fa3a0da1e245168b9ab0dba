@@ -402,6 +402,30 @@
     },
     {
       "key": {
+        "uuid": "f97710ac_7349329e",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T07:13:43Z",
+      "side": 1,
+      "message": "Yes, but i am saying we need to evaluate the same based on Pros / Cons, with all options, instead of technical possibility and accordingly choose better option. Don\u0027t want to end up in a model, which needs to be changed / providing with different option at later stage.",
+      "parentUuid": "edeb8ab8_9f23de87",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdddc27f_2df3381a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
@@ -575,6 +599,24 @@
       "side": 1,
       "message": "This design doesn\u0027t preclude an optional intermediate non-PLDM service for handling things like image signature verification, etc. However I\u0027m not convinced we should mandate this, and moreover have the intermediate service implement the Software Management D-Bus API. What I\u0027ve proposed contains the implementation of the Software D-Bus API within PLDM, with the optional use of an intermediate service. I\u0027m yet to see feedback on why the latter is not possible (I see staging area cleanup being mentioned, but no details on what the problem there is).",
       "parentUuid": "b53ce81b_d326ab7f",
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6825e891_7236996c",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-02-22T07:13:43Z",
+      "side": 1,
+      "message": "Question is who will be cleaning up the staging area / maintaining it (with the optional proposal). \nAs of today,\n1. Phosphor-software-manager\n2. Power supply\n3. Optional intermediatery\n\nnow, if the image is not matching any of this, how each process knows the same and cleans it up ?",
+      "parentUuid": "aa9d2fad_66f7a536",
       "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
