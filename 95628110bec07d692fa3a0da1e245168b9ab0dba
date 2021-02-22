@@ -378,6 +378,30 @@
     },
     {
       "key": {
+        "uuid": "edeb8ab8_9f23de87",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-22T06:50:01Z",
+      "side": 1,
+      "message": "Right, what I\u0027m not convinced about is mandating an intermediate service. An implementation could have it if intermediate non-PLDM things are to be dealt with. What implements the image manager and item updater - I\u0027m proposing that should be in the pldmd, which is possible even if there is an intermediate service.",
+      "parentUuid": "f368d82b_1be10179",
+      "range": {
+        "startLine": 444,
+        "startChar": 36,
+        "endLine": 444,
+        "endChar": 60
+      },
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdddc27f_2df3381a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
@@ -533,6 +557,24 @@
       "side": 1,
       "message": "Not saying it needs to be implemented in phosphor-software-manager. Because the earlier design requires some D-Bus API update which needs to be taken care.\n\nWhat i meant to say is why can\u0027t we go for a Intermediator, which takes care and define proper D-Bus API (Acceptable) to the update service ? (whether the phosphor-software-manager / or new daemon is also fine).",
       "parentUuid": "5935e44e_e17c117c",
+      "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa9d2fad_66f7a536",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-22T06:50:01Z",
+      "side": 1,
+      "message": "This design doesn\u0027t preclude an optional intermediate non-PLDM service for handling things like image signature verification, etc. However I\u0027m not convinced we should mandate this, and moreover have the intermediate service implement the Software Management D-Bus API. What I\u0027ve proposed contains the implementation of the Software D-Bus API within PLDM, with the optional use of an intermediate service. I\u0027m yet to see feedback on why the latter is not possible (I see staging area cleanup being mentioned, but no details on what the problem there is).",
+      "parentUuid": "b53ce81b_d326ab7f",
       "revId": "95628110bec07d692fa3a0da1e245168b9ab0dba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true

@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "8f56a7d8_0edef96a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-22T06:50:01Z",
+      "side": 1,
+      "message": "Different than the spec? I don\u0027t see how. The spec allows for what I\u0027ve mentioned in line 416 based on the PLDM fw update image layout.",
+      "parentUuid": "3785d2b2_4ef5ecf0",
+      "range": {
+        "startLine": 413,
+        "startChar": 0,
+        "endLine": 417,
+        "endChar": 31
+      },
+      "revId": "606d60e2416e5d5ec2544b45c26c032f5da765c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec911aa9_5e5ba8b5",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 2
@@ -287,6 +311,30 @@
     },
     {
       "key": {
+        "uuid": "49a3b71c_f666307a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-22T06:50:01Z",
+      "side": 1,
+      "message": "\u003e 1. How multiple staging area size s going to be maintained? Are we going to limit for each or combined limitation? or no limitation.\nI don\u0027t understand this question, sorry.\n\n\u003e 2. Cleanup of staging area, when the optional pre-processing is done? How we will determine, who has to clean the same ? How it will co-work with existing staging area watchers\nWith the current proposal, two different services are not watchin the same staging area. When a service is done with its handling of an image, it clears the staging area, and it might optionally have to move the whole or part of the image other staging areas.",
+      "parentUuid": "1de677bb_aacd0098",
+      "range": {
+        "startLine": 466,
+        "startChar": 34,
+        "endLine": 470,
+        "endChar": 77
+      },
+      "revId": "606d60e2416e5d5ec2544b45c26c032f5da765c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce803bba_c444512d",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 2
@@ -394,6 +442,30 @@
       "side": 1,
       "message": "1. How we will make sure, which daemon\u0027s responsibility to clean the staging area, when the image download is not matching / corrupted?\n2. How different user interface update mechanism works. Protection against Redfish / IPMI / any other interface requesting update too.",
       "parentUuid": "bf6c5b7e_926ecdc6",
+      "range": {
+        "startLine": 571,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 49
+      },
+      "revId": "606d60e2416e5d5ec2544b45c26c032f5da765c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c1daf65_c1ffb086",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-22T06:50:01Z",
+      "side": 1,
+      "message": "I answered 1) in another comment. I think I need more details about what you\u0027re saying in 2. Can you take an example and explain?",
+      "parentUuid": "d237126f_ff025239",
       "range": {
         "startLine": 571,
         "startChar": 0,
@@ -560,6 +632,30 @@
       "side": 1,
       "message": "It has been mentioned as \"must be handled by the PLDM Service\"",
       "parentUuid": "e4819820_31f0c2f1",
+      "range": {
+        "startLine": 612,
+        "startChar": 55,
+        "endLine": 613,
+        "endChar": 79
+      },
+      "revId": "606d60e2416e5d5ec2544b45c26c032f5da765c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "923d94c7_7009b502",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-02-22T06:50:01Z",
+      "side": 1,
+      "message": "It\u0027s an if-then clause. The \"if\" is not mandatory.",
+      "parentUuid": "bb5d93a6_98292ada",
       "range": {
         "startLine": 612,
         "startChar": 55,
