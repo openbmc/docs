@@ -932,6 +932,30 @@
     },
     {
       "key": {
+        "uuid": "c8945126_3281cd8c",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-23T23:59:58Z",
+      "side": 1,
+      "message": "\u003e But (and please correct me if I\u0027m wrong) the only way to receive a TO\u003d1 message is to create a socket and use bind(), right?\n\nRight, that\u0027s my understanding.\n\n\u003e In other words - the process already has a way to send a response (TO\u003d0 message), and that\u0027s using the socket that has been \"bound\". Why do we want to allow using a separate, completely unrelated and not \"bound\" socket on which we\u0027re going to use connect() with TO\u003d0 (or allow using sendmsg() with TO\u003d0 on a socket that\u0027s not \"bound\")?\n\nSo what you\u0027re suggesting is that the bind() state of a socket is enough to accept or reject send*() calls with TO\u003d0?\n\nJeremy: Does bind() constrain the message type for send*() calls? I don\u0027t think even connect() constrains the message type for subsequent send{to,msg}() calls on the same socket? My understanding is we require that the provided struct sockaddr_mctp smctp_type value matches the bottom 7 bits of the message type byte in the message buffer, right?\n\nI think Iwona\u0027s suggestion could work so long as we specify that bind() will give EADDRINUSE if multiple applications attempt to bind to the same message type (do we want allow SO_REUSEPORT?), _and_ that bound sockets constrain to send{to,msg}() to the bound message type.\n\nHowever, it does leave a class of errors on the table, namely that any bound socket can send a TO\u003d0 message to a terminus from which we haven\u0027t received a TO\u003d1 message. Further, without constraining bound sockets to the one message type, not filtering send*() by TO\u003d1 terminus IDs associated with the socket means (malicious) process B could work around the constraint by just first binding the socket to an arbitrary message type.\n\nSo I still think filtering send*() calls based on the terminus set associated with the socket might be a good idea.",
+      "parentUuid": "b533c69d_b330f4d0",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be8765a9_d0142ace",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
