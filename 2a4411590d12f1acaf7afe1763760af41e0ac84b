@@ -722,6 +722,30 @@
     },
     {
       "key": {
+        "uuid": "3387f8d8_86433427",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-23T04:50:33Z",
+      "side": 1,
+      "message": "Let\u0027s assume these processes are using different sockets, i.e. haven\u0027t shared the socket somehow (fork or fd-passing).\n\nI think we could fix this with the same correlation table we use to track TO\u003d0 responses for a connect()ed socket: For bind() sockets, receipt of a TO\u003d1 message has happen before the TO\u003d0 response is sent. For all sockets, we can error out calls to send*() for messages with TO\u003d0 if the socket has no appropriate terminus record with TO\u003d1 for the provided tag. This would prevent transmission of the bogus message in your example.\n\nThoughts?",
+      "parentUuid": "b1de67d3_1a7f8293",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be8765a9_d0142ace",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
