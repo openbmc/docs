@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2afe42_35dead9e",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-02-23T09:25:39Z",
+      "side": 1,
+      "message": "Is there a reason to change from the current bmc label?\n\nThis would allow the base image to continue to be include in the dts, and the redundancy would\njust add the additional golden flash with optionally designated label for the golden rwfs if that is to be updated.",
+      "revId": "58c2f25c5e1cc48bb06167821c7a78858d2c1a21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47c53644_1a86d155",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-02-23T09:25:39Z",
+      "side": 1,
+      "message": "Actually coming back to this after reading some history, is flash1 the second chip select?   \nIf so why would we not label this flash \"golden\"?",
+      "revId": "58c2f25c5e1cc48bb06167821c7a78858d2c1a21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc12336c_6aaa8bea",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-02-23T09:25:39Z",
+      "side": 1,
+      "message": "to avoid loss of control, I suggest syncing to the golden rwfs be a separate api that proves the settings are usable (eg the network is accesable and the/a password was used to authenticate)",
+      "revId": "58c2f25c5e1cc48bb06167821c7a78858d2c1a21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15a3f1fb_b9c60752",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-02-23T09:25:39Z",
+      "side": 1,
+      "message": "Be more specific, same as single static image?",
+      "revId": "58c2f25c5e1cc48bb06167821c7a78858d2c1a21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fde9147_47e07af4",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-02-23T09:25:39Z",
+      "side": 1,
+      "message": "Does the update use the new user/password or the user/password of the current image?\n\nWhat if one flashes a new image and doesn\u0027t know the password for  the new image?\n\nThis points out that the sync should be from the current image, but not the on being loaded.",
+      "revId": "58c2f25c5e1cc48bb06167821c7a78858d2c1a21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4eef76b_1d99cd3b",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-02-23T09:25:39Z",
+      "side": 1,
+      "message": "in my proposal to update after using the image, this would not be true",
+      "revId": "58c2f25c5e1cc48bb06167821c7a78858d2c1a21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08124c73_8c541f9b",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-02-23T09:25:39Z",
+      "side": 1,
+      "message": "is there a reason not to sync?\n\nWe should probably have an option to clear the primary rwfs and then sync the network settings.\n\nIs there ever a case to sync the golden password to the primary image?   If the golden is factory and known to an attacker it can be propaged to a \"newer\" image.  However, if the primary is a vendor distribution then we would like to set a customized password before booting into it.",
+      "revId": "58c2f25c5e1cc48bb06167821c7a78858d2c1a21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b8c2cfc_0d47351a",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-02-23T09:25:39Z",
+      "side": 1,
+      "message": "If this was triggered from the reboot, its not a bootloader flag but a hardware latch that is cleared by triggering the side switch watchdog again, which can be made a reboot parameter.",
+      "revId": "58c2f25c5e1cc48bb06167821c7a78858d2c1a21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0b2c4fc_560d3976",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-02-23T09:25:39Z",
+      "side": 1,
+      "message": "once the image is written a hardware cycle will revert to the primary even if some of these later steps are incomplete unless the bootloader somehow checks some signature written late in this validation.",
+      "revId": "58c2f25c5e1cc48bb06167821c7a78858d2c1a21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ebb4af5_3ebe9540",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-02-23T09:25:39Z",
+      "side": 1,
+      "message": "Actually its a bit more nuanced with the aspeed.\n\nIf the watchdog has selected the alternate flash, the hardware either forces chip select 0 to be 1 (ast2400) or swaps chip 0 and 1.\n\nThe state of the watchdog can be read, but\n- for the 2400 the kernel will need to choose second image and clear the latch to access the first, and in addition there are concerns that chip 0 is not tuned\n- for 2500 and 2600 the code has to know to change behavior, but the dts can be the same",
+      "revId": "58c2f25c5e1cc48bb06167821c7a78858d2c1a21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ab805ac_d1bedc44",
+        "filename": "architecture/code-update/dual-flash-with-golden-image-design.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-02-23T09:25:39Z",
+      "side": 1,
+      "message": "The robot can force the watchdog at u-boot if enabled.",
+      "revId": "58c2f25c5e1cc48bb06167821c7a78858d2c1a21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
