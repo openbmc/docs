@@ -320,6 +320,30 @@
     },
     {
       "key": {
+        "uuid": "2739b546_cd85fdce",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-23T00:04:39Z",
+      "side": 1,
+      "message": "Ack (we can go back to this during implementation).",
+      "parentUuid": "e92b790b_5774b551",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 30
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39b6430b_ae65b92e",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -364,6 +388,30 @@
       "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3f98281_77a4059d",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-23T00:04:39Z",
+      "side": 1,
+      "message": "Thanks for the explanation. I thought about using ordering - but that doesn\u0027t make sense, we don\u0027t strictly require response for each request.",
+      "parentUuid": "637356af_3897be6a",
+      "range": {
+        "startLine": 125,
+        "startChar": 1,
+        "endLine": 125,
+        "endChar": 42
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -437,6 +485,30 @@
     },
     {
       "key": {
+        "uuid": "ffcfbd42_202c075a",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-23T00:04:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "695d1276_36fb2bb4",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 16
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37c2dc6a_6b891094",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -496,6 +568,30 @@
       "side": 1,
       "message": "Iwona, in that case how we will specify the needed TYPE? With any full match is possible, but what about restricted. Say PLDM daemon want to monitor only PLDM message types, how that can be specified here? we need to specify smctp_type. \nThe only question is are we plan to map it to the bit position so that multiple combination is possible (Even though not sure, who will use it like that).",
       "parentUuid": "37c2dc6a_6b891094",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 68
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90ffab20_7e91e6c2",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-23T00:04:39Z",
+      "side": 1,
+      "message": "Jeremy, best way of not encouraging such design would be to not include it in the first place ;) (but keeping things open for extension - if someone *really* requires this). On the other hand, if we add this now and then we realize that we don\u0027t want it - we may not be able to remove it (because someone is already using it without *really* requiring it, but removing it would break their application, and we don\u0027t want to break user applications).\n\nRichard, we won\u0027t. The concept of TYPE is not defined for lower layers - it\u0027s only defined for L4 and above (see my diagram in the previous comments).\n\nMy suggestion was just related to the \"MCTP_TYPE_ANY\" special wildcard value.\nI do believe that kernel-API should be designed based on specific use cases. I can see a use case for using sockets operating on lower layer - I can\u0027t see a use case for doing MCTP_TYPE_ANY.\n\nIf PLDM daemon wants to monitor only PLDM message types - it\u0027s going to just use:\nsocket(AF_MCTP, SOCK_DGRAM, 0), and pass MCTP_TYPE_PLDM as type.\nIf PLDM daemon wants to capture every possible message type - it\u0027s going to operate on the lower layer (where the concept of message type doesn\u0027t exist).\nIf you want to handle multiple types - you create multiple sockets and bind each one to different type.",
+      "parentUuid": "15bcb383_882f3863",
       "range": {
         "startLine": 195,
         "startChar": 0,
@@ -602,6 +698,30 @@
     },
     {
       "key": {
+        "uuid": "b1de67d3_1a7f8293",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-23T00:04:39Z",
+      "side": 1,
+      "message": "Hm... imagine the situation when one process calls bind() and another one calls connect() (or just uses sendmsg() directly):\n\nProcess A - \"bind() side\"\n    addr.smctp_family \u003d AF_MCTP;\n    addr.smctp_network \u003d 0;\n    addr.smctp_addr.s_addr \u003d 8;\n    addr.smctp_type \u003d MCTP_TYPE_ECHO;\nProcess B - \"connect() side\"\n    addr.smctp_family \u003d AF_MCTP;\n    addr.smctp_network \u003d 0;\n    addr.smctp_addr.s_addr \u003d 8;\n    addr.smctp_type \u003d MCTP_TYPE_ECHO;\n    addr.smctp_tag \u003d \u003cguess_a_value - it\u0027s just 3 bits, shouldn\u0027t be too hard\u003e;\n\nProcess B is free to create a socket and connect it to endpoint 8. Since its TO is 0, it\u0027s free to \"guess\" a tag value that is going to be used as a response by process A and send messages to endpoint 8 using it. Endpoint 8 will get the message from process B, and will interpret it as a response to its message (which was delivered to process A).\n\nIs that a problem? Or just something we have to accept? Or perhaps this can\u0027t happen?",
+      "parentUuid": "184e8932_c6f84bc7",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be8765a9_d0142ace",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -693,6 +813,30 @@
       "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7676695_81486195",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-23T00:04:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bba6e62f_3d7134a9",
+      "range": {
+        "startLine": 266,
+        "startChar": 1,
+        "endLine": 266,
+        "endChar": 28
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
