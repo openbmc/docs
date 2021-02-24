@@ -956,6 +956,30 @@
     },
     {
       "key": {
+        "uuid": "1dda9847_e031ab72",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-24T03:10:40Z",
+      "side": 1,
+      "message": "\u003e But (and please correct me if I\u0027m wrong) the only way to receive a TO\u003d1 message is to create a socket and use bind(), right?\n\nYes, I think that\u0027s a sensible call. My original intention was to *not* prohibit TO\u003d0 transmission for arbitrary tag values (perhaps the tag value was discovered through some other out-of-band mechanism), but that does cause the problems you\u0027ve outlined above.\n\nSo I\u0027m happy to prohibit sending where the TO\u003d0 tag value does not match an existing terminus, or depending on the bind() state - the choice of which depends on the outcomes of the discussion below. We could relax that later if really necessary.\n\n\u003e \u003e In other words - the process already has a way to send a response (TO\u003d0 message), and that\u0027s using the socket that has been \"bound\". Why do we want to allow using a separate, completely unrelated and not \"bound\" socket on which we\u0027re going to use connect() with TO\u003d0 (or allow using sendmsg() with TO\u003d0 on a socket that\u0027s not \"bound\")?\n\u003e \n\u003e So what you\u0027re suggesting is that the bind() state of a socket is enough to accept or reject send*() calls with TO\u003d0?\n\n[just clarifying here; by \"bound\" I assume you\u0027re referring to an explicit bind() call, rather than the implicit \"binding\" to the TO\u003d0 terminus that happens when you send a TO\u003d1 message]\n\n\u003e Jeremy: Does bind() constrain the message type for send*() calls?\n\nNot currently, but that would make sense to do. Here\u0027s the summary so far:\n\n - the only way that an application will have a valid TO\u003d0 tag value is by receiving a TO\u003d1 message\n - the only way to receive a TO\u003d1 message is to bind()\n\nSo, as Iwona is suggesting, we can disallow TO\u003d0 transmission if the socket has not been explicitly bound (thorough bind()) to the appropriate message type. Unless I\u0027ve missed something?\n\n\u003e My understanding is we require that the provided struct sockaddr_mctp smctp_type value matches the bottom 7 bits of the message type byte in the message buffer, right?\n\nThat\u0027s correct.\n\n\u003e I think Iwona\u0027s suggestion could work so long as we specify that bind() will give EADDRINUSE if multiple applications attempt to bind to the same message type (do we want allow SO_REUSEPORT?), _and_ that bound sockets constrain to send{to,msg}() to the bound message type.\n\nYep, both of those are sensible.\n\n`SO_REUSEPORT` is fine; it requires separate processes to have the same euid.\n\nAlong those lines, we may also want to prohibit a single socket from *ever* sending multiple types, to keep the requirements somewhat consistent for requester-type sockets too.\n\n\u003e \n\u003e However, it does leave a class of errors on the table, namely that any bound socket can send a TO\u003d0 message to a terminus from which we haven\u0027t received a TO\u003d1 message. Further, without constraining bound sockets to the one message type, not filtering send*() by TO\u003d1 terminus IDs associated with the socket means (malicious) process B could work around the constraint by just first binding the socket to an arbitrary message type.\n\nIt sounds like we\u0027ve met all of those preconditions anyway?\n\nI\u0027m happy to start out restrictive, and we may want to rework during development if we find more use-cases.\n \n\u003e So I still think filtering send*() calls based on the terminus set associated with the socket might be a good idea.\n\nThe \"you can\u0027t send TO\u003d0 without bind()\" is a little easier to describe to users :D",
+      "parentUuid": "c8945126_3281cd8c",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be8765a9_d0142ace",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
