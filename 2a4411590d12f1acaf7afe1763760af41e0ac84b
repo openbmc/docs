@@ -980,6 +980,30 @@
     },
     {
       "key": {
+        "uuid": "1533ba26_e2cbf509",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-24T22:56:14Z",
+      "side": 1,
+      "message": "\u003e The \"you can\u0027t send TO\u003d0 without bind()\" is a little easier to describe to users :D\n\nWell, a description of my proposal to filter based on the terminus correlation set might be:\n\n\"Sockets will only receive responses to requests they have sent (TO\u003d1). Bound sockets may only respond (TO\u003d0) to requests they have received\".\n\nI don\u0027t think that\u0027s particularly complex. Also I feel constraining socket behaviour to meet this criteria gives an implementation of the intuitive behaviour while also mitigating against abusive or buggy usage patterns (responding to an incorrect terminus).",
+      "parentUuid": "1dda9847_e031ab72",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be8765a9_d0142ace",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
