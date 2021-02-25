@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "23b0bd77_fe094fae",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-25T00:02:44Z",
+      "side": 1,
+      "message": "Richard, I\u0027m reading this part of the document as our actual use cases, so I don\u0027t think we should include the \"between network bridging is not allowed\" statement here, unless we have a strong requirement for keeping this inside the kernel (do we?).\n\nDo we even have enough knowledge inside the kernel to prevent userspace from creating potentially invalid routing configurations?\nBecause I don\u0027t think we do, and I don\u0027t thing we need to. I think it\u0027s similar to allowing userspace to assign a potentially invalid (not assigned by actual bus owner, and not part of \"static\" assignment bus owner point of view) EID to our NIC.\nIn this design, kernel side is just responsible for transport (delivering correct messages to correct sockets, routing) and abstracting away the medium-specific differences. We can\u0027t validate anything, since we don\u0027t implement control protocol. And I do believe this is completely fine (and similar to other in-kernel network protocols), as long as we only allow network configuration to be done by \"trusted\" userspace (think root, or CAP_NET_ADMIN).",
+      "parentUuid": "bc4d8918_2ecbe927",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 0
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7ffc818a_44a380c8",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 4
@@ -336,6 +360,30 @@
       "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2af9762b_f1df70da",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-25T00:02:44Z",
+      "side": 1,
+      "message": "Let\u0027s keep the kernel side responsibilities as small as possible for the initial submission. Thanks for addressing my comment about static EIDs.",
+      "parentUuid": "6af77895_f820ee81",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -991,6 +1039,30 @@
       "writtenOn": "2021-02-24T22:56:14Z",
       "side": 1,
       "message": "\u003e The \"you can\u0027t send TO\u003d0 without bind()\" is a little easier to describe to users :D\n\nWell, a description of my proposal to filter based on the terminus correlation set might be:\n\n\"Sockets will only receive responses to requests they have sent (TO\u003d1). Bound sockets may only respond (TO\u003d0) to requests they have received\".\n\nI don\u0027t think that\u0027s particularly complex. Also I feel constraining socket behaviour to meet this criteria gives an implementation of the intuitive behaviour while also mitigating against abusive or buggy usage patterns (responding to an incorrect terminus).",
+      "parentUuid": "1dda9847_e031ab72",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 56
+      },
+      "revId": "2a4411590d12f1acaf7afe1763760af41e0ac84b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "662af444_8b8e9378",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000461
+      },
+      "writtenOn": "2021-02-25T00:02:44Z",
+      "side": 1,
+      "message": "Yeah - this covers the usage model without too much details of \"how\" we actually want to achieve it. But shouldn\u0027t we drop the \"bound\"?\n\n\"Sockets will only receive responses to requests they have sent (TO\u003d1) and may only respond (TO\u003d0) to requests they have received\"",
       "parentUuid": "1dda9847_e031ab72",
       "range": {
         "startLine": 236,
