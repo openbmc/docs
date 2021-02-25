@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "642d9262_4dc3ea5f",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-25T06:36:30Z",
+      "side": 1,
+      "message": "Does this need to be changed with the discussion on PS4 around how sockets deal with the TO bit? When would we use connect() with TO\u003d0? I think the tag provided to connect() needs to be checked against the terminus set associated with the socket().\n\nconnect()ing in order to send a response on a socket on which we\u0027ve also called bind() seems heavy-handed when send{to,msg}() exist, but maybe we shouldn\u0027t preclude it? I think allowing it requires that the subsequent send*() calls be provided with the same tag and TO in their metadata (i.e. we error out calls that don\u0027t meet that requirement).",
+      "range": {
+        "startLine": 241,
+        "startChar": 67,
+        "endLine": 242,
+        "endChar": 77
+      },
+      "revId": "5a8788f5dc2a17ebc4321942a388db9b05dad9c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2c8b6d4_e9317c51",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-25T06:36:30Z",
+      "side": 1,
+      "message": "Is it worth clarifying here that if this isn\u0027t what you\u0027re doing, you should just use connect() to get a \"permanent\" tag allocation?",
+      "range": {
+        "startLine": 429,
+        "startChar": 0,
+        "endLine": 430,
+        "endChar": 10
+      },
+      "revId": "5a8788f5dc2a17ebc4321942a388db9b05dad9c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f884914f_7fb3a3a5",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-25T06:36:30Z",
+      "side": 1,
+      "message": "smctp_type",
+      "range": {
+        "startLine": 863,
+        "startChar": 43,
+        "endLine": 863,
+        "endChar": 53
+      },
+      "revId": "5a8788f5dc2a17ebc4321942a388db9b05dad9c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
