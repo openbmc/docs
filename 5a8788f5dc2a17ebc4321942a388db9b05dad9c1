@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "270de990_55a6b547",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-25T07:42:20Z",
+      "side": 1,
+      "message": "I don\u0027t think there\u0027s a great use-case for connect(TO\u003d0). As you say, we\u0027d need to have bind()-ed previously, and recvmsg()-ed a message to establish a peer terminus. After that point, the only benefit of connect() is allowing send() \u0026 write() over sendmsg/sendto. recv() and read() are still out, because you may be receiving other terminus\u0027 packets as a result of the original bind().\n\nSo, perhaps we should disallow it. Any objections to that?",
+      "parentUuid": "642d9262_4dc3ea5f",
+      "range": {
+        "startLine": 241,
+        "startChar": 67,
+        "endLine": 242,
+        "endChar": 77
+      },
+      "revId": "5a8788f5dc2a17ebc4321942a388db9b05dad9c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f2c8b6d4_e9317c51",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2021-02-25T06:36:30Z",
       "side": 1,
       "message": "Is it worth clarifying here that if this isn\u0027t what you\u0027re doing, you should just use connect() to get a \"permanent\" tag allocation?",
+      "range": {
+        "startLine": 429,
+        "startChar": 0,
+        "endLine": 430,
+        "endChar": 10
+      },
+      "revId": "5a8788f5dc2a17ebc4321942a388db9b05dad9c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48ff7b76_cc6b860b",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-25T07:42:20Z",
+      "side": 1,
+      "message": "This is a fairly complex section; I\u0027d rather leave that detail in line 717 at the risk of making things potentially more confusing here.",
+      "parentUuid": "f2c8b6d4_e9317c51",
       "range": {
         "startLine": 429,
         "startChar": 0,
@@ -68,6 +116,30 @@
       "revId": "5a8788f5dc2a17ebc4321942a388db9b05dad9c1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dca64c3_12df89d2",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-02-25T07:42:20Z",
+      "side": 1,
+      "message": "Ack. `struct sockaddr_mctp` was my intention here, will fix for PS9.",
+      "parentUuid": "f884914f_7fb3a3a5",
+      "range": {
+        "startLine": 863,
+        "startChar": 43,
+        "endLine": 863,
+        "endChar": 53
+      },
+      "revId": "5a8788f5dc2a17ebc4321942a388db9b05dad9c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
