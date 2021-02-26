@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65028a46_cc160df0",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-26T04:29:20Z",
+      "side": 1,
+      "message": "So I\u0027ve had a nagging, low-key nervous feeling about the kernel ignoring the tag value. I think it would be good for forwards-compatibility to require userspace set it to a specific value. The question is what value? I have a proposal below.\n\nbind() is basically \"make the socket give me packets that match these properties\", which is a reflection of connect()\u0027s \"I will send packets on this socket with these properties\". In our case, bind() will match inbound packets on the network, EID and message type properties.\n\nSeparately, the result of bind() is that we receive messages with TO\u003d1 on the socket, which we cannot do if the socket has not had bind() invoked on it. Working backwards through the hand-wavy definition of bind() above, it\u0027s effectively case for bind() that TO\u003d1 is a match criteria for packets.\n\nSo I\u0027m proposing that we require userspace to set the following in struct sockaddr_mctp for bind():\n\n addr.smctp_tag \u003d MCTP_TAG_OWNER;\n\nReflecting some of the wording for connect(), the documentation might say:\n\n\u003e The `smctp_tag` value will configure the tags accepted from the remote side of this socket. The only valid value is `MCTP_TAG_OWNER`, which will result in remotely \"owned\" tags being routed to this socket. See the [Tag behaviour for transmitted messages](#tag-behaviour-for-transmitted-messages) section for more details. If the `MCTP_TAG_OWNER` bit is not set, `bind()` will fail with an errno of `EINVAL`.",
+      "range": {
+        "startLine": 179,
+        "startChar": 62,
+        "endLine": 180,
+        "endChar": 16
+      },
+      "revId": "be569760f949b4f7efd6e6249faed6e4d333ead5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11c60302_97a97bf6",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-26T04:29:20Z",
+      "side": 1,
+      "message": "We can only receive messages if the socket has had bind() called on it, it might be worth adding that to the example?\n\nhttps://twitter.com/reillyeon/status/1190100469370126337?s\u003d20 and all",
+      "range": {
+        "startLine": 329,
+        "startChar": 1,
+        "endLine": 330,
+        "endChar": 61
+      },
+      "revId": "be569760f949b4f7efd6e6249faed6e4d333ead5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0b19d11_e828b972",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-26T04:29:20Z",
+      "side": 1,
+      "message": "`MCTP_TAG_OWNER` is required for connect() now, so maybe this can go away?",
+      "range": {
+        "startLine": 358,
+        "startChar": 69,
+        "endLine": 359,
+        "endChar": 58
+      },
+      "revId": "be569760f949b4f7efd6e6249faed6e4d333ead5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d359a704_5c683b20",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-26T04:29:20Z",
+      "side": 1,
+      "message": "Wait, are we still using this macro? It isn\u0027t defined above, but maybe if it is still on the cards it\u0027s what we should be passing to connect()/bind()?",
+      "range": {
+        "startLine": 483,
+        "startChar": 29,
+        "endLine": 483,
+        "endChar": 47
+      },
+      "revId": "be569760f949b4f7efd6e6249faed6e4d333ead5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "554cbdd6_d2e7bb8d",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-26T04:29:20Z",
+      "side": 1,
+      "message": "If we take up my suggestion above this needs to be fixed.",
+      "range": {
+        "startLine": 534,
+        "startChar": 11,
+        "endLine": 534,
+        "endChar": 54
+      },
+      "revId": "be569760f949b4f7efd6e6249faed6e4d333ead5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f652f8cb_4375d59b",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-02-26T04:29:20Z",
+      "side": 1,
+      "message": "Again, need to decide which way we go here (MCTP_TAG_OWNER vs MCTP_TAG_OWNER_ANY).",
+      "range": {
+        "startLine": 596,
+        "startChar": 31,
+        "endLine": 596,
+        "endChar": 49
+      },
+      "revId": "be569760f949b4f7efd6e6249faed6e4d333ead5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
