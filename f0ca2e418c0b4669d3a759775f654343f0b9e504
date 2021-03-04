@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf29e7e7_9059c2c8",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-04T12:06:41Z",
+      "side": 1,
+      "message": "Better to clarify\nAs responder, even with specific local EID, NULL EID \u0026 BROADCAST EID will be accepted, but not others.\n\nAs requester, MCTP_ADDR_ANY can send to multiple and with specific EID, NULL \u0026 BROADCAST EID possibility?",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 22
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0589d3b7_9dd44b79",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-04T12:06:41Z",
+      "side": 1,
+      "message": "Tag behavior for received messages section\n1. Need to explicitly state that TO\u003d1 with any tag value will be accepted\n2. With TO\u003d0, Tag value must match unexpired tag, else the MCTP Message packet will be silently dropped.",
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b16cc5c8_62e25f21",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-04T12:06:41Z",
+      "side": 1,
+      "message": "shouldn\u0027t be.\nExample, Requester sends request to 2 different EID\u0027s. It can send to both and await for its response. The MsgTag will be different for each different destination EID and tracked separately and shouldn\u0027t expire due to next request.",
+      "range": {
+        "startLine": 710,
+        "startChar": 3,
+        "endLine": 710,
+        "endChar": 49
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8af46ddc_067f277b",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-04T12:06:41Z",
+      "side": 1,
+      "message": "Where this is specified in DSP0236. This has not been clearly specified in the specification, and my understanding is to use the physical address mapping with MsgTag in this case (Say with NULL EID / Broadcast EID).\nNote: For Broadcast EID usage MCTP Control type can track the same using Instance ID and same logic must apply for other MCTP message types too.",
+      "range": {
+        "startLine": 735,
+        "startChar": 58,
+        "endLine": 739,
+        "endChar": 0
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21f53a60_dfb9cf95",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-04T12:06:41Z",
+      "side": 1,
+      "message": "This must be avoided from security point of it. We don\u0027t want to end up doing a different mapping. In short, Physical to EID mapping must be determined through MCTP Control message types.",
+      "range": {
+        "startLine": 782,
+        "startChar": 4,
+        "endLine": 782,
+        "endChar": 64
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b79848b7_2da794c6",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-04T12:06:41Z",
+      "side": 1,
+      "message": "This will be against DSP0236. i.e. when MCTP packets needs to be assembled it will be based on tag value, and hence the next successive MCTP message, must be with different tag value (else any one packet drop) may cause confusion.",
+      "range": {
+        "startLine": 913,
+        "startChar": 0,
+        "endLine": 914,
+        "endChar": 31
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b199225a_8129c7e5",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-04T12:06:41Z",
+      "side": 1,
+      "message": "I am not sure, how the response must be handled here. Do you know whether NVMe-MI must send the final reply with TO bit set and Message type body to differentiate it (Say in terms of control Message type we have Datagram bit)\n\nFor all other Message types (Except NVMe-MI), it would be better to expire the MsgTag after the proper message (assembled) is received.",
+      "range": {
+        "startLine": 946,
+        "startChar": 35,
+        "endLine": 950,
+        "endChar": 0
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
