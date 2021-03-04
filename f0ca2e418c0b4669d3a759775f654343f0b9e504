@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b979d225_96dc0e0d",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-03-04T13:39:54Z",
+      "side": 1,
+      "message": "I don\u0027t think MCTP_ADDR_ANY makes sense for requesters.",
+      "parentUuid": "cf29e7e7_9059c2c8",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 22
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0589d3b7_9dd44b79",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 12
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "60153541_4f6ff6e0",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-03-04T13:39:54Z",
+      "side": 1,
+      "message": "\u003e 1. Need to explicitly state that TO\u003d1 with any tag value will be accepted\n\nDo you think we need more than what\u0027s already mentioned in the bind() documentation above?\n\n\u003e 2. With TO\u003d0, Tag value must match unexpired tag, else the MCTP Message packet will be silently dropped.\n\nGood catch. It doesn\u0027t seem like this case is discussed in the text? Jeremy and I had spoken about it, and from my records:\n\n\u003e [2:24 PM] jk-: if the TO\u003d0 tag doesn\u0027t exist, we\u0027d ESOMETHING\n\nSo it\u0027s not quite a silent drop, the caller would at least learn that something had gone wrong.",
+      "parentUuid": "0589d3b7_9dd44b79",
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b16cc5c8_62e25f21",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 12
@@ -53,6 +95,30 @@
       "writtenOn": "2021-03-04T12:06:41Z",
       "side": 1,
       "message": "shouldn\u0027t be.\nExample, Requester sends request to 2 different EID\u0027s. It can send to both and await for its response. The MsgTag will be different for each different destination EID and tracked separately and shouldn\u0027t expire due to next request.",
+      "range": {
+        "startLine": 710,
+        "startChar": 3,
+        "endLine": 710,
+        "endChar": 49
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e972577_e969257e",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-03-04T13:39:54Z",
+      "side": 1,
+      "message": "What you\u0027re asking for is handled by the `MCTP_TAG_CONTROL` sockopt documented above. As I understand it, if you set the socket to retain tags it will do so like you\u0027ve requested. It\u0027s just not the default behaviour because asynchronous use of the socket isn\u0027t the \"easy\" use-case in the spirit of the \"Configuration should be simple for a straightforward MCTP endpoint\" guideline from the \"Requirements for a kernel implementation\" section above.",
+      "parentUuid": "b16cc5c8_62e25f21",
       "range": {
         "startLine": 710,
         "startChar": 3,
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "e1c53e42_be650cb8",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-03-04T13:39:54Z",
+      "side": 1,
+      "message": "The key part is avoiding layering violations while correctly associating assembled messages with sockets.\n\nThe current design doesn\u0027t put any general knowledge of MCTP control packets into the kernel, and as such the Instance ID is opaque. The message terminus is used to associate packets to a specific assembly, and a message terminus is defined as the \"MCTP Source Endpoint ID, Tag Owner bit value, and Message Tag value\" (3.2.40). Given that the terminus is the way to uniquely identify a message we also use it to perform correlation to sockets for message delivery to userspace.\n\nWe have various MCTP control message classes that we need to cater to, including Broadcast Request (11.1.1). If we send a Broadcast Request class message we lose the MCTP Source Endpoint as a useful message-correlation value for the socket (we must correlate responses from multiple endpoints to the socket as a result of the Broadcast Request). This leaves us with just Tag Owner and Message Tag Value as the means to correlate the response message to the socket, and therefore we need the Tag Value to be (locally) unique so as not to mistakenly deliver unrelated responses.\n\n\u003e my understanding is to use the physical address mapping with MsgTag in this case\n\nCan you expand on how this helps resolve the message-to-socket correlation problem? All packets we receive must necessarily be physically addressed to us. We don\u0027t know what physical addresses will respond a-priori when transmitting a Broadcast Request, so we can\u0027t prime the socket metadata with the set of physical addresses we expect to receive responses from.\n\n\u003e For Broadcast EID usage MCTP Control type can track the same using Instance ID and same logic must apply for other MCTP message types too.\n\nThis requires we implement processing of MCTP control messages in the kernel for some message-to-socket correlation, which is something I\u0027d certainly like to avoid.",
+      "parentUuid": "8af46ddc_067f277b",
+      "range": {
+        "startLine": 735,
+        "startChar": 58,
+        "endLine": 739,
+        "endChar": 0
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21f53a60_dfb9cf95",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 12
@@ -99,6 +189,30 @@
       "writtenOn": "2021-03-04T12:06:41Z",
       "side": 1,
       "message": "This must be avoided from security point of it. We don\u0027t want to end up doing a different mapping. In short, Physical to EID mapping must be determined through MCTP Control message types.",
+      "range": {
+        "startLine": 782,
+        "startChar": 4,
+        "endLine": 782,
+        "endChar": 64
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "439655a6_c064ad20",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-03-04T13:39:54Z",
+      "side": 1,
+      "message": "I think you\u0027re interpreting that more broadly than its intent. It\u0027s not the general case, but rather a case specifically for mapping the bus owner. This is described by paragraphs 3 and 4 in 9.1.5 (in DSP0236 1.3.1):\n\n\u003e An endpoint that needs to originate a \"connection\" to another MCTP endpoint does need to know what physical address should be used for messages to be delivered to that endpoint. To get this information, it needs to query the bus owner for it. An endpoint knows the physical address of the bus owner because it saved that information when it got its EID assignment.\n\nParticularly the last sentence above. If we\u0027re going to collect the physical address, we might as well populate the route table with the bus owner\u0027s EID as well.\n\n\u003e \n\u003e The Resolve Endpoint ID command requests a bus owner to return the physical address that is to be used to route packets to a given EID. (This is essentially the MCTP equivalent of the ARP protocol that is used to translate IP addresses to physical addresses.) The address that is returned in the Resolve Endpoint ID command response will either be the actual physical address for the device implementing the endpoint, or it will be the physical address for the bridge to be used to route packets to the desired endpoint.\n\nThis is the bit that you care about, and is taken care of by the next bullet point below:",
+      "parentUuid": "21f53a60_dfb9cf95",
       "range": {
         "startLine": 782,
         "startChar": 4,
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "c4ad8468_2e9c621e",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-03-04T13:39:54Z",
+      "side": 1,
+      "message": "Well, technically reply packets are assembled into messages correlating on the terminus recorded in each packet, which includes the source (remote) EID. So there\u0027s no ambiguity with the limitation that you only have one outstanding message per endpoint. However, for the MCTP control protocol, section 11.6.2 explicitly states that you may not have more than one outstanding request per endpoint, so this implementation requirement in-fact wouldn\u0027t be a limitation for the *MCTP control protocol*.\n\n*Other* protocols may not have this limitation though, so maybe it\u0027s a good idea to have an extra bullet point in the list below?",
+      "parentUuid": "b79848b7_2da794c6",
+      "range": {
+        "startLine": 913,
+        "startChar": 0,
+        "endLine": 914,
+        "endChar": 31
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b199225a_8129c7e5",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 12
@@ -145,6 +283,30 @@
       "writtenOn": "2021-03-04T12:06:41Z",
       "side": 1,
       "message": "I am not sure, how the response must be handled here. Do you know whether NVMe-MI must send the final reply with TO bit set and Message type body to differentiate it (Say in terms of control Message type we have Datagram bit)\n\nFor all other Message types (Except NVMe-MI), it would be better to expire the MsgTag after the proper message (assembled) is received.",
+      "range": {
+        "startLine": 946,
+        "startChar": 35,
+        "endLine": 950,
+        "endChar": 0
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ba1d69f_2e361303",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-03-04T13:39:54Z",
+      "side": 1,
+      "message": "There\u0027s still the case of the Broadcast Request message class described below. Ignoring NVMe unfortunately doesn\u0027t make this proposal feasible.",
+      "parentUuid": "b199225a_8129c7e5",
       "range": {
         "startLine": 946,
         "startChar": 35,
