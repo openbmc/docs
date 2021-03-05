@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "c097edf3_03c43b0b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-03-05T19:40:40Z",
+      "side": 1,
+      "message": "\u003e What if this contained two examples?\nYeah, +1 to including a PDI example as well.",
+      "parentUuid": "f68782b3_eabd0d11",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7fae836_c60ef4a0",
         "filename": "template_app/.gitignore",
         "patchSetId": 1
@@ -66,6 +84,29 @@
       "side": 1,
       "message": "\u003e Why ‘windows’, ‘linux’, ‘osx’?\n\u003e \n\u003e In most of our meson-based repositories we haven’t even done the ‘meson’ one.  We just do something like ‘/build*/‘ and ‘/subprojects/*/‘.\n\u003e \n\u003e I’d propose we do ‘/build*/‘ + ‘meson’ only.  The C/C++ ones aren’t needed with ‘meson’ either.\n\nSure, this is just my usual default for new projects.  With that said, I\u0027m not super worried about it, I can move it to just build* and subprojects*.",
       "parentUuid": "a7fae836_c60ef4a0",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58148668_d3d8fdde",
+        "filename": "template_app/MAINTAINERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-03-05T19:40:40Z",
+      "side": 1,
+      "message": "discord?",
+      "range": {
+        "startLine": 17,
+        "startChar": 37,
+        "endLine": 17,
+        "endChar": 52
+      },
       "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -229,6 +270,23 @@
     },
     {
       "key": {
+        "uuid": "c5626047_29ca9f9c",
+        "filename": "template_app/test/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-03-05T19:40:40Z",
+      "side": 1,
+      "message": "This will prevent code coverage due to https://github.com/mesonbuild/meson/issues/6747. I\u0027ve tended to do the workaround and define the tests in the main directory to get the coverage reports. Putting a workaround into a best practices example isn\u0027t all that desired either. Maybe just a note on it in a comment?",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "781c4b44_72ff55a7",
         "filename": "template_app/test/meson.build",
         "patchSetId": 1
@@ -258,6 +316,29 @@
       "side": 1,
       "message": "Will fix.",
       "parentUuid": "781c4b44_72ff55a7",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b903dbb9_c9efbed4",
+        "filename": "template_app/xyz.openbmc_project.templateapp.service.in",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-03-05T19:40:40Z",
+      "side": 1,
+      "message": "Not familiar with this. I thought our best practice was to hard code the path? https://github.com/openbmc/docs/blob/master/anti-patterns.md#use-of-usrbinenv-in-systemd-service-files",
+      "range": {
+        "startLine": 8,
+        "startChar": 11,
+        "endLine": 8,
+        "endChar": 31
+      },
       "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
