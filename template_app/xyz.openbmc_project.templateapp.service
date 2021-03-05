@@ -1,0 +1,11 @@
+[Unit]
+Description=Template application for openbmc
+StopWhenUnneeded=false
+
+[Service]
+Restart=always
+RestartSec=5
+ExecStart=/usr/bin/template_app
+
+[Install]
+WantedBy=multi-user.target
