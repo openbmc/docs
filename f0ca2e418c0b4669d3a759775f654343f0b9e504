@@ -178,6 +178,30 @@
     },
     {
       "key": {
+        "uuid": "952e7c50_d3cce0f9",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-03-05T04:12:33Z",
+      "side": 1,
+      "message": "This is a consequence of behaviour defined by DSP0236, section 8.5:\n\n\u003e The following fields (and only these fields) are collectively used to identify the packets that belong to a given message for the purpose of message assembly on a particular destination endpoint\n\u003e * Msg Tag (Message Tag)\n\u003e * TO (Tag Owner)\n\u003e * Source Endpoint ID\n\n[emphasis on \"only\" as written in the spec]\n\nThe definition of \"message terminus\" (Section 3.4) in the spec also includes only these fields.\n\nWe\u0027d be violating the spec if we start including other data for this (like phys address or payload-specific fields). The phys address approach also doesn\u0027t work for bindings that have no physical addresses.\n\nSo, if we have a situation where the peer EID is a special value (ie, broadcast, or NULL), the message tag must be unique across all potential responses, for a particular local EID, otherwise there is no way to uniquely identify the local message terminus. \n\nIt could be argued that this is only for message reassembly, and we should leave the message-to-socket correlation to userspace, but then the design that we\u0027re left with makes it no longer possible to implement sockets in a secure manner at all, where messages must be forwarded to multiple processes.",
+      "parentUuid": "e1c53e42_be650cb8",
+      "range": {
+        "startLine": 735,
+        "startChar": 58,
+        "endLine": 739,
+        "endChar": 0
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21f53a60_dfb9cf95",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 12
@@ -213,6 +237,30 @@
       "side": 1,
       "message": "I think you\u0027re interpreting that more broadly than its intent. It\u0027s not the general case, but rather a case specifically for mapping the bus owner. This is described by paragraphs 3 and 4 in 9.1.5 (in DSP0236 1.3.1):\n\n\u003e An endpoint that needs to originate a \"connection\" to another MCTP endpoint does need to know what physical address should be used for messages to be delivered to that endpoint. To get this information, it needs to query the bus owner for it. An endpoint knows the physical address of the bus owner because it saved that information when it got its EID assignment.\n\nParticularly the last sentence above. If we\u0027re going to collect the physical address, we might as well populate the route table with the bus owner\u0027s EID as well.\n\n\u003e \n\u003e The Resolve Endpoint ID command requests a bus owner to return the physical address that is to be used to route packets to a given EID. (This is essentially the MCTP equivalent of the ARP protocol that is used to translate IP addresses to physical addresses.) The address that is returned in the Resolve Endpoint ID command response will either be the actual physical address for the device implementing the endpoint, or it will be the physical address for the bridge to be used to route packets to the desired endpoint.\n\nThis is the bit that you care about, and is taken care of by the next bullet point below:",
       "parentUuid": "21f53a60_dfb9cf95",
+      "range": {
+        "startLine": 782,
+        "startChar": 4,
+        "endLine": 782,
+        "endChar": 64
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d091166_41a5c0ca",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-03-05T04:12:33Z",
+      "side": 1,
+      "message": "\u003e This must be avoided from security point of it\n\nI disagree. What\u0027s your proposed attack vector here? Keep in mind that if it\u0027s possible to poison the neighbour information through this mechanism, then it\u0027s also possible to do the same through a control message response.\n\nThis is also allowed by the spec, see the second paragraph of 9.1.5.\n\n[We could implement a control mechanism to disable this behaviour, but I don\u0027t see a use-case for that at present]",
+      "parentUuid": "439655a6_c064ad20",
       "range": {
         "startLine": 782,
         "startChar": 4,
@@ -272,6 +320,30 @@
     },
     {
       "key": {
+        "uuid": "288ea48d_32e750be",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-03-05T04:12:33Z",
+      "side": 1,
+      "message": "DSP0236 doesn\u0027t require different tags for subsequent messages, I don\u0027t see this as violating the spec. If I\u0027m incorrect though, could you point me to where in the spec you\u0027re referencing?\n\nYes, we need to ensure that the tag can uniquely identify interleaved messages while in-flight, but there are no restrictions that I can see otherwise.",
+      "parentUuid": "c4ad8468_2e9c621e",
+      "range": {
+        "startLine": 913,
+        "startChar": 0,
+        "endLine": 914,
+        "endChar": 31
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b199225a_8129c7e5",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 12
@@ -307,6 +379,30 @@
       "side": 1,
       "message": "There\u0027s still the case of the Broadcast Request message class described below. Ignoring NVMe unfortunately doesn\u0027t make this proposal feasible.",
       "parentUuid": "b199225a_8129c7e5",
+      "range": {
+        "startLine": 946,
+        "startChar": 35,
+        "endLine": 950,
+        "endChar": 0
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ac1e9a7_2ea5cfae",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2021-03-05T04:12:33Z",
+      "side": 1,
+      "message": "Implementing immediate tag expiry on a reply requires us to assume that *all* upper-layer protocols have a 1:1 request-to-reply correlation, *including all future protocols*.\n\nI\u0027m not willing to make that guarantee, especially given that we have one counterexample already. And as Andrew says, this also applies to broadcasts.",
+      "parentUuid": "1ba1d69f_2e361303",
       "range": {
         "startLine": 946,
         "startChar": 35,
