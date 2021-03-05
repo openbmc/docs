@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "45dfc229_b58d723c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T19:41:10Z",
+      "side": 1,
+      "message": "\u003e I really want this to be a \"here\u0027s all the boilerplate you need to create a well behaving openbmc app\"\n\nOk.  I didn’t get that from the original email chain.  I thought this was going to be a “how do I set up my repository”.  I don’t have a big concern with it, but there seems to be a bit of an assumption that all new repositories are dbus servers and that isn’t necessarily the case.\n\n\u003e What if this contained two examples?  An asio one, and a phosphor-dbus-interfaces one, that way, at least we could have something, then as we converge on a single solution, the two examples simply turn into one that meets both needs.\n\nI’d be ok with that, I guess, if your intention is to create a fully formed dbus daemon.",
+      "parentUuid": "f68782b3_eabd0d11",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7fae836_c60ef4a0",
         "filename": "template_app/.gitignore",
         "patchSetId": 1
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "\u003e Why ‘windows’, ‘linux’, ‘osx’?\n\u003e \n\u003e In most of our meson-based repositories we haven’t even done the ‘meson’ one.  We just do something like ‘/build*/‘ and ‘/subprojects/*/‘.\n\u003e \n\u003e I’d propose we do ‘/build*/‘ + ‘meson’ only.  The C/C++ ones aren’t needed with ‘meson’ either.\n\nSure, this is just my usual default for new projects.  With that said, I\u0027m not super worried about it, I can move it to just build* and subprojects*.",
       "parentUuid": "a7fae836_c60ef4a0",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "341d763f_b1089254",
+        "filename": "template_app/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T19:41:10Z",
+      "side": 1,
+      "message": "I do like pointing people to the template generator though.  Up to you on what you want to do here.  Either a hand-build build+subprojects or build+’meson’-template (which gives you subprojects) would be reasonable to me.",
+      "parentUuid": "4166dca4_cb784bed",
       "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -142,6 +178,24 @@
       "side": 1,
       "message": "We do it in some places, and it reduces the binary size with seemingly no downsides.  Is there a reason we shouldn\u0027t do this everywhere?\n\nWith that said, I\u0027m happy to move this to another patchset and have that discussion there, no need to hold this patchset up for something like that.",
       "parentUuid": "4534dd37_bce700fa",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7695ae7f_ba1d3f19",
+        "filename": "template_app/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T19:41:10Z",
+      "side": 1,
+      "message": "It is less contentious to me than dropping exceptions, but both of those (widely available compiler flags) aren’t exactly supported by the standard committee.  RTTI should generally be used rarely / sparingly.  My concern is that there are places where it is the best tool to the problem and the alternative usually involves someone spinning their own reimplementation of RTTI (I had to -1 some commits recently in phosphor-virtual-sensor for exactly this reason; RTTI faked with enums).",
+      "parentUuid": "266b3af2_0b80f66b",
       "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -218,6 +272,23 @@
     },
     {
       "key": {
+        "uuid": "e1173dac_4fbc4b2e",
+        "filename": "template_app/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T19:41:10Z",
+      "side": 1,
+      "message": "Based on the above discussion, I’d recommend removing ‘systemd’ from here.",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7c3df540_c84cb58b",
         "filename": "template_app/meson.build",
         "patchSetId": 1
@@ -253,6 +324,24 @@
     },
     {
       "key": {
+        "uuid": "9659ab40_40b7fd15",
+        "filename": "template_app/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T19:41:10Z",
+      "side": 1,
+      "message": "https://github.com/williamspatrick/dotfiles/blob/master/files/20_all/.vimrc#L17\n\nI have shortcuts that switch from “normal indentation mode” and “kernel mode” as well that switch from 4\u0026spaces to 8\u0026tabs (See \u003cLeader\u003ekm).",
+      "parentUuid": "e1658150_d07291f5",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea35e51f_ae3d9466",
         "filename": "template_app/src/TemplateApp.cpp",
         "patchSetId": 1
@@ -264,6 +353,24 @@
       "writtenOn": "2021-03-05T19:17:06Z",
       "side": 1,
       "message": "This filename disagrees with https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md#files.\n\nMay as well update the conventions doc to match this if this is the official approach.",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58f185b8_50968806",
+        "filename": "template_app/src/TemplateApp.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T19:41:10Z",
+      "side": 1,
+      "message": "I missed this; thanks Matt.  I prefer we just follow the conventions.",
+      "parentUuid": "ea35e51f_ae3d9466",
       "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
