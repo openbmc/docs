@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45f6c9ba_f63e3a38",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T18:26:07Z",
+      "side": 1,
+      "message": "I would prefer we refrain from doing dbus things in this example.  Can we just make it a “hello world”.\n\n* We already have examples on how to make a dbus application in the sdbus repository.\n* I don’t particularly want to encourage manually creating dbus interfaces, as shown here.  (I know we have some differences of opinion on asio, etc. and I’m working on resolving some of that with co-routines support).",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7fae836_c60ef4a0",
+        "filename": "template_app/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T18:26:07Z",
+      "side": 1,
+      "message": "Why ‘windows’, ‘linux’, ‘osx’?\n\nIn most of our meson-based repositories we haven’t even done the ‘meson’ one.  We just do something like ‘/build*/‘ and ‘/subprojects/*/‘.\n\nI’d propose we do ‘/build*/‘ + ‘meson’ only.  The C/C++ ones aren’t needed with ‘meson’ either.",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4534dd37_bce700fa",
+        "filename": "template_app/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T18:26:07Z",
+      "side": 1,
+      "message": "I don’t think we should put this in the template.  It is not a general optimization we’ve done.",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4aa1063_47323cdd",
+        "filename": "template_app/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T18:26:07Z",
+      "side": 1,
+      "message": "I’ve seen this dependency in a few meson files I’ve reviewed lately and I don’t know why.  Unless an application is doing direct systemd calls (and not using sdbusplus / sdevent) this should not be necessary.\n\nI guess it is because of the ‘systemdsystemunitdir’ below?",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f174f8de_fb74951e",
+        "filename": "template_app/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T18:26:07Z",
+      "side": 1,
+      "message": "Do we want to encourage splitting applications up into a shared library like this?  I’m not sure why we should, unless you’re thinking it is easier for testing purposes.",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c3df540_c84cb58b",
+        "filename": "template_app/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T18:26:07Z",
+      "side": 1,
+      "message": "tab. ;)",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "781c4b44_72ff55a7",
+        "filename": "template_app/test/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-05T18:26:07Z",
+      "side": 1,
+      "message": "tab.",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
