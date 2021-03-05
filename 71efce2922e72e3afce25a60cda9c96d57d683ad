@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "fad411f5_0a610af4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-05T21:12:22Z",
+      "side": 1,
+      "message": "\u003e \u003e I really want this to be a \"here\u0027s all the boilerplate you need to create a well behaving openbmc app\"\n\u003e \n\u003e Ok.  I didn’t get that from the original email chain.  I thought this was going to be a “how do I set up my repository”.  I don’t have a big concern with it, but there seems to be a bit of an assumption that all new repositories are dbus servers and that isn’t necessarily the case.\n\nI think building something that\u0027s a dbus client or dbus server is the 90+% case (I haven\u0027t actually run numbers) and if you\u0027re in that last percent that don\u0027t, it\u0027s easy enough to delete that code from main when you start the repo.\n\n\u003e \n\u003e \u003e What if this contained two examples?  An asio one, and a phosphor-dbus-interfaces one, that way, at least we could have something, then as we converge on a single solution, the two examples simply turn into one that meets both needs.\n\u003e \n\u003e I’d be ok with that, I guess, if your intention is to create a fully formed dbus daemon.\n\nCan do.",
+      "parentUuid": "45dfc229_b58d723c",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a7fae836_c60ef4a0",
         "filename": "template_app/.gitignore",
         "patchSetId": 1
@@ -126,6 +144,24 @@
     },
     {
       "key": {
+        "uuid": "6018efcb_928fea32",
+        "filename": "template_app/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-05T21:12:22Z",
+      "side": 1,
+      "message": "Ah, I gotcha.  I can get behind the second option.",
+      "parentUuid": "341d763f_b1089254",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6d6eaa01_12f46b76",
         "filename": "template_app/MAINTAINERS",
         "patchSetId": 1
@@ -143,6 +179,24 @@
     },
     {
       "key": {
+        "uuid": "9b88df1a_4c5935b6",
+        "filename": "template_app/MAINTAINERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-05T21:12:22Z",
+      "side": 1,
+      "message": "Yep, I am too, but for the moment, \"state of the art\" on master is MAINTAINERS files.  This patchset is about documenting what we currently do, not about what we could do.  When and if we deploy changes to delete the MAINTAINERS files, this file will be deleted at the same time.\n\nIf that patch lands ahead of this one, I will remove this file.",
+      "parentUuid": "6d6eaa01_12f46b76",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "58148668_d3d8fdde",
         "filename": "template_app/MAINTAINERS",
         "patchSetId": 1
@@ -154,6 +208,30 @@
       "writtenOn": "2021-03-05T19:40:40Z",
       "side": 1,
       "message": "discord?",
+      "range": {
+        "startLine": 17,
+        "startChar": 37,
+        "endLine": 17,
+        "endChar": 52
+      },
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3c51bc8_667a56e3",
+        "filename": "template_app/MAINTAINERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-05T21:12:22Z",
+      "side": 1,
+      "message": "I copied this out of one of the other repos here: https://github.com/openbmc/phosphor-pid-control/blob/master/MAINTAINERS\n\nDid we change this definition without going through and making all the sub projects consistent?\n\nI can change it in this commit, but whomever proposed changing this to discord seems to have missed some spots, and I\u0027d hope would go through and open up some new reviews.",
+      "parentUuid": "58148668_d3d8fdde",
       "range": {
         "startLine": 17,
         "startChar": 37,
@@ -213,6 +291,24 @@
       "side": 1,
       "message": "It is less contentious to me than dropping exceptions, but both of those (widely available compiler flags) aren’t exactly supported by the standard committee.  RTTI should generally be used rarely / sparingly.  My concern is that there are places where it is the best tool to the problem and the alternative usually involves someone spinning their own reimplementation of RTTI (I had to -1 some commits recently in phosphor-virtual-sensor for exactly this reason; RTTI faked with enums).",
       "parentUuid": "266b3af2_0b80f66b",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "308b21c8_90d1d61b",
+        "filename": "template_app/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-05T21:12:22Z",
+      "side": 1,
+      "message": "\u003e It is less contentious to me than dropping exceptions, but both of those (widely available compiler flags) aren’t exactly supported by the standard committee.\n\nDo we care about committee compliance?  They\u0027re supported by GCC, and it seems unlikely we\u0027re going to switch to non-gcc compatible compilers.... ever.  If certain portions of the codebase need to compile against MSVC, that\u0027s a whole other can of worms.\n\n\u003e  RTTI should generally be used rarely / sparingly.  My concern is that there are places where it is the best tool to the problem and the alternative usually involves someone spinning their own reimplementation of RTTI (I had to -1 some commits recently in phosphor-virtual-sensor for exactly this reason; RTTI faked with enums).\n\nhmmmm.  I didn\u0027t know we had any real usages of rtti.  I would\u0027ve assumed something like that had never come up, but I really want to keep the binary size wins that come along with this for the majority of applications that don\u0027t use or need rtti.\n\nMaybe we disable it here, with a comment about \"might be used in certain instances, but is disabled here to improve binary size\" just to make clear that it isn\u0027t against the coding standard, but if you don\u0027t use it, there are benefits to completely disabling it, and it should be that way unless you have a good reason not to.",
+      "parentUuid": "7695ae7f_ba1d3f19",
       "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -300,6 +396,24 @@
       "writtenOn": "2021-03-05T19:41:10Z",
       "side": 1,
       "message": "Based on the above discussion, I’d recommend removing ‘systemd’ from here.",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54a633fc_ba6af583",
+        "filename": "template_app/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-05T21:12:22Z",
+      "side": 1,
+      "message": "Can do.",
+      "parentUuid": "e1173dac_4fbc4b2e",
       "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -423,6 +537,24 @@
       "side": 1,
       "message": "It would be good if we could get someone that understands the problem to poke on this issue upstream again.  The single piece of discussion seemed like someone was confused on the request about lcov vs gcov or something, but that isn’t the problem you’re reporting.\n\nI would prefer we do not do this workaround because it makes the meson-files longer and noisier.  Ideally someone would figure out what is broken and fix it.",
       "parentUuid": "c5626047_29ca9f9c",
+      "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f4ee45f_e945f717",
+        "filename": "template_app/test/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-05T21:12:22Z",
+      "side": 1,
+      "message": "I was unaware that was an issue, although I did notice we as a project were inconsistent when I wrote this, and went to this folder model without realizing it had implications.  For the moment, unless someone is willing to chase down the \"real\" solution with meson, I can just put this stuff in the root meson.build, and if we get that fixed, I\u0027m happy to write the patch to go back to the test subfolder approach.\n\nThis kind of tribal information is EXACTLY the kind of thing I was hoping to tease out of this template repo, so this is great.\n\n\u003e I would prefer we do not do this workaround\n\nIn the scope of this discussion, which is \"what is the current way to accomplish setting up a new application.\" I think we need to have the workaround for the moment, as it\u0027s arguably required, and we want new repos to have code coverage.  I think the tradeoff for code coverage is worth the main meson.build being messier than we\u0027d like it to be.\n\nWith that said, if and when someone pushes for the real fix in meson, we can always iterate on this stuff and go back to what\u0027s here.",
+      "parentUuid": "9c5e42e9_87c567ff",
       "revId": "71efce2922e72e3afce25a60cda9c96d57d683ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
