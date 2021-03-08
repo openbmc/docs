@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a57e8186_c32875ee",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-08T08:48:17Z",
+      "side": 1,
+      "message": "As a requester how the first GetEID / SetEID command can be sent esp, for NULL EID.",
+      "parentUuid": "b979d225_96dc0e0d",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 22
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0589d3b7_9dd44b79",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 12
@@ -78,6 +102,24 @@
       "side": 1,
       "message": "\u003e 1. Need to explicitly state that TO\u003d1 with any tag value will be accepted\n\nDo you think we need more than what\u0027s already mentioned in the bind() documentation above?\n\n\u003e 2. With TO\u003d0, Tag value must match unexpired tag, else the MCTP Message packet will be silently dropped.\n\nGood catch. It doesn\u0027t seem like this case is discussed in the text? Jeremy and I had spoken about it, and from my records:\n\n\u003e [2:24 PM] jk-: if the TO\u003d0 tag doesn\u0027t exist, we\u0027d ESOMETHING\n\nSo it\u0027s not quite a silent drop, the caller would at least learn that something had gone wrong.",
       "parentUuid": "0589d3b7_9dd44b79",
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4617a1d_8750a939",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-08T08:48:17Z",
+      "side": 1,
+      "message": "we have section for Transmitted, my point is to document it for receive side.\n\nSilent drop is allowed from specification point of it.",
+      "parentUuid": "60153541_4f6ff6e0",
       "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -119,6 +161,30 @@
       "side": 1,
       "message": "What you\u0027re asking for is handled by the `MCTP_TAG_CONTROL` sockopt documented above. As I understand it, if you set the socket to retain tags it will do so like you\u0027ve requested. It\u0027s just not the default behaviour because asynchronous use of the socket isn\u0027t the \"easy\" use-case in the spirit of the \"Configuration should be simple for a straightforward MCTP endpoint\" guideline from the \"Requirements for a kernel implementation\" section above.",
       "parentUuid": "b16cc5c8_62e25f21",
+      "range": {
+        "startLine": 710,
+        "startChar": 3,
+        "endLine": 710,
+        "endChar": 49
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90f55e37_22236463",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-08T08:48:17Z",
+      "side": 1,
+      "message": "I am not quite clear, you meant to say when kernel is requested to send a new message to the new destination EID, then old tag value needs to expire?\n\nExpiring Msg tag is allowed only with any one of the following cases\n1. If response with the msg tag is received (exception is discussed NVMe-MI and if yes this scenario needs to retain but it seems NVMe-MI will use ROR bit - Will confirm it though)\n2. timeout \n3. user space application which sent the tag is no longer needs the same.\n\nIt can\u0027t expire the msg tag, just because new request is sent to new destination EID.",
+      "parentUuid": "5e972577_e969257e",
       "range": {
         "startLine": 710,
         "startChar": 3,
@@ -202,6 +268,30 @@
     },
     {
       "key": {
+        "uuid": "5ce20e81_976d2949",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-08T08:48:17Z",
+      "side": 1,
+      "message": "Just to make sure we are all the same page. \n\nNote: We need to rely on EID for the MsgTag tracking, and the logic is not to deviate from it.\nWhat i meant to say is in this following condition.\n1. Sending messages to Null EID, in this case, as per Spec, the MsgTag needs to be tracked, but when there are multiple devices in the bus, and not to run out of Msg Tag we can rely on physical address when EID is NULL, during the initialization phase of the platform (Condition may happen, when Topmost B.O is not available during this time etc.). This is not violation of Spec, as we will be able to track it individually(i.e. we are still in compliance with the spec). \n\n2. Related to Broadcast EID --\u003e Again this is special EID, so far mainly used only in Control message type (Note: Some protocol type can still use it, but not seen anything so far). Even in Control ID, the request \u0026 response are tracked using Instance ID. i.e. There is no spec requirement which states that Broadcast EID message must be sent to all the devices with same MsgTag (Also, this is only applicable, when physical layer support address less transfer).",
+      "parentUuid": "952e7c50_d3cce0f9",
+      "range": {
+        "startLine": 735,
+        "startChar": 58,
+        "endLine": 739,
+        "endChar": 0
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21f53a60_dfb9cf95",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 12
@@ -261,6 +351,30 @@
       "side": 1,
       "message": "\u003e This must be avoided from security point of it\n\nI disagree. What\u0027s your proposed attack vector here? Keep in mind that if it\u0027s possible to poison the neighbour information through this mechanism, then it\u0027s also possible to do the same through a control message response.\n\nThis is also allowed by the spec, see the second paragraph of 9.1.5.\n\n[We could implement a control mechanism to disable this behaviour, but I don\u0027t see a use-case for that at present]",
       "parentUuid": "439655a6_c064ad20",
+      "range": {
+        "startLine": 782,
+        "startChar": 4,
+        "endLine": 782,
+        "endChar": 64
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d81148a4_ab588e41",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-08T08:48:17Z",
+      "side": 1,
+      "message": "With SPDM now in picture, physical-to-Eid mapping must happen only through MCTP Control or with SPDM (more secure way).\nWhat i understand from this line, even with BMC as a Bus owner, if any device just issues a request to BMC (Say GetEID) to BMC, with it\u0027s own EID in the picture, then kernel mapping that will be a problem.\n\nConsider a device went to reset and uses it\u0027s old EID, which is retired and used for other device, now what kernel will do ? \nProper logic will be MCTP control detecting the same, and performing a proper SetEID with NULL EID.",
+      "parentUuid": "0d091166_41a5c0ca",
       "range": {
         "startLine": 782,
         "startChar": 4,
@@ -344,6 +458,30 @@
     },
     {
       "key": {
+        "uuid": "6dd2d59b_4e7a7a51",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-08T08:48:17Z",
+      "side": 1,
+      "message": "Message Tag + Source EID + TO will be used to identify the MCTP message uniquely. In other words, the subsequent message needs to be different to support interleave for different message types.\nNote: source endpoint can interleave the response and can respond in out of order, hence \n\n\"A source endpoint is allowed to interleave packets from multiple messages to the same destination endpoint concurrently, provided that each of the\nmessages has a unique message tag.\" \n\n\nNote: As this was considered as alternative (My intention is to document this as further limitations to indicate about interleave support will be difficult).\n\nScenario where this option will cause confusion:\n1. B.O sends a MCTP message (multiple MCTP packets with EOM message dropped in physical medium)\n2. Now the same MCTP message can be retried or new MCTP message can be sent out. The device must know the same which is possible using new Msg Tag.\n\n(Pkt sequence is used to differentiate multiple MCTP packets, and MsgTag with source EID, TO will be used to determine Messages).",
+      "parentUuid": "288ea48d_32e750be",
+      "range": {
+        "startLine": 913,
+        "startChar": 0,
+        "endLine": 914,
+        "endChar": 31
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b199225a_8129c7e5",
         "filename": "designs/mctp/mctp-kernel.md",
         "patchSetId": 12
@@ -403,6 +541,30 @@
       "side": 1,
       "message": "Implementing immediate tag expiry on a reply requires us to assume that *all* upper-layer protocols have a 1:1 request-to-reply correlation, *including all future protocols*.\n\nI\u0027m not willing to make that guarantee, especially given that we have one counterexample already. And as Andrew says, this also applies to broadcasts.",
       "parentUuid": "1ba1d69f_2e361303",
+      "range": {
+        "startLine": 946,
+        "startChar": 35,
+        "endLine": 950,
+        "endChar": 0
+      },
+      "revId": "f0ca2e418c0b4669d3a759775f654343f0b9e504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07ac2134_682be709",
+        "filename": "designs/mctp/mctp-kernel.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-03-08T08:48:17Z",
+      "side": 1,
+      "message": "I didn\u0027t got a chance to check any of the existing NVMe-MI device yet, but in NVMe-MI specification, they are not relying the TO to determine the Request / Response and NVMe-MI message type internally uses ROR bit to determine the same.\n\nThe problem with not expiring the  Msg Tag value is, it requires all message type to expire the same. \nRegarding the future protocols, MCTP doesn\u0027t have any partial response other than the NVMe-MI. Will raise this in PMCI-DMTF and get back with apt data.",
+      "parentUuid": "7ac1e9a7_2ea5cfae",
       "range": {
         "startLine": 946,
         "startChar": 35,
