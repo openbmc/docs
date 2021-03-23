@@ -1,0 +1,210 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3903c92_552da918",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T00:32:17Z",
+      "side": 1,
+      "message": "Remove this.  parent-child doesn\u0027t really add anything here, and is just confusing.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "ac49e43687400df92f4d8e3e824522aea58ab885",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65269aeb_ca0f282a",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T00:32:17Z",
+      "side": 1,
+      "message": "This is also containment, right?  \"FRU\" isn\u0027t a concept in the current dbus interfaces, nor is it a concept in bmcweb/Redfish.  You might want to rephrase this, or just remove.",
+      "range": {
+        "startLine": 21,
+        "startChar": 57,
+        "endLine": 23,
+        "endChar": 9
+      },
+      "revId": "ac49e43687400df92f4d8e3e824522aea58ab885",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dc1b1ea_30012932",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T00:32:17Z",
+      "side": 1,
+      "message": "FWIW, this is going to be hard to model in Redfish.",
+      "range": {
+        "startLine": 23,
+        "startChar": 63,
+        "endLine": 24,
+        "endChar": 38
+      },
+      "revId": "ac49e43687400df92f4d8e3e824522aea58ab885",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7516599_7fc9bfae",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T00:32:17Z",
+      "side": 1,
+      "message": "This section seems to have forgotten all of the Redfish Links.  Could you go through the Links sections in the schema and enumerate some of those?  ContainedBy, and Cooled by would be a good start, but there\u0027s also cables with connectedBy coming soon.",
+      "revId": "ac49e43687400df92f4d8e3e824522aea58ab885",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb7058f7_2c2125a6",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T00:32:17Z",
+      "side": 1,
+      "message": "I don\u0027t think that\u0027s how it\u0027s generally modeled if we\u0027re talking redfish.  The Card would be Linked to the Slot, but contained by the primary chassis.",
+      "range": {
+        "startLine": 28,
+        "startChar": 11,
+        "endLine": 29,
+        "endChar": 20
+      },
+      "revId": "ac49e43687400df92f4d8e3e824522aea58ab885",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32664459_225c0256",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T00:32:17Z",
+      "side": 1,
+      "message": "This seems to imply that if the power supply was within the chassis, it wouldn\u0027t contain the PoweredBy link.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 10
+      },
+      "revId": "ac49e43687400df92f4d8e3e824522aea58ab885",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffd17916_63b5e37e",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T00:32:17Z",
+      "side": 1,
+      "message": "Can you talk to how the ContainedBy and Contains links would work in that case?  Also, given your slot example above, and the fact that the card would not be \"contained\" by the slot, how would you represent that in dbus?",
+      "revId": "ac49e43687400df92f4d8e3e824522aea58ab885",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22aa2fdd_4f99250e",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T00:32:17Z",
+      "side": 1,
+      "message": "There\u0027s a lot more than this to do to support this.  Entities can be added/removed at any time, including the Chassis.  If the chassis is deleted then recreated, the whole tree below it would need to be created and deleted, which all the downstream clients would need to be taught how to not interpret as a removal event.  This is non-trivial, and largely why the tree was flattened in EM in the first place.",
+      "revId": "ac49e43687400df92f4d8e3e824522aea58ab885",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "867a43dd_00432d47",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T00:32:17Z",
+      "side": 1,
+      "message": "These tend to be generated automatically based on the detection route.  I wouldn\u0027t really expect there to be any new json configuration, as entity-manager can publish associations today without any boilerplate.\n\n\nFWIW, this option is my preference, as I think it\u0027s the simplest, and has the fewest questions about \"what happens when\"",
+      "range": {
+        "startLine": 79,
+        "startChar": 47,
+        "endLine": 80,
+        "endChar": 44
+      },
+      "revId": "ac49e43687400df92f4d8e3e824522aea58ab885",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4151fb13_3086fc23",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T00:32:17Z",
+      "side": 1,
+      "message": "I definitely don\u0027t want this.  This continues down the road of bifurcating OpenBMC, and adds a lot of unnecessary complexity in testing.",
+      "revId": "ac49e43687400df92f4d8e3e824522aea58ab885",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
