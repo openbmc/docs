@@ -36,7 +36,10 @@ Various types of dumps are created based on the type and source of failure.
 The dump manager, which is orchestrating the collection and offload, needs to
 provide methods to create, store the dump details, and offload it. Additionally,
 some sources allow the dump to be extracted manually without a failure to
-understand the current state or analyze a suspected problem.
+understand the current state or analyze a suspected problema
+
+### Types of dumps supported.
+
 
 
 ## Requirements
