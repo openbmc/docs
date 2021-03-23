@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "16d780fc_6fb7685b",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "\u003e That document you talking about describes EM as separate software, but actually it doesn\u0027t work isolated.\n\u003e I want to have global inventory subsystem picture and description for EM as part of the system.\n\u003e Probably filename/location was chosen wrongly, we can adjust this.\n\nThere\u0027s already significant documentation to that effect in the EM repo.  I\u0027d much rather we update that than create yet another document that people need to find.",
+      "parentUuid": "62fa16fa_a429af5e",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 32
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8493fc38_25dd8371",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "What you mean \"correct language\"?",
       "parentUuid": "8493fc38_25dd8371",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 6
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36926d4d_b5495f53",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "The above isn\u0027t very precise, and lists things that we don\u0027t currently support.",
+      "parentUuid": "16f65898_356e88d1",
       "range": {
         "startLine": 8,
         "startChar": 0,
@@ -190,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "e3b19c66_9b68349a",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "\u003e Idea was mostly about representation part. Saying we want to add support for inventorization of pizza pieces for our \"Pizza Box\". We have to implement new detection/communication code which can tell us that we have two pieces of Margatita. But then we want to show this information for user and this we can do almost automatically in bmcweb if EM exposes right interfaces.\n\nWith respect, that\u0027s in no way how that works, because dbus doesn\u0027t map to redfish 1:1.  To extend your example, Redfish has no PizzaBoxCollection type, so there\u0027s no way to map that properly;  If we wrote generic code to do that, it wouldn\u0027t pass the validator.  Also, interfaces tend to be different between the various redfish collections so code will always be required to do the mapping from specific dbus inventory item to Redfish.\n\n\u003e Problem here mostly about we do need to implement different Redfish schemes, which likely can\u0027t be automated, but anyway, I would it be only because of Redfish scheme encoding, not because the same information for different device types is represented in different ways...\n\nReading the above paragraph.... I get the feeling you understand the problem, but the original doc doesn\u0027t seem to mesh with that.",
+      "parentUuid": "f6d85b90_85d98998",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 158
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a81f7b7e_964e2796",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -225,6 +297,30 @@
       "side": 1,
       "message": "Agree, actually I didn\u0027t say \"required\". \nHowever, I would like to make \"xyz.openbmc_project.Inventory.Item\" with both \"PrettyName\" and \"Present\" to be mandatory.",
       "parentUuid": "a81f7b7e_964e2796",
+      "range": {
+        "startLine": 21,
+        "startChar": 66,
+        "endLine": 21,
+        "endChar": 156
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53b0f85f_ed20313f",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "\u003e Agree, actually I didn\u0027t say \"required\". \n\u003e However, I would like to make \"xyz.openbmc_project.Inventory.Item\" with both \"PrettyName\" and \"Present\" to be mandatory.\n\nFeel free to push a review to phosphor-dbus-interfaces, but I suspect it\u0027s not going to be approved.",
+      "parentUuid": "66c3c036_ce31892b",
       "range": {
         "startLine": 21,
         "startChar": 66,
@@ -401,6 +497,30 @@
     },
     {
       "key": {
+        "uuid": "fdb7f5a6_ccbb3af5",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "to repeat..... FruDevice definitely has a virtual fru, at ID 0.",
+      "parentUuid": "25748655_691e76fb",
+      "range": {
+        "startLine": 31,
+        "startChar": 88,
+        "endLine": 31,
+        "endChar": 114
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "df84eb26_f7bfb7af",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -436,6 +556,30 @@
       "side": 1,
       "message": "Well, here is example on how ipmitool fru list looks on our Power-based platform:\n\n\u003e FRU Device Description : Builtin FRU Device (ID 0)\n Board Mfg Date        : Mon Jan  1 03:00:00 1996\n Board Mfg             : YADRO\n Board Product         : Management board\n Board Serial          : 002B0DH1000\n Board Part Number     : MANOP8\nFRU Device Description : cpu0 (ID 1)\n Board Mfg Date        : Mon Jan  1 03:00:00 1996\n Board Mfg             : IBM\n Board Product         : PROCESSOR MODULE\n Board Serial          : YA1933264756\n Board Part Number     : 00UL866\n[...]\nFRU Device Description : system (ID 5)\n Chassis Type          : Unspecified\n Chassis Part Number   : VESNIN\n Chassis Serial        : 1809000001\n Board Mfg Date        : Fri Sep 21 03:00:00 2018\n Board Mfg             : YADRO\n Board Product         : Motherboard\n Board Serial          : Y001B0DH1000\n Board Part Number     : MBDOP8740001\nFRU Device Description : membuf1 (ID 6)\n Board Mfg Date        : Mon Sep  9 03:00:00 2019\n Board Mfg             : YADRO\n Board Product         : Memory Riser\n Board Serial          : Y00AC037K2000\n Board Part Number     : MEMDDR740001\n[...]\nFRU Device Description : dimm8 (ID 22)\n Product Manufacturer  : Samsung Electronics\n Product Name          : DDR4-2400 32GiB 64-bit ECC RDIMM\n Product Part Number   : M393A4K40BB1-CRC    \n Product Serial        : 3617984e\n[...]\nFRU Device Description : dimm127 (ID 149)\n Device not present (Requested sensor, data, or record not found)\n[...]\nFRU Device Description : fan0 (ID 152)\n Product Manufacturer  : SanyoDenki\n Product Name          : fan0\n Product Part Number   : 9HV0812PG001\n[...]\nFRU Device Description : opfw (ID 254)\n Product Name          : OpenPOWER Firmware\n Product Version       : open-power-vesnin-v3.0-x16_rc1-g57e5a1b\n\nMore then 150 entries in total. Same for x86 system looks, let\u0027s say, more compact.",
       "parentUuid": "df84eb26_f7bfb7af",
+      "range": {
+        "startLine": 33,
+        "startChar": 133,
+        "endLine": 33,
+        "endChar": 222
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16b2b545_56ee4ae8",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "I think I kind of understand your response, but I still don\u0027t understand the statement in the docs.  If you\u0027re interested in supporting more things in EM, feel free to add support for them through patchsets.\n\nWith that said, DIMMs have SPD formatted i2c eeproms, not IPMI FRU formatted i2c eeproms, so EM would need some code to convert an SPD to a FRU format;  It should be noted, this information on x86 would normally come from MDR, which isn\u0027t always available in SDR.\n\nAs I said, feel free to propose adding this, I wouldn\u0027t\u0027 be against it.",
+      "parentUuid": "7a24a27f_70e0e48e",
       "range": {
         "startLine": 33,
         "startChar": 133,
@@ -518,6 +662,30 @@
     },
     {
       "key": {
+        "uuid": "80bf37f4_e0592780",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "Feel free to propose something through a patchset that makes the existing code more common, but this review isn\u0027t really the place to do that.",
+      "parentUuid": "b24abc9d_27e6ada8",
+      "range": {
+        "startLine": 41,
+        "startChar": 119,
+        "endLine": 41,
+        "endChar": 190
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b75478fc_2f95cd31",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -565,6 +733,30 @@
     },
     {
       "key": {
+        "uuid": "0c764860_d4e791de",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "\u003e What \"two different implementations\" you talking about? \n\u003e I can see your inputs against using phopshor-dbus-interfaces generated code, but not against to be compatible with this interfaces. We all working on big system with lot of components interacting each other. Let\u0027s keep contracts in phopshor-dbus-interfaces. If we somewhere feel the interface doesn\u0027t suit our needs we should explicitly change it, but not silently break like was done in EM.\n\nMy thoughts on this are better captured in the email to the list.  I have no problem with keeping interfaces in phosphor-dbus-interfaces, but the implementation has significant limitations.",
+      "parentUuid": "29e0c39a_0a38b1db",
+      "range": {
+        "startLine": 42,
+        "startChar": 50,
+        "endLine": 42,
+        "endChar": 96
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "085d4d59_51d84e46",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -600,6 +792,30 @@
       "side": 1,
       "message": "Agree, this is not important, can remove\n\u003e Requirements are user facing.\n\nIt was about \"export to XML/JSON/etc\" function for end user to download inventory report.",
       "parentUuid": "085d4d59_51d84e46",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 111
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9afe2a68_9e9a9807",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "If you want to implement this, feel free, but most people today just download the redfish tree to get their complete inventory.",
+      "parentUuid": "35959a29_849200fd",
       "range": {
         "startLine": 43,
         "startChar": 0,
@@ -775,6 +991,30 @@
     },
     {
       "key": {
+        "uuid": "0232d620_3ff8f871",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "that statement is a bit extreme for me as well, even though in the 99% case it probably meets what I would expect.  Any time we say \"all\" I worry that it will get misread.",
+      "parentUuid": "534d0a67_c8d8e685",
+      "range": {
+        "startLine": 50,
+        "startChar": 175,
+        "endLine": 50,
+        "endChar": 645
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "38f1b3c0_af7b59e8",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -916,6 +1156,30 @@
     },
     {
       "key": {
+        "uuid": "a92c62e3_318a6642",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "The code is probably the best place to look.",
+      "parentUuid": "9311560d_558ddf4c",
+      "range": {
+        "startLine": 58,
+        "startChar": 152,
+        "endLine": 58,
+        "endChar": 238
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f438bfcc_c20437d2",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -963,6 +1227,30 @@
     },
     {
       "key": {
+        "uuid": "d08df9ea_6ff94c79",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "This is a discussion that would be better had as a separate change to phosphor-dbus-interfaces.\n\nToday, those interfaces are defined as optional.",
+      "parentUuid": "c36f5edf_90cb7522",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 64
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "467a4834_587b9aca",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -998,6 +1286,30 @@
       "side": 1,
       "message": "I don\u0027t mind to have here implementation details if they help to understand how does the system work and why.",
       "parentUuid": "467a4834_587b9aca",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 139
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11d613fa_f254d001",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "But we already have this documented elsewhere, I\u0027d much rather we rely on that.",
+      "parentUuid": "2bb9cb3a_c5dcbd91",
       "range": {
         "startLine": 68,
         "startChar": 0,
@@ -1151,6 +1463,30 @@
     },
     {
       "key": {
+        "uuid": "aed11bf4_7c8476af",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "\"requiring minimum changes\" isn\u0027t a design goal.  If wide sweeping changes are required, they will be done.  Config files are not an ABI, and if you don\u0027t want your configurations to break, upstream them.",
+      "parentUuid": "61dabb29_1118c39e",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 106
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e494a58b_465150e5",
         "filename": "architecture/entity-manager-architecture.md",
         "patchSetId": 2
@@ -1233,6 +1569,30 @@
       "side": 1,
       "message": "How about \"future implementation\"? Is there any plans?",
       "parentUuid": "e494a58b_465150e5",
+      "range": {
+        "startLine": 75,
+        "startChar": 345,
+        "endLine": 75,
+        "endChar": 409
+      },
+      "revId": "81c131dde24c36c57235aae3599d6f5aa08df650",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0263047b_409eb9e4",
+        "filename": "architecture/entity-manager-architecture.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-23T16:54:08Z",
+      "side": 1,
+      "message": "I\u0027m not following the question.",
+      "parentUuid": "6883baf2_bf798a93",
       "range": {
         "startLine": 75,
         "startChar": 345,
