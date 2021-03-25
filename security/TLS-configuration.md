@@ -178,7 +178,7 @@ command:
 ```
 openssl x509 -req -extensions my_ext_section -extfile myext-server.cnf -days 365 -in signingReqServer.csr -CA CA-cert.pem -CAkey CA-key.pem -CAcreateserial -out server-cert.pem
 ```
-The file `server-cert.pem` now contains a signed client certificate.
+The file `server-cert.pem` now contains a signed server certificate.
 
 ### Verify certificates
 To verify the signing request and both certificates you can use following
