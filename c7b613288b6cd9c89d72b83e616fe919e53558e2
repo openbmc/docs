@@ -1,0 +1,446 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "802aa5e5_9f6cd4da",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "Also IPMID?",
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1946eaf7_494f8cfb",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "Replace with \"a developer\"  There might be no need for this to happen in bitbake data.",
+      "range": {
+        "startLine": 50,
+        "startChar": 26,
+        "endLine": 50,
+        "endChar": 38
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c960787e_95299496",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "This isn\u0027t a requirement, this is an implementation detail.  Please write your requirements in terms of what a user or developer needs to be able to configure.\n\nThere\u0027s also nothing in the design that requires these be in bmcweb, although we might conclude that.",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 21
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "566296de_1591eba2",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "Um......   Considering the operation-to-privilege mapping is based on Redfish base registry, and doesn\u0027t include OEM, how would it be at all useful if the design had no effect?  Maybe you might want to clarify a little?",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 68
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b17491c_284e2ed7",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "This makes it sound like we use a file at all.  Today it\u0027s all in code.",
+      "range": {
+        "startLine": 76,
+        "startChar": 29,
+        "endLine": 77,
+        "endChar": 35
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28418419_653bc963",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "How do we avoid duplicating this data between systems?  If OpenBMC \"Invents\" another role, how do we avoid having to edit N config files.",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 58
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71006e58_e2f1ccdc",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "if we\u0027re going to have system-specific variants of this, how will we make sure we keep up to date with the base registry?  Do we need a design where every file is a diff on top of the base registry, so we\u0027re not having to edit N platforms worth of systems every time we update?",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 38
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25fbd2c9_aa6c1c1c",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "If you have this, why is StandardRoles and CustomRoles required at all?",
+      "range": {
+        "startLine": 111,
+        "startChar": 52,
+        "endLine": 112,
+        "endChar": 27
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01870936_fcd65d2c",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "Please remove this item entirely.  Redfish gives no ordering definition in the spec, so we don\u0027t have a requirement for an ordering definition in openbmc.  The order of items might change at any time and should be treated as an implementation detail.",
+      "range": {
+        "startLine": 123,
+        "startChar": 31,
+        "endLine": 123,
+        "endChar": 75
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93c9232b_19aec3fa",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "Your design seems to completely miss the fact that the new privileges need to be mapped into the actual route table.  I don\u0027t see how you\u0027re going to do that with your current design;  The way I would imagine is for each system to include a privilege registry file, but doing that would duplicate a lot of data you have above, so I\u0027d like to see them at least de-duplicated.  For example, all the privilege levels can be gotten directly from the privilege registry.",
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6f40700_ced7cc71",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "Can you please talk through how the privilege registry route would work in your design?  I suspect it doesn\u0027t, but for non-standard ipmlementations, would be required.",
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "882892ac_2decd2b4",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "Please make a better attempt at this section.  One sentence feels a bit rushed, especially considering it\u0027s a design others have proposed before, and gives the user more utility, and decreases the complexity within openbmc itself.  Please talk through these pros and cons.\n\nAlso, please come up with at least one other alternative.",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 15
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0858791_9788be14",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "Considering now every system has its own redfish config, I wouldn\u0027t really call that trivial if we ever need to change the schema around.",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 7
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "545fc81a_f3bf6ae3",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "This seems like more of a requirement than an impact.",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 0
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1978f49_5fd657b2",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "Please try again here.  Considering you\u0027re adding an explicit way to be incompatible with Redfish, simply saying they\u0027re \"out of scope\" does seem right.",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 72
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5a38f61_2816b3b1",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "Please try again here.  Only testing the defaults doesn\u0027t really work in this context.  That would imply that no system actually checked in a custom registry, which would mean we have no examples.",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 243,
+        "endChar": 54
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92db3c4d_10aa45ef",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "Please work with Andrew on this.  I suspect that there aren\u0027t CI resources to build the image multiple times per-system, and run CI testing multiple times per system.  If there truly is, great, but even so, if all subsystems took this track, we\u0027d tie up way too many resources, so please propose a better solution.",
+      "range": {
+        "startLine": 244,
+        "startChar": 34,
+        "endLine": 245,
+        "endChar": 6
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f4acbec_9fedb786",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "nit: \"Match the default specification\"",
+      "range": {
+        "startLine": 246,
+        "startChar": 63,
+        "endLine": 246,
+        "endChar": 77
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed1b04d1_3c9ed955",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "nit: redfish.  bmcweb is an implementation detail as far as testing is concerned.",
+      "range": {
+        "startLine": 248,
+        "startChar": 29,
+        "endLine": 248,
+        "endChar": 35
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79a01e96_4957c742",
+        "filename": "designs/user-role-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-03-29T16:53:09Z",
+      "side": 1,
+      "message": "More detail needed here.  \"Ensure BMCWeb applies them correctly\" doesn\u0027t really give any indication of the test or how it works.  Are you planning on walking through all routes and testing the privilege levels?  If so, great, that would probably be required of something like this.",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 13
+      },
+      "revId": "c7b613288b6cd9c89d72b83e616fe919e53558e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
