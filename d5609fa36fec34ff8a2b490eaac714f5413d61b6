@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "03ac78c9_7d8a69db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001021
+      },
+      "writtenOn": "2021-04-06T17:14:51Z",
+      "side": 1,
+      "message": "Thanks.",
+      "parentUuid": "5ba1c47f_d9f67f32",
+      "range": {
+        "startLine": 7,
+        "startChar": 38,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "d5609fa36fec34ff8a2b490eaac714f5413d61b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "00deb2c2_a7fd8fd0",
         "filename": "designs/root_of_trust.md",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3b714452_553be3aa",
+        "filename": "designs/root_of_trust.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001021
+      },
+      "writtenOn": "2021-04-06T17:14:51Z",
+      "side": 1,
+      "message": "Ah, right.",
+      "parentUuid": "00deb2c2_a7fd8fd0",
+      "range": {
+        "startLine": 16,
+        "startChar": 70,
+        "endLine": 16,
+        "endChar": 74
+      },
+      "revId": "d5609fa36fec34ff8a2b490eaac714f5413d61b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "254b7b14_f19aa35b",
         "filename": "designs/root_of_trust.md",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "d5609fa36fec34ff8a2b490eaac714f5413d61b6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7525ae99_2aca99ab",
+        "filename": "designs/root_of_trust.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001021
+      },
+      "writtenOn": "2021-04-06T17:14:51Z",
+      "side": 1,
+      "message": "The main reason to have a new Service Root for Google is also to pave the way for future work that we are planning to propose. This new Service Root is for backward compatibility before we propose/migrate to the new way.\n\nAssuming you are referring on having an OEM under the TrustedModule resource. Here is why it is somewhat unnatural to use TPM for Google\u0027s RoT:\n\n- FirmwareVersion1/2\n * Somewhat closely fixed to the design of TPM. TPM 1.2 had 32-bit firmware version and TPM 2.0 extended it clumsily by just tacking on another firmware version 32-bit field.\n\n * TPM \"Firmware 1\" and \"Firmware 2\" together refer to the 64-bit firmware version number. Most TPM2.0 vendors divide this into 4 fields each 2 bytes wide: (big-endian, each character is a byte:) 0xMMmmrrbb (M major, m minor, r rev, b build). Infineon uses a different convention for firmware version numbers than the rest of the TPM vendors, reserving some bits and expressing only a 1-byte wide \"build number\" as 0xMMmm_rrb\n\n * These being exposed as a string out to the Redfish interface works for Google. But I am just trying to provide info on how uniform this currently is (not) within the TPM ecosystem.\n\n\n- InterfaceType\n * Currently closely fixed to the ecosystem of TPM variants.\n\n * Which flavor of TPM interface is implemented. TCM is the \"China version\" of TPM 1.2. The Chinese TPM switched over to TPM 2.0 after that version of the spec was available.\n\n * TPM 1.2 and 2.0 are entirely different API surfaces, analogous to the difference between any TPM and Google\u0027s RoT chips.\n\n- InterfaceTypeSelection\n * Currently closely fixed to the ecosystem of TPM variants.\n\n * Some TPMs can be switched between TPM 1.2 and 2.0. This could be ignorable by Google unless Google start shipping an open sourced RoT that could be switched into a TPM mode via firmware update. (Which would be a good move)\n\n\nThough we can put everything under TPM\u0027s OEM (e.g. version numbers and other functionality), most of the fields will be unusable for Google\u0027s RoT.",
+      "parentUuid": "254b7b14_f19aa35b",
+      "range": {
+        "startLine": 46,
+        "startChar": 91,
+        "endLine": 46,
+        "endChar": 101
+      },
+      "revId": "d5609fa36fec34ff8a2b490eaac714f5413d61b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
