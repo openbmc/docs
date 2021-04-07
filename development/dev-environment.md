@@ -75,6 +75,56 @@ onto your computer (Mac, Windows, Linux)
   **Note** - In Ubuntu, a "sudo apt-get update" will probably be needed before
   installing the packages.
 
+## Download and Install SDK
+
+To keep things organized, create a directory to store your SDK install scripts
+and directories.
+
+1. Download the latest SDK to your system (using Romulus for this walk through)
+
+  ```
+  mkdir -p ~/sdk
+  cd ~/sdk
+
+  wget https://jenkins.openbmc.org/job/latest-master-sdk/label=docker-builder,target=romulus/lastSuccessfulBuild/artifact/deploy/sdk/oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
+  chmod u+x oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
+  ```
+
+2. Install the SDK
+
+  Choose an appropriate location and name. It's a good idea to include the date
+  and system supported by that SDK in the directory name. For example:
+
+  ```
+  mkdir -p ~/sdk/romulus-`date +%F`
+  ```
+
+  Run the following command to install the SDK.  When command  asks you to
+  "Enter target directory for SDK", enter the directory you created in the
+  previous step.
+
+  ```
+  ./oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
+  ```
+
+  The installation script will indicate progress and give completion messages
+  like this:
+  ```
+  SDK has been successfully set up and is ready to be used.
+  Each time you wish to use the SDK in a new shell session, you need to source
+  the environment setup script e.g. $ . /...path-to-sdk.../environment-setup-arm1176jzs-openbmc-linux-gnueabi
+  ```
+
+3. Source yourself into the SDK
+
+  Ensure no errors. The command to do this will be provided at the end of
+  installation. To make your shell use the new SDK environment, you must source
+  its `environment-setup` script which was created in the previous step.  You
+  may wish to save the required command, for example, cut/paste the text above
+  into a README.
+
+That's it, you now have a working development environment for OpenBMC!
+
 ## Download and Start QEMU Session
 
 1. Download latest openbmc/qemu fork of QEMU application
@@ -125,53 +175,3 @@ onto your computer (Mac, Windows, Linux)
   ```
 
   **Note** To exit (and kill) your QEMU session run: `ctrl+a x`
-
-## Download and Install SDK
-
-To keep things organized, create a directory to store your SDK install scripts
-and directories.
-
-1. Download the latest SDK to your system (using Romulus for this walk through)
-
-  ```
-  mkdir -p ~/sdk
-  cd ~/sdk
-
-  wget https://jenkins.openbmc.org/job/latest-master-sdk/label=docker-builder,target=romulus/lastSuccessfulBuild/artifact/deploy/sdk/oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
-  chmod u+x oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
-  ```
-
-2. Install the SDK
-
-  Choose an appropriate location and name. It's a good idea to include the date
-  and system supported by that SDK in the directory name. For example:
-
-  ```
-  mkdir -p ~/sdk/romulus-`date +%F`
-  ```
-
-  Run the following command to install the SDK.  When command  asks you to
-  "Enter target directory for SDK", enter the directory you created in the
-  previous step.
-
-  ```
-  ./oecore-x86_64-arm1176jzs-toolchain-nodistro.0.sh
-  ```
-
-  The installation script will indicate progress and give completion messages
-  like this:
-  ```
-  SDK has been successfully set up and is ready to be used.
-  Each time you wish to use the SDK in a new shell session, you need to source
-  the environment setup script e.g. $ . /...path-to-sdk.../environment-setup-arm1176jzs-openbmc-linux-gnueabi
-  ```
-
-3. Source yourself into the SDK
-
-  Ensure no errors. The command to do this will be provided at the end of
-  installation. To make your shell use the new SDK environment, you must source
-  its `environment-setup` script which was created in the previous step.  You
-  may wish to save the required command, for example, cut/paste the text above
-  into a README.
-
-That's it, you now have a working development environment for OpenBMC!
