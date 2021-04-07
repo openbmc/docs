@@ -77,10 +77,22 @@ onto your computer (Mac, Windows, Linux)
 
 ## Download and Install SDK
 
-To keep things organized, create a directory to store your SDK install scripts
-and directories.
+The OpenBMC Software Development Kit (SDK) contains a cross-toolchain and a set
+libraries for working on OpenBMC applications. The SDK is installed on the
+machine you will use to develop applications for OpenBMC and not on the BMC
+itself.
 
-1. Download the latest SDK to your system (using Romulus for this walk through)
+Generally, SDKs for one BMC cannot be used for developing software for other
+BMCs. This can be due to platform ABI, libc or kernel differences, or any other
+number of choices made in the configuration of the firmware.
+
+Romulus is the BMC platform used for the purpose of this walk-through.
+
+To begin working with the SDK:
+
+1. Download the latest SDK to your system. It's recommended that you create a
+  directory to store your SDK scripts and installation directories to keep your
+  workspace organised.
 
   ```
   mkdir -p ~/sdk
