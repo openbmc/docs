@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23848c74_66ce9df6",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-04-07T19:07:36Z",
+      "side": 1,
+      "message": "I think we should also define how all these other associations are defined.  At a minimum I\u0027d like to see a README created in phosphor-dbus-interfaces under Inventory (because that is how we document associations in other areas already).",
+      "revId": "e70d835246248043442a5e764f810b0596a6c75e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc4208a0_58b53c3f",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-04-07T19:07:36Z",
+      "side": 1,
+      "message": "Rather than being so open, I would prefer we explicitly favor one approach (\u0027Proposal I\u0027 in my opinion) but allow Proposal II in specific cases:\n\n1. As a temporary mitigation until EM can support PropI.\n2. In a few cases where there are different relationships between how inventory is collected and the physical structure (I think Ed had a few examples, but I can\u0027t think of any myself).",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 27
+      },
+      "revId": "e70d835246248043442a5e764f810b0596a6c75e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54f0eda9_e040e5c1",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-04-07T19:07:36Z",
+      "side": 1,
+      "message": "I certainly favor this than a compile-time switch.  We could end up with multiple inventory-providing services running in some cases and they may have a different implementation choice.",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 12
+      },
+      "revId": "e70d835246248043442a5e764f810b0596a6c75e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
