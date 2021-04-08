@@ -261,7 +261,7 @@ _One time only_: Execute one of the OpenBMC Contributor License Agreements:
 If you work for someone, consider asking them to execute the corporate CLA.  This
 allows other contributors that work for your employer to skip the CLA signing process.
 
-After signing a CLA, send it to openbmc@lists.ozlabs.org.
+After signing a CLA, send it to manager@lfprojects.org.
 
 _One time setup_: Login to the WebUI with your GitHub credentials and verify on
 your Account Settings that your SSH keys were imported:
