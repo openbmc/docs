@@ -33,8 +33,8 @@ out.
 ### Code should be written with modern practices
 
 We strive to keep our code conforming to and utilizing of the latest in C++
-standards.  Today, that means all C++ code should be compiled using C++17
-compiler settings.  As the C++20 standard is finalized and compilers support
+standards.  Today, that means all C++ code should be compiled using C++20
+compiler settings.  As the C++23 standard is finalized and compilers support
 it, we will move to it as well.
 
 We also strive to keep the codebase up-to-date with the latest recommended
