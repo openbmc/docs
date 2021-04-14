@@ -1,4 +1,10 @@
-# Sensor Support for OpenBMC
+# Sensor Support for OpenBMC using phosphor-hwmon
+
+This document describes sensors provided by [phosphor-hwmon](15).  An alternate
+method is to use the suite of applications provided by [dbus-sensors](16).
+While the configuration details between the two methods differ, the D-Bus
+representation remains the mostly the same.
+
 OpenBMC makes it easy to add sensors for your hardware and is compliant with
 the traditional Linux HWMon sensor format.  The architecture of OpenBMC
 sensors is to map sensors to [D-Bus][1]
@@ -201,13 +207,6 @@ can be found as a child of the `/etc/default/obmc/hwmon` path.
 
 
 ## Creating a Sensor
-
-There are two techniques to add a sensor to your system and which to use
-depends on if your system defines sensors via an MRW (Machine Readable
-Workbook) or not.
-
-
-### My sensors are not defined in an MRW
 
 HWMon sensors are defined in the `recipes-phosphor/sensor/phosphor-hwmon%`
 path within the [machine configuration][7].
@@ -430,48 +429,6 @@ computes value as:
 y = 20 * 249 * 10^-3 = 4.98 (V)
 ```
 
-### My sensors are defined in an MRW
-
-Setting up sensor support with an MRW is done by adding a unit-hwmon-feature
-unit, for each hwmon feature needing to be monitored and then filling in the
-HWMON_FEATURE attribute.  The XML field is required however a D-Bus interface
-will only be generated when the value property is not null. Values for
-Thresholds follow the HWMon format of no decimals.  Temperature values must
-be described in 10<sup>-3</sup> degrees Celsius. The HWMON\_NAME will be used
-to derive the \<type> while the DESCRIPTIVE\_NAME creates the \<label> for the
-instance path.
-
-| Field id | Value Required | Interfaces Added |
-|---|:---:|---|
-| HWMON\_NAME | Y | xyz.org.openbmc\_project.Sensor.Value |
-| WARN\_LOW, WARN\_HIGH | N | xyz.openbmc\_project.Threshold.Warning |
-| CRIT\_LOW, CRIT\_HIGH | N | xyz.openbmc\_project.Threshold.Critical |
-
-
-Here is an example of a Fan sensor.  If the RPMs go above 80000 or below 1000
-addition signals will be sent over D-Bus.  Note that neither CRIT\_LOW or
-CRIT\_HIGH is set so `xyz.org.openbmc_project.Threshold.Critical` will not be
-added.  The instance path will be `/xyz/openbmc_project/Sensors/fan/fan0`.
-
-```
-<targetInstance>
-	<id>MAX31785.hwmon2</id>
-	<type>unit-hwmon-feature</type>
-	...
-	<attribute>
-		<id>HWMON_FEATURE</id>
-		<default>
-				<field><id>HWMON_NAME</id><value>fan1</value></field>
-				<field><id>DESCRIPTIVE_NAME</id><value>fan0</value></field>
-				<field><id>WARN_LOW</id><value>1000</value></field>
-				<field><id>WARN_HIGH</id><value>80000</value></field>
-				<field><id>CRIT_LOW</id><value></value></field>
-				<field><id>CRIT_HIGH</id><value></value></field>
-		</default>
-	</attribute>
-```
-
-
 ## Additional Reading
 Mailing List [Comments on Sensor design][9]
 
@@ -490,3 +447,5 @@ Mailing List [Comments on Sensor design][9]
 [12]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Inventory/Item.interface.yaml
 [13]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml
 [14]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Inventory/Decorator/Asset.interface.yaml
+[15]: https://github.com/openbmc/phosphor-hwmon
+[16]: https://github.com/openbmc/dbus-sensors
