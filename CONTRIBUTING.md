@@ -289,6 +289,14 @@ added:
 
   `git remote add gerrit ssh://openbmc.gerrit/openbmc/openbmc_repo`
 
+Alternatively, you can encode all the data in the URL:
+
+  `git remote add gerrit ssh://your_github_id@gerrit.openbmc-project.xyz:29418/openbmc/openbmc_repo`
+
+Then add the default branch for pushes to this remote:
+
+  `git config remote.gerrit.push HEAD:refs/for/master`
+
 Gerrit uses [Change-Ids](https://gerrit-review.googlesource.com/Documentation/user-changeid.html) to identify commits that belong to the same
 review.  Configure your git repository to automatically add a
 Change-Id to your commit messages.  The steps are:
@@ -300,7 +308,12 @@ Change-Id to your commit messages.  The steps are:
 To submit a change set, commit your changes, and push to the Gerrit server,
 where 'gerrit' is the name of the remote added with the git remote add command:
 
-  `git push gerrit HEAD:refs/for/master`
+  `git push gerrit`
+
+Sometimes you need to specify a topic (especially when working on a
+feature that spans across few projects) or (un)mark the change as
+Work-in-Progress. For that refer to [Gerrit
+documentation](https://gerrit-review.googlesource.com/Documentation/intro-user.html#topics).
 
 Gerrit will show you the URL link to your review.  You can also find
 your reviews from the [OpenBMC Gerrit server](https://gerrit.openbmc-project.xyz) search bar
