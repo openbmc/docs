@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3779c4c_9681d178",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "I know what you meant here, but that doesn\u0027t really come out as clear.  \"The ability to handle multiple types of sensor\" isn\u0027t really a motivation for this effort.",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 80
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3182f092_2916b838",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "Not really true, but I guess close enough?",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 7
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81323dfd_5ed21682",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "The way this is worded, IPMBSensor would \"accept values from an external source\"  The difference here is that values can be \"pushed\" to the bmc, instead of pulled.",
+      "range": {
+        "startLine": 28,
+        "startChar": 70,
+        "endLine": 30,
+        "endChar": 27
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d362736_26e11699",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "This probably should go in the alternatives section.  Which you seem to have omitted.\n\nPlease follow:\nhttps://github.com/openbmc/docs/blob/master/designs/design-template.md\n\nWhen writing your docs.",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 77
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29329eb9_4195c595",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "This kind of \"history\" isn\u0027t really needed, and is tracked in gerrit and git.  Unless we\u0027re pointing out an alternative that doesn\u0027t work, in which case it should go in the alternatives or background sections.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 11
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "734a814f_0253ece9",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "nit.  Remove.  The point is not to keep the main loop busy, the point is the second half of that sentence.",
+      "range": {
+        "startLine": 72,
+        "startChar": 20,
+        "endLine": 72,
+        "endChar": 59
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71f4d7d8_19cb65f6",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "This isn\u0027t really for this design to decide, and should really be left documented in phosphor-dbus-interfaces, where we\u0027ve already done that.  You might just mention that NAN is used when there\u0027s been a timeout.",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 53
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be5924dd_905414f6",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "Nit, technically this is a mandatory component of the EM config.",
+      "range": {
+        "startLine": 119,
+        "startChar": 31,
+        "endLine": 119,
+        "endChar": 49
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbd54c54_4c84c8d0",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "Remove.  Technically these are all \"new parameters\" as they\u0027re within the scope of the ExternalSensor type.",
+      "range": {
+        "startLine": 121,
+        "startChar": 21,
+        "endLine": 121,
+        "endChar": 44
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d130bb30_0d1cdb26",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "Nit.  Might make less detailed.  \"This corresponds to the Units parameter that the sensor represents\".",
+      "range": {
+        "startLine": 123,
+        "startChar": 56,
+        "endLine": 125,
+        "endChar": 49
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95c8d169_291a622f",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "Nit.  external sensor should be using it to clamp out of range values from being set.",
+      "range": {
+        "startLine": 127,
+        "startChar": 66,
+        "endLine": 128,
+        "endChar": 37
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9959db5_512eb64b",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "nit.  Remove the word \"another\"\n\nAlso, please include what keys this dictionary supports.",
+      "range": {
+        "startLine": 151,
+        "startChar": 18,
+        "endLine": 151,
+        "endChar": 42
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5c6a551_5e100710",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "?  This seems like an incorrect statement.",
+      "range": {
+        "startLine": 155,
+        "startChar": 50,
+        "endLine": 156,
+        "endChar": 17
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10bcddae_4b283401",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "Not needed for a design doc.  This design doc will outlive any development, so including the history in it is unnecessary.",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 58
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b937e06_c49b272b",
+        "filename": "designs/external-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-15T16:22:47Z",
+      "side": 1,
+      "message": "This can be almost entirely removed.  These are details for the commit itself.",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 0
+      },
+      "revId": "239dbbd06fa47c5c2d049fda51a44137b96a268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
