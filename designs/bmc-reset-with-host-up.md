@@ -67,6 +67,10 @@ its boot, the BMC may leave it or recover.
   respond. Lack of response within this time limit will result in the BMC
   potentially taking recovery actions.
   - This time limit must be configurable at build time
+- IPMI and PLDM will implement a phosphor-dbus-interface interface,
+  `xyz.openbmc_project.Condition.Host`, which will have a `CurrentHostCondition`
+  property which other applications can read to determine if the host is
+  running.
 
 ### IPMI Detailed Requirements
 - IPMI will continue to utilize the SMS_ATN command to indicate to the host that
@@ -74,20 +78,23 @@ its boot, the BMC may leave it or recover.
   command, it will be considered up and running
 
 ### PLDM Detailed Requirements
-- PLDM will do a PDR exchange with the host to regenerate the BMC PDR's
+- PLDM will utilize a GetTID command to the host to determine if it is running
 - Where applicable, PLDM will provide a mechanism to distinguish between
   different host firmware stacks
   - For example, on IBM systems there is a difference between the
     hostboot (host initialization) firmware and Hypervisor firmware stacks.
     Both are host firmware and talking PLDM but the BMC recovery paths will
-    differ based on which is running
+    differ based on which is running. The `CurrentHostCondition` property
+    should not return "Running" unless the Hypervisor firmware is running.
 
 ## Proposed Design
 High Level Flow:
 - Check pgood
-- Check host via IPMI (enabled via compile option)
-- Check host via PLDM (enabled via compile option)
-- Check host via any custom mechanisms
+- Call mapper for all implementations of `xyz.openbmc_project.Condition.Host`
+  PDI interface
+- Read `CurrentHostCondition` property of all interface. If any call returns
+  that a host is running then create file and start host target.
+- Otherwise, check host via any custom mechanisms
 - Execute automated recovery of host if desired
 
 IPMI and PLDM software will be started as applicable. A combination of systemd
