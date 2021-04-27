@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56ff93f4_448b13b9",
+        "filename": "designs/bios-specific-post-codes.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-27T15:43:29Z",
+      "side": 1,
+      "message": "Please add to this list: A method that allows a user of a system to see and version ALL possible post codes, such that they can code against them without necessarily using all of them, ideally at compile time.\n\n\nIn the implementation section, this would normally be done as a Bios message registry.  Please plan on writing one of those.",
+      "revId": "e73de2a51519f5c16ff2b86266424f6ba4d3def5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fb3c91c_eb4878b9",
+        "filename": "designs/bios-specific-post-codes.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-27T15:43:29Z",
+      "side": 1,
+      "message": "Also please add to the requirements list:  Must not break any existing implementations of post codes.",
+      "revId": "e73de2a51519f5c16ff2b86266424f6ba4d3def5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "005c1b25_6e7f1006",
+        "filename": "designs/bios-specific-post-codes.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-27T15:43:29Z",
+      "side": 1,
+      "message": "This seems kinda messy, and still requires bmcweb to have system specific code.  The ASCII version of an IBM system is generated differently than the ASCII version for many other systems system (which would be a lookup table.)\n\nWhat if instead of this, we just add a new field the the PostCode property called \"text\".  If the field is empty, bmcweb is free to assume no representation exist.  If the field is filled, bmcweb can assume that it was filled in properly, without needing to implement system-dependent decoding logic.",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 23
+      },
+      "revId": "e73de2a51519f5c16ff2b86266424f6ba4d3def5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d98febe2_b09b4210",
+        "filename": "designs/bios-specific-post-codes.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-27T15:43:29Z",
+      "side": 1,
+      "message": "I don\u0027t really want to maintain different registries.  That is going to spiral out of control in a hurry if we have to build message registries per-system.",
+      "range": {
+        "startLine": 169,
+        "startChar": 19,
+        "endLine": 169,
+        "endChar": 47
+      },
+      "revId": "e73de2a51519f5c16ff2b86266424f6ba4d3def5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62eb8516_cde09f1c",
+        "filename": "designs/bios-specific-post-codes.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-27T15:43:29Z",
+      "side": 1,
+      "message": "These are going to be duplicated, which I\u0027m assuming means you intend to publish one kind of message for IBM systems, and one kind of message for other systems, which limits our compatibility.  What if instead, IBM systems published BIOSPOSTCode, then immediately after it published a message like:\n\nMessageEntry{\"BIOSPOSTCodeASCII\",\n             {\n                \"BIOS Power-On Self-Test Code received\",\n                \"Post code interpretation: %1\",\n                \"OK\",\n                \"OK\",\n                 1,\n                {\"string\"},\n\n\nThis keeps all OpenBMC systems compatible with all clients, and in the future if other systems want to implement post code interpretations, they can without breaking backward compatibility.",
+      "range": {
+        "startLine": 192,
+        "startChar": 17,
+        "endLine": 192,
+        "endChar": 36
+      },
+      "revId": "e73de2a51519f5c16ff2b86266424f6ba4d3def5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
