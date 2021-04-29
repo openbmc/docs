@@ -33,14 +33,26 @@ makes sense.
 Starting out
 ------------
 
-If you're starting out with OpenBMC, you may want to take a look at the issues
-tagged with 'bitesize'. These are fixes or enhancements that don't require
-extensive knowledge of the OpenBMC codebase, and are easier for a newcomer to
-start working with.
+Before you make a contribution, execute one of the OpenBMC Contributor License
+Agreements, _One time only_:
+
+* [Individual CLA](https://github.com/openbmc/openbmc/files/1860742/OpenBMC.ICLA.pdf)
+* [Corporate CLA](https://github.com/openbmc/openbmc/files/1860741/OpenBMC.CCLA.pdf)
+
+If you work for someone, consider asking them to execute the corporate CLA.
+This allows other contributors that work for your employer to skip the CLA
+signing process, they can just be added to the existing CCLA Schedule A.
+
+After signing a CLA, send it to manager@lfprojects.org.
+
+If you're looking for a place to get started with OpenBMC, you may want to take
+a look at the issues tagged with 'bitesize'. These are fixes or enhancements
+that don't require extensive knowledge of the OpenBMC codebase, and are easier
+for a newcomer to start working with.
 
 Check out that list here:
 
- https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3Aopenbmc+label%3Abitesize
+https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3Aopenbmc+label%3Abitesize
 
 If you need further details on any of these issues, feel free to add comments.
 
@@ -54,9 +66,10 @@ Remember to be positive and add value with every review comment.
 Coding style
 ------------
 
-Components of the OpenBMC sources should have a consistent style.  If the source is
-coming from another project, we choose to follow the existing style of the
-upstream project.  Otherwise, conventions are chosen based on the language.
+Components of the OpenBMC sources should have a consistent style.  If the
+source is coming from another project, we choose to follow the existing style
+of the upstream project.  Otherwise, conventions are chosen based on the
+language.
 
 ### Python
 
@@ -252,16 +265,6 @@ Submitting changes via Gerrit server to OpenBMC
 The OpenBMC Gerrit server supports GitHub credentials, its link is:
 
   https://gerrit.openbmc-project.xyz/#/q/status:open
-
-_One time only_: Execute one of the OpenBMC Contributor License Agreements:
-
-* [Individual CLA](https://github.com/openbmc/openbmc/files/1860742/OpenBMC.ICLA.pdf)
-* [Corporate CLA](https://github.com/openbmc/openbmc/files/1860741/OpenBMC.CCLA.pdf)
-
-If you work for someone, consider asking them to execute the corporate CLA.  This
-allows other contributors that work for your employer to skip the CLA signing process.
-
-After signing a CLA, send it to manager@lfprojects.org.
 
 _One time setup_: Login to the WebUI with your GitHub credentials and verify on
 your Account Settings that your SSH keys were imported:
