@@ -40,6 +40,9 @@ Add Keys to OpenBMC's Gerrit Server:
 * Enter e-mail in Settings -> Contact Information -> Register New E-Mail
 * Check e-mail for confirmation and click the link to confirm
 
+##### Add full name to Gerrit
+* Enter your full name in Settings -> Profile -> Full name
+
 ##### Add SSH config entry
 Add the following to `~/.ssh/config`:
 ```
