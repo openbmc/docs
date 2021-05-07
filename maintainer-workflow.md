@@ -10,7 +10,7 @@ listed on an existing CCLA (corporate).
 email to openbmc@lists.ozlabs.org with a request to be added.
   * If a CLA for the contributor is found, accept the patch(1).
 * If a CLA is not found, request that the contributor execute one and send it
-to openbmc@lists.ozlabs.org.
+to manager@lfprojects.org.
   * Do not accept the patch(1) until a signed CLA (individual _or_
 corporate) has been uploaded to the CLA repository.
   * The CCLA form can be found [here][2].
