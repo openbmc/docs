@@ -55,10 +55,11 @@ onto your computer (Mac, Windows, Linux)
 
 2. Install the latest Ubuntu LTS release
 
-  The majority of OpenBMC dev is on [16.04](http://releases.ubuntu.com/16.04/)
-  but whatever is most recent *should* work. The same goes for other Linux
-  distributions like Fedora but again, these are not tested nearly as much by
-  the core OpenBMC team as Ubuntu.
+  The majority of OpenBMC development community uses Ubuntu.  The qemu below
+  is built on [18.04](http://releases.ubuntu.com/18.04/) but whatever is most
+  recent *should* work. The same goes for other Linux distributions like
+  Fedora but again, these are not tested nearly as much by the core OpenBMC
+  team as Ubuntu.
 
   **VirtualBox Tips** - You'll want copy/paste working between your VM and Host.
   To do that, once you have your VM up and running:
