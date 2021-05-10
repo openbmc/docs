@@ -107,7 +107,7 @@ temporary work-arounds that add to QEMU's capabilities where appropriate.
 qemu-system-arm -m 256 -M palmetto-bmc -nographic \
 -drive file=<path>/flash-palmetto,format=raw,if=mtd \
 -net nic \
--net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostname=qemu \
+-net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostname=qemu
 ```
 If you get an error you likely need to build QEMU (see the section in this document).   If no error and QEMU starts up just change the port when interacting with the BMC...
 
