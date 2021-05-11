@@ -25,6 +25,53 @@
     },
     {
       "key": {
+        "uuid": "e36819bd_716b6d8f",
+        "filename": "designs/debug-trigger.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-05-11T01:12:59Z",
+      "side": 1,
+      "message": "Good catch.",
+      "parentUuid": "b03ad46f_2a759704",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 21
+      },
+      "revId": "03e783820f4823f5bccefc1ee78d2a28a51a90c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "880f6d47_772ad630",
+        "filename": "designs/debug-trigger.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-05-11T01:12:59Z",
+      "side": 1,
+      "message": "severe",
+      "range": {
+        "startLine": 166,
+        "startChar": 51,
+        "endLine": 166,
+        "endChar": 56
+      },
+      "revId": "03e783820f4823f5bccefc1ee78d2a28a51a90c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a473f02_e8febed3",
         "filename": "designs/debug-trigger.md",
         "patchSetId": 1
@@ -36,6 +83,24 @@
       "writtenOn": "2021-05-11T01:00:59Z",
       "side": 1,
       "message": "The AST2600 also has internal an Embedded ARM Cortex M3\n(see here: https://www.aspeedtech.com/server_ast2600/)\n\nIs this a reason to not use the Embedded ARM Cortex M3\nto also assist in monitoring the OpenBMC stack running\non the main Dual-core ARM Cortex A7?\n\nI am thinking of a small stand alone piece of firmware\nfor the Embedded ARM Cortex M3.",
+      "revId": "03e783820f4823f5bccefc1ee78d2a28a51a90c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e02c5ab4_900529a7",
+        "filename": "designs/debug-trigger.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-05-11T01:12:59Z",
+      "side": 1,
+      "message": "Right, it would be interesting to make use of the M3. I think the question is how we would do this. The background of this proposal is that the host is using some transport that stops responding. If we were to use the M3, it would also need to be exercising the same transport that becomes unresponsive. This might not even be technically possible (e.g. in the case of FSI or LPC), so it\u0027s not clear that using the M3 has an advantage over e.g. the hardware watchdog that\u0027s pinged by the firmware on the A7.",
+      "parentUuid": "0a473f02_e8febed3",
       "revId": "03e783820f4823f5bccefc1ee78d2a28a51a90c7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
