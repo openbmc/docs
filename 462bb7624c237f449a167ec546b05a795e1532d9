@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b5a9d494_8b3c3af9",
+        "filename": "designs/debug-trigger.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-05-12T02:53:26Z",
+      "side": 1,
+      "message": "Sure, I\u0027ll rename it.",
+      "parentUuid": "c248da19_fecb33be",
+      "revId": "462bb7624c237f449a167ec546b05a795e1532d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "72116e29_bce2e20c",
         "filename": "designs/debug-trigger.md",
         "patchSetId": 3
@@ -30,6 +48,30 @@
       "writtenOn": "2021-05-11T20:17:54Z",
       "side": 1,
       "message": "BMC boot or host boot?",
+      "range": {
+        "startLine": 277,
+        "startChar": 43,
+        "endLine": 277,
+        "endChar": 58
+      },
+      "revId": "462bb7624c237f449a167ec546b05a795e1532d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f024fbc_19657520",
+        "filename": "designs/debug-trigger.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-05-12T02:53:26Z",
+      "side": 1,
+      "message": "I intended that to mean BMC boot. I\u0027ll clarify.",
+      "parentUuid": "72116e29_bce2e20c",
       "range": {
         "startLine": 277,
         "startChar": 43,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "524a5ee3_af23c24c",
+        "filename": "designs/debug-trigger.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-05-12T02:53:26Z",
+      "side": 1,
+      "message": "Right, might need some more cajoling. I think we can view it as temporary until we get kdump.",
+      "parentUuid": "4c937eef_fac58f7b",
+      "revId": "462bb7624c237f449a167ec546b05a795e1532d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aa8b5997_a0b9d50e",
         "filename": "designs/debug-trigger.md",
         "patchSetId": 3
@@ -70,6 +130,24 @@
       "writtenOn": "2021-05-11T20:17:54Z",
       "side": 1,
       "message": "My understanding is our design point was the BMC doesn\u0027t trust the host and the host doesn\u0027t trust the BMC. But that\u0027s a best effort type point. I mean, the host does have a \"recovery mechanism 3\" either way.",
+      "revId": "462bb7624c237f449a167ec546b05a795e1532d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f5a875d_a22d381b",
+        "filename": "designs/debug-trigger.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-05-12T02:53:26Z",
+      "side": 1,
+      "message": "Right, but \"recovery mechanism 3\" is out of scope as it\u0027s a system / hardware design issue. Everything I\u0027ve said here is still valid for \"recovery mechanism 3\".\n\nFor example, you might be able to prevent a bare metal cloud provider from reclaiming the box once your lease expires by keeping the BMC in reset.",
+      "parentUuid": "aa8b5997_a0b9d50e",
       "revId": "462bb7624c237f449a167ec546b05a795e1532d9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
