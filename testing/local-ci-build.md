@@ -69,6 +69,18 @@ WORKSPACE=$(pwd) UNIT_TEST_PKG=phosphor-hwmon NO_FORMAT_CODE=1 \
 `NO_FORMAT_CODE=1` tells the script to skip the `format-code.sh` so that it
 will not format the code and thus your repo could contain un-committed changes.
 
+## Run CI for testing purposes only
+
+To only invoke the test suite and not get caught up the various analysis passes
+that might be run otherwise, set `TEST_ONLY=1`.
+
+E.g.
+
+```shell
+WORKSPACE=$(pwd) UNIT_TEST_PKG=phosphor-hwmon TEST_ONLY=1 \
+./openbmc-build-scripts/run-unit-test-docker.sh
+```
+
 ## Reference an Existing Repo with `git worktree`
 
 If you're actively developing on a local copy of a repo already, or you want to
