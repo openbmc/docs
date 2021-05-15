@@ -59,6 +59,30 @@
     },
     {
       "key": {
+        "uuid": "e39f6185_50f8b0ed",
+        "filename": "designs/bios-specific-post-codes.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2021-05-15T04:55:21Z",
+      "side": 1,
+      "message": "\u003e we just add a new field the the PostCode property called \"text\".  If the field is empty, bmcweb is free to assume no representation exist.  If the field is filled, bmcweb can assume that it was filled in properly, without needing to implement system-dependent decoding logic.\n\nWhere does the proposed PostCode property sit ? are you saying that we should modify the postCode structure to include this field called \"text\" ?\nthis one (https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Boot/Raw.interface.yaml#L6) ? \n\nor are you saying that, the dbus method which is called by the bmcweb, should also return this field apart from just sending the timestamp \u0026 the Integer Code as shown below ? (https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Boot/PostCode.interface.yaml#L31)\n\n\n```\n{\n  \"call\": \"GetPostCodesWithTimeStamp\",\n  \"interface\": \"xyz.openbmc_project.State.Boot.PostCode\",\n  \"obj\": \"/xyz/openbmc_project/State/Boot/PostCode\",\n  \"result\": [\n    {\"20191223T143052.632591\", 1, \"\u003ctext\u003e\"},\n    {\"20191223T143052.634083\", 2, \"\u003ctext\u003e\"},\n  ],\n  \"status\": \"ok\"\n}\n```\n\nThe problem is that the PostCode manager is written in such a way that it always sends the IntegerCodes. So this would demand the bmcweb to do all the conversion.",
+      "parentUuid": "005c1b25_6e7f1006",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 23
+      },
+      "revId": "e73de2a51519f5c16ff2b86266424f6ba4d3def5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d98febe2_b09b4210",
         "filename": "designs/bios-specific-post-codes.md",
         "patchSetId": 1
@@ -141,6 +165,30 @@
       "side": 1,
       "message": "\u003e I am confused , How do you propose we do that, because we use log-service entry for sending out a post code \u0026 how do we send multiple messages in a single log entry ?\n\nYou don\u0027t.  You send multiple entries, and rely on the Redfish EventGroupId to map them to a single \"cause\", which is how redfish recommends to do this.  This also \n\n\u003e \n\u003e And also, on what basis we send the BIOSPOSTCodeASCII ? as in how do we know its an IBM system or not ? in bmcweb ?",
       "parentUuid": "254ecb7e_584e03d2",
+      "range": {
+        "startLine": 192,
+        "startChar": 17,
+        "endLine": 192,
+        "endChar": 36
+      },
+      "revId": "e73de2a51519f5c16ff2b86266424f6ba4d3def5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15ad382c_620edbee",
+        "filename": "designs/bios-specific-post-codes.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2021-05-15T04:55:21Z",
+      "side": 1,
+      "message": "Sure,i think i got what you are trying to say.",
+      "parentUuid": "6aa443bb_d90445af",
       "range": {
         "startLine": 192,
         "startChar": 17,
