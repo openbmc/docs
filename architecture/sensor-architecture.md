@@ -1,7 +1,7 @@
 # Sensor Support for OpenBMC using phosphor-hwmon
 
-This document describes sensors provided by [phosphor-hwmon](15).  An alternate
-method is to use the suite of applications provided by [dbus-sensors](16).
+This document describes sensors provided by [phosphor-hwmon][15].  An alternate
+method is to use the suite of applications provided by [dbus-sensors][16].
 While the configuration details between the two methods differ, the D-Bus
 representation remains mostly the same.
 
@@ -440,7 +440,7 @@ Mailing List [Comments on Sensor design][9]
 [5]: https://github.com/openbmc/phosphor-dbus-interfaces
 [6]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Sensor/Threshold/Warning.interface.yaml
 [7]: https://github.com/openbmc/openbmc/tree/master/meta-openbmc-machines
-[8]: https://github.com/openbmc/openbmc/blob/master/meta-openbmc-machines/meta-openpower/meta-ibm/meta-palmetto/recipes-phosphor/sensors/phosphor-hwmon%25/obmc/hwmon/ahb/apb/i2c%401e78a000/i2c-bus%40c0/tmp423%404c.conf
+[8]: https://github.com/openbmc/openbmc/blob/master/meta-ibm/meta-palmetto/recipes-phosphor/sensors/phosphor-hwmon/obmc/hwmon/ahb/apb/bus@1e78a000/i2c-bus@c0/tmp423@4c.conf
 [9]: https://lists.ozlabs.org/pipermail/openbmc/2016-November/005309.html
 [10]: https://github.com/openbmc/bmcweb/blob/master/DEVELOPING.md#redfish
 [11]: https://github.com/openbmc/docs/blob/master/architecture/object-mapper.md#associations
