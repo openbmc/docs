@@ -187,21 +187,36 @@ launched.  For example, given an application in /usr/bin:
 sed -i s,/usr/bin/env ,/usr/bin/, foo.service
 ```
 
-## Placement of applications in /sbin or /usr/sbin
+## Incorrect placement of executables in /sbin, /usr/sbin or /bin, /usr/bin
 
 ### Identification
-OpenBMC applications that are installed in /usr/sbin.  $sbindir in bitbake
-metadata, makefiles or configure scripts.
+OpenBMC executables that are installed in `/usr/sbin`.  `$sbindir` in bitbake
+metadata, makefiles or configure scripts.  systemd service files pointing to
+`/bin` or `/usr/bin` executables.
 
 ### Description
-Installing OpenBMC applications in /usr/sbin violates the [principle of least
-astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment) and
-more importantly violates the
+Installing OpenBMC applications in incorrect locations violates the
+[principle of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment) and more importantly violates the
 [FHS](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard).
 
 ### Background
-The sbin anti-pattern exists because the FHS was misinterpreted at an early point
-in OpenBMC project history, and has proliferated ever since.
+
+There are typically two types of executables:
+
+1. Long-running daemons started by, for instance, systemd service files and
+   *NOT* intended to be directly executed by users.
+2. Utilities intended to be used by a user as a CLI.
+
+Executables of type 1 should not be placed anywhere in `${PATH}` because it
+is confusing and error-prone to users, but should instead be placed in a
+`/usr/libexec/<package>` subdirectory.
+
+Executables of type 2 should be placed in `/usr/bin` because they are intended
+to be used by users and should be in `${PATH}` (also, `sbin` is inappropriate
+as we transition to having non-root access).
+
+The sbin anti-pattern exists because the FHS was misinterpreted at an early
+point in OpenBMC project history, and has proliferated ever since.
 
 From the hier(7) man page:
 
@@ -213,11 +228,19 @@ system and which are not installed locally should be placed in this directory.
 /usr/sbin This directory contains program binaries for system administration
 which are not essential for the boot process, for mounting /usr, or for system
 repair.
+
+/usr/libexec Directory  contains  binaries for internal use only and they are
+not meant to be executed directly by users shell or scripts.
 ```
+
 The FHS description for /usr/sbin refers to "system administration" but the
 de-facto interpretation of the system being administered refers to the OS
 installation and not a system in the OpenBMC sense of managed system.  As such
 OpenBMC applications should be installed in /usr/bin.
+
+It is becoming common practice in Linux for daemons to now be moved to `libexec`
+and considered "internal use" from the perspective of the systemd service file
+that controls their launch.
 
 ### Resolution
 Install OpenBMC applications in /usr/bin/.
