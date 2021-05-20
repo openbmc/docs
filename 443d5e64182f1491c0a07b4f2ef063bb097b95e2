@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4af541d5_4c9e1c77",
+        "filename": "designs/ibm/system-power-mode.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2021-05-20T02:47:28Z",
+      "side": 1,
+      "message": "Power modes were part of 2021.1. From https://gerrit.openbmc-project.xyz/c/openbmc/bmcweb/+/43376/1/static/redfish/v1/schema/ComputerSystem_v1.xml#2310\n\n      \u003cEnumType Name\u003d\"PowerMode\"\u003e\n        \u003cMember Name\u003d\"MaximumPerformance\"\u003e\n          \u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The system performs at the highest speeds possible.\"/\u003e\n          \u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This value shall indicate the system performs at the highest speeds possible.  This mode should be used when performance is the top priority.\"/\u003e\n        \u003c/Member\u003e\n        \u003cMember Name\u003d\"BalancedPerformance\"\u003e\n          \u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The system performs at the highest speeds while utilization is high and performs at reduced speeds when the utilization is low.\"/\u003e\n          \u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This value shall indicate the system performs at the highest speeds possible when the utilization is high and performs at reduced speeds when the utilization is low to save power.  This mode is a compromise between `MaximumPerformance` and `PowerSaving`.\"/\u003e\n        \u003c/Member\u003e\n        \u003cMember Name\u003d\"PowerSaving\"\u003e\n          \u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The system performs at reduced speeds to save power.\"/\u003e\n          \u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This value shall indicate the system performs at reduced speeds to save power.  This mode should be used when power saving is the top priority.\"/\u003e\n        \u003c/Member\u003e\n        \u003cMember Name\u003d\"Static\"\u003e\n          \u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The system power mode is static.\"/\u003e\n          \u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This value shall indicate the system performs at a static base speed.\"/\u003e\n        \u003c/Member\u003e\n        \u003cMember Name\u003d\"OSControlled\"\u003e\n          \u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The system power mode is controlled by the operating system.\"/\u003e\n          \u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This value shall indicate the system performs at a operating system controlled power mode.\"/\u003e\n        \u003c/Member\u003e\n        \u003cMember Name\u003d\"OEM\"\u003e\n          \u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The system power mode is OEM-defined.\"/\u003e\n          \u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This value shall indicate the system performs at an OEM-defined power mode.\"/\u003e\n        \u003c/Member\u003e\n      \u003c/EnumType\u003e",
+      "parentUuid": "c5e55441_a2fc474e",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 68
+      },
+      "revId": "443d5e64182f1491c0a07b4f2ef063bb097b95e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "805c9fc6_41073cf9",
         "filename": "designs/ibm/system-power-mode.md",
         "patchSetId": 7
