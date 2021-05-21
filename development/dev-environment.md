@@ -188,3 +188,37 @@ That's it, you now have a working development environment for OpenBMC!
   ```
 
   **Note** To exit (and kill) your QEMU session run: `ctrl+a x`
+
+## Alternative yocto QEMU
+
+  yocto has tools for building and running qemu. These tools avoid some of the
+  configuration issues that come from downloading a prebuild image, and
+  mofifying binaries. Useing yocto qemu also using the TAP interface which some
+  find be more stable. This is particually useful when debugging at the
+  application level.
+
+  - set up a bmc build enviroment
+  ```
+  source setup romulus myBuild/build
+  ```
+  - add the qemu x86 open embedded machine for testing
+  ```
+  MACHINE ??= "qemux86"
+  ```
+  - Make the changes to the build (ie devtool modify bmcweb, devtool add gdb)
+  ```
+  devtool modify bmcweb myNewLocalbmcweb/
+  ```
+  - build open bmc for the qemu x86 machine
+  ```
+  MACHINE=qemux86 bitbake obmc-phosphor-image
+  ```
+  - run qemu they way yocto provides
+  ```
+  runqemu myBuild/build/tmp/deploy/images/qemux86/ nographic \
+      qemuparams="-m 2048"
+  ```
+  - after that the all the a TAP network interface is added, and protocol like
+  ssh, scp, http work well.
+
+
