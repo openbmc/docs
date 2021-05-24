@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2224698_582e2594",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2021-05-24T12:11:40Z",
+      "side": 1,
+      "message": "Currently, health.cpp already looking at OperationalStatus to populate Health ?.\n\nor , may be processor / DIMMs / Fans, individually have hooks on OperationalStatus and then use Health also ?. Because, I can today set health of Fan using OperationalStatus\n\nhttps://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/processor.hpp#L76\n\nhttps://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/sensors.hpp#L801\n\nIs the proposal to streamline all those -or- add the hooks of OperationalStatus into all the other schemas like Assembly , PCIeSlot, the new Fan and PS and others ?",
+      "revId": "7e0e99b0ba5234f52d6b1333352bc1794bb435dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db83367d_80fafe78",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2021-05-24T12:11:40Z",
+      "side": 1,
+      "message": "what is the \"worst resource\" ?",
+      "revId": "7e0e99b0ba5234f52d6b1333352bc1794bb435dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
