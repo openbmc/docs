@@ -85,6 +85,13 @@ Map critical thresholds to health critical, and warning thresholds to health
 warning. If thresholds do not exist or do not indicate a problem, map
 OperationalStatus failed to critical.
 
+### Individual Resource Health and Health Rollup
+
+All resources should look at OperationalStatus  to determine the Health.
+Map OperationalStatus true to ok. Map OperationalStatus false to critical.
+The worst resource item in the Chassis is the rollup for the Chassis.
+System is treated the same.
+
 ### Chassis / System Health
 
 Chassis have individual sensors. Cross reference the individual sensors with
