@@ -108,6 +108,15 @@ health warning association if the system determines this failure should
 contribute as such. The chassis that the fan is in will then be marked as
 warning as the inventory that it contains is warning at a global level.
 
+### Individual Resource Health and Health Rollup
+
+When OperationalStatus is false, it does not automatically generate an association that ends with a "critical" or a "warning". For these inventory, looking for an associations ending in "critical" or "warning" to determine the Health is not appropriate.
+
+OperationalStatus is a property that all inventory have. All those inventory should look at OperationalStatus to determine the Health.
+Map OperationalStatus true to "ok". Map OperationalStatus false to "critical".
+The worst health inventory item in the Chassis is the rollup for the Chassis.
+System is treated the same.
+
 ## Alternatives Considered
 
 A new daemon to track global health state. Although this would be difficult
