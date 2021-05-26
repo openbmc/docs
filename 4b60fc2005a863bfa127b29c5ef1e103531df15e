@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1bda17d_73f4eb28",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2021-05-26T17:31:27Z",
+      "side": 1,
+      "message": "I think we went with using Drive in the offline discussion. We won\u0027t use SimpleStorage anymore. Any other reasons that we keep this name?\n\nWe might need to change all \"simple storage\" to \"drive\".",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 15
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5a86b92_93a3340b",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2021-05-26T17:31:27Z",
+      "side": 1,
+      "message": "nit: \"Redfish GET request\" should go to BMCweb?",
+      "range": {
+        "startLine": 54,
+        "startChar": 34,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad0e6736_28c5e032",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2021-05-26T17:31:27Z",
+      "side": 1,
+      "message": "So presence and powergood for a single device will be two objects that has \"xyz.openbmc_project.Inventory.Item\" implemented, right?\n\nAnd the \"Present\" property for powergood basically represents \"Power Good or not\", right?",
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78c54fe1_dcfce413",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2021-05-26T17:31:27Z",
+      "side": 1,
+      "message": "Can you explain how we are going to use this interface with object mapper to match presence and powergood objects for a device?\n\nCan we use \"GetSubTree\"? Given a deviceId, I thought we can do something like searching objects under \"/xyz/openbmc_project/inventory/system/\u003cSimpleStorageController\u003e/\u003cDeviceId\u003e/\". \n\nWe can get deviceIds using the same \"GetSubTree\" method for \"/xyz/openbmc_project/inventory/system/\u003cSimpleStorageController\u003e/\".",
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "142e9427_83afba1a",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2021-05-26T17:31:27Z",
+      "side": 1,
+      "message": "Why do we need controller id here? Is it just to make the object path unique?",
+      "range": {
+        "startLine": 107,
+        "startChar": 82,
+        "endLine": 107,
+        "endChar": 94
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48ed1933_31e4f88f",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2021-05-26T17:31:27Z",
+      "side": 1,
+      "message": "nit: be created by the Manager?",
+      "range": {
+        "startLine": 111,
+        "startChar": 66,
+        "endLine": 111,
+        "endChar": 94
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f404951_8cb1b10e",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2021-05-26T17:31:27Z",
+      "side": 1,
+      "message": "can you explain more about how we manage this index?",
+      "range": {
+        "startLine": 111,
+        "startChar": 17,
+        "endLine": 111,
+        "endChar": 32
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22383a84_2c33bd78",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2021-05-26T17:31:27Z",
+      "side": 1,
+      "message": "Should it be drive?\n\nhttp://schemas.dmtf.org/viewvc/Development/documents/specifications/DSP0268/DSP0268_2020.4.html?revision\u003d1.1\u0026view\u003dco#Drive",
+      "range": {
+        "startLine": 139,
+        "startChar": 95,
+        "endLine": 139,
+        "endChar": 108
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
