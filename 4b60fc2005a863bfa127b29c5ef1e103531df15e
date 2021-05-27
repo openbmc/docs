@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "77843402_ab477e24",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001003
+      },
+      "writtenOn": "2021-05-27T02:46:23Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "b1bda17d_73f4eb28",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 15
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d5a86b92_93a3340b",
         "filename": "designs/simplestorage-manager.md",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6cd2c349_8e4008d6",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001003
+      },
+      "writtenOn": "2021-05-27T02:46:23Z",
+      "side": 1,
+      "message": "Device status is read to bmcweb.",
+      "parentUuid": "d5a86b92_93a3340b",
+      "range": {
+        "startLine": 54,
+        "startChar": 34,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad0e6736_28c5e032",
         "filename": "designs/simplestorage-manager.md",
         "patchSetId": 2
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "e2e1ea98_923cf2c5",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001003
+      },
+      "writtenOn": "2021-05-27T02:46:23Z",
+      "side": 1,
+      "message": "Yes. You\u0027re right.",
+      "parentUuid": "ad0e6736_28c5e032",
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78c54fe1_dcfce413",
         "filename": "designs/simplestorage-manager.md",
         "patchSetId": 2
@@ -79,6 +145,24 @@
       "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8680529_ea36b6e2",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001003
+      },
+      "writtenOn": "2021-05-27T02:46:23Z",
+      "side": 1,
+      "message": "Can you explain how we are going to use this interface with object mapper to match presence and powergood objects for a device?\n\nWe will parse the object path to determine which objects are same device\nThat\u0027s why we define the `/xyz/openbmc_project/inventory/system/\u003cStorageController\u003e/\u003cDeviceId\u003e/\u003cDeviceStatus\u003e` path rule.\n\nCan we use \"GetSubTree\"? Given a deviceId, I thought we can do something like searching objects under \"/xyz/openbmc_project/inventory/system/\u003cSimpleStorageController\u003e/\u003cDeviceId\u003e/\". \n\nSure.\n\nWe can get deviceIds using the same \"GetSubTree\" method for \"/xyz/openbmc_project/inventory/system/\u003cSimpleStorageController\u003e/\".\n\nYes.",
+      "parentUuid": "78c54fe1_dcfce413",
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -102,6 +186,30 @@
       "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96de3fb5_9645477d",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001003
+      },
+      "writtenOn": "2021-05-27T02:46:23Z",
+      "side": 1,
+      "message": "Considering that there may be different types of controller on different BMCs and Controller names are user defined\nSort controllers and give them Id can save the code which transfer name to Id on the bmcweb side.",
+      "parentUuid": "142e9427_83afba1a",
+      "range": {
+        "startLine": 107,
+        "startChar": 82,
+        "endLine": 107,
+        "endChar": 94
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -151,6 +259,54 @@
     },
     {
       "key": {
+        "uuid": "ce650c2d_62663385",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1001003
+      },
+      "writtenOn": "2021-05-27T02:46:23Z",
+      "side": 1,
+      "message": "such like official example:\n/redfish/v1/Systems/437XR1138R2/Storage/1#/StorageControllers/0\nThe 0 is \u003cControllerId\u003e\nIf we created ControllerId on Manager side and mark it on Dbus path so that we do not need to sort them on bmcweb side.",
+      "parentUuid": "5f404951_8cb1b10e",
+      "range": {
+        "startLine": 111,
+        "startChar": 17,
+        "endLine": 111,
+        "endChar": 32
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce6b2348_50b4b383",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1001003
+      },
+      "writtenOn": "2021-05-27T02:46:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48ed1933_31e4f88f",
+      "range": {
+        "startLine": 111,
+        "startChar": 66,
+        "endLine": 111,
+        "endChar": 94
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "22383a84_2c33bd78",
         "filename": "designs/simplestorage-manager.md",
         "patchSetId": 2
@@ -171,6 +327,30 @@
       "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c7805db_02d1b086",
+        "filename": "designs/simplestorage-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1001003
+      },
+      "writtenOn": "2021-05-27T02:46:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22383a84_2c33bd78",
+      "range": {
+        "startLine": 139,
+        "startChar": 95,
+        "endLine": 139,
+        "endChar": 108
+      },
+      "revId": "4b60fc2005a863bfa127b29c5ef1e103531df15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
