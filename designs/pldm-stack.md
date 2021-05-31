@@ -4,6 +4,8 @@ Author: Deepak Kodihalli <dkodihal@linux.vnet.ibm.com> <dkodihal>
 
 Primary assignee: Deepak Kodihalli
 
+Other contributors: Gade Raja Sekhar Reddy
+
 Created: 2019-01-22
 
 ## Problem Description
@@ -324,6 +326,211 @@ b) With non-blocking API
         |close_connection()             |                              |                              |
         +                               +                              +                              +
 ```
+
+#### PLDM firmware update
+During bootup, PLDM daemon gets the list of PLDM capable devices from transport
+layer(like MCTP, NC-SI (RBT) etc.) and checks if the devices support PLDM
+firmware update by running PLDM base commands. When a PLDM capable device is
+added or removed dynamically, PLDM daemon will be notified by transport layer.
+For the newly added device PLDM daemon runs the base commands to check PLDM
+capabilities. PLDM daemon deletes the resources allocated for the removed
+device.
+
+The FD is the minimum hardware unit that the PLDM-based firmware update is
+applied to and with which the Update Agent (UA) communicates to accomplish the
+update.
+
+PLDM daemon sends inventory commands to each FD.
+As per DSP0267 version 1.0.1, there are two inventory commands,
+
+• __QueryDeviceIdentifiers__: This command is used by the UA to obtain the
+ firmware identifiers for the FD.
+
+• __GetFirmwareParameters__: This command is used by the UA to acquire the
+ component details such as classification types and corresponding versions of
+ the FD.
+
+Inventory information is exposed to D-Bus and D-Bus objects will be described
+in the later sections.
+
+Figure 1: High Level PLDM Firmware Update Flow
+<pre>
+```
+                 PLDM                                     Software Manager               Redfish Update Service
+                  |                                               |                                  |
+            |-----| 1. PLDM daemon queries the transport service  |                                  |
+            |     |    (like MCTP) to determine PLDM capable      |                        |---------|
+            |     |    devices,                                   |                        |    User | initiates
+            |     | 2. Execute PLDM device discovery commands for |                        |    FWU  | ( Post Method)
+            |     |    each device and verify the PLDM FW update  |                        |-------->|
+            |     |    support.                                   |                                  |
+            |     | 3. Execute inventory commands for each FD and |                                  |
+            |---->|    expose information over D-Bus for upper    |                                  |
+                  |    layer consumption.                         |                                  |
+                  |                                               |                                  |
+                  |                                               | PLDM FWU package                 |
+                  |                                               |<---------------------------------|
+                  |                                               |  kept in / tmp / images          |
+                  |                                               |                                  |
+                  |                                               |                                  |
+                  |                                  |------------|                                  |
+                  |                                  |     Verify | PLDM                             |
+                  |                                  |    package | header                           |
+                  |                                  | identifier |                                  |
+                  |                                  |----------->|                                  |
+                  |                                               |                                  |
+                  |                                               |                                  |
+                  |  Initiate update by D-Bus method call         |                                  |
+                  |<----------------------------------------------|                                  |
+                  |                                               |                                  |
+            |-----|                                               |                                  |
+            |     | Parse the package and find out target device  |                                  |
+            |     | using device descriptors.                     |                                  |
+            |---->|                                               |                                  |
+                  |                                               |                                  |
+            |-----|                                               |                                  |
+            |     | Run sequence of firmware update commands      |                                  |
+            |     | as described in spec DSP0267(1.0.1)           |                                  |
+            |---->|                                               |                                  |
+                  |                                               |                                  |
+                  | Update the firmware activation status and     |                                  |
+                  |---------------------------------------------->|                                  |
+                  | progress percentage to software-manager with  |                                  |
+                  |  D-Bus calls                                  |                                  |
+                  |                                               |                                  |
+                  |                                               |                                  |
+```
+</pre>
+
+Figure 2: High level architecture flow of FW update (through PLDM)
+<pre>
+```
+      PLDM FWU   |----------|     |----------|     |-------------------|      |---------------|
+    ------------>| Redfish  |---->| Redfish  |---->|    OpenBMC        |----->|Add-In Card(FD)|
+      Package    | Client   |     | Interface|     |                   |      |---------------|
+                 |----------|     |----------|     |   |-----------|   |
+                                                   |   | Redfish   |   |
+                                                   |   | daemon    |   |      |----------------|
+                                                   |   |-----|-----|   |----->|On Board device |
+                                                   |         |         |      |----------------|
+                                                   |   |-----|-----|   |
+                                                   |   |  PLDM FW  |   |
+                                                   |   | Daemon(UA)|   |
+                                                   |   |-----------|   |
+                                                   |-------------------|
+```
+</pre>
+
+User interfaces (like Redfish) are used to upload the PLDM package to the staging
+area of BMC. Software-manager listens to the changes on staging area and
+validates the image for PLDM type. It then exposes a D-Bus object that will be
+described in the later sections. Once verification is done, it notifies the PLDM
+daemon with a method call to initiate the firmware update.
+
+PLDM Daemon proceeds to parse the firmware package header. It determines the
+target device by matching the package provided device descriptors with the ones
+obtained by query device identifiers command.
+
+BMC runs a sequence of firmware update commands to target FD as described in the
+sections 6.4 and 6.5 Of DSP0240(1.0.1).
+
+There are three additional commands which UA can send to FD,
+
+• `Get Status`– Sending this command to the FD, BMC can know the status of the
+ update at any time.
+
+•`Cancel Update Component`- Sending this command to the FD, BMC can cancel the
+ update of current component.
+
+•`Cancel Update` - Sending this command to the FD, BMC can cancel the update.
+ If the firmware update is successful, FD goes for reset.
+The PLDM firmware update package contains two major sections:
+
+•__Firmware Package Header__: It is required to describe the firmware devices
+that the package is intended to update and component images that the firmware
+update package contains.
+
+•__Firmware Package Payload__: It contains the individual component images
+that can be transferred to the firmware devices.
+
+More details of the PLDM package is described in section 7 of DSP0267.
+
+Figure 3: PLDM Firmware Update Package
+<pre>
+```
+
+                    |---------      |----   |--------------------------------|
+                    |               |       |    Package Header Information  |
+                    |    Firmware   |       |--------------------------------|
+                    |    Package----|       |    Firmware Device ID Records  |
+                    |    Header     |       |     & Descriptors              |
+                    |               |       |--------------------------------|
+      Firmware      |               |       |   Component Image Information  |
+      Update -------|               |-------|--------------------------------|
+      Package       |               |       |       Component Image 1        |
+                    |    Firmware   |       |--------------------------------|
+                    |    Package----|       |       Component Image 2        |
+                    |    Payload    |       |--------------------------------|
+                    |               |       |              ...               |
+                    |               |       |--------------------------------|
+                    |               |       |        Component Y             |
+                    |---------      |----   |--------------------------------|
+```
+</pre>
+
+PLDM FW Update D-Bus Interfaces Overview and Hierarchy:
+
+The below are the objects exposed by PLDM daemon on discovery of PLDM FW update
+capable devices. These will be picked by redfish automatically.
+
+Object path: /xyz/openbmc_project/software/<entity_name><entity_instance>
+Entity name will be taken either from a jason config file that maps entity info to
+device descriptors or hash of ActiveComponentImageSetVersionString which is part
+of inventory information.
+Example: /xyz/openbmc_project/software/NIC0
+
+Interfaces:
+1. `xyz.openbmc_project.Software.Activation`, which describes firmware update
+activation status. There could be some devices which supports inventory command,
+but does not support PLDM firmware update. Activation property can be used to
+determine whether the device supports firmware update or not.
+2. `xyz.openbmc_project.Software.Version`, which describes the version
+of the firmware image.
+3. `xyz.openbmc_project.Association.Definitions`, which defines the
+association of the FD with the inventory item.
+
+Below D-Bus object will be exposed by software-manager, when the PLDM image is
+uploaded for firmware update.
+
+object path: /xyz/openbmc_project/software/<ImageHash>
+interfaces:
+1. `xyz.openbmc_project.Software.Activation`, which describes firmware update
+activation status.
+2. `xyz.openbmc_project.Software.Version`, which describes the version of the
+firmware image.
+3. `xyz.openbmc_project.Software.ActivationProgress`, which shows the firmware
+update progress.
+4. `xyz.openbmc_project.Software.ImageTargets`, which shows the list of
+target devices which the user intended to update. ImageTargets property is
+an array of strings. User can send target firmware update entities from redfish
+interfaces as httpPushUri arguments. Redfish service updates ImageTargets
+property with target entities. Software-manager passes it to pldmd in the method
+StartFWUpdate as an argument. PLDM daemon uses ImageTargets to identity the
+target firmware device.
+
+Eg: In the inventory if the availabe devices are NIC0, NIC1, GPU0, GPU1. If
+user wish to update the firmware of the NIC0 and GPU1, NIC0 and GPU1 can be
+passed as httpPushUri arguments. Redfish will set these entities to ImageTargets
+property. Software-manager passes this property as an argument to StartFWUpdate
+method, which is part of pldm service.
+
+__Note__: If ImageTargets is empty, PLDM daemon updates all the devices for
+which device descriptors are matched.
+
+pldm daemon exposes the object `/xyz/openbmc_project/pldm/fwu` with the
+interface, `xyz.openbmc_project.pldm.FWUBase`, which exposes a method
+"StartFWUpdate" by which PLDM FWU can be initiated. PLDM firmware image path
+and target firmware update devices are passed as arguments to this method.
 
 ##### Alternative to the proposed requester design
 
