@@ -192,10 +192,11 @@ That's it, you now have a working development environment for OpenBMC!
 ## Alternative yocto QEMU
 
   yocto has tools for building and running qemu. These tools avoid some of the
-  configuration issues that come from downloading a prebuild image, and
-  mofifying binaries. Useing yocto qemu also using the TAP interface which some
-  find be more stable. This is particually useful when debugging at the
-  application level.
+  configuration issues that come from downloading a prebuilt image, and
+  mofifying binaries. Using yocto qemu also uses the [TAP
+  interface](https://www.kernel.org/doc/Documentation/networking/tuntap.txt)
+  which some find be more stable. This is particularly useful when debugging
+  at the application level.
 
   - set up a bmc build enviroment
   ```
