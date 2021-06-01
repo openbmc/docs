@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "e30da918_c9c4e52f",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-06-01T08:21:06Z",
+      "side": 1,
+      "message": "Another way to do it can be having a json configuration which maps Device Descriptors with the identifier",
+      "parentUuid": "d0c3996a_9142ff5d",
+      "range": {
+        "startLine": 486,
+        "startChar": 43,
+        "endLine": 486,
+        "endChar": 56
+      },
+      "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec12bda8_290f7c7c",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "02341bb6_0d51d7a6",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-06-01T08:21:06Z",
+      "side": 1,
+      "message": "This comes from the Base spec. There is a command in the base spec (Get PLDM Commands) which takes the PLDM type as input and provides the bitmap of commands supported as output. \n\nOn the hindsight, we will also get to know whether the FD supports optional commands such as Get Package Data.",
+      "parentUuid": "ec12bda8_290f7c7c",
+      "range": {
+        "startLine": 490,
+        "startChar": 0,
+        "endLine": 493,
+        "endChar": 61
+      },
+      "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9413948d_4d9d13fd",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
@@ -82,6 +130,30 @@
       "writtenOn": "2021-06-01T05:01:03Z",
       "side": 1,
       "message": "There could be multiple components in the FD, will there be a separate object for each component?",
+      "range": {
+        "startLine": 494,
+        "startChar": 3,
+        "endLine": 494,
+        "endChar": 41
+      },
+      "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe5c81df_61bb2744",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-06-01T08:21:06Z",
+      "side": 1,
+      "message": "The question is - do we really need to have one per component or can the overall device\u0027s package version suffice? \nI think the package version (at the device level) should suffice most practical needs. Say a FD has some component images, the nomenclature for each component object is going to difficult because I don\u0027t see a way to fetch inventory information (unless we have preconfigured data) and don\u0027t envision a case for consumers of this information (at component level)\n\nIf a usecase arrives (say for validation requiremetns), we could simply have the component information interface which lists out PLDM specific component related information.",
+      "parentUuid": "9413948d_4d9d13fd",
       "range": {
         "startLine": 494,
         "startChar": 3,
