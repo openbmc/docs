@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "f0c328be_d1f55d6a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-06-01T09:30:53Z",
+      "side": 1,
+      "message": "Since there is an existing https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/40289, this commit should clarify the intent in regards to the existing proposal - an alternate/replacement/preferred?",
+      "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0f8ca09_686fe010",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-06-01T09:30:53Z",
+      "side": 1,
+      "message": "How will the UA use this further?",
+      "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7222be6e_3adb4330",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 1
@@ -18,6 +52,29 @@
         "startChar": 58,
         "endLine": 359,
         "endChar": 75
+      },
+      "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f5eccb4_ccb70a57",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-06-01T09:30:53Z",
+      "side": 1,
+      "message": "Is software manager a new component or https://github.com/openbmc/phosphor-bmc-code-mgmt? Apps like https://github.com/openbmc/phosphor-psu-code-mgmt don\u0027t go through bmc-code-mgmt. What is the advantage with having bmc-code-mgmt understand multiple FW update package headers?",
+      "range": {
+        "startLine": 359,
+        "startChar": 58,
+        "endLine": 359,
+        "endChar": 74
       },
       "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -66,6 +123,23 @@
         "endLine": 486,
         "endChar": 56
       },
+      "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cd88601_356bf6fb",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-06-01T09:30:53Z",
+      "side": 1,
+      "message": "What entities will act on this interface? How is different than the same interface added by the sw-manager?",
       "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -231,6 +305,86 @@
         "startChar": 3,
         "endLine": 494,
         "endChar": 41
+      },
+      "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5a9682d_d6bfdf7a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-06-01T09:30:53Z",
+      "side": 1,
+      "message": "How is this different than the interfaces added by the pldm daemon (line 483)?",
+      "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db799990_7d9fceb4",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-06-01T09:30:53Z",
+      "side": 1,
+      "message": "The PLDM daemon could itself have done this. What is the advantage of doing this in the software manager? The current approach needs two d-bus calls: pldmd-\u003esoftware-manager, bmcweb-\u003esoftware-manager, instead of the one from https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/40289 where this is done within pldmd - which acts both as image manager and item updater.",
+      "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b2a18ae_19e1f04e",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-06-01T09:30:53Z",
+      "side": 1,
+      "message": "How? This needs an example/elaboration.",
+      "range": {
+        "startLine": 514,
+        "startChar": 10,
+        "endLine": 514,
+        "endChar": 78
+      },
+      "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83675aea_1870735a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-06-01T09:30:53Z",
+      "side": 1,
+      "message": "not following this",
+      "range": {
+        "startLine": 522,
+        "startChar": 4,
+        "endLine": 522,
+        "endChar": 34
       },
       "revId": "dd7e070e8591cca8399a59362ce1053688caf06e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
