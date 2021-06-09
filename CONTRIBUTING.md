@@ -148,7 +148,7 @@ the discussion.  You may find a better way to do what you need.
 
 If the feedback seems favorable or requests more details, continue
 by submitting the design to gerrit starting with a copy of the
-[design_template](https://github.com/openbmc/docs/blob/master/design/design_template.md).
+[design_template](https://github.com/openbmc/docs/blob/master/designs/design-template.md).
 
 Submitting changes
 ------------------
