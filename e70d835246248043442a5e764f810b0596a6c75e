@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "58c1bbd5_880ede4d",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-06-09T18:56:28Z",
+      "side": 1,
+      "message": "oh wait, I guess you were not referring to https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Association.interface.yaml.\n\nI guess you meant https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Association/Definitions.interface.yaml.\n\nLooks like this should work fine. It will create a new path that is related to the type of connection to help determine the associations.\n\nIs the diff between I and II, just that ContainBy and Contains are not using Associations?",
+      "parentUuid": "8cc355f8_3bf568ff",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 45
+      },
+      "revId": "e70d835246248043442a5e764f810b0596a6c75e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc4208a0_58b53c3f",
         "filename": "architecture/dbus-inventory.md",
         "patchSetId": 4
