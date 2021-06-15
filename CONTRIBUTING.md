@@ -13,6 +13,13 @@ We enthusiastically adhere to our
 If you have any concerns, please check that document for guidelines on who can
 help you resolve them.
 
+## Inclusive Naming
+
+OpenBMC relies on the Open Compute Project to provide guidelines on inclusive
+naming.  The OCP guidelines can be found here:
+
+https://www.opencompute.org/documents/ocp-terminology-guidelines-for-inclusion-and-openness
+
 Structure
 ---------
 
