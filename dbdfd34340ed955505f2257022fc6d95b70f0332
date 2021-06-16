@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0e814079_845bd5fd",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-06-16T00:50:26Z",
+      "side": 1,
+      "message": "Can you give a reference for aes 128 being no longer recommend?\n\nIn 2018 it was mandatory for TLS 1.3 albeit in GCM.\nhttps://datatracker.ietf.org/doc/html/rfc8446#section-9.1\n\nI see maybe for new applications or post quantum concerns.\n\nhttps://en.m.wikipedia.org/wiki/Security_level\nhttps://blog.1password.com/guess-why-were-moving-to-256-bit-aes-keys/",
+      "revId": "dbdfd34340ed955505f2257022fc6d95b70f0332",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b40b441_363ce6ed",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 3
@@ -19,6 +36,23 @@
         "endLine": 80,
         "endChar": 26
       },
+      "revId": "dbdfd34340ed955505f2257022fc6d95b70f0332",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "152f2578_d11c1573",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-06-16T00:50:26Z",
+      "side": 1,
+      "message": "This would require the private key to be shared between the web server and the ipmi, or the session to be terminated by the server and forwarded on.\n\nDoes redfish have a concept of providing services references? (As an alternative)",
       "revId": "dbdfd34340ed955505f2257022fc6d95b70f0332",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
