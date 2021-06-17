@@ -151,6 +151,30 @@
       "revId": "26581476a3ba400b02650aa2f9432d344d0a5246",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d3d5ede_cce32323",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-06-17T11:57:19Z",
+      "side": 1,
+      "message": "\u003e re: git - it is way better than using the publicly viewable/editable google drive that we currently use. Signatures are available today. It enables a company to approve/submit their Schedule A and have a log of revisions.\n\nI don\u0027t have any concern with using a git repository to store this content.  My concern is if the expectation is that people are going to upload scaned-in (ie. pictures) copies of their signed CLA into this repository, the repository is going to get very large very quickly.  This is problematic for both developers and for any automation dreams you may have.\n\nCurrently the repository is ~900k git pack file.  A single uploaded CLA is going to double that size.\n\n\u003e It also makes automation possible, the schedule A could be automatically checked out, parsed and used for company member lists for populating CI testing groups, metrics, owners (CLA managers), etc...\n\nThis sounds like you\u0027re going down a direction where the schedule A is a text file maintained with git, rather than a signed+scanned version.  That is great.  I would suggest that this should go into a separate repository from the signed+scanned CLA so that we\u0027re not downloading a bunch of pictures into our automation facilities.\n\n\u003e So, is the problem using docs/CLA? Would a new repo be better?\n\nYes, that\u0027s the underlying problem.  I don\u0027t want binary blobs in this repo.  Scanned CLAs would be those.\n\nI am ok with the *source* CLAs being here, but not the *executed* CLAs.  As I said earlier in another comment it would be better if we could get a source CLA that is not an uneditable PDF.",
+      "parentUuid": "fad280c5_8342e31b",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 53
+      },
+      "revId": "26581476a3ba400b02650aa2f9432d344d0a5246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
