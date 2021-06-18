@@ -96,14 +96,29 @@ The methods and properties of the guard manager.
 #### Guard Entry
 The properties of each guard entry will be part of this object
 Properties:
-        - ID: Id of the record
-        - Unit: Inventory path of the guarded unit.
-        - Logging entry
-        - Type: Type of Guard
-                - Manual - Manually Guarded
-                - Critical  - Guarded based on a critical error
-                - Warning - Guarded based on an error which is not
-                  critical, but eventually, there can be critical failures.
+
+- ID: Id of the record which is part of the entry object path.
+- Associations:
+  - Guarded hardware inventory path:
+    - Forward Name must be "isolated_hw".
+    - Reverse Name must be "isolated_hw_entry".
+  - BMC Error Log:
+    - Forward Name must be "isolated_hw_errorlog".
+    - Reverse Name must be "isolated_hw_entry".
+
+      Error Log association can be optional because a user may be
+      tried guard hardware and it is not an error case.
+- Severity: Type of Guard
+  - User - Manually Guarded
+  - Critical - Guarded based on a critical error
+  - Warning - Guarded based on an error which is not critical, but eventually,
+              there can be critical failures.
+- Resolved: Status of guarded hardware
+  - Used to indicate whether guarded hardware is repaired or replaced.
+
+    **Note:** Setting this to "true" will not delete this entry because
+              in a few system platforms guarded hardware records may not be
+              deleted and used for further analysis.
 
 The underlying guard function is implemented by the applications managing the
 hardware units. The application which implements the common guard entry
@@ -116,11 +131,12 @@ original guard record store.
 Creating manual gurad record, set the "Disabled" property to true to manually
 guard a unit which is present in the inventory.
 #### redfish » v1 » Systems » system » Processors » CPU1
+```
 {
   "@odata.type": "#Processor.v1_7_0.Processor",
   "Id":view details "CPU1",
   "Name": "Processor",
-   "Socket": "CPU 1",
+  "Socket": "CPU 1",
   "ProcessorType": "CPU",
   "ProcessorId":
    {
@@ -134,14 +150,16 @@ guard a unit which is present in the inventory.
    {
         "State": "Enabled",
         "Health": "OK"
-       "ReadyToRemove": "True" <---
-    } ,
-    "@odata.id":view details "/redfish/v1/Systems/system/Processors/CPU1"
+        "Enabled": "False" <--- Requesting to guard a CPU1
+   } ,
+   "@odata.id":view details "/redfish/v1/Systems/system/Processors/CPU1"
 }
-### Listing the guard record
+```
 
+### Listing the guard record
 #### redfish >> v1 >> Systems >> system >> LogServices >> IsolatedHardware
 #### >> Entries
+```
 {
   "@odata.id": "/redfish/v1/Systems/system/LogServices/IsolatedHardware/Entries",
   "@odata.type": "#LogEntryCollection.LogEntryCollection",
@@ -158,21 +176,19 @@ guard a unit which is present in the inventory.
       "Name": "Processor 1",
       "links":  {
                  "OriginOfCondition": {
-                        "@odata.id":
-"/redfish/v1/Systems/system/Processors/cpu1"
-                    },
+                        "@odata.id": "/redfish/v1/Systems/system/Processors/cpu1"
+                  }
+                },
       "Severity": "Critical",
-       "SensorType" : "Processor",
-
- "AdditionalDataURI":
-“/redfish/v1/Systems/system/LogServices/EventLog/attachement/111"
- “AddionalDataSizeBytes": "1024"
-  }
+      "SensorType" : "Processor",
+      "AdditionalDataURI": “/redfish/v1/Systems/system/LogServices/EventLog/attachement/111"
+      “AddionalDataSizeBytes": "1024"
+    }
   ],
   "Members@odata.count": 1,
   "Name": "Isolated Hardware Entries"
   }
-
+```
 
 ## Alternatives Considered
 
