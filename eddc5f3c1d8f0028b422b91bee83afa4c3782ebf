@@ -22,6 +22,30 @@
       "revId": "eddc5f3c1d8f0028b422b91bee83afa4c3782ebf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23957e04_3538c5ca",
+        "filename": "designs/guard-on-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2021-06-21T09:12:43Z",
+      "side": 1,
+      "message": "- Right, In few platforms application may add an error log for a user guard request that\u0027s why mentioned as optional.\n- In few platforms (IBM) may not interested to add an error log for a user guard request.\n\n\n\u003e trying to understand how user knows\n\nI am assuming you are asking from an external interface (redfish) if so,\n  \nIn the IBM platform, a user can decide if there is no error log and redfish resource.state.severity is \"Warning\" then it is guarded by a user.\nBut, we are planning to discuss with DMTF to add \"User\" type to make available in standard and once it is available in redfish we can translate guard dbus entry severity (User) into redfish severity type (whatever DMTF is going to accept) instead rely on the error log.",
+      "parentUuid": "b0634571_dea99191",
+      "range": {
+        "startLine": 109,
+        "startChar": 6,
+        "endLine": 110,
+        "endChar": 55
+      },
+      "revId": "eddc5f3c1d8f0028b422b91bee83afa4c3782ebf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
