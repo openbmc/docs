@@ -115,3 +115,47 @@ on either of the following:
 * A compile time switch.
 * At runtime, use associations if you find them, else fall back to using path
   hierarchy.
+
+### Required Associations:
+
+1. We should have an association in powersupply to indicate which chassis it powers.
+
+  Example:
+
+  "path": "system/chassis/motherboard/powersupply0",
+  "endpoints":
+  [
+     {
+          "types":
+          {
+              "rType": "inventory",
+              "fType": "chassis"
+          },
+          "paths":
+          [
+              "/xyz/openbmc_project/inventory/system/chassis"
+          ]
+     }
+
+  ]
+
+2. We should have an association in pcieslot to indicate which chassis it belongs to.
+
+  Example:
+
+  "path": "system/chassis/motherboard/pcieslot0",
+  "endpoints":
+  [
+       {
+          "types":
+          {
+              "rType": "inventory",
+              "fType": "chassis"
+          },
+          "paths":
+          [
+              "/xyz/openbmc_project/inventory/system/chassis"
+          ]
+       }
+
+ ]
