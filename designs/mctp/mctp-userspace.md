@@ -6,7 +6,7 @@ Please refer to the [mctp.md](MCTP Overview) document for general
 MCTP design description, background and requirements.
 
 This document describes a userspace implementation of MCTP
-infrastructure, allowing a straightforward mechnism of supporting MCTP
+infrastructure, allowing a straightforward mechanism of supporting MCTP
 messaging within an OpenBMC system.
 
 ## Proposed Design

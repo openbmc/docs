@@ -225,7 +225,7 @@ extend for this use case.
   D-bus property and updates the Status property to Complete in the Dbus object.
 - Create new interface SignCSR in webserver which takes CSR string as input and returns
   certificate string.This interface calls SignCSR dbus method and looks for Status
-  property changed singal to verify status.Reads ClientCertificate property content and
+  property changed signal to verify status.Reads ClientCertificate property content and
   return certificate string.
 - On completion of serving the sign CSR request, respective dbus object will be deleted
   before returning certificate string to client.

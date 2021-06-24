@@ -77,7 +77,7 @@ allow local loopback and/or virtual interfaces.
 
 A network defines a unique address space for MCTP endpoints by endpoint-ID
 (described by DSP0236, section 3.2.31). A network has a user-visible identifier
-to allow refernces from userspace. Route definitions are specific to one
+to allow references from userspace. Route definitions are specific to one
 network.
 
 Interfaces are associated with one network. A network may be associated with one

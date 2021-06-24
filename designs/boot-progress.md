@@ -87,7 +87,7 @@ object.
   appropriately in both IPMI and PLDM based stacks
   - It is the responsibility of the IPMI or PLDM implementation to update
     the `BootProgress` property on D-Bus
-  - It is the responsiblity the phosphor-state-manager to update the
+  - It is the responsibility the phosphor-state-manager to update the
     `BootProgressLastUpdate` property on D-Bus when it sees `BootProgress`
     updated
 - Ensure the new Redfish `LastState` and `LastStateTime` properties

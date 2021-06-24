@@ -327,7 +327,7 @@ rules is set inside configuration. It is possible to pick up rules at runtime.
 
  * Exec application via 'system' call.
  * The code for directed handling type inside handler itself.
-   As example for 'net ipmi' in case of unsuccesful user login inside handler:
+   As example for 'net ipmi' in case of unsuccessful user login inside handler:
    * Sends a notification to administrator.
    * echo heartbeat > /sys/class/leds/alarm_red/trigger
 
