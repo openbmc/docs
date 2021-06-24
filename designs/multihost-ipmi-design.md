@@ -177,7 +177,7 @@ Example implementation of approach1:Virtual ethernet interface.
 +--------------------------------------------+
 ```
 In the above diagram one instance of netipmid runs per host. Each instance
-is tied to one virtual ethernet interface, The virutal interface ID can be
+is tied to one virtual ethernet interface, The virtual interface ID can be
 used to make a devIndex. This represents the HostId.
 
 ## Alternatives Considered

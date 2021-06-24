@@ -198,7 +198,7 @@ That's it, you now have a working development environment for OpenBMC!
   which some find be more stable. This is particularly useful when debugging
   at the application level.
 
-  - set up a bmc build enviroment
+  - set up a bmc build environment
   ```
   source setup romulus myBuild/build
   ```

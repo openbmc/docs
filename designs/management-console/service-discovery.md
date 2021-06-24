@@ -39,7 +39,7 @@ Depending on the distro feature(Avahi) enabled or not, it generates the Avahi
 service file with the given data. We are enhancing this infrastructure to add
 the vendor-specific information in the avahi service file(under txt-record).
 
-Followings commits implements the behaviour.
+Following commits implements the behaviour.
 
  https://gerrit.openbmc-project.xyz/c/openbmc/meta-phosphor/+/22950
  https://gerrit.openbmc-project.xyz/c/openbmc/meta-ibm/+/22951
