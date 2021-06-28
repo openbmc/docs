@@ -22,6 +22,30 @@
       "revId": "e4baa62e3c69db25dfdab1c5bdedd7d81b42787c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce39de5e_65f33310",
+        "filename": "designs/phosphor-hwmon-io-uring.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001121
+      },
+      "writtenOn": "2021-06-28T22:01:21Z",
+      "side": 1,
+      "message": "That\u0027s the primary reason. io_uring had non-trivial bugs until 5.4, and the library is currently in a much better state with the recent release of 5.10 Linux kernel.\n\nWe expect the io_uring implementation of sensor reads to be faster for the majority sensors, but there may be a possibility that some sensors would be fine with (or even more efficient) using the synchronous method of reading sensors.",
+      "parentUuid": "6879737d_a883f16b",
+      "range": {
+        "startLine": 76,
+        "startChar": 41,
+        "endLine": 77,
+        "endChar": 50
+      },
+      "revId": "e4baa62e3c69db25dfdab1c5bdedd7d81b42787c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
