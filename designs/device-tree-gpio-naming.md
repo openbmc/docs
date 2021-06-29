@@ -86,7 +86,11 @@ Defined:
 These are special case and/or grandfathered in pin names.
 
 Defined:
-- air-water (indicates whether system is air or water cooled)
+#### air-water
+Indicates whether system is air or water cooled
+
+#### factory-reset-toggle
+Indicates that a factory reset should be performed when the state is changed.
 
 ### POWER Specific GPIO's
 Below are GPIO names specific to the POWER processor based servers.
