@@ -111,6 +111,7 @@ ME and must be extended whenever new firmware modules are supported under PFR.
        - BMCFirmwareResiliencyError
        - CPLDFirmwareResiliencyError
        - MEFirmwareResiliencyError
+       - FirmwareResiliencyError
      Severity: Critical
 
      Below are some cases, where firmware resiliency error events logged
