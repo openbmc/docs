@@ -15,8 +15,10 @@ guarding the system from faulty components.
 ## Glossary
 **Guard**: Guarding the system against failures by permanently isolating faulty
 units.
+
 **Guard Records**: A file in the persistent storage with the list of
 permanently isolated components.
+
 **Manual guard**: An operation to manually add a unit to the list of isolated
 units. This operation is helpful in isolating a suspected component without
 physically removing it from the server.
@@ -92,6 +94,9 @@ The methods and properties of the guard manager.
 - Clear all guard: Clear all guard records in the system.
 
 - List Guard:  List all the guarded components.
+
+**Note:** In few platforms may be the system or hardware is not in a state where
+guard operation can be performed either "permanently" or "temporarily".
 
 #### Guard Entry
 The properties of each guard entry will be part of this object
