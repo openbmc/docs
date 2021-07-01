@@ -15,8 +15,10 @@ guarding the system from faulty components.
 ## Glossary
 **Guard**: Guarding the system against failures by permanently isolating faulty
 units.
+
 **Guard Records**: A file in the persistent storage with the list of
 permanently isolated components.
+
 **Manual guard**: An operation to manually add a unit to the list of isolated
 units. This operation is helpful in isolating a suspected component without
 physically removing it from the server.
@@ -130,6 +132,11 @@ original guard record store.
 ### Manual guard
 Creating manual gurad record, set the "Enabled" property to "false" to manually
 guard a unit which is present in the inventory.
+
+**Note:** In few platforms may be the system or hardware is not in a state where
+Manual guard can be performed, such as hardware which can only be guarded
+when the system is powered off.
+
 #### redfish » v1 » Systems » system » Processors » CPU1
 ```
 {
