@@ -142,6 +142,30 @@
       "revId": "555fe94d0dab911d362ac7febac9921c0ce7bcc4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4884b520_a5b85190",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-01T12:57:31Z",
+      "side": 1,
+      "message": "\u003e My understanding ... is that the BMC knows the last state of the switch, and during power-on if it sees that the state has changed, it will do a factory reset.\n\nThis doesn\u0027t sound right.  Why would we persist the state of a GPIO?  Unless your device really is a toggle switch, but that really seems like extra work.\n\nI don\u0027t know how we persist the value *and* check it in initrd.  Initrd doesn\u0027t really look at the RWFS contents.\n\nEven if it is physically a toggle switch, your documentation can say \"if the switch is in position X while the BMC boots, then...\"  Trying to persist the last position and derive a change from that is quite a bit of complexity for, in my opinion, no value from a human experience perspective.\n\n\u003e That seems fine to me, especially since the exact behavior of how factory-reset-toggle will be used is not set in stone because it\u0027s not implemented yet.\n\nI would argue we shouldn\u0027t define it in this doc yet then.  The point of these GPIO pin names is: \"if you name your GPIO like this, you get implemented behavior for free because someone else already has a common design.\"  Once you get into different polarities and toggle vs push-button we really lose all the advantage of a common name.\n\n\u003e Right, so if you agree then I think we should drop \u0027-toggle\u0027 from the name.\n\nIf it is a toggle value, I think we should leave that part in.  That seems like an odd design for reasons mentioned above.",
+      "parentUuid": "a0993fe9_f50320b9",
+      "range": {
+        "startLine": 90,
+        "startChar": 23,
+        "endLine": 90,
+        "endChar": 108
+      },
+      "revId": "555fe94d0dab911d362ac7febac9921c0ce7bcc4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
