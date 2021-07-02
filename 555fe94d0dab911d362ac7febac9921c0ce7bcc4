@@ -166,6 +166,30 @@
       "revId": "555fe94d0dab911d362ac7febac9921c0ce7bcc4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdcb1544_79a28b91",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-07-02T05:43:51Z",
+      "side": 1,
+      "message": "The intention is the minimum interaction with the minimal circuit.   The circuit is a spst switch (or two pin jumper), either open or closed.   The minimum interaction is changing the position once.   No \"and now put it back\" before the system (BMC) starts working again.   No not he switch failed and the card is dead or always forgets everything.  Instead the complexity is in the code where we have to remember the last state when we forget everything (else).\n\nThe toggle is part of the name because we have to detect the toggle in software.  It\u0027s at the end not the beginning because it qyalifies the state and is not a request to change the state.  \n\nIf it\u0027s still confusing maybe on-toggle ? I\u0027d suggest in charge but it\u0027s not detecting a momentary change.",
+      "parentUuid": "4884b520_a5b85190",
+      "range": {
+        "startLine": 90,
+        "startChar": 23,
+        "endLine": 90,
+        "endChar": 108
+      },
+      "revId": "555fe94d0dab911d362ac7febac9921c0ce7bcc4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
