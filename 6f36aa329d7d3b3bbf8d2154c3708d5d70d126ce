@@ -48,6 +48,145 @@
     },
     {
       "key": {
+        "uuid": "96167b5d_019555ec",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "+1  This really feels like a secondary design once a \"simple\" aggregator is in place.  With that said, if it has design constraints for this, I\u0027m ok with calling it out, but we should call out the design constraints as well.",
+      "parentUuid": "f9000e19_877a336a",
+      "range": {
+        "startLine": 34,
+        "startChar": 25,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e2d3059_233c8254",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Considering OpenBMC doesn\u0027t currently enable SSDP (ie redfish discovery), it would seem like an SSDP design doc would need to come first.",
+      "range": {
+        "startLine": 79,
+        "startChar": 35,
+        "endLine": 79,
+        "endChar": 43
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "035bb755_4c5c44d4",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Is this a requirement?  Shouldn\u0027t each bmc be implementing its own authorization?\n\n\nAlso, lots more detail needed here on what\u0027s required.",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 77
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e108d04_59353f6d",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Only doing top level seems incorrect.",
+      "range": {
+        "startLine": 88,
+        "startChar": 48,
+        "endLine": 88,
+        "endChar": 57
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1009b2ad_af084b5b",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Can we just call this out as \"all\".  This list implies we\u0027re going to pick and choose schemas, which we shouldn\u0027t be.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 40
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "160c10d1_a093fac6",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Can we rephrase this;  \"URI fix ups\" is a little fuzzy, can we just say something like:\n\n\"The Aggregator shall support cases where the satellite controller has similar URIs to the Host BMC.\"",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 5
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61e3e736_1faf9fba",
         "filename": "designs/redfish-aggregation.md",
         "patchSetId": 1
@@ -59,6 +198,75 @@
       "writtenOn": "2021-07-05T23:47:44Z",
       "side": 1,
       "message": "This part worries me a bit. A lot of special code sprinkled throughout bmcweb. Anything we can do in the satellites to have them provide the right info from the beginning would be worthwhile.",
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "971e70a6_7856bddc",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Similar to Andrews comment, I\u0027d much rather we just call out what we want here.  \"Contains, ContainedBy, and CooledBy links shall be correct for a given system\".\n\nThere\u0027s some problem about where this data is going to come from, as the BMC doesn\u0027t necessarily just know these items.",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 44
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b57fa120_fad12976",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "nit, this should be higher (probably requirement 1), because this is largely the point of the aggregator.",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 53
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91cb81e1_f8add936",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "How is this different than #4?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 26
+      },
       "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -82,6 +290,98 @@
     },
     {
       "key": {
+        "uuid": "d35f0d69_de412e64",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Please don\u0027t use \"may\" in a requirement.",
+      "range": {
+        "startLine": 116,
+        "startChar": 18,
+        "endLine": 116,
+        "endChar": 22
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8d18c3f_b4bbc131",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "This sentence doesn\u0027t really add to the requirement.  Remove?",
+      "range": {
+        "startLine": 119,
+        "startChar": 60,
+        "endLine": 120,
+        "endChar": 79
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eade1a4f_b1e2f6bc",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "I suspect this requirement isn\u0027t specific enough, and again uses \"may\".  If this is needed, please call out exactly what\u0027s required.",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 32
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eabada6d_b868a34a",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Please remove.  This requirement is nowhere near specific enough.  If there are specific fan control resources that need exposed internally to OpenBMC, those should be called out.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 8
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a3ab687_4be36a81",
         "filename": "designs/redfish-aggregation.md",
         "patchSetId": 1
@@ -93,6 +393,52 @@
       "writtenOn": "2021-07-05T23:47:44Z",
       "side": 1,
       "message": "One thing we\u0027re adding more and more of is support for the Redfish Task service on long running things (like dumps or code updates). I assume the aggregator will have to support this for the satellites?",
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b0e2a98_38ec1d6c",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "I suspect this can just be removed.  We will support anything that supports Redfish to the specification, and the specification does not require the use of globally unique IDs, so we should code against that.\n\nIf you think uris should be enforced to contain UUIDs, that\u0027s something to take up with DMTF.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 46
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "599e9b37_80218367",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "No, it can\u0027t.  bmcweb uses a single threaded async reactor model, libredfish uses libcurl.\n\nlibredfish also has significant license constraints that should be discussed at the TSC level before it\u0027s used within this project.",
+      "range": {
+        "startLine": 152,
+        "startChar": 73,
+        "endLine": 153,
+        "endChar": 73
+      },
       "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -162,6 +508,224 @@
     },
     {
       "key": {
+        "uuid": "b94679d9_15ff7c82",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "I read this, but I don\u0027t understand what it means.  Presumably all bmcweb implementations could be aggregators, and have no ill effects if there are no listed clients, right?",
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4886909_c4f8e1d7",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Why does this need to be configurable?  Shouldn\u0027t a redfish server aggregate all known clients?",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 59
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8abe9b63_3383a070",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Redfish specifies SSDP.  If we\u0027re going to deviate, we should:\n\n1. Have a discussion with DMTF about our concerns.\n2. Have a design doc specifically about this discovery protocol",
+      "range": {
+        "startLine": 177,
+        "startChar": 28,
+        "endLine": 177,
+        "endChar": 74
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4ce184c_572c6caf",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Where will this interface be hosted?",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 40
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a9f59b4_abe1a12d",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "I thought session service was not required?  This seems like something we should bring up with dmtf and understand their intent.",
+      "range": {
+        "startLine": 192,
+        "startChar": 10,
+        "endLine": 194,
+        "endChar": 23
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e94a417_35d24cb9",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "This would imply that the credentials are hardcoded, which is against generally accepted security practices.",
+      "range": {
+        "startLine": 196,
+        "startChar": 39,
+        "endLine": 197,
+        "endChar": 54
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8262f1e0_8e494571",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "This is a ton of work, and probably deserves a design doc on its own.  Today bmcweb doesn\u0027t have an abstraction for generalized collections, or the resource model.  This effort would need to change that, which is non trivial.  I don\u0027t see any mention of the specifics around that.",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 51
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2b13364_7c2a1331",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "This implies that bmcweb is now caching?  That might be ok, but we need an understanding of caching as a wholistic bmcweb thing, and not tied specifically to aggregated resources.",
+      "range": {
+        "startLine": 234,
+        "startChar": 29,
+        "endLine": 234,
+        "endChar": 39
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8a034aa_e54b1c83",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "See above, I don\u0027t believe the libredfish license or code is going to work inside bmcweb.",
+      "range": {
+        "startLine": 236,
+        "startChar": 58,
+        "endLine": 236,
+        "endChar": 69
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a6ea0fc_b1a58739",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Connection pooling?  Error handling?  There looks like there\u0027s a few blocks missing here.",
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5885b267_87797cd9",
         "filename": "designs/redfish-aggregation.md",
         "patchSetId": 1
@@ -179,6 +743,121 @@
     },
     {
       "key": {
+        "uuid": "5903ac1f_975d8774",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Can we call this \"client\" or something more descriptive.  Presumably each of these is not a proxy.",
+      "range": {
+        "startLine": 249,
+        "startChar": 73,
+        "endLine": 249,
+        "endChar": 78
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "640195d9_00fc567a",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "See above, I\u0027m pretty certain this doesn\u0027t work in the current bmcweb design unless there\u0027s some kind of caching added, and in that case, I\u0027d like to see it generalized, not specific to aggregation.\n\nSaid another way, bmcweb for the most part does not store state, I would not expect that to change after this design.  This design implies that it will change, but doesn\u0027t outright call it out, or explain the advantages of making bmcweb stateful.",
+      "range": {
+        "startLine": 254,
+        "startChar": 25,
+        "endLine": 255,
+        "endChar": 22
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56696dc4_af3fbfe8",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "nit, typo.",
+      "range": {
+        "startLine": 265,
+        "startChar": 12,
+        "endLine": 265,
+        "endChar": 28
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08ca2735_ce2ead8e",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "This is more state that would need to be stored, I suspect we need a stateless solution here.",
+      "range": {
+        "startLine": 267,
+        "startChar": 16,
+        "endLine": 268,
+        "endChar": 37
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb3380d3_e0637ca7",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "I\u0027m not understanding the PATCH part of this.  Can you elaborate?",
+      "range": {
+        "startLine": 268,
+        "startChar": 38,
+        "endLine": 271,
+        "endChar": 19
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d08378ec_1ceb5e54",
         "filename": "designs/redfish-aggregation.md",
         "patchSetId": 1
@@ -190,6 +869,346 @@
       "writtenOn": "2021-07-05T23:47:44Z",
       "side": 1,
       "message": "My only concern on implementation is that bmcweb is already a large piece of software, and this is going to add some more. Whatever we can do not embed this in existing functions and make more testable is what I vote for.",
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbcb795c_ae898bc8",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "My suggestion would be that we should implement routes for all Redfish things, and handle 404 appropriately if aggregation is disabled, or if the client implementation doesn\u0027t support the resource in question.",
+      "range": {
+        "startLine": 336,
+        "startChar": 10,
+        "endLine": 336,
+        "endChar": 16
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ee20fd2_73990213",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Presumably this will be a completely separate path.  If it were me, I would expect that external entities would have a completely disparate URI path, so we can completely separate them out, but that\u0027s getting more into the details than we probably should in a design doc.",
+      "parentUuid": "d08378ec_1ceb5e54",
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bda6c24_a600fae0",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "No, they shouldn\u0027t.  bmcweb caching should be a global behavior, not specific to aggregated resources, as it breaks the stateless model of bmcweb, and I don\u0027t want to maintain X different caching mechanisms.",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 338,
+        "endChar": 63
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42db513a_48ea9a9e",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "When wrapped at 80 charsthis doesn\u0027t really help much.  Any chance you could look at this review and make it render better?",
+      "range": {
+        "startLine": 341,
+        "startChar": 0,
+        "endLine": 357,
+        "endChar": 5
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9ddbb16_a1dde10d",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Why is this called out explicitly?  Assuming we handle the forwarding properly, doesn\u0027t this \"just work\"?",
+      "range": {
+        "startLine": 363,
+        "startChar": 0,
+        "endLine": 370,
+        "endChar": 57
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5c91d7f_11749de5",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "This seems like something important that we should discuss with DMTF.  This is going to expose N different users to the outside world, which seems like it would break the abstraction of looking like a single aggregator.",
+      "range": {
+        "startLine": 400,
+        "startChar": 0,
+        "endLine": 404,
+        "endChar": 54
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b14c3b16_90b9ed49",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "This wasnt called out in requirements.",
+      "range": {
+        "startLine": 412,
+        "startChar": 8,
+        "endLine": 412,
+        "endChar": 60
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bdb67d9_a0f40bae",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "This doesn\u0027t work if the aggregated client isn\u0027t routable to the outside network.  EventDestination is likely only accessible through the main bmc.",
+      "range": {
+        "startLine": 413,
+        "startChar": 0,
+        "endLine": 415,
+        "endChar": 44
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89146cf3_750e6410",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "SSE is currently non-functional on OpenBMC.  If you\u0027re interested, feel free to put patches to fix it.",
+      "range": {
+        "startLine": 417,
+        "startChar": 48,
+        "endLine": 417,
+        "endChar": 64
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7c5bf68_9eaa7225",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "This probably deserves a design doc on its own, considering how complex it is.",
+      "range": {
+        "startLine": 420,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 0
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edf55263_ad048d49",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "Can this be treated as a second effort.  While I think this is useful, I suspect this is going to have a lot of design impacts we should discuss;  For example, should this be bmcweb responsible for doing sensor polling, or a separate service that also keys off the sattellite data?  what does the configuration look like?  Are all sensors exposed, or only a subset?",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 65
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b13fc85_3bc3cbe6",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "This feels like a requirement, not an impact.  The impact is that bmcweb is now required to store secrets, which should be well understood in the security model somewhere.",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 449,
+        "endChar": 4
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbc60795_5f692f91",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "That\u0027s also probably a requirement, not an impact.",
+      "range": {
+        "startLine": 451,
+        "startChar": 0,
+        "endLine": 453,
+        "endChar": 8
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14536b6d_7fd5e9bc",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "and license, which for the moment is fairly incompatible with bmcweb and general openbmc due to the final clause.  This is outside the scope of this discussion though.",
+      "range": {
+        "startLine": 455,
+        "startChar": 0,
+        "endLine": 456,
+        "endChar": 17
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a910e1b_a6b9bfd7",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-06T23:46:05Z",
+      "side": 1,
+      "message": "One sentence isn\u0027t really an acceptable testing statement.  This is a major feature and will require lots of testing, including failure modes, which you should be prepared to simulate, given that the aggregator will need specific behaviors in the case of failures.",
+      "range": {
+        "startLine": 459,
+        "startChar": 0,
+        "endLine": 461,
+        "endChar": 39
+      },
       "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
