@@ -142,6 +142,30 @@
       "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05018ac5_3721d9f4",
+        "filename": "designs/guard-on-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-07T13:32:44Z",
+      "side": 1,
+      "message": "\u003e I think, based on the severity of the guard record, the system can request to reboot right? If so, then the available guard records will be applied right?\n\nMy recollection is that guard records do not directly trigger a reboot.  The severe event (usually a \"system checkstop\") brings down the system not the act of creating a guard record.\n\nBut, even if you were correct in that there are some guard records which as a side-effect trigger a reboot, that doesn\u0027t change my point.  Most automatic guard records are not applied immediately.\n\n\u003e Sorry, What you mean by \"applied\"? \"Created the guard record\" \n\nI used the wrong wording with \u0027applied\u0027 in this context.  \u0027Created\u0027 was what I meant.\n\n\u003e If \"Created the guard record\" means, a user may need to know whether the guarded record (which is created by him) is isolated or not right? If so, How he knows when the isolation will happen for the guard record (which is created by him)? \n\u003e OR In general, the isolation for created guard record will happen only in the next boot so, the user should aware of that?\n\nIt is my understanding that hardware is not isolated immediately and cannot be known if it will be isolated immediately.  The calculation of how to apply guard records to the system is in Hostboot (if I remember correctly), so the BMC cannot perform this calculation completely on its own.\n\nEven if the BMC could perform this calculation, the answer might change by the time the system reboots as additional automatic guard records could have been created which change the calculation.\n\n[The \"calculation\" in this context is the minimum hardware required to make a viable system.]",
+      "parentUuid": "bc3e8363_36bd3b3f",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
