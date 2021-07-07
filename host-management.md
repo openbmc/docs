@@ -214,7 +214,7 @@ $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -d '{"da
 To issue a hard power off (accomplished by powering off the chassis):
 
 ```
-$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Chassis.Transition.Off"}' https://${bmc}//xyz/openbmc_project/state/chassis0/attr/RequestedPowerTransition
+$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Chassis.Transition.Off"}' https://${bmc}/xyz/openbmc_project/state/chassis0/attr/RequestedPowerTransition
 ```
 
 To reboot the host:
