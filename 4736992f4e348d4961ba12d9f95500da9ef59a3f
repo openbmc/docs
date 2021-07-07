@@ -118,6 +118,30 @@
       "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc3e8363_36bd3b3f",
+        "filename": "designs/guard-on-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2021-07-07T12:44:23Z",
+      "side": 1,
+      "message": "\u003e How is that different from an automatic guard though?  Similarly, they won\u0027t be applied until the next boot if that is all the system is capable of.\n\nI think, based on the severity of the guard record, the system can request to reboot right? If so, then the available guard records will be applied right?\n\n\u003e Conversely, if a manual guard is applied when the system powered off, there is also no guarantee that the manual guard will do anything, right?  On the next boot, the system calculates if the guard is able to be satisfied and if not it ignores it.\n\nSorry, What you mean by \"applied\"? \"Created the guard record\" or \"System is processed the guarded record\" (I don\u0027t think you will refer to this since the isolation will happen in the next boot, if not correct me)?\n\nIf \"Created the guard record\" means, a user may need to know whether the guarded record (which is created by him) is isolated or not right? If so, How he knows when the isolation will happen for the guard record (which is created by him)? \n\nOR In general, the isolation for created guard record will happen only in the next boot so, the user should aware of that?",
+      "parentUuid": "109c3589_6afb3bc8",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
