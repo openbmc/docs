@@ -94,6 +94,30 @@
       "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "109c3589_6afb3bc8",
+        "filename": "designs/guard-on-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-07T12:05:13Z",
+      "side": 1,
+      "message": "\u003e If a user tried to guard manually while the system is running or in the booting time, the guarded hardware won\u0027t be applied to isolate and it will be isolated in the next boot right?\n\nI suppose it depends on the hardware and the system implementation, but likely, yes.\n\nHow is that different from an automatic guard though?  Similarly, they won\u0027t be applied until the next boot if that is all the system is capable of.\n\nConversely, if a manual guard is applied when the system powered off, there is also no guarantee that the manual guard will do anything, right?  On the next boot, the system calculates if the guard is able to be satisfied and if not it ignores it.\n\nSo I don\u0027t understand what is special about the system being powered on that we cannot allow guard records to be created [manually] in that state.  In no case does the user have certainty that the records will be acted upon.",
+      "parentUuid": "2dededcd_00bf49e5",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
