@@ -114,6 +114,30 @@
     },
     {
       "key": {
+        "uuid": "b0d97881_3e038d32",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-07T15:12:57Z",
+      "side": 1,
+      "message": "The use case that I think breaks the hierarchy path model is runtime replaceable chassis.  To support a hierarchy, you need one \"root\" object, that everything can be contained by.  Unfortunately, there are systems that runtime detect their chassis, or support user-uploaded chassis configs, which would mean that to model this properly, you\u0027d have to start with something like\n\n/xyz/openbmc_project/inventory/my_motherboard/my_card\n\nThen, when the chassis is changed, this changes to.\n\n/xyz/openbmc_project/inventory/my_chassis/my_motherboard/my_card\n\nWhich requires a removal and re-add of the object on dbus, which would erroneously trigger a \"removal\" and subsequent re-init of my_card and the motherboard, even though they were not removed, the root object was just replaced.  Associations solve this because they\u0027re orthogonal to the path and can be created/destroyed/modified at will without modifying the base object.\n\nI agree, from a human perspective it\u0027s more obvious to use path, but from a software perspective, it\u0027s much worse as I don\u0027t know of a way to solve the above.",
+      "parentUuid": "3c753f13_067b92f7",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 45
+      },
+      "revId": "e70d835246248043442a5e764f810b0596a6c75e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc4208a0_58b53c3f",
         "filename": "architecture/dbus-inventory.md",
         "patchSetId": 4
