@@ -90,6 +90,30 @@
     },
     {
       "key": {
+        "uuid": "3c753f13_067b92f7",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-07T13:37:58Z",
+      "side": 1,
+      "message": "\u003e There will be like 5 level of paths and each of them might have a bunch of sensors.. sounds like a mess to me.\n\nWhy is it a mess?  It seems more intuitive to me.\n\nThe big advantage to hierarchy, to me, is it is more obvious from a human perspective.  A flat bunch of parts requires me to do a bunch of extra queries to figure out what is what.  A hierarchy (show by `busctl tree`) makes it quite obvious what is connected where.\n\nThe other big advantage of a hierarchy is naming when there are duplicate parts.  A small example: \"/.../proc3/core16\" is better than \"/.../proc3-core16\" and \"/.../core88\" [where 88 \u003d 24 * 3 + 16].",
+      "parentUuid": "b4fada99_e2b91783",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 45
+      },
+      "revId": "e70d835246248043442a5e764f810b0596a6c75e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc4208a0_58b53c3f",
         "filename": "architecture/dbus-inventory.md",
         "patchSetId": 4
