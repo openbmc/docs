@@ -286,6 +286,30 @@
       "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35d70753_c40a2213",
+        "filename": "designs/guard-on-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2021-07-08T16:06:07Z",
+      "side": 1,
+      "message": "\u003e then monitor the Functional signal for the guard record to be applied.\nYes we can watch for that Functional signal since PLDM (any other host interface) must update the Functional property based on the hardware health but, I wonder about the time since somehow (or someone) need to reboot the host to take the action for manual guard record or some record may be ignored (based on some calculation)\n\nI am seeing two options Redfish tasks and Redfish Events - I will dig further and will have word with Ed on this, also I will update you as well.",
+      "parentUuid": "106223e6_5a6d0614",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
