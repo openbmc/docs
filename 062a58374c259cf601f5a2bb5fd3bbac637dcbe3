@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6463422_962e3491",
+        "filename": "designs/phosphor-hwmon-io-uring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-08T14:50:06Z",
+      "side": 1,
+      "message": "I don\u0027t think internal experimentation should be documented here.  Why isn\u0027t this work being done in the open?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 20
+      },
+      "revId": "062a58374c259cf601f5a2bb5fd3bbac637dcbe3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32a6f2fd_0c208160",
+        "filename": "designs/phosphor-hwmon-io-uring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-08T14:50:06Z",
+      "side": 1,
+      "message": "There are two additional io_uring efforts going on that I\u0027m aware of.\n\n1. wak was adding io_uring support to sdeventplus, right?  How does that fit into this effort?  Shouldn\u0027t we mention it here?\n\n2. As part of introducing coroutines to sdbusplus, I\u0027ve been experimenting with libunifex.  Parts of libunifex are likely to be merged into std in C++23.  libunifex also has support for io_uring on Linux.\n\nHopefully this effort you are proposing will not be interacting with io_uring directly...",
+      "revId": "062a58374c259cf601f5a2bb5fd3bbac637dcbe3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b49cbcb_64ea1f9a",
+        "filename": "designs/phosphor-hwmon-io-uring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-08T14:50:06Z",
+      "side": 1,
+      "message": "What compatibility reasons would there be for using the slower implementation?  Can we elaborate on that?  None are obvious to me, so I don\u0027t know why we\u0027d continue to support both methods.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 50
+      },
+      "revId": "062a58374c259cf601f5a2bb5fd3bbac637dcbe3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70be700e_145bf2e8",
+        "filename": "designs/phosphor-hwmon-io-uring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-08T14:50:06Z",
+      "side": 1,
+      "message": "How?",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 49
+      },
+      "revId": "062a58374c259cf601f5a2bb5fd3bbac637dcbe3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f06dc0fd_ee2dd96b",
+        "filename": "designs/phosphor-hwmon-io-uring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-08T14:50:06Z",
+      "side": 1,
+      "message": "We should be careful about the word \u0027performance\u0027 here.  It is quite likely that this change will slow down throughput while improving latency.  Latency improvement is what we\u0027re after in this case.",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 11
+      },
+      "revId": "062a58374c259cf601f5a2bb5fd3bbac637dcbe3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
