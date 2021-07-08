@@ -46,6 +46,30 @@
       "revId": "3fadb8e856c071ca2256d17809b05994c6037e47",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88215dbe_6366547d",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-08T11:59:29Z",
+      "side": 1,
+      "message": "\u003e I\u0027m still leaning towards factory-reset-toggle as the name for the gpio for Milton\u0027s reasons, although I would also be okay with factory-reset-on-toggle.\n\nYeah, I don\u0027t know that \"-on-\" conveys any additional information to me in this context.\n\n\u003e That\u0027s what I was talking about with Andrew Jeffery - he said, perhaps we should not specify the behavior of the gpio, just the name. I didn\u0027t see any pushback against dropping the description in parentheses from that discussion.\n\nOk, I must have misunderstood.  I think that this line loses a lot of value if we don\u0027t indicate a design on how the pin is consumed, since the only value in documenting these names is for consistency of implementations.\n\n\u003e If I keep the text in parentheses, does anyone have any problems with the wording?\n(indicates that a factory reset should be performed when the switch state is changed)\n\nI think we should change this to be a \u0027####\u0027 section so that we are not constrained by the thoughts we can fit in a parenthetical.\n\n    #### air-water\n    [ text that was in the parenthetical ]\n\n    #### factory-reset-toggle\n    [ write a real description of what happens ]\n\nI would tend to avoid using the word \u0027switch\u0027 personally because that implies a particular physical manifestation.  From our perspective here we\u0027re just talking about a GPIO.  There isn\u0027t any reason this GPIO couldn\u0027t be fed from a micro-controller sitting in an operator panel rather than a physical switch.",
+      "parentUuid": "d0e2ff69_41a2373c",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 22
+      },
+      "revId": "3fadb8e856c071ca2256d17809b05994c6037e47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
