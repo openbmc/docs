@@ -138,6 +138,30 @@
     },
     {
       "key": {
+        "uuid": "4557e093_2573b222",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-08T11:19:57Z",
+      "side": 1,
+      "message": "\u003e The use case that I think breaks the hierarchy path model is runtime replaceable chassis.\n\nHow do you have a \"runtime replaceable chassis\" where the stuff inside it isn\u0027t replaced?  I must be missing something.\n\n\u003e Unfortunately, there are systems that runtime detect their chassis...\n\nI understand this case.  It is mostly an ordering problem of detection?\n\n\u003e or support user-uploaded chassis configs\n\nI don\u0027t understand what this means.  How would the user upload a chassis config?  Wouldn\u0027t they just change certain properties in it?\n\n\u003e To support a hierarchy, you need one \"root\" object ... Then, when the chassis is changed, this changes to:\n\nI don\u0027t think you need a root object, but you need an element of the path.  Meaning, you don\u0027t need Interfaces and Properties to actually be there.  For the short-lived time where the chassis eeprom hasn\u0027t been read yet, wouldn\u0027t the motherboard still know that it is in a chassis?  Can\u0027t a name be determined for this not-yet-discovered chassis object so that the paths align?\n\n---\n\nIn any case, on line 113 I suggested that we allow both but prefer this proposal.  I agree there is probably some thought still needed to solve corner cases, such as what you\u0027re thinking on here, but my preference is that in general we follow a hierarchy model and use associations when the hierarchy doesn\u0027t fit (or due to implementation is difficult).  We need associations for connections between separate-but-equal chassis anyhow, right?",
+      "parentUuid": "b0d97881_3e038d32",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 45
+      },
+      "revId": "e70d835246248043442a5e764f810b0596a6c75e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc4208a0_58b53c3f",
         "filename": "architecture/dbus-inventory.md",
         "patchSetId": 4
