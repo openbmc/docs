@@ -238,6 +238,30 @@
       "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bb0d9e5_bceecff4",
+        "filename": "designs/guard-on-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2021-07-08T11:28:53Z",
+      "side": 1,
+      "message": "\u003e I am ok with this.  I just don\u0027t think that \"Unavailable\" should be the default response in the cases where the system is powered on, in any implementation.\n\nOk Thanks, I will update the design document and dbus interfaces.\n\n\u003e Redfish tasks being used to request creation of a guard record and the task would complete when the guard record took effect (or was indicated that it could not take effect).  It seems like using \"Unavailable\" would make an implementation rather difficult because the Redfish code would have to, effectively, poll on the Create interface until it became not-Unavailable.\n\u003e (I\u0027m not 100% certain on the details here w.r.t. Redfish tasks, so please go to Ed for more details.)\n\nOK, I wonder how the Redfish task will work or use poll - since manual guard record creation won\u0027t take any action immediately (it may be vary from another system point of view) until the next boot of host (if the record is for host owned device) - how long it can in a poll or any timeout.\n\nI am not an expert in Redfish - My first implementation in redfish is guard :) - Thanks for your time and information on this. Gathered a lot of information from you :).  I will check with Ed on this,",
+      "parentUuid": "6775a1f3_98345e6c",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
