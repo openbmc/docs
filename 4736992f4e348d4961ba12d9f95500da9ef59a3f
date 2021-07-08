@@ -262,6 +262,30 @@
       "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "106223e6_5a6d0614",
+        "filename": "designs/guard-on-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-08T11:48:17Z",
+      "side": 1,
+      "message": "\u003e OK, I wonder how the Redfish task will work or use poll - since manual guard record creation won\u0027t take any action immediately\n\nI suspect the Redfish interface would desire to call Create to create the guard record immediately and then monitor the Functional signal for the guard record to be applied.  Only when that signal occurs would the task be considered completed.\n\nBut, I\u0027m sure Ed has different thoughts too. ;)",
+      "parentUuid": "9bb0d9e5_bceecff4",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
