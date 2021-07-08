@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "12c8c40b_6cefd685",
+        "filename": "designs/phosphor-hwmon-io-uring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-07-08T23:44:46Z",
+      "side": 1,
+      "message": "It was done to BMC code that isn\u0027t relevant to the OpenBMC project and isn\u0027t open (it\u0027s a separate OEM IPMI handler for a specific usecase on an internal platform).",
+      "parentUuid": "e930876f_b70ffef3",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 20
+      },
+      "revId": "062a58374c259cf601f5a2bb5fd3bbac637dcbe3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32a6f2fd_0c208160",
         "filename": "designs/phosphor-hwmon-io-uring.md",
         "patchSetId": 4
@@ -125,6 +149,24 @@
       "side": 1,
       "message": "@wak did indeed add support for sdeventplus, which we can hopefully use here. io_uring will not be used here directly.",
       "parentUuid": "32a6f2fd_0c208160",
+      "revId": "062a58374c259cf601f5a2bb5fd3bbac637dcbe3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "abc59d41_aca9c8e1",
+        "filename": "designs/phosphor-hwmon-io-uring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-07-08T23:44:46Z",
+      "side": 1,
+      "message": "I added it to stdplus as mostly a convenient helper for managing io_uring primitives. That would likely be leveraged here.\n\n2. This is interesting and may be the way to go in the future.\n\nThe primitives exposed by io_uring are not really any different than syscalls we interact with regularly. The programming model actually works quite nicely.",
+      "parentUuid": "e06590e3_b8b49909",
       "revId": "062a58374c259cf601f5a2bb5fd3bbac637dcbe3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
@@ -166,6 +208,30 @@
       "side": 1,
       "message": "io_uring had non-trivial bugs until 5.4, and the library is currently in a much better state with the recent release of 5.10 Linux kernel. We believe older kernel versions would do better without using io_uring.",
       "parentUuid": "5b49cbcb_64ea1f9a",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 50
+      },
+      "revId": "062a58374c259cf601f5a2bb5fd3bbac637dcbe3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "deafb9b2_3c695ef6",
+        "filename": "designs/phosphor-hwmon-io-uring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-07-08T23:44:46Z",
+      "side": 1,
+      "message": "I raised this concern that we likely won\u0027t support the 5.4 kernel depending on what io_uring ops we end up using. It would be nice if we had an abstraction layer that allowed both uring and old style syscalls.\n\nEventually down the road this would be consolidated back down to just using io_uring.",
+      "parentUuid": "ff0eadd0_b7e96e89",
       "range": {
         "startLine": 114,
         "startChar": 0,
@@ -225,6 +291,30 @@
     },
     {
       "key": {
+        "uuid": "f573e345_8c40ff8d",
+        "filename": "designs/phosphor-hwmon-io-uring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-07-08T23:44:46Z",
+      "side": 1,
+      "message": "It would impact anyone who enables it. Hopefully we get to the point where it is just the default setting.",
+      "parentUuid": "256421dc_8d34b1c9",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 49
+      },
+      "revId": "062a58374c259cf601f5a2bb5fd3bbac637dcbe3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f06dc0fd_ee2dd96b",
         "filename": "designs/phosphor-hwmon-io-uring.md",
         "patchSetId": 4
@@ -260,6 +350,30 @@
       "side": 1,
       "message": "Done.",
       "parentUuid": "f06dc0fd_ee2dd96b",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 11
+      },
+      "revId": "062a58374c259cf601f5a2bb5fd3bbac637dcbe3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b5ff5ab_f965508f",
+        "filename": "designs/phosphor-hwmon-io-uring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-07-08T23:44:46Z",
+      "side": 1,
+      "message": "Well, if you consider that the daemon is now able to service DBus more often since it isn\u0027t ever spinning on a read() syscall, it would affect downstream throughput.\n\nBut yes, we are after ensuring that DBus latency in the 99th% is lower.",
+      "parentUuid": "d4106872_057f6cdf",
       "range": {
         "startLine": 133,
         "startChar": 0,
