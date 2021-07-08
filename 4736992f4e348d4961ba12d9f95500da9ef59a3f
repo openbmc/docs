@@ -214,6 +214,30 @@
       "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6775a1f3_98345e6c",
+        "filename": "designs/guard-on-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-08T10:48:05Z",
+      "side": 1,
+      "message": "\u003e I think the create dbus interface (Thanks to Patrick for the suggestion) can have \"NotAllowed\" (The requested hardware cannot be guarded on this system) and \"Unavailable\" (The requested hardware cannot currently be guarded on this system) error and the implementation can decide which one need to use based on the system use case.\n\nI am ok with this.  I just don\u0027t think that \"Unavailable\" should be the default response in the cases where the system is powered on, in any implementation.\n\nEd brought up some concerns about how this would work in Redfish and made some suggestion of Redfish tasks being used to request creation of a guard record and the task would complete when the guard record took effect (or was indicated that it could not take effect).  It seems like using \"Unavailable\" would make an implementation rather difficult because the Redfish code would have to, effectively, poll on the Create interface until it became not-Unavailable.\n\n(I\u0027m not 100% certain on the details here w.r.t. Redfish tasks, so please go to Ed for more details.)",
+      "parentUuid": "438d3ec7_53e34913",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
