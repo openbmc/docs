@@ -166,6 +166,30 @@
       "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6eaa7dc4_981ff06d",
+        "filename": "designs/guard-on-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2021-07-08T05:48:49Z",
+      "side": 1,
+      "message": "Thanks for asking the question \"Why only restrict the manual guard\". I was wrong on this statement\n\nI went and dig further, then got to know that \"not only manual guard case\" and also non-manual cases can be possible. \n\nI think the create dbus interface (Thanks to Patrick for the suggestion) can have \"NotAllowed\" (The requested hardware cannot be guarded on this system) and \"Unavailable\" (The requested hardware cannot currently be guarded on this system) error and the implementation can decide which one need to use based on the system use case.\n\nIf this is ok means, I can update the design document accordingly.",
+      "parentUuid": "05018ac5_3721d9f4",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "4736992f4e348d4961ba12d9f95500da9ef59a3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
