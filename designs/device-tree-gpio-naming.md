@@ -87,6 +87,7 @@ These are special case and/or grandfathered in pin names.
 
 Defined:
 - air-water (indicates whether system is air or water cooled)
+- bmc-boot-indicator (indicates whether the BMC has entered a manageable state)
 
 ### POWER Specific GPIO's
 Below are GPIO names specific to the POWER processor based servers.
