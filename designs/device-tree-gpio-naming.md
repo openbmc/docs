@@ -114,6 +114,7 @@ These are special case and/or grandfathered in pin names.
 Defined:
 - cfam-reset
 - checkstop
+- vrm-fault-standby
 
 ## Alternatives Considered
 - Continue to hard code a config file per system type that has the
