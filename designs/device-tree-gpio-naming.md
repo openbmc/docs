@@ -89,6 +89,9 @@ Defined:
 #### air-water
 Indicates whether system is air or water cooled
 
+#### vrm-fault-standby
+Indicates a fault in the voltage regulator for standby voltage
+
 #### factory-reset-toggle
 The software records the state of this GPIO and checks upon reboot if the state
 has changed since the last reboot. If it has, it indicates that a factory reset
