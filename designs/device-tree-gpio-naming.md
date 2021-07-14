@@ -73,6 +73,9 @@ Set to initiate power-on or power-off of the chassis.
 #### power-chassis-good
 Indicates the power good state of the chassis.
 
+#### power-regulator-faulted
+Indicates a power regulator faulted.
+
 ### Buttons
 Pattern: `*-button`
 
