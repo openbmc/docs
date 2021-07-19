@@ -65,7 +65,13 @@ Defined:
 Pattern: `power-*`
 
 Defined:
-- power-button
+#### power-button
+
+#### power-chassis-control
+Set to initiate power-on or power-off of the chassis.
+
+#### power-chassis-good
+Indicates the power good state of the chassis.
 
 ### Buttons
 Pattern: `*-button`
