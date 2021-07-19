@@ -94,6 +94,15 @@ The software records the state of this GPIO and checks upon reboot if the state
 has changed since the last reboot. If it has, it indicates that a factory reset
 should be performed.
 
+#### status-bmc-ready
+Indicates the BMC is ready to power-on.
+
+#### power-chassis
+Indicates the power-on of the chassis may begin.
+
+#### status-chassis-power
+Indicate the power good state of the chassis.
+
 ### POWER Specific GPIO's
 Below are GPIO names specific to the POWER processor based servers.
 
