@@ -22,6 +22,30 @@
       "revId": "287846886d9b835d8b4cb2fa7107dc1ef7960147",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c727090b_982c939f",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000387
+      },
+      "writtenOn": "2021-07-20T15:19:24Z",
+      "side": 1,
+      "message": "They could, but these are known names being used in systems. For example:\nhttps://github.com/openbmc/meta-ingrasys/blob/7dfbc01f6787cf41bf9be2bd0f5b3c46ce710016/meta-zaius/recipes-phosphor/skeleton/obmc-libobmc-intf/gpio_defs.json\nhttps://github.com/openbmc/meta-yadro/blob/f14d5bc9b8a66b9646113597b7776ccfbb7145d2/meta-nicole/recipes-phosphor/skeleton/obmc-libobmc-intf/gpio_defs.json\nhttps://github.com/openbmc/meta-inventec/blob/b1bb8dd37ec15e58fd2867724fb278649a6d3826/meta-lanyang/recipes-phosphor/skeleton/obmc-libobmc-intf/gpio_defs.json\nhttps://github.com/openbmc/meta-ibm/blob/c203fa3d1ca3de7d61b3c06a22dbf4385202cc78/recipes-phosphor/skeleton/obmc-libobmc-intf/witherspoon/gpio_defs.json\nhttps://github.com/openbmc/meta-ibm/blob/c203fa3d1ca3de7d61b3c06a22dbf4385202cc78/meta-romulus/recipes-phosphor/skeleton/obmc-libobmc-intf/gpio_defs.json\n...\n\nChanging to names or a naming scheme unknown the the engineers and architects of these and like systems, and not matching the schematics and documentation of those systems would be a source of confusion.  It would be better, in my opinion, to document the names as they are already known and to list them in this section.",
+      "parentUuid": "d3b6a09d_cc62a6f9",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 16
+      },
+      "revId": "287846886d9b835d8b4cb2fa7107dc1ef7960147",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
