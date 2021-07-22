@@ -186,7 +186,6 @@ To report incidents or to appeal reports of incidents, send an email to a member
 of the following escalation path:
 
 * Brad Bishop, Lead Maintainer, OpenBMC <bradleyb@fuzziesquirrel.com>
-* Kurt Taylor, Community Manager, OpenBMC <kurt.r.taylor@gmail.com>
 * Nancy Yuen, Technical Steering Committee Member, OpenBMC <yuenn@google.com>
 * James Mihm, Technical Steering Committee Member, OpenBMC
   <james.mihm@intel.com>
