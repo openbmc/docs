@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "87fe7ada_8aaccc70",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000387
+      },
+      "writtenOn": "2021-07-22T18:16:24Z",
+      "side": 1,
+      "message": "! Andrew Jeffery\n\n| The existing power control code doesn\u0027t even use the GPIO names from the devicetree though \n| right? We write a gpio_defs.json file, and it maps the SoC GPIO names (B6, H4, AA3 etc) to \n| the appropriate names defined in the GPIO code (SYS_PWROK_BUFF, SOFTWARE_PGOOD, BMC_POWER_UP | etc).\n\nCorrect.\n\n| Unless you\u0027re planning to patch the GPIO code in libopenbmc_intf to add support for \n| devicetree GPIO names, I don\u0027t think we need this patch. If that is what you\u0027re planning, \n| then given you\u0027re patching the code anyway I think we could at least settle on some \n| reasonable names here and include the new naming as part of your patches.\n\n| If it\u0027s not what you\u0027re planning then I think we just leave the code as it is and eventually \n| lay it to rest. I\u0027m kinda surprised that it hasn\u0027t been replaced yet anyway.\n\nI\u0027m planning to add the GPIO names to devicetrees and use them in a new power control application.  The DTs and application would only be for POWER systems. As you are saying, any names can be made to work (\"x\", \"y\", and \"z\" even).  My thought is the names I\u0027ve proposed best reflect the scope and history of their planned usage. The gpio_defs.json / skeleton code is problematic if you want to support multiple systems in a single image.\n\n\n| Patrick Williams\n\n| This was not an indication on your personal experience or expertise.  I swear I\u0027ve had about \n| 6 discussions now on these where someone proposed \"it would be much better if I could use the \n| schematic name here\", which is what you tried to do.\n\nI did say that.  If I\u0027d known I was blundering into a FAQ, I\u0027d have made a different argument.\n\n| I\u0027d rather not document ones that we don\u0027t want to continue propagating.  Everything in \n| skeleton should have been deleted at least 5 years ago and is left over from when a few \n| people were randomly slinging Python around for 6 months frantically trying to put something \n| together for Rackspace.  It is not a good pattern of where we want to be today.\n\nI\u0027d be fine with not documenting them.  I agree that the skeleton code should go.",
+      "parentUuid": "d1b2b412_182bc69d",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 16
+      },
+      "revId": "287846886d9b835d8b4cb2fa7107dc1ef7960147",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a12e806_da9cd37f",
         "filename": "designs/device-tree-gpio-naming.md",
         "patchSetId": 1
