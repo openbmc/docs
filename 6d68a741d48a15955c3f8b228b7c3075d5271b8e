@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "6e4f6ff6_2f6db8bc",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-07-29T04:28:01Z",
+      "side": 1,
+      "message": "Sort-of working backwards here, because I think it\u0027s easier to respond that way.\n\n\u003e But honestly if we continue to spend a week+ going back and forth ... we\u0027ll never get systems out the door\n\nThe open source project cares about what\u0027s right for the project, not when you need to deliver systems. Leverage it as you see fit. The trade-off is that more downstream code means fewer shared benefits and more maintenance.\n\nI appreciate that we\u0027re trying to do the right thing upstream here.\n\n\u003e going back and forth over something as simple as a gpio name\n\nThat\u0027s the thing, it\u0027s not simple, because the name forms a contract between the kernel and userspace. Once it\u0027s decided, changing it can lead to compatibility headaches. Using net names for specific systems makes writing common code harder. So we\u0027re putting effort into this document to minimise the compatibility headaches and maximise the amount of code reuse in the system.\n\nIn my opinion it\u0027s only a simple problem if you care about the system you\u0027re trying to deliver right now to the exclusion of all else. I\u0027m reviewing this as a contribution to the open source project, not to a specific system delivery deadline.\n\nMaybe the outcome is that it\u0027s not possible to use a common name for these GPIOs. But at least we will have had the discussion and it will be documented here.\n\n\u003e It\u0027s not a status any more than \"power-chassis\" is a status\n\nI feel this is only true if you eliminate intent. But isn\u0027t intent the whole point here? I was using \u0027power\u0027 in the verb sense (I didn\u0027t explicitly state this though). You set the GPIO when you want to direct the remote end to change state (1 or more effects). Contrast this to a `status` GPIO, which isn\u0027t trying to drive any particular behaviour, just alert anything that is listening to a particular state (0 or more effects).\n\nMy understanding of SOFTWARE_PGOOD as a net was that we set it when the BMC was ready (0 or more effects), and we set BMC_POWER_UP when we wanted the host to boot (1 or more effects). This is what drove my use of status for the former and not for the latter. If this isn\u0027t accurate then we can reconsider.",
+      "parentUuid": "204477d5_01d98706",
+      "revId": "6d68a741d48a15955c3f8b228b7c3075d5271b8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ae97a803_5bf9fa7c",
         "filename": "designs/device-tree-gpio-naming.md",
         "patchSetId": 2
