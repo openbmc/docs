@@ -127,6 +127,24 @@
     },
     {
       "key": {
+        "uuid": "ede86e18_a5c7cd45",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-29T11:17:45Z",
+      "side": 1,
+      "message": "I think the big lessons learned here is that we need much more than a word (first patch set) and sometimes more than a single sentence (second patch set) so that we can all get on the same page as to what is being proposed.\n\nThis GPIO naming space isn\u0027t very mature yet so there is going to be some back and forth as we try to figure out the general patterns and get something that is workable for the future.  When a pin is in these \"special sections\", it is better to just do a brain-dump of everything you know about it to save some of this back and forth.  This gives others and opportunity to think about the \"big picture\" on the class of pins and see if it warrants a first-class section of its own.\n\nAs Andrew said, these are important because they frame a contract between kernel space (device tree) and userspace.  Once we commit to one it is very hard to change.  At a minimum we have to send the patch out to a community we don\u0027t have as much control over (kernel) and maintain dual-support in the userspace code for a time.  Generally speaking, the external kernel team frowns very heavily on changing the UAPI.",
+      "parentUuid": "b6b17dbf_86eefa39",
+      "revId": "6d68a741d48a15955c3f8b228b7c3075d5271b8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "036324c7_39165481",
         "filename": "designs/device-tree-gpio-naming.md",
         "patchSetId": 2
@@ -144,6 +162,24 @@
     },
     {
       "key": {
+        "uuid": "3e5b3543_d5f18acf",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-29T11:17:45Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "036324c7_39165481",
+      "revId": "6d68a741d48a15955c3f8b228b7c3075d5271b8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ae97a803_5bf9fa7c",
         "filename": "designs/device-tree-gpio-naming.md",
         "patchSetId": 2
@@ -155,6 +191,23 @@
       "writtenOn": "2021-07-28T19:33:38Z",
       "side": 1,
       "message": "This is an output but seems to be missing the action.\n\n\nAs I understand it\u0027s both to request power be turned on and to request it be turned off for shutdown by setting it low.  \n\n(It\u0027s different than the PC power supply button protocol.)",
+      "revId": "6d68a741d48a15955c3f8b228b7c3075d5271b8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42625eff_d070a724",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-07-29T11:17:45Z",
+      "side": 1,
+      "message": "(New comment line to again break up discussion)\n\nWhere I\u0027d like to see this patch set go:\n\n1. Andrew Jeffery already has a patch set Iab031eaa2275e8c51881c0636e5925c077ff5caa adding a \u0027bmc-status-ready\u0027 (name to change) which is suppose to be an indication that network services are up.\n1a. I would like a new section added for \"states of the BMC it wants to communicate via GPIOs\" added for the proposed \u0027bmc-status-ready\u0027 (by Andrew) and \u0027status-bmc-ready\u0027 (by Jim).\n1b. As you see they\u0027ve both picked a very similar name for states that are vastly different.  So we need some more specificity than \"ready\".  My gut feeling of the bike shed color is \"bmc-status-net-services\" and \"bmc-status-host-boot-\u003cn\u003e\", but I feel like I don\u0027t know enough about Jim\u0027s pin purpose.\n1c. Andrew and Jim both work at the same company.  Please work together to create a new commit that codifies a \u0027bmc-status\u0027 section.\n\n2. I can\u0027t tell which of these pins are input and which are output from the current words.\n2a. As Milton also said, I don\u0027t like \u0027status-\u0027 on input pins because it is fairly meaningless since all input pins are a \"status\" from elsewhere.\n\n3. \u0027power-chassis\u0027 sounds like a variant of \u0027status-bmc-ready\u0027 from the rwording and the discussion.  ie. \"The BMC has investigated hardware and reached a status of its own such that the chassis power-on sequence may begin.\"  With that in mind, I can\u0027t really tell the difference between this and \u0027status-bmc-ready\u0027 but I believe you have one.  We need to either come up with wording that articulates the difference better or allow multiple pins in from my proposed \"bmc-status-host-boot-\u003cn\u003e\".\n3a. The \u003cn\u003e in my original host-boot-\u003cn\u003e was meant to allow booting of multiple hosts independently.  Maybe we need something like \u0027host-\u003cn\u003e-boot-\u003cm\u003e\u0027 to handle multi-host designs AND multiple-but-similar-purposed indicators.\n\n4. \u0027status-chassis-power\u0027 I assume is an input pin.\n4a. Ben Tyner also has another commit (I4fe71dd034a08d58060489ddc0a6ac3a60f20506) where he is trying to add some VRM fault pins.\n4b. I\u0027d like a new section to propose how we handle pgood/pfault pins.  (My opinion is that, at a high level, pgood vs power fault pins are essentially the same thing but with opposite polarity).\n4c. Please have Jim and Ben (who also work at the same company) come up with a combined commit to work on this section.\n\n5. My expectation for both of these new sections is that they are not a simple \"list of valid pins\" but that they have some general principles we can apply as new pins come to light AND clear/complete/concise documentation of the *specific* pins being used by these immediate designs.",
       "revId": "6d68a741d48a15955c3f8b228b7c3075d5271b8e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
