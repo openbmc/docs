@@ -229,6 +229,24 @@
       "revId": "6d68a741d48a15955c3f8b228b7c3075d5271b8e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "845d5b14_2fd33850",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-07-30T00:53:05Z",
+      "side": 1,
+      "message": "So with respect to Power systems, combining comments from Milton and our circuit design lead (Emile) on net names and behaviour:\n\n# SOFTWARE_PGOOD\nOutput, used to control device reset state\n\nP8: Connected, Required: Service processor needed to release this part-way through the host firmware boot sequence\nP9: Connected, Required: Drives an input on the power sequencer, seemingly unrelated to downstream device reset state (this is where my understanding of its semantics came from, I wasn\u0027t around for P8)\nP10: Not connected, not required: Net routing is different for Rainier and Everest, though in both cases it\u0027s not connected.\n\nI assume the P9 systems will continue to use the libopenbmc_intf GPIO code, and that for the purpose of Power systems we only care for these names for P10 up.\n\n# BMC_POWER_UP\nOutput, directs the power-sequencer to bring up the rails. Same behaviour for P8, P9, P10.\n\n# SYS_PWROK_BUF\nRails have stabilised (power is good). Same behaviour for P8, P9, P10\n\nAddressing Patrick\u0027s list in this context above, here\u0027s how I see things:\n\n1:\n1a: Andrew to fix\n1b: Eliminated by the SOFTWARE_PGOOD discussion above\n1c: Eliminated by the SOFTWARE_PGOOD discussion above\n\n2: Jim to fix\n2a: Jim to fix\n\n3: Disambiguated by eliminating the SOFTWARE_PGOOD net (\"status-bmc-ready\") from the problem in the discussion above. Also as discussed throughout, BMC_POWER_UP (\"power-chassis\") is a *request* from the BMC to the power-sequencer to bring the rails up (BMC expects at least 1 effect as a result) and not the BMC emitting a status (BMC has no expectation of an effect).\n3a: Mitigated for now by elimination of SOFTWARE_PGOOD above. We can revisit when we have a system that requires we do something like this.\n\n4:\n4c: Jim/Ben to address\n\nDoes this seem reasonable?",
+      "parentUuid": "581d6273_59ae0893",
+      "revId": "6d68a741d48a15955c3f8b228b7c3075d5271b8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
