@@ -32,7 +32,7 @@ For example, disabling a BMC service will disable the corresponding external
 interface.
 
 [systemd concepts]: https://www.freedesktop.org/software/systemd/man/systemd.html#Concepts
-[Service Management]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/Service/README.md
+[Service Management]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Service/README.md
 
 Diagrams are included to help visualize relationships.  The diagrams show
 management agents on the left side, the BMC in the center, and host elements
@@ -371,7 +371,7 @@ function.
 The BMC's RMCP+ IPMI interface is designed to be operated by the
 `[ipmitool][]` external command.
 
-[IPMI Session management]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Ipmi/SESSION_README.md
+[IPMI Session management]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Ipmi/SESSION_README.md
 [ipmitool]: https://github.com/ipmitool/ipmitool
 
 ### Host IPMI

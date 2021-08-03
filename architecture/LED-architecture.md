@@ -198,7 +198,7 @@ documented in the [D-Bus interface][LED D-Bus README].
     ```PREFERRED_PROVIDER_virtual/phosphor-led-manager-config-native = "romulus-led-manager-config-native"```
 
 
-[LED D-Bus README]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Led/README.md
+[LED D-Bus README]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Led/README.md
 [LED YAML]: https://github.com/openbmc/phosphor-led-manager/blob/master/led.yaml
 [Kernel ARM DTS]: https://github.com/openbmc/linux/tree/dev-4.19/arch/arm/boot/dts
 [Palmetto DTS LED]: https://github.com/openbmc/linux/blob/dev-4.19/arch/arm/boot/dts/aspeed-bmc-opp-palmetto.dts#L45

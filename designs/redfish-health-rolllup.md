@@ -49,28 +49,28 @@ is tri-state:
 https://github.com/openbmc/bmcweb/blob/master/static/redfish/v1/schema/Resource_v1.xml#L197
 
 Threshold interface (Currently unused by some vendors):
-https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Sensor/Threshold.errors.yaml
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Threshold.errors.yaml
 
 Associations In Sensors:
 https://lists.ozlabs.org/pipermail/openbmc/2019-February/015188.html
 
 Association Definition Interface:
-https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Association/Definitions.interface.yaml
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Association/Definitions.interface.yaml
 
 Operational Status Interface:
-https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml
 
 Redfish schema guide:
 https://www.dmtf.org/sites/default/files/standards/documents/DSP2046_2018.1_0.pdf
 
 BMC inventory interface:
-https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Inventory/Item/Bmc.interface.yaml
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item/Bmc.interface.yaml
 
 System inventory interface:
-https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Inventory/Item/System.interface.yaml
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item/System.interface.yaml
 
 Item interface:
-https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Inventory/Item.interface.yaml
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item.interface.yaml
 
 ## Requirements
 - Must minimize D-Bus calls needed to get health rollup

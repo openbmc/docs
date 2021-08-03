@@ -2,7 +2,7 @@ Host Code Update
 ================
 
 Reference:
-https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Software
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software
 
 Following are the steps to update the host firmware (or "BIOS"). This assumes
 the host is not accessing its firmware.

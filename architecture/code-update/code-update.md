@@ -347,7 +347,7 @@ reboot
 ```
 
 More information on field mode can be found here:
-https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/FieldMode.interface.yaml
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/FieldMode.interface.yaml
 
 ### Software Factory Reset
 
@@ -393,5 +393,5 @@ stored. By default, only the BMC chip is used. To use both, set "BMC_RO_MTD" to
 ### Implementation
 
 More information about the implementation of the code update can be found at
-https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Software
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software
 and https://github.com/openbmc/phosphor-bmc-code-mgmt

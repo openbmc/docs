@@ -145,7 +145,7 @@ unsupported or faulted configuration.
 
 [1]: https://github.com/openbmc/witherspoon-pfault-analysis
 [2]: https://en.wikipedia.org/wiki/Power_Management_Bus
-[3]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/README.msl.md
+[3]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/README.msl.md
 [4]: https://github.com/openbmc/linux/blob/dev-5.3/drivers/hwmon/pmbus/ibm-cffps.c
 [5]: https://github.com/openbmc/witherspoon-pfault-analysis/tree/master/power-supply
 [6]: https://github.com/openbmc/phosphor-power/

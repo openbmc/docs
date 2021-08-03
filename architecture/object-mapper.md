@@ -277,4 +277,4 @@ Associate an error log with the inventory item that caused it.
 }
 
 ```
-[1]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/ObjectMapper.interface.yaml
+[1]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/ObjectMapper.interface.yaml

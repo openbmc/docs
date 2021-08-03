@@ -132,9 +132,9 @@ property as expected.
 
 
 [1]: https://github.com/openbmc/phosphor-state-manager#state-tracking-and-control
-[2]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Host.interface.yaml
-[3]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Boot/Progress.interface.yaml
-[4]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/OperatingSystem/Status.interface.yaml
+[2]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Host.interface.yaml
+[3]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Boot/Progress.interface.yaml
+[4]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/OperatingSystem/Status.interface.yaml
 [5]: https://www.dmtf.org/sites/default/files/standards/documents/DSP0249_1.0.0.pdf
 [6]: http://redfish.dmtf.org/schemas/v1/Resource.json#/definitions/Status
 [7]: https://redfish.dmtf.org/schemas/v1/ComputerSystem.v1_13_0.json

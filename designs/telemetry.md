@@ -808,6 +808,6 @@ BMC's CPU utilization and the performance impact on other services.
 [5]: https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/22257
 [6]: https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/24749
 [7]: https://github.com/google/googletest
-[8]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Telemetry/ReportManager.interface.yaml
-[9]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Telemetry/Report.interface.yaml
-[10]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Object/Delete.interface.yaml
+[8]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Telemetry/ReportManager.interface.yaml
+[9]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Telemetry/Report.interface.yaml
+[10]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Object/Delete.interface.yaml

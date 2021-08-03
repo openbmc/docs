@@ -235,10 +235,10 @@ D-Bus API's mocked to ensure proper code coverage.
 [5]: https://www.supermicro.com/manuals/other/RedfishRefGuide.pdf
 [6]: https://github.com/dell/iDRAC-Redfish-Scripting/blob/master/Redfish%20Python/DeviceFirmwareDellUpdateServiceREDFISH.py
 [7]: https://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/update_service.hpp
-[8]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Software/README.md
+[8]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/README.md
 [9]: https://github.com/openbmc/openbmc-test-automation
 [10]: https://github.com/DMTF/Redfish/issues/3357
 [11]: https://github.com/DMTF/Redfish/pull/3296
 [12]: https://github.com/DMTF/Redfish/pull/3420
-[13]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Software/Activation.interface.yaml
+[13]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml
 [14]: http://redfish.dmtf.org/schemas/v1/Resource.json#/definitions/Status

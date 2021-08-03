@@ -68,7 +68,7 @@ of time.
 User Manager service exposes D-Bus methods for user-management operations.
 It exposes `xyz.openbmc_project.User.Manager` as a service and handles
 objects through `org.freedesktop.DBus.ObjectManager`. Please refer
-https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/User
+https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/User
 for detailed user management D-Bus API and interfaces.
 
 ## OpenBMC - User Management - High Level architectural diagram

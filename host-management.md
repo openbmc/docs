@@ -177,9 +177,9 @@ To clear all event logs, call the top-level `DeleteAll` method:
 
 With OpenBMC, the Host boot options are stored as D-Bus properties under the
 `control/host0/boot` path. Properties include
-[`BootMode`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/Boot/Mode.interface.yaml)
+[`BootMode`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Boot/Mode.interface.yaml)
 and
-[`BootSource`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Control/Boot/Source.interface.yaml).
+[`BootSource`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Boot/Source.interface.yaml).
 
  * Set boot mode:
 
@@ -225,7 +225,7 @@ $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -
 
 
 More information about Host State Management can be found here:
-https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/State
+https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/State
 
 ## Host Clear GARD
 
@@ -290,4 +290,4 @@ specification][2] (Interval property).
 The host controls the watchdog timeout and enable/disable once it starts.
 
 [1]: https://github.com/openbmc/phosphor-watchdog
-[2]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Watchdog.interface.yaml
+[2]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Watchdog.interface.yaml

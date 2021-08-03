@@ -102,7 +102,7 @@ completes, start the host power on target.
 ## Server Quiesce
 The `obmc-host-quiesce@.target` is utilized in host error scenarios. When the
 `obmc-host-quiesce@0.target` is entered, it puts the host state D-Bus
-[object][https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/State/Host.interface.yaml]
+[object][https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Host.interface.yaml]
 in a `Quiesced` state.
 
 ## Server Emergency Power Off due to Error
@@ -122,7 +122,7 @@ of quiesce.
 ## Systemd Control in OpenBMC
 There are a collection of services within OpenBMC that interact with systemd and
 its unit files, providing somewhat of an abstraction layer from the user of the
-OpenBMC system and systemd.  See the [state](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/State)
+OpenBMC system and systemd.  See the [state](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/State)
 interfaces for more information on this function.
 
 For example, if you wanted to execute the server power on function, you would do

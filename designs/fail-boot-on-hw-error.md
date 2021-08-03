@@ -139,5 +139,5 @@ appropriately.
 [1]: https://lists.ozlabs.org/pipermail/openbmc/2020-February/020575.html
 [2]: https://github.com/openbmc/phosphor-settingsd
 [3]: https://github.com/openbmc/docs/blob/master/architecture/object-mapper.md#associations
-[4]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Common/Callout/README.md
+[4]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Common/Callout/README.md
 [5]: https://github.com/openbmc/phosphor-logging/blob/master/extensions/openpower-pels/README.md
