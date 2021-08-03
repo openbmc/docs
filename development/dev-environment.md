@@ -156,16 +156,17 @@ That's it, you now have a working development environment for OpenBMC!
 
 3. Start QEMU with downloaded Romulus image
 
-  **Note** - For REST and SSH to work into your QEMU session, you must connect
-  up some host ports to the REST and SSH ports in your QEMU session. In this
-  example, it just uses 2222 and 2443. You can use whatever you prefer.
+  **Note** - For REST, SSH and IPMI to work into your QEMU session, you must connect
+  up some host ports to the REST, SSH and IPMI ports in your QEMU session. In this
+  example, it just uses 2222, 2443, 2623. You can use whatever you prefer.
   ```
-  ./qemu-system-arm -m 256 -M romulus-bmc -nographic -drive file=./obmc-phosphor-image-romulus.static.mtd,format=raw,if=mtd -net nic -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostname=qemu
+  ./qemu-system-arm -m 256 -M romulus-bmc -nographic -drive file=./obmc-phosphor-image-romulus.static.mtd,format=raw,if=mtd -net nic -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostfwd=udp:127.0.0.1:2623-:623,hostname=qemu
   ```
 
    **Note** - By default, Jenkins and openbmc-test-automation use SSH and HTTPS
-   ports 22 and 443, respectively. SSH connection to use a user-defined port 2222
-   might not be successful. To use SSH port 22 and HTTPS port 443:
+   ports 22 and 443, respectively. For the IPMI port 623 is used. SSH connection
+   to use a user-defined port 2222 might not be successful. To use SSH port 22,
+   HTTPS port 443 and IPMI port 623:
    ```
    ./qemu-system-arm -m 256 -machine romulus-bmc -nographic -drive file=./obmc-phosphor-image-romulus.static.mtd,format=raw,if=mtd -net nic -net user,hostfwd=:127.0.0.1:22-:22,hostfwd=:127.0.0.1:443-:443,hostfwd=tcp:127.0.0.1:80-:80,hostfwd=tcp:127.0.0.1:2200-:2200,hostfwd=udp:127.0.0.1:623-:623,hostfwd=udp:127.0.0.1:664-:664,hostname=qemu
    ```
