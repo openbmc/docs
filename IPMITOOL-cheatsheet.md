@@ -264,14 +264,47 @@ bootdev <device>
 
 Currently supported devices:
 
-| decive | function                                                    |
+| device | function                                                    |
 | :----: | ----------------------------------------------------------- |
+|  none  | do not change boot device                                   |
 |  pxe   | boot from pxe                                               |
 |  disk  | boot from BIOS default boot device                          |
 |  safe  | boot from BIOS default boot device,but requires a safe mode |
 |  diag  | boot from the diagnostic partition                          |
 | cdrom  | boot from the CD/DVD                                        |
 |  bios  | enter bios settings                                         |
+
+##
+
+If you want to make your override persistent over reboots use the `persistent` option:
+```
+$ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" chassis
+bootdev <device> options=persistent
+```
+
+##
+
+If the main host machine is based on the x86 CPU you need also pay attention to
+the legacy/EFI mode selector. By default IPMI overrides boot source with the legacy
+mode enabled. To set EFI mode use `efiboot` option:
+```
+$ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" chassis
+bootdev <device> options=efiboot
+```
+
+You can combine options with a help of `,`:
+```
+$ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" chassis
+bootdev <device> options=persistent,efiboot
+```
+
+##
+
+To read current boot source override setting:
+```
+$ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" chassis
+bootparam get 5
+```
 
 #### 7. Control panel logo light
 
