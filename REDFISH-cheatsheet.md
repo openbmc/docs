@@ -100,5 +100,9 @@ $ curl -k -H "X-Auth-Token: $token" -X PATCH -d '{"Password": "0penBmc1"}' https
   ```
   $ curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Systems/system -d '{"Boot":{"BootSourceOverrideEnabled": "Disabled","BootSourceOverrideTarget": "None"}}'
   ```
+- Change Legacy/EFI selector (valid only if host is based on the x86 CPU)
+  ```
+  $ curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Systems/system -d '{"Boot":{"BootSourceOverrideEnabled": "Once","BootSourceOverrideTarget": "None","BootSourceOverrideMode": "UEFI"}}'
+  ```
 
 [1]: https://www.dmtf.org/standards/redfish
