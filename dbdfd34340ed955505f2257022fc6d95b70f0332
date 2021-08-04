@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "dc760c12_f36ab253",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2021-08-04T03:17:35Z",
+      "side": 1,
+      "message": "Yeah, mostly it is post quantum concerns over \u0027small\u0027 key sizes. I am not worried for it right now, but new applications or applications that will be still running in 10 years should be finding ways to move to larger key sizes.\n\nReally, the encryption is the strongest part of the cipher suite 17. Truncated HMACs for integrity and authentication reduce the strength of something that is already on shaky ground. And then putting it in the clear so it can be cracked offline is the nail in the coffin.",
+      "parentUuid": "6bf9f3cb_6fc58f5b",
+      "revId": "dbdfd34340ed955505f2257022fc6d95b70f0332",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b40b441_363ce6ed",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 3
@@ -60,6 +78,30 @@
     },
     {
       "key": {
+        "uuid": "cfda1627_a7548f66",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2021-08-04T03:17:35Z",
+      "side": 1,
+      "message": "Yes. No need to have multiple identities for the same entity.",
+      "parentUuid": "0b40b441_363ce6ed",
+      "range": {
+        "startLine": 79,
+        "startChar": 31,
+        "endLine": 80,
+        "endChar": 26
+      },
+      "revId": "dbdfd34340ed955505f2257022fc6d95b70f0332",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "152f2578_d11c1573",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 3
@@ -71,6 +113,24 @@
       "writtenOn": "2021-06-16T00:50:26Z",
       "side": 1,
       "message": "This would require the private key to be shared between the web server and the ipmi, or the session to be terminated by the server and forwarded on.\n\nDoes redfish have a concept of providing services references? (As an alternative)",
+      "revId": "dbdfd34340ed955505f2257022fc6d95b70f0332",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54342c98_f4d11e98",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2021-08-04T03:17:35Z",
+      "side": 1,
+      "message": "Yes, the idea was that there would be one private key shared between the two services and one certificate that identifies the BMC. This would be easier to manage. I can\u0027t think of why this would be problematic, but I am only a part-time security expert :)\n\nSince this will be running over UDP, I don\u0027t think it would be possible to have redfish forwarding the connection.",
+      "parentUuid": "152f2578_d11c1573",
       "revId": "dbdfd34340ed955505f2257022fc6d95b70f0332",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -100,6 +160,30 @@
     },
     {
       "key": {
+        "uuid": "62fa8aaa_c0783a5c",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2021-08-04T03:17:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f72e01c_21384d59",
+      "range": {
+        "startLine": 113,
+        "startChar": 63,
+        "endLine": 114,
+        "endChar": 34
+      },
+      "revId": "dbdfd34340ed955505f2257022fc6d95b70f0332",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6a815c3_a18a7ecd",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 3
@@ -123,6 +207,30 @@
     },
     {
       "key": {
+        "uuid": "6a77cdfb_fb1b427d",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2021-08-04T03:17:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6a815c3_a18a7ecd",
+      "range": {
+        "startLine": 133,
+        "startChar": 8,
+        "endLine": 135,
+        "endChar": 44
+      },
+      "revId": "dbdfd34340ed955505f2257022fc6d95b70f0332",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2cce75dd_686be6c0",
         "filename": "designs/ipmi-over-dtls.md",
         "patchSetId": 3
@@ -143,6 +251,30 @@
       "revId": "dbdfd34340ed955505f2257022fc6d95b70f0332",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa819674_4341f724",
+        "filename": "designs/ipmi-over-dtls.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2021-08-04T03:17:35Z",
+      "side": 1,
+      "message": "yup; looks like I got distracted while typing. :)",
+      "parentUuid": "2cce75dd_686be6c0",
+      "range": {
+        "startLine": 138,
+        "startChar": 56,
+        "endLine": 138,
+        "endChar": 72
+      },
+      "revId": "dbdfd34340ed955505f2257022fc6d95b70f0332",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
