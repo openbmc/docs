@@ -22,6 +22,30 @@
       "revId": "20fedd09e68c8e335509bf3469a9153101b54328",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d9a8776_f15ff034",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-06T08:09:52Z",
+      "side": 1,
+      "message": "While I think your proposal makes sense from an english phrase, it doesn\u0027t seem to match the exising conventions adopted by the kernel.   Instead the attribute (behaviour) is the last and the device is first.  This is seen in several systems including leds[1], hwmon[2], iio[3] and power-supply [4].\n\nThe leds section seems to have adopted this (led_xxxx_fault).\n\n[1] https://github.com/torvalds/linux/blob/master/Documentation/leds/leds-class.rst#led-device-naming\n[2] https://github.com/torvalds/linux/blob/master/Documentation/hwmon/sysfs-interface.rst\n[3] https://github.com/torvalds/linux/blob/master/Documentation/iio/ep93xx_adc.rst\n[4] https://github.com/torvalds/linux/blob/master/Documentation/power/power_supply_class.rst",
+      "parentUuid": "3931b50a_c166132b",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 46
+      },
+      "revId": "20fedd09e68c8e335509bf3469a9153101b54328",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
