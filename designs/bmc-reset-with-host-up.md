@@ -111,6 +111,19 @@ be installed in the common targets:
 - obmc-chassis-powerreset@.target.require
 - obmc-host-reset@.target.requires
 
+### Automated Recovery when host does not respond
+
+A separate service and application will be created within phosphor-state-manager
+to execute the following logic in situations where chassis power is on
+but the host has failed to respond to any of the different mechanisms to
+communicate with it:
+- If chassis power on (/run/openbmc/chassis@%i-on)
+- And host is off (!ConditionPathExists=!/run/openbmc/host@%i-on)
+- And restored BootProgress is not None
+- Then (assume host was booting before BMC reboot)
+  - Log error indicating situation
+  - Move host to Quiesce and allow automated recovery to kick in
+
 ### Note on custom mechanism for IBM systems
 IBM systems will utilize a processor CFAM register. The specific register is
 **Mailbox scratch register 12**.
