@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88e6fa30_6df1114a",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-08-16T20:48:00Z",
+      "side": 1,
+      "message": "For the ipmid requirement, isn\u0027t that dependent on the IPMI spec?\n\nIt is still dependent on the Sensor type that we are fetching and the data that is supports.\n\nYou mentioned that\n\n```\nBoth `cable1` and `cable2` will be grouped together and the common name\nfor `cable1` and `cable2` is `cable`. Therefore, `cable` will be used as the \nsdr name. In the case of having more than 8 presence states in a group,\nthe sdrs names will be appended with hyphen and a alphabet letters starting\nfrom A.\n```\n\nDo you just mean that the cables will be group into one sdr slot and in the handler it will divide them up?\n\nI guess that can work, but they will all have the same SDR index (not sure if that will be an issue).\n\n----\n\nYou mentioned internally that you got a version working, can you push to sdr-dbus for review. Maybe that can help people understand what you are trying to do better.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "89af52d66275ee9265268fe514b1b931efe6663c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
