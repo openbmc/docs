@@ -124,6 +124,23 @@
     },
     {
       "key": {
+        "uuid": "fc843d28_8f3d929c",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000272
+      },
+      "writtenOn": "2021-08-18T01:56:52Z",
+      "side": 1,
+      "message": "No, AST2600 doesn’t support this feature, even with a thin layer in firmware. But AST2600 has 8 keys with key retirement.",
+      "revId": "d409431c61139d401f77d51988bda4f211970dd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d49bfb1f_6e690aa0",
         "filename": "security/OpenBMCSecureBoot.md",
         "patchSetId": 2
@@ -276,6 +293,24 @@
       "writtenOn": "2020-09-30T20:38:02Z",
       "side": 1,
       "message": "Yes, recently facebook is looking into combine facebook verified boot \nwith AST2600 security boot feature. The main benefit we get via integrate\nverified-boot with AST2600 security boot is we can upgrade the SPL, \ninstead of like now, the SPL is locked down in Flash.(We write protect the\nFlash contain the SPL). \n\nOur initial design is almost the same as you proposed, except:\n\u003e U-Boot SPL loads second layer public key from EEProm\nIn our design the second layer public key is built in SPL dtb, which \nwill get verified by the ROM with keys in OTP.  \n\nTwo main concerns mainly related to AST2600 h/w:\n1. No real \"key transition\". As you mentioned, the keys used to verify SPL\n   cannot change, because it is in OTP.\n2. AST2600 SRAM limits the SPL size to 63KB, this limits what can be \nimplemented in the SPL for a CRoT. Currently our SPL size is around 100KB\nwhich implements the 3 main CRoT function (verification, measurement and \nrollback protection ) besides the common boot loader function.",
+      "revId": "d409431c61139d401f77d51988bda4f211970dd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2131406_78160115",
+        "filename": "security/OpenBMCSecureBoot.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000272
+      },
+      "writtenOn": "2021-08-18T01:56:52Z",
+      "side": 1,
+      "message": "With AST2600-A2/A3 silicon, secure boot could support up to 88KB.",
+      "parentUuid": "c6ce7d83_6a282bdb",
       "revId": "d409431c61139d401f77d51988bda4f211970dd2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
