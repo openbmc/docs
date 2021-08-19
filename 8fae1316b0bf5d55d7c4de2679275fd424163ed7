@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "2d992d88_14ceaf5c",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-19T19:58:05Z",
+      "side": 1,
+      "message": "It is an interesting point to report the presence state via type12(fru). I quickly looked into it and unlike discrete sensors, it is not easy to pack multiple presence states into 1 fru slot. Also, fru has a limit of 255 too. I will put a todo here to look into how to do it properly using type12 records.",
+      "parentUuid": "3212eb98_550e63b8",
+      "range": {
+        "startLine": 11,
+        "startChar": 56,
+        "endLine": 11,
+        "endChar": 65
+      },
+      "revId": "8fae1316b0bf5d55d7c4de2679275fd424163ed7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d9e5c82c_53ee7b59",
         "filename": "designs/gpio-based-cable-presence.md",
         "patchSetId": 4
@@ -304,6 +328,30 @@
       "revId": "8fae1316b0bf5d55d7c4de2679275fd424163ed7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9566f61_d9a14ef1",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-19T19:58:05Z",
+      "side": 1,
+      "message": "You are correct. The Daemon needs to implement both connector and cable interface.",
+      "parentUuid": "fc455b3b_521b8e33",
+      "range": {
+        "startLine": 26,
+        "startChar": 22,
+        "endLine": 26,
+        "endChar": 37
+      },
+      "revId": "8fae1316b0bf5d55d7c4de2679275fd424163ed7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -590,6 +638,30 @@
     },
     {
       "key": {
+        "uuid": "f066fcf6_8af10618",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-19T19:58:05Z",
+      "side": 1,
+      "message": "Sure. \nSo say /xyz/openbmc_project/inventory/item/cable1 and /xyz/openbmc_project/inventory/item/cable/cable2\n\nIf we extract the sdr name from the object path, it is cable1 and cable2. Then, if we cut the trailing numbers, it becomes cable for both of them. Therefore, we know that the two need to be grouped. Same thing for cable3 and cable4. However, if we named it cableA1 and cableB1, The two will not be grouped.",
+      "parentUuid": "4726867c_8c9d2870",
+      "range": {
+        "startLine": 67,
+        "startChar": 46,
+        "endLine": 67,
+        "endChar": 51
+      },
+      "revId": "8fae1316b0bf5d55d7c4de2679275fd424163ed7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55a2ef6f_533f405c",
         "filename": "designs/gpio-based-cable-presence.md",
         "patchSetId": 4
@@ -705,6 +777,30 @@
       "revId": "8fae1316b0bf5d55d7c4de2679275fd424163ed7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce393636_c7d05891",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-19T19:58:05Z",
+      "side": 1,
+      "message": "Updated the doc with more explanation of how to report many cables in different groups. Please see if this make sense.",
+      "parentUuid": "215f8a30_ad00df93",
+      "range": {
+        "startLine": 74,
+        "startChar": 5,
+        "endLine": 74,
+        "endChar": 45
+      },
+      "revId": "8fae1316b0bf5d55d7c4de2679275fd424163ed7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
