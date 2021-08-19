@@ -5,6 +5,7 @@ Author:
 
 Primary assignee:
   Ivan Mikhaylov, [i.mikhaylov@yadro.com](mailto:i.mikhaylov@yadro.com)
+  George Liu, [liuxiwei@inspur.com](mailto:liuxiwei@inspur.com)
 
 Other contributors:
   Alexander Amelkin, [a.amelkin@yadro.com](mailto:a.amelkin@yadro.com)
@@ -12,6 +13,9 @@ Other contributors:
 
 Created:
   2019-07-23
+
+Updated:
+  2021-08-19
 
 ## Problem Description
 
@@ -72,6 +76,10 @@ request according to the configuration. In future, support for flexible policies
 may be implemented that would allow for better flexibility in handling and
 tracking.
 
+Create a sub-repo(`phosphor-audit`) in the phosphor-logging repo.
+The advantage of this is that all log-related functions are integrated into one
+repo (`phosphor-logging`).
+
 The phosphor-audit service represents a service that provides user activity
 tracking and corresponding action taking in response of user actions.
 
@@ -120,6 +128,7 @@ commands (blacklist or whitelist) and status of its service (disabled or enabled
 If the service in undefined state, the call checks if service alive or not.
 
  > `audit_event(type, rc, request, user, host, data)`
+ >
  > *  type - type of event source : IPMI, REST, PAM, etc.
  > *  rc   - return code of the handler event (status, rc, etc.)
  > *  request - a generalized identifier of the event, e.g. ipmi command
@@ -166,15 +175,17 @@ Step by step execution of call:
     2. checks if audit event should be whitelisted or blacklisted at
        the audit service side for preventing spamming of unneeded events
        to audit service
-    3. send the data to the audit service via D-Bus
+    3. configure the interval time, such as 5 seconds, the same audit log
+       should not be sent within 5 seconds
+    4. send the data to the audit service via D-Bus
  * server's layer
     1. accept D-Bus request
     2. goes through list of actions for each services
 
 How the checks will be processed at client's layer:
  1. check the status of service and cache that value
- 2. check the list of possible actions which should be logged and cache them also
- 3. listen on 'propertiesChanged' event in case of changing list or status
+  2. check the list of possible actions which should be logged and cache them also
+  3. listen on 'propertiesChanged' event in case of changing list or status
     of service
 
 ## Service configuration
@@ -185,7 +196,7 @@ as example of structure:
 ```
 [IPMI]
    [Enabled]
-   [Whitelist]
+   [Allowlist]
      [Cmd 0x01] ["reset request"]
      [Cmd 0x02] ["hello world"]
      [Cmd 0x03] ["goodbye cruel world"]
@@ -197,7 +208,7 @@ as example of structure:
      [Exec] [ExternalCommand]
 [REST]
    [Disabled]
-   [Blacklist]
+   [Blocklist]
      [Path1] [Options]
      [Path2] [Options]
    [Actions]
@@ -208,11 +219,11 @@ as example of structure:
 Options can be updated via D-Bus properties. The audit service listens changes
 on configuration file and emit 'PropertiesChanged' signal with changed details.
 
-* The whitelisting and blacklisting
+* The allowlisting and blocklisting
 
  > Possible list of requests which have to be filtered and processed.
- > 'Whitelist' filters possible requests which can be processed.
- > 'Blacklist' blocks only exact requests.
+ > 'Allowlist' filters possible requests which can be processed.
+ > 'Blocklist' blocks only exact requests.
 
 * Enable/disable the event processing for directed services, where the directed
   service is any suitable services which can use audit service.
