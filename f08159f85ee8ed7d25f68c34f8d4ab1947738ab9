@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "b812b564_3825b957",
+        "filename": "designs/oem/ibm/acf-authentication.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2021-08-19T22:46:57Z",
+      "side": 1,
+      "message": "Add: 4. The authentication function must operate in a highly restricted operational environment where no devices (such as USB storage) can be brought into the console area, and no connection to the internet can be assumed.",
+      "revId": "f08159f85ee8ed7d25f68c34f8d4ab1947738ab9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7869c5f6_4044895b",
         "filename": "designs/oem/ibm/acf-authentication.md",
         "patchSetId": 2
@@ -49,6 +66,23 @@
       "side": 1,
       "message": "I agree when I downloaded it.  Not sure why gerrit is showing damage",
       "parentUuid": "a8d764a3_b93f7e5e",
+      "revId": "f08159f85ee8ed7d25f68c34f8d4ab1947738ab9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "670d6c38_5a005e00",
+        "filename": "designs/oem/ibm/acf-authentication.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2021-08-19T22:46:57Z",
+      "side": 1,
+      "message": "Authentication based on [Universal 2nd Factor (U2F)](https://en.wikipedia.org/wiki/Universal_2nd_Factor), specifically pam_u2f, was considered.\n\nIn its original formulation, U2F requires a device to authenticate the second factor.  However, because IBM BMCs may operate in an environment where no devices are allowed, the BMC would have an internal server for pam_u2f to authenticate with.  The server would perform the ACF password authentication function.\n\nAlso, the regular U2F flow checks the password before checking the second factor.  That is, it is geared toward adding a 2nd factor to the normal password authentication path.  However, this design requires the password to be different for each scheduled maintenance window.  To make this work with pam_u2f, the ACF upload function would have to set the service user\u0027s password.\n\nFor these reasons, pam_u2f is not a good fit for this design, and the functions above were put into the pam_ibmacf module.",
       "revId": "f08159f85ee8ed7d25f68c34f8d4ab1947738ab9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
