@@ -4,7 +4,7 @@ Author:
   Ivan Mikhaylov, [i.mikhaylov@yadro.com](mailto:i.mikhaylov@yadro.com)
 
 Primary assignee:
-  Ivan Mikhaylov, [i.mikhaylov@yadro.com](mailto:i.mikhaylov@yadro.com)
+  George Liu, [liuxiwei@inspur.com](mailto:liuxiwei@inspur.com)
 
 Other contributors:
   Alexander Amelkin, [a.amelkin@yadro.com](mailto:a.amelkin@yadro.com)
@@ -12,6 +12,9 @@ Other contributors:
 
 Created:
   2019-07-23
+
+Updated:
+  2022-03-15
 
 ## Problem Description
 
@@ -67,15 +70,27 @@ via D-Bus.
 
 ## Proposed Design
 
-The main idea is to catch D-Bus requests sent by user interfaces, then handle the
-request according to the configuration. In future, support for flexible policies
-may be implemented that would allow for better flexibility in handling and
-tracking.
+For any event that can be recorded (for example: Audit, SEL, Redfish, etc.),
+which is similar to error, define the corresponding yaml interface (requires a 
+consumer attribute, indicating its source is Audit, SEL or Redfish, etc., or a
+combination of multiple types), but these events do not indicate an error and do
+not need to throw an exception.
+
+Send audit data to `phosphor-logging` through the user interface, and store the log
+through the `sd_journal_send` method, and then call the DBus method of the audit
+service according to the event type (if it is an audit event) to notify the audit
+module that there is a new log, the audit module will pass The incoming TRANSACTION_ID
+parameter finds the latest log, and then performs corresponding processing on the
+current log according to the configuration (such as storage file, Email, etc.).
+
+Create a sub-repo(`phosphor-audit`) in the phosphor-logging repo.
+The advantage of this is that all log-related functions are integrated into one
+repo (`phosphor-logging`).
 
 The phosphor-audit service represents a service that provides user activity
 tracking and corresponding action taking in response of user actions.
 
-The key benefit of using phosphor-audit is that all action handling will be kept
+The key benefit of using `phosphor-audit` is that all action handling will be kept
 inside this project instead of spreading it across multiple dedicated interface
 services with a risk of missing a handler for some action in one of them and
 bloating the codebase.
@@ -83,78 +98,90 @@ bloating the codebase.
 The component diagram below shows the example of service overview.
 
 ```ascii
-  +----------------+  audit event                           +-----------------+
-  |    IPMI NET    +-----------+                            | action          |
-  +----------------+           |                            | +-------------+ |
-                               |                            | |   logging   | |
-  +----------------+           |                            | +-------------+ |
-  |   IPMI HOST    +-----------+      +--------------+      |                 |
-  +----------------+           |      |    audit     |      | +-------------+ |
-                               +----->+   service    +----->| |   command   | |
-  +----------------+           |      |              |      | +-------------+ |
-  |  RedFish/REST  +-----------+      +--------------+      |                 |
-  +----------------+           |                            | +-------------+ |
-                               |                            | |   notify    | |
-  +----------------+           |                            | +-------------+ |
-  |  any service   +-----------+                            |                 |
-  +----------------+                                        | +-------------+ |
-                                                            | |     ...     | |
-                                                            | +-------------+ |
-                                                            +-----------------+
+  +----------------+  logging::event                                           +-----------------+
+  |    IPMI NET    +-----+                                                      | action          |
+  +----------------+     |                                                      | +-------------+ |
+                         |                                                      | |   logging   | |
+  +----------------+     |                                                      | +-------------+ |
+  |   IPMI HOST    +-----+    +------------------+         +-------------+      |                 |
+  +----------------+     |    | phosphor-logging |  D-Bus  |  audit      |      | +-------------+ |
+                         +---->+     event       +-------->+ service     +---->| |   command   | |
+  +----------------+     |    |                  |         |             |      | +-------------+ |
+  |  RedFish/REST  +-----+    +------------------+         +-------------+      |                 |
+  +----------------+     |                                                      | +-------------+ |
+                         |                                                      | |   notify    | |
+  +----------------+     |                                                      | +-------------+ |
+  |  any service   +-----+                                                      |                 |
+  +----------------+                                                            | +-------------+ |
+                                                                                | |     ...     | |
+                                                                                | +-------------+ |
+                                                                                +-----------------+
 ```
 
 The audit event from diagram generated by an application to track user activity.
-The application sends 'signal' to audit service via D-Bus. What is happening
-next in audit service's handler depends on user requirements and needs. It is
-possible to just store logs, run arbitrary command or notify someone in handler
-or we can do all of the above and all of this can be optional.
+The application calls the logging::event (or other API) method to send logs to
+`phosphor-logging`, and `phosphor-logging` sends 'signals' to audit service via
+D-Bus. What is happening next in audit service's handler depends on user requirements
+and needs. It is possible to just store logs, run arbitrary command or notify someone
+in handler or we can do all of the above and all of this can be optional.
+
+**Phosphor logging call**
+`phosphor-logging::event<>();`
+The caller does not need to know the type of the current event. The event can be
+Audit, SEL or Redfish, etc. It only needs to pass in the corresponding parameters
+according to meta.yaml, because events.yaml defines a consumer attribute,
+phosphor-logging will parse this property value and notify the corresponding service
+through a mechanism, for example, audit is interested in the current log, and
+phosphor-logging will notify Audit to handle it.
 
 **Audit event call**
 
-Audit event call performs preprocessing of incoming data at application side
-before sending it to the audit service, if the request is filtered out, it will
-be dropped at this moment and will no longer be processed. After the filter
-check, the audit event call sends the data through D-Bus to the audit service
-which makes a decision regarding next steps. Also, it caches list of possible
-commands (blacklist or whitelist) and status of its service (disabled or enabled).
-If the service in undefined state, the call checks if service alive or not.
-
- > `audit_event(type, rc, request, user, host, data)`
- > *  type - type of event source : IPMI, REST, PAM, etc.
- > *  rc   - return code of the handler event (status, rc, etc.)
- > *  request - a generalized identifier of the event, e.g. ipmi command
- > (cmd/netfn/lun), web path, or anything else that can describe the event.
- > *  user - the user account on behalf of which the event was processed.
- >           depends on context, NA/None in case of user inaccessibility.
- > *  source - identifier of the host that the event has originated from. This can
- >     be literally "host" for events originating from the local host (via locally
- >     connected IPMI), or an IP address or a hostname of a remote host.
- > *  data - any supplementary data that can help better identify the event
- >      (e.g., some first bytes of the IPMI command data).
+After the audit service receives the signal, it should preprocess the data first.
+If the request is filtered out, it will be dropped at this moment and will
+no longer be processed. After the filter check, the audit service decides
+the next step. Also, it caches list of possible commands (blocklist or allowlist)
+and status of its service (disabled or enabled).
 
 Service itself can control flow of events with configuration on its side.
 
 Pseudocode for example:
+    test.events.yaml
+    ```
+    - name: TestAudit
+      description: This is an audit log
+      consumer: audit
+    ```
 
-    audit_event(NET_IPMI, "access denied"(rc=-1), "ipmi cmd", "qwerty223",
-                          "192.168.0.1", <some additional data if needed>)
-    audit_event(REST, "login successful"(rc=200), "rest login",
-                      "qwerty223", "192.168.0.1", NULL)
-    audit_event(HOST_IPMI, "shutting down the host"(rc=0), "host poweroff",
-                       NULL, NULL, NULL)
+    test.meta.yaml
+    ```
+    - name: TestAudit
+      level: INFO
+      meta:
+        - str: "EVENT_TYPE=%s"
+          type: string
+        - str: "EVENT_RC=%s"
+          type: int32
+        - str: "EVENT_USER=%s"
+          type: string
+        - str: "EVENT_ADDR=%s"
+          type: string
+    ```  
 
-`audit_event(blob_data)`
-Blob can be described as structure:
-
-    struct blob_audit
-    {
-        uint8_t type;
-        int32_t rc;
-        uint32_t request_id;
-        char *user;
-        sockaddr_in6 *addr;
-        struct iovec *data;
-    }
+    phosphor::logging::event<TestAudit>(metadata::EVENT_TYPE("net_ipmi"), 
+                             metadata::EVENT_RC(-1),
+                             metadata::EVENT_USER("qwerty223"),
+                             metadata::EVENT_ADDR("192.168.0.1")
+                             );
+    phosphor::logging::event<TestAudit>(metadata::EVENT_TYPE("rest"), 
+                            metadata::EVENT_RC(200),
+                            metadata::EVENT_USER("qwerty223"),
+                            metadata::EVENT_ADDR("")
+                            );
+    phosphor::logging::event<TestAudit>(metadata::EVENT_TYPE("host_ipmi"), 
+                            metadata::EVENT_RC(0),
+                            metadata::EVENT_USER(""),
+                            metadata::EVENT_ADDR("192.168.0.1")
+                            );
 
 When the call reaches the server destination via D-Bus, the server already knows
 that the call should be processed via predefined list of actions which are set
@@ -162,20 +189,17 @@ in the server configuration.
 
 Step by step execution of call:
  * client's layer
-    1. checks if audit is enabled for such service
-    2. checks if audit event should be whitelisted or blacklisted at
-       the audit service side for preventing spamming of unneeded events
-       to audit service
-    3. send the data to the audit service via D-Bus
+    1. Send data to the `phosphor-logging` service via the `phosphor-logging::event`
+    2. `phosphor-logging` parses the consumer attribute, and if it is an audit log,
+       notifies the audit service through D-Bus
  * server's layer
     1. accept D-Bus request
-    2. goes through list of actions for each services
+    2. perform preprocessing operations
+    3. goes through list of actions for each services
 
 How the checks will be processed at client's layer:
- 1. check the status of service and cache that value
- 2. check the list of possible actions which should be logged and cache them also
- 3. listen on 'propertiesChanged' event in case of changing list or status
-    of service
+ 1. The client does not do any checks, and even the client does not know whether
+    the log currently sent belongs to audit log or redfish log.
 
 ## Service configuration
 
@@ -185,10 +209,9 @@ as example of structure:
 ```
 [IPMI]
    [Enabled]
-   [Whitelist]
-     [Cmd 0x01] ["reset request"]
-     [Cmd 0x02] ["hello world"]
-     [Cmd 0x03] ["goodbye cruel world"]
+   [AllowList]
+     [xyz.openbmc_project.Event.Foo1]
+     [xyz.openbmc_project.Event.Foo2]
    [Actions]
      [Notify type1] [Recipient]
      [Notify type2] [Recipient]
@@ -197,9 +220,9 @@ as example of structure:
      [Exec] [ExternalCommand]
 [REST]
    [Disabled]
-   [Blacklist]
-     [Path1] [Options]
-     [Path2] [Options]
+   [BlockList]
+     [xyz.openbmc_project.Event.Foo3]
+     [xyz.openbmc_project.Event.Foo4]
    [Actions]
      [Notify type2] [Recipient]
      [Logging type] [Options]
@@ -208,11 +231,11 @@ as example of structure:
 Options can be updated via D-Bus properties. The audit service listens changes
 on configuration file and emit 'PropertiesChanged' signal with changed details.
 
-* The whitelisting and blacklisting
+* The allowlist and blocklist
 
  > Possible list of requests which have to be filtered and processed.
- > 'Whitelist' filters possible requests which can be processed.
- > 'Blacklist' blocks only exact requests.
+ > 'AllowList' filters possible requests which can be processed.
+ > 'BlockList' blocks only exact requests.
 
 * Enable/disable the event processing for directed services, where the directed
   service is any suitable services which can use audit service.
@@ -243,24 +266,24 @@ An example of possible flow:
            +----------------+
                    |
  +--------------------------------------------------------------------------+
- |         +-------v--------+                                         IPMI  |
- |         |    NET IPMI    |                                               |
- |         +----------------+                                               |
+ |         +-------v--------------+                       phosphor-logging  |
+ |         | event<IPMIEVENT>();  |                                         |
+ |         +----------------------+                                         |
  |                 |                                                        |
- |         +-------v--------+        +---------------------------+          |
- |         | rc = handle()  +------->|  audit_event<NET_IPMI>()  |          |
- |         +----------------+        +---------------------------+          |
- |                 |                              |                         |
- |                 |                              |                         |
- |         +-------v--------+                     |                         |
- |         |   Processing   |                     |                         |
- |         |    further     |                     |                         |
- |         +----------------+                     |                         |
+ |     NO  +-------v--------+   YES  +---------------------------------+    |
+ |   +-----|    Is audit    +------->|  Notify Audit Service via DBus  |    |
+ |   |      +---------------+        +---------------------------------+    |
+ |   |              |                              |                        |
+ |   |              |                              |                        |
+ |   |      +-------v--------+                     |                        |
+ |   |      |   Do other     |                     |                        |
+ |   +------|   operations   |                     |                        |
+ |          +----------------+                     |                        |
  +--------------------------------------------------------------------------+
-                                                  |
-                                                  |
+                                                   |
+                                                   |
  +--------------------------------------------------------------------------+
- |                  +-----------------------------+                         |
+ |                  +------------------------------+                        |
  |                  |                                        Audit Service  |
  |                  |                                                       |
  |                  |                                                       |
@@ -342,9 +365,8 @@ an error-prone and rigid approach.
 Improves system manageability and security.
 
 Impacts when phosphor-audit is not enabled:
- - Many services will have slightly larger code size and longer CPU path length
-   due to invocations of audit_event().
- - Increased D-Bus traffic.
+ - Many services will logging::event<>(), increasing the processing time of
+   phosphor-logging parsing.
 
 Impacts when phosphor-audit is enabled:
 All of the above, plus:
@@ -355,10 +377,14 @@ All of the above, plus:
 
 ## Testing
 
-`dbus-send` as command-line tool for generating audit events.
+meson enabled unit tests.
+end 2 end audit records are generated and discoverable/reviewable.
 
 Scenarios:
- - For each supported service (such as Redfish, net IPMI, host IPMI, PLDM), create audit events, and validate they get logged.
+ - For each supported service (such as Redfish, net IPMI, host IPMI, PLDM),
+   create audit events, and validate they get logged.
  - Ensure message-type and request-type filtering works as expected.
  - Ensure basic notification actions work as expected (log, command, notify).
- - When continuously generating audit-events, change the phosphor-audit service's configuration, and validate no audit events are lost, and the new configuration takes effect.
+ - When continuously generating audit-events, change the phosphor-audit service's
+   configuration, and validate no audit events are lost, and the new configuration
+   takes effect.
