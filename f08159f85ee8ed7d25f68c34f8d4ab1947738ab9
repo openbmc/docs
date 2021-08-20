@@ -86,6 +86,24 @@
       "revId": "f08159f85ee8ed7d25f68c34f8d4ab1947738ab9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "550b060b_202784c9",
+        "filename": "designs/oem/ibm/acf-authentication.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-08-20T11:45:15Z",
+      "side": 1,
+      "message": "\u003e However, this design requires the password to be different for each scheduled maintenance window.  To make this work with pam_u2f, the ACF upload function would have to set the service user\u0027s password.\n\nThat\u0027s exactly what a U2F challenge/response is though; the equivalent of a unique password.  You could set the password on the service account to \u0027bob\u0027 for all it matters as long as the U2F challenge is required.",
+      "parentUuid": "670d6c38_5a005e00",
+      "revId": "f08159f85ee8ed7d25f68c34f8d4ab1947738ab9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
