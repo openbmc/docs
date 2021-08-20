@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b000a1f5_ad863f1c",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-20T20:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "394856bb_9d9c9c62",
+      "revId": "704252e1325e19680562ebfae1588731bf065586",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b1b0f79f_0fa72e84",
         "filename": "designs/gpio-based-cable-presence.md",
         "patchSetId": 7
@@ -30,6 +48,30 @@
       "writtenOn": "2021-08-20T11:54:19Z",
       "side": 1,
       "message": "I don\u0027t really like this design, but would like Ed to give some feedback.\n\nIt seems flawed in two ways:\n    1. There is an implication by the example (which might just be due to the minimal example) that all cable connectors are on the same FRU given by the same Exposes, but that\u0027s not likely in practice.\n\n    2. Once Exposes are given by different FRUs there is no way for the IPMI provider to know which ones are suppose to be there and which ones aren\u0027t and which position they need to be in.  If the FRU holding cable5 doesn\u0027t show up, and thus doesn\u0027t have an object, how does the IPMI provider know to skip \u00275\u0027 in the bitfield?\n\nMaybe you\u0027re actually intending the provider to parse the number in the path and put it into a bitfield (mod 14)?  We should be very clear about what the schema is thus required for cable names.  I would suggest an underscore as a separator in the name in that case (ie. cable_5).",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 67
+      },
+      "revId": "704252e1325e19680562ebfae1588731bf065586",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd774983_51d9dfb4",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-20T20:01:35Z",
+      "side": 1,
+      "message": "the trailing index is also the position index. For example, if cable_5 is missing, when we reconstruct the object path, we will get read error on cable_5. Therefore, cable_5 is left as not present (bit index 5 left as 0). In this way, the order of cables are guaranteed.\n\nYes, cable_5 sounds better.",
+      "parentUuid": "b1b0f79f_0fa72e84",
       "range": {
         "startLine": 66,
         "startChar": 0,
@@ -62,6 +104,30 @@
       "revId": "704252e1325e19680562ebfae1588731bf065586",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30c866fd_145d759d",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-20T20:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cb5883a_4ea50220",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 1
+      },
+      "revId": "704252e1325e19680562ebfae1588731bf065586",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
