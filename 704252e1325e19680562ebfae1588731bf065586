@@ -156,6 +156,30 @@
     },
     {
       "key": {
+        "uuid": "59ba4dae_6cad3690",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-21T19:07:16Z",
+      "side": 1,
+      "message": "Ok. Are you suggesting that we should hide the grouping information from the EntityManager JSON file? For example:\nInstead of:\n```\n    {\n      \"Name\": \"cableGroupA_0\",\n      \"GpioLine\": \"gpio_pin0\",\n      \"IsActiveLow\": true,\n      \"Type\": \"GPIOSensing\"\n    },\n    ....\n    {\n      \"Name\": \"cableGroupB_0\",\n      \"GpioLine\": \"gpio_pin14\",\n      \"IsActiveLow\": true,\n      \"Type\": \"GPIOSensing\"\n    },\n```\nit should be:\n```\n    {\n      \"Name\": \"cable_0\",\n      \"GpioLine\": \"gpio_pin0\",\n      \"IsActiveLow\": true,\n      \"Type\": \"GPIOSensing\"\n    },\n    ....\n    {\n      \"Name\": \"cable_14\",\n      \"GpioLine\": \"gpio_pin14\",\n      \"IsActiveLow\": true,\n      \"Type\": \"GPIOSensing\"\n    },\n\n```\nMeanwhile, the grouping logic should be hidden in the ipmi-provider. For example, when we reach  14 presence states in one sdr, we automatically jump to a new sdr. Am I understand the suggestion correct?",
+      "parentUuid": "23181fb4_cca03b0b",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 67
+      },
+      "revId": "704252e1325e19680562ebfae1588731bf065586",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1cb5883a_4ea50220",
         "filename": "designs/gpio-based-cable-presence.md",
         "patchSetId": 7
