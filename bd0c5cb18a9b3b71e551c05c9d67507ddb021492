@@ -1,0 +1,429 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21f1ccdf_b12a8171",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "Lets avoid calling out ipmi specifically;  While that might be your initial target, I know that your team will need redfish support as well in the future.",
+      "range": {
+        "startLine": 10,
+        "startChar": 11,
+        "endLine": 10,
+        "endChar": 15
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87a8cc1a_4b86a61e",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "You might enumerate this a little more.  On systems with 20 slots, and 253 sensor IDs, taking up one sensor per slot would use 10% of the available space, and be a huge waste.",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 11,
+        "endChar": 66
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe2a14fe_3dad7966",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "That doesn\u0027t seem like it would be part of the problem description.  We could certainly have dbus interfaces that redfish ignores.\n\nWith that said, keep in mind, that you\u0027re trying to group these things based on the card they\u0027re attached to, which redfish DOES care about.  I suspect we should have a plan that handles that as part of this same design.",
+      "range": {
+        "startLine": 12,
+        "startChar": 50,
+        "endLine": 14,
+        "endChar": 53
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0d64b9e_4beadfb4",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "nit, in ipmi these are \"discrete\", not \"boolean\"",
+      "range": {
+        "startLine": 17,
+        "startChar": 40,
+        "endLine": 17,
+        "endChar": 47
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c65a7c6_f5a74602",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "overall, I think everything in the \"background\" section is actually still part of the problem statement.  YOu might want to link the section of the IPMi spec that talks about cables, as well as the recently included cable schema in redfish as part of your background.",
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33c45b1e_2aa2d57e",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "This was already covered in your problem description.  No need to duplicate it here.",
+      "range": {
+        "startLine": 17,
+        "startChar": 56,
+        "endLine": 20,
+        "endChar": 0
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24471924_b75f1bbb",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "Lets rewrite these a little bit so they\u0027re solution-agnostic:\n1. the openbmc IPMI interface should support exposing cable presence states.\n2. The OpenBMC dbus interface should be compatible with redfish",
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbc2b775_95c50c68",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "This would imply that all GPIO lines are directly connected to the BMC?  What if this is on an add-in-card, which is common on OSFP cards.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 26
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91bec8d8_407848b8",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "Can we call this \"polarity\", and not make it a bool?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 26
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a91a8c19_021b29e0",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "This type needs to convey the actual exposes record for the backend being invoked, and considering this is a cable interface, \"Cable\" probably needs to show up somewhere in the type name.\n\nGpioCablePresence is probably the name I would pick.",
+      "range": {
+        "startLine": 38,
+        "startChar": 15,
+        "endLine": 38,
+        "endChar": 26
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7911c964_199e88e4",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "Should we be packing these differently in the config?  it seems odd when the goal is to explicitly group things, that we would have N config items.  Maybe we need a single Exposes entry per group, with a dict of Name/GPIO/Polarity pairs.  That makes it much clearer which objects are grouped together in practice, and should lead to a cleaner backend design when scanning in this config data.",
+      "range": {
+        "startLine": 51,
+        "startChar": 66,
+        "endLine": 52,
+        "endChar": 65
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14c9371d_53e3b126",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "Why poll?  Shouldn\u0027t interrupt driven be the default?",
+      "range": {
+        "startLine": 53,
+        "startChar": 11,
+        "endLine": 53,
+        "endChar": 16
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01a6461c_4a44f28a",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "How was this chosen?  Considering a human can plug/unplug reasonably quickly (definitely several times in 10 seconds) this seems like it\u0027s too short.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 10
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8420279_d568f607",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "nit... this document calls them \"slots\" a lot.  Per the IPMI spec, they\u0027re \"IDs\".  Also, I would worry less about \"fewer\" in the prose, and more about  how the various groups are related, as that\u0027s implied in the IPMI spec.",
+      "range": {
+        "startLine": 57,
+        "startChar": 18,
+        "endLine": 57,
+        "endChar": 23
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da9ca45f_4bde1530",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "If this is what we\u0027re doing, generally entity-manager would use a dedicated field for this, which allows us to do some aggregation things, like base it on the detected i2c address for example.\n\nSaid another way, \"name\" is getting overloaded as a field, and we should avoid that.",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 9
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5de12af_30762c29",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "Please put in more effort than this.  The expectation is that you\u0027ve \"explored\" these optional already, and discounted them by the time this doc gets put up.\n\nAlso, in terms of alternatives, you\u0027ve had several alternatives for how the dbus grouping should work.  I\u0027d expect those enumerated here too.\n\nFWIW, I know we had talked about this naming thing, but the more I look at it, the more I think we need to rely on the association back to the main inventory item to do the grouping.  that seems like it would give the result the user expects.  If you\u0027ve explicitly discounted that, I\u0027d like to see that called out here.",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 20
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9552b07d_5b53e6ce",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "So..... you\u0027re going to change the state?  How do you ensure that the bits are mapped properly?  How do you ensure that the cables work?  How do you ensure that debouncing is done properly?",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 0
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f268a82_adca5a4b",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "how many times?  any SDR requirements to test?",
+      "range": {
+        "startLine": 133,
+        "startChar": 2,
+        "endLine": 133,
+        "endChar": 67
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1580a58c_2f5fa06d",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T20:50:58Z",
+      "side": 1,
+      "message": "I\u0027d just omit this and leave it as implementation details within entity-manager.  The schema files are required when you upstream your configs.",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 7
+      },
+      "revId": "bd0c5cb18a9b3b71e551c05c9d67507ddb021492",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
