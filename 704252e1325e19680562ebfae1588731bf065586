@@ -204,6 +204,30 @@
     },
     {
       "key": {
+        "uuid": "a3037075_b9e8f9e1",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-23T23:25:07Z",
+      "side": 1,
+      "message": "\u003e   1. There is an implication by the example (which might just be due to the minimal example) that all cable connectors are on the same FRU given by the same Exposes, but that\u0027s not likely in practice.\"\n\nI\u0027m not following this statement.  In general, you would include the exposes records on the entity that \"exposed\" them, which in most cases will be the thing that contains the ports.\n\n\u003e  Once Exposes are given by different FRUs there is no way for the IPMI provider to know which ones are suppose to be there and which ones aren\u0027t and which position they need to be in.  If the FRU holding cable5 doesn\u0027t show up, and thus doesn\u0027t have an object, how does the IPMI provider know to skip \u00275\u0027 in the bitfield?\"\n\nthis is for sure a concern.  Presumably we\u0027d code this up so that all ports are implicitly created, and might just have the Presence field set to false.\n\n\n\u003e  And yes, we can do a mod operator to get correct index but since we already using a different sdr, I would suggest us to start counting from 0 again to make thing more explicit.\"\n\nNo, we shouldn\u0027t, as this could get really confusing for users looking at the dbus API, when it\u0027s simple enough to code mod 14 in IPMI.\n\n\u003e  I don’t really understand why you’d want this to be “explicit”. Why force a detail of IPMI through your entire inventory stack?\"\n\n+1 to this.  14-bit limits are IPMI specific, which we should avoid propagating through other places.  If we started over at 0, in redfish you would see two cables with index 0, which would be an issue.\n\n\n\n\u003e  Are you suggesting that we should hide the grouping information from the EntityManager JSON file? \"\n\nIn one of my other comments, I proposed that this all should be a single exposes record, which I think simplifies this config a lot.\n\n\n\n\n\nI tried to hit a bulk of the questions in this thread;  Let me know if you\u0027re still confused or I missed one.",
+      "parentUuid": "03fe9522_a8e657cf",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 67
+      },
+      "revId": "704252e1325e19680562ebfae1588731bf065586",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1cb5883a_4ea50220",
         "filename": "designs/gpio-based-cable-presence.md",
         "patchSetId": 7
