@@ -140,6 +140,24 @@
       "revId": "f08159f85ee8ed7d25f68c34f8d4ab1947738ab9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51f0f6a2_01e90d56",
+        "filename": "designs/oem/ibm/acf-authentication.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-26T08:49:49Z",
+      "side": 1,
+      "message": "I looked into the protocols a few years ago when I got a tomu.\nhttps://www.crowdsupply.com/sutajio-kosagi/tomu\n\nRemember the operating environment above is no electronics in our out, and the certificate in via asynchronous file transport (eg mail gateway) inbound only. \n\nMy understanding of the fido protocol is that during registration the token device creates a pub/private pair and delivers the public key and an opaque blob to the server.  During authentication, the account is used to retrieve the blob, public key, and these along with a challenge is sent rom the network server to the token device, which uses its knowledge of the opaque and private keys to determine a response.  The network service then verifies the response with the public key and challenge to allow access.   Even if the acf blob replaced the server side I don\u0027t understand what would replace the key.  \n\nAlternativly TOTP devices encrypt a local clock with a private key and send to a server for public key to decode the time and agree with the window, usually in the order of a couple of seconds.  While the information is short its the limited time window that is the foundation of the security, while repair may loose the RTC and hence all idea of the current time.\n\nIf you can point to specific sections of the specs and a proposed flow you think would help advance a full u2f architecture while maintaing security I\u0027ll take a look, but normal flows send a challenge (or implicitly use time) and expect a response that can be proven fresh.",
+      "parentUuid": "7e23f739_e189739b",
+      "revId": "f08159f85ee8ed7d25f68c34f8d4ab1947738ab9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
