@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "131143e9_1ccb4b71",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-08-27T18:40:33Z",
+      "side": 1,
+      "message": "Silly question here but do we want 0-index or 1-index counting?  My preference would be 0-index (ie. cable0 and cable1) unless you have a strong rationale why 1-index counting is better for this use case.",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 52
+      },
+      "revId": "b8332d69d70823ac728a058c34bcd2cea0a90f96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46ff37f0_27b81307",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-08-27T18:40:33Z",
+      "side": 1,
+      "message": "Here you seemed to have transitioned to 0-index counting. ;)\n\nIf you intended to use 0-index counting, great.  If you intended to use \"start-wherever-you-want index counting\" this is problematic.  Suppose \u0027cable0\u0027 is missing.  The IPMI provider will have no way of knowing if \u0027cable0\u0027 is missing because the FRU its connector belongs to wasn\u0027t detected or because it wasn\u0027t defined for this system; thus it has no way to know if it should skip 0 in the bit-mapping.",
+      "range": {
+        "startLine": 75,
+        "startChar": 24,
+        "endLine": 76,
+        "endChar": 60
+      },
+      "revId": "b8332d69d70823ac728a058c34bcd2cea0a90f96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f54834a2_9e7f953e",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-08-27T18:40:33Z",
+      "side": 1,
+      "message": "I feel like I\u0027m missing a leap from the EM config -\u003e dbus object -\u003e sdr naming.  Where did \u0027osfp\u0027 come from in this example?",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 41
+      },
+      "revId": "b8332d69d70823ac728a058c34bcd2cea0a90f96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b51ac70b_6f0b45da",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-08-27T18:40:33Z",
+      "side": 1,
+      "message": "Is there any reason why it wouldn\u0027t work without modification?  It seems like a relatively trivial support.  You have to support the EM config being dynamic anyhow.",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 37
+      },
+      "revId": "b8332d69d70823ac728a058c34bcd2cea0a90f96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
