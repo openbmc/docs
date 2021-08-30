@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "edd38edf_911fd866",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-30T16:54:32Z",
+      "side": 1,
+      "message": "Yea. I agree. It should be zero index. I have it zero indexed in my local test but sure why I put 1-indexed in the doc.",
+      "parentUuid": "131143e9_1ccb4b71",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 52
+      },
+      "revId": "b8332d69d70823ac728a058c34bcd2cea0a90f96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46ff37f0_27b81307",
         "filename": "designs/gpio-based-cable-presence.md",
         "patchSetId": 10
@@ -45,6 +69,30 @@
       "revId": "b8332d69d70823ac728a058c34bcd2cea0a90f96",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c1e285e_52d5725d",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-30T16:54:32Z",
+      "side": 1,
+      "message": "I feel like we should be able to do \"start-wherever-you-want index counting\". It actually all comes from the config. Given the following config,\n```\n    {\n      \"Name\": \"cable1\",\n      \"GpioLine\": \"osfp1\",\n      \"Polarity\": \"active_low\",\n      \"Type\": \"GPIOCableSensing\"\n    },\n    {\n      \"Name\": \"cable2\",\n      \"GpioLine\": \"osfp2\",\n      \"Polarity\": \"active_high\",\n      \"Type\": \"GPIOCableSensing\"\n    }\n```\nWe will have a sdr name cable[1-2]. This should have enough information to tell the user that this sdr contains cable1 and cable2. Meanwhile, the presence state of cable1 goes to the zeroth bit and the presence state of cable2 goes to the first bit.\n\nOn the other hand, if the config contains cable0, the sdr name will be cable[0-2] and it indicates that the zeroth bit is the presence state for cable0 and first bit is the presence state for cable1 and so on.\n\n```\n    {\n      \"Name\": \"cable0\",\n      \"GpioLine\": \"osfp0\",\n      \"Polarity\": \"active_low\",\n      \"Type\": \"GPIOCableSensing\"\n    },\n    {\n      \"Name\": \"cable1\",\n      \"GpioLine\": \"osfp1\",\n      \"Polarity\": \"active_low\",\n      \"Type\": \"GPIOCableSensing\"\n    },\n    {\n      \"Name\": \"cable2\",\n      \"GpioLine\": \"osfp2\",\n      \"Polarity\": \"active_high\",\n      \"Type\": \"GPIOCableSensing\"\n    }\n```\n\nIn the case of missing configs, for example, cable1 is missing, we will have two sdrs cable0 and cable2 because it is discontinued (cable1 is missing).",
+      "parentUuid": "46ff37f0_27b81307",
+      "range": {
+        "startLine": 75,
+        "startChar": 24,
+        "endLine": 76,
+        "endChar": 60
+      },
+      "revId": "b8332d69d70823ac728a058c34bcd2cea0a90f96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3c0c1735_a96306ad",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-30T16:54:32Z",
+      "side": 1,
+      "message": "for example, given the following config\n```\n    {\n      \"Name\": \"osfp\",\n      \"GpioLine\": \"osfp0\",\n      \"Polarity\": \"active_low\",\n      \"Type\": \"GPIOCableSensing\"\n    },\n    {\n      \"Name\": \"osfp1\",\n      \"GpioLine\": \"osfp1\",\n      \"Polarity\": \"active_low\",\n      \"Type\": \"GPIOCableSensing\"\n    },\n    {\n      \"Name\": \"osfp2\",\n      \"GpioLine\": \"osfp2\",\n      \"Polarity\": \"active_high\",\n      \"Type\": \"GPIOCableSensing\"\n    }\n```\nThe first entry is named osfp. It is not indexed. Therefore, it will not be grouped into anything. Instead, it will be using one sdr. It is a waste of sdr IDs but I think it is ok for this unindexed special case.",
+      "parentUuid": "f54834a2_9e7f953e",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 41
+      },
+      "revId": "b8332d69d70823ac728a058c34bcd2cea0a90f96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b51ac70b_6f0b45da",
         "filename": "designs/gpio-based-cable-presence.md",
         "patchSetId": 10
@@ -91,6 +163,30 @@
       "revId": "b8332d69d70823ac728a058c34bcd2cea0a90f96",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b6862d0_cac27841",
+        "filename": "designs/gpio-based-cable-presence.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000952
+      },
+      "writtenOn": "2021-08-30T16:54:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b51ac70b_6f0b45da",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 37
+      },
+      "revId": "b8332d69d70823ac728a058c34bcd2cea0a90f96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
