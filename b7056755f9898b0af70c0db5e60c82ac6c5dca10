@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4974649_a0fab28d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-09-02T02:39:43Z",
+      "side": 1,
+      "message": "This isn\u0027t strictly about userspace API though is it?  This was intended to be a way to name the GPIOs in the device tree to make hooking them up easier.\n\nI see:\n```\naspeed-bmc-opp-mihawk.dts:      /*E0-E7*/       \"\",\"\",\"\",\"\",\"\",\"fsi-mux\",\"fsi-clock\",\"fsi-data\",\naspeed-bmc-opp-nicole.dts:      /*A0-A7*/       \"\",\"cfam-reset\",\"\",\"\",\"\",\"\",\"fsi-mux\",\"\",\naspeed-bmc-opp-romulus.dts:     /*A0-A7*/       \"\",\"cfam-reset\",\"\",\"\",\"\",\"\",\"fsi-mux\",\"\",\naspeed-bmc-opp-tacoma.dts:      /*B0-B7*/       \"fsi-mux\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\naspeed-bmc-opp-tacoma.dts:      fsi-mux-gpios \u003d \u003c\u0026gpio0 ASPEED_GPIO(B, 0) GPIO_ACTIVE_HIGH\u003e;\naspeed-bmc-opp-witherspoon.dts: /*A0-A7*/       \"\",\"cfam-reset\",\"\",\"\",\"\",\"\",\"fsi-mux\",\"\",\naspeed-bmc-opp-zaius.dts:                               \"\",\"fsi-mux\",\"\",\n```\n\nDoes this mean that the kernel driver doesn\u0027t use these names either?  Were they just done for the sake of humans?\n\nI think this was strictly for the old fsi bitbang codepath.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 5
+      },
+      "revId": "b7056755f9898b0af70c0db5e60c82ac6c5dca10",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
