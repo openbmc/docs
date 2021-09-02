@@ -18,7 +18,7 @@ Workflow highlights:
 1. Handle new problem reports.
     - Within a day, acknowledge you received the report.
       Note that reports are archived in the mailing list.
-    - Communicate within the security response team, typically be
+    - Communicate within the security response team, typically by
       cc'ing the openbmc-security email list.
 
 2. Analyze the problem and engage collaborators as needed (upstream,
@@ -130,10 +130,27 @@ Some of these guidelines were collected from:
 
 ## Team composition and email maintenance
 
-The security response team is controlled by the OpenBMC Technical
-Steering Committee.  Membership is restricted to a core group, with
-selection based upon their community role(s), experience, and
-expertise responding to security incidents.
+The security response team (SRT) is controlled by the OpenBMC Technical
+Steering Committee, including membership on the team.  General
+considerations for SRT membership:
+- Although individuals join the SRT, it is really organizations which join as
+  represented by their SRT members.  The SRT members are expected to:
+   - Participate in their organization's SRT.
+   - Designate backup OpenBMC SRT members.
+   - Share OpenBMC security vulnerability information within their organization
+     with the same care as stated in this document.
+- Membership is intended for organizations which have a vested interest in
+  OpenBMC security response.  Here are some examples to consider:
+   - Organizations which have products or services built on OpenBMC which are
+     publicly available and disclose security bugs to their users.  This
+     includes systems directly built on OpenBMC, and larger systems such as
+     data centers.
+   - Organizations which focus on BMC security research or security response.
+- Evaluation of an organization may be based on its members' OpenBMC community
+  roles, technical skills, and expertise responding to security incidents.
+- Membership should not be granted without compelling reason.  The intention
+  is to avoid premature disclosure of security vulnerabilities by limiting
+  membership to those with vested interest.
 
 The security response team uses the `openbmc-security at
 lists.ozlabs.org` private email list as a channel for confidential
