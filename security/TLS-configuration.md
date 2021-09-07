@@ -425,3 +425,5 @@ even when TLS is disabled or certificates are invalid.
 [Verify certificates](#Verify-certificates).
 
 * Attempting to load the same certificate twice will end up with an error.
+
+* Not having phosphor-bmcweb-cert-config in the build.
