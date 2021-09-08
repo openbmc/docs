@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1cdccd79_06e1481f",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-09-08T22:32:56Z",
+      "side": 1,
+      "message": "My initial thinking was to make this generic for any type of storage device, but I wanted to make use the eMMC-specific password feature (CMD42). So my current plan to make this unique to eMMC devices.\n\nIf you think we might want to use this daemon with other types of storage devices, we could provide a way to leave out the eMMC device password and just use the encryption for those devices.",
+      "parentUuid": "a9822372_c2ac0b7c",
+      "range": {
+        "startLine": 16,
+        "startChar": 48,
+        "endLine": 16,
+        "endChar": 77
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a03c36b_1569a1d8",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -60,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "bd2685ee_f0ed2ac1",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-09-08T22:32:56Z",
+      "side": 1,
+      "message": "Sorry, I never mentioned that this is only meant to be used for secondary storage. I added a note about that.",
+      "parentUuid": "3c322509_974b7033",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5fa3544_089dbf1c",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -74,6 +116,24 @@
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a0979ef_731a783a",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-09-08T22:32:56Z",
+      "side": 1,
+      "message": "I think this paragraph adds unnecessary confusion. No, the volume is not expected to be exposed externally. (In the way I plan to use it, the host will know this encrypted eMMC exists, but it won\u0027t have access to the data.)\n\nI re-worked this paragraph to hopefully be less confusing, but let me know if something isn\u0027t clear.",
+      "parentUuid": "e5fa3544_089dbf1c",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +154,24 @@
     },
     {
       "key": {
+        "uuid": "6608295b_999eccf2",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-09-08T22:32:56Z",
+      "side": 1,
+      "message": "I added a note about this.",
+      "parentUuid": "d49b3b90_7a9da395",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f565c74_54f5b43e",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -105,6 +183,24 @@
       "writtenOn": "2021-09-08T14:59:51Z",
       "side": 1,
       "message": "Have you looked at UDisks2?  Does it provide most of what is needed?  It seems like UDisks2 has most of the dbus APIs you already mentioned above between the Encrypted and Block objects.  Maybe we could enhance it for what is missing?\n\nhttp://storaged.org/doc/udisks2-api/2.7.5/gdbus-org.freedesktop.UDisks2.Encrypted.html",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "621e041c_5be753bf",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-09-08T22:32:56Z",
+      "side": 1,
+      "message": "Hmm, thanks for pointing that out. I wasn\u0027t aware of UDisks2 and I just added a paragraph about it. I see it provides methods for Lock, Unlock, and ChangePassphrase. But it doesn\u0027t provide a way to do the initial encryption setup or wipe the device. Even if I enhanced UDisks2 to include those operations, I don\u0027t think I would be able to add the eMMC device password functionality, which is eMMC-specific. So, I\u0027m leaning away from UDisks2, but I\u0027d be interested to see if other people think I should pursue that route instead.",
+      "parentUuid": "8f565c74_54f5b43e",
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -125,6 +221,24 @@
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59a016d1_2f089bb7",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-09-08T22:32:56Z",
+      "side": 1,
+      "message": "I added a note about how there may need to be a client daemon to make use of eStoraged. I removed the mention of IPMI from the example use case above, since it probably just added confusion. (At one point, I considered having an IPMI daemon that would make use of eStoraged.) But you don\u0027t necessarily need to use IPMI, to make use of this daemon. Let me know if you think something is missing from this section.",
+      "parentUuid": "c1f4bc0a_7e67fc71",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
