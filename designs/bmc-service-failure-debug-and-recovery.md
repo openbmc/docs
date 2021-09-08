@@ -6,6 +6,9 @@ Andrew Jeffery <andrew@aj.id.au> @arj
 Primary Assignee:
 Andrew Jeffery <andrew@aj.id.au> @arj
 
+Other contributors:
+Andrew Geissler <geissonator@yahoo.com> @geissonator
+
 Created:
 6th May 2021
 
@@ -14,8 +17,11 @@ Created:
 The capability to debug critical failures of the BMC firmware is essential to
 meet the reliability and serviceability claims made for some platforms.
 
-A class of failure exists under which we can attempt debug data collection
-despite being unable to communicate with the BMC via standard protocols.
+This design addresses a few classes of failures:
+- A class of failure exists where a BMC systemd service has entered a failed
+  state but the BMC is still operational in a degraded mode.
+- A class of failure exists under which we can attempt debug data collection
+  despite being unable to communicate with the BMC via standard protocols.
 
 This proposal argues for and proposes a software-driven debug data capture
 and recovery of a failed BMC.
@@ -121,6 +127,11 @@ These mechanisms inform systemd (the service manager) of an event, which it
 handles according to the restart policy encoded in the unit file for the
 service.
 
+OpenBMC has a default behavior for all systemd services. That default is to
+allow an OpenBMC systemd service to restart twice every 30 seconds. If a service
+restarts more then twice within 30 seconds then that service will be considered
+to be in a failed state by systemd and not restarted again until a BMC reboot.
+
 Assessing the OpenBMC operating system with respect to the error classes, it
 manages and mitigates error conditions as follows:
 
@@ -145,7 +156,27 @@ functionality. For applications in the platform-data-transport-provider class,
 this represents a critical failure of the firmware that must have accompanying
 debug data.
 
-## Requirements
+## Requirements: platform-data-provider failures
+
+As noted above, these types of failures usually yield a system that can continue
+to operate in a reduced capacity. The desired behavior in this scenario can
+vary from system to system so the requirements in this area need to be flexible
+enough to allow system owners to configure their desired behavior.
+
+Requirements for when an OpenBMC systemd service enters a failure state:
+- Log error indicating a service has failed
+- Collect BMC dump
+- Change BMC state (CurrentBMCState) to indicate a degrade mode of the BMC
+- Allow system owners to customize other behaviors (i.e. BMC reboot)
+
+This would look like the following:
+- OpenBMC service fails, OnFailure=obmc-bmc-service-quiesce.target
+- obmc-bmc-service-quiesce.target contains service which generates error and
+  requests BMC dump
+- BMC state manager detects obmc-bmc-service-quiesce.target started and puts
+  the BMC state into Quiesced.
+
+## Requirements: platform-data-transport-provider failures
 
 ### Recovery Mechanisms
 
@@ -273,7 +304,24 @@ simple need of generating an IRQ on the BMC. AST2600 has at least 4 KCS devices
 of which one is already in use for IBM's vendor-defined MCTP LPC binding
 leaving at least 3 from which to choose.
 
-## Proposed Design
+## Proposed Design: platform-data-provider failures
+
+Define a "obmc-bmc-service-quiesce.target". Create a new bbclass for recipes
+to include which will append a service file update for all SYSTEMD_SERVICE:${PN}
+defined within that recipe. That service file update append will be:
+  `OnFailure=obmc-bmc-service-quiesce.target`
+
+phosphor-state-manager will define a new application which will run in this
+new target. This application will create an error and request a BMC dump
+when the obmc-bmc-service-quiesce.target is started.
+
+phosphor-bmc-state-manager will monitor this target and enter a `Quiesced`
+state when it is started. This state will be reported externally via the
+Redfish API under redfish/v1/Managers/bmc status property.
+
+System owners can install any other services they wish in this new target.
+
+## Proposed Design: platform-data-transport-provider failures
 
 The proposed design is for a simple daemon started at BMC boot to invoke the
 desired crash dump handler according to the system policy upon receiving the
@@ -398,11 +446,30 @@ Deployment requires additional kernel support in the form of patches at [2].
 
 [2] https://github.com/amboar/linux/compare/2dbb5aeba6e55e2a97e150f8371ffc1cc4d18180...for/openbmc/kcs-raw
 
-## Alternatives Considered
+## Alternatives Considered: platform-data-provider failures
+
+One simpler option would be to just have the OnFailure result in a BMC reboot
+but historically this has caused more problems then it solves:
+- Rarely does a BMC reboot fix a service that was not fixed by simply restarting
+  it.
+- A BMC that continuously reboots itself due to a service failure is very
+  difficult to debug.
+- In general, BMC's only allow a certain amount of reboots so eventually the
+  BMC ends up stuck in the boot loader which is inaccessible unless special
+  debug cables are available so for all intensive purposes your system is now
+  bricked.
+
+## Alternatives Considered: platform-data-transport-provider failures
 
 See the discussion in Background.
 
-## Impacts
+## Impacts: platform-data-provider failures
+
+Currently nothing happens when a service enters the fail state. The changes
+proposed in this document will ensure an error is logged a dump is collected,
+and the external BMC state reflects the failure when this occurs.
+
+## Impacts: platform-data-transport-provider failures
 
 The proposal has some security implications. The mechanism provides an
 unauthenticated means for the host firmware to crash and/or reboot the BMC,
@@ -424,7 +491,13 @@ drawbacks.
 Due to simplicity being a design-point of the proposal, there are no
 significant API, performance or upgradability impacts.
 
-## Testing
+## Testing: platform-data-provider failures
+
+A variety of service should be put into the fail state and the tester should
+ensure the appropriate error is logged, dump is collected, and BMC state
+is changed to reflect this.
+
+## Testing: platform-data-transport-provider failures
 
 Generally, testing this feature requires complex interactions with
 host firmware and platform-specific mechanisms for triggering the reboot
