@@ -6,6 +6,9 @@ Andrew Jeffery <andrew@aj.id.au> @arj
 Primary Assignee:
 Andrew Jeffery <andrew@aj.id.au> @arj
 
+Other contributors:
+Andrew Geissler <geissonator@yahoo.com> @geissonator
+
 Created:
 6th May 2021
 
@@ -14,8 +17,11 @@ Created:
 The capability to debug critical failures of the BMC firmware is essential to
 meet the reliability and serviceability claims made for some platforms.
 
-A class of failure exists under which we can attempt debug data collection
-despite being unable to communicate with the BMC via standard protocols.
+This design addresses a few classes of failures:
+- A class of failure exists where a BMC service has entered a failed state but
+  the BMC is still operational in a degraded mode.
+- A class of failure exists under which we can attempt debug data collection
+  despite being unable to communicate with the BMC via standard protocols.
 
 This proposal argues for and proposes a software-driven debug data capture
 and recovery of a failed BMC.
@@ -121,6 +127,11 @@ These mechanisms inform systemd (the service manager) of an event, which it
 handles according to the restart policy encoded in the unit file for the
 service.
 
+OpenBMC has a default behavior for all systemd services. That default is to
+allow an OpenBMC systemd service to restart twice every 30 seconds. If a service
+restarts more then twice within 30 seconds then that service will be considered
+to be in a failed state by systemd and not restarted again until a BMC reboot.
+
 Assessing the OpenBMC operating system with respect to the error classes, it
 manages and mitigates error conditions as follows:
 
@@ -145,9 +156,12 @@ functionality. For applications in the platform-data-transport-provider class,
 this represents a critical failure of the firmware that must have accompanying
 debug data.
 
-## Requirements
 
-### Recovery Mechanisms
+## Handling platform-data-transport-provider failures
+
+### Requirements
+
+#### Recovery Mechanisms
 
 The ability for external consumers to control the recovery behaviour of BMC
 services is usually coarse, the nuanced handling is left to the BMC
@@ -193,7 +207,7 @@ with minimal dependencies on the BMC side for initiating the dump collection
 and reboot. At its core, all that is needed is the ability to trigger a BMC
 IRQ, which could be as simple as monitoring a GPIO.
 
-### Behavioural Requirements for Recovery Mechanism 2
+#### Behavioural Requirements for Recovery Mechanism 2
 
 The system behaviour requirement for the mechanism is:
 
@@ -210,7 +224,7 @@ It's necessary that:
 1. The host make use of a timeout to escalate to recovery mechanism 3 as it's
    possible the BMC will be unresponsive to recovery mechanism 2
 
-### Analysis of BMC Recovery Mechanisms for Power10 Platforms
+#### Analysis of BMC Recovery Mechanisms for Power10 Platforms
 
 The implementation of recovery mechanism 1 is already accounted for in the
 in-band protocols between the host and the BMC and so is considered resolved
@@ -224,7 +238,7 @@ drive the hardware to forcefully reset the BMC.
 However, host-side GPIOs are in short supply, and we do not have a dedicated
 pin to implement recovery mechanism 2 in the platform designs.
 
-### Analysis of Implementation Methods on Power10 Platforms
+#### Analysis of Implementation Methods on Power10 Platforms
 
 The implementation of recovery mechanism 2 is limited to using existing
 interfaces between the host and the BMC. These largely consist of:
@@ -273,7 +287,7 @@ simple need of generating an IRQ on the BMC. AST2600 has at least 4 KCS devices
 of which one is already in use for IBM's vendor-defined MCTP LPC binding
 leaving at least 3 from which to choose.
 
-## Proposed Design
+### Proposed Design
 
 The proposed design is for a simple daemon started at BMC boot to invoke the
 desired crash dump handler according to the system policy upon receiving the
@@ -298,7 +312,7 @@ Other activities in userspace might be feasible if it can be assumed that
 whatever failure has occurred will not prevent debug data collection, but no
 statement about this can be made in general.
 
-### A Idealised KCS-based Protocol for Power10 Platforms
+#### A Idealised KCS-based Protocol for Power10 Platforms
 
 The proposed implementation provides for both the required and desired
 behaviours outlined in the requirements section above.
@@ -371,7 +385,7 @@ The layout of the KCS Status Register (STR) is as follows:
 | 1   | Hardware | Input Buffer Full (IBF)  |
 | 0   | Hardware | Output Buffer Full (OBF) |
 
-### A Real-World Implementation of the KCS Protocol for Power10 Platforms
+#### A Real-World Implementation of the KCS Protocol for Power10 Platforms
 
 Implementing the protocol described above in userspace is challenging due to
 available kernel interfaces[1], and implementing the behaviour in the kernel
@@ -387,7 +401,7 @@ status value).
 
 [1] https://lore.kernel.org/lkml/37e75b07-a5c6-422f-84b3-54f2bea0b917@www.fastmail.com/
 
-### Prototype Implementation Supporting Power10 Platforms
+#### Prototype Implementation Supporting Power10 Platforms
 
 A concrete implementation of the proposal's userspace daemon is available on
 Github:
@@ -398,11 +412,11 @@ Deployment requires additional kernel support in the form of patches at [2].
 
 [2] https://github.com/amboar/linux/compare/2dbb5aeba6e55e2a97e150f8371ffc1cc4d18180...for/openbmc/kcs-raw
 
-## Alternatives Considered
+### Alternatives Considered
 
 See the discussion in Background.
 
-## Impacts
+### Impacts
 
 The proposal has some security implications. The mechanism provides an
 unauthenticated means for the host firmware to crash and/or reboot the BMC,
@@ -424,7 +438,7 @@ drawbacks.
 Due to simplicity being a design-point of the proposal, there are no
 significant API, performance or upgradability impacts.
 
-## Testing
+### Testing
 
 Generally, testing this feature requires complex interactions with
 host firmware and platform-specific mechanisms for triggering the reboot
@@ -433,3 +447,72 @@ behaviour.
 For Power10 platforms this feature may be safely tested under QEMU by scripting
 the monitor to inject values on the appropriate KCS device. Implementing this
 for automated testing may need explicit support in CI.
+
+
+## Handling platform-data-provider failures
+
+### Requirements
+
+As noted above, these types of failures usually yield a system that can continue
+to operate in a reduced capacity. The desired behavior in this scenario can
+vary from system to system so the requirements in this area need to be flexible
+enough to allow system owners to configure their desired behavior.
+
+The requirements for OpenBMC when a platform-data-provider service enters a
+failure state are that the BMC:
+- Logs an error indicating a service has failed
+- Collects a BMC dump
+- Changes BMC state (CurrentBMCState) to indicate a degraded mode of the BMC
+- Allow system owners to customize other behaviors (i.e. BMC reboot)
+
+### Proposed Design
+
+This will build upon the existing [target-fail-monitoring][1] design. The
+monitor service will be enhanced to also take json file(s) which list
+critical services to monitor.
+
+Define a "obmc-bmc-service-quiesce.target". System owners can install any
+other services they wish in this new target.
+
+phosphor-bmc-state-manager will monitor this target and enter a `Quiesced`
+state when it is started. This state will be reported externally via the
+Redfish API under redfish/v1/Managers/bmc status property.
+
+This would look like the following:
+- In a services-to-monitor configuration file, add all critical services
+- The state-manager service-monitor will subscribe to signals for service
+  failures and do the following when one fails from within the configuration
+  file:
+  - Log error with service failure information
+  - Request a BMC dump
+  - Start obmc-bmc-service-quiesce.target
+- BMC state manager detects obmc-bmc-service-quiesce.target has started and puts
+  the BMC state into Quiesced
+- bmcweb looks at BMC state to return appropriate state to external clients
+
+[1]: https://github.com/openbmc/docs/blob/master/designs/target-fail-monitoring.md
+
+### Alternatives Considered
+
+One simpler option would be to just have the OnFailure result in a BMC reboot
+but historically this has caused more problems then it solves:
+- Rarely does a BMC reboot fix a service that was not fixed by simply restarting
+  it.
+- A BMC that continuously reboots itself due to a service failure is very
+  difficult to debug.
+- Some BMC's only allow a certain amount of reboots so eventually the
+  BMC ends up stuck in the boot loader which is inaccessible unless special
+  debug cables are available so for all intents and purposes your system is now
+  unusable.
+
+### Impacts
+
+Currently nothing happens when a service enters the fail state. The changes
+proposed in this document will ensure an error is logged a dump is collected,
+and the external BMC state reflects the failure when this occurs.
+
+### Testing
+
+A variety of service should be put into the fail state and the tester should
+ensure the appropriate error is logged, dump is collected, and BMC state
+is changed to reflect this.
