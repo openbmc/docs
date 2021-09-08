@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "8a03c36b_1569a1d8",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-08T03:11:15Z",
+      "side": 1,
+      "message": "Can you provide some background on the storage model you intend to use here?\n\nI take it these encrypted storage volumes are not where the root file system is stored?  Or if they are how does the device boot?\n\nInstead it seems like this is either for host eMMC or is for some auxiliary storage volumes.",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5fa3544_089dbf1c",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-08T03:11:15Z",
+      "side": 1,
+      "message": "Again missing some of the model.  This says the host will be iniitating the request for a volume.  Are these expected to be exposed back to the host?  USB?  something else?",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d49b3b90_7a9da395",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -13,6 +47,23 @@
       "writtenOn": "2021-09-08T02:10:43Z",
       "side": 1,
       "message": "It might be worth making it clear that the CMD42 device password must be different from the encryption password? Otherwise it could be recoverable from the eMMC and then used against the encryption.",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1f4bc0a_7e67fc71",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-08T03:11:15Z",
+      "side": 1,
+      "message": "you\u0027ve already implied IPMI or other commands to invoke this D-bus API.",
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
