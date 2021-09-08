@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a9822372_c2ac0b7c",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-09-08T14:59:51Z",
+      "side": 1,
+      "message": "Should we restrict this to eMMC devices or should we be able to easily extend this to USB keys and NVMe drives (attached over the BMC\u0027s PCIe)?",
+      "range": {
+        "startLine": 16,
+        "startChar": 48,
+        "endLine": 16,
+        "endChar": 77
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a03c36b_1569a1d8",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -13,6 +36,24 @@
       "writtenOn": "2021-09-08T03:11:15Z",
       "side": 1,
       "message": "Can you provide some background on the storage model you intend to use here?\n\nI take it these encrypted storage volumes are not where the root file system is stored?  Or if they are how does the device boot?\n\nInstead it seems like this is either for host eMMC or is for some auxiliary storage volumes.",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c322509_974b7033",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-09-08T14:59:51Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "8a03c36b_1569a1d8",
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -47,6 +88,23 @@
       "writtenOn": "2021-09-08T02:10:43Z",
       "side": 1,
       "message": "It might be worth making it clear that the CMD42 device password must be different from the encryption password? Otherwise it could be recoverable from the eMMC and then used against the encryption.",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f565c74_54f5b43e",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-09-08T14:59:51Z",
+      "side": 1,
+      "message": "Have you looked at UDisks2?  Does it provide most of what is needed?  It seems like UDisks2 has most of the dbus APIs you already mentioned above between the Encrypted and Block objects.  Maybe we could enhance it for what is missing?\n\nhttp://storaged.org/doc/udisks2-api/2.7.5/gdbus-org.freedesktop.UDisks2.Encrypted.html",
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
