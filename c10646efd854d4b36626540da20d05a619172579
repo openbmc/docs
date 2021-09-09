@@ -137,6 +137,52 @@
     },
     {
       "key": {
+        "uuid": "9ada093e_61d48634",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-09-09T01:45:07Z",
+      "side": 1,
+      "message": "do you need decrypt method.",
+      "range": {
+        "startLine": 75,
+        "startChar": 11,
+        "endLine": 75,
+        "endChar": 18
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56093a77_13a77794",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-09-09T01:45:07Z",
+      "side": 1,
+      "message": "Does erase need to shred/wipe or does it just need to zero?",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 16
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d49b3b90_7a9da395",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -201,6 +247,24 @@
       "side": 1,
       "message": "Hmm, thanks for pointing that out. I wasn\u0027t aware of UDisks2 and I just added a paragraph about it. I see it provides methods for Lock, Unlock, and ChangePassphrase. But it doesn\u0027t provide a way to do the initial encryption setup or wipe the device. Even if I enhanced UDisks2 to include those operations, I don\u0027t think I would be able to add the eMMC device password functionality, which is eMMC-specific. So, I\u0027m leaning away from UDisks2, but I\u0027d be interested to see if other people think I should pursue that route instead.",
       "parentUuid": "8f565c74_54f5b43e",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41b5be6e_5ba34b52",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-09-09T01:45:07Z",
+      "side": 1,
+      "message": "using Udisk2 has some advantages because it is a generic disk managing deamon, rather then a custom secondary emmc tool. To use Udisk2 we would have to:\n - add a way lock/unlock the emmc\n - add a way to erase the device (you open the block and write zeros to it...)\n - make sure the size requirements were not an issue\n\n\nThere is a method for formatting a block \nhttp://storaged.org/doc/udisks2-api/latest/gdbus-org.freedesktop.UDisks2.Block.html#gdbus-method-org-freedesktop-UDisks2-Block.Format\nencrypting, decrypting, Changing the Password, and getting the status.\n\nIt is a very interesting suggestion.",
+      "parentUuid": "621e041c_5be753bf",
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
