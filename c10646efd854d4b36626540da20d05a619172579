@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "c69fe7d1_431abddd",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-09-09T17:04:02Z",
+      "side": 1,
+      "message": "Re CMD42.  Doesn\u0027t SD also support that?  Isn\u0027t there an equivalent feature on normal SSDs?  CMD42 feels like an implementation of the feature and not the feature itself.",
+      "parentUuid": "1cdccd79_06e1481f",
+      "range": {
+        "startLine": 16,
+        "startChar": 48,
+        "endLine": 16,
+        "endChar": 77
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a03c36b_1569a1d8",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -288,6 +312,24 @@
       "side": 1,
       "message": "using Udisk2 has some advantages because it is a generic disk managing deamon, rather then a custom secondary emmc tool. To use Udisk2 we would have to:\n - add a way lock/unlock the emmc\n - add a way to erase the device (you open the block and write zeros to it...)\n - make sure the size requirements were not an issue\n\n\nThere is a method for formatting a block \nhttp://storaged.org/doc/udisks2-api/latest/gdbus-org.freedesktop.UDisks2.Block.html#gdbus-method-org-freedesktop-UDisks2-Block.Format\nencrypting, decrypting, Changing the Password, and getting the status.\n\nIt is a very interesting suggestion.",
       "parentUuid": "621e041c_5be753bf",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "427663c4_47f784dd",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-09-09T17:04:02Z",
+      "side": 1,
+      "message": "\u003e Even if I enhanced UDisks2 to include those operations, I don\u0027t think I would be able to add the eMMC device password functionality, which is eMMC-specific. \n\nAs I mentioned above, I feel that this is an implementation of a \"hardware lock\" and not something entirely unique to eMMC.  Depending on how it is implemented at a kernel level, it is possible that the eMMC/SD-specifics end up being abstracted away by the kernel.\n\n\u003e So, I\u0027m leaning away from UDisks2, but I\u0027d be interested to see if other people think I should pursue that route instead.\n\nI really think we should write up everything missing by UDisk2 and approach that project with our needs (and be willing to enhance it).  UDisk2 is widely leveraged by Linux-on-Desktop.  If we have a project that does 80% of what we desire and we can enhance it for the extra 20%, I\u0027d way rather do that than write 100% unique code for us.",
+      "parentUuid": "41b5be6e_5ba34b52",
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
