@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "dbb7536d_6eedca14",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-09-10T00:47:55Z",
+      "side": 1,
+      "message": "SD does support the same CMD42. I\u0027m not familiar with SSDs, but they seem to have something similar.",
+      "parentUuid": "c69fe7d1_431abddd",
+      "range": {
+        "startLine": 16,
+        "startChar": 48,
+        "endLine": 16,
+        "endChar": 77
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a03c36b_1569a1d8",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -149,6 +173,30 @@
     },
     {
       "key": {
+        "uuid": "de6df9fe_55187937",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-09-10T00:47:55Z",
+      "side": 1,
+      "message": "My original thinking was that it would all be in userspace, e.g. by adding it to mmc utils: https://git.kernel.org/pub/scm/utils/mmc/mmc-utils.git/\n\nThat kernel patch looks useful. It doesn\u0027t look like it\u0027s actually in the mainline Linux, so we would need to add the patch to our kernel, if we want to add this functionality to the kernel driver.",
+      "parentUuid": "e542b3c6_f147aca6",
+      "range": {
+        "startLine": 34,
+        "startChar": 23,
+        "endLine": 34,
+        "endChar": 58
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e5fa3544_089dbf1c",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -207,6 +255,30 @@
     },
     {
       "key": {
+        "uuid": "4045b938_b3c83b84",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-09-10T00:47:55Z",
+      "side": 1,
+      "message": "Maybe the name could be better, but this is really meant to be an initial formatting operation, to set up the encrypted filesystem on the device. The \"decrypt\" functionality you\u0027re thinking of might be what the Unlock method is for, which gets us access to the volume key, allowing us to read/write the encrypted data on the device.",
+      "parentUuid": "9ada093e_61d48634",
+      "range": {
+        "startLine": 75,
+        "startChar": 11,
+        "endLine": 75,
+        "endChar": 18
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56093a77_13a77794",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -227,6 +299,30 @@
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd83322c_30bcff23",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-09-10T00:47:55Z",
+      "side": 1,
+      "message": "My plan for the erase is to do more than just write zeros. The security folks at Google prescribe a whole sequence of steps that involves more than just writing zeros.",
+      "parentUuid": "56093a77_13a77794",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 16
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -330,6 +426,24 @@
       "side": 1,
       "message": "\u003e Even if I enhanced UDisks2 to include those operations, I don\u0027t think I would be able to add the eMMC device password functionality, which is eMMC-specific. \n\nAs I mentioned above, I feel that this is an implementation of a \"hardware lock\" and not something entirely unique to eMMC.  Depending on how it is implemented at a kernel level, it is possible that the eMMC/SD-specifics end up being abstracted away by the kernel.\n\n\u003e So, I\u0027m leaning away from UDisks2, but I\u0027d be interested to see if other people think I should pursue that route instead.\n\nI really think we should write up everything missing by UDisk2 and approach that project with our needs (and be willing to enhance it).  UDisk2 is widely leveraged by Linux-on-Desktop.  If we have a project that does 80% of what we desire and we can enhance it for the extra 20%, I\u0027d way rather do that than write 100% unique code for us.",
       "parentUuid": "41b5be6e_5ba34b52",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "010cdb02_b1979530",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-09-10T00:47:55Z",
+      "side": 1,
+      "message": "Thanks John for pointing out that the Format method is in fact capable of setting up encryption, which might make UDisks2 more appealing. It looks like the same method also has an erase feature, which can either write zeros to the device or do an ATA secure erase.\n\nSome things I noticed when looking through the UDisks2 code and documentation:\n- It would be nice if the Format method exposed more options for the encryption setup, e.g. cipher and volume key. But it mostly does what I want, except that it doesn\u0027t enforce a minimum amount of entropy when generating the volume key. At the very least, maybe I could check that there\u0027s enough entropy before calling Format.\n- The erase feature in Format probably won\u0027t satisfy the security folks at Google, since they expect a secure erase operation to involve more than just writing zeros.\n- I don\u0027t see anything in UDisks2 that would provide the hardware lock capability (CMD42). It doesn\u0027t look like the existing Lock and Unlock methods are intended to lock/unlock at the hardware level. If I do end up using UDisks2, I might still need something else to do the hardware lock.",
+      "parentUuid": "427663c4_47f784dd",
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
