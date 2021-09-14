@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "9f7f3c00_9ca44313",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-09-14T06:20:43Z",
+      "side": 1,
+      "message": "I believe nearly all disks have a lock / unlock command of sorts. Not all of them implement it at all or well, but the command sets for SATA / NVME / MMC all support it.",
+      "parentUuid": "dbb7536d_6eedca14",
+      "range": {
+        "startLine": 16,
+        "startChar": 48,
+        "endLine": 16,
+        "endChar": 77
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a03c36b_1569a1d8",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -197,6 +221,30 @@
     },
     {
       "key": {
+        "uuid": "cd89fe26_f966d713",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-09-14T06:20:43Z",
+      "side": 1,
+      "message": "We talked about this offline, but the ioctl interface should provide the ability to run the arbitrary command from userspace. You will find it easier than building a specific kernel interface to perform this logic.",
+      "parentUuid": "de6df9fe_55187937",
+      "range": {
+        "startLine": 34,
+        "startChar": 23,
+        "endLine": 34,
+        "endChar": 58
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e5fa3544_089dbf1c",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -279,6 +327,30 @@
     },
     {
       "key": {
+        "uuid": "8217baae_d2707d62",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-09-14T06:20:43Z",
+      "side": 1,
+      "message": "You probably want to name this \"format\" as that is how other tooling refers to it.",
+      "parentUuid": "4045b938_b3c83b84",
+      "range": {
+        "startLine": 75,
+        "startChar": 11,
+        "endLine": 75,
+        "endChar": 18
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56093a77_13a77794",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -323,6 +395,30 @@
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "639ed555_b455b8b5",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-09-14T06:20:43Z",
+      "side": 1,
+      "message": "We probably want to make it possible to specify strategies here, in case multiple parties have different opinions on what secure erased means.",
+      "parentUuid": "bd83322c_30bcff23",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 16
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
@@ -462,6 +558,24 @@
       "side": 1,
       "message": "We looked at udisks2 and the project is very large when built (15MiB after removing polkit) on a bmc. It has a bunch of functionality that we don\u0027t need. The changes we would have to do to make it acceptable (2Mib) for our flash size would be extensive, and time consuming to maintain .\nWe think having a small custom daemon would be easier to maintain, and less effort to produce. \n\nLet us know if there are any tools that could drastically decrease the size of udisks2. \nThank you",
       "parentUuid": "010cdb02_b1979530",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "054c9dd6_ec468140",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2021-09-14T06:20:43Z",
+      "side": 1,
+      "message": "Yeah, it wouldn\u0027t be that much new code to wrap libcryptsetup and do the lock / unlock bits. The erase method would be unique to us anyway.",
+      "parentUuid": "b2cbac95_e8fc7bf1",
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
