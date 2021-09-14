@@ -245,6 +245,30 @@
     },
     {
       "key": {
+        "uuid": "a3607e81_0ea3f2b6",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-09-14T23:47:00Z",
+      "side": 1,
+      "message": "sounds good, we have made progress on a user space tool",
+      "parentUuid": "cd89fe26_f966d713",
+      "range": {
+        "startLine": 34,
+        "startChar": 23,
+        "endLine": 34,
+        "endChar": 58
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e5fa3544_089dbf1c",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -410,6 +434,30 @@
       "side": 1,
       "message": "We probably want to make it possible to specify strategies here, in case multiple parties have different opinions on what secure erased means.",
       "parentUuid": "bd83322c_30bcff23",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 16
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74ea5c1b_94dd0c94",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-09-14T23:47:00Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "639ed555_b455b8b5",
       "range": {
         "startLine": 76,
         "startChar": 11,
@@ -648,6 +696,24 @@
       "side": 1,
       "message": "I did an image diff between an image with udisks and one without. Here are some of the larger items that showed up in the image when adding udisks. This only includes things \u003e1 MB.\n\n\u003e 1.1M  ./usr/bin/pk11ectest\n\u003e 1.5M  ./usr/bin/rsaperf\n\u003e 1.5M  ./usr/lib/libgio-2.0.so.0.6800.4\n\u003e 1.1M  ./usr/lib/libglib-2.0.so.0.6800.4\n\u003e 21M   ./usr/lib/libmozjs-60.so\n\u003e 1.1M  ./usr/lib/libnss3.so\n\u003e 2.6M  ./usr/lib/libpython3.9.so.1.0\n\u003e 1.1M  ./usr/lib/libsqlite3.so.0.8.6\n\u003e 39M   ./usr/lib/python3.9\n\u003e 1.5M  ./usr/lib/python3.9/asyncio\n\u003e 1.1M  ./usr/lib/python3.9/asyncio/__pycache__\n\u003e 1.8M  ./usr/lib/python3.9/distutils\n\u003e 1.2M  ./usr/lib/python3.9/email\n\u003e 2.5M  ./usr/lib/python3.9/encodings\n\u003e 1.2M  ./usr/lib/python3.9/encodings/__pycache__\n\u003e 2.8M  ./usr/lib/python3.9/idlelib\n\u003e 1.7M  ./usr/lib/python3.9/idlelib/__pycache__\n\u003e 4.2M  ./usr/lib/python3.9/lib-dynload\n\u003e 1.1M  ./usr/lib/python3.9/lib-dynload/unicodedata.cpython-39-arm-linux-gnueabi.so\n\u003e 9.1M  ./usr/lib/python3.9/__pycache__\n\u003e 1.9M  ./usr/lib/python3.9/pydoc_data\n\u003e 1.3M  ./usr/lib/python3.9/pydoc_data/__pycache__\n\u003e 1.3M  ./usr/lib/python3.9/tkinter",
       "parentUuid": "c982d4f0_233b08e0",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b24b149_c033c025",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-09-14T23:47:00Z",
+      "side": 1,
+      "message": "The python and js can be removed with polkit, but the libglib, libgio, alone put us 2.6MiB, and they would be very difficult to remove. \n\nI don\u0027t know what effort it would take to remove libnss3, pk11ectest, rsaperf, libsqlite3, and maintain. We can look into this more, but it will be over 2.6MiB regardless. \n\nIt is very possible we have different drive sizes, and different pain tolerances for image size.",
+      "parentUuid": "00145e3a_deecabce",
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
