@@ -582,6 +582,24 @@
     },
     {
       "key": {
+        "uuid": "5cc43944_89025342",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-09-14T21:27:58Z",
+      "side": 1,
+      "message": "\u003e We looked at udisks2 and the project is very large when built (15MiB after removing polkit) on a bmc.\n\nWe need to at least add this as rationale to the doc.\n\nBut, I really don\u0027t believe this.\n\n```\n-rwxr-xr-x 1 root root 493280 Aug  2 07:46 /usr/libexec/udisks2/udisksd\n-rwxr-xr-x 1 root root 545336 Aug  2 07:46 /usr/lib64/libudisks2.so.0.0.0\n-rwxr-xr-x 1 root root 60512 Aug  2 07:46 /usr/bin/udisksctl\n```\n\nThe entire application suite (minus the debug information and manpages) is only 1MB _uncompressed_ on my Linux desktop.  Are we really doing the right comparison?  Are you sure you looked at the _stripped_ version of the build?",
+      "parentUuid": "054c9dd6_ec468140",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c1f4bc0a_7e67fc71",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
