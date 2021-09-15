@@ -73,9 +73,14 @@ Set to initiate power-on or power-off of the chassis.
 #### power-chassis-good
 Indicates the power good state of the chassis.
 
+#### power-supply-redundancy-active
+Indicates if power supply redundancy is active (default) or lost. The HW can
+then take actions such as reducing the system's performance so that it can
+maintain its powered on state.
+
 #### regulator-standby-faulted
 This GPIO value represents the status of standby power regulator fault detection
-logic. This GPIO is an input only. The status will reflect a regulator 
+logic. This GPIO is an input only. The status will reflect a regulator
 non-faulted condition after AC power cycle when no standby power regulator fault
 condition is present. The status will reflect a standby regulator power faulted
 condition when an unexpected drop in standby power is detected.
