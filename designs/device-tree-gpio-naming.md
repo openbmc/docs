@@ -75,7 +75,7 @@ Indicates the power good state of the chassis.
 
 #### regulator-standby-faulted
 This GPIO value represents the status of standby power regulator fault detection
-logic. This GPIO is an input only. The status will reflect a regulator 
+logic. This GPIO is an input only. The status will reflect a regulator
 non-faulted condition after AC power cycle when no standby power regulator fault
 condition is present. The status will reflect a standby regulator power faulted
 condition when an unexpected drop in standby power is detected.
@@ -120,6 +120,15 @@ Defined:
 - fsi-clock
 - fsi-data
 - fsi-routing
+
+#### Power
+
+##### power-vref
+Vref for the BMC to tell the HW if a system requires 2 or 4 power supplies. If
+enough power supplies fail so that the system no longer has redundancy (no
+longer N+1), the hardware will signal to the Onboard Chip Controller that the
+system may be oversubscribed, and performance may need to be reduced so the
+system can maintain its powered on state.
 
 #### Special
 These are special case and/or grandfathered in pin names.
