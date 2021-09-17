@@ -35,13 +35,19 @@ proposed config file looks like the following:
       "Name": "cable0",
       "GpioLine": "osfp0",
       "Polarity": "active_low",
-      "Type": "GPIOCableSensing"
+      "Type": "GPIOCableSensing",
+      "FaultLedGroup": [
+        "attention"
+      ]
     },
     {
       "Name": "cable1",
       "GpioLine": "osfp1",
       "Polarity": "active_high",
-      "Type": "GPIOCableSensing"
+      "Type": "GPIOCableSensing",
+      "FaultLedGroup": [
+        "attention"
+      ]
     }
   ]
 }
@@ -51,7 +57,10 @@ The `GpioLine` is the gpio line label from the device tree. The `Polarity`
 should tell the daemon whether it needs to revert the GPIO signal. Each entry
 from the config would get translated into one object on the dbus. In addition,
 the daemon polls the gpio presence signal for these objects in an interval of
-10 seconds.
+10 seconds. When the cable is not properly seated, the daemon will assert on
+the corresponding fault led group. This should cause the corresponding led to
+blink or to turn on base on how phosphor-led-manager is configured. No action
+is taken if FaultLedGroup is empty.
 
 On the IPMI sIDe, the presence states will be grouped into fewer SDR IDs in
 order to save SDR IDs for ipmi. Given the following example,
