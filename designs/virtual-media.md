@@ -76,6 +76,17 @@ The component diagram below shows Virtual Media high-level overview
 Virtual Media feature supports multiple, simultaneous connections in both
 modes.
 
+### Asynchronicity
+
+Mounting and unmounting of remote device could be time consuming. Virtual
+Media shall support asynchronicity at the level of DBus and optionally Redfish
+API.
+
+Default timeouts for DBus (25 seconds) and for Redfish (60 seconds) may be
+insufficient to perform mounting and unmounting in some cases.
+
+Asynchronous responses will be described later on in appropriate sections.
+
 ### Network Block Device (NBD)
 
 Reader can notice that most connections on diagram are based on Network Block
@@ -154,6 +165,10 @@ The initialization of connection will look as on diagram:
     │                         │                 │    storage from /dev/nbd/X      │         │
     │                         │                 │ ─────────────────────────────────────────>│
     │                         │                 │                     │ │         │         │
+    │                         │    Completion   │                     | |         │         │
+    │                         │      signal     │                     | |         │         │
+    │                         │ <───────────────│                     │ │         │         │
+    │                         │                 │                     │ │         │         │
     │                         │                 │         Data        │ │         │         │
     │<─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─>│
     │                         │                 │                     │ │         │         │
@@ -211,6 +226,10 @@ The flow looks like below:
     │           │           │            │    Configure USB mass storage from /dev/nbd/X   │
     │           │           │            │ ───────────────────────────────────────────────>│
     │           │           │            │                    │ │       │ │      │         │
+    │           │           │ Completion │                    │ │       │ │      │         │
+    │           │           │   signal   │                    │ │       │ │      │         │
+    │           │           |<───────────│                    │ │       │ │      │         │
+    │           │           │            │                    │ │       │ │      │         │
     │           │           │            │               Data │ │       │ │      │         │
     │           │ <─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─>│
 ```
@@ -250,6 +269,14 @@ next sections. And will be visible despite media is inserted or not.
     "@odata.type": "#VirtualMedia.v1_1_0.VirtualMedia",
     "Id": "ISO0",
     "Name": "Virtual Removable Media",
+	"Actions": {
+		"#VirtualMedia.InsertMedia": {
+			"target": "/redfish/v1/Managers/bmc/VirtualMedia/ISO0/Actions/VirtualMedia.InsertMedia"
+		},
+		"#VirtualMedia.EjectMedia": {
+			"target": "/redfish/v1/Managers/bmc/VirtualMedia/ISO0/Actions/VirtualMedia.EjectMedia"
+		}
+	},
     "MediaTypes": [
         "CD",
         "USBStick"
@@ -275,7 +302,7 @@ differences as follows:
 
 | Field Name           | Proxy Mode | Legacy Mode                      | Comment                             |
 | -------------------- | ---------- | -------------------------------- | ----------------------------------- |
-| InsertMedia          | N/A        | action as described by DMTF spec |                                     |
+| InsertMedia          | N/A        | action as described by DMTF spec | Action can return Task object if<br> process is time consumming |
 | Image                | N/A        | image location                   |                                     |
 | ImageName            | N/A        | image name                       |                                     |
 | ConnectedVia         | "Applet"   | as described by DMTF spec        | applies only for connected media    |
@@ -380,20 +407,27 @@ Another interface exposed by each object are stats under
 
 Depends on object path, object will expose different interface for mounting image.
 
+Mounting can be a time consuming task, so event driven mechanis has to be
+introduced. Mount and Unmount calls will trigger asynchronous action and will
+end immediately, giving appropriate signal containing status on task
+completion.
+
 For Proxy its ```xyz.openbmc_project.VirtualMedia.Proxy```, defined as follow:
 
-| Name    | type   | input | return  | description                                       |
-| ------- | ------ | ----- | ------- | ------------------------------------------------- |
-| Mount   | Method | -     | BOOLEAN | Perform a mount to HOST operation on given object |
-| Unmount | Method | -     | BOOLEAN | Perform an unmount from HOST on given object      |
+| Name       | type   | input | return  | description                                       |
+| ---------- | ------ | ----- | ------- | ------------------------------------------------- |
+| Mount      | Method | -     | BOOLEAN | Perform a mount to HOST operation on given object |
+| Unmount    | Method | -     | BOOLEAN | Perform an unmount from HOST on given object      |
+| Completion | Signal | -     | INT32   | Returns 0 for success or errno on failure         |
 
 For Legacy its ```xyz.openbmc_project.VirtualMedia.Legacy```, defined as follow:
 
-| Name    | type   | input  | return  | description                                                                                |
-| ------- | ------ | ------ | ------- | ------------------------------------------------------------------------------------------ |
-| Mount   | Method | STRING | BOOLEAN | Perform a mount to HOST operation on given object, with location given as STRING parameter |
-| Mount   | Method | STRING<br>BOOLEAN<br>VARIANT<UNIX_FD,INT> | BOOLEAN | Perform a mount to HOST operation on given object, with parameters:<br><br>`STRING` : url to image. It should start with either `smb://` or `https://` prefix<br>`BOOLEAN` : RW flag for mounted gadget (should be consistent with remote image capabilities)<br>`VARIANT<UNIX_FD,INT>` : file descriptor of named pipe used for passing null-delimited secret data (username and password). When there is no data to pass `-1` should be passed as `INT`|
-| Unmount | Method | -      | BOOLEAN | Perform an unmount from HOST on given object                                               |
+| Name       | type   | input  | return  | description                                                                                |
+| ---------- | ------ | ------ | ------- | ------------------------------------------------------------------------------------------ |
+| Mount      | Method | STRING | BOOLEAN | Perform a mount to HOST operation on given object, with location given as STRING parameter |
+| Mount      | Method | STRING<br>BOOLEAN<br>VARIANT<UNIX_FD,INT> | BOOLEAN | Perform a mount to HOST operation on given object, with parameters:<br><br>`STRING` : url to image. It should start with either `smb://` or `https://` prefix<br>`BOOLEAN` : RW flag for mounted gadget (should be consistent with remote image capabilities)<br>`VARIANT<UNIX_FD,INT>` : file descriptor of named pipe used for passing null-delimited secret data (username and password). When there is no data to pass `-1` should be passed as `INT` |
+| Unmount    | Method | -      | BOOLEAN | Perform an unmount from HOST on given object                                               |
+| Completion | Signal | -      | INT32   | Returns 0 for success or errno on failure                                                  |
 
 ## Alternatives Considered
 Existing implementation in OpenBMC
