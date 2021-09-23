@@ -95,6 +95,16 @@ Defined:
 - ...
 - presence-ps`<N>`
 
+### Secure Boot
+
+#### bmc-secure-boot
+
+Input pin that indicates that the BMC is configured to boot with security
+protections enforced.
+
+Pulled up by default (secure). Placing the jumper will pull the pin down
+(bypass security).
+
 ### Special
 These are special case and/or grandfathered in pin names.
 
