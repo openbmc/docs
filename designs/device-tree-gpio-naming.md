@@ -95,6 +95,13 @@ Defined:
 - ...
 - presence-ps`<N>`
 
+### Secure Boot
+
+#### bmc-secure-boot
+
+Indicates that the BMC is configured to boot with security protections
+enforced
+
 ### Special
 These are special case and/or grandfathered in pin names.
 
