@@ -108,6 +108,10 @@ protocol stack and the request/response model:
 
 - It should be possible to plug-in OEM PLDM types/functions into the PLDM stack.
 
+- As a PLDM sensor monitoring daemon, the BMC must be able to enumerate and
+  monitor the static or self-described(with PDRs) PLDM sensors in satellite
+  Management Controller, on board device or PCIe add-on card.
+
 ## Proposed Design
 This document covers the architectural, interface, and design details. It
 provides recommendations for implementations, but implementation details are
@@ -188,6 +192,42 @@ in the sense that the same set of commands might have to be run irrespective
 of the device on the other side. There could also be an app that does fan
 control on a remote device, based on sensors from that device and algorithms
 specific to that device.
+
+### Sensor Monitoring
+
+pldmd utilizes the MCTP D-Bus interfaces defined at
+https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/MCTP
+to enumerate all MCTP endpoints in system to build a EID table and then find
+out all PLDM terminus according to EID table. pldmd should register callback
+for PropertiesChanges event on the path (/xyz/openvmc_project/mctp) of MCTP
+D-Bus interfaces to get notified when MCTP topology got changed. pldmd should
+also take the EID table by reading config file inputted by command line
+arguments for the case of MCTP service(e.g. mctp-demux-daemon of libmctp) which
+does not implement MCTP D-Bus interfaces.
+
+To identify the PLDM terminus, pldmd iterates all MCTP endpoint in EID table to
+check if the EID support PLDM command and then pldmd sends GetPLDMType PLDM
+command to check if the EID support PLDM type2 and type4 to ensure the EID is a
+PLDM terminus. pldmd should send SetTID command to found PLDM terminus for
+assigning a unique Terminus ID.
+
+To find out all sensors from PLDM terminus, pldmd should retrieve all the
+Numeric Sensor PDRs by PDR Repository commands for the value of sensorID to make
+a sensor name with TID for D-bus paths in the format "/xyz/openbmc_project/
+sensors/<sensor_type>/<TID_sensorID>" and implement the xyz.openbmc_project.
+Sensor.Value.interfaces defined at
+https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml
+
+After done the discovery PLDM sensors, pldmd should initialize all found sensors
+by necessary commands (e.g. SetNumericSensorEnable, SetSensorThresholds,
+SetSensorHysteresis and InitNumericSensor) and then update the state and reading
+of PLDM sensor to D-bus objects by polling or aync event method depending on the
+capability of PLDM sensors.
+
+Regarding to the static sensor(PLDM terminus without PDRs), The Sensor PDRs needs
+to be encoded by Platform specific PDR JSON file by the platform developer. pldmd
+will generate theses numeric sensor PDRs encoded by JSON files and parse them as
+same as the PDRs fetched by PLDM terminus.
 
 ##### Proposed requester design
 
