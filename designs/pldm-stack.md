@@ -109,6 +109,10 @@ protocol stack and the request/response model:
 
 - It should be possible to plug-in OEM PLDM types/functions into the PLDM stack.
 
+- As a PLDM sensor monitoring daemon, the BMC must be able to enumerate and
+  monitor the static or self-described(with PDRs) PLDM sensors in satellite
+  Management Controller, on board device or PCIe add-on card.
+
 ## Proposed Design
 
 This document covers the architectural, interface, and design details. It
@@ -389,6 +393,157 @@ BMC:
   file. Bmcweb can find these FRU inventory objects based on D-Bus interfaces,
   as it does today.
 
+### MCTP endpoint discovery
+
+`pldmd` (PLDM daemon) utilizes the
+[MCTP D-Bus interfaces](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/MCTP)
+to enumerate all MCTP endpoints in the system. The MCTP D-Bus interface
+implements the `SupportedMessageTypes` to have which Message type supported by
+each endpoint. `pldmd` watches the `InterfacesAdded` D-Bus signal from MCTP
+D-Bus interface to get the new endpoint EIDs. It also matches the
+`InterfaceRemoved` D-Bus signal to find the removed endpoint EIDs from MCTP
+D-Bus interface.
+
+### Terminus management and discovery
+
+`pldmd` will maintain a terminus table to manage the PLDM terminus in system.
+When `pldmd` received the updated EID table from MCTP D-Bus interface, `pldmd`
+should check if the EID support PLDM message type(0x01) and then adds the EID
+which is not in the terminus table yet. When the terminus EID is removed from
+MCTP D-Bus interface, `pldmd` should also clean up the removed endpoint from the
+terminus table.
+
+For each of terminus in the table, `pldmd` will go through the below steps:
+
+- Init terminus
+- Discovery terminus
+- Terminus monitoring and controlling
+
+All of the added D-Bus object paths and D-Bus interfaces, Monitoring/Controlling
+tasks of the terminus will be removed when it is removed from the terminus
+table.
+
+#### Terminus initialization
+
+Each terminus in PLDM interface is identified by terminus ID (TID). This TID is
+an unique number `TID#`. When a new terminus is added to terminus table, `pldmd`
+should send `GetTID` to get the `TID#`. When the received `TID#` is already
+existing in TID pool, `pldmd` will call the `SetTID` command to assign a new TID
+for the terminus.
+
+Beside the `TID#`, terminus can also have `$TerminusName` or `$DeviceName` which
+can be encoded in the Terminus's `Entity Auxiliary Names PDR` (section 28.18 of
+DSP0248 1.2.1) or in the MCTP endpoint configuration file
+[Entity-Manager EID configuration](https://github.com/openbmc/entity-manager/blob/master/configurations/yosemite4_floatingfalls.json#L7).
+
+For terminus which supports the sensors, effecters and state PDRs, the
+Terminus's `Entity Auxiliary Names PDR` is recommended to be included. When the
+`Entity Auxiliary name PDR` is not available, the Entity-Manager EID
+configuration should be added so all sensors don't have the terminus number
+`TID#` in it anyhow.
+
+#### Teminus Discovery
+
+After the TID assignment steps, `pldmd` should go through `Terminus Discovery`
+steps:
+
+- Send `GetPLDMType` and `GetPLDMVersions` commands to the terminus to record
+  the supported PLDM type message/version.
+- If the terminus supports `GetPDR` command type, `pldmd` will send that command
+  to get the terminus PDRs. Based on the retrieved PDRs, `pldmd` will collect:
+  - The association between the entities in the system using
+    `Entity Association PDR` (section 28.17 of DSP0248 1.2.1).
+  - The entity names using `Entity Auxiliary Names PDR` (Section 28.18 of
+    DSP0248 1.2.1).
+  - The sensor/effecter/state info in the entities of terminus
+    sensors/effecter/state PDRs (section 28.4, 28.6, 28.8, 28.11, 28.14, 28.15,
+    28.25, etc. of DSP0248 1.2.1).
+  - The Fru info using FRU PDRs (section 28.22 of DSP0248 1.2.1).
+  - The other info using the others PDRs in section 28.x of DSP0248 1.2.1. The
+    above info can also be configured in the Json configuration files. The
+    `pldmd` daemon will read those files to collect that info at this step. The
+    template of the configuration files can follow the current format of
+    [PDRs configuration files](https://github.com/openbmc/pldm/tree/master/configurations)
+- The `pldmd` then creates the Terminus inventory, sensors, effecters D-Bus
+  object paths.
+- At the final steps of `terminus discovery`, `pldmd` will send
+  `SetEventReceiver` notifies about the readiness of the BMC for the event
+  messages from the terminus.
+
+#### Terminus monitoring and controlling
+
+After finishing the discovery steps, the daemon will start monitoring the
+sensors, response for the events from terminus and handle the terminus control
+action from the user.
+
+### Sensor creating and Monitoring
+
+To find out all sensors from PLDM terminus, `pldmd` should retrieve all the
+Sensor PDRs by PDR Repository commands (`GetPDRRepositoryInfo`, `GetPDR`) for
+the necessary parameters (e.g., `sensorID#`, `$SensorAuxName`, unit, etc.).
+`pldmd` can use libpldm encode/decode APIs
+(`encode_get_pdr_repository_info_req()`,
+`decode_get_pdr_repository_info_resp()`, `encode_get_pdr_req()`,
+`decode_get_pdr_resp()`) to build the commands message and then sends it to PLDM
+terminus.
+
+Regarding to the static device described in section 8.3.1 of DSP0248 1.2.1, the
+device uses PLDM for access only and doesn't support PDRs. The PDRs for the
+device needs to be encoded by Platform specific PDR JSON file by the platform
+developer. `pldmd` will generate these sensor PDRs encoded by JSON files and
+parse them as the same as the PDRs fetched by PLDM terminus.
+
+`pldmd` should expose the found PLDM sensor to D-Bus object path
+`/xyz/openbmc*project/sensors/<sensor_type>/SensorName`. The format of
+`sensorName` can be `$TerminusName_$SensorAuxName` or
+`$TerminusName_SensorID#`.
+`$SensorAuxName` will be included in the `sensorName`
+whenever they exist. For exposing sensor status to D-Bus, `pldmd` should
+implement following D-Bus interfaces to the D-Bus object path of PLDM sensor.
+
+- [xyz.openbmc_project.Sensor.Value](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml),
+  the interface exposes the sensor reading unit, value, Max/Min Value.
+
+- [xyz.openbmc_project.State.Decorator.OperationalStatus](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml),
+  the interface exposes the sensor status which is functional or not.
+
+After doing the discovery of PLDM sensors, `pldmd` should initialize all found
+sensors by necessary commands (e.g., `SetNumericSensorEnable`,
+`SetSensorThresholds`, `SetSensorHysteresis and `InitNumericSensor`) and then
+start to update the sensor status to D-bus objects by polling or async event
+method depending on the capability of PLDM terminus.
+
+`pldmd` should update the value property of `Sensor.Value` D-Bus interface after
+getting the response of `GetSensorReading` command successfully. If `pldmd`
+failed to get the response from PLDM terminus or the completion code returned by
+PLDM terminus is not `PLDM_SUCCESS`, the Functional property of
+`State.Decorator.OperationalStatus` D-Bus interface should be updated to false.
+
+#### Polling v.s. Async method
+
+For each terminus, `pldmd` maintains a list to poll the Terminus' sensors and
+exposes the status to D-Bus. `pldmd` has a polling timer with the configurable
+interval to update the PLDM sensors of the terminus periodically. The PLDM
+sensor in list has a `updateTime` which is initialized to the value of the
+defined `updateInterval` in sensor PDRs. Upon the polling timer timeout, the
+terminus' sensors will be read using `GetSensorReading` command. The read
+condition is the `elapsed time` from the `last read timestamp` to
+`current timestamp` is more than the sensor's `updateTime`. `pldmd` should have
+APIs to be paused and resumed by other task (e.g. pausing sensor polling during
+firmware updating to maximum bandwidth).
+
+To enable async event method for a sensor to update its status to `pldmd`,
+`pldmd` needs to implement the responder of `PlatformEventMessage` command
+described in 13.1 PLDM Event Message of
+[DSP0248 1.2.1](https://www.dmtf.org/sites/default/files/standards/documents/DSP0248_1.2.1.pdf).
+`pldmd` checks the response of `EventMessageSupported` command from PLDM
+terminus to identify if it can generate events. A PLDM sensor can work in event
+aync method if the `updateInterval` of all sensors in the same PLDM terminus are
+longer than final polling time. Before `pldmd` starts to receive async event
+from PLDM terminus, `pldmd` should remove the sensor from poll list and then
+send necessary commands (e.g., `EventMessageBufferSize` and `SetEventReceiver`)
+to PLDM terminus for the initialization.
+
 ## Alternatives Considered
 
 Continue using IPMI, but start making more use of OEM extensions to suit the
@@ -419,3 +574,7 @@ handling. The requester function can be tested by mocking a responder: this
 would test the instance id handling and the send/receive functions.
 
 APIs from the shared libraries can be tested via fuzzing.
+
+The APIs to parse PDRs from PLDM terminus can be tested by a mocking responder.
+A sample JSON file is provided to test the APIs for mocking PDRs for static PLDM
+sensors.
