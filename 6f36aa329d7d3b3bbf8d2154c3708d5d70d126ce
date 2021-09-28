@@ -1001,6 +1001,30 @@
     },
     {
       "key": {
+        "uuid": "1a52733d_4882d892",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2021-09-28T02:30:14Z",
+      "side": 1,
+      "message": "This is a legal/license restriction, not a technical limitation, correct?",
+      "parentUuid": "3a68ed01_8ef5672b",
+      "range": {
+        "startLine": 152,
+        "startChar": 73,
+        "endLine": 153,
+        "endChar": 73
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b6534307_cf452dd4",
         "filename": "designs/redfish-aggregation.md",
         "patchSetId": 1
@@ -1124,6 +1148,24 @@
       "side": 1,
       "message": "I haven\u0027t described how a failover would happen in this doc.",
       "parentUuid": "a02bc35c_44a5b14d",
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59ca64fe_9ff9f545",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2021-09-28T02:30:14Z",
+      "side": 1,
+      "message": "Failover voting can be really non-trivial. There\u0027s lots of historical examples in NetBIOS (Windows Network Neighborhood) when the elected leader node suddenly goes offline and then things mysteriously break.",
+      "parentUuid": "b054fb03_0f88c4ac",
       "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -1341,6 +1383,30 @@
       "side": 1,
       "message": "Okay, DSP0266 says it is required. AuthNone is only in the context of HostInterface. Also see https://redfishforum.com/thread/501/applicability-hostinterface-schema.",
       "parentUuid": "0a9f59b4_abe1a12d",
+      "range": {
+        "startLine": 192,
+        "startChar": 10,
+        "endLine": 194,
+        "endChar": 23
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbe5f98b_eea66419",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2021-09-28T02:30:14Z",
+      "side": 1,
+      "message": "It would be a challenge to pass through the authentication, especially if the satellite BMCs have different authentication needs from one another. We might need to require that all BMCs in an aggregation realm be consistent with respect to authentication.",
+      "parentUuid": "aaeaa3a9_5249655d",
       "range": {
         "startLine": 192,
         "startChar": 10,
@@ -1787,6 +1853,30 @@
       "side": 1,
       "message": "One way this could be done is in a deterministic way. e.g. just prefix with an identifier for the satellite BMC that\u0027s providing the resource",
       "parentUuid": "a7ea7171_5936e658",
+      "range": {
+        "startLine": 267,
+        "startChar": 16,
+        "endLine": 268,
+        "endChar": 37
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19c52e78_48a4c297",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2021-09-28T02:30:14Z",
+      "side": 1,
+      "message": "Other text and examples seem to imply that the URL uniqueness requirement will be handled by having a \"subdirectory\" in the URL for each satellite BMC. This will also provide a way to uniquely name each satellite BMC, and imply that there needs to be a \"name\" field in the aggregator\u0027s configuration section for each satellite BMC.",
+      "parentUuid": "9d518675_47ea1350",
       "range": {
         "startLine": 267,
         "startChar": 16,
@@ -2268,6 +2358,30 @@
       "writtenOn": "2021-07-06T23:46:05Z",
       "side": 1,
       "message": "SSE is currently non-functional on OpenBMC.  If you\u0027re interested, feel free to put patches to fix it.",
+      "range": {
+        "startLine": 417,
+        "startChar": 48,
+        "endLine": 417,
+        "endChar": 64
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b4f928d_97096c07",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2021-09-28T02:30:14Z",
+      "side": 1,
+      "message": "What does SSE mean in this context? I\u0027m assuming not SSE as in MMX/SSE instructions.",
+      "parentUuid": "89146cf3_750e6410",
       "range": {
         "startLine": 417,
         "startChar": 48,
