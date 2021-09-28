@@ -1025,6 +1025,30 @@
     },
     {
       "key": {
+        "uuid": "3707d79c_9827b972",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-28T03:21:27Z",
+      "side": 1,
+      "message": "Sorry for the late response, I didn\u0027t see this.  Yes, my point is that it makes async io (without threads and mutexes) impossible.  We have an HTTP client in bmcweb already using asio that\u0027s used for event service, we should abstract that code to make it a generic client, which it\u0027s pretty close to being already.\n\nThe legal restriction is because DMTF uses an odd license (BSD-3 clause with patent addition) that doesn\u0027t necessarily agree with most orgs automatically.  I don\u0027t fully understand the linking rules around BSD + apache 2, although these could likely be solved.",
+      "parentUuid": "1a52733d_4882d892",
+      "range": {
+        "startLine": 152,
+        "startChar": 73,
+        "endLine": 153,
+        "endChar": 73
+      },
+      "revId": "6f36aa329d7d3b3bbf8d2154c3708d5d70d126ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b6534307_cf452dd4",
         "filename": "designs/redfish-aggregation.md",
         "patchSetId": 1
