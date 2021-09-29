@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9173f511_d21d20b8",
+        "filename": "designs/preservation-whitelist-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-29T20:38:19Z",
+      "side": 1,
+      "message": "Can you add your requirements to refine the \"all or nothing\" capability we have on ubi and eMMC with their init scripts?  It sounds like you want a targeted subsystem reset.  \n\nDo you anticipate a list of subsystems that should be reset?",
+      "revId": "371128b9ac41275749224dc5f6b19879fb73e876",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ac24885_55916640",
+        "filename": "designs/preservation-whitelist-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-29T20:38:19Z",
+      "side": 1,
+      "message": "saving in the file is mechanism and sould be in proposed design not requirements.\n\nthe grouping concept here is ok",
+      "revId": "371128b9ac41275749224dc5f6b19879fb73e876",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c15e15e3_6ab0e27d",
+        "filename": "designs/preservation-whitelist-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-29T20:38:19Z",
+      "side": 1,
+      "message": "I am assuming that the exact values in this interface are yet to be defined.",
+      "revId": "371128b9ac41275749224dc5f6b19879fb73e876",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2b1227f_eef9038c",
+        "filename": "designs/preservation-whitelist-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-29T20:38:19Z",
+      "side": 1,
+      "message": "keeping the list of groups in var/lib I agree with.\n\nI\u0027m not sure about files with the paths being in /var (in rwfs), as I am concerned that it might be difficult to add additional paths in one of the groups.\n\nA counter proposal, based on something I\u0027ve had in mind for ages but never implemented, is to have the groups as seperate files in a directory.   The update script couuld be modified to process all lines from all files in this directory, or all files with a given suffix, or just process the combined list, and have the init script combine all files when starting but keep the component files for this new daemon to customize the reset.  (If we use a required suffix then files could be removed from the list by renaming the file and restored by renaming it back).  (If we choose to have the lines consolidated, we could have the default script cat all components).\n\nUsing files each with a group of names would allow the files required to be moved to individual packages over time.",
+      "revId": "371128b9ac41275749224dc5f6b19879fb73e876",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5de4ec8b_00f8d956",
+        "filename": "designs/preservation-whitelist-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-29T20:38:19Z",
+      "side": 1,
+      "message": "I\u0027d like to avoid having to configure a dependent package to the files, hence my refinements above..\n\nEither maintain the lists in the init package or allow individual subsystem packages to add their list.  (Disadvantage of the later is careful review clean paths with approprate directory or file checking).   \n\nWe may use the opertunity to move the init packages to phosphor-misc and build under meson.",
+      "revId": "371128b9ac41275749224dc5f6b19879fb73e876",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0854f4dd_d04e3ea9",
+        "filename": "designs/preservation-whitelist-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-29T20:38:19Z",
+      "side": 1,
+      "message": "Also what if an admin wants to clear one subsystem but then restore normal preservation lists.",
+      "revId": "371128b9ac41275749224dc5f6b19879fb73e876",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e473205_6412d42d",
+        "filename": "designs/preservation-whitelist-config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-29T20:38:19Z",
+      "side": 1,
+      "message": "If this is only a D-Bus interface where do you anticipate it being activated in production?",
+      "revId": "371128b9ac41275749224dc5f6b19879fb73e876",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
