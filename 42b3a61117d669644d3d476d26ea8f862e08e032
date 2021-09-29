@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bbabd267_6b9a75d0",
+        "filename": "designs/bmc-service-failure-debug-and-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-09-29T18:08:28Z",
+      "side": 1,
+      "message": "ok. I\u0027m going to keep this review focused on the changes I need for BMC Quiesce.",
+      "parentUuid": "e53d2260_2c1d72d6",
+      "revId": "42b3a61117d669644d3d476d26ea8f862e08e032",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9777c42c_6e24770f",
         "filename": "designs/bmc-service-failure-debug-and-recovery.md",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2021-09-26T02:56:57Z",
       "side": 1,
       "message": "This proposed design and the requirements reads as each service vs on the system presumably by a failure collection/notification service.",
+      "revId": "42b3a61117d669644d3d476d26ea8f862e08e032",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f200f76e_01b38e59",
+        "filename": "designs/bmc-service-failure-debug-and-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-09-29T18:08:28Z",
+      "side": 1,
+      "message": "Hmm, can you provide some more detail here Milton? Each service will need to have this \"OnFailure\" added to it to call this new target. There will be a default service in that target to log an error by system owners have the option to install whatever other services they would like into that target to handle these failures.",
+      "parentUuid": "9777c42c_6e24770f",
       "revId": "42b3a61117d669644d3d476d26ea8f862e08e032",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
