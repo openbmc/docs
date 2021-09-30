@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db7f89e1_ede591d9",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T10:24:18Z",
+      "side": 1,
+      "message": "It would be beneficial to also mention version numbers of the spec, since you\u0027re quoting specific section numbers below.",
+      "range": {
+        "startLine": 17,
+        "startChar": 24,
+        "endLine": 17,
+        "endChar": 52
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a598ef94_2067327c",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T10:24:18Z",
+      "side": 1,
+      "message": "Didn\u0027t follow this. Could you please elaborate?",
+      "range": {
+        "startLine": 24,
+        "startChar": 22,
+        "endLine": 24,
+        "endChar": 32
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48eee6c9_0d3e465a",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T10:24:18Z",
+      "side": 1,
+      "message": "Why?\n\nOn the other hand, I see issues with splitting this up into multiple part-PLDM services that also have to co-exist with pldmd. There are dependencies (via PDRs) between the FRU and M\u0026C spec.\n\nThe existing pldmd is not designed to just be a responder. Requester patchsets are being worked on by Tom Joseph. I think you should work with him to support Type 2 requester. Tom has patches up for Type 5 requester.",
+      "range": {
+        "startLine": 35,
+        "startChar": 61,
+        "endLine": 36,
+        "endChar": 34
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4575040_dace60c2",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T10:24:18Z",
+      "side": 1,
+      "message": "This is being implemented in pldmd already. Requester support is being added for Type 5, which also relies on Type 0 discovery. Some patches are on Gerrit already.",
+      "range": {
+        "startLine": 46,
+        "startChar": 41,
+        "endLine": 46,
+        "endChar": 61
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b019ecbf_d6207b83",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T10:24:18Z",
+      "side": 1,
+      "message": "Reference which properties? Can you elaborate please?",
+      "range": {
+        "startLine": 47,
+        "startChar": 28,
+        "endLine": 48,
+        "endChar": 9
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2490ca19_2f1c40f0",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T10:24:18Z",
+      "side": 1,
+      "message": "This has already caused confusion in the past. Fru-device should have been in a separate repo. In any case, I don\u0027t see an explanation of why PLDM should be under entity-manager.",
+      "range": {
+        "startLine": 49,
+        "startChar": 39,
+        "endLine": 49,
+        "endChar": 78
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f731c42f_3b3f02c7",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T10:24:18Z",
+      "side": 1,
+      "message": "Why can\u0027t this be done in pldmd?",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 49
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45dcc1a4_2af8440d",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T10:24:18Z",
+      "side": 1,
+      "message": "I didn\u0027t follow this at all. Sensor.Value is an interface that can be implemented by any service, not just a service sitting under dbus-sensors repo. This is not a drawback.",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 103,
+        "endChar": 52
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70607d18_b8ebbe85",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-09-30T10:24:18Z",
+      "side": 1,
+      "message": "This is specifically for the case where there are no PDRs, right? With PDRs, all the metadata about sensors is in the PDR. For the non-PDR case, pldmd can still consume config files from EM, if need be.",
+      "range": {
+        "startLine": 104,
+        "startChar": 64,
+        "endLine": 105,
+        "endChar": 37
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
