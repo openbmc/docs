@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ad512135_3d10a706",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-01T08:12:08Z",
+      "side": 1,
+      "message": "\"indirectly\" means that BMC needs to access the sensor through PLDM\nIndirectly:\nBMC \u003c-PLDM/MCTP over I2C-\u003e  Satellite Manager Controller \u003c- I2C -\u003e Temp sensor\n\nDirectly:\nBMC \u003c- I2C -\u003e Temp Sensor",
+      "parentUuid": "a598ef94_2067327c",
+      "range": {
+        "startLine": 24,
+        "startChar": 22,
+        "endLine": 24,
+        "endChar": 32
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48eee6c9_0d3e465a",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2021-09-30T10:24:18Z",
       "side": 1,
       "message": "Why?\n\nOn the other hand, I see issues with splitting this up into multiple part-PLDM services that also have to co-exist with pldmd. There are dependencies (via PDRs) between the FRU and M\u0026C spec.\n\nThe existing pldmd is not designed to just be a responder. Requester patchsets are being worked on by Tom Joseph. I think you should work with him to support Type 2 requester. Tom has patches up for Type 5 requester.",
+      "range": {
+        "startLine": 35,
+        "startChar": 61,
+        "endLine": 36,
+        "endChar": 34
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8ab8c90_e7852f90",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-01T08:12:08Z",
+      "side": 1,
+      "message": "Yes, the mapping of \"FRU record set identifier\" and associated entity is described by PDR.\nThe service in charge of collect FRU data from PLDM device needs to send not only Type4(FRU data) but also Type2(M\u0026C) to get FRU record set PDR first.",
+      "parentUuid": "48eee6c9_0d3e465a",
       "range": {
         "startLine": 35,
         "startChar": 61,
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "9d72556e_59d69c4f",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-01T08:12:08Z",
+      "side": 1,
+      "message": "The properties are FRU info of PLDM device.\ne.g.\n#busctl instrospect xyz.openbmc_project.PldmDevice /xyz/openbmc_project/PldmDevice/SatMC_0\nxyz.openbmc_project.PldmDevice      interface -         -            -\n.EID                                property  y         18           emits-change\n.NAME                               property  s         \"SatMC\"      emits-change\n.PART_NUMBER                        property  s         \"123456\"     emits-change\n.SERIAL_NUMBER                      property  s         \"SN12345\"    emits-change\n\nSo entity-manager\u0027s config file can use probe() function to match entity and expose inventory data and sensor to D-Bus Objects\n#cat /usr/share/entity-manager/configuration/SatMC.json\n\"Name\": \"$NAME$EID\",\n\"Type\": \"Board\",\n\"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n        \"ProductName\":  \"$NAME\",\n        \"PartNumber\":   \"$PART_NUMBER\",\n        \"SerialNumber\": \"$SERIAL_NUMBER\"\n    }\n\n#busctl tree xyz.opebmc_project.EntityManager\n└─/xyz\n  └─/xyz/openbmc_project\n    ├─/xyz/openbmc_project/EntityManager\n    └─/xyz/openbmc_project/inventory\n      └─/xyz/openbmc_project/inventory/system\n        └─/xyz/openbmc_project/inventory/system/board\n          └─/xyz/openbmc_project/inventory/system/board/SatMC18\n            └─/xyz/openbmc_project/inventory/system/board/SatMC18/Core_Temp",
+      "parentUuid": "b019ecbf_d6207b83",
+      "range": {
+        "startLine": 47,
+        "startChar": 28,
+        "endLine": 48,
+        "endChar": 9
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2490ca19_2f1c40f0",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 2
@@ -128,6 +200,30 @@
       "writtenOn": "2021-09-30T10:24:18Z",
       "side": 1,
       "message": "This has already caused confusion in the past. Fru-device should have been in a separate repo. In any case, I don\u0027t see an explanation of why PLDM should be under entity-manager.",
+      "range": {
+        "startLine": 49,
+        "startChar": 39,
+        "endLine": 49,
+        "endChar": 78
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5232b931_17f4c308",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-01T08:12:08Z",
+      "side": 1,
+      "message": "Got it and it is no problem to make the pldm-device service in pldm repo if final design is adding an individual service instead one pldmd.",
+      "parentUuid": "2490ca19_2f1c40f0",
       "range": {
         "startLine": 49,
         "startChar": 39,
@@ -163,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "0c58224d_6053906a",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-01T08:12:08Z",
+      "side": 1,
+      "message": "The idea is want to take the advantage of entity-manager to probe config files for entity at runtime.\n1.pldm-device registers the new found entities to dbus.\n2.entity-manager probes entities with corresponding json file to register sensor config interface to dbus.\n3.pldm-sensor instantiates sensor based on the sensor config interface on dbus.",
+      "parentUuid": "f731c42f_3b3f02c7",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 49
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "45dcc1a4_2af8440d",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 2
@@ -186,6 +306,30 @@
     },
     {
       "key": {
+        "uuid": "d95cb642_08d25cf0",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-01T08:12:08Z",
+      "side": 1,
+      "message": "Yes, agree with you. The function of pldm-sensor can be implemented by any service even pldmd.\n\nThe reason to make pldm-sensor in dbus-sensors repo is that I can use the APIs of src/utils.cpp in dbus-sensors repo. This class provides a lot of handy APIs for registering sensor interface to dbus.",
+      "parentUuid": "45dcc1a4_2af8440d",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 103,
+        "endChar": 52
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "70607d18_b8ebbe85",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 2
@@ -197,6 +341,30 @@
       "writtenOn": "2021-09-30T10:24:18Z",
       "side": 1,
       "message": "This is specifically for the case where there are no PDRs, right? With PDRs, all the metadata about sensors is in the PDR. For the non-PDR case, pldmd can still consume config files from EM, if need be.",
+      "range": {
+        "startLine": 104,
+        "startChar": 64,
+        "endLine": 105,
+        "endChar": 37
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3eb228ce_f304f2ca",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-01T08:12:08Z",
+      "side": 1,
+      "message": "Yes, the is for the case of \"PLDM for access only\".\n\nI think it would be good to implement the pldm-device or pldm-sensor service in pldmd because it is easy to use well implemented PLDM requester infrastructure in requester/* instead of libpldm API to have features like instancId request/free, retry and timeout.",
+      "parentUuid": "70607d18_b8ebbe85",
       "range": {
         "startLine": 104,
         "startChar": 64,
