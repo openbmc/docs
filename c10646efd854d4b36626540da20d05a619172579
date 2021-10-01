@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "065ca93e_3923f424",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-01T20:27:43Z",
+      "side": 1,
+      "message": "For the sake of this design doc, can we scope it on eMMC (ie the common bmc use case), with the understanding that we\u0027ll:\nA. Do our best to consider other use cases and not intentionally namespace our methods into a corner where they\u0027re not extendable later.\nB. Wait for other use cases to pop up that might want this, and discuss more then?",
+      "parentUuid": "624433e2_9a2025fd",
+      "range": {
+        "startLine": 16,
+        "startChar": 48,
+        "endLine": 16,
+        "endChar": 77
+      },
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a03c36b_1569a1d8",
         "filename": "designs/estoraged.md",
         "patchSetId": 1
@@ -810,6 +834,24 @@
       "side": 1,
       "message": "The python and js can be removed with polkit, but the libglib, libgio, alone put us 2.6MiB, and they would be very difficult to remove. \n\nI don\u0027t know what effort it would take to remove libnss3, pk11ectest, rsaperf, libsqlite3, and maintain. We can look into this more, but it will be over 2.6MiB regardless. \n\nIt is very possible we have different drive sizes, and different pain tolerances for image size.",
       "parentUuid": "00145e3a_deecabce",
+      "revId": "c10646efd854d4b36626540da20d05a619172579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9690cff_f84f7f4d",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-01T20:27:43Z",
+      "side": 1,
+      "message": "Obviously using an existing solution is preferable, but considering we don\u0027t know how to compile udisk2 to a reasonable enough size to fit on the BMC, it seems like we need to discount that option for the time being until there\u0027s a way to do this.",
+      "parentUuid": "5b24b149_c033c025",
       "revId": "c10646efd854d4b36626540da20d05a619172579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
