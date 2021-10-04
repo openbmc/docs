@@ -158,6 +158,7 @@ collects the dumps from BMC.
               }
             ends up in AdditionaData like:
               ["KEY1=value1", "KEY2=value2"]        
+        - GeneratorId: Id of the user who initiated the dump. Optional parameter.
 
     - **Notify**: Notify the dump manager that a new dump is created.
         - ID: ID of the dump, if not 0 this will be the external id of the dump
