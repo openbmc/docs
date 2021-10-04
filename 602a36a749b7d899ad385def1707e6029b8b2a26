@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "420b9aed_07ea059f",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-10-04T07:47:13Z",
+      "side": 1,
+      "message": "Reading sensors over PLDM is also a direct way (from PMCI perspective) :)",
+      "parentUuid": "ad512135_3d10a706",
+      "range": {
+        "startLine": 24,
+        "startChar": 22,
+        "endLine": 24,
+        "endChar": 32
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48eee6c9_0d3e465a",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 2
@@ -112,6 +136,29 @@
         "startChar": 61,
         "endLine": 36,
         "endChar": 34
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3a55e29_3e1d5c71",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-10-04T07:47:13Z",
+      "side": 1,
+      "message": "Do you mean PLDM sends GetRoutingTable entries to MCTP service? Can you elaborate please?",
+      "range": {
+        "startLine": 42,
+        "startChar": 49,
+        "endLine": 44,
+        "endChar": 13
       },
       "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -177,6 +224,30 @@
       "side": 1,
       "message": "The properties are FRU info of PLDM device.\ne.g.\n#busctl instrospect xyz.openbmc_project.PldmDevice /xyz/openbmc_project/PldmDevice/SatMC_0\nxyz.openbmc_project.PldmDevice      interface -         -            -\n.EID                                property  y         18           emits-change\n.NAME                               property  s         \"SatMC\"      emits-change\n.PART_NUMBER                        property  s         \"123456\"     emits-change\n.SERIAL_NUMBER                      property  s         \"SN12345\"    emits-change\n\nSo entity-manager\u0027s config file can use probe() function to match entity and expose inventory data and sensor to D-Bus Objects\n#cat /usr/share/entity-manager/configuration/SatMC.json\n\"Name\": \"$NAME$EID\",\n\"Type\": \"Board\",\n\"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n        \"ProductName\":  \"$NAME\",\n        \"PartNumber\":   \"$PART_NUMBER\",\n        \"SerialNumber\": \"$SERIAL_NUMBER\"\n    }\n\n#busctl tree xyz.opebmc_project.EntityManager\n└─/xyz\n  └─/xyz/openbmc_project\n    ├─/xyz/openbmc_project/EntityManager\n    └─/xyz/openbmc_project/inventory\n      └─/xyz/openbmc_project/inventory/system\n        └─/xyz/openbmc_project/inventory/system/board\n          └─/xyz/openbmc_project/inventory/system/board/SatMC18\n            └─/xyz/openbmc_project/inventory/system/board/SatMC18/Core_Temp",
       "parentUuid": "b019ecbf_d6207b83",
+      "range": {
+        "startLine": 47,
+        "startChar": 28,
+        "endLine": 48,
+        "endChar": 9
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2f0e969_24287d97",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-10-04T07:47:13Z",
+      "side": 1,
+      "message": "There is already PLDM FRU interface defined here:\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Source/PLDM/FRU.interface.yaml\n\nIt would be better to re-use the same interface instead of inventing a new one.",
+      "parentUuid": "9d72556e_59d69c4f",
       "range": {
         "startLine": 47,
         "startChar": 28,
@@ -365,6 +436,30 @@
       "side": 1,
       "message": "Yes, the is for the case of \"PLDM for access only\".\n\nI think it would be good to implement the pldm-device or pldm-sensor service in pldmd because it is easy to use well implemented PLDM requester infrastructure in requester/* instead of libpldm API to have features like instancId request/free, retry and timeout.",
       "parentUuid": "70607d18_b8ebbe85",
+      "range": {
+        "startLine": 104,
+        "startChar": 64,
+        "endLine": 105,
+        "endChar": 37
+      },
+      "revId": "602a36a749b7d899ad385def1707e6029b8b2a26",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f7d3392_15a9ec0f",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-10-04T07:47:13Z",
+      "side": 1,
+      "message": "Ack, I feel implementing these in pldmd seems more elegant. Also, this will give a chance to exchange contextual information between the PLDM modules (for example - stopping pldm sensor monitoring of a device when we start pldm firmware update of the device)",
+      "parentUuid": "3eb228ce_f304f2ca",
       "range": {
         "startLine": 104,
         "startChar": 64,
