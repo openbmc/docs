@@ -135,6 +135,7 @@ collects the dumps from BMC.
   the BMC but offloaded through BMC.
 - The InitiateOffload function will be implemented to download the dump.
 - Status of the dump, whether offloaded or not, will be added to the dump entry.
+- A new interface that mentions the session id that has initiated the dump.
 
 ### Dump manager interfaces.
 - Dump Manager DBus object provides interfaces for creating and managing dump
@@ -152,6 +153,10 @@ collects the dumps from BMC.
  ### Dump entry interfaces
     -  **InitiateOffload**: Initiate the offload of the dump.
         - OffloadUri: The URI where the dump should be offloaded.
+    -  **InitiatedBy**: The interface that has a property to hold the session id
+       that has initiated the dump collection.
+        - sessionId: The session id of the connected client. This presence of this
+          property tells the user that the dump is user-initiated.
 
 #### The properties common to all dumps
 There will be a base dump entry with properties common to all types of dumps
