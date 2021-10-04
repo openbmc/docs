@@ -135,6 +135,8 @@ collects the dumps from BMC.
   the BMC but offloaded through BMC.
 - The InitiateOffload function will be implemented to download the dump.
 - Status of the dump, whether offloaded or not, will be added to the dump entry.
+- Added InitiatedBy property to dump entries. It stores the id of the external
+  user who initiated the dump.
 
 ### Dump manager interfaces.
 - Dump Manager DBus object provides interfaces for creating and managing dump
@@ -162,6 +164,8 @@ There will be a base dump entry with properties common to all types of dumps
 - OffloadURI: The URI for offloading the dump, set while initiating the offload.
 Specific types need to inherit from this common dump entry class
 and add specific properties.
+- InitiatedBy: Id of the external user who initiated the dump. This will
+default to null. This is intended to be populated for user initiated dumps.
 
 #### Additional propertries based on dump types
 
