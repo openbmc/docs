@@ -214,6 +214,30 @@
       "revId": "de3f393df72c59d53ea701b687b257e7b3e485b5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d1d4611_1c1ececc",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-10-05T16:35:36Z",
+      "side": 1,
+      "message": "I\u0027m thinking the password provided by the caller will be the LUKS password (as you suggested). And eStoraged will take that and do a 1-way hash to generate the device password.\n\nYes, the lock/unlock methods will still require a password from the caller. Even when locking the eMMC device using CMD42, you still need to provide the device password, so we would need the LUKS password from the caller in order to generate the device password again. And likewise, I\u0027m expecting that the same LUKS password would also be required for the erase method.\n\nYes, systemd-cryptsetup typically uses a key file, but eStoraged won\u0027t use systemd-cryptsetup.\n\nLet me know if something is unclear.",
+      "parentUuid": "eeadc911_4a802dee",
+      "range": {
+        "startLine": 107,
+        "startChar": 42,
+        "endLine": 107,
+        "endChar": 73
+      },
+      "revId": "de3f393df72c59d53ea701b687b257e7b3e485b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
