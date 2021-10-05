@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8ec85031_73f52537",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-05T06:20:11Z",
+      "side": 1,
+      "message": "Please use generic terms which can suit any kind of external interface. These are redfish terms",
+      "range": {
+        "startLine": 10,
+        "startChar": 36,
+        "endLine": 12,
+        "endChar": 17
+      },
+      "revId": "784dab4a8a0bc30840f466439223aabf51db70e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13d9b0b5_e807462f",
         "filename": "designs/dump-manager.md",
         "patchSetId": 2
@@ -30,6 +53,47 @@
       "writtenOn": "2021-10-04T22:16:07Z",
       "side": 1,
       "message": "\"InitiateOffload\" is a method in Dump.Entry.  What you seem to have proposed is a new Interface in the com.ibm namespace.  Why?  If this is a com.ibm, why are we documenting it here and without a clear indication that this is an IBM-only interface.",
+      "revId": "784dab4a8a0bc30840f466439223aabf51db70e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec483106_8b50608f",
+        "filename": "designs/dump-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-05T06:20:11Z",
+      "side": 1,
+      "message": "This is getting discussed at the redfish forum as well : please see https://redfishforum.com/thread/547/usage-originofcondition-parameter-logentry-schema. Seems like DMTF is interested in this property. So this need not be an ibm-only property. And can be moved to the xyz.. space\n@Patrick - please share your views on this",
+      "parentUuid": "a10b4516_f45b4e9e",
+      "revId": "784dab4a8a0bc30840f466439223aabf51db70e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97334fca_d9106659",
+        "filename": "designs/dump-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-05T06:20:11Z",
+      "side": 1,
+      "message": "This needs to be moved down as a property of dump entry. This need not be an interface. The intent of this property is to give a reference to the ID of the user who has initiated this dump. Basically for a user-triggered dump scenarios.",
+      "range": {
+        "startLine": 157,
+        "startChar": 2,
+        "endLine": 157,
+        "endChar": 24
+      },
       "revId": "784dab4a8a0bc30840f466439223aabf51db70e3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -70,6 +134,30 @@
       "writtenOn": "2021-10-04T22:16:07Z",
       "side": 1,
       "message": "I have no idea what a \"session id\" is or what a \"connected client\" means in the context of dump initiation.  Can you add appropriate references?",
+      "range": {
+        "startLine": 159,
+        "startChar": 25,
+        "endLine": 159,
+        "endChar": 59
+      },
+      "revId": "784dab4a8a0bc30840f466439223aabf51db70e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12115511_ee6909a1",
+        "filename": "designs/dump-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-05T06:20:11Z",
+      "side": 1,
+      "message": "Agree. You can remove the terms session id etc. They are redfish specific terms and backend need not refer to a specific external interface",
+      "parentUuid": "6a548896_26793882",
       "range": {
         "startLine": 159,
         "startChar": 25,
