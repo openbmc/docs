@@ -22,6 +22,30 @@
       "revId": "59d4debaaf6eab4fcbf39b30bca398997f074406",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a78ce35c_11734637",
+        "filename": "designs/dump-manager.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-08T10:49:42Z",
+      "side": 1,
+      "message": "When there are multiple clients managing the BMC, any client can initiate the dump. But for some clients (like IBM management console) it is required to check who initiated the dump before offloading them to their filesystem. The logic to restrict the dump offload/delete does not reside on the BMC. Its up-to the client to implement any such logics. BMC will just provide the data, that who initiated this dump.\n\nThis property on the dump entry will tag the client\u0027s session id in case of a redfish client. \n\nThere is a discussion at DMTF to add this property to the redfish end-point on LogEntry schema. This can be also used for audit purposes. Please see https://redfishforum.com/thread/547/usage-originofcondition-parameter-logentry-schema",
+      "parentUuid": "36a0ab34_461bb4df",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 30
+      },
+      "revId": "59d4debaaf6eab4fcbf39b30bca398997f074406",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
