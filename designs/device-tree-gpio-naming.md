@@ -115,6 +115,19 @@ protections enforced.
 Pulled up by default (secure). Placing the jumper will pull the pin down
 (bypass security).
 
+### Host Ready
+Below are input GPIO names specific to Host ready. The name of Host ready GPIO
+depends on the index of Host and the active state is high or low.
+
+Pattern:
+- `host*-ready`: Host ready, active high
+- `host*-ready-n`: Host ready, active low
+
+Defined:
+- host0-ready
+- host1-ready-n
+- ...
+
 ### Special
 These are special case and/or grandfathered in pin names.
 
