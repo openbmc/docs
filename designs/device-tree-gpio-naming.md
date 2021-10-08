@@ -52,6 +52,19 @@ Pattern: `*-button`
 
 #### power-button
 
+### Host Ready
+Below are input GPIO names specific to Host ready. The name of Host ready GPIO
+depends on the index of Host and the active state is high or low.
+
+Pattern:
+- `host*-ready`: Host ready, active high
+- `host*-ready-n`: Host ready, active low
+
+Defined:
+- host0-ready
+- host1-ready-n
+- ...
+
 ### LEDs
 Pattern: `led-*`
 
