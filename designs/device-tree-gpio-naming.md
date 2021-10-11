@@ -115,6 +115,19 @@ protections enforced.
 Pulled up by default (secure). Placing the jumper will pull the pin down
 (bypass security).
 
+### Host Status
+Below are input GPIO names specific to Host status. The name of Host status GPIO
+depends on the index of Host and the active state is high or low.
+
+Pattern:
+- `host*-status`: Host status, active high
+- `host*-status-l`: Host status, active low
+
+Defined:
+- host0-status
+- host1-status-l
+- ...
+
 ### Special
 These are special case and/or grandfathered in pin names.
 
