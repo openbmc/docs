@@ -105,6 +105,30 @@
     },
     {
       "key": {
+        "uuid": "738b7c9a_f9c5db60",
+        "filename": "designs/Design-DiscreteSensorFramework.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001160
+      },
+      "writtenOn": "2021-10-11T13:58:00Z",
+      "side": 1,
+      "message": "Yes, discrete sensor is mentioned in IPMI spec. [Section 42 - Sensor and Event Code Tables]. The current implementation of d-bus sensors supports only threshold based sensors. This proposed design gives a framework to handle discrete sensors. Each discrete sensor is \nconfigured in json similar to that of threshold based sensors. It will have an inventory object in entity manager. In d-bus sensors, different services will be created based on different sensor types of discrete sensors. A sensor object is created for a particular sensor based on its type in the discrete sensor service. These objects can be used by Redfish for further \nprocessing.",
+      "parentUuid": "b69eb533_b7c62087",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 19
+      },
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "06c2b60b_13e3d68b",
         "filename": "designs/Design-DiscreteSensorFramework.md",
         "patchSetId": 1
@@ -125,6 +149,30 @@
       "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bd4b3ae_2cd5f7f0",
+        "filename": "designs/Design-DiscreteSensorFramework.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001160
+      },
+      "writtenOn": "2021-10-11T13:58:00Z",
+      "side": 1,
+      "message": "The sensor d-bus objects which are exposed can be used in the hardware layer for accessing/updating sensor info.",
+      "parentUuid": "06c2b60b_13e3d68b",
+      "range": {
+        "startLine": 16,
+        "startChar": 58,
+        "endLine": 17,
+        "endChar": 20
+      },
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -151,6 +199,30 @@
     },
     {
       "key": {
+        "uuid": "2c189b45_10fa641f",
+        "filename": "designs/Design-DiscreteSensorFramework.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001160
+      },
+      "writtenOn": "2021-10-11T13:58:00Z",
+      "side": 1,
+      "message": "When an event occurs due to any change with the sensor readings/state, it should be captured and logged, so monitoring is required. This is done with the objects properties and d-bus interfaces",
+      "parentUuid": "98eec801_1b429949",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 18,
+        "endChar": 29
+      },
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34d61465_5752c31e",
         "filename": "designs/Design-DiscreteSensorFramework.md",
         "patchSetId": 1
@@ -174,6 +246,30 @@
     },
     {
       "key": {
+        "uuid": "7f4da428_9ea49444",
+        "filename": "designs/Design-DiscreteSensorFramework.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001160
+      },
+      "writtenOn": "2021-10-11T13:58:00Z",
+      "side": 1,
+      "message": "Create a log when an event occurs based on IPMI spec. [Section 32 - SEL Record formats]",
+      "parentUuid": "34d61465_5752c31e",
+      "range": {
+        "startLine": 19,
+        "startChar": 3,
+        "endLine": 19,
+        "endChar": 39
+      },
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d9efa51f_1eaca474",
         "filename": "designs/Design-DiscreteSensorFramework.md",
         "patchSetId": 1
@@ -194,6 +290,30 @@
       "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30498d07_94749ddd",
+        "filename": "designs/Design-DiscreteSensorFramework.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1001160
+      },
+      "writtenOn": "2021-10-11T13:58:00Z",
+      "side": 1,
+      "message": "The framework can be modified by creating services in d-bus sensors based on different hardware interfacing layers, but, by creating services based on sensor type, we remain in sync with the existing threshold based sensors implementation.",
+      "parentUuid": "d9efa51f_1eaca474",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 35
+      },
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
