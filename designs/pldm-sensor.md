@@ -9,107 +9,110 @@ Other contributors:
 Created: September 23, 2021
 
 ## Problem Description
-In OpenBMC, no sensor daemon in _dbus-sensors_ package is available to
-map PLDM sensors to D-Bus Objects yet. And no daemon is available to handle
-discovering PLDM devices and enumerating PLDM sensors yet.
+In OpenBMC currently, there is no service is available to manage PLDM devices
+that has static or self-described sensors.
 
 ## Background and References
-The DMTF specifications DSP0236, DSP0240 and DSP0248 describe how BMC to 
-discovery MCTP in the platform(DSP0236 section 8.14), how BMC to identify 
-whether MCTP device support PLDM(DSP0240 section 7) and how BMC to access 
-the sensor in discovered device(DSP0248 section 8.3).
+The DMTF specifications DSP0236 v1.3.1, DSP0240 v1.1.0 and DSP0248 v1.2.1
+describe how to discovery MCTP endpoint(DSP0236 section 8.14), how to identify
+the PLDM terminus(DSP0240 section 7) from endpoints and how to access the 
+sensors in PLDM terminus(DSP0248 section 8.3).
+
+In OpenBMC, the sensors managed by PLDM terminus usually are accessed through
+MCTP over I2C or PCIe VDM. This document does not covered the design of MCTP
+and they are supported by related MCTP service or driver, for example,
+mctp-demux or MCTP in-kernel driver.
 
 ## Requirements
-In OpenBMC, the sensors could be monitored by PLDM device and accessed by
-BMC through PLDM/MCTP indirectly. The command message is forwarded to PLDM 
-device by mctp-demux or MCTP in-kernel driver.
-
-The PLDM sensor could be in satellite Management or PCIe device controller 
-and the device might or might not have PDRs to describe the sensors. OpenBMC
-needs a mechanism to discover PLDM device in the platform, enumerate sensors
-in PLDM device, get the sensor reading and map the sensor status to D-Bus
-objects.
-
-The mechanism is expected to be flexibility and reusability. It can work on
-different platform design so the tasks of discovery, identification, 
-initialization and monitoring are preferred to be handled in different 
-services instead of signal service.
+The PLDM sensors could be static or self-described(with PDRs) and they could 
+be in satellite Management Controller, on board device or PCIe add-on card.
+OpenBMC needs a mechanism to discover PLDM terminus in the platform, sensors
+in PLDM terminus and then monitor the status of discovered sensors.
 
 ## Proposed Design
 
-### Discovery
-
-Discovering MCTP devices relies on MCTP service. The routing table of MCTP 
-devices in platform can be retrieved by sending GetRoutingTableEntries to the
+Discovering MCTP endpoints relies on MCTP service. The MCTP endpoint routing 
+table could be retrieved by sending GetRoutingTableEntries command to the 
 MCTP service.
 
-A new service pldm-device is proposed to identify PLDM device and map its 
-properties to D-Bus objects for other service (e.g. entity-manager) to 
-reference. The pldm-device service is planed to be part of entity-manager git
-repo because its feature is similar to fru-device service in the same git repo.
-pldm-device gets the EID list from MCTP service first for sending 
-GetMessageTypeSupport to each EID in list. pldm-device checks each EID if it
-supports PLDM message and then sends GetPLDMType command to the EID to ensure
-it supports PLDM type 2 and 4. For the EID passed the tests above, pldm-device 
-should try to fetch its FRU data by PLDM type 4 commands and then expose these 
-properties to D-Bus objects. The properties of D-Bus object usually includes 
-EID#, Part#, Serial#, etc.
+In OpenBMC pldm repository, the pldmd service has implemented some PLDM type
+message responder and a requester helper class to register call back handle to
+process response from PLDM terminus so the proposal is based on pldmd service 
+infrastructure to enable the feature of discovering PLDM terminus and 
+monitoring PLDM sensors in terminus.
 
-### Identification
+### Discovery
 
-Once pldm-device completed the discovery, Entity-Manage is notified to probe 
-the D-Bus objects with its configuration json files. The configuration json 
-files use probe function with particular key word to specify what kind of 
-entity would match this configuration. If one of configuration json file is
-matched entity-manage would expose the properties defined in configuration 
-json file to D-Bus object for other service(e.g. dbus-sensors) to reference.
-The configuration file can expose as many as needed properties like sensor id#,
-reading unit or thresholds if the probed entity is expected a PLDM device
-without PDRs.
+After the EID routing table is ready from MCTP service, pldmd should start to
+find out all the PLDM terminus from the EIDs and the sensor in PLDM terminus.
+Firstly, pldmd should test each EID if it supports PLDM message according to
+the response of GetMessageTypeSupport and if it supports PLDM type 2 or type 4
+based on response of GetPLDMType command. During the discovering, pldmd would
+assign a Terminus ID(TID) for a PLDM terminus to the EID by SetTID command.
 
-### Initialization
+Secondly, pldmd should try to gather Entity Association PDRs from PLDM terminus
+by PDR Repository commands and then expose the FRU information to D-bus object
+at path /xyz/openbmc_project/Inventory/Source/PLDM/$tid/$instance# with D-bus
+interface defined at https://github.com/openbmc/phosphor-dbus-interfaces/blob
+/master/yaml/xyz/openbmc_project/Inventory/Source/PLDM/Entity.interface.yaml. 
 
-two new service pldm-sensor and pldm-pdr-sensor are proposed to initialize the
-pldm device exposed by entity-manager according. The pldm-sensor and 
-pldm-pdr-sensor will be part of dbus-sensors git repo. There are two types of 
-pldm device described in DSP0248. The first is "PLDM for access only". It is 
-handled by pldm-sensor. It expects all the necessary setting should be defined
-in D-Bus objects for a device which is "PLDM for access only". Second is "PLDM
-with PDRs". Is is handled by pldm-pdr-sensor. It expects all the necessary 
-setting can be retrieved from corresponding PDRs. When all of settings are 
-gathered. pldm-sensor or pldm-pdr-sensor send the PLDM type 2 commands to 
-initialize the sensor depending on its type. The PLDM type 2 commands might be
-SetNumericSensorEnable, SetSensorThresholds, SetSensorHysteresis and 
-InitNumericSensor for Numeric Sensor. After done that pldm-sensor should map 
-the sensor's status, reading to a D-bus object for other service(e.g. bmcweb)
-to reference.
+Thirdly, pldmd should try to gather Numeric Sensor PDRs from PLDM terminus by
+PDR Repository commands and then expose the Numeric Sensor to corresponding
+D-bus object at path /xyz/openbmc_project/Inventory/Source/PLDM/$tid/$instance#
+with D-bus interface, xyz.openbmc_project.Inventory.Source.PLDM.NumericSensor
+which should have following properties with the values from PDRs.
+- sensorID
+- baseUnit
+- sensorDataSize
+- Resolution
+- Offset
+- maxReadable
+- minReadable
+- warningHigh/Low
+- critical/High/Low
+- FatalHigh/Low
+
+Regarding to the static sensor(without PDRs), they are proposed to be described
+by entity-manager configuration json file. The configuration file makes Entity-
+Manager to expose the properties to D-bus Objects with interface
+xyz.openbmc_project.Configuration.PldmNumericSensor so that pldmd could the use
+these D-bus objects as another source instead of PDRs to expose sensor to D-bus
+Object on path /xyz/openbmc_project/Inventory/Source/PLDM/$tid/$instance#.
+
+Lastly, pldmd could optionally fetch FRU data from PLDM terminus by PLDM type 4
+messages and find out which D-bus object that is matched containerID and 
+instance# in FRU record Set record so that pldmd can expose the fetched FRU data 
+to corresponding D-bus object with the interface defined at https://github.com
+/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory
+/Source/PLDM/FRU.interface.yaml
 
 ### Monitoring
 
-After done the initialization, pldm-sensor or pldm-pdr-sensor enters the
-monitoring phase to poll the sensor reading or status from pldm device
-periodically and update value to mapped D-Bus objects for other service
-(e.g. bmcweb) to reference. The sensor reading or status is retrieved from pldm
-device through PLDM type2 commands. The commands might be GetSEnsorReading,
-GetStateSensorReadings depending on the sensor type.
+When pldmd service started, it should register a callback for PropertiesChanged
+signal on the path /xyz/openbmc_project/Inventory/Source/PLDM. When registered
+callback get invoked, pldmd should search the D-bus objects which have
+xyz.openbmc_project.Inventory.Source.PLDM.NumericSensor interface and then
+keeps the sensor properties found in the interface to a sensor list. At the
+end of callback, pldmd should initialize new added sensor by necessary commands
+(e.g. SetNumericSensorEnable, SetSensorThresholds, SetSensorHysteresis and 
+InitNumericSensor) and then expose the sensor to D-bus object with interfaces
+defined at https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml
+/xyz/openbmc_project/Sensor. pldmd will have a thread to poll all the sensors
+in list periodically by GetSEnsorReading and update the reading to D-bus
+objects.
 
 ## Alternatives Considered
-In the pldm git repo of OpenBMC project, There is pldmd, libpldmresponder and 
-libpldm. The features of pldm-device, pldm-sensor and pldm-pdr-sensor are 
-implemented by pldmd. So all of pldm sensors is managed by pldmd. pldmd exposes
-sensor as D-Bus objects for other service to reference. It is good for putting
-all pldm related service in the same git repo but it could cause some drawbacks.
-1)pldmd needs to rewrite or find a way to include the helper classes in
-dbus-sensor repo for exposing sensor to D-Bus object. 2)pldm would need to 
-develop configuration file like entity-manager does because the configuration
-of pldm sensors are platform specific.
+
+At first, the proposal is trying to two new services to openbmc. First is
+adding pldm-device which is similar to fru-device service in Entity-Manager
+repo to expose FRU data and Sensor setting to D-bus objects. Second is adding
+pldm-sensor which is similar to hwmontempsensor service in dbus-sensor repo to
+monitor PLDM sensor based on the information of the D-bus objects exposed by
+Entity-Manager. However it created unnecessary dependence and got feedback that
+these functions should be integrated into pldmd.
 
 ## Impacts
 
-Developer is asked to prepare the json file in entity-manager configuration
-folder for the pldm sensor to be supported.
-
 ## Testing
 
-pldm-sensor, pldm-device and pldm-pdr-sensor can be tested by mocking PLDM
-responder.
+Creating test cases to verify new developed class APIs based on gtest framework.
