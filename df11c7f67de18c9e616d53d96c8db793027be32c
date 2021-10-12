@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "3732a351_ad3c4afa",
+        "filename": "tof/proposals/otp-4.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-10-12T14:18:59Z",
+      "side": 1,
+      "message": "Lines 43-44 and 51-53 are still very relevant to C repositories.",
+      "parentUuid": "ddcc6d33_e27fcc5c",
+      "revId": "df11c7f67de18c9e616d53d96c8db793027be32c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24a06b1a_65caabd9",
         "filename": "tof/proposals/otp-4.md",
         "patchSetId": 1
@@ -47,6 +65,24 @@
       "writtenOn": "2021-10-12T05:28:30Z",
       "side": 1,
       "message": "As Ed indicated, it\u0027s not an easy and smooth way to convert to meson from cmake, gaps exist.\ncmake is modern and it support C++20 as well.\nThe \"Rationale\" about cmake is it lacks of tools to build outside of oe-sdk env. But one could either build and test it with openbmc-build-scripts, or some existing repos already has external_project defined to build in typical Linux system.",
+      "revId": "df11c7f67de18c9e616d53d96c8db793027be32c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "258f592e_69aa744c",
+        "filename": "tof/proposals/otp-4.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-10-12T14:18:59Z",
+      "side": 1,
+      "message": "Do you have instances of patterns we are using in cmake that are hard to replicate in meson?  I’ve done quite a bit of work on the autotools conversions already and tackled most of the “hard” repositories that are doing python code generation.  My feeling was that most of the cmake repositories were much more straight-forward.  I’ll certainly help out where needed if the conversions are especially difficult to align patterns between the two build systems.\n\nRe openbmc-build-scripts.  The time to build a meson repository with proper wrap files is in the order of 10s of seconds.  The time to build anything in openbmc-build-scripts, if you have the Docker images ready to go, is on the order of minutes.  If you don’t have the Docker images ready to go you’re looking at ~30 to build that.  This is a huge productivity hit in a normal code/compile/test development cycle.\n\nI thought I mentioned ExternalProject somewhere but it looks like I left it out of this doc.  I can add it here.  The issues I have with relying on ExternalProject are two-fold:\n* We’re duplicating a pattern that we already have better support for in Meson, but currently ExternalProject isn’t used everywhere and it isn’t used in consistently similar ways.\n* The specifications for ExternalProject are not easily identifiable and updatable with scripts, compared to wrap files.  Many of our current ExternalProject users chose to pin to a particular commit in the dependent project and in order to find and update them we’d have to write a CMake parser tool.  With wrapfiles they are separate and easily found with a `find -name` type invocation, which can be used to trivially update them all.  (ex. when nlohmann-json makes a new release how do we update all the users?)",
+      "parentUuid": "24a06b1a_65caabd9",
       "revId": "df11c7f67de18c9e616d53d96c8db793027be32c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
