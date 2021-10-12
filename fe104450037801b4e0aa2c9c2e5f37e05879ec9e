@@ -380,6 +380,30 @@
     },
     {
       "key": {
+        "uuid": "b73d04af_8bcc0606",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-10-12T15:01:36Z",
+      "side": 1,
+      "message": "Re-open this comment as Jason brought up a good point.",
+      "parentUuid": "e3420822_6c896a4f",
+      "range": {
+        "startLine": 17,
+        "startChar": 84,
+        "endLine": 17,
+        "endChar": 107
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24d93d2e_538ffccf",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 3
@@ -462,6 +486,30 @@
       "side": 1,
       "message": "I\u0027m really not following this Patrick.  What Item interface would we use for a CMIS module?  Granted, I wonder if we should be calling out each of the module types as their own inventory item. (ie Item.SfpModule, Item.qsfpmodule, ect) and not lumping all CMIS compliant modules into one would be better, but some of the module specific properties (OUI for example) I don\u0027t really see the problem with them being their own interface.  Obviously this interface overstepped into the Asset interface, and that should be fixed, but I don\u0027t think that entirely negates the need for this specific information.",
       "parentUuid": "a8a18153_256e6fc8",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 138
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fdf6142_1cee8e0c",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-10-12T15:01:36Z",
+      "side": 1,
+      "message": "Agree with Ed. I\u0027ve moved the vendor_name/part_number/serial_number properties to existing interfaces, but there are still a couple of properties left. The \"xyz/openbmc_project/Inventory/Item/CmisModule/Module.interface\" seems to be necessary.\n\nWhat do you think, Patrick?",
+      "parentUuid": "2e15d43d_9a73ef5f",
       "range": {
         "startLine": 27,
         "startChar": 0,
