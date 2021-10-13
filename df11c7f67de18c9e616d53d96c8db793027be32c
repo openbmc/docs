@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "e117eaf4_0250c820",
+        "filename": "tof/proposals/otp-4.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-10-13T11:50:02Z",
+      "side": 1,
+      "message": "\u003e OK, but that\u0027s about why meson is easier (and probably better) choice for new repos.\n\nMy view is that it is probably still a better choice for existing repos because they\u0027re likely not doing those things (ex. static analysis) if they are autotools based.  Thus they are not utilizing the current best practices in both the project and industry as a whole.\n\n\u003e As an open community, deleting a repo seems \"too much\".\n\nBut I\u0027m not suggesting deleting a repo.  I wrote that we would delete the _recipe_.  The code may still live in the individual repo and when they get it updated it can be reintegrated into the distribution, but until then it is kept out.\n\n\u003e How about making it failure to pass CI so that new changes are enforced to use meson, but if an existing repo is not updated, it could be kept?\n\nAll this does is likely push the work onto the first person attempting to do any kind of API refactoring.  If the maintainer and the users cannot be bothered to get it updated, I don\u0027t want to put an impediment onto someone else attempting to make sweeping improvements.  There is no reason that, for example, adding a [[nodiscard]] to a function we realize is often mistakenly ignored should requirement to rewrite a whole repo into meson in order to get it in.",
+      "parentUuid": "e6fda9c5_3848946a",
+      "revId": "df11c7f67de18c9e616d53d96c8db793027be32c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24a06b1a_65caabd9",
         "filename": "tof/proposals/otp-4.md",
         "patchSetId": 1
