@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b72d0b61_d02d943a",
+        "filename": "designs/hw-fault-monitor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-10-13T23:39:10Z",
+      "side": 1,
+      "message": "- JobService is defined in the redfish schema, but not implemented in bmcweb (the current implementation of redfish for openbmc)\n\n- TaskService sounds reasonable, can you check with Ed (edtanous) to make sure that bmcweb is onboard.\n\n- If the answer is a non standard google OemAction. It might be a mistake for openbmc to host this repo.",
+      "parentUuid": "e8b5a6cd_c3a6e3b8",
+      "range": {
+        "startLine": 30,
+        "startChar": 37,
+        "endLine": 30,
+        "endChar": 48
+      },
+      "revId": "73634a00c258f34b075bf8703eee495533d5a973",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "19a8e82f_8109cc64",
         "filename": "designs/hw-fault-monitor.md",
         "patchSetId": 2
@@ -99,6 +123,24 @@
       "revId": "73634a00c258f34b075bf8703eee495533d5a973",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dea547f7_290a399c",
+        "filename": "designs/hw-fault-monitor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-10-13T23:39:10Z",
+      "side": 1,
+      "message": "The way I understand it, Patrick is advocating for you to not make a daemon/module, but rather add the needed functionality to an existing daemon. Which is a very reasonable thing to do.\n\nIf you want to change phosphor-debug-collector, you need to update the doc (and not write a new daemon/module) you need to update this doc to reflect this design decision.\n\nI suspect you need to do more research on phosphor-debug-collector to know if that is a viable option or not.",
+      "parentUuid": "cd99a0dd_a74efad5",
+      "revId": "73634a00c258f34b075bf8703eee495533d5a973",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
@@ -266,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "09662c6b_0a6c4ffc",
+        "filename": "designs/hw-fault-monitor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-10-13T23:39:10Z",
+      "side": 1,
+      "message": "\"In order to monitor memory out of band, a system...\" \nsome openbmc folk are oems, and they are selling machines with openbmc\u0027s on them.",
+      "parentUuid": "5c5578b3_47d0b16c",
+      "range": {
+        "startLine": 108,
+        "startChar": 34,
+        "endLine": 108,
+        "endChar": 44
+      },
+      "revId": "73634a00c258f34b075bf8703eee495533d5a973",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9233646b_573b493d",
         "filename": "designs/hw-fault-monitor.md",
         "patchSetId": 2
@@ -310,6 +376,30 @@
       "revId": "73634a00c258f34b075bf8703eee495533d5a973",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0eaf2e8e_64b577c9",
+        "filename": "designs/hw-fault-monitor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-10-13T23:39:10Z",
+      "side": 1,
+      "message": "Maybe I need more context. \n\nIf there is an fault on the host the host can save that fault information to the bmc. \nWhy would we want that? the host can either save it\u0027s own fault log, or send the fault to a service?",
+      "parentUuid": "c12ffdb4_6b05c198",
+      "range": {
+        "startLine": 120,
+        "startChar": 55,
+        "endLine": 121,
+        "endChar": 48
+      },
+      "revId": "73634a00c258f34b075bf8703eee495533d5a973",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
