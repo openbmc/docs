@@ -17,6 +17,13 @@ was completely cut to the system), should it automatically power the system
 on? Should it leave it off? Or maybe the user would like the system to
 go to whichever state it was at before the power loss.
 
+There are also instances where the user may not want automatic power recovery
+to occur. For example, some systems have op-panels, and on these op-panels
+there can be a pin hole reset. This is a manual mechanism for the user to
+force a hard reset to the BMC in situations where it is hung or not responding.
+In these situations, the user may wish for the system to not automatically
+power on the system, because they want to debug the reason for the BMC error.
+
 The goal of this design document is to describe how OpenBMC firmware will
 deal with these questions.
 
@@ -37,6 +44,8 @@ uninterrupted power devices (UPS), and enhanced tracking of the different types
 of errors that can occur in this area on systems.
 
 ## Requirements
+
+### Automated Power-On Recovery
 OpenBMC software must ensure it persists the state of power to the chassis so
 it can know what to restore it to if necessary
 
@@ -62,7 +71,21 @@ This one_time feature is a way for software to utilize automated power-on
 recovery function for other areas like firmware update scenarios where a
 certain power on behavior is desired once an update has completed.
 
+### BMC and System Recovery Paths
+In situations where the BMC or the system have gotten into a bad state, and
+the user has initiated some form of manual reset which is detectable by the
+BMC as being user initiated, the BMC software must:
+- Fill in appropriate `RebootCause` within the [BMC state interface][bmc-state]
+  - At a minimum, `PinHole` will be added. Others can be added as needed
+- Log an error indicating a user initiated forced reset has occurred
+- Not log an error indicating a blackout has occurred if chassis power was on
+  prior to the pin hole reset
+- Not implement any power recovery policy on the system
+- Turn power recovery back on once BMC has a normal reboot
+
 ## Proposed Design
+
+### Automated Power-On Recovery
 An application will be run after the chassis and host states have been
 determined which will only run if the chassis power is not on.
 
@@ -74,6 +97,23 @@ run the logic as defined in the Requirements above.
 
 This function will be hosted in phosphor-state-manger and potentially
 x86-power-control.
+
+### BMC and System Recovery Paths
+A new GPIO name will be added to the [device-tree-gpio-naming.md][dev-tree]
+which reports whether a pin hole reset has occurred on the previous reboot of
+the BMC. The BMC state manager application will enhance its support of the
+`RebootCause` to look for this GPIO and if present, read it and set
+`RebootCause` accordingly.
+
+If the power recovery software sees the `PinHole` reason within the
+`RebootCause` then it will not implement any of its policy. Future BMC
+reboots which are not pin hole reset caused, will cause `RebootCause` to go
+back to a default and therefore power recovery policy will be reenabled on that
+BMC boot.
+
+The phosphor-state-manager chassis software will not log a blackout error
+if it sees the `PinHole` reason (or any other reason that indicates a user
+initiated reset of the system).
 
 ## Alternatives Considered
 None, this is a pretty basic feature that does not have a lot of alternatives
@@ -96,5 +136,12 @@ also be checked for each possible value and verified to only be used once.
 Validate that when multiple black outs occur, the firmware continues to try
 and power on the system when policy is `AlwaysOn` or `Restore`.
 
+On supported systems, a pin hole reset should be done with a system that has
+a policy set to always power on. Tester should verify system does not
+automatically power on after a pin hole reset. Verify it does automatically
+power on when a normal reboot of the BMC is done.
+
 [pdi-restore]:https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Power/RestorePolicy.interface.yaml
 [state-mgr]: https://github.com/openbmc/phosphor-state-manager
+[bmc-state]:https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/BMC.interface.yaml
+[dev-tree]:https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-naming.md
