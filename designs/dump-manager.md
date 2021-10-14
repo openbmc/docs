@@ -73,6 +73,7 @@ components like the processor while the host is booted and running. The host may
 stop during this dump and may collect various processor states and/or memory
 contents to help to debug the failure.
 
+
 ## Requirements
 
 ![Dump use cases - Users are examples, not a mandatory part of implementation](https://user-images.githubusercontent.com/16666879/70888651-d8f44080-2006-11ea-8596-ed4c321cfaa6.png)
@@ -142,7 +143,21 @@ collects the dumps from BMC.
 - Interfaces
     - **Create**: The interface to create a dump, called by clients to initiate
       user-initiated dump.
-        - Type: Type of the dump needs to be created
+        - AdditionalData: The additional data, if any, for initiating the dump.
+            The key in this case should be an implementation specific enum
+            defined for the specific type of dump either in xyz or in a domain.
+            The values can be either a string or a 64 bit number.
+            The enum-format string is required to come from a parallel class
+            with this specific Enum name. All of the Enum strings should be in
+            the format
+            'domain.Dump.Create.CreateParameters.ParamName'.
+            e.g.:
+              {
+                "key1": "value1",
+                "key2": "value2"
+              }
+            ends up in AdditionaData like:
+              ["KEY1=value1", "KEY2=value2"]        
 
     - **Notify**: Notify the dump manager that a new dump is created.
         - ID: ID of the dump, if not 0 this will be the external id of the dump
