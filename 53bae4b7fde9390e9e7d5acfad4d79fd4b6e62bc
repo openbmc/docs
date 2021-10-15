@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "900827bc_9ea1d06b",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-10-15T02:54:37Z",
+      "side": 1,
+      "message": "I think we should add a udev rule that detects mmc device, and starts EstorageD daemon when the correct type of device is detected. Something like:\n\nSUBSYSTEM\u003d\u003d\"block\",ENV{DEVPATH}\u003d\u003d\"/block/mmcblk[0-9]\",ENV{DEVTYPE}\u003d\u003d\"disk\",TAG+\u003d\"systemd\",ENV{SYSTEMD_WANTS}\u003d\"estoraged@$env{DEVNAME}\"",
+      "parentUuid": "b77bcb91_d5920fa6",
+      "range": {
+        "startLine": 90,
+        "startChar": 49,
+        "endLine": 90,
+        "endChar": 66
+      },
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c2fdc19_51e5a10c",
         "filename": "designs/estoraged.md",
         "patchSetId": 5
@@ -88,6 +112,24 @@
     },
     {
       "key": {
+        "uuid": "a9345bd4_4ba60ba6",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-10-15T02:54:37Z",
+      "side": 1,
+      "message": "I was under the impression it was separate daemons per block device.\nBut the doc could make that more clear.",
+      "parentUuid": "7a2b9b5b_d039e8c1",
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f898e463_79fcf328",
         "filename": "designs/estoraged.md",
         "patchSetId": 5
@@ -122,6 +164,30 @@
       "writtenOn": "2021-10-15T01:50:26Z",
       "side": 1,
       "message": "Are you going to access any of these interfaces via Redfish?  I think they don\u0027t like having to track status like this because internally they need to create a corresponding \u0027Task\u0027 instance and they like to have a dbus instance of some sort to correlate with the Task.",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 31
+      },
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cb8c1ad_85116387",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2021-10-15T02:54:37Z",
+      "side": 1,
+      "message": "That could be an issue for us. I will align with Ed.\n\nOur long term plans involve using the drive schema in redfish\nhttps://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/47657",
+      "parentUuid": "2525afc8_35a28fb9",
       "range": {
         "startLine": 122,
         "startChar": 0,
