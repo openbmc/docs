@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4dadd82_31246fec",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-10-15T01:50:26Z",
+      "side": 1,
+      "message": "startup",
+      "range": {
+        "startLine": 90,
+        "startChar": 5,
+        "endLine": 90,
+        "endChar": 11
+      },
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b77bcb91_d5920fa6",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-10-15T01:50:26Z",
+      "side": 1,
+      "message": "Is this really what you intend?  Doesn\u0027t that mean you\u0027re going to launch for each mtd partition if the mtdblock driver is loaded?  Also you\u0027ll launch if someone inserts a USB key...\n\nI thought you mentioned earlier this was only for eMMC?  Can we scope this to only those block devices?",
+      "range": {
+        "startLine": 90,
+        "startChar": 49,
+        "endLine": 90,
+        "endChar": 66
+      },
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c2fdc19_51e5a10c",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-10-15T01:50:26Z",
+      "side": 1,
+      "message": "What does this mean?",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 24
+      },
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a2b9b5b_d039e8c1",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-10-15T01:50:26Z",
+      "side": 1,
+      "message": "Is there one daemon or a separate daemon instance per block device?  If there is one daemon you only need a single bus name.",
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f898e463_79fcf328",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-10-15T01:50:26Z",
+      "side": 1,
+      "message": "Why the dot and not a slash?  (dots are actually invalid path characters)\n\nWe may want a \u0027storage\u0027 sub-directory at the root (after openbmc_project)?  Something to consider here is if the \u0027encrypted\u0027 part is all that interesting.  We might end up having multiple daemons eventually that manage block devices, including this one which takes care of additional encryption protections.  For example, you could have a \u0027stats\u0027 interface for the block device.  It might be handy, even though the interfaces are in separate daemons, for them to align on the same path.  Thus, `/xyz/openbmc_project/storage/\u003cescaped block device name\u003e` is everything about a local storage block device.",
+      "range": {
+        "startLine": 95,
+        "startChar": 34,
+        "endLine": 95,
+        "endChar": 52
+      },
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2525afc8_35a28fb9",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-10-15T01:50:26Z",
+      "side": 1,
+      "message": "Are you going to access any of these interfaces via Redfish?  I think they don\u0027t like having to track status like this because internally they need to create a corresponding \u0027Task\u0027 instance and they like to have a dbus instance of some sort to correlate with the Task.",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 31
+      },
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
