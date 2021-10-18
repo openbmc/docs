@@ -46,6 +46,29 @@
       "revId": "ff69b47aad7d38ce50542c8f66b859b871cf4e67",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aefcacab_bca70f86",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-10-18T15:18:26Z",
+      "side": 1,
+      "message": "We\u0027re already not suppose to have shared libraries and interaction via shared libraries.  Adding another shared library on top of this to support PLDM-over-MCTP and PLDM-over-NCSI is a further violation of this architecture statement.\n\nWhy doesn\u0027t the PLDM repository support either end-point if that is appropriate?  This does not seem necessary to put in a higher level library, but it should be contained in the lower level.  \n\nStated another way: an application should not care if it is PLDM-over-X, but just that it is PLDM.  And adding a \"wrapper\" seems to be in agreement with that.  So, get PLDM to support the different transports natively.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 75
+      },
+      "revId": "ff69b47aad7d38ce50542c8f66b859b871cf4e67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
