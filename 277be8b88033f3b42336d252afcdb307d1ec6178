@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec404189_da30b87c",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-10-18T09:05:36Z",
+      "side": 1,
+      "message": "Perhaps this design document can be integrated with the existing PLDM stack design document",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 36
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e239e7e_c10d69b2",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-10-18T09:05:36Z",
+      "side": 1,
+      "message": "Did you mean FRU interface?",
+      "range": {
+        "startLine": 57,
+        "startChar": 55,
+        "endLine": 57,
+        "endChar": 61
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b6e5bc1_f19fea6c",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-10-18T09:05:36Z",
+      "side": 1,
+      "message": "Numeric sensors should use xyz.openbmc_project.Sensor.Value to be consistent with rest of OpenBMC implementations. With this particular interface with object path in /xyz/openbmc_project/sensors/\u003csensor_type\u003e/sensor_name, other mechanisms like Redfish/IPMI exposure of sensors, threshold crossing detection etc will be done automatically.",
+      "range": {
+        "startLine": 62,
+        "startChar": 22,
+        "endLine": 62,
+        "endChar": 77
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "724bc21d_e6cb02c2",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2021-10-18T09:05:36Z",
+      "side": 1,
+      "message": "You could have the static PDRs maintained in the pldmd itself - i.e. once you query the PLDM FRU of the terminus, you can look for a static PDR configuration json file that matches the inventory information you read and load the sensor configuration from there.\n\nThis helps in having a scalable approach and not let the PLDM specifics (like PDRs) percolate into entity manager. For example - the devices with static PDRs can extend and support other type of static PDRs like State Sensor PDRs, Effecter PDRs etc.. This won\u0027t be easy to maintain in entity manager.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 74
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
