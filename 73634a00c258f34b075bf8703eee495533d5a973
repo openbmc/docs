@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "53faa7ca_1ae66f27",
+        "filename": "designs/hw-fault-monitor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001143
+      },
+      "writtenOn": "2021-10-18T19:21:40Z",
+      "side": 1,
+      "message": "Thanks. I will mark this comment as resolved as it\u0027s not critical for the current version of this doc, but will follow up on this topic.",
+      "parentUuid": "b72d0b61_d02d943a",
+      "range": {
+        "startLine": 30,
+        "startChar": 37,
+        "endLine": 30,
+        "endChar": 48
+      },
+      "revId": "73634a00c258f34b075bf8703eee495533d5a973",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19a8e82f_8109cc64",
         "filename": "designs/hw-fault-monitor.md",
         "patchSetId": 2
@@ -138,6 +162,24 @@
       "side": 1,
       "message": "The way I understand it, Patrick is advocating for you to not make a daemon/module, but rather add the needed functionality to an existing daemon. Which is a very reasonable thing to do.\n\nIf you want to change phosphor-debug-collector, you need to update the doc (and not write a new daemon/module) you need to update this doc to reflect this design decision.\n\nI suspect you need to do more research on phosphor-debug-collector to know if that is a viable option or not.",
       "parentUuid": "cd99a0dd_a74efad5",
+      "revId": "73634a00c258f34b075bf8703eee495533d5a973",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8f6b986_864ebdfc",
+        "filename": "designs/hw-fault-monitor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001143
+      },
+      "writtenOn": "2021-10-18T19:21:40Z",
+      "side": 1,
+      "message": "Yes I\u0027m thinking we can add a new dump type (fault log) into an existing phosphor-debug-collector daemon (specifically the one with main() function in dump_manager_main.cpp). The new fault log would contain dump files that are collected in a variety of ways in a variety of formats. So we would create a new fault log dump entry class (deriving from the \"Entry\" class in dump_entry.hpp) that adds a \"dump type\" member variable to identify the type of data that an entry\u0027s corresponding dump file contains.\n\nI am open to feedback on whether this sounds reasonable.",
+      "parentUuid": "dea547f7_290a399c",
       "revId": "73634a00c258f34b075bf8703eee495533d5a973",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -332,6 +374,30 @@
     },
     {
       "key": {
+        "uuid": "c9ce4c73_7c9aca94",
+        "filename": "designs/hw-fault-monitor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001143
+      },
+      "writtenOn": "2021-10-18T19:21:40Z",
+      "side": 1,
+      "message": "Thanks, will fix.",
+      "parentUuid": "09662c6b_0a6c4ffc",
+      "range": {
+        "startLine": 108,
+        "startChar": 34,
+        "endLine": 108,
+        "endChar": 44
+      },
+      "revId": "73634a00c258f34b075bf8703eee495533d5a973",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9233646b_573b493d",
         "filename": "designs/hw-fault-monitor.md",
         "patchSetId": 2
@@ -391,6 +457,30 @@
       "side": 1,
       "message": "Maybe I need more context. \n\nIf there is an fault on the host the host can save that fault information to the bmc. \nWhy would we want that? the host can either save it\u0027s own fault log, or send the fault to a service?",
       "parentUuid": "c12ffdb4_6b05c198",
+      "range": {
+        "startLine": 120,
+        "startChar": 55,
+        "endLine": 121,
+        "endChar": 48
+      },
+      "revId": "73634a00c258f34b075bf8703eee495533d5a973",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "243d92f0_56368733",
+        "filename": "designs/hw-fault-monitor.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001143
+      },
+      "writtenOn": "2021-10-18T19:21:40Z",
+      "side": 1,
+      "message": "Our goal is to build a BMC-centric logging system, so that data center monitoring tools can get various fault logs from a single interface (bmcweb Redfish logs). Also, we\u0027d like to have the fault info in BMC so that in the future the hardware fault monitor can use it to activate preventive actions on platforms without interrupting the OS, such as soft post-package repair or adaptive double-device data correction.",
+      "parentUuid": "0eaf2e8e_64b577c9",
       "range": {
         "startLine": 120,
         "startChar": 55,
