@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "92b25b05_ba50195e",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-18T09:37:49Z",
+      "side": 1,
+      "message": "This interface is provided a mapping table to look up relationship in between entity instance number and PDRs from a PLDM terminus.\n\nThe FRU interface will also be implemented and is described at line 82-87.",
+      "parentUuid": "9e239e7e_c10d69b2",
+      "range": {
+        "startLine": 57,
+        "startChar": 55,
+        "endLine": 57,
+        "endChar": 61
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8b6e5bc1_f19fea6c",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 3
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "5435e532_47283b4e",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-18T09:37:49Z",
+      "side": 1,
+      "message": "The interface is intended to collect the all related sensor settings from PDRs or configruation file for static sensor. pldmd get the settings from this itnerface instead of PDRs directly. It should provide capability for debugging and flexibility to modify settings from CLI (e.g. busctl).\n\npldmd still exposes sensor status with xyz.openbmc_project.Sensor.Value with object path in /xyz/openbmc_project/sensors/\u003csensor_type\u003e/sensor_name.",
+      "parentUuid": "8b6e5bc1_f19fea6c",
+      "range": {
+        "startLine": 62,
+        "startChar": 22,
+        "endLine": 62,
+        "endChar": 77
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "724bc21d_e6cb02c2",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 3
@@ -82,6 +130,30 @@
       "writtenOn": "2021-10-18T09:05:36Z",
       "side": 1,
       "message": "You could have the static PDRs maintained in the pldmd itself - i.e. once you query the PLDM FRU of the terminus, you can look for a static PDR configuration json file that matches the inventory information you read and load the sensor configuration from there.\n\nThis helps in having a scalable approach and not let the PLDM specifics (like PDRs) percolate into entity manager. For example - the devices with static PDRs can extend and support other type of static PDRs like State Sensor PDRs, Effecter PDRs etc.. This won\u0027t be easy to maintain in entity manager.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 74
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38c2ee2d_b6d2a7d6",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-18T09:37:49Z",
+      "side": 1,
+      "message": "Got you point. Try to keep pldmd as self-contained as possible.\nMy initial though here is that reusing the probing feature which entity-manager provided. It could avoid rewrite similar code again like what entity-manager has implemented.",
+      "parentUuid": "724bc21d_e6cb02c2",
       "range": {
         "startLine": 75,
         "startChar": 0,
