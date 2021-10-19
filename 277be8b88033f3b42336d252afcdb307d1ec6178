@@ -119,6 +119,47 @@
     },
     {
       "key": {
+        "uuid": "eb09af3c_6f09679e",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2021-10-19T15:20:02Z",
+      "side": 1,
+      "message": "I wonder for the others PDRs type such as status/effecter, the pldmd will use which object path to export state value, effecter value? Will it be /xyz/openbmc_project/effecter/\u003ceffecter_type\u003e/sensor_name?\n\nWe should also concern about expose the PLDM sensor to IPMI because the PLDM sensorID is 16 bits and IPMI sensorID is 8 bits.",
+      "parentUuid": "5435e532_47283b4e",
+      "range": {
+        "startLine": 62,
+        "startChar": 22,
+        "endLine": 62,
+        "endChar": 77
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b993593a_db4880f2",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2021-10-19T15:20:02Z",
+      "side": 1,
+      "message": "The spec can be applied for others type of PDRs in PLDM model such as State Sensor PDR (type 4), Numeric Effecter PDR (type 9), Compact Numeric Sensor PDR (type 21). The dbus interface xyz.openbmc_project.Inventory.Source.PLDM.\u003cPDRTypeName\u003e will be applied for equivalent PDR types. This specs should not limited for only PDR numeric sensors, I think.\nThe dbus-interface xyz.openbmc_project.Inventory.Source.PLDM.\u003cPDRTypeName\u003e will include the data fields in each PDR types.",
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "724bc21d_e6cb02c2",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 3
