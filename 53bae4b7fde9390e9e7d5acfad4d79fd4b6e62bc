@@ -72,6 +72,54 @@
     },
     {
       "key": {
+        "uuid": "a5d2cb41_246e6161",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-10-19T18:46:04Z",
+      "side": 1,
+      "message": "My initial plan was to keep this limited to eMMC, but I was under the impression that several reviewers (including you) wanted this to be more generic to support any type of storage device. So then I changed the doc to be more generic for block devices in general.\n\nI\u0027ve updated this doc again to say that we only plan to use eStoraged with eMMC devices, but we\u0027ll keep the interfaces generic enough, so that we can extend it to other types of devices later, as desired. Does that sound reasonable?",
+      "parentUuid": "900827bc_9ea1d06b",
+      "range": {
+        "startLine": 90,
+        "startChar": 49,
+        "endLine": 90,
+        "endChar": 66
+      },
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b19c259_7a212402",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-10-19T18:46:04Z",
+      "side": 1,
+      "message": "Oops, fixed.",
+      "parentUuid": "c4dadd82_31246fec",
+      "range": {
+        "startLine": 90,
+        "startChar": 5,
+        "endLine": 90,
+        "endChar": 11
+      },
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c2fdc19_51e5a10c",
         "filename": "designs/estoraged.md",
         "patchSetId": 5
@@ -92,6 +140,30 @@
       "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "478267a2_647543d8",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-10-19T18:46:04Z",
+      "side": 1,
+      "message": "I changed this to say that we\u0027ll use udev to launch eStoraged for each eMMC device.",
+      "parentUuid": "0c2fdc19_51e5a10c",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 24
+      },
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -130,6 +202,24 @@
     },
     {
       "key": {
+        "uuid": "a1c8eee1_47de14a6",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-10-19T18:46:04Z",
+      "side": 1,
+      "message": "I\u0027m planning to have a separate daemon instance for each eMMC, hence the unique bus name for each one. It seems simpler to have a separate daemon for each one. For example, udev can launch a daemon for each eMMC it detects. But let me know if you think there should just be one daemon for all eMMC devices.",
+      "parentUuid": "a9345bd4_4ba60ba6",
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f898e463_79fcf328",
         "filename": "designs/estoraged.md",
         "patchSetId": 5
@@ -141,6 +231,30 @@
       "writtenOn": "2021-10-15T01:50:26Z",
       "side": 1,
       "message": "Why the dot and not a slash?  (dots are actually invalid path characters)\n\nWe may want a \u0027storage\u0027 sub-directory at the root (after openbmc_project)?  Something to consider here is if the \u0027encrypted\u0027 part is all that interesting.  We might end up having multiple daemons eventually that manage block devices, including this one which takes care of additional encryption protections.  For example, you could have a \u0027stats\u0027 interface for the block device.  It might be handy, even though the interfaces are in separate daemons, for them to align on the same path.  Thus, `/xyz/openbmc_project/storage/\u003cescaped block device name\u003e` is everything about a local storage block device.",
+      "range": {
+        "startLine": 95,
+        "startChar": 34,
+        "endLine": 95,
+        "endChar": 52
+      },
+      "revId": "53bae4b7fde9390e9e7d5acfad4d79fd4b6e62bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50fab200_077ff8cf",
+        "filename": "designs/estoraged.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001202
+      },
+      "writtenOn": "2021-10-19T18:46:04Z",
+      "side": 1,
+      "message": "Oops, the dot was a typo.\n\nI changed the object path to match what you\u0027re suggesting (without the \u0027encrypted\u0027 part), and I made note in the doc that we might ultimately have several daemons using the same object path.",
+      "parentUuid": "f898e463_79fcf328",
       "range": {
         "startLine": 95,
         "startChar": 34,
