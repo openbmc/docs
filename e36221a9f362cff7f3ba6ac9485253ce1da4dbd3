@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "7b7d53f4_537d5b03",
+        "filename": "designs/redfish-self-test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-20T23:28:20Z",
+      "side": 1,
+      "message": "\u003e Okay, even though bmcweb is working perfectly, the test fails because the system is not behaving as bmcweb-selftest thinks it should.\n\u003e \n\u003e Do you worry that changes in the system will cause failures in bmcweb-self test that are unrelated to bmcweb? \n\nYes, but this is largely the point.  If we were trying to identify failures in bmcweb only, we would write mocks and unit tests.\n\n\u003e It sounds like a large portion of openbmc will need to behave to pass these test.\n\nYep, that\u0027s kinda the point.  I want to have a quick, userfacing way to ask \"does this system interface look valid?\"",
+      "parentUuid": "9cd7b6a3_b29a9228",
+      "range": {
+        "startLine": 24,
+        "startChar": 25,
+        "endLine": 24,
+        "endChar": 31
+      },
+      "revId": "e36221a9f362cff7f3ba6ac9485253ce1da4dbd3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8c5034af_c22a336a",
         "filename": "designs/redfish-self-test.md",
         "patchSetId": 1
@@ -203,6 +227,30 @@
       "side": 1,
       "message": "I suspect we would need to run this test often to identify/address regressions.",
       "parentUuid": "4c54fe71_7b7d9d5b",
+      "range": {
+        "startLine": 87,
+        "startChar": 75,
+        "endLine": 87,
+        "endChar": 78
+      },
+      "revId": "e36221a9f362cff7f3ba6ac9485253ce1da4dbd3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3af2438d_068ae982",
+        "filename": "designs/redfish-self-test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-20T23:28:20Z",
+      "side": 1,
+      "message": "I should\u0027ve been more clear, yes, ideally it would be linked into CI, similar to how redfish service validator is run.",
+      "parentUuid": "688cfab2_c55b5938",
       "range": {
         "startLine": 87,
         "startChar": 75,
