@@ -24,6 +24,13 @@ force a hard reset to the BMC in situations where it is hung or not responding.
 In these situations, the user may wish for the system to not automatically
 power on the system, because they want to debug the reason for the BMC error.
 
+A brownout is another scenario that commonly utilizes automated power-on
+recovery features. A brownout is a scenario where BMC firmware detects (or is
+told) that chassis power can no longer be supported, but power to the BMC
+will be retained. On some systems, it's desired to utilize the automated
+power-on feature to turn chassis power back on as soon as the brownout condition
+ends.
+
 The goal of this design document is to describe how OpenBMC firmware will
 deal with these questions.
 
@@ -37,11 +44,6 @@ Configuration and Power Interface (ACPI).
 
 [openbmc/phosphor-state-manager][state-mgr] supports this property as defined
 in the phosphor-dbus-interface.
-
-Future updates to this document will touch on more complex scenarios like
-brown outs (chassis power loss but BMC remains on), handling of external
-uninterrupted power devices (UPS), and enhanced tracking of the different types
-of errors that can occur in this area on systems.
 
 ## Requirements
 
@@ -82,6 +84,29 @@ BMC as being user initiated, the BMC software must:
   prior to the pin hole reset
 - Not implement any power recovery policy on the system
 - Turn power recovery back on once BMC has a normal reboot
+
+### Brownout
+As noted above, a brownout condition is when AC power can not continue to be
+supplied to the chassis, but the BMC can continue to have power and run.
+
+When this condition occurs, the BMC must:
+- Power system off as quickly as situations requires (or gracefully handle
+  the loss of power if it occurred without warning)
+- Log an error indicating the brownout event has occurred
+- Support the ability for host firmware to indicate a one-time power restore
+  policy if they wish for when the brownout completes
+- Identify when a brownout condition has completed
+- Wait for the brownout to complete and implement the one-time power restore
+  policy. If no one-time policy is defined then run the standard power restore
+  policy defined for the system
+
+BMC firmware must also be able to:
+- Discover if system is in a brownout situation
+  - Run when the BMC first comes up to know if it should implement any automated
+    power-on recovery
+- Not run any power-on recovery logic when a brownout is occurring
+- Tell the host firmware that it is a automated power-on recovery initiated
+  boot when that firmware is what boots the system
 
 ## Proposed Design
 
@@ -125,6 +150,45 @@ The phosphor-state-manager chassis software will not log a blackout error
 if it sees the `PinholeReset` reason (or any other reason that indicates a user
 initiated a reset of the system).
 
+### Brownout
+The existing `xyz.openbmc_project.State.Chassis` interface will be enhanced to
+support a `CurrentPowerStatus` property.  The existing
+phosphor-chassis-state-manager, which is instantiated per instance of chassis in
+the system, will support a read of this property. The following will be the
+possible returned values for the power status of the target chassis:
+- `Undefined`
+- `BrownOut`
+- `Good`
+
+The phosphor-psu-monitor application within the phosphor-power repository will
+be responsible for monitoring for brownout conditions. It will support a
+per-chassis interface which represents the status of the power going into
+the target chassis. This interface will be generic in that other applications
+could host it to report the status of the power. The state-manager software
+will utilize mapper to look for all implementations of the interface for its
+chassis and aggregate the status (i.e. if any reports a brownout, then
+`BrownOut` will be returned). This interface will be defined in a later update
+to this document.
+
+The application(s) responsible for detecting and reporting chassis power will
+run on startup and discover the correct state for their property. These
+applications will log an error when a brownout occurs and initiate the fast
+power off.
+
+If the system design needs it, the existing one-time function provided by
+phosphor-state-manager for auto power on policy will be utilized for when
+the brownout completes.
+
+When the phosphor-power application detects that a brownout condition has
+completed it will reset its interface representing power status to good and
+start the state-manager service which executes the automated power-on logic.
+
+phosphor-state-manager will ensure automated power-on recovery logic is only run
+when the power supply interface reports the power status is good. If there are
+multiple chassis and/or host instances in the system then the host instances
+associated with the chassis(s) with a bad power status will be the only ones
+prevented from booting.
+
 ## Alternatives Considered
 None, this is a pretty basic feature that does not have a lot of alternatives
 (other then just not doing it).
@@ -150,6 +214,15 @@ On supported systems, a pin hole reset should be done with a system that has
 a policy set to always power on. Tester should verify system does not
 automatically power on after a pin hole reset. Verify it does automatically
 power on when a normal reboot of the BMC is done.
+
+A brownout condition should be injected into a system and appropriate paths
+should be verified:
+- Error log generated
+- Host notified (if running and notification possible)
+- System quickly powered off
+- Power recovery function is not run while a brownout is present
+- System automatically powers back on when brownout condition ends (assuming a
+  one-time or system auto power-on recovery policy of `AlwaysOn` or `Restore`)
 
 [pdi-restore]:https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Power/RestorePolicy.interface.yaml
 [state-mgr]: https://github.com/openbmc/phosphor-state-manager
