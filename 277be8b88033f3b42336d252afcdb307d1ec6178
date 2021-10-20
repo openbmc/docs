@@ -160,6 +160,48 @@
     },
     {
       "key": {
+        "uuid": "db496e2a_90d62809",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-20T07:33:44Z",
+      "side": 1,
+      "message": "Agree with you, the dbus interface can be applied for other type of PDRs. we can propose to add necessary dbus interface yaml files to https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Inventory/Source/PLDM",
+      "parentUuid": "b993593a_db4880f2",
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10a38251_76e972aa",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-20T07:33:44Z",
+      "side": 1,
+      "message": "Yes, it is possible to export state/effecter value to dbus as well. It might need another review to add new dbus interface to openbmc/phosphor-dbus-interfaces repo like sensor value.interface does (https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml)\n\nYes, it is a limitation to handle more than 256 sensors in a platform for IPMI. But it should not be a problem to mapping PLDM sensor to IPMI due to size of sensorID(8bits vs 16 bits) as long as the number of sensor is under the limitation of IPMI. It is because that the source of IPMI sensor is also from /xyz/openbmc_project/sensors/\u003csensor_type\u003e/sensor_name and the PLDM sensorID is not a property of dbus value.interface.",
+      "parentUuid": "eb09af3c_6f09679e",
+      "range": {
+        "startLine": 62,
+        "startChar": 22,
+        "endLine": 62,
+        "endChar": 77
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "724bc21d_e6cb02c2",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 3
