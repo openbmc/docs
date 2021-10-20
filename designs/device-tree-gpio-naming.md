@@ -104,6 +104,9 @@ non-faulted condition after AC power cycle when no standby power regulator fault
 condition is present. The status will reflect a standby regulator power faulted
 condition when an unexpected drop in standby power is detected.
 
+#### rtc-battery-voltage-read-enable
+Output pin that enables the ADC to read the board RTC battery voltage.
+
 ### Presence
 Pattern: `presence-*`
 
