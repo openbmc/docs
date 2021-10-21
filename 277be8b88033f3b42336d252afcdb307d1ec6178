@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "a52d1e91_baf0c2c8",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2021-10-21T01:21:48Z",
+      "side": 1,
+      "message": "Does this document also talk about showing these sensors in Redfish/bmcweb ?\n\nAlso, this document talks about only Numeric Sensors ? what about State Sensors ?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 42
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3286225f_caf6af7b",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2021-10-21T01:21:48Z",
+      "side": 1,
+      "message": "space. there are spaces everywhere in the document, please fix all of them",
+      "range": {
+        "startLine": 18,
+        "startChar": 73,
+        "endLine": 18,
+        "endChar": 74
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec404189_da30b87c",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 3
@@ -18,6 +64,29 @@
         "startChar": 0,
         "endLine": 42,
         "endChar": 36
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46c58bd5_6e76982f",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2021-10-21T01:21:48Z",
+      "side": 1,
+      "message": "this is a confusing statement.\n\nEntity Association PDR always has a container entity and one or more contained entities, and the structure does not have a terminus_handle/tid field. The Fru information would be present in the frurecord Table of the remote PLDM terminus, and the FRU Recordset identifiers would be coming from the fru recordSet PDR\u0027s of the remote terminus - what is the role of the Entity association PDR\u0027s here ?\n\nwhat is $instance here ? is it the pldm entity instance number of the entity ?\n\nMultiple PLDM entities from the same pldm terminus can have the same entity instance number. if that is the case, the dbus paths will not be unique.",
+      "range": {
+        "startLine": 53,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 66
       },
       "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -242,6 +311,53 @@
         "startChar": 0,
         "endLine": 80,
         "endChar": 74
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7cb5709_00e12eb6",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2021-10-21T01:21:48Z",
+      "side": 1,
+      "message": "\u003e Got you point. Try to keep pldmd as self-contained as possible.\n\u003e My initial though here is that reusing the probing feature which entity-manager provided. It could avoid rewrite similar code again like what entity-manager has implemented.\n\nRight now, There are already certain configuration files present in pldmd, that can create a sensor statically and attach it to a dbus property within BMC. refer : https://github.com/openbmc/pldm/blob/master/configurations/pdr/4.json",
+      "parentUuid": "38c2ee2d_b6d2a7d6",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 74
+      },
+      "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49284229_76c28b3f",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2021-10-21T01:21:48Z",
+      "side": 1,
+      "message": "Pooling is a computationally expensive operation. pldmd already supports receive async sensor events(platform event message), when a sensor on a remote PLDM terminus changes its state - it would /should send down a PLDM sensor event down to BMC - which could be enough to update the respective dbus objects.\n\nDSP0248 16.10 talks more about-  eventData format for sensorEvent.",
+      "range": {
+        "startLine": 100,
+        "startChar": 29,
+        "endLine": 102,
+        "endChar": 8
       },
       "revId": "277be8b88033f3b42336d252afcdb307d1ec6178",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
