@@ -71,6 +71,9 @@ can be requests for process or technical changes, or solicitations for the
 opinion of the TOF. When an issue is opened the TOF will respond to a proposal
 or a solicitation, or add it to the next TOF meeting agenda for TOF discussion.
 
+The process for creating proposals is found in
+[OTP-5](https://github.com/openbmc/docs/tree/master/tof/proposals/otp-5.md).
+
 Once an issue has a proposal, TOF members have 8 days to vote on the proposal
 in one of three ways: for, against, or “needs discussion”.  After 8 days, if
 the proposal has at least three votes for and no other votes, the proposal is
