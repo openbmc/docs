@@ -8,7 +8,7 @@ The TOF handles the processes around accepting new features into OpenBMC,
 creating new subprojects (git repositories), approving subproject maintainers,
 handling and enforcement of subproject maintainer issues, and many other
 technical leadership concerns related to OpenBMC.  This source of this document
-is in the OpenBMC documentation repository (https://github.com/openbmc/docs).
+is in the [OpenBMC documentation repository](https://github.com/openbmc/docs).
 The TOF updates and maintains this document, using the process documented
 within, and it can be considered authoritative unless directly overridden by
 the TSC.
@@ -64,14 +64,15 @@ Resignation of TOF members will be handled as an empty/reduced seat until the
 next voting session.
 
 ## Github issues
-The TOF tracks any ongoing decisions using GitHub issues (link to repo goes
-here). Issues can be opened by anyone, including TOF members themselves. Issues
+The TOF tracks any ongoing decisions using GitHub issues in the
+[TOF repository](https://github.com/openbmc/technical-oversight-forum/issues).
+Issues can be opened by anyone, including TOF members themselves. Issues
 can be requests for process or technical changes, or solicitations for the
 opinion of the TOF. When an issue is opened the TOF will respond to a proposal
 or a solicitation, or add it to the next TOF meeting agenda for TOF discussion.
 
 Once an issue has a proposal, TOF members have 8 days to vote on the proposal
-in one of three ways: for, against, or “needs discussion”*.  After 8 days, if
+in one of three ways: for, against, or “needs discussion”.  After 8 days, if
 the proposal has at least three votes for and no other votes, the proposal is
 approved.  Alternatively, if the proposal has at least three votes against and
 no other votes, the proposal is rejected and closed.  Any other vote count
