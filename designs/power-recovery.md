@@ -31,6 +31,12 @@ will be retained. On some systems, it's desired to utilize the automated
 power-on feature to turn chassis power back on as soon as the brownout condition
 ends.
 
+Some system owners may chose to attach an Uninterrupted Power Supply (UPS) to
+their system. A UPS continues to provide power to a system through a blackout
+or brownout scenario. A UPS has a limited amount of power so it's main
+purpose is to handle brief power interruptions or to allow for an orderly
+shutdown of the host firmware.
+
 The goal of this design document is to describe how OpenBMC firmware will
 deal with these questions.
 
@@ -109,6 +115,14 @@ BMC firmware must also be able to:
 - Tell the host firmware that it is a automated power-on recovery initiated
   boot when that firmware is what boots the system
 
+### Uninterruptible Power Supply (UPS)
+When a UPS is present and a blackout or brownout condition occurs, the BMC must:
+- Log an error to indicate the condition has occurred
+- If UPS power becomes low and if host firmware is running, notify the host
+  firmware of the condition, indicating a quick power off is required
+- Log an error if power loss to the entire system is imminent (i.e. a blackout
+  scenario where BMC will also lose power and UPS is about to run out of power)
+
 ## Proposed Design
 
 ### Automated Power-On Recovery
@@ -165,6 +179,17 @@ state-manager service which executes the automated power-on logic.
 phosphor-state-manager will ensure a system boot is not possible if
 `PowerStatus` is not set to `Good`.
 
+### Uninterruptible Power Supply (UPS)
+An application within the phosphor-power repository will monitor for UPS
+presence. If one is connected to the system then this application will monitor
+UPS status and if it sees power has been lost and the system is running on
+UPS battery power then it will monitor for the power remaining in the UPS and
+notify the host that a shutdown is required if needed. This application
+will also be responsible for logging an error indicating the UPS backup power
+has been switched too and set the `PowerStatus` field to indicate a `BrownOut`
+scenario is present when the system can no longer remain on.
+
+
 ## Alternatives Considered
 None, this is a pretty basic feature that does not have a lot of alternatives
 (other then just not doing it).
@@ -196,6 +221,9 @@ should be verified:
 - System can not be powered on while in brownout condition
 - System automatically powers back on when brownout condition ends (assuming a
   one-time or system auto power-on recovery policy of `AlwaysOn` or `Restore`)
+
+Plug a UPS into a system and ensure when power is cut to the system that an
+error is logged and the host is notified and allowed to power off.
 
 [pdi-restore]:https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Power/RestorePolicy.interface.yaml
 [state-mgr]: https://github.com/openbmc/phosphor-state-manager
