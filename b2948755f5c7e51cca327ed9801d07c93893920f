@@ -16,6 +16,24 @@
       "revId": "b2948755f5c7e51cca327ed9801d07c93893920f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01fa250f_f0520b5b",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-10-25T19:04:49Z",
+      "side": 1,
+      "message": "I was thinking the logic would be added to the standalone power recovery app to look at the reboot reason and not run if pinhole (https://github.com/openbmc/phosphor-state-manager/blob/master/discover_system_state.cpp).\n\nThis does bring up an interesting question though. If someone pinhole resets a system with the chassis power on, do they expect the firmware to turn off the chassis power when the BMC comes back up? Currently determineInitialState() would just see chassis power is on and leave it on.",
+      "parentUuid": "6c0792ee_e60e3050",
+      "revId": "b2948755f5c7e51cca327ed9801d07c93893920f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
