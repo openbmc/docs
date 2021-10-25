@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "715beda0_1f7aade6",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-25T07:03:02Z",
+      "side": 1,
+      "message": "I will remove the description related to FRU.\n\nThe exposing inventory should be helpful for debugging.\nAnd the properties change signal of the inventory D-bus objects can also be used to trigger pldm sensor monitor to rescan the pldm sensors. mctp service -(EID routing table update)-\u003epldmd-(update inventory)-\u003epldmd-(rescan sensor)-\u003e...\nBut \"update inventory\" and \"rescan sensor\" are all done by pldmd, exposing to D-Bus might be unnecessary except separating the task of \"rescan sensor\" to another service.",
+      "parentUuid": "a4cedf72_891c0a62",
+      "revId": "734312a0af7ba2d18acf8eb1e7fe06f1d2b3d3ef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "75a69aa3_c9916b99",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2021-10-22T15:57:37Z",
       "side": 1,
       "message": "I don\u0027t think pldmd has to expose any of this on D-Bus - pldmd is already the producer here. It can implement Sensor.Value for the sensors.",
+      "revId": "734312a0af7ba2d18acf8eb1e7fe06f1d2b3d3ef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6fded59_5ea3e516",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-25T07:03:02Z",
+      "side": 1,
+      "message": "To expose the PDR to D-bus might be useful for debugging. Developer can dump or overwrite the PDR setting by busctl command easily. However the cost of exposing PDRs to D-Bus might be too expensive for just debugging purpose. I will remove it in next version.",
+      "parentUuid": "75a69aa3_c9916b99",
       "revId": "734312a0af7ba2d18acf8eb1e7fe06f1d2b3d3ef",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "67b4ad3c_304e75f6",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-25T07:03:02Z",
+      "side": 1,
+      "message": "Will update the design in next version",
+      "parentUuid": "9a0b61d3_0b6e4537",
+      "revId": "734312a0af7ba2d18acf8eb1e7fe06f1d2b3d3ef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a32cfcdf_6f57761b",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2021-10-22T15:57:37Z",
       "side": 1,
       "message": "I believe there was a concern from Sumanth about not getting PLDM specifics into EM. Need to elaborate on what config will be in EM and what will be in PLDM.",
+      "revId": "734312a0af7ba2d18acf8eb1e7fe06f1d2b3d3ef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87b2b2cd_a2837b71",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-25T07:03:02Z",
+      "side": 1,
+      "message": "Understand the concern. The static sensor will be defined by PLDM\u0027s config file and implement a    similar function like Entity-Manager probe() function does for pldmd to be able check system config by matching a specific property of giving D-Bus interface. The static sensor defined by PLDM config file only be added when system config is matched.",
+      "parentUuid": "a32cfcdf_6f57761b",
       "revId": "734312a0af7ba2d18acf8eb1e7fe06f1d2b3d3ef",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "148a359a_ff8a84dd",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-25T07:03:02Z",
+      "side": 1,
+      "message": "As far as I know, the object path of Sensor.Value insterface is also a parameter for bmcweb to get sensor name and type\nhttps://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/sensors.hpp#L2577",
+      "parentUuid": "af3e2025_5560dd2c",
+      "revId": "734312a0af7ba2d18acf8eb1e7fe06f1d2b3d3ef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c9cb3abf_617ba45f",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 4
@@ -98,6 +188,24 @@
       "writtenOn": "2021-10-22T15:57:37Z",
       "side": 1,
       "message": "Can you add some more detail here?",
+      "revId": "734312a0af7ba2d18acf8eb1e7fe06f1d2b3d3ef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "926fdd37_5dbcbc33",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-10-25T07:03:02Z",
+      "side": 1,
+      "message": "Will add the detail and merge the design doc to docs/pldm-stack.md",
+      "parentUuid": "c9cb3abf_617ba45f",
       "revId": "734312a0af7ba2d18acf8eb1e7fe06f1d2b3d3ef",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
