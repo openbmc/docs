@@ -39,7 +39,7 @@ emerge.
 
 ## Proposed Design
 Below are the standard categories. The "Pattern" in each section describes the
-naming convention and then the "Defined" portion lists the common GPIO names to
+naming convention and then the sub bullets list the common GPIO names to
 be used (when available on an OpenBMC system). This naming convention must be
 followed for all common GPIO's.
 
@@ -50,22 +50,18 @@ this document. This document must be updated as new common GPIO's are added.
 ### LEDs
 Pattern: `led-*`
 
-Defined:
-- led-fault
-- led-identify
-- led-power
-- led-sys-boot-status
-- led-attention
-- led-hdd-fault
-- led-rear-fault
-- led-rear-power
-- led-rear-id
+#### led-fault
+#### led-identify
+#### led-power
+#### led-sys-boot-status
+#### led-attention
+#### led-hdd-fault
+#### led-rear-fault
+#### led-rear-power
+#### led-rear-id
 
 ### Power and Regulators
 Pattern: `power-*`, `regulator-*`
-
-Defined:
-#### power-button
 
 #### power-chassis-control
 Set to initiate power-on or power-off of the chassis.
@@ -93,22 +89,16 @@ condition when an unexpected drop in standby power is detected.
 ### Buttons
 Pattern: `*-button`
 
-Defined:
-- power-button
+#### power-button
 
 ### Presence
 Pattern: `presence-*`
 
-Defined:
-- presence-ps0
-- presence-ps1
-- ...
-- presence-ps`<N>`
+#### presence-ps0, presence-ps1, ..., presence-ps\<N>
 
 ### Secure Boot
 
 #### bmc-secure-boot
-
 Input pin that indicates that the BMC is configured to boot with security
 protections enforced.
 
@@ -118,7 +108,6 @@ Pulled up by default (secure). Placing the jumper will pull the pin down
 ### Special
 These are special case and/or grandfathered in pin names.
 
-Defined:
 #### air-water
 Indicates whether system is air or water cooled
 
@@ -133,9 +122,12 @@ Below are GPIO names specific to the POWER processor based servers.
 #### Special
 These are special case and/or grandfathered in pin names.
 
-Defined:
-- cfam-reset
-- checkstop
+##### cfam-reset
+Utilized to issue a processor logic reset to a IBM POWER processor.
+
+##### checkstop
+Utilized to indicate a IBM POWER processor has entered an unrecoverable error
+state.
 
 ## Alternatives Considered
 - Continue to hard code a config file per system type that has the
