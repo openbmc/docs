@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa753b1d_c22a5a78",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-10-28T15:43:23Z",
+      "side": 1,
+      "message": "I know this text wasn\u0027t added with these UPS changes, but one thing we need to be careful of is PLDs can occur multiple times in a short time-frame.  We will have \"minimum off delays\" in the power off/on sequencing to help avoid thrashing in general, but the scenario I\u0027m concerned about is:\n\n1. System powered on, APR enabled\u0026armed, blackout occurs.\n2. AC returns, BMC comes out of reset, sees APR enabled\u0026armed and that the system used to be powered on before the BMC reset, so it starts to APR based on the policy.\n3. Before the system makes it all the way back up, another blackout occurs.\n4. AC returns, BMC comes out of reset, it should still try to APR again since it was trying to before the 2nd PLD, even though it now looks like the previous state wasn\u0027t powered on.\n\nI\u0027m not sure in what all scenarios the \"one-time\" policy will be used, so maybe that couldn\u0027t prevent the APR from happening in this double-PLD case, but the general APR design should handle this.  Might be a good test to add in the Testing section below too.",
+      "revId": "03f762526ac685d08f5841c38871d962221761df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f2a6046_e26bfd31",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-10-28T15:43:23Z",
+      "side": 1,
+      "message": "Good info to add here. I\u0027d also add this requirement:\n- If host firmware is running, notify the host firmware of this utility failure condition\n\n(There are 2 important bits in the UPS status - UPS utility fail, and UPS battery low.  We need to log an error and notify the host for either of those conditions. You have mentioned the 2nd condition below.)",
+      "revId": "03f762526ac685d08f5841c38871d962221761df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14872821_d094e6ef",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-10-28T15:43:23Z",
+      "side": 1,
+      "message": "I\u0027d say \"If the UPS battery power becomes low and if host firmware is running,\" ...",
+      "revId": "03f762526ac685d08f5841c38871d962221761df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e023984_d94624d0",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-10-28T15:43:23Z",
+      "side": 1,
+      "message": "I\u0027d say \"Log an error if the UPS battery power becomes low and a power loss to the entire system is imminent\"...",
+      "revId": "03f762526ac685d08f5841c38871d962221761df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d07ad702_2712a24c",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-10-28T15:43:23Z",
+      "side": 1,
+      "message": "couple comments:\n\n(nit) \"too\"/\"to\"\n\nTo be accurate, may as well mention the 2 scenarios (UPS utility fail, and UPS battery low) in both cases we\u0027d log an error and notify the host hw.\n\nJust as the boot would be held off if we\u0027re in a Brownout, we should also hold off the boot if either UPS uf or UPS bl is on.  I agree we could just overload the \u0027BrownOut\u0027 setting in \u0027PowerStatus\u0027 for all 3 cases, alternatively we could different indications for each (such as \u0027BrownOut\u0027, \u0027UPSUtilityFail\u0027, \u0027UPSBatteryLow\u0027) in case we need to make a distinction in the future.  I don\u0027t have a strong opinion on this, whatever makes sense to the community (others on the review) is fine with me.\n\nOne other thing to consider, could be 2 different apps setting the \u0027PowerStatus\u0027 field, so potential race condition concerns.  As the UPS drains and the power supplies start to report a brownout, it could be problematic if for instance the phosphor-psu-monitor app set the field to \u0027Brownout\u0027, but then the UPS bits cleared so the UPS app set the field to \u0027Good\u0027, even though the ps still saw the brownout.  One could argue that would be a bug in the UPS firmware, but in general on BMC, do we allow 2 different apps to set a single DBus property?  Or is that frowned upon, so we would need two \"PowerStatus\" fields, and have phosphor-state-manager logically AND them...",
+      "revId": "03f762526ac685d08f5841c38871d962221761df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
