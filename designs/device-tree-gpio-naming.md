@@ -91,6 +91,12 @@ Pattern: `*-button`
 
 #### power-button
 
+### Indicators
+Pattern: `*-indicator`
+
+#### pin-hole-reset-indicator
+This GPIO will indicate that a pin hole reset of the BMC has been triggered.
+
 ### Presence
 Pattern: `presence-*`
 
