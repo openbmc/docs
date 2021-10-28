@@ -87,6 +87,30 @@
       "revId": "679de98955bc77d22b506cd79eac32e411ffe932",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d363822_c83e589c",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-10-28T13:54:01Z",
+      "side": 1,
+      "message": "\u003e It is the RTC battery, yes.\n\nPlease clarify in the commit, not in comments in Gerrit.\n\n\u003e Or not so slowly, I thought it weeks - was within a couple of months.\n\nIt depends on your hardware.  Aspeed has a reference design that doesn\u0027t drain the battery that fast if you aren\u0027t actively monitoring it.  Our implementation samples the battery ADC at a pretty low rate (about once an hour) and we don\u0027t have trouble with them wearing out that fast.\n\nThere was originally a bug in the Aspeed reference design that was missing some circuitry needed to prevent the ADC from having too much parasitic draining, but that isn\u0027t controlled by a GPIO in their reference design.",
+      "parentUuid": "ed2c404d_3aa1fed0",
+      "range": {
+        "startLine": 126,
+        "startChar": 44,
+        "endLine": 126,
+        "endChar": 65
+      },
+      "revId": "679de98955bc77d22b506cd79eac32e411ffe932",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
