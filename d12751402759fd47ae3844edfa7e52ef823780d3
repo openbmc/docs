@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d35e16f_7ff2bc05",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-10-28T16:16:02Z",
+      "side": 1,
+      "message": "I\u0027m struggling a bit with this one. If we put it under the xyz.openbmc_project.State.Chassis interface, then we\u0027d have to have the phosphor-state-manager chassis application host this. So we\u0027d have it hosted by state-manager but controlled by phosphor-psu-monitor? It feels like it fits well here but it seems weird that some other app will be setting the property. Should we host this under a separate interface? xyz.openbmc_project.Status.Chassis maybe? Or should we just say state-manager hosts it and leaves Undefined and it\u0027s up to psu-monitor to set?",
+      "range": {
+        "startLine": 147,
+        "startChar": 41,
+        "endLine": 147,
+        "endChar": 74
+      },
+      "revId": "d12751402759fd47ae3844edfa7e52ef823780d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
