@@ -91,6 +91,23 @@ Pattern: `*-button`
 
 #### power-button
 
+### Reset Cause
+These are GPIOs that provide more detail on the reason for a BMC reset. BMC
+hardware generally provides some information on a BMC reboot, like a EXTRST
+(i.e. a BMC reset was reset by some external source). At times though,
+firmware needs more details on the cause of a reset. Hardware can be configured
+to latch an event into a GPIO for firmware to then utilize for different
+software logic.
+
+Pattern: `reset-cause-*`
+
+#### reset-cause-pinhole
+The pinhole reset cause will be utilized by BMC firmware to know when it
+has been reset due to a user initiated pinhole reset. This is commonly done in
+error scenarios where the BMC is hanging or otherwise unresponsive. Note that
+this GPIO is not utilized to cause the actual reset, it is a GPIO that can be
+read after the BMC reset to know the reason for the reboot was a pinhole reset.
+
 ### Presence
 Pattern: `presence-*`
 
