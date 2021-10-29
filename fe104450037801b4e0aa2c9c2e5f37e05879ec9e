@@ -852,6 +852,30 @@
     },
     {
       "key": {
+        "uuid": "5abb9e33_9925a7c3",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2021-10-29T22:53:02Z",
+      "side": 1,
+      "message": "+1 Ed brings up good points on this.\nWhat about the Revision interface?\n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Decorator/Revision.interface.yaml",
+      "parentUuid": "1e3cb822_b4080415",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 26
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a1780231_bfed1a20",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 3
@@ -958,6 +982,30 @@
       "side": 1,
       "message": "\u003e The most relevant interface I can find is the \"xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml\", but that one only supports a boolean variable. \n\nThe point here is that \"upgrading firmware\" \"ready\" and \"under debug\" are not states that are only present on CMIS interfaces, so they should be available through common interfaces, to ensure that we\u0027re reusing our interfaces where possible.\n\n\u003e \n\u003e The purpose of this enumeration is to provide finer granularities for module states. For example, uninitialized/firmware upgrade/debugging all can make the module \"unavailable\", but they have significant meaning to other systems (human intervention or not). Can we enrich the OperationalStatus interface to store those different state?\n\nThere\u0027s already discussions happening on this topic.  I would recommend removing status from this interface for the moment, and jumping in on those discussions in the other commit.\n\n\u003e Or should we merge this module-level status with the below lane-level staus?\n\nI don\u0027t think so, but I\u0027m not sure I understand the question.\n\n\u003e \n\u003e @Ed Tanous, @Patrick Williams",
       "parentUuid": "28f8451f_fa58cb3a",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 200
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c94cdfe_b7e5c826",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2021-10-29T22:53:02Z",
+      "side": 1,
+      "message": "re \"Status\" discussion.. seems like there are two\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/47756/6/yaml/xyz/openbmc_project/State/Decorator/Status.interface.yaml\n\nwhich aims to introduce a new decorator to map one-to-one with Redfish and\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/44711\n\nCouldn\u0027t one of these be used if they\u0027re proposed?\nIf the firmware is upgrading then you\u0027d see\n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml\n\nActivation\u003dActivating?",
+      "parentUuid": "e738277b_54d0fd9c",
       "range": {
         "startLine": 65,
         "startChar": 0,
