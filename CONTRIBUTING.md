@@ -43,8 +43,8 @@ Starting out
 Before you make a contribution, execute one of the OpenBMC Contributor License
 Agreements, _One time only_:
 
-* [Individual CLA](https://github.com/openbmc/openbmc/files/1860742/OpenBMC.ICLA.pdf)
-* [Corporate CLA](https://github.com/openbmc/openbmc/files/1860741/OpenBMC.CCLA.pdf)
+* [Individual CLA](https://drive.google.com/file/d/1k3fc7JPgzKdItEfyIoLxMCVbPUhTwooY)
+* [Corporate CLA](https://drive.google.com/file/d/1d-2M8ng_Dl2j1odsvZ8o1QHAdHB-pNSH)
 
 If you work for someone, consider asking them to execute the corporate CLA.
 This allows other contributors that work for your employer to skip the CLA

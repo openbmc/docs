@@ -43,6 +43,6 @@ process.
 Ensure that accepted changes actually merge into OpenBMC repositories.
 
 [1]: https://drive.google.com/drive/folders/1Ooi0RdTcaOWF1DWFJUAJDdN7tRKde7Nl
-[2]: https://github.com/openbmc/openbmc/files/1860741/OpenBMC.CCLA.pdf
-[3]: https://github.com/openbmc/openbmc/files/1860742/OpenBMC.ICLA.pdf
+[2]: https://drive.google.com/file/d/1d-2M8ng_Dl2j1odsvZ8o1QHAdHB-pNSH
+[3]: https://drive.google.com/file/d/1k3fc7JPgzKdItEfyIoLxMCVbPUhTwooY
 [4]: https://en.wikipedia.org/wiki/Free_and_open-source_software
