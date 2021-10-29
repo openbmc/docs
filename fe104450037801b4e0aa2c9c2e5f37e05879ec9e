@@ -569,6 +569,30 @@
     },
     {
       "key": {
+        "uuid": "150eeec4_a4a37893",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-29T22:21:03Z",
+      "side": 1,
+      "message": "I\u0027m not quite following here.  this is defined as an int, but has empty string as a default?  That\u0027s incorrect.\n\nThe table you mention has a description of \"Identifier - Type of Serial Module - See SFF-8024. \"\n\nFollowing up with SFF-8024, table 4-3 shows a list of identifiers that are generally used and would be put into the enum.   In general, we try to keep the dbus interfaces self-describing, and do our best to not tie them to a specification.  As you\u0027ve defined it, I would have to reference SFF-8024 for the valid types that this int could produce, which would be counter to the end state of having this interface be self describing, even if the enum values were made to match the spec.",
+      "parentUuid": "d2fdb3f3_555d3bc7",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 15
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "15fdc23d_1f49b651",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 3
@@ -804,6 +828,30 @@
     },
     {
       "key": {
+        "uuid": "1e3cb822_b4080415",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-29T22:21:03Z",
+      "side": 1,
+      "message": "Considering that the spec also has \"A value of all zero in the field indicates that the vendor Rev is unspecified.\"  That\u0027s another good reason to rely on another interface.",
+      "parentUuid": "318413d2_62d58166",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 26
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a1780231_bfed1a20",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 3
@@ -886,6 +934,30 @@
       "side": 1,
       "message": "The most relevant interface I can find is the \"xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml\", but that one only supports a boolean variable. \n\nThe purpose of this enumeration is to provide finer granularities for module states. For example, uninitialized/firmware upgrade/debugging all can make the module \"unavailable\", but they have significant meaning to other systems (human intervention or not). Can we enrich the OperationalStatus interface to store those different state? Or should we merge this module-level status with the below lane-level staus?\n\n@Ed Tanous, @Patrick Williams",
       "parentUuid": "59a943df_56376a4d",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 200
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e738277b_54d0fd9c",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-29T22:21:03Z",
+      "side": 1,
+      "message": "\u003e The most relevant interface I can find is the \"xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml\", but that one only supports a boolean variable. \n\nThe point here is that \"upgrading firmware\" \"ready\" and \"under debug\" are not states that are only present on CMIS interfaces, so they should be available through common interfaces, to ensure that we\u0027re reusing our interfaces where possible.\n\n\u003e \n\u003e The purpose of this enumeration is to provide finer granularities for module states. For example, uninitialized/firmware upgrade/debugging all can make the module \"unavailable\", but they have significant meaning to other systems (human intervention or not). Can we enrich the OperationalStatus interface to store those different state?\n\nThere\u0027s already discussions happening on this topic.  I would recommend removing status from this interface for the moment, and jumping in on those discussions in the other commit.\n\n\u003e Or should we merge this module-level status with the below lane-level staus?\n\nI don\u0027t think so, but I\u0027m not sure I understand the question.\n\n\u003e \n\u003e @Ed Tanous, @Patrick Williams",
+      "parentUuid": "28f8451f_fa58cb3a",
       "range": {
         "startLine": 65,
         "startChar": 0,
@@ -1128,6 +1200,30 @@
       "side": 1,
       "message": "Hi, Patrick and Ed,\n\nThanks very much for keeping an eye on this! \n\nI agree that we should re-use the existing \"xyz/openbmc_project/Sensor/Value.interface.yaml\" for temperature and supply voltage. \n\nAfter taking another look at the CMIS register maps, I realize that my last version was inaccurate about the Tx/Rx power part: actually all the Tx/Rx power/loss-of-signal/loss-of-lock are per-lane sensor/flag. They are documented in CMIS-4.0 Section 8.8.2 Lane-Specific Flags and 8.8.3 Lane-Specific Monitors. \n\nAnd Ed has a very good point that different type of module may have different number of lanes. Is an array of struct a best fit for this:\n\nstruct PerLaneStatus {\n  int lane_id;\n  double tx_power;\n  double rx_power;\n  bool tx_loss_of_signal;\n  bool rx_loss_of_signal;\n  bool tx_loss_of_lock;\n  boll rx_loss_of_lock;\n}\n\nI also updated the below interface for this.",
       "parentUuid": "689dce2a_894ed324",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 146
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32cb0fb7_28dd46bd",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-29T22:21:03Z",
+      "side": 1,
+      "message": "\u003e Hi, Patrick and Ed,\n\u003e \n\u003e Thanks very much for keeping an eye on this! \n\u003e \n\u003e I agree that we should re-use the existing \"xyz/openbmc_project/Sensor/Value.interface.yaml\" for temperature and supply voltage. \n\u003e \n\u003e After taking another look at the CMIS register maps, I realize that my last version was inaccurate about the Tx/Rx power part: actually all the Tx/Rx power/loss-of-signal/loss-of-lock are per-lane sensor/flag. They are documented in CMIS-4.0 Section 8.8.2 Lane-Specific Flags and 8.8.3 Lane-Specific Monitors. \n\u003e \n\u003e And Ed has a very good point that different type of module may have different number of lanes. Is an array of struct a best fit for this:\n\u003e \n\u003e struct PerLaneStatus {\n\u003e   int lane_id;\n\u003e   double tx_power;\n\u003e   double rx_power;\nIMO still need to be sensors, with an association back to the module.\n\n\n\u003e   bool tx_loss_of_signal;\n\u003e   bool rx_loss_of_signal;\n\u003e   bool tx_loss_of_lock;\n\u003e   boll rx_loss_of_lock;\n\u003e }\n\u003e \n\nI wonder if we just need a \"LaneStatus\" schema.  In theory a CMIS module could have zero lanes, right?\n\n\u003e I also updated the below interface for this.",
+      "parentUuid": "92b3da9e_a41f9c70",
       "range": {
         "startLine": 92,
         "startChar": 0,
@@ -1396,6 +1492,30 @@
       "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97cd6c86_5890f88a",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-29T22:21:03Z",
+      "side": 1,
+      "message": "GPIO pins to the BMC isn\u0027t always the most common though.",
+      "parentUuid": "1c83f082_27167df9",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 210
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
