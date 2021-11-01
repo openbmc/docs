@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6c103687_12300440",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-01T20:24:02Z",
+      "side": 1,
+      "message": "I think we\u0027re ok here. APR policy has two options in this area, AlwaysOn and Restore. The AlwaysOn is simple, in this scenario, we just keep trying to power on no matter what. The \"Restore\" logic is to just look at the last requested state for the system, and set it again, so there\u0027s no validation that power is on. I\u0027ll add this test case to the first commit.\n\nThe one-time scenarios are around code update. So it\u0027s used for inband to make sure the system powers back on automatically. It\u0027s also being talked about being used for side switch (switch firmware flash sides on power on and auto power on during next BMC reboot). You would lose your one-time setting after the first try. It sounds like your requirement here is that we can\u0027t clear the one-time until the system has successfully powered on or maybe Host firmware has booted?",
+      "parentUuid": "aa753b1d_c22a5a78",
+      "revId": "03f762526ac685d08f5841c38871d962221761df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6f2a6046_e26bfd31",
         "filename": "designs/power-recovery.md",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "03f762526ac685d08f5841c38871d962221761df",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff2917c7_7205d361",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-01T20:24:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f2a6046_e26bfd31",
+      "revId": "03f762526ac685d08f5841c38871d962221761df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "73bc2dc7_a5d23901",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-01T20:24:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14872821_d094e6ef",
+      "revId": "03f762526ac685d08f5841c38871d962221761df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e023984_d94624d0",
         "filename": "designs/power-recovery.md",
         "patchSetId": 2
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "fb51023c_897afb92",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-01T20:24:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e023984_d94624d0",
+      "revId": "03f762526ac685d08f5841c38871d962221761df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d07ad702_2712a24c",
         "filename": "designs/power-recovery.md",
         "patchSetId": 2
@@ -81,6 +153,24 @@
       "writtenOn": "2021-10-28T15:43:23Z",
       "side": 1,
       "message": "couple comments:\n\n(nit) \"too\"/\"to\"\n\nTo be accurate, may as well mention the 2 scenarios (UPS utility fail, and UPS battery low) in both cases we\u0027d log an error and notify the host hw.\n\nJust as the boot would be held off if we\u0027re in a Brownout, we should also hold off the boot if either UPS uf or UPS bl is on.  I agree we could just overload the \u0027BrownOut\u0027 setting in \u0027PowerStatus\u0027 for all 3 cases, alternatively we could different indications for each (such as \u0027BrownOut\u0027, \u0027UPSUtilityFail\u0027, \u0027UPSBatteryLow\u0027) in case we need to make a distinction in the future.  I don\u0027t have a strong opinion on this, whatever makes sense to the community (others on the review) is fine with me.\n\nOne other thing to consider, could be 2 different apps setting the \u0027PowerStatus\u0027 field, so potential race condition concerns.  As the UPS drains and the power supplies start to report a brownout, it could be problematic if for instance the phosphor-psu-monitor app set the field to \u0027Brownout\u0027, but then the UPS bits cleared so the UPS app set the field to \u0027Good\u0027, even though the ps still saw the brownout.  One could argue that would be a bug in the UPS firmware, but in general on BMC, do we allow 2 different apps to set a single DBus property?  Or is that frowned upon, so we would need two \"PowerStatus\" fields, and have phosphor-state-manager logically AND them...",
+      "revId": "03f762526ac685d08f5841c38871d962221761df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d56f6fe4_b5ce9c2b",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-01T20:24:02Z",
+      "side": 1,
+      "message": "\u003e (nit) \"too\"/\"to\"\n\nFixed\n\n\u003e Just as the boot would be held off if we\u0027re in a Brownout, we should also hold off the boot if either UPS uf or UPS bl is on\n\nAdded requirement and note on this.\n\n\u003e I agree we could just overload the \u0027BrownOut\u0027 setting in \u0027PowerStatus\u0027 for all 3 cases\n\nI think this, and your discussion about how two different apps could be looking at 2 different things that feed into this is making me think we may need each app to host it\u0027s own property and then state-manger can \u0026 them all when it\u0027s property is read. Lets discuss a bit offline.",
+      "parentUuid": "d07ad702_2712a24c",
       "revId": "03f762526ac685d08f5841c38871d962221761df",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
