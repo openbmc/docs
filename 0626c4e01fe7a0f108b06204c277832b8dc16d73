@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c98fbbf_d938fef9",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2021-11-02T09:51:18Z",
+      "side": 1,
+      "message": "Section 12.12 in DSP0236_1.3.0 define \"Get Routing Table Entries\".\n\"This command can be used to request an MCTP bridge or bus owner to return data corresponding to its present routing table entries.\"\n\nGetRoutingTableEntries is used to communicate between mctp devices in mctp layer but not between pldm layer and mctp layer.\n\nMoreover, the current mctp-mux daemon just transfers/receives the pldm commands to/from destination, it does not support any mechanism to response routing table to pldm layer.\n\nI think we can use configuration file in this case. Mctp service will update the routing table to a configuration file. When there is a changed in the file PLDMd will access the file to retrieve the routing table.",
+      "revId": "0626c4e01fe7a0f108b06204c277832b8dc16d73",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3871165c_4e7f60c2",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2021-11-02T09:51:18Z",
+      "side": 1,
+      "message": "Currently, I saw that these json files are only used by pldm responder to response the PDRs to requester. I don\u0027t think these file is used to configure the terminus PDRs (Example the host).",
+      "revId": "0626c4e01fe7a0f108b06204c277832b8dc16d73",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
