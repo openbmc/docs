@@ -47,6 +47,12 @@ This list below includes all common GPIO's within OpenBMC. Any OpenBMC
 system which provides one of the below GPIO's must name it as listed in
 this document. This document must be updated as new common GPIO's are added.
 
+### Battery
+
+#### battery-voltage-read-enable
+
+Set to allow the battery voltage to be read.
+
 ### LEDs
 Pattern: `led-*`
 
