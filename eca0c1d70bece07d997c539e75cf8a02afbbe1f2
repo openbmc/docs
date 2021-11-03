@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7f85fc94_2d8ce161",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-03T15:05:08Z",
+      "side": 1,
+      "message": "This is still unresolved as of PS5.",
+      "parentUuid": "518d6b88_933ffc20",
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdd1f885_58981f96",
         "filename": "designs/Design-DiscreteSensorFramework.md",
         "patchSetId": 1
@@ -380,6 +398,144 @@
       "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91faeca8_1a190f5e",
+        "filename": "designs/discrete-sensor-framework.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-03T15:05:08Z",
+      "side": 1,
+      "message": "I don\u0027t see any other file that starts with \"Design -\" in the title.\n\nPlease use markdown formatting of section headers as the other templates do.",
+      "parentUuid": "41f73377_f7267619",
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "737c6773_6a2a2e11",
+        "filename": "designs/discrete-sensor-framework.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-03T15:05:08Z",
+      "side": 1,
+      "message": "Having something in a spec somewhere doesn\u0027t mean this is how we should implement it internally.  We purposefully did not create discrete sensors as a dbus concept, but instead chose to make *specific* dbus objects to encapsulate the concept attempting to be exposed by the sensor.  \n\nFor example, see \u0027gpio-based-cable-presence.md\u0027 as a design which was added recently.  The cable presence IS exposed as a Discrete Sensor over IPMI, but we do not have a generic \"Discrete Sensor\" object in dbus.\n\nThe problem with a generic discrete sensor is the same problem with why we try to limit free-form strings in dbus properties: it is entirely unmaintainable.  Two different systems will come up with different names of the \"discrete sensor\" and you\u0027ll end up with system-specific code that tries to match up on some arbitrary (and undocumented) sensor name.\n\nUsing well-formed dbus objects/interfaces, we can use Mapper to find \"all the objects of type X\" and translate them nicely into a specific kind of IPMI discrete sensor, just like we are doing for the cable detection.\n\nAt an architecture level, this proposal seems to conflict with our overall design.",
+      "parentUuid": "738b7c9a_f9c5db60",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 19
+      },
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b798a63_28881c4f",
+        "filename": "designs/discrete-sensor-framework.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-03T15:05:08Z",
+      "side": 1,
+      "message": "In many cases when someone leaves a comment on your design document it means that the document is likely not clear.  Rather than responding in Gerrit (or in addition to responding in Gerrit), you need to update the document.\n\nYour response here has not improved my understanding of what \"platform porting developer to invoke\" means.",
+      "parentUuid": "5bd4b3ae_2cd5f7f0",
+      "range": {
+        "startLine": 16,
+        "startChar": 58,
+        "endLine": 17,
+        "endChar": 20
+      },
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c60ea5ca_83acc2fe",
+        "filename": "designs/discrete-sensor-framework.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-03T15:05:08Z",
+      "side": 1,
+      "message": "Needs documentation.",
+      "parentUuid": "2c189b45_10fa641f",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 18,
+        "endChar": 29
+      },
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8b1d875_61bb726f",
+        "filename": "designs/discrete-sensor-framework.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-03T15:05:08Z",
+      "side": 1,
+      "message": "Needs documentation.",
+      "parentUuid": "7f4da428_9ea49444",
+      "range": {
+        "startLine": 19,
+        "startChar": 3,
+        "endLine": 19,
+        "endChar": 39
+      },
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a30fe3c7_a1d61feb",
+        "filename": "designs/discrete-sensor-framework.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-03T15:05:08Z",
+      "side": 1,
+      "message": "Again, spell out the why *in* your document.  If you have an alternative that you didn\u0027t choose, you have reasons why you didn\u0027t choose it, so others need to be able to read those.  We can\u0027t guess at the thoughts in your head.",
+      "parentUuid": "30498d07_94749ddd",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 35
+      },
+      "revId": "eca0c1d70bece07d997c539e75cf8a02afbbe1f2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
