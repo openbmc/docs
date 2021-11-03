@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3f17cce5_f447139c",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-03T18:44:48Z",
+      "side": 1,
+      "message": "It was noted elsewhere that pin-hole is actually just one word, pinhole so clean up the name and doc for this.",
+      "range": {
+        "startLine": 97,
+        "startChar": 5,
+        "endLine": 97,
+        "endChar": 13
+      },
+      "revId": "f0dabe9a33267b48ca23dee341b22106a9fcbb21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3858c181_49e492d1",
         "filename": "designs/device-tree-gpio-naming.md",
         "patchSetId": 2
@@ -39,6 +62,48 @@
       "revId": "f0dabe9a33267b48ca23dee341b22106a9fcbb21",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2a5fed5_822f84b7",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-03T18:44:48Z",
+      "side": 1,
+      "message": "I see a couple of issues with this. \n1) This gpio is not what you use to cause a reset, it\u0027s an indication that a reset occurred (hence my \"indicator\" pattern). Part of Patricks confusion below is around this, I need to update the documentation here.\n2) The other resets do not follow a standard naming pattern (other then *reset*)\n3) They are very specific to POWER systems (at least the cfam-reset) which is why having them in the \"Special\" section seems better to me.",
+      "parentUuid": "3858c181_49e492d1",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 76
+      },
+      "revId": "f0dabe9a33267b48ca23dee341b22106a9fcbb21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb2e8af0_b7a01de3",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-03T18:44:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca61693b_cb8a1630",
+      "revId": "f0dabe9a33267b48ca23dee341b22106a9fcbb21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
