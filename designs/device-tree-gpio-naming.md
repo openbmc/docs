@@ -24,8 +24,8 @@ consistent.
 
 ## Background and References
 The kernel [documentation][2] has a good summary of the GPIO subsystem. The
-specific field used to name the GPIO's in the DTS is `gpio-line-names`.
-This [patch][3] shows an example of naming the GPIO's for a system.
+specific field used to name the GPIOs in the DTS is `gpio-line-names`.
+This [patch][3] shows an example of naming the GPIOs for a system.
 
 GPIOs are used for arbitrary things. It's pretty hard to have a coherent naming
 scheme in the face of a universe of potential use-cases.
@@ -35,17 +35,17 @@ possibilities quite a bit and allows the possibility of a naming scheme to
 emerge.
 
 ## Requirements
-- Ensure common function GPIO's within OpenBMC use the same naming convention
+- Ensure common function GPIOs within OpenBMC use the same naming convention
 
 ## Proposed Design
 Below are the standard categories. The "Pattern" in each section describes the
 naming convention and then the "Defined" portion lists the common GPIO names to
 be used (when available on an OpenBMC system). This naming convention must be
-followed for all common GPIO's.
+followed for all common GPIOs.
 
-This list below includes all common GPIO's within OpenBMC. Any OpenBMC
-system which provides one of the below GPIO's must name it as listed in
-this document. This document must be updated as new common GPIO's are added.
+This list below includes all common GPIOs within OpenBMC. Any OpenBMC
+system which provides one of the below GPIOs must name it as listed in
+this document. This document must be updated as new common GPIOs are added.
 
 ### LEDs
 Pattern: `led-*`
@@ -127,7 +127,7 @@ The software records the state of this GPIO and checks upon reboot if the state
 has changed since the last reboot. If it has, it indicates that a factory reset
 should be performed.
 
-### POWER Specific GPIO's
+### POWER Specific GPIOs
 Below are GPIO names specific to the POWER processor based servers.
 
 #### Special
