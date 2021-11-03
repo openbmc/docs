@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "eef69810_241ff6fa",
+        "filename": "designs/pldm-sensor.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2021-11-03T07:36:26Z",
+      "side": 1,
+      "message": "I found that both of the mctpd of in-kernel MCTP[1] and intel-BMC pmci[2] have implemented the D-Bus interface for MCTP endpoint enumeration(https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/MCTP). So I will update the description to use this D-Bus interface for getting EID list instead.\n\nBecause the mctp-demux-daemon doesn\u0027t implement this D-bus interface, I would like to follow your suggestion to have a configuration file for listing EIDs.\n\n[1]in-kernel MCTP(https://github.com/CodeConstruct/mctp)\n[2]intel-BMC mctpd(https://github.com/Intel-BMC/pmci/tree/master/mctpd)",
+      "parentUuid": "d2e907d9_a89e3a66",
+      "revId": "0626c4e01fe7a0f108b06204c277832b8dc16d73",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3871165c_4e7f60c2",
         "filename": "designs/pldm-sensor.md",
         "patchSetId": 5
