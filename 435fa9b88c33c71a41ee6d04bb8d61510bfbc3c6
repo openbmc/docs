@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7cd27d97_ca612e22",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-04T17:22:28Z",
+      "side": 1,
+      "message": "I don\u0027t understand what is being proposed here.\n\nThere is already an xyz.openbmc_project.State.Chassis interface.  Isn\u0027t that interface hosted by phosphor-state-manager?  Why would you host a new instance of it, with a new property, just for that one property?\n\nHopefully you\u0027re not suggesting that psu-monitor will be *writing* that property, hosted currently by the phosphor-state-manager, reflecting its current view of the state?",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 8
+      },
+      "revId": "435fa9b88c33c71a41ee6d04bb8d61510bfbc3c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee037c53_d39d585d",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-04T17:22:28Z",
+      "side": 1,
+      "message": "Can you elaborate how this is related to PLDM?  (I don\u0027t actually know much about it so it could be that the terms are just ones I\u0027m not familiar with.)  The reference to it seems to have come out of no where.",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 44
+      },
+      "revId": "435fa9b88c33c71a41ee6d04bb8d61510bfbc3c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1347d60d_fda3aeea",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-04T17:22:28Z",
+      "side": 1,
+      "message": "Do you have ideas on what this would look like for a system where there are multiple host instances managed on individual sub-chassis elements?  It is fairly common to service them by hot-removing them, which may appear like a \"Brownout\".\n\nI\u0027m not positive as to what indicates \"Good\" based on the design, but it seems possible that the power state is \"Off\" but likely \"Good\", as in, we now believe that power has been re-established in a way that the sub-chassis will successfully power on, but that we haven\u0027t actively turned it back on yet.  It probably isn\u0027t always a good idea automatically to turn back on all your voltage regulators outside of the normal power sequence, is it?",
+      "revId": "435fa9b88c33c71a41ee6d04bb8d61510bfbc3c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
