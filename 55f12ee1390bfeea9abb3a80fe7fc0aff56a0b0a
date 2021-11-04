@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7e21585_96fcfe7a",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-04T17:09:20Z",
+      "side": 1,
+      "message": "The current BMC reset reason is detected by looking at values in the watchdog driver, right?  Is there a particular watchdog signal to look for?  What is the relationship between this GPIO and the watchdog values (how do they get prioritized)?\n\n---\n\nI\u0027m not totally positive that what I\u0027m saying here is currently implemented 100% correct by the Aspeed driver and probably needs to be enhanced.  These \u0027RebootCause\u0027 enumerations in the BMC dbus interface were added by someone working on Nuvoton and I believe he added userspace code to figure this out using some existing kernel watchdog sysfs API.  I\u0027ve seen some hacky code from a few companies using Aspeed that instead detect this in u-boot and pass it along the kernel cmdline parameters.  This should be changed / commonized between the platforms.  Once we do that we need to make an assertion about the relationship between the existing RebootCauses, which come from the watchdog, and this subset(?) enumeration of PinholeReset.",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 26
+      },
+      "revId": "55f12ee1390bfeea9abb3a80fe7fc0aff56a0b0a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
