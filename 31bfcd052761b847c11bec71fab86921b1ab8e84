@@ -140,6 +140,30 @@
       "revId": "31bfcd052761b847c11bec71fab86921b1ab8e84",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48025edd_e6f71d0a",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2021-11-05T22:09:23Z",
+      "side": 1,
+      "message": "A bit confused here then.\nDoesn\u0027t this mean that there must now be lane dbus object paths, each one with their own \nxyz.openbmc_project.Inventory.Item.CMISModule.LaneStatus interface?\n\nSo something like\n\n/xyz/openbmc_project/inventory/item/CMISModule1 \u003c\u003d\u003d\u003d this has xyz/openbmc_project/Inventory/Item/CmisModule/Module.interface.yaml, the sensors interface, status interface etc...\n\n\nthen there is\n\n/xyz/openbmc_project/inventory/item/CMISModule1/lane0\n/xyz/openbmc_project/inventory/item/CMISModule1/lane1\n/xyz/openbmc_project/inventory/item/CMISModule1/lane2\n/xyz/openbmc_project/inventory/item/CMISModule1/lane3\n/xyz/openbmc_project/inventory/item/CMISModule1/lane4\n\n?\n\nI think there are two ways to approach this.\nCreating a new dbus object for each lane with its own interfaces - like what is implied here.\nIn that case, in implementation you\u0027ll likely need to add org.freedesktop.DBus.ObjectManager interface so that the lanes can be discovered.\n\nOtherwise this interface can change and you could have the properties return an array of integers..and rename them to something like\n\nLaneNumbersWithTxLossOfLock \u003d list out the lanes with a Loss of Lock\n\nI\u0027m slightly partial to the latter approach unless the design mentions that the CMIS Module object shall implement org.freedesktop.DBus.ObjectManager\n\nEd, Patrick thoughts?",
+      "parentUuid": "524fcdd0_56f4f24e",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 266,
+        "endChar": 47
+      },
+      "revId": "31bfcd052761b847c11bec71fab86921b1ab8e84",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
