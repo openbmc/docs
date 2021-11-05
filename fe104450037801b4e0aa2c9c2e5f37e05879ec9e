@@ -593,6 +593,30 @@
     },
     {
       "key": {
+        "uuid": "d0670b28_9acfa46d",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-11-05T20:28:33Z",
+      "side": 1,
+      "message": "Done. Replace this integer type with an enumeration type.",
+      "parentUuid": "150eeec4_a4a37893",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 15
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "15fdc23d_1f49b651",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 3
@@ -876,6 +900,30 @@
     },
     {
       "key": {
+        "uuid": "79fe7d3a_4e971dac",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-11-05T20:28:33Z",
+      "side": 1,
+      "message": "I\u0027ve already relocated this field in \"Patchset 6\".",
+      "parentUuid": "5abb9e33_9925a7c3",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 26
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1780231_bfed1a20",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 3
@@ -1015,6 +1063,30 @@
       "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40cc4e85_f1be79be",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-11-05T20:28:33Z",
+      "side": 1,
+      "message": "Thanks for the pointers, Ed and Jason!\n\nYes, both of the above two proposals are relevant to this one, and either of them can serve the purpose. I\u0027m removing the \"ModuleState\" enumerations from this interface.",
+      "parentUuid": "4c94cdfe_b7e5c826",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 200
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -1272,6 +1344,30 @@
       "side": 1,
       "message": "\u003e Hi, Patrick and Ed,\n\u003e \n\u003e Thanks very much for keeping an eye on this! \n\u003e \n\u003e I agree that we should re-use the existing \"xyz/openbmc_project/Sensor/Value.interface.yaml\" for temperature and supply voltage. \n\u003e \n\u003e After taking another look at the CMIS register maps, I realize that my last version was inaccurate about the Tx/Rx power part: actually all the Tx/Rx power/loss-of-signal/loss-of-lock are per-lane sensor/flag. They are documented in CMIS-4.0 Section 8.8.2 Lane-Specific Flags and 8.8.3 Lane-Specific Monitors. \n\u003e \n\u003e And Ed has a very good point that different type of module may have different number of lanes. Is an array of struct a best fit for this:\n\u003e \n\u003e struct PerLaneStatus {\n\u003e   int lane_id;\n\u003e   double tx_power;\n\u003e   double rx_power;\nIMO still need to be sensors, with an association back to the module.\n\n\n\u003e   bool tx_loss_of_signal;\n\u003e   bool rx_loss_of_signal;\n\u003e   bool tx_loss_of_lock;\n\u003e   boll rx_loss_of_lock;\n\u003e }\n\u003e \n\nI wonder if we just need a \"LaneStatus\" schema.  In theory a CMIS module could have zero lanes, right?\n\n\u003e I also updated the below interface for this.",
       "parentUuid": "92b3da9e_a41f9c70",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 146
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "093a0cdc_743501c7",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-11-05T20:28:33Z",
+      "side": 1,
+      "message": "I\u0027m proposing a new \"/xyz/openbmc_project/Inventory/Item/CmisModule/LaneStatus.interface.yaml\" here. Please take another look.",
+      "parentUuid": "32cb0fb7_28dd46bd",
       "range": {
         "startLine": 92,
         "startChar": 0,
@@ -1555,6 +1651,30 @@
       "side": 1,
       "message": "GPIO pins to the BMC isn\u0027t always the most common though.",
       "parentUuid": "1c83f082_27167df9",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 210
+      },
+      "revId": "fe104450037801b4e0aa2c9c2e5f37e05879ec9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92bd97d5_6c43c8ea",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-11-05T20:28:33Z",
+      "side": 1,
+      "message": "Agree that direct GPIO pins to the BMC may not be available. I\u0027ve already updated the text.\n\nAs of how we handle the direct GPIO/indirect configurable, I think that should be addressed by concrete code review (not this high level design), am I right?",
+      "parentUuid": "97cd6c86_5890f88a",
       "range": {
         "startLine": 138,
         "startChar": 0,
