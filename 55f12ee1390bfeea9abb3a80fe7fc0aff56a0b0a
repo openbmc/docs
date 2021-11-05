@@ -22,6 +22,30 @@
       "revId": "55f12ee1390bfeea9abb3a80fe7fc0aff56a0b0a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b6ffefe_f3cdb615",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-05T20:49:22Z",
+      "side": 1,
+      "message": "Yeah, the code currently looks at /sys/class/watchdog/watchdog0/bootstatus. I don\u0027t believe aspeed supports it and I\u0027m not interested in it currently for IBM systems. I will assert in this document that we only look at the GPIO if the watchdog reason is 0 (which is what it always is on aspeed systems). If we do get support some day in the aspeed watchdog driver then I think this will still behave how I want (and if it doesn\u0027t, I\u0027ll fix it).",
+      "parentUuid": "f7e21585_96fcfe7a",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 26
+      },
+      "revId": "55f12ee1390bfeea9abb3a80fe7fc0aff56a0b0a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
