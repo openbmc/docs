@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b65ce87c_ea927185",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-05T20:49:22Z",
+      "side": 1,
+      "message": "Yeah, this was definitely an open question. Derek and I talked a bit offline and I think in the end, the best design is for the existing xyz.openbmc_project.State.Chassis under/xyz/openbmc_project/state/chassisX to host a new PowerStatus property. When it\u0027s read by someone, the code will query all power status interfaces associated with that chassis and return state based on that.",
+      "parentUuid": "7cd27d97_ca612e22",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 8
+      },
+      "revId": "435fa9b88c33c71a41ee6d04bb8d61510bfbc3c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee037c53_d39d585d",
         "filename": "designs/power-recovery.md",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a0f3c9bb_494cf3ea",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-05T20:49:22Z",
+      "side": 1,
+      "message": "Yeah, maybe too much implementation detail here. Basically, on IBM systems, when we know a brownout is coming (i.e. a UPS is about to run out of power or something), we notify the host firmware. The host firmware provides an option to it\u0027s users to indicate if they want the system to auto power on when the brown out completes. This text was trying to capture that design point. I think I\u0027ll just make it more generic and indicate that there is a one-time feature users can utilize if they wish a special one-time behavior when the brownout completes.",
+      "parentUuid": "ee037c53_d39d585d",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 44
+      },
+      "revId": "435fa9b88c33c71a41ee6d04bb8d61510bfbc3c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1347d60d_fda3aeea",
         "filename": "designs/power-recovery.md",
         "patchSetId": 4
@@ -59,6 +107,24 @@
       "writtenOn": "2021-11-04T17:22:28Z",
       "side": 1,
       "message": "Do you have ideas on what this would look like for a system where there are multiple host instances managed on individual sub-chassis elements?  It is fairly common to service them by hot-removing them, which may appear like a \"Brownout\".\n\nI\u0027m not positive as to what indicates \"Good\" based on the design, but it seems possible that the power state is \"Off\" but likely \"Good\", as in, we now believe that power has been re-established in a way that the sub-chassis will successfully power on, but that we haven\u0027t actively turned it back on yet.  It probably isn\u0027t always a good idea automatically to turn back on all your voltage regulators outside of the normal power sequence, is it?",
+      "revId": "435fa9b88c33c71a41ee6d04bb8d61510bfbc3c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e78a3126_14479f0b",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-05T20:49:22Z",
+      "side": 1,
+      "message": "\u003e Do you have ideas on what this would look like for a system where there are multiple host instances managed on individual sub-chassis elements? \n\nAlthough not fully implemented, everything in state-manager is instance based, including the software which runs the automated power on logic. We mostly just support a single chassis and host instance. But, say we did have two chassis, we\u0027d then have two chassis-state manager instances, both hosting the xyz.openbmc_project.State.Chassis interface. They would only be looking for power status for their associated chassis. You talk about \"sub-chassis elements\" but I\u0027m not sure what that is? For each pgood power domain, we\u0027d have a single chassis instance. If a VRM goes out, the whole domain is out and any host code running on that chassis.\n\n\u003e  It probably isn\u0027t always a good idea automatically to turn back on all your voltage regulators outside of the normal power sequence, is it?\n\nWe only turn things back on when the brownout completes if the user has a auto power on policy set that wants us to power back on.",
+      "parentUuid": "1347d60d_fda3aeea",
       "revId": "435fa9b88c33c71a41ee6d04bb8d61510bfbc3c6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
