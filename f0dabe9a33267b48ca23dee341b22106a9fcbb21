@@ -152,6 +152,24 @@
       "revId": "f0dabe9a33267b48ca23dee341b22106a9fcbb21",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3c21e7c_6e0229b5",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-05T15:25:51Z",
+      "side": 1,
+      "message": "AndrewJ\n\u003e But that\u0027s what I was trying to address before the problem got worse.\n\u003e 1. We\u0027re trying to define a class of things based on single instance of such a thing\n\nI think this is the crux of the issue. Either we try and define a pattern up front for a use case, so the initial one follows a rule, and follow on changes follow the same rule, or we end up where we are with \"reset\", no pattern. Chicken or Egg. I\u0027d prefer a rule that only ever applies to a single GPIO name then not having a rule and getting bitten later when we find a common use case.\n\n\u003e 2. Any input GPIO is an indicator\n\nYeah, valid point. I guess in the end this becomes somewhat of a last resort. It\u0027s not an LED, power, button, ....  But I am definitely up for whatever here.\n\n\u003e For instance, is `-record` any better? I feel it might give a better translation of it capturing something that\u0027s happened in the past.\n\nYeah, I like that. The GPIO is giving a record of something that happened in the past.\n\nMilton\n\u003e Are there plans to do more than a unique error log?\n\nIBM\u0027s plan is to create an info error indicating it occurred and to not run any automated power on recovery functions (i.e. if customer pin hole reset a system, they do not want firmware automatically powering the system on).\n\n\u003e Ps where is the host status running gpio?  Ahh 47662  Not in a category, but an indicator as much as this one.\n\nYeah, interesting point, looks like https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/47662/4/designs/device-tree-gpio-naming.md is going in a direction of just making a special category for host-ready. I\u0027m not sure how well this review matches with that though. What we have in this review, is a GPIO that tells you why something happened in the past. The host status is more of a \"is the host running now\".",
+      "parentUuid": "bb2e8af0_b7a01de3",
+      "revId": "f0dabe9a33267b48ca23dee341b22106a9fcbb21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
