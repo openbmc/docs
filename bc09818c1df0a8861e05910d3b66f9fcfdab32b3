@@ -34,6 +34,24 @@
       "revId": "bc09818c1df0a8861e05910d3b66f9fcfdab32b3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4158006_3de18345",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-08T19:48:46Z",
+      "side": 1,
+      "message": "For our p10bmc system design, the pin hole reset was wired to report that it has occurred via this GPIO. It represents a full system reset triggered by pushing the pin hole reset. We can have a discussion with Emile internally on whether future systems could utilize this SCU. It seems like a better design point to have all of the reasons in one place (i.e. the SCU in the AST2600). One of Patrick\u0027s comments on a review about the code using this pin, is who gets priority (the sysfs watchdog reason interface or the GPIO) so there\u0027s definitely a certain amount of confusion that comes with having multiple ways to report why a reboot occurred. But at this point, it seems like we are where we are with p10bmc and this GPIO needing a name.",
+      "parentUuid": "d756e893_a449c0b7",
+      "revId": "bc09818c1df0a8861e05910d3b66f9fcfdab32b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
