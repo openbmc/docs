@@ -16,6 +16,24 @@
       "revId": "bc09818c1df0a8861e05910d3b66f9fcfdab32b3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d756e893_a449c0b7",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-11-08T00:55:18Z",
+      "side": 1,
+      "message": "Does the pinhole reset poke EXTRST on the BMC?\n\nSince my previous comment Patrick pointed out that EXTRST is recorded as a reset cause in the SCU (e.g. see SCU074[1] on page 443 in ast2600v09.pdf). We could expose that through appropriate kernel interfaces which would remove the need for this GPIO? Was the reset cause capability an oversight wrt the board design?\n\nI\u0027m okay if we still define the GPIO here, just trying to resolve whether it is in-fact redundant.",
+      "parentUuid": "82f6477d_7145b9a3",
+      "revId": "bc09818c1df0a8861e05910d3b66f9fcfdab32b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
