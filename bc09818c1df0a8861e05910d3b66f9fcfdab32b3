@@ -70,6 +70,24 @@
       "revId": "bc09818c1df0a8861e05910d3b66f9fcfdab32b3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf141791_cdad52d8",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-08T22:01:22Z",
+      "side": 1,
+      "message": "From Emile:\n\n\u003e we reset all the ASICs in the box. including ebmc, emmc, etc. except for not removing standby power. \n\nI think a key piece here is we want to be able to differentiate between a watchdog/error type reboot and a user manually triggering a PHR, hence the need for this GPIO. Per AndrewJ:\n\n\u003e EXTRST can be hit in other less intrusive ways, such as the host detecting the BMC is unresponsive. Given that\u0027s different from a pinhole reset, the disambiguation via the GPIO makes sense\n\nSo on further discussion with Patrick, this GPIO is really a supplement to EXTRST. There are a lot of things that can trigger a EXTRST and this GPIO provides additional details on what it was. Given that, lets change the GPIO pattern to reset-cause-*   (?)",
+      "parentUuid": "a8955fb5_4bf52f3e",
+      "revId": "bc09818c1df0a8861e05910d3b66f9fcfdab32b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
