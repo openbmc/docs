@@ -47,6 +47,11 @@ This list below includes all common GPIOs within OpenBMC. Any OpenBMC
 system which provides one of the below GPIOs must name it as listed in
 this document. This document must be updated as new common GPIOs are added.
 
+### Buttons
+Pattern: `*-button`
+
+#### power-button
+
 ### LEDs
 Pattern: `led-*`
 
@@ -85,11 +90,6 @@ logic. This GPIO is an input only. The status will reflect a regulator
 non-faulted condition after AC power cycle when no standby power regulator fault
 condition is present. The status will reflect a standby regulator power faulted
 condition when an unexpected drop in standby power is detected.
-
-### Buttons
-Pattern: `*-button`
-
-#### power-button
 
 ### Presence
 Pattern: `presence-*`
