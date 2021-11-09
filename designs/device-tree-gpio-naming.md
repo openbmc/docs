@@ -144,6 +144,16 @@ These are special case and/or grandfathered in pin names.
 #### air-water
 Indicates whether system is air or water cooled
 
+#### bmc-management-ready
+Indicates whether the management interfaces required by the platform are
+provided by the BMC. These interfaces may include any of Redfish, IPMI, SSH or
+other appropriate protocols. Asserting the GPIO does not indicate that the BMC
+or platform as a whole is healthy, rather, if it is unhealthy the problems can
+now be inspected via the management interfaces. Conversely if it is deasserted
+it is not necessarily an indication that the BMC or platform is unhealthy,
+rather that the management interfaces are not reachable, for example as a result
+of rebooting the BMC.
+
 #### factory-reset-toggle
 The software records the state of this GPIO and checks upon reboot if the state
 has changed since the last reboot. If it has, it indicates that a factory reset
