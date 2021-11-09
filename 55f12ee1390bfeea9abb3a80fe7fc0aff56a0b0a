@@ -46,6 +46,30 @@
       "revId": "55f12ee1390bfeea9abb3a80fe7fc0aff56a0b0a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1363598f_cdb37b43",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2021-11-09T19:24:02Z",
+      "side": 1,
+      "message": "Given our discussion over in the GPIO naming review, we\u0027ve changed things a bit here. The GPIO now provides more detailed information for something like a EXTRST. Although, currently we have no support for detecting a EXTRST. So for now, the code is going to work as the latest update states. First look at sysfs, if non-zero, utilize it else look at the GPIO. If and when we get support for a EXTRST reason in sysfs, we can update this doc on how the logic will utilize the GPIO for potential additional info on EXTRST reasons.",
+      "parentUuid": "2b6ffefe_f3cdb615",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 26
+      },
+      "revId": "55f12ee1390bfeea9abb3a80fe7fc0aff56a0b0a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
