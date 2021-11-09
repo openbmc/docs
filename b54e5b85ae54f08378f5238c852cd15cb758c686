@@ -1,0 +1,406 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18b10918_2c6e79ec",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "daemon (spelling)",
+      "range": {
+        "startLine": 37,
+        "startChar": 53,
+        "endLine": 37,
+        "endChar": 59
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1ecd111_0a72dce2",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "communication (spelling)",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 12
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16825c63_bbb51766",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "I\u0027m not sure if others agree, but I find the use of \"TWI\" throughout this document a bit jarring because it is so unusual.  Can we just call this i2c, since that is what it is?\n\n(I\u0027d prefer this document is more consumable for BMC engineers who are use to \u0027i2c\u0027 and not for \"CMIS Spec Experts\" which might use \"TWI\" for some odd reason.)",
+      "range": {
+        "startLine": 92,
+        "startChar": 15,
+        "endLine": 92,
+        "endChar": 18
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b46ee74_da73106f",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "human (spelling)\n\nSuggest running `aspell` or similar over this document.  There are probably spelling mistakes that I missed.",
+      "range": {
+        "startLine": 101,
+        "startChar": 52,
+        "endLine": 101,
+        "endChar": 58
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b63bd2a_9b1aaf22",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "Can we just `systemctl stop ...` in this case?  Do we really need a special debug API?",
+      "range": {
+        "startLine": 102,
+        "startChar": 53,
+        "endLine": 106,
+        "endChar": 0
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dd29bf3_2c504704",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "I mentioned before concern about having CMIS-specific APIs.  Previously, I understood CMIS to be a specific spec and we don\u0027t usually want to expose specs at a dbus level.  We don\u0027t expose IPMI, PLDM, MCTP, etc.\n\nIt would be nice if we could come up with some kind of abstraction for the underlying device that CMIS is representing and frame this in term of those kind of devices.  The hope would be if some device comes along that exposes those same concepts over PLDM that they can still plug right into the dbus model without major changes.\n\nI\u0027ve reviewed the other properties on this interface but it seems like the only one that is unique is this \"Identifier\" property.  I have a few thoughts:\n\n- Is the way the module is connected to the board really all that interesting?  Is there a hard requirement to be able to expose it outside the BMC, and if so, what value does knowing it provide you?\n\n- This feels like maybe it belongs as a subclass of Inventory/Connector.\n\n- I wonder if we have some other Decorator already with a free-form string that could be used.  If we were talking about a 3-6 entry enumeration, then an enumeration seems fine, but I don\u0027t really like these enumerations where they are a carry forward of some 2 decade old spec with 25+ elements and only 1 or 2 of them are found in modern systems.  If you look at Inventory/Item/Cpu, what we did there in a similar problem, what we did is made them a free-form string where the string values are expected to come from \"DSP0134 Section x.y.z\".",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 68
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1241d65d_a38bf5ba",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "Default should be \u0027Unknown\u0027, right?",
+      "range": {
+        "startLine": 137,
+        "startChar": 6,
+        "endLine": 137,
+        "endChar": 17
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ad69923_b2bdff04",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "OUI sounds like a separate Decorator, not specific to CMIS?",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 53
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "571504ee_4d9a2adc",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "I doubt you really have hardware designs for all of these.  Can we limit to the ones as you implement them?  It doesn\u0027t seem especially interesting to have this many of them, especially if many of them are obsolete technologies.",
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fbda53f_7c27619c",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "Something clobbered this name.",
+      "range": {
+        "startLine": 153,
+        "startChar": 16,
+        "endLine": 153,
+        "endChar": 43
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "955d6609_7cc8a8b2",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "Why do we have them then?",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 33
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cdb92cb_56fad622",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "These don\u0027t seem interesting at a dbus level, even if the spec lists them.\n\n(And \"Vendor specific\" isn\u0027t a valid enumeration name anyhow).",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 49
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f979c596_9e0f905f",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "Do we need to add dBm into the units?  \n\nIsn\u0027t dBm equivalent to volts, but just on a logarithmic scale?  If so, we\u0027ve generally not created a new unit for these, but would represent them on dbus as volts.  If external interfaces are defined in terms of dBm we\u0027d usually do the conversion at those points (even if in this case there is an awkward double conversion at device ingest and bmcweb).",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 108
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09677703_f54c0c7b",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "Again, this seems like something we could make non CMIS specific.  And, it doesn\u0027t seem like Inventory (ie. it isn\u0027t relatively static).",
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35353d1e_c7de5517",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "Is it possible to have LossOfSignal without LossOfLock?  Should this be a boolean or a state (enum)?  It seems like L\u003dFalse,S\u003dTrue is invalid, so we probably shouldn\u0027t do booleans.",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 266,
+        "endChar": 47
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5c57a01_97394d6e",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "This is a statement and not a design.\n\nHopefully you are going to implement the OpenBMC update methods inside this daemon?",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 79
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42f40dcb_c684b1d8",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "\"Debugging\" is mentioned above via a vendor-specific tool.  This seems like it should be direct access to the raw i2c device, which is fine, but is there anything in this daemon itself?  If not, can we just drop it?\n\nYou mentioned in the previous commit some understanding that firmware upgrade was difficult to sequence in the kernel.  Can we point to references here?  My rationale is that if the kernel situation changes some day we should be able to reconsider this aspect of the design just as well.\n\nAt a kernel driver level you\u0027d typically replace my `systemctl stop/start` above with sysfs unbind/bind calls.  Maintaining a lock to user-space isn\u0027t necessary.",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 42
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2350a942_38cd3ff6",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-09T21:12:55Z",
+      "side": 1,
+      "message": "I think kernel developers would debate this sentence. :D  We should probably at least blunt the wording.\n\nUnless we can point to technical reasons, such as dealing with firmware upgrade (why doesn\u0027t power supply update have this issue w.r.t. pmbus though?), I think we have a difficult time accepting this as a non-driver.  I agree that even for me it would probably be easier to write this in user-space, but why do we bother writing anything in the kernel then?  I don\u0027t think \"it is easier to complete the feature\" is a reason we\u0027ve typically accepted and it seems like it is just opening the door for everything device oriented to avoid kernel work whenever the associated developers feel like it.",
+      "range": {
+        "startLine": 290,
+        "startChar": 43,
+        "endLine": 292,
+        "endChar": 44
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
