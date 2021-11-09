@@ -49,6 +49,16 @@ this document. This document must be updated as new common GPIOs are added.
 
 ### BMC Properties
 
+#### bmc-platform-management
+Indicates whether the management interfaces required by the platform are
+provided by the BMC. These interfaces may include any of Redfish, IPMI, SSH or
+other appropriate protocols. Asserting the GPIO does not indicate that the BMC
+or platform as a whole is healthy, rather, if it is unhealthy the problems can
+now be inspected via the management interfaces. Conversely if it is deasserted
+it is not necessarily an indication that the BMC or platform is unhealthy,
+rather that the management interfaces are not reachable, for example as a result
+of rebooting the BMC.
+
 #### bmc-secure-boot
 Input pin that indicates that the BMC is configured to boot with security
 protections enforced.
