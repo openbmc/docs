@@ -132,6 +132,7 @@ Indentation, naming practices, etc.
 
 * Line length should be limited to 80 characters.
 * Indentation should be done with 4 space characters.
+* Files should use Unix-style newlines (\n).
 
 ### Clang Formatting
 
