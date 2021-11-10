@@ -358,6 +358,30 @@
     },
     {
       "key": {
+        "uuid": "9c3ca85d_e7649306",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2021-11-10T04:26:12Z",
+      "side": 1,
+      "message": "yes the plan is to reuse the existing software interfaces to provide the firmware upgrade API.\n\nJianqiao - can you modify this paragraph to state this?",
+      "parentUuid": "b5c57a01_97394d6e",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 79
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "42f40dcb_c684b1d8",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 8
@@ -392,6 +416,30 @@
       "writtenOn": "2021-11-09T21:12:55Z",
       "side": 1,
       "message": "I think kernel developers would debate this sentence. :D  We should probably at least blunt the wording.\n\nUnless we can point to technical reasons, such as dealing with firmware upgrade (why doesn\u0027t power supply update have this issue w.r.t. pmbus though?), I think we have a difficult time accepting this as a non-driver.  I agree that even for me it would probably be easier to write this in user-space, but why do we bother writing anything in the kernel then?  I don\u0027t think \"it is easier to complete the feature\" is a reason we\u0027ve typically accepted and it seems like it is just opening the door for everything device oriented to avoid kernel work whenever the associated developers feel like it.",
+      "range": {
+        "startLine": 290,
+        "startChar": 43,
+        "endLine": 292,
+        "endChar": 44
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40db97cc_a1fdbac2",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2021-11-10T04:26:12Z",
+      "side": 1,
+      "message": "\u003eUnless we can point to technical reasons, such as dealing with firmware upgrade (why doesn\u0027t power supply update have this issue w.r.t. pmbus though?)\n\nwell dealing with firmware upgrades is one, reporting firmware version, surfacing things like lane based Loss-of-lock/loss-of-signal, CMIS module descriptors etc..\nHwmon doesn\u0027t have buckets that this fits nicely into. We could dump this stuff into debugfs - but that feels like we\u0027re forcing things to fit in the kernel.\n\n\n\u003ebut why do we bother writing anything in the kernel then?\nNot a kernel developer but I typically think of kernel drivers when I want tight performance or if I expect my driver to expose services to be used by subsystems.\n\n\nIs there a reason why we want all device interaction to be stuffed into the kernel?",
+      "parentUuid": "2350a942_38cd3ff6",
       "range": {
         "startLine": 290,
         "startChar": 43,
