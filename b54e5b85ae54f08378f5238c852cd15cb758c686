@@ -449,6 +449,30 @@
       "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b7ac583_51be5cc8",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-11T17:33:35Z",
+      "side": 1,
+      "message": "\u003e Is there a reason why we want all device interaction to be stuffed into the kernel?\n\nI don\u0027t have a complete answer for you.  Could probably get some more feedback from others at a broad level to set better guidelines.\n\nWhen the device has a high percentage of overlap with existing kernel subsystems, we save ourselves a lot of code (and pain) by leveraging those kernel subsystems.  i2c, hwmon, iio, etc. have a good amount of code both in the kernel already and in our userspace daemons.  Often when I see someone try to replicate a \"i2c driver in userspace\" they miss out on many of the edge cases that the kernel subsystem already handles, plus they are having to re-implement all the dbus providers because they didn\u0027t leverage that subsystem.\n\nI know that firmware update is a rough edge in the kernel, so I understand why that isn\u0027t easily handled there.  We have a similar story with pmbus and not knowing how to do in-kernel firmware updates, but I think what we do in that case is bind the driver for the typical case (pmbus sensors and errors) and unbind it in the uncommon case of applying a firmware update.\n\nThe majority of what this driver has to do seems to me to have similar overlap with what iio and pmbus do.  You\u0027ve got a heap of sensors, some error state, and a bit of fru-descriptor data.  We\u0027ve already found that it was pretty easy to add iio support to dbus-sensors once we already had hwmon support, because they are so similar, and so I would anticipate a similar amount of overlap on an [in-kernel driver that looks a lot like pmbus or iio even if it doesn\u0027t exactly use those subsystems internally].\n\nI\u0027m not saying this shouldn\u0027t go forward as a user-space driver but I think we need the rationale to be better articulated in the doc.",
+      "parentUuid": "40db97cc_a1fdbac2",
+      "range": {
+        "startLine": 290,
+        "startChar": 43,
+        "endLine": 292,
+        "endChar": 44
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
