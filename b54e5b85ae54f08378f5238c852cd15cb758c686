@@ -777,6 +777,30 @@
     },
     {
       "key": {
+        "uuid": "021a62cd_8360947e",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-11-15T21:39:55Z",
+      "side": 1,
+      "message": "Please see my reply in another comment. When a module is under debug mode, we expect that:\n1. this proposed management daemon stops its own access to the module, and inform any other services that the module isn\u0027t available. So human can have the full, raw access to the module without interrupts.\n2. this proposed management daemon manages other modules in the system as usual.\nFrom this perspective, firmware upgrade and debugging are equivalent. \n\nAs of reference to firmware upgrade difficulty and \"Maintaining a lock to user-space isn\u0027t necessary.\"-- Updated in the text.",
+      "parentUuid": "42f40dcb_c684b1d8",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 42
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2350a942_38cd3ff6",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 8
@@ -836,6 +860,30 @@
       "side": 1,
       "message": "\u003e Is there a reason why we want all device interaction to be stuffed into the kernel?\n\nI don\u0027t have a complete answer for you.  Could probably get some more feedback from others at a broad level to set better guidelines.\n\nWhen the device has a high percentage of overlap with existing kernel subsystems, we save ourselves a lot of code (and pain) by leveraging those kernel subsystems.  i2c, hwmon, iio, etc. have a good amount of code both in the kernel already and in our userspace daemons.  Often when I see someone try to replicate a \"i2c driver in userspace\" they miss out on many of the edge cases that the kernel subsystem already handles, plus they are having to re-implement all the dbus providers because they didn\u0027t leverage that subsystem.\n\nI know that firmware update is a rough edge in the kernel, so I understand why that isn\u0027t easily handled there.  We have a similar story with pmbus and not knowing how to do in-kernel firmware updates, but I think what we do in that case is bind the driver for the typical case (pmbus sensors and errors) and unbind it in the uncommon case of applying a firmware update.\n\nThe majority of what this driver has to do seems to me to have similar overlap with what iio and pmbus do.  You\u0027ve got a heap of sensors, some error state, and a bit of fru-descriptor data.  We\u0027ve already found that it was pretty easy to add iio support to dbus-sensors once we already had hwmon support, because they are so similar, and so I would anticipate a similar amount of overlap on an [in-kernel driver that looks a lot like pmbus or iio even if it doesn\u0027t exactly use those subsystems internally].\n\nI\u0027m not saying this shouldn\u0027t go forward as a user-space driver but I think we need the rationale to be better articulated in the doc.",
       "parentUuid": "40db97cc_a1fdbac2",
+      "range": {
+        "startLine": 290,
+        "startChar": 43,
+        "endLine": 292,
+        "endChar": 44
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c72f8f79_b156b454",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-11-15T21:39:55Z",
+      "side": 1,
+      "message": "Thanks for your illuminating comments, Jason and Patrick! \n\nI\u0027ve rewritten this paragraph per feedback from both reviewers.\n\nLet me make my point more clear: both user space daemon and kernel driver can serve the same purpose but neither of them is perfect (I\u0027ve seen all three reviewers admitted this in the comment history). So there is no absolute right choice here. With that in mind, and from the perspective of implementation ease, I\u0027m proposing the user space way and have already made my rationale more clear in the text.\n\nThere are already some kernel developers CC\u0027ed in this change but I haven\u0027t heard any from them. I\u0027m not sure whether there is a better way to consult them. Please let me know if you\u0027ve any suggestions or want to have a wider discussion in weekly OpenBMC forum.",
+      "parentUuid": "6b7ac583_51be5cc8",
       "range": {
         "startLine": 290,
         "startChar": 43,
