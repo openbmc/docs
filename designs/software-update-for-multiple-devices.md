@@ -6,7 +6,7 @@ Other contributors: Carlos J. Mazieri [carlos.mazieri@hcl.com]
 
 Created: Nov 18 2020
 
-Updated: Aug 25 2021
+Updated: Nov 12 2021
 
 ## Terms Used In This Document
 | TERM | MEANING |
@@ -43,8 +43,7 @@ updated three of four. In the other hand if these three devices/hosts list
 comes from the MANIFEST file it is considered that the image is applicable
 only  for these three devices/hosts and the image will be deleted after
 updating them  (see the section MANIFEST File Changes Proposal).
-- Anytime software/firmware update to be supported, it means, in case of
-multiple devices/hosts the user can update one each time (not all once).
+
 
 ## Proposed Design
 This document proposes a new design engaging a phosphor-bmc-code-mgmt to update
@@ -54,53 +53,28 @@ implementation steps.
 ### BMC Inventory Management
 The software manager will collect the devices/hosts list that can be updated
 with the new software/firmware based on the software/firmware release. The
-software/firmware includes but not limited to:
+software/firmware "Image Type" include but not limited to:
 - BIOS
 - CPLD
 - VR
 - BIC firmware
 - ME firmware
 
-After identifying the devices/hosts list and, one of the two approaches
-details below could be used to trigger the firmware update into the targeted
-device.
+The software manager will collect also the list of "Image Type" each
+device/host can be assigned to.
 
-### Proposed Approach: Create objects that identify "ImageType" and "HostId"
+### Proposal: A new *ItemUpdater* with "ImageType" and "HostId" identification
 
-This approach creates as many interfaces based on the inventory objects
-identified by the software manager. The user can pick the list of devices/hosts
-applicable for the image to be updated. The implementation steps are mentioned
+Another *ItemUpdater* instance specific for device/hosts software update will
+be in place in the software manager. The implementation steps are mentioned
 below. All the software/firmware (BIOS, CPLD, VR, ME, etc) can be updated
 through their respective interfaces easily through this method.
 
-#### Create a new Update interface:
-creating a new interface *xyz.openbmc_project.Software.FirmwareUpdate* through
-phosphor-dbus-interfaces with the property “Update” as shown below to
-notify the BMC to trigger the software update for the configured devices/hosts.
-```
-properties:
-    - name: Update
-      type: boolean
-      default: false
-      description: >
-        The host identifier for software update.
-    - name: State
-      type: string
-      flags:
-        - readonly
-      description: >
-               The default is "None",
-                  "OnGoing" when the update starts,
-                  "Done" when the update finishes successful
-```
-When this 'Update' boolean flag is set to TRUE for a device/host, the
-respective device/host will be included for software/firmware update.
 
 #### New objects creation based on inventory
-- New objects will be created under *xyz.openbmc_project.Software.BMC.Updater*
-  for all the devices/hosts identified from inventory.
-- The new  objects will be created with the interface
-  *xyz.openbmc_project.Software.FirmwareUpdate*
+- New objects will be created under *xyz.openbmc_project.Software.HOST.Updater*
+  for all the devices/hosts identified from inventory. Each object will have
+the *Activation* interface to easily perform the software update.
 
 ## Proposed Design High Level Specification
 
@@ -113,7 +87,10 @@ layer [OBMC_HOST_INSTANCES], example:
     |OBMC_HOST_INSTANCES="1 2 3 4"   | OBMC_HOST_INSTANCES="0"|
 
 
-### Image Type detection (three possibilities in the following order)
+### Image Type detection
+The proposed solution sets as **mandatory** the *"Image Type"* detection, in
+case it cannot be done, the update will not be performed.
+There are three possibilities of the identification in the following order:
 - A new and specific field present in the MANIFEST file like "ImageType"
 just identifies the image type
 (see the section MANIFEST File Changes Proposal).
@@ -130,95 +107,55 @@ delimiters in file names.
 than MANIFEST such as "BIOS", "CPLD", "VR", "BIC" or "ME" just identifies the
 image type.
 
+#### Binary Image Type confirmation
+Once the image type is detected and for that exists a more robust
+detection method such as "checksum", "magic number" among others, it must be
+used.
 
-### The code will be modified to create N number of objects based on the number
-of hosts and the image type like below, for the multi-host examples below
-consider that the inventory contains only images type of *"BIOS"* and
-*"CPLD"* and hosts ids are: *"1"*, *"2"*, *"3"* and *"4"*:
+### Image Type association with devices/hosts
+It is also **mandatory** that the devices/hosts accept the detected
+*"Image Type"*.
+The inventory and/or the entity manager will provide information about what are
+the "Image Type" accepted the devices/hosts, in case they do not match
+the software update will not be performed.
+
+### Objects creation based on Hosts and Image Type
+The code will create N number of objects based on hosts and the image type
+considering the *"Image Type association with devices/hosts"* explained before,
+for the examples below consider that the inventory contains only images type of
+*"BIOS"* and *"CPLD"* and hosts ids are: *"1"*, *"2"*, *"3"* and *"4"*:
 - **single-host, "BIOS" image type detected**
     ```
-        $ busctl tree xyz.openbmc_project.Software.BMC.Updater
-        └─/xyz
-            └─/xyz/openbmc_project
-                └─/xyz/openbmc_project/software
-                ├─/xyz/openbmc_project/software/1a56bff3        # Activation
-                │ ├─/xyz/openbmc_project/software/1a56bff3/bios # Update
-                └─/xyz/openbmc_project/software/f8515731        # BMC image
-    ```
-- **single-host, unknown image type**
-    ```
-        $ busctl tree xyz.openbmc_project.Software.BMC.Updater
+        $ busctl tree xyz.openbmc_project.Software.HOST.Updater
         └─/xyz
             └─/xyz/openbmc_project
                 └─/xyz/openbmc_project/software
                 ├─/xyz/openbmc_project/software/1a56bff3
-                │ ├─/xyz/openbmc_project/software/1a56bff3/bios
-                │ ├─/xyz/openbmc_project/software/1a56bff3/cpld
-                └─/xyz/openbmc_project/software/f8515731
+                └─/xyz/openbmc_project/software/1a56bff3/bios  # Activation
 
     ```
 - **multi-host, "CPLD" image type detected, field "TargetHosts"
 not present in MANIFEST file**
     ```
-        $ busctl tree xyz.openbmc_project.Software.BMC.Updater
+        $ busctl tree xyz.openbmc_project.Software.HOST.Updater
         └─/xyz
             └─/xyz/openbmc_project
                 └─/xyz/openbmc_project/software
                 ├─/xyz/openbmc_project/software/1a56bff3
-                │ └─/xyz/openbmc_project/software/1a56bff3/cpld
-                │   ├─/xyz/openbmc_project/software/1a56bff3/cpld/1
-                │   ├─/xyz/openbmc_project/software/1a56bff3/cpld/2
-                │   └─/xyz/openbmc_project/software/1a56bff3/cpld/3
-                │   └─/xyz/openbmc_project/software/1a56bff3/cpld/4
-                └─/xyz/openbmc_project/software/f8515731
-    ```
-- **multi-host machine, unknown image type,
-field "TargetHosts" not present in MANIFEST file**
-    ```
-        $ busctl tree xyz.openbmc_project.Software.BMC.Updater
-        └─/xyz
-            └─/xyz/openbmc_project
-                └─/xyz/openbmc_project/software
-                ├─/xyz/openbmc_project/software/1a56bff3
-                │ ├─/xyz/openbmc_project/software/1a56bff3/bios
-                │ │ ├─/xyz/openbmc_project/software/1a56bff3/bios/1
-                │ │ ├─/xyz/openbmc_project/software/1a56bff3/bios/2
-                │ │ └─/xyz/openbmc_project/software/1a56bff3/bios/3
-                │ │ └─/xyz/openbmc_project/software/1a56bff3/bios/4
-                │ ├─/xyz/openbmc_project/software/1a56bff3/cpld
-                │ │ ├─/xyz/openbmc_project/software/1a56bff3/cpld/1
-                │ │ ├─/xyz/openbmc_project/software/1a56bff3/cpld/2
-                │ │ └─/xyz/openbmc_project/software/1a56bff3/cpld/3
-                │   └─/xyz/openbmc_project/software/1a56bff3/cpld/4
-                └─/xyz/openbmc_project/software/f8515731
-    ```
-- **multi-host, unknown image type, field "TargetHosts=1 3" present in MANIFEST
-file**
-    ```
-        $ busctl tree xyz.openbmc_project.Software.BMC.Updater
-        └─/xyz
-            └─/xyz/openbmc_project
-                └─/xyz/openbmc_project/software
-                ├─/xyz/openbmc_project/software/1a56bff3
-                │ ├─/xyz/openbmc_project/software/1a56bff3/bios
-                │ │ ├─/xyz/openbmc_project/software/1a56bff3/bios/1
-                │ │ └─/xyz/openbmc_project/software/1a56bff3/bios/3
-                │ ├─/xyz/openbmc_project/software/1a56bff3/cpld
-                │ │ ├─/xyz/openbmc_project/software/1a56bff3/cpld/1
-                │ │ └─/xyz/openbmc_project/software/1a56bff3/cpld/3
-                └─/xyz/openbmc_project/software/f8515731
+                │   ├─/xyz/openbmc_project/software/1a56bff3/cpld_1 # Activation
+                │   ├─/xyz/openbmc_project/software/1a56bff3/cpld_2 # Activation
+                │   └─/xyz/openbmc_project/software/1a56bff3/cpld_3 # Activation
+                └─────/xyz/openbmc_project/software/1a56bff3/cpld_4 # Activation
     ```
 - **multi-host, "BIOS" image type detected, considering the field
 "TargetHosts=4" present in MANIFEST file**
   ```
-        $ busctl tree xyz.openbmc_project.Software.BMC.Updater
+        $ busctl tree xyz.openbmc_project.Software.HOST.Updater
         └─/xyz
             └─/xyz/openbmc_project
                 └─/xyz/openbmc_project/software
                 ├─/xyz/openbmc_project/software/1a56bff3
-                │ ├─/xyz/openbmc_project/software/1a56bff3/bios
-                │ │ ├─/xyz/openbmc_project/software/1a56bff3/bios/4
-                └─/xyz/openbmc_project/software/f8515731
+                └──/xyz/openbmc_project/software/1a56bff3/bios_4  # Activation
     ```
 
 ### Service Files
@@ -246,7 +183,9 @@ ImageID "1a56bff3", the ImageType "BIOS" and the HostID "1":
                      imageid-imagetype-hostid (minus sign between them)
 
     [Service]
-    Type=oneshot
+    ## in multi-host machines be careful about the "type"
+    ## as the environment is used they should not start at same time
+    Type=exec
     RemainAfterExit=no
 
     ExecStartPre=/bin/sh -c "image=`/bin/echo %i | /usr/bin/awk  \
@@ -267,26 +206,15 @@ ImageID "1a56bff3", the ImageType "BIOS" and the HostID "1":
     ExecStart=[flash tool here]  /tmp/images/${IMAGEID} ${IMAGETYPE} ${HOSTID}
     ```
 
-### Firmware Update Procedure
-Firmware update will be performed by the following process:
+### Software Update Procedure
+Software update will be performed by the following process:
 
 - Copy the software/firmware image to "/tmp/images" directory.
-- Set "Update" property to "true" for the devices/hosts that
-need software/firmware update according to the image type, these step is not
-necessary for single-host machines with image type detected nor for multi-host
-machines when the field "TargetHosts" is present in MANIFEST file.
-- Activate the image "Activation" flag to start the image update, it
-will perform the update for all selected devices/hosts in parallel mode.
+- Activate the "Activation" flag on a single device/host to start the image
+update. In case of multi-host machines, another "Activation" flag can be
+activated performing in this case parallel update.
 - After successful activation the image may be deleted if the requirements
 match (see Image Cleaning section).
-
-### Image Type confirmation against a such host
-Before starting the update, the image type must confirmed against the target
-host to verify if that host really accepts the image.
-The image itself against its detected type must be also confirmed if there is
-some available method such as "checksum", "magic number" among others, this can
-be performed when attempting to detect the image type or before starting the
-software/firmware update.
 
 
 ### Image Cleaning for multi-host machines
@@ -294,22 +222,25 @@ In the existing system, the image will be deleted after the successful
 software/firmware update.
 
 But in this new approach, the image has to be deleted only
-if all the required devices/hosts have the "State" property as "Done", the
-following cases are possible:
-1. The field "TargetHosts" is present in the MANIFEST file (in this case the
-user just activates the image).
-2. The field "TargetHosts" is NOT present in the MANIFEST file, the user
-performs the update in many steps, but completes all required devices/hosts.
-3.  The field "TargetHosts" is NOT present in the MANIFEST file, the user
-performs the update a single step after identifying all required hosts to
-receive the update.
+if all the required devices/hosts have being updated, the following cases are
+possible:
+1. The field "TargetHosts" is present in the MANIFEST file defining one or more
+devices/hosts, after all them be updated the image is removed from disk.
+2. The field "TargetHosts" is NOT present in the MANIFEST file, the updated is
+performed in all devices/hosts indentified by the software manager, then the
+image is removed from disk.
 
-In any other case not listed above the use has the responsibility of removing
+In any other case not listed above the user has the responsibility of removing
 the image manually.
 
 The image delete logic in in both cases deleted by the system or deleted by the
 user will result on the software objects path removal and software state
 cleaning.
+
+#### Listen to image removal event
+For multi-host machines it may be necessary to have a mechanism of listening to
+image cleaning because when it is performed by the user it is also necessary to
+clean flags in the software manager.
 
 
 ### Impacts
@@ -322,7 +253,7 @@ to "obmc-flash-host-software@.service".
 1. To reduce the risk of image type detection the field "ImageType" could
 be added as optional in the MANIFEST file.
 2. Multi-host machines could add the optional field "TargetHosts" to
-clear say which set of devices/hosts the flashing will be applied.
+clear say which set of devices/hosts the software update will be applied.
 
 Example:
 
