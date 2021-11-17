@@ -1,6 +1,11 @@
 # Redfish cheat sheet
-This document is intended to provide a set of [Redfish][1] client commands for OpenBMC usage.
-(Using CURL commands)
+This document is intended to provide a set of example [Redfish][1] client
+commands for OpenBMC usage. This document uses CURL.
+This document assumes several ids, such as ManagerId, "bmc", and
+ComputerSystemId, "system". Assuming an id is not correct and any software
+written to use the Redfish API should not. From the  Redfish Specification,
+DSP0266, "Clients shall not make assumptions about the URIs for the members of a
+resource collection."
 
 ## Query Redfish Service Root
 ```
