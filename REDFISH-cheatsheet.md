@@ -157,4 +157,17 @@ Change Legacy/EFI selector (valid only if host is based on the x86 CPU)
 curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Systems/system -d '{"Boot":{"BootSourceOverrideEnabled": "Once","BootSourceOverrideTarget": "None","BootSourceOverrideMode": "UEFI"}}'
 ```
 
+---
+
+## Enable NTP
+Add a NTP Server
+```
+curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Managers/bmc/NetworkProtocol -d '{"NTP":{"NTPServers":["time.nist.gov"]}}'
+```
+
+Now enable NTP
+```
+curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Managers/bmc/NetworkProtocol -d '{"NTP":{"ProtocolEnabled": true}}'
+```
+
 [1]: https://www.dmtf.org/standards/redfish
