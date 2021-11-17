@@ -170,4 +170,12 @@ Now enable NTP
 curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Managers/bmc/NetworkProtocol -d '{"NTP":{"ProtocolEnabled": true}}'
 ```
 
+---
+
+## Disable IPMI
+```
+curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Managers/bmc/NetworkProtocol -d '{"IPMI":{"ProtocolEnabled": false}}'
+```
+
+
 [1]: https://www.dmtf.org/standards/redfish
