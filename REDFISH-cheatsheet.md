@@ -65,6 +65,13 @@ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/syst
 
 ---
 
+## BMC reboot
+```
+curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Managers/bmc/Actions/Manager.Reset -d '{"ResetType": "GracefulRestart"}'
+```
+
+---
+
 ## Log entry
 Display logging entries:
 ```
