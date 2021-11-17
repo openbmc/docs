@@ -42,6 +42,13 @@ curl -k -H "X-Auth-Token: $token" -X GET https://${bmc}/redfish/v1/Systems
 
 ---
 
+## View sessions
+```
+curl -k -H "X-Auth-Token: $token" https://${bmc}/redfish/v1/SessionService/Sessions
+```
+
+---
+
 ## Host power
 Host soft power off:
 ```
