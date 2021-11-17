@@ -2,10 +2,10 @@
 This document is intended to provide a set of [Redfish][1] client commands for OpenBMC usage.
 (Using CURL commands)
 
-## Query Root
+## Query Redfish Service Root
 ```
 export bmc=xx.xx.xx.xx
-curl -b cjar -k https://${bmc}/redfish/v1
+curl -k https://${bmc}/redfish/v1
 ```
 
 ---
