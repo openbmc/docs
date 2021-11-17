@@ -72,6 +72,14 @@ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Managers/bmc
 
 ---
 
+## BMC factory reset
+Proceed with caution:
+```
+curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Managers/bmc/Actions/Manager.ResetToDefaults -d '{"ResetToDefaultsType": "ResetAll"}'
+```
+
+---
+
 ## Log entry
 Display logging entries:
 ```
