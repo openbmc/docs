@@ -22,6 +22,30 @@
       "revId": "1494ded5b135bf9ec9fc5f829590dcdcef048890",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e77fe21_4a69b368",
+        "filename": "designs/hw-fault-monitor.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1001143
+      },
+      "writtenOn": "2021-11-24T02:47:57Z",
+      "side": 1,
+      "message": "In log_services.hpp in the bmcweb repo I see requestRoutesBMCDumpService() corresponding to /redfish/v1/Managers/bmc/LogServices/Dump has \"asyncResp-\u003eres.jsonValue[\"OverWritePolicy\"] \u003d \"WrapsWhenFull\";\". From what I can tell in phosphor-debug-collector this log is implemented in dump_manager_bmc.cpp which invokes the dreport script to collect various debug info and save it into a file as a dump entry, but when the log is full getAllowedSize() will report a QuotaExceeded error and the dump won\u0027t be collected (i.e. the log doesn\u0027t actually wrap when full). For fault log we\u0027re thinking of logging a few different types of entries (e.g. some entries contain polled register values, some contain sensor values associated with a crashdump, some contain machine check error data, etc.), and in case we run out of space keep the oldest N number of certain types of entries (don\u0027t save newer entries beyond that) and for other types of entries delete the oldest entries to make space for new entries.",
+      "parentUuid": "d5ce82de_fbcf0c1e",
+      "range": {
+        "startLine": 179,
+        "startChar": 19,
+        "endLine": 182,
+        "endChar": 71
+      },
+      "revId": "1494ded5b135bf9ec9fc5f829590dcdcef048890",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
