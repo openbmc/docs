@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "fd04c58d_85c82b0d",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-30T19:13:08Z",
+      "side": 1,
+      "message": "I think it is reasonable to be able to ask the daemon to stop monitoring a particular module then (ie, not start/stop the whole daemon).\n\nDepending on how you detect the modules, you could potentially have a `cmis-monitor@\u003cdevice\u003e.service` who\u0027s \u0027start\u0027/\u0027stop\u0027 routines is something like \u0027cmis-cli start \u003cdevice\u003e\u0027/\u0027cmis-cli stop \u003cdevice\u003e\u0027.  (I\u0027m not suggesting cmis-monitor/cmis-cli is a good name or one you need to pick here; just using as an example).",
+      "parentUuid": "bebb26fa_456c3457",
+      "range": {
+        "startLine": 102,
+        "startChar": 53,
+        "endLine": 106,
+        "endChar": 0
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0dd29bf3_2c504704",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 8
@@ -272,6 +296,30 @@
       "side": 1,
       "message": "Thanks very much for the detailed explanation, Patrick! It is a precious lesson for me to learn about BMC interface design.\n\nSince this comment requires quite some design refactoring, so I\u0027d like to confirm the reviewer\u0027s opinion before I change the interface content (which is easy to do but less effective because it\u0027s just a translation of design purpose)\n\n1. \"Is the way the module is connected to the board really all that interesting?\"\nThis doc aims at designing all CMIS-compliant modules, which covers a wide range of forms, e.g. QSFP Double Density (QSFP-DD), OSFP, COBO, QSFP, SFP-DD as well as future forms. The \"Identifier\" would be the major property to differentiate those different forms. It\u0027s register address is Lower Page 00h Byte 0 (the first register in the module EEPROM).\n\n2. \"This feels like maybe it belongs as a subclass of Inventory/Connector.\"\nI fully understand the BMC community\u0027s intention to avoid exposing any specific spec at a dbus level. A subclass of Inventory/Connector seems good to me. But the current Inventory/Connector only contains two interfaces: the Embedded shall not be used for field-replaceable, and the Slot represents a PCIe slot connection. Should I create a new interface under Inventory/Connector?\n\n3. \"...a free-form string that could be used\"\nAgree that a string is more extensible. Previously I used an integer type to represent the Identifier and another reviewer suggested me switching to an enumeration. I can see values from both reviewers\u0027 suggestions. If we want to avoid exposing CMIS specific information in the interface, a string would be the best solution.\n\n\nMarking this as unresolved.",
       "parentUuid": "0dd29bf3_2c504704",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 68
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52fe1330_9e7f1f45",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-30T19:13:08Z",
+      "side": 1,
+      "message": "\u003e 1. \"Is the way the module is connected to the board really all that interesting?\"\n\u003e This doc aims at designing all CMIS-compliant modules, which covers a wide range of forms, e.g. QSFP Double Density (QSFP-DD), OSFP, COBO, QSFP, SFP-DD as well as future forms. The \"Identifier\" would be the major property to differentiate those different forms. It\u0027s register address is Lower Page 00h Byte 0 (the first register in the module EEPROM).\n\nThis still doesn\u0027t tell me if the connection method is interesting.  Who cares about if it is a QSFP-DD or microQSFP form-factor?  I can\u0027t really conceive of cases where this is interesting information to expose to another daemon, unless there is something fundamental in the Redfish API that needs this information.\n\n\u003e Should I create a new interface under Inventory/Connector?\n\nYes, certainly we could add new interfaces under Connector if that\u0027s where it belongs.  Again, I think we\u0027d need to make sure we\u0027re not making something specific to CMIS unless that is really appropriate and necessary.",
+      "parentUuid": "a894f95e_cf572dd4",
       "range": {
         "startLine": 130,
         "startChar": 0,
@@ -366,6 +414,30 @@
       "side": 1,
       "message": "Thanks for the suggestion! Just want to double check:\n\nThe current Decorator folder contains multiple interfaces:\n1. Asset: I can add a new property called \"VendorOUI\" here\n2. ManufacturerExt: I can (a) create a new property here, (2) use the existing ExtendedMFGData property, but it seems not designed for programmatic interrogation.\n3. VendorInformation: This seems applicable for vendor custom fields, so not a good fit for my case.\n4. Creating a new interface.\n\n\nPatrick, which one looks better to you? 1, 2(a) or 4?",
       "parentUuid": "4ad69923_b2bdff04",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 53
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "800f0f06_220c78da",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-30T19:13:08Z",
+      "side": 1,
+      "message": "1 or 4 most likely.  Since not every asset has an OUI (only networking ones do) it seems like 4 is best.",
+      "parentUuid": "a959dcca_0144fbdc",
       "range": {
         "startLine": 140,
         "startChar": 0,
@@ -636,6 +708,24 @@
     },
     {
       "key": {
+        "uuid": "a5af5717_dbef8ff1",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-30T19:13:08Z",
+      "side": 1,
+      "message": "Probably State sub-directory.\n\nCould these same indications be applied to any bus that trains, such as PCIe or DIMMs?  Or any connection that uses optics?\n\nWhatever ends up under \u0027State\u0027 could ideally be written in a way to generically apply to these other types of buses.",
+      "parentUuid": "84cc59de_8bd0d0bf",
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35353d1e_c7de5517",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 8
@@ -751,6 +841,30 @@
       "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b94b3b20_5d18ae71",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-11-30T19:13:08Z",
+      "side": 1,
+      "message": "\u003e But I don\u0027t think OpenBMC community will be interested in those CMIS specific firmware upgrade logic so I will create another repository outside of OpenBMC.\n\nThis seems like a leap to make.  I don\u0027t see why we wouldn\u0027t make the repo under the OpenBMC org if it is fulfilling a design we\u0027ve documented here.",
+      "parentUuid": "0be49351_b5561ed3",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 79
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
