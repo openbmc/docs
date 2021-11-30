@@ -332,6 +332,30 @@
     },
     {
       "key": {
+        "uuid": "bf216228_43ca0737",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2021-11-30T20:42:46Z",
+      "side": 1,
+      "message": "I can take a stab at the connector question. Feel free to chime in Jianqiao\n\n\u003e1. \"Is the way the module is connected to the board really all that interesting?\"\n\u003eThis still doesn\u0027t tell me if the connection method is interesting.  Who cares about if it is a QSFP-DD or microQSFP form-factor?  I can\u0027t really conceive of cases where this is interesting information to expose to another daemon, unless there is something fundamental in the Redfish API that needs this information.\n\nI think it\u0027s useful and there is a use case..  Cable v1.1.0 specifies the connector type (no OSFP yet but we plan on raising an issue to amend it)\nhttps://redfish.dmtf.org/schemas/v1/Cable.v1_1_0.json\n\nSo the driving use case here is that Cable schema specifies connector type and so we\u0027d like the dbus interface to provide enough information to more fully populate the cable resource.\n\nIf you\u0027re looking for a end-user use-case then a contrived example might be that your fleet may have a mixture of CMIS cable types. If there is a problem with a cable then your repair action might be different depending on the connector type.\ne.g we know that connector A is frequently seated incorrectly so the repair action would be to reseat the connector. Connector B never has this issue so maybe do something different.",
+      "parentUuid": "52fe1330_9e7f1f45",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 68
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1241d65d_a38bf5ba",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 8
