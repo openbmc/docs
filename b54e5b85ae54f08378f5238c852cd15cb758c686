@@ -285,6 +285,30 @@
     },
     {
       "key": {
+        "uuid": "0b7d4fd3_5f4d4c9d",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-01T00:56:33Z",
+      "side": 1,
+      "message": "Yeah, it seems that the \"xyz/openbmc_project/Object/Enable.interface.yaml\" will serve the purpose.\n\nMarking this as resolved now.",
+      "parentUuid": "3fa550d0_2eadded3",
+      "range": {
+        "startLine": 102,
+        "startChar": 53,
+        "endLine": 106,
+        "endChar": 0
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0dd29bf3_2c504704",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 8
@@ -368,6 +392,30 @@
       "side": 1,
       "message": "I can take a stab at the connector question. Feel free to chime in Jianqiao\n\n\u003e1. \"Is the way the module is connected to the board really all that interesting?\"\n\u003eThis still doesn\u0027t tell me if the connection method is interesting.  Who cares about if it is a QSFP-DD or microQSFP form-factor?  I can\u0027t really conceive of cases where this is interesting information to expose to another daemon, unless there is something fundamental in the Redfish API that needs this information.\n\nI think it\u0027s useful and there is a use case..  Cable v1.1.0 specifies the connector type (no OSFP yet but we plan on raising an issue to amend it)\nhttps://redfish.dmtf.org/schemas/v1/Cable.v1_1_0.json\n\nSo the driving use case here is that Cable schema specifies connector type and so we\u0027d like the dbus interface to provide enough information to more fully populate the cable resource.\n\nIf you\u0027re looking for a end-user use-case then a contrived example might be that your fleet may have a mixture of CMIS cable types. If there is a problem with a cable then your repair action might be different depending on the connector type.\ne.g we know that connector A is frequently seated incorrectly so the repair action would be to reseat the connector. Connector B never has this issue so maybe do something different.",
       "parentUuid": "52fe1330_9e7f1f45",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 68
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f662e03_b5940bb2",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-01T00:56:33Z",
+      "side": 1,
+      "message": "Agree with Jason.\n\nI\u0027ve already moved \"VendorOUI\" field to a new interface per reviewer\u0027s suggestion. I will also change the Identifier data type from enum to string and move it to \"Inventory/Connector\" once this discussion is closed.",
+      "parentUuid": "bf216228_43ca0737",
       "range": {
         "startLine": 130,
         "startChar": 0,
@@ -495,6 +543,30 @@
       "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ea144a8_c5a2255e",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-01T00:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "800f0f06_220c78da",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 53
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -774,6 +846,24 @@
     },
     {
       "key": {
+        "uuid": "9a2d8de0_4069061e",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-01T00:56:33Z",
+      "side": 1,
+      "message": "I\u0027ve already relocated this interface to \"/xyz/openbmc_project/State/Decorator/LanesStatus.interface.yaml\" and removed any CMIS specific details.\n\nThe Loss of Signal and Loss of Lock have been widely used in network devices. I haven\u0027t seen many cases in PCIe or DIMMs.",
+      "parentUuid": "a5af5717_dbef8ff1",
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35353d1e_c7de5517",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 8
@@ -913,6 +1003,30 @@
       "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75146749_aa5190b5",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-01T00:56:33Z",
+      "side": 1,
+      "message": "Please see my replies in another thread.\n\nWe will pack those CMIS/CDB based firmware upgrade into a standalone library. That library will be used on multiple platforms, including the host, switch and BMC. It shouldn\u0027t contain any BMC specific logic like dbus.",
+      "parentUuid": "b94b3b20_5d18ae71",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 79
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
