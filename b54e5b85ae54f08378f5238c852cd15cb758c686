@@ -524,6 +524,30 @@
     },
     {
       "key": {
+        "uuid": "49e6144b_8a9d40e9",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T22:14:30Z",
+      "side": 1,
+      "message": "\u003e \u003e Redfish Cares and has enums for this.  In practice, it\u0027s good to know what type of module you\u0027re dealing with so you can do things like per-lane bandwidth monitoring.\n\u003e \n\u003e If we need it for Redfish, I guess we need it. ;)  I still don\u0027t really get _why_ Redfish puts a lot of these in there but whatever.\n\nThe main use case is inventory management and topology inspection over OOB interfaces.  Having the exact connector spec in a lot of cases allows techs to know exactly what cable/module/whatever type they need when something fails, without having to have a hardcoded list of every possible NICs connector type.\n\n\u003e  \"Per-lane bandwidth monitoring\" doesn\u0027t sound like something related to QSFP-DD vs microQSFP unless you\u0027re attempting to derive the amount of bandwidth based on the connector type, which is kind of poor on your part.\n\nYeah, in that case, those two would be the same, but I know from the spec that SFP supports up to gigabit connections, SFP+ supports 10GB connections, and QSFP supports 40GB connections, so I can use that to determine overhead... With that said, yes, the example was contrived and not well thought out.  The topology and repair use cases in the previous paragraph are probably a better example.\n\n\u003e \n\u003e \u003e I\u0027m not quite following this statement, are you saying we should rename this to something like \"network module\" to remove the specifics of the interface from the name?  I could see that being reasonable.\n\u003e \n\u003e Yes, exactly.\n\nYeah, lets do that.\n\n\u003e \n\u003e \u003e The issue I have with that is that it\u0027s not a connector.  the SFP interface on the board is a connector, but the module is more akin to an add-in-card, so I worry that we\u0027re stretching the \"connector\" definition a bit by putting it there, given the connector and module that fits in the connector are distinct.\n\u003e \n\u003e This could be lack of knowledge on my part and/or misinterpreting what was written before.  I\u0027m not too stuck on if it is a \"Connector\" or not.\n\u003e \n\u003e You have an SFP slot that you insert an SFP transceiver into.  QSFP is a form-factor?  Or is QSFP a speed?\n\nQSFP defines both speed and lane count.  QSFP is 4GBPS, 4 serdes lanes.  QSFP+ is 4 serdes lanes, 40GBPS, ect.\n\n\u003e  The \"slot\" is the thing I\u0027m considering to be a connector and what I would expect to say \"I am a QSFP-type Slot\".  The CMIS module then plugs into the QSFP slot (as a transceiver).  Do I have this right?\n\u003e  If so, it seems like the only debate is if there is a separate inventory object (and maybe path) for the \"slot\" vs the \"transceiver/module\" or they all go in one?\n\n\nGotcha, yep, I think you got it right, although I suspect this design doc is trying to avoid the differentiation between a connector and a module, because it\u0027s tough to model, and the distinction isn\u0027t that important.\n\nI really suspect a lot of this is going to be driven by the PCIe slot abstraction stuff, of which there is a lot more people looking into it.  I think for the moment we should just add the Item.Module abstraction, then once we nail down how PCIe is going to work, presumably this would be identical (with slightly different names).",
+      "parentUuid": "6090e554_21152d71",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 68
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1241d65d_a38bf5ba",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 8
