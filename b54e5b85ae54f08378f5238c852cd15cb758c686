@@ -309,6 +309,30 @@
     },
     {
       "key": {
+        "uuid": "0d13d616_71c15d5a",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-12-01T15:01:44Z",
+      "side": 1,
+      "message": "Yeah, it can be done like that also.  I suspected you\u0027d want some kind of CLI for humans as opposed to a difficult-to-contrive busctl invocation.  `systemctl` is slightly more straight-forward to get the right parameters.",
+      "parentUuid": "3fa550d0_2eadded3",
+      "range": {
+        "startLine": 102,
+        "startChar": 53,
+        "endLine": 106,
+        "endChar": 0
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0dd29bf3_2c504704",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 8
@@ -440,6 +464,30 @@
       "side": 1,
       "message": "\u003e Who cares about if it is a QSFP-DD or microQSFP form-factor? \n\nRedfish Cares and has enums for this.  In practice, it\u0027s good to know what type of module you\u0027re dealing with so you can do things like per-lane bandwidth monitoring.\n\n\u003e I understood CMIS to be a specific spec and we don\u0027t usually want to expose specs at a dbus level.  We don\u0027t expose IPMI, PLDM, MCTP, etc.\n\nI\u0027m not quite following this statement, are you saying we should rename this to something like \"network module\" to remove the specifics of the interface from the name?  I could see that being reasonable.\n\n\u003e Is the way the module is connected to the board really all that interesting?\n\nKnowing that this is a module of a particular form-factor is very interesting to manageability software.  Knowing whether your server has an SFP+ connector or a QSFP connector is useful.\n\n\u003e This feels like maybe it belongs as a subclass of Inventory/Connector.\nThe issue I have with that is that it\u0027s not a connector.  the SFP interface on the board is a connector, but the module is more akin to an add-in-card, so I worry that we\u0027re stretching the \"connector\" definition a bit by putting it there, given the connector and module that fits in the connector are distinct.",
       "parentUuid": "9f662e03_b5940bb2",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 68
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79f6d32e_cdd54f98",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-12-01T15:01:44Z",
+      "side": 1,
+      "message": "\u003e I think it\u0027s useful and there is a use case..  Cable v1.1.0 specifies the connector type (no OSFP yet but we plan on raising an issue to amend it)\n\nI don\u0027t know if CMIS and SFP are interchangeable in this context.  Can you have a SFP connector that is not attached to a CMIS module?  I would expect so.  If so, from an inventory perspective, the connector still isn\u0027t specific to CMIS and we may want to be able to define inventory objects that hold non-CMIS SFP connectors?  Please correct me here as my background knowledge is pretty limited.",
+      "parentUuid": "bf216228_43ca0737",
       "range": {
         "startLine": 130,
         "startChar": 0,
