@@ -428,6 +428,30 @@
     },
     {
       "key": {
+        "uuid": "18dd2746_2a472b7b",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:51:26Z",
+      "side": 1,
+      "message": "\u003e Who cares about if it is a QSFP-DD or microQSFP form-factor? \n\nRedfish Cares and has enums for this.  In practice, it\u0027s good to know what type of module you\u0027re dealing with so you can do things like per-lane bandwidth monitoring.\n\n\u003e I understood CMIS to be a specific spec and we don\u0027t usually want to expose specs at a dbus level.  We don\u0027t expose IPMI, PLDM, MCTP, etc.\n\nI\u0027m not quite following this statement, are you saying we should rename this to something like \"network module\" to remove the specifics of the interface from the name?  I could see that being reasonable.\n\n\u003e Is the way the module is connected to the board really all that interesting?\n\nKnowing that this is a module of a particular form-factor is very interesting to manageability software.  Knowing whether your server has an SFP+ connector or a QSFP connector is useful.\n\n\u003e This feels like maybe it belongs as a subclass of Inventory/Connector.\nThe issue I have with that is that it\u0027s not a connector.  the SFP interface on the board is a connector, but the module is more akin to an add-in-card, so I worry that we\u0027re stretching the \"connector\" definition a bit by putting it there, given the connector and module that fits in the connector are distinct.",
+      "parentUuid": "9f662e03_b5940bb2",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 68
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1241d65d_a38bf5ba",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 8
