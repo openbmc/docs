@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a85e4da_64868582",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:44:03Z",
+      "side": 1,
+      "message": "nitpick.  use of Interrupts aren\u0027t a requirement, CPU usage and latency might necessitate the use of interrupts, but those two should be requirements, interrupts is the solution.",
+      "range": {
+        "startLine": 87,
+        "startChar": 3,
+        "endLine": 87,
+        "endChar": 13
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e48b0160_be13dbc0",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:44:03Z",
+      "side": 1,
+      "message": "For telemetry we already have the concept of unavailable.  I suspect this would just be a new implementation of it, or is there a reason to mark the whole module unavailable?  What is the use case that requires knowing the module is unavailable, as opposed to just knowing that the specific telemetry items are unavailable?",
+      "range": {
+        "startLine": 93,
+        "startChar": 19,
+        "endLine": 94,
+        "endChar": 24
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2822a90d_6725cfde",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:44:03Z",
+      "side": 1,
+      "message": "nit: this isn\u0027t really an openbmc requirement.  Probably take out the word \"should\"",
+      "range": {
+        "startLine": 95,
+        "startChar": 3,
+        "endLine": 96,
+        "endChar": 18
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a875f15_c2a0a746",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:44:03Z",
+      "side": 1,
+      "message": "Ideally this would just link to the phosphor-dbus-interfaces review.  It doesn\u0027t make sense to duplicate the interface definitions here.  Could be done in another patchset I guess if you wanted, but we should avoid writing these definitions twice.",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 68
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "444cbdfb_f4b7a838",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:44:03Z",
+      "side": 1,
+      "message": "Does this name need to be specific to CMIS OUI?  I could see this accidentally getting used for PCIeOUI, or IPMI OUI, which if we\u0027re going to do we should do explicitly by calling out the registry we\u0027re using, but in this case, I suspect just making the naming specific would be enough.",
+      "range": {
+        "startLine": 177,
+        "startChar": 41,
+        "endLine": 177,
+        "endChar": 50
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9bf2a38_6e059bbc",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:44:03Z",
+      "side": 1,
+      "message": "I\u0027m not really following what this table is saying.\n\nis this pointing out that there will be 4 sensors?  The sensor itself isn\u0027t of type double.  Maybe that column needs removed?  I suspect this whole thing could be boiled down to \"will implement sensor.Value interfaces for temperature, supply voltage, tx power, and rx power for a given module\"",
+      "range": {
+        "startLine": 207,
+        "startChar": 2,
+        "endLine": 207,
+        "endChar": 6
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "573a14b9_664406f6",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:44:03Z",
+      "side": 1,
+      "message": "Generally we would split these into separate objects.  one object per lane, each with an enum for the various things you\u0027re trying to convey.",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 207
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a601f8f_5f92f38d",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:44:03Z",
+      "side": 1,
+      "message": "Given that this is module-specific data, and I\u0027m assuming has some common implementations, should this be called out in the entity-manager config data?  Do specific CMIS modules have an entity manager config?   (if there\u0027s specific logic that needs turned on per module, they probably should).",
+      "range": {
+        "startLine": 257,
+        "startChar": 17,
+        "endLine": 258,
+        "endChar": 56
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bc33154_30e15705",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:44:03Z",
+      "side": 1,
+      "message": "Some things I see missing:\nWhat does the entity-manager config for a module look like?  What parameters does it give the user control over?\nAre there any requirements for inventory interfaces?  Ie, asset?  manufacturer?\nHow will modules avoid name collisions?  (if the answer is naming the devices after their entity-manager name, then this problem is solved already).\nAre there any requirements that these modules show up in redfish?  Which schemas?",
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
