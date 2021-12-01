@@ -96,6 +96,29 @@
     },
     {
       "key": {
+        "uuid": "683adcf9_cb63cd58",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:26:33Z",
+      "side": 1,
+      "message": "This is a design anti-pattern.  FWIW, our private things our our problem (we can talk more offline about how to design them) but splitting up control for a single piece of hardware among various daemons is a huge pain, and is the source of many reliability, performance, and interfacing bugs.  One daemon should be responsible for one piece of hardware.  If you want to share code between them for common stuff, put it in a library that both daemons can use, but being able to control a modules IO access all in one place helps a ton for use cases like firmware update, where the hardware itself is broken, and does crazy stuff like requires all firmware update payloads to be contiguous.\n\nFWIW, an upstream design doc shouldn\u0027t really mention \"private\" use cases, hence the word \"private\" 😊",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 33
+      },
+      "revId": "2cc38523fc351fdf27a7fc4cd7f4850d3a35be98",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c4af41c_0bb1d606",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 11
@@ -140,6 +163,29 @@
       "revId": "2cc38523fc351fdf27a7fc4cd7f4850d3a35be98",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "73f481ec_6665a129",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:26:33Z",
+      "side": 1,
+      "message": "For the debug use cases, I\u0027m not understanding why CMIS modules are special.\n\nsystemctl stop CMIS.service should allow all the debugging a person needs.",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 27
+      },
+      "revId": "2cc38523fc351fdf27a7fc4cd7f4850d3a35be98",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
@@ -272,6 +318,30 @@
       "side": 1,
       "message": "The intention is to pack all CMIS logic, like firmware upgrade, PRBS (pseudorandom binary sequence) testing and EEPROM layout validation, etc, into a standalone library. This library would be used on multiple platforms, like the host, network switch and BMC. It shouldn\u0027t contain any OpenBMC specific code, like dbus or PLDM. According to the review process, OpenBMC community clearly isn\u0027t interested in CMIS specific logic, like these CDB commands:\n\nCMD 0100h: Get Firmware Info\nCMD 0101h: Start Firmware Download\nCMD 0102h: Abort Firmware Download\nCMD 0103h: Write Firmware Image LPL\n....\n\nThis proposed CMIS daemon will take care of all OpenBMC related stuff. As of firmware upgrade feature, it will call the above external library, pass in some firmware images and i2c interfaces, then wait until the library finishes. Certainly this CMIS daemon will handle errors reported by the library.\n\nLeaving this as unresolved just in case Patrick may want to have more discussion.",
       "parentUuid": "762b0a91_c5a73e06",
+      "range": {
+        "startLine": 227,
+        "startChar": 36,
+        "endLine": 228,
+        "endChar": 63
+      },
+      "revId": "2cc38523fc351fdf27a7fc4cd7f4850d3a35be98",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7084e7f_ba9f7adf",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-01T04:26:33Z",
+      "side": 1,
+      "message": "\u003e Having repositories outside the organization that are being included in machines maintained by the organization makes it really difficult for us to manage.\n\n+1.  There are other examples of libraries that are within the openbmc umbrella that are not openbmc specific (sdbusplus), so that shouldn\u0027t be an issue.  Unless you\u0027re planning on starting another LF foundation (or other multi-comany compatible) project, and figuring out all the licensing, code of conduct, CLA, patents, CI and other stuff that openbmc has, I\u0027m guessing this isn\u0027t the right direction.\n\n\u003e it will call the above external library,\n\nI don\u0027t really see why we can\u0027t have both the application and the library live in the openbmc repo.  At which point that another capable org (think LF or similar) wants to take it over, it\u0027s easy enough to move.",
+      "parentUuid": "af0a8be7_0b7db2dd",
       "range": {
         "startLine": 227,
         "startChar": 36,
