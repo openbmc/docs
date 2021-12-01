@@ -500,6 +500,30 @@
     },
     {
       "key": {
+        "uuid": "6090e554_21152d71",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-12-01T21:12:17Z",
+      "side": 1,
+      "message": "\u003e Redfish Cares and has enums for this.  In practice, it\u0027s good to know what type of module you\u0027re dealing with so you can do things like per-lane bandwidth monitoring.\n\nIf we need it for Redfish, I guess we need it. ;)  I still don\u0027t really get _why_ Redfish puts a lot of these in there but whatever.  \"Per-lane bandwidth monitoring\" doesn\u0027t sound like something related to QSFP-DD vs microQSFP unless you\u0027re attempting to derive the amount of bandwidth based on the connector type, which is kind of poor on your part.\n\n\u003e I\u0027m not quite following this statement, are you saying we should rename this to something like \"network module\" to remove the specifics of the interface from the name?  I could see that being reasonable.\n\nYes, exactly.\n\n\u003e The issue I have with that is that it\u0027s not a connector.  the SFP interface on the board is a connector, but the module is more akin to an add-in-card, so I worry that we\u0027re stretching the \"connector\" definition a bit by putting it there, given the connector and module that fits in the connector are distinct.\n\nThis could be lack of knowledge on my part and/or misinterpreting what was written before.  I\u0027m not too stuck on if it is a \"Connector\" or not.\n\nYou have an SFP slot that you insert an SFP transceiver into.  QSFP is a form-factor?  Or is QSFP a speed?  The \"slot\" is the thing I\u0027m considering to be a connector and what I would expect to say \"I am a QSFP-type Slot\".  The CMIS module then plugs into the QSFP slot (as a transceiver).  Do I have this right?  If so, it seems like the only debate is if there is a separate inventory object (and maybe path) for the \"slot\" vs the \"transceiver/module\" or they all go in one?",
+      "parentUuid": "79f6d32e_cdd54f98",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 68
+      },
+      "revId": "b54e5b85ae54f08378f5238c852cd15cb758c686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1241d65d_a38bf5ba",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 8
