@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a8c9cc7_0ecf4443",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-02T23:31:55Z",
+      "side": 1,
+      "message": "Good point! Updated this sentence and the proposed design:\n\n\"We propose the mangement daemon to detect the module presence through GPIO pin\ninterrupts to save CPU usage and reduce latency. \"",
+      "parentUuid": "3a85e4da_64868582",
+      "range": {
+        "startLine": 87,
+        "startChar": 3,
+        "endLine": 87,
+        "endChar": 13
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e48b0160_be13dbc0",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 12
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9b247773_e41450e8",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-02T23:31:55Z",
+      "side": 1,
+      "message": "No, I don\u0027t think \"marking a bunch of subsidiary sensors unavailable\" will be more clear than marking the whole module unavailable for this point. We can do them both for different purposes, but a module level flag is still needed. Think about we have an accelerator which connects with the CMIS module\u0027s data path (not I2C but some high speed path), it need to understand whether the module is fully up and ready for traffic during its initialization. Using some sensors\u0027 availabilities to infer the module availability doesn\u0027t make a lot of sense here.",
+      "parentUuid": "e48b0160_be13dbc0",
+      "range": {
+        "startLine": 93,
+        "startChar": 19,
+        "endLine": 94,
+        "endChar": 24
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2822a90d_6725cfde",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 12
@@ -68,6 +116,30 @@
       "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d09c20e7_0ecee4d9",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-02T23:31:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2822a90d_6725cfde",
+      "range": {
+        "startLine": 95,
+        "startChar": 3,
+        "endLine": 96,
+        "endChar": 18
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -165,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "c4ed60ff_53218136",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-02T23:31:55Z",
+      "side": 1,
+      "message": "The OUI list should be shared:\n\nhttps://en.wikipedia.org/wiki/Organizationally_unique_identifier\nhttp://standards-oui.ieee.org/oui/oui.txt\n\nAnd it should be a 24-bit number, not a string (although we usually parse it as a string). Already updated in the latest patchset.",
+      "parentUuid": "d452549c_d323fe7a",
+      "range": {
+        "startLine": 177,
+        "startChar": 41,
+        "endLine": 177,
+        "endChar": 50
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9bf2a38_6e059bbc",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 12
@@ -185,6 +281,30 @@
       "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b6647e8_1aa619d4",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-02T23:31:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9bf2a38_6e059bbc",
+      "range": {
+        "startLine": 207,
+        "startChar": 2,
+        "endLine": 207,
+        "endChar": 6
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -211,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "2d3d206d_e7a6d2dc",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-02T23:31:55Z",
+      "side": 1,
+      "message": "Please see my previous explanation in PatchSet 8:\n\n\"\nJianqiao Liu\nNov 11\nLossOfSignal and LossOfLock are two independent properties. One lane in a module could have neither/either/both of them. So the boolean type seems like a good choice.\n\nActually Jason Ling has a good point about how we should associate a lane with a module. For example, a 1U front panel supports up to 36 OSFP (one type of CMIS-compliant set) modules, and each module has 8 lanes. In the current interface design, we need to perform 36 * 8 \u003d 288 queries on dbus to get overall system status. That may cause performance pressure on dbus. So I\u0027m updating the interface here.\n\"\n\nLeaving this thread unresolved just in case you want to have more discussions.",
+      "parentUuid": "573a14b9_664406f6",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 207
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a601f8f_5f92f38d",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 12
@@ -222,6 +366,30 @@
       "writtenOn": "2021-12-01T04:44:03Z",
       "side": 1,
       "message": "Given that this is module-specific data, and I\u0027m assuming has some common implementations, should this be called out in the entity-manager config data?  Do specific CMIS modules have an entity manager config?   (if there\u0027s specific logic that needs turned on per module, they probably should).",
+      "range": {
+        "startLine": 257,
+        "startChar": 17,
+        "endLine": 258,
+        "endChar": 56
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b7737d4_35acd7bb",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-02T23:31:55Z",
+      "side": 1,
+      "message": "Yes, we do plan to use entity manager config handle this. The EntityManager config file should include two pieces of information: 1) mandatory i2c location info 2) company-customized functionalities, like lane reversing, reporting additional module data\n\nIdeally, we will pack the main logic of company-customized functionalities in the daemon and only place some on/off flags in the config file. I\u0027ll share some examples later.",
+      "parentUuid": "8a601f8f_5f92f38d",
       "range": {
         "startLine": 257,
         "startChar": 17,

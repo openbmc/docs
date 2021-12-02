@@ -189,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "b9894a9c_ed0cfeea",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001073
+      },
+      "writtenOn": "2021-12-02T23:31:55Z",
+      "side": 1,
+      "message": "Patrick asked a similar question in PatchSet8:\n\n\"Patrick Williams\nNov 09\nCan we just `systemctl stop ...` in this case?  Do we really need a special debug API?\n\nJianqiao Liu\nNov 11\nThe `systemctl stop ...` would stop the entire daemon. Note that the daemon manages multiple modules and we may want to debug only one of them. The main purpose here is to keep the daemon managing other modules while we\u0027re debugging a specific module.\n\nI can certainly modify if this doesn\u0027t align with BMC\u0027s design methodology. What do you think?\n\nPatrick Williams\n2:13 PM\nI think it is reasonable to be able to ask the daemon to stop monitoring a particular module then (ie, not start/stop the whole daemon).\n\nDepending on how you detect the modules, you could potentially have a `cmis-monitor@\u003cdevice\u003e.service` who\u0027s \u0027start\u0027/\u0027stop\u0027 routines is something like \u0027cmis-cli start \u003cdevice\u003e\u0027/\u0027cmis-cli stop \u003cdevice\u003e\u0027.  (I\u0027m not suggesting cmis-monitor/cmis-cli is a good name or one you need to pick here; just using as an example).\n\nJason Ling\n3:46 PM\nwouldn\u0027t the dbus path interface that allows enable/disable be suitable?\n\nsee\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Object/Enable.interface.yaml\n\nJianqiao Liu\n7:56 PM\nYeah, it seems that the \"xyz/openbmc_project/Object/Enable.interface.yaml\" will serve the purpose.\n\nMarking this as resolved now.\n\nPatrick Williams\nDec 01\nYeah, it can be done like that also.  I suspected you\u0027d want some kind of CLI for humans as opposed to a difficult-to-contrive busctl invocation.  `systemctl` is slightly more straight-forward to get the right parameters.\n\nDRAFT \n2:12 PM\nGot it! Thanks for the suggestion!\n\nYes, a CLI tool will be super useful in deployment. I\u0027ve already updated the ASCII diagram.\"\n\n\nPlease feel free to let me know if this doesn\u0027t make sense to you.",
+      "parentUuid": "73f481ec_6665a129",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 27
+      },
+      "revId": "2cc38523fc351fdf27a7fc4cd7f4850d3a35be98",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3042736b_0205167c",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 11
