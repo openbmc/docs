@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8f7def43_133f6d0b",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-12-06T21:37:36Z",
+      "side": 1,
+      "message": "I understand.\n\nI can\u0027t speak to your other operating systems, and I don\u0027t know if you\u0027ve already defined the firmware interfaces here, but any ACPI-based machine already has a way to expose batteries (and power supplies) through ACPI tables and UPower can already handle those as well.  You might want to look into how that is exposed and see if skiboot can plumb into those same Linux kernel APIs for your PowerKVM machines.\n\nIdeally the flow for all the battery information would be:\n\nBMC-attached-UPS -\u003e UPower on BMC -\u003e (small openbmc glue) -\u003e IPMI/PLDM -\u003e Host Firmware -\u003e Kernel on Host -\u003e UPower on Host --(on low battery)-\u003e systemd.\n\nIf you plug a UPS directly into your host the { kernel -\u003e upower -\u003e systemd } is already done.  Adding this little bit of plumbing in a standard way on the BMC side gives you the same configuration path that any \"standard\" Linux system has for deal with UPS brown/black-out conditions.",
+      "parentUuid": "82509378_6127eb9d",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 11
+      },
+      "revId": "70ab233e6eae2d356c914218500f3789984be2bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6aa47084_50c0c0e3",
         "filename": "designs/power-recovery.md",
         "patchSetId": 6
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "2a0b0d34_441de66f",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-12-06T21:37:36Z",
+      "side": 1,
+      "message": "Got it.  As I mentioned elsewhere, this is in some regards IBM-specific policy.  Hopefully this is configurable or configurable-easily-added-later.  \n\nI believe we configure our systems to turn on immediately or with only a low battery charge (such as 5%) so we can get a DC up and running faster.",
+      "parentUuid": "a4ccd3b9_ec540390",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 51
+      },
+      "revId": "70ab233e6eae2d356c914218500f3789984be2bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2c9f6cd6_e9745b69",
         "filename": "designs/power-recovery.md",
         "patchSetId": 6
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "Yes we\u0027ll wait until the battery is fully-charged (and AC has returned) before we start powering on again, eg to avoid thrashing.",
       "parentUuid": "2c9f6cd6_e9745b69",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 7
+      },
+      "revId": "70ab233e6eae2d356c914218500f3789984be2bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef84a074_75c93f6d",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-12-06T21:37:36Z",
+      "side": 1,
+      "message": "I think I was missing some of the tie of these states to the proposed dbus interface.  I forgot there was a separate commit with those that was independent from what Shaun mentioned for UPower.",
+      "parentUuid": "9542b3be_2f49580c",
       "range": {
         "startLine": 228,
         "startChar": 0,
