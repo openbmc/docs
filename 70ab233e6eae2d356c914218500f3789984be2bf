@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "82509378_6127eb9d",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-12-06T20:31:43Z",
+      "side": 1,
+      "message": "We\u0027ll notify the host both when AC is lost (this condition), and if/when the UPS battery becomes low.  The different types of OS\u0027es our systems support have different policies/implementations based on these 2 notifications - some may choose to start a timer when AC is lost, some may choose to power off immediately, etc.  So the host/partitions decide what shutdown actions to take (ie it\u0027s already in place), not the BMC.",
+      "parentUuid": "0d25c56f_374ba23e",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 11
+      },
+      "revId": "70ab233e6eae2d356c914218500f3789984be2bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6aa47084_50c0c0e3",
         "filename": "designs/power-recovery.md",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a4ccd3b9_ec540390",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-12-06T20:31:43Z",
+      "side": 1,
+      "message": "Sounds like a good idea.\n\nIf the host chose to shut off, and AC still hasn\u0027t came back, we don\u0027t want to automatically power the system back on again, only for it to power back off again (prevent thrashing).",
+      "parentUuid": "6aa47084_50c0c0e3",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 51
+      },
+      "revId": "70ab233e6eae2d356c914218500f3789984be2bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2c9f6cd6_e9745b69",
         "filename": "designs/power-recovery.md",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2021-12-06T16:06:04Z",
       "side": 1,
       "message": "What does \"Good\" mean here?  The UPower states are: { charging, discharging, empty, fully-charged, pending-charge, pending-discharge, unknown }.  Are you going to wait until the battery is \"fully-charged\" before you start powering on your server?",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 7
+      },
+      "revId": "70ab233e6eae2d356c914218500f3789984be2bf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9542b3be_2f49580c",
+        "filename": "designs/power-recovery.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-12-06T20:31:43Z",
+      "side": 1,
+      "message": "Yes we\u0027ll wait until the battery is fully-charged (and AC has returned) before we start powering on again, eg to avoid thrashing.",
+      "parentUuid": "2c9f6cd6_e9745b69",
       "range": {
         "startLine": 228,
         "startChar": 0,
