@@ -8,6 +8,12 @@
 
 ## Overview
 
+**Please note:** This document is no longer officially supported by the OpenBMC
+team. It still contains a lot of useful information so it has been left here.
+Ideally this guide would become a standalone document (outside of the
+development tree) and would cover all of the different areas that must
+be updated to add a new system.
+
 This document will describe the following:
 
 * Review background about Yocto and BitBake
