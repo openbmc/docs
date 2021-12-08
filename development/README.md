@@ -18,12 +18,7 @@ any order you like, but the recommended flow can be found below.
    This shows how to modify the phosphor-webui web application and test your
    changes within QEMU.
 
-4. [Adding a New System](add-new-system.md)
-
-   This shows how to create a new meta-machine layer which is the first step to
-   add support for your machine.
-
-5. [Code Reviews Using Gerrit](gerrit-setup.md)
+4. [Code Reviews Using Gerrit](gerrit-setup.md)
 
    This shows how to setup your environment to utilize Gerrit for submitting
    your changes for code review.
