@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "06fb859a_1962acdd",
+        "filename": "designs/firmware-update-via-usb.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-12-08T21:44:40Z",
+      "side": 1,
+      "message": "We can reference the code update architecture doc that describes in order to perform an update, need first to copy the tarball image to the BMC - https://github.com/openbmc/docs/blob/master/architecture/code-update/code-update.md#steps-to-update",
+      "parentUuid": "92a1b7d1_279a6c9e",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 5
+      },
+      "revId": "854beaa4b357a28ed1c20a5b467647170e7e00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7086c806_0757756f",
         "filename": "designs/firmware-update-via-usb.md",
         "patchSetId": 4
@@ -209,6 +233,23 @@
     },
     {
       "key": {
+        "uuid": "4f88f807_524c3770",
+        "filename": "designs/firmware-update-via-usb.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-12-08T21:44:40Z",
+      "side": 1,
+      "message": "I\u0027ve added a comment in the service-config review to disable the update by disabling the usb code update udev rule by creating a symlink to /dev/null so that we don\u0027t have dependencies on the code update repo.",
+      "revId": "854beaa4b357a28ed1c20a5b467647170e7e00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90da48e2_1880f927",
         "filename": "designs/firmware-update-via-usb.md",
         "patchSetId": 4
@@ -220,6 +261,30 @@
       "writtenOn": "2021-12-06T13:00:02Z",
       "side": 1,
       "message": "This script should not go in /usr/bin.  See the other docs on file locations.\n\nAlso, I really despise this practice of naming files \"foo.sh\".  I don\u0027t care that you wrote it in shell, or python, or whatever language you chose.    All you\u0027re doing is adding maintenance trouble if we decide to refactor it into another language down the line.",
+      "range": {
+        "startLine": 73,
+        "startChar": 42,
+        "endLine": 73,
+        "endChar": 64
+      },
+      "revId": "854beaa4b357a28ed1c20a5b467647170e7e00ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1618b5c3_98b9412d",
+        "filename": "designs/firmware-update-via-usb.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-12-08T21:44:40Z",
+      "side": 1,
+      "message": "This needs updating, the udev rule was changed in favor of starting a service file instead:\nSUBSYSTEM\u003d\u003d\"block\", ACTION\u003d\u003d\"add\", KERNEL\u003d\u003d\"sda1\", ENV{SYSTEMD_WANTS}\u003d\"usb-code-update@sda1\", TAG+\u003d\"systemd\"\nSUBSYSTEM\u003d\u003d\"block\", ACTION\u003d\u003d\"add\", KERNEL\u003d\u003d\"sdb1\", ENV{SYSTEMD_WANTS}\u003d\"usb-code-update@sdb1\", TAG+\u003d\"systemd\"",
+      "parentUuid": "90da48e2_1880f927",
       "range": {
         "startLine": 73,
         "startChar": 42,
