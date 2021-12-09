@@ -1,0 +1,487 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9dae2aab_28e3de57",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "For what it\u0027s worth, this wasn\u0027t the original design, but the effort to instantiate and interface the probe statements was non-trivial, so a number of daemons opted out of it.  Ideally we\u0027d make the barrier to entry lower for that, ideally making the code more consistent, but I dont think anyone has taken that up yet.  If you\u0027re interested, ping me on discord and we can chat about it, or send me some patches.",
+      "range": {
+        "startLine": 26,
+        "startChar": 72,
+        "endLine": 27,
+        "endChar": 64
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e76f9f9_ee914988",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "PLDM is managing a sub-controller, so it SHOULD have its own inventory tree in the current design, because it\u0027s the one with in-depth access to that inventory information for devices on the other end of that bus.  I think the subtlety that\u0027s being missed here is that EM is designed to manage the resources within the BMC.  That doesn\u0027t mean that it needs to be the ONLY thing managing resources for the system.  There are other sub controllers that need accounted for, and can have complex inventory hierarchies.",
+      "range": {
+        "startLine": 28,
+        "startChar": 66,
+        "endLine": 28,
+        "endChar": 70
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25b8533f_a9af8ced",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "As you mention later, peci-pcie doesn\u0027t publish inventory items.  This is correct and by design.  If you\u0027d like to publish a pcie inventory item based on peci-pcie detection, add an entity-manager config file that matches on the PCIe device interfaces, and you\u0027ll get the behavior you\u0027re looking for.  Unfortunately, given the secret nature of a lot of accelerators, we never got a concrete example of this, but if you ping me on discord I\u0027ll bet we can put one together pretty quickly.",
+      "range": {
+        "startLine": 28,
+        "startChar": 55,
+        "endLine": 28,
+        "endChar": 64
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "550ba190_9bf1b564",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "Can you talk more to this?  The mapper has the full inventory, and I wouldn\u0027t really call it \"difficult\" to use.  Is there something about that pattern specifically that\u0027s not working?  Please address and answer in your doc.",
+      "range": {
+        "startLine": 30,
+        "startChar": 64,
+        "endLine": 31,
+        "endChar": 31
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "411bc335_64ffea64",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "whitespace.",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 12
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8292aa77_2ba9024a",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "I disagree with the statement \"primary\".  Entity-manager is designed to detect and configure inventory items.",
+      "range": {
+        "startLine": 34,
+        "startChar": 14,
+        "endLine": 34,
+        "endChar": 79
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5080e6d8_82d5646e",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "Should this read, \"most (all) of the inventory items have configuration nodes that are not inventory items\"",
+      "range": {
+        "startLine": 35,
+        "startChar": 73,
+        "endLine": 36,
+        "endChar": 76
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "308a13fc_80de8e07",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "While a lot of the patches these days are redfish, there is definitely the rest-dbus APIs that still function and work.",
+      "range": {
+        "startLine": 39,
+        "startChar": 52,
+        "endLine": 39,
+        "endChar": 76
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8854b31c_c88216cd",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "No.... the generic code lives in the mapper, which bmcweb calls to get this information.",
+      "range": {
+        "startLine": 39,
+        "startChar": 24,
+        "endLine": 39,
+        "endChar": 50
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35f2b8d6_c407ec78",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "This needs reworded, because as written, this is outright false.  Redfish definitely has inventory items, in fact, the lack of configuration separated by inventory items is exactly why we build entity-manager in the first place.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f203e9d8_142537d4",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "Disagree on this point.  I\u0027m all for making things more consistent, but if we had strict rules, entity-manager wouldn\u0027t have existed in the first place, and we wouldn\u0027t have had Redfish.  At the end of the day, people are trying to solve problems, and occasionally rules need to be changed to solve those problems.  Also, \"rules\" implies that we\u0027re not looking at the code.  The code contains the \"rules\" for how we operate.  If you want to change/add to them, we have a well defined process for doing so.",
+      "range": {
+        "startLine": 47,
+        "startChar": 67,
+        "endLine": 47,
+        "endChar": 79
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1275bec_fb65c1f0",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "Would like to get more concrete estimates on who is planning on doing this refactoring, and what effort it\u0027s going to take.  You mention several repos above (I\u0027m sure there\u0027s more) have you reached out to the maintainers of those repos need to get them onboard with this plan?",
+      "range": {
+        "startLine": 49,
+        "startChar": 23,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f393ba1f_33d0e36d",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "This needs more detail.  From the existing entity-manager requirements:\n\n1. enumerate hardware in the system\n2. Items can be added or removed at any time, and should be atomic, without impacts to other hardware being added or removed.",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 65
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "147cada2_cf705208",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "This seems like you\u0027re going off the entity-manager definitions, which is fine, but when you point out inconsistency, you might want to point out that PIM doesn\u0027t use Type",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 7
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3176fbde_68351090",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "This one has always been subtle, and one of the reasons EM punted on it is \"what does absent mean?\"  Technically all supported hardware is absent until it\u0027s found, so listing every possible piece of hardware that could be in the system, then listing it as absent is kind of a waste.  IMO, this is really there for drive slots and Pcie slots, which a slot can be unfilled, but that\u0027s a different interface.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 19
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfc4dfb2_50dc6fbb",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "Asset isn\u0027t required, and should not be required.  The information isn\u0027t always available.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 34
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f13f710_8364482f",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "This is a subtle one.  The inventory system can\u0027t always know these associations given how complex they can be in a system.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 65
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bbbf299_2722dd76",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "more whitespace issues.",
+      "range": {
+        "startLine": 84,
+        "startChar": 38,
+        "endLine": 84,
+        "endChar": 39
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3a2974e_33cd6d44",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "This was never the intent of entity-manager.  There WILL be sub processors that have their own inventory (example, publishing the SDR from an IPMB device).  That use case should be doable, and have resilience against crashing (ie, if the underlying daemon crashes, the resources should be cleaned up).  If there\u0027s a way to get both behaviors, I\u0027m open to design changes, but thusfar I haven\u0027t seen any code that accomplishes both.",
+      "range": {
+        "startLine": 86,
+        "startChar": 38,
+        "endLine": 86,
+        "endChar": 53
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72e06080_2edae939",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "This seems like a very easily fixable problem with a couple interface changes.  This feels a lot more like a bug than a design question.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 77
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c81ad8d6_35b0f2c8",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T18:18:47Z",
+      "side": 1,
+      "message": "Can you give examples of use cases that don\u0027t work?  peci-pcie doesn\u0027t expose inventory items, so that shouldn\u0027t ever work until there\u0027s a config with a peci-pcie probe statement in it.\n\nSMBIOS-mdr, yeah, that\u0027s an issue that needs a lot of cleaning up.  The complexity there is that smbios-mdr has a lot of interfaces that don\u0027t necessarily need to go in entity-manager (at least, that author didn\u0027t think so).  cleaning that up probably deserves its own design doc.\n\nCPU info is another daemon that somewhat goes outside the initial intent of the design.  Ideally because CPUs are themselves \"entities\", CPUs should have an entity-manager config file that contains the XeonCPU exposes record in it.  In the current set of config files, XeonCPU is attached to the motherboard, which complicates this.  if this is something you\u0027re interested in tackling, I can give you some pointers on how to go about it.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 30
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
