@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "96df4a51_30c61a63",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-10T00:25:48Z",
+      "side": 1,
+      "message": "Again.....  The requirement is CPU usage and latency, which we should have requirements for.  \"Daemon should use less than 1% BMC CPU when idle, and cards should be detected with \u003c30ms of latency\" might be a good starting place.",
+      "parentUuid": "3a8c9cc7_0ecf4443",
+      "range": {
+        "startLine": 87,
+        "startChar": 3,
+        "endLine": 87,
+        "endChar": 13
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e48b0160_be13dbc0",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 12
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "No, I don\u0027t think \"marking a bunch of subsidiary sensors unavailable\" will be more clear than marking the whole module unavailable for this point. We can do them both for different purposes, but a module level flag is still needed. Think about we have an accelerator which connects with the CMIS module\u0027s data path (not I2C but some high speed path), it need to understand whether the module is fully up and ready for traffic during its initialization. Using some sensors\u0027 availabilities to infer the module availability doesn\u0027t make a lot of sense here.",
       "parentUuid": "e48b0160_be13dbc0",
+      "range": {
+        "startLine": 93,
+        "startChar": 19,
+        "endLine": 94,
+        "endChar": 24
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b3ab7228_07392e96",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-10T00:25:48Z",
+      "side": 1,
+      "message": "\u003e No, I don\u0027t think \"marking a bunch of subsidiary sensors unavailable\" will be more clear than marking the whole module unavailable for this point.\n\nTo meet the intent of the sensor interfaces, you have to do the above anyway.  It\u0027s not about clarity, it\u0027s about knowing the state of a sensor without having to backtrack it to a module.  This is also how we already handle this in other places, so I would expect this daemon to do the same.\n\n\u003e We can do them both for different purposes, but a module level flag is still needed. Think about we have an accelerator which connects with the CMIS module\u0027s data path (not I2C but some high speed path), it need to understand whether the module is fully up and ready for traffic during its initialization.\n\n\"Fully up and ready to serve traffic\" isn\u0027t quite the same as unavailable.  I don\u0027t see anything in this design for that, so I\u0027m assuming that\u0027s needed to be added still?\n\n\u003e Using some sensors\u0027 availabilities to infer the module availability doesn\u0027t make a lot of sense here.\n\nAgreed, but you should set the sensors unavailable all the same, such that downstream telemetry daemons know the sensors aren\u0027t scanning.",
+      "parentUuid": "9b247773_e41450e8",
       "range": {
         "startLine": 93,
         "startChar": 19,
@@ -261,6 +309,30 @@
     },
     {
       "key": {
+        "uuid": "56dc2916_f24f3b9d",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-10T00:25:48Z",
+      "side": 1,
+      "message": "Understood.  Fine as-is.",
+      "parentUuid": "c4ed60ff_53218136",
+      "range": {
+        "startLine": 177,
+        "startChar": 41,
+        "endLine": 177,
+        "endChar": 50
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9bf2a38_6e059bbc",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 12
@@ -355,6 +427,30 @@
     },
     {
       "key": {
+        "uuid": "100f86cd_413b502b",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-10T00:25:48Z",
+      "side": 1,
+      "message": "\u003e Please see my previous explanation in PatchSet 8:\n\u003e \n\u003e \"\n\u003e Jianqiao Liu\n\u003e Nov 11\n\u003e LossOfSignal and LossOfLock are two independent properties. One lane in a module could have neither/either/both of them. So the boolean type seems like a good choice.\n\nBoolean is a mediocre choice compared to an enum\n\n\"HasLock/LostLock\" is a lot more descriptive than true/false.\n\n\u003e \n\u003e Actually Jason Ling has a good point about how we should associate a lane with a module. For example, a 1U front panel supports up to 36 OSFP (one type of CMIS-compliant set) modules, and each module has 8 lanes. In the current interface design, we need to perform 36 * 8 \u003d 288 queries on dbus to get overall system status.\n\nI have no idea how you got to that number, but GetManagedObjects, which we use all over the place for sensors, solves this in a single query.\n\n\u003e That may cause performance pressure on dbus. So I\u0027m updating the interface here.\n\u003e \"\n\u003e \n\u003e Leaving this thread unresolved just in case you want to have more discussions.",
+      "parentUuid": "2d3d206d_e7a6d2dc",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 207
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a601f8f_5f92f38d",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 12
@@ -390,6 +486,30 @@
       "side": 1,
       "message": "Yes, we do plan to use entity manager config handle this. The EntityManager config file should include two pieces of information: 1) mandatory i2c location info 2) company-customized functionalities, like lane reversing, reporting additional module data\n\nIdeally, we will pack the main logic of company-customized functionalities in the daemon and only place some on/off flags in the config file. I\u0027ll share some examples later.",
       "parentUuid": "8a601f8f_5f92f38d",
+      "range": {
+        "startLine": 257,
+        "startChar": 17,
+        "endLine": 258,
+        "endChar": 56
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c86014e_a4549b0f",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-10T00:25:48Z",
+      "side": 1,
+      "message": "\u003e Yes, we do plan to use entity manager config handle this. The EntityManager config file should include two pieces of information: 1) mandatory i2c location info 2) company-customized functionalities, like lane reversing, reporting additional module data\n\nGotcha.  Just to be clear, you\u0027re going to have two config entries, one for the baseboard, that maps this GPIO to a \"has a cable module slot\" and a second one for the module itself, that instantiates the CMIS interface, right?\n\n\u003e \n\u003e Ideally, we will pack the main logic of company-customized functionalities in the daemon and only place some on/off flags in the config file. I\u0027ll share some examples later.\n\nYep, that\u0027s the intent of EM.  Just making sure that you\u0027re doing the probe in EM such that it\u0027s easily configurable in the future.",
+      "parentUuid": "2b7737d4_35acd7bb",
       "range": {
         "startLine": 257,
         "startChar": 17,

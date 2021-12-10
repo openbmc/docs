@@ -213,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "2cb27226_36684760",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-10T00:25:48Z",
+      "side": 1,
+      "message": "\u003e Note that the daemon manages multiple modules and we may want to debug only one of them. \n\nThis seems super niche, but sure.  If you\u0027re in a debug context, who cares if the system stops managing all modules, or just one?  If that\u0027s really needed, ideally you\u0027d use the entity-manager mechanisms for removing the configuration item from the particular node, which would in turn stop the device from scanning (given that it would now know nothing about that module).  Given that\u0027s already how most of dbus-sensors works, and phosphor-pid-control works, lets be consistent with that design, and not invent another way to stifle a reactor.\n\nWith all of this said, I\u0027m bikeshedding at this point, and the existence of a debug interface shouldn\u0027t really hold up this review.",
+      "parentUuid": "b9894a9c_ed0cfeea",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 27
+      },
+      "revId": "2cc38523fc351fdf27a7fc4cd7f4850d3a35be98",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3042736b_0205167c",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 11
