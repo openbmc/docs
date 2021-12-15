@@ -451,6 +451,30 @@
     },
     {
       "key": {
+        "uuid": "7a2ce9a9_9b9484d7",
+        "filename": "designs/cmis-compliant-module-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2021-12-15T16:23:19Z",
+      "side": 1,
+      "message": "\u003e \"HasLock/LostLock\" is a lot more descriptive than true/false.\n\u003e Actually Jason Ling has a good point about how we should associate a lane with a module.\n\nYeah, Ed is right here. I completely forgot about GetManagedObjects - which returns all the sub-objects with all their properties. I\u0027ll also go on to say that the performance difference is roughly the same.\n\nTaking this into consideration, it\u0027s still worthwhile to discuss representing Loss of Lock (LoL) and Loss of Signal (LoS) as arrays attached to a single module object.\n\nTo me this is more usable both programmatically and through manual interaction\n\n* -script use- any scripts that want to check lane link health are trivial if you use an array but become more complex if you use GetManagedObjects\n\n* -interactive use- for those tooling around on the shell debugging things it\u0027s now a single busctl introspect to determine the link health\n\n* -programmatic use- relatively simple interface now. Just grab a property from an interface instead of GetManagedObjects and parsing through a bunch of strings. Likely not a significant performance difference; just easier to make coding errors and increases complexity of unit tests.\n\n* Also..doesn\u0027t this mean that lane objects would also need associations?\n\nI can\u0027t think of any compelling reasons to represent lanes as separate objects besides aesthetics (debatable) and precedence.",
+      "parentUuid": "100f86cd_413b502b",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 207
+      },
+      "revId": "8cef704468f3c74c9734d0cb5049e28985d24be5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a601f8f_5f92f38d",
         "filename": "designs/cmis-compliant-module-manager.md",
         "patchSetId": 12
