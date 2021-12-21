@@ -51,6 +51,9 @@ this document. This document must be updated as new common GPIOs are added.
 Pattern: `*-button`
 
 #### power-button
+#### reset-button
+#### nmi-button
+#### id-button
 
 ### Host Ready
 Below are input GPIO names specific to Host ready. The name of Host ready GPIO
@@ -61,9 +64,13 @@ Pattern:
 - `host*-ready-n`: Host ready, active low
 
 Defined:
+- host-ready (for single-host systems)
 - host0-ready
 - host1-ready-n
 - ...
+
+### Host System Reset
+Pattern: `host*-reset-control`
 
 ### LEDs
 Pattern: `led-*`
@@ -79,7 +86,10 @@ Pattern: `led-*`
 #### led-rear-id
 
 ### Power and Regulators
-Pattern: `power-*`, `regulator-*`
+Pattern:
+- `power-*`: Chassis power system related signals
+- `regulator-*`: Power regulator related signals
+- `*-good`: Power good signals
 
 #### power-chassis-control
 Set to initiate power-on or power-off of the chassis.
@@ -158,6 +168,21 @@ Utilized to issue a processor logic reset to a IBM POWER processor.
 ##### checkstop
 Utilized to indicate a IBM POWER processor has entered an unrecoverable error
 state.
+
+### x86 Specific GPIOs
+Below are GPIO names specific to the x86 processor based servers.
+
+#### NMI Control
+Trigger NMI
+Pattern:
+- `host*-nmi-control`
+
+#### SIO
+Super I/O related GPIOs
+Pattern:
+- `host*-sio-on-control`
+- `host*-sio-pwr-good`
+- `host*-sio-s*`
 
 ## Alternatives Considered
 - Continue to hard code a config file per system type that has the
