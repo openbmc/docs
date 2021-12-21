@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e91734fe_e509155a",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-21T19:51:23Z",
+      "side": 1,
+      "message": "\u003e If I understood your statement properly i could think of following design:\n\u003e \n\u003e Just creating a new reactor deamon in entity-manager,\n\nIt would not belong in entity-manager.  Entity-manager is for common code.\n\n\u003e through this reactor deamon will read and parse the ncsi command and get the output as 8-bit or 16-bit.\n\nAH, now I understand.  Let me make sure I have it right.\n\n1. BMC reads the NCSI ID of the NIC\n2. The NCSI id will determine if the NIC has a 16 bit or 8 bit eeprom\n\n\nThat makes more sense.  In that case, your flow would be:\n\n1. Update NCSId to expose an appropriate dbus API for determining the \"model\" or \"ID\" of the card.  You might need to invent a new interface here.\n2. Write an EM config file that uses that dbus API for its probe statement.\n3. In the EM config file, add a \"Size\" flag under the Type: \"EEPROM\" field.\n4. Update FruDevice to check EM configs, and lookup the size field appropriately if it\u0027s defined in an EM config.\n\n\nThe advantage of the above design is that there\u0027s no new platform-specific code, and it\u0027s reusing most of the infrastructure that exists already.\n\n\u003e Then it will update the 8-bit or 16 bit device byte type in Dbus interfaces of FRU device and read from it.\n\u003e \n\u003e Question:Is it fine to have the deamon(detector EEPROM) in entity-manager?\n\nIn the above what I\u0027ve written, there are no new daemons here.\n\nNCSID exists (although would need to be promoted out of the meta-google repo if more people are going to use it)\nhttps://github.com/openbmc/openbmc/blob/master/meta-google/recipes-google/ncsi/ncsid_git.bb\n\nThat would be the thing that exposes the NCSI device model number.",
+      "parentUuid": "bbb2e9e3_fafd98ba",
+      "range": {
+        "startLine": 61,
+        "startChar": 55,
+        "endLine": 62,
+        "endChar": 40
+      },
+      "revId": "ab2952761d7bfc6099dd70cb29dea00242ee9040",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b3c2752_b9b3277e",
         "filename": "designs/EEPROM-byte-type-identification.md",
         "patchSetId": 2
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "4418aec6_1157add4",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-21T19:51:23Z",
+      "side": 1,
+      "message": "Now I understand.  See my reply on the previous comment about how you could make this work in an entity-manager system.",
+      "parentUuid": "d396b592_3663f3ef",
+      "range": {
+        "startLine": 65,
+        "startChar": 75,
+        "endLine": 66,
+        "endChar": 52
+      },
+      "revId": "ab2952761d7bfc6099dd70cb29dea00242ee9040",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ecda658_bcc04a20",
         "filename": "designs/EEPROM-byte-type-identification.md",
         "patchSetId": 2
@@ -219,6 +267,24 @@
       "side": 1,
       "message": "We have a json file for baseboard FRU and we have a separate json file for each NIC card in entity-manager, if particular  NIC card has been detected then it will load the corresponding json config file and read the EEPROM information, EEPROM config can be detected at run time based on the loaded FRU NIC.\n\nwe have a NIC card slot, that will support Mellanox NIC card or Broadcom NIC card, Both are having different EEPROM configuration. we have to detect 8-bit or 16-bit EEPROM type before load the FRU NIC. This EEPROM byte detection is platform specific.",
       "parentUuid": "1a9dc133_a1f4f31d",
+      "revId": "ab2952761d7bfc6099dd70cb29dea00242ee9040",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6da47a52_d9324978",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-21T19:51:23Z",
+      "side": 1,
+      "message": "\u003e We have a json file for baseboard FRU and we have a separate json file for each NIC card in entity-manager, if particular  NIC card has been detected then it will load the corresponding json config file and read the EEPROM information, EEPROM config can be detected at run time based on the loaded FRU NIC.\n\nYep, you got it.\n\n\u003e \n\u003e we have a NIC card slot, that will support Mellanox NIC card or Broadcom NIC card, Both are having different EEPROM configuration. we have to detect 8-bit or 16-bit EEPROM type before load the FRU NIC.\n\nSlight change in wording: You have to detect the MODEL of the card.  From there entity-manager can generally configure the size of the eeprom, which doesn\u0027t need to be platform specific.\n\n\u003e This EEPROM byte detection is platform specific.\n\nIMO, based on what you\u0027ve written, I don\u0027t think it is.  If I put a 16 bit eeprom mellonox card into any system, I\u0027d like it to parse correctly, and using NCSI seems like a nice generic way to do that model detection.",
+      "parentUuid": "f3acae68_08181fbc",
       "revId": "ab2952761d7bfc6099dd70cb29dea00242ee9040",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
