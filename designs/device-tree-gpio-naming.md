@@ -55,10 +55,14 @@ should not be considered a button in this document but enumerated as another
 signal type.
 
 #### power-button
+#### reset-button
+#### nmi-button
+#### id-button
 
 ### Host Ready
 Below are input GPIO names specific to Host ready. The name of Host ready GPIO
 depends on the index of Host and the active state is high or low.
+On x86 systems POST_COMPLETE line typically used for this signal.
 
 Pattern:
 - `host*-ready`: Host ready, active high
@@ -68,6 +72,12 @@ Defined:
 - host0-ready
 - host1-ready-n
 - ...
+
+### Host System Reset
+Set to initiate system reset of the host.
+On x86 systems RESET_OUT line typically used for this signal.
+
+Pattern: `host*-reset-control`
 
 ### LEDs
 Pattern: `led-*`
@@ -82,14 +92,24 @@ Pattern: `led-*`
 #### led-rear-power
 #### led-rear-id
 
+### NMI Control
+Trigger non-maskable interrupt.
+On x86 systems NMI_OUT line typically used for this signal.
+
+Pattern:
+- `host*-nmi-control`: Trigger host NMI, active high
+- `host*-nmi-control-n`: Trigger host NMI, active low
+
 ### Power and Regulators
 Pattern: `power-*`, `regulator-*`
 
 #### power-chassis-control
 Set to initiate power-on or power-off of the chassis.
+On x86 systems POWER_OUT line typically used for this signal.
 
 #### power-chassis-good
 Indicates the power good state of the chassis.
+On x86 systems PS_PWROK line typically used for this signal.
 
 #### power-config-full-load
 Output GPIO set by the power managing application that indicates to the hardware
@@ -159,6 +179,32 @@ Indicates whether system is air or water cooled
 The software records the state of this GPIO and checks upon reboot if the state
 has changed since the last reboot. If it has, it indicates that a factory reset
 should be performed.
+
+#### SIO
+The SIO GPIOs are the pins on the ASPEED AST2500/AST2600 that are used for the
+ACPI Power state machine. On x86 systems SIO_ONCONTROL, SIO_POWER_GOOD, SIO_S3
+and SIO_S5 lines are typically used for this signals.
+
+##### sio-on-control
+Output from the BMC that tells when to enable the power supplies. On x86
+systems, this is combined with the PCH input to determine when to assert PS_EN.
+
+Pattern:
+- `host*-sio-on-control`
+
+##### sio-pwr-good
+Input to the BMC from CPU Power good to indicate when the hardware has finished
+powering on.
+
+Pattern:
+- `host*-sio-pwr-good`
+
+##### sio-s*
+Input to the BMC from the sleep signals. This pin is used to know when the
+system has started the hardware power-down sequence.
+
+Pattern:
+- `host*-sio-s*`
 
 ### POWER Specific GPIOs
 Below are GPIO names specific to the POWER processor based servers.
