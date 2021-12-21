@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bbb2e9e3_fafd98ba",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001139
+      },
+      "writtenOn": "2021-12-21T14:36:45Z",
+      "side": 1,
+      "message": "If I understood your statement properly i could think of following design:\n\nJust creating a new reactor deamon in entity-manager, through this reactor deamon will read and parse the ncsi command and get the output as 8-bit or 16-bit. Then it will update the 8-bit or 16 bit device byte type in Dbus interfaces of FRU device and read from it.\n\nQuestion:Is it fine to have the deamon(detector EEPROM) in entity-manager?",
+      "parentUuid": "017ef8ae_08a19353",
+      "range": {
+        "startLine": 61,
+        "startChar": 55,
+        "endLine": 62,
+        "endChar": 40
+      },
+      "revId": "ab2952761d7bfc6099dd70cb29dea00242ee9040",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b3c2752_b9b3277e",
         "filename": "designs/EEPROM-byte-type-identification.md",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2021-12-17T17:36:43Z",
       "side": 1,
       "message": "Please avoid making this a script.  They are difficult to debug and maintain over time.",
+      "range": {
+        "startLine": 65,
+        "startChar": 51,
+        "endLine": 65,
+        "endChar": 57
+      },
+      "revId": "ab2952761d7bfc6099dd70cb29dea00242ee9040",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31da2552_a58ff7de",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001139
+      },
+      "writtenOn": "2021-12-21T14:36:45Z",
+      "side": 1,
+      "message": "Ack.Based on the first review comment input/suggestions this can be concluded.",
+      "parentUuid": "0b3c2752_b9b3277e",
       "range": {
         "startLine": 65,
         "startChar": 51,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d396b592_3663f3ef",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001139
+      },
+      "writtenOn": "2021-12-21T14:36:45Z",
+      "side": 1,
+      "message": "The script doesn\u0027t read the EEPROM directly, There are some other mechanism to find out whether this will have a 8-bit or 16-bit EEPROM. this will read by the NIC manufacturer information using nisi command, using this command ncsi-netlink --info -x 2 -p 0 -c 0  will get the output like this \n\nGet Info , PACKAGE :  0, IFINDEX :  2\nPackage has id : 0\nChannel Active : 0\nChannel Major Version : f1f1f000\nChannel Minor Version : 0\nChannel Version Str :mlx0.1\nChannel Link State : 2f\nActive Vlan ids\n\nbased on this information, we are getting 8 bit or 16 bit type using manufacturer information",
+      "parentUuid": "71ca16a3_dc8734d6",
+      "range": {
+        "startLine": 65,
+        "startChar": 75,
+        "endLine": 66,
+        "endChar": 52
+      },
+      "revId": "ab2952761d7bfc6099dd70cb29dea00242ee9040",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ecda658_bcc04a20",
         "filename": "designs/EEPROM-byte-type-identification.md",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "dc61ee9f_06b7b5cc",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001139
+      },
+      "writtenOn": "2021-12-21T14:36:45Z",
+      "side": 1,
+      "message": "Ack.Based on the first review comment input/suggestions this can be concluded.",
+      "parentUuid": "1ecda658_bcc04a20",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 58
+      },
+      "revId": "ab2952761d7bfc6099dd70cb29dea00242ee9040",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1a9dc133_a1f4f31d",
         "filename": "designs/EEPROM-byte-type-identification.md",
         "patchSetId": 2
@@ -105,6 +201,24 @@
       "writtenOn": "2021-12-17T17:36:43Z",
       "side": 1,
       "message": "In this flow, you\u0027ve basically described how this should work, you\u0027ve just added a number of pieces that are extra and not needed.\n\n1. In the \"Type\": \"eeprom\" entry for a given device, include a parameter called \"size\" that can determine whether the eeprom is 16 bit or 8 bit.\n2. Determine how to detect the \"is 16 bit\" of a given device without pre-defined knowledge of said device, or attach the relevant information to the baseboard configuration for something like \"Eeprom hint\"\n3. Add the backward path to FruDevice such that FruDevice looks at the size parameter, and uses that to set the 16bitness of the part.",
+      "revId": "ab2952761d7bfc6099dd70cb29dea00242ee9040",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3acae68_08181fbc",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001139
+      },
+      "writtenOn": "2021-12-21T14:36:45Z",
+      "side": 1,
+      "message": "We have a json file for baseboard FRU and we have a separate json file for each NIC card in entity-manager, if particular  NIC card has been detected then it will load the corresponding json config file and read the EEPROM information, EEPROM config can be detected at run time based on the loaded FRU NIC.\n\nwe have a NIC card slot, that will support Mellanox NIC card or Broadcom NIC card, Both are having different EEPROM configuration. we have to detect 8-bit or 16-bit EEPROM type before load the FRU NIC. This EEPROM byte detection is platform specific.",
+      "parentUuid": "1a9dc133_a1f4f31d",
       "revId": "ab2952761d7bfc6099dd70cb29dea00242ee9040",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
