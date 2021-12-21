@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "33a059a8_2c47dc14",
+        "filename": "designs/rsyslog-conf.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2021-12-21T22:50:22Z",
+      "side": 1,
+      "message": "This was my thinking too. At some point, we may want to drop IPMI support (including IPMI SEL and therefore phosphor-sel-logger as a whole), but still allow Redfish and application crash logs to be generated",
+      "parentUuid": "a62344e3_038ad739",
+      "range": {
+        "startLine": 50,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 62
+      },
+      "revId": "9cca861a129daae40f6461d5fe2fba80c8a522df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "44813b07_185d9238",
         "filename": "designs/rsyslog-conf.md",
         "patchSetId": 1
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "3c03dc32_61b4165c",
+        "filename": "designs/rsyslog-conf.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2021-12-21T22:50:22Z",
+      "side": 1,
+      "message": "PACKAGECONFIGs are scoped only to each recipe, and these are OpenBMC recipes already, so it seems redundant to include \"openbmc\" in the config name.\n\nThe concept represented here is \"should this OpenBMC daemon include support for rsyslog?\", just like how other recipes use PACKAGECONFIG to turn features on or off.",
+      "parentUuid": "d51523ae_36e2c26e",
+      "range": {
+        "startLine": 55,
+        "startChar": 58,
+        "endLine": 55,
+        "endChar": 65
+      },
+      "revId": "9cca861a129daae40f6461d5fe2fba80c8a522df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f2e7e8bf_cba01fc0",
         "filename": "designs/rsyslog-conf.md",
         "patchSetId": 1
@@ -116,6 +164,30 @@
       "revId": "9cca861a129daae40f6461d5fe2fba80c8a522df",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6b1e2ac_c53334e5",
+        "filename": "designs/rsyslog-conf.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2021-12-21T22:50:22Z",
+      "side": 1,
+      "message": "This would work, but goes against the common OpenBMC design goal of having application-specific config files be stored and managed within the repos for those applications (see systemd service files as an example).\n\nI\u0027ll add it to this section as an alternative though",
+      "parentUuid": "f2e7e8bf_cba01fc0",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 26
+      },
+      "revId": "9cca861a129daae40f6461d5fe2fba80c8a522df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
