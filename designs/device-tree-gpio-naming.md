@@ -51,10 +51,14 @@ this document. This document must be updated as new common GPIOs are added.
 Pattern: `*-button`
 
 #### power-button
+#### reset-button
+#### nmi-button
+#### id-button
 
 ### Host Ready
 Below are input GPIO names specific to Host ready. The name of Host ready GPIO
 depends on the index of Host and the active state is high or low.
+On x86 systems POST_COMPLETE line typically used for this signal.
 
 Pattern:
 - `host*-ready`: Host ready, active high
@@ -64,6 +68,12 @@ Defined:
 - host0-ready
 - host1-ready-n
 - ...
+
+### Host System Reset
+Set to initiate system reset of the host.
+On x86 systems RESET_OUT line typically used for this signal.
+
+Pattern: `host*-reset-control`
 
 ### LEDs
 Pattern: `led-*`
@@ -78,14 +88,24 @@ Pattern: `led-*`
 #### led-rear-power
 #### led-rear-id
 
+### NMI Control
+Trigger non-maskable interrupt.
+On x86 systems NMI_OUT line typically used for this signal.
+
+Pattern:
+- `host*-nmi-control`: Trigger host NMI, active high
+- `host*-nmi-control-n`: Trigger host NMI, active low
+
 ### Power and Regulators
 Pattern: `power-*`, `regulator-*`
 
 #### power-chassis-control
 Set to initiate power-on or power-off of the chassis.
+On x86 systems POWER_OUT line typically used for this signal.
 
 #### power-chassis-good
 Indicates the power good state of the chassis.
+On x86 systems PS_PWROK line typically used for this signal.
 
 #### power-config-full-load
 Output GPIO set by the power managing application that indicates to the hardware
@@ -158,6 +178,19 @@ Utilized to issue a processor logic reset to a IBM POWER processor.
 ##### checkstop
 Utilized to indicate a IBM POWER processor has entered an unrecoverable error
 state.
+
+### x86 Specific GPIOs
+Below are GPIO names specific to the x86 processor based servers.
+
+#### SIO
+Super I/O related GPIOs.
+On x86 systems SIO_ONCONTROL, SIO_POWER_GOOD and SIO_S5 lines are typically used
+for this signals.
+
+Pattern:
+- `host*-sio-on-control`
+- `host*-sio-pwr-good`
+- `host*-sio-s*`
 
 ## Alternatives Considered
 - Continue to hard code a config file per system type that has the
