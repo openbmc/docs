@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "2bbc4e17_efcff390",
         "filename": "designs/multihost-phosphor-buttons.md",
@@ -14,8 +15,25 @@
       "side": 1,
       "message": "So we have a separate interface for this \"debug card selector switch\", but that means we end up having 2 different interfaces.  How does code know which one should take priority?  Is the debug card one only present when the debug card is attached, and so it always takes priority?\n\nIt seems like those should probably be combined together into a single dbus object for the host selector, but internal to the buttons implementation it switches between the two different pieces of hardware depending on if we are in a debug mode or not?  Meaning, I don\u0027t think the power sequence code should have to change in order to add debug-card support (by now knowing it needs to look at two different button instances).",
       "revId": "8b3046017a68e25a97c55b886e16da1b7e4232e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "866b0c12_59850897",
+        "filename": "designs/multihost-phosphor-buttons.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-05T15:52:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bbc4e17_efcff390",
+      "revId": "8b3046017a68e25a97c55b886e16da1b7e4232e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
