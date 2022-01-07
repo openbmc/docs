@@ -110,7 +110,4 @@ all members.
 
 Points required for Active membership (in the preceding 6 months):
 - Normal - 15 points.
-- Highly-Productive - 2 million points.
-    - [[ This was purposefully unreasonable because we need real data here from
-         the past 6 months to get a decent ballpark.]]
-
+- Highly-Productive - 95 points.
