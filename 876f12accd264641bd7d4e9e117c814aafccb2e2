@@ -16,6 +16,98 @@
       "message": "Hi All, If possible, could you review this updated PLDM transport wrapper design based on\nPLDM terminus ID.\nThanks",
       "revId": "876f12accd264641bd7d4e9e117c814aafccb2e2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "279ed85d_b5c58d6d",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-01-10T06:50:17Z",
+      "side": 1,
+      "message": "the API here could be:\n\nstd::vector\u003cpldm_tid_t\u003e discoverTIDs()",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 37
+      },
+      "revId": "876f12accd264641bd7d4e9e117c814aafccb2e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3997e7fa_a26f3181",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-01-10T06:50:17Z",
+      "side": 1,
+      "message": "nit: the received messages need not always be \"response\" messages. It could be request messages too. May be we can call this parameter just as \"pldm_msg\" ? (Same argument for pldm_req_msg in pldm_send)",
+      "range": {
+        "startLine": 132,
+        "startChar": 19,
+        "endLine": 132,
+        "endChar": 32
+      },
+      "revId": "876f12accd264641bd7d4e9e117c814aafccb2e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f67aeba9_3e801eb0",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-01-10T06:50:17Z",
+      "side": 1,
+      "message": "Are these C apis? We could have C++ APIs itself, no? \nDon\u0027t we need timeout parameters for all these APIs?\nWhat is the usecase for pldm_recv_any ?",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 52
+      },
+      "revId": "876f12accd264641bd7d4e9e117c814aafccb2e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02a82e33_e490649c",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-01-10T06:50:17Z",
+      "side": 1,
+      "message": "I understand the context here, but please do capture the meaning of virtual TID in the doc.",
+      "range": {
+        "startLine": 175,
+        "startChar": 37,
+        "endLine": 175,
+        "endChar": 48
+      },
+      "revId": "876f12accd264641bd7d4e9e117c814aafccb2e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
