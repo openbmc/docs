@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac061e15_7d14db60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "Replied to most things.",
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "9dae2aab_28e3de57",
         "filename": "tof/proposals/otp-6.md",
@@ -20,10 +38,10 @@
         "endChar": 64
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "95c684f1_862e9dae",
         "filename": "tof/proposals/otp-6.md",
@@ -44,10 +62,34 @@
         "endChar": 64
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "94887315_54cdef23",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "All inventory MANAGED BY THE BMC would ideally go through entity-manager for EM enabled systems.  This is not to say that other remote controllers couldn\u0027t publish their own inventory items.",
+      "parentUuid": "95c684f1_862e9dae",
+      "range": {
+        "startLine": 26,
+        "startChar": 72,
+        "endLine": 27,
+        "endChar": 64
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "5e76f9f9_ee914988",
         "filename": "tof/proposals/otp-6.md",
@@ -67,10 +109,10 @@
         "endChar": 70
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "25b8533f_a9af8ced",
         "filename": "tof/proposals/otp-6.md",
@@ -90,10 +132,10 @@
         "endChar": 64
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "ceb5cf54_56a316ec",
         "filename": "tof/proposals/otp-6.md",
@@ -114,10 +156,34 @@
         "endChar": 64
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f031418_98e50a1e",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "\u003e peci-pcie get entire list of PCIe devices in the system and in bmcweb you do have code to get all the PCI devices, found by peci-pcie. Taking this I\u0027m make a conclusion that peci-pcie is inventory of PCIe itself.\n\nI see the confusion.  A PCIe device is not an inventory item.  It\u0027s literally a PCIe device available at the phy layer.  It intentionally does not differentiate between add in cards, boards, ect, which ARE inventory items.  Maybe that clears some things up?\n\n\n\u003e Well, for the and customer prospective, it should somehow filter out built-in devices,\n\nI don\u0027t necessarily agree with that.  Defining what devices are \"built-in\" versus which devices aren\u0027t is subtle.  Is a PCIe device on the CPU complex \"built-in\"?  IMO, PCIeDevice should show all logical pcie devices available to the PCIe complex.  Any filtering would be subtle to define correct behavior of, and I don\u0027t think anyone has proposed how to do that, so for the moment, we publish all devices.\n\n\u003e but otherwise this do exactly what we need: show each plugged device regardless of whether we know about each particular device.\n\nCorrection: Show every logical PCIe device.  the PCIeDevice schema does not require the device to be a separate plug in.  If you want to identify a specific device as a plugin, write an EM config for it, matching off the PCIe vendor ID, and add Type: Board to it to create a PCIe device.\n\n\u003e I tried to bring EM configuration file to add all items found by peci-pcie to EM, but this was weird.\n\nI\u0027m open to suggestions for how this could be made better, but \"weird\" isn\u0027t the best description to key off to how we could make this better.",
+      "parentUuid": "ceb5cf54_56a316ec",
+      "range": {
+        "startLine": 28,
+        "startChar": 55,
+        "endLine": 28,
+        "endChar": 64
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "550ba190_9bf1b564",
         "filename": "tof/proposals/otp-6.md",
@@ -137,10 +203,10 @@
         "endChar": 31
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "411bc335_64ffea64",
         "filename": "tof/proposals/otp-6.md",
@@ -160,10 +226,10 @@
         "endChar": 12
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "8292aa77_2ba9024a",
         "filename": "tof/proposals/otp-6.md",
@@ -183,10 +249,10 @@
         "endChar": 79
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "c7476775_955a26ad",
         "filename": "tof/proposals/otp-6.md",
@@ -207,10 +273,34 @@
         "endChar": 79
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e21ebb87_9cf9fccc",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "\u003e Is it? My impression after log time work with EM was that one use it when it is needed to provide configuration for reactors, (e.g. dbus-sensors) but if you don\u0027t need this, it\u0027s better/easier to expose Inventory by yourself.\n\nNope, the intention was that every reactor requires some kind of configuration, and that configuration would come from one place.  Because of the complications of enabling both EM and non-EM systems, some things choose to pick per-machine config files, but that wasn\u0027t the intent.\n\n\u003e What was the critical issue of the PIM then?\n\nPIM has no mechanisms for forwarding on the Asset interfaces from probed interfaces (it\u0027s a push model), PIM had no concept of per-device configuration, and PIM didn\u0027t allow the runtime addition of interfaces.  That\u0027s from what I remember, but there was probably more.  James would be the best to ask if he were still on the project.",
+      "parentUuid": "c7476775_955a26ad",
+      "range": {
+        "startLine": 34,
+        "startChar": 14,
+        "endLine": 34,
+        "endChar": 79
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "5080e6d8_82d5646e",
         "filename": "tof/proposals/otp-6.md",
@@ -230,10 +320,10 @@
         "endChar": 76
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "308a13fc_80de8e07",
         "filename": "tof/proposals/otp-6.md",
@@ -253,10 +343,10 @@
         "endChar": 76
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "8854b31c_c88216cd",
         "filename": "tof/proposals/otp-6.md",
@@ -276,10 +366,10 @@
         "endChar": 50
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "64b47fc6_d71f4982",
         "filename": "tof/proposals/otp-6.md",
@@ -300,10 +390,10 @@
         "endChar": 50
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "a05af76d_f331dc32",
         "filename": "tof/proposals/otp-6.md",
@@ -324,10 +414,58 @@
         "endChar": 76
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e65f9305_14e9a995",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "\u003e Right, but mapper handle not only Inventory objects, so you need to know, how to request information. My point here just to highlight that we should have documented rules on that.\n\nI\u0027m struggling to understand what kind of documented rules we\u0027d have?  Maybe we need another review for these rules?   \"Use the mapper\" is a rule that we generally have, but I\u0027m not sure we\u0027ve written it down anywhere, we just require it in code review.",
+      "parentUuid": "64b47fc6_d71f4982",
+      "range": {
+        "startLine": 39,
+        "startChar": 24,
+        "endLine": 39,
+        "endChar": 50
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84de05fa_261e41db",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "There are people that still use it, despite us \"deprecating\" it.  Regardless, the design intent is that we don\u0027t encode any protocol specific things on dbus, to give us the ability to map the various interfaces into it.  There are other uses of Invetory outside of bmcweb.",
+      "parentUuid": "a05af76d_f331dc32",
+      "range": {
+        "startLine": 39,
+        "startChar": 52,
+        "endLine": 39,
+        "endChar": 76
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "35f2b8d6_c407ec78",
         "filename": "tof/proposals/otp-6.md",
@@ -347,10 +485,10 @@
         "endChar": 37
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "f203e9d8_142537d4",
         "filename": "tof/proposals/otp-6.md",
@@ -370,10 +508,10 @@
         "endChar": 79
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "767b18bb_e55e3a70",
         "filename": "tof/proposals/otp-6.md",
@@ -394,10 +532,34 @@
         "endChar": 79
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e206209b_16b8e20a",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "\u003e I strongly agree that rules need to be changed sometime to achieve new goals and work in new conditions. But if we don\u0027t have rules at all, there is nothing to change.\n\u003e \n\u003e What about looking to the code: well, in ideal world probably everyone in community should know entire code base, but that is kind of unreal.\n\nLets rephrase.  The people in the community that care about a given subsystem should be able to read and understand that subsystem from code.  If it\u0027s too complex for that, we should prioritize simplifying the code rather than writing down documentation that will quickly be out of date.  I have no illusions that the codebase is large, but there isn\u0027t that much code for the inventory system, and it\u0027s pretty reasonable to look at code and understand it.\n\nTo that end, I do have patches to continue to simplify it in the mapper.\n\n\u003e Other thing, the existing code in not always represent the \"rules\" on \"how it supposed to be\", it more \"how it happens to be\". E.g. take a look on x86-power-control: it is here,\n\nWe probably disagree on how important documenting interfaces are outside of the code.  The great part about open source is that you can just go look at the code to understand how an interface works, and there\u0027s less need for contracts.\n\n\u003e  but it definitely not how one should write new application (it uses lot of undocumented interfaces, and those interfaces which are documented, used wrong).\n\nThat\u0027s hard to say, given that x86-power-control is used quite heavily and fulfills a need (at this point AMD, Ampere, and intel systems use it) so this is a great example of utility being more important than documentation.\n\nRegardless, we\u0027re going on a tangent.  This doc isn\u0027t about power control, and x86-power-control doesn\u0027t have inventory interfaces.",
+      "parentUuid": "767b18bb_e55e3a70",
+      "range": {
+        "startLine": 47,
+        "startChar": 67,
+        "endLine": 47,
+        "endChar": 79
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "d1275bec_fb65c1f0",
         "filename": "tof/proposals/otp-6.md",
@@ -417,10 +579,10 @@
         "endChar": 25
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "f8123196_afafa37e",
         "filename": "tof/proposals/otp-6.md",
@@ -441,10 +603,34 @@
         "endChar": 25
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ba2941f_e48eba0c",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "IMO, you\u0027ve reversed the order.  The TOF isn\u0027t for first address, it\u0027s for sorting out things when maintainers can\u0027t agree.  That helps to keep maintainers engaged.  If the TOF can just take a vote and override maintainers without any discussion, people will be a lot less likely to be a maintainer, given that we\u0027ve essentially overridden their authority without their input.  We should avoid that.",
+      "parentUuid": "f8123196_afafa37e",
+      "range": {
+        "startLine": 49,
+        "startChar": 23,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "f393ba1f_33d0e36d",
         "filename": "tof/proposals/otp-6.md",
@@ -464,10 +650,10 @@
         "endChar": 65
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "147cada2_cf705208",
         "filename": "tof/proposals/otp-6.md",
@@ -487,10 +673,10 @@
         "endChar": 7
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "3176fbde_68351090",
         "filename": "tof/proposals/otp-6.md",
@@ -510,10 +696,10 @@
         "endChar": 19
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "56d121a8_7de38c72",
         "filename": "tof/proposals/otp-6.md",
@@ -534,10 +720,10 @@
         "endChar": 19
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "bfc4dfb2_50dc6fbb",
         "filename": "tof/proposals/otp-6.md",
@@ -557,10 +743,10 @@
         "endChar": 34
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "f8da280c_8b53dfe9",
         "filename": "tof/proposals/otp-6.md",
@@ -581,10 +767,34 @@
         "endChar": 34
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c34d8a8_6db6d11e",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "Cables is a good example, PCIe slots with GPIO is another example, SAS/SATA drives (which don\u0027t have an OOB interface) is a third example.",
+      "parentUuid": "f8da280c_8b53dfe9",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 34
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "0f13f710_8364482f",
         "filename": "tof/proposals/otp-6.md",
@@ -604,10 +814,10 @@
         "endChar": 65
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "7f869ab0_c82b6cef",
         "filename": "tof/proposals/otp-6.md",
@@ -628,10 +838,34 @@
         "endChar": 65
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "beb023ac_6d29ddcb",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "Sure, but you\u0027re trying to document requirements here, and it sounds like this isn\u0027t a requirement.",
+      "parentUuid": "7f869ab0_c82b6cef",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 65
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "5bbbf299_2722dd76",
         "filename": "tof/proposals/otp-6.md",
@@ -651,10 +885,10 @@
         "endChar": 39
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "e3a2974e_33cd6d44",
         "filename": "tof/proposals/otp-6.md",
@@ -674,10 +908,10 @@
         "endChar": 53
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "76bde67d_1eac836b",
         "filename": "tof/proposals/otp-6.md",
@@ -698,10 +932,34 @@
         "endChar": 53
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c9b077b_7da54f46",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "\u003e the fact daemon crashed doesn\u0027t mead item removed from the system.\n\nNo, but it provides much better user-facing indications that the device subsystem as a whole has failed, and was one of the primary requirements around dbus-sensors, and is why dbus-sensors isn\u0027t just one monolithic application.  If you disagree with that, lets discuss, but this isn\u0027t the right forum for that.",
+      "parentUuid": "76bde67d_1eac836b",
+      "range": {
+        "startLine": 86,
+        "startChar": 38,
+        "endLine": 86,
+        "endChar": 53
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "72e06080_2edae939",
         "filename": "tof/proposals/otp-6.md",
@@ -721,10 +979,10 @@
         "endChar": 77
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "e6ba0bae_b609c6ad",
         "filename": "tof/proposals/otp-6.md",
@@ -745,10 +1003,34 @@
         "endChar": 77
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5da44ae_6742503e",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "\u003e Is there a better way to fix this then just place same code to each daemon? \n\nAs i suggested earlier, model your devices as entity-manager configs, and the appropriate log messages will be sent.\n\n\u003e Probably to have some library/wrapper to work with Inventory Items.\n\nThis is the mapper.  If it\u0027s interfaces aren\u0027t ideal, we should improve them, (I have at least one patchset out in this regard) rather than just invent a new library.\n\n\u003e Otherwise we should state this in architecture document that each demon should do this on Inventory Item exposing/Removal.\n\nBy design, entity-manager should be aware of devices, and do the add/remove logic.  Happy to discuss changes to this model, but this isn\u0027t the right forum for that.\n\n\u003e \n\u003e BTW, I\u0027m not very happy with this messages from EM on each BMC reboot and sometimes even on i2c bus rescans: we don\u0027t \"install\" all this items each time. \n\nThat sounds like a bug, and I\u0027m guessing that you\u0027re not persisting the EM configuration files properly on your systems.  The intended behavior is that on reboot, EM only signals the \"new\" devices, but given the complexities of that, it requires a tight integration with power control to do this properly.\n\n\u003e IMHO this log entries should be only sent on actual removal/changes, but this is completely another question.\n\nHappy to discuss this in the context of an entity-manager review, not in the TOF.  I don\u0027t think there\u0027s anything to vote on here.",
+      "parentUuid": "e6ba0bae_b609c6ad",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 77
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "c81ad8d6_35b0f2c8",
         "filename": "tof/proposals/otp-6.md",
@@ -768,10 +1050,10 @@
         "endChar": 30
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "152b9ba5_f2689ff6",
         "filename": "tof/proposals/otp-6.md",
@@ -792,10 +1074,34 @@
         "endChar": 30
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e966bcd4_33f2eafb",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "I\u0027d love to see your patches in this regard.",
+      "parentUuid": "152b9ba5_f2689ff6",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 30
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "7466296f_022c3d38",
         "filename": "tof/proposals/otp-6.md",
@@ -815,10 +1121,10 @@
         "endChar": 56
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "934c1b2f_ad47abd3",
         "filename": "tof/proposals/otp-6.md",
@@ -839,10 +1145,10 @@
         "endChar": 56
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "9a4ea05a_a028451e",
         "filename": "tof/proposals/otp-6.md",
@@ -862,10 +1168,10 @@
         "endChar": 59
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "0e972f3a_986c7c92",
         "filename": "tof/proposals/otp-6.md",
@@ -886,10 +1192,34 @@
         "endChar": 59
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "899b5f63_daff42cb",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "Between gerrit and github, you should be able to determine where they\u0027re at.",
+      "parentUuid": "0e972f3a_986c7c92",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 59
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "f2fb7835_9f0ca478",
         "filename": "tof/proposals/otp-6.md",
@@ -909,10 +1239,10 @@
         "endChar": 56
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "b29f7651_88ecf574",
         "filename": "tof/proposals/otp-6.md",
@@ -933,10 +1263,34 @@
         "endChar": 56
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "08cd3bdc_2c326105",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "There\u0027s the cables proposal, that you\u0027ve seen, Vijay was pushing some slot abstractions, and there was one more that I recall.",
+      "parentUuid": "b29f7651_88ecf574",
+      "range": {
+        "startLine": 107,
+        "startChar": 61,
+        "endLine": 108,
+        "endChar": 56
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "aef0fa5a_a87a3931",
         "filename": "tof/proposals/otp-6.md",
@@ -956,10 +1310,10 @@
         "endChar": 75
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "2723953b_7bfb59fd",
         "filename": "tof/proposals/otp-6.md",
@@ -980,10 +1334,34 @@
         "endChar": 75
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d2d67a6_a86f3039",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "\u003e So, what\u0027s the right way to model fans in EM if I want them to be Inventory Items? \n\nHappy to have it, but a TOF review isn\u0027t the right place for this discussion.  There are definitely non TOF members that care about the result of this work.\n\n\u003e You already mentioned it somewhere, but I don\u0027t remember you to show solution.",
+      "parentUuid": "2723953b_7bfb59fd",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 75
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "feeb5a11_ab7d15d9",
         "filename": "tof/proposals/otp-6.md",
@@ -1003,10 +1381,10 @@
         "endChar": 58
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "ccd7d78c_493649ac",
         "filename": "tof/proposals/otp-6.md",
@@ -1027,10 +1405,34 @@
         "endChar": 58
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d788be28_3d40c649",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "\u003e Are you talking about \"xyz.openbmc_project.Inventory.Decorator.Ipmi\" interface? I saw this code in getFruSdrs function, but I not really sure it works: there is no any documentation on what does in do, no any usage examples and even interface itself doesn\u0027t exists in phosphor-dbus-interfaces.\n\nBest advice I have is to read the code to determine how it works.\n\n\u003e My bad, I didn\u0027t try it by myself and my impression was this is a legacy code from some unsuccessful experiment. As I see, this strictly related to FruDevice (and to what have real I2C FRU EEPROM) and very limited in flexibility.\n\nLike I said, I don\u0027t like how it was designed, but to my understanding it does work.\n\n\u003e Saying about the rule: I generally agree with it, but there is a problem and there should be solution for it. For now the only real way to solve it is to go back to static sensors with YAML-based configs.\n\u003e For this moment I have no proposals here, but this work somewhere in my plans.\n\n\nProposing a fix in either a code review, or a design doc is the right path to get that solved.  Once you have proposals, we can talk further.  If you want ideas, I\u0027m always on discord to help support.",
+      "parentUuid": "ccd7d78c_493649ac",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 58
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "2de49e5e_1907b24a",
         "filename": "tof/proposals/otp-6.md",
@@ -1050,10 +1452,10 @@
         "endChar": 72
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "b48616c6_5945d84f",
         "filename": "tof/proposals/otp-6.md",
@@ -1074,10 +1476,34 @@
         "endChar": 72
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "51f7962d_e476736f",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "Maybe I misunderstood what this was saying?  Can you clarify this?",
+      "parentUuid": "b48616c6_5945d84f",
+      "range": {
+        "startLine": 128,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 72
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "45763477_e6436064",
         "filename": "tof/proposals/otp-6.md",
@@ -1097,10 +1523,10 @@
         "endChar": 37
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "76003de2_c0233345",
         "filename": "tof/proposals/otp-6.md",
@@ -1121,10 +1547,34 @@
         "endChar": 37
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6401cc1_6e9a1f81",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "So, this can be removed?",
+      "parentUuid": "76003de2_c0233345",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 37
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "4cc7efb0_3bd6f49d",
         "filename": "tof/proposals/otp-6.md",
@@ -1144,10 +1594,10 @@
         "endChar": 61
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "ce7b4ef7_990f32de",
         "filename": "tof/proposals/otp-6.md",
@@ -1168,10 +1618,34 @@
         "endChar": 61
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "20192cd4_5c02607f",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "\u003e Well, any SAS/SATA drives still have vendor and model, we just don\u0027t know them. This mean, the interface should present, but values would be empty.\n\nNo, they shouldn\u0027t.  If we don\u0027t know the information, we shouldn\u0027t expose the interface.  There\u0027s a difference between \"we know the manufacturer, and it\u0027s empty string\" and \"we can\u0027t determine the manufacturer\" that needs to be representable at interface level.\n\n\u003e At least because same drives on other system can have this information.\n\u003e Probably there are some items which really have no model and so on, but this not a case for drives.\n\n\n\"Have no model\" and \"BMC doesn\u0027t have access to the model\" are the same thing from an openbmc perspective.\n\n\u003e \n\u003e BTW, all EM configuration files doesn\u0027t implement all properties of xyz.openbmc_project.Inventory.Decorator.Asset interface. I don\u0027t know it there any issues with this. PIM will always create all properties, defined in PDI and also will reject properties that are not defined in the interface. IMHO this is good feature.\n\nHappy to help review patches if you want to make this more consistent.",
+      "parentUuid": "ce7b4ef7_990f32de",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 61
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "0b6bcd35_7ce2a5c5",
         "filename": "tof/proposals/otp-6.md",
@@ -1191,10 +1665,10 @@
         "endChar": 12
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "b3702e6f_c621fce4",
         "filename": "tof/proposals/otp-6.md",
@@ -1215,10 +1689,34 @@
         "endChar": 12
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a47c5a2_b171015b",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "The above interfaces have always been difficult, and it\u0027s unlikely that we\u0027ll be able to document all the complexities of managing those interfaces in a doc, hence why I suggest looking at code and patches.  If two applications don\u0027t match, we can certainly try to make them consistent, but it\u0027s quite likely that they\u0027re inconsistent for a good reason (as you\u0027ve found with peci-pcie).",
+      "parentUuid": "b3702e6f_c621fce4",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 12
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "edf5e44c_c53992d4",
         "filename": "tof/proposals/otp-6.md",
@@ -1238,10 +1736,10 @@
         "endChar": 56
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "531f49bb_cf2822b1",
         "filename": "tof/proposals/otp-6.md",
@@ -1262,10 +1760,34 @@
         "endChar": 56
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "624714e4_e4174137",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "We already document it in PDI, hence why I\u0027m confused.  Can you update the doc to be more clear on what this means in terms of changes?",
+      "parentUuid": "531f49bb_cf2822b1",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 56
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "851c2e3c_74530213",
         "filename": "tof/proposals/otp-6.md",
@@ -1285,10 +1807,10 @@
         "endChar": 12
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "3f68b100_d12e8a32",
         "filename": "tof/proposals/otp-6.md",
@@ -1308,10 +1830,10 @@
         "endChar": 23
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "98004710_b40ac15f",
         "filename": "tof/proposals/otp-6.md",
@@ -1332,10 +1854,10 @@
         "endChar": 23
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "6ee3c311_2b89c775",
         "filename": "tof/proposals/otp-6.md",
@@ -1355,10 +1877,10 @@
         "endChar": 11
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "00b4d43a_47f8beaf",
         "filename": "tof/proposals/otp-6.md",
@@ -1378,10 +1900,10 @@
         "endChar": 10
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "2fc811aa_8bd4ba9c",
         "filename": "tof/proposals/otp-6.md",
@@ -1402,10 +1924,10 @@
         "endChar": 10
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "780f53a0_cb951c97",
         "filename": "tof/proposals/otp-6.md",
@@ -1425,10 +1947,10 @@
         "endChar": 71
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "fafa4265_66362414",
         "filename": "tof/proposals/otp-6.md",
@@ -1448,10 +1970,10 @@
         "endChar": 45
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "cc3cb32c_b0280cd8",
         "filename": "tof/proposals/otp-6.md",
@@ -1472,10 +1994,34 @@
         "endChar": 45
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "79282f10_72df7e8d",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "Yep, you clearly understand the problem.  I haven\u0027t seen a proposal that can improve this, but I\u0027ve very open to one if someone wants to go do the work to define and make applications consistent.",
+      "parentUuid": "cc3cb32c_b0280cd8",
+      "range": {
+        "startLine": 152,
+        "startChar": 3,
+        "endLine": 153,
+        "endChar": 45
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "6dc7c21b_7c2a376d",
         "filename": "tof/proposals/otp-6.md",
@@ -1495,10 +2041,10 @@
         "endChar": 5
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "d941aacc_bd6d6b6f",
         "filename": "tof/proposals/otp-6.md",
@@ -1519,10 +2065,34 @@
         "endChar": 5
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4943b5ec_52c400a0",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "Lets remove it from here, and plan on having it in its own design doc.",
+      "parentUuid": "d941aacc_bd6d6b6f",
+      "range": {
+        "startLine": 157,
+        "startChar": 19,
+        "endLine": 158,
+        "endChar": 5
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "1560f673_8b59646c",
         "filename": "tof/proposals/otp-6.md",
@@ -1542,10 +2112,10 @@
         "endChar": 14
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "532d3462_10d6e87e",
         "filename": "tof/proposals/otp-6.md",
@@ -1566,10 +2136,34 @@
         "endChar": 14
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4adb0852_49f9ae96",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "\u003e Sometime you need to model something that will always present in the given system, but should be represented as different Inventory Items for end user and/or other software. In our case that could be \"chassis\" which is defined in same system FRU with baseboard or fans, which we can\u0027t actually detect (we have no hardware presence pin) but can can say that system A always have FAN1, FAN2 and FAN3.\n\u003e \n\u003e Once again, if you have good way to solve this, please, point an example. I tried to model this with match rule \"FOUND\", but that didn\u0027t work well for me.\n\n\n\nBasically, you would write a chassis config that probes based on the existence of another item using FOUND.  Given that EM is entirely runtime driven and intentionally doesn\u0027t have any system-specific code (only configuration), there\u0027s no such thing as something that\u0027s \"always present\" in an EM sense.\n\n\"didn\u0027t work well for me\" isn\u0027t enough description to go on to propose something better.  Lets continue on discord.",
+      "parentUuid": "532d3462_10d6e87e",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 14
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "d1d4bcde_8bead584",
         "filename": "tof/proposals/otp-6.md",
@@ -1589,10 +2183,10 @@
         "endChar": 73
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "d26a8958_cae84fb5",
         "filename": "tof/proposals/otp-6.md",
@@ -1613,10 +2207,34 @@
         "endChar": 73
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7451b412_6b33439f",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "To repeat..... if this is important to multiple community members, tell them to send in patches to improve the behavior.  If it\u0027s not important enough to spend time investigating and fixing, there\u0027s no need to bring it up in a design doc.",
+      "parentUuid": "d26a8958_cae84fb5",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 73
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "ce173e58_2f097a35",
         "filename": "tof/proposals/otp-6.md",
@@ -1636,10 +2254,10 @@
         "endChar": 50
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "e6dd606c_d73f530b",
         "filename": "tof/proposals/otp-6.md",
@@ -1659,10 +2277,10 @@
         "endChar": 64
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "28d14db9_ed8ae2f9",
         "filename": "tof/proposals/otp-6.md",
@@ -1683,10 +2301,34 @@
         "endChar": 64
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b82e01f_fb927f83",
+        "filename": "tof/proposals/otp-6.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-10T21:51:24Z",
+      "side": 1,
+      "message": "If you\u0027re busy, and I don\u0027t see anyone else pushing this, I see this item as inactionable for the moment.  As always, happy to review patches to improve stuff.",
+      "parentUuid": "28d14db9_ed8ae2f9",
+      "range": {
+        "startLine": 167,
+        "startChar": 51,
+        "endLine": 168,
+        "endChar": 64
+      },
+      "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "9c1320d5_d53dd8ed",
         "filename": "tof/proposals/otp-6.md",
@@ -1700,10 +2342,10 @@
       "side": 1,
       "message": "I think one of the misunderstandings here is that EM was intended to be a replacement for PIM, such that you didn\u0027t need BOTH components to build a functioning system, and therefore didn\u0027t take the dependency and binary size hit.  Once we have patches that do the above, we should evaluate them for complexity and impact to binary size, given that most systems are at the limit already.",
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "a5d80617_9a40ab7f",
         "filename": "tof/proposals/otp-6.md",
@@ -1718,10 +2360,10 @@
       "message": "agree",
       "parentUuid": "9c1320d5_d53dd8ed",
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "576c05a4_311d1604",
         "filename": "tof/proposals/otp-6.md",
@@ -1741,10 +2383,10 @@
         "endChar": 34
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "1f682f08_d637b505",
         "filename": "tof/proposals/otp-6.md",
@@ -1765,8 +2407,7 @@
         "endChar": 34
       },
       "revId": "aafc3d03185f89f0abfdf95dd46a370ba428c42e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
