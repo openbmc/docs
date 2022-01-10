@@ -90,6 +90,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe4078f2_d32779fd",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-10T22:51:21Z",
+      "side": 1,
+      "message": "Yes, we should add indexes for the single-host systems.\n\n\u003e Otherwise, we need to add indexes everywhere else.\n\nWe do so we don\u0027t screw up and have code that just supports \"Host\" and then doesn\u0027t work on multi-hosts designs.",
+      "parentUuid": "eff283c0_34c9a40a",
+      "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f2057e9_584e0b1d",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-10T22:51:21Z",
+      "side": 1,
+      "message": "What does \"reset control\" mean?",
+      "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c5f39e2_8c28a53a",
         "filename": "designs/device-tree-gpio-naming.md",
         "patchSetId": 1
@@ -125,6 +160,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9078561_acab674c",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-10T22:51:21Z",
+      "side": 1,
+      "message": "Are these actually x86 specific?  Or are they Xeon specific?  Or are they \"generation X of Xeon\" specific?  Or do they apply for Ampere\u0027s design?\n\nEven the use of the \u0027x86-power-control\u0027 repository isn\u0027t exactly obvious anymore.",
+      "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d490a8ba_bae1420e",
         "filename": "designs/device-tree-gpio-naming.md",
         "patchSetId": 1
@@ -154,6 +206,47 @@
       "side": 1,
       "message": "Is it important here? No other lines in this document have such descriptions (except host-ready/host-ready-n).\nI think the behavior is software/hardware responsibility.",
       "parentUuid": "d490a8ba_bae1420e",
+      "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbe7751b_3740c991",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-10T22:51:21Z",
+      "side": 1,
+      "message": "\u003e Is it important here? No other lines in this document have such descriptions (except host-ready/host-ready-n).\n\nMost lines are, unless otherwise specified, implied to be level/high.  If they are still \"implementation specific\" then it is pointless to even document them.",
+      "parentUuid": "adf53697_6bbb9b1a",
+      "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a1f859_b435d446",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-10T22:51:21Z",
+      "side": 1,
+      "message": "Can we document what these mean?  Especially \"s*\"?  That is pretty meaningless to me.\n\nAlso, SIO isn\u0027t exactly x86 specific, is it?  I don\u0027t really know what \"Super I/O related GPIOs\" means.  The BMC _is_ the SIO in the system.  Are these magic signals to tell the processor state of the SIO logic?  Please document.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 16
+      },
       "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
