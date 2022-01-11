@@ -219,6 +219,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "27fa768a_abe62aa8",
+        "filename": "designs/firmware-update-via-usb.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-11T01:11:35Z",
+      "side": 1,
+      "message": "So I\u0027m asking these questions with the expectation that you\u0027ll address them in the documentation. Can you please include the context that you\u0027re providing in your response in Gerrit in the document?\n\nRegardless, \"the code layer\" is pretty vague as I said. All of the firmware is just code, from u-boot to the kernel to userspace. I think what you\u0027re referring to here is the applications involved, specifically phosphor-software-manager. Is that right?",
+      "parentUuid": "0f95ba72_c29d3d43",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 18
+      },
+      "revId": "49e0e4e389865df14f441bcaff8371490c0fc3ef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f2704b02_b2c16487",
         "filename": "designs/firmware-update-via-usb.md",
         "patchSetId": 7
@@ -266,6 +290,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3bc2a1d_47e2d471",
+        "filename": "designs/firmware-update-via-usb.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-11T01:11:35Z",
+      "side": 1,
+      "message": "The udev rule will prevent the drive from being accessed by the update application but won\u0027t prevent the kernel from binding the usb-storage driver to the device. You\u0027d need to blacklist the driver for that to hold. I think you need to be more specific about what behaviour you\u0027re after here in the name of security.\n\nIf you\u0027re going to talk security we need a threat model to reason against.",
+      "parentUuid": "ca6d58ce_3ee0e858",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 64
+      },
+      "revId": "49e0e4e389865df14f441bcaff8371490c0fc3ef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c50071c4_dc863fff",
         "filename": "designs/firmware-update-via-usb.md",
         "patchSetId": 7
@@ -301,6 +349,30 @@
       "side": 1,
       "message": "\u003e Can you do this in qemu?\n\nYeah, I think it is possible, we can simulate `/dev/sda1` on qemu and enable the service (systemctl start usb-code-update@sda1.service)",
       "parentUuid": "c50071c4_dc863fff",
+      "range": {
+        "startLine": 82,
+        "startChar": 1,
+        "endLine": 83,
+        "endChar": 44
+      },
+      "revId": "49e0e4e389865df14f441bcaff8371490c0fc3ef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a87b0de_d1147a07",
+        "filename": "designs/firmware-update-via-usb.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-11T01:11:35Z",
+      "side": 1,
+      "message": "Right, so I think you need to put words here saying you\u0027ll work on some test scripts to implement this?",
+      "parentUuid": "cbdb4930_995a743e",
       "range": {
         "startLine": 82,
         "startChar": 1,
