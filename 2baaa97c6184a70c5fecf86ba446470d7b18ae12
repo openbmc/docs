@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "728f91be_87313133",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2022-01-11T06:00:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fe4078f2_d32779fd",
+      "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f2057e9_584e0b1d",
         "filename": "designs/device-tree-gpio-naming.md",
         "patchSetId": 1
@@ -119,6 +137,24 @@
       "writtenOn": "2022-01-10T22:51:21Z",
       "side": 1,
       "message": "What does \"reset control\" mean?",
+      "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b6aa267_c29283ce",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2022-01-11T06:00:40Z",
+      "side": 1,
+      "message": "This is the line, that BMC control, so pulling it from BMC will trigger PCH to system reset,\n\nGenerally, I use \"*-control\" for the lines that BMC can use to change host state.\nYou welcome to propose better naming for such things.",
+      "parentUuid": "9f2057e9_584e0b1d",
       "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -171,6 +207,24 @@
       "writtenOn": "2022-01-10T22:51:21Z",
       "side": 1,
       "message": "Are these actually x86 specific?  Or are they Xeon specific?  Or are they \"generation X of Xeon\" specific?  Or do they apply for Ampere\u0027s design?\n\nEven the use of the \u0027x86-power-control\u0027 repository isn\u0027t exactly obvious anymore.",
+      "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fa4d348_642bcf9d",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2022-01-11T06:00:40Z",
+      "side": 1,
+      "message": "Actually, I don\u0027t know also... Likely NMI is common for everything and should be moved to common section, but I know nothing about SIO usage.\nProbably someone from Intel can tell.",
+      "parentUuid": "d9078561_acab674c",
       "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -230,6 +284,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1df66bb7_c9cac8eb",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2022-01-11T06:00:40Z",
+      "side": 1,
+      "message": "ok, will document this",
+      "parentUuid": "bbe7751b_3740c991",
+      "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d9a1f859_b435d446",
         "filename": "designs/device-tree-gpio-naming.md",
         "patchSetId": 1
@@ -241,6 +313,30 @@
       "writtenOn": "2022-01-10T22:51:21Z",
       "side": 1,
       "message": "Can we document what these mean?  Especially \"s*\"?  That is pretty meaningless to me.\n\nAlso, SIO isn\u0027t exactly x86 specific, is it?  I don\u0027t really know what \"Super I/O related GPIOs\" means.  The BMC _is_ the SIO in the system.  Are these magic signals to tell the processor state of the SIO logic?  Please document.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 16
+      },
+      "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8c2e915_569d6a8c",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2022-01-11T06:00:40Z",
+      "side": 1,
+      "message": "Sorry, but I only know that this lines somehow used by x86-power-control to get the state. And also there should be in-kernel support which is only exists it Intel-BMC kernel.\nI would be happy if Intel guys could explain how it is actually works and why this is needed in power-control.",
+      "parentUuid": "d9a1f859_b435d446",
       "range": {
         "startLine": 183,
         "startChar": 0,
