@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "4ebb5efe_b248bf2d",
         "filename": "designs/deprivileging.md",
@@ -14,10 +15,28 @@
       "side": 1,
       "message": "Do you mean:\nA which uses a systemd dynamic user would look like this.  Note the parameters for Group and Capabilities are important for how the service interacts with D-Bus.",
       "revId": "e98ff53ef969869397a0ba2e889f6d44c771d5cf",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "082e365d_f04bba5b",
+        "filename": "designs/deprivileging.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000064
+      },
+      "writtenOn": "2022-01-11T16:43:54Z",
+      "side": 1,
+      "message": "The required groups are passed through SupplementaryGroups. The Capabilities only required for the service itself operation. In order to bypass systemd-dbus implementation callee checks, it\u0027s required to expose dbus methods as unprivileged. The access to such methods are driven by busconfig ACLs",
+      "parentUuid": "4ebb5efe_b248bf2d",
+      "revId": "e98ff53ef969869397a0ba2e889f6d44c771d5cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "353de298_e2f68351",
         "filename": "designs/deprivileging.md",
@@ -31,10 +50,28 @@
       "side": 1,
       "message": "I assume this example relates to the previous section.  Can you add a sentence or two which explains how these rules relate OpenBMC\u0027s object mapper to ipmi?",
       "revId": "e98ff53ef969869397a0ba2e889f6d44c771d5cf",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ee65324_50d5bba2",
+        "filename": "designs/deprivileging.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000064
+      },
+      "writtenOn": "2022-01-11T16:43:54Z",
+      "side": 1,
+      "message": "Something like:\nEstablish ACL rules for the supplementary group that the service (callee) runs with. Those rules might vary (for the specific group) based on the service interface.",
+      "parentUuid": "353de298_e2f68351",
+      "revId": "e98ff53ef969869397a0ba2e889f6d44c771d5cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "0d131ce0_88226e5a",
         "filename": "designs/deprivileging.md",
@@ -48,10 +85,28 @@
       "side": 1,
       "message": "If you are not proposing to do this with this current design, then it may be better remove this section, or clearly identify it as follow-on work.",
       "revId": "e98ff53ef969869397a0ba2e889f6d44c771d5cf",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a9d8db0_bbe47f06",
+        "filename": "designs/deprivileging.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000064
+      },
+      "writtenOn": "2022-01-11T16:43:54Z",
+      "side": 1,
+      "message": "Yes, better to move as follow-up work section.",
+      "parentUuid": "0d131ce0_88226e5a",
+      "revId": "e98ff53ef969869397a0ba2e889f6d44c771d5cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "d1499a7e_e208b66f",
         "filename": "designs/deprivileging.md",
@@ -65,8 +120,25 @@
       "side": 1,
       "message": "This statement should be moved to the top of the document and be added to the problem description.\nAre the following impacts?:\n- code bloat, more space to store ACLs, and more time needed to check each message.",
       "revId": "e98ff53ef969869397a0ba2e889f6d44c771d5cf",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "546e76a1_09df3b49",
+        "filename": "designs/deprivileging.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000064
+      },
+      "writtenOn": "2022-01-11T16:43:54Z",
+      "side": 1,
+      "message": "- This is not affecting code bloat in the most cases (except when need to deal with PAM or other system components requiring higher privileges).\n - The space consumption is insignificant for the ACLs\n - Overhead for ACL checks also insignificant. The dbus-broker doesn\u0027t support wildcards (i.e. send_destination_prefix) for the interface names, thus, pretty optimized. There was discussion with upstream about adding this busconfig ACL property as it exists in regular desktop dbus implementation. It was explained the reasoing: https://github.com/bus1/dbus-broker/issues/253#issuecomment-767495431",
+      "parentUuid": "d1499a7e_e208b66f",
+      "revId": "e98ff53ef969869397a0ba2e889f6d44c771d5cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
