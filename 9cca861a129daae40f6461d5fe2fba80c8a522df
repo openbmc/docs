@@ -308,6 +308,30 @@
       },
       "revId": "9cca861a129daae40f6461d5fe2fba80c8a522df",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c03458c_22e65e3a",
+        "filename": "designs/rsyslog-conf.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2022-01-11T05:35:58Z",
+      "side": 1,
+      "message": "\u003e Is the rsyslog config for bmcweb common across all these producers or do they each contribute a subset of the \"these are the magic flags you should look for from me in order to write to the bmcweb.log file\"?\n\nThey have very common format, see here:\nhttps://gerrit.openbmc-project.xyz/c/openbmc/bmcweb/+/44113/3/rsyslog/50-redfish.conf#16\n\n\u003e I guess the important thing is to put the configuration in the \"most common repository\" no matter if that is the producer or consumer.\n\nI believe exactly the same logic had Benjamin putting it to bmcweb repo.",
+      "parentUuid": "93ca7281_cca521d6",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 26
+      },
+      "revId": "9cca861a129daae40f6461d5fe2fba80c8a522df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
