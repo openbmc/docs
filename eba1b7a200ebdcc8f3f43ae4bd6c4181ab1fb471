@@ -446,6 +446,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "233699f9_26ef5183",
+        "filename": "designs/management-console/Authorities_List_Management.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-01-12T04:51:02Z",
+      "side": 1,
+      "message": "\u003e \u003e Also, ReplaceAll takes the path of the new file, not take an input of existing files.\n\u003e I\u0027m not sure how this impacts my suggestion?\nOh, since you mention that FD is pretty useful \"around who deletes files when\". I was saying that all the arguments here are files to be read, not deleted.\n\n\u003e Can you expand on this a little more? Why would it be so much work? At the worst you could just open the file right before you call the DBus API right?\n\nOh, I thought I need to fix exiting codes. \n\nYeah, I could test how FD works. Do you have some examples?\n\nAlso it worths mentioning that in the current plan, our internal consumers of these APIs will be shell scripts + daemons. If we use FD, it involve some redesign in Google internally (I assume shell scripts won\u0027t work anymore).\n\n\u003e I\u0027m not sure. I\u0027ve asked for feedback from others in discord: https://discord.com/channels/775381525260664832/867820390406422538/930664406260523078\n\nThanks. My preference was to go with path string. Then I can take the effort to migrate all codes and all docs in certificate-manager, bmcweb, and anywhere these APIs get referenced to FD if all other maintainers think that\u0027s the right direction. I already did some codes cleaning in the PR chain (https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-certificate-manager/+/50011/3)",
+      "parentUuid": "e3c69659_27a3fa95",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 9
+      },
+      "revId": "eba1b7a200ebdcc8f3f43ae4bd6c4181ab1fb471",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78136bc4_5fb5c269",
