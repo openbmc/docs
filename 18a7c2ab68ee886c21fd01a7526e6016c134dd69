@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3e598ba_c2f9324c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2022-01-12T02:23:15Z",
+      "side": 1,
+      "message": "Thanks Andrew.\nTBH, I am new to writing design documents 😊",
+      "parentUuid": "fb20e876_26b4dcfa",
+      "revId": "18a7c2ab68ee886c21fd01a7526e6016c134dd69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "639858df_b1242163",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-01-11T01:11:35Z",
       "side": 1,
       "message": "Given we\u0027re using udev why does it have to specifically be /run/media/usb/sda1? Why not write the rule so it\u0027s generic for any device name?",
+      "range": {
+        "startLine": 45,
+        "startChar": 30,
+        "endLine": 45,
+        "endChar": 49
+      },
+      "revId": "18a7c2ab68ee886c21fd01a7526e6016c134dd69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7b36bde_1056aed9",
+        "filename": "designs/firmware-update-via-usb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2022-01-12T02:23:15Z",
+      "side": 1,
+      "message": "\u003e Given we\u0027re using udev why does it have to specifically be /run/media/usb/sda1? Why not write the rule so it\u0027s generic for any device name?\n\n`/run/media/usb` is hard-code, refer: https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/usb/usb_manager_main.cpp#L31",
+      "parentUuid": "639858df_b1242163",
       "range": {
         "startLine": 45,
         "startChar": 30,
@@ -58,6 +100,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b915c8f0_89f996f2",
+        "filename": "designs/firmware-update-via-usb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2022-01-12T02:23:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bd9ce5f0_23dda61c",
+      "revId": "18a7c2ab68ee886c21fd01a7526e6016c134dd69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e583f383_deaff8a0",
@@ -71,6 +131,30 @@
       "writtenOn": "2022-01-11T01:11:35Z",
       "side": 1,
       "message": "We can use `DRIVERS\u003d\u003d\"usb-storage\"` here instead and make it generic?",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 57,
+        "endChar": 49
+      },
+      "revId": "18a7c2ab68ee886c21fd01a7526e6016c134dd69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3652660d_7babb5c1",
+        "filename": "designs/firmware-update-via-usb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2022-01-12T02:23:15Z",
+      "side": 1,
+      "message": "\u003e We can use `DRIVERS\u003d\u003d\"usb-storage\"` here instead and make it generic?\n\nSorry, USB driver is done by IBM.\n@Adriana, What do you think?",
+      "parentUuid": "e583f383_deaff8a0",
       "range": {
         "startLine": 57,
         "startChar": 35,
