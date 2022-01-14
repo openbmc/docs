@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3f57307_ccbd3913",
+        "filename": "architecture/code-update/static-layout-dual-flash-design.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-14T21:37:23Z",
+      "side": 1,
+      "message": "Is there conflict between what \"primary\" and \"secondary\" means between here and 33?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "2f974938e25af0e37e192c57965211a37afa851c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cdcc942_b2773651",
+        "filename": "architecture/code-update/static-layout-dual-flash-design.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-14T21:37:23Z",
+      "side": 1,
+      "message": "This should probably be an option?  We never mount the rw file system if we\u0027re not running on the primary flash.",
+      "revId": "2f974938e25af0e37e192c57965211a37afa851c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c205807d_37e344fd",
+        "filename": "architecture/code-update/static-layout-dual-flash-design.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-14T21:37:23Z",
+      "side": 1,
+      "message": "How are you going to handle secure boot with this design?  What you\u0027re proposing here seems exactly the opposite of what secure boot does.\n\nFor secure boot you always want to boot off flash0 (which is locked as R/O) and then early on in u-boot it verifies that flash1 is good and loads the kernel/initramfs from there.  If flash1 is bad, then it proceeds with the content in flash0.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 42
+      },
+      "revId": "2f974938e25af0e37e192c57965211a37afa851c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c42b8a43_c7d05596",
+        "filename": "architecture/code-update/static-layout-dual-flash-design.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-14T21:37:23Z",
+      "side": 1,
+      "message": "Ah, so you are maintaining two completely separate R/W volumes.  Interesting.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 44
+      },
+      "revId": "2f974938e25af0e37e192c57965211a37afa851c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "540c3939_0b261273",
+        "filename": "architecture/code-update/static-layout-dual-flash-design.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-14T21:37:23Z",
+      "side": 1,
+      "message": "I think you should make sure you are exposing the multi-slot design for this.  RedundancyPriority is maybe not relevant then?\n\nWe might need an explicit state still to know which one is \"Active\" but I\u0027d have to dig into it more.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 76
+      },
+      "revId": "2f974938e25af0e37e192c57965211a37afa851c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea1a853e_3657e28a",
+        "filename": "architecture/code-update/static-layout-dual-flash-design.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-14T21:37:23Z",
+      "side": 1,
+      "message": "I left comments on your dbus-interface as well, but I don\u0027t see why this is necessary if you implement the multi-slot design correctly.\n\nDo you really have cases where you want your users to update both images at the same time?  I don\u0027t think we should have an explicit dbus interface for it, but just have them activate one after another.  Otherwise someone doing multi-host (or multiple-PSUs) will ask for another interface to activate all them at once too.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "2f974938e25af0e37e192c57965211a37afa851c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbf2aa82_fba13516",
+        "filename": "architecture/code-update/static-layout-dual-flash-design.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-14T21:37:23Z",
+      "side": 1,
+      "message": "I think you need to specify how this feature is enabled.  I assume you\u0027re adding some kind of machine-feature for it?  Lets document that.",
+      "revId": "2f974938e25af0e37e192c57965211a37afa851c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
