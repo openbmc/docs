@@ -68,6 +68,13 @@ contributions to the project.  By contributing to the project, developers gain
 a voice in the technical direction of the project by shaping the membership in
 the TOF.
 
+Membership is determined using data from the previous 6 months of development
+contributions.  Using this data, the TOF will publish a list of Active Members
+of the two tiers.  An individual who was an Active Member of a tier in the
+preceding 6 months, but does not qualify in the most recent 6 months, will be
+listed as an Member Emeritus for 6 months.  Both Active and Emertius members
+are eligible for elections.
+
 There are two tiers of membership in the development community: normal and
 highly-productive.  It is the responsibility of the TOF to set metrics for
 determining community and tier membership.  The normal membership tier is
@@ -78,13 +85,6 @@ has representation outside of this percentage, the TOF should adjust the
 determining metrics for the next election / membership cycle.)  In any election
 cycle, normal developers are given a vote weight of 1 and highly-productive
 developers are given a vote weight of 3.
-
-Membership is determined using data from the previous 6 months of development
-contributions.  Using this data, the TOF will publish a list of Active Members
-of the two tiers.  An individual who was an Active Member of a tier in the
-preceding 6 months, but does not qualify in the most recent 6 months, will be
-listed as an Member Emeritus for 6 months.  Both Active and Emertius members
-are eligible for elections.
 
 Any individual who feels their contributions to the project were not recognized
 by the existing metrics may petition the TOF for inclusion in either tier and
