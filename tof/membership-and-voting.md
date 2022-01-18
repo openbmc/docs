@@ -94,6 +94,16 @@ controlled by OpenBMC, but for features leveraged by the OpenBMC codebase, and
 significant support activities in areas not covered by existing metrics such as
 Wikis and Discord.
 
+Currently, work on the following projects requires an explicit petition for
+recognition of ToF membership eligibility:
+
+* Linux
+* u-boot
+* QEMU
+* bitbake
+* open-embedded
+* Poky
+
 ### Metrics
 
 Determination of membership in the community is made by a point system for
