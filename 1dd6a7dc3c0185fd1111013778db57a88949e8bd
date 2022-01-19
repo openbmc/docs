@@ -65,6 +65,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4e991bb_b6b3b9ab",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-19T23:14:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca272c7b_845994a4",
+      "range": {
+        "startLine": 9,
+        "startChar": 28,
+        "endLine": 9,
+        "endChar": 31
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c60b1a2a_824ef846",
@@ -101,6 +125,30 @@
       "writtenOn": "2022-01-19T23:14:13Z",
       "side": 1,
       "message": "+1\n\nI don\u0027t see what\u0027s written as a problem description. As it stands it\u0027s more of a solution description, which isn\u0027t what we\u0027re after?\n\nWhy do we need a single daemon for this? The \"Problem Description\" section is where you should provide motivating use-cases that expose bad or missing behaviour in OpenBMC. It shouldn\u0027t mention solutions.\n\nOtherwise it sounds like your problem is that what you\u0027ve already implemented needs to be accepted by the community, which isn\u0027t how this works.",
+      "parentUuid": "c60b1a2a_824ef846",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 58
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f70247ce_1ab39b47",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-19T23:14:40Z",
+      "side": 1,
+      "message": "It\u0027s not really a daemon for everything i2c, but for devices that require more than just telemetry so that all access to that device is encapsulated in a single application. I reworded the description to reflect this.",
       "parentUuid": "c60b1a2a_824ef846",
       "range": {
         "startLine": 9,
@@ -205,6 +253,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a70deeca_c9062b39",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-19T23:14:40Z",
+      "side": 1,
+      "message": "A device with sensors presented from this daemon shouldn\u0027t also have sensors reported by another daemon. This daemon could include implementations for reading from hwmon drivers, or in the device-specific code contained in this daemon. (added this to the doc)",
+      "parentUuid": "5284db7a_03eeee80",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 66
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00191b5a_962cf4c8",
@@ -218,6 +290,30 @@
       "writtenOn": "2022-01-19T21:39:23Z",
       "side": 1,
       "message": "Do we have any examples?",
+      "range": {
+        "startLine": 34,
+        "startChar": 57,
+        "endLine": 34,
+        "endChar": 76
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cb0dcee_c50ce600",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-19T23:14:40Z",
+      "side": 1,
+      "message": "Yes, added one here.",
+      "parentUuid": "00191b5a_962cf4c8",
       "range": {
         "startLine": 34,
         "startChar": 57,
@@ -264,6 +360,30 @@
       "writtenOn": "2022-01-19T21:39:23Z",
       "side": 1,
       "message": "This seems self-contradictory.  Nothing, except BMCWeb, directly exposes Redfish anyhow, so what are you getting at?",
+      "range": {
+        "startLine": 40,
+        "startChar": 55,
+        "endLine": 44,
+        "endChar": 27
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7137b5a7_c3b94566",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-19T23:14:40Z",
+      "side": 1,
+      "message": "Right, I just wanted to express that this daemon isn\u0027t exposing anything over Redfish. I removed this paragraph to avoid confusion.",
+      "parentUuid": "18df11d3_68cef62d",
       "range": {
         "startLine": 40,
         "startChar": 55,
@@ -321,6 +441,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8930bbf_2bc35692",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-19T23:14:40Z",
+      "side": 1,
+      "message": "Yes, it would handle multi-slot updates, but we would also want the ability to handle cases where there are multiple devices and those devices may require different firmware images. Added some details here.",
+      "parentUuid": "177619d6_3135a83c",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 41
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "905ac7f6_f3a768c8",
@@ -357,6 +501,30 @@
       "writtenOn": "2022-01-19T21:39:23Z",
       "side": 1,
       "message": "This interface doesn\u0027t exist.  Are you going to define it?  Does this really just mean that the daemon could expose \"any other dbus interface not already identified above\"?\n\nWhat are we doing about Inventory?  Is there any inventory information we can only get over i2c?",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 3
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c05eee1_02a29a0d",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-19T23:14:40Z",
+      "side": 1,
+      "message": "Yes the daemon could expose a dbus interface for anything a particular device might need to expose. I believe the inventory information can still be handled by EntityManager.",
+      "parentUuid": "945a5e68_9012561e",
       "range": {
         "startLine": 67,
         "startChar": 0,
