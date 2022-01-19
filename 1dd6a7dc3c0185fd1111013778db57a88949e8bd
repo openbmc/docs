@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35c6ebeb_e47bae84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-19T23:14:13Z",
+      "side": 1,
+      "message": "Hi Justin,\n\nI have concerns along the same lines as Patrick. I\u0027ve made my own comments where I\u0027ve seen fit.",
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca272c7b_845994a4",
@@ -14,6 +31,30 @@
       "writtenOn": "2022-01-19T21:39:23Z",
       "side": 1,
       "message": "Please use \u0027i2c\u0027.  This makes it really annoying to grep for.",
+      "range": {
+        "startLine": 9,
+        "startChar": 28,
+        "endLine": 9,
+        "endChar": 31
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb1c8132_f7a88c4a",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-19T23:14:13Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "ca272c7b_845994a4",
       "range": {
         "startLine": 9,
         "startChar": 28,
@@ -49,6 +90,76 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78fd301b_caf67f78",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-19T23:14:13Z",
+      "side": 1,
+      "message": "+1\n\nI don\u0027t see what\u0027s written as a problem description. As it stands it\u0027s more of a solution description, which isn\u0027t what we\u0027re after?\n\nWhy do we need a single daemon for this? The \"Problem Description\" section is where you should provide motivating use-cases that expose bad or missing behaviour in OpenBMC. It shouldn\u0027t mention solutions.\n\nOtherwise it sounds like your problem is that what you\u0027ve already implemented needs to be accepted by the community, which isn\u0027t how this works.",
+      "parentUuid": "c60b1a2a_824ef846",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 58
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94e08d40_8d7e782b",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-19T23:14:13Z",
+      "side": 1,
+      "message": "I\u0027m not sold on this. No matter what, it requires some orchestration of userspace. Having a single daemon do multiple things doesn\u0027t prevent me swinging in and running some random `i2cset -f`s on the device while the daemon is running.\n\nWhat level of assurance are we trying to achieve with this proposal?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 60
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fc0ef5a_9a0640b7",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-19T23:14:13Z",
+      "side": 1,
+      "message": "What does this look like from a practical, implementation standpoint? I2C devices don\u0027t have to have any particular command interfaces, though there are some popular ones (PMBus). How is this expected to work if there\u0027s a kernel driver bound to the device?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 46
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5284db7a_03eeee80",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 1
@@ -60,6 +171,30 @@
       "writtenOn": "2022-01-19T21:39:23Z",
       "side": 1,
       "message": "How does this interact with existing sensors presented by dbus-sensors / phosphor-hwmon?  We already have implementations for anything exported by the hwmon subsystem in the kernel and a large percentage of those are i2c.  Again, we probably want to scope the ambition here a little?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 66
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1481f7e_8b51e7b0",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-19T23:14:13Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "5284db7a_03eeee80",
       "range": {
         "startLine": 32,
         "startChar": 0,
@@ -88,6 +223,29 @@
         "startChar": 57,
         "endLine": 34,
         "endChar": 76
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b20c280_8c8c1b68",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-19T23:14:13Z",
+      "side": 1,
+      "message": "How do you provided a consistent interface to do this? This makes it sound like you\u0027re trying to insert an entire layer of indirection between applications and I2C devices, and it feels like a recipe for performance issues.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 17
       },
       "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -141,6 +299,53 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d3b68b3_ee35b2d2",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-19T23:14:13Z",
+      "side": 1,
+      "message": "Right, it\u0027s a little unclear whether the proposal is for a single instance of the daemon handling all I2C devices, or some other approach. I guess you could do one instance per bus? One instance per device?",
+      "parentUuid": "177619d6_3135a83c",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 41
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "905ac7f6_f3a768c8",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-19T23:14:13Z",
+      "side": 1,
+      "message": "This sounds like a kernel patch rather than something we need a userspace daemon for?",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 40
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "945a5e68_9012561e",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 1
@@ -158,6 +363,23 @@
         "endLine": 75,
         "endChar": 3
       },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "433db23f_689cc147",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-19T23:14:13Z",
+      "side": 1,
+      "message": "It\u0027s not clear to me what we can\u0027t achieve with in-kernel support for the I2C devices. For example, there\u0027s a hwmon PMBus driver for the adm1266. The kernel won\u0027t do firmware update, but are there specific issues you have with the existing kernel uapi for hwmon? I think these issues would do well to be described in the \"Problem Description\" section.",
       "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
