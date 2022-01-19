@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca272c7b_845994a4",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T21:39:23Z",
+      "side": 1,
+      "message": "Please use \u0027i2c\u0027.  This makes it really annoying to grep for.",
+      "range": {
+        "startLine": 9,
+        "startChar": 28,
+        "endLine": 9,
+        "endChar": 31
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c60b1a2a_824ef846",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T21:39:23Z",
+      "side": 1,
+      "message": "I\u0027ll read further but \"a single daemon for everything i2c\" doesn\u0027t really sound great to me.  Can we / should we scope this a little bit?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 58
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5284db7a_03eeee80",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T21:39:23Z",
+      "side": 1,
+      "message": "How does this interact with existing sensors presented by dbus-sensors / phosphor-hwmon?  We already have implementations for anything exported by the hwmon subsystem in the kernel and a large percentage of those are i2c.  Again, we probably want to scope the ambition here a little?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 66
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00191b5a_962cf4c8",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T21:39:23Z",
+      "side": 1,
+      "message": "Do we have any examples?",
+      "range": {
+        "startLine": 34,
+        "startChar": 57,
+        "endLine": 34,
+        "endChar": 76
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18df11d3_68cef62d",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T21:39:23Z",
+      "side": 1,
+      "message": "This seems self-contradictory.  Nothing, except BMCWeb, directly exposes Redfish anyhow, so what are you getting at?",
+      "range": {
+        "startLine": 40,
+        "startChar": 55,
+        "endLine": 44,
+        "endChar": 27
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "177619d6_3135a83c",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T21:39:23Z",
+      "side": 1,
+      "message": "Is the daemon going to handle multi-slot updates (two devices of the same underlying hardware type) or is that handled by two different instances of the daemon?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 41
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "945a5e68_9012561e",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T21:39:23Z",
+      "side": 1,
+      "message": "This interface doesn\u0027t exist.  Are you going to define it?  Does this really just mean that the daemon could expose \"any other dbus interface not already identified above\"?\n\nWhat are we doing about Inventory?  Is there any inventory information we can only get over i2c?",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 3
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
