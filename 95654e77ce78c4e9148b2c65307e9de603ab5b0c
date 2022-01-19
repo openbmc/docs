@@ -16,6 +16,155 @@
       "message": "Hi All, \n\n Could you please review this design and provide your comments if any or provide your approval.\n\nThanks,\nKumar.",
       "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c33ccbf_f3d6f754",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T22:13:23Z",
+      "side": 1,
+      "message": "There are a number of comments I made in PS7 where you made an \"answer\" of sorts but I don\u0027t see any updates.  If it is clear for me, it probably isn\u0027t clear for the next person who reads it either, so we should likely make doc updates for clarity.",
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a70e8c4_3bd79e21",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T22:13:23Z",
+      "side": 1,
+      "message": "I\u0027m not really following how \u0027Host\u0027 is related here.  You\u0027ve talked earlier about arbitrary device types but then we have \u0027Host.Updater\u0027 here.\n\nI think you should use the word \"service\" somewhere as this is a new dbus-service you are describing.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 54
+      },
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25d4b920_72aa36e5",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T22:13:23Z",
+      "side": 1,
+      "message": "s/with/which",
+      "range": {
+        "startLine": 93,
+        "startChar": 5,
+        "endLine": 93,
+        "endChar": 9
+      },
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03c1aae8_1ef6ba92",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T22:13:23Z",
+      "side": 1,
+      "message": "I don\u0027t understand this or the \"the file name\" at the beginning of this sentence.",
+      "range": {
+        "startLine": 93,
+        "startChar": 45,
+        "endLine": 94,
+        "endChar": 31
+      },
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03bb197b_90c52be4",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T22:13:23Z",
+      "side": 1,
+      "message": "What is an \"isolated sub-string\"?  Don\u0027t we want these to be exact matches with some known compatibility string?  Otherwise how do you prevent someone from applying a \"BMC.Yosemite\" onto a \"BMC.Tiogapass\"?",
+      "range": {
+        "startLine": 94,
+        "startChar": 32,
+        "endLine": 96,
+        "endChar": 60
+      },
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26d46be4_4de0173a",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T22:13:23Z",
+      "side": 1,
+      "message": "I don\u0027t really understand how this works from a systemd perspective.  Don\u0027t we need some way so that a different service is ran for BIOS update vs ME update vs VR update?  But you\u0027ve put \u0027bios\u0027 as part of the template now, so systemd can only launch a generic \u0027obmc-flash-software@\u0027 service.\n\nHow do we handle two different BIOS update methods?  For instance, a system like Yv2/Northdome where you could plug an Intel and AMD compute card into two different slots (in theory.  in practice we don\u0027t do this.  we should support it in the software design though.  We do have to deal with this for NICs.)",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 66
+      },
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edb15c7e_df635738",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-19T22:13:23Z",
+      "side": 1,
+      "message": "We already have Common.Progress.  I don\u0027t really know how this solves the issue of tracking the completion of systemd services that we have started in the updater process.\n\nA few things to consider:\n\n- If there is a service kicking off a custom tool for applying an update, don\u0027t you want that service to exit once the update is done?  So it will never have Progress.Status \u003d Completed or Aborted because it will simply exit.\n\n- If the service doesn\u0027t exit, how do we garbage collect them?\n\n- How do you ensure that two updates are not applied to the same device in close proximity (ie, while one is updating the other one is started)?\n\n- What do we do if the update fails in the middle?  Are any errors reported back to the ItemUpdater?  Or is it expected to monitor for the systemd status on the service it kicked off?",
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
