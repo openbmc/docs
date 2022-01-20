@@ -160,6 +160,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b387747f_973399bc",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-20T00:03:49Z",
+      "side": 1,
+      "message": "Good point, I reworded the problem description to be an actual problem description.",
+      "parentUuid": "f70247ce_1ab39b47",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 58
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94e08d40_8d7e782b",
@@ -185,6 +209,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4bc04850_4eacd43c",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-20T00:03:49Z",
+      "side": 1,
+      "message": "This daemon would act as a kind of gatekeeper for i2c access to a device to try and reduce the issues described. Of course anyone could start running raw i2c commands and interfere with everything, but the motivation of this daemon is to encapsulate any access required and manage the coordination away from the user. So if the user needs to perform a firmware upgrade, that user doesn\u0027t need to worry about disabling telemetry, etc, it all happens under the hood of this application.",
+      "parentUuid": "94e08d40_8d7e782b",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 60
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7fc0ef5a_9a0640b7",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 1
@@ -196,6 +244,30 @@
       "writtenOn": "2022-01-19T23:14:13Z",
       "side": 1,
       "message": "What does this look like from a practical, implementation standpoint? I2C devices don\u0027t have to have any particular command interfaces, though there are some popular ones (PMBus). How is this expected to work if there\u0027s a kernel driver bound to the device?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 46
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22a17241_9ff4cad0",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-20T00:03:49Z",
+      "side": 1,
+      "message": "This daemon would potentially unbind any hwmon drivers before writing firmware, and then rebind them after the firmware is written.",
+      "parentUuid": "7fc0ef5a_9a0640b7",
       "range": {
         "startLine": 29,
         "startChar": 0,
@@ -349,6 +421,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "055ca8bd_bc7a4192",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-20T00:03:49Z",
+      "side": 1,
+      "message": "If another application is trying to report info from this device and is performance critical, its logic should probably belong in this daemon.",
+      "parentUuid": "7b20c280_8c8c1b68",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "18df11d3_68cef62d",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 1
@@ -478,6 +574,30 @@
       "writtenOn": "2022-01-19T23:14:13Z",
       "side": 1,
       "message": "This sounds like a kernel patch rather than something we need a userspace daemon for?",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 40
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c43e1d0e_53497f99",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-01-20T00:03:49Z",
+      "side": 1,
+      "message": "Do you mean a patch to existing hwmon drivers? IIUC, hwmon drivers are very focused on telemetry, and other types of information wouldn\u0027t be suitable in those drivers.",
+      "parentUuid": "905ac7f6_f3a768c8",
       "range": {
         "startLine": 63,
         "startChar": 0,
