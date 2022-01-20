@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25275ea3_3ee43748",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-20T03:39:50Z",
+      "side": 1,
+      "message": "Shouldn\u0027t firmware update coordination be handled in-kernel?  Let the hwmon interfaces return EAGAIN if code update is being done and the sensors are unavailable.",
+      "parentUuid": "4ee25269_f7f69859",
+      "revId": "40387313c8318093914bfef204918a0f3def0c20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3dd6f188_d6277639",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 3
@@ -71,6 +89,53 @@
         "startChar": 11,
         "endLine": 21,
         "endChar": 78
+      },
+      "revId": "40387313c8318093914bfef204918a0f3def0c20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f433b00_05a2df74",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-20T03:39:50Z",
+      "side": 1,
+      "message": "There is this which has been applied to linux-next:\n    https://lore.kernel.org/lkml/cover.1640007183.git.yu.c.chen@intel.com/\n\nIt is unfortunate that the uapi is specific to these Intel ACPI interfaces, but it seems like someone could refactor that to make for a more generic interface now that this has been accepted in concept, right?\n\nThere is also the existing (linux-kernel):Documentation/driver-api/firmware.  Is there any reason this can be leveraged by devices that want to do runtime-based firmware update?\n\n\u003e and the hwmon framework doesn\u0027t expose an API for firmware updates.\n\nThe hwmon framework never would expose an API for firmware update.  There would be a separate framework for firmware update and a device might support the APIs necessary for both the hwmon and \"firmware-update\" framework.",
+      "parentUuid": "c46eba88_aa992982",
+      "range": {
+        "startLine": 21,
+        "startChar": 11,
+        "endLine": 21,
+        "endChar": 78
+      },
+      "revId": "40387313c8318093914bfef204918a0f3def0c20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abad482d_b5e1407f",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-01-20T03:39:50Z",
+      "side": 1,
+      "message": "In order to support firmware update I think you\u0027re going to need a bit more information than just this.  Please take a look at the Software update design.  There are now compatibility strings that tell you the purpose of the device / image so they can be matched up.\n\nI could have 5 VRs on my board that are all the same TI chip, but if I load the wrong firmware image into the wrong one, I\u0027ll fry the board.  There quite likely would be a different VR image for different voltage rails.",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 33
       },
       "revId": "40387313c8318093914bfef204918a0f3def0c20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
