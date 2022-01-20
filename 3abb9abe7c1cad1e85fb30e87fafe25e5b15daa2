@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b138de69_0871151d",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-20T23:27:30Z",
+      "side": 1,
+      "message": "If this set of devices is not just \"all I2C devices\" then can you please provide a small list of existing devices of interest with accompanying discussion about their specific behaviours that demonstrates the need for this proposal? Also provide a small list of devices where this daemon\u0027s behaviour isn\u0027t required. Let\u0027s make things concrete. And some discussion about how to prevent these devices being automatically monitored by e.g. dbus-sensors if that\u0027s simultaneously in use on the system?\n\nIf this set of devices turns out to be \"all I2C devices\", then I suspect you have a pretty big uphill battle on your hands, as it will need to reimplement existing projects like dbus-sensors. It will be contentious at least due to community fragmentation (we already have enough of this).",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 73
+      },
+      "revId": "3abb9abe7c1cad1e85fb30e87fafe25e5b15daa2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34a54960_602c680c",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-20T23:27:30Z",
+      "side": 1,
+      "message": "Have you considered using a dedicated system state for device update? Say we introduce \"device-update.target\" with similar behaviour to e.g. emergency.target. We know that there won\u0027t be any concurrent access for telemetry purposes because of the minimal amount of userspace that\u0027s running.\n\nArguments for/against this can again be added here.",
+      "revId": "3abb9abe7c1cad1e85fb30e87fafe25e5b15daa2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
