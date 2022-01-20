@@ -352,6 +352,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bdd34058_cf962e73",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-20T00:55:20Z",
+      "side": 1,
+      "message": "\u003e As far as accessing the i2c devices.. There are a few approaches but mostly leaving this as an implementation detail.\n\u003e 1.) IIRC, you can force i2c transactions even if there is a driver bound to the device.\n\nYeah, but I expect we agree that this is a bad idea.\n\n\u003e 2.) You can always userspace unbind the driver and then rebind it when done\n\nOkay, so the intent is to do this when the kernel interface does provide all the necessary information?\n\n\u003e 3.) Just do everything in userspace and forget about the hwmon sysfs interface.\n\nIt\u0027s a big hammer, but sure. It\u0027s probably worthwhile looking at the phosphor-power repo as it sorta goes in the same direction. Maybe can even be generalised? Anyway, it at least already has a userspace implementation for handling PMBus devices.\n\n\u003e 4.) painstakingly go through every pmbus driver and add device upgrade features..but first standardize it as part of hwmon and get maintainer buy-in.\n\u003e We\u0027ve tried this in the past and it was rejected.\n\nRight, it\u0027d be good to link to this discussion in the proposal! It\u0027s certainly good fodder for the \"Alternatives Considered\" section that the design document template contains (but isn\u0027t present in this proposal).",
+      "parentUuid": "fe897bd0_1b873ca7",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 46
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5284db7a_03eeee80",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 1
@@ -505,6 +529,30 @@
       "side": 1,
       "message": "If another application is trying to report info from this device and is performance critical, its logic should probably belong in this daemon.",
       "parentUuid": "7b20c280_8c8c1b68",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "213f5032_ae825c32",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-20T00:55:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "055ca8bd_bc7a4192",
       "range": {
         "startLine": 35,
         "startChar": 0,
@@ -670,6 +718,30 @@
       "side": 1,
       "message": "Do you mean a patch to existing hwmon drivers? IIUC, hwmon drivers are very focused on telemetry, and other types of information wouldn\u0027t be suitable in those drivers.",
       "parentUuid": "905ac7f6_f3a768c8",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 40
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3040548f_5af4af50",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-01-20T00:55:20Z",
+      "side": 1,
+      "message": "Yeah I guess I\u0027m a bit frustrated with Guenter\u0027s stance that PMBus must only be used in the hwmon subsystem in the kernel, and then NACKs anything expanding the hwmon sysfs ABI.",
+      "parentUuid": "c43e1d0e_53497f99",
       "range": {
         "startLine": 63,
         "startChar": 0,
