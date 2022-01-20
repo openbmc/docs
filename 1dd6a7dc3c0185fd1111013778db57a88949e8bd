@@ -233,6 +233,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60e890e3_993e7c51",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-01-20T00:06:29Z",
+      "side": 1,
+      "message": "Suppose we decided to go with two daemons. Existing dbus-sensors daemon and add another daemon to manage firmware upgrades and possibly other things (e.g black box record retrieval)\nNow the firmware upgrade daemon must coordinate with the sensor daemon to pause telemetry to do upgrades and then resume the sensor daemon when done.\n\nInstead the decision was made to package this together into a single daemon to eliminate this coordination.\n\nAs far as other applications coming in and forcing i2c transactions on that device.. I\u0027m not aware of anything that can prevent that scenario.",
+      "parentUuid": "94e08d40_8d7e782b",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 60
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7fc0ef5a_9a0640b7",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 1
@@ -267,6 +291,30 @@
       "writtenOn": "2022-01-20T00:03:49Z",
       "side": 1,
       "message": "This daemon would potentially unbind any hwmon drivers before writing firmware, and then rebind them after the firmware is written.",
+      "parentUuid": "7fc0ef5a_9a0640b7",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 46
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe897bd0_1b873ca7",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-01-20T00:06:29Z",
+      "side": 1,
+      "message": "The Dbus interface here are the generic ItemUpdater/ItemManager interfaces found in phosphor-dbus-interfaces (https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software)\n\nThis daemon\u0027s intent is to allow users to update pmbus devices just like they would update BMCs.\n\nAs far as accessing the i2c devices.. There are a few approaches but mostly leaving this as an implementation detail.\n1.) IIRC, you can force i2c transactions even if there is a driver bound to the device.\n2.) You can always userspace unbind the driver and then rebind it when done\n3.) Just do everything in userspace and forget about the hwmon sysfs interface.\n4.) painstakingly go through every pmbus driver and add device upgrade features..but first standardize it as part of hwmon and get maintainer buy-in.\nWe\u0027ve tried this in the past and it was rejected.",
       "parentUuid": "7fc0ef5a_9a0640b7",
       "range": {
         "startLine": 29,
