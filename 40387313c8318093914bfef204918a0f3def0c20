@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d525c826_2d742b79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-01-20T17:33:53Z",
+      "side": 1,
+      "message": "\u003e\u003e Shouldn\u0027t firmware update coordination be handled in-kernel?\nNot according to the hwmon maintainer. An attempt was made, explicitly rejected and we were told this should be done in userspace. We respected the maintainer\u0027s decision and have since created some CLIs that do this in userspace.\nWe want to move away from hacking together services and shell scripts and formalize this into a daemon (the daemon proposed here).\n\nContext for those who are interested:\n\nhttps://lkml.org/lkml/2020/8/7/565\n\nNot going to let it happen through ioctls either\n\nhttps://lkml.org/lkml/2020/6/24/830\n\nWe tried once more through an informal chat. Maintainer\u0027s stance has not changed and he has asked us to sort this out ourselves.\n\n\u003e\u003e I\u0027m just struggling to feel comfortable with the flow-on effects.\n\u003e\u003e I still have a nagging concern that it will turn into a kitchen-sink daemon and a bit of a maintenance/stability headache\n\nI share your concern but I view the alternative as worse (coordinating firmware upgrades with telemetry). At least when it\u0027s all in one daemon you end up debugging a single code base and don\u0027t have to worry about things like dbus latency etc..\n\nIf it helps, we have the mindset of single device single owner.",
+      "parentUuid": "25275ea3_3ee43748",
+      "revId": "40387313c8318093914bfef204918a0f3def0c20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3dd6f188_d6277639",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 3
