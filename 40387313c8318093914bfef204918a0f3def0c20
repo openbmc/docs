@@ -138,6 +138,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2de7c8e8_ac6771d2",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-01-20T17:52:05Z",
+      "side": 1,
+      "message": "\u003eIt is unfortunate that the uapi is specific to these Intel ACPI interfaces, but it seems like someone could refactor that to make for a more generic interface now that this has been accepted in concept, right?\n\nRight, but at this point we\u0027re talking about refactoring kernel code so we don\u0027t have to do something in userspace? I\u0027ve always taken the stance to do things in userspace and only put things into the kernel if I have no other choice (lower blast radius).\n\n\u003eThere is also the existing (linux-kernel):Documentation/driver-api/firmware. \nquickly reading through \"driver-api/firmware\" leaves me with the impression that this firmware is meant to be loaded onto devices in early boot.. to patch microcode or load something onto a microcontroller. Not our use-case.",
+      "parentUuid": "4f433b00_05a2df74",
+      "range": {
+        "startLine": 21,
+        "startChar": 11,
+        "endLine": 21,
+        "endChar": 78
+      },
+      "revId": "40387313c8318093914bfef204918a0f3def0c20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "abad482d_b5e1407f",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 3
