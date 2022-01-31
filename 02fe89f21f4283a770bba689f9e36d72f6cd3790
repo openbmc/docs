@@ -1,0 +1,274 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecd21fd0_a67f41dd",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "nit, you might want to call this a \"NIC\".  FRU implies that it\u0027s the eeprom.",
+      "range": {
+        "startLine": 20,
+        "startChar": 11,
+        "endLine": 20,
+        "endChar": 14
+      },
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b73b407_ac281c4b",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "Question: it\u0027s pretty clear that this code doesn\u0027t work as designed, and the original author has stated that it doesn\u0027t work for their use case.  Could this detection logic be completely removed as part of this work?",
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45b66e6c_05556a7d",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "Nit, please use specific models of eeprom.  \"two byte eeprom\" isn\u0027t very descriptive.",
+      "range": {
+        "startLine": 36,
+        "startChar": 55,
+        "endLine": 38,
+        "endChar": 26
+      },
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "741b373d_b36270ff",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "Can we call out that this is a \"size\" and not a \"type\".  eeprom size has other uses, like properly populating a FRU SDR, that we\u0027d also like to solve eventually.",
+      "range": {
+        "startLine": 48,
+        "startChar": 41,
+        "endLine": 48,
+        "endChar": 45
+      },
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a441bd7_32e2c2e7",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "nit: implemented",
+      "range": {
+        "startLine": 61,
+        "startChar": 49,
+        "endLine": 61,
+        "endChar": 56
+      },
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7db0905b_ad41d293",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "This seems redundant to the second sentence of #1.  Also, the dbus API is not going to detect the eeprom byte type, it\u0027s going to detect the MODEL of the card.  EM will expose the eeprom size from its known card types.\n\nAlso, doesn\u0027t this code belong in ncsid?  I thought that phosphor-network was for managing the network devices, not handling NCSI devices.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 8
+      },
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "458b0733_49b121aa",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "fork and exec should be avoided in applications.  Can this data be gotten directly in-process without invoking another one?",
+      "range": {
+        "startLine": 67,
+        "startChar": 3,
+        "endLine": 67,
+        "endChar": 29
+      },
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "640fec2a_5340617d",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem right.  The NCSI device isn\u0027t going to directly identify the EEPROM size, that will happen in EM, right?",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 70,
+        "endChar": 47
+      },
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "182b8017_359dbd96",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "Would like more details on what this looks like.  I suspect this is just adding \"Size\" to the existing eeprom interface, but that should be called out here.",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 51
+      },
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ee5bdaf_e11cef0e",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "Good.  This is ideal.",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 22
+      },
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91c21f3f_a457331d",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "Not enough detail here.",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 58
+      },
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e01fb2cb_32af3f43",
+        "filename": "designs/EEPROM-byte-type-identification.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-31T20:40:28Z",
+      "side": 1,
+      "message": "Not enough detail here.",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 33
+      },
+      "revId": "02fe89f21f4283a770bba689f9e36d72f6cd3790",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
