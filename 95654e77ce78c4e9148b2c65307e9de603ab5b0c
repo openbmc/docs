@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "320e1a04_adbe5e1d",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-01-31T15:07:05Z",
+      "side": 1,
+      "message": "Ack. Updated the doc with more detail",
+      "parentUuid": "2c33ccbf_f3d6f754",
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a70e8c4_3bd79e21",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-01-19T22:13:23Z",
       "side": 1,
       "message": "I\u0027m not really following how \u0027Host\u0027 is related here.  You\u0027ve talked earlier about arbitrary device types but then we have \u0027Host.Updater\u0027 here.\n\nI think you should use the word \"service\" somewhere as this is a new dbus-service you are describing.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 54
+      },
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62d64cc7_af5166af",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-01-31T15:07:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a70e8c4_3bd79e21",
       "range": {
         "startLine": 69,
         "startChar": 0,
@@ -81,6 +123,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78b7f413_9b0802f5",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-01-31T15:07:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25d4b920_72aa36e5",
+      "range": {
+        "startLine": 93,
+        "startChar": 5,
+        "endLine": 93,
+        "endChar": 9
+      },
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03c1aae8_1ef6ba92",
@@ -94,6 +160,30 @@
       "writtenOn": "2022-01-19T22:13:23Z",
       "side": 1,
       "message": "I don\u0027t understand this or the \"the file name\" at the beginning of this sentence.",
+      "range": {
+        "startLine": 93,
+        "startChar": 45,
+        "endLine": 94,
+        "endChar": 31
+      },
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f262c523_df620c75",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-01-31T15:07:05Z",
+      "side": 1,
+      "message": "Updated the sentence. The file name here refers to Image file name.\n\nThe file name contains an isolated sub-string such as \"BIOS\",\"CPLD\", \"VR\", \"BIC\" or \"ME\" both upper and lower cases) just identifies the image type.\n\nIsolated sub-string is BIOS, CPLD , BIC etc after the filename with \u0027.\u0027 The format of the image.",
+      "parentUuid": "03c1aae8_1ef6ba92",
       "range": {
         "startLine": 93,
         "startChar": 45,
@@ -127,6 +217,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "152877e6_167506b2",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-01-31T15:07:05Z",
+      "side": 1,
+      "message": "Isolated sub-string is BIOS, CPLD , BIC etc after the filename with \u0027.\u0027 The format of the image.\n\nWe have to parse and compare the each element separated by \u0027.\u0027. \nElement is TwinLake and Type is BMC or host. Type and revision needs to be compared with exact match. \n\nImageType\u003dcom.facebook.Software.Element.TwinLake.Type.Host.Bios.Rev",
+      "parentUuid": "03bb197b_90c52be4",
+      "range": {
+        "startLine": 94,
+        "startChar": 32,
+        "endLine": 96,
+        "endChar": 60
+      },
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26d46be4_4de0173a",
@@ -150,6 +264,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "153ce48d_20d9bd63",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-01-31T15:07:05Z",
+      "side": 1,
+      "message": "Different BIOS update is possible with compatible string using type with Rev.\n\nFor example : If we wanted to update Bios with two versions 1 and 2 like Bios_1, Bios_2. then, we can use this compatible string and check the type as Host.Bios and revisions as 1 and 2. We compare with exact string match with type and Rev.\n\nImageType\u003dcom.facebook.Software.Element.TwinLake.Type.Host.Bios.1\nImageType\u003dcom.facebook.Software.Element.TwinLake.Type.Host.Bios.2\n\nWith Different Revisions, we can handle different BIOS methods. Revision number and Type should vary between the different BIOS update methods.\n\nImages can be differentiated and identified by compatible string format.\n\nAll Bios update methods are handling using Ipmb commands in Bridge IC. So,BIC accepts only valid format of data for firmware update commands for different cards. The command data is different for each card.\n\nUpdated the above in the doc.",
+      "parentUuid": "26d46be4_4de0173a",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 66
+      },
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edb15c7e_df635738",
@@ -163,6 +301,24 @@
       "writtenOn": "2022-01-19T22:13:23Z",
       "side": 1,
       "message": "We already have Common.Progress.  I don\u0027t really know how this solves the issue of tracking the completion of systemd services that we have started in the updater process.\n\nA few things to consider:\n\n- If there is a service kicking off a custom tool for applying an update, don\u0027t you want that service to exit once the update is done?  So it will never have Progress.Status \u003d Completed or Aborted because it will simply exit.\n\n- If the service doesn\u0027t exit, how do we garbage collect them?\n\n- How do you ensure that two updates are not applied to the same device in close proximity (ie, while one is updating the other one is started)?\n\n- What do we do if the update fails in the middle?  Are any errors reported back to the ItemUpdater?  Or is it expected to monitor for the systemd status on the service it kicked off?",
+      "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d75a44ef_9bc76071",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-01-31T15:07:05Z",
+      "side": 1,
+      "message": "1. Custom flash tool needs to updated to monitor the progress of Completion\ncontinuously. This progress of Completion is calculated based on the total\nand completed image size. This Value is updated in the service\n\"xyz.openbmc_project.oem_firmware_update\" with new property.\nItemUpdater can read this progress of completion from this Dbus-interface.\n\nSo, custom tool keep on updating the progress in the dbus properties in \"xyz.openbmc_project.oem_firmware_update\" service. For example : It will update as completion status with 25% or 50% or 100%. \n\n2. Custom flash tool can be updated with setting timeout option for every\nchunk of data sent via Ipmb command. If update is not happening till that\ntimeout period then we set the status as Aborted.\n\nIf the service is not exist for some timeout, it might go to abort status.\nif status is aborted, dbus-proeprties can be updated with Abort status.\nItemupdater can remove the images if status is aborted.\n  \n3. The Inprogress status can avoid the two image updates on same device.\nItemUpdater can activate the images only if that is not in the Inprogress state. \nSo, we can ensure that two updates are not applied on the same device.\n\n\n4. If any errors or update fails in the middle, that status can be updated in the\ndbus-properties and based on this ItemUpdater can get the error status from\ndbus-properties.",
+      "parentUuid": "edb15c7e_df635738",
       "revId": "95654e77ce78c4e9148b2c65307e9de603ab5b0c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
