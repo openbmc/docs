@@ -152,6 +152,40 @@
       "parentUuid": "1961b11f_65efd4a2",
       "revId": "d35b8ee11611cd9df9b02b9678e0c78b862f836a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36750a1c_a8095db8",
+        "filename": "designs/phosphor-logging-namespaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-01T19:17:54Z",
+      "side": 1,
+      "message": "The DeletePolicy value could just be the \"namespace\" and be an empty string as the default to mean \"all\". In that way it\u0027s simpler to define the property value to be either the name of the namespace you want to delete, or clear the property if you want all deleted, instead of having to parse the text \"all\".",
+      "revId": "d35b8ee11611cd9df9b02b9678e0c78b862f836a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dca4f8d_841caf30",
+        "filename": "designs/phosphor-logging-namespaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-01T19:17:54Z",
+      "side": 1,
+      "message": "Could you expand on how implementing via an extension would be? Seems that with this proposal, multiple copies of the log are also made (in the base /var/ dir plus the new /var/ namespace dir, and also the dbus objects are also duplicated, the base paths still exist plus the new namespace ones. So just trying to understand the statement that a log extension would create multiple copies of the log.",
+      "revId": "d35b8ee11611cd9df9b02b9678e0c78b862f836a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
