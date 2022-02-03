@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e195ccb2_f3deb3c2",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-02-03T00:17:15Z",
+      "side": 1,
+      "message": "I don\u0027t feel like this is enough of a description of how this will be implemented in practice.\n\nEM board configs are written specific to the board they support with no regard for the system context in which they live. How do you handle wanting to update a device in system context A but not in system context B for the one card? Maybe you could argue that\u0027s not valid concern, but I think the point is it\u0027s a policy decision of the system designer/owner/maintainer.\n\nHow does this property get populated? Also patching dbus-sensors to add support for something that tells it to ignore the device for the purpose of this daemon seems a bit backwards. It\u0027s almost as if you want a separate interface for these devices or something, so you don\u0027t trigger dbus-sensors to start with.\n\nBut on that front, with the work required deal with this in a separate daemon that ends up providing the Sensor interface itself, is there a reason why we can\u0027t add generic support inside dbus-sensors that could be leveraged by each of the daemon implementations? Doesn\u0027t that remove the conflict headache? Have the sensor daemons provide the Software interface?",
+      "range": {
+        "startLine": 85,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 12
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
