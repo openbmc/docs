@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8013051c_9b0a5a4a",
+        "filename": "designs/phosphor-logging-namespaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1001330
+      },
+      "writtenOn": "2022-02-03T01:51:52Z",
+      "side": 1,
+      "message": "I meant flexibility in terms of locations which can help users decide to log their errors in different location (also under different partitions if need be..)\n\nE.g. We can have some logs go under location A (which is mounted to /dev/mtdblockX) while other logs go under location B (other partitions..)",
+      "parentUuid": "86185b2e_6f6a8cac",
+      "range": {
+        "startLine": 122,
+        "startChar": 7,
+        "endLine": 122,
+        "endChar": 66
+      },
+      "revId": "d35b8ee11611cd9df9b02b9678e0c78b862f836a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43ce497e_31c013c6",
         "filename": "designs/phosphor-logging-namespaces.md",
         "patchSetId": 3
@@ -215,6 +239,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c0e1b719_61ce3d30",
+        "filename": "designs/phosphor-logging-namespaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1001330
+      },
+      "writtenOn": "2022-02-03T01:51:52Z",
+      "side": 1,
+      "message": "It could be either. Having explicit policy helps because it states the behavior clearly, or could also just be a purely boolean property for, \n1. Value 0 (False) -\u003e Default Behavior [Delete all D-Bus Object for all namespaces beneath root object] \n2. Value 1 (True ) -\u003e Delete Namespace only [Delete only D-Bus objects under the specific namespace]",
+      "parentUuid": "c30061f6_74d6a850",
+      "revId": "d35b8ee11611cd9df9b02b9678e0c78b862f836a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3dca4f8d_841caf30",
         "filename": "designs/phosphor-logging-namespaces.md",
         "patchSetId": 3
@@ -226,6 +268,24 @@
       "writtenOn": "2022-02-01T19:17:54Z",
       "side": 1,
       "message": "Could you expand on how implementing via an extension would be? Seems that with this proposal, multiple copies of the log are also made (in the base /var/ dir plus the new /var/ namespace dir, and also the dbus objects are also duplicated, the base paths still exist plus the new namespace ones. So just trying to understand the statement that a log extension would create multiple copies of the log.",
+      "revId": "d35b8ee11611cd9df9b02b9678e0c78b862f836a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3232723a_f2833e41",
+        "filename": "designs/phosphor-logging-namespaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1001330
+      },
+      "writtenOn": "2022-02-03T01:51:52Z",
+      "side": 1,
+      "message": "This proposal wouldn\u0027t make multiple copies of the log or the D-Bus objects.\n\nThe logs per namespace would be made under one location only. \nE.g. For CPU0 namespace the log is under /var/lib/phosphor-logging/errors/cpu0/ and the D-Bus Object created is under /xyz/openbmc_project/Logging/cpu0/1 etc. \n\nIn comparison using event log extension makes duplicate copies of the logs. \n\nLooks like I should address with a more concrete example, would that help address this comment?",
+      "parentUuid": "3dca4f8d_841caf30",
       "revId": "d35b8ee11611cd9df9b02b9678e0c78b862f836a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
