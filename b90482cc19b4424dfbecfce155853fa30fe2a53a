@@ -3,6 +3,224 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5910c4ed_7f98c8d3",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "It is?  I don\u0027t know of any instances of using phosphor-ipmi-flash for i2c firmware updates?  Maybe I\u0027m out of touch?  No, it\u0027s the codebase that\u0027s wrong.\n\nhttps://i.kym-cdn.com/entries/icons/original/000/019/899/skinner.jpg",
+      "range": {
+        "startLine": 28,
+        "startChar": 61,
+        "endLine": 29,
+        "endChar": 28
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22c3279f_61d9ea71",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "Yes, we should do this as a design pattern.",
+      "range": {
+        "startLine": 30,
+        "startChar": 35,
+        "endLine": 32,
+        "endChar": 20
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5bfb5b9_4e5af1c0",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "Nit, this doc would read a lot better without mentioning the daemon in the \"background\" section.  At this point, no new daemon has been introduced, you\u0027re just documenting background on why some change is needed.",
+      "range": {
+        "startLine": 34,
+        "startChar": 37,
+        "endLine": 34,
+        "endChar": 49
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f7d0f5b_e7da3b13",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "This isn\u0027t a requirement.  The requirement is implementing both telemetry and firmware update/configuration changes that don\u0027t conflict.  Requirements should avoid jumping into solution space, which a single daemon is one possible solution.",
+      "range": {
+        "startLine": 43,
+        "startChar": 14,
+        "endLine": 43,
+        "endChar": 27
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c09e4b87_1171d762",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "Having a single daemon that supports ALL i2c devices seems like a kind of extremely large scope.  Should we decrease it a bit to scope it down a bit, to say, only pmbus devices?  Otherwise this design conflicts directly with things like the BIC controller daemon that\u0027s currently in review for a new repo.",
+      "range": {
+        "startLine": 43,
+        "startChar": 38,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eadc89a_2ba231d1",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "Additional requirement, the code should fully deprecate the need for PSUsensor, given that it\u0027s duplicating a number of features and not sharing any code, it needs to use that featureset as a starting point to make it maintainable in the long term.\n\n\nI suspect we also need some requirements around being runtime invokable for when i2c devices exist on add in cards (solution probably being an EM reactor), otherwise this ends up being a point solution that only works on non DC-SCM baseboards.",
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b80cfd0_56e6e96a",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "Isn\u0027t this duplicated with the requirement?\n\nHow is this interface backed?  Does it implement pmbus?",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 9
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38f84e65_3b2b62b4",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "This also feels like a requirement in the way it\u0027s phrased.  maybe move it up a section.",
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "236fcb04_e90adb92",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "It seems like this is kind of covered by the \"With a single daemon acting as an owner of a device\" statement previously.  If that\u0027s true, this isn\u0027t possible.",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 27
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6ecc541_1525acab",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "If it does this, it needs to not duplicate code.  We already have two implementations that are able to read from hwmon implementations (hwmontempsensor/psusenor, and phosphor-hwmon) as a matter of design, we need to avoid a having a third.",
+      "range": {
+        "startLine": 78,
+        "startChar": 28,
+        "endLine": 79,
+        "endChar": 36
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e195ccb2_f3deb3c2",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 5
@@ -19,6 +237,115 @@
         "startChar": 9,
         "endLine": 86,
         "endChar": 12
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a63c2ce_acb8df05",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "Agree with arj that this is underspecified, but reading between the lines a bit this implies that OpenBMC as an implementation we have two different daemons implementing support for the same device, which would mean we\u0027ve duplicated code, which as a matter of design, we shouldn\u0027t.  If this daemon supports, say, the adm1266 device fully, that node support should be removed entirely from PSUSensor so we maintain the \"one implementation per device\" guideline.\n\n\n\u003e Also patching dbus-sensors to add support for something that tells it to ignore the device for the purpose of this daemon seems a bit backwards.\n\nAdmittedly, we kind of already have this support with the \"DisableNode\" stuff, but that was meant for when we wanted to implement more general limits, then more specific limits as more entities were detected.  It shouldn\u0027t be used for this case.",
+      "range": {
+        "startLine": 85,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 12
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d23e92e_67e8ac1d",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "EM requires that every note has a \"Type\" field (and a Name field, but you got that right).  The way you\u0027re defining this, you need to change I2CDeviceType -\u003e Type and you\u0027d be mostly correct.",
+      "range": {
+        "startLine": 122,
+        "startChar": 7,
+        "endLine": 122,
+        "endChar": 20
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac227381_54019dc5",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "I think you\u0027re missing a bunch of fields here.  an ADM1266 has multiple rails, multiple sensors, and some optionally implementable features, all of which need named per-system, scaled, and min/maxed per system.  Take a look at the existing PSUsensor devices for examples of how this would work.\n\nGiven you also plan on making control interfaces available, I suspect that will need to be configurable per system.  There are a number of systems that will need to treat the VRs as \"read only\" and that will need to be configurable at some level.",
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c71ec415_7a47f738",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "Nope.  This isn\u0027t a requirement, and as a matter of being precise, entity-manager doesn\u0027t monitor any devices directly.  It does create some devices, but that\u0027s a remnant from a long dead design that I\u0027d really like to see die at some point in the future.",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 31
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d981f768_ce90d1a0",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T23:15:31Z",
+      "side": 1,
+      "message": "Same as above.  \"any generic i2c device\" seems like a huge scope, unless you\u0027re planning on implementing support for OpenBIC, and management engine.  Lets scope this on pmbus devices.",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 22
       },
       "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
