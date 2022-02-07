@@ -229,6 +229,30 @@
       },
       "revId": "40387313c8318093914bfef204918a0f3def0c20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fc7d5f4_93633cc1",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-02-07T19:00:15Z",
+      "side": 1,
+      "message": "Okay, I more carefully read through the Software update design doc and I think I get what is being said here.\n\nLooks like targeting a particular image to a particular device is doable by decorating with the\n`Inventory.Decorator.Compatible` interface.\n\ne.g\n\n`foo.software.element.mainsequencer.type.ADM1266`\n\nor\n`foo.software.element.subsequencer2.type.ADM1266`\n\n\n\u003eHow do VRs generally validate that a payload is for the intended rail?\n\nFrom my experience they don\u0027t. You make sure to test your package updates carefully before you roll the update out to the entire fleet.\n\n\n\u003eAt dbus/interface level, you don\u0027t know which device has which address, and the same VR update might apply to multiples, so you can\u0027t really rely on the specific bus and address.  \n\nSure, it sounds like the compat decorator is how we\u0027d target a file for a particular group of devices. Seems like EM could contain the compat string when configuring this firmware upgrade daemon.. That way this daemon knows what images are meant for it.",
+      "parentUuid": "1c511f74_1f4e1bd6",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 33
+      },
+      "revId": "40387313c8318093914bfef204918a0f3def0c20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

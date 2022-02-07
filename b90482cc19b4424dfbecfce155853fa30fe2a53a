@@ -135,6 +135,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2e4ac73_503b88ae",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-02-07T19:00:15Z",
+      "side": 1,
+      "message": "\u003eAdditional requirement, the code should fully deprecate the need for PSUsensor, \u003egiven that it\u0027s duplicating a number of features and not sharing any code, it \u003eneeds to use that featureset as a starting point to make it maintainable in the \u003elong term.\nI\u0027m okay with making this the long term replacement for PSUSensors. Of course the initial commits will focus heavily (exclusively) on implementing the features described in this design. Justin, thoughts?",
+      "parentUuid": "6eadc89a_2ba231d1",
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b80cfd0_56e6e96a",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 5
@@ -146,6 +164,30 @@
       "writtenOn": "2022-02-03T23:15:31Z",
       "side": 1,
       "message": "Isn\u0027t this duplicated with the requirement?\n\nHow is this interface backed?  Does it implement pmbus?",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 9
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c3e4070_f1e87a7b",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-02-07T19:00:15Z",
+      "side": 1,
+      "message": "\u003eIsn\u0027t this duplicated with the requirement?\n\nI don\u0027t understand this question.\n\n\u003eHow is this interface backed? \n\nIf we\u0027re talking about the interfaces used to actuate a firmware update then it\u0027s backed with a bunch of userspace code that knows how to update particular devices.\n\n\u003eDoes it implement pmbus?\n\nYes, each pmbus device gets its own class that knows how to update the device. The classes know how to read standard telemetry if we decide to do userspace vs kernel.",
+      "parentUuid": "8b80cfd0_56e6e96a",
       "range": {
         "startLine": 58,
         "startChar": 0,
@@ -255,6 +297,30 @@
       "writtenOn": "2022-02-03T23:15:31Z",
       "side": 1,
       "message": "Agree with arj that this is underspecified, but reading between the lines a bit this implies that OpenBMC as an implementation we have two different daemons implementing support for the same device, which would mean we\u0027ve duplicated code, which as a matter of design, we shouldn\u0027t.  If this daemon supports, say, the adm1266 device fully, that node support should be removed entirely from PSUSensor so we maintain the \"one implementation per device\" guideline.\n\n\n\u003e Also patching dbus-sensors to add support for something that tells it to ignore the device for the purpose of this daemon seems a bit backwards.\n\nAdmittedly, we kind of already have this support with the \"DisableNode\" stuff, but that was meant for when we wanted to implement more general limits, then more specific limits as more entities were detected.  It shouldn\u0027t be used for this case.",
+      "range": {
+        "startLine": 85,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 12
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d028cf09_9793a8d5",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-02-07T19:00:15Z",
+      "side": 1,
+      "message": "\u003eIf this daemon supports, say, the adm1266 device fully, that node support should \u003ebe removed entirely from PSUSensor so we maintain the \"one implementation per \u003edevice\" guideline.\n\nThat sounds reasonable to me , I was thinking that a different Type qualifier would cause the config to be ignored for dbus-sensors and used by this daemon.\n\n\u003eBut on that front, with the work required deal with this in a separate daemon that \u003eends up providing the Sensor interface itself, is there a reason why we can\u0027t add \u003egeneric support inside dbus-sensors that could be leveraged by each of the daemon \u003eimplementations? Doesn\u0027t that remove the conflict headache? Have the sensor \u003edaemons provide the Software interface?\n\nYes, that would avoid the headache. one of the reasons we are more interested in spinning off our own daemon is to improve sensor polling performance while we\u0027re at it. I suspect such performance increases in dbus-sensors would require some fundamental changes..\n\nAnd so spinning off a new daemon allows us the luxury of moving forward without much worry about breaking any systems that depend on the quirks of dbus-sensors.",
+      "parentUuid": "8a63c2ce_acb8df05",
       "range": {
         "startLine": 85,
         "startChar": 9,

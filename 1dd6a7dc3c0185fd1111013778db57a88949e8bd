@@ -422,6 +422,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb4ea6a7_6341cc93",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-02-07T19:00:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19e2eb5e_e7ba7fb4",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 46
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5284db7a_03eeee80",
@@ -824,6 +848,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbd06da1_aab056f2",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-02-07T19:00:15Z",
+      "side": 1,
+      "message": "I think everyone is in agreement with the sentiment expressed here, we can mark this issue resolved.",
+      "parentUuid": "b2fa8c20_d0e75eb9",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 40
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "945a5e68_9012561e",
@@ -933,6 +981,30 @@
       "side": 1,
       "message": "Can we make this example actually include all the properties you plan on using?  I think that\u0027ll help when we actually build the interface to specify what this actually implements.  As a matter of design, we probably want to implement this property using this API:\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/VoltageRegulatorControl.interface.yaml\ngiven that it already exists.\n\n\u003e What happens when the inventory information is in the same i2c end-point? \nFor Pmbus devices, do we have a use case for this?  PMbus based power supplies are generally covered by an eeprom FRU, I wasn\u0027t aware that the pmbus spec supported serial numbers.  If it does, that\u0027s a pain architecturally and needs me to give some brainpower to how to do a \"dual detect\" of a pmbus device in EM.\n\n\u003eAs far as being able to reflect new properties onto inventory objects that EM owns.\n\nThis would be backward reflection, which EM can\u0027t do today, you have to get all your inventory properties from the eeprom/probe interface you want to pass through.\n\n\u003e Ed can correct me if I\u0027m wrong on this, a similar pattern was suggested for another gpio presence daemon that is currently in review as well.\n\nIn that case, it goes\nPresence -\u003e Em probe for device -\u003e SlotPresence -\u003e Device\n\n\nIn this case, it goes something like\nEeprom Frudevice -\u003e em probe for baseboard -\u003e i2c device finds serial number -\u003e  ????????\n\nThere\u0027s no backward path to attach the serial from step 3 into the object created on step 2.  Again, if this is required, it\u0027s going to need some brainpower to make it sane.  This stuff is too complicated enough as-is.",
       "parentUuid": "10024e84_677d9ffa",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 3
+      },
+      "revId": "1dd6a7dc3c0185fd1111013778db57a88949e8bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b44fb044_a392c864",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-02-07T19:00:15Z",
+      "side": 1,
+      "message": "as far as backward reflection and using serial-numbers from pmbus devices..\\\nI don\u0027t have a use-case for that today and can\u0027t think of a plausible future use-case either.",
+      "parentUuid": "ed9f0c54_ed1724ad",
       "range": {
         "startLine": 67,
         "startChar": 0,
