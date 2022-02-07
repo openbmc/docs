@@ -118,6 +118,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85d947f7_1b2fdd43",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2022-02-07T19:23:45Z",
+      "side": 1,
+      "message": "The single daemon for all i2c idea is largely coming from my WIP proposals for performance improvements. Justin wanted to get this proposal out to get started on the firmware management discussions. Agreed, this doc doesn\u0027t provide enough justification as is. I will work with Justin and Jason to combine our proposals into a unified design.\n\nA daemon that targets all i2c devices offers significant benefits in performance (having a single scheduler that can optimize around mux topology), functionality (locking / exclusive access when required), and reliability (no race conditions, can be made real-time). That said, it is crucially important that it works in an cooperative, opt-in way. This daemon must live with other services using i2c and still provide predictable (if degraded) guarantees about performance, functionality, and reliability.\n\nExpect a more comprehensive proposal from the three of us that will superseded this doc.",
+      "parentUuid": "c09e4b87_1171d762",
+      "range": {
+        "startLine": 43,
+        "startChar": 38,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6eadc89a_2ba231d1",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 5
