@@ -162,6 +162,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f7f25e8_c5f7e0dd",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-02-08T07:39:28Z",
+      "side": 1,
+      "message": "\u003e ... I\u0027ve always taken the stance to do things in userspace and only put things into the kernel if I have no other choice (lower blast radius).\n\nI believe we\u0027ve had this same discussion in the CMIS proposal.  This might be your stance but it isn\u0027t the project\u0027s stance.  Our stance is to work with upstream code-bases, especially the kernel, as much as possible so that the work we do can be leveraged by the broader community.\n\n\u003e quickly reading through \"driver-api/firmware\" leaves me with the impression that this firmware is meant to be loaded onto devices in early boot.. to patch microcode or load something onto a microcontroller. Not our use-case.\n\nSo let\u0027s discuss / propose improving that?\n\nI agree with Guenter\u0027s stance about not adding new APIs that are unique to PMBus/hwmon, but I disagree with his stance that \"nothing in the kernel should deal with update because it is \u0027dangerous\u0027\".  There are lots of things the kernel does that is potentially dangerous.  (We should really be having these discussions on the LKML though.  I don\u0027t fully grasp what the statement of \"the maintainer\u0027s mindset hasn\u0027t changed and expects us to \u0027work it out\u0027\" means.).\n\nIf there is already an API for getting binary blobs into the kernel to use as firmware for devices, this seems like a great starting point for getting binary blobs into the kernel to apply firmware updates for devices.  We should probably get some RFC sent upstream to see who disagrees and why.\n\nI\u0027m really not a fan of us yet again re-implementing support we already have (ie. dbus-sensors) and especially not also re-implementing the whole pmbus/hwmon subsystem in user-space.  I\u0027m also concerned about the error prone approach of having a separate daemon to handle firmware updates that unbinds the device from drivers out from underneath these existing daemons.  (I can\u0027t tell which direction you\u0027re proposing here because I\u0027ve read words that imply both.)  I really think the best approach is to figure out how to do firmware update of these devices cooperatively with the existing pmbus subsystem.",
+      "parentUuid": "2de7c8e8_ac6771d2",
+      "range": {
+        "startLine": 21,
+        "startChar": 11,
+        "endLine": 21,
+        "endChar": 78
+      },
+      "revId": "40387313c8318093914bfef204918a0f3def0c20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "abad482d_b5e1407f",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 3

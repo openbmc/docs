@@ -142,6 +142,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f46a2211_b7f262d7",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-02-08T07:39:28Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused by this.  Elsewhere Jason wrote:\n\n\u003e It\u0027s not really a daemon for everything i2c, but for devices that require more than just telemetry so that all access to that device is encapsulated in a single application. I reworded the description to reflect this.\n\nI want to be very forward that I see this proposal as being a big uphill battle to get me convinced that this is the right architectural direction.  I\u0027ll read what you have with an open mind but I don\u0027t want you to feel like you\u0027re wasting time later on.\n\n\u003e A daemon that targets all i2c devices offers significant benefits in performance (having a single scheduler that can optimize around mux topology), functionality (locking / exclusive access when required), and reliability (no race conditions, can be made real-time)\n\nThis sounds like you\u0027re proposing yet another i2c-in-userspace implementation.  This is absolutely a no-go in my mind, unless I see a lot of data explaining why it is better.  You\u0027re talking about not only reimplementing hwmon and pmbus and mux control but EEPROM, GPIO, LED control, MCTP, IPMB, etc. and then merging them all into one giant codebase.  There is already a lot of kernel drivers and existing openbmc userspace code to handle these things.  Some of these have implementations that are leveraged for non-i2c buses, so we end up having a divergence of functionality and approach depending on which bus gets chosen by a particular hardware design.\n\nI really cannot conceive that the 2-4 bytes of i2c traffic to switch the mux is our performance bottleneck.  If you really think that it is, and again I\u0027d like to see data that shows this, I think you have at least three better options:\n\n1. Improve your hardware design so you\u0027re not cramming so many devices on a single i2c bus, but spread it out among the 6 (or more?) masters on the BMC chip.\n\n2. Get these scheduling enhancements ideas into the kernel i2c subsystem directly.\n\n3. Improve dbus-sensors so it is mux-aware and to handle better timer scheduling of the devices it is monitoring so that mux switching is minimized.",
+      "parentUuid": "85d947f7_1b2fdd43",
+      "range": {
+        "startLine": 43,
+        "startChar": 38,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6eadc89a_2ba231d1",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 5
