@@ -166,6 +166,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a0b667d_fb51f3a3",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2022-02-08T18:24:26Z",
+      "side": 1,
+      "message": "\u003e This sounds like you\u0027re proposing yet another i2c-in-userspace implementation.\n\nAbsolutely not! I understand your concern. We will still defer to the hwmon drivers for the vast majority of I2C traffic in the same way that dbus-sensors does today.\n\n\u003e I really cannot conceive that the 2-4 bytes of i2c traffic to switch the mux is our performance bottleneck.\n\nWe have systems where with 2 nested muxes with i2c-mux-idle-disconnect enabled (fru-device misplaces eeproms otherwise) we see a 10x overhead with the muxes. That said, I don\u0027t want to over-emphasize this. I2C bandwidth is not the current bottleneck.\n\n\u003e 1. Improve your hardware design so you\u0027re not cramming so many devices on a single i2c bus, but spread it out among the 6 (or more?) masters on the BMC chip.\n\nYou\u0027re right that changing the hardware design is better. And removing i2c-mux-idle-disconnect is better still. This is a case where the racy nature of the current design causes issue. We find fru-device eeprom detection process to be unreliable at scale.\n\n\u003e 2. Get these scheduling enhancements ideas into the kernel i2c subsystem directly.\n\nScheduling in the kernel is an interesting idea. It would require something like io_uring to batch a number of requests and allowing the kernel to reorder them. That behavior would be pretty surprising. I\u0027m not sure it makes sense.\n\n\u003e 3. Improve dbus-sensors so it is mux-aware and to handle better timer scheduling of the devices it is monitoring so that mux switching is minimized.\n\ndbus-sensors cannot perform this scheduling because it distributes I2C responsibility across several different daemons.\n\nApologies for having a design discussion in these comments. Give us some time to come back with a more detailed proposal. I need to scrub our performance research of proprietary information so that we can publish it. That will make things more clear. I\u0027ll get back to you with more details.",
+      "parentUuid": "f46a2211_b7f262d7",
+      "range": {
+        "startLine": 43,
+        "startChar": 38,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6eadc89a_2ba231d1",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 5
