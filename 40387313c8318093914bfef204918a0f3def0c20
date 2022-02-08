@@ -210,6 +210,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f24d2cc_1bbc05d4",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2022-02-08T19:26:04Z",
+      "side": 1,
+      "message": "\u003e I really think the best approach is to figure out how to do firmware update of these devices cooperatively with the existing pmbus subsystem.\n\nOne approach would be to have a single i2c daemon that can pause telemetry during a firmware update. No bind/unbind needed. However, this only provides a weak opt-in exclusivity guarantee. Certainly an in-kernel approach can provide stronger guarantees.",
+      "parentUuid": "e85c4148_ead919b9",
+      "range": {
+        "startLine": 21,
+        "startChar": 11,
+        "endLine": 21,
+        "endChar": 78
+      },
+      "revId": "40387313c8318093914bfef204918a0f3def0c20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "abad482d_b5e1407f",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 3
