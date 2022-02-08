@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdfeb58f_d0198f92",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-08T07:00:30Z",
+      "side": 1,
+      "message": "No need to update MANIFEST for every time if user wants to update different host instances. Based on Activation set for hosts, the particular host instances will be updated. \n\nFor ex : if user wants to update 2 hosts, then activation has to be set for those 2 hosts only. \n\nI will check on the Redfish property to host update and add it in the doc.",
+      "parentUuid": "cf2c464b_8a117fb6",
+      "revId": "49cfb352f022d78a3555b5d189b5c8eeba794995",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "507a9865_4bb931c7",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Ok, the delete call removes the software object path and can clear anything that\u0027s needed, there\u0027s no need to add a watch for the image file to be removed from the filesystem to take any actions.",
       "parentUuid": "9c3003f8_45460233",
+      "revId": "49cfb352f022d78a3555b5d189b5c8eeba794995",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6272560b_271a9f16",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-08T07:00:30Z",
+      "side": 1,
+      "message": "Ack. ImageUpdater code is doing image removal and clear the software object. watch/listening is not needed here. Will update this in doc.",
+      "parentUuid": "6a219967_2d588f33",
       "revId": "49cfb352f022d78a3555b5d189b5c8eeba794995",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
