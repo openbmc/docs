@@ -186,6 +186,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e85c4148_ead919b9",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-02-08T19:01:28Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t fully grasp what the statement of \"the maintainer\u0027s mindset hasn\u0027t changed and expects us to \u0027work it out\u0027\" means.).\n\nIt means that we spoke to the maintainer of hwmon, his stance hasn\u0027t changed and he\u0027s asked us to leave him out of our debate on this matter.\n\n\u003e I\u0027m also concerned about the error prone approach of having a separate daemon to handle firmware updates that unbinds the device from drivers out from underneath these existing daemons.  (I can\u0027t tell which direction you\u0027re proposing here because I\u0027ve read words that imply both.) \n\nWe wanted to avoid nailing down exactly how we\u0027d do this. One of the core underlying assumption with this proposal is that the business logic of i2c firmware updates (present use-case targets pmbus) would be done in user space (motivated by our past failures to change hwmon/pmbus so to support a firmware update mechanism).\n\nDo I understand it correctly that you oppose handling i2c device updates in userspace?\nAs in a design proposal that specifies such an approach will be rejected?",
+      "parentUuid": "8f7f25e8_c5f7e0dd",
+      "range": {
+        "startLine": 21,
+        "startChar": 11,
+        "endLine": 21,
+        "endChar": 78
+      },
+      "revId": "40387313c8318093914bfef204918a0f3def0c20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "abad482d_b5e1407f",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 3
