@@ -190,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e787e16_6ff9eb93",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-09T02:42:17Z",
+      "side": 1,
+      "message": "I think we\u0027re talking past eachother a little.  when I say \"ALL i2c devices\", I include smart controllers talking over IPMB, NVMe-MI capable drives, PLDM drives, and MCTP capable controllers.  I would hope that it isn\u0027t in your plan to intercept those with this deamon, considering we previously had a userspace implementation of each of the aforementioned, and moving to the kernel version improved performance, decreased the code complexity, and got rid of bugs.\n\nIf it is in your plan to intercept the above with this new implementation, that needs a much bigger design doc.\n\n\nIn the comments, we\u0027ve kinda dove into some more topics than this design doc can really handle.  i2c mux optimization probably deserves a design doc on its own, as that will have some far reaching implications, and there\u0027s probably 2-3 different designs that we\u0027ll likely need to discuss with the relevant experts.\n\n\n\n\u003e We will still defer to the hwmon drivers\n\nIs this true?  I guess I didn\u0027t process that part of this, and assumed that we\u0027d move the paging out of telemetry values into userspace based on the doc.  Given we\u0027re doing a hybrid, can this doc explicitly call out what data we\u0027re going to get from userspace, and what we\u0027ll get from hwmon?  Assuming I\u0027m reading this right, this is sounding more like we just need to add some features to PSUSensor (or some stronger child implementation of a different name) more than it is we need a totally new thing.\n\n\n\u003e another i2c-in-userspace implementation.  This is absolutely a no-go in my mind, unless I see a lot of data explaining why it is better.\n\nI think it comes down to \"it\u0027s possible to accomplish in a staffable (call it 2 year) time horizon\".  upstream kernel drivers with the various sysfs interfaces for all devices and all interfaces a BMC would need seems to get stopped in upstream, which while unfortunate, doesn\u0027t leave much alternative, as this doc calls out, unless there\u0027s a path I\u0027m missing that doesn\u0027t involve the kernel people adding a new sysfs interface, but still gets us VR firmware update and various model-specific telemetry in openbmc?  Doing pmbus in userspace is architecturally no different than a userspace implementation of IPMB reading that\u0027s being proposed for the OpenBIC stuff that the repo got requested for: It\u0027s taking an existing kernel interface, and implementing an interpretation of the raw interface in userspace.  This seems reasonable to me given the uphill battle with the kernel.  Given that, and your strong opinion here, I\u0027m really not quite understanding where the \"no-go\" line exists.",
+      "parentUuid": "3a0b667d_fb51f3a3",
+      "range": {
+        "startLine": 43,
+        "startChar": 38,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6eadc89a_2ba231d1",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 5
@@ -219,6 +243,24 @@
       "side": 1,
       "message": "\u003eAdditional requirement, the code should fully deprecate the need for PSUsensor, \u003egiven that it\u0027s duplicating a number of features and not sharing any code, it \u003eneeds to use that featureset as a starting point to make it maintainable in the \u003elong term.\nI\u0027m okay with making this the long term replacement for PSUSensors. Of course the initial commits will focus heavily (exclusively) on implementing the features described in this design. Justin, thoughts?",
       "parentUuid": "6eadc89a_2ba231d1",
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5d8f53f_e531e7ee",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-09T02:42:17Z",
+      "side": 1,
+      "message": "As I think about this more, and discussed with the other dbus-sensors maintainers, what I suspect needs to happen is:\n1. Refactor the \"sensor\" specific code out of PSU sensor, such that it can be reused, and we don\u0027t immediately lose features that the community (and Google-specifically) needs.  This is kind of already done, there\u0027s a sensor class, we just need to simplify the code a bit to make it more sane.\n2. Write the new application calling the underlying routines.  I\u0027d expect most of the existing userspace code to be shared, minus the \"where do we actually read the value\" portion, which would instead call into your userspace code.\n\nSeem reasonable?  The above avoids the problem of inventing a new \"thing\" then having to port all the use cases over to it, and I don\u0027t think your design has any plans on making major changes to how, say, thresholds, or dbus interfaces works, at least based on reading it, and we don\u0027t want to have to re-invent all that work that\u0027s already been done.",
+      "parentUuid": "d2e4ac73_503b88ae",
       "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -260,6 +302,30 @@
       "side": 1,
       "message": "\u003eIsn\u0027t this duplicated with the requirement?\n\nI don\u0027t understand this question.\n\n\u003eHow is this interface backed? \n\nIf we\u0027re talking about the interfaces used to actuate a firmware update then it\u0027s backed with a bunch of userspace code that knows how to update particular devices.\n\n\u003eDoes it implement pmbus?\n\nYes, each pmbus device gets its own class that knows how to update the device. The classes know how to read standard telemetry if we decide to do userspace vs kernel.",
       "parentUuid": "8b80cfd0_56e6e96a",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 9
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28bcf842_1533ee0c",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-09T02:42:17Z",
+      "side": 1,
+      "message": "\u003e \u003eIsn\u0027t this duplicated with the requirement?\n\u003e \n\u003e I don\u0027t understand this question.\n\n\nI was thinking that this was kind of duplicated with requirement 1 in the section above, but in re-reading, I understand your confusion.  Fine as is on this point.\n\n\u003e \n\u003e \u003eHow is this interface backed? \n\u003e \n\u003e If we\u0027re talking about the interfaces used to actuate a firmware update then it\u0027s backed with a bunch of userspace code that knows how to update particular devices.\n\u003e \n\u003e \u003eDoes it implement pmbus?\n\u003e \n\u003e Yes, each pmbus device gets its own class that knows how to update the device. The classes know how to read standard telemetry if we decide to do userspace vs kernel.\n\n\nMy point on the two above questions is that should be called out in your design.",
+      "parentUuid": "2c3e4070_f1e87a7b",
       "range": {
         "startLine": 58,
         "startChar": 0,
@@ -393,6 +459,30 @@
       "side": 1,
       "message": "\u003eIf this daemon supports, say, the adm1266 device fully, that node support should \u003ebe removed entirely from PSUSensor so we maintain the \"one implementation per \u003edevice\" guideline.\n\nThat sounds reasonable to me , I was thinking that a different Type qualifier would cause the config to be ignored for dbus-sensors and used by this daemon.\n\n\u003eBut on that front, with the work required deal with this in a separate daemon that \u003eends up providing the Sensor interface itself, is there a reason why we can\u0027t add \u003egeneric support inside dbus-sensors that could be leveraged by each of the daemon \u003eimplementations? Doesn\u0027t that remove the conflict headache? Have the sensor \u003edaemons provide the Software interface?\n\nYes, that would avoid the headache. one of the reasons we are more interested in spinning off our own daemon is to improve sensor polling performance while we\u0027re at it. I suspect such performance increases in dbus-sensors would require some fundamental changes..\n\nAnd so spinning off a new daemon allows us the luxury of moving forward without much worry about breaking any systems that depend on the quirks of dbus-sensors.",
       "parentUuid": "8a63c2ce_acb8df05",
+      "range": {
+        "startLine": 85,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 12
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdd06262_aad87d0c",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-09T02:42:17Z",
+      "side": 1,
+      "message": "\u003e \u003eIf this daemon supports, say, the adm1266 device fully, that node support should \u003ebe removed entirely from PSUSensor so we maintain the \"one implementation per \u003edevice\" guideline.\n\u003e \n\u003e That sounds reasonable to me , I was thinking that a different Type qualifier would cause the config to be ignored for dbus-sensors and used by this daemon.\n\u003e \n\u003e \u003eBut on that front, with the work required deal with this in a separate daemon that \u003eends up providing the Sensor interface itself, is there a reason why we can\u0027t add \u003egeneric support inside dbus-sensors that could be leveraged by each of the daemon \u003eimplementations? Doesn\u0027t that remove the conflict headache? Have the sensor \u003edaemons provide the Software interface?\n\u003e \n\u003e Yes, that would avoid the headache. one of the reasons we are more interested in spinning off our own daemon is to improve sensor polling performance while we\u0027re at it.\n\nI get that, and I have a lot of context for that, but that needs its own discussion and design doc.\n\n\u003e I suspect such performance increases in dbus-sensors would require some fundamental changes..\n\nSo, make the fundamental changes?  Dbus-sensors as a repo isn\u0027t THAT much code.  If we completely rewrote every line of it a year from now, I would be in no way sad, but we should avoid the \"yet another sensor implementation\" at the moment, when we haven\u0027t even finished the transition to dbus-sensors for all systems.\n\n\u003e \n\u003e And so spinning off a new daemon allows us the luxury of moving forward without much worry about breaking any systems that depend on the quirks of dbus-sensors.\n\nAnd therein lies the problem.  Those quirks (in most cases I would call them features) are in some cases important to having a solution that works for a wide array of systems.  I would much rather we break some systems in minor ways, have the community point it out, and fix the issues than try to maintain a 3rd (or 4th depending on how you count) way to scan sensors.",
+      "parentUuid": "d028cf09_9793a8d5",
       "range": {
         "startLine": 85,
         "startChar": 9,
