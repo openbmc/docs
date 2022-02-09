@@ -103,6 +103,36 @@ be pushed to.  If you're pulling in code from a dead project, inquire to the
 community through the mailing list or discord whether or not the OpenBMC
 community would be willing to adopt support and maintenance of said project.
 
+## Meta layers should not point to OpenBMC specific repositories outside of
+   https://github.com/openbmc
+
+**What defines an OpenBMC specific repository?**
+
+Generally an OpenBMC specific repository is something that does any of the
+following:
+* Relies on or implements on OpenBMC defined Dbus interfaces.
+* Is not designed with configurability to be used outside of OpenBMC
+* Relies on OpenBMC specific layouts, configuration information to accomplish
+  its primary function.
+
+**Why?**
+
+OpenBMC as a codebase needs to remain buildable in the long term.  Companies,
+maintainers, and contributors come and go over the course of the project.
+Keeping all long-term-supported code in the OpenBMC github ensures that the
+project will remain useful.  In addition, having significant portions of
+OpenBMC-specific code outside of github limits the ability of the project to
+do refactoring that might be necessary to keep up with the latest best
+practices, Yocto updates, and package revisions, as there isn't always a clear
+path to getting patches accepted when repositories are not within the OpenBMC
+github project
+
+**What should I do instead?**
+
+Discuss the code you'd like to write with the community using the mailing list
+and/or discord.  If the design would require a new repository, request one using
+the OpenBMC technical oversight committee process.
+
 ## Don't use SRCREV="${AUTOREV}" in a recipe
 
 **Why?**
