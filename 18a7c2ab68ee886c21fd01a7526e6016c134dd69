@@ -283,6 +283,30 @@
       },
       "revId": "18a7c2ab68ee886c21fd01a7526e6016c134dd69",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df53df4f_8cc4bbfb",
+        "filename": "designs/firmware-update-via-usb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2022-02-09T20:39:10Z",
+      "side": 1,
+      "message": "I confirmed this line in the udev rules file works, needed also the devtype to differentiate the disk sdX from the partition sdX1:\n\nSUBSYSTEM\u003d\u003d\"block\", ACTION\u003d\u003d\"add\", ENV{ID_USB_DRIVER}\u003d\u003d\"usb-storage\", ENV{DEVTYPE}\u003d\u003d\"partition\", ENV{SYSTEMD_WANTS}\u003d\"usb-code-update@%k\", TAG+\u003d\"systemd\"\n\nIt removes the dependency on just supporting re-plugging the usb twice, so now even if the usb is plugged a 3rd time and the kernel creates the sdc1 partition the code update is still triggered:\n\nFeb 09 20:34:25 localhost kernel:  sdc: sdc1\nFeb 09 20:34:25 localhost kernel: sd 2:0:0:0: [sdc] Attached SCSI removable disk\nFeb 09 20:34:25 localhost systemd[1]: Started FW Code Update via USB sdc1.\n\nroot@localhost:~# udevadm test -a add $(udevadm info -q path -n /dev/sdc1)\n..\nSYSTEMD_WANTS\u003dusb-code-update@sdc1",
+      "parentUuid": "fb0717df_36518156",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 57,
+        "endChar": 49
+      },
+      "revId": "18a7c2ab68ee886c21fd01a7526e6016c134dd69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
