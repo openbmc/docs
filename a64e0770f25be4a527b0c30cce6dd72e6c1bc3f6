@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee0402fb_753e1737",
+        "filename": "meta-layer-guidelines.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-02-11T20:49:00Z",
+      "side": 1,
+      "message": "I\u0027m somewhat surprised to see the people that gave a +1 one this given the following:\n\n  $ git ls-files -- \u0027:!:poky/**\u0027 \u0027:!:meta-security/**\u0027 \\\n        \u0027:!:meta-raspberrypi/**\u0027 \u0027:!:meta-openembedded/**\u0027 | \\\n    xargs grep SRC_URI | grep github.com | grep -v openbmc | \\\n    sed \"s#/.*##\" | sort | uniq -c | sort -n\n      1 meta-aspeed\n      2 meta-hpe\n      2 meta-inspur\n      2 meta-quanta\n      3 meta-nuvoton\n      5 meta-google\n      6 meta-phosphor\n      7 meta-yadro\n     13 meta-openpower\n\nWouldn\u0027t most of these recipes start to be a violation of this guideline?  It seems like a fairly common pattern for openpower at least to put recipes pointing to elsewhere.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "a64e0770f25be4a527b0c30cce6dd72e6c1bc3f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
