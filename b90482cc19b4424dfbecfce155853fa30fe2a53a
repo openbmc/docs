@@ -214,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6894dd2a_d6c49a68",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-11T23:23:59Z",
+      "side": 1,
+      "message": "\u003e It would require something like io_uring to batch a number of requests and allowing the kernel to reorder them. That behavior would be pretty surprising. I\u0027m not sure it makes sense.\n\nFWIW, at least as far as the defined semantics of existing interfaces are concerned, io_uring requests are by default not ordered (hence the kernel is free to reorder them); if there are ordering requirements that you need to enforce you can use IOSQE_IO_DRAIN and/or IOSQE_IO_LINK (see sec. 5.1 \u0026 5.2 of https://kernel.dk/io_uring.pdf).\n\nHowever, in terms of the existing implementation, since the APIs in the i2c subsystem are all currently fully synchronous, by my understanding io_uring for i2c I/O would currently just end up punting all requests to a single work queue where I expect they\u0027d be carried out in the order they arrive -- so while the interfaces would allow for reordering, getting that to actually happen for this use-case would be non-trivial.",
+      "parentUuid": "7e787e16_6ff9eb93",
+      "range": {
+        "startLine": 43,
+        "startChar": 38,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6eadc89a_2ba231d1",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 5
