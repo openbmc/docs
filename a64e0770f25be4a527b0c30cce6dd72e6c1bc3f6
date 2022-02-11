@@ -142,6 +142,30 @@
       },
       "revId": "a64e0770f25be4a527b0c30cce6dd72e6c1bc3f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcef750a_24266414",
+        "filename": "meta-layer-guidelines.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-02-11T23:13:00Z",
+      "side": 1,
+      "message": "\u003e If the library is used in 3 different firmwares (presumably 2 are non-openbmc), then it probably doesn\u0027t rely on openbmc dbus interfaces, so it doesn\u0027t hit rule 1.\n\nI suspect there are cases where the code is written with something like \u0027meson -Dopenbmc\u003dyes\u0027 and then it enables code that uses some OpenBMC APIs instead of \"other firmware APIs\".  This would cause it, to me, to violate rule 1.\n\nIt is pretty rare that any code would be completely free-standing unless it were only triggered via systemd-service files that it itself installed.  Even then you have a dependency with the phosphor-state-manager service/target order.\n\nI suppose \"this code provides a library API that some openbmc process uses\" would be a design where the code wouldn\u0027t violate rule 1.  In which case, I guess if we really run into trouble with the code failing to compile with the latest GCC, etc. we can patch it just like we would with any Yocto recipes.\n\n\u003e I\u0027ll take an AR to go look at that patchset again.  I thought all of HP recipes were either forks of openbmc repos, or in-house openbmc-specific tools, but it\u0027s quite possible I made a mistake there, and some of them would\u0027ve been fine.\n\nMany of them were forks, yes, which would be a no-go and I\u0027m fine with that.  There was CHIF which seemed like an HPE-specific PLDM-like thing and that\u0027s what I was thinking of in this case.",
+      "parentUuid": "afd6f921_cb7b225f",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "a64e0770f25be4a527b0c30cce6dd72e6c1bc3f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
