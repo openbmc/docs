@@ -190,6 +190,30 @@
       },
       "revId": "a64e0770f25be4a527b0c30cce6dd72e6c1bc3f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2158dbb8_ae7b11b9",
+        "filename": "meta-layer-guidelines.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-13T04:06:11Z",
+      "side": 1,
+      "message": "\u003e Ed, codewise Yadro\u0027s repos are not copies of anything.\n\nFair point, \"reimplementation\" would\u0027ve been a better word to use.\n\n\u003e They are rather replacement for openbmc components that we aren\u0027t satisfied with, but that we don\u0027t have resources to run through the community review process, or that we are quite sure the community would not accept.\n\nIMO, going through the community review process is part of what it means to upstream code;  It means it follows a quality, and is generally useful to others.\n\n\u003e \n\u003e We in general are, and I personally am strictly against limiting vendors from using links to their own repos as long as they are public. I believe that every vendor is actually willing to upstream as much as they can as soon as they are able to. If they are not doing so, they have their reasons, sometimes of commercial/business nature, that OpenBMC community has neither authority, nor power, nor moral right to influence.\n\u003e Forcing the vendors to use only the community hosted repos is just a way to spawn more forks like Intel-OpenBMC that may never then be merged back.\n\nI pretty adamantly disagree here\n\n2 very important points here that I think you could phrase more directly;  First, nobody is forcing vendors to use only the community hosted repos.  Vendors are free to use whatever repos they see fit, and redistribute them however they like under the license for the repos.  The only thing being discussed here is in concerns to what the upstream repos point to, and while I would like to make everyone happy as much as possible, those that are unhappy are free to fork, and make (more importantly support and rebase) whatever changes they like.  IMO, the fact that Intel-BMC and other forks exist means that we\u0027re developing a healthy community, with lots of possibility for community input and collaboration as we compare the various solutions.  For example, when we were selecting a Redfish implementation, there were 5 competing codebases from various vendors, and we had some excellent discussions about pros and cons of each.  Many things that at one point were in Intel-BMC have been pulled in as major openbmc features within openbmc after community input.  The most recent is the linux kernel accepting the peci subsystem.  That\u0027s great, and I think the way these things should go.\n\n\u003e The other probablity is that you will force vendors to make their private forks that the public will never even know of.\n\nThis already happens today, so I don\u0027t think this policy is going to be the seed of that.  I\u0027m aware of at least two dozen private forks of the openbmc codebase.  Given that most things are apache licensed, that is their right.\n\n\u003e I don\u0027t think openbmc is going to benefit from any of that.\n\nThis statement is where I struggle.  In terms of things openbmc won\u0027t benefit from, I think every platform inventing their own copies of subsystems, and not having any sort of model to make changes is a much larger detriment to the project than the potential of forks.  Companies have already forked.\n\n\nWith that said, lets dig a little deeper into what your idea is, maybe there\u0027s some common ground.  If repos are allowed to be pointed to unmaintained company repos how would OpenBMC:\n1. Ensure that quality standards are met (code reviews, static analysis, ect)?\n2. Ensure that there is a method to submit patches to the repos?  (with this rule, it would just use gerrit).\n3. Ensure that the code of conduct is enforced on activities happening in that repo?\n4. Provide an escalation path (like the TSC or TOF) for resolving interpersonal, and company politics in regards to the code?\n5. Ensure that the codebase remains buildable in the event a particular company had a \"change of heart\" and made their repos private?\n\n\n\nOne more thing I would like to understand is, if a company is going to create their own new features, not make an attempt to upstream them, and apply them to only a single vendors system, why is it so important they\u0027re upstream?  If those projects aren\u0027t engaging with the community it means they\u0027re self-supported and self-developed, so it\u0027s not clear why OpenBMC hosting a recipe file is that important.  Can you elaborate?",
+      "parentUuid": "3277f819_955b4021",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "a64e0770f25be4a527b0c30cce6dd72e6c1bc3f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
