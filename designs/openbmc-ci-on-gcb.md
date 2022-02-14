@@ -1,0 +1,144 @@
+OpenBMC CI on Google Cloudbuild
+
+Author:
+  Simon Li (s696li@uwaterloo.ca)
+
+Primary assignee:
+  Simon Li
+
+Created:
+  02/10/2022
+
+## Problem Description
+
+Currently, Jenkins is the only CI/CD system available for the OpenBMC
+community. Jenkins is a robust system but there are many new serverless
+solutions that exist that are more cost efficient. We offer such alternative
+solution through Google Cloudbuild (GCB). The introduction of GCB in its first
+phase will offer on demand BMC releases. This project does not aim to replace
+Jenkins. The goal is to reduce costs while providing similar performance.
+
+## Background and References
+Google Cloud Platform (GCP) provides the following services used by the project:
+
+- [Google Cloudbuild (GCB)] (https://cloud.google.com/build)
+  - CI/CD workflow automation product
+  - Executes builds from repositories
+
+- [Google Cloud Registry (GCR)] (https://cloud.google.com/container-registry)
+  - Service which provides private storage for Docker images
+
+- [Google Cloud Storage (GCS)] (https://cloud.google.com/storage)
+  - Scalable cloud storage system
+
+## Requirements
+
+Functional requirements:
+
+- On demand OpenBMC builds via GCB
+  - Setup the repository and config files for GCB
+  - User can create an OpenBMC image from a single click of a button on GCB
+
+- Versioning Support
+  - User can specify which branch to build from a parameter
+  (release branches, etc.)
+
+- Artifacts automatically published
+  - Upon successful build of an OpenBMC image, artifacts (binary) should be
+  easily accessible by the user.
+  - Use the branch as the bucket name. This will ensure that it is unique.
+
+- GCR image required
+  - Install required Python dependencies on the new GCR image through Dockerfile
+
+- Cloudbuild configuration file (Yaml file) specifics:
+  - Configuration file must be dynamic
+  - Environment variables able to be modified by the user in GCB UI.
+  - Utilize GCR images for gcloud commands, git clones and gsutil (GCS command)
+
+Non-functional requirements:
+- Fast repository (sstate-cache) build time of 15 mins
+- Code maintainers can easily configure build with sstate-cache or full build.
+- Include an option to [select machine type]
+(https://cloud.google.com/build/docs/api/reference/rest/v1/projects.builds#machinetype) for scaling up or down.
+
+## Proposed Design
+
+Introducing GCB as a CI solution to the OpenBMC community will provide a good
+alternative to Jenkins. The open-source community will be able to freely use
+this CI system and report any issues that it will have in the future to Google.
+We can fix them internally and release better upgrades.
+
+The design fill include the following parts:
+
+1. Implement the build scripts that will be used by GCB in Python:
+  - For the project's purpose, Python combines object-oriented programming
+  compatability with easy to use module for linux commands.
+  - For using linux commands in Python, we will use the "sh" and "subprocess"
+  Python modules. sh has great testing capabilities and subprocess module is
+  used to run linux commands for environment changes.
+  - Thanks to the OOP support that Python has, it will be easy to write unit
+  tests to define the expected behaviors before full implementation. These tests
+  will only be used in the development portion. Unit tests will not be included
+  in the final release.
+  - Write clean and re-usable code according to the PEP 8 style guide
+  - Review the codes internally often
+
+2. Utilize GCR for storing a docker image used by the Yaml config file.
+  - The Dockerfile containing the environment configurations can be integrated
+  with GCB. We need to upload the image of a Dockerfile to GCR which
+  specifically holds docker containers that can be used by GCB.
+  - As such we can include any Python dependencies used by the code in the
+  Dockerfile to be uploaded.
+
+3. Store artifacts of build using GCS.
+  - GCS is well integrated with GCB. Thus uploading the artifacts to GCS will
+  be very quick. The location of uploaded artifacts can be accessed by the
+  public.
+
+## Impacts
+The introduction of an alternative CI system will require more maintenance.
+It will be necessary to train some users on GCB so that it can be maintained
+in the first place. Having two different CI systems can be confusing, as they
+are two different solutions.
+
+One way to reduce impact is to create good documentation on how to use GCB and
+provide many examples and demonstrations. It will also be important to include
+a form of technical support for the project as it is a new tool after all.
+
+## Alternatives Considered
+- Amazon Web Services
+  - AWS CodePipeline is the CI/CD system used by AWS
+
+- Azure
+  - Azure Pipelines is the CI/CD system used by Microsoft
+
+## Testing
+1. Performance testing.
+  - Test how consistent the build times are (mean, median, etc)
+
+2. Test the consistency of artifacts.
+  - Binaries generated by the same branch version and same machine should be
+  the same accross every build. During the development phase, we need to add
+  this specific test at the end of the build.
+
+3. Test for CI failures.
+  - Whenever a step fails, we have to ensure that it will terminate the build
+  and notify the user that what the error is.
+
+4. Integration testing between build scripts and GCB manual trigger function.
+  - During coding, we test using a local version of cloudbuild for faster
+  development speeds. After local cloudbuild passes all tests, we utilize the
+  same codes in GCB for testing.
+
+# Examples
+
+How we git clone using the yaml configuration file for GCB:
+
+steps:
+  - name: gcr.io/cloud-builders/git
+    args:
+      - clone
+      - b (flag for specifying branch)
+      - a_branch (specify your branch)
+      - any OpenBMC Gerrit repo (specify the repo url)
