@@ -291,6 +291,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3bea9e9b_00124cda",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001358
+      },
+      "writtenOn": "2022-02-16T22:32:51Z",
+      "side": 1,
+      "message": "From my perspective supporting PMBus/SMBus/I2C Hot Swap, Regulators, Managers, and Sequencers at ADI, and from discussions within the PMBus Technical Committee, missing capabilities in linux based management systems are:\n\nA) Fetching Fault Logs used to diagnose failures\nB) Updating firmware stored in the slave Flash or EEPROM\nC) Updating settings stored in the slave Flash or EEPROM\nD) General access to MFR commands used for diagnostics or remote diagnosis\nE) Initialization of devices that do not store settings\nF) Status monitoring\n\nSome linux hwmon drivers use devicetree for E, but this is not usable on a delivered product.\n\nThe PMBus Technical Committee is interested in C and has done work to define a data language that works for all vendors, which allows for algorithmic behavior in addition to content.\n\nI have extended the ltc2978.c driver to support fault logs using debugfs, but it’s not practical because debugfs is not always enabled. But it demonstrates it is practical to do it a driver.\n\nB and C are quite different. I am a little surprised at B. I did not see this as a need until I saw it here. C is built into many products (non OBMC), and well established as a need.\n\nA enables tracking and predicting failures without requiring a product return to factory. F serves the same goal.\n\nE is probably less important for OBMC, but if more designs use newer low cost Regulators, they don’t have Flash or EEPROM. E becomes an equivalent of C for these devices.",
+      "parentUuid": "f5d8f53f_e531e7ee",
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b80cfd0_56e6e96a",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 5
