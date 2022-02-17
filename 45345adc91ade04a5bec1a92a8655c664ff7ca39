@@ -107,6 +107,53 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "69ce643e_212f4f0b",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-17T16:49:03Z",
+      "side": 1,
+      "message": "Patrick, I agree this doc needs some reword: the information that is Google specific need to be removed. Thanks for your feedback.\n\nThe main idea of this design is to introduce Google Cloud Build (GCB) as an alternative to Jenkins. It\u0027s much like the previous k8s configs and scripts (today they are removed since no one maintains int). Everyone in the community can use these configs and scripts, which we will contribute to the openbmc_build_scripts repo, to set up GCB for their platform.\n\nGCB supports many features that current Jenkins based system supports:\n1. continuously release\n2. presubmit and put labels as feedbacks",
+      "parentUuid": "0dbb7199_58e2058c",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 45
+      },
+      "revId": "45345adc91ade04a5bec1a92a8655c664ff7ca39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c235ed8_96ab106f",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-17T16:49:03Z",
+      "side": 1,
+      "message": "Simon, please note that the benefit of this project to Google and OpenBMC community is different. This might confuse upstream reviewers. See my above comment.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 16
+      },
+      "revId": "45345adc91ade04a5bec1a92a8655c664ff7ca39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6557e118_ce1b4a56",
         "filename": "designs/openbmc-ci-on-gcb.md",
         "patchSetId": 7
@@ -153,6 +200,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7b5fb18_478fd1d4",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-17T16:49:03Z",
+      "side": 1,
+      "message": "This shall be replaced by OpenBMC Gerrit.",
+      "parentUuid": "3a913d10_cb53d654",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 61
+      },
+      "revId": "45345adc91ade04a5bec1a92a8655c664ff7ca39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "812ba88b_d79b000a",
         "filename": "designs/openbmc-ci-on-gcb.md",
         "patchSetId": 7
@@ -164,6 +235,30 @@
       "writtenOn": "2022-02-17T14:41:12Z",
       "side": 1,
       "message": "We already have this Dockerfile.\n\nhttps://github.com/openbmc/openbmc-build-scripts/blob/master/build-setup.sh",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 80
+      },
+      "revId": "45345adc91ade04a5bec1a92a8655c664ff7ca39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c022cc3e_4a537f04",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-17T16:49:03Z",
+      "side": 1,
+      "message": "Right, to support GCB\u0027s configuration syntax, we might need to separate the Dockerfile part from the build script and add some new dependencies.",
+      "parentUuid": "812ba88b_d79b000a",
       "range": {
         "startLine": 71,
         "startChar": 0,
@@ -233,6 +328,30 @@
       "writtenOn": "2022-02-17T14:41:12Z",
       "side": 1,
       "message": "I get a permission denied on this.",
+      "range": {
+        "startLine": 158,
+        "startChar": 8,
+        "endLine": 158,
+        "endChar": 51
+      },
+      "revId": "45345adc91ade04a5bec1a92a8655c664ff7ca39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40e464f1_47b5a48f",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-17T16:49:03Z",
+      "side": 1,
+      "message": "Simon, please replace it with OpenBMC Gerrit.",
+      "parentUuid": "87d9694c_50dbcaec",
       "range": {
         "startLine": 158,
         "startChar": 8,
