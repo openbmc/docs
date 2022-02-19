@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd5164cc_bfd1ae8e",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-19T02:52:39Z",
+      "side": 1,
+      "message": "Simon, this is good start. But I encourage you do some reword for the entire proposal.\n\nUpstream design is not converting your internal intern proposal to a different format. Internally, yes, it\u0027s for vendors and the current content is relevant. However, introducing GCB to OpenBMC is not for Google vendors, it\u0027s for the community. It\u0027s providing an alternative to the current Jenkins based OpenBMC CI system. \n\nThink about the following questions, and write them explicitly in the doc,\n\n1. What\u0027s the real problem we want solve? hint: we are working on **CI**.\n\n2. What does current OpenBMC CI consist of? what features does it support? hint: OpenBMC Ci is based on Jenkins.\n\n3. Why GCB? Is it providing the supported features that current OpenBMC CI Infra provides? Is GCB better? hint: you can research on how GCB advertises itself.\n\n4. Why is Google hiring an intern to do this? How does getting codes into upstream help Google? hint: Google vendors can contribute codes directly; and think about why open source helps. \n\n5. What does Yocto based firmware builds require; how is that different on OpenBMC from Google internal builds? hint: read Yocto\u0027s document and understand what the repo you cloned really means.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 7
+      },
+      "revId": "7c84b68a53ad0bd3f1a2eeaca4dad3f6398b605e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69d4c28e_93eca0a3",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-19T02:52:39Z",
+      "side": 1,
+      "message": "not related; please delete",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 79
+      },
+      "revId": "7c84b68a53ad0bd3f1a2eeaca4dad3f6398b605e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1da10e84_ed278feb",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-19T02:52:39Z",
+      "side": 1,
+      "message": "not related. please delete",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 0
+      },
+      "revId": "7c84b68a53ad0bd3f1a2eeaca4dad3f6398b605e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c534fbf_7fd612e8",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-19T02:52:39Z",
+      "side": 1,
+      "message": "not related; please delete.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 28
+      },
+      "revId": "7c84b68a53ad0bd3f1a2eeaca4dad3f6398b605e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d740f220_0b2fd551",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-19T02:52:39Z",
+      "side": 1,
+      "message": "not related; please delete.\n\nInstead, add how this alternative benefit both OpenBMC and Google",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 36
+      },
+      "revId": "7c84b68a53ad0bd3f1a2eeaca4dad3f6398b605e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22faa1e6_7526f49f",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-19T02:52:39Z",
+      "side": 1,
+      "message": "There must be alternatives, right? The current Jenkins is one, what about other Cloud providers, Azure, AWS. What are their equivalent services?",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 4
+      },
+      "revId": "7c84b68a53ad0bd3f1a2eeaca4dad3f6398b605e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02ea490b_781a1718",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-19T02:52:39Z",
+      "side": 1,
+      "message": "Not related.",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 62
+      },
+      "revId": "7c84b68a53ad0bd3f1a2eeaca4dad3f6398b605e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9641e764_fa2bcb64",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-19T02:52:39Z",
+      "side": 1,
+      "message": "I would just put a link to some of GCB\u0027s official examples.",
+      "revId": "7c84b68a53ad0bd3f1a2eeaca4dad3f6398b605e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3029435_dc0b935d",
+        "filename": "designs/openbmc-ci-on-gcb.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-02-19T02:52:39Z",
+      "side": 1,
+      "message": "What are the impacts? Where do we plan to submit codes to?",
+      "revId": "7c84b68a53ad0bd3f1a2eeaca4dad3f6398b605e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
