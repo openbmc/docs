@@ -50,6 +50,12 @@ this document. This document must be updated as new common GPIOs are added.
 ### Buttons
 Pattern: `*-button`
 
+Buttons should always be considered 'input' to the BMC.  There may be cases
+where BMC-less machines use a button to trigger system behavior and in a
+BMC-managed system this signal is emulated by the BMC (as output).  These
+should not be considered a button in this document but enumerated as another
+signal type.
+
 #### power-button
 
 ### Host Ready
