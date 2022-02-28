@@ -16,6 +16,24 @@
       "message": "TID# is settable value. And it doesn\u0027t have much meaning in the user view. Between S0DIMM0Temp and DIMM0Temp_TID1, I think the first one is better. So I think pldmd should handle the prefix/sub-fix configuration to map from TID with a String which will be added to sensor name.\nIn above example TID#1 will be mapped with the Prefix S0.",
       "revId": "738c599e0a5d11e0c21c5f876266c802953cca39",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83e2ebfa_caddd590",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2022-02-28T19:27:52Z",
+      "side": 1,
+      "message": "Including TID# in sensor name is a simpler method to avoid the duplicated sensor name in the system.\nI think the prefix/sub-fix naming(e.g. slot# in the example, S0DIMM0Temp) would be better to use the information in Entity Association PDR(containerID, entityInstanceNumer and entity type) instead of creating a new configuration file to map TID and prefix/sub-fix.",
+      "parentUuid": "dcd0e38d_538508d7",
+      "revId": "738c599e0a5d11e0c21c5f876266c802953cca39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
