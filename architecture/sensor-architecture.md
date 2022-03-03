@@ -222,14 +222,14 @@ As an example, the Palmetto [configuration][8]
 file for the ambient temperature sensor.
 
 ```
-recipes-phosphor/sensors/phosphor-hwmon%/obmc/hwmon/ahb/apb/i2c@1e78a000/i2c-bus@c0/tmp423@4c.conf
+recipes-phosphor/sensors/phosphor-hwmon/obmc/hwmon/ahb/apb/bus@1e78a000/i2c-bus@c0/tmp423@4c.conf
 ```
 
 which maps to this specific sensor and conf file on the system...
 
 ```
-/sys/firmware/devicetree/base/ahb/apb/i2c@1e78a000/i2c-bus@c0/tmp423@4c
-/etc/default/obmc/hwmon/ahb/apb/i2c@1e78a000/i2c-bus@c0/tmp423@4c.conf
+/sys/firmware/devicetree/base/ahb/apb/bus@1e78a000/i2c-bus@c0/tmp423@4c
+/etc/default/obmc/hwmon/ahb/apb/bus@1e78a000/i2c@c0/tmp423@4c.conf
 ```
 
 This next example shows using the device path as opposed to the devicetree
