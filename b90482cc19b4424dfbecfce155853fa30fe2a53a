@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3da02ff_3e42a07f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2022-03-09T01:46:49Z",
+      "side": 1,
+      "message": "Also agree with telemetry + firmware in same daemon (option A).\n\nThe reasons why we were considering alternatives was that some I2C devices or protocols need exclusive access to the entire I2C bus; not just exclusive access to the device. But I don\u0027t see this being a big concern right now. First, I haven\u0027t seen a misbehaving device like this in a few years; hopefully we don\u0027t ever again. Second, with MCTP in the kernel, we don\u0027t need to worry about some locking scheme for a user space MCTP. That seems to cover the immediate problems.",
+      "parentUuid": "664af55b_2b8a0111",
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5910c4ed_7f98c8d3",
         "filename": "designs/i2c-device-mgmt.md",
         "patchSetId": 5
@@ -279,6 +297,30 @@
       "side": 1,
       "message": "\u003e It would require something like io_uring to batch a number of requests and allowing the kernel to reorder them. That behavior would be pretty surprising. I\u0027m not sure it makes sense.\n\nFWIW, at least as far as the defined semantics of existing interfaces are concerned, io_uring requests are by default not ordered (hence the kernel is free to reorder them); if there are ordering requirements that you need to enforce you can use IOSQE_IO_DRAIN and/or IOSQE_IO_LINK (see sec. 5.1 \u0026 5.2 of https://kernel.dk/io_uring.pdf).\n\nHowever, in terms of the existing implementation, since the APIs in the i2c subsystem are all currently fully synchronous, by my understanding io_uring for i2c I/O would currently just end up punting all requests to a single work queue where I expect they\u0027d be carried out in the order they arrive -- so while the interfaces would allow for reordering, getting that to actually happen for this use-case would be non-trivial.",
       "parentUuid": "7e787e16_6ff9eb93",
+      "range": {
+        "startLine": 43,
+        "startChar": 38,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "b90482cc19b4424dfbecfce155853fa30fe2a53a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abe73c7c_6b01c790",
+        "filename": "designs/i2c-device-mgmt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2022-03-09T01:46:49Z",
+      "side": 1,
+      "message": "Update on the sensor performance conversation:\n\nI like to conceptualize performance optimization as a peak finding problem. As we make incremental performance improvements, we\u0027re performing a gradient ascent algorithm that will find the local performance maxima. However, the classic weakness of gradient ascent is that it can get stuck on a local maxima far away from the global maxima. So if the current dbus-sensor architecture is the current peak we\u0027re on, what other peaks are out there? Should we continue to ascend the dbus-sensors peak or search for another potentially higher peak? Let\u0027s consider 3 peaks:\n\n1. dbus-sensors Peak\n\nWith our current architecture, we can make incremental performance improvements. Most significantly, we should work on making our interprocess communication as efficient as possible. D-Bus is a significant bottleneck. We can directly attack the D-Bus bottleneck by batching updates or using alternative IPC. Less dramatic changes can also make a big impact like how matching signals can be much better than polling on D-Bus or other optimizations like delayed-release for I2C muxes (https://www.spinics.net/lists/linux-i2c/msg55343.html).\n\n2. Maximum Embedded Linux Performance Peak\n\nIf we\u0027re willing to step outside of the dbus-sensors architecture, there\u0027s much more we can do to improve performance. This is where the discussions about a larger service responsible for more I2C functionality comes in. A single I2C service could perform optimizations based on mux topology, for example. With care, embedded Linux can start to take on real-time characteristics. Funneling all IPC through dbus-broker prevents any real-time tuning today. Some primitive benchmarking shows that we can saturate I2C with \u003e10,000 sensor reads per second using \u003c10% CPU. D-Bus can\u0027t keep up with that, but Linux can if we\u0027re willing to redesign the software.\n\n3. Alternative Hardware and Operating Systems Peak\n\nBeyond Embedded Linux is an endless landscape of entirely different architectures. Different industries can poll sensors at tremendously high rates, but needs for BMCs top out at maybe 1-10 Hz per sensor, so there\u0027s really little need to consider exotic options. I have heard discussions about using co-processors or FPGAs for sensor polling, but I wouldn\u0027t recommend them. Stick with Linux.\n\n\nPeak 3 clearly doesn\u0027t make sense for BMCs, but there\u0027s an interesting discussion to be had between options 1 and 2. Both have been tried in the past; no design is a panacea. Ultimately, we\u0027re having this discussion because we\u0027ve seen performance problems with dbus-sensors and we need to fix them.\n\nCertainly earlier in this thread I was voting more for option 2, but today I am increasingly optimistic that there\u0027s a path to good enough with option 1. My colleagues and I will be working on improvements to the dbus-sensors stack in the coming year. In line with that, we should design I2C firmware updates for dbus-sensors interoperability.",
+      "parentUuid": "6894dd2a_d6c49a68",
       "range": {
         "startLine": 43,
         "startChar": 38,
