@@ -1,0 +1,221 @@
+# OCP BIC(Bridge IC) Multi-host Platform specific OEM-BIOS command
+# Implementation
+
+Author:
+   Kumar Thangavel(kumar), [thangavel.k@hcl.com](mailto:thangavel.k@hcl.com)
+   Velumani T(velu),  [velumanit@hcl](mailto:velumanit@hcl.com)
+
+other contributors:
+
+created:
+    Jul 14, 2022
+
+## Problem Description
+
+The Bridge IC is specific to OCP multi host platforms where in this BIC act
+as a bridge between host and BMC. All the communication between host and BMC
+is through BIC. The interface between the BMC and BIC is IPMB. This is
+applicable for yosemitev2. Going forward we will have other interfaces like
+PLDM, MCTP over I3C for YV3.5 and redfish interface also possible.
+Redfish DMTF standard (DSP2062_1.0.0) supports for firmware update of devices
+like BIOS. There are standard and OEM specific IPMB commands supported in BIC,
+many OEM commands are specific to OEM features. These OEM commands should be
+initiated from a new daemon within a new repository in openbmc. As an example,
+OEM BIOS and CPLD upgrades are performed using OEM commands. To handle this,
+we will need a service to handle the BIC related features. BIC not only talk
+to hosts, it can talk to other BICs on add-in-cards.
+
+This design document focuses on OEM commands for OCP multi-host platforms. The
+expectation is the service will implement OEM commands for platform specific
+operations such as firmware updates for BIOS. The first platform we plan to
+support is Yosemite V2. The proposed repository name is ocp-bridge-ic.
+
+## Background and References
+
+BMC on the sled baseboard, and It manages the 4 hosts in the sled. Each host
+has a "Bridge Interconnect" (BIC) which is a micro controller that manages
+host CPU etc.
+
+Firmware update OEM commands are initiated from the ocp_bicd and sent to each
+host/device for firmware updates. This differs from the standard OEM commands
+which are initiated from the host and sent to the BMC.
+
+Below is the link for OCP TwinLake Design Spec.
+https://www.opencompute.org/documents/facebook-twin-lakes-1s-server-spec
+
+## Requirements
+
+* Implementing firmware upgrade using OEM commands.
+* Exposing the dbus interface for inter-module communications (TBD)
+* Updating progress and completion status in dbus interface
+
+## Proposed Design
+
+This document proposes a new design engaging the OEM commands request and
+response for firmware update of BIOS and its implementation details.
+
+The BMC to Host communication is happening via BIC and ipmbbridge. This daemons
+handling all the IPMB commands request and response for BMC to host
+communication. These IPMB and OCP-specific OEM commands are sent and received
+via the BIC.
+
+```
+                                                        HOST1
+     +-----------------------------------+     +----------------------+
+     |                BMC                |     |        BIC           |
+     |                                   |     |  +----------------+  |
+     |  +------------+    +----------+   |     |  |   OEM COMMANDS |  |
+     |  |            |    |          |   |IPMB |  |                |  |
+     |  |            |    |          +---+-----+-->Ex:             |  |
+     |  |            |    |          |   |     |  | BIOS FW Update |  |
+     |  |            |    |          |   |     |  +----------------+  |
+     |  |            |    |          |   |     |                      |
+     |  | ocp_bicd   |    |ipmb      |   |     +----------------------+
+     |  |            |Dbus|   bridged|   |             H0ST2
+     |  |            +---->          |   |     +----------------------+
+     |  |            |    |          |   |     |        BIC           |
+     |  |            |    |          |   |     |  +----------------+  |
+     |  |            |    |          |   |IPMB |  | IPMB COMMANDS  |  |
+     |  |            |    |          +---+-----+-->                |  |
+     |  |            |    |          |   |     |  |Ex: getDeviceId |  |
+     |  +------------+    +----------+   |     |  |                |  |
+     |                                   |     |  +----------------+  |
+     |                                   |     |                      |
+     +-----------------------------------+     +----------------------+
+
+```
+
+The ipmbbridged is the daemon, all the IPMB commands are routed from host to BMC
+through this daemon only. This ipmbbridged daemon also routes the IPMI commands
+to ocp_bicd. The ocp-bridge-ic will implement complete features like firmware
+upgrade.
+
+The ocp-bicd can monitor the information like image Filepath, device names,
+Activation status, and etc which is produced by phosphor-bmc-code-mgmt's dbus
+interfaces. ocp-bic can fetch those information from dbus and use it for
+firmware-update process.
+
+The implementation flow of OEM firmware update:
+
+1) New separate daemon will be created in a new repository for this OEM
+firmware update. The proposed name of the daemon is "ocp_bicd".
+2) Images will be read and validated.
+3) If the image is valid, device details are obtained and used to update the
+devices (ex. BIOS)
+4) Target can be set for firmware update. Target will be BIOS.
+Please refer the below link for software update design.
+https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/37950
+5) The OEM command will be framed as IPMB command with netfn and cmd
+6) The OEM commands are initiated from ocp_bicd daemon and it will be sent to
+ipmbbridged using sendRequest dbus method call.
+Ex: busctl call xyz.openbmc_project.Ipmi.Channel.Ipmb
+/xyz/openbmc_project/Ipmi/Channel/Ipmb org.openbmc.Ipmb sendRequest yyyyay
+0 6 0 0x1 0
+
+```
+#busctl tree xyz.openbmc_project.Ipmi.Channel.Ipmb
+└─/xyz
+  └─/xyz/openbmc_project
+    └─/xyz/openbmc_project/Ipmi
+      └─/xyz/openbmc_project/Ipmi/Channel
+        └─/xyz/openbmc_project/Ipmi/Channel/Ipmb
+
+#busctl introspect xyz.openbmc_project.Ipmi.Channel.Ipmb
+                   /xyz/openbmc_project/Ipmi/Channel/Ipmb
+NAME                                TYPE      SIGNATURE RESULT/VALUE FLAGS
+org.freedesktop.DBus.Introspectable interface -         -            -
+.Introspect                         method    -         s            -
+org.freedesktop.DBus.Peer           interface -         -            -
+.GetMachineId                       method    -         s            -
+.Ping                               method    -         -            -
+org.freedesktop.DBus.Properties     interface -         -            -
+.Get                                method    ss        v            -
+.GetAll                             method    s         a{sv}        -
+.Set                                method    ssv       -            -
+.PropertiesChanged                  signal    sa{sv}as  -            -
+org.openbmc.Ipmb                    interface -         -            -
+.sendRequest                        method    yyyyay    (iyyyyay)    -
+
+```
+
+7) Then ipmbbridged forwards the OEM commands to BIC.
+8) BIC will handle these OEM commands and send a response to ipmbbridged.
+9) Ipmbbridged forwards the response the ocp_bicd daemon.
+10) If an error response is received, then the firmware update is considered to
+have failed.
+11) If no errors, then the firmware update is success.
+
+## BIOS Update Procedure
+
+1) User can use custom OEM flashing tool "ocp_bicd" daemon in the BMC to do the
+   BIOS Firmware update.
+2) BIOS image path is passed as one of the parameter to the "ocp_bicd" daemon.
+3) ocp_bicd daemon reads the image file and calculates the file size.
+4) This daemon sends "Firmware Update"(09h) command to BIC for BIOS update
+   request. It sends as IPMB command to BIC.
+5) BIC will check IPMB packet checksum and ensure data correctness.
+6) If checksum is correct, BIC starts to write BIOS firmware via SPI.
+7) BMC is doing the FW update of BIOS update by downloading 224 bytes per
+   packet and wait for BIC response or IPMB timeout. the BIC is just a pass
+   through interface.
+8) If IPMB timeout happens, BMC will re-send the IPMB package. The maximum
+   retry is 3 times. If all 3 retries timeout, the update procedure will stop.
+   In this case, user needs to issue update command again to re-initiate update
+   procedure.
+9) After full BIOS Firmware image update is complete, BMC sends
+   “Firmware Verify”(0Ah) command which contains the offset and data length
+   of the firmware update image so the BIC can verify the image.
+10) BIC will verify the image and return the checksum to the BMC.
+11) BMC should verify the checksum received from the BIC and if correct, report
+    the FW update as success.
+
+```
+         +---------+     BUS      +-----------+
+         |  BIOS   <--------------+ BRIDGE-IC |
+         |         |              |           |
+         +---------+              +-----^-----+
+                                        |
+                                        |
+                                        | I2C(IPMB)
+                                        |
+                                        |
+                                  +-----+-----+
+                                  |           |
+                                  |    BMC    |
+                                  +-----------+
+
+```
+
+## Redfish Support
+Existing Redfish DMTF standard (DSP2062_1.0.0) supports firmware update of
+devices like BMC, BIOS. The multi host support needs to be added for firmware
+update of BIOS in bmc-web. User can specify the host which needs to be updated
+using Redfish. The device list can be generated using Inventory in BMC.
+
+## Alternatives Considered
+
+1) fb-ipmi-oem - An approach has been tried with fb-ipmi-oem repository. This
+   is library code and part of ipmid daemon. This library code handles platform
+   specific and OEM commands request and response. But this code, cannot do
+   firmware update. OEM commands for firmware update cannot be initiated from
+   fb-ipmi-oem. Unfortunately, fb-ipmi-oem code only handles incoming OEM
+   commands. fb-ipmi-oem requests use handler functions and send responses back
+   to the requester. So, we can keep only OEM command handler functions.
+
+2) openbmc-tools - An another approach has been tried with openbmc-tools
+   repository. This openbmc-tools repository is mainly used for debug and build
+   tools and scripts. This implementation is specific to OCP platforms and does
+   not use C++ code. Also, the MAINTAINERS have discouraged use of
+   openbmc-tools for our needs.
+
+## Impacts
+
+This BIC design and implementations is only for OCP platform specific and this
+code will need to be placed in a new repository. So, there is no impact for
+others repositories and other platforms.
+
+## Testing
+
+Testing these OEM commands like firmware update for BIOS with yosemitev2
+platform.
+
