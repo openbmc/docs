@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "cfb8c53d_7a3fc3fe",
         "filename": "/COMMIT_MSG",
@@ -14,10 +15,10 @@
       "side": 1,
       "message": "A sentence or two on the scope would be welcome.",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "3a285fbb_143c9968",
         "filename": "/COMMIT_MSG",
@@ -32,10 +33,10 @@
       "message": "Yeah\n\nNow, I just updated design with consideration for inclusive naming[1].\n\nAlso, we have some doubts and need to confire here, and then I will add commit message 😊\n\n[1]: https://github.com/openbmc/docs/blob/master/CONTRIBUTING.md#inclusive-naming",
       "parentUuid": "cfb8c53d_7a3fc3fe",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "44618185_25f89bae",
         "filename": "designs/phosphor-audit.md",
@@ -49,10 +50,10 @@
       "side": 1,
       "message": "What do you mean by a sub repository?\n\nSubdirectory or a separate repository with git submodule or something else?\nI prefer not submodule.\n\nIf you meant a meson subproject I\u0027m all in.",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "6b69b44a_af76a0c0",
         "filename": "designs/phosphor-audit.md",
@@ -67,10 +68,10 @@
       "message": "\u003e What do you mean by a sub repository?\n\nThere is a discussion in this thread:\nhttps://lists.ozlabs.org/pipermail/openbmc/2020-March/020839.html\n\n\u003e If you meant a meson subproject I\u0027m all in.\n\nYes, I think we need to add phosphor-audit in meson of the phosphor-logging, like this:\n```\nsubdir(\u0027phosphor-audit\u0027)\n```",
       "parentUuid": "44618185_25f89bae",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "023bcdf6_433607f1",
         "filename": "designs/phosphor-audit.md",
@@ -85,10 +86,10 @@
       "message": "ok.  But a meson subproject is automation to enable meson build of a typically standalone project retireved elsewhere; that disucssion sounded more like the daemon would be co-hosted in the phosphor-logging repository.",
       "parentUuid": "6b69b44a_af76a0c0",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "b528d744_1014f2ff",
         "filename": "designs/phosphor-audit.md",
@@ -103,10 +104,28 @@
       "message": "Yes, I think we can enable `phosphor-audit` by default in the phosphor-logging repo, like this:\n```\nif get_option(\u0027audit\u0027).enabled()\n\tsubdir(\u0027phosphor-audit\u0027)\nendif\n```",
       "parentUuid": "023bcdf6_433607f1",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "db9eb00b_7ba1a736",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-03-15T07:20:47Z",
+      "side": 1,
+      "message": "Possibly just a new directory in phosphor-logging, and enable this feature by default.",
+      "parentUuid": "b528d744_1014f2ff",
+      "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "3e8e741b_615b9878",
         "filename": "designs/phosphor-audit.md",
@@ -120,10 +139,10 @@
       "side": 1,
       "message": "Why was this one added? Does this mean if someone tries to log into a Redfish API, 10 times within 5 seconds, we would only get one of them in the audit log? Seeing someone trying to spam a login port could be useful info in the log for debug/security reasons.",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "b2332881_79bcafaf",
         "filename": "designs/phosphor-audit.md",
@@ -138,10 +157,10 @@
       "message": "\u003e Why was this one added? Does this mean if someone tries to log into a Redfish API, 10 times within 5 seconds, we would only get one of them in the audit log?\n\nYes, I think so.\n\n\u003e Seeing someone trying to spam a login port could be useful info in the log for debug/security reasons.\n\nYes, I agree with you.\nBut if so that, We may keep sending emails etc(See L: 310(`Notification mechanisms`)), is this correct?",
       "parentUuid": "3e8e741b_615b9878",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "a1731d8e_6ff44561",
         "filename": "designs/phosphor-audit.md",
@@ -155,10 +174,10 @@
       "side": 1,
       "message": "Should the L be capitalized?  I think so.",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "433823e1_d6d16f29",
         "filename": "designs/phosphor-audit.md",
@@ -173,10 +192,10 @@
       "message": "Done",
       "parentUuid": "a1731d8e_6ff44561",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": false
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "0c4f67f9_6ebd255a",
         "filename": "designs/phosphor-audit.md",
@@ -190,10 +209,10 @@
       "side": 1,
       "message": "Personally I think of allow/deny or permit/deny, relating to permission, vs block being a physical barrier.   However I recognize the allow and block are the first listed alternatives in the OCP document (and they don\u0027t list permit list, which could also refer to a licence type document).",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "750e6d61_759b1242",
         "filename": "designs/phosphor-audit.md",
@@ -208,10 +227,10 @@
       "message": "Ack",
       "parentUuid": "0c4f67f9_6ebd255a",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": false
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "55244106_76180549",
         "filename": "designs/phosphor-audit.md",
@@ -225,10 +244,10 @@
       "side": 1,
       "message": "Please change this to the allowlist and blocklist\nAs those are the names of the lists.",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "7317b4a2_349d3b4c",
         "filename": "designs/phosphor-audit.md",
@@ -243,10 +262,10 @@
       "message": "Done",
       "parentUuid": "55244106_76180549",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": false
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "d0e51dd7_eb56432a",
         "filename": "designs/phosphor-audit.md",
@@ -260,10 +279,10 @@
       "side": 1,
       "message": "Do we expect a meson test suite?\nSomething end 2 end in openbmc-test-automation",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "27931759_5853652d",
         "filename": "designs/phosphor-audit.md",
@@ -278,10 +297,10 @@
       "message": "Sorry, I am not familiar with openbmc-test-automation.\nwe can discuss it here.",
       "parentUuid": "d0e51dd7_eb56432a",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "4d37217a_4983e531",
         "filename": "designs/phosphor-audit.md",
@@ -296,10 +315,10 @@
       "message": "It would be 2 different levels of testing:\n- meson enabled unit tests\n- end 2 end audit records are generated and discoverable/reviewable.",
       "parentUuid": "27931759_5853652d",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "a1d8a264_eeeb6c9e",
         "filename": "designs/phosphor-audit.md",
@@ -314,8 +333,7 @@
       "message": "Sure, will update it.",
       "parentUuid": "4d37217a_4983e531",
       "revId": "b67d9affd2f62168a142cac4385de81b147b41b9",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
