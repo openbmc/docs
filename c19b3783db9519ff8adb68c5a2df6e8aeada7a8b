@@ -16,6 +16,23 @@
       "message": "Hi All,\n\nIf possible could you review this PLDM transport layer wrapper design.\n\nThanks.",
       "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8b2740b_937bb3df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2022-03-17T00:19:18Z",
+      "side": 1,
+      "message": "I don\u0027t have much of an influence above the transport layers, so I\u0027m not going to set a score here, but some general comments:\n\nIs this really worthwhile? there\u0027s not a lot of PLDM applications, so it seems that the introduction of a separate library is unnecessary. Does this avoid much duplicated infrastructure between applications?\n\nKeep in mind that the transport APIs that you\u0027re abstracting are fairly vanilla (in the MCTP case, it\u0027s the standard socket syscalls), and don\u0027t involve much novel code.\n\nIs it infeasible to interact directly with the transports in your application(s)?\n\nI might be completely wrong about this though, in which case could you add a bit of rationale to the doc?",
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
