@@ -33,6 +33,23 @@
       "message": "Have you seen the existing solutions for this? Things like hiomap and the astlpc MCTP channel, which use a shared-memory area plus some synchronisation. I feel like most of the complexities have already been handled by those.\n\n(those currently use LPC to share the memory region, but there\u0027s no reason that can\u0027t be extended to PCIe instead...)",
       "revId": "16182ec1c0cbf883d35df4d05eb350974b217bd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9a288ab_8c24cbb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-03-18T05:18:45Z",
+      "side": 1,
+      "message": "Have you thought about using this: https://github.com/openbmc/libmctp/blob/master/docs/bindings/vendor-ibm-astlpc.md ? This would give you a compliant DMTF stack for doing RDE as well.\n\nIt can be extended to use a ring buffer to queue packets.",
+      "revId": "16182ec1c0cbf883d35df4d05eb350974b217bd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
