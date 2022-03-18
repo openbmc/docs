@@ -18,6 +18,40 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "089a627e_6e9b48cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T01:00:03Z",
+      "side": 1,
+      "message": "Looking pretty reasonable.  Needs the minor formatting and grammar things fixed, then should be good to go.",
+      "revId": "99e8353224532edac259d09b2b7eb4543afc6b3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fafda461_e400d37a",
+        "filename": "designs/certificate-revocation-list.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T01:00:03Z",
+      "side": 1,
+      "message": "Background should include context on what a CRL is, as well as the owasp (or similar) security recommendations surrounding them.",
+      "revId": "99e8353224532edac259d09b2b7eb4543afc6b3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "621b3763_f0ab35b3",
@@ -122,6 +156,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6782d050_45df6ff5",
+        "filename": "designs/certificate-revocation-list.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T01:00:03Z",
+      "side": 1,
+      "message": "As a general rule, that kind of requirement is not for a BMC to enforce.  Generally (at least is the case with certificates) a BMC will update as often as the API user requests.  In practice, there are generally wait timers (usually a second or so), that wait for a change to \"settle\" to avoid flooding of requests, but in this context, I don\u0027t think we need to call that out.",
+      "parentUuid": "2b865f5f_6f1972db",
+      "revId": "99e8353224532edac259d09b2b7eb4543afc6b3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4011107_ab59c902",
@@ -163,6 +215,52 @@
         "startChar": 13,
         "endLine": 47,
         "endChar": 41
+      },
+      "revId": "99e8353224532edac259d09b2b7eb4543afc6b3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22375615_79f3d65c",
+        "filename": "designs/certificate-revocation-list.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T01:00:03Z",
+      "side": 1,
+      "message": "Looks like you forgot a newline?",
+      "range": {
+        "startLine": 47,
+        "startChar": 39,
+        "endLine": 47,
+        "endChar": 43
+      },
+      "revId": "99e8353224532edac259d09b2b7eb4543afc6b3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70657f8b_c60be946",
+        "filename": "designs/certificate-revocation-list.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T01:00:03Z",
+      "side": 1,
+      "message": "nit, we can probably omit the things we\u0027re not going to do.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 61
       },
       "revId": "99e8353224532edac259d09b2b7eb4543afc6b3b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -347,6 +445,30 @@
         "startChar": 22,
         "endLine": 103,
         "endChar": 23
+      },
+      "revId": "99e8353224532edac259d09b2b7eb4543afc6b3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f227136c_7721c631",
+        "filename": "designs/certificate-revocation-list.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T01:00:03Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "a0e638ca_23b5cb4c",
+      "range": {
+        "startLine": 103,
+        "startChar": 23,
+        "endLine": 103,
+        "endChar": 26
       },
       "revId": "99e8353224532edac259d09b2b7eb4543afc6b3b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
