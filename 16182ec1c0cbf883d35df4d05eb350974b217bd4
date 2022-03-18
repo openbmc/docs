@@ -86,6 +86,24 @@
       "parentUuid": "a9a288ab_8c24cbb8",
       "revId": "16182ec1c0cbf883d35df4d05eb350974b217bd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d50854f_4c55cad5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2022-03-18T17:30:11Z",
+      "side": 1,
+      "message": "Jeremy, doesn\u0027t this require an ACK from the BMC to set up the buffer initially? I assume the goal isn\u0027t to hog the buffer from the host side in perpetuity in the event that we need the asynchronous fast access.\n\nOur requirement for this is a memory window the host can write to with no waiting on software BMC side. If we have to ask MCTP for some memory right before using it, then it does not meet this requirement.",
+      "parentUuid": "b642619f_2eb11ac6",
+      "revId": "16182ec1c0cbf883d35df4d05eb350974b217bd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
