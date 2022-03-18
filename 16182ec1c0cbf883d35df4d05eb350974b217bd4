@@ -50,6 +50,42 @@
       "message": "Have you thought about using this: https://github.com/openbmc/libmctp/blob/master/docs/bindings/vendor-ibm-astlpc.md ? This would give you a compliant DMTF stack for doing RDE as well.\n\nIt can be extended to use a ring buffer to queue packets.",
       "revId": "16182ec1c0cbf883d35df4d05eb350974b217bd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b642619f_2eb11ac6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-03-18T17:09:05Z",
+      "side": 1,
+      "message": "Hi Jeremy, I didn\u0027t look through MCTP channel too thoroughly and it looks like Andrew also commented on it - looking into it, it does seem like it currently uses LPC shared memory region, which for Nuvoton is 4KB and is too small for our usecase which is why it was discounted.\n\nBut yes, if we were to extend this to use PCI Mailbox, perhaps this is something we could consider.. let me look into how that would look like, thanks for the suggestion.",
+      "parentUuid": "8a457782_869d7afe",
+      "revId": "16182ec1c0cbf883d35df4d05eb350974b217bd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce7690cf_abb6d847",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-03-18T17:09:05Z",
+      "side": 1,
+      "message": "Hi Andrew, it looks like Jeremy and you had the same thoughts. As mentioned in Jeremy\u0027s comment, we discounted LPC shared memory methods due to Nuvotn\u0027s LPC shared memory buffer being only 4KB (for NPCM 7xx generation at least) which was not big enough for our usecase.\n\nI\u0027ll look into whether we can extend it to use PCI Mailbox instead, similar to how phosphor-ipmi-flash currently supports both LPC and PCI Mailbox / P2A.",
+      "parentUuid": "a9a288ab_8c24cbb8",
+      "revId": "16182ec1c0cbf883d35df4d05eb350974b217bd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
