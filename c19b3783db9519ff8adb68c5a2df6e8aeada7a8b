@@ -51,6 +51,190 @@
       "parentUuid": "c8b2740b_937bb3df",
       "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f57669_17a0856b",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-03-20T06:04:32Z",
+      "side": 1,
+      "message": "Nit: Can reword this along the lines of - \"PLDM being an application layer protocol can bind on other type of transports like NC-SI. To enable other types of transports that can carry PLDM traffic, a transport layer abstraction is required\" (Basically, it is not the platforms that support other transport layers, but it the specifications that allow PLDM to bind on other transports)",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 35
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa4ad56d_c2c39328",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-03-20T06:04:32Z",
+      "side": 1,
+      "message": "nit: deduces",
+      "range": {
+        "startLine": 77,
+        "startChar": 32,
+        "endLine": 77,
+        "endChar": 40
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f62ebde_69920bd2",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-03-20T06:04:32Z",
+      "side": 1,
+      "message": "The discovered MCTP EID needs to support PLDM type. Not all MCTP EIDs would be interesting to pldmd",
+      "range": {
+        "startLine": 85,
+        "startChar": 20,
+        "endLine": 85,
+        "endChar": 65
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "872410ec_3af47531",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-03-20T06:04:32Z",
+      "side": 1,
+      "message": "Does discoverTIDs handle dynamic detection of PLDM capable devices? I mean - hotplugged MCTP devices, devices that went through reset, etc..",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 38
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f0d654b_ee368c8e",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-03-20T06:04:32Z",
+      "side": 1,
+      "message": "Do we need separate API for receive ? I imagined received PLDM payloads would invoke a callback, thus the transport layer abstraction needs to register a callback handler. Can you explain how these APIs are going to be utilized ?",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 3
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "913ee96a_da091cc4",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-03-20T06:04:32Z",
+      "side": 1,
+      "message": "libpldm",
+      "range": {
+        "startLine": 145,
+        "startChar": 20,
+        "endLine": 145,
+        "endChar": 28
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2076c55f_7bab3295",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-03-20T06:04:32Z",
+      "side": 1,
+      "message": "This captures only \"send-receive\" flow - i.e. the pldmd wrapper handling instanceId matched responses. However, there are PLDM usecases where pldmd has to handle received payload and transmit a response (PLDM Firmware update flow). Can you please describe how this will be handled as well?",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 51
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "202cff17_cb85bfcf",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2022-03-20T06:04:32Z",
+      "side": 1,
+      "message": "Conceptually the proposal sounds good to me. I also suggest handling PLDM Type 0 inside the transport layer abstraction. The reason for doing so are as follows:\n1) PLDM Type discovery can be done on a PLDM terminus and the transport abstraction (wrapper layer) can invoke the corresponding PLDM Type specific managers\n2) In future, PLDM Type Version specific managers can be invoked as well\n3) The transport abstraction (i.e. pldm wrapper) is required to handle \"Set TID\" command which is PLDM Type 0 command",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 68
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
