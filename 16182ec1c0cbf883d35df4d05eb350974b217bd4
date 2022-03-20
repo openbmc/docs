@@ -140,6 +140,24 @@
       "parentUuid": "17c50499_4bf517a1",
       "revId": "16182ec1c0cbf883d35df4d05eb350974b217bd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27323aee_18c54098",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-03-20T21:27:25Z",
+      "side": 1,
+      "message": "I think it\u0027s possible to introduce new features to the LPC MCTP binding such that a) it provides a ring-buffer and b) uses a polling behaviour rather than interrupt driven. I haven\u0027t given it deep thought, but it should just be the addition of head/tail offset members to the control region. The final question is whether we can observe value tearing for those members. This might happen if the LPC logic performs byte-wise reads/writes of the underlying memory words. There might be other ways to mitigate that though.",
+      "parentUuid": "a1fe4662_acd08673",
+      "revId": "16182ec1c0cbf883d35df4d05eb350974b217bd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
