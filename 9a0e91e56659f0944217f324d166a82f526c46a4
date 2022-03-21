@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b4efb092_ed7f6392",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-21T19:12:09Z",
+      "side": 1,
+      "message": "+1.  Seems reasonable.",
+      "parentUuid": "bcab3a76_a237689f",
+      "range": {
+        "startLine": 7,
+        "startChar": 12,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "9a0e91e56659f0944217f324d166a82f526c46a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "941ae252_ad0c74d9",
         "filename": "designs/certificate-revocation-list.md",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-21T17:35:15Z",
       "side": 1,
       "message": "Does this need to be \u0027mTLS\u0027 specifically?  Clients otherwise don\u0027t have certificates, do they?  (Fix throughout)",
+      "range": {
+        "startLine": 20,
+        "startChar": 33,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "9a0e91e56659f0944217f324d166a82f526c46a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f666294c_c2feff99",
+        "filename": "designs/certificate-revocation-list.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-21T19:12:09Z",
+      "side": 1,
+      "message": "That feels like a bit of specifics that isn\u0027t neccesarily true.  Technically CRLs could be used on either side of a TLS connection, and the BMC is capable of both producing and consuming a TLS connection, and in theory we could use it for both.\n\nI think it\u0027s fine as-is.",
+      "parentUuid": "941ae252_ad0c74d9",
       "range": {
         "startLine": 20,
         "startChar": 33,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c15a6842_8bb55b60",
+        "filename": "designs/certificate-revocation-list.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-21T19:12:09Z",
+      "side": 1,
+      "message": "How about we just fully spell it out CertificateRevocationList to make it very clear what it is?  Probably something to sort out in the PDI review.  If Nan just removed the \u0027CRL\u0027 from this, and said something like \"we propose to introduce a new interface for CRLS in ..\" then we can argue about the specific naming in the PDI review (which is where that discussion probably belongs anyway) does that work for you?",
+      "parentUuid": "e09c9ef5_339f9f91",
+      "range": {
+        "startLine": 57,
+        "startChar": 41,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "9a0e91e56659f0944217f324d166a82f526c46a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44431df0_43646456",
         "filename": "designs/certificate-revocation-list.md",
         "patchSetId": 6
@@ -83,6 +155,30 @@
       "writtenOn": "2022-03-21T17:35:15Z",
       "side": 1,
       "message": "I see that the Certificate interface has \"CertificateString\" but it is of type string, so the string is redundant.  I\u0027ve typically asked for types to not be included.  Is this the name used in Redfish and that\u0027s why we went with the type included on it?  (I know in this case you\u0027ve said for CRL there is no Redfish interface yet)",
+      "range": {
+        "startLine": 60,
+        "startChar": 17,
+        "endLine": 60,
+        "endChar": 26
+      },
+      "revId": "9a0e91e56659f0944217f324d166a82f526c46a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e826daf_f48d657d",
+        "filename": "designs/certificate-revocation-list.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-21T19:12:09Z",
+      "side": 1,
+      "message": "Same as above, this is probably better taken up in a PDI review.  If Nan makes this more generic at a design doc level, does that work?",
+      "parentUuid": "44431df0_43646456",
       "range": {
         "startLine": 60,
         "startChar": 17,
@@ -118,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2fa737a1_3bb093a4",
+        "filename": "designs/certificate-revocation-list.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-21T19:12:09Z",
+      "side": 1,
+      "message": "This should probably just say \"using the existing phosphor-certificate-manager notification process\".  This doesn\u0027t intend to change anything about that process (which is a combination of HUP for the things that support it or service restarts for the things that don\u0027t).\n\nIt probably doesn\u0027t make sense to re-document what already exists.",
+      "parentUuid": "14e7bc6a_87e2cc7e",
+      "range": {
+        "startLine": 71,
+        "startChar": 22,
+        "endLine": 71,
+        "endChar": 42
+      },
+      "revId": "9a0e91e56659f0944217f324d166a82f526c46a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6eaed2d2_3d68cee3",
         "filename": "designs/certificate-revocation-list.md",
         "patchSetId": 6
@@ -141,6 +261,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92b14e5a_0eba51c0",
+        "filename": "designs/certificate-revocation-list.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-21T19:12:09Z",
+      "side": 1,
+      "message": "+1.  This sentence can probably be removed.  Also, it has a typo, so by removing it we solve two things at the same time 😊",
+      "parentUuid": "6eaed2d2_3d68cee3",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 69
+      },
+      "revId": "9a0e91e56659f0944217f324d166a82f526c46a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a3b137c2_d28e40dd",
         "filename": "designs/certificate-revocation-list.md",
         "patchSetId": 6
@@ -152,6 +296,30 @@
       "writtenOn": "2022-03-21T17:35:15Z",
       "side": 1,
       "message": "CRLs",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 4
+      },
+      "revId": "9a0e91e56659f0944217f324d166a82f526c46a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a501108_2a4d58b5",
+        "filename": "designs/certificate-revocation-list.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-21T19:12:09Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "a3b137c2_d28e40dd",
       "range": {
         "startLine": 86,
         "startChar": 0,
