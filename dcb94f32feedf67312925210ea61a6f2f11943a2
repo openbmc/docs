@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b8dc19f_c3d031bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-03-21T23:52:57Z",
+      "side": 1,
+      "message": "Another idea might be to make a docs subdirectory within the bmcweb project, to keep the docs closer to the source.",
+      "parentUuid": "fe53c460_dce8407c",
+      "revId": "dcb94f32feedf67312925210ea61a6f2f11943a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fdb9a6a_66d393f9",
@@ -52,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88929b6b_7e33f367",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-03-21T23:52:57Z",
+      "side": 1,
+      "message": "Correct, you can only use existing DMTF schemas. You can\u0027t insert arbitrary content. You have to follow the schema, inserting content only where allowed.",
+      "parentUuid": "3fdb9a6a_66d393f9",
+      "revId": "dcb94f32feedf67312925210ea61a6f2f11943a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "365d487a_546fdd9a",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-03-21T18:51:48Z",
       "side": 1,
       "message": "I\u0027d prefer `/run/bmcweb`.  Maybe a subdirectory under there so it is clear what is for \"ExternalStorer\"?\n\nhttp://0pointer.net/blog/projects/tmp.html",
+      "revId": "dcb94f32feedf67312925210ea61a6f2f11943a2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a042acc0_c8f4a613",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-03-21T23:52:57Z",
+      "side": 1,
+      "message": "I\u0027m OK with changing it to /run instead of /tmp directory. On my BMC, they are both tmpfs. I\u0027m also thinking about having it honor an environment variable, before falling back to a hardcoded path. Using $TMPDIR seems to be correct here.\n\nInterestingly, my first draft of this document did in fact use the /tmp/bmcweb/ExternalStorer path! I dropped it upon early review, though, because it was pointed out to me that other bmcweb features, not just ExternalStorer, might want to make use of a similar backing store in the future.",
+      "parentUuid": "365d487a_546fdd9a",
       "revId": "dcb94f32feedf67312925210ea61a6f2f11943a2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
