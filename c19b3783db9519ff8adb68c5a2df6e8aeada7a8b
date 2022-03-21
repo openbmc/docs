@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "72b703dc_ac93d87b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-03-21T09:04:12Z",
+      "side": 1,
+      "message": "@Jeremy, there are no multiple applications. With the current implementation/design, all the PLDM types will be implemented as part of the PLDM daemon.\n\n@Naveen, Agree with the general intent that MCTP is not the only transport layer and PLDM should not be tied to MCTP and should abstract that to support other transport layers. But need to see more details on the transition from pldmd \u003c-\u003e mctp-demux-daemon to include pldmd \u003c-\u003e RBT communication. Also with Jeremy\u0027s MCTP kernel implementation, there will be a socket connection for every MCTP endpoint.",
+      "parentUuid": "32209a27_c13fecd2",
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88f57669_17a0856b",
         "filename": "designs/pldm-transport-layer-wrapper.md",
         "patchSetId": 4
