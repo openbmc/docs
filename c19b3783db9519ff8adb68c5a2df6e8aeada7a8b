@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32209a27_c13fecd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2022-03-21T08:31:59Z",
+      "side": 1,
+      "message": "OK, so there are multiple applications, I see. In that case, the use of a library for this does make more sense.\n\nIn order to achieve this, you\u0027re also introducing a routing layer, of tids to their underlying transport addressing mechanism. I see you have a `discoverTIDs()` interface, but that doesn\u0027t seem sufficient. You may have:\n\n- endpoints that appear after the application has called discoverTIDs(). Is the application supposed to continuously call this?\n\n- endpoints that disappear; but no mechanism to inform the application that a tid is no longer valid\n\nTo solve these, you may need to process events outside of the PLDM send/receive flow...",
+      "parentUuid": "b9ff3e8d_4fb15916",
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88f57669_17a0856b",
         "filename": "designs/pldm-transport-layer-wrapper.md",
         "patchSetId": 4
@@ -188,6 +206,23 @@
         "endLine": 77,
         "endChar": 40
       },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fb3ad7f_7e4b1b03",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2022-03-21T08:31:59Z",
+      "side": 1,
+      "message": "The library should not be performing any EID discovery; that will have been performed by mctpd.\n\nThe library may access the results of MCTP control protocol enumeration over dbus though.",
       "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -385,6 +420,30 @@
       "writtenOn": "2022-03-21T04:03:33Z",
       "side": 1,
       "message": "For MCTP endpoints, the current implementation is PLDM daemon does a D-Bus based discovery for a MCTP endpoints. What does a wrapper for MCTP based devices?",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 49
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdd828f4_4c38795e",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2022-03-21T08:31:59Z",
+      "side": 1,
+      "message": "Yep, agree with Tom here (and see my comment above). Can you clarify what you mean by \"when the PLDM service is called\"? I don\u0027t quite understand the flow behind discoverTIDs()",
+      "parentUuid": "36c7a94a_dc264884",
       "range": {
         "startLine": 177,
         "startChar": 0,
