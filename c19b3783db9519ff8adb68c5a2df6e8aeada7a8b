@@ -78,6 +78,76 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81a74ae6_1dd5d892",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-03-21T04:03:33Z",
+      "side": 1,
+      "message": "+1\n\nWe need to draft this problem description to include the full scope of the problem you are trying to solve. I mean rather than just \"PLDM transport wrapper on OpenBMC\", something like \"PLDM over RBT\" or \"PLDM Type 5 over RBT\" etc. \n\nWhat are the use cases in your proposal?  Looking at the whitepaper( https://www.dmtf.org/sites/default/files/standards/documents/DSP2015_2.0.0.pdf) \"PLDM over NCSI based on RBT\" is not a possibility. It is either \"PLDM over RBT\" or \"NC-SI Control over RBT\". Correct?",
+      "parentUuid": "88f57669_17a0856b",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 35
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "579c3980_741b7eb2",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-03-21T04:03:33Z",
+      "side": 1,
+      "message": "What is the difference between Req 1 \u0026 Req 2? I think not just the PLDM request API, but how does PLDM daemon as a responder handle different transport types should be discussed here.\n\nI get the intent that instead of EID we should use terminus ID as the key for PLDM types to map to a socket.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 75
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62050c5e_47a3d2a3",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-03-21T04:03:33Z",
+      "side": 1,
+      "message": "Req 3 \u0026 Req 4 looks very similar. Is NC-SI control messages going to be be included in PLDM daemon? Would it be a socket based communication for NC-SI over RBT? More context is needed here.\n\n1) What library is used for NC-SI over RBT?\n2) How does PLDM daemon get to know that it is ready to do a discovery messages?\n3) Does the PLDM daemon needs to communicate with multiple terminus id, if that is a scenario how does PLDM daemon get to know that.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 23
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa4ad56d_c2c39328",
         "filename": "designs/pldm-transport-layer-wrapper.md",
         "patchSetId": 4
@@ -124,6 +194,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "91c17d16_ae14a77a",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-03-21T04:03:33Z",
+      "side": 1,
+      "message": "Can GetTID be used as a mechanism to read the TID and create a virtual terminus id in the case of collission?",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 35
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "872410ec_3af47531",
         "filename": "designs/pldm-transport-layer-wrapper.md",
         "patchSetId": 4
@@ -135,6 +228,30 @@
       "writtenOn": "2022-03-20T06:04:32Z",
       "side": 1,
       "message": "Does discoverTIDs handle dynamic detection of PLDM capable devices? I mean - hotplugged MCTP devices, devices that went through reset, etc..",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 38
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df452a4c_84591f04",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-03-21T04:03:33Z",
+      "side": 1,
+      "message": "DiscoverTIDs is an asynchronous process, readiness of the device cannot be guaranteed to be synchronous.",
+      "parentUuid": "872410ec_3af47531",
       "range": {
         "startLine": 125,
         "startChar": 0,
@@ -193,6 +310,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd66b677_dea2c25b",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-03-21T04:03:33Z",
+      "side": 1,
+      "message": "A flow diagram can greatly improve the understanding of this proposal.",
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36c7a94a_dc264884",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-03-21T04:03:33Z",
+      "side": 1,
+      "message": "For MCTP endpoints, the current implementation is PLDM daemon does a D-Bus based discovery for a MCTP endpoints. What does a wrapper for MCTP based devices?",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 49
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2076c55f_7bab3295",
         "filename": "designs/pldm-transport-layer-wrapper.md",
         "patchSetId": 4
@@ -204,6 +361,30 @@
       "writtenOn": "2022-03-20T06:04:32Z",
       "side": 1,
       "message": "This captures only \"send-receive\" flow - i.e. the pldmd wrapper handling instanceId matched responses. However, there are PLDM usecases where pldmd has to handle received payload and transmit a response (PLDM Firmware update flow). Can you please describe how this will be handled as well?",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 51
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4afd9d13_727d7f00",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-03-21T04:03:33Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "2076c55f_7bab3295",
       "range": {
         "startLine": 177,
         "startChar": 0,
