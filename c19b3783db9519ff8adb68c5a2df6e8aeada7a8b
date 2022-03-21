@@ -102,6 +102,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db9020c6_7ce6c1cd",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-03-21T07:37:09Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 11
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "579c3980_741b7eb2",
         "filename": "designs/pldm-transport-layer-wrapper.md",
         "patchSetId": 4
@@ -205,6 +228,30 @@
       "writtenOn": "2022-03-21T04:03:33Z",
       "side": 1,
       "message": "Can GetTID be used as a mechanism to read the TID and create a virtual terminus id in the case of collission?",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 35
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f414049f_23fc5572",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-03-21T07:37:09Z",
+      "side": 1,
+      "message": "+1\n\nUsing GetTID first to read TID of the device before we use SetTID(if TID is 0 in the response or if there is a TID collision) would be better.",
+      "parentUuid": "91c17d16_ae14a77a",
       "range": {
         "startLine": 115,
         "startChar": 0,
@@ -397,6 +444,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f199b720_a92c6d5e",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-03-21T07:37:09Z",
+      "side": 1,
+      "message": "+1. Also, It will be easy to understand if it was a flow diagram.",
+      "parentUuid": "4afd9d13_727d7f00",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 51
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "202cff17_cb85bfcf",
         "filename": "designs/pldm-transport-layer-wrapper.md",
         "patchSetId": 4
@@ -408,6 +479,30 @@
       "writtenOn": "2022-03-20T06:04:32Z",
       "side": 1,
       "message": "Conceptually the proposal sounds good to me. I also suggest handling PLDM Type 0 inside the transport layer abstraction. The reason for doing so are as follows:\n1) PLDM Type discovery can be done on a PLDM terminus and the transport abstraction (wrapper layer) can invoke the corresponding PLDM Type specific managers\n2) In future, PLDM Type Version specific managers can be invoked as well\n3) The transport abstraction (i.e. pldm wrapper) is required to handle \"Set TID\" command which is PLDM Type 0 command",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 68
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94bbf9e0_8f753ffb",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-03-21T07:37:09Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "202cff17_cb85bfcf",
       "range": {
         "startLine": 196,
         "startChar": 0,
