@@ -87,12 +87,15 @@ Any channel between host and BMC should:
 The MCTP infrastrcuture in OpenBMC is implemented in two approaches:
 
  - A userspace-based approach, using a core library, plus a
-   demultiplexing daemon. This is the current implementation, and is
-   described in [MCTP Userspace](mctp-userspace.md).
+   demultiplexing daemon. This is described in [MCTP
+   Userspace](mctp-userspace.md).
+
+   This is in use by a few platforms, but should be avoided for new
+   designs.
 
  - A kernel-based approach, using a sockets API for client and server
-   applications. This approach is in a design stage, and is described
-   in [MCTP Kernel](mctp-kernel.md)
+   applications. This approach is recommended for new designs, and is
+   described in [MCTP Kernel](mctp-kernel.md)
 
 Design details for both approaches are covered in their relevant
 documents, but both share the same Problem Description, Background and
