@@ -93,7 +93,7 @@ other networks.
 We define a new address family (and corresponding protocol family) for MCTP:
 
 ```c
-    #define AF_MCTP /* TBD */
+    #define AF_MCTP 45
     #define PF_MCTP AF_MCTP
 ```
 
@@ -119,11 +119,14 @@ specified with a new `sockaddr` type:
 
 ```c
     struct sockaddr_mctp {
+            __kernel_sa_family_t    smctp_family; /* = AF_MCTP */
             sa_family_t         smctp_family; /* = AF_MCTP */
-            int                 smctp_network;
+            uint16_t            __smctp_pad0;
+            unsigned int        smctp_network;
             struct mctp_addr    smctp_addr;
             uint8_t             smctp_type;
             uint8_t             smctp_tag;
+            uint8_t             __smctp_pad1;
     };
 
     struct mctp_addr {
@@ -258,7 +261,7 @@ or `write()` syscalls. Using `sendto()` as the primary example:
 
 ```c
     struct sockaddr_mctp addr;
-    char buf[14];
+    char buf[13];
     ssize_t len;
 
     /* set message destination */
@@ -269,8 +272,7 @@ or `write()` syscalls. Using `sendto()` as the primary example:
     addr.smctp_type = MCTP_TYPE_ECHO;
 
     /* arbitrary message to send, with message-type header */
-    buf[0] = MCTP_TYPE_ECHO;
-    memcpy(buf + 1, "hello, world!", sizeof(buf) - 1);
+    memcpy(buf, "hello, world!", sizeof(buf) - 1);
 
     len = sendto(sd, buf, sizeof(buf), 0,
                     (struct sockaddr_mctp *)&addr, sizeof(addr));
@@ -283,13 +285,12 @@ generate a tag value suitable for the destination EID. If `MCTP_TAG_OWNER` is
 not set, the message will be sent with the tag value as specified. If a tag
 value cannot be allocated, the system call will report an errno of `EAGAIN`.
 
-The application must provide the message type byte as the first byte of the
-message buffer passed to `sendto()`. If a message integrity check is to be
-included in the transmitted message, it must also be provided in the message
-buffer, and the most-significant bit of the message type byte must be 1.
+The message buffer does not include the MCTP message type value; this is
+prepended by the kernel.
 
-If the first byte of the message does not match the message type value, then the
-system call will return an error of `EPROTO`.
+If a message integrity check is to be included in the transmitted message, it
+must also be provided in the message buffer, and the most-significant bit of the
+message type byte must be 1.
 
 The `send()` and `write()` system calls behave in a similar way, but do not
 specify a remote address. Therefore, `connect()` must be called beforehand; if
@@ -313,8 +314,8 @@ will cause an allocation of a tag, if no valid tag is already allocated for that
 destination. The (destination-eid,tag) tuple acts as an implicit local socket
 address, to allow the socket to receive responses to this outgoing message. If
 any previous allocation has been performed (to for a different remote EID), that
-allocation is lost. This tag behaviour can be controlled through the
-`MCTP_TAG_CONTROL` socket option.
+allocation is lost. If necessary, this tag behaviour can be controlled a through
+the `MCTPALLOCTAG` and `MCTPDROPTAG` ioctls.
 
 Sockets will only receive responses to requests they have sent (with TO=1) and may
 only respond (with TO=0) to requests they have received.
@@ -347,8 +348,10 @@ The address argument to `recvfrom` and `recvmsg` is populated with the remote
 address of the incoming message, including tag value (this will be needed in
 order to reply to the message).
 
-The first byte of the message buffer will contain the message type byte. If an
-integrity check follows the message, it will be included in the received buffer.
+The first byte of the message buffer does not contain the message type byte;
+this is stripped by the kernel, and available in the `smctp_type` member of
+`addr`. If an integrity check follows the message, it will be included in the
+received buffer.
 
 The `recv()` and `read()` system calls behave in a similar way, but do not
 provide a remote address to the application. Therefore, these are only useful if
@@ -367,7 +370,7 @@ connect()). Since the tag value is a property of the remote address,
 Calling `getpeername()` on an unconnected socket will result in an error of
 `ENOTCONN`.
 
-#### Socket options ####
+#### Socket options & ioctls ####
 
 The following socket options are defined for MCTP sockets:
 
@@ -382,16 +385,12 @@ This as defined as:
 
 ```c
     struct sockaddr_mctp_ext {
-            /* fields exactly match struct sockaddr_mctp */
-            sa_family_t         smctp_family; /* = AF_MCTP */
-            int                 smctp_network;
-            struct mctp_addr    smctp_addr;
-            uint8_t             smcp_tag;
-            /* extended addressing */
-            int                 smctp_ifindex;
-            uint8_t             smctp_halen;
-            unsigned char       smctp_haddr[/* TBD */];
-    }
+            struct sockaddr_mctp    smctp_base;
+            int                     smctp_ifindex;
+            uint8_t                 smctp_halen;
+            uint8_t                 __smctp_pad0[3];
+            uint8_t                 smctp_haddr[MAX_ADDR_LEN];
+    };
 ```
 
 If the `addrlen` specified to `sendto()` or `recvfrom()` is sufficient to
@@ -399,41 +398,55 @@ contain this larger structure, then the extended addressing fields are consumed
 / populated respectively.
 
 
-##### `MCTP_TAG_CONTROL`: manage outgoing tag allocation behaviour #####
+##### `MCTPTAGALLOC` / `MCTPTAGDROP` ioctls: manage outgoing tag allocation behaviour #####
 
-The set/getsockopt argument is a `mctp_tagctl` structure:
+These ioctls provide a facility for applications to manually allocate and drop
+tag values for outgoing messages. These are generally not needed, as most
+protocols follow a strict request/response flow, which the kernel can handle
+automatically.
 
-    struct mctp_tagctl {
-        bool            retain;
-        struct timespec timeout;
+Both ioctls take a pointer to a structure of the type:
+
+```c
+    struct mctp_ioc_tag_ctl {
+            mctp_eid_t    peer_addr;
+
+            /* For SIOCMCTPALLOCTAG: must be passed as zero, kernel will
+             * populate with the allocated tag value. Returned tag value will
+             * always have TO and PREALLOC set.
+             *
+             * For SIOCMCTPDROPTAG: userspace provides tag value to drop, from
+             * a prior SIOCMCTPALLOCTAG call (and so must have TO and PREALLOC set).
+             */
+            uint8_t       tag;
+            uint16_t      flags;
     };
+```
 
-This allows an application to control the behaviour of allocated tags for
-non-connected sockets when transferring messages to multiple different
-destinations (ie., where a `struct sockaddr_mctp` is provided for individual
-messages, and the `smctp_addr` destination for those sockets may vary across
-calls).
+`SIOCMCTPALLOCTAG` allocates a tag for a specific peer, which an application
+can use in future `sendmsg()` calls. The application populates the
+`peer_addr` member with the remote EID. Other fields must be zero.
 
-The `retain` flag indicates to the kernel that the socket should not release tag
-allocations when a message is sent to a new destination EID. This causes the
-socket to continue to receive incoming messages to the old (dest,tag) tuple, in
-addition to the new tuple.
+On return, the `tag` member will be populated with the allocated tag value.
+The allocated tag will have the following tag bits set:
 
-The `timeout` value specifies a maximum amount of time to retain tag values.
-This should be based on the reply timeout for any upper-level protocol.
+ - `MCTP_TAG_OWNER`: it only makes sense to allocate tags if you're the tag
+   owner
 
-The kernel may reject a request to set values that would cause excessive tag
-allocation by this socket. The kernel may also reject subsequent tag-allocation
-requests (through send or connect syscalls) which would cause excessive tags to
-be consumed by the socket, even though the tag control settings were accepted in
-the setsockopt operation.
+ - `MCTP_TAG_PREALLOC`: to indicate to `sendmsg()` that this is a
+   preallocated tag.
 
-Changing the default tag control behaviour should only be required when:
+ - ... and the actual tag value, within the least-significant three bits
+   (`MCTP_TAG_MASK`). Note that zero is a valid tag value.
 
- * the socket is sending messages with TO=1 (ie, is a requester); and
- * messages are sent to multiple different destination EIDs from the one
-   socket.
+The tag value should be used as-is for the `smctp_tag` member of `struct
+sockaddr_mctp`.
 
+`SIOCMCTPDROPTAG` releases a tag that has been previously allocated by a
+`SIOCMCTPALLOCTAG` ioctl. The `peer_addr` must be the same as used for the
+allocation, and the `tag` value must match exactly the tag returned from the
+allocation (including the `MCTP_TAG_OWNER` and `MCTP_TAG_PREALLOC` bits).
+The `flags` field must be zero.
 
 #### Syscalls not implemented ####
 
@@ -475,10 +488,7 @@ This uses a (fictitious) message type of `MCTP_TYPE_ECHO`.
     int main() {
             struct sockaddr_mctp addr;
             socklen_t addrlen;
-            struct {
-                uint8_t type;
-                uint8_t data[14];
-            } msg;
+            char msg[14];
             int sd, rc;
 
             sd = socket(AF_MCTP, SOCK_DGRAM, 0);
@@ -491,11 +501,10 @@ This uses a (fictitious) message type of `MCTP_TYPE_ECHO`.
             addrlen = sizeof(addr);
 
             /* set message type and payload */
-            msg.type = MCTP_TYPE_ECHO;
-            strncpy(msg.data, "hello, world!", sizeof(msg.data));
+            strncpy(msg, "hello, world!", sizeof(msg));
 
             /* send message */
-            rc = sendto(sd, &msg, sizeof(msg), 0,
+            rc = sendto(sd, msg, sizeof(msg), 0,
                             (struct sockaddr *)&addr, addrlen);
 
             if (rc < 0)
@@ -504,16 +513,16 @@ This uses a (fictitious) message type of `MCTP_TYPE_ECHO`.
             /* Receive reply. This will block until a reply arrives,
              * which may never happen. Actual code would need a timeout
              * here. */
-            rc = recvfrom(sd, &msg, sizeof(msg), 0,
+            rc = recvfrom(sd, msg, sizeof(msg), 0,
                         (struct sockaddr *)&addr, &addrlen);
             if (rc < 0)
                     err(EXIT_FAILURE, "recvfrom");
 
-            assert(msg.type == MCTP_TYPE_ECHO);
+            assert(addr.smctp_type == MCTP_TYPE_ECHO);
             /* ensure we're nul-terminated */
-            msg.data[sizeof(msg.data)-1] = '\0';
+            msg[sizeof(msg)-1] = '\0';
 
-            printf("reply: %s\n", msg.data);
+            printf("reply: %s\n", msg);
 
             return EXIT_SUCCESS;
     }
@@ -545,12 +554,9 @@ sockaddr_mctp`; only messages matching this type will be received.
                     err(EXIT_FAILURE, "bind");
 
             for (;;) {
-                    struct {
-                        uint8_t type;
-                        uint8_t data[14];
-                    } msg;
+                    char msg[14];
 
-                    rc = recvfrom(sd, &msg, sizeof(msg), 0,
+                    rc = recvfrom(sd, msg, sizeof(msg), 0,
                                     (struct sockaddr *)&addr, &addrlen);
                     if (rc < 0)
                             err(EXIT_FAILURE, "recvfrom");
@@ -558,7 +564,7 @@ sockaddr_mctp`; only messages matching this type will be received.
                             warnx("not enough data for a message type");
 
                     assert(addrlen == sizeof(addr));
-                    assert(msg.type == MCTP_TYPE_ECHO);
+                    assert(addr.smctp_type == MCTP_TYPE_ECHO);
 
                     printf("%zd bytes from EID %d\n", rc, addr.smctp_addr);
 
@@ -568,7 +574,7 @@ sockaddr_mctp`; only messages matching this type will be received.
                      */
                     addr.smctp_tag = MCTP_TAG_RSP(addr.smctp_tag);
 
-                    rc = sendto(sd, &msg, rc, 0,
+                    rc = sendto(sd, msg, rc, 0,
                                 (struct sockaddr *)&addr, addrlen);
                     if (rc < 0)
                             err(EXIT_FAILURE, "sendto");
@@ -589,7 +595,7 @@ control protocol pattern.
             struct timespec start, cur;
             struct pollfd pollfds[1];
             socklen_t addrlen;
-            uint8_t buf[2];
+            uint8_t buf[1];
             int timeout;
 
             sd = socket(AF_MCTP, SOCK_DGRAM, 0);
@@ -601,8 +607,7 @@ control protocol pattern.
             txaddr.smctp_type = MCTP_TYPE_CONTROL;
             txaddr.smctp_tag = MCTP_TAG_OWNER;
 
-            buf[0] = MCTP_TYPE_CONTROL;
-            buf[1] = 'a';
+            buf[0] = 'a';
 
             /* We're doing a sendto() to a broadcast address here. If we were
              * sending more than one broadcast message, we'd be better off
@@ -611,7 +616,7 @@ control protocol pattern.
              * is a single transmit, that makes no difference in this
              * particular case.
              */
-            rc = sendto(sd, buf, 2, 0, (struct sockaddr *)&txaddr,
+            rc = sendto(sd, buf, sizeof(buf), 0, (struct sockaddr *)&txaddr,
                             sizeof(txaddr));
             if (rc < 0)
                     err(EXIT_FAILURE, "sendto");
@@ -641,8 +646,8 @@ control protocol pattern.
 
                     addrlen = sizeof(rxaddr);
 
-                    rc = recvfrom(sd, &buf, 2, 0, (struct sockaddr *)&rxaddr,
-                            &addrlen);
+                    rc = recvfrom(sd, &buf, sizeof(buf), 0,
+                            (struct sockaddr *)&rxaddr, &addrlen);
                     if (rc < 0)
                             err(EXIT_FAILURE, "recvfrom");
 
@@ -707,7 +712,6 @@ that specific remote EID.
 This allocation will expire when any of the following occur:
 
  * the socket is closed
- * a new message is sent to a new destination EID
  * an implementation-defined timeout expires
 
 Because the "tag space" is limited, it may not be possible for the kernel to
@@ -716,8 +720,7 @@ call will fail with errno `EAGAIN`. This is analogous to the UDP behaviour when
 a local port cannot be allocated for an outgoing message.
 
 The implementation-defined timeout value shall be chosen to reasonably cover
-standard reply timeouts. If necessary, this timeout may be modified through the
-`MCTP_TAG_CONTROL` socket option.
+standard reply timeouts.
 
 For applications that expect to perform an ongoing message exchange with a
 particular destination address, they may use the `connect()` call to set a
@@ -848,22 +851,24 @@ functions.
 ## Including message-type byte in send/receive buffers ##
 
 This design specifies that message buffers passed to the kernel in send syscalls
-and from the kernel in receive syscalls will have the message type byte as the
-first byte of the buffer. This corresponds to the definition of a MCTP message
-payload in DSP0236.
+and from the kernel in receive syscalls will not have the message type byte as
+the first byte of the buffer. This means that the message buffer format differs
+from to the definition of a MCTP message payload in DSP0236; the message type
+byte is transferred to/from the kernel through the `addr.smctp_addr`, rather
+than the message payload.
 
-This somewhat duplicates the type data provided in `struct sockaddr_mctp`; it's
-superficially possible for the kernel to prepend this byte on send, and remove
-it on receive.
+The message types need to be passed in a `struct sockaddr_mctp`, as this
+allows the appliation to perform a type-specific `bind()`, in order to
+receive incoming requests for a particular type. By excluding the type
+value from the message buffer, we avoid duplicating the type data provided in
+`struct sockaddr_mctp`, and a class of user errors where these types do not
+match.
 
-However, the exact format of the MCTP message payload is not precisely defined
-by the specification. Particularly, any message integrity check data (which
-would also need to be appended / stripped in conjunction with the type byte) is
-defined by the type specification, not DSP0236. The kernel would need knowledge
-of all protocols in order to correctly deconstruct the payload data.
-
-Therefore, we transfer the message payload as-is to userspace, without any
-modification by the kernel.
+The exact format of the MCTP message payload is not precisely defined by the
+specification. Because of this, any message integrity check (MIC) data (whose
+presence may be indicated by the message type byte) is left included in the
+message buffers. This avoids the kernel needing to be aware of protocol-specific
+MIC formats.
 
 ## MCTP message-type specification: using `sockaddr_mctp.smctp_type` rather than protocol ##
 
