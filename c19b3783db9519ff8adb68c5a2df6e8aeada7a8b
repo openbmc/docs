@@ -109,6 +109,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8572949b_cf6f033e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001093
+      },
+      "writtenOn": "2022-03-23T12:37:29Z",
+      "side": 1,
+      "message": "@Jeremy sure as you have suggested the discovery and management of endpoints shall be handled by a dedicated process but that process should abstractly handle both MCTP and RBT endpoints.\n\n@Tom I agree and i will add more detail on how PLDM requests are further transitioned at MCTP and RBT layer.\nbut the basic idea is we first  discover MCTP and RBT endpoints and create a one to one map of these endpoints MCTP example : (TID\u003c-\u003eEID\u003c-\u003eSOCKET) .\nwhen sending the PLDM requests to the endpoints, a common PLDM transport wrapper api is called which accepts only the TID of a pldm endpoint  and the PLDM request as parameters.Then internally the PLDM transport wrapper api checks the one-to-one TID map which we have created to get the corresponding socket connection(MCTP socket or NCSI socket) to send the request as respective transport layer request(MCTP or RBT).",
+      "parentUuid": "f38c3c01_e388c016",
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e7403ce_4f2bf7c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001093
+      },
+      "writtenOn": "2022-03-23T12:37:29Z",
+      "side": 1,
+      "message": "I think this transport wrapper necessarily need not to be made as library, but it\u0027s apis should be used by the pldmd daemon for pldm requests.",
+      "parentUuid": "f38c3c01_e388c016",
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88f57669_17a0856b",
         "filename": "designs/pldm-transport-layer-wrapper.md",
         "patchSetId": 4
@@ -480,6 +516,30 @@
       "side": 1,
       "message": "Yep, agree with Tom here (and see my comment above). Can you clarify what you mean by \"when the PLDM service is called\"? I don\u0027t quite understand the flow behind discoverTIDs()",
       "parentUuid": "36c7a94a_dc264884",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 49
+      },
+      "revId": "c19b3783db9519ff8adb68c5a2df6e8aeada7a8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84c34780_bb296ada",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1001093
+      },
+      "writtenOn": "2022-03-23T12:37:29Z",
+      "side": 1,
+      "message": "The idea here is to have a dedicated process which does the discovery of both MCTP and RBT based endpoints.so this is not need to be PLDM wrapper to call discoveryTID() routines, but the PLDM daemon can add support for discovery of RBT based endpoints as well.",
+      "parentUuid": "cdd828f4_4c38795e",
       "range": {
         "startLine": 177,
         "startChar": 0,
