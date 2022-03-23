@@ -158,6 +158,24 @@
       "parentUuid": "a1fe4662_acd08673",
       "revId": "16182ec1c0cbf883d35df4d05eb350974b217bd4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80215167_127fb840",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-03-23T01:13:25Z",
+      "side": 1,
+      "message": "Problem with Nuvoton LPC is that the shared memory buffer is only 4KB which we have identified as not being enough for our usecase (we expect each payload to up to ~1KB and 4KB will overflow with 4 messages, which we\u0027re not comfortable with).\n\nAlso, another concern that was brought up was - would there be a lot of overhead in getting the host to talk MCTP? Again, I\u0027m not too familiar with MCTP and I\u0027ll have to consult the BIOS folks, but there may be limitation on what the BIOS can perform.",
+      "parentUuid": "27323aee_18c54098",
+      "revId": "16182ec1c0cbf883d35df4d05eb350974b217bd4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
