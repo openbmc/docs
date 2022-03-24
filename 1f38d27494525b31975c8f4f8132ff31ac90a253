@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "bb64d18f_7d90b4ad",
         "filename": "designs/webserver-test.md",
@@ -14,10 +15,10 @@
       "side": 1,
       "message": "How about optionally matching a regular expression?",
       "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "d062eb5a_1a7bfcdd",
         "filename": "designs/webserver-test.md",
@@ -32,10 +33,10 @@
       "message": "nope.  Having wildcards leads to abuse, and the possibility that a serial number could change, and not get caught by the test harness.  Also, it means that the generated test files can no longer be used to build/look at an example implementation of a machine anymore, and I think that\u0027s important to be able to compare exact machines.\n\nI would be hard against any kind of fuzzy matching.  The only exception I see could be for sensors values, which are expected to vary a bit, but those are going to be a range, not a regex.",
       "parentUuid": "bb64d18f_7d90b4ad",
       "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "4d1196e6_97a96e2a",
         "filename": "designs/webserver-test.md",
@@ -50,10 +51,10 @@
       "message": "Done",
       "parentUuid": "d062eb5a_1a7bfcdd",
       "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": false
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "32bef9d2_19d9b504",
         "filename": "designs/webserver-test.md",
@@ -68,10 +69,28 @@
       "message": "Also, keep in mind that in general I want these to be exact matches of the resource, not json-aware matches, so if we do something like change the order of keys in an object, even if it\u0027s allowed, and reasonable to change I want to be aware of it and have the tests fail.",
       "parentUuid": "4d1196e6_97a96e2a",
       "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d90cae81_4ed26146",
+        "filename": "designs/webserver-test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-24T19:46:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32bef9d2_19d9b504",
+      "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "6875094e_0a6c292c",
         "filename": "designs/webserver-test.md",
@@ -85,10 +104,10 @@
       "side": 1,
       "message": "I would like a optional parameter to specify a time window.\nSay the 3 times on OpenBMC machine xyz it took 3.0, 2.7, and 3.2 minutes.\nThen I could expect the time to take at least 2.5 minutes and less than 3.5 minutes,\nthus at 4.0 (for example) the test tool could stop itself and fail the test.",
       "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "5788dad6_f77dd7b0",
         "filename": "designs/webserver-test.md",
@@ -103,10 +122,10 @@
       "message": "I think that\u0027s explicitly covered on #6.  I\u0027d rather not have a user-settable time window, because it will lead to arbitrary decisions.  Overall, I\u0027d like to intentionally limit the degrees of freedom to avoid conditions where one machine runs the tool one way, one machine runs the tool another way.  With that said, if we really need it, I\u0027d like to see it be a per-machine thing.",
       "parentUuid": "6875094e_0a6c292c",
       "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "66eecc27_04582058",
         "filename": "designs/webserver-test.md",
@@ -121,10 +140,10 @@
       "message": "Done",
       "parentUuid": "5788dad6_f77dd7b0",
       "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": false
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "8eee8ee0_939f69e2",
         "filename": "designs/webserver-test.md",
@@ -138,10 +157,10 @@
       "side": 1,
       "message": "If the test tool is running on the BMC itself, what are your thoughts of having the logs optionally be saved on a remote machine?",
       "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "cf730592_1f625973",
         "filename": "designs/webserver-test.md",
@@ -156,10 +175,10 @@
       "message": "I don\u0027t expect the logs to be very big, but I had imagined a mode where instead of writing actual files, it just wrote files to one big tar.gz that you could scp off the machine later, just to avoid running out of ram.  I\u0027d probably say that how/where to get logs off the machine is out of scope for this tool.  You can specify where you want the logs to go, and the tool will write them there, be it an NFS share, an sshfs implementation, or just a tmpfs in ram, I\u0027d like the tool not to be in charge of that to keep it simple.",
       "parentUuid": "8eee8ee0_939f69e2",
       "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "b5321b40_72e2c723",
         "filename": "designs/webserver-test.md",
@@ -174,8 +193,7 @@
       "message": "Done",
       "parentUuid": "cf730592_1f625973",
       "revId": "1f38d27494525b31975c8f4f8132ff31ac90a253",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": false
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
