@@ -123,6 +123,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73dc4570_0c19de8d",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-03-25T01:56:58Z",
+      "side": 1,
+      "message": "I tried it both ways, and \"later retrieval\" still seems to flow the best for me. There is also similar phrasing on line 18.",
+      "parentUuid": "bbaf3875_3e521456",
+      "range": {
+        "startLine": 125,
+        "startChar": 34,
+        "endLine": 125,
+        "endChar": 49
+      },
+      "revId": "9ee0f3724c94d14aca8b8345b863f877a8f67b47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8517df75_256496a6",
@@ -146,6 +170,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca6a8219_14f7c2fe",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-03-25T01:56:58Z",
+      "side": 1,
+      "message": "Reworded it, to be more clear. The intention is to disallow someone from creating ExternalStorer instances or entries with the identifier \"index.json\" which would result in a naming conflict with the special usage of this filename here.\n\nIt doesn\u0027t matter if it\u0027s an internal daemon directly manipulating the filesystem, or an external user using HTTP operations. Although not said in the design document explicitly (I\u0027m saving that for the API document), there is a 1:1 relationship between the \"Id\" field (the suffix of the URL) and the filename on disk. So, if someone creates an object with \"Id\" of \"index.json\", they have just caused a conflict. The text here seeks to make this a prohibited operation.",
+      "parentUuid": "8517df75_256496a6",
+      "range": {
+        "startLine": 143,
+        "startChar": 1,
+        "endLine": 144,
+        "endChar": 33
+      },
+      "revId": "9ee0f3724c94d14aca8b8345b863f877a8f67b47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "245308d8_67c8b6aa",
@@ -159,6 +207,30 @@
       "writtenOn": "2022-03-25T00:21:47Z",
       "side": 1,
       "message": "Although not checked in - may be good to note what the document is called at the moment, so that it can be easily referenced: (external-storer-api.md)",
+      "range": {
+        "startLine": 170,
+        "startChar": 21,
+        "endLine": 170,
+        "endChar": 40
+      },
+      "revId": "9ee0f3724c94d14aca8b8345b863f877a8f67b47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b9850b_99c53adb",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-03-25T01:56:58Z",
+      "side": 1,
+      "message": "I added the URL to the Gerrit change for that, which is a stable link (it remains valid even after the change is submitted).",
+      "parentUuid": "245308d8_67c8b6aa",
       "range": {
         "startLine": 170,
         "startChar": 21,
