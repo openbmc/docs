@@ -113,6 +113,44 @@ warning as the inventory that it contains is warning at a global level.
 A new daemon to track global health state. Although this would be difficult
 to reuse to track individual component health.
 
+### Health Rollup With Extra Dbus Support
+
+The current health rollup implementation is hard to be applied universally cross
+different modules like sensor and chassis. Each module has its own way to
+determine the health status and bmcweb does not buffer these health statuses
+during runtime in each module implmentation. Also, relationships between objects
+in different modules cannot be easily figured out through existing associations
+and ObjectMapper tree provided by dbus. In order to collect health statuses of
+all descendants, it is required to not only collect children from multiple
+associations but also traverse the association tree since the associations of an
+object only cover direct children. The latter action needs extra efforts to be
+implemented as bmcweb consists of asynchronous operations and some parents might
+have shared children. For ObjectMapper, it is also hardly to get all descendants
+because they might not be subtrees of the ancestor object like ancestor chassis
+and its descendant sensors.
+
+Therefore, an alternative solution is directly providing both a status interface
+,`xyz.openbmc_project.State.Decorator.Status`, and an assocation of descendants,
+`health_rollup`, on dbus.
+
+`xyz.openbmc_project.State.Decorator.Status` has a `Health` property with three
+possible values which are just "OK", "Warning" and "Critical". Users can update
+the `Health` property based on their own health checking logics. It should be
+noticed that this health rollup alternative itself is not reponsible for health
+updates.
+
+`health_rollup` includes all descendant object paths but not just those of
+direct children. The rollup health can be easily figured out by checking all
+`Health` properties of the object and its descendants. It is the responsibility
+of association registrators to unflatten the device tree in order to create the
+`health_rollup` association. If a device is a leaf device which means it has no
+descendant, it will not have the Redfish `Status.HealthRollup` field but only
+`Status.Health` since health rollup does not apply to it.
+
+With this alternative, users can indeed achieve health rollup on device trees
+and flexibly update device health without being limited by existing OpenBMC
+interfaces and properties.
+
 ## Impacts
 
 
