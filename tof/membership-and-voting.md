@@ -53,13 +53,13 @@ end (sorted by term conclusion followed by alphabetically by preferred name):
 
 | Name | Term Conclusion |
 |:-----|:---------------:|
-| Deepak Kodihalli | 2022-04-01 |
-| Lei YU | 2022-04-01 |
-| Patrick Williams | 2022-04-01 |
-| Richard Thomaiyar | 2022-04-01 |
 | Andrei Kartashev | 2022-10-01 |
 | Brad Bishop | 2022-10-01 |
 | Ed Tanous | 2022-10-01 |
+| Andrew Jeffery | 2023-04-01 |
+| Jason Bills | 2023-04-01 |
+| Patrick Williams | 2023-04-01 |
+| William Kennington | 2023-04-01 |
 
 ## OpenBMC Development Community
 
