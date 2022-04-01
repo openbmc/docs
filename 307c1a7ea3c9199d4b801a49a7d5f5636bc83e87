@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce0ff9f2_a6766b50",
+        "filename": "designs/external-storer-api.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-04-01T02:48:49Z",
+      "side": 1,
+      "message": "Good catch! I was wondering if somebody would notice that. I noticed it myself, right after I sent out the document for review. Fixed it.\n\nA subtle point is that, in the inner layer, \"Id\" is not special. It\u0027s just an ordinary customizable field, like anything else one might wish to add. The \"Id\" field is only special in the outer layer (to identify the instance itself), and in any entries later added.",
+      "parentUuid": "c2b9f6bb_03065a70",
+      "range": {
+        "startLine": 145,
+        "startChar": 11,
+        "endLine": 145,
+        "endChar": 21
+      },
+      "revId": "307c1a7ea3c9199d4b801a49a7d5f5636bc83e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21a51445_f5dd95a6",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-03-30T06:42:23Z",
       "side": 1,
       "message": "In this example isn\u0027t the `Id` (\"ExampleAlerts\") in line 211 provided by the external user (line 141), not automatically-generated?",
+      "range": {
+        "startLine": 221,
+        "startChar": 4,
+        "endLine": 221,
+        "endChar": 39
+      },
+      "revId": "307c1a7ea3c9199d4b801a49a7d5f5636bc83e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efd95de4_bd3403ab",
+        "filename": "designs/external-storer-api.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-04-01T02:48:49Z",
+      "side": 1,
+      "message": "What I meant to say by \"automatically-generated\" is that they are automatically derived from the filename, as it is stored on disk. There is no need for these fields to appear in the file content itself, as they are automatically generated when the GET command is ran.\n\nI also reworded this accordingly.",
+      "parentUuid": "21a51445_f5dd95a6",
       "range": {
         "startLine": 221,
         "startChar": 4,
