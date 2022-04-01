@@ -16,6 +16,24 @@
       "message": "Some comments from the perspective of someone with only a little background on CPU\u003c-\u003eBMC interaction:\n\nI first thought SMM refers to a hardware module but after searching a bit I learned it refers to the System Management Mode.\n\nBased on what I read, SMM is entered by a system management interrupt, and it runs transparently to the OS. From this, it seems the timeframe the CPU spends in SMM is usually very short, and if I understand correctly, this necessitates the \"fire and forget\" requirement.\n\nThe ring buffer is a good design as this has been widely used in various scenarios. The control data (specifically \"BMC read address and overflow flag\") seem to be adequate for addressing the cases when the CPU writes data too quickly and allows a flexible range of polling rates.\n\nI\u0027m not super familiar with related protocols but I can see the benefit of not requiring handshakes and doing batch processing based on the flags on either side.\n\nOverall this document clearly describes the issue it addresses, and has solutions to some of the concerns I had initially (such as when the CPU writes too fast).",
       "revId": "d02560a9e0ee5ce8f00e5346615496461a3c71ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e61559bc_f473fb27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-04-01T17:54:52Z",
+      "side": 1,
+      "message": "Thank you Sui for the thorough review. I realize that SMM may not be familiar to everyone and I should probably have it written out for the first time the Acronym is used. I\u0027ll update that.\n\nYes, we want to minimize the time spent in SMM as much as possible as it interrupts the whole CPU - leading to the other requirements.",
+      "parentUuid": "f0c6709d_44974bea",
+      "revId": "d02560a9e0ee5ce8f00e5346615496461a3c71ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
