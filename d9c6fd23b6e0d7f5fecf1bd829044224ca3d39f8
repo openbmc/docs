@@ -385,6 +385,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e0b8fca_30385403",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "\u003e Being able to store and produce schemas goes way beyond the intended design, and could probably use another design document all on its own for that, if that is a direction we wish to go down. I thought you did not want ExternalStorer doing any schema manipulation on its own, but rather, obeying schemas that others had already written.\n\nI\u0027m not following the above statement, and I suspect you\u0027ve misunderstood me;  Must be \"able\" to store and produce schemas to the redfish standard.  This involves the things you\u0027ve been working on around now properties work, how collections work, ect.  This does not mean that this design needs to verify all schemas.\n\nIdeally requires should be able to become a test, and the test for this would be (that I think you\u0027ve already written) write some compliant redfish to external storer, and ensure that it can be produced correctly.\n\n\u003e \n\u003e As for security compromises, see the Impacts section for that, I called attention to the security requirements there.\n\nLets call it out in requirements, because it is a requirement, and a requirement is phrased differently, in a way where we can make clear the security intent.\n\n\u003e \n\u003e As for setting the ID, and auto-generating an ID if not provided, that\u0027s an API detail, and it\u0027s in the companion API document.\n\nDisagree, I would like it in the requirements so it\u0027s part of the test plan.  We will need to test both paths, and I would like that called out.  If you\u0027d rather add it to your test section, that\u0027s fine, but I\u0027d like it somewhere in here, because as we\u0027ve found, it\u0027s important.\n\n\u003e \n\u003e As for adding resources at any point in the Redfish tree, isn\u0027t that not allowed by schema? The point of a schema is to restrict what can be done arbitrarily, so that data remains organized.\n\n\nAgreed, so lets word it very precisely: \"Must be able to add resources to anywhere in the Redfish tree that is allowed by the standard.\"  Does that seem better?",
+      "parentUuid": "c1a52c2f_7b087016",
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f94d34a0_0e040373",
         "filename": "designs/external-storer.md",
         "patchSetId": 7
@@ -432,6 +450,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "615293d3_3dd74e6f",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "The point is that I, someone pretty ok in my redfish knowledge, am having trouble translating, and because the whole point is to follow the standard, this should be readable by someone with knowledge of the standard.  I\u0027m not sure what a container is in the redfish schemas, can you elaborate?",
+      "parentUuid": "14599360_c44a4cb2",
+      "range": {
+        "startLine": 99,
+        "startChar": 64,
+        "endLine": 99,
+        "endChar": 75
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1ebef106_ab3516ae",
         "filename": "designs/external-storer.md",
         "patchSetId": 7
@@ -467,6 +509,30 @@
       "side": 1,
       "message": "The point I was making is that the Redfish object hierarchy can\u0027t just be altered at will, the schemas limit where we are allowed to make changes, so care has to be taken as to where to instantiate the ExternalStorer hooks at. The \"Oem\" section, if it is freeform, would be a good place for an ExternalStorer hook, if desired.",
       "parentUuid": "1ebef106_ab3516ae",
+      "range": {
+        "startLine": 113,
+        "startChar": 55,
+        "endLine": 115,
+        "endChar": 21
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e459fb01_6dfea7f7",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "\u003e The point I was making is that the Redfish object hierarchy can\u0027t just be altered at will, the schemas limit where we are allowed to make changes, so care has to be taken as to where to instantiate the ExternalStorer hooks at. The \"Oem\" section, if it is freeform, would be a good place for an ExternalStorer hook, if desired.\n\nOk, what you wrote in the comment seems reasonable and a lot more clean than the highlighted text, lets get it reword it a little bit, and the content of your comment can probably just replace that text.",
+      "parentUuid": "061646d9_5fd7da8d",
       "range": {
         "startLine": 113,
         "startChar": 55,
@@ -561,6 +627,30 @@
       "side": 1,
       "message": "No, the hook will always contain a URL fragment, as the top layer. Things would get added underneath that fragment. When we have more locations we want to add ExternalStorer functionality to, we can instantiate additional ExternalStorer hook objects as needed.",
       "parentUuid": "27d77616_3b7cd326",
+      "range": {
+        "startLine": 116,
+        "startChar": 47,
+        "endLine": 116,
+        "endChar": 57
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f378d0bf_014584de",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "Url fragements (ie rfc3986 section 3.5) I would not expect to show up in external storer, although you do bring up a good point that we should have a requirement for filtering/rejecting, or at least defining behavior when an odata.id is sent to us with a fragment in it.\n\n\u003e When we have more locations we want to add ExternalStorer functionality to, we can instantiate additional ExternalStorer hook objects as needed.\n\nLike I talk about in the other section and have talked with you a couple times, this would require the BMC to have all possible redfish nodes with hooks on them, which from a coding perspective doesn\u0027t really scale (unless maybe you generated them from the schemas?  Something to consider).",
+      "parentUuid": "ced778e5_1497326e",
       "range": {
         "startLine": 116,
         "startChar": 47,
@@ -761,6 +851,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16d97e38_b1a27fd9",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "I would expect the blast radius to be relatively easy to handle with a find and replace, being correct is the most important thing in a design doc level.\n\nYes, you got it exactly right, there would be the folder you mention.  I only say /run/bmwcweb/redfish because that\u0027s where the redfish tree technically begins, so we\u0027re essentially saying the same thing.  Whichever you want to put in the doc is fine.",
+      "parentUuid": "dc6b54db_a01a5854",
+      "range": {
+        "startLine": 134,
+        "startChar": 2,
+        "endLine": 134,
+        "endChar": 12
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eea988cc_d3f4580a",
         "filename": "designs/external-storer.md",
         "patchSetId": 7
@@ -856,6 +970,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dad4fc1d_441e3b05",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "TO be clear, I\u0027m not saying the section needs a new title, or to violate the template.  Also, to Brandons point, the template is a starting point, and can be adjusted as the designs require, hence the name \"template\".  It\u0027s there to ensure that the information that is recommended gets captured.\n\nWhat you\u0027ve described here isn\u0027t really an alternatives considered section, it\u0027s more of a design section, and should go in the design section.  The alternatives considered section should be a thought around \"what other designs could\u0027ve worked here\"",
+      "parentUuid": "fcdb98a3_e8e20517",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 26
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c98d6af_0e4ca44b",
         "filename": "designs/external-storer.md",
         "patchSetId": 7
@@ -903,6 +1041,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b13b6246_fcf2c22b",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "We\u0027ve talked before about how this differs significantly from dbus-sensors objects.  If this is operating on one node at a time, the existing dbus designs similar to how external sensor works (dbus daemon hosts object, bmcweb picks up dbus daemon and modifies it) would\u0027ve worked just fine.  That\u0027s one of the major distinctions of this feature.\n\n\u003e instead of trying to add a wildcard approach that would try to support every device supported by Linux, deliberately take a slower pace, adding devices to an allowlist and then only supporting those, once they are known to actually be tested and needed by somebody.\n\nThat\u0027s not why the design went that way.  The fact that the device names and the linux names match is entirely because they\u0027re both based on the product name, but we\u0027re getting off on a tangent a bit that\u0027s unrelated.   Lets focus on this design and what\u0027s needed to make this feature usable for the user.",
+      "parentUuid": "91d33819_c0b30572",
+      "range": {
+        "startLine": 153,
+        "startChar": 46,
+        "endLine": 153,
+        "endChar": 62
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68a86fea_6e7d367a",
         "filename": "designs/external-storer.md",
         "patchSetId": 7
@@ -938,6 +1100,30 @@
       "side": 1,
       "message": "This sentence is very useful, as it backs up what I said in the previous comment.",
       "parentUuid": "68a86fea_6e7d367a",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 65
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90321b25_cdadcbc4",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "Where I struggle as the dbus-sensors author is that this statement isn\u0027t really true in terms of \"decisions\", but it\u0027s unrelated to this design doc, it\u0027s not worth calling out here and working to the bottom.  If you\u0027re interested in how the dbus-sensors history went, and why the design is the way it is, I\u0027m happy to chat outside of this review, but the TL; DR, is that the allow list in PsuSensor have nothing to do with how linux devices work (in fact, if we could at a design level, we would\u0027ve done the opposite and removed the allowlist), and everything to do with how Configurations are parsed per system.",
+      "parentUuid": "79462128_8faa4c3d",
       "range": {
         "startLine": 155,
         "startChar": 0,
@@ -1044,6 +1230,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8bc633d_a0164d61",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "Sure, no disagreement there, but my point still stands, we should mention server manageability as a targeted reason why this feature exists.",
+      "parentUuid": "358a514b_a1a89e4c",
+      "range": {
+        "startLine": 167,
+        "startChar": 16,
+        "endLine": 169,
+        "endChar": 5
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7124a35_cd99197b",
         "filename": "designs/external-storer.md",
         "patchSetId": 7
@@ -1079,6 +1289,30 @@
       "side": 1,
       "message": "The design document template said to mention security impacts in this section, and this is a security impact. Should security be redundantly mentioned in two different places?",
       "parentUuid": "e7124a35_cd99197b",
+      "range": {
+        "startLine": 178,
+        "startChar": 20,
+        "endLine": 181,
+        "endChar": 58
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7afa9fe_07ba4cfb",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "There\u0027s a nuace between the two.  A requirement would be to securely handle odata IDs, with the goal of having no impact.  Your impact section would call out something like \"if it were possible to inject data into odata.ids, this would cause a security concern, and should be tested\".  See the difference?",
+      "parentUuid": "9df0466f_ac11c2a8",
       "range": {
         "startLine": 178,
         "startChar": 20,
@@ -1136,6 +1370,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efb1a064_00f4bf1e",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "The filesystem itself is cached.\n\nWith that said, this was a passing comment.  If you want to keep this stanza I\u0027m fine with it.",
+      "parentUuid": "d3bfb2ce_af9d8443",
+      "range": {
+        "startLine": 183,
+        "startChar": 12,
+        "endLine": 183,
+        "endChar": 48
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29d883f0_8908b792",
@@ -1167,6 +1425,24 @@
       "side": 1,
       "message": "I\u0027m not sure what you mean. What is meant by \"channels\" in this context? Do you think we should add a definition flag, or other global feature toggle, to provide a way to globally disable ExternalStorer throughout bmcweb if not desired?",
       "parentUuid": "29d883f0_8908b792",
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38353c8d_a0b7c414",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "\"channels\" would be for example, if something is interacting with externalstorer from localhost, versus accessing it from out of band (ethernet) versus accessing it from in-band.  Do we need different behaviors there?\n\n\u003eDo you think we should add a definition flag, or other global feature toggle, to provide a way to globally disable ExternalStorer throughout bmcweb if not desired?\n\nDepends heavily on the impact, and that\u0027s something to be discussed with the greater bmcweb community.  I\u0027d probably start by asking on discord.",
+      "parentUuid": "3d0785ed_e68d3428",
       "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1208,6 +1484,30 @@
       "side": 1,
       "message": "That would be just what a functional test would do, though. Looking at the resulting filesystem, to see what changed, is a great way to verify that an operation worked as intended.",
       "parentUuid": "4dd65ddd_3ebeafd3",
+      "range": {
+        "startLine": 191,
+        "startChar": 64,
+        "endLine": 192,
+        "endChar": 41
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87f5891a_9f69a911",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "Functional tests can only operate on external APIs, of which in this design doc, the filesystem is not an external API.\n\nWith that said, this was a nit, so it\u0027s not that important, but something to consider when you start your testing.",
+      "parentUuid": "4f90a949_19467626",
       "range": {
         "startLine": 191,
         "startChar": 64,
@@ -1267,6 +1567,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1e3f649_5a6daaf7",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "That would be in scope for their design docs though.  This design doc is to call out the work that this feature is going to do, and it\u0027s expected that tests be written for it.  Just take out the word \"expected\", as it reads as \"other people will write the tests for this\" which I know is not your intent, but we should be clear here and scope this design doc on this feature.",
+      "parentUuid": "4c0de7ef_553818de",
+      "range": {
+        "startLine": 192,
+        "startChar": 69,
+        "endLine": 194,
+        "endChar": 27
+      },
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5dd4605e_86a56985",
         "filename": "designs/external-storer.md",
         "patchSetId": 7
@@ -1296,6 +1620,24 @@
       "side": 1,
       "message": "I\u0027m not sure what you mean by \"robot tests\". As for explicitly calling out the intended harness, isn\u0027t that an implementation detail, not for a design doc?",
       "parentUuid": "5dd4605e_86a56985",
+      "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc4041d_798a0b8f",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-02T02:29:21Z",
+      "side": 1,
+      "message": "Robot tests are the way the project writes tests today, and are present in the test repo on github.  No, it\u0027s not an implementation detail at this scope, because if you plan to write your own test harness, or use a DMTF approved test harness to do your testing, it significantly changes the scope of this design, and that\u0027s why this section is here, so we can assess if the test coverage you\u0027re planning will be enough.",
+      "parentUuid": "23d35de4_40f01428",
       "revId": "d9c6fd23b6e0d7f5fecf1bd829044224ca3d39f8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
