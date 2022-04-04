@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2b8f61e_7f938de9",
+        "filename": "designs/external-storer-api.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1001143
+      },
+      "writtenOn": "2022-04-04T19:02:06Z",
+      "side": 1,
+      "message": "Actually on second glance I\u0027m thinking we really should purposely ignore the user-provided \"Id\" from line 145 and keep this \"Id\" value as \"Entries\" after all (and state this in the doc). Here\u0027s my reasoning:\n\nAs I understand from the Redfish spec (v1.15.0), the last part of the \"@odata.id\" URI after the last forward slash (e.g. \"Entries\") is supposed to be the same as the \"Id\" value. Section \"9.13.5 Resource URI patterns annotation\" in the Redfish spec says \"The identifier term in the URI pattern shall match the Id string property for the corresponding resource\"\n\nRedfish Schema Supplement (v2021.4) section \"6.51.2 URIs\" shows the relevant LogEntry URI as \"/redfish/v1/Systems/{ComputerSystemId}/LogServices/{LogServiceId}/Entries/{LogEntryId}\", meaning the resource collection is at \"/redfish/v1/Systems/{ComputerSystemId}/LogServices/{LogServiceId}/Entries\". So it seems we don\u0027t have flexibility here with the ID value -- it should be \"Entries\".\n\nAlso in the Redfish spec section \"7.9 POST (create)\" it does say \"The service may ignore any service-controlled properties, such as Id , which would force the service to overwrite those properties.\"",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 234,
+        "endChar": 28
+      },
+      "revId": "673d68bb4932fba25313ad04ed0c0d7848134b11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
