@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "650f0dcb_8e7edcab",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-04-04T22:51:46Z",
+      "side": 1,
+      "message": "LogServices is the first, of hopefully many, integration hooks to be provided. LogServices had the greatest need for our initial implementation. Other than that, there\u0027s no reason why it was singled out for special treatment. ExternalStorer is intended to be generic enough to adapt to all endpoints that need it.",
+      "parentUuid": "a7955e5b_85bd6799",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 106,
+        "endChar": 13
+      },
+      "revId": "5308a49ac93fd8a6491883897198755fd9d1f604",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e570a237_6465ce98",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-04T18:28:13Z",
       "side": 1,
       "message": "How is this design related to the circular buffer that Brandon proposes? Is this covered somewhere?",
+      "range": {
+        "startLine": 164,
+        "startChar": 3,
+        "endLine": 164,
+        "endChar": 15
+      },
+      "revId": "5308a49ac93fd8a6491883897198755fd9d1f604",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd5a0b56_f7ba67a1",
+        "filename": "designs/external-storer.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-04-04T22:51:46Z",
+      "side": 1,
+      "message": "I\u0027m not sure of this circular buffer. I do plan to add a FIFO for automatically removing old entries as new entries fill up the maximum allowed storage space, though. The API document talks more about this.",
+      "parentUuid": "e570a237_6465ce98",
       "range": {
         "startLine": 164,
         "startChar": 3,
