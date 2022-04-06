@@ -33,6 +33,24 @@
       "message": "I haven\u0027t read this proposal yet, but I wanted to point out that there is also another design in progress for \"updating things other than the BMC\".  There is probably a good amount of overlap here.\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/docs/+/37950",
       "revId": "2d8d5e503ac44c62247d04df7f34ba021cb50593",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a5583f0_7472ad5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-04-06T20:30:30Z",
+      "side": 1,
+      "message": "Thanks for the link, I was not aware of it.\nThat design is proposing to extend phosphor-bmc-code-mgmt\u0027s ItemUpdater implementation to handle multiple devices or hosts.\n\nOur proposal is to add an ItemUpdater implementation to PSUSensor to handle updates for the same devices that it manages telemetry on to avoid issues from i2c interleaving.\n\nSince the two designs are meant to handle separate scenarios I think they can co-exist, but I will review more closely to see if there any similarities that can be shared between the two designs.",
+      "parentUuid": "f036b94f_6725b000",
+      "revId": "2d8d5e503ac44c62247d04df7f34ba021cb50593",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
