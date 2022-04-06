@@ -16,6 +16,178 @@
       "message": "Hi All,\n\nCould you please review this design doc and provide your comments if any.\n\nThanks,\nKumar.",
       "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4c7dced_c8b41442",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-06T15:34:24Z",
+      "side": 1,
+      "message": "There are still a number of commits from earlier reviews marked \"Unresolved\".  Please mark them as \"Resolved\" if you think they have been taken care of.",
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a318fe2_3b375c1c",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-06T15:34:24Z",
+      "side": 1,
+      "message": "I don\u0027t see any needs for this IMAGETYPE.  This should be covered by Compatible values.\n\n  com.facebook.Hardware.YosemiteV2.TwinLake.BIC\n  com.facebook.Hardware.YosemiteV2.TwinLake.BIOS\n  com.facebook.Hardware.YosemiteV2.Baseboard.VR",
+      "range": {
+        "startLine": 50,
+        "startChar": 14,
+        "endLine": 51,
+        "endChar": 48
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbae6fce_36569ca7",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-06T15:34:24Z",
+      "side": 1,
+      "message": "I don\u0027t see any update from my last comments on this paragraph.\n\nWhy is the service named \u0027Host\u0027 anything?  This is unclear to me.\nIf the service is for all hosts everywhere, maybe this is an appropriate name, but it certainly doesn\u0027t cover OpenPower hosts.  What are we scoping this to cover?  Name it appropriately.\n\nHonestly, the name doesn\u0027t really matter from a dbus perspective as long as it is unique.  Nobody should be looking it up by name anyhow.",
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13895908_ba2d0541",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-06T15:34:24Z",
+      "side": 1,
+      "message": "minor typo.",
+      "range": {
+        "startLine": 173,
+        "startChar": 11,
+        "endLine": 173,
+        "endChar": 16
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ce56df6_01a93c32",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-06T15:34:24Z",
+      "side": 1,
+      "message": "This is quite confusing the way you\u0027ve written this.  \"Revision\" makes it sound like you\u0027re talking about different versions of the BIOS and certainly we\u0027re not going to make a new compatible string for each BIOS revision.\n\nYou\u0027re really talking about board revisions here, so make that clear.\n\nI would expect the revision to be covered by the Compatible string as well, if that is important.  `com.facebook.Hardware.YosemiteV2.TwinLake.EVT.BIOS`?",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 61
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5a4abaf_174b1daf",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-06T15:34:24Z",
+      "side": 1,
+      "message": "This is a rather poor design to me.  It means we effectively get very few Progress percentage values.  Is there something better that can be done?\n\nThis seems like a fundamental flaw in the way you\u0027re trying to launch this by using arbitrary systemd service files.  Do we need to provide a dbus API for the subordinate services to be able to report back to the daemon Progress percentages?  (Can they just update the property themselves on a Progress interface hosted by the daemon?)",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 226,
+        "endChar": 38
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d085ba79_a6c8d4a5",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-06T15:34:24Z",
+      "side": 1,
+      "message": "\u0027can be\u0027 or \u0027will be\u0027?",
+      "range": {
+        "startLine": 239,
+        "startChar": 52,
+        "endLine": 239,
+        "endChar": 58
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "804b5339_8a0b6c60",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-06T15:34:24Z",
+      "side": 1,
+      "message": "Adding a new property to the existing Object.Delete doesn\u0027t seem workable because what you\u0027re asking for is very specific to the software update routine.  Object.Delete is used outside of update.\n\nWhy does the user need any control on this at all?  If all hardware we know of has been updated, wouldn\u0027t we automatically delete anyhow?",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 9
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
