@@ -233,17 +233,17 @@ repair.
 not meant to be executed directly by users shell or scripts.
 ```
 
-The FHS description for /usr/sbin refers to "system administration" but the
+The FHS description for `/usr/sbin` refers to "system administration" but the
 de-facto interpretation of the system being administered refers to the OS
 installation and not a system in the OpenBMC sense of managed system.  As such
-OpenBMC applications should be installed in /usr/bin.
+OpenBMC applications should be installed in `/usr/bin`.
 
 It is becoming common practice in Linux for daemons to now be moved to `libexec`
 and considered "internal use" from the perspective of the systemd service file
 that controls their launch.
 
 ### Resolution
-Install OpenBMC applications in /usr/bin/.
+Install OpenBMC applications in `/usr/libexec` or `/usr/bin/` as appropriate.
 
 ## Handling unexpected error codes and exceptions
 
