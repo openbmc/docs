@@ -21,12 +21,12 @@ add option to support additional input types in phosphor button interfaces
 and event handling.
 
 Currently handler events are only based on monitoring gpio events
-as input (power and reset).There may be cases where whe need to create
+as input (power and reset).There may be cases where we need to create
 button interface which monitors non gpio events
 and triggers button actions for example events based on dbus property changes.
 
 ## Requirements
-This feature is needed to support additonal phosphor button interfaces
+This feature is needed to support additional phosphor button interfaces
 corresponding to platform specific hardware buttons/MUX/Switches which are
 available in the front panel apart from existing power and reset button
 interfaces.
@@ -194,9 +194,9 @@ is derived and stored as a dbus property with name "Position".
 A separate interface for debug card host selector button is created.
 
 This button interface monitors the corresponding gpio lines for debug card
-host selecton button press and release event via sd-event based loop.
+host selection button press and release event via sd-event based loop.
 
-### OCP Debug card host selector buton dbus interface details :
+### OCP Debug card host selector button dbus interface details :
   1. Released(signal) - This is signal is triggered in the ocp debug card event
   handler when the ocp debug card button is pressed and released.
 
@@ -206,7 +206,7 @@ The host selector switch dbus property value is rollover to zero after Position
 value exceeds MaxPosition Value.
 
 This way when power and reset button press events are handled,
-the Host selector Position property is refered and based on the
+the Host selector Position property is referred and based on the
 Position respective power events are called.
 
 ## serial console MUX  interface

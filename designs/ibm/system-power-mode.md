@@ -83,7 +83,7 @@ https://github.com/open-power/docs/blob/master/occ/OCC_P9_FW_Interfaces.pdf
 
 Default values will also be defined for Power Mode and Idle Power Saver
 parameters for the system.  If the customer has not yet set any of these
-paramters, these default values will be used.  If/when the customer does
+parameters, these default values will be used.  If/when the customer does
 set any of these, that new customer parameter will become current and the
 default value will no longer be used.
 
@@ -101,7 +101,7 @@ to control system power usage)
 New interfaces that were described in the requirements section will be
 implemented.  Parameters should be able to be set via user interface or
 via Redfish.
-API impact - Add Redfish support fo new parameters as well as new user
+API impact - Add Redfish support for new parameters as well as new user
 interface to allow customer to set power mode and idle power saver settings
 Security impact - update of these parameters should be able to be restricted
 to specific users/groups (may not want any user updating these parameters)
@@ -111,7 +111,7 @@ which should normally happen once at boot time or when user changes parameters.
 The new code is only sending 2 additional commands which should complete
 within a few seconds.
 Developer impact - code to be written by OCC team with guidance from
-OpenBMC power managmenet team
+OpenBMC power management team
 Upgradability impact - None
 
 ## Testing
