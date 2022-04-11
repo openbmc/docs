@@ -95,7 +95,7 @@ osfp[0-1]        | Event-Only        | ns
 ```
 
 On the other hand, if the object name from the config file is not indexed. For
-exmaple, `/xyz/openbmc_project/inventory/item/cable`. The group handler will not
+example, `/xyz/openbmc_project/inventory/item/cable`. The group handler will not
 try to group it with anything and use 1 SDR ID for its presence state.
 See the following for an example output.
 ```

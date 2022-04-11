@@ -407,7 +407,7 @@ Another interface exposed by each object are stats under
 
 Depends on object path, object will expose different interface for mounting image.
 
-Mounting can be a time consuming task, so event driven mechanis has to be
+Mounting can be a time consuming task, so event driven mechanism has to be
 introduced. Mount and Unmount calls will trigger asynchronous action and will
 end immediately, giving appropriate signal containing status on task
 completion.
