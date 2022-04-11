@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c62b0cc_2955594c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-11T14:37:16Z",
+      "side": 1,
+      "message": "Sure.",
+      "parentUuid": "b4c7dced_c8b41442",
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a318fe2_3b375c1c",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-04-06T15:34:24Z",
       "side": 1,
       "message": "I don\u0027t see any needs for this IMAGETYPE.  This should be covered by Compatible values.\n\n  com.facebook.Hardware.YosemiteV2.TwinLake.BIC\n  com.facebook.Hardware.YosemiteV2.TwinLake.BIOS\n  com.facebook.Hardware.YosemiteV2.Baseboard.VR",
+      "range": {
+        "startLine": 50,
+        "startChar": 14,
+        "endLine": 51,
+        "endChar": 48
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c794182_dd8216a5",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-11T14:37:16Z",
+      "side": 1,
+      "message": "Done. Removed the IMAGETYPE.",
+      "parentUuid": "9a318fe2_3b375c1c",
       "range": {
         "startLine": 50,
         "startChar": 14,
@@ -75,6 +117,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cc09cd1_5e56bf0f",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-11T14:37:16Z",
+      "side": 1,
+      "message": "Ack. OpenPower hosts are in our scope.\nUpdated with Device.updater",
+      "parentUuid": "fbae6fce_36569ca7",
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13895908_ba2d0541",
@@ -88,6 +148,30 @@
       "writtenOn": "2022-04-06T15:34:24Z",
       "side": 1,
       "message": "minor typo.",
+      "range": {
+        "startLine": 173,
+        "startChar": 11,
+        "endLine": 173,
+        "endChar": 16
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5982411_05d278fa",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-11T14:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13895908_ba2d0541",
       "range": {
         "startLine": 173,
         "startChar": 11,
@@ -121,6 +205,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c3e9e38_40180dcd",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-11T14:37:16Z",
+      "side": 1,
+      "message": "Done. Updated the Revisions like EVT/DVT/PVT in compatible strings.",
+      "parentUuid": "8ce56df6_01a93c32",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 61
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5a4abaf_174b1daf",
@@ -134,6 +242,30 @@
       "writtenOn": "2022-04-06T15:34:24Z",
       "side": 1,
       "message": "This is a rather poor design to me.  It means we effectively get very few Progress percentage values.  Is there something better that can be done?\n\nThis seems like a fundamental flaw in the way you\u0027re trying to launch this by using arbitrary systemd service files.  Do we need to provide a dbus API for the subordinate services to be able to report back to the daemon Progress percentages?  (Can they just update the property themselves on a Progress interface hosted by the daemon?)",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 226,
+        "endChar": 38
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7f661cc_33f34850",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-11T14:37:16Z",
+      "side": 1,
+      "message": "Based on the Review comment on PS8. Modified as Update progress can be calculated using systemd service states.\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/docs/+/37950/8/designs/software-update-for-multiple-devices.md\n\nhttps://github.com/openbmc/phosphor-bmc-code-mgmt/blob/0cd6d84b0a58a950e691835f3241395d4628a6d4/ubi/flash.cpp#L30.\n\nDo we need to provide a dbus API for the subordinate services to be able to report back to the daemon Progress percentages?  (Can they just update the property themselves on a Progress interface hosted by the daemon?)\n\nYes. I think, progress can be updated in the dbus property is fine. Itemupdater can read from that progress dbus property.",
+      "parentUuid": "c5a4abaf_174b1daf",
       "range": {
         "startLine": 223,
         "startChar": 0,
@@ -167,6 +299,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3dc1855_12eeddfc",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-11T14:37:16Z",
+      "side": 1,
+      "message": "Done. Updated as \u0027will be\u0027.",
+      "parentUuid": "d085ba79_a6c8d4a5",
+      "range": {
+        "startLine": 239,
+        "startChar": 52,
+        "endLine": 239,
+        "endChar": 58
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "804b5339_8a0b6c60",
@@ -180,6 +336,30 @@
       "writtenOn": "2022-04-06T15:34:24Z",
       "side": 1,
       "message": "Adding a new property to the existing Object.Delete doesn\u0027t seem workable because what you\u0027re asking for is very specific to the software update routine.  Object.Delete is used outside of update.\n\nWhy does the user need any control on this at all?  If all hardware we know of has been updated, wouldn\u0027t we automatically delete anyhow?",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 9
+      },
+      "revId": "213c6fa3b586feb8c3683df412093c2fa269524a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abe61b11_fe00d771",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-11T14:37:16Z",
+      "side": 1,
+      "message": "\u0027AutoDelete\u0027 option is might need for below case2. Assuming we have 4 hosts.\n\nExample cases:\n\n1. Delete the images if all the 4 Devices/hosts are updated. (Deleted automatically. use don\u0027t have any control)\n2. Delete the images if only 2 hosts are intended to update now and 2 hosts are not intended to update anymore.(Somehow user need to specify to delete those 2 hosts which are not updated).\n3. Will not delete the images if only 2 hosts are intended to update now and 2 hosts are intended to update later. \n\nIn the case2, user need to specify to delete the hosts via configuration or something. That\u0027s the reason we introduced \u0027AutoDelete\u0027 option here.",
+      "parentUuid": "804b5339_8a0b6c60",
       "range": {
         "startLine": 251,
         "startChar": 0,
