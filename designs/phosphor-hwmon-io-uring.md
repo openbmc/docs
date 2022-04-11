@@ -123,7 +123,7 @@ information for processing the read values and handling errors. Such
 information includes open file descriptor from the `open()` system call,
 number of retries remaining for reading this sensor when errors occur, etc.
 
-Each call to access the read value of a particaular sesnor in the read cache
+Each call to access the read value of a particular sesnor in the read cache
 will not only return the cached value but will also submit a SQE (submission
 queue event) to io_uring for that sensor; this SQE acts as a read request
 that will be sent to the kernel. The implementation maintains a set of sensors

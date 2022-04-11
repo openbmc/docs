@@ -163,7 +163,7 @@ the GPIO will be utilized to enhance the reboot reason).
 If the power recovery software sees the `PinholeReset` reason within the
 `RebootCause` then it will not implement any of its policy. Future BMC
 reboots which are not pin hole reset caused, will cause `RebootCause` to go
-back to a default and therefore power recovery policy will be reenabled on that
+back to a default and therefore power recovery policy will be re-enabled on that
 BMC boot.
 
 The phosphor-state-manager chassis software will not log a blackout error
