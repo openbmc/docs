@@ -7,6 +7,7 @@ Primary assignee: Andrew Geissler (geissonator)
 Other contributors:
 
 Created: Feb 20, 2020
+Updated: Apr 12, 2022
 
 ## Problem Description
 Some groups, for example a manufacturing team, have a requirement for the BMC
@@ -43,6 +44,8 @@ contain hardware callouts.
   - The halt must be obvious to the user when it occurs
     - The log which causes the halt must be identifiable
   - The halt must only stop the chassis/host instance that encountered the error
+  - The halt must allow the host firmware the opportunity to gracefully shut
+    itself down
   - The halt must stop the host (run obmc-host-stop@X.target) associated with
     the error and attempt to leave system in the fail state (i.e. chassis power
     remains on if it is on)
@@ -89,9 +92,10 @@ the block)
 
 See the phosphor-logging [callout][4] design for more information on callouts.
 
-The appropriate `obmc-host-stop@.target` instance will also be called when
-`obmc-bmc-quiesce.target` is started. This ensures the host is stopped as soon as
-the error is discovered.
+A new `obmc-host-graceful-quiesce@.target` systemd target will be started.
+This new target will ensure a graceful shutdown of the host is initated
+and then start the `obmc-host-quiesce@.target` which will stop the host
+and move the host state to Quiesced.
 
 obmcutil will be enhanced to look for these block interfaces and notify the
 user via the `obmcutil state` command if a block is enabled and what log
@@ -116,10 +120,6 @@ scenarios can be repurposed for this use case.
 Currently this feature is a part of the base phosphor-logging design. If no
 one other then IBM sees value, we could roll this into the PEL-specific
 portion of phosphor-logging.
-
-A systemd target could be created to do the host stop and quiesce (and any
-other system specific things people need) but at this point there doesn't
-seem to be a ton of value in it. Could always be added later if needed.
 
 ## Impacts
 This will require some additional checking on reported logs but should have
