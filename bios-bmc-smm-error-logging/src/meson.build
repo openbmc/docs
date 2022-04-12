@@ -1,6 +1,7 @@
 bmcbiosbuffer_pre = declare_dependency(
   dependencies: [
     dependency('threads'),
+    sys_dep,
 ])
 
 bmcbiosbuffer_dep = declare_dependency(
