@@ -19,4 +19,8 @@ sys_lib = static_library(
 sys_dep = declare_dependency(
   link_with: sys_lib)
 
+bmcbiosbuffer_inc = include_directories('include')
 subdir('src')
+
+# installation of systemd service files
+subdir('service_files')

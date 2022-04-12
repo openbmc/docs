@@ -1,11 +1,19 @@
 bmcbiosbuffer_pre = declare_dependency(
+  include_directories: [root_inc, bmcbiosbuffer_inc],
   dependencies: [
     dependency('threads'),
     sys_dep,
 ])
 
+bmcbiosbuffer_lib = static_library(
+  'bmcbiosbuffer',
+  'pci_handler.cpp',
+  implicit_include_directories: false,
+  dependencies: bmcbiosbuffer_pre)
+
 bmcbiosbuffer_dep = declare_dependency(
-  dependencies: bmcbiosbuffer_pre,)
+  link_with: bmcbiosbuffer_lib,
+  dependencies: bmcbiosbuffer_pre)
 
 executable(
   'bmcbiosbuffer',
