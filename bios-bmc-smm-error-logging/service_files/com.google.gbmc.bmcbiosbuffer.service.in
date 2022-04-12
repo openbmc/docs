@@ -1,0 +1,9 @@
+[Unit]
+Description=BMC BIOS shared buffer daemon
+
+[Service]
+Type=simple
+ExecStart=@BINDIR@/bmcbiosbuffer
+
+[Install]
+WantedBy=multi-user.target
