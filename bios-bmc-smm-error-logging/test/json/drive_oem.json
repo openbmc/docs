@@ -1,0 +1,114 @@
+{
+    "@odata.id": "/redfish/v1/drives/1",
+    "@odata.type": "#Drive.v1_5_0.Drive",
+    "@odata.etag": "FBS4553345",
+    "Id": "Drive1",
+    "Name": "Disk Bay 1",
+    "IndicatorLED": "Lit",
+    "Model": "Consorto MM0500FBFVQ",
+    "Revision": "C1.1",
+    "Status": { 
+       "State": "Enabled", 
+       "Health": "Warning" 
+    },
+    "Actions": {
+       "#Drive.SecureErase": {
+          "target": "/redfish/v1/drives/1/Actions/Drive.SecureErase",
+          "title": "Secure Erase a Drive"
+       },
+      "#Drive.Reset": {
+          "target": "/redfish/v1/drives/1/Actions/Drive.Reset",
+          "title": "Reset a Drive",
+          "ResetType@Redfish.AllowableValues": [
+                "On",
+                "ForceOff",
+                "ForceRestart",
+                "Nmi",
+                "ForceOn",
+                "PushPowerButton"
+            ]
+      }
+    },
+    "Status@Message.ExtendedInfo": [
+        {
+            "MessageId": "PredictiveFailure",
+            "Severity": "Warning",
+            "RelatedProperties": ["FailurePredicted", "MediaType"]
+        },
+        {
+            "MessageId": "LinkFailure",
+            "Severity": "Warning",
+            "MessageArgs": ["Port", "1"]
+        }
+    ],
+    "CapacityBytes": 500105991946,
+    "BlockSizeBytes": 512,
+    "Identifiers": [
+        {
+            "DurableNameFormat": "NAA",
+            "DurableName": "5000C5004183A941"
+        }
+    ],
+    "FailurePredicted": true,
+    "Protocol": "SAS",
+    "MediaType": "HDD",
+    "Manufacturer": "CONSORTO",
+    "SerialNumber": "9XF11DLF00009238W7LN",
+    "PhysicalLocation": {
+       "PartLocation": {
+           "LocationOrdinalValue": 1,
+           "LocationType": "Bay",
+           "ServiceLabel": "Port=A:Bay=1"
+       }
+    },
+    "RotationSpeedRPM": 15000,
+    "CapableSpeedGbs": 5.0e-4,
+    "NegotiatedSpeedGbs": 12,
+    "Operations": [
+       {
+           "OperationName": "Erasing",
+           "PercentageComplete": 20,
+           "AssociatedTask": {
+              "@odata.id": "/redfish/v1/Tasks/1"
+           }
+       },
+       {
+           "OperationName": "Rebuilding",
+           "PercentageComplete": 70,
+           "AssociatedTask": {
+              "@odata.id": "/redfish/v1/Tasks/2"
+           }
+       }
+    ],
+   "Links": {
+      "Volumes": [
+         { 
+            "@odata.id": "/redfish/v1/Systems/1/Storage/1/Volumes/1" 
+         },
+         { 
+            "@odata.id": "/redfish/v1/Systems/1/Storage/1/Volumes/2" 
+         },
+         { 
+            "@odata.id": "/redfish/v1/Systems/1/Storage/1/Volumes/3" 
+         }
+      ]
+   },
+   "Oem": {
+       "OEM1": {
+           "@odata.type": "#OEMDriveExt.v1_0_0.OEM1DriveExt",
+           "ArrayOfStrings": [
+               "str1", 
+               "str2", 
+               "str3", 
+               "str4"
+           ],
+           "ArrayOfInts": [
+               10, 
+               20, 
+               30, 
+               40, 
+               50
+           ]
+       }
+   }
+}
