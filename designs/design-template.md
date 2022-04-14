@@ -83,5 +83,9 @@ your proposal's features & limitations to existing or similar solutions.
 API impact? Security impact? Documentation impact? Performance impact?
 Developer impact? Upgradability impact?
 
+### Organizational
+Does this repository require a new repository?  (Yes, No)
+Who will be the initial maintainer(s) of this repository?
+
 ## Testing
 How will this be tested? How will this feature impact CI testing?
