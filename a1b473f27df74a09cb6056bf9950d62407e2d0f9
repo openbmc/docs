@@ -56,6 +56,23 @@
       },
       "revId": "a1b473f27df74a09cb6056bf9950d62407e2d0f9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "979366ec_d5f18e68",
+        "filename": "designs/redfish-aggregation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-04-14T01:02:12Z",
+      "side": 1,
+      "message": "These should likely each be a stanza in the \"Exposes\" section with named properties for Hostname, AuthType, Username, etc.\n\ne.g.:\n\n\n```\n{\n    \"Exposes\": [\n        {\n            \"Hostname\": \"::1\",\n            \"Port\": \"443\",\n            \"AuthType\": \"session-login\",\n            \"Name\": \"aggregated0\",\n            \"Type\": \"SatelliteController\"\n        }\n    ],\n    \"Name\": \"MySmartTray\",\n    \"Probe\": \"TRUE\",\n    \"Type\": \"Board\",\n    \"xyz.openbmc_project.Inventory.Item.Chassis\": {\n        \"Type\": \"xyz.openbmc_project.Inventory.Item.Chassis.ChassisType.Tray\"\n    }\n}\n```",
+      "revId": "a1b473f27df74a09cb6056bf9950d62407e2d0f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
