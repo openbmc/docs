@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd4a286d_ffadc8a3",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-04-18T06:19:27Z",
+      "side": 1,
+      "message": "Doing this as part of \"Sensor Monitoring\" might not be a good idea, since it is something which is common for all PLDM types. But, agree with your second comment, it is not part of \u0027MCTP endpoint discovery\u0027 ether.\n\nIt can be part of terminus manager as per your comment at L346.",
+      "parentUuid": "c665204a_840af334",
+      "range": {
+        "startLine": 335,
+        "startChar": 20,
+        "endLine": 335,
+        "endChar": 77
+      },
+      "revId": "49cf45daaea6664210b3c23f2e460515092fa707",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f7a3e891_7833a433",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 15
@@ -123,6 +147,30 @@
       "writtenOn": "2022-04-18T05:19:04Z",
       "side": 1,
       "message": "This sounds like terminus handler is tied up to type discovery. We can draft it terminus management as a separate section.\n\nAlso are there plans to use GetPLDMVersion \u0026 GetPLDMCommands? \n\nWhat is the version of Type 2 specification being targeted?",
+      "range": {
+        "startLine": 344,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 74
+      },
+      "revId": "49cf45daaea6664210b3c23f2e460515092fa707",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fd470a5_664c7649",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-04-18T06:19:27Z",
+      "side": 1,
+      "message": "+1\ngetTID,setTID and other PLDM base command handling can be a seperate section. It should not have dependency with PLDM M\u0026C(sensor monitoring), since we can have devices which doesn\u0027t support PLDM Type 2 and still we need to assign TID and support other PLDM base commands.\n\nSimilar comment from Sumanth to handle PLDM base commands as part of wrapper - https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/47519/4..6/designs/pldm-transport-layer-wrapper.md#b201",
+      "parentUuid": "e4f78732_ad4b2a17",
       "range": {
         "startLine": 344,
         "startChar": 0,
