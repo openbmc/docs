@@ -136,6 +136,18 @@ Encoded JSON (BEJ) payloads.
 Reading from the buffer and processing it may hinder performance of the BMC,
 especially if the polling rate is set too high.
 
+## Organizational
+
+Yes. It will require 2 repositories:
+- bios-bmc-smm-error-logger
+  - This repository will implement the daemon described in this document
+  - Proposed maintainer: wltu@google.com , brandonkim@google.com
+- libbej
+  - This repository will follow the PLDM RDE specification as much as possible
+    for RDE BEJ decoding (initially, encoding may come in the future) and will
+    host a library written in C
+  - Proposed maintainer: wltu@google.com , brandonkim@google.com
+
 ## Testing
 
 Unit tests will cover each parts of the daemon, mainly:
