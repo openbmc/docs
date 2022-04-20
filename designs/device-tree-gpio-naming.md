@@ -103,6 +103,13 @@ of power supplies that are present are less than the ones indicated by this
 GPIO, the hardware can then take actions such as reducing the system's
 performance so that it can maintain its powered on state.
 
+#### power-ffs-sync-history
+Output GPIO set by the power managing applications. The IBM Common Form Factor
+power supplies use this line as an input. When set low and left low the power
+supply fans run at full speed (Fans Full Speed). When toggled low, then high,
+it resets the power supply input history (average and maximum power values over
+a time range).
+
 #### regulator-standby-faulted
 This GPIO value represents the status of standby power regulator fault detection
 logic. This GPIO is an input only. The status will reflect a regulator
