@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b2da58b_e3108ed5",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-04-25T21:54:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "343e45fb_dbf26e56",
+      "range": {
+        "startLine": 34,
+        "startChar": 16,
+        "endLine": 34,
+        "endChar": 21
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab9cfd88_868f0f34",
@@ -64,6 +88,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b44f2aa_893a14aa",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-04-25T21:54:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab9cfd88_868f0f34",
+      "range": {
+        "startLine": 48,
+        "startChar": 43,
+        "endLine": 48,
+        "endChar": 49
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc5cba08_1dcdc77d",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-04-25T03:17:59Z",
       "side": 1,
       "message": "?  Shouldn\u0027t this just be handled within PSUSensor?  Why is systemd needed at all here?",
+      "range": {
+        "startLine": 69,
+        "startChar": 61,
+        "endLine": 71,
+        "endChar": 8
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eef7e7fa_01bf3e5d",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-04-25T21:54:50Z",
+      "side": 1,
+      "message": "My thinking was that the software actually interacting with the device could be broken out for various reasons, but this doesn\u0027t need to be with systemd, it could just be a CLI called directly with boost-process like you mentioned below.\n\nAs far as why not include all of the logic in PSUSensor:\n- This makes it a bit more modular and more plug-in-play for anyone with existing tools to install firmware, they only need to write the config to call the appropriate tool. Also I expect some devices may not be made public, so this would make it more maintainable; there is no need to maintain any downstream patches.\n- The sensor reading logic is already deferred to hwmon sensors, so the firmware install logic would have a similar level of abstraction.\n\nI originally decided to go with systemd units because that is how the ItemUpdater is implemented in phosphor-bmc-code-mgmt. The Activation step simply calls a user supplied systemd service: https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/obmc-flash-host-bios%40.service.in",
+      "parentUuid": "fc5cba08_1dcdc77d",
       "range": {
         "startLine": 69,
         "startChar": 61,
