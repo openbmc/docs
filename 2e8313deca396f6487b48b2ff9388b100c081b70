@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e92fac3_a7607b34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-25T03:17:59Z",
+      "side": 1,
+      "message": "Looking like a good start, although I\u0027d really like the alternative discussed more.  If I missed conversations, please point me to them.",
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "343e45fb_dbf26e56",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-25T03:17:59Z",
+      "side": 1,
+      "message": "nit, replace with \"Single pmbus device\"  I don\u0027t think we expect cross-bus things here, and it\u0027s good to be explicit.",
+      "range": {
+        "startLine": 34,
+        "startChar": 16,
+        "endLine": 34,
+        "endChar": 21
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab9cfd88_868f0f34",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-25T03:17:59Z",
+      "side": 1,
+      "message": "Please call out that when these are paused, that they should return an Unavailable status interface.  This is going to be important for the dbus interfaces.",
+      "range": {
+        "startLine": 48,
+        "startChar": 43,
+        "endLine": 48,
+        "endChar": 49
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc5cba08_1dcdc77d",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-25T03:17:59Z",
+      "side": 1,
+      "message": "?  Shouldn\u0027t this just be handled within PSUSensor?  Why is systemd needed at all here?",
+      "range": {
+        "startLine": 69,
+        "startChar": 61,
+        "endLine": 71,
+        "endChar": 8
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35325e3a_c4f5f102",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-25T03:17:59Z",
+      "side": 1,
+      "message": "Why are these separate services?  Just put the logic in PSUSensor directly.  As-written, this just feels like separate daemons with extra steps.  Proper error handling is going to be difficult (near impossible) with systemd targets.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 3
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e0ac528_7e8a1f3b",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-25T03:17:59Z",
+      "side": 1,
+      "message": "A problem that\u0027s solved by just putting the logic in PSUsensor.\n\nIn this case, depending on how much device-specific logic there is, we might want a \"ADM1266Device\" daemon, that just shares the sensor code through the object libraries we already have but I don\u0027t have context on how much code that is.",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 43
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7da80bbd_fc35f2fd",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-25T03:17:59Z",
+      "side": 1,
+      "message": "?  This doesn\u0027t track for me.  For built-in functions, we shouldn\u0027t be calling a CLI, and even if we needed to, fork/exec (or probably boost-process in this case) is doable to write, and the whole point of this design is that we don\u0027t call other daemons, all logic for managing a given device is in the daemon for said device.\n\nOne device, one daemon, to the extent possible.",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 101,
+        "endChar": 61
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd8849a1_955cccd7",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-25T03:17:59Z",
+      "side": 1,
+      "message": "While I sympathize with your problems here, this is not the intent of openbmc, so it probably doesn\u0027t belong in this design doc.  If vendors don\u0027t want to produce source code, that\u0027s fine, but in upstream we\u0027re going to actively avoid complexity induced because vendors chose to not open source code.\n\nMy general advice in this case is when vendors do that, wrap that code in a daemon, expose the relevant dbus interfaces, and you\u0027ll be relatively insulated from the upstream changes, and relying on an interface that, while it does change, it\u0027s relatively rare and straightforward.",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 13
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c8b8a6f_042ba3db",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-25T03:17:59Z",
+      "side": 1,
+      "message": "please discuss the security impacts of being able to update a device from outside the system, mitigations, and how it will be tested.",
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
