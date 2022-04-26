@@ -161,6 +161,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f079623_09f98f2e",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-26T23:39:03Z",
+      "side": 1,
+      "message": "\u003e My thinking was that the software actually interacting with the device could be broken out for various reasons, but this doesn\u0027t need to be with systemd, it could just be a CLI called directly with boost-process like you mentioned below.\n\u003e \n\u003e As far as why not include all of the logic in PSUSensor:\n\u003e - This makes it a bit more modular and more plug-in-play for anyone with existing tools to install firmware, they only need to write the config to call the appropriate tool. Also I expect some devices may not be made public, so this would make it more maintainable; there is no need to maintain any downstream patches.\n\nIMO, the mechanism for modularity that we already have here is dbus, because we have a well defined way to define APIs, and maintain some semblance of a stable API over time.  Adding yet another avenue for plugins would have to answer lots of new questions about how we\u0027re going to maintain and extend it over time that I\u0027m not sure we have answers to.\n\n\u003e - The sensor reading logic is already deferred to hwmon sensors, so the firmware install logic would have a similar level of abstraction.\n\nWe \"defer\" to hwmon because it has a lower level of access, and has a stable, well defined ABI that we can rely on over time.  We didn\u0027t invent it ourselves.\n\n\u003e \n\u003e I originally decided to go with systemd units because that is how the ItemUpdater is implemented in phosphor-bmc-code-mgmt. The Activation step simply calls a user supplied systemd service: https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/obmc-flash-host-bios%40.service.in\n\n\nYeah, we have that pattern, but that pattern kind of exposes exactly what I\u0027m talking about.  So far as I\u0027m aware, those service files don\u0027t expose a proper redfish interface.\n\n\n\nAs another example of something that systemd targets don\u0027t have a handle on is the idea of progress.  There\u0027s no way to transfer some progress percentage, and expose the dbus progress API for redfish to consume and supply to the user in this scheme.  If it\u0027s built into psusensor (or ADM1266daemon depending on how much of the code is device specific) exposing that interface in a future patch series becomes trivial.",
+      "parentUuid": "eef7e7fa_01bf3e5d",
+      "range": {
+        "startLine": 69,
+        "startChar": 61,
+        "endLine": 71,
+        "endChar": 8
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35325e3a_c4f5f102",
         "filename": "designs/psusensor-fw-update.md",
         "patchSetId": 2
@@ -196,6 +220,30 @@
       "side": 1,
       "message": "Justin can chime in..\nbut what we\u0027ve seen in the past with pmbus devices is that there isn\u0027t a consistent \"version\" string implemented across the pmbus devices we\u0027ve seen.\nWhile some, like the ADM1266, have a nice mfg rev register we can use there are other devices where we\u0027ve had to be a bit more creative.\n\nFor version at least - systemd targets is one way of allowing for an OEM to specify their own version formatting.\n\nThe only other obvious solution is to create some plugin system.",
       "parentUuid": "35325e3a_c4f5f102",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 3
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da5ef204_89315a4f",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-26T23:39:03Z",
+      "side": 1,
+      "message": "\u003e but what we\u0027ve seen in the past with pmbus devices is that there isn\u0027t a consistent \"version\" string implemented across the pmbus devices we\u0027ve seen.\n\nThis is why the devicetype in entity-manager is the actual model number of the device, and not just generic \"PMBUS\".\n\n\u003ehave a nice mfg rev register\n\nYep, but this is ADM1266 specific, so openbmc needs to know it\u0027s talking to an ADM1266, which comes from the EM config file.",
+      "parentUuid": "8a231914_e15d96a8",
       "range": {
         "startLine": 73,
         "startChar": 0,
