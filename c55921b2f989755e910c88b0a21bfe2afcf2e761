@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2519b3cb_3e600c90",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-04-27T15:14:35Z",
+      "side": 1,
+      "message": "Gerrit review keeps track of the review comments, and they don\u0027t need to be in the commit message.\nPlease follow guidelines in https://github.com/openbmc/docs/blob/master/CONTRIBUTING.md#formatting-commit-messages\n(but I think the commit title says everything we need here).",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37b22eaf_58a6f0f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-04-27T15:14:35Z",
+      "side": 1,
+      "message": "Thanks for getting this started!  A few questions...",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2a9c838_91be36bb",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-04-27T15:14:35Z",
+      "side": 1,
+      "message": "The design should describe how to opt-in.  For example:\nTo opt in, add the meta-selinux layer to (for example) https://github.com/openbmc/openbmc/blob/master/meta-ibm/conf/bblayers.conf.sample\nand then ...(additional steps?).",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7377b084_6aff8c64",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-04-27T15:14:35Z",
+      "side": 1,
+      "message": "I assume these are SELinux policy configuration files.\nIt seems like this part of the design is not yet known.  It might be easier to restrict this design to *enabling* SELinux so it can be used in permissive mode, and stop there.  Then a follow-on design or updating this design can then talk about customizing policy files for OpenBMC for switching to enforcing mode.",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "739c365a_49026953",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-04-27T15:14:35Z",
+      "side": 1,
+      "message": "Ratan documented the difficulty using AppArmor here: https://gitlab.com/apparmor/apparmor/-/issues/183",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aea12a94_34c014be",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-04-27T15:14:35Z",
+      "side": 1,
+      "message": "Do you mean this?: The default SELinux configuration builds log analysis tools into the BMC image, but the anticipated use case is to offload the logs and analyze them on another system, so SELinux will be configured to not include the log analysis tools.\n\nIf so, that should be stated in the design section.  Also, how do you advise BMC system integrators to obtain and use the log analysis tools?  Can they be built separately via Yocto bitbake, or can we get them from somewhere else?",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b38e396_e22af27c",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-04-27T15:14:35Z",
+      "side": 1,
+      "message": "If this design proposes to both enable SELinux and then create policies, we should state where those policy files will be stored.  Are they stored in each application\u0027s repository?  The design should address where the policy source files will be stored.",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
