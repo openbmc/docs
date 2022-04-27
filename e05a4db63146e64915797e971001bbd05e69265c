@@ -738,6 +738,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "057a078d_3f71dddc",
+        "filename": "designs/OCP_BIC_multi-host_OEM_implementation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-27T11:26:42Z",
+      "side": 1,
+      "message": "I think, IPMB-based sensors and GPIOs Implementation would be changed to handle the states machines like Software_update_in_progress. Current dbus-sensors handles only PowerState like Running, on or off only. We can add Software_update_in_progress state with PowerState enum or we can handle it separately. \n\nThese states would be set based on BIC/other device current status. While Software_update_in_progress state, we should not process IPMB-based sensors and GPIOs. We should wait until BIC update is completed.",
+      "parentUuid": "a1f2176e_5dfbe2e8",
+      "revId": "e05a4db63146e64915797e971001bbd05e69265c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e260edf_681482db",
@@ -1647,6 +1665,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7b3ab7b_04ce4860",
+        "filename": "designs/OCP_BIC_multi-host_OEM_implementation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-27T11:26:42Z",
+      "side": 1,
+      "message": "Ack. ocp-bicd can monitor the information produced by phosphor-bmc-code-mgmt\u0027s dbus interfaces. Updated the doc accordingly.",
+      "parentUuid": "d0294329_ee2131cf",
+      "revId": "e05a4db63146e64915797e971001bbd05e69265c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "620c45fd_258b1b5e",
@@ -2183,6 +2219,24 @@
       "side": 1,
       "message": "Ack. Working on it.",
       "parentUuid": "a2ea362f_63594be9",
+      "revId": "e05a4db63146e64915797e971001bbd05e69265c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9335514a_5ae40932",
+        "filename": "designs/OCP_BIC_multi-host_OEM_implementation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-27T11:26:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "004e7a9a_8bdd0173",
       "revId": "e05a4db63146e64915797e971001bbd05e69265c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
