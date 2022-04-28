@@ -3,9 +3,6 @@
 Author:
   Jason Bills, jmbills
 
-Primary assignee:
-  Jason Bills
-
 Other contributors:
   Ed Tanous
 

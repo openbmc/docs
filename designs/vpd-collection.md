@@ -2,8 +2,6 @@
 
 Author: Santosh Puranik <santosh.puranik@in.ibm.com> <santosh.puranik>
 
-Primary assignee: Santosh Puranik
-
 Created: 2019-06-11
 
 ## Problem Description

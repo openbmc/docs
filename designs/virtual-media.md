@@ -3,9 +3,6 @@
 Author:
 Pawel Rapkiewicz <pawel.rapkiewicz@intel.com> <pawelr>
 
-Primary assignee:
-None
-
 Other contributors:
 Przemyslaw Czarnowski <przemyslaw.hawrylewicz.czarnowski@intel.com>
 Anna Platash <anna.platash@intel.com>

@@ -3,10 +3,8 @@
 Author: Andrew Geissler
   < geissonator >
 
-  Primary assignee: Andrew Geissler
-
-  Created: June 18, 2019
-  Last Updated: Feb 21, 2022
+Created: June 18, 2019
+Last Updated: Feb 21, 2022
 
 ## Problem Description
 

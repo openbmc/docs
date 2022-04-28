@@ -3,9 +3,6 @@
 Author:
   Nan Zhou (nanzhoumails@gmail.com)
 
-Primary assignee:
-  Nan Zhou
-
 Created:
   12/01/2021
 

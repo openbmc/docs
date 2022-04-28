@@ -3,11 +3,8 @@
 Author:
   Claire Weinan (cweinan@google.com), daylight22)
 
-Primary assignee:
-  Claire Weinan (cweinan@google.com, daylight22),
-  Heinz Boehmer Fiehn (heinzboehmer@google.com)
-
 Other contributors:
+  Heinz Boehmer Fiehn (heinzboehmer@google.com)
   Drew Walton (acwalton@google.com)
 
 Created:

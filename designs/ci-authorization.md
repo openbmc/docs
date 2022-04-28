@@ -3,9 +3,6 @@
 Author:
   Brad Bishop !radsquirrel
 
-Primary assignee:
-  Brad Bishop !radsquirrel
-
 Other contributors:
   None
 

@@ -3,9 +3,6 @@
 Author:
   Matthew Barth !msbarth
 
-Primary assignee:
-  Matthew Barth !msbarth
-
 Other contributors:
   None
 

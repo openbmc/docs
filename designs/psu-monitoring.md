@@ -4,9 +4,6 @@
 Author:
   Brandon Wyman !bjwyman
 
-Primary assignee:
-  Brandon Wyman
-
 Other contributors:
   Derek Howard
 

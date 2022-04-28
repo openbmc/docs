@@ -3,9 +3,6 @@
 Author:
   Vijay Khemka <vijaykhemka@fb.com>; <vijay!>
 
-Primary assignee:
-  Vijay Khemka <vijaykhemka@fb.com>; <vijay!>
-
 Created:
   2020-05-13
 
@@ -97,7 +94,7 @@ For example,
 
 Desc:       It defines name and unit of a sensor. Main Desc object defines
             details about new virtual sensor and inside DbusParam object,
-            it defines details about existing dbus sensors. 
+            it defines details about existing dbus sensors.
 Name:       Name of virtual sensor
 SensorType: Unit type of sensors and supported
 Expression: An algorithm to be used to calculate sensor value
@@ -105,7 +102,7 @@ Params:     There are currently 2 types of parameter supported ConstParam
             and DbusParam. Every pamas should have a name to be reffered
             in expression
 ConstParam: This is a parameter which has a constant value defined here
-DbusParam:  This is an existing/virtual sensor which is listed in dbus and 
+DbusParam:  This is an existing/virtual sensor which is listed in dbus and
             it's value can be read from dbus path
 Thresholds: It has critical and warning high/low value to monitor sensor
             value and used as per sensor interface defined in

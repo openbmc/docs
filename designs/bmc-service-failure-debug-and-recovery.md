@@ -3,9 +3,6 @@
 Author:
 Andrew Jeffery <andrew@aj.id.au> @arj
 
-Primary Assignee:
-Andrew Jeffery <andrew@aj.id.au> @arj
-
 Other contributors:
 Andrew Geissler <geissonator@yahoo.com> @geissonator
 

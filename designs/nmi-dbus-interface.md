@@ -2,8 +2,6 @@
 
 Author: Lakshminarayana Kammath
 
-Primary assignee: Lakshminarayana Kammath
-
 Other contributors: Jayanth Othayoth
 
 Created: 2019-05-21

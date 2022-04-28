@@ -1,8 +1,7 @@
 ## GPIO-based Cable Presence Detection
 Author:
   Chu Lin (linchuyuan@google.com)
-Primary assignee:
-  Chu Lin (linchuyuan@google.com)
+
 Created:
   2021-07-29
 

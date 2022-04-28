@@ -2,11 +2,9 @@
 
 Author: Jerry Zhu ([jerryzhu@google.com](mailto:jerryzhu@google.com))
 
-Primary assignee: Brandon Kim
-([brandonkim@google.com](mailto:brandonkim@google.com), brandonk)
-
-Other contributors: William A. Kennington III
-([wak@google.com](mailto:wak@google.com), wak)
+Other contributors:
+- Brandon Kim ([brandonkim@google.com](mailto:brandonkim@google.com), brandonk)
+- William A. Kennington III ([wak@google.com](mailto:wak@google.com), wak)
 
 Created: June 9, 2021
 

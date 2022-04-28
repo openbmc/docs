@@ -4,9 +4,6 @@ Author:
   Vijay Khemka <vijaykhemka@fb.com>; <vijay!>
   Sui Chen <suichen@google.com>
 
-Primary assignee:
-  Vijay Khemka <vijaykhemka@fb.com>; <vijay!>
-
 Created:
   2020-05-04
 

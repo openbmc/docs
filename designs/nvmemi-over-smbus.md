@@ -2,8 +2,7 @@
 
 Author:
   Tony Lee <tony.lee@quantatw.com>
-Primary assignee:
-  Tony Lee <tony.lee@quantatw.com>
+
 Created:
   3-8-2019
 

@@ -3,8 +3,6 @@
 
 Author: John Wedig (johnwedig@google.com)
 
-Primary assignee: John Wedig
-
 Other contributors:
 John Broadbent (jebr@google.com)
 Benjamin Fair (benjaminfair@google.com)

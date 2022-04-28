@@ -1,6 +1,6 @@
 # Setting a unique hostname to the BMC machine on first boot
 
-Primary assignee:
+Author:
   Asmitha KR
 
 Other contributors:

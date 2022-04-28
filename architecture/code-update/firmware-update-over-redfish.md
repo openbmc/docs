@@ -2,8 +2,6 @@
 
 Author: Andrew Geissler (geissonator)
 
-Primary assignee: Andrew Geissler (geissonator)
-
 Created: 2019-02-11
 
 ## Problem Description

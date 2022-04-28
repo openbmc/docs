@@ -2,8 +2,6 @@
 
 Author: George Liu <liuxiwei!>
 
-Primary assignee: George Liu
-
 Created: 2021-10-12
 
 ## Problem Description

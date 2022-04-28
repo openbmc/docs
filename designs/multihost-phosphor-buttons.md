@@ -3,7 +3,6 @@
 Author:
   Velumani T(velu),  [velumanit@hcl](mailto:velumanit@hcl.com)
   Naveen Moses S(naveen.moses), [naveen.mosess@hcl.com](mailto:naveen.mosess@hcl.com)
-Primary assignee:
 
 Other contributors:
 

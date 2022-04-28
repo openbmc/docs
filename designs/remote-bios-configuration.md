@@ -3,9 +3,6 @@
 Author:
   Suryakanth Sekar! ssekar
 
-Primary assignee:
-  Suryakanth Sekar! ssekar
-
 Other contributors:
   Jia Chunhui
   Deepak Kodihalli

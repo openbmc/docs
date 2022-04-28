@@ -3,9 +3,6 @@
 Author:
   Kamil Kowalski <kamil.kowalski@intel.com>
 
-Primary assignee:
-  Kamil Kowalski
-
 Other contributors:
   None
 
