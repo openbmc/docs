@@ -3,9 +3,7 @@
 Author: Andrew Geissler
   < geissonator >
 
-  Primary assignee: Andrew Geissler
-
-  Created: June 18, 2019
+Created: June 18, 2019
 
 ## Problem Description
 

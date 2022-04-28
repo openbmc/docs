@@ -2,8 +2,6 @@
 
 Author: Deepak Kodihalli <dkodihal@linux.vnet.ibm.com> <dkodihal>
 
-Primary assignee: Deepak Kodihalli
-
 Created: 2019-01-22
 
 ## Problem Description

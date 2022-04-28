@@ -2,8 +2,6 @@
 
 Author: Nan Zhou (nanzhoumails@gmail.com)
 
-Primary assignee: Nan Zhou
-
 Created: 02/25/2022
 
 ## Problem Description

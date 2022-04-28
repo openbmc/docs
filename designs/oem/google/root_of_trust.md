@@ -3,9 +3,6 @@
 Author:
  Feras Aldahlawi (faldahlawi)
 
-Primary assignee:
- Feras Aldahlawi (faldahlawi)
-
 Other contributors:
   None
 

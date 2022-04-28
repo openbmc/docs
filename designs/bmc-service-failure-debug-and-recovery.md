@@ -3,9 +3,6 @@
 Author:
 Andrew Jeffery <andrew@aj.id.au> @arj
 
-Primary Assignee:
-Andrew Jeffery <andrew@aj.id.au> @arj
-
 Created:
 6th May 2021
 

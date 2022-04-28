@@ -2,8 +2,6 @@
 
 Author: Adriana Kobylak < anoo! >
 
-Primary assignee: Adriana Kobylak
-
 Other contributors: Joel Stanley < shenki! >,
                     Milton Miller
 

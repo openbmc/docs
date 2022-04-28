@@ -3,9 +3,6 @@
 Author:
   Terry Duncan
 
-Primary assignee:
-  Zhikui Ren
-
 Other contributors:
   Jason Bills, Zhikui Ren
 

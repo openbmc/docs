@@ -2,8 +2,6 @@
 
 Author: Patrick Venture <venture!>
 
-Primary assignee: Patrick Venture
-
 Created: 2018-10-18
 
 ## Problem Description

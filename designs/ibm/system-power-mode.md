@@ -3,9 +3,6 @@
 Author:
 Chris Cain
 
-Primary assignee:
-Chris Cain
-
 Other contributors:
 Martha Broyles
 

@@ -3,9 +3,6 @@
 Author:
   Piotr Matuszczak <piotr.matuszczak@intel.com>
 
-Primary assignee:
-  Piotr Matuszczak
-
 Other contributors:
   Pawel Rapkiewicz <pawel.rapkiewicz@intel.com> <pawelr>,
   Kamil Kowalski <kamil.kowalski@intel.com>

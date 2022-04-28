@@ -2,8 +2,6 @@
 
 Author: Kun Yi (kunyi@google.com, kunyi!)
 
-Primary assignee: Kun Yi
-
 Created: 2018-12-07
 
 ## Problem Description

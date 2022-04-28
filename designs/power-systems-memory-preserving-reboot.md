@@ -1,10 +1,8 @@
 # Memory preserving reboot and System Dump extraction flow on POWER Systems.
 
-  Author: Dhruvaraj S <dhruvaraj@in.ibm.com>
+Author: Dhruvaraj S <dhruvaraj@in.ibm.com>
 
-  Primary Assignee: Dhruvaraj S
-
-  Created: 11/06/2019
+Created: 11/06/2019
 
 ## Problem Description
 

@@ -3,9 +3,6 @@
 Author:
    Lei YU <mine260309@gmail.com> <LeiYU>
 
-Primary assignee:
-   None
-
 Other contributors:
    Su Xiao <suxiao@inspur.com>
    Derek Howard <derekh@us.ibm.com>

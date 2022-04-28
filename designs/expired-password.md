@@ -3,9 +3,6 @@
 Author:
   Joseph Reynolds <josephreynolds1>
 
-Primary assignee:
-  Joseph Reynolds <josephreynolds1>
-
 Other contributors:
   None
 

@@ -4,8 +4,6 @@ Author:
   Velumani T(velu),  [velumanit@hcl](mailto:velumanit@hcl.com)
   Kumar T(kumar_t), [thangavel.k@hcl.com](mailto:thangavel.k@hcl.com)
 
-Primary assignee:
-
 Other contributors:
 
 Created:

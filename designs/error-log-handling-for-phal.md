@@ -3,9 +3,6 @@
 Author:
 Devender Rao <devenrao@in.ibm.com> <devenrao>
 
-Primary assignee:
-Devender Rao <devenrao@in.ibm.com> <devenrao>
-
 Other contributors:
 None
 

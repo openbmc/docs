@@ -3,9 +3,6 @@
 Author:
   Ivan Mikhaylov, [i.mikhaylov@yadro.com](mailto:i.mikhaylov@yadro.com)
 
-Primary assignee:
-  Ivan Mikhaylov, [i.mikhaylov@yadro.com](mailto:i.mikhaylov@yadro.com)
-
 Other contributors:
   Alexander Amelkin, [a.amelkin@yadro.com](mailto:a.amelkin@yadro.com)
   Alexander Filippov, [a.filippov@yadro.com](mailto:a.filippov@yadro.com)

@@ -1,9 +1,6 @@
-____
 # OpenBMC Server Power Recovery
 
 Author: Andrew Geissler (geissonator)
-
-Primary assignee: Andrew Geissler (geissonator)
 
 Other contributors:
 

@@ -3,9 +3,6 @@
 Author:
   Raviteja Bailapudi
 
-Primary assignee:
-  Raviteja Bailapudi
-
 Other contributors:
   Ratan Gupta
 

@@ -2,8 +2,6 @@
 
 Author: Will Liang
 
-Primary assignee: Will Liang
-
 Created: 2019-02-26
 
 #### Problem Description

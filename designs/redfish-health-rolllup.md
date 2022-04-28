@@ -2,8 +2,6 @@
 
 Author: James Feist  !jfei
 
-Primary assignee: James Feist !jfei
-
 Other contributors: None
 
 Created: 2019-04-17

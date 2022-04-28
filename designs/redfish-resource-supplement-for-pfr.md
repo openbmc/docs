@@ -2,8 +2,6 @@
 
 Author: AppaRao Puli
 
-Primary assignee: AppaRao Puli !apuli
-
 Other contributors: None
 
 Created: 2019-09-12
