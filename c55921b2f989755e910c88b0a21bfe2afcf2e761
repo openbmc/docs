@@ -105,6 +105,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dca41e61_5e57989b",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2022-04-28T07:13:42Z",
+      "side": 1,
+      "message": "You should make it clear if this is a new requirement placed on any application change (ie, we will have a system with enforcing mode enabled in CI, and any application change is required to update the selinux policy), or if this will be done independently by the selinux maintainers.\n\nI suggest imposing the former on the project will require some convincing. The latter is more palatable for the project as a whole.",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aea12a94_34c014be",
         "filename": "designs/selinux.md",
         "patchSetId": 3
@@ -133,6 +150,41 @@
       "writtenOn": "2022-04-27T15:14:35Z",
       "side": 1,
       "message": "If this design proposes to both enable SELinux and then create policies, we should state where those policy files will be stored.  Are they stored in each application\u0027s repository?  The design should address where the policy source files will be stored.",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93b59d64_0400d2a7",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2022-04-28T07:13:42Z",
+      "side": 1,
+      "message": "\u003e The design should address where the policy source files will be stored.\n\n+1\n\nPlease consider you have existing projects as well as those maintained by the openbmc project. We cannot expect to have the policies accepted upstream, so this would lead us towards including them in the bitbake tree.",
+      "parentUuid": "7b38e396_e22af27c",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "739e1d12_3addd7f9",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000013
+      },
+      "writtenOn": "2022-04-28T07:13:42Z",
+      "side": 1,
+      "message": "Does this work with busybox, or do we need to switch to coreutils?",
       "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
