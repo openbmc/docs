@@ -30,9 +30,6 @@ ____
 Author:
   < Name and Discord nickname >
 
-Primary assignee:
-  < Name and/or Discord nickname or `None` >
-
 Other contributors:
   < Name and/or Discord nickname or `None` >
 
