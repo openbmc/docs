@@ -151,22 +151,30 @@ Replace the following (or similar):
 
 ```
 docker run --cap-add=sys_admin --rm=true \
-  --privileged=true \
-  -w "${WORKSPACE}" -v "${WORKSPACE}":"${WORKSPACE}" \
-  -e "MAKEFLAGS=${MAKEFLAGS}" \
-  -t ${DOCKER_IMG_NAME} \
-  ${WORKSPACE}/${DBUS_UNIT_TEST_PY} -u ${UNIT_TEST} \ -f ${DBUS_SYS_CONFIG_FILE}
+    --network host \
+    --privileged=true \
+    -u "$USER" \
+    -w "${DOCKER_WORKDIR}" -v "${WORKSPACE}":"${DOCKER_WORKDIR}" \
+    -e "MAKEFLAGS=${MAKEFLAGS}" \
+    -t "${DOCKER_IMG_NAME}" \
+    "${DOCKER_WORKDIR}"/${DBUS_UNIT_TEST_PY} -u "${UNIT_TEST}" \
+    -f "${DBUS_SYS_CONFIG_FILE}"
 ```
 
 with:
 
 ```
 docker run --cap-add=sys_admin --rm=true \
-  --privileged=true \
-  -w "${WORKSPACE}" -v "${WORKSPACE}":"${WORKSPACE}" \
-  -e "MAKEFLAGS=${MAKEFLAGS}" \
-  -it ${DOCKER_IMG_NAME} /bin/bash
+    --network host \
+    --privileged=true \
+    -u "$USER" \
+    -w "${DOCKER_WORKDIR}" -v "${WORKSPACE}":"${DOCKER_WORKDIR}" \
+    -e "MAKEFLAGS=${MAKEFLAGS}" \
+    -it "${DOCKER_IMG_NAME}" \
+    "${DOCKER_WORKDIR}"/${DBUS_UNIT_TEST_PY} -u "/bin/bash" \
+    -f "${DBUS_SYS_CONFIG_FILE}"
 ```
 
 When you rerun `run-unit-test-docker.sh` you will be dropped into an interactive
-session. This is handy if you need to run gdb on a core dump.
+session. This is handy if you need to run gdb on a core dump or run a daemon on
+your workstation.
