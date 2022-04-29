@@ -257,6 +257,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f16b5148_613d14d0",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-29T01:15:59Z",
+      "side": 1,
+      "message": "\u003e Also how much device-specific code is too much for it to not be included in PSUSensor?\n\nIt\u0027s a judgement call made by maintainers, and is highly dependent on what the code looks like;  Patchsets are really the best way to discuss this kind of thing, but in this context, I find it pretty hard to believe that a firmware update would be that much extra code to the point of requiring a new daemon, unless there were incompatible licensing restrictions (which are a good reason to spin off a daemon) or required modifying how the PMBUS/I2C bindings worked to the point of being incompatible with other devices.\n\nIn terms of the complexity in API, VRs aren\u0027t THAT complex compared to say, management engine or an RDE/IPMB subcontroller, so I suspect the PMBUS device-specific code can live in PSUsensor (with clean abstractions and code) for a long long time if not forever.\n\nIMO, lets take this one step at a time.  Remember, this isn\u0027t a one way door, we can decide to break things into their own daemon at a later date without a lot of overhead so long as we keep good abstractions.",
+      "parentUuid": "7d3c1fc0_ab8da83c",
+      "range": {
+        "startLine": 69,
+        "startChar": 61,
+        "endLine": 71,
+        "endChar": 8
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35325e3a_c4f5f102",
         "filename": "designs/psusensor-fw-update.md",
         "patchSetId": 2
