@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b4ffe14_4405a9f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-29T21:12:20Z",
+      "side": 1,
+      "message": "I\u0027m perplexed why this is helpful and necessary.\n\n1. We have some dbus applications that use \u0027sd_bus_default\u0027 and some which use \u0027sd_bus_system\u0027.  This is a problematic inconsistency in our codebase to begin with because depending on which user is running the application you end up with a different bus choice, and in some cases segmented busses between applications.\n\n2. There should be no issue with running the system bus _inside_ the Docker container because it is still its own bus.  Why can\u0027t entity-manager operate on the container\u0027s system bus?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 67
+      },
+      "revId": "1595bd56647ba6e2881b8f915ae5c1c9e43a31aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9edcebb_42088ebc",
+        "filename": "testing/local-ci-build.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-29T21:12:20Z",
+      "side": 1,
+      "message": "Why are we recommending this for unit testing?  The default is \u0027bridge\u0027 right?",
+      "revId": "1595bd56647ba6e2881b8f915ae5c1c9e43a31aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2661d68_e58fd8b8",
+        "filename": "testing/local-ci-build.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-29T21:12:20Z",
+      "side": 1,
+      "message": "Why do we need to add the user parameter now?",
+      "revId": "1595bd56647ba6e2881b8f915ae5c1c9e43a31aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a67288f8_7e59d054",
+        "filename": "testing/local-ci-build.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-29T21:12:20Z",
+      "side": 1,
+      "message": "We\u0027ve never referenced ${DOCKER_WORKDIR} in this whole document.  Why are we changing it from ${WORKSPACE}?  What is a user expected to fill in?  Is this some magic Docker environment variable?",
+      "revId": "1595bd56647ba6e2881b8f915ae5c1c9e43a31aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
