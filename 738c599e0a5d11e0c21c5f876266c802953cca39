@@ -145,6 +145,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2299b2f0_1a82551a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2022-04-29T13:21:23Z",
+      "side": 1,
+      "message": "The case was not covered by the proposal at first. Yes, having the feature would be easier for writing config file for fan control(the temp inputs array of pid type property in entity-manager JSON file)\n\nWould it be okay to supply a config file to \u0027pldmd\u0027? The config file defines rules how to mapping sensor# in a PLDM terminus to practical name. Each rule has FRU matching keywords like what entity-manager does. \u0027pldmd\u0027 can decide which rule should apply to which PLDM terminus. For the case that more than one the same PLDM terminus installed in platform, the sensor names for second and following terminus will be have a suffix instance# of PLDM terminus.\n\nThe cons: It is introducing another config file to increase maintenance effort.\nThe pros: It avoids the dependency on EM and the D-Bus calls.",
+      "parentUuid": "64d9540e_56958451",
+      "revId": "738c599e0a5d11e0c21c5f876266c802953cca39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74c66e07_19fcb06f",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 13
