@@ -233,6 +233,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d3c1fc0_ab8da83c",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-29T00:58:50Z",
+      "side": 1,
+      "message": "\u003e I expect some devices will definitely require a decent amount of specific code. \n\nThat\u0027s fine.  It\u0027s arguably the same architectural distinction between say, an NVMe sensor based on mctp, and a TMP75 sensor based on kernel sysfs.  They have almost no code in common, so they\u0027re put in different daemons.  The only reason we don\u0027t put everything in one \"super daemon\" is just for failure modes, so that one failing daemon doesn\u0027t kill off all sensors for the whole system.  We actually used to run daemon per-sensor, but that had resource and performance consequences so the middle ground of \"deamon per sensor class\" is what we\u0027ve landed on.\n\n\u003e Are you suggesting that code should belong in a separate daemon with a DBus API that PSUSensor would talk to, with PSUSensor providing the DBus API for Redfish (ItemUpdater API implementation)? Or that this ADM1266daemon implement the ItemUpdater API, import the PSUSensor class, and reuse (factor out, or just copy?) whatever is relevant from PSUSensorMain?\n\nBoth are possible;  Which we do is going to depend on how much code is truly device specific in practice, and that question is better answered in code review.  In the past, it\u0027s been found that while lots of things claim to require lots of implementation specific code, that device specific code is relatively small, and easy to abstract in such a way that it doesn\u0027t make a mess (ie file per device type?).  The fact that we can even abstract this to a systemd target tells me it\u0027s pretty doable to just have a switch table of manufacturer and model numbers, and call the appropriate functions for each device type, but I\u0027m open to other patterns.\n\n\nIf #including PSUSensor into ADM1266 is the approach that leads to the least code duplication, that seems fine to me.  I suspect that the PSUSensor class that exists today has some PSUSensor (the daemon) specific code in it at the moment, but this is the great part about abstractions, we can move that into PSUSensorMain, or into another class.",
+      "parentUuid": "ed983a92_dbb7115d",
+      "range": {
+        "startLine": 69,
+        "startChar": 61,
+        "endLine": 71,
+        "endChar": 8
+      },
+      "revId": "2e8313deca396f6487b48b2ff9388b100c081b70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35325e3a_c4f5f102",
         "filename": "designs/psusensor-fw-update.md",
         "patchSetId": 2
