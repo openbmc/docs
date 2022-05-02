@@ -163,6 +163,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89dd8513_34327853",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-05-02T07:26:30Z",
+      "side": 1,
+      "message": "\u003e I suspect that we have many cases where we\u0027re going to want to map \n\u003e these sensors into something practically named (for instance to feed \u003e into fan control).  Is there any mechanism to supply configuration \n\u003e from EM (or provided in pldmd) to give better names on these?\nThe idea of using location decorator(https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Decorator/LocationCode.interface.yaml) mentioned by Sumanth might be helpful here. Since, PLDM will always have a transport layer below, it might be always good if that transport can give the information related to physical location of the device. And it is easy and straightforward for a transport layer to expose this info. \n\nEg: In MCTP over I2C binding, mctpd will have the information about the device slave address or bus number in which it is connected to. With an entity manager config we can easily name and map that bus as say \u0027PCIe slot 1\u0027 and expose it as LocationCode. Now pldmd can consume the same and prepend to sensor name, then fan control can easily map corresponding fans with the same.\n\nIf PLDM has static EID config, then this info can be part of that config as well.",
+      "parentUuid": "2299b2f0_1a82551a",
+      "revId": "738c599e0a5d11e0c21c5f876266c802953cca39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74c66e07_19fcb06f",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 13
