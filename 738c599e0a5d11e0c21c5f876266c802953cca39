@@ -181,6 +181,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9cd944d2_fa14776c",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000957
+      },
+      "writtenOn": "2022-05-03T12:41:53Z",
+      "side": 1,
+      "message": "\u003e Eg: In MCTP over I2C binding, mctpd will have the information about the device slave address or bus number in which it is connected to. With an entity manager config we can easily name and map that bus as say \u0027PCIe slot 1\u0027 and expose it as LocationCode. Now pldmd can consume the same and prepend to sensor name, then fan control can easily map corresponding fans with the same.\n\nThe MCTP endpoint D-Bus interface(https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/MCTP/Endpoint.interface.yaml) doesn\u0027t have properties for its transport layer physical media type/address of its transport layer. It might be good to expose this info here to implement the idea of location decorator mentioned by Sumanth. \n\nIn MCTP over I2C binding, the Slave address for endpoint can be fixed or dynamic assignment(SMBus ARP). Entity manager config can easily map endpoint for fixed address but hard for dynamic assignment. If we can assumed that all PCI slots in system has its dedicated I2C bus number(might be connected to different BMC\u0027s I2C bus or divided by I2C-MUX), then using I2C bus number should be enough for pldmd to map sensor name.",
+      "parentUuid": "89dd8513_34327853",
+      "revId": "738c599e0a5d11e0c21c5f876266c802953cca39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74c66e07_19fcb06f",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 13
