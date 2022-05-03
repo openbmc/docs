@@ -1,0 +1,22 @@
+[package]
+name = "rustbus-test"
+version = "0.1.0"
+edition = "2022"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+futures = "0.3.21"
+tokio = { version = "1.17.0", features = ["full"] }
+async-rustbus = "0.1.2"
+rustbus = "0.17.0"
+
+[profile.release.package."*"] # +
+opt-level = "z" # +
+
+[profile.release]
+opt-level = 3 # or "z"
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"
