@@ -130,6 +130,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30dc70b3_c0831c0c",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-05-04T22:19:58Z",
+      "side": 1,
+      "message": "Oh, is this removed from the template now? Will do.",
+      "parentUuid": "aab1f91f_4dbdc502",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 50
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e336444c_678fef1d",
         "filename": "designs/bios-bmc-smm-error-logging.md",
         "patchSetId": 12
@@ -141,6 +165,30 @@
       "writtenOn": "2022-05-04T19:19:00Z",
       "side": 1,
       "message": "These sizes feel a little small.  Is this premature optimization?  Does it limit us in the future?  Only 16k?",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 207
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c05eba_8de3a1db",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-05-04T22:19:58Z",
+      "side": 1,
+      "message": "16K is unfortunately what is available in Nuvoton\u0027s chip for PCIe MMIO.\n\nHmm, that\u0027s fair points about future-proofing - let me ask internally if we should increase the normal queue size to 3 (but uncorrectable error region size will probably still remain 2)",
+      "parentUuid": "e336444c_678fef1d",
       "range": {
         "startLine": 73,
         "startChar": 0,
@@ -176,6 +224,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96aa0fbd_93572678",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-05-04T22:19:58Z",
+      "side": 1,
+      "message": "This allows us to have multiline / bullet points within the tables. From my understanding, git processes these properly so we should hopefully see this displayed as intended when pushed.",
+      "parentUuid": "c6e0ff68_6b50ad54",
+      "range": {
+        "startLine": 75,
+        "startChar": 37,
+        "endLine": 75,
+        "endChar": 45
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4184a24c_bc2e8da5",
         "filename": "designs/bios-bmc-smm-error-logging.md",
         "patchSetId": 12
@@ -187,6 +259,30 @@
       "writtenOn": "2022-05-04T19:19:00Z",
       "side": 1,
       "message": "Is this really \"reserved\"?  Isn\u0027t it BIOS?",
+      "range": {
+        "startLine": 81,
+        "startChar": 54,
+        "endLine": 81,
+        "endChar": 62
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cf382f7_2083989b",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-05-04T22:19:58Z",
+      "side": 1,
+      "message": "Yeah that\u0027s a good point, will change to BIOS.",
+      "parentUuid": "4184a24c_bc2e8da5",
       "range": {
         "startLine": 81,
         "startChar": 54,
@@ -222,6 +318,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58b890ce_e62d2392",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-05-04T22:19:58Z",
+      "side": 1,
+      "message": "The assumption is that if the daemon restarted or the BMC soft-rebooted (which should be rare), we should not trust what is on the shared buffer and that we shall reinitialize.\n\nThe logs that were captured before, should have propagated to our databases through Redfish at this point as they are regularly polled for our use cases so the most logs we can lose would be whatever came in between the polling rate into the database.",
+      "parentUuid": "efb28400_2d34de47",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 38
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d6979e5_b3469d95",
         "filename": "designs/bios-bmc-smm-error-logging.md",
         "patchSetId": 12
@@ -233,6 +353,30 @@
       "writtenOn": "2022-05-04T19:19:00Z",
       "side": 1,
       "message": "There is some sequencing required here that may require something like std::memory_order.  I\u0027m not sure if we need to document this in the design but it is a potential flaw I want to make sure the authors are thinking about.  There\u0027s probably a lot of memory_order issues in a memory FIFO between the two devices.",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 25
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "715fc571_6ed66165",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-05-04T22:19:58Z",
+      "side": 1,
+      "message": "First time reading through std::memory_order documentation - it seems like it\u0027s useful for inter-thread synchronization but this would be for inter-device synchronization right?",
+      "parentUuid": "6d6979e5_b3469d95",
       "range": {
         "startLine": 92,
         "startChar": 0,
