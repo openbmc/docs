@@ -37,13 +37,8 @@ Issues the TOF handle include:
 - Guidance and oversight of the technical direction of OpenBMC.
 
 ## Current members
-- Brad Bishop - radsquirrel
-- Andrei Kartashev - Alatar
-- Deepak Kodihalli - dkodihal
-- Ed Tanous - edtanous
-- Richard Thomaiyar - rthomaiy
-- Patrick Williams - stwcx
-- Lei Yu - LeiYU
+
+The current TOF members and terms are maintained [here](https://github.com/openbmc/docs/blob/master/tof/membership-and-voting.md#terms-and-elections).
 
 The TOF shall have a minimum of 5 and maximum of 9 members at any given time.
 
