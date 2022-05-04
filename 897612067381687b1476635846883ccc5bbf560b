@@ -103,6 +103,144 @@
       "parentUuid": "750358e1_e6b05f1d",
       "revId": "897612067381687b1476635846883ccc5bbf560b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aab1f91f_4dbdc502",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-04T19:19:00Z",
+      "side": 1,
+      "message": "Lets remove this now.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 50
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e336444c_678fef1d",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-04T19:19:00Z",
+      "side": 1,
+      "message": "These sizes feel a little small.  Is this premature optimization?  Does it limit us in the future?  Only 16k?",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 207
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6e0ff68_6b50ad54",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-04T19:19:00Z",
+      "side": 1,
+      "message": "Is there a reason for this embedded HTML in markdown?",
+      "range": {
+        "startLine": 75,
+        "startChar": 37,
+        "endLine": 75,
+        "endChar": 45
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4184a24c_bc2e8da5",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-04T19:19:00Z",
+      "side": 1,
+      "message": "Is this really \"reserved\"?  Isn\u0027t it BIOS?",
+      "range": {
+        "startLine": 81,
+        "startChar": 54,
+        "endLine": 81,
+        "endChar": 62
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efb28400_2d34de47",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-04T19:19:00Z",
+      "side": 1,
+      "message": "How do you handle daemon restarts and/or BMC soft-reboots?  Aren\u0027t there cases where the physical memory space is already initialized before you start?  How do you avoid potential race conditions and/or deleting content from the SMM that came while you were away?",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 38
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d6979e5_b3469d95",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-04T19:19:00Z",
+      "side": 1,
+      "message": "There is some sequencing required here that may require something like std::memory_order.  I\u0027m not sure if we need to document this in the design but it is a potential flaw I want to make sure the authors are thinking about.  There\u0027s probably a lot of memory_order issues in a memory FIFO between the two devices.",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 25
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
