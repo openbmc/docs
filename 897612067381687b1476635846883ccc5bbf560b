@@ -201,6 +201,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b66e4668_e1744b8b",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-04T22:40:30Z",
+      "side": 1,
+      "message": "How about 4 for both?  3 is kind of awkward.  You have 6 bytes of padding at the end anyhow.",
+      "parentUuid": "e0c05eba_8de3a1db",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 207
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6e0ff68_6b50ad54",
         "filename": "designs/bios-bmc-smm-error-logging.md",
         "patchSetId": 12
@@ -236,6 +260,30 @@
       "side": 1,
       "message": "This allows us to have multiline / bullet points within the tables. From my understanding, git processes these properly so we should hopefully see this displayed as intended when pushed.",
       "parentUuid": "c6e0ff68_6b50ad54",
+      "range": {
+        "startLine": 75,
+        "startChar": 37,
+        "endLine": 75,
+        "endChar": 45
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09a1f5f3_a49cc178",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-04T22:40:30Z",
+      "side": 1,
+      "message": "That\u0027s too bad that markdown doesn\u0027t have a better approach, only because of how ugly it looks in Gerrit / plaintext.",
+      "parentUuid": "96aa0fbd_93572678",
       "range": {
         "startLine": 75,
         "startChar": 37,
@@ -342,6 +390,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "250e2edf_36077291",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-04T22:40:30Z",
+      "side": 1,
+      "message": "Are you going to be able to safely indicate to the BIOS that the re-initialization happened?  Do you care to?\n\nWhat happens if the BMC soft-reboot is to install a new firmware version, which contains a change to the protocol?",
+      "parentUuid": "58b890ce_e62d2392",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 38
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d6979e5_b3469d95",
         "filename": "designs/bios-bmc-smm-error-logging.md",
         "patchSetId": 12
@@ -377,6 +449,30 @@
       "side": 1,
       "message": "First time reading through std::memory_order documentation - it seems like it\u0027s useful for inter-thread synchronization but this would be for inter-device synchronization right?",
       "parentUuid": "6d6979e5_b3469d95",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 25
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db9c050f_ce58cc5e",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-04T22:40:30Z",
+      "side": 1,
+      "message": "The memory operations you\u0027re doing in this device are, effectively, an MMIO.  You\u0027ll need to ensure that the writes are ordered from the observation of the external device and in some cases you\u0027ll want reads ordered based on status you\u0027re seeing in the buffer.  I think without the memory_order constraints the compiler would be free to reorder operations in an unexpected way.  Hopefully memory_order is sufficient...",
+      "parentUuid": "715fc571_6ed66165",
       "range": {
         "startLine": 92,
         "startChar": 0,
