@@ -53,7 +53,6 @@ end (sorted by term conclusion followed by alphabetically by preferred name):
 
 | Name | Term Conclusion |
 |:-----|:---------------:|
-| Andrei Kartashev | 2022-10-01 |
 | Brad Bishop | 2022-10-01 |
 | Ed Tanous | 2022-10-01 |
 | Andrew Jeffery | 2023-04-01 |
