@@ -41,11 +41,11 @@ We also strive to keep the codebase up-to-date with the latest recommended
 practices by the language designers.  This is reflected by the choice in
 following the C++ Core Guidelines.
 
-[[Not currently implemented]] We finally desire to have computers do our
-thinking for us wherever possible.  This means having Continuous Integration
-tests on each repository so that regressions are quickly identified prior to
-merge. It also means having as much of this document enforced by tools as
-possible by, for example, clang-format and clang-tidy.
+We finally desire to have computers do our thinking for us wherever possible.
+This means having Continuous Integration tests on each repository so that
+regressions are quickly identified prior to merge. It also means having as
+much of this document enforced by tools as possible by, for example,
+clang-format and clang-tidy.
 
 For those coming to the project from pre-C++11 environments we strongly
 recommend the book "Effective Modern C++" as a way to get up to speed on the
