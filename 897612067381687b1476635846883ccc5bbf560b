@@ -225,6 +225,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f03d7ed4_a2c3e786",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-05-05T00:20:02Z",
+      "side": 1,
+      "message": "I think we would probably keep the UE size to 2 as they are meant to be emergency and we are meant to have 1 log (with each logs supposed to be 500B ~ 1KB, 16KB should be plenty).\n\nAgreed, we can just make 4 byte for normal log size",
+      "parentUuid": "b66e4668_e1744b8b",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 207
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6e0ff68_6b50ad54",
         "filename": "designs/bios-bmc-smm-error-logging.md",
         "patchSetId": 12
@@ -414,6 +438,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "273f50f3_7e94c594",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-05-05T00:20:02Z",
+      "side": 1,
+      "message": "The BIOS will have to respect that the BMC reset the buffer and will have to start the initialization again - so they care (that they have to reinitialze), but they do not care beyond that.\n\nWe do have the BMC and BIOS version embedded in the header for that purpose in case we need to update versions.",
+      "parentUuid": "250e2edf_36077291",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 38
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d6979e5_b3469d95",
         "filename": "designs/bios-bmc-smm-error-logging.md",
         "patchSetId": 12
@@ -473,6 +521,30 @@
       "side": 1,
       "message": "The memory operations you\u0027re doing in this device are, effectively, an MMIO.  You\u0027ll need to ensure that the writes are ordered from the observation of the external device and in some cases you\u0027ll want reads ordered based on status you\u0027re seeing in the buffer.  I think without the memory_order constraints the compiler would be free to reorder operations in an unexpected way.  Hopefully memory_order is sufficient...",
       "parentUuid": "715fc571_6ed66165",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 25
+      },
+      "revId": "897612067381687b1476635846883ccc5bbf560b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca09e4c_da3af72f",
+        "filename": "designs/bios-bmc-smm-error-logging.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000388
+      },
+      "writtenOn": "2022-05-05T00:20:02Z",
+      "side": 1,
+      "message": "Hmm, I see your point. Let me take a look at how to make use of std::memory_order and definitely consider adding them to the accesses. This would be some detailed implementation details so perhaps not fitting for this design doc but definitely appreciate the detailed design review 😊",
+      "parentUuid": "db9c050f_ce58cc5e",
       "range": {
         "startLine": 92,
         "startChar": 0,
