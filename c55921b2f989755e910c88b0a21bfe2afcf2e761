@@ -52,6 +52,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a31f97c8_3ae6dfb4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-05-05T02:30:04Z",
+      "side": 1,
+      "message": "Good questions everyone!  Can we limit the scope of this design to enabling SELinux (see detailed comment)?",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "592b09c3_a3fecbee",
@@ -105,6 +122,30 @@
       "writtenOn": "2022-04-28T17:39:58Z",
       "side": 1,
       "message": "There isn\u0027t necessarily anything in your proposal that addresses this, is there?  Why not fix this so that, at least, externally facing applications run as non-root?",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 76
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d78f5e1_80fe3599",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-05-05T02:30:04Z",
+      "side": 1,
+      "message": "I had interpreted this to mean: Given that applications run as root, they have more authority than they need, and an attacker can exploit this.  Although an obvious solution is to change to a non-root user, using SELinux will provide even finer-grained access control which will limit any attack.",
+      "parentUuid": "2709e2f2_13b057fb",
       "range": {
         "startLine": 16,
         "startChar": 4,
@@ -174,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01b4da30_72c6b11f",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-05-05T02:30:04Z",
+      "side": 1,
+      "message": "Is the answer something like this?  SELinux helps secure the BMC\u0027s internal processing by having more strict access controls than Linux along provides.  This helps limit the reach of an attacker who gain control of one Linux process.",
+      "parentUuid": "53e0e135_c99175bb",
+      "range": {
+        "startLine": 27,
+        "startChar": 44,
+        "endLine": 27,
+        "endChar": 72
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f81d248_3022bd1e",
         "filename": "designs/selinux.md",
         "patchSetId": 3
@@ -185,6 +250,30 @@
       "writtenOn": "2022-04-28T17:39:58Z",
       "side": 1,
       "message": "What \"compliance requirements\" are there to run SELinux?  Can you point to them?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 23
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daf6c882_f817eb66",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-05-05T02:30:04Z",
+      "side": 1,
+      "message": "BMCs are components of server computers which are subject to various compliance requirements.  For example, the Common Criteria (CC) standard could be applied to the firmware running on the BMC.  I\u0027ve identified some applicable standards here: https://github.com/openbmc/openbmc/wiki/Security-working-group#applicable-standards\n\nA specific requirement within the CC standard (which I imagine is common to multiple standards) is in CC part 2 Security Functional Requirements \u003e Class FPT: Protection of the TSF \u003e Internal TOE TSF data transfer (FPT_ITT).\nDownload CC Part 2 here: https://www.commoncriteriaportal.org/cc/\n\n[NOTE: CC terminology is thick.  The TOE refers to the BMC, and the TSF refers to the BMC\u0027s security functions (including access controls such as Linux permissions, and ACLs).]\n\n\u003e FPT_ITT ... provides requirements that address protection of TSF data when it is transferred between separate parts of a TOE across an internal channel.\n\nMy interpretation is that FPT_ITT requires that we protect data (like new account creation) as it is transferred between different processes within the BMC, like data passed via D-Bus APIs (such as when new users are created via IPMI or Redfish).\n\nPutting that all together, the access controls provided by SELinux will help the BMC comply with requirements to protect security data as it flows through D-Bus interfaces within the BMC.",
+      "parentUuid": "7f81d248_3022bd1e",
       "range": {
         "startLine": 28,
         "startChar": 0,
@@ -225,6 +314,30 @@
       "writtenOn": "2022-04-28T17:39:58Z",
       "side": 1,
       "message": "Wow.  \"We\u0027re going to change a bunch of stuff but we don\u0027t know what yet.\"  I wouldn\u0027t call this a design.",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 63
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c08b700a_3882c2f8",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-05-05T02:30:04Z",
+      "side": 1,
+      "message": "I recall we had discussed this design would stop at enabling SELinux so we can collect data needed to make policies.  Then have a followon development process and followon design to establish SELinux policies.  Is that still the intention?",
+      "parentUuid": "98f1535e_9972a1f3",
       "range": {
         "startLine": 63,
         "startChar": 0,
@@ -282,6 +395,30 @@
       "writtenOn": "2022-04-28T17:39:58Z",
       "side": 1,
       "message": "This is kind of lame.  Ratan ran into a problem and didn\u0027t debug it in any meaningful way, but instead opened an issue to another community and then pestered them when they didn\u0027t debug it for him.  Other people aren\u0027t going to do our work for us and this is not an appropriate argument for not using AppArmor.",
+      "range": {
+        "startLine": 78,
+        "startChar": 43,
+        "endLine": 80,
+        "endChar": 68
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "840d6c1f_80dee2a7",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-05-05T02:30:04Z",
+      "side": 1,
+      "message": "Perhaps this could simply note the attempt to use AppArmor and not comment on difficulties.",
+      "parentUuid": "8e5fa5cd_3f465bfa",
       "range": {
         "startLine": 78,
         "startChar": 43,
@@ -414,6 +551,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6470f6ab_21062086",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-05-05T02:30:04Z",
+      "side": 1,
+      "message": "You don\u0027t have to opt in.",
+      "parentUuid": "c747ed81_6838d4c0",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0a7f76c_5a025d20",
         "filename": "designs/selinux.md",
         "patchSetId": 3
@@ -473,6 +628,30 @@
       "side": 1,
       "message": "My general question is what debug capabilities will still be available when SELINUX is added to production build. I am not saying I oppose (for whatever its worth 😊) it if I cant run gdb. But at the very least it should be called out here.\nAnd to answer your questions, its been a while but yes I may have remoted into production builds (in-field !\u003d end user) for hard to repro issues, especially in the hardware.",
       "parentUuid": "ab39bea2_8f1401ab",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 81
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93f1cc82_6c4af72c",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-05-05T02:30:04Z",
+      "side": 1,
+      "message": "I tried long ago to document OpenBMC community use cases: production system locked down -vs- allow invasive debug on production systems.  (Tried and failed.)\nAnother possibility is a way to disable SELinux (switch it to permissive mode) for debug sessions.  What that satisfy your request?",
+      "parentUuid": "34559d4c_a538ef05",
       "range": {
         "startLine": 108,
         "startChar": 0,
