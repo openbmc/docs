@@ -47,7 +47,10 @@ community in regards to pull requests.
 Submit any changes needed to the Yocto upstream repositories, using their
 process.  If the Yocto process has gone several weeks without responses,
 cherry-pick the commit into the OpenBMC tree, with a pointer to the review in
-the commit message.
+the commit message, and documentation.  The patch commit message should follow
+the Yocto requirements for patch comments, including a statement of the patch
+upstream status.
+[yocto patch requirements](https://wiki.yoctoproject.org/wiki/Best_Known_Methods_%28BKMs%29_for_Package_Updating#Patch_Comments)
 
 ## Meta layers should avoid using EXTRA_OEMAKE and EXTRA_OEMESON
 
