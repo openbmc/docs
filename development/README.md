@@ -22,3 +22,8 @@ any order you like, but the recommended flow can be found below.
 
    This shows how to setup your environment to utilize Gerrit for submitting
    your changes for code review.
+
+5. [Using the SDK](sdk.md)
+
+   This shows how to setup an OpenBMC development environment using
+   its Software Development Kit.
