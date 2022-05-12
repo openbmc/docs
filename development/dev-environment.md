@@ -140,47 +140,26 @@ That's it, you now have a working development environment for OpenBMC!
 
 ## Download and Start QEMU Session
 
-1. Download latest openbmc/qemu fork of QEMU application
-
-  ```
-  wget https://jenkins.openbmc.org/job/latest-qemu-x86/lastSuccessfulBuild/artifact/qemu/build/qemu-system-arm
-
-  chmod u+x qemu-system-arm
-  ```
-
-2. Download the Romulus image.
-
-  ```
-  wget https://jenkins.openbmc.org/job/latest-master/label=docker-builder,target=romulus/lastSuccessfulBuild/artifact/openbmc/build/tmp/deploy/images/romulus/obmc-phosphor-image-romulus.static.mtd
-  ```
-
-3. Start QEMU with downloaded Romulus image
-
-  **Note** - For REST, SSH and IPMI to work into your QEMU session, you must connect
-  up some host ports to the REST, SSH and IPMI ports in your QEMU session. In this
-  example, it just uses 2222, 2443, 2623. You can use whatever you prefer.
-  ```
-  ./qemu-system-arm -m 256 -M romulus-bmc -nographic \
-      -drive file=./obmc-phosphor-image-romulus.static.mtd,format=raw,if=mtd \
-      -net nic \
-      -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostfwd=udp:127.0.0.1:2623-:623,hostname=qemu
-  ```
-
-   **Note** - By default, Jenkins and openbmc-test-automation use SSH and HTTPS
-   ports 22 and 443, respectively. For the IPMI port 623 is used. SSH connection
-   to use a user-defined port 2222 might not be successful. To use SSH port 22,
-   HTTPS port 443 and IPMI port 623:
+1. Source `oe-init-build-env`
    ```
-   ./qemu-system-arm -m 256 -machine romulus-bmc -nographic \
-       -drive file=./obmc-phosphor-image-romulus.static.mtd,format=raw,if=mtd \
-       -net nic \
-       -net user,hostfwd=:127.0.0.1:22-:22,hostfwd=:127.0.0.1:443-:443,hostfwd=tcp:127.0.0.1:80-:80,hostfwd=tcp:127.0.0.1:2200-:2200,hostfwd=udp:127.0.0.1:623-:623,hostfwd=udp:127.0.0.1:664-:664,hostname=qemu
+   source oe-init-build-env build 
    ```
-
+2. Build a local image
+   ```
+   bitbake obmc-phosphor-image
+   ```
+3. Run Qemu
+   ```
+   runqemu nographic qemuparams="-m 2048"
+   ```
 4. Wait for your QEMU-based BMC to boot
 
   Login using default root/0penBmc login (Note the 0 is a zero).
-
+  
+5. (Optional) Setup networking
+   ```
+   ip a a 192.168.7.2/24 dev eth0
+   ```
 5. Check the system state
 
   You'll see a lot of services starting in the console, you can start running
