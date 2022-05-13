@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffc2937b_094d43f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-05-13T18:29:33Z",
+      "side": 1,
+      "message": "necrobumping for bmcweb drives \u003c-\u003e chassis work.\n\nPlease see:\nhttps://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/53676\n",
+      "revId": "e70d835246248043442a5e764f810b0596a6c75e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "23848c74_66ce9df6",
         "filename": "architecture/dbus-inventory.md",
@@ -14,10 +32,10 @@
       "side": 1,
       "message": "I think we should also define how all these other associations are defined.  At a minimum I\u0027d like to see a README created in phosphor-dbus-interfaces under Inventory (because that is how we document associations in other areas already).",
       "revId": "e70d835246248043442a5e764f810b0596a6c75e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "8cc355f8_3bf568ff",
         "filename": "architecture/dbus-inventory.md",
@@ -37,10 +55,10 @@
         "endChar": 45
       },
       "revId": "e70d835246248043442a5e764f810b0596a6c75e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "58c1bbd5_880ede4d",
         "filename": "architecture/dbus-inventory.md",
@@ -61,10 +79,10 @@
         "endChar": 45
       },
       "revId": "e70d835246248043442a5e764f810b0596a6c75e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "b4fada99_e2b91783",
         "filename": "architecture/dbus-inventory.md",
@@ -85,10 +103,10 @@
         "endChar": 45
       },
       "revId": "e70d835246248043442a5e764f810b0596a6c75e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "3c753f13_067b92f7",
         "filename": "architecture/dbus-inventory.md",
@@ -109,10 +127,10 @@
         "endChar": 45
       },
       "revId": "e70d835246248043442a5e764f810b0596a6c75e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "b0d97881_3e038d32",
         "filename": "architecture/dbus-inventory.md",
@@ -133,10 +151,10 @@
         "endChar": 45
       },
       "revId": "e70d835246248043442a5e764f810b0596a6c75e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "4557e093_2573b222",
         "filename": "architecture/dbus-inventory.md",
@@ -157,10 +175,34 @@
         "endChar": 45
       },
       "revId": "e70d835246248043442a5e764f810b0596a6c75e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "56215cfb_b87263f2",
+        "filename": "architecture/dbus-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000593
+      },
+      "writtenOn": "2022-05-13T18:29:33Z",
+      "side": 1,
+      "message": "\u003e /xyz/openbmc_project/inventory/my_motherboard/my_card\n\u003e \n\u003e Then, when the chassis is changed, this changes to.\n\u003e \n\u003e /xyz/openbmc_project/inventory/my_chassis/my_motherboard/my_card\n\nI don\u0027t fully understand the case where a chassis is removed, and the motherboards and cards stay connected. If that is the case, I would think the system to be improperly modeled, (if the container can be removed, and the contained items remain.)\n\nCould you give me a concrete example\n\n\nRedfish does not lend itself to the hierarchical data model. Looking forward PDI will be heavily influenced by the redfish lens, or other interfaces will become appealing (in the very long term)",
+      "parentUuid": "4557e093_2573b222",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 45
+      },
+      "revId": "e70d835246248043442a5e764f810b0596a6c75e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "fc4208a0_58b53c3f",
         "filename": "architecture/dbus-inventory.md",
@@ -180,10 +222,10 @@
         "endChar": 27
       },
       "revId": "e70d835246248043442a5e764f810b0596a6c75e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "54f0eda9_e040e5c1",
         "filename": "architecture/dbus-inventory.md",
@@ -203,8 +245,7 @@
         "endChar": 12
       },
       "revId": "e70d835246248043442a5e764f810b0596a6c75e",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
