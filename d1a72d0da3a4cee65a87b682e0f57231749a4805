@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc01706f_feda42c9",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-05-17T19:29:09Z",
+      "side": 1,
+      "message": "Yeah, basically all chassis/host instances have to wait for the basic BMC services to be started. We have a basic issue that certain BMC services are required to power on and boot your system. So this design is saying you have to wait for those base services to be started before any chassis or host operation is valid.",
+      "parentUuid": "7582c30b_632ddca2",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0b5bf0e_975ed61b",
         "filename": "designs/bmc-boot-ready.md",
         "patchSetId": 1
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c5656e2_19933dbc",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-05-17T19:29:09Z",
+      "side": 1,
+      "message": "This leads into your next question. I think there are two options here. Either we have a clear way to tell the user when the required BMC services have started and the system can be powered on, or we go with what you\u0027re leaning towards which is we queue up the request from the user, have the required services block around the target you indicate here, and have it power on once the services are done.\n\nThe issue I have with the queue option is that what happens when the services never complete? Or one fails and the BMC gets stuck in the Quiesced state (which is what started this whole design for IBM). We don\u0027t want to try and power on if a critical service has not started or failed, and we have no way to asynchronously tell the caller we\u0027ve failed and will not be honoring their queued power on request. This design is leaning towards just failing the call and letting the user deal with the retry/error handling logic because they\u0027re going to know the behavior they want best. Otherwise what do we say to the clients? Make the request, start some arbitrary timeout, and wait for the system to actually power on? What do they do when the timeout hits? It just seems more clear to give them a \"NotReadyToBoot\" error code at the time of the request.",
+      "parentUuid": "d0b5bf0e_975ed61b",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 39
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f45b50f3_afd0dce9",
         "filename": "designs/bmc-boot-ready.md",
         "patchSetId": 1
@@ -77,6 +125,30 @@
       "writtenOn": "2022-05-17T13:02:00Z",
       "side": 1,
       "message": "This also seems much worse.  We\u0027re pushing this off into all the users of the power on sequence rather than just automatically queuing it up into the normal power on sequence.  I mentioned in your first code review that you\u0027d be making external interfaces like the power button have to implement some kind of queueing behavior or otherwise inform the user that \"you can\u0027t actually power on yet\".  It is much better from a user experience, to me, to keep the current \"start the sequence\" path that I\"m recommending because we can insert LED behavior into that sequence to clearly inform the user \"I heard you and am working on it\".  This goes for post codes + op-panel displays too.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 26
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfba9b23_05f557be",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-05-17T19:29:09Z",
+      "side": 1,
+      "message": "More details above, but yes, the power button either handles it or they just throw away the error and the lack of powering on is a clear sign to the user something is up. But the alternative...the system never powers on anyway, or just starts at some random time in the future seems worse to me. Someone hits the button, it\u0027s not ready, so they go fiddling with the power supplies or something and it randomly turns on a few minutes later??",
+      "parentUuid": "f45b50f3_afd0dce9",
       "range": {
         "startLine": 95,
         "startChar": 0,
