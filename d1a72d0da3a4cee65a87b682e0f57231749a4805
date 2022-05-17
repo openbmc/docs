@@ -16,6 +16,75 @@
       "message": "Ah, I think this proposal helps solve my old stuff too: https://gerrit.openbmc-project.xyz/q/topic:bmc-boot-indicator",
       "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7582c30b_632ddca2",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-17T13:02:00Z",
+      "side": 1,
+      "message": "This isn\u0027t really a state of the BMC though.  It is a state about the Chassis/Host, isn\u0027t it?  How do you handle multi-host designs?  Maybe there is a VRM in each compute blade that needs its data collected, but only to block the single compute blade from booting.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0b5bf0e_975ed61b",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-17T13:02:00Z",
+      "side": 1,
+      "message": "I don\u0027t really follow this.  What errors are there?  \n\nThis seems like the most obvious solution.  We already have:\n\n- obmc-power-start-pre@.target\n- obmc-host-start-pre@.target\n\nWhy wouldn\u0027t you have any service that needs to insert itself as \"required before boot\" into the Wants/Required of these existing targets?  I\u0027m not convinced that a new target (+ state) is warranted.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 39
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f45b50f3_afd0dce9",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-17T13:02:00Z",
+      "side": 1,
+      "message": "This also seems much worse.  We\u0027re pushing this off into all the users of the power on sequence rather than just automatically queuing it up into the normal power on sequence.  I mentioned in your first code review that you\u0027d be making external interfaces like the power button have to implement some kind of queueing behavior or otherwise inform the user that \"you can\u0027t actually power on yet\".  It is much better from a user experience, to me, to keep the current \"start the sequence\" path that I\"m recommending because we can insert LED behavior into that sequence to clearly inform the user \"I heard you and am working on it\".  This goes for post codes + op-panel displays too.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 26
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
