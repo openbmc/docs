@@ -33,6 +33,42 @@
       "message": "Found the clang-format docs for this, \n\nhttps://clang.llvm.org/docs/ClangFormatStyleOptions.html\n\ntrue:                                  false:\nif (foo) {                     vs.     if (foo) {\n                                         bar();\n  bar();                               }\n}\n\nSeems reasonable to me.",
       "revId": "77000cb1bf80a867dc1932d08a210424cc79afca",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b31be61_c5b7b702",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2022-05-17T00:17:47Z",
+      "side": 1,
+      "message": "I suspect it is #2 but I do seem to stumble across it more that I would have thought.\n\nIf this gets favorable feedback I definitely plan on sending an email to the list.",
+      "parentUuid": "b79215ab_6d353668",
+      "revId": "77000cb1bf80a867dc1932d08a210424cc79afca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc4f59a5_f5abc544",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2022-05-17T00:17:47Z",
+      "side": 1,
+      "message": "Right - and since we put the opening brace on a new line it is really:\n\ntrue:\n\n if (foo)\n {\n     bar();\n }\n\nvs\n\nfalse:\n\n if (foo)\n {\n\n     bar();\n }",
+      "parentUuid": "11d8f4f6_8cf47c52",
+      "revId": "77000cb1bf80a867dc1932d08a210424cc79afca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
