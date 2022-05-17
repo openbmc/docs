@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "921d2ac7_55de2d75",
+        "filename": "development/dev-environment.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-17T23:28:01Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t know of anyone who\u0027s done the integration work to make the qemu machine model match the bitbake build target.\n\nFor a lot of userspace code, the actual \"model\" doesn\u0027t really matter.  I\u0027ve been running qemuarm (which admittedly, has some ipmi issues) for testing for a while.\n\n\u003e Are you sure you were running the romulus-bmc machine model? How did you check?\n\u003e \n\u003e This has been on my todo list since I wrote the original qemu models 😊",
+      "parentUuid": "8da74e14_5a45be85",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 20
+      },
+      "revId": "5304382ebcee9c8654bac06576f13f4ff3630930",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "baa7d14d_806dd3f1",
         "filename": "development/dev-environment.md",
         "patchSetId": 3
@@ -150,6 +174,24 @@
       "side": 1,
       "message": "Made this section of the doc more verbose addressing your issues.",
       "parentUuid": "baa7d14d_806dd3f1",
+      "revId": "5304382ebcee9c8654bac06576f13f4ff3630930",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "910b83af_5803b830",
+        "filename": "development/dev-environment.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-17T23:28:01Z",
+      "side": 1,
+      "message": "FWIW, in theory the runqemu script sets this NIC up for us, but some combination of our usage of systemd and/or phosphor-networkd seems to override that.",
+      "parentUuid": "5b31105f_9067d942",
       "revId": "5304382ebcee9c8654bac06576f13f4ff3630930",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
