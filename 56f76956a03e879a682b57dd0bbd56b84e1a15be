@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f5df87b_ccc5edd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-20T03:04:26Z",
+      "side": 1,
+      "message": "Hi Hao Jiang, thanks for the proposal. It sounds like we\u0027re missing support for a few NVMe use-cases in OpenBMC and that you\u0027d like to resolve that. Great!\n\nI\u0027ve added some comments around how I think we can work this document to help describe what it is you need. I think that can only be achieved by addressing some structural issues with the text, so -1 for now.",
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0af69f8b_1a778ba3",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-20T03:04:26Z",
+      "side": 1,
+      "message": "Coming back to this now that I\u0027ve read through, I think we need to change the title to something representing the problems the proposal is solving, not the name of the proposed solution.",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 57
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d91db807_c1f7a182",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-20T03:04:26Z",
+      "side": 1,
+      "message": "I think this section needs a few changes:\n\n1. It shouldn\u0027t mention a proposed solution (nvmed), it\u0027s meant to be a problem description\n2. The problems should be discussed in terms of use cases. What function elsewhere in an OpenBMC system would be requesting the GetLogPage or Identity functions? Why?\n3. The description should cover deficiencies in existing support for NVMe drives in OpenBMC, specifically phosphor-nvme and nvmesensor from dbus-sensors\n\nAs a part of dealing with 3, if there\u0027s a reason either of those components *shouldn\u0027t* contain the support you need, then that also needs to be covered, and argued in the \"Alternatives Considered\" section (the fact the entire content of \"Alternatives Considered\" is \"Stated in the above chapter\" is a bit of a red flag for me in terms of how you\u0027ve structured your argument here).\n\nIMO the first time we should hear about \"nvmed\" is in the \"Proposed Design\" section.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 55
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf296475_86d48caf",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-20T03:04:26Z",
+      "side": 1,
+      "message": "This is only background if you already consider the design accepted, which isn\u0027t the purpose of this document. The purpose of this document is to help you help the community to converge on the architecture of a solution to your problems, where your problems are your use-cases that OpenBMC doesn\u0027t currently support.\n\nThings I\u0027d consider background information are the requirements and environment that lead to the existence of both phosphor-nvme and nvmesensor from dbus-sensors.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88214563_fb112a34",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-20T03:04:26Z",
+      "side": 1,
+      "message": "IMO you need to flip the orientation here to describe these as deficiencies in phopshor-nvme without mentioning nvmed.\n\nYou also need to argue why it\u0027s not possible to change the design direction of phosphor-nvme and motivate the need for a third code-base to handle NVMe drives.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "120de91a_ff0875a6",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-20T03:04:26Z",
+      "side": 1,
+      "message": "Requirements are behaviours derived from use-cases, not a concrete solution. A concrete solution should follow from the requirements. Again this makes it feel like a write-down-the-decisions document rather than a drive-the-decision-making-process document, but this is the first time I\u0027m hearing of the decision making process.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 5
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d1fb8e0_4cdcd8f8",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-20T03:04:26Z",
+      "side": 1,
+      "message": "This is the kind of thing that needs to go into your problem description, phrased in terms of the fact that OpenBMC doesn\u0027t yet support these things.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 42
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a67009c6_7db4230e",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-20T03:04:26Z",
+      "side": 1,
+      "message": "I don\u0027t have strong opinions here, but I\u0027d like to see some input from Jeremy and Matt.",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 43
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "873f8e44_0c2a3e75",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-20T03:04:26Z",
+      "side": 1,
+      "message": "Okay, can you please add some more words justifying why they\u0027re complementary but must be separate? Am I just not across enough of the design points of phosphor-nvme? If not, can you please make sure that people like me reading this document can be convinced of your position just by reading the document (and any references)?",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 35
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
