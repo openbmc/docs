@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f96d798e_bb4cd8ea",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-05-23T17:33:51Z",
+      "side": 1,
+      "message": "Yeah, I think a new state provides a mechanism for external clients (using Redfish) to know whether they can request a power on. If we go with an approach where we just queue up the request, we may not need it.\n\nThe state-manager design is to monitor for systemd targets to reflect state. This allows a layer of abstraction in that different system owners can put different services in the corresponding target. If we hard code state-manager to monitor specific services, we\u0027re hamstringing out ability to support a multitude of system types.",
+      "parentUuid": "bf184035_c852b8f2",
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7582c30b_632ddca2",
         "filename": "designs/bmc-boot-ready.md",
         "patchSetId": 1
