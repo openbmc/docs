@@ -28,7 +28,7 @@ in sensor reads for OpenBMC.
 [brandonkim@google.com](mailto:brandonkim@google.com) has previously created a
 method for preventing sensors from blocking all other sensor reads and D-Bus if
 they do not report failures quickly enough in the phosphor-hwmon repository
-([link to change](https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-hwmon/+/24337)).
+([link to change](https://gerrit.openbmc.org/c/openbmc/phosphor-hwmon/+/24337)).
 Internal Google BMC efforts have also focused on introducing the io_uring
 library to its code.
 

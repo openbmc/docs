@@ -802,8 +802,8 @@ BMC's CPU utilization and the performance impact on other services.
 [2]: https://github.com/openbmc/docs/blob/master/architecture/sensor-architecture.md
 [3]: https://www.kernel.org/doc/Documentation/hwmon/
 [4]: https://www.freedesktop.org/wiki/Software/dbus/
-[5]: https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/22257
-[6]: https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/24749
+[5]: https://gerrit.openbmc.org/c/openbmc/docs/+/22257
+[6]: https://gerrit.openbmc.org/c/openbmc/docs/+/24749
 [7]: https://github.com/google/googletest
 [8]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Telemetry/ReportManager.interface.yaml
 [9]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Telemetry/Report.interface.yaml

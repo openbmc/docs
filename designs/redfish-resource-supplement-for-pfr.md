@@ -89,7 +89,7 @@ states. But once the platform is transitioned to "ProvisionedAndLocked" state,
 it can not be re-provisioned.
 
 New OemComputerSystem schema can be found at
-[link](https://gerrit.openbmc-project.xyz/#/c/openbmc/bmcweb/+/24253/)
+[link](https://gerrit.openbmc.org/#/c/openbmc/bmcweb/+/24253/)
 
 PFR in OpenBMC must support logging of resiliency error detection and
 correction. Below are two metadata entries in redfish message registry

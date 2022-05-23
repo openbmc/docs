@@ -28,15 +28,15 @@ Add Keys to GitHub:
 * <https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/>
 
 Add Keys to OpenBMC's Gerrit Server:
-* Login to [Gerrit](https://gerrit.openbmc-project.xyz/) with your GitHub
+* Login to [Gerrit](https://gerrit.openbmc.org/) with your GitHub
   account.
 * Go to
-  <https://gerrit.openbmc-project.xyz/plugins/github-plugin/static/account.html>
+  <https://gerrit.openbmc.org/plugins/github-plugin/static/account.html>
 * Your information should be auto-filled, so click "Next".
 * If successful you should see a blank screen, feel free to exit out.
 
 ##### Add e-mail to Gerrit
-* Login to [Gerrit](https://gerrit.openbmc-project.xyz/)
+* Login to [Gerrit](https://gerrit.openbmc.org/)
 * Enter e-mail in Settings -> Contact Information -> Register New E-Mail
 * Check e-mail for confirmation and click the link to confirm
 
@@ -47,7 +47,7 @@ Add Keys to OpenBMC's Gerrit Server:
 Add the following to `~/.ssh/config`:
 ```
 Host openbmc.gerrit
-    Hostname gerrit.openbmc-project.xyz
+    Hostname gerrit.openbmc.org
     Port 29418
     User <Your Gerrit Username>
 ```
@@ -83,7 +83,7 @@ will look like.
   `git commit --signoff`
 * Push your changes to Gerrit for code review:
   `git push origin HEAD:refs/for/master`
-* Go to [Gerrit web interface](https://gerrit.openbmc-project.xyz/), click on
+* Go to [Gerrit web interface](https://gerrit.openbmc.org/), click on
   your new review, and add reviewers based on `MAINTAINERS` file in the repo.
 
 ##### Conclusion
