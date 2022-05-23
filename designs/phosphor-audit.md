@@ -30,7 +30,7 @@ user activity, logging it, and taking certain actions if necessary.
 YADRO had an internal solution for the problem. It was only applicable to an
 outdated version of OpenBMC and needed a redesign. There was also a parallel
 effort by IBM that can be found here:
-[REST and Redfish Traffic Logging](https://gerrit.openbmc-project.xyz/c/openbmc/bmcweb/+/22699)
+[REST and Redfish Traffic Logging](https://gerrit.openbmc.org/c/openbmc/bmcweb/+/22699)
 
 ## Assumptions
 

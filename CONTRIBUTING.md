@@ -64,7 +64,7 @@ https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3Aopenbmc+l
 If you need further details on any of these issues, feel free to add comments.
 
 Performing code reviews is another good way to get started.  Go to
-https://gerrit.openbmc-project.xyz and click on the "all" and "open"
+https://gerrit.openbmc.org and click on the "all" and "open"
 menu items, or if you are interested in a particular repository - for
 example, "bmcweb" - type "status:open project:openbmc/bmcweb" into the
 search bar and press the "search" button.  Then select a review.
@@ -275,23 +275,23 @@ Submitting changes via Gerrit server to OpenBMC
 
 The OpenBMC Gerrit server supports GitHub credentials, its link is:
 
-  https://gerrit.openbmc-project.xyz/#/q/status:open
+  https://gerrit.openbmc.org/#/q/status:open
 
 _One time setup_: Login to the WebUI with your GitHub credentials and verify on
 your Account Settings that your SSH keys were imported:
 
-  https://gerrit.openbmc-project.xyz/#/settings/
+  https://gerrit.openbmc.org/#/settings/
 
 Most repositories are supported by the Gerrit server, the current list can be
 found under Projects -> List:
 
-  https://gerrit.openbmc-project.xyz/#/admin/projects/
+  https://gerrit.openbmc.org/#/admin/projects/
 
 If you're going to be working with Gerrit often, it's useful to create an SSH
 host block in ~/.ssh/config. Ex:
 ```
 Host openbmc.gerrit
-        Hostname gerrit.openbmc-project.xyz
+        Hostname gerrit.openbmc.org
         Port 29418
         User your_github_id
 ```
@@ -305,7 +305,7 @@ added:
 
 Alternatively, you can encode all the data in the URL:
 
-  `git remote add gerrit ssh://your_github_id@gerrit.openbmc-project.xyz:29418/openbmc/openbmc_repo`
+  `git remote add gerrit ssh://your_github_id@gerrit.openbmc.org:29418/openbmc/openbmc_repo`
 
 Then add the default branch for pushes to this remote:
 
@@ -330,7 +330,7 @@ Work-in-Progress. For that refer to [Gerrit
 documentation](https://gerrit-review.googlesource.com/Documentation/intro-user.html#topics).
 
 Gerrit will show you the URL link to your review.  You can also find
-your reviews from the [OpenBMC Gerrit server](https://gerrit.openbmc-project.xyz) search bar
+your reviews from the [OpenBMC Gerrit server](https://gerrit.openbmc.org) search bar
 or menu (All > Open, or My > Changes).
 
 Invite reviewers to review your changes.  Each OpenBMC repository has

@@ -35,7 +35,7 @@ from hardware. The consumer will retrieve and parse the D-Bus data to provide
 the Redfish PCIe resources.
 
 The proposed D-Bus interface can be found here:
-https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/19768
+https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/19768
 
 The proposed producer will be a new D-Bus daemon that will be responsible for
 gathering and caching PCIe hardware data and maintaining the D-Bus interfaces
