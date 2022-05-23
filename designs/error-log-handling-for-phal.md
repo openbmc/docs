@@ -149,7 +149,7 @@ to the Create interface is added.
 1. Simulate hardware procedure failure and check if PEL is created.
 
 [1]: (https://github.com/openbmc/phosphor-logging/blob/master/extensions/openpower-pels/README.md)
-[2]: (https://gerrit.openbmc-project.xyz/#/c/openbmc/docs/+/27804/2/designs/gard_on_bmc.md)
+[2]: (https://gerrit.openbmc.org/#/c/openbmc/docs/+/27804/2/designs/gard_on_bmc.md)
 [3]: (https://github.com/openbmc/phosphor-logging)
 [4]: (https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Logging/Create.interface.yaml)
 [5]: (https://github.com/dgibson/dtc)

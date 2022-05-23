@@ -41,8 +41,8 @@ the vendor-specific information in the avahi service file(under txt-record).
 
 Following commits implements the behaviour.
 
- https://gerrit.openbmc-project.xyz/c/openbmc/meta-phosphor/+/22950
- https://gerrit.openbmc-project.xyz/c/openbmc/meta-ibm/+/22951
+ https://gerrit.openbmc.org/c/openbmc/meta-phosphor/+/22950
+ https://gerrit.openbmc.org/c/openbmc/meta-ibm/+/22951
 
 As part of avahi discovery response, the client receives the following:
 1) Hostname

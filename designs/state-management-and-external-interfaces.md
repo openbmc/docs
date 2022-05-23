@@ -174,4 +174,4 @@ are tested in automation.
 [1]: http://redfish.dmtf.org/schemas/v1/Resource.json#/definitions/ResetType
 [2]: https://github.com/openbmc/phosphor-state-manager
 [3]: https://github.com/openbmc/bmcweb
-[4]: https://gerrit.openbmc-project.xyz/c/openbmc/docs/+/22358
+[4]: https://gerrit.openbmc.org/c/openbmc/docs/+/22358
