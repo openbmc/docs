@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2d2d6c8_bf410508",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "nit, whitespace error.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 2
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d91db807_c1f7a182",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -54,6 +77,30 @@
       "writtenOn": "2022-05-20T03:04:26Z",
       "side": 1,
       "message": "I think this section needs a few changes:\n\n1. It shouldn\u0027t mention a proposed solution (nvmed), it\u0027s meant to be a problem description\n2. The problems should be discussed in terms of use cases. What function elsewhere in an OpenBMC system would be requesting the GetLogPage or Identity functions? Why?\n3. The description should cover deficiencies in existing support for NVMe drives in OpenBMC, specifically phosphor-nvme and nvmesensor from dbus-sensors\n\nAs a part of dealing with 3, if there\u0027s a reason either of those components *shouldn\u0027t* contain the support you need, then that also needs to be covered, and argued in the \"Alternatives Considered\" section (the fact the entire content of \"Alternatives Considered\" is \"Stated in the above chapter\" is a bit of a red flag for me in terms of how you\u0027ve structured your argument here).\n\nIMO the first time we should hear about \"nvmed\" is in the \"Proposed Design\" section.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 55
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce4e7117_9a32b3de",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "+1 to Arjs comments;  We need to call out the problem being solved here.  The existing solutions ( phosphor-nvme and nvme-sensor) have a way to enumerate nvme resources and put them on dbus, admittedly, in a more simplistic way than we\u0027d like to see, but code can always be added to one of those.",
+      "parentUuid": "d91db807_c1f7a182",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -112,6 +159,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "727d563d_c703d990",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "\u003e IMO you need to flip the orientation here to describe these as deficiencies in phopshor-nvme without mentioning nvmed.\n\u003e \n\u003e You also need to argue why it\u0027s not possible to change the design direction of phosphor-nvme and motivate the need for a third code-base to handle NVMe drives.\n\n+1 this second sentence.  We already have two nvme-speaking daemons;  phosphor-nvme for static stack, and nvmesensor for entity-manager reactor stacks, from these requirements, it isn\u0027t clear why we\u0027d need another.\n\nFWIW, I have no problem if the code for nvme-sensor was completely reworked to support these goals, and it\u0027s already a reasonably well tested starting point for this stuff.",
+      "parentUuid": "88214563_fb112a34",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "120de91a_ff0875a6",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -128,6 +199,75 @@
         "startChar": 0,
         "endLine": 51,
         "endChar": 5
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02100d36_37477c4f",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "What does this mean?  Can you be more specific about what \"initialize\" actually does in this context?  Aren\u0027t nvme controllers initialized by default?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 61
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2fafce8_8b9fe494",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "Please be more specific here.  What does \"Basic information\" mean?  Thermals?  Inventory?  Ideally this would be derived from your background section about missing features.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 77
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7631a13_258437ca",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "This also should be more specific.  NVMe-MI commands are called \"admin\" commands in the spec.  Presumably you have a few starter use cases?",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 44
       },
       "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -158,6 +298,122 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ff22bc1_f58d282f",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "0d1fb8e0_4cdcd8f8",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 42
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa87ca57_da22d2a2",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "This interface already exists, and is called NVME1000.  I suspect we don\u0027t need to create a new one, but lets cover that once we\u0027ve figured out the design here, and how it differs from the existing nvme reactors.",
+      "range": {
+        "startLine": 71,
+        "startChar": 14,
+        "endLine": 71,
+        "endChar": 52
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5239c79_383d2ade",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "nit, this can probably be removed.  This is an existing feature of entity-manager, and doesn\u0027t really have anything to do with this design.",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 49
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a10ce45_6e57b7a2",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "This is an example of something we generally shouldn\u0027t be doing, and doesn\u0027t really seem to have any requirements backing it.\n\nAs a rule, we should not be putting protocol-specific things (like mctp) on dbus, because it limits our ability to add new protocols going forward.\n\nThere is one counter example that I\u0027m aware of (ipmb) and even in that case, we would not have built it that way today, and ideally we will migrate away from it in the future.\n\n\nThis interface should be exposing high level primitives, like storage, sensors, ect.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 66
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cf2e932_5e29251a",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "nit, more whitespace issues.",
+      "range": {
+        "startLine": 110,
+        "startChar": 57,
+        "endLine": 110,
+        "endChar": 66
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a67009c6_7db4230e",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -181,6 +437,179 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0725d142_221c67dc",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "I really don\u0027t think an MCTP-specific EM config type benefits us going forward over having more specific types (NVMe-MI, PLDM, RDE, ect).\n\nCan you think of a case where say, an nvme drive and a RDE accelerator would share code or configurations here?  Even if there were sharing, I suspect they would be minimal.",
+      "parentUuid": "a67009c6_7db4230e",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 43
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9906666b_200a698b",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "It\u0027s not clear why having these very-specific interfaces on dbus is helpful, given the requirements you\u0027ve laid out.  These are arguably implementation details of the nvme subsystem, and for the most part, should probably be abstracted away from dbus.  I could see possibly wanting to expose the controllers to add a \"manager\" resource within Redfish, but that probably deserves a design doc on its own.",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 49
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43a5998b_34d4e909",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "I suspect this should be \"enumerating\"",
+      "range": {
+        "startLine": 143,
+        "startChar": 58,
+        "endLine": 143,
+        "endChar": 69
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa2b2c7d_9511fbd7",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "This is a pretty generalized anti-pattern that we found when writing the other nvme daemons, as well as the generalized dbus-sensors architecture.  Keeping the polling as close to the hardware as can, and relying on dbus eventing for the rest allows use cases like EventService to function, and leads to faster responding user APIs.  It would help a lot if you could enumerate _why_ you think you need this, and we can talk through the use cases, but there have been plenty of examples where we built things as you describe above, and had to rewrite them later to go to user-space polling.",
+      "range": {
+        "startLine": 143,
+        "startChar": 71,
+        "endLine": 145,
+        "endChar": 29
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2538a19_66e03291",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "Repeating again, all of the above is nvme-specific, and makes no attempt to reuse existing interfaces.  As-written, to accomplish your goals, this is going to require both IPMI and bmcweb to contain nvme-specific code about how to identify drives, read log pages, and do whatever else needs done.  I suspect this needs abstracted using the existing interfaces.  I suspect there\u0027s one or two interfaces that need added for the drive specific inventory things that we don\u0027t yet support, but as written, I don\u0027t think the above interfaces get us the level of abstraction on dbus that we generally would like to encourage.",
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b6fcb95_37f2a30b",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "This isn\u0027t in your requirements.",
+      "range": {
+        "startLine": 186,
+        "startChar": 53,
+        "endLine": 187,
+        "endChar": 44
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dc01f5b_9349d36a",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "Can you rephrase this, I\u0027m not quite understanding this.",
+      "range": {
+        "startLine": 190,
+        "startChar": 35,
+        "endLine": 191,
+        "endChar": 70
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a4055ff_396573af",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "Other impacts:\n1. Physical layer constructs are now present in dbus, which very likely has security impacts.\n2. nvme-specific is now spread across the system\n3. A third nvme-specific daemon is created.",
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "873f8e44_0c2a3e75",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -197,6 +626,53 @@
         "startChar": 0,
         "endLine": 200,
         "endChar": 35
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03ba57bd_69a33fff",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "\u003e Okay, can you please add some more words justifying why they\u0027re complementary but must be separate?\n\u003e Am I just not across enough of the design points of phosphor-nvme? If not, can you please make sure that people like me reading this document can be convinced of your position just by reading the document (and any references)?\n\n+1, I\u0027d really like to understand this point as well.  It\u0027s not clear from the above.",
+      "parentUuid": "873f8e44_0c2a3e75",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 35
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "718664c2_27be5864",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-23T15:53:00Z",
+      "side": 1,
+      "message": "Load testing?  Security testing?  Functional testing?",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 54
       },
       "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
