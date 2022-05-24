@@ -209,6 +209,30 @@
       },
       "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82d779b8_e8377b78",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-05-24T01:01:41Z",
+      "side": 1,
+      "message": "I\u0027d agree that a lengthy, silent delay between pushing the power button and it actually taking effect isn\u0027t great.  It sounds like Patrick\u0027s suggestion is that we could make it less silent via LED feedback, but I\u0027m not sure how likely it is that trying to convey \"I heard you and am working on it\" via an LED would really be achievable in a clear, self-explanatory way; anything I can think of seems like it would be more likely to be completely cryptic or misinterpreted as buggy behavior by someone not already intimately familiar with OpenBMC.  Conveying \"sorry, no can do\" via an LED seems a lot more tractable (though the implicit \"try again in a minute or two\" is admittedly non-obvious).\n\nThis is of course completely tangential, but it seems like a lot of the problems we\u0027re grappling with here would be substantially reduced if we solved the long-standing \"OpenBMC takes way too long to boot\" problem (though it\u0027d need to be a pretty dramatic improvement I suppose).",
+      "parentUuid": "dfba9b23_05f557be",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 26
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
