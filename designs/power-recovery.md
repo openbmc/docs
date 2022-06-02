@@ -21,6 +21,12 @@ force a hard reset to the BMC in situations where it is hung or not responding.
 In these situations, the user may wish for the system to not automatically
 power on the system, because they want to debug the reason for the BMC error.
 
+Blackouts are typically unexpected and therefore the code needs to reflect that
+to ensure required services such as clearing all power LED's are managed
+properly when one occurs. In order to negate discrepencies between features
+that exist on OpenBMC servers and their physical(or software) state, system
+logic must be able to act and respond acordingly.
+
 A brownout is another scenario that commonly utilizes automated power-on
 recovery features. A brownout is a scenario where BMC firmware detects (or is
 told) that chassis power can no longer be supported, but power to the BMC
@@ -87,6 +93,21 @@ BMC as being user initiated, the BMC software must:
   prior to the pin hole reset
 - Not implement any power recovery policy on the system
 - Turn power recovery back on once BMC has a normal reboot
+
+### Blackout
+A blackout occurs when AC power is cut from the system, resulting in a total
+loss of power if there is no UPS installed on the sysem. Blackouts can be
+intentionally triggered by a user (i.e a pinhole reset) or in severe cases
+occur when there is some sort of an external outage. In either case the BMC
+must take into account this detrimental state.
+When this condition occurs, the BMC must:
+- Provide a generic target, obmc-chassis-blackout@.target to be called when
+- a blackout is detected
+- Adhere to the current power restore policy using a one-time restore policy
+- if desired
+BMC firmware must also be able to:
+- Discover why the system is in a blackout situation. From either loss of
+- power or user actions. 
 
 ### Brownout
 As noted above, a brownout condition is when AC power can not continue to be
@@ -166,6 +187,14 @@ BMC boot.
 The phosphor-state-manager chassis software will not log a blackout error
 if it sees the `PinholeReset` reason (or any other reason that indicates a user
 initiated a reset of the system).
+
+### Blackout
+
+A new systemd target, "obmc-chassis-blackout@i.target" should be added to
+allo system maintainers to call services in this condition. This new target
+will be called when the BMC detects a blackout. The target will allow for
+system owners to add their own specific services to this new target.
+chassis_state_manager to respond properly when a blackout occurs.
 
 ### Brownout
 The existing `xyz.openbmc_project.State.Chassis` interface will be enhanced to
