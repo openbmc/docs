@@ -88,6 +88,22 @@ BMC as being user initiated, the BMC software must:
 - Not implement any power recovery policy on the system
 - Turn power recovery back on once BMC has a normal reboot
 
+### Blackout
+A blackout occurs when AC power is cut from the system, resulting in a total loss of power if there
+is no UPS installed on the sysem. Blackouts can be intentionally triggered by a user (i.e a pinhole 
+reset) or in severe cases occur when there is some sort of an external outage. In either case the
+BMC must take into account this detrimental state.
+When this condition occurs, the BMC must:
+- Log an error indicating a blackout occured
+- Communicates to D-bus interface(State::Shutdown::Power::Error::Blackout) to indicate that a
+- blackout happened.
+- Ensure that the "power-on" LED groups are shut off.
+- Adhere to the current power restore policy using a one-time restore policy if desired.
+BMC firmware must also be able to:
+- Discover why the system is in a blackout situation. From either loss of power or user actions. 
+- Generate a file indicating that the system suffered from a power blackout.
+- Run power-restore when a blackout occurs
+
 ### Brownout
 As noted above, a brownout condition is when AC power can not continue to be
 supplied to the chassis, but the BMC can continue to have power and run.
@@ -166,6 +182,23 @@ BMC boot.
 The phosphor-state-manager chassis software will not log a blackout error
 if it sees the `PinholeReset` reason (or any other reason that indicates a user
 initiated a reset of the system).
+
+### Blackout
+
+A new systemd target, "obmc-chassis-blackout@i.target" should be added to maintain the "blackedout"
+state of the system. This new target will be called when the BMC detects a blackout. The service
+will allow for the chassis_state_manager to respond properly when a blackout occurs. Blackouts
+errors are currently represented through the D-bus interface "Shutdown.Power.Error" hosted by
+phosphor-state-manager.
+
+If the system has a restore-policy other than the default of "None" then phosphor-state-manager will
+have to handle this scenraio properly when restarting system services.
+
+After approval this service will be added so that the BMC can communicate to the chassis in order to
+send the corresponding target changes to systemd. This allows the system to know that although
+certain groups may still be powered on, specifically the LEDS groups, and they must be powered off
+accordingly.
+
 
 ### Brownout
 The existing `xyz.openbmc_project.State.Chassis` interface will be enhanced to
