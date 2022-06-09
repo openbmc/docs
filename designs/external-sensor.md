@@ -226,7 +226,7 @@ reading this, then most likely, it was successful!
 [^12]: https://www.dmtf.org/standards/redfish
 [^13]: https://www.boost.org/doc/libs/1_75_0/doc/html/boost_asio/overview/timers.html
 [^14]: https://anniecherkaev.com/the-secret-life-of-nan
-[^15]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/xyz/openbmc_project/Sensor/Value.interface.yaml
+[^15]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml
 [^16]: https://cr.yp.to/proto/utctai.html
 [^17]: https://github.com/openbmc/openbmc/issues/1892
 [^18]: https://github.com/openbmc/entity-manager/blob/master/docs/my_first_sensors.md
