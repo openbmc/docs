@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2930b65_173baac0",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-06-13T09:31:34Z",
+      "side": 1,
+      "message": "Can you also add which are the PLDM Types to be supported, like firmware update, sensors etc? Also whether the pldmd will be only a PLDM requester or PLDM responder/PLDM requester etc.\n\nIf it is PLDM requester only, then all the changes to support the above requirement can be contained within pldm daemon. If the changes are contained within pldmd, it should simplify this document. For example in the flowchart, the BMC requester/client apps can be removed.\n\nThe major changes involved in pldmd, in the case of fw-update over NCSI over RBT.\n\n1. Dynamic discovery/static configuration to find the netlink socket to communicate.\n2. Remote PLDM Terminus to support Type0/Type5 commands etc.\n3. TerminusManager to handle TIDs.\n3. fw-update code to use PLDM TID for mapping instead of MCTP endpoint.\n4. The requester code to handle Tx/Rx based on transport type",
+      "revId": "3aa12c33b454cf82760f5db346e0b0896e950e05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4d7496b_d1ea1069",
         "filename": "designs/pldm-transport-layer-wrapper.md",
         "patchSetId": 10
@@ -31,6 +48,109 @@
       "writtenOn": "2022-06-09T00:11:57Z",
       "side": 1,
       "message": "Odd spacing here? This might turn the line into a code block?",
+      "revId": "3aa12c33b454cf82760f5db346e0b0896e950e05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4543b12a_9f3793cc",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-06-13T09:31:34Z",
+      "side": 1,
+      "message": "PLDM client app -\u003e Do you plan to introduce a new client app?",
+      "range": {
+        "startLine": 69,
+        "startChar": 61,
+        "endLine": 69,
+        "endChar": 76
+      },
+      "revId": "3aa12c33b454cf82760f5db346e0b0896e950e05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4814a65f_6ffa7634",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-06-13T09:31:34Z",
+      "side": 1,
+      "message": "Why does the pldmd need to read NCSI parameters from the entity manager config? Can it be a static configuration to the pldm daemon?",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 73
+      },
+      "revId": "3aa12c33b454cf82760f5db346e0b0896e950e05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e4fd1d1_ea9d3633",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-06-13T09:31:34Z",
+      "side": 1,
+      "message": "What is the netlink socket to communicate over NCSI/RBT, isn\u0027t part of the static confiuration?",
+      "revId": "3aa12c33b454cf82760f5db346e0b0896e950e05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1860dea1_e406afbf",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-06-13T09:31:34Z",
+      "side": 1,
+      "message": "PLDM Type 2 supports sensors and it can be discovered by BMC, why create entity manager configuration?",
+      "revId": "3aa12c33b454cf82760f5db346e0b0896e950e05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc322927_38badbf9",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-06-13T09:31:34Z",
+      "side": 1,
+      "message": "Do you propose to have registerRequest as a D-Bus API?",
+      "range": {
+        "startLine": 237,
+        "startChar": 4,
+        "endLine": 237,
+        "endChar": 26
+      },
       "revId": "3aa12c33b454cf82760f5db346e0b0896e950e05",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
