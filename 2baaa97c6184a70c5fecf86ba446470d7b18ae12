@@ -525,6 +525,30 @@
       },
       "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ce9db4a_7f835186",
+        "filename": "designs/device-tree-gpio-naming.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2022-06-14T20:14:04Z",
+      "side": 1,
+      "message": "Sorry, I missed this somehow.  I\u0027m not aware of any documentation, but I can share how the pins are used in x86-power-control:\nSIOONCTRL: Output from the BMC that tells when to enable the power supplies.  On our systems, this is combined with the PCH input to determine when to assert PS_EN.\nSIOPWRGD: Input to the BMC from CPU Power good to indicate when the hardware has finished powering on.\nSIOS3/SIOS5: Input to the BMC from the PCH SLP_S4/SLP_S5 signals.  On our systems we only support S5.  This pin is used to know when the system has started the hardware power-down sequence.",
+      "parentUuid": "60b6f506_bfa28c0d",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 16
+      },
+      "revId": "2baaa97c6184a70c5fecf86ba446470d7b18ae12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
