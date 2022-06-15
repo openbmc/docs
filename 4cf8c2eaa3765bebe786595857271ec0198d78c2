@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5512e09b_86f6bf54",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-06-15T19:29:40Z",
+      "side": 1,
+      "message": "There is no specific vendor, I am just speculating. Even with the bmcweb call, a vendor needs to develop against the full end-to-end flow with bmcweb, image manager and their item updater. What I\u0027m saying here is that the vendor can easily develop and test their implementation without the full workflow. They should still test the whole workflow before sending for review, but this API could just make development easier.",
+      "parentUuid": "8f0e3e18_b7247a9c",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30d078e6_e94664c7",
         "filename": "designs/simple-firmware-update-api.md",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2022-06-15T05:24:58Z",
       "side": 1,
       "message": "It looks like the ImagePath is the path on BMC that is the uploaded image is it?\nWhat is the difference between this new API and the existing `RequestedActivation`?\n\nI feel that they are doing pretty much the same thing?",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ef55ae2_72fa61bc",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-06-15T19:29:40Z",
+      "side": 1,
+      "message": "Yes the path is local to the BMC.\nRequestedActivation requires the ItemUpdater to first know about an image through the Version object published by the ImageManager, and then creating that Activation object. This new API cuts out that extra step so a client can directly send an image to an ItemUpdater-like daemon.",
+      "parentUuid": "30d078e6_e94664c7",
       "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de23ab96_6706e969",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-06-15T19:29:40Z",
+      "side": 1,
+      "message": "There would be separate objects for each device. So if BIOS and BMC are managed by the same daemon, there should be 2 separate objects on that daemon.",
+      "parentUuid": "80b6e639_cafd8f54",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "14cba7eb_6635728f",
         "filename": "designs/simple-firmware-update-api.md",
         "patchSetId": 1
@@ -65,6 +119,24 @@
       "writtenOn": "2022-06-15T18:58:43Z",
       "side": 1,
       "message": "An alternative could be adding an option in the existing interfaces that when an image is uploaded it automatically sets the RequestedActivations property to start the activation.",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b63e26e6_19770ea5",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-06-15T19:29:40Z",
+      "side": 1,
+      "message": "Would that be an option passed through Redfish to bmcweb, so that bmcweb automatically sets the RequestedActivations property? I believe bmcweb already does this by default.\n\nA problem this new API is trying to solve is for firmware upgrades without Redfish, where some local process within the BMC is coordinating the firmware upgrade. In that case (and even in the case of Redfish SimpleUpdate) I don\u0027t see the use for the ImageManager, when the image can be passed directly to the ItemUpdater.",
+      "parentUuid": "14cba7eb_6635728f",
       "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
