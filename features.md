@@ -3,7 +3,7 @@
 Follow links to learn more about OpenBMC features:
 
 * [BMCWeb][] HTTP/Web server
-* [Phosphor WebUI][] web application
+* [WebUI Vue][] web application
 * REST Management: [BMCWeb Redfish][], [Phosphor REST APIs][] includes
   [Host management REST APIs][]
 * [D-Bus interfaces][] describes internal interfaces
@@ -63,10 +63,10 @@ Follow links to learn more about OpenBMC features:
 [Phosphor REST APIs]: https://github.com/openbmc/docs/blob/master/rest-api.md
 [Phosphor User Management]: https://github.com/openbmc/docs/blob/master/architecture/user-management.md
 [Phosphor Watchdog Implementation]: https://github.com/openbmc/phosphor-watchdog
-[Phosphor WebUI]: https://github.com/openbmc/phosphor-webui/blob/master/README.md
 [Power OCC Implementation]: https://github.com/openbmc/openpower-occ-control
 [Remote KVM]: https://github.com/openbmc/obmc-ikvm/blob/master/README.md
 [Sensors]: https://github.com/openbmc/docs/blob/master/architecture/sensor-architecture.md
 [Simulation]: https://github.com/openbmc/docs/blob/master/development/dev-environment.md
 [Power State management]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/README.md
 [SOL How to use]: https://github.com/openbmc/docs/blob/master/console.md
+[WebUI Vue]: https://github.com/openbmc/webui-vue/blob/master/README.md
