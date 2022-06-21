@@ -152,7 +152,7 @@ help diagnose problems during its operation.
 
 BMCWeb is the Web server for:
  - The Redfish REST APIs.
- - The phosphor-webui Web interface.
+ - The webui-vue Web interface.
  - The Phosphor D-Bus REST interface.
 And initiates WebSockets for:
  - Host KVM.
@@ -207,11 +207,11 @@ Redfish provides security considerations in the "Security Detail"
 section of the "Redfish Specification" (document ID DSP0266) available
 from https://www.dmtf.org/standards/redfish.
 
-#### The phosphor-webui Web application
+#### The webui-vue Web application
 
 General considerations for Web applications such as given by [OWASP
 Web Application Security Guidance][] apply to OpenBMC.  The
-phosphor-webui uses username and password-based authentication, and
+webui-vue uses username and password-based authentication, and
 REST APIs for subsequent access.
 
 [OWASP Web Application Security Guidance]: https://www.owasp.org/index.php/Web_Application_Security_Guidance
