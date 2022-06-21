@@ -193,7 +193,7 @@ HTTPS transport protocol on TCP port 443).
 [BMCWeb is configurable]: https://github.com/openbmc/bmcweb/blob/master/CMakeLists.txt
 
 Services provided:
- - Web application (phosphor-webui) and other static content
+ - Web application (webui-vue) and other static content
  - REST APIs including custom phosphor-rest and Redfish APIs
  - KVM-IP (Keyboard, Video, Mouse over IP)
  - Virtual media via USB-IP (Universal Serial Bus over IP)
