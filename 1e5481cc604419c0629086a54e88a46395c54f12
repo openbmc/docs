@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dabbfe74_49ad889c",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-06-27T09:34:12Z",
+      "side": 1,
+      "message": "This looks like an overlap to the Terminus management section in other design doc. https://gerrit.openbmc.org/c/openbmc/docs/+/47252/17/designs/pldm-stack.md#340\n\nWe need to draw a line and avoid overlapping contents in both designs. May be we can give reference to other design or accommodate terminus management in wrapper design?",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 77,
+        "endChar": 19
+      },
+      "revId": "1e5481cc604419c0629086a54e88a46395c54f12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15ca52df_6bd73989",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-06-27T09:34:12Z",
+      "side": 1,
+      "message": "Unintended white space?",
+      "revId": "1e5481cc604419c0629086a54e88a46395c54f12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "906858b9_9ddb92f1",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-06-27T09:34:12Z",
+      "side": 1,
+      "message": "Please use upper case to follow the same convention throughout the doc.",
+      "range": {
+        "startLine": 104,
+        "startChar": 15,
+        "endLine": 104,
+        "endChar": 19
+      },
+      "revId": "1e5481cc604419c0629086a54e88a46395c54f12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04db4841_1a5eecab",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-06-27T09:34:12Z",
+      "side": 1,
+      "message": "nit: BMC. Upper case for acronym.",
+      "range": {
+        "startLine": 105,
+        "startChar": 63,
+        "endLine": 105,
+        "endChar": 67
+      },
+      "revId": "1e5481cc604419c0629086a54e88a46395c54f12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "496b8f92_b434d8cc",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-06-27T09:34:12Z",
+      "side": 1,
+      "message": "Starting from \"Address\", I see an extra empty line and 2 white space right shift in your configuration data. Is that indented or is that supposed to be another array within? Like a pldm device can have multiple sensors within?",
+      "revId": "1e5481cc604419c0629086a54e88a46395c54f12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4e628dd_612f7375",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-06-27T09:34:12Z",
+      "side": 1,
+      "message": "nit: Following one specific format(lower_case or UpperCamelCase) for the keys might provide better readability.",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 2
+      },
+      "revId": "1e5481cc604419c0629086a54e88a46395c54f12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11d6e1a0_2a010cf8",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2022-06-27T09:34:12Z",
+      "side": 1,
+      "message": "Missed in last review. This looks like a generic sensor configuration. As per PLDMD or a device which supports PLDM, these configurations should be in PLDM PDR format. You can define static Terminus Locator PDR and Sensor PDRs for the devic. Same was proposed in https://gerrit.openbmc.org/c/openbmc/docs/+/47252/0..18/designs/pldm-stack.md#367\n\nHaving sed that, The wrapper configuration can be independent of PLDM device specifics. Transport config needs only TID mapping to transport. After that TID(device) specific info can be read from PDRs.",
+      "range": {
+        "startLine": 132,
+        "startChar": 11,
+        "endLine": 152,
+        "endChar": 28
+      },
+      "revId": "1e5481cc604419c0629086a54e88a46395c54f12",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
