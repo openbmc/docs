@@ -35,6 +35,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e5ed1ca_f4ad6967",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2022-06-27T00:37:48Z",
+      "side": 1,
+      "message": "+1 for Andrew and Ed\u0027s comments - this needs a bit of a rework to start with the problem statement before the solution is defined. Once that\u0027s done, we can review with a focus on the proposed design rather than the document structure.\n\nThe major design point will be the relation with the existing implementations; if this can\u0027t be implemented as part of one of the existing codebases, then how it would coexist. I suspect that your proposed nvmed exposes a richer set of potentially NVMe-specific management functionality, but we\u0027d need to make that explicit, and describe how that works within the existing systems.\n\nI\u0027ve added a couple of responses in line with the existing mctp/etc infrastructure too.",
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0af69f8b_1a778ba3",
@@ -269,6 +286,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1af5967b_a8248d77",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2022-06-27T00:37:48Z",
+      "side": 1,
+      "message": "+1; this could be more descriptive of the MI command set you\u0027re looking to expose.",
+      "parentUuid": "b2fafce8_8b9fe494",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 77
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7631a13_258437ca",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -285,6 +326,53 @@
         "startChar": 0,
         "endLine": 57,
         "endChar": 44
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed73bd9b_aaad1340",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2022-06-27T00:37:48Z",
+      "side": 1,
+      "message": "It looks like this is referring to two separate MI commands sets in the NVMe-MI spec: MI commands, and Admin Commands.",
+      "parentUuid": "d7631a13_258437ca",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7115a28_279aed79",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2022-06-27T00:37:48Z",
+      "side": 1,
+      "message": "\"consumers\" maybe?",
+      "range": {
+        "startLine": 60,
+        "startChar": 55,
+        "endLine": 60,
+        "endChar": 64
       },
       "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -408,6 +496,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6bc8e7b_7141f5c3",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2022-06-27T00:37:48Z",
+      "side": 1,
+      "message": "\u003e This is an example of something we generally shouldn\u0027t be doing, and doesn\u0027t really seem to have any requirements backing it.\n\nJust to clarify the separation of components here - the MCTP endpoint interfaces are not provided my this new (nvmed) design, but by the general MCTP infrastructure (mctpd), which nvmed should be using to discover the results of the MCTP enumeration process.\n\nThis dbus interface is already an accepted design; the presence of the MCTP endpoints is defined at https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/MCTP , and the mctpd interface at https://github.com/CodeConstruct/mctp#mctpd-usage .\n\nIn this section, I believe Hao is just using this to describe what interfaces nvmed is using, rather that what it is providing.",
+      "parentUuid": "3a10ce45_6e57b7a2",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 66
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6cf2e932_5e29251a",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -466,6 +578,30 @@
       "side": 1,
       "message": "I really don\u0027t think an MCTP-specific EM config type benefits us going forward over having more specific types (NVMe-MI, PLDM, RDE, ect).\n\nCan you think of a case where say, an nvme drive and a RDE accelerator would share code or configurations here?  Even if there were sharing, I suspect they would be minimal.",
       "parentUuid": "a67009c6_7db4230e",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 43
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "736841d0_4740219a",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2022-06-27T00:37:48Z",
+      "side": 1,
+      "message": "Yep, I think the NVMe(-MI) level is most suitable here. I dont see a need to expose much in the way of MCTP-specific configuration, as we already have the discovery process (MCTP Control Protocol) for that, the results of which are exposed via dbus anyway.",
+      "parentUuid": "0725d142_221c67dc",
       "range": {
         "startLine": 115,
         "startChar": 0,
