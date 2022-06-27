@@ -520,6 +520,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6261452f_1202dee3",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-06-27T17:34:04Z",
+      "side": 1,
+      "message": "\u003e , but by the general MCTP infrastructure (mctpd), which nvmed should be using to discover the results of the MCTP enumeration process.\n\nThis is roughly the same design that we did for IPMB that I thought we kind of agreed caused more problems than it solved, but Jeremy is certainly more of an expert here than I am, so I\u0027ll defer to his good judgement.\n\nWith that said, I wasn\u0027t aware that the mctpd-\u003edbus design had been accepted, so that changes this a bit.  In terms of this design, can we just get this section removed, and the mctpd design doc/interfaces put in the background section?",
+      "parentUuid": "c6bc8e7b_7141f5c3",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 66
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6cf2e932_5e29251a",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -602,6 +626,30 @@
       "side": 1,
       "message": "Yep, I think the NVMe(-MI) level is most suitable here. I dont see a need to expose much in the way of MCTP-specific configuration, as we already have the discovery process (MCTP Control Protocol) for that, the results of which are exposed via dbus anyway.",
       "parentUuid": "0725d142_221c67dc",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 43
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eda8ea65_4deaaace",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-06-27T17:34:04Z",
+      "side": 1,
+      "message": "FWIW, also, in the case where we had a device that supported more than one of the set of nvme-mi, pldm, and RDE, we would still have a way to declare it (just declare all 3 exposes records).",
+      "parentUuid": "736841d0_4740219a",
       "range": {
         "startLine": 115,
         "startChar": 0,
