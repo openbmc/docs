@@ -39,6 +39,40 @@
       "message": "This is probably good to be reviewed by the maintainers of openbmc/docs now",
       "revId": "c95e82a1b7680454a925f564e62371dae4a9c94e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e618f76_2547d787",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001299
+      },
+      "writtenOn": "2022-06-29T07:14:08Z",
+      "side": 1,
+      "message": "How about this? I try to describe the problems instead of the implementations.\n\nDuring a server reboot/power cycle process, measuring the duration spent on each [stage](#definition-of-each-stage) is the key to profiling and monitoring the software quality. However, some parts of the flow are not easy to be measured and exposed to host user space applications. For example, it\u0027s impossiblt to measure the time spent on Linux kernel shutting down because the file system might be unavailable at the end of kernel reboot process.",
+      "revId": "c95e82a1b7680454a925f564e62371dae4a9c94e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "486a5320_d17b1a06",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1001299
+      },
+      "writtenOn": "2022-06-29T07:14:08Z",
+      "side": 1,
+      "message": "Can you add a section for BMC and host shutting down together? I think BMC will be faster than host in this scenario. (AC cycle)",
+      "revId": "c95e82a1b7680454a925f564e62371dae4a9c94e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
