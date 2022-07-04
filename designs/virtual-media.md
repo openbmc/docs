@@ -411,20 +411,24 @@ completion.
 
 For Proxy its ```xyz.openbmc_project.VirtualMedia.Proxy```, defined as follow:
 
-| Name       | type   | input | return  | description                                       |
-| ---------- | ------ | ----- | ------- | ------------------------------------------------- |
-| Mount      | Method | -     | BOOLEAN | Perform a mount to HOST operation on given object |
-| Unmount    | Method | -     | BOOLEAN | Perform an unmount from HOST on given object      |
-| Completion | Signal | -     | INT32   | Returns 0 for success or errno on failure         |
+| Name       | type   | input | return  | description                                                                    |
+|------------|--------|-------|---------|--------------------------------------------------------------------------------|
+| Mount      | Method | -     | BOOLEAN | Perform an asynchronous operation of mounting to HOST on given object.         |
+| Unmount    | Method | -     | BOOLEAN | Perform an asynchronous operation of unmount from HOST on given object         |
+| Completion | Signal | -     | INT32   | Returns 0 for success or errno on failure after background operation completes |
 
 For Legacy its ```xyz.openbmc_project.VirtualMedia.Legacy```, defined as follow:
 
 | Name       | type   | input  | return  | description                                                                                |
 | ---------- | ------ | ------ | ------- | ------------------------------------------------------------------------------------------ |
-| Mount      | Method | STRING | BOOLEAN | Perform a mount to HOST operation on given object, with location given as STRING parameter |
-| Mount      | Method | STRING<br>BOOLEAN<br>VARIANT<UNIX_FD,INT> | BOOLEAN | Perform a mount to HOST operation on given object, with parameters:<br><br>`STRING` : url to image. It should start with either `smb://` or `https://` prefix<br>`BOOLEAN` : RW flag for mounted gadget (should be consistent with remote image capabilities)<br>`VARIANT<UNIX_FD,INT>` : file descriptor of named pipe used for passing null-delimited secret data (username and password). When there is no data to pass `-1` should be passed as `INT` |
-| Unmount    | Method | -      | BOOLEAN | Perform an unmount from HOST on given object                                               |
-| Completion | Signal | -      | INT32   | Returns 0 for success or errno on failure                                                  |
+| Mount      | Method | STRING | BOOLEAN | Perform an asynchronous operation of mounting to HOST on given object, with location given as STRING parameter |
+| Mount      | Method | STRING<br>BOOLEAN<br>VARIANT<UNIX_FD,INT> | BOOLEAN | Perform an asynchronous operation of mounting to HOST on given object, with parameters:<br><br>`STRING` : url to image. It should start with either `smb://` or `https://` prefix<br>`BOOLEAN` : RW flag for mounted gadget (should be consistent with remote image capabilities)<br>`VARIANT<UNIX_FD,INT>` : file descriptor of named pipe used for passing null-delimited secret data (username and password). When there is no data to pass `-1` should be passed as `INT` |
+| Unmount    | Method | -      | BOOLEAN | Perform an asynchronous operation of unmounting from HOST on given object                  |
+| Completion | Signal | -      | INT32   | Returns 0 for success or errno on failure after background operation completes             |
+
+Mount and unmount operation return true if async operation is started and
+false when preliminary check encountered an error. They may also indicate
+appropriate dbus error.
 
 ## Alternatives Considered
 Existing implementation in OpenBMC
