@@ -34,6 +34,420 @@
       "parentUuid": "e9205126_1b6aa754",
       "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf803566_fd138b21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "Good progress has been made on this.  There are still some issues/comments I\u0027d like to see addressed before moving forward on this Design proposal.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a4b4039_78c1af06",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "This sentence is confusing.  This seems to contradict the previous statement where the image would only be deleted if the user had updated all four devices/hosts which could be updated.  This statement indicates the image would be deleted if only 3 of the 4 were updated.",
+      "range": {
+        "startLine": 39,
+        "startChar": 23,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92e440fd_7b59e3c2",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "Provided below are the implementation steps.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e1f20e7_c5400b95",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "It would be good to better relate which details are needed from the ItemUpdater collected data.  List of devices/hosts is one thing, but I think types of FW to be updated, current versions (both running and to be activated versions) and other details should be documented here.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fe61f77_010c12c7",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "As with the BIC firmware mentioned below, there may be multiple CPLDs in a server which need to be updated.  These images are different for each CPLD.  Thus, image type probably needs to be more granular so it can be resolved to a particular CPLD device which needs to be updated.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "453474f6_e3c04de8",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "One caveat is there is not just a single type of BIC firmware.  The BIC can be located on the baseboard or the main server board and there can be separate BICs on add-in cards.  Thus, there may be as many as 3 different BICs which need firmware updates to be performed on each host/server.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a99857fa_cfd6c367",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "ME firmware is typically updated as part of the BIOS update for Yosemite-type servers.  It is listed as a firmware version, but the BIOS firmware update contains the ME firmware.  ME firmware cannot be separately updated on Yosemite-type servers.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17f9b77c_6b7e6a19",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "...the host details for software updates are retrieved from the inventory.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44c2b1a8_15eca087",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "What is \u0027it\u0027 referring to here.  Is this host details, firmware update or something else?",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09217838_efdcdd3d",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "Remove ME from this line.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d84c1c4_03e9bd5b",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "Would drop ME from this list for now as mentioned above.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8492abd6_54a05fea",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "Would replace \u0027minus signs\u0027 with \u0027hyphens\u0027 to correctly indicate the ASCII character type supported here.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84a7be19_815f9cb7",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "Please remove ME here.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f89559b_6f678dbe",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "\u0027will not be performed\u0027.  Is this specific to the given device or if many devices are being updated in a firmware update operation, do all of them get terminated on a single device mismatch?",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61132c05_bb831ce5",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "It would be good to show this example as BIOS instead of CPLD so the comparison of changes required for the same firmware type (e.g. BIOS) can be seen.  I\u0027m assuming you are presenting the single-host type as an example of what is present today and the multi-host as what will be added.  If this isn\u0027t true, then further clarity of the expected changes need to be made clearer.  Please note that on the Yosemite systems, all BIOS updates will be multi-host.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1f47ca0_1a8bc33c",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "\u0027two different BIOS\u0027",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "433adce0_345aa3d8",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "Should \u0027If we\u0027 be \u0027If the\u0027?",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdff0fa3_2b894d1e",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "\"Hardware\"",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61920f27_06b0abdd",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "\"BIOS\"",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0e32e86_a0accce0",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "How will status of the service be handled if there is an error/update failed on one host when parallel updates are in progress?  It might be best to indicate initially updates would be handled serially but an enhancement to support parallel updates may be considered in the future.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c05ed9d9_1db9ec9d",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "Should this be \"update progress\"?",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a045f887_7f675c8c",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "I am a bit confused here about the use of the term \u0027Activation\u0027.  For Firmware updates in general, activation means the firmware is being moved from a staged to a running state.  Staging the firmware is normally the first step (e.g. copying it down to the device).  Activation is typically a second state which can occur either at the same time as staging or done at a later time.  Activation implies changing the device from running the current firmware image to the newly staged image.  \n\nCan you clarify here and in this section in general whether Activation implies staging or if there is a separate state that needs to be accounted for here.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd0fce0_7b44cc44",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "This sentence seems to be missing something.  I believe it means to indicate the systemd service which is invoking the flash tool will have its status changed to failed or inactive status.  However, this isn\u0027t clear here.",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f425b1f8_02eeeaab",
+        "filename": "designs/software-update-for-multiple-devices.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-07-04T20:28:08Z",
+      "side": 1,
+      "message": "With the size of some of these images, could the BMC run out of storage if the images are left forever?  Should there be a check to ensure the BMC has enough storage to handle the firmware images somewhere during the process?",
+      "revId": "476df72a5454e1ca79e24c821e3945bcfca8bd1c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
