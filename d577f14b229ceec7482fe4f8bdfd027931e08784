@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3e5a252_3f956ecc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-05T15:36:04Z",
+      "side": 1,
+      "message": "What is a recommended value?  Can you point to the documentation you pulled these recommended values from in your commit message?  clang-format maintains codes for multiple styles of formatting, so I\u0027d be surprised if there were just one \"recommended\" value.\n\nIf any of these values are just setting or keeping the defaults, why is it necessary to have them in this file?",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 10,
+        "endChar": 36
+      },
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "4447005e_fd382725",
@@ -32,6 +55,24 @@
       "side": 1,
       "message": "Yeah wow, that is quite a few changes. Not sure what next step is here? We want Zane to run this against some of our bigger/popular repos? That seems like quite an ask for someone who\u0027s just trying to help out here with a doc update. As this is just a doc update, and it\u0027s up to the maintainers to pull into their repos, I\u0027m not sure the testing is really necessary.",
       "parentUuid": "4447005e_fd382725",
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62421730_1a38f8ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-05T15:36:04Z",
+      "side": 1,
+      "message": "\u003e We want Zane to run this against some of our bigger/popular repos?\n\nThat\u0027d be a good start.\n\n\u003e That seems like quite an ask for someone who\u0027s just trying to help out here with a doc update.\n\nHow is this a docs update?  He\u0027s changing config files for compile time tooling.  If he had updated the coding standard with the things that this file conveys, I could see that argument being made, but as-written, it doesn\u0027t at all document why these changes are being made, or what effect they\u0027re going to have on our coding style.\n\nI\u0027m also not quite understanding the pushback;  It\u0027s a 5 minute task to apply this clang-format to a repo and push the patch.  In lieu of writing a lengthy commit message documenting why this change is needed (which for any other sort of code-changing commit we\u0027d generally require) pointing to a couple repos and showing \"These are the code formatting changes that get made\" seems reasonable to me.\n\nI applied this change to bmcweb, and it changed 13000 lines of code.\n\n\n\u003e That seems like quite an ask for someone who\u0027s just trying to help out here with a doc update.\n\nI don\u0027t know if we formally documented that anywhere, and IMO, it\u0027s up to the person submitting the change to ideally make the case that every repo in the codebase needs to change.",
+      "parentUuid": "16754183_7d67ec21",
       "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
