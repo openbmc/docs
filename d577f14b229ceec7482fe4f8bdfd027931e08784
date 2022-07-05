@@ -75,6 +75,110 @@
       "parentUuid": "16754183_7d67ec21",
       "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "592f70ce_a0c2719c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-05T15:47:00Z",
+      "side": 1,
+      "message": "https://gerrit.openbmc.org/c/openbmc/bmcweb/+/55106\n\nAre the changes it\u0027s making, and some things to note:\n\n1. This file makes us incompatible with clang-format-13, which is currently the standard in a lot of debian distros.  We should message that more heavily.\n\n2. The biggest change I see is in regards to the tabbing of lambdas, which, seems ok, but is going to cause mass merge conflicts on existing patches like it did a couple months ago when we changed the lambda formatting rules once.  The rollout of this should be discussed in the commit message.",
+      "parentUuid": "62421730_1a38f8ce",
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b25e531c_5c6c788f",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-05T15:47:00Z",
+      "side": 1,
+      "message": "I see a bunch of options below where we\u0027re just imposing the defaults.  Is there value in that?  Especially for all the settings that are empty list, or \"None\" it seems like extra noise in the file.",
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a234baeb_c59c673f",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-05T15:47:00Z",
+      "side": 1,
+      "message": "We don\u0027t use Java on the project, so it\u0027s not clear why these options are helpful.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 27
+      },
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec08a6f4_e8a025dc",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-05T15:47:00Z",
+      "side": 1,
+      "message": "This change is one we were looking for the last time we reformatted the lambdas, and is probably overall a good change.",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 21
+      },
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e7daa3_0b7dbfe4",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-05T15:47:00Z",
+      "side": 1,
+      "message": "How was this list chosen?  Considering our coding standard is to not use macros as a general rule, it seems odd we would have this.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 17
+      },
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
