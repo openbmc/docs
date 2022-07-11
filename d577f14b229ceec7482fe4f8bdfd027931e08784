@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a0e800_0d55d0ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000359
+      },
+      "writtenOn": "2022-07-11T21:50:58Z",
+      "side": 1,
+      "message": "My understanding was that this file contained the recommended style format for the OpenBMC community. Otherwise, why do we even have this file? I simply took my best guess to be consistent with the style previously presented in this file. I\u0027ll graciously make any changes based on constructive input.\n\nWhen I started this activity I ran:\n\n    clang-format -style\u003dllvm -dump-config \u003e .clang-format\n\nThis dumped out all available options with the llvm settings. Then I edited them to match the previous style. I believe this is what had been done before. I simply followed that pattern.",
+      "parentUuid": "f3e5a252_3f956ecc",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 10,
+        "endChar": 36
+      },
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "4447005e_fd382725",
@@ -132,6 +156,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77542d53_ca0c0700",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000359
+      },
+      "writtenOn": "2022-07-11T21:50:58Z",
+      "side": 1,
+      "message": "As stated in another comment, I am just following what had been done before.",
+      "parentUuid": "b25e531c_5c6c788f",
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1a4b147_e73fd47a",
         "filename": "style/cpp/.clang-format",
         "patchSetId": 2
@@ -143,6 +185,30 @@
       "writtenOn": "2022-07-05T20:30:25Z",
       "side": 1,
       "message": "Why did this change?\n\n\nI originally went through this file and wrote \"Why did this change\" on every parameter where its value was changed compared to the previous, but that was a little overkill.  I think the right approach would be getting the commit message updated with how you arrived at the decision that we needed some of these changes, and we can discuss.\n\nSo far as I can tell, this commit is changing 10s of parameters from their previous value, so I think some statement as to why would be warranted.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 27
+      },
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deea9767_fb8e461e",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000359
+      },
+      "writtenOn": "2022-07-11T21:50:58Z",
+      "side": 1,
+      "message": "According to the documentation (https://releases.llvm.org/14.0.0/tools/clang/docs/ClangFormatStyleOptions.html), the possible values are Consecutive, AcrossEmptyLines, AcrossComments, and AcrossEmptyLinesAndComments. I am guessing this option used to be a boolean, but was later changed to the AlignConsecutiveStyle type. A boolean value may still be accepted to retain backwards compatibility.",
+      "parentUuid": "c1a4b147_e73fd47a",
       "range": {
         "startLine": 9,
         "startChar": 0,
@@ -178,6 +244,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ca38ca7e_fa37b19f",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000359
+      },
+      "writtenOn": "2022-07-11T21:50:58Z",
+      "side": 1,
+      "message": "I agree. They were just added for completeness and can be removed. We could probably also remove BreakAfterJavaFieldAnnotations, InsertTrailingCommas, and SortJavaStaticImport.\n\nAlso, I didn\u0027t realize until after I had filled in everything that there is a separate `style/javascript/.clang-format` file.",
+      "parentUuid": "a234baeb_c59c673f",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 27
+      },
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ec08a6f4_e8a025dc",
         "filename": "style/cpp/.clang-format",
         "patchSetId": 2
@@ -189,6 +279,30 @@
       "writtenOn": "2022-07-05T15:47:00Z",
       "side": 1,
       "message": "This change is one we were looking for the last time we reformatted the lambdas, and is probably overall a good change.",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 21
+      },
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4bebd8c_e889fa87",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000359
+      },
+      "writtenOn": "2022-07-11T21:50:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ec08a6f4_e8a025dc",
       "range": {
         "startLine": 109,
         "startChar": 0,
@@ -212,6 +326,30 @@
       "writtenOn": "2022-07-05T15:47:00Z",
       "side": 1,
       "message": "How was this list chosen?  Considering our coding standard is to not use macros as a general rule, it seems odd we would have this.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 17
+      },
+      "revId": "d577f14b229ceec7482fe4f8bdfd027931e08784",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d83e7353_90a0030d",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000359
+      },
+      "writtenOn": "2022-07-11T21:50:58Z",
+      "side": 1,
+      "message": "This is left over from the llvm config. This probably should be an empty list. I don\u0027t recall why I left it this way.",
+      "parentUuid": "14e7daa3_0b7dbfe4",
       "range": {
         "startLine": 183,
         "startChar": 0,
