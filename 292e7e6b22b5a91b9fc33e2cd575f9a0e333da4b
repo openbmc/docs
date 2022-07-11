@@ -51,6 +51,46 @@
       "message": "Looks good to me.",
       "revId": "292e7e6b22b5a91b9fc33e2cd575f9a0e333da4b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1020c0fa_45db4bef",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-07-11T05:56:36Z",
+      "side": 1,
+      "message": "Summarizing feedback from PMCI meet, a static config can work for testing purposes. The question is how can PLDM daemon know the readiness of the NCSI device on startup for PLDM discovery. For remote MCTP endpoints we solved that problem by depending on the discovery of MCTP D-Bus interface https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/MCTP/Endpoint.interface.yaml. Jeremy had the same feedback as well.\n\nWe can propose a D-Bus interface with NC-SI details (device_type, transport_type...etc) and the socket info PLDM daemon needs to do NC-SI over RBT.",
+      "revId": "292e7e6b22b5a91b9fc33e2cd575f9a0e333da4b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cf04b3e_282424ce",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-07-11T05:56:36Z",
+      "side": 1,
+      "message": "The NC-SI over RBT requirements can be covered by the PLDM daemon and no changes are needed to these library APIs that are used specifically by apps that go over MCTP.",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 52
+      },
+      "revId": "292e7e6b22b5a91b9fc33e2cd575f9a0e333da4b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
