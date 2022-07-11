@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7081c674_5fcd6e52",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-07-11T10:56:26Z",
+      "side": 1,
+      "message": "This feels a bit hand-wavy in the way it is worded.  Is it really \"significant...complexity\"?\n\nIs there any case where certain types of associations (such as contained-in) would always be hierarchy and other types of association (ex. powered-by) would not be?  This doesn\u0027t seem more complex on the part of the client and it more intuitive to humans.",
+      "range": {
+        "startLine": 88,
+        "startChar": 38,
+        "endLine": 89,
+        "endChar": 23
+      },
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a5cb95c_a49779ae",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-07-11T10:56:26Z",
+      "side": 1,
+      "message": "I don\u0027t see a great section to write this.\n\nIn effect, you\u0027ve taken just the \"connections\" part of the inventory design and used that as justification why using associations is better, but by leaving out the rest of the design you\u0027ve implicitly simplified away all the other issues.  A few issues that associations cause in my initial thinking:\n\n* Naming becomes a harder problem and should probably be specified.\n\nWhere you previous might be able to name an inventory object /chassis0/proc0 and /chassis1/proc0, you now need to either name them chassis0-proc0 and chassis1-proc0 or proc0 and proc8.  Both of these are a bit clumsy and the second is much less intuitive for humans.\n\n* How are \"building blocks\" defined?\n\nThis might be somewhat due to my own ignorance of the details of EM (and this is also somewhat related to \u0027naming\u0027).  It is much more obvious to me how you would go about specifying a building block of your system, such as a compute card, in a hierarchical design.  \"I detected compute card X in slot Y, so all of its stuff is named /slotY/stuff\".  How you go about specifying (and generating the name) of duplicative entities, and creating all the appropriate associations back to parents, isn\u0027t obvious to me.  Is there anything in the EM design already that handles this?\n\n* Implicit information vs explicit information.\n\nUsing hierarchy means you get a good view into the inventory relationships for free (implicit due to path assignments).  That means system designers don\u0027t need to do anything [special] to get a huge part of their Redfish data exposed.  Using associations means that all of it needs to be expressed explicitly and anything that is missed is missing.  This increases the work necessary.\n\nSome might argue that explicit expression is less bug-prone because it is all obvious and I can sympathize with that argument.  I think it is mostly only true when you are writing your system *after* all the association features have been done.  The minute we add a new association, all old systems are going to be missing it, and likely most of them will never get it added.  Implicit definitions, at least wherever possible, allow us to keep most systems on parity with each other much easier.",
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
