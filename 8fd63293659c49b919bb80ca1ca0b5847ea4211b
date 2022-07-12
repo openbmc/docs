@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6c3cd7a_f0dd0cbf",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-07-12T17:01:59Z",
+      "side": 1,
+      "message": "Does it make sense to provide an example config here to help readers understand how this dynamic probe works?",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 12
+      },
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11936c83_0d58a4d0",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-07-12T17:01:59Z",
+      "side": 1,
+      "message": "Same here; it will be great if we can get an example query (e.g., how Fans are connected to a chassis).\n\nAlso, I have the same concerns as Patrick: the association will contain as list of object paths, right? How will we parse that path? If we only use filename, then we will have the problem of nested names, for example, say we have two chassis, one contained by the other\n\n```\n/a/b/c/chassis0\n/a/b/c/chassis0/chassis0\n```\n\nhow do know which chassis0 an inventory maps to? Maybe we assume all filenames are unique?",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 78
+      },
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7081c674_5fcd6e52",
         "filename": "designs/physical-topology.md",
         "patchSetId": 2
