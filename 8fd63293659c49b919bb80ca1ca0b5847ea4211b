@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b19d70f8_3f02a119",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-07-12T18:03:00Z",
+      "side": 1,
+      "message": "I\u0027ll include an example in the next revision",
+      "parentUuid": "d6c3cd7a_f0dd0cbf",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 12
+      },
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11936c83_0d58a4d0",
         "filename": "designs/physical-topology.md",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-12T17:01:59Z",
       "side": 1,
       "message": "Same here; it will be great if we can get an example query (e.g., how Fans are connected to a chassis).\n\nAlso, I have the same concerns as Patrick: the association will contain as list of object paths, right? How will we parse that path? If we only use filename, then we will have the problem of nested names, for example, say we have two chassis, one contained by the other\n\n```\n/a/b/c/chassis0\n/a/b/c/chassis0/chassis0\n```\n\nhow do know which chassis0 an inventory maps to? Maybe we assume all filenames are unique?",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 78
+      },
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6e7793d_9e7eb449",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-07-12T18:03:00Z",
+      "side": 1,
+      "message": "\u003e Same here; it will be great if we can get an example query (e.g., how Fans are connected to a chassis).\n\nSure, I can add an example response from the mapper\n\n\u003e \n\u003e Also, I have the same concerns as Patrick: the association will contain as list of object paths, right? How will we parse that path? If we only use filename, then we will have the problem of nested names, for example, say we have two chassis, one contained by the other\n\u003e \n\u003e ```\n\u003e /a/b/c/chassis0\n\u003e /a/b/c/chassis0/chassis0\n\u003e ```\n\u003e \n\u003e how do know which chassis0 an inventory maps to? Maybe we assume all filenames are unique?\n\nYes, all D-Bus paths should be unique",
+      "parentUuid": "11936c83_0d58a4d0",
       "range": {
         "startLine": 72,
         "startChar": 0,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bbbf807f_ab92f944",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-07-12T18:03:00Z",
+      "side": 1,
+      "message": "It would at least double the complexity since the clients need to understand both ways of encoding topology.\n\nChassis contains relationships should always be hierarchical, so the paths could work for that, but I\u0027d prefer avoiding a special case for one type of relationship.\n\nAnother potential issue: could we ever have multiple inventory providers at once? In that case, coordinating paths across multiple daemons would be much more difficult than just using associations.",
+      "parentUuid": "7081c674_5fcd6e52",
+      "range": {
+        "startLine": 88,
+        "startChar": 38,
+        "endLine": 89,
+        "endChar": 23
+      },
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a5cb95c_a49779ae",
         "filename": "designs/physical-topology.md",
         "patchSetId": 2
@@ -83,6 +155,24 @@
       "writtenOn": "2022-07-11T10:56:26Z",
       "side": 1,
       "message": "I don\u0027t see a great section to write this.\n\nIn effect, you\u0027ve taken just the \"connections\" part of the inventory design and used that as justification why using associations is better, but by leaving out the rest of the design you\u0027ve implicitly simplified away all the other issues.  A few issues that associations cause in my initial thinking:\n\n* Naming becomes a harder problem and should probably be specified.\n\nWhere you previous might be able to name an inventory object /chassis0/proc0 and /chassis1/proc0, you now need to either name them chassis0-proc0 and chassis1-proc0 or proc0 and proc8.  Both of these are a bit clumsy and the second is much less intuitive for humans.\n\n* How are \"building blocks\" defined?\n\nThis might be somewhat due to my own ignorance of the details of EM (and this is also somewhat related to \u0027naming\u0027).  It is much more obvious to me how you would go about specifying a building block of your system, such as a compute card, in a hierarchical design.  \"I detected compute card X in slot Y, so all of its stuff is named /slotY/stuff\".  How you go about specifying (and generating the name) of duplicative entities, and creating all the appropriate associations back to parents, isn\u0027t obvious to me.  Is there anything in the EM design already that handles this?\n\n* Implicit information vs explicit information.\n\nUsing hierarchy means you get a good view into the inventory relationships for free (implicit due to path assignments).  That means system designers don\u0027t need to do anything [special] to get a huge part of their Redfish data exposed.  Using associations means that all of it needs to be expressed explicitly and anything that is missed is missing.  This increases the work necessary.\n\nSome might argue that explicit expression is less bug-prone because it is all obvious and I can sympathize with that argument.  I think it is mostly only true when you are writing your system *after* all the association features have been done.  The minute we add a new association, all old systems are going to be missing it, and likely most of them will never get it added.  Implicit definitions, at least wherever possible, allow us to keep most systems on parity with each other much easier.",
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe39b847_d2e7e4a4",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-07-12T18:03:00Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t see a great section to write this.\n\u003e \n\u003e In effect, you\u0027ve taken just the \"connections\" part of the inventory design and used that as justification why using associations is better, but by leaving out the rest of the design you\u0027ve implicitly simplified away all the other issues.  A few issues that associations cause in my initial thinking:\n\u003e \n\u003e * Naming becomes a harder problem and should probably be specified.\n\u003e \n\u003e Where you previous might be able to name an inventory object /chassis0/proc0 and /chassis1/proc0, you now need to either name them chassis0-proc0 and chassis1-proc0 or proc0 and proc8.  Both of these are a bit clumsy and the second is much less intuitive for humans.\n\nYou can technically still use whatever path names you want, you\u0027d just also need the associations for clients to understand this information.\n\nMaybe we could have the inventory providers automatically create these associations? This would only really apply to PIM though since EM doesn\u0027t let you use more complex paths for chassis items\n\n\u003e \n\u003e * How are \"building blocks\" defined?\n\u003e \n\u003e This might be somewhat due to my own ignorance of the details of EM (and this is also somewhat related to \u0027naming\u0027).  It is much more obvious to me how you would go about specifying a building block of your system, such as a compute card, in a hierarchical design.  \"I detected compute card X in slot Y, so all of its stuff is named /slotY/stuff\".  How you go about specifying (and generating the name) of duplicative entities, and creating all the appropriate associations back to parents, isn\u0027t obvious to me.  Is there anything in the EM design already that handles this?\n\nYes, EM already lets you customize names based on the \"index\" or bus number of an item that was detected:\n\nexample: https://github.com/openbmc/entity-manager/blob/master/configurations/nvme_p4000.json\n\ndocumentation: https://github.com/openbmc/entity-manager/blob/394ea2b48699cfed8807e61720b78b5a88027366/CONFIG_FORMAT.md#configuration-syntax\n\nDuplicate items will all have the same \"Connections\" field so they\u0027ll all get associated back to whatever they\u0027re connected to automatically. In the future, we could do this dynamically based on I2C topology (which would allow generic items to connect to other generic items), but that\u0027s not necessary for this initial design and would be an EM-specific feature.\n\n\u003e \n\u003e * Implicit information vs explicit information.\n\u003e \n\u003e Using hierarchy means you get a good view into the inventory relationships for free (implicit due to path assignments).  That means system designers don\u0027t need to do anything [special] to get a huge part of their Redfish data exposed.  Using associations means that all of it needs to be expressed explicitly and anything that is missed is missing.  This increases the work necessary.\n\u003e \n\u003e Some might argue that explicit expression is less bug-prone because it is all obvious and I can sympathize with that argument.  I think it is mostly only true when you are writing your system *after* all the association features have been done.  The minute we add a new association, all old systems are going to be missing it, and likely most of them will never get it added.  Implicit definitions, at least wherever possible, allow us to keep most systems on parity with each other much easier.\n\nOpenBMC has existed so far without this information being exposed on Redfish at all, so most users haven\u0027t needed this functionality. I\u0027d much rather keep this the same unless system designers explicitly enable it and make sure that it\u0027s exporting correct information.\n\nMissing information is better than incorrect information",
+      "parentUuid": "0a5cb95c_a49779ae",
       "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
