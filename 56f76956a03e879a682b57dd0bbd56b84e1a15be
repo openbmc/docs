@@ -738,6 +738,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38a43ae6_0997ed8a",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T23:00:35Z",
+      "side": 1,
+      "message": "\u003e It sounds like we can share the NVME1000, if multiple daemons (in case we all agree to have a new one) can share the same configuration. \n\nI still don\u0027t think we need multiple daemons here, but sure, in terms of this comment, lets get it changed to NVMe1000 and we can discuss other places.\n\n\u003e \n\u003e We also need to take NVMe over MCTP over PCIe VDM into consideration. It should share the same configuration.\n\nLets discuss that when we get there.  Whether or not it\u0027s the same config name would depend on the requirements of the features.",
+      "parentUuid": "72447884_86620496",
+      "range": {
+        "startLine": 71,
+        "startChar": 14,
+        "endLine": 71,
+        "endChar": 52
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5239c79_383d2ade",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -1092,6 +1116,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bb8f18c_001e1424",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T23:00:35Z",
+      "side": 1,
+      "message": "\u003e \u003e Just the same as if a drive supported both an NVME-mi interface AND a TMP75.\n\u003e \n\u003e The NVME-mi and TMP75 works on different physical protocol. I am thinking a different scenario: a device supporting multiple MCTP types (NVMe, PLDM, etc). I am not sure if there is such a device in practise.\n\u003e But if so, configuration of NVME1000 and PLDM will trigger both daemons(NVMe, PLDM) to initialize the same MCTP ep on MCTPd.\n\u003e \n\u003e It seems to be OK on a second thought. The daemon can probe the MCTPd and do a MCTPLearn() before ep initialization.\n\n\nYep, you got it.",
+      "parentUuid": "2f325202_e7405e91",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 43
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9906666b_200a698b",
@@ -1177,6 +1225,30 @@
       "side": 1,
       "message": "\u003e Why does any of this need to be exposed to dbus?  Generally we wouldn\u0027t implement a \"raw\" nvme-mi command on dbus, and instead would expose the relavant sensors, inventory items, and other things.\n\nUnderstand that we are trying not to expose the protocol on DBus. The problem is it is hard to map all NVMe structure/attributes/method to a DBus sensor interface. Swordfish is inventing a lot of new schemas stressing NVMe, but there is still quite behind our need (Get/Set Features, Security Send/Recv, and many other attributes). We are pushing the DMTF, but until that perfect world, we still need raw NVMe interface on DBus for these not-scoped information. \n\nI doubt whether we want to go alone the way of transplanting NVMe on DBus sensors even with a complete Swordfish define. The current mapping guide for swordfish is 300ish pages. We need a similar thing for DBus NVMe sensor. \n\nI have a feeling the BMCWeb is the place for the swordfish translation out of raw NVMe API. other generic NVMe sensors (such as the current thermal one) can build around the raw NVMe protocol daemon.",
       "parentUuid": "1aad18a7_1a1cf7a0",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 49
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c65097ce_e735805a",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T23:00:35Z",
+      "side": 1,
+      "message": "\u003e \u003e Why does any of this need to be exposed to dbus?  Generally we wouldn\u0027t implement a \"raw\" nvme-mi command on dbus, and instead would expose the relavant sensors, inventory items, and other things.\n\u003e \n\u003e Understand that we are trying not to expose the protocol on DBus. The problem is it is hard to map all NVMe structure/attributes/method to a DBus sensor interface.\n\nProbably going to disagree with \"hard\" here.  If we can get a list of the properties you want to expose, lets take a look to evaluate how hard this is.\n\n\u003e Swordfish is inventing a lot of new schemas stressing NVMe, but there is still quite behind our need (Get/Set Features, Security Send/Recv, and many other attributes). We are pushing the DMTF, but until that perfect world, we still need raw NVMe interface on DBus for these not-scoped information. \n\nI\u0027m failing to make the jump between \"DMTF doesn\u0027t have schemas\" and \"Therefore we need a raw dbus interface\".  Dbus can have a properly structured interface, and if someone wants to map that to non-redfish, they can.\n\n\u003e \n\u003e I doubt whether we want to go alone the way of transplanting NVMe on DBus sensors even with a complete Swordfish define.\n\nIt doesn\u0027t have to be \"complete\" but it can be incremental.\n\n\u003e The current mapping guide for swordfish is 300ish pages. We need a similar thing for DBus NVMe sensor. \n\nWhat mapping guide are you talking about?\n\n\n\n\u003e \n\u003e I have a feeling the BMCWeb is the place for the swordfish translation out of raw NVMe API.\n\n\nAs the bmcweb maintainer, definitely not.  bmcweb aspires to push business logic to other daemons to reduce its security scope, and decrease the likelihood of a bug taking down the whole OOB interface.  What you\u0027re suggesting is essentially in direct opposition.  Swordfish schemas should definitely go in bmcweb, but we should be doing NVMe-MI -\u003e Dbus -\u003e Redfish, not NVMe-MI -\u003e Redfish.\n\n\u003e other generic NVMe sensors (such as the current thermal one) can build around the raw NVMe protocol daemon.\n\nThis breaks the principal of one daemon per interface;  Also, if this is your plan, can you please include it in your design doc?",
+      "parentUuid": "1c78dc66_1868ceaa",
       "range": {
         "startLine": 129,
         "startChar": 0,
@@ -1331,6 +1403,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "442b80cf_e29ffbe1",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T23:00:35Z",
+      "side": 1,
+      "message": "Yes, we were talking about different things.  Maybe make it more clear that runtime status is coming from the host?  I\u0027m not sure I fully understand in this case.",
+      "parentUuid": "9d909e82_c66b8aa3",
+      "range": {
+        "startLine": 143,
+        "startChar": 71,
+        "endLine": 145,
+        "endChar": 29
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2538a19_66e03291",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -1396,6 +1492,24 @@
       "side": 1,
       "message": "\u003e So make an xyz.openbmc_project.NVMeFeatureSet dbus interface and attach it to the drive?\n\nThere are more information polling from other NVMe CMD(Read NVMe-MI Data Structure, Identify, etc). Some of the information we need is: \n\n* Health status for the NVMe subsystem including warning(SW), temperature(CTMP), drive life(PDLU), contoller status(CCS).\n* Configuration for NVMe controller such as SMBus/I2C frequency and MCTP Transmission Unit Size.\n* Features for controllers involving Arbitration, Power Management, Controller Metadata, etc.\n* Identify information for controller and namespace, such as FW info, SN/MN, IEEE OUI Identifier(IEEE), Maximum Data Transfer Size(MDTS), RTD3 Resume Latency(RTD3R), RTD3 Entry Latency(RTD3E), etc\n\nSome of these information is storage generic but more is NVMe specific. \n\nThe point is, we try to avoid exhausting all definitions in NVMe spec and redo it on dbus. Swordfish does the mapping well (or trying to approach that). The new daemon should work as NVMe protocol daemon(like ipmbd?). The consumer services, such as BMCWeb, should do the protocol translation. BMCWeb has the schemas and the translation layer in our management node (outside BMC) has the protobuf for grpc/streamz.",
       "parentUuid": "61855eb0_f305dfa4",
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "371b80ee_86ca31b4",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T23:00:35Z",
+      "side": 1,
+      "message": "\u003e \u003e So make an xyz.openbmc_project.NVMeFeatureSet dbus interface and attach it to the drive?\n\u003e \n\u003e There are more information polling from other NVMe CMD(Read NVMe-MI Data Structure, Identify, etc). Some of the information we need is: \n\u003e \n\u003e * Health status for the NVMe subsystem including warning(SW), \n\nStatus interfaces have been around for a while.\n\n\u003etemperature(CTMP),\n\nSo.... this is duplicating temperature code?  This is sounding more and more like it needs to go in the existing daemon.\n\n\u003e drive life(PDLU), contoller status(CCS).\n\u003e * Configuration for NVMe controller such as SMBus/I2C frequency and MCTP Transmission Unit Size.\n\nThat kind of data shouldn\u0027t be on dbus (probably).  Those are arguably internal system details of the communication channel that should be abstracted away from dbus.\n\n\u003e * Features for controllers involving Arbitration, Power Management, Controller Metadata, etc.\n\nWhy is this information required outside the daemon itself that\u0027s talking to the controller?  Wouldn\u0027t this just get exposed as normal reset interfaces?\n\n\u003e * Identify information for controller and namespace, such as FW info, SN/MN, IEEE OUI Identifier(IEEE), Maximum Data Transfer Size(MDTS), RTD3 Resume Latency(RTD3R), RTD3 Entry Latency(RTD3E), etc\n\nMost of these likely map into the Asset interfaces.  For the ones that don\u0027t, we can add new interfaces.\n\n\u003e \n\u003e Some of these information is storage generic but more is NVMe specific. \n\n\u003e \n\u003e The point is, we try to avoid exhausting all definitions in NVMe spec and redo it on dbus.\n\nUnfortunately, that just means that we get to duplicate all the definitions in bmcweb/redfish/ipmi.  As a system-level design, we try to avoid that.\n\n\u003e Swordfish does the mapping well (or trying to approach that). The new daemon should work as NVMe protocol daemon(like ipmbd?). The consumer services, such as BMCWeb, should do the protocol translation. BMCWeb has the schemas and the translation layer \n\nbmcweb translates dbus-\u003eredfish, and we try to keep as much business logic out ofit that we can to keep a small footprint, and to spread out the security consequences and failure modes.  Redfish very intentionally doesn\u0027t allow \"transports\" like this.\n\n\u003ein our management node (outside BMC) has the protobuf for grpc/streamz.",
+      "parentUuid": "a9848637_825d4068",
       "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
