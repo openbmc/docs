@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d889575_1c87888c",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-07-13T14:30:47Z",
+      "side": 1,
+      "message": "This sounds like it needs to know that udev is done with its events?  How would it know that? \n\nWhat if a card with LEDs off of an IO/LED expander is added at runtime (and there is some code that would bind the 955x or whatever driver)?\n\nIf the service that was triggered from the udev event just sent a dbus message to your new daemon, then it wouldn\u0027t need a concept of \u0027done\u0027?",
+      "revId": "62f67c9a8cda5cb30cbb341e297143f209f2ada8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
