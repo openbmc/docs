@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ae982b2_b67840fc",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:18:27Z",
+      "side": 1,
+      "message": "\u003e bmcweb already implements the Update Redfish API to be an update-and-activate in one call.\n\nAs the person that implemented the current API in bmcweb, it was very...very difficult for me given the complexities, and arguably breaks some of the design ideals in bmcweb to do it (requires storing state, ect), and causes bugs like:\nhttps://github.com/openbmc/bmcweb/issues/202\n\nThat basically can\u0027t be solved in a reasonable way because of having to store state that doesn\u0027t exist on dbus.\n\nAlso, it\u0027s more than one call, it\u0027s a call to the filesystem to write the payload, then it\u0027s a call to the dbus-broker to set up the match, then its a polling waiting for the update to get accepted, then it\u0027s polling to wait for the update to complete.  This design is attempting to simplify that.\n\n\nSome immediate possible users include:\nNvme, which supports updating over nvme-mi\nVRs, which have an i2c based update API\nPossible integration with fwupd, which already supports a ton of devices.",
+      "parentUuid": "5512e09b_86f6bf54",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30d078e6_e94664c7",
         "filename": "designs/simple-firmware-update-api.md",
         "patchSetId": 1
@@ -137,6 +155,70 @@
       "side": 1,
       "message": "Would that be an option passed through Redfish to bmcweb, so that bmcweb automatically sets the RequestedActivations property? I believe bmcweb already does this by default.\n\nA problem this new API is trying to solve is for firmware upgrades without Redfish, where some local process within the BMC is coordinating the firmware upgrade. In that case (and even in the case of Redfish SimpleUpdate) I don\u0027t see the use for the ImageManager, when the image can be passed directly to the ItemUpdater.",
       "parentUuid": "14cba7eb_6635728f",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81a739a5_fe4ab10b",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:18:27Z",
+      "side": 1,
+      "message": "\u003e An alternative could be adding an option in the existing interfaces that when an image is uploaded it automatically sets the RequestedActivations property to start the activation.\n\nthe problem here is that it still requires an untrusted daemon (bmcweb) to be writing the filesystem, which requires some level of permissions.  That\u0027s one of the big things being avoided.\n\nWith that said, Adriana is right here, there should be something in the alternatives section, even if it\u0027s just \"keep the current API\"",
+      "parentUuid": "b63e26e6_19770ea5",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f964c7d_cdf22c53",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:18:27Z",
+      "side": 1,
+      "message": "If this is the plan, please plan on removing the ImageManager interface first, and having that be the first target before the bmcweb patches land.  This avoids having to support two implementations for a period of time, and needing to have complex logic to determine which implementation to use at any given time.",
+      "range": {
+        "startLine": 108,
+        "startChar": 62,
+        "endLine": 109,
+        "endChar": 63
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f1e51a1_e6235ba7",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:18:27Z",
+      "side": 1,
+      "message": "Surely theres some testing?",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 4
+      },
       "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
