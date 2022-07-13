@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5712f718_71549bd6",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:09:07Z",
+      "side": 1,
+      "message": "+1.  An example would be good.  I\u0027m pretty sure I\u0027m ok with this, and it solves the problem, but one or two examples, (even an example in review) might be helpful to show a real system.",
+      "parentUuid": "b19d70f8_3f02a119",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 12
+      },
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11936c83_0d58a4d0",
         "filename": "designs/physical-topology.md",
         "patchSetId": 2
@@ -192,6 +216,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e03a54e_2bc104ad",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:09:07Z",
+      "side": 1,
+      "message": "\u003e This feels a bit hand-wavy in the way it is worded.  Is it really \"significant...complexity\"?\n\nHaving been party to several people attempting it.... Yes. It really does add significant complexity given there are now two paths to any architecture.\n\n\n\u003e Is there any case where certain types of associations (such as contained-in) would always be hierarchy and other types of association (ex. powered-by) would not be?\n\nI can\u0027t really think of any.\n\n\u003e Chassis contains relationships should always be hierarchical, so the paths could work for that, but I\u0027d prefer avoiding a special case for one type of relationship.\n\nThis is the key, you can pick ONE definition for paths, be it contained by, socketed into (which are different relationships than contained by) powered by, Drives for, ect.  EVERYTHING else needs to use associations, so doing something different for the one case just makes things more complex.",
+      "parentUuid": "bbbf807f_ab92f944",
+      "range": {
+        "startLine": 88,
+        "startChar": 38,
+        "endLine": 89,
+        "endChar": 23
+      },
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a5cb95c_a49779ae",
         "filename": "designs/physical-topology.md",
         "patchSetId": 2
@@ -221,6 +269,24 @@
       "side": 1,
       "message": "\u003e I don\u0027t see a great section to write this.\n\u003e \n\u003e In effect, you\u0027ve taken just the \"connections\" part of the inventory design and used that as justification why using associations is better, but by leaving out the rest of the design you\u0027ve implicitly simplified away all the other issues.  A few issues that associations cause in my initial thinking:\n\u003e \n\u003e * Naming becomes a harder problem and should probably be specified.\n\u003e \n\u003e Where you previous might be able to name an inventory object /chassis0/proc0 and /chassis1/proc0, you now need to either name them chassis0-proc0 and chassis1-proc0 or proc0 and proc8.  Both of these are a bit clumsy and the second is much less intuitive for humans.\n\nYou can technically still use whatever path names you want, you\u0027d just also need the associations for clients to understand this information.\n\nMaybe we could have the inventory providers automatically create these associations? This would only really apply to PIM though since EM doesn\u0027t let you use more complex paths for chassis items\n\n\u003e \n\u003e * How are \"building blocks\" defined?\n\u003e \n\u003e This might be somewhat due to my own ignorance of the details of EM (and this is also somewhat related to \u0027naming\u0027).  It is much more obvious to me how you would go about specifying a building block of your system, such as a compute card, in a hierarchical design.  \"I detected compute card X in slot Y, so all of its stuff is named /slotY/stuff\".  How you go about specifying (and generating the name) of duplicative entities, and creating all the appropriate associations back to parents, isn\u0027t obvious to me.  Is there anything in the EM design already that handles this?\n\nYes, EM already lets you customize names based on the \"index\" or bus number of an item that was detected:\n\nexample: https://github.com/openbmc/entity-manager/blob/master/configurations/nvme_p4000.json\n\ndocumentation: https://github.com/openbmc/entity-manager/blob/394ea2b48699cfed8807e61720b78b5a88027366/CONFIG_FORMAT.md#configuration-syntax\n\nDuplicate items will all have the same \"Connections\" field so they\u0027ll all get associated back to whatever they\u0027re connected to automatically. In the future, we could do this dynamically based on I2C topology (which would allow generic items to connect to other generic items), but that\u0027s not necessary for this initial design and would be an EM-specific feature.\n\n\u003e \n\u003e * Implicit information vs explicit information.\n\u003e \n\u003e Using hierarchy means you get a good view into the inventory relationships for free (implicit due to path assignments).  That means system designers don\u0027t need to do anything [special] to get a huge part of their Redfish data exposed.  Using associations means that all of it needs to be expressed explicitly and anything that is missed is missing.  This increases the work necessary.\n\u003e \n\u003e Some might argue that explicit expression is less bug-prone because it is all obvious and I can sympathize with that argument.  I think it is mostly only true when you are writing your system *after* all the association features have been done.  The minute we add a new association, all old systems are going to be missing it, and likely most of them will never get it added.  Implicit definitions, at least wherever possible, allow us to keep most systems on parity with each other much easier.\n\nOpenBMC has existed so far without this information being exposed on Redfish at all, so most users haven\u0027t needed this functionality. I\u0027d much rather keep this the same unless system designers explicitly enable it and make sure that it\u0027s exporting correct information.\n\nMissing information is better than incorrect information",
       "parentUuid": "0a5cb95c_a49779ae",
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc1b5286_35c885bc",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:09:07Z",
+      "side": 1,
+      "message": "\u003e Naming becomes a harder problem and should probably be specified.\n\nPretty sure the duplication issue has been a solved problem in EM for a while, and in phosphor-inventory, there\u0027s an implicit requirement that names don\u0027t collide.  I don\u0027t think this design makes it any harder.\n\n\n\u003e Both of these are a bit clumsy and the second is much less intuitive for humans.\n\n1. If we need to build tooling around this to help humans, we can.\n2. Nothing about this design precludes placing things in a hierarchical path if A, the software can support it, B. it\u0027s useful enough to humans that it makes sense, but in a design that supports add in cards, we weren\u0027t able to make it work in a reasonable way;  Happy to see review code that can do A+B though, but in the general rules of \"is it hard to unwind if we make the wrong decision\", we could certainly have a patchset that adds the associations support (some of which already exists) THEN we could set things up in patch hierarchies to make them useful to humans when we figured out the hard problems with them.\n\n\n\u003e \"I detected compute card X in slot Y, so all of its stuff is named /slotY/stuff\"\n\nPer the fact that we can only represent ONE atom of the graph, all of its stuff can\u0027t go in sloty/stuff.  only the stuff contained within it can go in it (assuming containment is the graph association you choose), otherwise we can\u0027t tell the difference between \"Contained by\" and \"Associated with port\", or \"cabled to\".\n\n\n\u003e  Is there anything in the EM design already that handles this?\n\nYup.  The naming problem has been solved, and yeah, it\u0027s clumsy, but it does function in a way that avoids collisions.\n\n\n\u003e OpenBMC has existed so far without this information being exposed on Redfish at all, so most users haven\u0027t needed this functionality.\n\nUsers have needed this functionality.  Most have ended up hardcoding it in their downstream forks for a given system.",
+      "parentUuid": "fe39b847_d2e7e4a4",
       "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
