@@ -91,6 +91,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "817e2c18_f22ca65c",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:26:36Z",
+      "side": 1,
+      "message": "Can we just avoid the filesystem altogether and pass an FD?  we\u0027ve used it in other places successfully, it just wasn\u0027t well known when the first update APIs were built, and it avoids a lot of permissions issues that we\u0027ve seen in the past with daemons sharing FDs.\n\nAlternatively, could we just make this array\u003cuint8\u003e?  Is there a dbus limit that we would hit?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 41
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70250011_01d603b1",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:26:36Z",
+      "side": 1,
+      "message": "We shouldn\u0027t be passing a signature on the filesystem.  It\u0027s not intended to be large.\n\nAlso, we need to support:\n1. Devices with no crypto verification\n2. Devices for which the crypto signature is embedded in the payload.\n\nSo at a minimum, this needs to be optional, but I suspect in most cases we\u0027d just embed it in the image itself.\n\n\nIn terms of documentation, because this is a common interface, we probably need a lot more details on what requirements on the signature are.  \"string\" isn\u0027t very descriptive about format or behavior.",
+      "range": {
+        "startLine": 58,
+        "startChar": 26,
+        "endLine": 58,
+        "endChar": 35
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c570b8e2_aed570eb",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:26:36Z",
+      "side": 1,
+      "message": "Probably need an error type of \"Firmware Update already in progress\", \"signature failure\" and \"Device not in required state\" (probably power state).",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80b6e639_cafd8f54",
         "filename": "designs/simple-firmware-update-api.md",
         "patchSetId": 1
@@ -120,6 +183,75 @@
       "side": 1,
       "message": "There would be separate objects for each device. So if BIOS and BMC are managed by the same daemon, there should be 2 separate objects on that daemon.",
       "parentUuid": "80b6e639_cafd8f54",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ce81b0_134e21d7",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:26:36Z",
+      "side": 1,
+      "message": "Can we call this \"idle\" instead?",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 20
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceac0775_9f7ae982",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:26:36Z",
+      "side": 1,
+      "message": "The task service APIs give a progress indicator thats 0-100.  We should probably at least make that possible.",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 36
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b74961a_6d198519",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T05:26:36Z",
+      "side": 1,
+      "message": "In each of these states, it adds some unknowns to the behavior.  How long is an update implementation required to stay in the \"done\" state before it goes back to None?  If VerifyError occurs, is it possible to go back to None?  Is it required to allow a reattempt?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 45
+      },
       "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
