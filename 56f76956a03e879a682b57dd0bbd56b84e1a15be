@@ -1068,6 +1068,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f325202_e7405e91",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-07-13T22:23:26Z",
+      "side": 1,
+      "message": "\u003e Just the same as if a drive supported both an NVME-mi interface AND a TMP75.\n\nThe NVME-mi and TMP75 works on different physical protocol. I am thinking a different scenario: a device supporting multiple MCTP types (NVMe, PLDM, etc). I am not sure if there is such a device in practise. But if so, configuration of NVME1000 and PLDM will trigger both daemons(NVMe, PLDM) to initialize the same MCTP ep on MCTPd. \n\nIt seems to be OK on a second thought. The daemon can probe the MCTPd and do a MCTPLearn() before ep initialization.",
+      "parentUuid": "e69a7c20_97848d0d",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 43
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9906666b_200a698b",
