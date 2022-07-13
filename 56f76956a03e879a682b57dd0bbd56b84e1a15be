@@ -690,6 +690,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25c5f35e_2ed907a3",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T04:45:15Z",
+      "side": 1,
+      "message": "\u003e The NVME1000 is designed for a NVMe thermal sensor who has properties like thresholds. \n\nThermal sensors over nvme-mi is just the first thing it implemented.  \"NVME1000\" is meant to be the interface for \"supports nvme-mi\" and already has quite a different \n\n\n\u003e \n\u003e The design aims at a totally different type of device and user case.\n\nYou\u0027re using nvme-mi, over mctp to connect to an SSD and run nvme-mi commands.  It\u0027s the same device, same transport, and unless you don\u0027t plan to ever implement thermal sensor support, the same use case.\n\n\u003e Yeah, let\u0027s try to make consent on the daemon first then the new interface may make its sense.\n\nEven if it\u0027s a new daemon, in entity-manager, it would still be an nvme-mi interface, so it would still use nvme1000, but sure, we can take that up in the above.",
+      "parentUuid": "1d07abc2_60415099",
+      "range": {
+        "startLine": 71,
+        "startChar": 14,
+        "endLine": 71,
+        "endChar": 52
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5239c79_383d2ade",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -998,6 +1022,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e69a7c20_97848d0d",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T04:45:15Z",
+      "side": 1,
+      "message": "The point of exposes records is they describe the interfaces that the drive supports.  In terms of the configuration data, no, it wouldn\u0027t be a problem for a drive to have multiple, that is the point.  Just the same as if a drive supported both an NVME-mi interface AND a TMP75.",
+      "parentUuid": "a3893e65_fde757d2",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 43
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9906666b_200a698b",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -1033,6 +1081,30 @@
       "side": 1,
       "message": "MI CMD set works at the subsystem scope but the Admin CMD set needs to be attached to the controllers. LogPages are independent across controllers too. \n\nWe also want to expose the Physical Function-Virtual Function relation since they include a different set of vendor defined commands. The VU cmd is not discussed in this doc but we need to prepare for it.",
       "parentUuid": "9906666b_200a698b",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 49
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aad18a7_1a1cf7a0",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T04:45:15Z",
+      "side": 1,
+      "message": "\u003e MI CMD set works at the subsystem scope but the Admin CMD set needs to be attached to the controllers. LogPages are independent across controllers too. \n\nWhy does any of this need to be exposed to dbus?  Generally we wouldn\u0027t implement a \"raw\" nvme-mi command on dbus, and instead would expose the relavant sensors, inventory items, and other things.\n\n\u003e \n\u003e We also want to expose the Physical Function-Virtual Function relation since they include a different set of vendor defined commands. The VU cmd is not discussed in this doc but we need to prepare for it.\n\nI\u0027m not sure why this changes anything.  Vendor defined commands can be put in the same daemon, same as we do with things like IPMBSensor.",
+      "parentUuid": "31cf54c0_2eead8d7",
       "range": {
         "startLine": 129,
         "startChar": 0,
@@ -1139,6 +1211,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f82b9604_3e94b0ee",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T04:45:15Z",
+      "side": 1,
+      "message": "\u003e The NVMe OOB doesn\u0027t support async event \n\nThe existing daemon does support async eventing from the kernel. (and took a lot of architecture work to do it).",
+      "parentUuid": "8e4f7ded_e7d7d287",
+      "range": {
+        "startLine": 143,
+        "startChar": 71,
+        "endLine": 145,
+        "endChar": 29
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2538a19_66e03291",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -1168,6 +1264,24 @@
       "side": 1,
       "message": "Agree on the first half. We need to reuse/expose the general Drive/Storge (maybe StorageController and Volume) interface with generic properties/methods. \n\nBut there are still NVMe specific which is hard/impossible to be defined on DBus level (e.g NVMe Feature set and controller Identify info). so we still need a NVMe API on DBus.",
       "parentUuid": "d2538a19_66e03291",
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61855eb0_f305dfa4",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-13T04:45:15Z",
+      "side": 1,
+      "message": "So make an xyz.openbmc_project.NVMeFeatureSet dbus interface and attach it to the drive?",
+      "parentUuid": "5b570753_16543c08",
       "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
