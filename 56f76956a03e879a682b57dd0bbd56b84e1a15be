@@ -1141,6 +1141,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c78dc66_1868ceaa",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-07-13T22:02:13Z",
+      "side": 1,
+      "message": "\u003e Why does any of this need to be exposed to dbus?  Generally we wouldn\u0027t implement a \"raw\" nvme-mi command on dbus, and instead would expose the relavant sensors, inventory items, and other things.\n\nUnderstand that we are trying not to expose the protocol on DBus. The problem is it is hard to map all NVMe structure/attributes/method to a DBus sensor interface. Swordfish is inventing a lot of new schemas stressing NVMe, but there is still quite behind our need (Get/Set Features, Security Send/Recv, and many other attributes). We are pushing the DMTF, but until that perfect world, we still need raw NVMe interface on DBus for these not-scoped information. \n\nI doubt whether we want to go alone the way of transplanting NVMe on DBus sensors even with a complete Swordfish define. The current mapping guide for swordfish is 300ish pages. We need a similar thing for DBus NVMe sensor. \n\nI have a feeling the BMCWeb is the place for the swordfish translation out of raw NVMe API. other generic NVMe sensors (such as the current thermal one) can build around the raw NVMe protocol daemon.",
+      "parentUuid": "1aad18a7_1a1cf7a0",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 49
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43a5998b_34d4e909",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
