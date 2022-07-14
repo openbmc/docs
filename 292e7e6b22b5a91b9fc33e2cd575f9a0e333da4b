@@ -139,6 +139,30 @@
       },
       "revId": "292e7e6b22b5a91b9fc33e2cd575f9a0e333da4b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "437b0b2e_f8425fdd",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2022-07-14T02:52:38Z",
+      "side": 1,
+      "message": "This APIs were provided to enable PLDM requester flow[1] when it started with MCTP userspace[2] and for PLDM requesters to connect with mctp-demux-daemon. MCTP userspace repo is frozen and it doesn\u0027t accept any more patches and there is general agreement to switch to MCTP kernel space[3]. pldmd is yet to make the switch to use MCTP kernel space. These APIs are effectively going away once pldmd makes the switch to MCTP kernel.\n\n\u003e There\u0027s been discussion elsewhere that we shouldn\u0027t even have these APIs...)\nWhat is the concern with the requester APIs for that matter?\n\n[1] https://github.com/openbmc/docs/blob/master/designs/pldm-stack.md#proposed-requester-design\n[2] https://github.com/openbmc/docs/blob/master/designs/mctp/mctp-userspace.md\n[3] https://github.com/openbmc/docs/blob/master/designs/mctp/mctp-kernel.md",
+      "parentUuid": "7c4d7d59_9d3e332b",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 52
+      },
+      "revId": "292e7e6b22b5a91b9fc33e2cd575f9a0e333da4b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
