@@ -65,6 +65,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d61fa577_d16dbf4b",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-15T16:42:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34443c84_d9a33113",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "4ed8280213c3ab218e93f26e3f8b8965e2faa3ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53153726_e24be778",
@@ -112,6 +136,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08a58ecd_81ca9abc",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-15T16:42:31Z",
+      "side": 1,
+      "message": "BMC doesn\u0027t have the access of BIOS flash directly. The BIC has the control of firmware updates and flash updates. So, we have to send the IPMI command to BIC for requesting the firmware update of BIOS.",
+      "parentUuid": "1d31b422_da32695a",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 29
+      },
+      "revId": "4ed8280213c3ab218e93f26e3f8b8965e2faa3ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb002217_81593d4a",
@@ -149,6 +197,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "cb002217_81593d4a",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 26
+      },
+      "revId": "4ed8280213c3ab218e93f26e3f8b8965e2faa3ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cadfbc3_8a8eeb82",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-15T16:42:31Z",
+      "side": 1,
+      "message": "phosphor-ipmi-flash is different, It uses the BLOB protocol to transfer the firmware image. It follows the commands based on BlockTransfer. But this is more specific to IPMI OEM commands. It has OEM based netfn and cmds for requesting firmware update and image transferring. So, we cannot use phosphor-ipmi-flash.",
+      "parentUuid": "f03c4756_eeed609c",
       "range": {
         "startLine": 190,
         "startChar": 0,
