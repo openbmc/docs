@@ -86,6 +86,24 @@
       "parentUuid": "1d889575_1c87888c",
       "revId": "62f67c9a8cda5cb30cbb341e297143f209f2ada8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55e4680a_ec67f19b",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-07-15T08:06:45Z",
+      "side": 1,
+      "message": "\u003e What if a card with LEDs off of an IO/LED expander is added at runtime (and there is some code that would bind the 955x or whatever driver)?\n\nThis design handles LEDs which are configured as GPIO pins in device tree file.\n\n\n\u003e If the service that was triggered from the udev event just sent a dbus message to your new daemon, then it wouldn\u0027t need a concept of \u0027done\u0027?\n\n\nyes, for that approach, I have posted in mailing list to receive suggestions.\nhttps://lists.ozlabs.org/pipermail/openbmc/2022-July/031315.html\n\n\n\u003e or is your daemon doing an inotify watch on that file so dbus always reflects what\u0027s in it, which could also handle removes?\n\n\nyes, the file will be monitored using inotify to watch the changes.",
+      "parentUuid": "70587a16_6afe57c9",
+      "revId": "62f67c9a8cda5cb30cbb341e297143f209f2ada8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
