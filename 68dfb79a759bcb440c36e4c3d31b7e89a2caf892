@@ -71,6 +71,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd3f9fd0_ee1a9983",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-18T15:54:57Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "30e5fafc_e8d72103",
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb3b1b8f_cae8a5bd",
@@ -84,6 +102,30 @@
       "writtenOn": "2022-07-15T17:18:26Z",
       "side": 1,
       "message": "This seems kind of odd, and it\u0027s not \"impossible\", as there have been other systems that rely on serial consoles to measure it.",
+      "range": {
+        "startLine": 14,
+        "startChar": 45,
+        "endLine": 16,
+        "endChar": 56
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eee6c96_7b01def1",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-18T15:54:57Z",
+      "side": 1,
+      "message": "Yes, we can have another consumer to capture and analyze the host serial console log to measure the duration.\nHowever this consumer can\u0027t be an userspace application running on host. It can be run on BMC or any other component that is capable to access host serial console.\n\nSo what I\u0027m trying to explain in this section is that we can\u0027t rely on host to measure the host bootup/shutdown durations by its own.",
+      "parentUuid": "eb3b1b8f_cae8a5bd",
       "range": {
         "startLine": 14,
         "startChar": 45,
@@ -119,6 +161,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e469887_36fe4e7a",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-18T15:54:57Z",
+      "side": 1,
+      "message": "I think you are talking about this: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Power/ACPIPowerState.interface.yaml#L15-L62\n\nI think I can make the term change as below:\n```\nAC power cycle -\u003e S0_G3_S0\nDC power cycle -\u003e S0_S5_S0\n```\nFor the term `Stage` and `Unmeasured`, I think they are specific to this design, I don\u0027t find an appropriate replacement.\n\nIs this change okay for you?",
+      "parentUuid": "17633131_4a194bb3",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 0
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5b845e0f_3ee01035",
         "filename": "designs/btmanager.md",
         "patchSetId": 11
@@ -130,6 +196,30 @@
       "writtenOn": "2022-07-15T17:18:26Z",
       "side": 1,
       "message": "On naming, can we not abbreviate \"boot time\".  \"bt\" could also mean bluetooth, and regardless of that \"bt\" is not very descriptive.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 9
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b79c67d_96dd0230",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-18T15:54:57Z",
+      "side": 1,
+      "message": "Okay... So do you prefer not abbreviate at all (BootTimeMonitor)?\nI am okay with that althought it\u0027s a bit too long to me.",
+      "parentUuid": "5b845e0f_3ee01035",
       "range": {
         "startLine": 47,
         "startChar": 0,
@@ -165,6 +255,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8480438_9c1b8179",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-18T15:54:57Z",
+      "side": 1,
+      "message": "I will add a section discussing this.\n\nShort answer:\n\nThis design doc is focusing on the host reboot process (BMC reboot is also included but not the main purpose) .\nWhile `State/BMC.interface` focus on the BMC states, which doesn\u0027t meet our needs.",
+      "parentUuid": "7743e187_4a758a0f",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 67
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b49ea25e_bd86d7ac",
         "filename": "designs/btmanager.md",
         "patchSetId": 11
@@ -176,6 +290,30 @@
       "writtenOn": "2022-07-15T17:18:26Z",
       "side": 1,
       "message": "Please add more detail.  \"export\" isn\u0027t a great term.  Does this mean Redfish?  IPMI?  BOth?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 72
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51756a64_f0f58056",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-18T15:54:57Z",
+      "side": 1,
+      "message": "Both. I added more details in it.\n```\n-   Capability to export any additional duration that the user required to DBus.\n    These additional durations can be consumed by Redfish or IPMI blob, depends\n    on the needs.\n```",
+      "parentUuid": "b49ea25e_bd86d7ac",
       "range": {
         "startLine": 52,
         "startChar": 0,
@@ -209,6 +347,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01520352_025c8c13",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-18T15:54:57Z",
+      "side": 1,
+      "message": "\u003e What other component is consuming this information?\n\nIn my plan the consumer will be Redfish and IPMI blob.\n\n\u003e Can you add an explanation of *why* exposing a DBus interface is a requirement?\n\nIn my plan all the information will be consumed by Redfish and IPMI blob. And the DBus is the main interprocess communication system in BMC. So I think the DBus interface is a requirement.",
+      "parentUuid": "c8f63e8a_9b556c55",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 60
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "235f34a9_7d5c54ca",
@@ -222,6 +384,30 @@
       "writtenOn": "2022-07-15T17:18:26Z",
       "side": 1,
       "message": "Pretty sure this already exists.\n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/BMC.interface.yaml#L68",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 34
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80d21ffe_4057dc8d",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-18T15:54:57Z",
+      "side": 1,
+      "message": "This is the reboot cause of the BMC. I am looking for the power cycle type of host.\n\nHere is the host state https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Host.interface.yaml#L87.\nI might be able to leverage that. \nHowever I am not sure if we can map each `RestartCause` to `AC/DC`.\nFor example, if the `RestartCause` is `Unknown` or `RemoteCommand`, then we might not able to distinguish it\u0027s AC or DC.",
+      "parentUuid": "235f34a9_7d5c54ca",
       "range": {
         "startLine": 54,
         "startChar": 0,
@@ -255,6 +441,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9580455c_81e4fc98",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-18T15:54:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b03824b_443b2878",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 50
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a656ec4_5d1213f1",
@@ -278,6 +488,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b96da23_05c57a81",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-18T15:54:57Z",
+      "side": 1,
+      "message": "We need a new OEM subcommand to support\n1. receiving the notification\n2. adding additional\nCode like this: https://gerrit.openbmc.org/c/openbmc/google-ipmi-sys/+/49367/24/commands.hpp",
+      "parentUuid": "8a656ec4_5d1213f1",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 7
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5daf63ba_b9a7e253",
@@ -291,6 +525,30 @@
       "writtenOn": "2022-07-15T17:18:26Z",
       "side": 1,
       "message": "Just something to be aware of, considering that we have multi-host systems in the queue, this needs to account for that.",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 4
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34781d94_79a49744",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-18T15:54:57Z",
+      "side": 1,
+      "message": "I didn\u0027t consider that scenario.\nCan this doc focus on single host scenario first?\nThen supporting multi-host afterwards.",
+      "parentUuid": "5daf63ba_b9a7e253",
       "range": {
         "startLine": 61,
         "startChar": 0,
