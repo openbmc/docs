@@ -374,3 +374,32 @@ debug messages. This can be enabled/disabled globally and would apply to
 all applications. If a developer believes this would cause too much debug
 data in certain cases then they can protect these journald debug calls around
 a --verbose command line option.
+
+## DBus interface representing GPIOs
+
+### Identification
+Desire to expose a DBus interface to drive GPIOs, for example:
+
+* https://lore.kernel.org/openbmc/YV21cD3HOOGi7K2f@heinlein/
+* https://lore.kernel.org/openbmc/CAH2-KxBV9_0Dt79Quy0f4HkXXPdHfBw9FsG=4KwdWXBYNEA-ew@mail.gmail.com/
+* https://lore.kernel.org/openbmc/YtPrcDzaxXiM6vYJ@heinlein.stwcx.org.github.beta.tailscale.net/
+
+### Description
+Platform functionality selected by GPIOs might equally be selected by other
+means with a shift in system design philosophy. As such, GPIOs are a (hardware)
+implementation detail. Exposing the implementation on DBus forces the
+distribution of platform design details across multiple applications, which
+violates the software design principle of [low coupling][coupling] and impacts
+our confidence in maintenance.
+
+[coupling]: https://en.wikipedia.org/wiki/Coupling_%28computer_programming%29
+
+### Background
+GPIOs are often used to select functionality that might be hard to generalise,
+and therefore hard to abstract. If this is the case, then the functionality
+in question is probably best wrapped up as an implementation detail of a
+behaviour that is more generally applicable (e.g. host power-on procedures).
+
+### Resolution
+Consider what functionality the GPIO provides and design or exploit an existing
+interface to expose that behaviour instead.
