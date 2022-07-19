@@ -138,6 +138,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "412facf8_df4e6bc6",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-19T15:59:51Z",
+      "side": 1,
+      "message": "Maybe rephrase to \"difficult\" instead of \"impossible\"?",
+      "parentUuid": "0eee6c96_7b01def1",
+      "range": {
+        "startLine": 14,
+        "startChar": 45,
+        "endLine": 16,
+        "endChar": 56
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17633131_4a194bb3",
         "filename": "designs/btmanager.md",
         "patchSetId": 11
@@ -173,6 +197,30 @@
       "side": 1,
       "message": "I think you are talking about this: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Power/ACPIPowerState.interface.yaml#L15-L62\n\nI think I can make the term change as below:\n```\nAC power cycle -\u003e S0_G3_S0\nDC power cycle -\u003e S0_S5_S0\n```\nFor the term `Stage` and `Unmeasured`, I think they are specific to this design, I don\u0027t find an appropriate replacement.\n\nIs this change okay for you?",
       "parentUuid": "17633131_4a194bb3",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 0
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9c1d818_368dae63",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-19T15:59:51Z",
+      "side": 1,
+      "message": "Yep, I was referring to the power state things here:\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/b1de713e0fd8fe307a60ef65f3c353136fa6dc96/yaml/xyz/openbmc_project/State/Chassis.interface.yaml#L68\n\n\nSure, stage and unmeasured are fine.",
+      "parentUuid": "5e469887_36fe4e7a",
       "range": {
         "startLine": 40,
         "startChar": 0,
@@ -256,6 +304,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56453ba4_bfe717a9",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-19T15:59:51Z",
+      "side": 1,
+      "message": "Yes, BootTimeMonitor is MUCH more descriptive.  Our goal is to be descriptive in naming, not attempt to have short names.",
+      "parentUuid": "28004d6e_83b7d065",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 9
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7743e187_4a758a0f",
         "filename": "designs/btmanager.md",
         "patchSetId": 11
@@ -291,6 +363,30 @@
       "side": 1,
       "message": "I will add a section discussing this.\n\nShort answer:\n\nThis design doc is focusing on the host reboot process (BMC reboot is also included but not the main purpose) .\nWhile `State/BMC.interface` focus on the BMC states, which doesn\u0027t meet our needs.",
       "parentUuid": "7743e187_4a758a0f",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 67
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a860bffd_c7549a51",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-19T15:59:51Z",
+      "side": 1,
+      "message": "Answer in the background section of your next patch please.\n\n\u003e BMC reboot is also included but not the main purpose\n\nThis is kind of what I\u0027m pointing out, does the BMC monitoring need to stay in the existing bmc monitoring daemons, and the host monitoring things go into this new daemon?\n\n\u003e While `State/BMC.interface` focus on the BMC states, which doesn\u0027t meet our needs.\n\nLooking forward to the details of that getting answered in your next patch.",
+      "parentUuid": "d8480438_9c1b8179",
       "range": {
         "startLine": 49,
         "startChar": 0,
@@ -468,6 +564,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92a610ad_6cee8415",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-19T15:59:51Z",
+      "side": 1,
+      "message": "So maybe add an \"Unknown\" reboot state to the list of enums for when we can\u0027t distinguish?  We might want to look at what x86-power-control does here.",
+      "parentUuid": "80d21ffe_4057dc8d",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 34
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b03824b_443b2878",
         "filename": "designs/btmanager.md",
         "patchSetId": 11
@@ -550,6 +670,30 @@
       "side": 1,
       "message": "We need a new OEM subcommand to support\n1. receiving the notification\n2. adding additional\nCode like this: https://gerrit.openbmc.org/c/openbmc/google-ipmi-sys/+/49367/24/commands.hpp",
       "parentUuid": "8a656ec4_5d1213f1",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 7
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3368ebe0_dc9c55b6",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-19T15:59:51Z",
+      "side": 1,
+      "message": "More details in that area (which commands) would be good.",
+      "parentUuid": "1b96da23_05c57a81",
       "range": {
         "startLine": 58,
         "startChar": 4,
@@ -645,6 +789,30 @@
       "side": 1,
       "message": "That\u0027s a good point to think of. From our view, we assume that there is one main host that can represent the up/down status of a machine. This means:\n1. as long as the main host is booted, the whole machine is considered as booted/up.\n2. the rest of the hosts can be booted in parallel of the main host or after the main host is up. If the main host needs to wait for the other hosts before it\u0027s considered as up, the time will be counted in the userspace stage.\n3. the breakdown durations of other hosts are stored in durations, which is very flexible to store any data.\n4. the stage time covers only the contributors to wall clock time in a boot flow. In other words, we treat the boot flow as a linear flow of stages in order to have a meaningful breakdown of total boot time.\n\nFor scenarios of two or more main hosts, there are two possible solutions.\n1. only treat one of them as the main host, only the main management host is the main host. (this will be what I explained above)\n2. store and repot the data of all the hosts separately. (this needs a few implementation change to identify the host but the doc design should be very similar)\n\nFeel free to comments on the ideas. Multi-host is quite a new concept.",
       "parentUuid": "4d9e730b_76cc2b17",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 4
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e41854f1_577ad461",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-19T15:59:51Z",
+      "side": 1,
+      "message": "\u003e Can this doc focus on single host scenario first?\n\nConsidering that multi-host systems were proposed first, I don\u0027t think we can do it that way.  In terms of _implementation_ you can certainly start with the single-host case first, but in terms of design, we need to think about it here so we don\u0027t box ourselves into a corner.  Considering we\u0027re adding handlers to Redfish and IPMI, it behooves us to think about this now.\n\n\u003e  as long as the main host is booted, the whole machine is considered as booted/up.\n\nIn something like a yosemite, which node is the \"Main host\"?  They\u0027re all pretty equal, no?",
+      "parentUuid": "33535f08_f390d0b1",
       "range": {
         "startLine": 61,
         "startChar": 0,
