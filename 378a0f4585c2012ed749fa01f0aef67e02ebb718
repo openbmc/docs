@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e098fe1_3d8b7d00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-07-19T07:47:03Z",
+      "side": 1,
+      "message": "This would be helpful for others to know the design and implementation easier instead of going through code.",
+      "parentUuid": "3e2cf9aa_c65a2238",
+      "revId": "378a0f4585c2012ed749fa01f0aef67e02ebb718",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e11220c5_03b10e42",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-07-12T17:56:01Z",
       "side": 1,
       "message": "More details please: \nWhat is the proposed configuration? How does the detection work?\nWill removal of device is detected also?\nWhat are the interfaces will be created?",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 37
+      },
+      "revId": "378a0f4585c2012ed749fa01f0aef67e02ebb718",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3eb83ce_6c47fcc6",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-07-19T07:47:03Z",
+      "side": 1,
+      "message": "Details are added in the document. \nRemoval of device is currently not supported in IPMB FRU.",
+      "parentUuid": "e11220c5_03b10e42",
       "range": {
         "startLine": 137,
         "startChar": 0,
@@ -87,6 +129,54 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a501d7ae_ca6c74bc",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-07-19T07:47:03Z",
+      "side": 1,
+      "message": "\u003e Does each config mean each IPMBDevice?\n\nYes, each config represent each IPMBDevice.\n\n\n\n\u003e Can multiple IPMBDevices exist on same IPMB bus with different addresses?\n\nYes, same IPMB bus can have different addresses, but in our platform, we don\u0027t have multiple IPMB devices exist on same bus.",
+      "parentUuid": "9d77c632_4968a1e0",
+      "range": {
+        "startLine": 146,
+        "startChar": 32,
+        "endLine": 146,
+        "endChar": 47
+      },
+      "revId": "378a0f4585c2012ed749fa01f0aef67e02ebb718",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6ed2ea6_72b8b8b1",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-07-19T07:47:03Z",
+      "side": 1,
+      "message": "This is IPMB bus number.",
+      "parentUuid": "23524c7e_40f9261f",
+      "range": {
+        "startLine": 146,
+        "startChar": 62,
+        "endLine": 146,
+        "endChar": 71
+      },
+      "revId": "378a0f4585c2012ed749fa01f0aef67e02ebb718",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb574b89_e05687d8",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-07-12T17:56:01Z",
       "side": 1,
       "message": "How will these sensor get updated, one at a time with reservation ID? Is it only the sensor value being polled. Will they support update in threshold value?",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 48
+      },
+      "revId": "378a0f4585c2012ed749fa01f0aef67e02ebb718",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5f61c43_bb37c373",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-07-19T07:47:03Z",
+      "side": 1,
+      "message": "Foe each interface (xyz.openbmc_project.Configuration.IpmbDevice) detected for IPMB device, all the sensors related to that IPMB device will be accessed from the map which are stored. Each sensor\u0027s name, device address, threshold values and unit are updated and displayed one at a time by invoking IpmbSensor constructor under IpmbSensor service.\n\nAdded a new IpmbType for SDR sensor to frame the data packet for each sensor based on the sensor\u0027s unique number received. Sensor value will be read based on the pollng rate and it will be updated in dbus property.",
+      "parentUuid": "fb574b89_e05687d8",
       "range": {
         "startLine": 153,
         "startChar": 0,
