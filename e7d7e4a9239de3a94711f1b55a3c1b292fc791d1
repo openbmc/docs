@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b7c017e_6a8cdf01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-21T02:54:45Z",
+      "side": 1,
+      "message": "One thing I didn\u0027t realize is that arj had completely removed the MCTP stuff from the existing nvme daemon.  That weakens my argument a little, but considering both protocols are:\n1. Targeting the same specification.\n2. Targeting the same devices (with nvme-basic being possibly optional)\n3. Likely exposing the same interfaces.\n\nI still think it makes sense for them to be in the same daemon implementation.  To be clear, I don\u0027t have a need to maintain it (although I\u0027ll continue if I have to), and nvme-sensor doesn\u0027t have to stay in dbus-sensors, but there are a number of things that I don\u0027t think we should step backwards on, and there are other people that use the existing code, of which there isn\u0027t much code for nvme-sensor itself.  Moving it to wherever we decide put the new daemon and with whatever seasoned maintainer wants to maintain it is fine with me if that\u0027s the result, but whomever it is needs to take over nvme as a whole (including the existing reactor) and not just start over from scratch unless there\u0027s a good coding architectural reason to do so.  (good reasons might include a different language, major changes to IO model, ect).  Wanting more features isn\u0027t a good reason IMO, those can always be added to the already maintained daemon, where we\u0027ve worked through all the boilerplate, \"how to build a reactor\" stuff.",
+      "revId": "e7d7e4a9239de3a94711f1b55a3c1b292fc791d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c94b4e0b_772a4660",
         "filename": "designs/nvmed.md",
         "patchSetId": 2
