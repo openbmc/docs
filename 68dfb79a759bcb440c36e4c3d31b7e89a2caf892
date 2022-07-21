@@ -400,6 +400,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11cc5bdb_1c272e46",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-21T16:53:20Z",
+      "side": 1,
+      "message": "Reopening, commit message still says \"btmonitor\" as does the filename.  Did you mean to upload a new patch?",
+      "parentUuid": "53de1539_7a960133",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 9
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7743e187_4a758a0f",
         "filename": "designs/btmanager.md",
         "patchSetId": 11
@@ -684,6 +708,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd1e805a_75d37b7f",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-21T16:53:20Z",
+      "side": 1,
+      "message": "I would\u0027ve expected some answer to \"Why aren\u0027t we using the existing interfaces for this?\"",
+      "parentUuid": "499db47b_cb1e9d5b",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 34
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b03824b_443b2878",
         "filename": "designs/btmanager.md",
         "patchSetId": 11
@@ -814,6 +862,30 @@
       "side": 1,
       "message": "I added a section for describing the new OEM command format.\n`### What do the OEM commands look like?`\n\nHope this can answer your question.",
       "parentUuid": "3368ebe0_dc9c55b6",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 7
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e7eab80_728e8b0b",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-21T16:53:20Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "7f76f680_07849db1",
       "range": {
         "startLine": 58,
         "startChar": 4,
@@ -957,6 +1029,30 @@
       "side": 1,
       "message": "Agreed. Let\u0027s focus on single machine for now but keep the design doc flexible. So, basically, variables/data should be wrapped in a list of struct, storing data from different hosts. As for identifying the host ID, we should have a common infrastructure to enumerate/label the hosts. It\u0027s important to keep the host mapping consistent across all SW. I would expect something from the IPMI command telling me where the command source is. Also, somewhere in the BMC, we can query the host ID mapping or similar things. So, we don\u0027t need to change our IPMI command design to support sending host ID from the host side. WDYT? What\u0027s the current plan for identifying/mapping data from different hosts for other components?\n\nI was talking about some hypothetical situation. Although there are multiple hosts, but the whole machine is serving for one purpose, like a replica or a big storage tray. Thus, there will be synchronization event somewhere in user service or other places. There will be a main node that is responsible to respond to connections and distribute the tasks to other hosts. Once a connection is ready, the client can transfer data to sub-hosts directly.\n\nIt\u0027s not a common model for most multi-hosts machines. It\u0027s a more specialized design. This kind of single machine model can also be a transition stage between single-host to multi-host in a datacenter.",
       "parentUuid": "e41854f1_577ad461",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 4
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fff7f44_d2252886",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-21T16:53:20Z",
+      "side": 1,
+      "message": "\u003e Agreed. Let\u0027s focus on single machine for now but keep the design doc flexible. So, basically, variables/data should be wrapped in a list of struct, storing data from different hosts.\n\nYou say \"focus on the design\" but then you jump immediately into the implementation (by talking about structs and data storage).\n\n\u003e As for identifying the host ID, we should have a common infrastructure to enumerate/label the hosts.\n\nThis already exists in the dbus interfaces.\n\n\u003e It\u0027s important to keep the host mapping consistent across all SW. I would expect something from the IPMI command telling me where the command source is.\n\nYep, and because this would be a breaking change to the IPMI command, this is why we call it out now in the design phase.\n\n\u003e Also, somewhere in the BMC, we can query the host ID mapping or similar things. So, we don\u0027t need to change our IPMI command design to support sending host ID from the host side. WDYT?\n\n?  I don\u0027t understand this statement.  Any IPMI command we add would need to be aware of what host you\u0027re asking for the data from.\n\n\u003e What\u0027s the current plan for identifying/mapping data from different hosts for other components?\n\nThere are already components that do this today using dbus, and patches in review for others.\n\n\u003e \n\u003e I was talking about some hypothetical situation. Although there are multiple hosts, but the whole machine is serving for one purpose, like a replica or a big storage tray. Thus, there will be synchronization event somewhere in user service or other places. There will be a main node that is responsible to respond to connections and distribute the tasks to other hosts. Once a connection is ready, the client can transfer data to sub-hosts directly.\n\nAt a manageability level, this doesn\u0027t really affect the BMC if there are software orchestration layers for the hosts.  We just see them as hosts, each with an independent state.\n\n\u003e \n\u003e It\u0027s not a common model for most multi-hosts machines. It\u0027s a more specialized design. This kind of single machine model can also be a transition stage between single-host to multi-host in a datacenter.\n\nWe\u0027re literally going through that transition now, which is why it\u0027s mentioned in your design doc.",
+      "parentUuid": "3afab27f_3cd75912",
       "range": {
         "startLine": 61,
         "startChar": 0,
