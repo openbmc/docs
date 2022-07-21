@@ -941,6 +941,30 @@
       },
       "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3afab27f_3cd75912",
+        "filename": "designs/btmanager.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001299
+      },
+      "writtenOn": "2022-07-21T12:48:10Z",
+      "side": 1,
+      "message": "Agreed. Let\u0027s focus on single machine for now but keep the design doc flexible. So, basically, variables/data should be wrapped in a list of struct, storing data from different hosts. As for identifying the host ID, we should have a common infrastructure to enumerate/label the hosts. It\u0027s important to keep the host mapping consistent across all SW. I would expect something from the IPMI command telling me where the command source is. Also, somewhere in the BMC, we can query the host ID mapping or similar things. So, we don\u0027t need to change our IPMI command design to support sending host ID from the host side. WDYT? What\u0027s the current plan for identifying/mapping data from different hosts for other components?\n\nI was talking about some hypothetical situation. Although there are multiple hosts, but the whole machine is serving for one purpose, like a replica or a big storage tray. Thus, there will be synchronization event somewhere in user service or other places. There will be a main node that is responsible to respond to connections and distribute the tasks to other hosts. Once a connection is ready, the client can transfer data to sub-hosts directly.\n\nIt\u0027s not a common model for most multi-hosts machines. It\u0027s a more specialized design. This kind of single machine model can also be a transition stage between single-host to multi-host in a datacenter.",
+      "parentUuid": "e41854f1_577ad461",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 4
+      },
+      "revId": "68dfb79a759bcb440c36e4c3d31b7e89a2caf892",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
