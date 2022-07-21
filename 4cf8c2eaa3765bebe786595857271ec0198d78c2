@@ -20,6 +20,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61edbc34_48616475",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-07-21T11:21:04Z",
+      "side": 1,
+      "message": "Can you elaborate on this?  I don\u0027t understand how \"a process that holds a bunch of files that you might want to update\" has any complexity.  You need to figure out how to get files into the BMC in order to do your update, don\u0027t you?  We already have all the Redfish plumbing for that.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 51
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04192e9b_04f7a008",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-07-21T11:21:04Z",
+      "side": 1,
+      "message": "spelling?",
+      "range": {
+        "startLine": 15,
+        "startChar": 54,
+        "endLine": 15,
+        "endChar": 60
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53c3b41b_d3761f74",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-07-21T11:21:04Z",
+      "side": 1,
+      "message": "Please elaborate.  I don\u0027t know how \"here is your file pointer\" is a difficult part of the workflow.",
+      "range": {
+        "startLine": 15,
+        "startChar": 17,
+        "endLine": 16,
+        "endChar": 59
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f0e3e18_b7247a9c",
         "filename": "designs/simple-firmware-update-api.md",
         "patchSetId": 1
@@ -73,6 +142,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2869afd5_4fe099af",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-07-21T11:21:04Z",
+      "side": 1,
+      "message": "These words of Ed\u0027s should probably be incorporated into the design as better justification.",
+      "parentUuid": "3ae982b2_b67840fc",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39b1347e_e240a96b",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-07-21T11:21:04Z",
+      "side": 1,
+      "message": "This seems totally insufficient for doing updates.  A few shortfalls:\n\n1. How do you deal with firmware which is not applied yet (staged), like all ROTs seem to want to do?\n\n2. How do you deal with firmware which might be applied immediately, without a reboot?  (I think the current API expresses this as well).\n\n3. How do we identify which version of firmware is currently installed in a device?  What if the device has multiple storage locations?\n\n4. How do we identify device compatibility with the firmware image?",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30d078e6_e94664c7",
         "filename": "designs/simple-firmware-update-api.md",
         "patchSetId": 1
@@ -102,6 +206,24 @@
       "side": 1,
       "message": "Yes the path is local to the BMC.\nRequestedActivation requires the ItemUpdater to first know about an image through the Version object published by the ImageManager, and then creating that Activation object. This new API cuts out that extra step so a client can directly send an image to an ItemUpdater-like daemon.",
       "parentUuid": "30d078e6_e94664c7",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3e8b4b2_60f123e6",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-07-21T11:21:04Z",
+      "side": 1,
+      "message": "\u003e This new API cuts out that extra step so a client can directly send an image to an ItemUpdater-like daemon.\n\nBut _which_ daemon is it going to send it to?  Is the implication that all software updates will now go through a single daemon?\n\nYou\u0027ve taken what use to be decoupled (image manager gets the new image, various daemons monitor to determine if it is relevant for them) and turned it into a tightly coupled system where one daemon is responsible for routing all firmware updates.  This seems _worse_ for vendor compatibility, not better.",
+      "parentUuid": "5ef55ae2_72fa61bc",
       "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -339,6 +461,30 @@
       "writtenOn": "2022-07-13T05:18:27Z",
       "side": 1,
       "message": "If this is the plan, please plan on removing the ImageManager interface first, and having that be the first target before the bmcweb patches land.  This avoids having to support two implementations for a period of time, and needing to have complex logic to determine which implementation to use at any given time.",
+      "range": {
+        "startLine": 108,
+        "startChar": 62,
+        "endLine": 109,
+        "endChar": 63
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b2d8e4d_6a4de261",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-07-21T11:21:04Z",
+      "side": 1,
+      "message": "This implies that for _all_ cases the ImageManager relationship is overkill.  Is this true?  We need to elaborate on that as well.",
+      "parentUuid": "8f964c7d_cdf22c53",
       "range": {
         "startLine": 108,
         "startChar": 62,
