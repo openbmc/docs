@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "904eb856_eeffe90d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2022-07-21T03:39:01Z",
+      "side": 1,
+      "message": "Just doing a bit of a summary here, just to check that I\u0027m on the same page with the discussions so far:\n\n\u003e I still think it makes sense for them to be in the same daemon implementation.\n\nI definitely think that\u0027s reasonable, and we should get a little design overview for that approach.\n\nHao, correct me if I\u0027m wrong, but at a rough overview: your goal here is expose functionality available from the management side of a NVMe device. The initial proposal is a fairly direct mapping of the NVMe-MI facilities to a dbus interface.\n\nSince then, it\u0027s become apparently that we really should be exposing these in a more general \"OpenBMC object model\"; for example, instead of exposing a NVM Subsystem Health Status Data Structure on d-bus, we should just be extracting the relevant bits out of that (composite temperature, drive life used, etc), as regular OpenBMC sensors. That achieves a more \"BMC-like\" access to the MI data.\n\n[whether we still expose the NSHDS in addition to the actual sensors is another question perhaps...]\n\nWe also have a future set of requirements on more NVMe-specific (or at least storage-device-specific) functionality, like namespace/volume management, secure erase, etc. The direction here would be to support a Swordfish-standardised API for off-BMC management agents. This would allow the control that Hao is looking to provide for DC integration.\n\nFor that latter requirement, we\u0027d be looking to expose the MI functions as closely as possible to the Redfish/Swordfish schema; this might be a shift from the existing proposal, where it\u0027s closer to the MI spec than the eventual REST API (ie, Swordfish) data layout.\n\nOverall though, it makes sense to have a single daemon for both of those requirements. To me, the design point of having one daemon as a single point of communication with the NVMe-MI endpoint is the important one here.\n\nWe could consider the NVMe-Basic and NVMe-MI protocols as separate endpoints, but there\u0027s probably enough overlap in the supporting infrastructure (VPD discovery etc) to warrant putting both into one codebase.\n\nTBH, I\u0027m OK with either approach, as long as:\n\n- we have sensible representations of the core inventory/sensor data; and\n- adding the richer set of NVMe-MI control functionality doesn\u0027t mean we end up out-of-scope for a dbus-sensors component",
+      "parentUuid": "4b7c017e_6a8cdf01",
+      "revId": "e7d7e4a9239de3a94711f1b55a3c1b292fc791d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c94b4e0b_772a4660",
         "filename": "designs/nvmed.md",
         "patchSetId": 2
