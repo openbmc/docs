@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f75edf4d_0c7d5095",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-07-22T01:15:56Z",
+      "side": 1,
+      "message": "\u003e One thing I didn\u0027t realize is that arj had completely removed the MCTP stuff from the existing nvme daemon.  That weakens my argument a little\n\nHonestly, I think you\u0027re putting too much weight on me ripping out the MCTP support. I did that because it was unbuildable, and being unable to even build it prevented me from refactoring other parts of the code.\n\nTo be clear, I did not rip it out because I don\u0027t want to support MCTP in nvmesensor, I ripped it out because the _specific_ _implementation_ was unmaintainable.\n\nNow we have kernel support for MCTP and NVMe-MI support in libnvme, I see no reason not to add it back in.\n\nAs such, I don\u0027t think the current state of the code changes the argument at all.\n\n\u003e I still think it makes sense for them to be in the same daemon implementation.  \n\nAs do I, and Jeremy too.\n\n\u003e Wanting more features isn\u0027t a good reason IMO, those can always be added to the already maintained daemon, where we\u0027ve worked through all the boilerplate, \"how to build a reactor\" stuff.\n\nPrecisely. I don\u0027t se any reason why we can\u0027t grow extra NVMe management features here. Calling the repo \"dbus-sensors\" was a mistake I think, in that it constrains peoples\u0027 understanding of its content to sensors. A better name is something like \"entity-reactors\" IMO.",
+      "parentUuid": "904eb856_eeffe90d",
+      "revId": "e7d7e4a9239de3a94711f1b55a3c1b292fc791d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c94b4e0b_772a4660",
         "filename": "designs/nvmed.md",
         "patchSetId": 2
