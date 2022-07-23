@@ -83,6 +83,8 @@ Developer impact? Upgradability impact?
 ### Organizational
 Does this repository require a new repository?  (Yes, No)
 Who will be the initial maintainer(s) of this repository?
+Which repositories are expected to be modified to execute this design? (make a
+list, and add all repository maintainers to the gerrit review).
 
 ## Testing
 How will this be tested? How will this feature impact CI testing?
