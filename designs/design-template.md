@@ -81,8 +81,10 @@ API impact? Security impact? Documentation impact? Performance impact?
 Developer impact? Upgradability impact?
 
 ### Organizational
-Does this repository require a new repository?  (Yes, No)
-Who will be the initial maintainer(s) of this repository?
+- Does this repository require a new repository?  (Yes, No)
+- Who will be the initial maintainer(s) of this repository?
+- Which repositories are expected to be modified to execute this design?
+- Make a list, and add listed repository maintainers to the gerrit review.
 
 ## Testing
 How will this be tested? How will this feature impact CI testing?
