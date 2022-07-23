@@ -39,6 +39,237 @@
       },
       "revId": "3dcf046c805565a078c2298e3aa4949117e654aa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec390a3_5ca67980",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T20:03:14Z",
+      "side": 1,
+      "message": "+1.  Pretty sure you meant this to be a replacement.",
+      "parentUuid": "7e83f69f_4a1d0f24",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 41
+      },
+      "revId": "3dcf046c805565a078c2298e3aa4949117e654aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6709153_3cebae5c",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T20:03:14Z",
+      "side": 1,
+      "message": "This is very intentional in the design because it avoids bugs in caching implementations.",
+      "range": {
+        "startLine": 119,
+        "startChar": 43,
+        "endLine": 121,
+        "endChar": 44
+      },
+      "revId": "3dcf046c805565a078c2298e3aa4949117e654aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e1eac18_d267440e",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T20:03:14Z",
+      "side": 1,
+      "message": "Key word being \"easily\".  Unfortuantely, to obey the Redfish health rollup rules properly, it requires quite a complex setup.  While I\u0027m open to the possibility of a simpler one (which would be great) we need to make sure ALL the use cases are accounted for.",
+      "range": {
+        "startLine": 121,
+        "startChar": 45,
+        "endLine": 123,
+        "endChar": 38
+      },
+      "revId": "3dcf046c805565a078c2298e3aa4949117e654aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4267b75_324dda97",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T20:03:14Z",
+      "side": 1,
+      "message": "This is arguably fixable if we had a better ObjectMapper method, right?",
+      "range": {
+        "startLine": 128,
+        "startChar": 22,
+        "endLine": 130,
+        "endChar": 27
+      },
+      "revId": "3dcf046c805565a078c2298e3aa4949117e654aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff2a5f38_22a9f1a0",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T20:03:14Z",
+      "side": 1,
+      "message": "This needs a lot more details.\n\nWhere is rollup implemented?\n\nHow is any individual daemon aware of the complete system state?  Is it required to track its own children individually?  How often is this state updated?  Is it polled?",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 25
+      },
+      "revId": "3dcf046c805565a078c2298e3aa4949117e654aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b80be95_765050fd",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T20:03:14Z",
+      "side": 1,
+      "message": "If it\u0027s distributed like this, how can we make sure that all individual implementations of rollup are correct?  Wouldn\u0027t this duplicate a lot of code in all different daemons?",
+      "range": {
+        "startLine": 137,
+        "startChar": 63,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "3dcf046c805565a078c2298e3aa4949117e654aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59438765_05e453e6",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T20:03:14Z",
+      "side": 1,
+      "message": "Isn\u0027t this basically the same as we do today, just replacing the existing status interface with a Health interface, and replacing an association with a \"health_rollup\" accciation?",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 54
+      },
+      "revId": "3dcf046c805565a078c2298e3aa4949117e654aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d2a2cac_466a86ae",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T20:03:14Z",
+      "side": 1,
+      "message": "Nit, please use another term than \"device tree\" here.  I\u0027m pretty sure you didn\u0027t intend the linux device tree, but the name is overloaded.",
+      "range": {
+        "startLine": 145,
+        "startChar": 45,
+        "endLine": 145,
+        "endChar": 57
+      },
+      "revId": "3dcf046c805565a078c2298e3aa4949117e654aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f022d25f_f85c9d48",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T20:03:14Z",
+      "side": 1,
+      "message": "Doesn\u0027t redfish still require HealthRollup on nodes that have no decendents?",
+      "range": {
+        "startLine": 147,
+        "startChar": 12,
+        "endLine": 147,
+        "endChar": 62
+      },
+      "revId": "3dcf046c805565a078c2298e3aa4949117e654aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7263d58d_595a8b79",
+        "filename": "designs/redfish-health-rolllup.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T20:03:14Z",
+      "side": 1,
+      "message": "I\u0027m struggling with this statement, because in this context, you\u0027re not proposing an outright replacement, you\u0027re proposing a side by side implementation, but you haven\u0027t talked through:\n1. How a redfish implementation would pick between them.\n2. Which daemons should use the \"old\" and which daemons should use the \"new\".  Should all existing deamons be ported to the new ones?",
+      "range": {
+        "startLine": 151,
+        "startChar": 34,
+        "endLine": 152,
+        "endChar": 26
+      },
+      "revId": "3dcf046c805565a078c2298e3aa4949117e654aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
