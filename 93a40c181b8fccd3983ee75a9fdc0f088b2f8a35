@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eb37419_626e4cdf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T19:51:20Z",
+      "side": 1,
+      "message": "Overall I think this patch is a good start, but we need to figure out some conflicting goals:\n\n1. It\u0027s desirable for a DTS file GPIO naming to match the schematic of the board.\n2. It\u0027s desirable for GPIO in openbmc to have consistent naming between systems.\n\nThese two requirements seem mutually exclusive to me, and IMHO #1 is more important.  x86-power-control has already gone down the #1 path of letting gpio names be free-form to the schematic, by allowing the mapping to be named in a config file.\n\nIf we\u0027re going to continue this design, it would mean that we should remove the config file capability from x86-power-control, and make the existing users DTS files consistent.  Is that what we want here?  IMO, no, it\u0027s more useful for a GPIO name to match a schematic, even if it causes some inconsistencies in software implementations.\n\nRegardless of which we choose, we should answer the question before we continue with this patchset, and if the answer is #2 (for which, I\u0027m not a maintainer for any priority GPIO facing daemons, so I really have no say in the matter) then we need to correct the DTS files, upstream then to the kernel, and remove the GPIO naming capability from the daemons that use it.",
+      "revId": "93a40c181b8fccd3983ee75a9fdc0f088b2f8a35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9072aa24_8803b4db",
