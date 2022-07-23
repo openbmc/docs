@@ -71,6 +71,299 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec3b0c91_e433f390",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "Please fix the line wrapping.  It appears to be incorrect in several places.",
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "801a1c72_b7e8c1c2",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "?  this needs rearranged I\u0027m sure.  This is the first mention of yaml, or any sort of global definition, and per my reading, would mean that in my case, as a bmcweb maintainer, to check in ANY new action resource, or handle, would require updating a global yaml file somewhere?  That doesn\u0027t seem like it scales.",
+      "range": {
+        "startLine": 74,
+        "startChar": 27,
+        "endLine": 74,
+        "endChar": 66
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd6b880f_a1b59f79",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "What is a \"consumer attribute\"",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 18
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53b5d027_88fe3c0c",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "What does a \"source\" of \"Audit\" or \"SEL\" mean?   A source of Redfish makes some sense (a user initiated an action via redfish), but what is an \"Audit\" source?  SEL is contained within the BMC, so how could that be a source?",
+      "range": {
+        "startLine": 75,
+        "startChar": 52,
+        "endLine": 75,
+        "endChar": 55
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8791d73_ef663a64",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "If we do this for every redfish GET, POST, PATCH, HEAD, or DELETE, this significantly slows down the overall performance.  This can be seen today in bmcweb by enabling logging and rerunning the performance tests.  Maybe there\u0027s a subset of things that don\u0027t need logged?  Or can be logged as timing incremented counters instead of all possible actions?",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 29
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ab0c4f3_5e1fa66c",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "This is another term that hasn\u0027t been defined yet.  What is a \"TRANSACTION ID\" and how would an implementation generate one?",
+      "range": {
+        "startLine": 82,
+        "startChar": 72,
+        "endLine": 82,
+        "endChar": 86
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b025bcf9_b46b8af5",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "It seems like a significant problem if it\u0027s possible to send an email per action.   During initial system setup, a user might do 100 Redfish requests, each of which would generate an email?  That doesn\u0027t seem like a good thing, and something this design needs to think about.",
+      "range": {
+        "startLine": 84,
+        "startChar": 66,
+        "endLine": 84,
+        "endChar": 71
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a9a00ce_7ca8de61",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "This seems like a serious bottleneck to me rather than a benefit.  Now every new daemon that wants to add function has to go edit one \"source of truth\".  I think this hurts our development model.  For example, if someone wanted to build a functional replacement for bmcweb (as has been proposed by many) they would now have to first go get their code added to phosphor-audit, rather than declaring a set of interface that needed to be met.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 22
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "307f0729_1ce72c97",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "What does \"notify any service\" mean?",
+      "range": {
+        "startLine": 112,
+        "startChar": 81,
+        "endLine": 114,
+        "endChar": 16
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e3ad756_ea4d787d",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "This needs called out in WAAAAY more detail.  \"run arbitrary command\" seems like it wouldn\u0027t meet our security requirements, and would be quite brittle.",
+      "range": {
+        "startLine": 125,
+        "startChar": 11,
+        "endLine": 126,
+        "endChar": 73
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bf3c873_510eb684",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "Mentioned earlier, but these need defined and explained.",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 26
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73490566_da94a261",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "Can we give a real example here, instead of \"test\"  I\u0027m having trouble parsing what this means without it being a real example",
+      "range": {
+        "startLine": 157,
+        "startChar": 12,
+        "endLine": 157,
+        "endChar": 21
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9769c562_84f3481c",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "would it be better do just have a pre-defined wildcard, say if you logged a message starting with\n\n\"AUDITEVENT_\" then we would know that event existed, and would need to be pushed to the relevant logging actions, without needing to have one master yaml file with all possible event types in it, which I think would help for developement, because it puts the individual channel owners in charge of the event names, which I think is better\n\nAUDITEVENT_REDFISH_REQUEST might be something bmcweb would publish.\n\nAUDITEVENT_IPMB_REQUEST, might be something ipmb would publish, ect.",
+      "range": {
+        "startLine": 160,
+        "startChar": 16,
+        "endLine": 160,
+        "endChar": 26
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de5ee688_c2182f8d",
         "filename": "designs/phosphor-audit.md",
         "patchSetId": 6
@@ -105,6 +398,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d42bb86f_e2b6959f",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "+1, better examples need to be done here.",
+      "parentUuid": "d5233552_7a55e409",
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87a372f8_eba584da",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "Why do we have the returncode here?  It seems like a dos vector if we have to log events that say, had a 401 in them.  That would allow DOS attackers to get the bmc to use more logging resources than youd\u0027 expect.",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 52
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e7ef1b2_f7cafd0a",
         "filename": "designs/phosphor-audit.md",
         "patchSetId": 6
@@ -116,6 +450,93 @@
       "writtenOn": "2022-03-15T07:20:47Z",
       "side": 1,
       "message": "host_ipmi should not have an address like `192.168.0.1`, is it?",
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65e35ebc_b42241b3",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "+1.  Can we call out how IPMI would work for more than just lanplus?",
+      "parentUuid": "5e7ef1b2_f7cafd0a",
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a486d0b4_26ffd8dc",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "How does a user buying an openbmc system modify this behavior if it\u0027s in a config file?  I suspect there needs to be a dbus interface for controlling this.",
+      "range": {
+        "startLine": 205,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 24
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a03b405_0a5c1220",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "Why do we need both?   shouldn\u0027t these be mutually exclusive?",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 41
+      },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a1a660_1dbfaaef",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "Yep, this seems like a big problem considering the number of patches I get that poke at minor performance improvements in bmcweb, performance seems important to the community.",
+      "range": {
+        "startLine": 368,
+        "startChar": 42,
+        "endLine": 369,
+        "endChar": 28
+      },
       "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -139,6 +560,23 @@
         "endLine": 380,
         "endChar": 1
       },
+      "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f89aa944_5b5d90df",
+        "filename": "designs/phosphor-audit.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T18:16:10Z",
+      "side": 1,
+      "message": "Will there be robot tests for this?",
       "revId": "95616d66821ba072f19091b1927a0cb2c5ddce54",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
