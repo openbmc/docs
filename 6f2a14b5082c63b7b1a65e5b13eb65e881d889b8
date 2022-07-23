@@ -16,6 +16,327 @@
       "message": "As discussed in the call this week, this doc needs to be either a part of a set indicating the features which need to be implemented to communicate with a BIC or needs to expand its scope so it aligns with the original intent to describe how oBMC should communicate with a BIC to handle various functions and why a separate repo is needed for BIC specific interaction code.",
       "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "499ee003_1b458422",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "No user facing requirements?",
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecf91389_4eda7699",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "How does this relate to the implementation going into dbus-sensors?  Would we move the existing patchsets and IPMB code to this new repo?  As a general rule, managing external controllers from more than one daemon leads to problems.  For example, while doing a firmware update, generally sensors should stop scanning to avoid conflicts and unintended errors.  Having that kind of interlocking between two daemons is error prone.\n\nI\u0027m fine if this logic goes into the new daemon in dbus-sensors you\u0027re abstracting, or if you want this in a new repo, but splitting up control is IMO a bad idea.",
+      "range": {
+        "startLine": 73,
+        "startChar": 10,
+        "endLine": 73,
+        "endChar": 18
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f51d7659_ac951d26",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "There have been distributed firmware update dbus API proposals (there\u0027s I think 3 in review)  that are intending to break the reliance on \"one dbus firmware update service to rule them all\" and distribute the interfaces better.  Have you looked at or considered those designs at all?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 9
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2723bae5_7719cf16",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "Validated how?  Read from where?   Lots of details missing here that are important to the design.",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 37
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d096bc2a_13a1bf5b",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "This can probably be removed.  The IPMBbridged interface isn\u0027t changing in this design, and this section doesn\u0027t add any value over the example busctl command.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 0
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eb8a7c6_16a0ca74",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "Any recovery or retry required here?",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 12
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99e4fbf6_663e6049",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "How does this section differ from \"The implementation flow of OEM firmware update\"?  It seems like the same flow, just with different words and names.  Can they be combined?",
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4670f7f_67c3ce97",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "The \"user\" doesn\u0027t have direct access to the bmc generally.  How would a user normally use this?  IPMI?  Redfish?  SSH?",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 24
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "461f3a96_b8f54387",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "I think there\u0027s a misunderstanding about what a daemon does here.  A daemon is started at startup, and allows interaction through the lifecycle of the system.  Generally a user would not be able to launch a daemon directly.\n\nI suspect some kind of user-facing dbus interface is required here.",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 78
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "518eb5d8_cf526451",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "nit, no hyphen in bmcweb",
+      "range": {
+        "startLine": 192,
+        "startChar": 18,
+        "endLine": 192,
+        "endChar": 25
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "382edf6c_06648d79",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "Lots more details needed here:\n1. What schemas are you planning on adding?\n2. What new features (http multipart) are you planning on adding?\n3. How would a user interact with a given firmware component?\n\n\nIf you don\u0027t have the answers today, and would prefer to deal with this incrementally in bmcweb code, that\u0027s fine with me, but it\u0027s definitely worth discussing.",
+      "range": {
+        "startLine": 192,
+        "startChar": 27,
+        "endLine": 193,
+        "endChar": 71
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca45c22a_1d6afe60",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "Good alternative, and good explanation why it\u0027s not possible",
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46657c7a_fe47430c",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "openbmc-tools is a repo, it\u0027s not clear what this would even entail using openbmc-tools to implement the above firmware updates.",
+      "range": {
+        "startLine": 205,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69aa0a06_c6017618",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "Surely this isn\u0027t the case.\n1. New dbus interfaces will be added\n2. new test code will be added\n3. new user facing Resources in redfish will be added\n4. new security domain issues will be added.\n\nPlease take another attempt at this section.",
+      "range": {
+        "startLine": 214,
+        "startChar": 48,
+        "endLine": 215,
+        "endChar": 40
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9309b94_b2c62224",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:19:37Z",
+      "side": 1,
+      "message": "Please add more details.  Will there be:\n1. Robot tests?\n2. Security tests?\n3. Fuzz tests?\n4. Looping tests?\n5. Redfish conformance tests?\n6. REdfish usecase validator tests?",
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
