@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "45d53422_d7b01257",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:03:38Z",
+      "side": 1,
+      "message": "Yep, still being reworked for:\n1. Security: Users able to write any data they want, including data that doesn\u0027t conform to the spec opens OpenBMC to security holes and doesn\u0027t match up with the security standards we follow (which require input validation).\n2. Maintainability.  The initial round of patches require hardcoding a specific system worth of endpoints.  This needs thought put around how each individual system can declare their own rules around what is writable and what isn\u0027t (probably through per-system PrivilegeRegistry.\n3. Configurability, we need to assess what level of per-system configuration we need for this such that it can apply to more than just one system, as well as assess whether we need a global disable.\n4. Conformance/Standards compliance, we need to get the relevant schemas updated in DMTF redfish to allow for writing data to them, which probably needs a proposal to DMTF to precede this.  Most of the schemas being written in the initial patchset are marked read-only.\n5. Testing, and how exactly it\u0027ll be executed, including security testing.  (presumably using the existing robot test framework but that\u0027s TBD).\n\nJosh and I have discussed this at length in chat, which wasn\u0027t captured well here.  Sorry for that, yes, this is still being worked.",
+      "parentUuid": "97c9dcee_3fe234be",
+      "revId": "5308a49ac93fd8a6491883897198755fd9d1f604",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a7955e5b_85bd6799",
         "filename": "designs/external-storer.md",
         "patchSetId": 10
