@@ -61,6 +61,53 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2aefc53_26f87106",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "+1.  phosphor-host-ipmi definitely has 2 different implementations of SDRs.  I think what you\u0027re getting at is that we don\u0027t yet have an SDR parser that can read in an SDR and add resources to dbus.",
+      "parentUuid": "390a893d_20ddea96",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 67
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a87ab92c_58039524",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "Nit, please reword a little.  It doesn\u0027t support \"SDR\" it supports controllers without an SDR, (like management engine) with the bmc having prior knowledge of sensor numbers without an SDR.\n\nMostly just take the word \"SDR\" out of this sentence.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 12
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7020cbe4_c3e03883",
         "filename": "designs/ipmb-based-sdr-design.md",
         "patchSetId": 2
@@ -78,6 +125,344 @@
         "endLine": 37,
         "endChar": 27
       },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "322c5243_d2a790ff",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "entity-manager is an implementation detail.  the requirement is:\nDeveloper must be able to declare a supported SDR capable device.",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 17
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "135e7f3a_fecbcf27",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "More details needed here.  What \"sensor information\" just values?  Thresholds?  Status?  I suspect all is needed here.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 70
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e79dca70_7f193d4b",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "No user-facing requirements?  Does this need to show up in redfish?  IPMI?",
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fadbc8e9_1da19fcd",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "The way this diagram is drawn, it looks like there\u0027s one SDR repository for multiple IPMB devices, which isn\u0027t going to work.  Each IPMB device needs its own SDR repository, so that when it\u0027s removed, we can remove JUST that devices SDR info.\n\nSo long as that\u0027s understood, I\u0027m not worried about if the diagram is updated, but one global SDR store for all sdr capable devices isn\u0027t going to work.",
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "304aa869_76aba346",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "?  It\u0027s not clear what \"Class\" helps with here.  If this parameter were modified, what different code paths would be executed?",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 32
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f58e472_b1a899d2",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "Need a poll rate added?  I don\u0027t think the poll rate is available via the SDR.",
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64f01441_51ec6494",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "Considering that we\u0027re already talking to the IPMB device from dbus-sensors, should the IPMBdaemon there just be responsible for enumerating FRU devices from IPMBdevice?  Both will need to read the SDR regardless, otherwise we have to duplicate data.",
+      "range": {
+        "startLine": 100,
+        "startChar": 57,
+        "endLine": 101,
+        "endChar": 44
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f4e5262_b3860d09",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "How this works isn\u0027t super clear to me.  If you have a probe using, Ipmb.FruDevice, how does IPMB.FruDevice populate it\u0027s information?  Does it just assume that all IPMB channels have a valid fru on the other side?",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 87
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "021e3d15_d4d64471",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "The naming of this would be something like \"TwinLake board\" or \"Compute node\"  IPMB isn\u0027t the name of the inventory item.",
+      "range": {
+        "startLine": 129,
+        "startChar": 74,
+        "endLine": 129,
+        "endChar": 86
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9a5b324_370f5970",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "lets leave this as an implementation detail.  Generally in dbus-senors we don\u0027t store global maps like this (see coding standard about non-const globals), we keep each individual class independent so it can be destroyed later without consequences when the config changes.  Keeping global objects like this ties together implementations to a singleton, which means that if one IPMB agent locks up, it\u0027s more likely that it locks up the rest.",
+      "range": {
+        "startLine": 155,
+        "startChar": 15,
+        "endLine": 155,
+        "endChar": 18
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48770b97_708254f3",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "nit, looks like some line wrapping issues.",
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2849a22_49ddee71",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "Generally not how this is done in dbus-sensors, and because each sensor might have a different polling time, we tend to add them each to their own loop, so we can parallelized as much as possible.",
+      "range": {
+        "startLine": 160,
+        "startChar": 38,
+        "endLine": 160,
+        "endChar": 51
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0640f5c2_14eb6925",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "Can you please clarify this sentence?  what is an IpmbType?  what does \"frame the data packet\" mean?  Where are we receiving the sensor ID from?  Is the sensor ID the sensor number?",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 36
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed8d5f12_4044214f",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "This is the first mention of polling rate in this document;  Please call out how you expect that to work.  Is it user settable?",
+      "range": {
+        "startLine": 164,
+        "startChar": 38,
+        "endLine": 165,
+        "endChar": 15
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02684a1d_1997b9ca",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "I read this as \"This doesn\u0027t have any impacts except the things it impacts\" which isn\u0027t the point of this section.\n\nPlease go through the template and try to answer the questions.",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 65
+      },
+      "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d86e642_96f6f82c",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-23T17:40:38Z",
+      "side": 1,
+      "message": "Not nearly enough detail.  will there be:\nrobot tests?\nStress tests?\nperformance tests?\nunit tests?",
       "revId": "fe25145bb22d6d8e15a71f309a276a6f6f994bd0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
