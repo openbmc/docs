@@ -104,6 +104,41 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e75d7d6a_4d865ec0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "@Joel: the goal of this design is being narrowed down to enabling SELinux to run in permissive mode. In permissive mode, SELinux should not break anything. It only records deny-events as log entries. The log can be iteratively \"mined\" to derive additional allow rules -- minimizing the recorded deny events.  We aim to end up with a reference policy that will allow all normal OpenBMC operations, as defined by CI testing.\n\nHaving the basic mechanism in place, we will leave it up to end-users to go further, become more restrictive if they choose, add policies for their own applications, and eventually switch to \"enforcing\".\n\nIf something (new) does not work, the user can always go back to \"permissive\".\n\nYes, we will document our experiences on our development platform, with a view on how to enable it for other platforms.\n\nYes, we intend to document the filesystem usage and runtime impact metrics",
+      "parentUuid": "c281e56b_2488c2a1",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6974b22a_1e101d7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "Thanks to all for the valuable comments on this design proposal.\nI will post some answers here as replies-to-comments. If I do not address a comment here, it was no problem, and will be resolved in the next version.\nAn updated design document (new patchset) will be forthcoming.",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "592b09c3_a3fecbee",
@@ -217,6 +252,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c74e81a_ae185b2d",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "Agree -- will take Joseph\u0027s wording into next patchset.",
+      "parentUuid": "8aaa98d1_23ec96d7",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 76
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "48b0bf8c_45aa2d2e",
         "filename": "designs/selinux.md",
         "patchSetId": 3
@@ -228,6 +287,24 @@
       "writtenOn": "2022-04-28T17:39:58Z",
       "side": 1,
       "message": "Can you expand on why this is a problem?\n\nThere was another effort previously to fix this without introducing SELinux.  I assume to limit the dbus services you have to \"finish\" that work anyhow (there is some bus ACLs that dbus already supports).  So, is that really part of this design or not?",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aece30a6_d4a02e53",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "This is really a sub-point of #1: applications having more authority than they strictly need. We will drop this specific line in the next version (patchset) of this design document.\n\nThat said, the SELinux type enforcement system is separate from, and orthogonal to, the DBUS ACLs. But yes, once SELinux is enabled in permissive mode (goal of this design) we will have to collect data and formulate the policies that allow all normal DBus transactions -- and deny transactions that should not happen.\nHowever, this policy refinement issue is running ahead of scope, and is the next stage.",
+      "parentUuid": "48b0bf8c_45aa2d2e",
       "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -269,6 +346,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3d48405_93ddac43",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "Will be elaborated in next version (patchset) of this design.",
+      "parentUuid": "f0e4e095_9882f6eb",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "53e0e135_c99175bb",
         "filename": "designs/selinux.md",
         "patchSetId": 3
@@ -304,6 +399,30 @@
       "side": 1,
       "message": "Is the answer something like this?  SELinux helps secure the BMC\u0027s internal processing by having more strict access controls than Linux along provides.  This helps limit the reach of an attacker who gain control of one Linux process.",
       "parentUuid": "53e0e135_c99175bb",
+      "range": {
+        "startLine": 27,
+        "startChar": 44,
+        "endLine": 27,
+        "endChar": 72
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "260904c2_a8d41c7c",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "The sentence was intended to read: \"end user security requirements and compliance requirements\". But will fix along the lines of Joseph\u0027s wording.",
+      "parentUuid": "01b4da30_72c6b11f",
       "range": {
         "startLine": 27,
         "startChar": 44,
@@ -363,6 +482,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b9adda6_bf21bd85",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "Per our security experts, mandatory access control is helpful when implementing control “CM-7 Least Functionality” of NIST SP 800-53A (https://csrc.nist.gov/publications/detail/sp/800-53a/rev-5/final).  As such, it has not yet surfaced as a compliance requirement - so in that sense we\u0027re being proactive.\nWhich fits our goal here: enable SELinux so that we can explore and figure out the policies.  This paragraph will be changed in our next version (patchset) of this design document.",
+      "parentUuid": "daf6c882_f817eb66",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 23
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2a9c838_91be36bb",
         "filename": "designs/selinux.md",
         "patchSetId": 3
@@ -392,6 +535,24 @@
       "side": 1,
       "message": "Agreed.  If all we\u0027re doing is adding a single bbclass that can be extended into an image to enable SELinux, this is a pretty big \"design document\" for that.  This is why I called out the \"In the final design\".\n\nI don\u0027t mind if this is accepted as a reasonable direction for exploration, starting with the pieces you\u0027ve mentioned here.  We need to be clear that as we get further understanding the design will be updated before code impacts are spilled all through the codebase.",
       "parentUuid": "c2a9c838_91be36bb",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77969d25_32193580",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "In next patchset we will document the bitbake recipes that enabled our prototype. We will certainly use the gerrit process to review and guard against any undue code impact.",
+      "parentUuid": "637726c7_67c0f86b",
       "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -445,6 +606,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ef821a0_7456ded7",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "@Patrick: this was a proposed design, intended to start a discussion and to receive guidance - before going down dead ends. In the mean time, we have gotten a prototype up and running. The next patchset will specify the design in detail.\n@Joseph: Yes, the goal is to enable SELinux so that it can run in permissive mode, which will not disallow anything;  instead it will record denial events to a log. Iteratively mining this log will allow data collection to refine policies. More refined policies, in turn, will minimize the log events for all normal OpenBMC tasks. \n\nAny further steps would be separate designs.",
+      "parentUuid": "c08b700a_3882c2f8",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 63
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7377b084_6aff8c64",
         "filename": "designs/selinux.md",
         "patchSetId": 3
@@ -456,6 +641,24 @@
       "writtenOn": "2022-04-27T15:14:35Z",
       "side": 1,
       "message": "I assume these are SELinux policy configuration files.\nIt seems like this part of the design is not yet known.  It might be easier to restrict this design to *enabling* SELinux so it can be used in permissive mode, and stop there.  Then a follow-on design or updating this design can then talk about customizing policy files for OpenBMC for switching to enforcing mode.",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8da613b_1ebe05d0",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "Agreed.\nHowever, as we now have a prototype implementation up and running, in the next version of this design document we will also propose a structure for the policies.",
+      "parentUuid": "7377b084_6aff8c64",
       "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -491,6 +694,24 @@
       "side": 1,
       "message": "I still think this is fundamental for us to understand before SELinux is enabled anywhere.  If we have no idea how to actually enable / use SELinux, then the work is pointless.",
       "parentUuid": "f18607d3_241c1a10",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "757fa811_56439b81",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "For the reference policy, we plan to take the openbmc-test-automation (CI) testsuite as our guide:  get policies in place to minimize SELinux denial log events for all normal OpenBMC tasks being tested. \n\nAgain, the scope of this design is to enable to run SELinux in permissive mode. By default, SELinux denies actions, unless allowed by policy rules.  In permissive mode, the denials do not take effect, but only result in denial entries in the log.\nSo there are two error paths: false denials (denial log entries that should be dealt with by formulating new policy rules) and false allows (policy rules broader than intended). The latter is out of scope, since the intent is up to the end user.\n\nWe can, however, propose example testcases. For example, end user policy can choose to write a policy that does not allow any administrative actions via IPMI (only ssh or Redfish). Such policies (and their execution) would be testable.\n\nWe will elaborate on this in the Testing section of the next version of this document.",
+      "parentUuid": "14375b16_22d80d0a",
       "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -626,6 +847,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee1d914d_23125ae5",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "The SELinux type enforcement system is separate from, and orthogonal to, the DBus ACLs. The present design is about enabling SELinux so that we can figure out the policies to (selectively) allow all required DBus transactions.",
+      "parentUuid": "cc41aca3_d0248513",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 25
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d65cb8a6_954213c4",
         "filename": "designs/selinux.md",
         "patchSetId": 3
@@ -637,6 +882,30 @@
       "writtenOn": "2022-04-28T17:39:58Z",
       "side": 1,
       "message": "This is completely insufficient.  We need to know how to develop appropriate policies for OpenBMC and how to maintain them and how to test them.",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 33
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d68ef216_a8a1d249",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "Will be addressed in next version.",
+      "parentUuid": "d65cb8a6_954213c4",
       "range": {
         "startLine": 98,
         "startChar": 0,
@@ -677,6 +946,48 @@
       "writtenOn": "2022-04-28T17:39:58Z",
       "side": 1,
       "message": "We need to maintain the policies also.  How do we do this?  How is it \"caught in regression testing\"?  Do we have adequate regression testing of bad-path?",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 47
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67375ca3_5276ee47",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "IF a developer chooses to build OpenBMC with SELinux enabled, then new OpenBMC applications will need to be developed in SELinux permissive mode, where denials do not take effect. In permissive mode, if additional policy rules are required, the developer would see SELinux denial messages in the system log, which, via the SELinux \"audit2allow\" process can be (judiciously) converted into new policy rules.\n\naudit2allow and other log analysis tools are available on any\nSELinux-enabled Linux server/desktop system, e.g any system which responds to \u0027sestatus\u0027.\n\nOur team would be glad to help formulate such new policy rules, to ensure that the new or updated application will also work in SELinux-enabled OpenBMC instances.",
+      "parentUuid": "dca41e61_5e57989b",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a553789e_f1cfa2c4",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "In SELinux permissive mode, denials do not take effect but end up as messages in the system log. Thus, conceivably we can run the entire openbmc-test-automation suite in this mode, and accumulate all the messages corresponding to normal operation. Obviously, we would do this in chunks. As discussed above, tools exist (audit2allow) to help judiciously convert denial messages into additional \u0027allow-rules\u0027.  This takes care of \"false denials\".\nIn the next stage of this project, once we will have taken care of all the \u0027false denials\u0027 turned up by the openbmc-test-automation suite, we will consider the generic policies complete.\n\nFalse allowals, on the other hand, are operations that are allowed but that should have been denied. These can be due to over-broad allow-rules (broader than intended\nby the end-user)  -- we cannot generically test for end-user intent.\nSpecific end-user testcases can be formulated, however, such as intentionally omitting an allowal rule, or intentionally testing denied operations which OpenBMC allows, but the end-user\u0027s SELinux rules do not. I think of e.g. denying certain in-band IPMI operations.\n\nFalse allowals can also be due to a bug in the SELinux machinery itself.\nThen the space is huge, but out-of-scope for the current goal:\nmerely enabling SELinux and (next) getting the generic policies straight.\n\nAll new and modified tests will be uploaded to openbmc-test-automation.\n\nHope this helps the discussion; a version of the above text will be in the next version of this design document.",
+      "parentUuid": "d1dd327d_baa49ee5",
       "range": {
         "startLine": 102,
         "startChar": 0,
@@ -736,6 +1047,24 @@
       "side": 1,
       "message": "Sure, but if it is only feasible for exactly one system then maybe this belongs in meta-thatcompany in order to bake a bit?  I don\u0027t necessarily think that is the right approach, but 20MB is really gigantic in the scheme of things for most BMCs.  If we can\u0027t get it down to a handful of MB, it doesn\u0027t seem very useful.\n\nThis isn\u0027t all that important when we\u0027re talking about just adding a bbclass for experimentation.  It _is_ important when you start talking about adding and maintaining policies.  We, as a community, need to decide if we want to take on the burden of that if hardly anyone really gains a benefit from it.  There is a reasonable cost/benefit analysis to be had here.\n\nThis here is my fundamental concern about this proposal.  Not the technical merits of it, but the development process implications.  Throughout the end of the document here I\u0027ve asked \"how\" questions related to this.  The answers we get (and maybe we can\u0027t get them today until we experiment) directly play into the cost/benefit analysis for the project as a whole.",
       "parentUuid": "6470f6ab_21062086",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12471ea1_3d670649",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "Our current prototype evb-ast2600 implementation comfortably fits in 64MB flash.  We will give more details about footprint (and opportunities for size optimization) in our next version. \n\nThanks for your clarification that focuses on development process implications. While this is an exploratory research project, our intended target is next generation servers for datacenters, where this amount of flash should not be a problem. Thus, the development effort would perhaps not benefit many BMC variants, but would benefit a large number of servers.",
+      "parentUuid": "3d838d7b_fa3353f8",
       "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -861,6 +1190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9a39b5f_176b2bde",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "@Nirav, thanks for your feedback. In the next patchset we will include how an administrative user can change SELinux mode (e.g. from enforcing to permissive) on-demand, to temporarily enable debuggers.",
+      "parentUuid": "b916f230_8b614d2e",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 81
+      },
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aea12a94_34c014be",
         "filename": "designs/selinux.md",
         "patchSetId": 3
@@ -872,6 +1225,24 @@
       "writtenOn": "2022-04-27T15:14:35Z",
       "side": 1,
       "message": "Do you mean this?: The default SELinux configuration builds log analysis tools into the BMC image, but the anticipated use case is to offload the logs and analyze them on another system, so SELinux will be configured to not include the log analysis tools.\n\nIf so, that should be stated in the design section.  Also, how do you advise BMC system integrators to obtain and use the log analysis tools?  Can they be built separately via Yocto bitbake, or can we get them from somewhere else?",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c8b5551_be9254f0",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "@Joseph -- correct. Will adopt your wording in the next version (patchset) of this design document.\nWill also elaborate on the log analysis tools. They are actually available on any modern SELinux-enabled Linux distribution (e.g. your typical Linux machine if it responds to command \u0027sestatus\u0027) -- e.g. \u0027audit2allow\u0027.",
+      "parentUuid": "aea12a94_34c014be",
       "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -913,6 +1284,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a07e3a68_5fcc4c00",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "Will be discussed in next version.",
+      "parentUuid": "93b59d64_0400d2a7",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "739e1d12_3addd7f9",
         "filename": "designs/selinux.md",
         "patchSetId": 3
@@ -942,6 +1331,24 @@
       "side": 1,
       "message": "\u003e Does this work with busybox, or do we need to switch to coreutils?\n\nYep.  I had the same callout.",
       "parentUuid": "739e1d12_3addd7f9",
+      "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d8cbffa_44aa73c7",
+        "filename": "designs/selinux.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001419
+      },
+      "writtenOn": "2022-07-24T05:08:23Z",
+      "side": 1,
+      "message": "Our prototype implementation uses coreutils, for now.\nWe have also gotten the SELinux-enabled busybox to build successfully for evb-ast2600, but we have not yet switched over from coreutils, and thus we have not removed coreutils yet.",
+      "parentUuid": "49d8081d_dc919a5c",
       "revId": "c55921b2f989755e910c88b0a21bfe2afcf2e761",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
