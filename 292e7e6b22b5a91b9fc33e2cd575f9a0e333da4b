@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "40b1acb1_db6cdfc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001093
+      },
+      "writtenOn": "2022-07-25T06:25:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d1ce285b_436116fd",
+      "revId": "292e7e6b22b5a91b9fc33e2cd575f9a0e333da4b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1020c0fa_45db4bef",
         "filename": "designs/pldm-transport-layer-wrapper.md",
         "patchSetId": 14
@@ -83,6 +101,24 @@
       "writtenOn": "2022-07-11T05:56:36Z",
       "side": 1,
       "message": "Summarizing feedback from PMCI meet, a static config can work for testing purposes. The question is how can PLDM daemon know the readiness of the NCSI device on startup for PLDM discovery. For remote MCTP endpoints we solved that problem by depending on the discovery of MCTP D-Bus interface https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/MCTP/Endpoint.interface.yaml. Jeremy had the same feedback as well.\n\nWe can propose a D-Bus interface with NC-SI details (device_type, transport_type...etc) and the socket info PLDM daemon needs to do NC-SI over RBT.",
+      "revId": "292e7e6b22b5a91b9fc33e2cd575f9a0e333da4b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7d5872b_a76537cc",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001093
+      },
+      "writtenOn": "2022-07-25T06:25:49Z",
+      "side": 1,
+      "message": "Ack.working on proposing new interface to populate NCSI status and NCSI over RBT socket",
+      "parentUuid": "1020c0fa_45db4bef",
       "revId": "292e7e6b22b5a91b9fc33e2cd575f9a0e333da4b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -172,6 +208,30 @@
       "side": 1,
       "message": "This APIs were provided to enable PLDM requester flow[1] when it started with MCTP userspace[2] and for PLDM requesters to connect with mctp-demux-daemon. MCTP userspace repo is frozen and it doesn\u0027t accept any more patches and there is general agreement to switch to MCTP kernel space[3]. pldmd is yet to make the switch to use MCTP kernel space. These APIs are effectively going away once pldmd makes the switch to MCTP kernel.\n\n\u003e There\u0027s been discussion elsewhere that we shouldn\u0027t even have these APIs...)\nWhat is the concern with the requester APIs for that matter?\n\n[1] https://github.com/openbmc/docs/blob/master/designs/pldm-stack.md#proposed-requester-design\n[2] https://github.com/openbmc/docs/blob/master/designs/mctp/mctp-userspace.md\n[3] https://github.com/openbmc/docs/blob/master/designs/mctp/mctp-kernel.md",
       "parentUuid": "7c4d7d59_9d3e332b",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 52
+      },
+      "revId": "292e7e6b22b5a91b9fc33e2cd575f9a0e333da4b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05dc169c_c14d80d7",
+        "filename": "designs/pldm-transport-layer-wrapper.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1001093
+      },
+      "writtenOn": "2022-07-25T06:25:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "437b0b2e_f8425fdd",
       "range": {
         "startLine": 198,
         "startChar": 0,
