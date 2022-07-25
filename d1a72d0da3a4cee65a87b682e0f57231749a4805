@@ -35,6 +35,69 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84b0f9ca_572d094b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-25T20:27:02Z",
+      "side": 1,
+      "message": "From the discord conversation:\n\n\u0027\u0027\u0027\nI think the options are between:\n1. Objects don\u0027t exist until the backend is prepared to handle them (in which case they don\u0027t appear in Redfish)\n2. If a user tries to do something that you\u0027re not in the proper state for, return an error code. (in which case bmcweb will transform into a retry-after and preconditionfailed message)\n3. If a user tries to do something you\u0027re not in the proper state for, queue it until it can be processed, which is the most user friendly (the thing you asked for just happens, response code is 200 OK, but the action might not happen the moment you asked for it.)\n\n... \n\nand I\u0027m kind of of the opinion that we push that to the power-control daemons themselves to decide.\n\u0027\u0027\u0027\n\n(off discord)\n#1 in bmcweb, the implementation for, and we have to do regardless (the power state interfaces might not exist).\n#2 is maybe 3 lines of code extra to add the message and set the return code, and we have to agree on a dbus response code for \"not yet ready\" which seems doable.\n#3 is the most user friendly, and bmcweb only has to implement the golden path.\n\nThe ideal priority would IMO be #3 (because it\u0027s most user friendly) then #1 (because the user is required to check for an action anyway, and presumably handle the error), then #2 (which requires the most sophisticated client implementation).\n\nOnce we have that, it\u0027s on each system to decide what it can and can\u0027t do in its backend, and the redfish tree is correct and standards compliant in all cases.\n\nOne thing to consider is that we have multi-host coming, and it seems likely that there\u0027s one host thats backend services fail, while the others don\u0027t.  Being flexible here means we can in those cases pick the best possible implementation the backend is able.\n",
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9bb4c0e_7073813b",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-25T20:27:02Z",
+      "side": 1,
+      "message": "Not sure I agree with it.  Yes, there are implementations that have undefined behavior, but the normal practices of:\n1. Declare your dependencies.\n2. Only list the objects that have dependencies on dbus once those dependencies have been met.\n\nI think resolve this?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 57
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37722fac_45e31809",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-25T20:27:02Z",
+      "side": 1,
+      "message": "nit, interfaces, not objects.  There could be multiples of Chassis or Host.",
+      "range": {
+        "startLine": 29,
+        "startChar": 34,
+        "endLine": 29,
+        "endChar": 41
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf184035_c852b8f2",
@@ -112,6 +175,29 @@
         "startChar": 0,
         "endLine": 60,
         "endChar": 31
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "177fbee2_24d54ec8",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-25T20:27:02Z",
+      "side": 1,
+      "message": "Not quite understanding this statement.  If the bmc never reaches boot ready, no action is ever taken.  Does that even require code?\n\n\n1 request can either be queued, or dropped with a \"conflicting requests\" response, at the decision of the implementation.  \"queue one power request\" probably covers the 99% use case, but even if that\u0027s imperfect, it seems like there\u0027s reasonable behavior that could be defined.",
+      "range": {
+        "startLine": 83,
+        "startChar": 32,
+        "endLine": 85,
+        "endChar": 58
       },
       "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
