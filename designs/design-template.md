@@ -5,8 +5,16 @@ ____
 * Not all new features need a design document. If a feature can be
   contributed in a single reasonably small patchset that has little impact
   to any other areas, it doesn't need a design discussion and documentation.
-* The focus of the design is to define the problem we need to solve and how it
-  will be implemented.
+
+* The focus of the document is to define the problem we need to solve and
+  analyse the trade-offs of different solutions. You should concentrate on
+  interactions between components, though analysing the trade-offs often
+  requires you to explore how each might be implemented.
+
+* Write this document as an [argumentative essay][argumentative-essay]. Good
+  design proposals compel the reviewers agree with the proposal's conclusions.
+
+[argumentative-essay]: https://www.grammarly.com/blog/argumentative-essay/
 
 * This is not intended to be extensive documentation for a new feature.
 
