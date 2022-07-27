@@ -1,0 +1,164 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b5c46ac_0697c51a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-07-27T00:14:43Z",
+      "side": 1,
+      "message": "Thanks for the updates Jayashree.",
+      "revId": "d55e04b06bd3ad3d863012dffc7ead1d5e1a7394",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee1628dc_d1506f8b",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-07-27T00:14:43Z",
+      "side": 1,
+      "message": "I\u0027d go further and say a new application is proposed. Reading below I\u0027m concerned about the effort involved to reconcile LED support in existing systems with this new approach if we removed the existing pair of daemons.",
+      "range": {
+        "startLine": 32,
+        "startChar": 55,
+        "endLine": 33,
+        "endChar": 9
+      },
+      "revId": "d55e04b06bd3ad3d863012dffc7ead1d5e1a7394",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96f16327_1fda0515",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-07-27T00:14:43Z",
+      "side": 1,
+      "message": "I think this phrasing is pretty loose. What EM cares about is *specific* board designs. So I\u0027d write this as \"LEDs on a given board\"\n\nAlso, I think you need to justify why EM is a requirement. It\u0027s not obvious why to me, but perhaps it falls out of your reasoning. Having said that, I\u0027d certainly *prefer* an EM-based solution 😊",
+      "range": {
+        "startLine": 104,
+        "startChar": 43,
+        "endLine": 104,
+        "endChar": 62
+      },
+      "revId": "d55e04b06bd3ad3d863012dffc7ead1d5e1a7394",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b163de43_fe4fcfcf",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-07-27T00:14:43Z",
+      "side": 1,
+      "message": "This isn\u0027t a requirement, this is an implementation detail that potentially falls out of the actual requirement that you need to manage tight coupling between distinct LEDs.",
+      "revId": "d55e04b06bd3ad3d863012dffc7ead1d5e1a7394",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "610ac780_bd621934",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-07-27T00:14:43Z",
+      "side": 1,
+      "message": "What does this mean? Does phosphor-led-sysfs even have a role in the new design? I\u0027d argue no, it feels like an unnecessary abstraction. We can just implement sysfs support as a backend in the new LED controller EM reactor.",
+      "range": {
+        "startLine": 118,
+        "startChar": 56,
+        "endLine": 118,
+        "endChar": 74
+      },
+      "revId": "d55e04b06bd3ad3d863012dffc7ead1d5e1a7394",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e28f7a2_0e4ea33a",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-07-27T00:14:43Z",
+      "side": 1,
+      "message": "A more conventional way of saying this is might be \"Entity-manager exposes the LED configuration for a given board on DBus based on the board\u0027s configuration file\"\n\nFrom there, a part of what you need to do is to define an LED schema in EM if we don\u0027t already have one.",
+      "range": {
+        "startLine": 151,
+        "startChar": 3,
+        "endLine": 152,
+        "endChar": 44
+      },
+      "revId": "d55e04b06bd3ad3d863012dffc7ead1d5e1a7394",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d71e485e_359796d1",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-07-27T00:14:43Z",
+      "side": 1,
+      "message": "Part of the purpose of the \"Alternatives Considered\" section is to argue why they are _not as good_ as your proposed solution.\n\nYour document needs to be an argumentative essay, as documented in this patch:\n\nhttps://github.com/openbmc/docs/commit/9db762d8848a51c4b68c8ba4385c541d806a447f\n\nAs mentioned in that patch, the Grammarly blog has an excellent breakdown of what this means:\n\nhttps://www.grammarly.com/blog/argumentative-essay/",
+      "revId": "d55e04b06bd3ad3d863012dffc7ead1d5e1a7394",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50959d4e_b032f3cb",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-07-27T00:14:43Z",
+      "side": 1,
+      "message": "Scale wasn\u0027t a concern I had, more so that inotify is a strange way to do IPC when we already have a well-established IPC mechanism (DBus).\n\nBut again, you need to demonstrate why this is a worse solution than what you\u0027re proposing above.",
+      "revId": "d55e04b06bd3ad3d863012dffc7ead1d5e1a7394",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
