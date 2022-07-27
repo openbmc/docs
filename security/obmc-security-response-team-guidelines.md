@@ -1,25 +1,26 @@
 # Security response team guidelines
 
-These are the guidelines for the security response team members
-including OpenBMC community members who are responding to problems
-reported by the [security vulnerability reporting process][].
+These are the guidelines for OpenBMC security responders, including the
+security response team, project owners, and community members who are
+responding to problems reported by the [security vulnerability reporting
+process][].
 
-The security response team (SRT) coordinates activity to address privately
-disclosed security vulnerabilities, engages resources to address them,
-and creates security advisories.
+Each project within OpenBMC works independently to resolve security
+vulnerabilities.  The security response team helps the maintainers, provides
+consistency within the OpenBMC project, and helps to get CVEs assigned.
 
 Here are the primary expectations:
- - Keep problems private until announce
- - Work with diligence
- - Keep stakeholders informed
+ - Keep problems private until announce.
+ - Work with diligence.
+ - Keep stakeholders informed.
 
 Workflow highlights:
 
 1. Handle new problem reports.
     - Within a day, acknowledge you received the report.
       Note that reports are archived in the mailing list.
-    - Communicate within the security response team, typically by
-      cc'ing the openbmc-security email list.
+    - Communicate by opening the GitHub draft security advistory as soon as
+      the problem is known.
 
 2. Analyze the problem and engage collaborators as needed (upstream,
    downstream, and OpenBMC).
@@ -30,15 +31,20 @@ Workflow highlights:
        - Note that the problem may be in a customized version of
          OpenBMC but not in OpenBMC itself.
     - Determine which OpenBMC areas should address the problem.
-    - Draft a CVE-like report which includes only:
-       * the vulnerability description: omit OpenBMC specifics
-       * [CVSS metrics][] with explanations as needed
-       * CVE identifiers, if known
-    - Gather data for the security advisory (see template below).
-    - Use private channels, e.g., email.
+    - [Create the draft security advisory][] and populate its fields.
+       - The Ecosystem would normally be "OpenBMC" and the package name
+         is normally the repository.
+       - Please describe when the problem was introduced to help users
+         learn if they are affected.  Use Git tags and commit IDs if
+         known.  It also may be helpful to say what OpenBMC version is
+         affected.  For example, if the problem in the original code
+         through OpenBMC release 2.9, the affected version is "<= 2.9".
+         See [OpenBMC releases][].
+    - Use private channels, for example, email, GitHub draft security
+      advistory, or private direct messaging.
     - Inform contacts this is private work as part of the OpenBMC
       security response team.  For example, link to these guidelines.
-    - Coordinate with all stakeholders and keep them informed.
+    - Coordinate with all collaborators and keep them informed.
 
    Considerations in the [CERT Guide to Coordinated Vulnerability
    Disclosure][] (SPECIAL REPORT CMU/SEI-2017-SR-022) may guide the process.
@@ -62,11 +68,9 @@ Workflow highlights:
         - Consider using [Patch set][] emails to make reviews accessible to
           all stakeholders.
     4. When agreed:
-        - Publish a security advisory to
-          https://github.com/openbmc/openbmc/issues and email list
-          openbmc@lists.ozlabs.org.
+        - Publish a security advisory to the affected openBMC repository.
         - Make the Gerrit review publicly viewable.
-        - Email the Security Advisory to the OpenBMC community (see below).
+        - Publish the CVE in the CVE ddatabase.
     5. Improve OpenBMC processes to avoid future problems.
 
 [security vulnerability reporting process]: ./obmc-security-response-team.md
@@ -74,8 +78,10 @@ Workflow highlights:
 [UEFI Security Response Team (USRT)]: https://uefi.org/security
 [CERT Guide to Coordinated Vulnerability Disclosure]: https://resources.sei.cmu.edu/asset_files/SpecialReport/2017_003_001_503340.pdf
 [contributing]: https://github.com/openbmc/docs/blob/master/CONTRIBUTING.md#submitting-changes-via-gerrit-server
+[OpenBMC releases]: https://github.com/openbmc/docs/blob/master/release/release-notes.md
 [private change]: https://gerrit-review.googlesource.com/Documentation/intro-user.html#private-changes
 [Patch set]: https://en.wikipedia.org/wiki/Patch_(Unix)
+[Create the draft security advisory]: https://docs.github.com/en/code-security/repository-security-advisories/creating-a-repository-security-advisory
 
 ## Template: Initial response to the problem submitter
 The OpenBMC security response team has received the problem.
