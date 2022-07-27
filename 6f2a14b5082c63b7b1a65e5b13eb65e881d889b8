@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cdf7d562_bdb9ed4c",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "499ee003_1b458422",
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ecf91389_4eda7699",
         "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
         "patchSetId": 8
@@ -83,6 +101,30 @@
       "writtenOn": "2022-07-23T17:19:37Z",
       "side": 1,
       "message": "How does this relate to the implementation going into dbus-sensors?  Would we move the existing patchsets and IPMB code to this new repo?  As a general rule, managing external controllers from more than one daemon leads to problems.  For example, while doing a firmware update, generally sensors should stop scanning to avoid conflicts and unintended errors.  Having that kind of interlocking between two daemons is error prone.\n\nI\u0027m fine if this logic goes into the new daemon in dbus-sensors you\u0027re abstracting, or if you want this in a new repo, but splitting up control is IMO a bad idea.",
+      "range": {
+        "startLine": 73,
+        "startChar": 10,
+        "endLine": 73,
+        "endChar": 18
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0bccc85_6a09f109",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "As of now, we don\u0027t have any plans to move IPMB sensors to this new repo. we add all BIC related implementations(Ex : firmware updates, Power control, GPIO state related stuffs) to this new repo. \n\nI am working creating parent doc for this doc which have all the BIC functionalities and requesting for the new repo. This doc focuses on BIOS firmware update. Also, will submit series of docs to explain about each firmware like CPLD, VR etc.",
+      "parentUuid": "ecf91389_4eda7699",
       "range": {
         "startLine": 73,
         "startChar": 10,
@@ -118,6 +160,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74b8a77a_d9bc21cd",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f51d7659_ac951d26",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 9
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2723bae5_7719cf16",
         "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
         "patchSetId": 8
@@ -129,6 +195,30 @@
       "writtenOn": "2022-07-23T17:19:37Z",
       "side": 1,
       "message": "Validated how?  Read from where?   Lots of details missing here that are important to the design.",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 37
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de6f6ba9_30f140fa",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2723bae5_7719cf16",
       "range": {
         "startLine": 102,
         "startChar": 0,
@@ -164,6 +254,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b222052_f72c2d96",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d096bc2a_13a1bf5b",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 0
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2eb8a7c6_16a0ca74",
         "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
         "patchSetId": 8
@@ -175,6 +289,30 @@
       "writtenOn": "2022-07-23T17:19:37Z",
       "side": 1,
       "message": "Any recovery or retry required here?",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 12
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "782bc03f_97f1c7bb",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2eb8a7c6_16a0ca74",
       "range": {
         "startLine": 144,
         "startChar": 0,
@@ -204,6 +342,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c14e34b_2496d81f",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "99e4fbf6_663e6049",
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4670f7f_67c3ce97",
         "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
         "patchSetId": 8
@@ -215,6 +371,30 @@
       "writtenOn": "2022-07-23T17:19:37Z",
       "side": 1,
       "message": "The \"user\" doesn\u0027t have direct access to the bmc generally.  How would a user normally use this?  IPMI?  Redfish?  SSH?",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 24
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "180f58ae_2ca1fa44",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e4670f7f_67c3ce97",
       "range": {
         "startLine": 150,
         "startChar": 0,
@@ -250,6 +430,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3496a4d2_f57f35e9",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "461f3a96_b8f54387",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 78
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "518eb5d8_cf526451",
         "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
         "patchSetId": 8
@@ -261,6 +465,30 @@
       "writtenOn": "2022-07-23T17:19:37Z",
       "side": 1,
       "message": "nit, no hyphen in bmcweb",
+      "range": {
+        "startLine": 192,
+        "startChar": 18,
+        "endLine": 192,
+        "endChar": 25
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1273533_6a298581",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "518eb5d8_cf526451",
       "range": {
         "startLine": 192,
         "startChar": 18,
@@ -284,6 +512,30 @@
       "writtenOn": "2022-07-23T17:19:37Z",
       "side": 1,
       "message": "Lots more details needed here:\n1. What schemas are you planning on adding?\n2. What new features (http multipart) are you planning on adding?\n3. How would a user interact with a given firmware component?\n\n\nIf you don\u0027t have the answers today, and would prefer to deal with this incrementally in bmcweb code, that\u0027s fine with me, but it\u0027s definitely worth discussing.",
+      "range": {
+        "startLine": 192,
+        "startChar": 27,
+        "endLine": 193,
+        "endChar": 71
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7663a9e_8f8b6d78",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "382edf6c_06648d79",
       "range": {
         "startLine": 192,
         "startChar": 27,
@@ -336,6 +588,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d504b41_c80d569a",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "46657c7a_fe47430c",
+      "range": {
+        "startLine": 205,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "69aa0a06_c6017618",
         "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
         "patchSetId": 8
@@ -359,6 +635,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0fb1982_8d19c0cb",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "69aa0a06_c6017618",
+      "range": {
+        "startLine": 214,
+        "startChar": 48,
+        "endLine": 215,
+        "endChar": 40
+      },
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d9309b94_b2c62224",
         "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
         "patchSetId": 8
@@ -370,6 +670,24 @@
       "writtenOn": "2022-07-23T17:19:37Z",
       "side": 1,
       "message": "Please add more details.  Will there be:\n1. Robot tests?\n2. Security tests?\n3. Fuzz tests?\n4. Looping tests?\n5. Redfish conformance tests?\n6. REdfish usecase validator tests?",
+      "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a005ea9_3db5e807",
+        "filename": "designs/OCP_BIC_multi-host_OEM-BIOS_FW-update_implementation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T04:49:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d9309b94_b2c62224",
       "revId": "6f2a14b5082c63b7b1a65e5b13eb65e881d889b8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
