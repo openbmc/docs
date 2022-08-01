@@ -52,6 +52,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "832b35ec_c1584a23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-08-01T18:17:25Z",
+      "side": 1,
+      "message": "Yeah, seems general feedback here has been to just do 3. One goal we have is to get Tasks implemented for power on operations in bmcweb. This would provide some feedback to the user on the status of their request and could potentially show the queued-up nature of the request.",
+      "parentUuid": "84b0f9ca_572d094b",
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9bb4c0e_7073813b",
@@ -77,6 +95,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b728ae8b_3c5ea14b",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-08-01T18:17:25Z",
+      "side": 1,
+      "message": "Yeah, I think this is another alternative solution. It would have similar complexity on client apps to wait for the interface. One complexity here is that you could provide the read-only state earlier, it\u0027s only the action that is not permitted. We don\u0027t have an easy way though with sdbusplus to only implement certain properties on d-bus but not others.",
+      "parentUuid": "d9bb4c0e_7073813b",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 57
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37722fac_45e31809",
         "filename": "designs/bmc-boot-ready.md",
         "patchSetId": 1
@@ -88,6 +130,30 @@
       "writtenOn": "2022-07-25T20:27:02Z",
       "side": 1,
       "message": "nit, interfaces, not objects.  There could be multiples of Chassis or Host.",
+      "range": {
+        "startLine": 29,
+        "startChar": 34,
+        "endLine": 29,
+        "endChar": 41
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a65aec9_da5af89e",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-08-01T18:17:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37722fac_45e31809",
       "range": {
         "startLine": 29,
         "startChar": 34,
@@ -193,6 +259,30 @@
       "writtenOn": "2022-07-25T20:27:02Z",
       "side": 1,
       "message": "Not quite understanding this statement.  If the bmc never reaches boot ready, no action is ever taken.  Does that even require code?\n\n\n1 request can either be queued, or dropped with a \"conflicting requests\" response, at the decision of the implementation.  \"queue one power request\" probably covers the 99% use case, but even if that\u0027s imperfect, it seems like there\u0027s reasonable behavior that could be defined.",
+      "range": {
+        "startLine": 83,
+        "startChar": 32,
+        "endLine": 85,
+        "endChar": 58
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44c0cec9_d8c86d02",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-08-01T18:17:25Z",
+      "side": 1,
+      "message": "Yeah, it feels like the general feedback here in this review is that just queuing it is better and something the user (and client apps) would appreciate.",
+      "parentUuid": "177fbee2_24d54ec8",
       "range": {
         "startLine": 83,
         "startChar": 32,
