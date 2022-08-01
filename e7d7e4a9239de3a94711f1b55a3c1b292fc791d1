@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e49dc0a0_5b9c67bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-01T22:57:46Z",
+      "side": 1,
+      "message": "\u003e \u003e \u003e One thing I didn\u0027t realize is that arj had completely removed the MCTP stuff from the existing nvme daemon.  That weakens my argument a little\n\u003e \u003e \n\u003e \u003e Honestly, I think you\u0027re putting too much weight on me ripping out the MCTP support. I did that because it was unbuildable, and being unable to even build it prevented me from refactoring other parts of the code.\n\u003e \n\u003e Sure, maybe I overemphasized it, and I didn\u0027t mean to call you out directly if that\u0027s how you felt (you did the right thing).  I mostly did it to call out that I had made a mistake which had caused confusion in the design.  I think we\u0027re in agreement on the overall direction here regardless.\n\nThanks for clarify the history of MCTP changes in nvme sensor. Yes, given the currently status of support on MCTP, we can recreate the thermal interface on top of the NVMe-MI spec in addition to NVMe basic command. \n  \n\u003e \n\u003e \u003e As do I, and Jeremy too.\n\u003e \u003e \n\u003e \u003e \u003e Wanting more features isn\u0027t a good reason IMO, those can always be added to the already maintained daemon, where we\u0027ve worked through all the boilerplate, \"how to build a reactor\" stuff.\n\u003e \u003e \n\u003e \u003e Precisely. I don\u0027t se any reason why we can\u0027t grow extra NVMe management features here. Calling the repo \"dbus-sensors\" was a mistake I think, in that it constrains peoples\u0027 understanding of its content to sensors. A better name is something like \"entity-reactors\" IMO.\n\u003e \n\u003e I\u0027ve been meaning to propose changing it to dbus-reactors, but I kinda like your name better now that I think about it.  I should really get on that....\n\u003e \n\u003e \nGiven the intention of nvme sensor(reactor) stated here, I think we can make consensus there, as Ed, Andrew, and Jeremy have suggested, to extend the current nvme sensor to support NVMe-MI functions. \n\nWe still need to decide the format of DBus interface through for all NVMe specifics. I will stress them in the modification of this doc. \n\n\u003e \n\u003e \n\u003e \n\u003e Agree with everything in Jeremy\u0027s overview here.\n\u003e \n\u003e \u003e we\u0027d be looking to expose the MI functions as closely as possible to the Redfish/Swordfish schema\n\u003e \n\u003e FWIW, most of the phosphor-dbus-interfaces added in recent years have been \"redfish inspired\" in their wording and enum choices.  \"Redfish does it this way\" isn\u0027t a complete justification for most interface additions (we still have to apply dbus best practices and naming) but lots of interfaces have been added specifically to help redfish, so it\u0027s pretty doable to get stuff in to fulfill a well formed dbus interface.\n\nWe also need to strike the none-redfish domain. As Redfish/Swordfish is still on its way updating the schemas and lack of some crucial components, we are going to rely on some NVMe raw data and routing to BMCWeb google root. The data path will be eliminated after the attributes/methods are accepted and published by DMTF Redfish.",
+      "parentUuid": "b7ab0d93_fa08bf0f",
+      "revId": "e7d7e4a9239de3a94711f1b55a3c1b292fc791d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c94b4e0b_772a4660",
         "filename": "designs/nvmed.md",
         "patchSetId": 2
@@ -102,6 +120,30 @@
       "writtenOn": "2022-07-21T02:41:17Z",
       "side": 1,
       "message": "whitespace error.",
+      "range": {
+        "startLine": 25,
+        "startChar": 1,
+        "endLine": 25,
+        "endChar": 2
+      },
+      "revId": "e7d7e4a9239de3a94711f1b55a3c1b292fc791d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b50a62b9_29d9ee8d",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-01T22:57:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c94b4e0b_772a4660",
       "range": {
         "startLine": 25,
         "startChar": 1,
