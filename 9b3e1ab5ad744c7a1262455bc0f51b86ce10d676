@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d84e749c_ac566e2e",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-08-02T21:46:36Z",
+      "side": 1,
+      "message": "I suspect you just tripled the work by trying to read the configuration from entity-manager ;) \n\nIt has a requirement that it can\u0027t have any software specific information in it, such as names that have to match a device tree name.\n\nYou may want to include in this document what entity-manager information you\u0027d have to use, so that ahead of time the EM maintainer can check if it\u0027s allowed.\n\nIt also seems to me like the EM support could all be phased in later if desired, as the D-Bus interfaces your daemon provides wouldn\u0027t have to change if the back end was changed.",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 17
+      },
+      "revId": "9b3e1ab5ad744c7a1262455bc0f51b86ce10d676",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
