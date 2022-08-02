@@ -143,6 +143,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e1cfdef4_e4c506d0",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-08-02T17:53:41Z",
+      "side": 1,
+      "message": "\u003e  In theory having a read-only interface up before the read write doesn\u0027t help anything though?\n\nThe main scenario I was thinking of are when the BMC is reset and the chassis power is on and/or the host is running. Early startup apps have different behavior based on the chassis and host states so being able to just read these properties early in the BMC boot allows them to make their needed logic decisions. They don\u0027t necessarily need the ability to change the state, just read it. But without some code and prototyping it\u0027s difficult for me to quantify the impacts of just waiting before putting everything on D-Bus.",
+      "parentUuid": "dfdedd67_946c5cd0",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 57
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37722fac_45e31809",
         "filename": "designs/bmc-boot-ready.md",
         "patchSetId": 1
