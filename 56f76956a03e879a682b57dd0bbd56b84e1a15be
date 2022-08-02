@@ -193,6 +193,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e73cb709_70b5a149",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-02T00:11:03Z",
+      "side": 1,
+      "message": "ACKed. The design has turned to nvme sensor instead.",
+      "parentUuid": "ce4e7117_9a32b3de",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 55
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf296475_86d48caf",
@@ -230,6 +254,30 @@
       "side": 1,
       "message": "Agree. The design is kind of under discussion internally for a while, making it more like a refined-decision when I wrote the proposal. \n\nAlso rephased the section, stripping away the design for nvmed and adding more background topic on phosphor-nvme and nvme sensor.",
       "parentUuid": "bf296475_86d48caf",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "583638bb_e7594e0d",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-02T00:11:03Z",
+      "side": 1,
+      "message": "rephased",
+      "parentUuid": "d9f88dc1_24513c8b",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -808,6 +856,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4d90724_d95dbad0",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-02T00:11:03Z",
+      "side": 1,
+      "message": "Got it. At least, the NVME1000 will be reused for both NVMe-MI via MCTP and NVMe basic daemon config.",
+      "parentUuid": "f106de94_6d48e2d1",
+      "range": {
+        "startLine": 71,
+        "startChar": 14,
+        "endLine": 71,
+        "endChar": 52
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5239c79_383d2ade",
@@ -1355,6 +1427,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d820dfe_d8bb61e8",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-02T00:11:03Z",
+      "side": 1,
+      "message": "Thanks for the history lesson :) \n\nI come to realize that ipmbd is not a good example arguing about the necessity of nvmed.",
+      "parentUuid": "c23fb738_d45607ce",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 49
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43a5998b_34d4e909",
@@ -1571,6 +1667,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "919e44ab_a13267bf",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-02T00:11:03Z",
+      "side": 1,
+      "message": "\u003e \u003e I mean the NVMe OOB controller has no mechanism to push the status change to host software (ie. the bmc and upper layer DC SW). \n\u003e \n\u003e \n\u003e I thought there were status bits that we could poll rapidly in nvme, but sure, I understand your meaning now.\n\u003e \n\u003e \u003e \n\u003e \u003e So it is about who pulls the info, either BMC local polling or DC SW polling. We do the latter one because: \n\u003e \u003e 1. The DC SW will coordinate with other DC service, such as FW updater, user management, clean up service and repair service about when to operate NVMe OOB. These services definitely outside the scope of NVMed and maybe outside BMC. \n\u003e \n\u003e Totally fine, and nothing I was concerned about would prevent that\n\nOk. The sensor update will be trigger both internally and externally, depends on the attribute spec. I don\u0027t think either it is the factor to not use sensor interface.\n\n\u003e \n\u003e \u003e 2. The OOB may/will interfere with Inband transaction.\n\u003e \u003e We haven\u0027t evaluated the impact but the concern is in the NVMe Spec. We are certainly trying to avoid reading a large status table out of NVMe-MI while a heavy NVMe I/O task.\n\u003e \n\u003e \n\u003e According to the NVMe spec it shouldn\u0027t I thought?  They are separate channels.  Certainly not the interfaces that are expected to be polled, like thermal sensors and log pages.  Is there something in the spec you\u0027re looking at that makes you think otherwise?  Can you give me a section number?\n\u003e \n\u003e \u003e We are certainly trying to avoid reading a large status table out of NVMe-MI while a heavy NVMe I/O task.\n\u003e \n\u003e The log pages have a polling mechanism, and the drives I\u0027ve worked with from major vendors in the past have accounted for this kind of thing in their software design, I\u0027d be really surprised if there were drives that didn\u0027t.\n\nYeah, we can read the same log table headers via the local poll and do the actual page payload when DC triggers that. \n\nWe have criteria on in-band/out-of-band/IO cross-performance, but still, in NVMe-MI spec v1.2 page 107: \n\n\"NVMe Admin Commands over the out-of-band mechanism may interfere with host software. A Management Controller should coordinate with the host or issue only NVMe Admin Commands that do not interfere with host software or in band NVMe commands (e.g., Identify).\"",
+      "parentUuid": "8c7469b8_a5d01128",
+      "range": {
+        "startLine": 143,
+        "startChar": 71,
+        "endLine": 145,
+        "endChar": 29
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2538a19_66e03291",
         "filename": "designs/nvmed.md",
         "patchSetId": 1
@@ -1690,6 +1810,24 @@
       "side": 1,
       "message": "\u003e \u003e \u003e \u003e So make an xyz.openbmc_project.NVMeFeatureSet dbus interface and attach it to the drive?\n\u003e \u003e \u003e \n\u003e \u003e \u003e There are more information polling from other NVMe CMD(Read NVMe-MI Data Structure, Identify, etc). Some of the information we need is: \n\u003e \u003e \u003e \n\u003e \u003e \u003e * Health status for the NVMe subsystem including warning(SW), \n\u003e \u003e \n\u003e \u003e Status interfaces have been around for a while.\n\u003e \n\u003e Yes, the every storage protocol has a SMART-like info. So this part can be generic. \n\u003e \n\u003e \u003e \n\u003e \u003e \u003etemperature(CTMP),\n\u003e \u003e \n\u003e \u003e So.... this is duplicating temperature code?  This is sounding more and more like it needs to go in the existing daemon.\n\u003e \u003e \n\u003e \n\u003e Yes. There are two thermal reporting path.\n\u003e The pid service internally will work on the NVMe thermal sensor for NVMe subsystem.\n\u003e The DC need extra thermal info for each NVMe controller through NVMe SMART Health Log Page, which will report by NVMed-\u003eredfish-\u003eDC SW\n\nI don\u0027t think this works in the design.  This will\n\n1. Duplicate state on dbus\n2. Duplicate code in the backend.\n\nNeither of which I\u0027m interested in maintaining.\n\n\u003e \n\u003e \u003e \u003e drive life(PDLU), contoller status(CCS).\n\u003e \u003e \u003e * Configuration for NVMe controller such as SMBus/I2C frequency and MCTP Transmission Unit Size.\n\u003e \u003e \n\u003e \u003e That kind of data shouldn\u0027t be on dbus (probably).  Those are arguably internal system details of the communication channel that should be abstracted away from dbus.\n\u003e \u003e \n\u003e \u003e \u003e * Features for controllers involving Arbitration, Power Management, Controller Metadata, etc.\n\u003e \u003e \n\u003e \u003e Why is this information required outside the daemon itself that\u0027s talking to the controller?  Wouldn\u0027t this just get exposed as normal reset interfaces?\n\u003e \u003e \n\u003e \n\u003e The reason is currently out the the control of BMC.\n\nIf it\u0027s out of control of the bmc, then it\u0027s going through an OOB interface, (based on your doc Redfish).  Redfish requires well structured data.\n\n\u003e The DC SW will ask the BMC to report the matrix and extract the information they like. I will talk to the DC SW team for the specific attributes, but the first answer I got from them was \"that will be a long list\".\n\nGreat.  Lets get that list and go from there.\n\n\u003e \n\u003e \n\u003e \u003e \u003e * Identify information for controller and namespace, such as FW info, SN/MN, IEEE OUI Identifier(IEEE), Maximum Data Transfer Size(MDTS), RTD3 Resume Latency(RTD3R), RTD3 Entry Latency(RTD3E), etc\n\u003e \u003e \n\u003e \u003e Most of these likely map into the Asset interfaces.  For the ones that don\u0027t, we can add new interfaces.\n\u003e \u003e \n\u003e \n\u003e They could be but they need to be part of StorageController.\n\nThat\u0027s not a problem.  Asset is used in a number of places, StorageController will just be one more\n\n\u003e Anyway, I will make a list of the specific matrix so we can start from there. \n\u003e \n\u003e \u003e \u003e \n\u003e \u003e \u003e Some of these information is storage generic but more is NVMe specific. \n\u003e \u003e \n\u003e \u003e \u003e \n\u003e \u003e \u003e The point is, we try to avoid exhausting all definitions in NVMe spec and redo it on dbus.\n\u003e \u003e \n\u003e \u003e Unfortunately, that just means that we get to duplicate all the definitions in bmcweb/redfish/ipmi.  As a system-level design, we try to avoid that.\n\u003e \n\u003e Sorry, I didn\u0027t get that. Why it will cause a duplication in bmcweb/redfish/ipmi? Actually the reason we create a NVMe raw interface on DBus is to avoid duplicating the definition. \n\nWhen bmcweb wants to get a temperature reading, or a log page, it will need to \"speak\" nvme protocol on dbus.  This requires data structures that know how to package an nvme request, and interpret an nvme response.\n\nIf I now want that same data on IPMI, which maybe you don\u0027t want, but I\u0027m sure others do, now IPMI has to copy those same data structures over.  We avoid this by putting well formed and reasonable abstractions on dbus.\n\n\u003e \n\u003e The reasoning here is that the NVMe information can be parsed at different levels.\n\nTo be clear, we have a mechanism for parsing log pages and putting them on dbus.  That\u0027s reasonable and there\u0027s prior interfaces for that.\n\n\u003e The generic storage info can be parse at daemon level for ipmi/redfish part of BMCWeb. The Swordfish of BMCWeb can parse the NVMe specific information from the DBus NVMe raw interface.\n\nbmcweb knows how to parse well structured dbus interfaces, like sensors and logs.  Once those are mapped, we can discuss how to handle other stuff, including if you want some kind of \"raw nvme socket\" like we have for serial or something, but it\u0027s not going to fit in well formed redfish payloads.\n\n\u003e The DCSW can parse rest of the unscoped NVMe-MI and NVMe-MI VUC. \n\nPlease talk about how this would work at an interfacing level.\n\n\u003e \n\u003e \u003e \n\u003e \u003e \u003e Swordfish does the mapping well (or trying to approach that). The new daemon should work as NVMe protocol daemon(like ipmbd?). The consumer services, such as BMCWeb, should do the protocol translation. BMCWeb has the schemas and the translation layer \n\u003e \u003e \n\u003e \u003e bmcweb translates dbus-\u003eredfish, and we try to keep as much business logic out ofit that we can to keep a small footprint, and to spread out the security consequences and failure modes.  Redfish very intentionally doesn\u0027t allow \"transports\" like this.\n\u003e \u003e \n\u003e \n\u003e Copied from the other commit: \n\u003e \n\u003e Fully understand the concern from BMCWeb maintenance. There is still a daemon behind BMCWeb to talk with. It is not proposed to let BMCWeb directly link to driver library.\n\u003eThe argument is to attach a NVMe spec styled DBus interface to the daemon.\n\nThe linking is one concern, needing to parse, construct, and interpret NVMe messages on dbus is a much bigger concern.\n\n\u003e \n\u003e I am trying to make the BMCWeb logic as simple as possible, tunneling the GET/PUT into NVMe DWORD read, write.\n\nSo, you\u0027re not using redfish then?  Redfish definitely doesn\u0027t give a \"DWORD Write\" interface, and has very explicitly rejected it at a standards level many times.  I\u0027m in the DMTF meetings every week if you\u0027d like to open a thread and start that discussion again.\n\n\u003e The parsing/mapping is definitely an extra work on BMCWeb.\n\nand IPMI.  And PLDM.   More importantly, we have patterns in the project that avoid this extra work and we should use them.\n\n\u003e But all other logic (initialization, association, caching, etc) should be done in the nvme daemon.\n\u003e \n\u003e \u003e \u003ein our management node (outside BMC) has the protobuf for grpc/streamz.",
       "parentUuid": "c8f5db19_c4d05e25",
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b202a02_7623b08f",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-02T00:11:03Z",
+      "side": 1,
+      "message": "\u003e \u003e \u003e \u003e \u003e So make an xyz.openbmc_project.NVMeFeatureSet dbus interface and attach it to the drive?\n\u003e \u003e \u003e \u003e \n\u003e \u003e \u003e \u003e There are more information polling from other NVMe CMD(Read NVMe-MI Data Structure, Identify, etc). Some of the information we need is: \n\u003e \u003e \u003e \u003e \n\u003e \u003e \u003e \u003e * Health status for the NVMe subsystem including warning(SW), \n\u003e \u003e \u003e \n\u003e \u003e \u003e Status interfaces have been around for a while.\n\u003e \u003e \n\u003e \u003e Yes, the every storage protocol has a SMART-like info. So this part can be generic. \n\u003e \u003e \n\u003e \u003e \u003e \n\u003e \u003e \u003e \u003etemperature(CTMP),\n\u003e \u003e \u003e \n\u003e \u003e \u003e So.... this is duplicating temperature code?  This is sounding more and more like it needs to go in the existing daemon.\n\u003e \u003e \u003e \n\u003e \u003e \n\u003e \u003e Yes. There are two thermal reporting path.\n\u003e \u003e The pid service internally will work on the NVMe thermal sensor for NVMe subsystem.\n\u003e \u003e The DC need extra thermal info for each NVMe controller through NVMe SMART Health Log Page, which will report by NVMed-\u003eredfish-\u003eDC SW\n\u003e \n\u003e I don\u0027t think this works in the design.  This will\n\u003e \n\u003e 1. Duplicate state on dbus\n\u003e 2. Duplicate code in the backend.\n\u003e \n\u003e Neither of which I\u0027m interested in maintaining.\n\nAs we plan to the direction of nvme sensor, there will not duplicate daemons on the same machine. It will be either a nvme basic cmd sensor(the original nvme sensor), or a nvme-mi thermal sensor. \n\nBTW, nvme-mi does support reporting thermal per controller, a nvme subsys might report multiple thermal sensor objects. \n\n\u003e \n\u003e \u003e \n\u003e \u003e \u003e \u003e drive life(PDLU), contoller status(CCS).\n\u003e \u003e \u003e \u003e * Configuration for NVMe controller such as SMBus/I2C frequency and MCTP Transmission Unit Size.\n\u003e \u003e \u003e \n\u003e \u003e \u003e That kind of data shouldn\u0027t be on dbus (probably).  Those are arguably internal system details of the communication channel that should be abstracted away from dbus.\n\u003e \u003e \u003e \n\u003e \u003e \u003e \u003e * Features for controllers involving Arbitration, Power Management, Controller Metadata, etc.\n\u003e \u003e \u003e \n\u003e \u003e \u003e Why is this information required outside the daemon itself that\u0027s talking to the controller?  Wouldn\u0027t this just get exposed as normal reset interfaces?\n\u003e \u003e \u003e \n\u003e \u003e \n\u003e \u003e The reason is currently out the the control of BMC.\n\u003e \n\u003e If it\u0027s out of control of the bmc, then it\u0027s going through an OOB interface, (based on your doc Redfish).  Redfish requires well structured data.\n\u003e \n\nAgreed that data via Redfish should be structured. These none-scoped attributes should transport outside Redfish (Maybe google domain)\n\n\u003e \u003e The DC SW will ask the BMC to report the matrix and extract the information they like. I will talk to the DC SW team for the specific attributes, but the first answer I got from them was \"that will be a long list\".\n\u003e \n\u003e Great.  Lets get that list and go from there.\n\nWill list together will the proposing nvme sensor interface. \n\u003e \n\u003e \u003e \n\u003e \u003e \n\u003e \u003e \u003e \u003e * Identify information for controller and namespace, such as FW info, SN/MN, IEEE OUI Identifier(IEEE), Maximum Data Transfer Size(MDTS), RTD3 Resume Latency(RTD3R), RTD3 Entry Latency(RTD3E), etc\n\u003e \u003e \u003e \n\u003e \u003e \u003e Most of these likely map into the Asset interfaces.  For the ones that don\u0027t, we can add new interfaces.\n\u003e \u003e \u003e \n\u003e \u003e \n\u003e \u003e They could be but they need to be part of StorageController.\n\u003e \n\u003e That\u0027s not a problem.  Asset is used in a number of places, StorageController will just be one more\n\u003e \n\u003e \u003e Anyway, I will make a list of the specific matrix so we can start from there. \n\u003e \u003e \n\u003e \u003e \u003e \u003e \n\u003e \u003e \u003e \u003e Some of these information is storage generic but more is NVMe specific. \n\u003e \u003e \u003e \n\u003e \u003e \u003e \u003e \n\u003e \u003e \u003e \u003e The point is, we try to avoid exhausting all definitions in NVMe spec and redo it on dbus.\n\u003e \u003e \u003e \n\u003e \u003e \u003e Unfortunately, that just means that we get to duplicate all the definitions in bmcweb/redfish/ipmi.  As a system-level design, we try to avoid that.\n\u003e \u003e \n\u003e \u003e Sorry, I didn\u0027t get that. Why it will cause a duplication in bmcweb/redfish/ipmi? Actually the reason we create a NVMe raw interface on DBus is to avoid duplicating the definition. \n\u003e \n\u003e When bmcweb wants to get a temperature reading, or a log page, it will need to \"speak\" nvme protocol on dbus.  This requires data structures that know how to package an nvme request, and interpret an nvme response.\n\u003e \n\u003e If I now want that same data on IPMI, which maybe you don\u0027t want, but I\u0027m sure others do, now IPMI has to copy those same data structures over.  We avoid this by putting well formed and reasonable abstractions on dbus.\n\nWe will have these \"famous\" interfaces exposed in the general way (value and threshold) so it wouldn\u0027t re-interpret across BMCWeb and ipmid. \n\nBut there are still NVMe specific DBus interface that aiming at Swordfish (even not embraced by the original Redfish). I don\u0027t think impi will bother these. \n \n\u003e \n\u003e \u003e \n\u003e \u003e The reasoning here is that the NVMe information can be parsed at different levels.\n\u003e \n\u003e To be clear, we have a mechanism for parsing log pages and putting them on dbus.  That\u0027s reasonable and there\u0027s prior interfaces for that.\n\u003e \n\u003e \u003e The generic storage info can be parse at daemon level for ipmi/redfish part of BMCWeb. The Swordfish of BMCWeb can parse the NVMe specific information from the DBus NVMe raw interface.\n\u003e \n\u003e bmcweb knows how to parse well structured dbus interfaces, like sensors and logs.  Once those are mapped, we can discuss how to handle other stuff, including if you want some kind of \"raw nvme socket\" like we have for serial or something, but it\u0027s not going to fit in well formed redfish payloads.\n\nAgree with every statement here. It is not appropriate to transferring un-parsed raw stream over the Redfish. \n\nBut BMCWeb should not be constrained to that limitation. It should be able to packing streams over the http protocol. \n\n\u003e \n\u003e \u003e The DCSW can parse rest of the unscoped NVMe-MI and NVMe-MI VUC. \n\u003e \n\u003e Please talk about how this would work at an interfacing level.\n\u003e \n\u003e \u003e \n\u003e \u003e \u003e \n\u003e \u003e \u003e \u003e Swordfish does the mapping well (or trying to approach that). The new daemon should work as NVMe protocol daemon(like ipmbd?). The consumer services, such as BMCWeb, should do the protocol translation. BMCWeb has the schemas and the translation layer \n\u003e \u003e \u003e \n\u003e \u003e \u003e bmcweb translates dbus-\u003eredfish, and we try to keep as much business logic out ofit that we can to keep a small footprint, and to spread out the security consequences and failure modes.  Redfish very intentionally doesn\u0027t allow \"transports\" like this.\n\u003e \u003e \u003e \n\u003e \u003e \n\u003e \u003e Copied from the other commit: \n\u003e \u003e \n\u003e \u003e Fully understand the concern from BMCWeb maintenance. There is still a daemon behind BMCWeb to talk with. It is not proposed to let BMCWeb directly link to driver library.\n\u003e \u003eThe argument is to attach a NVMe spec styled DBus interface to the daemon.\n\u003e \n\u003e The linking is one concern, needing to parse, construct, and interpret NVMe messages on dbus is a much bigger concern.\n\u003e \n\u003e \u003e \n\u003e \u003e I am trying to make the BMCWeb logic as simple as possible, tunneling the GET/PUT into NVMe DWORD read, write.\n\u003e \n\u003e So, you\u0027re not using redfish then?  Redfish definitely doesn\u0027t give a \"DWORD Write\" interface, and has very explicitly rejected it at a standards level many times.  I\u0027m in the DMTF meetings every week if you\u0027d like to open a thread and start that discussion again.\n\u003e \n\u003e \u003e The parsing/mapping is definitely an extra work on BMCWeb.\n\u003e \n\u003e and IPMI.  And PLDM.   More importantly, we have patterns in the project that avoid this extra work and we should use them.\n\u003e \n\u003e \u003e But all other logic (initialization, association, caching, etc) should be done in the nvme daemon.\n\u003e \u003e \n\u003e \u003e \u003e \u003ein our management node (outside BMC) has the protobuf for grpc/streamz.\n\nThe design for redfish part of the daemon has changed according to the discussion in this thread. We are going to have parsed data on DBus for Redfish.",
+      "parentUuid": "78256e58_2c528d0c",
       "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
