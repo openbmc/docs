@@ -334,8 +334,8 @@ your reviews from the [OpenBMC Gerrit server](https://gerrit.openbmc.org) search
 or menu (All > Open, or My > Changes).
 
 Invite reviewers to review your changes.  Each OpenBMC repository has
-a `MAINTAINERS` file that lists required reviewers who are subject
-matter experts.  Those reviewers may add additional reviewers.  To add
+an `OWNERS` file that lists required reviewers who are subject matter
+experts.  Those reviewers may add additional reviewers.  To add
 reviewers from the Gerrit web page, click the "add reviewers" icon by
 the list of reviewers.
 
@@ -418,7 +418,7 @@ than yours. Do everything you can to make it easy for the reviewer to review
 your contribution.
 
 If you feel your patch has been missed entirely, of course, it's
-alright to email the maintainers (addresses available in MAINTAINERS file) or
+alright to email the maintainers (addresses available in OWNERS file) or
 ping them on Discord - but a reasonable timeframe to do so is on the order of a
 week, not on the order of hours.
 
