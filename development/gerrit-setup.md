@@ -84,7 +84,7 @@ will look like.
 * Push your changes to Gerrit for code review:
   `git push origin HEAD:refs/for/master`
 * Go to [Gerrit web interface](https://gerrit.openbmc.org/), click on
-  your new review, and add reviewers based on `MAINTAINERS` file in the repo.
+  your new review, and add reviewers based on `OWNERS` file in the repo.
 
 ##### Conclusion
 If you've completed all of the above steps successfully, that's it! You have now
