@@ -20,7 +20,7 @@
 
 
 ##### Setup SSH Keys
-Create keys: ```ssh-keygen -t rsa -C "your_email@your-domain"```
+Create keys: ```ssh-keygen -t ed25519 -C "your_email@your-domain"```
 * Recommended to use the defaults instead of picking your own directory/file
   names.
 
