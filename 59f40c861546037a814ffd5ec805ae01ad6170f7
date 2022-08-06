@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f670c890_fffc5d75",
+        "filename": "designs/redfish-oem.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-06T21:33:37Z",
+      "side": 1,
+      "message": "We need to add some more background here.\n\n1. How do we ensure that we get interop in industry between systems (which is the whole point of redfish)?\n2. Are there any guard rails (like the ones in OEM_SCHEMAS.md) that would still apply?\n3. How has the OpenBMC OEM namespace been handled so far?  Has it gone well?\n4. How has company specific OEM namespace items been handled so far?  Has it gone well?\n5. What other projects (cough, sailfish, cough) have tried this and failed?  Why did they fail?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "59f40c861546037a814ffd5ec805ae01ad6170f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0e05fcb_0330788f",
+        "filename": "designs/redfish-oem.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-06T21:33:37Z",
+      "side": 1,
+      "message": "Not true, there\u0027s a couple OEM schemas in upstream today, and company specific features in APIs, including intel crashdump which was at one point oem.\n\nAlso, patches are a companies prerogative on how they want to maintain their downstream code.  They are more than welcome to use SVN, CVS, tarballs, or a beacons of Gondor style Morse code mechanism with torches.  I don\u0027t see how anything in this document can change how people manage their forks, because we have no enforcement there;  At the end of the day, code is going to end up in a patch SOMEWHERE, so the idea that it\u0027s not a patch needs rephrased.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 18
+      },
+      "revId": "59f40c861546037a814ffd5ec805ae01ad6170f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbd747a9_28fd681c",
+        "filename": "designs/redfish-oem.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-06T21:33:37Z",
+      "side": 1,
+      "message": "On the mailing list we talked about single repo, which would turn these into branches.  Does that solve the problem?  Either way, probably worth putting in the background, or at least the alternatives considered section.",
+      "range": {
+        "startLine": 14,
+        "startChar": 21,
+        "endLine": 15,
+        "endChar": 35
+      },
+      "revId": "59f40c861546037a814ffd5ec805ae01ad6170f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "32ab559c_b14b2cd0",
         "filename": "designs/redfish-oem.md",
         "patchSetId": 1
@@ -43,6 +112,53 @@
         "startChar": 12,
         "endLine": 20,
         "endChar": 10
+      },
+      "revId": "59f40c861546037a814ffd5ec805ae01ad6170f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa3a85f6_f06bd265",
+        "filename": "designs/redfish-oem.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-06T21:33:37Z",
+      "side": 1,
+      "message": "FWIW, when we first talked about this, I thought the intent was for upstream separable oem modules (in the same track as IPMI).  \"I want downstream modules\" is a very different problem space, and implies that we\u0027re going to have a never changing library interface.  I\u0027m not sure that\u0027s technically possible.\n\nSo the background really needs to discuss:\n1. How do we build a library interface?\n2. How do we ensure that the project remains buildable.\n3. What other projects (I\u0027m thinking kernel modules) have solved this, and how did they solve it?\n\n\nFor downstream, just fork bmcweb, add your stuff, and rebase it at a reasonable interval.  If the interfaces break too often, try to come up with a subset that will be more concrete.",
+      "parentUuid": "6b42112b_ccc78147",
+      "range": {
+        "startLine": 19,
+        "startChar": 12,
+        "endLine": 20,
+        "endChar": 10
+      },
+      "revId": "59f40c861546037a814ffd5ec805ae01ad6170f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "453f52f7_7da50430",
+        "filename": "designs/redfish-oem.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-06T21:33:37Z",
+      "side": 1,
+      "message": "Lots more details needed here:\n1. Privilege registry is a thing that requires changes for any OEM schema.  Is that required?  Do we have to finish those per-system designs first before this can start?  (I think the answer is yes).\n2. Should we require that schemas meet the upstream requirements?  Do we need testing to verify that they meet the requirements?\n3. Does it need to be maintainable?\n4. What guarantees will the interfaces provide, given that we can\u0027t compile the code?  Are they versioned?  What\u0027s the TTL for a breaking change to go in?\n5. What sort of Features do we need in this interface?  Does it allow adding:\nProperties?\nActions (technically kind of answered below)?\nResources?\nCollections?\nMessageRegistries?\nPreviously unknown namespaces?\nEventing?\nBinary outside-the-redfish-tree payloads (like crashdump)?\n5. What do we do about the existing OEM?  Do we port those forward first, or do we keep two mechanisms?  (side note, I\u0027m not going to be super happy with the second answer).\n\n\nTake another stab at answering the above, and we can go from there.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 13
       },
       "revId": "59f40c861546037a814ffd5ec805ae01ad6170f7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
