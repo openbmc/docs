@@ -190,7 +190,7 @@ Note that [BMCWeb is configurable][] at compile time.  This section describes
 the default configuration (which serves the HTTP application protocol over the
 HTTPS transport protocol on TCP port 443).
 
-[BMCWeb is configurable]: https://github.com/openbmc/bmcweb/blob/master/CMakeLists.txt
+[BMCWeb is configurable]: https://github.com/openbmc/bmcweb#configuration
 
 Services provided:
  - Web application (webui-vue) and other static content
@@ -410,7 +410,7 @@ system.
 
 Refers to the custom HTTP/Web server with source here:
 https://github.com/openbmc/bmcweb Note that BMCWeb is configurable per
-https://github.com/openbmc/bmcweb/blob/master/CMakeLists.txt with build-time
+https://github.com/openbmc/bmcweb#configuration with build-time
 options to control which interfaces it provides.  For example, there are
 configurations options to:
  - enable downloading firmware images from a TFTP server
