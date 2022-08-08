@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2065436_8d7b69b8",
+        "filename": "designs/redfish-oem.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2022-08-08T15:46:46Z",
+      "side": 1,
+      "message": "I\u0027ll do my best, but I don\u0027t know the answers to many of these.  Does anyone have suggested text?\n\nAlso, are the answers to these part of the problem description, or will they fit better in requirements?",
+      "parentUuid": "f670c890_fffc5d75",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "59f40c861546037a814ffd5ec805ae01ad6170f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e0e05fcb_0330788f",
         "filename": "designs/redfish-oem.md",
         "patchSetId": 1
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96c0d82f_34e021de",
+        "filename": "designs/redfish-oem.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2022-08-08T15:46:46Z",
+      "side": 1,
+      "message": "My assumption was that those are also considered part of this problem that we want to solve.  Aside from those that are already in, will new company-specific OEM things be considered?\n\nI can generalize away from \"patches\", but wouldn\u0027t the solution in this document eliminate the need to fork bmcweb for OEM support?",
+      "parentUuid": "e0e05fcb_0330788f",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 18
+      },
+      "revId": "59f40c861546037a814ffd5ec805ae01ad6170f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbd747a9_28fd681c",
         "filename": "designs/redfish-oem.md",
         "patchSetId": 1
@@ -60,6 +108,30 @@
       "writtenOn": "2022-08-06T21:33:37Z",
       "side": 1,
       "message": "On the mailing list we talked about single repo, which would turn these into branches.  Does that solve the problem?  Either way, probably worth putting in the background, or at least the alternatives considered section.",
+      "range": {
+        "startLine": 14,
+        "startChar": 21,
+        "endLine": 15,
+        "endChar": 35
+      },
+      "revId": "59f40c861546037a814ffd5ec805ae01ad6170f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a05b2d6_165f3a5d",
+        "filename": "designs/redfish-oem.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2022-08-08T15:46:46Z",
+      "side": 1,
+      "message": "I guess it could.  If someone moves to a fork of the single repo, then the issue of maintaining an individual bmcweb fork is gone.",
+      "parentUuid": "cbd747a9_28fd681c",
       "range": {
         "startLine": 14,
         "startChar": 21,
@@ -143,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77f7be9b_4ba008a2",
+        "filename": "designs/redfish-oem.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2022-08-08T15:46:46Z",
+      "side": 1,
+      "message": "I guess I thought separable oem modules and downstream support were the same problem.  I will reword this to focus on separable modules.\n\nAre these questions for the background section or will they fit better in other sections?  Maybe I don\u0027t understand the questions...",
+      "parentUuid": "aa3a85f6_f06bd265",
+      "range": {
+        "startLine": 19,
+        "startChar": 12,
+        "endLine": 20,
+        "endChar": 10
+      },
+      "revId": "59f40c861546037a814ffd5ec805ae01ad6170f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "453f52f7_7da50430",
         "filename": "designs/redfish-oem.md",
         "patchSetId": 1
@@ -154,6 +250,30 @@
       "writtenOn": "2022-08-06T21:33:37Z",
       "side": 1,
       "message": "Lots more details needed here:\n1. Privilege registry is a thing that requires changes for any OEM schema.  Is that required?  Do we have to finish those per-system designs first before this can start?  (I think the answer is yes).\n2. Should we require that schemas meet the upstream requirements?  Do we need testing to verify that they meet the requirements?\n3. Does it need to be maintainable?\n4. What guarantees will the interfaces provide, given that we can\u0027t compile the code?  Are they versioned?  What\u0027s the TTL for a breaking change to go in?\n5. What sort of Features do we need in this interface?  Does it allow adding:\nProperties?\nActions (technically kind of answered below)?\nResources?\nCollections?\nMessageRegistries?\nPreviously unknown namespaces?\nEventing?\nBinary outside-the-redfish-tree payloads (like crashdump)?\n5. What do we do about the existing OEM?  Do we port those forward first, or do we keep two mechanisms?  (side note, I\u0027m not going to be super happy with the second answer).\n\n\nTake another stab at answering the above, and we can go from there.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 13
+      },
+      "revId": "59f40c861546037a814ffd5ec805ae01ad6170f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee1a4d64_1990e3c0",
+        "filename": "designs/redfish-oem.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2022-08-08T15:46:46Z",
+      "side": 1,
+      "message": "I will work on answers to these in the next draft.",
+      "parentUuid": "453f52f7_7da50430",
       "range": {
         "startLine": 24,
         "startChar": 0,
