@@ -34,6 +34,24 @@
       "parentUuid": "9cf32aed_f4d299ce",
       "revId": "287fded56ea7e93bb8e050755d275973dcf32de3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28f19b17_be2a584a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-08T04:45:25Z",
+      "side": 1,
+      "message": "https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/obmc-flash-host-bios%40.service.in\n\nAs per the service file in phosphor-bmc-code-mgmt, the custom flash tool will be called for flashing process. \n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/37950/16/designs/software-update-for-multiple-devices.md#191\n\nAs per the proposal to support multiple devices update, the custom flash tool will be called in service for flashing process. \n\nCustom flash tool is platform specific and with OEM and IPMB based. Current software update daemon follows this custom tool logic only. This design doc specifies only this custom tool design and implementation and not specific to firmware update.\n\nphosphor-ipmi-flash - This is different, It uses the BLOB protocol to transfer the firmware image. It follows the commands based on BlockTransfer. But Ours is more specific to IPMI OEM commands which has OEM based netfn and cmds for requesting firmware update and image transferring. So, we cannot use phosphor-ipmi-flash.",
+      "parentUuid": "08f15b1b_03216f3e",
+      "revId": "287fded56ea7e93bb8e050755d275973dcf32de3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
