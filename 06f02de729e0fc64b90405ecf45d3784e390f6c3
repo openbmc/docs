@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d128ff23_18cb81f9",
+        "filename": "security/obmc-security-response-team-guidelines.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-10T18:00:30Z",
+      "side": 1,
+      "message": "In addition to the OpenBMC release described by https://github.com/openbmc/docs/blob/master/release/release-notes.md or by the git-describe command: the intention is for each openbmc application (per source repo) to have a semantic version, like 0.2.105.\n\nHaving a semantic version becomes important when using tools which scan the installable binary firmware image file.  Tools like blackduck decompose the file and analyze its readonly file system content.  For example, the tool detects which version of OpenSSL is present.  The tool then matches the OpenSSL package version against known vulnerabilities in that version and gives a report of the CVEs which might be in your firmware image.\n\nThe idea being proposed here is to use semantic versioning for all openbmc applications, to help security responders know which vulnerabilities are in their image.",
+      "parentUuid": "f9a8f68d_789048be",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 38
+      },
+      "revId": "06f02de729e0fc64b90405ecf45d3784e390f6c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87f6db10_8717996e",
         "filename": "security/obmc-security-response-team.md",
         "patchSetId": 1
@@ -95,6 +119,30 @@
       "writtenOn": "2022-07-28T17:11:10Z",
       "side": 1,
       "message": "The repository owners or maintainers create the security advisory. Using the term responders implies that the security response team may create the SA, but they don\u0027t have the proper permissions to do so.",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "06f02de729e0fc64b90405ecf45d3784e390f6c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07d533ae_a8879fed",
+        "filename": "security/obmc-security-response-team.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-10T18:00:30Z",
+      "side": 1,
+      "message": "I agree.  \"Responder\" should be: repo maintainer.",
+      "parentUuid": "87f6db10_8717996e",
       "range": {
         "startLine": 19,
         "startChar": 8,
