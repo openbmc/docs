@@ -382,6 +382,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "550c7d7c_e4fbc6c7",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-11T00:07:03Z",
+      "side": 1,
+      "message": "Good suggestion. I agree with all you said and I completely rewrite the section. PTAL.",
+      "parentUuid": "120de91a_ff0875a6",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 5
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02100d36_37477c4f",
@@ -1855,6 +1879,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cb68f6a_967b917d",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-11T00:07:03Z",
+      "side": 1,
+      "message": "Sorry, I miss the anchor for this comment. But please point out if you still have the same disagreement on the updated version.",
+      "parentUuid": "9b6fcb95_37f2a30b",
+      "range": {
+        "startLine": 186,
+        "startChar": 53,
+        "endLine": 187,
+        "endChar": 44
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5dc01f5b_9349d36a",
@@ -1878,6 +1926,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4203a6c_b9a8ed6e",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-11T00:07:03Z",
+      "side": 1,
+      "message": "The design is reworked.",
+      "parentUuid": "5dc01f5b_9349d36a",
+      "range": {
+        "startLine": 190,
+        "startChar": 35,
+        "endLine": 191,
+        "endChar": 70
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a4055ff_396573af",
@@ -1891,6 +1963,24 @@
       "writtenOn": "2022-05-23T15:53:00Z",
       "side": 1,
       "message": "Other impacts:\n1. Physical layer constructs are now present in dbus, which very likely has security impacts.\n2. nvme-specific is now spread across the system\n3. A third nvme-specific daemon is created.",
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5dba791_9bf1fed3",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-11T00:07:03Z",
+      "side": 1,
+      "message": "The design is totally rework. \n\n\u003e Other impacts:\n\u003e 1. Physical layer constructs are now present in dbus, which very likely has security impacts.\n\nOnly telemetry reading protocol API are exposed now. and none of them are security operation such as format/santize/namespace deletion, there should be no security impact on current BMC system. \n\n\u003e 2. nvme-specific is now spread across the system\n\nOnly limit NVMe spec is exposed and they will be eliminated after the inband to oob migration is completed. \n \n\u003e 3. A third nvme-specific daemon is created.\nthe proposed daemon will merge with nvme sensor.",
+      "parentUuid": "2a4055ff_396573af",
       "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1942,6 +2032,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4989bb24_32f7477e",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-11T00:07:03Z",
+      "side": 1,
+      "message": "Now the nvme sensor should merge into the proposed daemon. It would also consider move the merged daemon out of sensor repo. \n\nPTAL the reason I argued in the updated design doc.",
+      "parentUuid": "03ba57bd_69a33fff",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 35
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "718664c2_27be5864",
@@ -1955,6 +2069,30 @@
       "writtenOn": "2022-05-23T15:53:00Z",
       "side": 1,
       "message": "Load testing?  Security testing?  Functional testing?",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 54
+      },
+      "revId": "56f76956a03e879a682b57dd0bbd56b84e1a15be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3b4b946_0772ee55",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2022-08-11T00:07:03Z",
+      "side": 1,
+      "message": "The function test will be the first step, but I am also thinking about the performance on I2c and Dbus when doing the implementation. \n\nPTAL at the updated plan.",
+      "parentUuid": "718664c2_27be5864",
       "range": {
         "startLine": 204,
         "startChar": 0,
