@@ -166,6 +166,30 @@
       },
       "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd42d81c_57f4339a",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-11T21:46:29Z",
+      "side": 1,
+      "message": "Thanks for the question. That part (mapping linux permissions to Redfish roles) is remaining the same https://github.com/openbmc/bmcweb/blob/3ba0007367777144f474fdf99439ae8c03633486/redfish-core/lib/roles.hpp#L28.\n\nBut you bring up a great topic, how we use these newly added Redfish roles. Yes, I would add new section about that, I plan to use mTLS (common name, or subject alternative name) as the authenticated identity, and make bmcweb expose APIs (or take mappings from the configuration), so that those mTLS identities can be mapped to Redfish roles without involving the linux user stack.",
+      "parentUuid": "5ec45112_4127df03",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 76
+      },
+      "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
