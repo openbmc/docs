@@ -142,6 +142,30 @@
       },
       "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ec45112_4127df03",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-08-11T21:37:33Z",
+      "side": 1,
+      "message": "\u003e This design is talking about Redfish roles, Redfish privileges, and Redfish authorization, not the authentication part or linux permissions (does password/username match, is this username a root on system).\n\n\nNot sure I understand why those are necessarily distinct.  Isn\u0027t the default behavior to provide some mapping between phosphor-user-manager identities and Redfish roles?  We map all the IPMI users as well.  Not understanding why we want to make Redfish \"special\".",
+      "parentUuid": "51cb5cff_429cb378",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 76
+      },
+      "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
