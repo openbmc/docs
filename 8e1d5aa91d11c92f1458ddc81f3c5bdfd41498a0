@@ -214,6 +214,30 @@
       },
       "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1844470_9d3bffb8",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-11T22:27:25Z",
+      "side": 1,
+      "message": "\u003e\u003e mTLS identities can be mapped to Redfish roles without involving the linux user stack.\n\u003e You write this as if it is obvious why this is a good thing. It isn’t obvious to me.\n\nSo, this design is to provide optionalities. Google\u0027s systems don\u0027t have any meaningful linux users, all the authentication is done by the mTLS stack. Identities are all metadata in the certificates.\n\nWe found that currently OpenBMC doesn\u0027t provide an optional to support this. So, this design is to fill this gap. This design is not to prove this is better, but just to make current system more flexible without breaking existing use cases (where identities and Linux users are tightly coupled). If other contributors or companies have similar use cases, they can share this implementation from Google.\n\nIs this acceptable? If not, what\u0027s your idea to support Google\u0027s use case?",
+      "parentUuid": "dbd547dd_10ce7bc4",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 76
+      },
+      "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
