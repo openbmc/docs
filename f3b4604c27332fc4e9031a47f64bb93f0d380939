@@ -170,6 +170,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0de5a319_cf404902",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "Need to add:\nDefault roles and privilege registry must be selectable on a per system basis at compile time.\nBMC must be able to implement all 3 override types in a privilege registry.\nRegistry behavior must be maintainable such that new entities being added do not require modification of N systems worth of privilege registries.\nCI testing must be capable of finding issues in PrivilegeRegistry implementations.  Changes to odata.ids must be able to be propagated to the current privilege registries automatically.\nThe BMC shall expose PrivilegeRegistry entry under service root, per the standard to allow clients to determine the privileges for a given resource (now that they\u0027re not fixed to the standard).",
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a817b95_213005db",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 5
@@ -187,6 +204,287 @@
         "endLine": 91,
         "endChar": 72
       },
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0c63a4a_18fc1b5f",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "There is no mention in the requirements about changing roles, which redfish already can support via POST/PATCH/DELETE.  Maybe there\u0027s some missing requirements around role management?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 70
+      },
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d17b58fb_c0d02bfd",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "In this design, SubordinateOverrides aren\u0027t possible.  Please take a look at the discussions made in the subordinate overrides patchset in this regard.  This design needs to account for the fact that each instance of a particular route might have a different privilege level.",
+      "range": {
+        "startLine": 100,
+        "startChar": 7,
+        "endLine": 101,
+        "endChar": 38
+      },
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78bba554_068d8e25",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "For the OEM stuff (google/v1, ibm/v1) lets treat this as out of scope, those companies are free to select how they want to manage this.\n\nFor the non-oem stuff (websockets, ect) I suspect we need to define OEM privilege levels for the various use cases.  Please take a look at the reviews in-progress for changing kvm parameters to understand what the requirements are, and add them to the requirements section.",
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2984cb8_a39fb917",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "to reiterate above, route names are not 1:1 with privileges.  This needs a more detailed design.  If you\u0027d like to drop this section and handle it in code review, happy to do it there too, but as written, this design can\u0027t meet the requirements.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 22
+      },
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc62d50_960ab7fe",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "the method here is already called \"isSuperSet\";  I don\u0027t see a good reason to invert the logic that already exists, although we could if there were a good reason.",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 30
+      },
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1d8878f_6e4812a7",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "I don\u0027t think this works for all use cases.  Most openbmc members want to be able to select defaults at compile time for a given system.",
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8acb032_b26fbf6f",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "I don\u0027t understand this statement.  The bmc will have a list of roles that it supports, and linux groups can be added/removed/modified at runtime.  Why can\u0027t the existing groups mechansisms be used?",
+      "range": {
+        "startLine": 127,
+        "startChar": 17,
+        "endLine": 128,
+        "endChar": 20
+      },
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8604a756_cc093f4e",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "what is an \"identity\" in this context?",
+      "range": {
+        "startLine": 131,
+        "startChar": 9,
+        "endLine": 132,
+        "endChar": 14
+      },
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1d2c230_b215a0d2",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "Lots more detail needed here, because I\u0027m not understanding what this is or how it\u0027s used.  what is an \"identity\" and how does it differ from an \"account\" or a \"role\"",
+      "range": {
+        "startLine": 133,
+        "startChar": 49,
+        "endLine": 134,
+        "endChar": 48
+      },
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "498eba45_741fe490",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "Please back this up with:\n1. The sizes of the existing json privilege registries that we intend on adding\n2. How the sizes of these will happen.\n3. What the size of the existing overlayfs is on most systems, and how much is spare.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 54
+      },
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2161b83a_40f9a26c",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "Nit, rephrase, the first sentence says we\u0027re going to store as json, then the next sentence says we\u0027re not going to store as json.",
+      "range": {
+        "startLine": 137,
+        "startChar": 55,
+        "endLine": 139,
+        "endChar": 7
+      },
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78759114_ba390e72",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "Please rephrase, I don\u0027t understand this statement.",
+      "range": {
+        "startLine": 141,
+        "startChar": 6,
+        "endLine": 143,
+        "endChar": 30
+      },
+      "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aee1d29_9b6d2b80",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:17:28Z",
+      "side": 1,
+      "message": "Good callout, and I think that helps.",
       "revId": "f3b4604c27332fc4e9031a47f64bb93f0d380939",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
