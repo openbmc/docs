@@ -337,6 +337,24 @@
       "parentUuid": "fe39b847_d2e7e4a4",
       "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4544bb78_80d32293",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-08-12T00:01:17Z",
+      "side": 1,
+      "message": "\u003e \u003e Both of these are a bit clumsy and the second is much less intuitive for humans.\n\u003e \n\u003e 1. If we need to build tooling around this to help humans, we can.\n\nAdded a note about tooling to help with this\n\n\u003e 2. Nothing about this design precludes placing things in a hierarchical path if A, the software can support it, B. it\u0027s useful enough to humans that it makes sense, but in a design that supports add in cards, we weren\u0027t able to make it work in a reasonable way;  Happy to see review code that can do A+B though, but in the general rules of \"is it hard to unwind if we make the wrong decision\", we could certainly have a patchset that adds the associations support (some of which already exists) THEN we could set things up in patch hierarchies to make them useful to humans when we figured out the hard problems with them.\n\nThis should be handled by the inventory managers themselves. In the future, if phosphor-inventory-manager wants to generate chassisContains/chassisContainedBy associations based on path hierarchies, that feature could be added.\n\n\u003e \n\u003e \u003e OpenBMC has existed so far without this information being exposed on Redfish at all, so most users haven\u0027t needed this functionality.\n\u003e \n\u003e Users have needed this functionality.  Most have ended up hardcoding it in their downstream forks for a given system.\n\nUnderstood. I still believe that leaving this information missing if it hasn\u0027t been explicitly encoded is better than reporting possibly incorrect information based on how someone happened to organize their inventory configurations.",
+      "parentUuid": "dc1b5286_35c885bc",
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

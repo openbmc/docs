@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0e42884_53956d91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-08-12T00:01:17Z",
+      "side": 1,
+      "message": "There was a bmcweb patch here: https://gerrit.openbmc.org/c/openbmc/bmcweb/+/44570\n\nI only have a few hardcoded hacks to entity-manager that I used to get the example busctl invocations, but you could add the associations to phosphor-inventory-manager today to get a working proof of concept.",
+      "parentUuid": "ccc06744_85c99808",
+      "revId": "8fdf3b8436f5266769fdf674d7ed60b9eb8b72b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7c4bb9d_25bf9594",
@@ -77,6 +95,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af6529c0_4f686217",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-08-12T00:01:17Z",
+      "side": 1,
+      "message": "I originally wanted to focus this initial design on topology involving Chassis objects from EM and PIM, but I can add a note about other associations too",
+      "parentUuid": "a7c4bb9d_25bf9594",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 34
+      },
+      "revId": "8fdf3b8436f5266769fdf674d7ed60b9eb8b72b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0443115c_a6501c4e",
@@ -90,6 +132,30 @@
       "writtenOn": "2022-08-09T17:32:42Z",
       "side": 1,
       "message": "typo*",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 10
+      },
+      "revId": "8fdf3b8436f5266769fdf674d7ed60b9eb8b72b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4864601a_9450ec17",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-08-12T00:01:17Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "0443115c_a6501c4e",
       "range": {
         "startLine": 56,
         "startChar": 0,
@@ -171,6 +237,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93612652_3e1a97e9",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-08-12T00:01:17Z",
+      "side": 1,
+      "message": "We shouldn\u0027t need to include the system name in the type, so I\u0027ll just have it be Backplane here.\n\nThe other Chassis configurations are only probed if they\u0027re relevant (either found by FRU EEPROMs or based on the other Chassis being present), so we shouldn\u0027t have conflicts.\n\nIn any case, we can figure out the details internal to entity-manager once the general architecture is finalized here.",
+      "parentUuid": "9463917a_87bad21b",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 5
+      },
+      "revId": "8fdf3b8436f5266769fdf674d7ed60b9eb8b72b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4913fbf_3ee5e532",
@@ -184,6 +274,30 @@
       "writtenOn": "2022-07-23T18:58:08Z",
       "side": 1,
       "message": "I think this linking is good.\n\nPer the previous comment, I think this becomes\n\nExposes: [\n   Type: DownstreamPort\n   PortType: BackplaneConnector\n}\n\n\nWhich, in theory if we have the i2c bus information from the previous exposes, IN THEORY, we could just implicitly generate one if we find an Entity on a declared bus number, because we know that the parent is a \"port\", so if this thing is plugged into that i2c device, we don\u0027t need any additional information about the port type on the device, we know from the parent resource.\n\nWith that said, in terms of initial implementation, this is fine.",
+      "range": {
+        "startLine": 99,
+        "startChar": 79,
+        "endLine": 99,
+        "endChar": 90
+      },
+      "revId": "8fdf3b8436f5266769fdf674d7ed60b9eb8b72b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "818b1a60_4c9ced95",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-08-12T00:01:17Z",
+      "side": 1,
+      "message": "Changed it so the D-Bus association types will just be inferred based on the inventory object types. e.g. two Chassis objects would get contains/containedBy, a Chassis and PowerSupply would get powers/poweredBy, etc\n\nFor I2C, let\u0027s defer that for later since it\u0027s only relevant to entity-manager and not the wider architecture of this design.",
+      "parentUuid": "e4913fbf_3ee5e532",
       "range": {
         "startLine": 99,
         "startChar": 79,
