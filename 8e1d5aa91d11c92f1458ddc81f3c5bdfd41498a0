@@ -286,6 +286,30 @@
       },
       "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ac768ea_4c43c0f4",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-12T16:02:00Z",
+      "side": 1,
+      "message": "\u003e I\u0027ve tried to ask you about alternative paths, partially because I don\u0027t even fully understand what your \"use case\" is or what your \"proposal\" is, and you\u0027ve come back with \"I guess you don\u0027t want to support us?\". \n\nApologize let you feel that. I am actually just want to see your ideas. And this conversation is what I want to see, since it can help improve the design and move things forward. What I really don\u0027t want to see is a design gets no feedbacks and becomes stuck.\n\n\u003e Frankly, this design comes off as the typical \"we have a bunch of code we wrote 2 years ago without any insight from the rest of the community and now we want to foist onto the community for long-term maintenance so we are trying to justify the design decisions we made 2 years ago without any real alternatives\".\n\nActually, it\u0027s not the case. We don\u0027t yet have an implementation internally and this design is not trying to make some internal codes public. It is to propose something new directly in upstream to satisfy our future need.\n\n\u003e Why do we need to interact _directly_ with bmcweb for this functionality?  Yes, this is about Redfish *today* but there is no reason why we wouldn\u0027t want to have dynamic users supported in other interfaces down the road (or by other companies).  (I, for instance, would like my users to be able to use both mTLS/Redfish and SSH using our centralized certificate management system and clearly I also don\u0027t want to \u0027useradd\u0027 everyone in the company on each BMC).\n\nGood question. Could you point out other alternatives? If there is a daemon that accept adding user dynamically without building a new image, and doesn\u0027t require password (password is not a thing in our use case), I am really glad to take a look at that option. This also makes things easier.\n\n\u003e We already have some amount of dynamic users and roles using LDAP.  Why are you not able to build on top of that?  Why are you not able to follow a similar design pattern at least?  Stated another way: I\u0027m pretty sure bmcweb already handles LDAP-based users; why isn\u0027t this transparent from bmcweb\u0027s perspective and just a new \"dynamic users\" method from the BMC\u0027s perspective.\n\nYes, I got your main point of the discussion: why do we make BMCWeb keep the state of mapping user to Redfish role; why not make this transparent. \n\nHow does existing LDAP based uses work? Does it require adding users upfront at compile time? Does it require reboot? Do you have a link to existing implementation? \n\nAgain, I am open and actually prefer to put managing user to redfish role mapping out of BMCWeb.\n\n\u003e Why do you explicitly want to avoid using Linux\u0027s authentication mechanisms and insert your own into bmcweb?  We _could_ have done the same thing for IPMI a long time ago when we did it, but we decided not to, and instead we wanted common authentication paths based on well-worn code in Linux (ie. PAM).  Your proposal is a drift from this overall project direction and so we need to justify why this is the right direction for the project.\n\nIt\u0027s because it\u0027s unnecessary and our previous attempt on this needs to define users at compile time. If we can make this \"dynamic\", I am open to investigate and consider more.",
+      "parentUuid": "c8172f64_1a8ff0de",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 76
+      },
+      "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
