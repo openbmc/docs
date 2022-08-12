@@ -262,6 +262,30 @@
       },
       "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8172f64_1a8ff0de",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-08-12T12:24:15Z",
+      "side": 1,
+      "message": "\u003e If not, what\u0027s your idea to support Google\u0027s use case?\n\nI apologize upfront if I come off as blunt in this.\n\n\"I want to enable dynamic users and privileges using mTLS in Redfish\" is a usecase.  \"We have a proprietary blob of json we\u0027ve made up in a particular format that we want to force bmcweb to support\" is an implementation.\n\nI have no problem supporting the above statement as a use-case.  I might even find it acceptable with some discussion to go down your particular implementation proposal.  One major purpose of these designs is to ensure we are adequately exploring the \"Alternatives\" space such that we\u0027re not just throwing unmaintainable features randomly in applications, but that the code base is evolving in a somewhat sustainable and cohesive direction.\n\nI\u0027ve tried to ask you about alternative paths, partially because I don\u0027t even fully understand what your \"use case\" is or what your \"proposal\" is, and you\u0027ve come back with \"I guess you don\u0027t want to support us?\".  Frankly, this design comes off as the typical \"we have a bunch of code we wrote 2 years ago without any insight from the rest of the community and now we want to foist onto the community for long-term maintenance so we are trying to justify the design decisions we made 2 years ago without any real alternatives\".\n\nAgain, I have no problem supporting dynamic mTLS users and roles.  In fact, our company will likely leverage that feature for similar reasons.  My purpose in asking questions is to make sure we\u0027re not one-offing this support in an entirely unmaintainable way.\n\nSo, to restart this discussion in a practical way please elaborate on the following (in the doc):\n\n- Why do we need to interact _directly_ with bmcweb for this functionality?  Yes, this is about Redfish *today* but there is no reason why we wouldn\u0027t want to have dynamic users supported in other interfaces down the road (or by other companies).  (I, for instance, would like my users to be able to use both mTLS/Redfish and SSH using our centralized certificate management system and clearly I also don\u0027t want to \u0027useradd\u0027 everyone in the company on each BMC).\n\n- We already have some amount of dynamic users and roles using LDAP.  Why are you not able to build on top of that?  Why are you not able to follow a similar design pattern at least?  Stated another way: I\u0027m pretty sure bmcweb already handles LDAP-based users; why isn\u0027t this transparent from bmcweb\u0027s perspective and just a new \"dynamic users\" method from the BMC\u0027s perspective.\n\n- Why do you explicitly want to avoid using Linux\u0027s authentication mechanisms and insert your own into bmcweb?  We _could_ have done the same thing for IPMI a long time ago when we did it, but we decided not to, and instead we wanted common authentication paths based on well-worn code in Linux (ie. PAM).  Your proposal is a drift from this overall project direction and so we need to justify why this is the right direction for the project.",
+      "parentUuid": "2e5d1633_fc5c99e8",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 76
+      },
+      "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
