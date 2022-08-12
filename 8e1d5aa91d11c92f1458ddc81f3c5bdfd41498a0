@@ -310,6 +310,30 @@
       },
       "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64d6310a_d8bd34de",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-08-12T16:29:03Z",
+      "side": 1,
+      "message": "\u003e We don\u0027t yet have an implementation internally and this design is not trying to make some internal codes public.\n\n👍\n\n\u003e How does existing LDAP based uses work? Does it require adding users upfront at compile time? Does it require reboot? Do you have a link to existing implementation? \n\nLDAP does not require listing the users upfront, no.  Take a look at phosphor-user-manager and nss-pam-ldapd.  (also `git grep ldap -- meta-phosphor` is probably a helpful place to look).  Ultimately, LDAP installs a PAM module that facilitates authentication / group lookup from an LDAP server which is configured by phosphor-user-manager.\n\nYou should see bmcweb uses `pamAuthenticateUser` (etc.) for the login validation.  If we install a different PAM module for mTLS-based authentication, there is a good chance bmcweb won\u0027t know any different (a bit of hand-waving here).\n\nIBM has a custom PAM module they wrote for being able to create time-based credentials for their service admins.  You might be able to use that as a reference as well.\n\nI would strongly suspect your own devserver at Google has some sort of dynamic accounts set up based on certificates.  You could probably investigate how that works.",
+      "parentUuid": "7ac768ea_4c43c0f4",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 76
+      },
+      "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
