@@ -334,6 +334,30 @@
       },
       "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4024ee61_3434e00f",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-12T20:03:02Z",
+      "side": 1,
+      "message": "Patrick asked some relevant questions about the proposed implementation that haven\u0027t been answered, and jumping to \"what\u0027s your idea to support Google\u0027s use case?\" takes away from this design doc process.  Patrick is still trying to understand what Googles use case is.  We all have similar goals, the point of a design doc is to find the common ground.\n\nThe questions I don\u0027t see answered are:\n1. What component is intending to call this dbus API?\n2. Why the sudden design change that bmcweb now needs dbus methods, which to be clear, it DOES NOT support today.   Certificates and SIGHUP are not the same as dbus method calls beyond \"they\u0027re both forms of IPC\".\n3. What does any of this has to do with mutual TLS, which OpenBMC already has support for, but doesn\u0027t seem to be referenced in this conversation or background for the design doc.\n4. Why the existing solutions (IE PAM) don\u0027t work in this case.\n5. Why LDAP doesn\u0027t work in this case.\n\nLets try to get those questions answered, and quite possibly the design doc updated.\n\n\u003e  What I really don\u0027t want to see is a design gets no feedbacks and becomes stuck.\n\nThis design has been up for less than 3 days and has had multiple rounds of feedback.  At this point we\u0027re in no danger of getting stuck.",
+      "parentUuid": "2e5d1633_fc5c99e8",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 76
+      },
+      "revId": "8e1d5aa91d11c92f1458ddc81f3c5bdfd41498a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
