@@ -312,6 +312,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec380743_dc18efbc",
+        "filename": "designs/physical-topology.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-08-16T03:10:56Z",
+      "side": 1,
+      "message": "\u003e So just to be clear, I\u0027m in the associations camp, but why can\u0027t we do both? Say the path is always defined by chassis contains/contained-by, but *also* provide that relationship as an association?\n\nI addressed that later in this section: \"Additionally,\nphosphor-inventory-manager configurations can organize their D-Bus objects in\nwhatever way makes sense to the author of those configurations, but the\nAssociation properties would still need to be present in order for inventory\nconsumers to understand the topology.\"\n\nI\u0027d prefer not to force a particular organization of D-Bus objects, but if we want to go that route it could be added as a feature directly to entity-manager without impacting any of the other parts of the system mentioned in this design.\n\nphosphor-inventory-manager already lets you organize objects however you choose, but there could be a feature added in the future that generates Associations based on the path hierarchies that the configuration specifies\n\n\u003e That way generic code can always use associations but for quick informal hacks we can use path as a proxy for chassis location.\n\nIf we really want this, I also mentioned a proposal for a tool that could generate hierarchical views of different types of relationships to help humans understand them. Scripts could presumably use this tool too.\n\nNote that this isn\u0027t planned for the initial implementation however.",
+      "parentUuid": "e6ac484c_0c30139e",
+      "range": {
+        "startLine": 88,
+        "startChar": 38,
+        "endLine": 89,
+        "endChar": 23
+      },
+      "revId": "8fd63293659c49b919bb80ca1ca0b5847ea4211b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a5cb95c_a49779ae",
         "filename": "designs/physical-topology.md",
         "patchSetId": 2
