@@ -16,6 +16,115 @@
       "message": "One more question (but nothing that will hold up the code review) are there any pieces out of fwupd that we could use?  A quick search doesn\u0027t show any mention of pmbus, but it does have a well defined plugin interface for doing firmware updates that might give us a lot more capability really quickly, and would let us share code with normal linux distributions.\n\nMostly just food for thought.",
       "revId": "e5ff0c73d433e7853c7eed0d9a627c9c81780f75",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32344b67_96129019",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-16T16:48:13Z",
+      "side": 1,
+      "message": "I think need to find an efficient way to synchronise between dbus-sensors and item-updater without any lacking.\n\ndifficult to maintain code if software update code/operations moved to PSUSensor,\n\nsoftware update code is duplicated in dbus-sensors.\n ",
+      "revId": "e5ff0c73d433e7853c7eed0d9a627c9c81780f75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb5b4f20_470d38b5",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-16T16:48:13Z",
+      "side": 1,
+      "message": "Phosphor-bmc-code-mgnt repo is specific for software update. Instead moving software update operations or item-updater related stuffs to PSUSensor / dbus-sensors, Can we implement a synchronisation logic in dbus-sensors/phosphor-bmc-code-mgnt with creating dbus interfaces or dbus signals to dbus-sensors when software update is in progress ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 37
+      },
+      "revId": "e5ff0c73d433e7853c7eed0d9a627c9c81780f75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b35f9c1_8c7dfb22",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-16T16:48:13Z",
+      "side": 1,
+      "message": "you mean, need to move the entire operations of phosphor-bmc-code-mgnt to dbus-sensors ?",
+      "range": {
+        "startLine": 38,
+        "startChar": 1,
+        "endLine": 40,
+        "endChar": 38
+      },
+      "revId": "e5ff0c73d433e7853c7eed0d9a627c9c81780f75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00adb39c_88884685",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-16T16:48:13Z",
+      "side": 1,
+      "message": "Why PSUSensor ? why not other sensors of dbus-sensors ? \nCan we create a new daemon in dbus-sensors to support this ?",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 62
+      },
+      "revId": "e5ff0c73d433e7853c7eed0d9a627c9c81780f75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77783912_403972db",
+        "filename": "designs/psusensor-fw-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-16T16:48:13Z",
+      "side": 1,
+      "message": "Can you elaborate here the supported devices of firmware update ?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 61
+      },
+      "revId": "e5ff0c73d433e7853c7eed0d9a627c9c81780f75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
