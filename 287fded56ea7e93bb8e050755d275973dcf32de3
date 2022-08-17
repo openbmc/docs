@@ -70,6 +70,24 @@
       "parentUuid": "28f19b17_be2a584a",
       "revId": "287fded56ea7e93bb8e050755d275973dcf32de3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1953badd_362de916",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-17T14:50:37Z",
+      "side": 1,
+      "message": "https://gerrit.openbmc.org/c/openbmc/docs/+/50509\n\nThis design doc explains about Firmware updates and telemetry for i2c devices only. This design proposed to move the phosphor-bmc-code-mgnt/Itemupdater code and functionalities to the dbus-sensors to avoid the synchronisation and run time issues while doing firmware updating and polling sensors values. \n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/52234\n\nThis design doc explains about PMBus based devices (PSUSensor) only. This design proposed to move the phosphor-bmc-code-mgnt/Itemupdater code and functionalities to the dbus-sensors(PSUSensor) to avoid the synchronisation and run time issues while doing firmware updating and polling sensors values. Also, it is more specific to PMBus device and not talked about other devices firmware updates.\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/54589\n\nThis design doc explains about enhancement/improvement in the current implementation of firmware update. It proposes the new Simple API\u0027s \u0027UpdateFirmware\u0027, \u0027SignaturePath\u0027 instead of itemUpdater/ImageManager interfaces and API\u0027s.\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/55290\n\nThis design doc explains about shell based firmware update. This proposes, D-Bus APIs to provide firmware update and version reporting capabilities and simple firmware update API (UpdateFirmware and GetFirmwareUpdateStatus) and the Software.Version interface to command line utilities for firmware updates using a new daemon.\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/55287\n\nThis design doc explains about Generic firmware update workflow. It proposes to implement the generic firmware update and flashing for all the device and flexible workflow for read/write and verifying the image. This design talks about update workflow will be split into three sections - Stage, Activate, Update.\n\n\nOur designs is specific to firmware update of multiple devices and custom flash tool. I think, this is align and relevant to with the last two design docs only \n\nneed to discuss on this with community and google team to merge into common framework.",
+      "parentUuid": "288d99a6_b608b011",
+      "revId": "287fded56ea7e93bb8e050755d275973dcf32de3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
