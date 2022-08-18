@@ -16,6 +16,349 @@
       "message": "Uploaded patchset #4 (mis-fire - ended up being same as #3) and patchset #5 (the real thing). \n\nI have marked all previous comments on patchset #3 as \"Resolved\", since our new patchset (#5) has addressed them all -- hopefully adequately.  Apologies if that was the wrong thing to do: it was not clear to me from the Gerrit docs/protocol who should mark a comment-stream as \"Done\" - the original commenter or the responder.\n  \nLooking forward to your further comments.",
       "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e94b27c_adfe6b00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "I think this patchset moves close toward the main idea which I comprehend to be:\n\u003e This is a way to add SELinux to your OpenBMC image so you can run SELinux in permissive mode to can collect SELinux event logs.  The logs are need to create SELinux policies with the intention of eventually enabling  SELinux controls, and some test cases will help generate the logs, but anything beyond enabling SELinux so logs can be collected is beyond the scope of this design.\n\nBut I would like to see that more clearly.  IMHO, all other intentions should be dropped from this design document.  The main idea (above) is enough.\n\nAlso I think the document should be re-worded to be read for the point of view of someone reading it after it was already merged into openbmc/docs.  I\u0027ve pointed out (in review comments) some places where the language is from the point of view of someone trying to implement this.",
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3ce1de9_02707dfe",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "It seems like this should be single date (because this design has not been merged).  I personally update to the current date when I push a new patchset.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce8ce78c_66744a21",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "This paragraph seems unnecessary.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 24
+      },
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05215191_b0931e98",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "I like the motivational subsection, but can we tighten up the problem description to get across the following points?:\n- BMC processes have more authority than they need (specifically including access the the network and use of D-Bus).\n- This unnecessary privilege is violation of the \"principle of least privilege\".\n- Need to lock down this access.\n- A non-goal is to move processes away from running as the root user.  Doing so would be another way to remove unnecessary capabilities from BMC processes, and move them toward the least privilege, but that is not what this design is for.",
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90bb4936_2ce6e9d1",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Suggested re-wording: \nThe requirements are to lock down the elements that pose the greatest risk (in terms of (probability * impact).  Specifically, ...",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 71
+      },
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a40e35dc_25fa8b11",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Please clarify: Suggested wording: Collecting and extracting SELinux logs is needed to enable off-line policy refinement.  However, creating SELinux policy it outside the scope of this design.",
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e73e310b_8683ca84",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Do we need a distro fearture for this?  If so, an we re-use an existing one?  For example, do we need something like:\n\nThe design is for a new distro feature, openbmc-selinux, disabled by default, which when enabled will bring in the underlying Yocto SELinux support and OpenBMC SELinux support built on top if that.\n\nMost OpenBMC recipes will not need to know if SELinux is present in the image and so do not need to be sensitive to if the feature is present..",
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a6b1475_722326e2",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Wording change:\nThe next change is to create a new layer \u0027meta-phosphor-selinux\u0027...\n\nIMHO, the design should be written from the perspective of someone reading it in the openbmc/docs repo.  So instead of proposing a new layer, say there is a new layer, etc.",
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58f31645_bf5978a3",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Suggest wording:\nThe next part of the design is to change target-specific recipes to pick up the selinux support.  This is done in the usual way.",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 19
+      },
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4aa43b36_e2afc3f4",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Can you move this statement to the top of the design section?",
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc7d8162_31573fe1",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "This design serves as the primary documentation for OpenBMC\u0027s user of SELinux.  No additional documentation is planned.",
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a300e659_ac157fb0",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Reported by whom?  Is there a performance study to show how much overhead this adds to a fast D-Bus call?",
+      "range": {
+        "startLine": 195,
+        "startChar": 22,
+        "endLine": 195,
+        "endChar": 41
+      },
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59cceeed_a25557f3",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Suggest wording change: Recommend as 64Mb FLASH...",
+      "range": {
+        "startLine": 238,
+        "startChar": 4,
+        "endLine": 238,
+        "endChar": 40
+      },
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "614b3609_3800a21a",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Suggest: There are two ways to reduce image footprint size:",
+      "range": {
+        "startLine": 239,
+        "startChar": 3,
+        "endLine": 239,
+        "endChar": 75
+      },
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d27c2a1c_a71f8f41",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Will the new meta-phosphor-selinux layer be in the openbmc meta-data?",
+      "range": {
+        "startLine": 259,
+        "startChar": 44,
+        "endLine": 259,
+        "endChar": 46
+      },
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19b8b208_59bed882",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Can we use an existing SELinux test suite for these?",
+      "range": {
+        "startLine": 266,
+        "startChar": 0,
+        "endLine": 266,
+        "endChar": 25
+      },
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28b5cbdf_e3a84b6c",
+        "filename": "designs/selinux.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-18T01:04:19Z",
+      "side": 1,
+      "message": "Is this intended as a baseline OpenBMC code coverage suite?  Meaning: Aspiring to cover *all* BMC functions, intended to generate SELinux log events.  If so, we should state that.\n\nI suggest:\nNo additional test cases are needed (because SELinux is running in permissive mode).  The following test suite is suggested to exercise BMC functions with the goal toward generating all SELinux events.  The test suite is needed to generate events, as a way toward generating appropriate SELinux policies.  But note that creating SELinux policies is out of scope for this design.",
+      "revId": "b88c526d4af4d5d268e106664fc5547f27d2c5c7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
