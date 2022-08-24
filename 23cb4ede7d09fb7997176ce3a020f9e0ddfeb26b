@@ -181,6 +181,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "31448c7d_f4f8f849",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-24T04:06:57Z",
+      "side": 1,
+      "message": "I know In BaseRegistry: LogService uses a subordinate override; password uses a property override.\n\nJust like the other thread I replied, static overrides (implementing whatever overrides in the BaseRegistry) shall be supported. Changing overrides at runtime may be supported. Is it clear now?",
+      "parentUuid": "0be9281b_84cf82c1",
+      "range": {
+        "startLine": 174,
+        "startChar": 55,
+        "endLine": 175,
+        "endChar": 35
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59aa9d4c_42d94d50",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -204,6 +228,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7fd20d9_c72b0390",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-24T04:06:57Z",
+      "side": 1,
+      "message": "I don\u0027t mean privilege set. If you look at the current phosphor-user-manager, it uses a linux group to model a Redfish role.\n\n\"priv-admin\", \"priv-operator\", \"priv-user\" are all linux groups on system. Then in bmcweb, these groups are mapped into hardcoded Redfish privilege sets (the mapping table is in BMCWeb).\n\nIn an ideal case, I would like phosphor-user-manager owns the mappings as well, so given a user, phosphor-user-manager returns the set of Redfish privileges directly. We will have \"priv-configure-self\", \"priv-configure-components\", \"priv-configure-user\", etc as linux groups. And a user can be in multiple groups (meaning they have corresponding Redfish privileges).\n\nIf you agree with above, I can propose this in the design. Note this needs new interface changes in phosphor-user-manager, so it returns a string array for Redfish privileges. Otherwise, I don\u0027t find a good way to do user to Redfish role to Redfish privileges mapping, unless we do what I have proposed: \"an OEM Redfish role only supports being configured with a single Redfish privilege\".\n\nIf you don\u0027t agree, do you have better ideas?",
+      "parentUuid": "59aa9d4c_42d94d50",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 18
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0894a8eb_d284c877",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -215,6 +263,30 @@
       "writtenOn": "2022-08-24T00:13:04Z",
       "side": 1,
       "message": "If this is part of your design doc, then upstreaming of this daemon is a prerequisite for your design, and definitely isn\u0027t \"out of scope\".  Otherwise how would anyone outside of google use the feature?  I\u0027m pretty sure that\u0027s not what you want from an implementation timeline perspective.\n\nRemove this item, and talk through a design that follows the standard.  If it were me, I would allow POST to the PrivilegeRegistry, but I\u0027m open to other ideas.",
+      "range": {
+        "startLine": 215,
+        "startChar": 4,
+        "endLine": 218,
+        "endChar": 7
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "831dd1b1_84d70547",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-24T04:06:57Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t understand. I have said that these interfaces to add local groups are used in creating roles via POST Rest APIs JUST BEFORE this section.\n\nFWIW, I will remove this sub bullet point.",
+      "parentUuid": "0894a8eb_d284c877",
       "range": {
         "startLine": 215,
         "startChar": 4,
@@ -573,6 +645,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93a0356b_64d142a5",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-24T04:06:57Z",
+      "side": 1,
+      "message": "\u003e  Unless a feature is explicitly intended to be runtime configurable\n\nIsn\u0027t this feature fall into this category?\n\nDo you have other solutions?",
+      "parentUuid": "00b26e04_bba3dec9",
+      "range": {
+        "startLine": 323,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 55
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "066cc9fb_d1f16eea",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -584,6 +680,30 @@
       "writtenOn": "2022-08-24T00:13:04Z",
       "side": 1,
       "message": "What does \"compact version\" mean?",
+      "range": {
+        "startLine": 323,
+        "startChar": 56,
+        "endLine": 324,
+        "endChar": 58
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1633768d_3f336129",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-24T04:06:57Z",
+      "side": 1,
+      "message": "indent. basically json.dump(-1)",
+      "parentUuid": "066cc9fb_d1f16eea",
       "range": {
         "startLine": 323,
         "startChar": 56,
