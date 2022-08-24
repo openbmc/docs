@@ -1,0 +1,716 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "460632a5_9979bbd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Didn\u0027t quite make it all the way through, but figured quick feedback was important.\n\nThis is already looking MUCH better, so thank you for that.  This version:\n1. Accounts for what exists today.\n2. Attempts to add to it in a way that can be reused by others.",
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8f94ed7_b979ba17",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "I think you mistyped.  OEM roles can be added via post to RolesCollection, not AccountService.  POST to AccountService creates users.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 29
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c549cec9_a18a72e6",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Nit, probably don\u0027t need to put google here.  These use cases aren\u0027t specific to us.",
+      "range": {
+        "startLine": 133,
+        "startChar": 9,
+        "endLine": 133,
+        "endChar": 15
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45da0968_9ebc8a6f",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Can you call out that this is the DMTF-defined defaults?  You might also mention they are derived from IPMI.",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 29
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c16cb7e1_27c464b5",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "What does this mean?",
+      "range": {
+        "startLine": 158,
+        "startChar": 28,
+        "endLine": 159,
+        "endChar": 13
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56110a37_b0068614",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Can we just rephrase to:\n\nbmc will parse a given registry on input, and reject registries that:\n1. Lock all users out of the BMC\n2. Are improperly formed.\n3. Would prevent the bmc from hosting a correct redfish tree.\n\nFor example, if I POSTed a PrivilegeRegistry that locked everyone out of serviceroot, that would be a problem.",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 72
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "998150ef_31d7c8fe",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Need some additional requirements on maintainability if users can select these things.  Namely that new schema support can be added without modifying all custom users privilege registry.  This will require some additional requirements on how the behavior of that works.",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 21
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0be9281b_84cf82c1",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Given that PrivilegeRegistry defines this as a requirement, I don\u0027t think this is a may, I think it\u0027s a \"shall\"\n\nOtherwise even your use cases I don\u0027t think can be met.  LogServices use a subordinate override.",
+      "range": {
+        "startLine": 174,
+        "startChar": 55,
+        "endLine": 175,
+        "endChar": 35
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59aa9d4c_42d94d50",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "???  This doesn\u0027t seem in line with how Redifsh specifies privilege registry implementations.  Maybe you mean privilege set?",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 18
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0894a8eb_d284c877",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "If this is part of your design doc, then upstreaming of this daemon is a prerequisite for your design, and definitely isn\u0027t \"out of scope\".  Otherwise how would anyone outside of google use the feature?  I\u0027m pretty sure that\u0027s not what you want from an implementation timeline perspective.\n\nRemove this item, and talk through a design that follows the standard.  If it were me, I would allow POST to the PrivilegeRegistry, but I\u0027m open to other ideas.",
+      "range": {
+        "startLine": 215,
+        "startChar": 4,
+        "endLine": 218,
+        "endChar": 7
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d0adebf_2ea85959",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Just so you\u0027re aware, we\u0027ve talked about and there are patchsets out to move back to a model that doesn\u0027t\u0027 require a dbus call per request.  I suspect some of that design will intertwine with yours, but doesn\u0027t make sense to put in a design doc.",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 61
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c67efc8_dea7542c",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "can we make this less subtle.  Can the oem privilege groups just start with priv-oem-\u003coemname\u003e so that we\u0027re not treating oem differently?",
+      "range": {
+        "startLine": 239,
+        "startChar": 31,
+        "endLine": 242,
+        "endChar": 34
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cda6d1d_d3bb69cc",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "How would these privileges map to something like PLDM?  Do we need to come up with a naming convention here?",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 73
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59d5d9c6_341dec48",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "FWIW, I would really like to see default OEM routes added for these, but we can treat that as a followup patch.",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 34
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "def345b8_e091e1ad",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "BMCWEB_ROUTE is not specific to redfish.  You should not add Redfish-specific things (like subordinate targets) to that API.",
+      "range": {
+        "startLine": 252,
+        "startChar": 21,
+        "endLine": 253,
+        "endChar": 9
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cfdb909_a1358b81",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "This is what I think doesn\u0027t work.  What happens if IBM has a subordinate override for EthernetInterfaces, and Google doesn\u0027t?  Which option gets put into code?\n\nWhat if a user declares a subordinate override for something that doesn\u0027t have the optional flag.\n\nWe know at compile time what all the routes are, we need to come up with a method where it starts by checking subordinate overrides for the route, then looks up by type.  This will likely need to be generated from the schemas to be maintainable over time (the same as we found that manually adding privilege registry entries was not maintainable).\n\nPlease take another attempt at this paragraph.",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 21
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "833f450b_4d164301",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Today, the hardcoding doesn\u0027t matter because we handle it correctly in explicit code, given that we know the privilege registry at compile time.  If that changes, that means that we need to implement a generic subordinate override system.",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 30
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8847bc14_62fd9035",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "This data already exists in the router.  Please don\u0027t add yet another map structure, just add a method to update the existing router structures.",
+      "range": {
+        "startLine": 272,
+        "startChar": 40,
+        "endLine": 274,
+        "endChar": 28
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f37ba893_9be00e75",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Considering that the redfish base registry has subordinate overrides that are important to ANY implementation (including ours), This is a non starter.  Feel free to stack up the patches however you like, but we CANNOT be changing default behavior for existing systems, and whatever implementation merges to master must be able to load and correctly run the base privilege registry, considering that\u0027s what DMTF publishes, and that is the default we\u0027ll have to expose from PrivilegeRegistry.",
+      "range": {
+        "startLine": 286,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 45
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7c4abea_965edf5d",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "This doesn\u0027t work.  The overrides are currently hardcoded in code.",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 15
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68121df9_ff7632a7",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "?  If you inject them into code, they run after.  I\u0027m open to seeing how this happens in a patchset, but setupRedfishRoutes definitely runs after the privileges.",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 57
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d2ace7d_ad63f562",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "I\u0027m curious to see how this will work in code with no binary size or memory impact, but I\u0027m open to the possibility.",
+      "range": {
+        "startLine": 312,
+        "startChar": 0,
+        "endLine": 315,
+        "endChar": 33
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd170dd6_4af7e103",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Again, stack your patches however you like, but given that this is:\nA. A security feature that effects the whole system.\nB. A well defined specification feature.\n\nWe can\u0027t be merging something that doesn\u0027t follow the spec.",
+      "range": {
+        "startLine": 318,
+        "startChar": 20,
+        "endLine": 320,
+        "endChar": 37
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00b26e04_bba3dec9",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Reading a large json file from disk at startup ignores:\nhttps://github.com/openbmc/bmcweb/blob/master/DEVELOPING.md#startup-times\n\nThese rules were generated for good reason, and I don\u0027t think should be ignored.",
+      "range": {
+        "startLine": 323,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 55
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "066cc9fb_d1f16eea",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "What does \"compact version\" mean?",
+      "range": {
+        "startLine": 323,
+        "startChar": 56,
+        "endLine": 324,
+        "endChar": 58
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22d82dfa_ee0496b9",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "ease don\u0027t add a new file for this.  This is what bmcweb_persistent_data.json is for, and does not need to take the form of anything specific to a given system.",
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2f4b63c_9262a4c8",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "what are you basing this off?  I thought we were at the limit for most systems?",
+      "range": {
+        "startLine": 331,
+        "startChar": 44,
+        "endLine": 332,
+        "endChar": 27
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "009fa2d5_d6b0a110",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Not seeing where that\u0027s true.  From the schema:\n\n\u003cProperty Name\u003d\"SubordinateOverrides\" Type\u003d\"Collection(PrivilegeRegistry.v1_0_0.Target_PrivilegeMap)\" Nullable\u003d\"false\"\u003e\n\u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The privilege overrides of the subordinate Resource.\"/\u003e\n\u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This property shall contain the privilege overrides of the subordinate Resource. The target lists are identified by Resource type.\"/\u003e\n\u003c/Property\u003e\n\u003cProperty Name\u003d\"ResourceURIOverrides\" Type\u003d\"Collection(PrivilegeRegistry.v1_0_0.Target_PrivilegeMap)\" Nullable\u003d\"false\"\u003e\n\u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The privilege overrides of Resource URIs.\"/\u003e\n\u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This property shall contain the privilege overrides of Resource URIs. The target lists the Resource URI and the new privileges.\"/\u003e\n\u003c/Property\u003e\n\u003cProperty Name\u003d\"PropertyOverrides\" Type\u003d\"Collection(PrivilegeRegistry.v1_0_0.Target_PrivilegeMap)\" Nullable\u003d\"false\"\u003e\n\u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The privilege overrides of properties within a Resource.\"/\u003e\n\u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This property shall contain the privilege overrides of properties, such as the `Password` property in the `ManagerAccount` Resource.\"/\u003e\n\u003c/Property\u003e\n\u003cProperty Name\u003d\"OperationMap\" Type\u003d\"PrivilegeRegistry.v1_0_0.OperationMap\" Nullable\u003d\"false\"\u003e\n\u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"List mapping between HTTP methods and privilege required for the Resource.\"/\u003e\n\u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This property shall list the mapping between HTTP methods and the privilege required for the Resource.\"/\u003e\n\u003c/Property\u003e\n\nI do not see OData.Permission/Read on any of those.  maybe I\u0027m missing it?\n\nMy understanding is that other implementations have implemented this already.",
+      "range": {
+        "startLine": 346,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 66
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39bb4796_531c642b",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Why would we want to support PATCH over PUT (ie, requiring the user to completely replace the PrivilegeRegistry each time).  PATCH seems a lot more error prone?",
+      "range": {
+        "startLine": 347,
+        "startChar": 46,
+        "endLine": 349,
+        "endChar": 24
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f64f0fe_c0fc40ca",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "Considering we need implementations either way, who cares if it\u0027s custom or our own?",
+      "range": {
+        "startLine": 364,
+        "startChar": 60,
+        "endLine": 365,
+        "endChar": 70
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3981a55_a4e3e95a",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "I see no mention of ConfigureSelf, which requires special handling currently hardcoded.\n\nHow are roles added at compile time?\nHow are oem privileges added at compile time?",
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c64e0b9_462347d0",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-24T00:13:04Z",
+      "side": 1,
+      "message": "This can be removed.  This doc doesn\u0027t worry about downstream systems.",
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
