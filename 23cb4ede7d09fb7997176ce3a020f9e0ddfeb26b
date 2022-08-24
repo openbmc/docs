@@ -414,6 +414,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "009e2643_2321ad2c",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-24T04:45:33Z",
+      "side": 1,
+      "message": "Sorry, this is a fully internal macro, \"Route\" is a fully internal (in terms of bmcweb) , why can\u0027t we add APIs to it to support new features. \n\nNo Redfish routes shouldn\u0027t call these C++ function `entity`, `subordinateTargets` at all. Isn\u0027t this something we can guarantee via code review?\n\nI don\u0027t understand why you reject an idea like this? Do you have a better way to make a route know its own entity and what entities it\u0027s subordinate to easily?",
+      "parentUuid": "def345b8_e091e1ad",
+      "range": {
+        "startLine": 252,
+        "startChar": 21,
+        "endLine": 253,
+        "endChar": 9
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8cfdb909_a1358b81",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -682,6 +706,30 @@
       "writtenOn": "2022-08-24T00:13:04Z",
       "side": 1,
       "message": "Again, stack your patches however you like, but given that this is:\nA. A security feature that effects the whole system.\nB. A well defined specification feature.\n\nWe can\u0027t be merging something that doesn\u0027t follow the spec.",
+      "range": {
+        "startLine": 318,
+        "startChar": 20,
+        "endLine": 320,
+        "endChar": 37
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d6bad57_52179e0f",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-24T04:45:33Z",
+      "side": 1,
+      "message": "Again, I won\u0027t do implementation until we have this design approved.\n\nPlease see the other thread about why this design doesn\u0027t break \"whole system\". We can discuss there.",
+      "parentUuid": "cd170dd6_4af7e103",
       "range": {
         "startLine": 318,
         "startChar": 20,
