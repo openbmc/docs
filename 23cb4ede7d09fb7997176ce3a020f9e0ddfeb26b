@@ -434,6 +434,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b12df80c_cd6bb272",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-24T02:18:12Z",
+      "side": 1,
+      "message": "I didn\u0027t say anywhere that I propose to not implement base privilege registry.\n\n\"Static\" here means we only implement the Overrides in base privilege registry and don\u0027t support changing Overrides at run time.\n\nI can\u0027t stack patches without this design being approved. Developing codes without getting agreement in design and then getting considerable rework is a waste of time of both maintainers and myself.",
+      "parentUuid": "f37ba893_9be00e75",
+      "range": {
+        "startLine": 286,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 45
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a7c4abea_965edf5d",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -623,6 +647,30 @@
       "writtenOn": "2022-08-24T00:13:04Z",
       "side": 1,
       "message": "Not seeing where that\u0027s true.  From the schema:\n\n\u003cProperty Name\u003d\"SubordinateOverrides\" Type\u003d\"Collection(PrivilegeRegistry.v1_0_0.Target_PrivilegeMap)\" Nullable\u003d\"false\"\u003e\n\u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The privilege overrides of the subordinate Resource.\"/\u003e\n\u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This property shall contain the privilege overrides of the subordinate Resource. The target lists are identified by Resource type.\"/\u003e\n\u003c/Property\u003e\n\u003cProperty Name\u003d\"ResourceURIOverrides\" Type\u003d\"Collection(PrivilegeRegistry.v1_0_0.Target_PrivilegeMap)\" Nullable\u003d\"false\"\u003e\n\u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The privilege overrides of Resource URIs.\"/\u003e\n\u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This property shall contain the privilege overrides of Resource URIs. The target lists the Resource URI and the new privileges.\"/\u003e\n\u003c/Property\u003e\n\u003cProperty Name\u003d\"PropertyOverrides\" Type\u003d\"Collection(PrivilegeRegistry.v1_0_0.Target_PrivilegeMap)\" Nullable\u003d\"false\"\u003e\n\u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The privilege overrides of properties within a Resource.\"/\u003e\n\u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This property shall contain the privilege overrides of properties, such as the `Password` property in the `ManagerAccount` Resource.\"/\u003e\n\u003c/Property\u003e\n\u003cProperty Name\u003d\"OperationMap\" Type\u003d\"PrivilegeRegistry.v1_0_0.OperationMap\" Nullable\u003d\"false\"\u003e\n\u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"List mapping between HTTP methods and privilege required for the Resource.\"/\u003e\n\u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This property shall list the mapping between HTTP methods and the privilege required for the Resource.\"/\u003e\n\u003c/Property\u003e\n\nI do not see OData.Permission/Read on any of those.  maybe I\u0027m missing it?\n\nMy understanding is that other implementations have implemented this already.",
+      "range": {
+        "startLine": 346,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 66
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90c9c361_7de7ac8d",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-08-24T02:18:12Z",
+      "side": 1,
+      "message": "A big gap between you and me is that whether PrivilegeRegistry is read/write; if you read the spec, you will find permission annotations only exist for properties that are not structured properties; SubordinateOverrides is a structured properties, so you don\u0027t see a permission annotations.\n\nInstead, please see the type of SubordinateOverrides, Collection(PrivilegeRegistry.v1_0_0.Target_PrivilegeMap), and look into Target_PrivilegeMap, \n\n```\n\u003cComplexType Name\u003d\"Target_PrivilegeMap\"\u003e\n\u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"This type describes a mapping between one or more targets and the HTTP operations associated with them.\"/\u003e\n\u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This type shall describe a mapping between one or more targets and the HTTP operations associated with them.\"/\u003e\n\u003cProperty Name\u003d\"Targets\" Type\u003d\"Collection(Edm.String)\"\u003e\n\u003cAnnotation Term\u003d\"OData.Permissions\" EnumMember\u003d\"OData.Permission/Read\"/\u003e\n\u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The set of URIs, Resource types, or properties.\"/\u003e\n\u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This property shall contain the array of URIs, Resource types, or properties. For example, `/redfish/v1/Systems/1`, `Manager`, or `Password`. When the Targets property is not present, no override is specified.\"/\u003e\n\u003c/Property\u003e\n\u003cProperty Name\u003d\"OperationMap\" Type\u003d\"PrivilegeRegistry.v1_0_0.OperationMap\" Nullable\u003d\"false\"\u003e\n\u003cAnnotation Term\u003d\"OData.Description\" String\u003d\"The mapping between the HTTP operation and the privilege required to complete the operation.\"/\u003e\n\u003cAnnotation Term\u003d\"OData.LongDescription\" String\u003d\"This property shall contain the mapping between the HTTP operation and the privilege required to complete the operation.\"/\u003e\n\u003c/Property\u003e\n\u003c/ComplexType\u003e\n```\n\nYou see Targets are Read-only. Then look into OperationMap, you will find all properties are read-only.\n\nIn addition, take a look at this,\n\nhttps://redfishforum.com/thread/328/modify-privilegeregistry\n\nThey said \"I would not expect end clients to be able to modify a privilege registry on a service, but implementations can certainly construct their own privilege registry (as long as you follow the rules of the registry structure). \".\n\nDoes this make sense? You said you have seen systems, what are them? Are they available for testing?\n\nYou also said you are in discussions of this with DMTF, why don\u0027t they put modifying privilegeregistry into the Redfish standard?",
+      "parentUuid": "009fa2d5_d6b0a110",
       "range": {
         "startLine": 346,
         "startChar": 0,
