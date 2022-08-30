@@ -1760,6 +1760,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ddb4f0fc_77376e15",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-08-30T15:12:39Z",
+      "side": 1,
+      "message": "The ConfigureSelf privilege is specified on a property override for the ManagerAccount Password property.\n\nThe weird behavior of the ConfigureSelf privilege is it only effective when the user is accessing their own ManagerAccount.  There are two cases:\n\n1. For example, although the privilege registry allows a user who has only the ConfigureSelf privilege to PATCH the ManagerAccount.Password property, that only applies to *their* password, and not to anyone else\u0027s password.  \u003c-- That behavior is not adequately captured in the spec or in the privilege registry.  This behavior is implicitly understood, and it is implemented in BMCWeb (code in ManagerAccount PATCH operation).\n\n2. There is another similar weird wrinkle in the Redfish Authorization specification.  The GET ManagerAccountCollection operations shows different results for different users.  Users who have the ConfigureUsers privilege will see all users, but users who do not will only see their own account listed.  The privilege registry use of ConfigureUsers does not adequately capture this behavior.\n\nIt would be nice to get this into the spec.  This is described in the public forum here: https://redfishforum.com/thread/309/configureself-account\n\nI would be okay with leaving the code in BMCWeb to perform special handling of the ConfigureSelf privilege.",
+      "parentUuid": "7293d4f6_876f5ec8",
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c64e0b9_462347d0",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
