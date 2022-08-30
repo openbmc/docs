@@ -165,6 +165,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cba70018_f9dc6aad",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-08-30T17:21:56Z",
+      "side": 1,
+      "message": "Going with the plan to queue up the request.",
+      "parentUuid": "e1cfdef4_e4c506d0",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 57
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37722fac_45e31809",
@@ -247,6 +271,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a8bf14f_9ff5d87f",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-08-30T17:21:56Z",
+      "side": 1,
+      "message": "Went with queue design",
+      "parentUuid": "f96d798e_bb4cd8ea",
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7582c30b_632ddca2",
@@ -284,6 +326,30 @@
       "side": 1,
       "message": "Yeah, basically all chassis/host instances have to wait for the basic BMC services to be started. We have a basic issue that certain BMC services are required to power on and boot your system. So this design is saying you have to wait for those base services to be started before any chassis or host operation is valid.",
       "parentUuid": "7582c30b_632ddca2",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fade691_68d1f205",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-08-30T17:21:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc01706f_feda42c9",
       "range": {
         "startLine": 57,
         "startChar": 0,
@@ -341,6 +407,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "241a7cbe_4afb6ad2",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-08-30T17:21:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44c0cec9_d8c86d02",
+      "range": {
+        "startLine": 83,
+        "startChar": 32,
+        "endLine": 85,
+        "endChar": 58
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0b5bf0e_975ed61b",
@@ -378,6 +468,30 @@
       "side": 1,
       "message": "This leads into your next question. I think there are two options here. Either we have a clear way to tell the user when the required BMC services have started and the system can be powered on, or we go with what you\u0027re leaning towards which is we queue up the request from the user, have the required services block around the target you indicate here, and have it power on once the services are done.\n\nThe issue I have with the queue option is that what happens when the services never complete? Or one fails and the BMC gets stuck in the Quiesced state (which is what started this whole design for IBM). We don\u0027t want to try and power on if a critical service has not started or failed, and we have no way to asynchronously tell the caller we\u0027ve failed and will not be honoring their queued power on request. This design is leaning towards just failing the call and letting the user deal with the retry/error handling logic because they\u0027re going to know the behavior they want best. Otherwise what do we say to the clients? Make the request, start some arbitrary timeout, and wait for the system to actually power on? What do they do when the timeout hits? It just seems more clear to give them a \"NotReadyToBoot\" error code at the time of the request.",
       "parentUuid": "d0b5bf0e_975ed61b",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 39
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6bde9d4_0be23db6",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-08-30T17:21:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c5656e2_19933dbc",
       "range": {
         "startLine": 87,
         "startChar": 0,
@@ -449,6 +563,30 @@
       "side": 1,
       "message": "I\u0027d agree that a lengthy, silent delay between pushing the power button and it actually taking effect isn\u0027t great.  It sounds like Patrick\u0027s suggestion is that we could make it less silent via LED feedback, but I\u0027m not sure how likely it is that trying to convey \"I heard you and am working on it\" via an LED would really be achievable in a clear, self-explanatory way; anything I can think of seems like it would be more likely to be completely cryptic or misinterpreted as buggy behavior by someone not already intimately familiar with OpenBMC.  Conveying \"sorry, no can do\" via an LED seems a lot more tractable (though the implicit \"try again in a minute or two\" is admittedly non-obvious).\n\nThis is of course completely tangential, but it seems like a lot of the problems we\u0027re grappling with here would be substantially reduced if we solved the long-standing \"OpenBMC takes way too long to boot\" problem (though it\u0027d need to be a pretty dramatic improvement I suppose).",
       "parentUuid": "dfba9b23_05f557be",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 26
+      },
+      "revId": "d1a72d0da3a4cee65a87b682e0f57231749a4805",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59c1d342_a1beffe2",
+        "filename": "designs/bmc-boot-ready.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-08-30T17:21:56Z",
+      "side": 1,
+      "message": "Went with queue design",
+      "parentUuid": "82d779b8_e8377b78",
       "range": {
         "startLine": 95,
         "startChar": 0,
