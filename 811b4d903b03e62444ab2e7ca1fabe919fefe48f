@@ -16,6 +16,69 @@
       "message": "Hi Andrew,\n\nI have updated the design based on the entity-manager configurations for physical LEDs. Also submitted the implementation in gerrit (https://gerrit.openbmc.org/c/openbmc/phosphor-led-sysfs/+/56590).\n\nCould you please provide your suggestion on this.\n\nThanks",
       "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69745a76_af5647aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-01T04:22:00Z",
+      "side": 1,
+      "message": "This largely looks how I\u0027d expect now. Thanks for the write-up and apologies again for taking some time to review it. A couple of comments.",
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "054d3f54_6aad74d4",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-01T04:22:00Z",
+      "side": 1,
+      "message": "This is always a bit of a edge case. Technically this should just be described in the EM board configuration for either the BMC or backplane or wherever the LEDs are and there\u0027s no need to describe it in the devicetree. However, if it is static configuration (which it sounds like it is if you\u0027re proposing to put it in the devicetree) then the devicetree is not an unreasonable spot for it. We just need to make sure that neither EM nor phosphor-led-sysfs detect when the LEDs already exist in sysfs and don\u0027t take any further action.",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 18
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2135c76d_d0b9a496",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-01T04:22:00Z",
+      "side": 1,
+      "message": "You\u0027ll need to add an LED schema to EntityManager for this. I don\u0027t think it\u0027s quite right that we use the type \"SysfsLed\". We should not bury Linux specifics in the device schema.\n\nLet\u0027s ping the EM maintainers to get their thoughts.",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 3
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
