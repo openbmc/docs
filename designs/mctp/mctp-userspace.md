@@ -2,7 +2,7 @@
 
 Author: Jeremy Kerr <jk@ozlabs.org> <jk>
 
-Please refer to the [mctp.md](MCTP Overview) document for general
+Please refer to the [MCTP Overview](mctp.md) document for general
 MCTP design description, background and requirements.
 
 This document describes a userspace implementation of MCTP
