@@ -35,6 +35,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9c3b861_9ce423e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-09-02T23:54:28Z",
+      "side": 1,
+      "message": "Realized that D-Bus can support long running methods, so removed GetFirmwareUpdateStatus and added additional errors to UpdateFirmware.\n\nI addressed some of the comments now, and will follow up with the rest.",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61edbc34_48616475",
@@ -95,6 +112,30 @@
       "writtenOn": "2022-07-21T11:21:04Z",
       "side": 1,
       "message": "spelling?",
+      "range": {
+        "startLine": 15,
+        "startChar": 54,
+        "endLine": 15,
+        "endChar": 60
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2668486_44045d5f",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-09-02T23:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04192e9b_04f7a008",
       "range": {
         "startLine": 15,
         "startChar": 54,
@@ -278,6 +319,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "efae3f78_e3b60cdf",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-09-02T23:54:28Z",
+      "side": 1,
+      "message": "1/2. Added an ApplyFirmware method with a parameter to distinguish between applying immediately or on the next reset.\n\n3. Mentioned below that Version will still be used.\n\n4. Does that really need to be part of the API? I suppose if it\u0027s not, the user could accidentally update a device with a non-compatible image, but couldn\u0027t we leave those kinds of checks to the implementation?",
+      "parentUuid": "4764636f_959eff5d",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30d078e6_e94664c7",
         "filename": "designs/simple-firmware-update-api.md",
         "patchSetId": 1
@@ -349,6 +408,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc52d28b_e9c4da41",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-09-02T23:54:28Z",
+      "side": 1,
+      "message": "No, the intent is not for a single daemon to do all firmware updates. Like Ed mentioned, there could be one daemon for each type of device.",
+      "parentUuid": "d54d095b_98e993f3",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "817e2c18_f22ca65c",
         "filename": "designs/simple-firmware-update-api.md",
         "patchSetId": 1
@@ -406,6 +483,24 @@
       "writtenOn": "2022-07-13T05:26:36Z",
       "side": 1,
       "message": "Probably need an error type of \"Firmware Update already in progress\", \"signature failure\" and \"Device not in required state\" (probably power state).",
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8736cb59_3487ab36",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-09-02T23:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c570b8e2_aed570eb",
       "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -468,6 +563,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ef39c5e_921a56a7",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-09-02T23:54:28Z",
+      "side": 1,
+      "message": "I think this no longer applies after removing GetFirmwareUpdateStatus. Please re-open this comment if you have a concern.",
+      "parentUuid": "10ce81b0_134e21d7",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 20
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ceac0775_9f7ae982",
@@ -491,6 +610,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d78ea42_296ca473",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-09-02T23:54:28Z",
+      "side": 1,
+      "message": "Stated below in the doc, but the existing ActivationProgress can still be used to give a progress indicator",
+      "parentUuid": "ceac0775_9f7ae982",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 36
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b74961a_6d198519",
@@ -504,6 +647,30 @@
       "writtenOn": "2022-07-13T05:26:36Z",
       "side": 1,
       "message": "In each of these states, it adds some unknowns to the behavior.  How long is an update implementation required to stay in the \"done\" state before it goes back to None?  If VerifyError occurs, is it possible to go back to None?  Is it required to allow a reattempt?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 45
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bc768da_ca8847ce",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-09-02T23:54:28Z",
+      "side": 1,
+      "message": "I think this no longer applies after removing GetFirmwareUpdateStatus. Please re-open this comment if you have a concern.",
+      "parentUuid": "7b74961a_6d198519",
       "range": {
         "startLine": 82,
         "startChar": 0,
@@ -651,6 +818,30 @@
       "writtenOn": "2022-07-13T05:18:27Z",
       "side": 1,
       "message": "Surely theres some testing?",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 4
+      },
+      "revId": "4cf8c2eaa3765bebe786595857271ec0198d78c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6926cf6c_f0cc68fa",
+        "filename": "designs/simple-firmware-update-api.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1001162
+      },
+      "writtenOn": "2022-09-02T23:54:28Z",
+      "side": 1,
+      "message": "Since this proposal is only concerned with defining the D-Bus interface I wouldn\u0027t think there is anything concrete to test?",
+      "parentUuid": "8f1e51a1_e6235ba7",
       "range": {
         "startLine": 115,
         "startChar": 0,
