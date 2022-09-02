@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e37fa15_af102694",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2022-09-02T18:22:03Z",
+      "side": 1,
+      "message": "I am not sure by reading the design below how it fixes this problem. I see that it reduces the number of services, which I believe is a good thing, but grouping the LEDs or helping with a multi-host platform is not clear below.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "054d3f54_6aad74d4",
         "filename": "designs/multihost-physical-led.md",
         "patchSetId": 6
@@ -84,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30623e8d_9528aa0a",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2022-09-02T18:22:03Z",
+      "side": 1,
+      "message": "It seems to me that EM should only take action on entries listed in its config. If extra LEDs are described in the devicetree that are not in the EM config, they should just be ignored by EM.",
+      "parentUuid": "054d3f54_6aad74d4",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 18
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2135c76d_d0b9a496",
         "filename": "designs/multihost-physical-led.md",
         "patchSetId": 6
@@ -118,6 +165,30 @@
       "writtenOn": "2022-09-02T13:37:30Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "2135c76d_d0b9a496",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 3
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "618846c0_17f9485a",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2022-09-02T18:22:03Z",
+      "side": 1,
+      "message": "The LED is exposed via sysfs from the description in the devicetree, isn\u0027t it? If that is the case, I don\u0027t see a problem with using SysfsLed as the type.",
       "parentUuid": "2135c76d_d0b9a496",
       "range": {
         "startLine": 172,
