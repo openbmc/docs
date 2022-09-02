@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5007df2_70aebfa8",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-09-02T13:37:30Z",
+      "side": 1,
+      "message": "The names which are defined in the device tree for GPIO LEDs will be given in the entity-manager configuration. Once the interface (xyz.openbmc_project.Configuration.Led) for LED is added in entity-manager dbus path, the dbus signal will triggered in phosphor-led-sysfs daemon and the properties mentioned in that interface will be read. Those properties result will represents the LED name and it will be compared with the /sys/class/leds/ path to check the LED is created or not. IF the LED name does not match with /sys/ path created, then dbus path will not be created.\n\nExample:\nDeviceTree:\n        leds {\n                compatible \u003d \"gpio-leds\";\n                ledName {\n                        label \u003d \"group:blue:powerled\";\n                        gpios \u003d \u003c\u0026gpio ASPEED_GPIO(M, 0) GPIO_ACTIVE_HIGH\u003e;\n                };\n        };\n        \nEntity Manager conf:\n\n        {\n            \"Class\": \"group\",\n            \"Name\": \"powerled\",\n            \"Name1\": \"blue\",\n            \"Type\": \"Led\"\n        }\n\nsys path :  /sys/class/leds/group:blue:powerled\n\nThis is the approach implemented in phosphor-led-sysfs repository. Only when the interface(xyz.openbmc_project.Configuration.Led) is added in entity-manager, the LED dbus path will be created.",
+      "parentUuid": "054d3f54_6aad74d4",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 18
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2135c76d_d0b9a496",
         "filename": "designs/multihost-physical-led.md",
         "patchSetId": 6
@@ -71,6 +95,30 @@
       "writtenOn": "2022-09-01T04:22:00Z",
       "side": 1,
       "message": "You\u0027ll need to add an LED schema to EntityManager for this. I don\u0027t think it\u0027s quite right that we use the type \"SysfsLed\". We should not bury Linux specifics in the device schema.\n\nLet\u0027s ping the EM maintainers to get their thoughts.",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 3
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47e26297_b13ba0da",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-09-02T13:37:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2135c76d_d0b9a496",
       "range": {
         "startLine": 172,
         "startChar": 0,
