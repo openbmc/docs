@@ -35,6 +35,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5766dbe_0d5ce76f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-05T23:22:14Z",
+      "side": 1,
+      "message": "Hi Jayashree, Vernon has made a pretty fundamental observation that the document doesn\u0027t describe how you propose solving the problem you posed. For that I\u0027d prefer this is not submitted as is and that you do some rework to address it.",
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e37fa15_af102694",
@@ -53,6 +70,53 @@
         "startChar": 0,
         "endLine": 19,
         "endChar": 20
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e594aca_258c55ea",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-05T23:22:14Z",
+      "side": 1,
+      "message": "Yeah, reading over it again I think you\u0027re right. I was distracted by an outcome that I would like to see (all LED objects exposed by a single service rather than one per service).\n\nJayashree, I don\u0027t think what you\u0027ve written goes far enough in explaining how your proposed design helps solve the problem you\u0027ve described (controlling individual LEDs as a group).\n\nIs it achieved by LED groups in phosphor-led-manager? Are we trying to put together a mechanism to expose a single \u0027virtual\u0027 LED composed of two physical LEDs and phosphor-led-manager is none-the-wiser?",
+      "parentUuid": "8e37fa15_af102694",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c6a525_880b3883",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-05T23:22:14Z",
+      "side": 1,
+      "message": "Can you explain why this is a requirement and not an implementation detail?",
+      "range": {
+        "startLine": 104,
+        "startChar": 1,
+        "endLine": 104,
+        "endChar": 64
       },
       "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -190,6 +254,30 @@
       "side": 1,
       "message": "The LED is exposed via sysfs from the description in the devicetree, isn\u0027t it? If that is the case, I don\u0027t see a problem with using SysfsLed as the type.",
       "parentUuid": "2135c76d_d0b9a496",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 3
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1999d5dd_1a5547b5",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-05T23:22:14Z",
+      "side": 1,
+      "message": "The question is, is the Type field meant to describe the interface or the implementation? Should it be the responsibility of the board configuration to dictate *how* the LED is controlled (sysfs vs e.g. raw GPIO)? I feel like that\u0027s an implementation detail. I feel like describing the type in this way means the EM configuration is dictating that the LED must also be described in the devicetree (as there\u0027s no way to create sysfs LEDs in userspace as far as I\u0027m aware).",
+      "parentUuid": "618846c0_17f9485a",
       "range": {
         "startLine": 172,
         "startChar": 0,
