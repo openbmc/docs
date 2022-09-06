@@ -1,0 +1,296 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c55ba085_5acda164",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "Hi Hao, thanks for continuing to chip away at this. I have a few comments.",
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f45fb94d_7443cb4f",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "Broadly, can we try to use formal language rather than informal? For example, currently \"DC\" is used without definition (I assume it means \"Data Centre\"), \"Config\" is used as a contraction for \"Configure\" etc. It\u0027s not a huge productivity impact to spell these out but it does improve readability.",
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47b500c4_ef1fd120",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "Overall I think the problem description is summarised as \"NVMe management operations are being offloaded from the host to the BMC. OpenBMC does not yet support these management operations. We propose exposing the necessary management capabilities in OpenBMC\"?",
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13310fd8_2e7e310f",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "I\u0027m guilty of this too, but the sentence is a bit of a monster. I think what it\u0027s trying to say is this?\n\n\u003e However, for data centre use-cases, control of NVMe devices is being offloaded from the host to the BMC in order to reduce the impact of management tasks on host performance. BMCs communicate with the drives through the NVMe MI out-of-band interface.",
+      "range": {
+        "startLine": 12,
+        "startChar": 27,
+        "endLine": 15,
+        "endChar": 80
+      },
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60216ca8_7b8abf1d",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "Can we move the enumeration of these capabilities down into the requirements or background sections? I think the problem description should probably stay a bit more abstract than this.",
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4354ec9_0adf9863",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "Is this truly the case? Won\u0027t bmcweb be dealing with redfish/swordfish from the DBus representation, while the daemon translates NVMe-MI to DBus?",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 43
+      },
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dec108e_19bcef95",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "Why are we trying to specify this upstream?",
+      "range": {
+        "startLine": 401,
+        "startChar": 35,
+        "endLine": 401,
+        "endChar": 75
+      },
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7618b819_69415ea8",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "incompatible?",
+      "range": {
+        "startLine": 402,
+        "startChar": 13,
+        "endLine": 402,
+        "endChar": 24
+      },
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cfdd170_6001860f",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "The way to do this is to not specify its existence to start with. I think you\u0027re free to implement such support downstream. That makes it a problem that you only need to justify internally, not to the upstream project, which will probably make it easier to get traction.",
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "281bea54_641b52f6",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "Mature?",
+      "range": {
+        "startLine": 405,
+        "startChar": 0,
+        "endLine": 405,
+        "endChar": 7
+      },
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4377baf_2a8aad6f",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "What does this mean? This is the first time I\u0027ve seen it used in the document and it hasn\u0027t been defined.",
+      "range": {
+        "startLine": 489,
+        "startChar": 69,
+        "endLine": 489,
+        "endChar": 73
+      },
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56e07b54_760be002",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "Isn\u0027t exposing these capabilities an security concern in itself (availability/denial of service)?",
+      "range": {
+        "startLine": 495,
+        "startChar": 0,
+        "endLine": 496,
+        "endChar": 11
+      },
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edb018d4_3479a12b",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "The repository is just called \"dbus-sensors\" FWIW.",
+      "range": {
+        "startLine": 501,
+        "startChar": 11,
+        "endLine": 501,
+        "endChar": 31
+      },
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82e6bd74_3d6ceed4",
+        "filename": "designs/nvmed.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-06T00:25:13Z",
+      "side": 1,
+      "message": "Perhaps this would be clearer as \"out of dbus-sensors\"",
+      "range": {
+        "startLine": 505,
+        "startChar": 33,
+        "endLine": 505,
+        "endChar": 46
+      },
+      "revId": "628472ab74a0803ed7d726e6a95b00e0767790b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
