@@ -67,6 +67,189 @@
       "message": "Also, please don\u0027t delete sections of the template that are important.  Namely it looks like Orangizational is missing?\n\nhttps://github.com/openbmc/docs/blob/master/designs/design-template.md#organizational",
       "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e089d8b_f4260e14",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-06T22:33:54Z",
+      "side": 1,
+      "message": "The background up to this point(*) is now quite likely one of the best design documents I\u0027ve seen written.  Thanks for this awesome work.\n\n(*) - I don\u0027t mean this to sound like you\u0027ve failed past this point, but only that I\u0027ve read up to this point and wanted to leave some positive feedback.",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "901d0e4a_d3346aa1",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-06T22:33:54Z",
+      "side": 1,
+      "message": "I wonder if this is a good idea or not: \"...to distinguish them...\".  We might _want_ to be able to assign these same groups to either local users or a mechanism for LDAP users?\n\nIt is possible that I don\u0027t fully understand all of the PrivilegeMapper stuff in user-manager already and we handle this by some secondary mapping of LDAP groups to local groups?",
+      "range": {
+        "startLine": 216,
+        "startChar": 77,
+        "endLine": 217,
+        "endChar": 76
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "974b12b1_8c243071",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-06T22:33:54Z",
+      "side": 1,
+      "message": "Suggest reading this: https://systemd.io/USER_NAMES/\n\nI think we should use lower-kabab-case for these group names and limit to 31 characters.\n\nWe might want something like \"openbmc-rf-\" as a prefix?  I mentioned above it might be handy to be able to use LDAP for these same roles.  We\u0027ll want something halfway globally unique in order to be able to leverage LDAP.  (What I mean by this is that a company can add the group \u0027openbmc-rf-adminstrator\u0027 to a user in their AD and they gain Redfish:Administrator access on their fleet).\n\nUnfortunately this prefix also consumes some of the 31 characters.  Maybe 20 characters is still enough for most purposes (openbmc-rf- \u003d\u003e 11, 31-11\u003d20).",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "688e7980_206c4855",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-06T22:33:54Z",
+      "side": 1,
+      "message": "Based on the above we might want to consider \"openbmc-rfo-\" for OEM.\n\nDo we have to worry about collisions between various OEMs?  Does OEM really mean the same thing here as it typically does in Redfish or does OEM really mean \"custom roles created by the user\" or does it mean both?  How do we avoid potentially collisions?",
+      "range": {
+        "startLine": 220,
+        "startChar": 49,
+        "endLine": 221,
+        "endChar": 18
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "442270ca_c848c11a",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-06T22:33:54Z",
+      "side": 1,
+      "message": "Might need to rethink this name also.",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 60
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9aa9cd2_8389a1cb",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-06T22:33:54Z",
+      "side": 1,
+      "message": "I don\u0027t fully understand the primary/secondary group usage here.  I tried to search and found an article that says:\n\n\u003e Primary Group: Specifies a group that the operating system assigns to files that the user creates. Naturally, each user must belong to a primary group\n\u003e Secondary Group: Specifies one or more groups to which a user also belongs. In addition, users can belong to up to 15 secondary groups\n\nWe\u0027re not really using primary groups at all, are we?  Usually the primary group is \u0027user:user\u0027.\n\nAre secondary groups are limited to 15 on Linux?  Another search seems to indicate later kernels can support 64k: \n https://askubuntu.com/questions/300049/is-there-a-maximum-number-of-groups",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0a59774_89a5550e",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-06T22:33:54Z",
+      "side": 1,
+      "message": "Missing sentence?",
+      "range": {
+        "startLine": 308,
+        "startChar": 37,
+        "endLine": 308,
+        "endChar": 52
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aad18703_b97040c0",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-06T22:33:54Z",
+      "side": 1,
+      "message": "I\u0027m not particularly fond of the proposal at a dbus level.  Don\u0027t we just need a few new methods on User.Manager in order to manipulate groups?  Why does this need a redfish-specific set of APIs?",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1011ed1f_74e7758f",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-06T22:33:54Z",
+      "side": 1,
+      "message": "Robert or Robot? 😄",
+      "range": {
+        "startLine": 558,
+        "startChar": 4,
+        "endLine": 558,
+        "endChar": 10
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
