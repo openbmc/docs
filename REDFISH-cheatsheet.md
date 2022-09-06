@@ -107,13 +107,13 @@ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/syst
 
 ## Firmware ApplyTime:
 ```
-curl -k -H "X-Auth-Token: $token" -X PATCH -d '{ "ApplyTime":"Immediate"}' https://${bmc}/redfish/v1/UpdateService
+curl -k -H "X-Auth-Token: $token" -X PATCH -d '{"HttpPushUriOptions":{"HttpPushUriApplyTime":{"ApplyTime":"Immediate"}}}' https://${bmc}/redfish/v1/UpdateService
 ```
 
 or
 
 ```
-curl -k -H "X-Auth-Token: $token" -X PATCH -d '{ "ApplyTime":"OnReset"}' https://${bmc}/redfish/v1/UpdateService
+curl -k -H "X-Auth-Token: $token" -X PATCH -d '{"HttpPushUriOptions":{"HttpPushUriApplyTime":{"ApplyTime":"OnReset"}}}' https://${bmc}/redfish/v1/UpdateService
 ```
 
 ---
