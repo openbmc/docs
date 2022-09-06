@@ -327,6 +327,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef3f2454_e72546f7",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T21:53:10Z",
+      "side": 1,
+      "message": "\u003e How is this possible? Are you adding too much complexity?\n\nIf I created a privilege registry that allowed sensor values with a lower privilege level than chassis, it would be effectively impossible to create a redfish tree that was correct.\n\nInput validation is one pretty core security principal.  We\u0027re just trying to follow standards like this (and similar ones)\nhttps://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
+      "parentUuid": "259b0820_c2e8d0b4",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 72
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "998150ef_31d7c8fe",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -362,6 +386,30 @@
       "side": 1,
       "message": "I added a requirement for this.\n\nI don\u0027t think this requirement makes a difference on the design. If one needs the new resource to be accessible by a role, just add one of the privileges that role has to the PrivilegeRegistry.",
       "parentUuid": "998150ef_31d7c8fe",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 21
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b9ce65e_35141b05",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T21:53:10Z",
+      "side": 1,
+      "message": "\u003e just add one of the privileges that role has to the PrivilegeRegistry.\n\nTo _which_ privilege registry?  If all systems have overridend privilege registries, do I have to now go through and update N systems worth of registries?\n\n\u003e I don\u0027t think this requirement makes a difference on the design.\n\nI believe it makes a significant difference in how maintainable this is over time.",
+      "parentUuid": "3f382020_30a4947b",
       "range": {
         "startLine": 171,
         "startChar": 0,
@@ -445,6 +493,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0f506fce_3e83db3d",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T21:53:10Z",
+      "side": 1,
+      "message": "both should be \"shall\".  Considering that the default privilege registry will be the base registry, it\u0027s non-sensical if the user can POST the existing setting back as-is.",
+      "parentUuid": "6b562717_c32b34ff",
+      "range": {
+        "startLine": 174,
+        "startChar": 55,
+        "endLine": 175,
+        "endChar": 35
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59aa9d4c_42d94d50",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -504,6 +576,30 @@
       "side": 1,
       "message": "I went with what\u0027s I though is idea. This involves larger changes to existing daemons (phosphor-user-manager).",
       "parentUuid": "c7fd20d9_c72b0390",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 18
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5b7bebf_5c639b8d",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T21:53:10Z",
+      "side": 1,
+      "message": "\u003e  We will have \"priv-configure-self\", \"priv-configure-components\", \"priv-configure-user\", etc as linux groups\n\nI don\u0027t think this works at a system level.  One of the important properties of the existing mechanisms is that the privilege levels map to IPMI (admin/operator/user).  Moving these to be Redfish privilege levels would break that, which I don\u0027t think we can do at a system level.\n\nwe can certainly add extra redfish roles, but I think we need to keep some ability to map to ipmi.",
+      "parentUuid": "439f45c8_67dd5a96",
       "range": {
         "startLine": 199,
         "startChar": 0,
@@ -622,6 +718,30 @@
       "side": 1,
       "message": "How? Maybe a dbus call per connection?",
       "parentUuid": "7d0adebf_2ea85959",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 61
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60f87f31_4cb37b62",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T21:53:10Z",
+      "side": 1,
+      "message": "This review isn\u0027t really the place to discuss, I just wanted you to be aware of changes in this area that might effect you.",
+      "parentUuid": "58b5fd3b_4a91f1f0",
       "range": {
         "startLine": 233,
         "startChar": 0,
@@ -798,6 +918,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3bf1cc08_3ef2fddb",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T21:53:10Z",
+      "side": 1,
+      "message": "\u003e Sorry, this is a fully internal macro, \"Route\" is a fully internal (in terms of bmcweb) , why can\u0027t we add APIs to it to support new features. \n\nbmcweb hosts more than just redfish, and requiring that all clients take on redfish baggage isn\u0027t going to work.  There are currently, and will be in the future http protocols beyond redfish (OpenConfig for example) that bmcweb will need to support.  This is why we abstract the layers as we do.\n\n\u003e \n\u003e No Redfish routes shouldn\u0027t call these C++ function `entity`, `subordinateTargets` at all. Isn\u0027t this something we can guarantee via code review?\n\nConsidering that the old way relied on code review, and didn\u0027t work (that\u0027s why we have the new way) I would say that we can\u0027t guarantee it in code review.\n\n\u003e \n\u003e I don\u0027t understand why you reject an idea like this? Do you have a better way to make a route know its own entity and what entities it\u0027s subordinate to easily?\n\nWe likely need a redfish specific call, (ie REDFISH_ROUTE) that can do whatever is needed under the covers to register the right handlers, without having to add complexity to BMCWEB_ROUTE.  It would call BMCWEB_ROUTE, as well as setupRedfishRoute underneath the abstraction, and we would just move all the redfish specific handlers over to REDFISH_ROUTE.",
+      "parentUuid": "009e2643_2321ad2c",
+      "range": {
+        "startLine": 252,
+        "startChar": 21,
+        "endLine": 253,
+        "endChar": 9
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8cfdb909_a1358b81",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -869,6 +1013,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2606f52_0a2bc69e",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T21:53:10Z",
+      "side": 1,
+      "message": "\u003e What about we make it required and add subordinateTargets for all the route?\n\nBasically, I think that when we register a route, we need to register the path, then have a lookup table of path -\u003e entity-type, so that we can do the subordinate overrides correctly, then fall back to type checking if no subordinate override is present.\n\n\u003e  |subordinateTo| is a property of routes, so we can directly use them to compare what\u0027s configured in the PrivilegeRegistry.\n\nLets just plan to have a test case for this, and deal with it in the code review/implementation.  Just being aware that subordinate overrides are always optional, and have a test case for both subordinate override present, and subordinate override not present should be fine.  The only design thing this changes is it means that odata.type isn\u0027t the only thing that determines a given routes privilege level",
+      "parentUuid": "4cd1d3be_a1a4fbbe",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 21
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "833f450b_4d164301",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -904,6 +1072,30 @@
       "side": 1,
       "message": "Please see all other threads about this.\n\nI DIDN\u0027T propose to break systems and break Base privilege registry. I have proposed how dynamic override can be implement in the latest doc.\n\nI have also argued we can start with just implementing whatever overrides are there in Base privilege registry, and implement dynamic override in the 2nd iteration.",
       "parentUuid": "833f450b_4d164301",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 30
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7187937c_0bb98f8d",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T21:53:10Z",
+      "side": 1,
+      "message": "I don\u0027t see how that works though if we have subordinate overrides in code.  How would a user set up a privilege registry for something that we have a subordinate override for that\u0027s hardcoded in c++?  Or would we require that the upstream Base registry subordinate overrides always be present when a user posts a PrivilegeRegistry?  That might work.",
+      "parentUuid": "277d3c98_49ceb7cd",
       "range": {
         "startLine": 264,
         "startChar": 0,
@@ -1654,6 +1846,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2252e787_6c937244",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T21:53:10Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure in the specification this would be a PUT?  Because we\u0027re expected to totally replace the privilege registry each time, but sure, I guess we could do either or.",
+      "parentUuid": "284f9848_25db6c89",
+      "range": {
+        "startLine": 347,
+        "startChar": 46,
+        "endLine": 349,
+        "endChar": 24
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f64f0fe_c0fc40ca",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -1713,6 +1929,30 @@
       "side": 1,
       "message": "Not applicable now. Now we only store delta, and does use custom format.",
       "parentUuid": "c7a99641_538b5932",
+      "range": {
+        "startLine": 364,
+        "startChar": 60,
+        "endLine": 365,
+        "endChar": 70
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de246ca9_b860a62f",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T21:53:10Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "1d6a04cd_b079a486",
       "range": {
         "startLine": 364,
         "startChar": 60,
@@ -1790,6 +2030,24 @@
       "side": 1,
       "message": "Thanks for the information. I believe \" leaving the code in BMCWeb to perform special handling of the ConfigureSelf privilege\" is the easiest at the moment.",
       "parentUuid": "ddb4f0fc_77376e15",
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "064f5fc0_3ed4b1d0",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T21:53:10Z",
+      "side": 1,
+      "message": "\u003e \u003e How are roles added at compile time?\n\u003e \u003e How are oem privileges added at compile time?\n\u003e See what I have now.\n\u003e \n\u003e \u003e I see no mention of ConfigureSelf, which requires special handling currently hardcoded.\n\u003e Why is ConfigureSelf related?\n\u003e \n\nBecause it\u0027s a special case of privileges that needs handled.\n\n\u003e Before resource handlers (what the current hardcoding of SonfigureSelf) being executed, we do whatever the normal authz needs: getting the privileges set of the user, get the required privilege set, and do isSuperSetOf. After that, we just execute what the hardcoded ConfigureSelf codes are there. I don\u0027t any see any changes needed.\n\nSo then what happens if someone uploads a privilege registry without ConfigureSelf set on a particular resource?  We would give the wrong response if the ConfigureSelf code is hardcoded.",
+      "parentUuid": "7293d4f6_876f5ec8",
       "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
