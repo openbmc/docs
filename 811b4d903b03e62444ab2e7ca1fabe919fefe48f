@@ -52,6 +52,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa94bf5b_511dd316",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-06T22:52:25Z",
+      "side": 1,
+      "message": "I think the primary thing we\u0027re trying to solve is:\n\nHow do you associate multiple GPIOs, which each represent a color, into a single LED concept.\n\nOur systems have an \"amber and green\" LED that has two wires coming out of it.  Currently we cannot represent this in the kernel directly via device tree.  The way virtual-leds is currently implemented it is difficult to represent \"You may only have amber OR green on (but not both)\" because that state might be spread across multiple virtual LEDs, so you end up having to create virtual-virtual LEDs... (this is a horrible explanation).\n\nI haven\u0027t reviewed the document again lately but wanted to leave this comment so this primary need at an implementation level doesn\u0027t get lost in the higher level abstraction.",
+      "parentUuid": "e5766dbe_0d5ce76f",
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e37fa15_af102694",
