@@ -86,6 +86,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a70ad330_64cb7fe2",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-07T02:24:27Z",
+      "side": 1,
+      "message": "Thanks Patrick, this does encourage me a lot!\n\n:)",
+      "parentUuid": "8e089d8b_f4260e14",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "901d0e4a_d3346aa1",
@@ -99,6 +117,30 @@
       "writtenOn": "2022-09-06T22:33:54Z",
       "side": 1,
       "message": "I wonder if this is a good idea or not: \"...to distinguish them...\".  We might _want_ to be able to assign these same groups to either local users or a mechanism for LDAP users?\n\nIt is possible that I don\u0027t fully understand all of the PrivilegeMapper stuff in user-manager already and we handle this by some secondary mapping of LDAP groups to local groups?",
+      "range": {
+        "startLine": 216,
+        "startChar": 77,
+        "endLine": 217,
+        "endChar": 76
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66868653_fe5cb11b",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-07T02:24:27Z",
+      "side": 1,
+      "message": "Wait, this section is about Redfish Roles, right? Not local or LDAP users. Here I meant Redfish role itself will be stored as a local user.\n\nIf I read the code correctly, we have RemoteRoleMapping to handle LDAP users\u0027 privileges. So, if we want remote LDAP user to have OEM privileges. We can modify the PrivilegeMapper and PrivilegeMapperEntry interface so that they return a list of local groups (one of existing hardedcoded privilege + Redfish OEM privileges)\n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/User/PrivilegeMapper.interface.yaml\n\nThis is somewhat called out in section #Redfish Role to Redfish Privileges Mapping, let me know if you want me to add more details (e.g., extend PrivilegeMapperEntry so it returns a list)",
+      "parentUuid": "901d0e4a_d3346aa1",
       "range": {
         "startLine": 216,
         "startChar": 77,
@@ -189,6 +231,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d4ffe1a_10c5e141",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-07T02:24:27Z",
+      "side": 1,
+      "message": "No, we are not using primary group at all. This is aligned with phosphor-user-manager today unless I miss-understood anything.\n\nMy understanding of why we use group to model privileges in phosphor-user-manager is that we have single source of truth and don\u0027t need a separate storage mechanism.\n\nRegarding number of secondary groups, it\u0027s not 15 and is larger than 32. I just tested this on s7106\n\n```\nroot@s7106:~# id PowerService\nuid\u003d1002(PowerService) gid\u003d100(users) groups\u003d1007(PowerService),1008(Priv0),1009(Priv1),1010(Priv2),1011(Priv3),1012(Priv4),1013(Priv5),1014(Priv6),1015(Priv7),1016(Priv8),1017(Priv9),1018(Priv10),1019(Priv11),1020(Priv12),1021(Priv13),1022(Priv14),1023(Priv15),1024(Priv16),1025(Priv17),1026(Priv18),1027(Priv19),1028(Priv20),1029(Priv21),1030(Priv22),1031(Priv23),1032(Priv24),1033(Priv25),1034(Priv26),1035(Priv27),1036(Priv28),1037(Priv29),1038(Priv30),1039(Priv31),100(users)\n```\n\nAll search results show that latest linux can have up to 65,536 supplementary groups",
+      "parentUuid": "e9aa9cd2_8389a1cb",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0a59774_89a5550e",
@@ -225,6 +285,24 @@
       "writtenOn": "2022-09-06T22:33:54Z",
       "side": 1,
       "message": "I\u0027m not particularly fond of the proposal at a dbus level.  Don\u0027t we just need a few new methods on User.Manager in order to manipulate groups?  Why does this need a redfish-specific set of APIs?",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccc6471e_3e29c50e",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-07T02:24:27Z",
+      "side": 1,
+      "message": "\u003e Don\u0027t we just need a few new methods on User.Manager in order to manipulate groups?\n\nYes, just few DBus methods to manipulate groups in User.Manager side. Ed wants me to explicitly list how Redfish roles/privileges are created in previous comments. Thus I listed these DBus APIs.\n\n\u003e I\u0027m not particularly fond of the proposal at a dbus level.\n\nOh, is there any other options? Do you mean not list the details in DBus level. Yeah, the dbus level details in this proposal is just used to convey the ideas. The actual implementation might use different name or arguments. \n\n\u003e Why does this need a redfish-specific set of APIs?\n\nThis is to address Ed comments: features should be testable without access to the BMC console. So I explicitly added how DBus APIs are invoked by Redfish APIs.",
+      "parentUuid": "aad18703_b97040c0",
       "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
