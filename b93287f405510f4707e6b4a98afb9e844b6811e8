@@ -153,6 +153,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85e4abd9_3f77f7e1",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-07T14:06:04Z",
+      "side": 1,
+      "message": "\u003e Wait, this section is about Redfish Roles, right? Not local or LDAP users. Here I meant Redfish role itself will be stored as a local user.\n\nI was just wanting us to think a bit about if we want them to be distinct or not.  There seems to be some value at least from an LDAP perspective of being able to map LDAP groups to these Redfish roles as well.",
+      "parentUuid": "66868653_fe5cb11b",
+      "range": {
+        "startLine": 216,
+        "startChar": 77,
+        "endLine": 217,
+        "endChar": 76
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "974b12b1_8c243071",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 13
@@ -249,6 +273,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2f9d797_dc28586b",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-07T14:06:04Z",
+      "side": 1,
+      "message": "\u003e All search results show that latest linux can have up to 65,536 supplementary groups\n\nUnderstood.  Looks like the 15 limit was an older POSIX requirement.\n\n\u003e No, we are not using primary group at all. This is aligned with phosphor-user-manager today unless I miss-understood anything.\n\nIt might be good to reword this section a bit then.  You talked about \"groups\" at first but then you started using \"secondary groups\" in the middle.  It made it seem like they might be different things.",
+      "parentUuid": "0d4ffe1a_10c5e141",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0a59774_89a5550e",
@@ -303,6 +345,24 @@
       "side": 1,
       "message": "\u003e Don\u0027t we just need a few new methods on User.Manager in order to manipulate groups?\n\nYes, just few DBus methods to manipulate groups in User.Manager side. Ed wants me to explicitly list how Redfish roles/privileges are created in previous comments. Thus I listed these DBus APIs.\n\n\u003e I\u0027m not particularly fond of the proposal at a dbus level.\n\nOh, is there any other options? Do you mean not list the details in DBus level. Yeah, the dbus level details in this proposal is just used to convey the ideas. The actual implementation might use different name or arguments. \n\n\u003e Why does this need a redfish-specific set of APIs?\n\nThis is to address Ed comments: features should be testable without access to the BMC console. So I explicitly added how DBus APIs are invoked by Redfish APIs.",
       "parentUuid": "aad18703_b97040c0",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97cd7b7a_00c314b1",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-09-07T14:06:04Z",
+      "side": 1,
+      "message": "\u003e Oh, is there any other options? Do you mean not list the details in DBus level.\n\nI have no problem listing the dbus flows here.  My concern is, for example the API is identified as \"createOEMPrivilege\", which implies Redfish.  We should be able to create and modify groups via User.Manager, which it doesn\u0027t support today, but we shouldn\u0027t explicitly create/modify \"Redfish Groups\".  The fact that some prefix is used for Redfish should be kept to Redfish-aware code, which doesn\u0027t belong in User.Manager.",
+      "parentUuid": "ccc6471e_3e29c50e",
       "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
