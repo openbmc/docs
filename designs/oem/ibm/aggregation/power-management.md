@@ -1,0 +1,194 @@
+# Power Managment / OCC
+
+Author:
+  Chris Cain (cjcain)
+
+Other contributors:
+  Martha Broyles (None)
+
+Created:
+  September 6, 2022
+
+## Problem Description
+On systems with multiple BMCs, there is a set of power management configuration
+data that will apply to the composed system as a whole. This data includes:
+- Power Mode
+- Power Cap
+
+This data needs to be available to all BMCs in that composed system. When that
+data is changed it also needs to be relayed to those BMCs.
+
+## Background and References
+With the current design the power management configuration data is maintained by
+the single BMC associated with a system. The data is configured via the BMC GUI
+and/or Redfish interface for that system.
+
+When a system boots, there is a single Hostboot Runtime image that starts and
+configures the OCCs for the system. Once all OCCs are active, the BMC is
+notified via PLDM.  The BMC will then begin communication with all OCCs to
+collect temperatures and power data via SBE as was done in the past.
+
+[System Power Mode design document][powermode]
+
+Note: Idle Power Saver is not supported on multi-BMC systems
+
+## Requirements
+### SCA - System Coordinator
+- The SCA must provide an interface for the end user to set/read power
+  management configuration data (Redfish and any other supported interface)
+- The SCA must provide a notification message when any changes are made to the
+  power management configuration data that will be used by all BMCs in the
+  composed system.
+### BMC
+- Each BMC must be able to read the power management configuration data from an
+  SCA.
+- Each BMC must monitor for changes to the power management configuration data.
+- Each BMC will maintain a copy of the power management configuration data
+### Hostboot
+- A single Hostboot Runtime instance will be running for each composed system.
+  This Hostboot code will be responsible for loading and starting all OCCs for
+  all processors in the system.
+- After the OCCs are activated, a PLDM message with IN_SERVICE state will be
+  relayed to each BMC in the system using the master OCC sensor ID.
+
+    stateSetId:   PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS
+    sensorOffset: OCC_STATE_SENSOR_INDEX
+    sensorState:  PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_IN_SERVICE
+               or PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_STOPPED
+               or PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_DORMANT
+
+- When there is a failure requiring an OCC/PM Complex reset, all BMCs in the
+  composed system must be notified that they should stop communication with
+  the OCCs, prior to the reset.  The STOPPED state will indicate that the
+  communication with the OCCs need to be stopped while recovery is attempted.
+  The DORMANT state will indicate that communication should be stopped and
+  there will be no recovery until the next boot.
+  If recovery is successful, the IN_SERVICE state will again get sent to all
+  BMCs.
+### PLDM (BMC & Hostboot)
+- Provide a synchronized communication method between Hostboot and the BMCs
+- Provide a way to determine if the other side is busy or if it was stopped
+- Provide a queue to allow multiple requests to be outstanding (prevent
+  messages and responses from getting overwritten)
+
+## Proposed Design
+### Startup
+A single SCA will host/provide access to the power management configuration
+data. The SCA will be responsible for notifying and/or sending this data to each
+BMC in the composed system anytime requested or when any of the data changes.
+
+When the occ-control app in the BMC starts, it will request the power management
+configuration data from the SCA. It will continue to save this data locally. The
+occ-control app must then monitor the SCA for any changes to that configuration
+data. As in the current design, the occ-control app must continue to monitor for
+PLDM messages from Hostboot that indicate when the OCCs go active, or when the
+OCC communication needs to stop.
+
+[SCA Distributor][sca-data]
+
+### OCC Activation
+Hostboot continues to be responsible for loading and starting all OCCs in a
+composed system.
+
+When the OCCs reach active state, Hostboot Runtime will send a single
+synchronous PLDM message using the master OCC sensor ID to each BMC in the
+composed system.
+
+    stateSetId:   PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS
+    sensorOffset: OCC_STATE_SENSOR_INDEX
+    sensorState:  PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_IN_SERVICE
+
+This message should be retried once by Hostboot Runtime if delivery to the BMC
+could not be confirmed.  If the retry fails, a PEL should be created indicating
+that fault.  If the BMC does not receive this message it will not have the
+temperature and power data from the OCC that is required by fan control.
+
+Since Hostboot has already determined which OCCs are functional, occ-control can
+use the poll response data from the master to know which other OCCs are
+available and then begin polling all OCCs.
+
+### BMC Detected Problem
+When BMC detects an issue with an OCC, communication with that OCC will be
+stopped and a PEL will be created indicating the type of failure.  As in the
+past, a synchronized PLDM message will then be sent to Hostboot to request an
+OCC/PM Complex reset.  The OCC sensor ID associated with that fault will be
+used in the message.
+
+    stateSetId:   PLDM_STATE_SET_BOOT_RESTART_CAUSE
+    sensorOffset: OCC_STATE_SENSOR_INDEX
+    sensorState:  PLDM_STATE_SET_BOOT_RESTART_CAUSE_WARM_RESET
+
+The message should be retried once by occ-control if delivery could not be
+confirmed.  If this message is not received by Hostboot Runtime, there may not
+be any recovery done to try to resolve the problem.
+
+When Hostboot Runtime receives the reset request, it will send a synchronous
+PLDM message to all BMCs in the composed system, indicating that communications
+with the OCCs needs to be stopped.
+
+    stateSetId:   PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS
+    sensorOffset: OCC_STATE_SENSOR_INDEX
+    sensorState:  PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_STOPPED
+               or PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_DORMANT
+
+The STOPPED state indicates that the OCCs will be unavailable while recovery is
+in process.  The DORMANT state will be used to indicate that the system is in
+safe mode (recovery failed and will not be retried until next boot).
+These messages should be retried once by Hostboot Runtime on failure.
+If these messages are not received by the BMC, the BMC could still be
+communicating with the OCC, while the PM Complex is being reset.  This will
+cause additional errors.
+
+After all BMCs are notified, Hostboot will reset the PM Complex. If there are
+still recovery attempts available, Hostboot will attempt to load/start
+the OCCs again and if successful, will send the IN_SERVICE state in the PLDM
+messages to each BMC indicating that OCCs are again active.
+
+### OCC/Hostboot Detected Problem
+When the OCC or Hostboot detects problems, Hostboot will first notify all BMCs
+in the composed system that communications with the OCCs needs to be stopped.
+This notification will be a synchronous PLDM message with the STOPPED state.
+These messages should be retried once on failure.  Hostboot will then reset all
+PM Complexes in the system.  If the reset/recovery is successful, Hostboot will
+again send a synchronous PLDM notification with IN_SERVICE state to all BMCs in
+the composed system.
+
+## Alternatives Considered
+- Keeping PLDM interface non-synchronous: The current interface allows other
+  applications to overwrite the command buffer and/or re-use MTCP instance IDs
+  that are used by other apps. This leads to confusion and unexpected results.
+  There is no watchdog or other health monitoring done on either BMC or Hostboot
+  to know if the other side has gone away or is just busy doing other work.
+  There is no way to queue up multiple requests.
+- Eliminate SCA: That would require the power management config data to be
+  managed by one of the BMCs in the system. That BMC would then need to relay
+  that data to all other BMCs in that system. That BMC would need to know about
+  all other BMCs.
+
+## Impacts
+- Limiting the PLDM messages to a single message between Hostboot and each BMC
+  will help limit the PLDM traffic
+- Using the existing OCCs present data from the master poll response, will
+  eliminate extra code on BMC to detect which OCCs were present (reduce
+  duplicate code)
+- Having a single interface (via SCA) for the power management configuration
+  will simplify the configuration
+
+### Organizational
+- Does this repository require a new repository?
+  No
+- Which repositories are expected to be modified to execute this design?
+  openpower-occ-control, [open-power/hostboot][hostbootrepo]
+
+[hostbootrepo]:
+https://github.com/open-power/hostboot
+[powermode]:
+https://github.com/openbmc/docs/blob/master/designs/ibm/system-power-mode.md
+[sca-data]:
+https://github.ibm.com/p11-fw-design/p11-fw-designs/tree/main/designs/distributor
+
+## Testing
+Since the OCCs are started on every boot, the main code paths will be verified
+every time a system is started. There are commands that can be injected on the
+OCCs to force error conditions to verify some of the error paths. Additional
+code changes can be done to force some of the more complex error conditions.
