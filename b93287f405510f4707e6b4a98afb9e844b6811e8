@@ -69,6 +69,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "665e6195_13f40e6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Added.",
+      "parentUuid": "c3fd0931_f81e6e8c",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e089d8b_f4260e14",
@@ -175,6 +193,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c65208a1_bfbf5567",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Oh, here Redfish roles are modeled as local secondary groups, right? So they have to be unique.\n\nYes, I have added how to map LDAP groups to Redfish privileges in #Redfish Role to Redfish Privileges Mapping,.",
+      "parentUuid": "85e4abd9_3f77f7e1",
+      "range": {
+        "startLine": 216,
+        "startChar": 77,
+        "endLine": 217,
+        "endChar": 76
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "974b12b1_8c243071",
@@ -188,6 +230,24 @@
       "writtenOn": "2022-09-06T22:33:54Z",
       "side": 1,
       "message": "Suggest reading this: https://systemd.io/USER_NAMES/\n\nI think we should use lower-kabab-case for these group names and limit to 31 characters.\n\nWe might want something like \"openbmc-rf-\" as a prefix?  I mentioned above it might be handy to be able to use LDAP for these same roles.  We\u0027ll want something halfway globally unique in order to be able to leverage LDAP.  (What I mean by this is that a company can add the group \u0027openbmc-rf-adminstrator\u0027 to a user in their AD and they gain Redfish:Administrator access on their fleet).\n\nUnfortunately this prefix also consumes some of the 31 characters.  Maybe 20 characters is still enough for most purposes (openbmc-rf- \u003d\u003e 11, 31-11\u003d20).",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90e0d2c7_622f02b1",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "yeah, not using \"-\" is to save characters.\n\n\"OEM role names should begin with a lowercase character or \"Oem\" followed by a vendor name to avoid conflict with future Redfish predefined role names.\" This is Redfish\u0027s subjection. I adopt both your and Redfish\u0027s opinion and proposed openbmc-rfr- as the prefix now.\n\nI also mentioned OpenBMC can be replaced with other vendor names at compile time.",
+      "parentUuid": "974b12b1_8c243071",
       "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -215,6 +275,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfa2eb14_f513bb1d",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "\u003e Do we have to worry about collisions between various OEMs? How do we avoid potentially collisions?\n\nNo. An OEM Redfish role on system A won\u0027t affect OEM Redfish role on system B. For LDAP, a company name plus \"rfr\" should be enough to distinguish these roles.\n\n\u003e Does OEM really mean the same thing here as it typically does in Redfish or does OEM really mean \"custom roles created by the user\" or does it mean both?\n\nOEM here means non-standard Redfish roles (Administrator, ReadOnly, and Operator) created by Redfish implementation. All Redfish roles not in the spec are OEM roles. DMTF wants implementation to add OEM since they might add more standard roles in the future and want to avoid collision.",
+      "parentUuid": "688e7980_206c4855",
+      "range": {
+        "startLine": 220,
+        "startChar": 49,
+        "endLine": 221,
+        "endChar": 18
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "442270ca_c848c11a",
@@ -228,6 +312,30 @@
       "writtenOn": "2022-09-06T22:33:54Z",
       "side": 1,
       "message": "Might need to rethink this name also.",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 60
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f7b1312_28e2aab3",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Done.\n\nWe can discuss more if these names don\u0027t make sense.",
+      "parentUuid": "442270ca_c848c11a",
       "range": {
         "startLine": 225,
         "startChar": 0,
@@ -291,6 +399,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1631c1d7_4b8e1c73",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Yes, I have make them all \"secondary groups\"",
+      "parentUuid": "a2f9d797_dc28586b",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0a59774_89a5550e",
@@ -304,6 +430,30 @@
       "writtenOn": "2022-09-06T22:33:54Z",
       "side": 1,
       "message": "Missing sentence?",
+      "range": {
+        "startLine": 308,
+        "startChar": 37,
+        "endLine": 308,
+        "endChar": 52
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "968a689a_49a9ad8a",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Done. Removed. This is the first sentence in this section.\n\n\"\"\"\nBase privileges and roles won\u0027t be allowed to change at runtime.\n\"\"\"",
+      "parentUuid": "d0a59774_89a5550e",
       "range": {
         "startLine": 308,
         "startChar": 37,
@@ -367,6 +517,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73fdc686_8d92db6f",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Makes sense, I have updated the diagram so that Redfish was removed from UserManager.",
+      "parentUuid": "97cd7b7a_00c314b1",
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1011ed1f_74e7758f",
@@ -380,6 +548,30 @@
       "writtenOn": "2022-09-06T22:33:54Z",
       "side": 1,
       "message": "Robert or Robot? 😄",
+      "range": {
+        "startLine": 558,
+        "startChar": 4,
+        "endLine": 558,
+        "endChar": 10
+      },
+      "revId": "b93287f405510f4707e6b4a98afb9e844b6811e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c0dc9b8_2a72b5f3",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "😮 \nGood catch.\n\nChanged to Robot.",
+      "parentUuid": "1011ed1f_74e7758f",
       "range": {
         "startLine": 558,
         "startChar": 4,

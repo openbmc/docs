@@ -349,6 +349,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dd859a8_f7b9ddfc",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Have you look at the input validation that I wrote down.\n\nThere is no explicit ordering of the privilege. No concept of level. That\u0027s the whole point of this design: a user only has access to resources that it needs to.\n\nIf you look at the current design, I have added a handful checks to the requirement:\n1. Users without certain permissions won\u0027t able to delete other users\n2. Privileges, roles in use by at least on user can\u0027t be deleted",
+      "parentUuid": "ef3f2454_e72546f7",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 72
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "998150ef_31d7c8fe",
@@ -410,6 +434,30 @@
       "side": 1,
       "message": "\u003e just add one of the privileges that role has to the PrivilegeRegistry.\n\nTo _which_ privilege registry?  If all systems have overridend privilege registries, do I have to now go through and update N systems worth of registries?\n\n\u003e I don\u0027t think this requirement makes a difference on the design.\n\nI believe it makes a significant difference in how maintainable this is over time.",
       "parentUuid": "3f382020_30a4947b",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 21
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c269c01d_d2c3f04d",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Still, I guess you just read my response without looking at the latest design doc.\n\nPlease see \"### PATCH on PrivilegeRegistry\" for an example how user can authorize a new service.",
+      "parentUuid": "7b9ce65e_35141b05",
       "range": {
         "startLine": 171,
         "startChar": 0,
@@ -505,6 +553,30 @@
       "side": 1,
       "message": "both should be \"shall\".  Considering that the default privilege registry will be the base registry, it\u0027s non-sensical if the user can POST the existing setting back as-is.",
       "parentUuid": "6b562717_c32b34ff",
+      "range": {
+        "startLine": 174,
+        "startChar": 55,
+        "endLine": 175,
+        "endChar": 35
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d1543e_55d519e3",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Fine.. As a design, I am okay with getting this to shall. But there are priorities, configuring subordinate overrides won\u0027t be more important than adding OEM roles, privileges, and modifying require privileges for non-override configures.",
+      "parentUuid": "0f506fce_3e83db3d",
       "range": {
         "startLine": 174,
         "startChar": 55,
@@ -872,6 +944,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0b584058_83551c52",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Naming convention was discussed in another thread and reflected in the doc.",
+      "parentUuid": "63e3476e_2e3f8410",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 73
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "59d5d9c6_341dec48",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -954,6 +1050,30 @@
       "side": 1,
       "message": "\u003e Sorry, this is a fully internal macro, \"Route\" is a fully internal (in terms of bmcweb) , why can\u0027t we add APIs to it to support new features. \n\nbmcweb hosts more than just redfish, and requiring that all clients take on redfish baggage isn\u0027t going to work.  There are currently, and will be in the future http protocols beyond redfish (OpenConfig for example) that bmcweb will need to support.  This is why we abstract the layers as we do.\n\n\u003e \n\u003e No Redfish routes shouldn\u0027t call these C++ function `entity`, `subordinateTargets` at all. Isn\u0027t this something we can guarantee via code review?\n\nConsidering that the old way relied on code review, and didn\u0027t work (that\u0027s why we have the new way) I would say that we can\u0027t guarantee it in code review.\n\n\u003e \n\u003e I don\u0027t understand why you reject an idea like this? Do you have a better way to make a route know its own entity and what entities it\u0027s subordinate to easily?\n\nWe likely need a redfish specific call, (ie REDFISH_ROUTE) that can do whatever is needed under the covers to register the right handlers, without having to add complexity to BMCWEB_ROUTE.  It would call BMCWEB_ROUTE, as well as setupRedfishRoute underneath the abstraction, and we would just move all the redfish specific handlers over to REDFISH_ROUTE.",
       "parentUuid": "009e2643_2321ad2c",
+      "range": {
+        "startLine": 252,
+        "startChar": 21,
+        "endLine": 253,
+        "endChar": 9
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4709cb8e_968f7c9a",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "fine... I added REDFISH_ROUTE. this is purely implementation details.. What you said aligns with my idea on this: add attributes to route so it can do authorization.",
+      "parentUuid": "3bf1cc08_3ef2fddb",
       "range": {
         "startLine": 252,
         "startChar": 21,
@@ -1059,6 +1179,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa8778c7_8b2dfe4e",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "I guess you just read my response without looking at the latest design doc. Please take at the doc. This has been answered in the doc.\n\nI just eliminated the lookup table of path -\u003e entity-type by introducing a new attribute to the route.",
+      "parentUuid": "f2606f52_0a2bc69e",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 21
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "833f450b_4d164301",
@@ -1120,6 +1264,30 @@
       "side": 1,
       "message": "I don\u0027t see how that works though if we have subordinate overrides in code.  How would a user set up a privilege registry for something that we have a subordinate override for that\u0027s hardcoded in c++?  Or would we require that the upstream Base registry subordinate overrides always be present when a user posts a PrivilegeRegistry?  That might work.",
       "parentUuid": "277d3c98_49ceb7cd",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 30
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30c5ed25_14c59b12",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "You misunderstood what I have proposed. Please read the relevant section \"### PATCH on PrivilegeRegistry\". I have updated the answer to you question there.",
+      "parentUuid": "7187937c_0bb98f8d",
       "range": {
         "startLine": 264,
         "startChar": 0,
@@ -1238,6 +1406,30 @@
       "side": 1,
       "message": "See what I have now. Design covers how to implement dynamic overrides. However, I don\u0027t believe implementing it is a hard requirement as long as we implement the base registry in a static way and don\u0027t break existing system.\n\nGoogle doesn\u0027t really have use case of changing overrides at runtime now. I want to put effort on the things that Google really needs first.\n\nLet me know if it makes sense.",
       "parentUuid": "b12df80c_cd6bb272",
+      "range": {
+        "startLine": 286,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 45
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f902e45_4dfc67f4",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "506604b8_c6db7cbe",
       "range": {
         "startLine": 286,
         "startChar": 0,
@@ -1821,6 +2013,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b87ad20e_fa4fbda1",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "I am fairly sure in today\u0027s spec, these are read-only. This is confirmed by DMTF.",
+      "parentUuid": "90c9c361_7de7ac8d",
+      "range": {
+        "startLine": 346,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 66
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39bb4796_531c642b",
@@ -1882,6 +2098,30 @@
       "side": 1,
       "message": "I\u0027m pretty sure in the specification this would be a PUT?  Because we\u0027re expected to totally replace the privilege registry each time, but sure, I guess we could do either or.",
       "parentUuid": "284f9848_25db6c89",
+      "range": {
+        "startLine": 347,
+        "startChar": 46,
+        "endLine": 349,
+        "endChar": 24
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0adfc7d_e50353aa",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "I don\u0027t expect user to completely replace the privilege registry each time. Please take a look at ### PATCH on PrivilegeRegistry section.",
+      "parentUuid": "2252e787_6c937244",
       "range": {
         "startLine": 347,
         "startChar": 46,
@@ -2072,6 +2312,24 @@
       "side": 1,
       "message": "\u003e \u003e How are roles added at compile time?\n\u003e \u003e How are oem privileges added at compile time?\n\u003e See what I have now.\n\u003e \n\u003e \u003e I see no mention of ConfigureSelf, which requires special handling currently hardcoded.\n\u003e Why is ConfigureSelf related?\n\u003e \n\nBecause it\u0027s a special case of privileges that needs handled.\n\n\u003e Before resource handlers (what the current hardcoding of SonfigureSelf) being executed, we do whatever the normal authz needs: getting the privileges set of the user, get the required privilege set, and do isSuperSetOf. After that, we just execute what the hardcoded ConfigureSelf codes are there. I don\u0027t any see any changes needed.\n\nSo then what happens if someone uploads a privilege registry without ConfigureSelf set on a particular resource?  We would give the wrong response if the ConfigureSelf code is hardcoded.",
       "parentUuid": "7293d4f6_876f5ec8",
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e85354b_7222dd36",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-08T01:02:34Z",
+      "side": 1,
+      "message": "Now I explicitly said base PrivilegeRegistry can\u0027t be changed. This design is for adding/deleting OEM Registries.",
+      "parentUuid": "064f5fc0_3ed4b1d0",
       "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
