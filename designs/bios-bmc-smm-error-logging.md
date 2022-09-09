@@ -67,13 +67,14 @@ circular buffer, the data structure of its header will look like the following:
 | BMC Interface Version | 4 bytes | 0x0 | BMC at init | Allows the BIOS to determine if it is compatible with the BMC |
 | BIOS Interface Version | 4 bytes | 0x4 | BIOS at init  | Allows the BMC to determine if it is compatible with the BIOS |
 | Magic Number | 16 bytes | 0x8 | BMC at init | Magic number to set the state of the queue as described below.  Written by BMC once the memory region is ready to be used. Must be checked by BIOS before logging. BMC can change this number when it suspects data corruption to prevent BIOS from writing anything during reinitialization |
-| Queue size | 4 bytes | 0x18 | BMC at init | Indicates the size of the region allocated for the circular queue. Written by BMC on init only, should not change during runtime |
-| Uncorrectable Error region size | 2 bytes | 0x1c | BMC at init | Indicates the size of the region reserved for Uncorrectable Error (UE) logs. Written by BMC on init only, should not change during runtime |
-| BMC flags | 4 bytes | 0x1e | BMC | <ul><li>BIT0 - BMC UE reserved region “switch”<ul><li>Toggled when BMC reads a UE from the reserved region.</li></ul><li>BIT1 - Overflow<ul><li>Lets BIOS know BMC has seen the overflow incident</li><li>Toggled when BMC acks the overflow incident</li></ul><li>BIT2 - BMC_READY<ul><li>BMC sets this bit once it has received any initialization information it needs to get from the BIOS before it’s ready to receive logs.</li></ul> |
-| BMC read pointer | 4 bytes | 0x22 | BMC | Used to allow the BIOS to detect when the BMC was unable to read the previous error logs in time to prevent the circular buffer from overflowing. |
-| Padding | 2 bytes | 0x26 | Reserved | Padding for 8 byte alignment |
+| Queue size | 3 bytes | 0x18 | BMC at init | Indicates the size of the region allocated for the circular queue. Written by BMC on init only, should not change during runtime |
+| Uncorrectable Error region size | 2 bytes | 0x1b | BMC at init | Indicates the size of the region reserved for Uncorrectable Error (UE) logs. Written by BMC on init only, should not change during runtime |
+| BMC flags | 4 bytes | 0x1d | BMC | <ul><li>BIT0 - BMC UE reserved region “switch”<ul><li>Toggled when BMC reads a UE from the reserved region.</li></ul><li>BIT1 - Overflow<ul><li>Lets BIOS know BMC has seen the overflow incident</li><li>Toggled when BMC acks the overflow incident</li></ul><li>BIT2 - BMC_READY<ul><li>BMC sets this bit once it has received any initialization information it needs to get from the BIOS before it’s ready to receive logs.</li></ul> |
+| BMC read pointer | 3 bytes | 0x21 | BMC | Used to allow the BIOS to detect when the BMC was unable to read the previous error logs in time to prevent the circular buffer from overflowing. |
+| Padding | 4 bytes | 0x24 | Reserved | Padding for 8 byte alignment |
 | BIOS flags | 4 bytes | 0x28 | BIOS | <ul><li>BIT0 - BIOS UE reserved region “switch”<ul><li> Toggled when BIOS writes a UE to the reserved region.</li></ul><li>BIT1 - Overflow<ul><li>Lets the BMC know that it missed an error log</li><li>Toggled when BIOS sees overflow and not already overflowed</li></ul><li>BIT2 - Incomplete Initialization<ul><li>Set when BIOS has attempted to initialize but did not see BMC ack back with `BMC_READY` bit in BMC flags</li></ul>|
-| BIOS write pointer | 4 bytes | 0x2c | BIOS | Indicates where the next log will be written by BIOS. Used to tell BMC when it should read a new log |
+| BIOS write pointer | 3 bytes | 0x2c | BIOS | Indicates where the next log will be written by BIOS. Used to tell BMC when it should read a new log |
+| Padding | 1 byte | 0x2f | Reserved | Padding for 8 byte alignment |
 | Uncorrectable Error reserved region | TBD1 | 0x30 | BIOS | Reserved region only for UE logs. This region is only used if the rest of the buffer is going to overflow and there is no unread UE log already in the region.  |
 | Error Logs from BIOS | Size of the Buffer - 0x30 - TBD1 | 0x30 + TBD1 | BIOS | Logs vary by type, so each log will self-describe with a header. This region will fill up the rest of the buffer |
 
