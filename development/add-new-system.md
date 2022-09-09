@@ -154,8 +154,7 @@ lesson has completed.
    ```
    cd ..
    rm -r ./build/conf
-   export TEMPLATECONF=meta-ibm/meta-romulus-prime/conf
-   . openbmc-env
+   . setup romulus-prime
    ```
 
    Run your "bitbake" command.

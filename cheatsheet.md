@@ -26,10 +26,9 @@ set to `"${AUTOREV}"` to use the latest commit in `KBRANCH`.
 
 The Palmetto target is `palmetto`.
 
-If you are starting from scratch without a `build/conf` directory you can just:
 ```
 $ cd openbmc
-$ TEMPLATECONF=meta-ibm/meta-palmetto/conf . openbmc-env
+$ . setup palmetto
 $ bitbake obmc-phosphor-image
 ```
 
@@ -37,10 +36,9 @@ $ bitbake obmc-phosphor-image
 
 The Zaius target is `zaius`.
 
-If you are starting from scratch without a `build/conf` directory you can just:
 ```
 $ cd openbmc
-$ TEMPLATECONF=meta-ingrasys/meta-zaius/conf . openbmc-env
+$ . setup zaius
 $ bitbake obmc-phosphor-image
 ```
 
@@ -48,16 +46,19 @@ $ bitbake obmc-phosphor-image
 
 If the system you want to build contains different machine configurations:
 
-    meta-<layer>/meta-<system>/conf/machine/machineA.conf
-    meta-<layer>/meta-<system>/conf/machine/machineB.conf
+```
+meta-<layer>/meta-<system>/conf/machine/machineA.conf
+meta-<layer>/meta-<system>/conf/machine/machineB.conf
+```
 
-You can specify the machine configuration you want to build by setting the
-MACHINE environment variable.
+You can specify the machine configuration you want to build by passing the
+name to the `setup`.
 
-    $ cd openbmc
-    $ TEMPLATECONF=meta-<layer>/meta-<system>/conf . openbmc-env
-    $ export MACHINE="machineB"
-    $ bitbake obmc-phosphor-image
+```
+$ cd openbmc
+$ . setup machineB
+$ bitbake obmc-phosphor-image
+```
 
 ## Building the OpenBMC SDK
 Looking for a way to compile your programs for 'ARM' but you happen to be running on a 'PPC' or 'x86' system?  You can build the sdk receive a fakeroot environment.
@@ -76,7 +77,7 @@ You can reconfigure your build by removing the build/conf dir:
 ```
 rm -rf build/conf
 ```
-and running `openbmc-env` again (possibly with `TEMPLATECONF` set).
+and running `setup` again (possibly with `TEMPLATECONF` set).
 
 ## Useful D-Bus CLI tools
 
