@@ -21,7 +21,7 @@ configuration to build before invoking `bitbake`. Examples for
 [cheatsheet](cheatsheet.md).
 
 The second case can be helped with Yocto's `devtool`. After running
-`.  openbmc-env`, a tool called `devtool` will be in your path, and can be
+`.  setup <machine>`, a tool called `devtool` will be in your path, and can be
 applied in several ways.
 
 If you have an existing source tree you'd like to integrate, running
