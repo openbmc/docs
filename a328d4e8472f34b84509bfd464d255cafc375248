@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "745a41eb_e180f747",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-09-13T20:35:45Z",
+      "side": 1,
+      "message": "For some reason I thought apostrophes had to be escaped in markdown, but maybe I was thinking of underscores.  I will fix.",
+      "parentUuid": "ee9bdc19_d3efa2dc",
+      "range": {
+        "startLine": 19,
+        "startChar": 3,
+        "endLine": 19,
+        "endChar": 4
+      },
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c009fee6_ab9acbfb",
         "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
         "patchSetId": 4
@@ -37,6 +61,24 @@
       "writtenOn": "2022-09-13T20:00:15Z",
       "side": 1,
       "message": "Is this an example where if we could assume a SCA per composed system, and an SCA is running on a sled, we could greatly reduce work and complexity (i.e. just use the existing d-bus api\u0027s from the SCA)?",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44bfce33_0ed60364",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-09-13T20:35:45Z",
+      "side": 1,
+      "message": "Yes.\n\nI still don\u0027t know how we\u0027re going to pass FFDC in from the SCA since it could be a blob...  Redfish attachments?  that sounds......",
+      "parentUuid": "c009fee6_ab9acbfb",
       "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -60,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61d2e664_43bf0c5f",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-09-13T20:35:45Z",
+      "side": 1,
+      "message": "I talked to Santosh a bit more today, and the cable validation PEL would only have a callout for a single BMC, which is also the BMC I presume it would create the PEL on using what I described above.  If it uses an unexpanded location code, which it should know because cable ports have location codes, like Ufcs-P0-T1, then the PEL daemon on the target BMC would know how to expand it based on its VPD.\n\nBut if it does turn out we need to add callouts that cross sleds to a single PEL, then I guess maybe etcd would need a map of BMC IDs to FCS (feature code/serial number) values or something along those lines.\n\nIf it doesn\u0027t know the location code, then yea I don\u0027t know how to do that.",
+      "parentUuid": "e897cde6_d4976022",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "34dd6d8e_edae07e1",
         "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
         "patchSetId": 4
@@ -77,6 +137,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0fdc0d55_061e192d",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-09-13T20:35:45Z",
+      "side": 1,
+      "message": "I was thinking it would be whatever sled creates it.  If we had to we could add a new PEL field that says it\u0027s an SCA level failure if something needs to know that.",
+      "parentUuid": "34dd6d8e_edae07e1",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a54f2780_f3aa265d",
         "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
         "patchSetId": 4
@@ -88,6 +166,24 @@
       "writtenOn": "2022-09-13T20:00:15Z",
       "side": 1,
       "message": "Specify this tool will only be supported on the SCA? Or are you thinking any sled could support it?",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7e8845b_07601607",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-09-13T20:35:45Z",
+      "side": 1,
+      "message": "I guess it would make the most sense to run on the SCA only, which means it would need the peltool python installed on it.  Theoretically it could also just target the SCA, but then it would have to drag in the peltool python packages as a prereq.\n\nI will update it.",
+      "parentUuid": "a54f2780_f3aa265d",
       "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
