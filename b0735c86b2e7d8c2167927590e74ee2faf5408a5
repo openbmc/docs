@@ -160,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b00ef669_c0ce44f0",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-09-14T19:56:03Z",
+      "side": 1,
+      "message": "Okay, we can add this later if it is needed.",
+      "parentUuid": "daed5104_6b1d8d10",
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e655b4d2_5035d45c",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 16
@@ -254,6 +272,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9f3b697_801f8482",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-09-14T19:56:03Z",
+      "side": 1,
+      "message": "Thanks for explaining!",
+      "parentUuid": "40a5dc60_cf7d3dd4",
+      "range": {
+        "startLine": 444,
+        "startChar": 31,
+        "endLine": 444,
+        "endChar": 71
+      },
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1bb8796c_4323f079",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 16
@@ -301,6 +343,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39818bd2_829ae13d",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-09-14T19:56:03Z",
+      "side": 1,
+      "message": "(Correctly handling property overrides is tricky.)\nI don\u0027t think the flow explains what is needed.  The property override check cannot be performed after the operation handler has already constructed the HTTP response body.  There are two reasons:\n1. At this point, the operation handler has already performed the action, invoked, D-Bus APIs, etc.  So it is too late to check authority.\n2. The operation handler may return properties which were not PATCHed.  For example, it may return a value as if the GET operation was used.  If we perform the property override check at this point, it would see all properties, and give incorrect results.\n\nI think this is how and when the property override check needs to be done:\nWhen a client is performing a PATCH operation, the HTTPS request body will have the properties they are trying to PATCH (like JSON {\"Password\":\"mypassword\"}).  BMCWeb should check for property overrides *before* invoking the operation handler.",
+      "parentUuid": "5cd0e51e_f404e8c7",
+      "range": {
+        "startLine": 453,
+        "startChar": 0,
+        "endLine": 454,
+        "endChar": 32
+      },
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6eaa81e0_e601540a",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 16
@@ -336,6 +402,30 @@
       "side": 1,
       "message": "There are two piece of data need to be stored, one is OEM Roles and OEM Privilegse which is stored as Linux users and groups, the other is modified Operation-to-Privilege mappings.\n\nI have reordered so that \"###PATCH on PrivilegeRegistry\" comes first.\n\nLet me know if it makes sense.",
       "parentUuid": "6eaa81e0_e601540a",
+      "range": {
+        "startLine": 506,
+        "startChar": 0,
+        "endLine": 507,
+        "endChar": 51
+      },
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d21358_c88a2acc",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-09-14T19:56:03Z",
+      "side": 1,
+      "message": "I got it.  But I have a different question below.",
+      "parentUuid": "072392e9_ea626f82",
       "range": {
         "startLine": 506,
         "startChar": 0,

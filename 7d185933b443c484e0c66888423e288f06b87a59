@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12c19ac2_f1fc7232",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-09-14T19:56:03Z",
+      "side": 1,
+      "message": "Thanks for answering my questions!  I have a couple more...",
+      "revId": "7d185933b443c484e0c66888423e288f06b87a59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7fef736_9102b4c5",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2022-09-14T19:56:03Z",
+      "side": 1,
+      "message": "I don\u0027t think this is the appropriate place to store this data.\nThe bmcweb_persistent_data.json file is only written when BMCWeb exits normally.  For example, it may not be written if BMCWeb dumps, BMC crashes, etc.  If we are going to store a sequence of PrivilegeRegistry PATCH requests, I think the file needs to be written when the PATCH request is being processed.\n\nInstead of writing a sequence of PATCHes, can BMCWeb instead simply write the new PrivilegeRegistry to a file?",
+      "range": {
+        "startLine": 558,
+        "startChar": 14,
+        "endLine": 558,
+        "endChar": 41
+      },
+      "revId": "7d185933b443c484e0c66888423e288f06b87a59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
