@@ -108,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "212475b4_f75b5166",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-09-14T15:24:39Z",
+      "side": 1,
+      "message": "I was envisioning this being the only method for SCA code to create a PEL.  So if the cable validation code wanted to create one, it would be a Redfish call to some other BMC where the standard phosphor-log-manager is already running.  Otherwise, there\u0027d have to be some new SCA PEL daemon that would create a PEL using the VPD from other sleds and then send it as a blob to the target BMC, after it somehow figured out which one to send it to.\n\nWith no log-manager running in the SCA container, that means none of the standard commit() or report() phosphor-logging interfaces would work.  Hopefully that isn\u0027t a show stopper.",
+      "parentUuid": "967e03a0_08dfc836",
+      "range": {
+        "startLine": 51,
+        "startChar": 1,
+        "endLine": 52,
+        "endChar": 36
+      },
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e897cde6_d4976022",
         "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
         "patchSetId": 4
@@ -161,6 +185,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8764d290_939b9934",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-09-14T15:24:39Z",
+      "side": 1,
+      "message": "How I have it described now is your code would chose a sled, the one that contains the callout, and make a redfish call to it, passing along with it all of the information needed to create the PEL.",
+      "parentUuid": "8a2e6369_7947bf34",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6576e954_f9da70b0",
         "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
         "patchSetId": 4
@@ -172,6 +214,30 @@
       "writtenOn": "2022-09-14T12:38:04Z",
       "side": 1,
       "message": "You think there will be cases where the PEL that SCA creates will need to fetch FFDC from a remote BMC? Are there concrete use cases you can think of? Can that complexity be placed in the SCA app that is creating this PEL?",
+      "range": {
+        "startLine": 67,
+        "startChar": 21,
+        "endLine": 68,
+        "endChar": 8
+      },
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e75f143_9d9ce676",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-09-14T15:24:39Z",
+      "side": 1,
+      "message": "I have the PEL being created in phosphor-log-manager on the remote BMC.",
+      "parentUuid": "6576e954_f9da70b0",
       "range": {
         "startLine": 67,
         "startChar": 21,
@@ -231,6 +297,24 @@
       "side": 1,
       "message": "I think there is some merit in having a way to identify that the PEL was logged by the SCA - Maybe just a different subsystem ID? Will the SCA PELs use their own store separate from the local BMC PELs the SCA is running on? (Edit - NM, you have tackled the storage aspect in the Controversial section below 😊)\n\nIs there any benefit of syncing SCA level PELs to all BMCs?",
       "parentUuid": "0fdc0d55_061e192d",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bde520f_961ec761",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-09-14T15:24:39Z",
+      "side": 1,
+      "message": "The PEL spec/IBM doesn\u0027t have a concept of a PEL that isn\u0027t associated with a physical system, and in the workshop it didn\u0027t sound like we needed to invent one, so the PEL will just end being created on a satellite BMC, being reported to that sled\u0027s OS.\n\nregarding syncing SCA PELs to all BMCs, I\u0027m not sure what they\u0027d do with them?  Would the HMC just get 8 notifications for the same PEL, and the OSs get sent 8 copies of the same PELs?",
+      "parentUuid": "00262aae_bb655953",
       "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
