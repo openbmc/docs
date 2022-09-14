@@ -203,6 +203,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9fd74f0_4fe24bca",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000155
+      },
+      "writtenOn": "2022-09-14T21:32:21Z",
+      "side": 1,
+      "message": "\u003eBut if it does turn out we need to add callouts that cross sleds to a single PEL\nPRD (running in the SCA) will for sure need to do this.",
+      "parentUuid": "8764d290_939b9934",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6576e954_f9da70b0",
         "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
         "patchSetId": 4
@@ -321,6 +339,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e86b871b_cd679cf2",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000155
+      },
+      "writtenOn": "2022-09-14T21:32:21Z",
+      "side": 1,
+      "message": "\u003eI think there is some merit in having a way to identify that the PEL was logged by the SCA\nI second this.  There will definitely be errors that only have SCA-context so none of the BMCs would make sense to be associated.  A unique id range (e.g. 0x5Fzzzzzz) would make those kinds of logs obvious, especially if a SCA bounces around to other BMCs.  This would be similar to how Hostboot uses 9x for the IPL logs and then 89 for the runtime logs with full system scope.",
+      "parentUuid": "7bde520f_961ec761",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a54f2780_f3aa265d",
         "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
         "patchSetId": 4
@@ -350,6 +386,23 @@
       "side": 1,
       "message": "I guess it would make the most sense to run on the SCA only, which means it would need the peltool python installed on it.  Theoretically it could also just target the SCA, but then it would have to drag in the peltool python packages as a prereq.\n\nI will update it.",
       "parentUuid": "a54f2780_f3aa265d",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3134735c_55f62bcc",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000155
+      },
+      "writtenOn": "2022-09-14T21:32:21Z",
+      "side": 1,
+      "message": "Are there any requirements for which BMC gets the PEL if there are callouts?  e.g. if HBRT wants to callout sled0:proc0, does the sled0 need to catch that PEL?  If so, how do we handle PELs with callouts that span sleds?",
       "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
