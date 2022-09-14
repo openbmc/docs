@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d75f393f_c15d783a",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-14T17:17:48Z",
+      "side": 1,
+      "message": "This is to respect Ed\u0027s comments before.\n\nDefault OEM roles and OEM Redfish privileges are configurable at compile time by Yocto\u0027s UserAdd and GroupAdd.\n\nDefault Redfish PrivilegeRegistry (C++ codes) will be generated at compile time by parsing the DMTF\u0027s privilege registry (I will write a python script) so that the Redfish server doesn\u0027t parse a very large JSON.\n\nAnd yes, requirement 8 is somewhat making requirement 1 and 2 working at compile time.",
+      "parentUuid": "c38160c1_6bc683aa",
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d86c2cf_466bb752",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 16
@@ -48,6 +66,24 @@
       "writtenOn": "2022-09-14T13:14:22Z",
       "side": 1,
       "message": "To check my comprehension: does this mean:\ngroups prefixed with openbmc-rfr- and openbmc-rfp- will not be allowed to change at runtime, and\ngroups prefixed with openbmc-orfr- and openbmc-orfp- will be allowed to change at runtime.",
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5e26ea3_440dc4fd",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-14T17:17:48Z",
+      "side": 1,
+      "message": "Yes. Openbmc-rfr- and openbmc-rfp- will not be allowed to change at runtime in the scope of this design. Because any changes at runtime regarding roles or privileges are \"OEM\".",
+      "parentUuid": "9d86c2cf_466bb752",
       "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -71,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73f133c3_f72da313",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-14T17:17:48Z",
+      "side": 1,
+      "message": "Yes, this has been discussed in previous thread. If we look into the Permission annotation of the PrivilegeRegistry, we will find all of them are read-only.\n\nHowever, DMTF already noticed the limitation. https://github.com/DMTF/Redfish/issues/5262#issuecomment-1239678254. In their proposed design to solve this, one of the option is to make PrivilegeRegistry fully editable, which is aligned with this design.\n\n\u003e However, I think we could change the spec to allow it.\n\nYes, I already started the conversation.",
+      "parentUuid": "5dc7899d_580c1524",
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3534f398_af9ae7fb",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 16
@@ -88,6 +142,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "daed5104_6b1d8d10",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-14T17:17:48Z",
+      "side": 1,
+      "message": "\u003e Do we need an operation to modify a Role?\n\nNot at this moment. We can extend this if there is a strong usecase.\n\nBut in Google\u0027s use case, no, we don\u0027t need to modify a role. We only need to add a role or modify the PrivilegeRegistry (grant an OEM privilege of an existing role to a new resource).",
+      "parentUuid": "3534f398_af9ae7fb",
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e655b4d2_5035d45c",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 16
@@ -99,6 +171,30 @@
       "writtenOn": "2022-09-14T13:14:22Z",
       "side": 1,
       "message": "Is this more clear?: The operation to check if a user is authorized to perform a Redfish operation ...",
+      "range": {
+        "startLine": 428,
+        "startChar": 1,
+        "endLine": 428,
+        "endChar": 26
+      },
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12d96c26_51360445",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-14T17:17:48Z",
+      "side": 1,
+      "message": "Yes. Done.",
+      "parentUuid": "e655b4d2_5035d45c",
       "range": {
         "startLine": 428,
         "startChar": 1,
@@ -134,6 +230,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "40a5dc60_cf7d3dd4",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-14T17:17:48Z",
+      "side": 1,
+      "message": "Yes. It will grow as Redfish adds new schemas. But I have left some margins already. Please take a look at the words that I added now which explains why 100KB is chosen. Please let me know if it makes sense.\n\nI haven\u0027t write the code yet. So this is just my estimation.",
+      "parentUuid": "f6a31ce5_da105a1d",
+      "range": {
+        "startLine": 444,
+        "startChar": 31,
+        "endLine": 444,
+        "endChar": 71
+      },
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1bb8796c_4323f079",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 16
@@ -157,6 +277,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5cd0e51e_f404e8c7",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-14T17:17:48Z",
+      "side": 1,
+      "message": "Yes, good question. Please take at the execution flow below,\n\nThat check will be performed after the handler is done and the HTTP response is ready to be returned to the client. Otherwise we don\u0027t know if a handler will return a property or not, right?",
+      "parentUuid": "1bb8796c_4323f079",
+      "range": {
+        "startLine": 453,
+        "startChar": 0,
+        "endLine": 454,
+        "endChar": 32
+      },
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6eaa81e0_e601540a",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 16
@@ -168,6 +312,30 @@
       "writtenOn": "2022-09-14T13:14:22Z",
       "side": 1,
       "message": "I don\u0027t comprehend what this is saying.  This persistent data is stored as Linux users and groups.  Why would BMCWeb need to store it?",
+      "range": {
+        "startLine": 506,
+        "startChar": 0,
+        "endLine": 507,
+        "endChar": 51
+      },
+      "revId": "b0735c86b2e7d8c2167927590e74ee2faf5408a5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "072392e9_ea626f82",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-14T17:17:48Z",
+      "side": 1,
+      "message": "There are two piece of data need to be stored, one is OEM Roles and OEM Privilegse which is stored as Linux users and groups, the other is modified Operation-to-Privilege mappings.\n\nI have reordered so that \"###PATCH on PrivilegeRegistry\" comes first.\n\nLet me know if it makes sense.",
+      "parentUuid": "6eaa81e0_e601540a",
       "range": {
         "startLine": 506,
         "startChar": 0,
