@@ -35,6 +35,108 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44fc99fd_659d97da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000576
+      },
+      "writtenOn": "2022-09-14T21:24:46Z",
+      "side": 1,
+      "message": "As you may already know, META(a.k.a Facebook) designed OCP servers are using another OpenBMC (https://github.com/facebook/openbmc), instead of this Linux Foundation sponsored OpenBMC. To avoid confusing, I referred them explicitly as FB-OpenBMC and LF-OpenBMC accordingly in all of my comments. \n\nMETA has a long term goal to make LF-OpenBMC another valid choice for BMC s/w when design META\u0027s OCP servers. So porting FB-OpenBMC\u0027s specific features (i.e. measured boot) to LF-OpenBMC is the step stone to achieve this goal. \n\nAs the design is proposing a same feature that I want to port to LF-OpenBMC, I think it is a good idea to leverage the discussion of this design proposal to introduce FB-OpenBMC\u0027s measured boot to the community and collects comments regarding porting FB-OpenBMC measured boot to LF-OpenBMC.\n\nSo,I comments inline providing the design/implementation information of FB-OpenBMC measured boot for your reference only.\n\n\n \n\n\n",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a796abc2_028c3d4e",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000576
+      },
+      "writtenOn": "2022-09-14T21:24:46Z",
+      "side": 1,
+      "message": "for measured boot, make sure \"the PCR will get cleared(reset) when it shall should be\" is critical. i.e. we don\u0027t want allow the malicious s/w can reset the TPM to clear the PCR (clear the real measurement) and execute a faked measurement by itself. \nFB-OpenBMC design an TPM and BMC reset bounding circuit to make sure\n* can NOT reset TPM w/o reset BMC\n* whenever BMC reset, TPM reset also.",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffe625e4_ab21e76f",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000576
+      },
+      "writtenOn": "2022-09-14T21:24:46Z",
+      "side": 1,
+      "message": "FB-OpenBMC measured boot event log implementation on AST25xx and AST26xx BMC.\nhttps://github.com/facebook/openbmc/blob/helium/Documentation/verifiedboot/tpm-event-log.md",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76526539_2effa89f",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000576
+      },
+      "writtenOn": "2022-09-14T21:24:46Z",
+      "side": 1,
+      "message": "FB-OpenBMC measured boot\u0027s CRTM is the immutable u-boot-SPL, which was locked in flash (SPI flash hardware write protected) and eXecute-In-Place as the first s/w component from SPI flash during boot up.\n\nhttps://github.com/facebook/openbmc-uboot/tree/openbmc/helium/v2019.04/board/fb-obmc/ast\n\nVboot-spl.c::vboot_spl_do_measures() ⇒ measurement do by SPL\nvboot.c::vboot_uboot_do_measures() ⇒ measurement do by u-boot",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c0179b9_f41b6481",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000576
+      },
+      "writtenOn": "2022-09-14T21:24:46Z",
+      "side": 1,
+      "message": "Technically measurement is calculate the hash of measurement targets (i.e. u-boot, kernel). U-boot verified boot already calculate and put the hash value within FIT during sign time. And verified boot checks the hash value during boot time. If the verify success means the hash is matching with the binary. \n\nSo after verified boot verifying success, we can reuse this hash for our measurement to avoid expensive recalculating.\n\nFB-OpenBMC\u0027s design is double hash: \ni.e. u-boot-measurement \u003d hash_measure( hash_sign(u-boot) )\nthe hash algorithm: hash_measure and hash_sign can be different hash_measure is sha256 and hash_sign can be sha384.",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09a17000_7d217fb2",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000576
+      },
+      "writtenOn": "2022-09-14T21:24:46Z",
+      "side": 1,
+      "message": "FB-OpenBMC support SPI-TIS interfaced TPM2.0 device. \nTpm2_tis_spi.c ⇒ u-boot TPM2.0 TIS SPI driver\ntpm-v2.c ⇒ TPM 2.0 API\ntpm2-spl.c::ast_tpm_extend() ⇒ measure boot API\n\nBTW, we use spi-bitbang driver to workaround SPI controller only support half-duplex issue. TPM-TIS wait state require SPI controller full-duplex.",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74cbeb3b_0e179acd",
@@ -111,6 +213,23 @@
         "endLine": 157,
         "endChar": 0
       },
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baf5838f_c6e97922",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000576
+      },
+      "writtenOn": "2022-09-14T21:24:46Z",
+      "side": 1,
+      "message": "FB-OpenBMC mboot testing tool which can test the measurement is as expected via execute the whole measurement by the testing script.\nhttps://github.com/facebook/openbmc/tree/helium/common/recipes-utils/vboot-utils/files\n\nmeasure.py, measure_func.py and tpm_event_log.py",
       "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
