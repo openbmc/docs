@@ -53,12 +53,13 @@ end (sorted by term conclusion followed by alphabetically by preferred name):
 
 | Name | Term Conclusion |
 |:-----|:---------------:|
-| Brad Bishop | 2022-10-01 |
-| Ed Tanous | 2022-10-01 |
 | Andrew Jeffery | 2023-04-01 |
 | Jason Bills | 2023-04-01 |
 | Patrick Williams | 2023-04-01 |
 | William Kennington | 2023-04-01 |
+| Brad Bishop | 2023-10-01 |
+| Ed Tanous | 2023-10-01 |
+| Zev Weiss | 2023-10-01 |
 
 ## OpenBMC Development Community
 
