@@ -120,6 +120,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a2e6369_7947bf34",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2022-09-14T12:38:04Z",
+      "side": 1,
+      "message": "\u003e  which is also the BMC I presume it would create the PEL on using what I described above\n\nThat does not work in all cases, unfortunately :(. The cable validation app will run on the SCA, it could be validating a cable that does not involve the sled on which the SCA is running. So we will need the ability to make \"remote\" callouts.",
+      "parentUuid": "61d2e664_43bf0c5f",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6576e954_f9da70b0",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2022-09-14T12:38:04Z",
+      "side": 1,
+      "message": "You think there will be cases where the PEL that SCA creates will need to fetch FFDC from a remote BMC? Are there concrete use cases you can think of? Can that complexity be placed in the SCA app that is creating this PEL?",
+      "range": {
+        "startLine": 67,
+        "startChar": 21,
+        "endLine": 68,
+        "endChar": 8
+      },
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "34dd6d8e_edae07e1",
         "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
         "patchSetId": 4
@@ -149,6 +190,24 @@
       "side": 1,
       "message": "I was thinking it would be whatever sled creates it.  If we had to we could add a new PEL field that says it\u0027s an SCA level failure if something needs to know that.",
       "parentUuid": "34dd6d8e_edae07e1",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00262aae_bb655953",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2022-09-14T12:38:04Z",
+      "side": 1,
+      "message": "I think there is some merit in having a way to identify that the PEL was logged by the SCA - Maybe just a different subsystem ID? Will the SCA PELs use their own store separate from the local BMC PELs the SCA is running on? (Edit - NM, you have tackled the storage aspect in the Controversial section below 😊)\n\nIs there any benefit of syncing SCA level PELs to all BMCs?",
+      "parentUuid": "0fdc0d55_061e192d",
       "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
