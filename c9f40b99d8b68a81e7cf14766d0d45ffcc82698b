@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f4a7605_740e1923",
+        "filename": "designs/pim-to-entity-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000331
+      },
+      "writtenOn": "2022-09-15T14:28:23Z",
+      "side": 1,
+      "message": "What is the difference between a FRU D-Bus object and in inventory D-Bus object?  Were these the same object under PIM?",
+      "range": {
+        "startLine": 66,
+        "startChar": 1,
+        "endLine": 67,
+        "endChar": 53
+      },
+      "revId": "c9f40b99d8b68a81e7cf14766d0d45ffcc82698b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f519231e_99578182",
+        "filename": "designs/pim-to-entity-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000331
+      },
+      "writtenOn": "2022-09-15T14:28:23Z",
+      "side": 1,
+      "message": "Can you provide more info on this, or is there some documentation we could look at?\n\nI appreciate you mentioning the PSU app, but I don\u0027t understand the proposed design.",
+      "range": {
+        "startLine": 92,
+        "startChar": 13,
+        "endLine": 94,
+        "endChar": 23
+      },
+      "revId": "c9f40b99d8b68a81e7cf14766d0d45ffcc82698b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd1f45e5_7b90f44d",
+        "filename": "designs/pim-to-entity-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000331
+      },
+      "writtenOn": "2022-09-15T14:28:23Z",
+      "side": 1,
+      "message": "The phosphor-regulators application has system-specific JSON files that contain D-Bus object paths to inventory items.\n\nThese object paths are required for:\n* Obtaining VPD from a specific inventory item, such as the VDD VRM, CPU0, a Flett card, or the backplane containing the BMC.\n* Obtaining the presence of a specific inventory item, such as the VIO VRM, CPU3, a Flett card, etc.\n* Calling out the correct FRU for errors.  The \"CALLOUT_INVENTORY_PATH\" additional day keyword is set to the inventory path of the failing inventory item/FRU.\n\nThere is no requirement for a particular format of the object paths, such as hierarchical or how PIM defined them.\n\nHowever, the object paths need to be static.  The D-Bus object path to a specific VRM, CPU, or backplane needs to stay the same after a system has been brought up.  Otherwise they cannot be specified in the regulators JSON file.\n\nMatt Spinler mentioned that in some cases EM paths have some sort of \u0027$index\u0027 in them.  So the path to the FRU would be dynamic depending on the order JSON is parsed in or something.  However, he mentioned for some work he did he used the location code instead of the index so that the inventory path was static.\n\nIf this is not possible, then how can applications get VPD and presence for a known entity, like the VDD VRM or CPU3?  It is not sufficient to do a mapper query to find all VRM objects; we need to know which one it is.",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 121,
+        "endChar": 24
+      },
+      "revId": "c9f40b99d8b68a81e7cf14766d0d45ffcc82698b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
