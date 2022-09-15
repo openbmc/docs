@@ -39,6 +39,30 @@
       },
       "revId": "7d185933b443c484e0c66888423e288f06b87a59",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "373bd69f_46facd01",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-09-15T00:20:17Z",
+      "side": 1,
+      "message": "\u003e Instead of writing a sequence of PATCHes, can BMCWeb instead simply write the new PrivilegeRegistry to a file?\n\nThis was my original proposal but rejected by Ed. He has concerns about reading a large file at daemon startup. He was also worried about we increase the persistent data that BMCWeb keeps.\n\nSo I proposed to store only changes on top of the Base Registry so that BMCWeb stores less data. I proposed to populate Base Registry at compile time as C++ codes to eliminate the need of reading a big file. \n\n\u003e I don\u0027t think this is the appropriate place to store this data.\n\nHmm, this is also suggested by Ed. I proposed a separate data file but Ed wants to use the existing one. It makes sense to me to just keep a single file for all the states.\n\n\u003e The bmcweb_persistent_data.json file is only written when BMCWeb exits normally.  For example, it may not be written if BMCWeb dumps, BMC crashes, etc.  If we are going to store a sequence of PrivilegeRegistry PATCH requests, I think the file needs to be written when the PATCH request is being processed.\n\nYes, good point. This will change now. BMCWeb has to write changes to disk before it returns okay to clients\u0027 PATCH on PrivilegeRegistry. I have written this down explicitly in the doc now.",
+      "parentUuid": "e7fef736_9102b4c5",
+      "range": {
+        "startLine": 558,
+        "startChar": 14,
+        "endLine": 558,
+        "endChar": 41
+      },
+      "revId": "7d185933b443c484e0c66888423e288f06b87a59",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
