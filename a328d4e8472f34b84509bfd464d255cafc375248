@@ -221,6 +221,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8af9cc3_245ec8fb",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2022-09-15T14:29:33Z",
+      "side": 1,
+      "message": "\u003e How I have it described now is your code would chose a sled, the one that contains the callout, and make a redfish call to it, passing along with it all of the information needed to create the PEL.\n\nOkay, I checked the way we callout SMP cables on the FSP - we do a symbolic FRU callout with a location code - so no other inventory information. I think this is easily done now? We could probably just pass in a \"LOCATION_CODE\" key to the logging API?",
+      "parentUuid": "b9fd74f0_4fe24bca",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6576e954_f9da70b0",
         "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
         "patchSetId": 4
@@ -351,6 +369,24 @@
       "side": 1,
       "message": "\u003eI think there is some merit in having a way to identify that the PEL was logged by the SCA\nI second this.  There will definitely be errors that only have SCA-context so none of the BMCs would make sense to be associated.  A unique id range (e.g. 0x5Fzzzzzz) would make those kinds of logs obvious, especially if a SCA bounces around to other BMCs.  This would be similar to how Hostboot uses 9x for the IPL logs and then 89 for the runtime logs with full system scope.",
       "parentUuid": "7bde520f_961ec761",
+      "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f345726e_e1b7d412",
+        "filename": "designs/oem/ibm/aggregation/ibm-event-logging.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2022-09-15T14:29:33Z",
+      "side": 1,
+      "message": "\u003e regarding syncing SCA PELs to all BMCs, I\u0027m not sure what they\u0027d do with them?  Would the HMC just get 8 notifications for the same PEL, and the OSs get sent 8 copies of the same PELs?\n\nI was just thinking of a case where the SCA BMC OR the SCA app container dies before HMC can pull the SCA PELs. I think on a failover, the new SCA would have to rediscover state anyway, so I guess this is a non-issue.",
+      "parentUuid": "e86b871b_cd679cf2",
       "revId": "a328d4e8472f34b84509bfd464d255cafc375248",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
