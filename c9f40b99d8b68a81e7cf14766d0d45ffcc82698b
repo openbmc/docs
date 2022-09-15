@@ -92,6 +92,30 @@
       },
       "revId": "c9f40b99d8b68a81e7cf14766d0d45ffcc82698b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "818bcfd6_f3b3c911",
+        "filename": "designs/pim-to-entity-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-09-15T22:09:27Z",
+      "side": 1,
+      "message": "\u003e If this is not possible, then how can applications get VPD and presence for a known entity, like the VDD VRM or CPU3?  It is not sufficient to do a mapper query to find all VRM objects; we need to know which one it is.\n\nThe information needs to be structured such that the objects at each end of the association tell you how each is addressed relative to the other. This same information is necessary to construct deterministic paths, so there\u0027s no loss of functionality. With this the specific topology can be constructed by traversing the association graph. The mapper APIs need some more work to make this efficient, but there has already been discussion (at least in the TOF) about this.\n\nThis design document is relevant: https://gerrit.openbmc.org/c/openbmc/docs/+/54205",
+      "parentUuid": "ca118dc7_618f8035",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 121,
+        "endChar": 24
+      },
+      "revId": "c9f40b99d8b68a81e7cf14766d0d45ffcc82698b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
