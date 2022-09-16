@@ -159,6 +159,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94c4e323_bedf2bc3",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-09-16T10:43:21Z",
+      "side": 1,
+      "message": "A new schema will be implemented in phosphor-led-sysfs repo to handle the color control for a group of LEDs and activate one LED which must be Blink/ON and set the remaining LEDs in the OFF state.\n\nUpdated the information in the latest patchset.",
+      "parentUuid": "45e24afb_068b95ea",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0c6a525_880b3883",
@@ -172,6 +196,30 @@
       "writtenOn": "2022-09-05T23:22:14Z",
       "side": 1,
       "message": "Can you explain why this is a requirement and not an implementation detail?",
+      "range": {
+        "startLine": 104,
+        "startChar": 1,
+        "endLine": 104,
+        "endChar": 64
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b50d2370_ced1e976",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-09-16T10:43:21Z",
+      "side": 1,
+      "message": "Changed the design doc and updated.",
+      "parentUuid": "e0c6a525_880b3883",
       "range": {
         "startLine": 104,
         "startChar": 1,
@@ -277,6 +325,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3e4507a_67118655",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-09-16T10:43:21Z",
+      "side": 1,
+      "message": "The design doc is now changed to support udev event and entity-manager is not required now, since udev rule is used in existing platforms.",
+      "parentUuid": "7e20910c_1907acc2",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 18
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2135c76d_d0b9a496",
@@ -362,6 +434,30 @@
       "side": 1,
       "message": "The question is, is the Type field meant to describe the interface or the implementation? Should it be the responsibility of the board configuration to dictate *how* the LED is controlled (sysfs vs e.g. raw GPIO)? I feel like that\u0027s an implementation detail. I feel like describing the type in this way means the EM configuration is dictating that the LED must also be described in the devicetree (as there\u0027s no way to create sysfs LEDs in userspace as far as I\u0027m aware).",
       "parentUuid": "618846c0_17f9485a",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 3
+      },
+      "revId": "811b4d903b03e62444ab2e7ca1fabe919fefe48f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bacdf4d_62a5bb3d",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-09-16T10:43:21Z",
+      "side": 1,
+      "message": "In the existing platforms, LEDs are configured via devicetree, therefore, udev support is proposed in the latest patchset. \n\nEntity manager can be used when plugable cards are present. Currently, EM support not required for this design, for that reason, it is removed.",
+      "parentUuid": "1999d5dd_1a5547b5",
       "range": {
         "startLine": 172,
         "startChar": 0,
