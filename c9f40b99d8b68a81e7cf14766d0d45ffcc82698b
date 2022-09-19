@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43f982ef_6462cb11",
+        "filename": "designs/pim-to-entity-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2022-09-19T10:06:32Z",
+      "side": 1,
+      "message": "Yes, they were the same object under PIM. From my viewpoint, a FRU D-Bus object contains data that EM can probe against - For ex: CCIN. In case of the VPD collection app, this object would contain the VPD data interface and properties that reflect the real VPD data.",
+      "parentUuid": "3f4a7605_740e1923",
+      "range": {
+        "startLine": 66,
+        "startChar": 1,
+        "endLine": 67,
+        "endChar": 53
+      },
+      "revId": "c9f40b99d8b68a81e7cf14766d0d45ffcc82698b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f519231e_99578182",
         "filename": "designs/pim-to-entity-manager.md",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-15T14:28:23Z",
       "side": 1,
       "message": "Can you provide more info on this, or is there some documentation we could look at?\n\nI appreciate you mentioning the PSU app, but I don\u0027t understand the proposed design.",
+      "range": {
+        "startLine": 92,
+        "startChar": 13,
+        "endLine": 94,
+        "endChar": 23
+      },
+      "revId": "c9f40b99d8b68a81e7cf14766d0d45ffcc82698b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d6b4ad0_e92d6e13",
+        "filename": "designs/pim-to-entity-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2022-09-19T10:06:32Z",
+      "side": 1,
+      "message": "Something like the \"detection daemon\" that is described here: https://github.com/openbmc/entity-manager/#implementation. This daemon would be, say the vpd-manager for FRUs detected via their EEPROMs.\n\nI guess in cases where multiple daemons do this detection, it would get tricky to keep them in \"sync\"",
+      "parentUuid": "f519231e_99578182",
       "range": {
         "startLine": 92,
         "startChar": 13,
@@ -108,6 +156,30 @@
       "side": 1,
       "message": "\u003e If this is not possible, then how can applications get VPD and presence for a known entity, like the VDD VRM or CPU3?  It is not sufficient to do a mapper query to find all VRM objects; we need to know which one it is.\n\nThe information needs to be structured such that the objects at each end of the association tell you how each is addressed relative to the other. This same information is necessary to construct deterministic paths, so there\u0027s no loss of functionality. With this the specific topology can be constructed by traversing the association graph. The mapper APIs need some more work to make this efficient, but there has already been discussion (at least in the TOF) about this.\n\nThis design document is relevant: https://gerrit.openbmc.org/c/openbmc/docs/+/54205",
       "parentUuid": "ca118dc7_618f8035",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 121,
+        "endChar": 24
+      },
+      "revId": "c9f40b99d8b68a81e7cf14766d0d45ffcc82698b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9be7fe38_d8f3932e",
+        "filename": "designs/pim-to-entity-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2022-09-19T10:06:32Z",
+      "side": 1,
+      "message": "I\u0027m with Matt on this one, we need to use \"something\" to uniquely identify object instances. For IBM systems, using the location code makes most sense (to me).",
+      "parentUuid": "818bcfd6_f3b3c911",
       "range": {
         "startLine": 119,
         "startChar": 2,
