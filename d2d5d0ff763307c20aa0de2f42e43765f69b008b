@@ -16,6 +16,41 @@
       "message": "I have fan and thermal code that will use the chassis-hard-poweroff@0 target to force a power off in the event of certain thermal faults.\n\nIf that does just power off the whole composed system, the we\u0027d avoid the issue of causing a checkstop by just powering off a single sled.\n\nIs that how you foresee this working?",
       "revId": "d2d5d0ff763307c20aa0de2f42e43765f69b008b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c951b717_701c2606",
+        "filename": "designs/aggregation/phosphor-state-manager-aggregation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-09-19T19:27:05Z",
+      "side": 1,
+      "message": "Yeah, I added some more details to the design on this. I think non-aggregator sleds will need to support composed system level requests. So in this case, your chassis-hard-poweroff@0 request would hit the local sled (for quick resolution) AND the composed system.",
+      "parentUuid": "50a637ac_a1279ef7",
+      "revId": "d2d5d0ff763307c20aa0de2f42e43765f69b008b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7cf452f_d89873b0",
+        "filename": "designs/aggregation/phosphor-state-manager-aggregation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-09-19T19:27:05Z",
+      "side": 1,
+      "message": "Another area needed here is monitoring for UPS and brownout conditions on all sleds in the composed system and preventing power on when they are bad. This will require a Redfish API to get this information. Also, need to run APR once UPS power or brownout issue has been resolved.",
+      "revId": "d2d5d0ff763307c20aa0de2f42e43765f69b008b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
