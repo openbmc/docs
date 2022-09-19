@@ -1,0 +1,52 @@
+# OWNERS
+# ------
+#
+# The OWNERS file maintains the list of individuals responsible for various
+# parts of this repository, including code review and approval.  We use the
+# Gerrit 'owners' plugin, which consumes this file, along with some extra
+# keywords for our own purposes and tooling.
+#
+# For details on the configuration used by 'owners' see:
+#  https://gerrit.googlesource.com/plugins/owners/+/refs/heads/master/owners/src/main/resources/Documentation/config.md
+#
+# An OWNERS file must be in the root of a repository but may also be present
+# in any subdirectory.  The contents of the subdirectory OWNERS file are
+# combined with parent directories unless 'inherit: false' is set.
+#
+# The owners file is YAML and has [up to] 4 top-level keywords.
+#   * owners: A list of individuals who have approval authority on the
+#     repository.
+#
+#   * reviewers: A list of individuals who have requested review notification
+#     on the repository.
+#
+#   * matchers: A list of specific file/path matchers for granular 'owners' and
+#     'reviewers'.  See 'owners' plugin documentation.
+#
+#   * openbmc: A list of openbmc-specific meta-data about owners and reviewers.
+#     - name: preferred name of the individual.
+#     - email: preferred email address of the individual.
+#     - discord: Discord nickname of the individual.
+#
+# It is expected that these 4 sections will be listed in the order above and
+# data within them will be kept sorted.
+
+owners:
+- andrew@aj.id.au
+- geissonator@yahoo.com
+- gmills@linux.vnet.ibm.com
+
+reviewers:
+
+matchers:
+
+openbmc:
+- name: Andrew Jeffery
+  email: andrew@aj.id.au
+  discord: arj
+- name: Andrew Geissler
+  email: geissonator@yahoo.com
+  discord: geissonator
+- name: Gunnar Mills
+  email: gmills@linux.vnet.ibm.com
+  discord: GunnarM
