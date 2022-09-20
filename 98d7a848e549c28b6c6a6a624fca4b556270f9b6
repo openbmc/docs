@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e263a30_069fcd2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "I can do.  ince it was a design doc I was trying to keep it at a higher level, but can add more specific details about the messages.",
+      "parentUuid": "1ebbe102_069dda6d",
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd71614e_7d35159c",
         "filename": "designs/oem/ibm/aggregation/power-management.md",
         "patchSetId": 3
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-20T08:42:51Z",
       "side": 1,
       "message": "what is this communication mechanism ?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afb7bd4b_c875f52d",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "The BMC communication with the OCCs will not be changing.  The occ-control app uses SBE to communicate with the OCCs.\nThe PLDM notification that the OCCs are active should be the same/similar to how it works in p10 (PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS)",
+      "parentUuid": "bd71614e_7d35159c",
       "range": {
         "startLine": 28,
         "startChar": 0,
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cccfdc3d_f7bcb7f1",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "My understanding was there was a single Hostboot instance that was aware of all sleds.  OCC communication does not happen until runtime, so no dependency on Hostboot Base, only Runtime. A single Hostboot Runtime instance which is where HTMGT runs.  That HTMGT code would need to be able to see all sleds and communicate to all OCCs in each sled as well as being able to notify each BMC that the OCCs are active.",
+      "parentUuid": "4ed5a20a_270e22de",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 70
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "133a064d_eec9d8bf",
         "filename": "designs/oem/ibm/aggregation/power-management.md",
         "patchSetId": 3
@@ -77,6 +143,30 @@
       "writtenOn": "2022-09-20T08:42:51Z",
       "side": 1,
       "message": "can you add details on what exact message is this ? interms of PLDM spec ?",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 46
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e8b0ed9_81d07940",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "Yes I can add this. As in P10, HTMGT is using PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS / PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_IN_SERVICE. I assume this would work for P11 also.",
+      "parentUuid": "133a064d_eec9d8bf",
       "range": {
         "startLine": 51,
         "startChar": 34,
@@ -112,6 +202,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe37a506_0ba61933",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "I was hoping we would be able to add a single byte of data indicating the OCC instance, but I guess I need to see if any data can be added to that message or if something else would be required.",
+      "parentUuid": "e699bc84_d1fe0fc2",
+      "range": {
+        "startLine": 52,
+        "startChar": 14,
+        "endLine": 52,
+        "endChar": 62
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa5c94db_c17a9ab7",
         "filename": "designs/oem/ibm/aggregation/power-management.md",
         "patchSetId": 3
@@ -123,6 +237,30 @@
       "writtenOn": "2022-09-20T08:42:51Z",
       "side": 1,
       "message": "how ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 44,
+        "endLine": 70,
+        "endChar": 31
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a81f304_d5fff6fe",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "I did not think the details/interfaces of the shared configuration data were available yet.",
+      "parentUuid": "fa5c94db_c17a9ab7",
       "range": {
         "startLine": 69,
         "startChar": 44,
@@ -158,6 +296,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d901452_41138801",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "I assume so, but again, did not think the details of that interface were defined yet.",
+      "parentUuid": "4bdbba79_445c7e28",
+      "range": {
+        "startLine": 70,
+        "startChar": 77,
+        "endLine": 72,
+        "endChar": 4
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "909132b4_923e283e",
         "filename": "designs/oem/ibm/aggregation/power-management.md",
         "patchSetId": 3
@@ -181,6 +343,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d89d66d_373ce5d4",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "As in P10, HTMGT is using PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS / PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_IN_SERVICE. I was hoping pldm would confirm if message delivered/acknowledged and relay that back to the caller (HTMGT).",
+      "parentUuid": "909132b4_923e283e",
+      "range": {
+        "startLine": 82,
+        "startChar": 5,
+        "endLine": 82,
+        "endChar": 12
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4b04241_328ec858",
         "filename": "designs/oem/ibm/aggregation/power-management.md",
         "patchSetId": 3
@@ -192,6 +378,30 @@
       "writtenOn": "2022-09-20T08:42:51Z",
       "side": 1,
       "message": "is this some sort of effecter operation ?",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 25
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ab66857_3fdcb9c6",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "This is same message as done in p10: PLDM_STATE_SET_BOOT_RESTART_CAUSE / PLDM_STATE_SET_BOOT_RESTART_CAUSE_WARM_RESET",
+      "parentUuid": "f4b04241_328ec858",
       "range": {
         "startLine": 92,
         "startChar": 0,
@@ -227,6 +437,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c034a293_8a12a21e",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "If the pldm interface allowed retries that would be used, else occ-control would have to handle any pldm returned error and retry the request. Just need to make sure that any reset request does not get re-queued (causing a double reset).",
+      "parentUuid": "61630e39_15d99a68",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 34
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "009934a4_9f33403e",
         "filename": "designs/oem/ibm/aggregation/power-management.md",
         "patchSetId": 3
@@ -238,6 +472,30 @@
       "writtenOn": "2022-09-20T08:42:51Z",
       "side": 1,
       "message": "each host boot instance can only talk its sled specific pldm daemon, how does it send messages to all BMC\u0027s ? are we  talking about HBRT here ?",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 29
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b9be84b_e7e55718",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "Yes, I am only referring to Hostboot Runtime, I will clarify that.",
+      "parentUuid": "009934a4_9f33403e",
       "range": {
         "startLine": 96,
         "startChar": 0,
@@ -271,6 +529,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f197bbc_0698b2bc",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "Correct, as in P10, HTMGT is using PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS / PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_IN_SERVICE.",
+      "parentUuid": "501e6afd_c162109b",
+      "range": {
+        "startLine": 105,
+        "startChar": 43,
+        "endLine": 106,
+        "endChar": 77
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73d91a9d_8487a824",
@@ -284,6 +566,30 @@
       "writtenOn": "2022-09-20T08:42:51Z",
       "side": 1,
       "message": "can you elaborate on what you mean by synchronous here ? do you want the communication to be blocked until the message is responded ?",
+      "range": {
+        "startLine": 110,
+        "startChar": 13,
+        "endLine": 110,
+        "endChar": 24
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55846576_27a6b48b",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-20T14:04:05Z",
+      "side": 1,
+      "message": "I was hoping to have a better more reliable interface than we had for p10. By synchronous, I mean that no other users could interrupt/overwritet the message until completion. When HTMGT/HBRT sends PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS / PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_IN_SERVICE, that message would get delivered to the BMC and if there was any communication error getting it there, would return an error to the caller. If the PLDM app on the BMC side got the message, that would probably be enough to say the message was delivered. The issues with the instance id reuse hopefully would also be resolved.",
+      "parentUuid": "73d91a9d_8487a824",
       "range": {
         "startLine": 110,
         "startChar": 13,
