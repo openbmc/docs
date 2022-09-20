@@ -212,6 +212,30 @@
       },
       "revId": "c9f40b99d8b68a81e7cf14766d0d45ffcc82698b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecbe8c4e_0397c718",
+        "filename": "designs/pim-to-entity-manager.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2022-09-20T04:59:22Z",
+      "side": 1,
+      "message": "That does not come from the VPD, unfortunately (it is attached to an instance of a part by system design). Some code would need to know this inherently based on the system type, probably the FRU detection daemon.\n\nHaving EM directly determine location code would not work, IMO. The same part can exist at different locations on two different systems.\n\nAs an alternative:\n\nIs there a way to tie two EM configs together somehow? Here\u0027s a case I\u0027m thinking about:\n\npart P exists on two different backplanes B1 and B2, but at different location code. Can the EM config for B1 and B2 expose a different \"slot\" location for the part? And can the config for P pick up that location code and then expose the location as its own? Hopefully that made sense 😊",
+      "parentUuid": "407abdbd_e03fd40b",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 121,
+        "endChar": 24
+      },
+      "revId": "c9f40b99d8b68a81e7cf14766d0d45ffcc82698b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
