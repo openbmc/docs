@@ -373,6 +373,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f9e3d25_60d8d8b1",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-20T20:44:29Z",
+      "side": 1,
+      "message": "Lets follow up with test cases on the individual commits.  I think that will be a lot better, and I don\u0027t think it needs called out.  The key principal here is that the bmc should reject the PrivilegeRegistry attempts that its code cannot fulfill correctly.",
+      "parentUuid": "0dd859a8_f7b9ddfc",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 72
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "998150ef_31d7c8fe",
@@ -458,6 +482,30 @@
       "side": 1,
       "message": "Still, I guess you just read my response without looking at the latest design doc.\n\nPlease see \"### PATCH on PrivilegeRegistry\" for an example how user can authorize a new service.",
       "parentUuid": "7b9ce65e_35141b05",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 21
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b80d4014_1df48470",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-20T20:44:29Z",
+      "side": 1,
+      "message": "I read it, and I think that works great for runtime changes;  For compile time changes, we need to figure out what kinds of stuff we will allow in meta layers, but lets follow up with the individual users of this.",
+      "parentUuid": "c269c01d_d2c3f04d",
       "range": {
         "startLine": 171,
         "startChar": 0,
@@ -577,6 +625,30 @@
       "side": 1,
       "message": "Fine.. As a design, I am okay with getting this to shall. But there are priorities, configuring subordinate overrides won\u0027t be more important than adding OEM roles, privileges, and modifying require privileges for non-override configures.",
       "parentUuid": "0f506fce_3e83db3d",
+      "range": {
+        "startLine": 174,
+        "startChar": 55,
+        "endLine": 175,
+        "endChar": 35
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc3feecc_ce944bb2",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-20T20:44:29Z",
+      "side": 1,
+      "message": "The key here is that as we implement this, the bmc needs to reject PrivilegeRegistries that it can\u0027t fulfill the promises of, and the implementation needs to be able to support the base registry.  All other priorities are fine with me, and I\u0027m happy to let you use your own judgement on them.",
+      "parentUuid": "84d1543e_55d519e3",
       "range": {
         "startLine": 174,
         "startChar": 55,
@@ -968,6 +1040,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d326b087_a55af6b5",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-20T20:44:29Z",
+      "side": 1,
+      "message": "\u003e OEM privileges are freely configurable by clients.\n\nRight, but there\u0027s clients on non-redfish interfaces, for which there\u0027s an expectation that the user can set other interfaces roles between them.  LEts follow up in tests and implementation.",
+      "parentUuid": "0b584058_83551c52",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 73
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "59d5d9c6_341dec48",
         "filename": "designs/redfish-authorization.md",
         "patchSetId": 9
@@ -1074,6 +1170,30 @@
       "side": 1,
       "message": "fine... I added REDFISH_ROUTE. this is purely implementation details.. What you said aligns with my idea on this: add attributes to route so it can do authorization.",
       "parentUuid": "3bf1cc08_3ef2fddb",
+      "range": {
+        "startLine": 252,
+        "startChar": 21,
+        "endLine": 253,
+        "endChar": 9
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0467e92_45a13028",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-20T20:44:29Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "4709cb8e_968f7c9a",
       "range": {
         "startLine": 252,
         "startChar": 21,
@@ -1203,6 +1323,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d35b6fa7_bd27713b",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-20T20:44:29Z",
+      "side": 1,
+      "message": "Yep, I was trying to give you timely feedback, and replying to the issues that you had posed was a better use of time.  Agreed, you appear to have solved this in the design now.",
+      "parentUuid": "aa8778c7_8b2dfe4e",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 21
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "833f450b_4d164301",
@@ -1288,6 +1432,30 @@
       "side": 1,
       "message": "You misunderstood what I have proposed. Please read the relevant section \"### PATCH on PrivilegeRegistry\". I have updated the answer to you question there.",
       "parentUuid": "7187937c_0bb98f8d",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 30
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a45ed300_7b276358",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-20T20:44:29Z",
+      "side": 1,
+      "message": "I\u0027ve read the patch section, lets just follow up with implementation and test cases.",
+      "parentUuid": "30c5ed25_14c59b12",
       "range": {
         "startLine": 264,
         "startChar": 0,
@@ -1430,6 +1598,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "506604b8_c6db7cbe",
+      "range": {
+        "startLine": 286,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 45
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "269f8654_b7bcc218",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-20T20:44:29Z",
+      "side": 1,
+      "message": "LGTM.  Thanks for making that change.",
+      "parentUuid": "4f902e45_4dfc67f4",
       "range": {
         "startLine": 286,
         "startChar": 0,
@@ -2122,6 +2314,30 @@
       "side": 1,
       "message": "I don\u0027t expect user to completely replace the privilege registry each time. Please take a look at ### PATCH on PrivilegeRegistry section.",
       "parentUuid": "2252e787_6c937244",
+      "range": {
+        "startLine": 347,
+        "startChar": 46,
+        "endLine": 349,
+        "endChar": 24
+      },
+      "revId": "23cb4ede7d09fb7997176ce3a020f9e0ddfeb26b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71689d90_39fcf52c",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-20T20:44:29Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "e0adfc7d_e50353aa",
       "range": {
         "startLine": 347,
         "startChar": 46,
