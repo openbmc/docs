@@ -68,10 +68,31 @@ Workflow highlights:
         - Consider using [Patch set][] emails to make reviews accessible to
           all stakeholders.
     4. When agreed:
-        - Publish a security advisory to the affected openBMC repository.
+        - Publish a security advisory to the affected OpenBMC repository.
         - Make the Gerrit review publicly viewable.
-        - Publish the CVE in the CVE ddatabase.
+        - Publish the CVE in the CVE database.
     5. Improve OpenBMC processes to avoid future problems.
+
+Repository maintainer process steps:
+    1. Create a private gerrit code review and oversee development of the fix.
+    2. Create a draft advisory under github.com/openbmc/<REPO>/security/advisories.
+       Please follow guidance in the [OpenBMC Security Advisory Template][].
+       Add the openbmc security-response group and other stakeholders to the advisory.
+    3. Review the security bulletin with stakeholders to get it ready to publish.
+    4. Work with the SRT to identify CVEs.
+       If you are unsure what counts as a vulnerability, please consult with the SRT.
+       For example, independent bugs should have separate CVEs.  A security advisory
+       can reference multiple CVEs.
+       When the CVE is known, add it to the security advisory, and reference
+       it in the commit message, stating how the fix relates to the CVE.  For
+       example: This fixes CVE-yyyy-nnnnn.  Doing so helps downstream security
+       responders.  If the commit is a partial fix, please explain that and
+       provide references to the other parts of the fix.
+    5. If stakeholders negotiate for coordinated disclosure, plan to release
+       the fix and the security advisory on the negotiated day.
+    6. When the code fix and the advisory are both ready (subject to coordinated
+       disclosure), please merge the fixes (and make any private review be public)
+       publish the security advisory, and email the security-response team.
 
 [security vulnerability reporting process]: ./obmc-security-response-team.md
 [CVSS metrics]: https://www.first.org/cvss/calculator/3.0
@@ -82,6 +103,7 @@ Workflow highlights:
 [private change]: https://gerrit-review.googlesource.com/Documentation/intro-user.html#private-changes
 [Patch set]: https://en.wikipedia.org/wiki/Patch_(Unix)
 [Create the draft security advisory]: https://docs.github.com/en/code-security/repository-security-advisories/creating-a-repository-security-advisory
+[OpenBMC Security Advisory Template]: obmc-github-security-advisory-template.md
 
 ## Template: Initial response to the problem submitter
 The OpenBMC security response team has received the problem.
