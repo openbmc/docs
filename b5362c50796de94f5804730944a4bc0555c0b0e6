@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "03dbe325_cacc6384",
         "filename": "designs/admin-account.md",
@@ -20,10 +21,10 @@
         "endChar": 35
       },
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "c09f38e6_24c4f30a",
         "filename": "designs/admin-account.md",
@@ -44,10 +45,10 @@
         "endChar": 35
       },
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "f42a9332_ea57390e",
         "filename": "designs/admin-account.md",
@@ -61,10 +62,10 @@
       "side": 1,
       "message": "I don\u0027t see anything here to require logging of sudo operations.  If all we\u0027re doing is requiring someone to insert \u0027sudo\u0027 in front of \u0027sudo /bin/bash\u0027, this is a whole lot of work for nothing in my opinion.  We should have a requirement in the design that all \u0027sudo\u0027 operations are logged to journal/syslog.\n\nI would also suggest that we consider prohibiting \u0027sudo \u003cshell\u003e\u0027 operations rather than allowing all commands, so that we get better logging on what is being ran and the logging isn\u0027t subverted by someone running \u0027sudo /bin/bash\u0027.",
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "f2ce6846_c9f89f15",
         "filename": "designs/admin-account.md",
@@ -79,10 +80,10 @@
       "message": "I\u0027ll add a requirement to log uses of the sudo command to journal/syslog.  I would also like to have a separate log for security-relevant events (including use of sudo), but not as part of this design.\n\nI disagree with the remainder of the comment.  The design allows the current sudoers to determine which users are allowed to use sudo (even if there is no user interface (beyond command line access)).  In my opinion, being able to control the wheel group is a step forward from the \"everyone shares root access\" model.\n\nIn my opinion, \"filtering which commands a sudo user is allowed to access\" is not desirable for the open source project:\n1. It will be \"too difficult\" for the project to agree which commands should be allowed.\n2. As developers and service personnel, we don\u0027t know which command we\u0027ll need.\n3. There are well-known shell escape privilege escalations.  For example someone running the `vi` command as root can use vi commands to run an arbitrary command.  This bypasses restrictions in the sudoers file and its associated logging.",
       "parentUuid": "f42a9332_ea57390e",
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "3ef52889_d4ed2563",
         "filename": "designs/admin-account.md",
@@ -97,10 +98,28 @@
       "message": "Understand.  On Facebook\u0027s openbmc we have a security feature (using something built into bash) that logs every bash command into the syslog.  That might be useful here as well.  Especially if we log every sudo and every bash command ran as root.",
       "parentUuid": "f2ce6846_c9f89f15",
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc8f0419_563ad888",
+        "filename": "designs/admin-account.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2022-09-26T23:16:37Z",
+      "side": 1,
+      "message": "Seems like logging can be deferred to the audit design proposal.",
+      "parentUuid": "3ef52889_d4ed2563",
+      "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "5fe431eb_eda020c1",
         "filename": "designs/admin-account.md",
@@ -120,10 +139,10 @@
         "endChar": 52
       },
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "6f882394_9366e2a4",
         "filename": "designs/admin-account.md",
@@ -144,10 +163,10 @@
         "endChar": 52
       },
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "1f8fe118_53fcb1c5",
         "filename": "designs/admin-account.md",
@@ -167,10 +186,10 @@
         "endChar": 61
       },
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "298f76fe_780e96fd",
         "filename": "designs/admin-account.md",
@@ -191,10 +210,10 @@
         "endChar": 61
       },
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "d9e89755_df2ff243",
         "filename": "designs/admin-account.md",
@@ -208,10 +227,10 @@
       "side": 1,
       "message": "Another alternative would be to prohibit direct escalation to root entirely.  Tools like `systemctl` already have facilities to prompt for group membership and/or passwords to confirm doing operations which would require root access.  In what other cases do we need to allow root?",
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "cf9822fb_7f867976",
         "filename": "designs/admin-account.md",
@@ -226,10 +245,28 @@
       "message": "I can agree to a new option to allow authorized users to become root.  I\u0027ll update the design with something like:\n - When OFF: We won\u0027t have a root user, and nobody can become root via sudo or su.\n - When ON: Access to sudo would be controlled via membership in the wheel group (as described in this design).\nNote this value would be ON for most development activity and for Enterprise use cases that require a service rep (person) to use the BMC\u0027s root access to debug a production system.\nI think the project\u0027s default value should be ON, to facilitate hobbyist use cases, and address concerns as suggested here: https://github.com/ibm-openbmc/dev/issues/1531 \u003e build considerations.\nIf the default must be OFF, we can turn it ON on the meta-openpower layer.",
       "parentUuid": "d9e89755_df2ff243",
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e434602_d42dd9e1",
+        "filename": "designs/admin-account.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2022-09-26T23:16:37Z",
+      "side": 1,
+      "message": "don\u0027t allow root login \n \n(vs have a root user -- the id will exist and things will still run as root.  not having an entry in the passwd file just causes problems when logging, etc)",
+      "parentUuid": "cf9822fb_7f867976",
+      "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "08328003_f9368824",
         "filename": "designs/admin-account.md",
@@ -243,10 +280,10 @@
       "side": 1,
       "message": "I think you should list the impacts to development here.  Today developers can scp test / development programs on and run them.  There is some impact to those workflows.",
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "d620eeaa_41594886",
         "filename": "designs/admin-account.md",
@@ -261,8 +298,7 @@
       "message": "Item 1 was intended to address that.  I\u0027ll add some examples, including yours.",
       "parentUuid": "08328003_f9368824",
       "revId": "b5362c50796de94f5804730944a4bc0555c0b0e6",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
