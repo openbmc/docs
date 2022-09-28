@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06c019d2_0fb4e2bf",
+        "filename": "designs/network/ncsi-capability-support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-28T02:24:47Z",
+      "side": 1,
+      "message": "This paragraph is very confusing.  I think it is indicating the CLI utility usage and limitations, but the punctuation and language make it difficult to understand.  Can we reword this to better show the problem?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "16db25bdf4db1b9d9b34e0da5e3eb0764e5ba169",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d451141_19a3708c",
+        "filename": "designs/network/ncsi-capability-support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-28T02:24:47Z",
+      "side": 1,
+      "message": "This should be referencing the 1.1.1 version of the spec and not 1.0.0.",
+      "revId": "16db25bdf4db1b9d9b34e0da5e3eb0764e5ba169",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3029c88_5590f73e",
+        "filename": "designs/network/ncsi-capability-support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-28T02:24:47Z",
+      "side": 1,
+      "message": "This section should align with the NCSI spec.  In Section 6.2.13.2, step 3) indicates the commands necessary to obtain the capabilities for a given channel.  In 3. below, it should indicate it is following the NCSI spec section mentioned above for determining the capabilities of each channel.",
+      "revId": "16db25bdf4db1b9d9b34e0da5e3eb0764e5ba169",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa886edc_3ad35acb",
+        "filename": "designs/network/ncsi-capability-support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-28T02:24:47Z",
+      "side": 1,
+      "message": "This term is confusing as NCSI has a Get Capabilities command which returns specific data about the NIC.  Is this related to that command or something else?  The dbus objects mentioned below do not align with the response from that command as shown in the NCSI spec.",
+      "range": {
+        "startLine": 103,
+        "startChar": 52,
+        "endLine": 103,
+        "endChar": 64
+      },
+      "revId": "16db25bdf4db1b9d9b34e0da5e3eb0764e5ba169",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ef52a8b_f58395a7",
+        "filename": "designs/network/ncsi-capability-support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-28T02:24:47Z",
+      "side": 1,
+      "message": "NCSI",
+      "range": {
+        "startLine": 109,
+        "startChar": 41,
+        "endLine": 109,
+        "endChar": 45
+      },
+      "revId": "16db25bdf4db1b9d9b34e0da5e3eb0764e5ba169",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6bb39c2_c4f4c547",
+        "filename": "designs/network/ncsi-capability-support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-28T02:24:47Z",
+      "side": 1,
+      "message": "This is confusing as the NCSI Get Capabilities response has two bit fields for HW Arbitration.  Bit Position 0 describes the HW Arbitration Capability and bit fields 6..5 indicate the HW Arbitration Implementation Status.  This property should be clearer to indicate which this is indicating.  \n\nIt would probably be easier to align the properties with the Capabilities Flags of the NCSI Get Capabilities response and not cherry-pick the bits.\n\nI think we should add the other capabilities from the NCSI Get Capabilities response as well.  These include the Channel Count and whether the NIC provides VLAN Mode Support among others.  This Channel Count can be used to build the NCSI Channel Object path and corresponding data properties below as well.",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 42
+      },
+      "revId": "16db25bdf4db1b9d9b34e0da5e3eb0764e5ba169",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1dc3bac_ddee086b",
+        "filename": "designs/network/ncsi-capability-support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-28T02:24:47Z",
+      "side": 1,
+      "message": "There is also an initial state where the channel is not in a ready/not ready state as indicated in the NCSI States indicated in Section 6.2.1 (Table 1) of the NCSI 1.1.1 spec.",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 30
+      },
+      "revId": "16db25bdf4db1b9d9b34e0da5e3eb0764e5ba169",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79e3f9fd_d09ed406",
+        "filename": "designs/network/ncsi-capability-support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-28T02:24:47Z",
+      "side": 1,
+      "message": "Enabled/Disabled is defined as a sub-state of Ready.  It has no meaning if the channel is not ready.  Thus, if the channel is in a Not Ready state, this field should not be present as it will have any meaning.",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 8
+      },
+      "revId": "16db25bdf4db1b9d9b34e0da5e3eb0764e5ba169",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25184e99_9e1d4968",
+        "filename": "designs/network/ncsi-capability-support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-28T02:24:47Z",
+      "side": 1,
+      "message": "NIC?",
+      "range": {
+        "startLine": 149,
+        "startChar": 80,
+        "endLine": 149,
+        "endChar": 82
+      },
+      "revId": "16db25bdf4db1b9d9b34e0da5e3eb0764e5ba169",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eeca671_70569ff9",
+        "filename": "designs/network/ncsi-capability-support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-28T02:24:47Z",
+      "side": 1,
+      "message": "It also needs some negative testing on a BMC platform which does not support NCSI to ensure it doesn\u0027t break anything.",
+      "range": {
+        "startLine": 152,
+        "startChar": 62,
+        "endLine": 152,
+        "endChar": 74
+      },
+      "revId": "16db25bdf4db1b9d9b34e0da5e3eb0764e5ba169",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
