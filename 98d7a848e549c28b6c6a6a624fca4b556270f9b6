@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca4df034_fca937d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-29T16:53:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0e263a30_069fcd2e",
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd71614e_7d35159c",
@@ -130,6 +148,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "943003e8_49bd4f44",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-29T16:53:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cccfdc3d_f7bcb7f1",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 70
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "133a064d_eec9d8bf",
@@ -167,6 +209,30 @@
       "side": 1,
       "message": "Yes I can add this. As in P10, HTMGT is using PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS / PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_IN_SERVICE. I assume this would work for P11 also.",
       "parentUuid": "133a064d_eec9d8bf",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 46
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a8fd896_dc3981f1",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-29T16:53:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e8b0ed9_81d07940",
       "range": {
         "startLine": 51,
         "startChar": 34,
@@ -248,6 +314,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5205e83c_b3648e95",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-29T16:53:36Z",
+      "side": 1,
+      "message": "HTMGT is essentially just sending a signal to the BMCs, that all OCCs are active.\n\nThinking about this more, we should not need the OCC instance. The message can be sent using the master OCC sensor ID.  (No PLDM message needs to get sent to/from the secondary OCCs.)\n\nWhen the BMC gets the signal, it knows which OCC is the master due to sensorid. The first poll to that OCC, would return the OCCs present field, so the BMC knows what other OCCs are available.",
+      "parentUuid": "fe37a506_0ba61933",
+      "range": {
+        "startLine": 52,
+        "startChar": 14,
+        "endLine": 52,
+        "endChar": 62
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa5c94db_c17a9ab7",
@@ -285,6 +375,30 @@
       "side": 1,
       "message": "I did not think the details/interfaces of the shared configuration data were available yet.",
       "parentUuid": "fa5c94db_c17a9ab7",
+      "range": {
+        "startLine": 69,
+        "startChar": 44,
+        "endLine": 70,
+        "endChar": 31
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3050ed_6816b612",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-29T16:53:36Z",
+      "side": 1,
+      "message": "Added link to current design doc.  Current plan is to use etcd.",
+      "parentUuid": "5a81f304_d5fff6fe",
       "range": {
         "startLine": 69,
         "startChar": 44,
@@ -342,6 +456,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8ac7e2b_f8b8b726",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-29T16:53:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1d901452_41138801",
+      "range": {
+        "startLine": 70,
+        "startChar": 77,
+        "endLine": 72,
+        "endChar": 4
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "909132b4_923e283e",
@@ -379,6 +517,30 @@
       "side": 1,
       "message": "As in P10, HTMGT is using PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS / PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_IN_SERVICE. I was hoping pldm would confirm if message delivered/acknowledged and relay that back to the caller (HTMGT).",
       "parentUuid": "909132b4_923e283e",
+      "range": {
+        "startLine": 82,
+        "startChar": 5,
+        "endLine": 82,
+        "endChar": 12
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90ea3088_f10e81b7",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-29T16:53:36Z",
+      "side": 1,
+      "message": "PLDM on Hostboot Runtime would be doing the retry.",
+      "parentUuid": "0d89d66d_373ce5d4",
       "range": {
         "startLine": 82,
         "startChar": 5,
@@ -483,6 +645,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7816f0e_fd23c381",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-29T16:53:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c034a293_8a12a21e",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 34
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "009934a4_9f33403e",
@@ -520,6 +706,30 @@
       "side": 1,
       "message": "Yes, I am only referring to Hostboot Runtime, I will clarify that.",
       "parentUuid": "009934a4_9f33403e",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 29
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "980cf75a_52a05e9a",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-29T16:53:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9b9be84b_e7e55718",
       "range": {
         "startLine": 96,
         "startChar": 0,
@@ -614,6 +824,30 @@
       "side": 1,
       "message": "I was hoping to have a better more reliable interface than we had for p10. By synchronous, I mean that no other users could interrupt/overwritet the message until completion. When HTMGT/HBRT sends PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS / PLDM_STATE_SET_OPERATIONAL_RUNNING_STATUS_IN_SERVICE, that message would get delivered to the BMC and if there was any communication error getting it there, would return an error to the caller. If the PLDM app on the BMC side got the message, that would probably be enough to say the message was delivered. The issues with the instance id reuse hopefully would also be resolved.",
       "parentUuid": "73d91a9d_8487a824",
+      "range": {
+        "startLine": 110,
+        "startChar": 13,
+        "endLine": 110,
+        "endChar": 24
+      },
+      "revId": "98d7a848e549c28b6c6a6a624fca4b556270f9b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "404211a2_522eb0a3",
+        "filename": "designs/oem/ibm/aggregation/power-management.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-09-29T16:53:36Z",
+      "side": 1,
+      "message": "If the BMC does not stop communication when the PM Complex gets reset, additional errors will be generated.  If the messages from Hostboot Runtime indicating the OCCs are active does not get delivered, the BMC will not have the thermal and power data from the OCC, which will affect fan control and system performance.",
+      "parentUuid": "55846576_27a6b48b",
       "range": {
         "startLine": 110,
         "startChar": 13,
