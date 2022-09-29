@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af56f029_13a34d6e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-29T16:36:30Z",
+      "side": 1,
+      "message": "What dynamic support is being described in this design doc?  This sentence isn\u0027t clear.",
+      "range": {
+        "startLine": 9,
+        "startChar": 50,
+        "endLine": 9,
+        "endChar": 61
+      },
+      "revId": "2d861e1699f91bce16884ec4c964eacc53ae0b14",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67e1b258_64f475b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-29T16:36:30Z",
+      "side": 1,
+      "message": "This proposal seems to be how to dynamically add a SDR and doesn\u0027t cover removal of a SDR (which is a use case for a multi-slot system with a single BMC controlling all server slots).  There is also a gap in how sensors names would be determined as this has a real impact on the data center tooling monitoring the sensors by name.",
+      "revId": "2d861e1699f91bce16884ec4c964eacc53ae0b14",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd656801_8cbd081a",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-29T16:36:30Z",
+      "side": 1,
+      "message": "\u0027Data records contain information...\u0027",
+      "range": {
+        "startLine": 14,
+        "startChar": 65,
+        "endLine": 14,
+        "endChar": 71
+      },
+      "revId": "2d861e1699f91bce16884ec4c964eacc53ae0b14",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38603ca1_4cc556b3",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-29T16:36:30Z",
+      "side": 1,
+      "message": "How will dynamic removal be handled?\n\nAs an example, on a multi-slot system with a single BMC, a slot may be removed, which will require the corresponding SDR records to be removed as well.  How will this be handled in the configuration file?\n\nAlso, how will expansion cards which are connected to a slot and detected after the BMC is up and operational be handled dynamically?  Assuming the expansion card is hot-swappable, it may require some SDR records corresponding to the slot be kept while expansion board specific SDR records are removed.",
+      "range": {
+        "startLine": 85,
+        "startChar": 3,
+        "endLine": 86,
+        "endChar": 34
+      },
+      "revId": "2d861e1699f91bce16884ec4c964eacc53ae0b14",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e0919cd_b1d40272",
+        "filename": "designs/ipmb-based-sdr-design.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-09-29T16:36:30Z",
+      "side": 1,
+      "message": "How will the sensor name be dynamically obtained?  Sensors names are fixed for a platform even if the SDRs themselves come and go.  For instance, a sensor named SLOT1_INLET_TEMP will always be named that even if slot 1 is removed and then re-inserted.  Names cannot be dynamically assigned as this would prevent data center tooling from finding and using them.",
+      "range": {
+        "startLine": 98,
+        "startChar": 11,
+        "endLine": 98,
+        "endChar": 46
+      },
+      "revId": "2d861e1699f91bce16884ec4c964eacc53ae0b14",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
