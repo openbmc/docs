@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37d6b5d7_f2a0f759",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-10-03T09:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43df666c_a175a6a9",
+      "range": {
+        "startLine": 28,
+        "startChar": 67,
+        "endLine": 28,
+        "endChar": 70
+      },
+      "revId": "0f809f4407a7a11ef74eda912a34075218d7e2aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f53c248_35411792",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-29T16:00:47Z",
       "side": 1,
       "message": "1) This sounds like an implementation detail regarding initialization of the LED state.\n2) Why must the LED be BLINK/ON?  Shouldn\u0027t the system state indicate whether a given LED should b ON/OFF/BLINK?  For instance, when the BMC is rebooted and the systems are not, the BMC discovers the systems are on and would need to read the existing GPIO state (or set the state based on the current system state).",
+      "range": {
+        "startLine": 177,
+        "startChar": 12,
+        "endLine": 179,
+        "endChar": 0
+      },
+      "revId": "0f809f4407a7a11ef74eda912a34075218d7e2aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf753140_01bfc140",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-10-03T09:51:53Z",
+      "side": 1,
+      "message": "This is the information detail for schema which needs to be implemented in phosphor-led-sysfs, whereas, phosphor-led-manager will handle the implementation for Power and System Identification LEDs based on the current system state. This schema will handle the color control for the specified system based on the result from phosphor-led-manager.",
+      "parentUuid": "5f53c248_35411792",
       "range": {
         "startLine": 177,
         "startChar": 12,
