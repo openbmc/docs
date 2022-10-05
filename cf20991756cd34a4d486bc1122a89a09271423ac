@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3295e784_446ce74f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-10-05T14:43:30Z",
+      "side": 1,
+      "message": "Please don\u0027t add this sort of thing to commit messages.  We know you sent it to Gerrit and hence you are looking for review.  We don\u0027t keep history of unmerged content in the commit message.",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8d5baf88_bed57674",
@@ -84,6 +101,23 @@
       "side": 1,
       "message": "I think we want to avoid that in this first iteration of the proposal. We have made the choice to avoid hardware related issues just to get going, because there are sufficient other problems to deal with just to get MB going.\n\nBut to actually answer your question, OTP fuses should be lined up together with the other HW specific details (like identity of the CRTM) to be dealt with in future iterations of MB implementation, even if that means a vendor specific approach.",
       "parentUuid": "7bf97352_2b4257cb",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96ce8a9c_77eddff5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-10-05T14:43:30Z",
+      "side": 1,
+      "message": "I have no read this whole document.  Seems like there is already a good amount of feedback to be incorporated.",
       "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -256,6 +290,24 @@
       "side": 1,
       "message": "Yes ... and no ... it\u0027s not a straight answer. \n\n1. Measured boot does not specifically depend on the kernel being an EFI enabled kernel. So that would be \"yes\".\n\n2. *However*, higher level software expects to *see* the boot log in the linux kernel (that\u0027s where it is being used from).\n\n3. The kernel EFI stub includes a mechanism to close off and transmit the measured boot log from UEFI BIOS to the kernel. \n\n4. The current u-boot implementation of measured boot is compatible with this scheme, and therefore booting an EFI enabled kernel automatically transmits the MB log. This allows us to accomplish our objective without writing new code. Worth the price, methinks? the alternative would be pushing through a kernel change ...",
       "parentUuid": "11f53d5b_74157ce5",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e8e7779_8cf284d7",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-10-05T14:43:30Z",
+      "side": 1,
+      "message": "Does arm32 allow us to switch to EFI and still do device trees?  I know arm64 supports EFI, but I don\u0027t think it allows device trees in that mode.  There are a lot of technical aspects of switching to EFI that I don\u0027t think are adequately documented here.",
+      "parentUuid": "e40c554b_9f727abb",
       "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
