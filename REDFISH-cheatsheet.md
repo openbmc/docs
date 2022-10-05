@@ -19,7 +19,7 @@ curl -k https://${bmc}/redfish/v1
 ##### Method 1
 ```
 export bmc=xx.xx.xx.xx
-curl --insecure -X POST -D headers.txt https://${bmc}/redfish/v1/SessionService/Sessions -d    '{"UserName":"root", "Password":"0penBmc"}'
+curl --insecure -H "Content-Type: application/json" -X POST -D headers.txt https://${bmc}/redfish/v1/SessionService/Sessions -d    '{"UserName":"root", "Password":"0penBmc"}'
 ```
 A file, headers.txt, will be created. Find the `"X-Auth-Token"`
 in that file. Save it away in an env variable like so:
@@ -57,29 +57,29 @@ curl -k -H "X-Auth-Token: $token" https://${bmc}/redfish/v1/SessionService/Sessi
 ## Host power
 Host soft power off:
 ```
-curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulShutdown"}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulShutdown"}'
 ```
 
 Host hard power off:
 ```
-curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "ForceOff"}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "ForceOff"}'
 ```
 
 Host power on:
 ```
-curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "On"}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "On"}'
 ```
 
 Reboot Host:
 ```
-curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulRestart"}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset -d '{"ResetType": "GracefulRestart"}'
 ```
 
 ---
 
 ## BMC reboot
 ```
-curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Managers/bmc/Actions/Manager.Reset -d '{"ResetType": "GracefulRestart"}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Managers/bmc/Actions/Manager.Reset -d '{"ResetType": "GracefulRestart"}'
 ```
 
 ---
@@ -87,7 +87,7 @@ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Managers/bmc
 ## BMC factory reset
 Proceed with caution:
 ```
-curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Managers/bmc/Actions/Manager.ResetToDefaults -d '{"ResetToDefaultsType": "ResetAll"}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Managers/bmc/Actions/Manager.ResetToDefaults -d '{"ResetToDefaultsType": "ResetAll"}'
 ```
 
 ---
@@ -100,20 +100,20 @@ curl -k -H "X-Auth-Token: $token" -X GET https://${bmc}/redfish/v1/Systems/syste
 
 Delete logging entries:
 ```
-curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/Systems/system/LogServices/EventLog/Actions/LogService.Reset
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Systems/system/LogServices/EventLog/Actions/LogService.Reset
 ```
 
 ---
 
 ## Firmware ApplyTime:
 ```
-curl -k -H "X-Auth-Token: $token" -X PATCH -d '{"HttpPushUriOptions":{"HttpPushUriApplyTime":{"ApplyTime":"Immediate"}}}' https://${bmc}/redfish/v1/UpdateService
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH -d '{"HttpPushUriOptions":{"HttpPushUriApplyTime":{"ApplyTime":"Immediate"}}}' https://${bmc}/redfish/v1/UpdateService
 ```
 
 or
 
 ```
-curl -k -H "X-Auth-Token: $token" -X PATCH -d '{"HttpPushUriOptions":{"HttpPushUriApplyTime":{"ApplyTime":"OnReset"}}}' https://${bmc}/redfish/v1/UpdateService
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH -d '{"HttpPushUriOptions":{"HttpPushUriApplyTime":{"ApplyTime":"OnReset"}}}' https://${bmc}/redfish/v1/UpdateService
 ```
 
 ---
@@ -132,11 +132,11 @@ TFTP Firmware update using TransferProtocol:
 Note: The `<image file path>` contains the address of the TFTP service: `xx.xx.xx.xx/obmc-phosphor-xxxxx-xxxxxxxxx.static.mtd.tar`
 
 ```
-curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate -d '{"TransferProtocol":"TFTP","ImageURI":"<image file path>"}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate -d '{"TransferProtocol":"TFTP","ImageURI":"<image file path>"}'
 ```
 TFTP Firmware update with protocol in ImageURI:
 ```
-curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate -d '{"ImageURI":"tftp://<image file path>"}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate -d '{"ImageURI":"tftp://<image file path>"}'
 ```
 
 ---
@@ -144,7 +144,7 @@ curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/UpdateServic
 ## Update "root" password
 Change password to "0penBmc1":
 ```
-curl -k -H "X-Auth-Token: $token" -X PATCH -d '{"Password": "0penBmc1"}' https://${bmc}/redfish/v1/AccountService/Accounts/root
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH -d '{"Password": "0penBmc1"}' https://${bmc}/redfish/v1/AccountService/Accounts/root
 ```
 
 ---
@@ -152,17 +152,17 @@ curl -k -H "X-Auth-Token: $token" -X PATCH -d '{"Password": "0penBmc1"}' https:/
 ## BIOS firmware boot control
 Enter into BIOS setup on boot
 ```
-curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Systems/system -d '{"Boot":{"BootSourceOverrideEnabled": "Continuous","BootSourceOverrideTarget": "BiosSetup"}}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH https://${bmc}/redfish/v1/Systems/system -d '{"Boot":{"BootSourceOverrideEnabled": "Continuous","BootSourceOverrideTarget": "BiosSetup"}}'
 ```
 
 Fully boot
 ```
-curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Systems/system -d '{"Boot":{"BootSourceOverrideEnabled": "Disabled","BootSourceOverrideTarget": "None"}}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH https://${bmc}/redfish/v1/Systems/system -d '{"Boot":{"BootSourceOverrideEnabled": "Disabled","BootSourceOverrideTarget": "None"}}'
 ```
 
 Change Legacy/EFI selector (valid only if host is based on the x86 CPU)
 ```
-curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Systems/system -d '{"Boot":{"BootSourceOverrideEnabled": "Once","BootSourceOverrideTarget": "None","BootSourceOverrideMode": "UEFI"}}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH https://${bmc}/redfish/v1/Systems/system -d '{"Boot":{"BootSourceOverrideEnabled": "Once","BootSourceOverrideTarget": "None","BootSourceOverrideMode": "UEFI"}}'
 ```
 
 ---
@@ -170,19 +170,19 @@ curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Systems/sys
 ## Enable NTP
 Add a NTP Server
 ```
-curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Managers/bmc/NetworkProtocol -d '{"NTP":{"NTPServers":["time.nist.gov"]}}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH https://${bmc}/redfish/v1/Managers/bmc/NetworkProtocol -d '{"NTP":{"NTPServers":["time.nist.gov"]}}'
 ```
 
 Now enable NTP
 ```
-curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Managers/bmc/NetworkProtocol -d '{"NTP":{"ProtocolEnabled": true}}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH https://${bmc}/redfish/v1/Managers/bmc/NetworkProtocol -d '{"NTP":{"ProtocolEnabled": true}}'
 ```
 
 ---
 
 ## Disable IPMI
 ```
-curl -k -H "X-Auth-Token: $token" -X PATCH https://${bmc}/redfish/v1/Managers/bmc/NetworkProtocol -d '{"IPMI":{"ProtocolEnabled": false}}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH https://${bmc}/redfish/v1/Managers/bmc/NetworkProtocol -d '{"IPMI":{"ProtocolEnabled": false}}'
 ```
 
 
