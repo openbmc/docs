@@ -52,6 +52,42 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b10c21b_ebdd99dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001608
+      },
+      "writtenOn": "2022-10-05T13:51:41Z",
+      "side": 1,
+      "message": "So we share a goal :) thank you for all the comments you made. FB was enabled to make decisions about u-boot-spl and drivers because you are working on specific HW. This proposal attempts to be a bit more general, although in fairness our \"real\" test systems are AST2600 EVBs with I2C attached TPMs.\n\nWe will have to deal with u-boot-spl eventually -- I think this proposal merely intends to cement the state of the art with u-boot, and have this accepted as a starting point.\n\nBut to reiterate, we are on the same wavelength with you and with other commenters about eventually pushing down the CRTM as deep into hardware as we can.",
+      "parentUuid": "44fc99fd_659d97da",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37228eda_324c74bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001608
+      },
+      "writtenOn": "2022-10-05T13:51:41Z",
+      "side": 1,
+      "message": "I think we want to avoid that in this first iteration of the proposal. We have made the choice to avoid hardware related issues just to get going, because there are sufficient other problems to deal with just to get MB going.\n\nBut to actually answer your question, OTP fuses should be lined up together with the other HW specific details (like identity of the CRTM) to be dealt with in future iterations of MB implementation, even if that means a vendor specific approach.",
+      "parentUuid": "7bf97352_2b4257cb",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c5afbe0_4e8a56be",
@@ -173,6 +209,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "19179264_ed8c4336",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001608
+      },
+      "writtenOn": "2022-10-05T13:51:41Z",
+      "side": 1,
+      "message": "Hi Dhananjay. I believe the issue here is that we would like to push back the *measured* part of the software stack as far as possible. Ideally that would include boot-spl and even before that. However, this is really difficult to accomplish because the software to talk to TPM chips and do the necessary crypto operations is substantial.\n\nThis is *also* an actual problem in the Tianocore reference implementation of UEFI BIOS -- the initial parts of the firmware are quite small. But not as restricted as u-boot-spl.\n\nThe paragraph below explains that the current implementation of measured boot starts with u-boot because of the size reason.",
+      "parentUuid": "74cbeb3b_0e179acd",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11f53d5b_74157ce5",
         "filename": "designs/measured-boot.md",
         "patchSetId": 1
@@ -184,6 +238,24 @@
       "writtenOn": "2022-09-14T02:32:05Z",
       "side": 1,
       "message": "I feel like requiring an EFI interface for this is quite a change; is it possible to have a measured boot without the EFI requirement?",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e40c554b_9f727abb",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1001608
+      },
+      "writtenOn": "2022-10-05T13:51:41Z",
+      "side": 1,
+      "message": "Yes ... and no ... it\u0027s not a straight answer. \n\n1. Measured boot does not specifically depend on the kernel being an EFI enabled kernel. So that would be \"yes\".\n\n2. *However*, higher level software expects to *see* the boot log in the linux kernel (that\u0027s where it is being used from).\n\n3. The kernel EFI stub includes a mechanism to close off and transmit the measured boot log from UEFI BIOS to the kernel. \n\n4. The current u-boot implementation of measured boot is compatible with this scheme, and therefore booting an EFI enabled kernel automatically transmits the MB log. This allows us to accomplish our objective without writing new code. Worth the price, methinks? the alternative would be pushing through a kernel change ...",
+      "parentUuid": "11f53d5b_74157ce5",
       "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
