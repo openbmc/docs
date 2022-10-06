@@ -76,13 +76,13 @@ $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" user se
 #### 5. Disable designated users from accessing BMC
 
 ```
-$ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" user set disable <userid>
+$ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" user disable <userid>
 ```
 
 #### 6. Enable the specified user to access BMC
 
 ```
-$ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" user set enable <userid>
+$ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" user enable <userid>
 ```
 
 ##  Field-replaceable Unit (FRU)
@@ -335,7 +335,7 @@ $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" sel tim
 #### 1. Display session information
 
 ```
-$ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" session info
+$ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" session info all
 ```
 
 ## Serial Over Lan (SOL)
