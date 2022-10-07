@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb68a0e8_49be68f4",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2022-10-07T05:12:25Z",
+      "side": 1,
+      "message": "Ack. make sense. Thanks.",
+      "parentUuid": "4dc3e8e6_07e447e0",
+      "range": {
+        "startLine": 158,
+        "startChar": 36,
+        "endLine": 158,
+        "endChar": 59
+      },
+      "revId": "6a4df414109ffc74acbc15e5474c5c8cdb93c595",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "137cad08_b33aa41e",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "That\u0027s a good question. For Google, we have the gRPC service to install configurations and do dbus calls.\n\nFor users that only have Redfish interfaces, we can start with tight restriction: e.g., only users have ConfigureManager privilege can modify the privilege registry.\n\n\u003e How is modifying operation-to-privilege mappings managed? Is it just if the current use have access to PrivilegeRegistry/RoleCollection/ManagerAccountCollection then they have access? With that, can we update the role/privilege for PrivilegeRegistry/RoleCollection/ManagerAccountCollection?\n\nI believe this is answered in the following example sections.",
       "parentUuid": "137cad08_b33aa41e",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 17
+      },
+      "revId": "6a4df414109ffc74acbc15e5474c5c8cdb93c595",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54036b98_28c4364d",
+        "filename": "designs/redfish-authorization.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2022-10-07T05:12:25Z",
+      "side": 1,
+      "message": "ok, sounds good. I guess the caller and dbus stuff are more implementation detail and can be different.\n\n---\n\nack, found it. thanks.",
+      "parentUuid": "e130a3b9_bbf57544",
       "range": {
         "startLine": 158,
         "startChar": 0,
