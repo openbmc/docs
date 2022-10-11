@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6764f359_eba27772",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-11T07:21:38Z",
+      "side": 1,
+      "message": "While it doesn\u0027t seem to be spelled out explicitly here as far as I can see, I assume the idea here is that the one-shot service would exit after performing the GPIO initialization described by the config file?\n\nIf so, that doesn\u0027t sound like a great fit with the \"modern\" (non-legacy) kernel GPIO interface, under which I believe GPIO state is undefined after the process exits (or the relevant file descriptors are closed).  Depending on implementation details of the underlying components (kernel/drivers, hardware), whatever initialization had been performed might just be immediately reverted.\n\n(And alternately, if the process sticks around to maintain the specified GPIO state I think that would prevent anything else from being able to access those GPIOs, which also probably isn\u0027t what we\u0027d want -- if you just want GPIOs tied statically, a device-tree gpio-hog could achieve that.)",
+      "revId": "a82526dc88c8795bf36e7ed61359a5815c1fb98e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
