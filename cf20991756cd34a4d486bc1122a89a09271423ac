@@ -141,6 +141,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85dd5dd2_33e8f885",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001608
+      },
+      "writtenOn": "2022-10-12T14:25:52Z",
+      "side": 1,
+      "message": "There is a very long answer to this question, that I will spare you :) the short form is, secure boot and measured boot are done for different purposes. Secure boot is more paranoid and immediate; measured boot is done *for the record* post facto, and can be verified with confidence any time after the system has booted. \n\nE.g. measured boot is useful when there is a large fleet of BMCs around and one needs to know *exactly* what is booted on each of them.",
+      "parentUuid": "1c5afbe0_4e8a56be",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a796abc2_028c3d4e",
         "filename": "designs/measured-boot.md",
         "patchSetId": 1
@@ -308,6 +326,24 @@
       "side": 1,
       "message": "Does arm32 allow us to switch to EFI and still do device trees?  I know arm64 supports EFI, but I don\u0027t think it allows device trees in that mode.  There are a lot of technical aspects of switching to EFI that I don\u0027t think are adequately documented here.",
       "parentUuid": "e40c554b_9f727abb",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59714ec1_d962989d",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1001608
+      },
+      "writtenOn": "2022-10-12T14:25:52Z",
+      "side": 1,
+      "message": "I think I need some clarification on this. Are you saying that the use of the EFI stub precludes using device trees? FWIW we have booted the AST2600 with the EFI stub on and the boot uses device trees. We have not seen any issues.",
+      "parentUuid": "4e8e7779_8cf284d7",
       "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
