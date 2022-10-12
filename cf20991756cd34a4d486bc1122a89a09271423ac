@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bfd4383_8637608a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000927
+      },
+      "writtenOn": "2022-10-12T16:45:21Z",
+      "side": 1,
+      "message": "Noted.",
+      "parentUuid": "3295e784_446ce74f",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8d5baf88_bed57674",
@@ -122,6 +140,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c4cae33_440dd297",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000927
+      },
+      "writtenOn": "2022-10-12T16:45:21Z",
+      "side": 1,
+      "message": "Thank you Dan for your feedback and pointers. Since we are all on the same page here we are interested to understand how we can work together on this more efficiently. \n- Is FB planning to upstream any of their design to OpenBMC?\n- Our team is planning to use this project (https://github.com/keylime/keylime) for remote attestation of a cluster of BMCs. Would you be interested to contribute?",
+      "parentUuid": "2b10c21b_ebdd99dd",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c5afbe0_4e8a56be",
@@ -176,6 +212,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8dcf2e6_5999e4c8",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000927
+      },
+      "writtenOn": "2022-10-12T16:45:21Z",
+      "side": 1,
+      "message": "Thanks. If the malicious sw tries to reset the TPM it will be recorded by the TPM reset counter. So it should not be as serious of a concern.",
+      "parentUuid": "a796abc2_028c3d4e",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ffe625e4_ab21e76f",
         "filename": "designs/measured-boot.md",
         "patchSetId": 1
@@ -187,6 +241,24 @@
       "writtenOn": "2022-09-14T21:24:46Z",
       "side": 1,
       "message": "FB-OpenBMC measured boot event log implementation on AST25xx and AST26xx BMC.\nhttps://github.com/facebook/openbmc/blob/helium/Documentation/verifiedboot/tpm-event-log.md",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84a880d6_bd009709",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000927
+      },
+      "writtenOn": "2022-10-12T16:45:21Z",
+      "side": 1,
+      "message": "Do we need a fixed memory location to store the event log? Since this is anyway temporary (once u-boot boots up it will be copied over) can we not use the stack? By allocating a fixed memory we would lose it forever.",
+      "parentUuid": "ffe625e4_ab21e76f",
       "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -210,6 +282,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae4f3497_c4cdb8f6",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000927
+      },
+      "writtenOn": "2022-10-12T16:45:21Z",
+      "side": 1,
+      "message": "Is the SPI flash hardware protected using OTP? What if updates need to be performed on u-boot-SPL?",
+      "parentUuid": "76526539_2effa89f",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c0179b9_f41b6481",
         "filename": "designs/measured-boot.md",
         "patchSetId": 1
@@ -227,6 +317,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75587a6a_20435c41",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000927
+      },
+      "writtenOn": "2022-10-12T16:45:21Z",
+      "side": 1,
+      "message": "We are following the TCG specification in our design and believe this is not part of the specification.",
+      "parentUuid": "7c0179b9_f41b6481",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "09a17000_7d217fb2",
         "filename": "designs/measured-boot.md",
         "patchSetId": 1
@@ -238,6 +346,24 @@
       "writtenOn": "2022-09-14T21:24:46Z",
       "side": 1,
       "message": "FB-OpenBMC support SPI-TIS interfaced TPM2.0 device. \nTpm2_tis_spi.c ⇒ u-boot TPM2.0 TIS SPI driver\ntpm-v2.c ⇒ TPM 2.0 API\ntpm2-spl.c::ast_tpm_extend() ⇒ measure boot API\n\nBTW, we use spi-bitbang driver to workaround SPI controller only support half-duplex issue. TPM-TIS wait state require SPI controller full-duplex.",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "735402c5_964c4b4f",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000927
+      },
+      "writtenOn": "2022-10-12T16:45:21Z",
+      "side": 1,
+      "message": "We were under the impression that AST2600 can only support a I2C based TPM but this seems to be a workaround to use the SPI TPM.",
+      "parentUuid": "09a17000_7d217fb2",
       "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -391,6 +517,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5a5fcbc_1f94b0c8",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000927
+      },
+      "writtenOn": "2022-10-12T16:45:21Z",
+      "side": 1,
+      "message": "Will be removed in the next patchset.",
+      "parentUuid": "80976c6f_f17214c3",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 24
+      },
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b7f72054_51a3ad62",
         "filename": "designs/measured-boot.md",
         "patchSetId": 1
@@ -414,6 +564,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1ffc3e3_bb58cb8b",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000927
+      },
+      "writtenOn": "2022-10-12T16:45:21Z",
+      "side": 1,
+      "message": "Will be removed in next patchset.",
+      "parentUuid": "b7f72054_51a3ad62",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 0
+      },
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "baf5838f_c6e97922",
         "filename": "designs/measured-boot.md",
         "patchSetId": 1
@@ -425,6 +599,24 @@
       "writtenOn": "2022-09-14T21:24:46Z",
       "side": 1,
       "message": "FB-OpenBMC mboot testing tool which can test the measurement is as expected via execute the whole measurement by the testing script.\nhttps://github.com/facebook/openbmc/tree/helium/common/recipes-utils/vboot-utils/files\n\nmeasure.py, measure_func.py and tpm_event_log.py",
+      "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f861604e_3417656e",
+        "filename": "designs/measured-boot.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000927
+      },
+      "writtenOn": "2022-10-12T16:45:21Z",
+      "side": 1,
+      "message": "We are using keylime which is an open source project and provides the necessary tools for verification of measurement. We will describe the integration of keylime and rest of the attestation infrastructure in a different design document.",
+      "parentUuid": "baf5838f_c6e97922",
       "revId": "cf20991756cd34a4d486bc1122a89a09271423ac",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
