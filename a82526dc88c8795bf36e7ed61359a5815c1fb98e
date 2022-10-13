@@ -69,6 +69,24 @@
       "parentUuid": "b15d8872_937b32a4",
       "revId": "a82526dc88c8795bf36e7ed61359a5815c1fb98e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb8c717c_bd0bfa4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-13T09:32:58Z",
+      "side": 1,
+      "message": "\u003e However, for short-term solution, we provided a service that not only could initialize gpios but also any clients could access all gpios.\n\nBut the problem there is that the /dev/gpiochip API (what libgpiod uses internally) doesn\u0027t allow that model to work -- if the process that does the initialization exits, the state of the GPIOs it initialized may well change back to what they started out as (or something else entirely -- it doesn\u0027t guarantee anything).",
+      "parentUuid": "1d81b2ba_ddf9b7eb",
+      "revId": "a82526dc88c8795bf36e7ed61359a5815c1fb98e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
