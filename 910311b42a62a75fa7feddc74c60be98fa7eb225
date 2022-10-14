@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af3e7a45_9cfa69f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-14T07:44:13Z",
+      "side": 1,
+      "message": "I don\u0027t know if this is a large enough thing to really merit a dedicated design doc to be honest (I expect it\u0027d probably be alright to just proceed with an implementation)...",
+      "revId": "910311b42a62a75fa7feddc74c60be98fa7eb225",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8e043aa_db4f9eea",
+        "filename": "designs/entity-manager-extend-blacklist-for-address.md.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-14T07:44:13Z",
+      "side": 1,
+      "message": "If this does actually stick around as a document added to the docs repository, please wrap this into a paragraph instead of leaving it as one long line.",
+      "revId": "910311b42a62a75fa7feddc74c60be98fa7eb225",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a258a86_a7a40da2",
+        "filename": "designs/entity-manager-extend-blacklist-for-address.md.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-14T07:44:13Z",
+      "side": 1,
+      "message": "What about systems that want to retain the current behavior of skipping scanning on an entire bus?  With this design it seems like they\u0027d have to explicitly enumerate all the addresses on that bus -- I think there should be some sort of provision for allowing that to be expressed concisely.  Two options I can see offhand:\n\n - have the \"addresses\" key map to either an array of addresses like you\u0027ve got for an explicit list, or the string \"*\" to mean \"all addresses\"\n \n - leave the top-level \"buses\" key as-is (an array of bus numbers to skip entirely), and add your new more fine-grained structure as a separate entry under its own key (e.g. \"bus-addresses\" or something).\n \nThe latter would have the advantage of also be backwards-compatible, so I think it would probably be the better option.",
+      "revId": "910311b42a62a75fa7feddc74c60be98fa7eb225",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7870eb3_63b8863e",
+        "filename": "designs/entity-manager-extend-blacklist-for-address.md.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-14T07:44:13Z",
+      "side": 1,
+      "message": "I\u0027d say there\u0027s an impact in that (at least as described here currently) this looks like a backwards-compatibility break with existing configs.  If/when this change gets merged, please make sure all configs in the tree get updated as needed.",
+      "revId": "910311b42a62a75fa7feddc74c60be98fa7eb225",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
