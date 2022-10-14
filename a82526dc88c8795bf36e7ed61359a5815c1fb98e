@@ -105,6 +105,24 @@
       "parentUuid": "fb8c717c_bd0bfa4b",
       "revId": "a82526dc88c8795bf36e7ed61359a5815c1fb98e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bbcd444_c4eab91b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-14T10:17:33Z",
+      "side": 1,
+      "message": "Unfortunately I haven\u0027t been able to find much in the way of actual documentation, but note the warning in the output of `gpioset --help`, which is from the libgpiod repo (emphasis added):\n\n```\n$ gpioset --help\nUsage: gpioset [OPTIONS] \u003cchip name/number\u003e \u003coffset1\u003e\u003d\u003cvalue1\u003e \u003coffset2\u003e\u003d\u003cvalue2\u003e ...\n\nSet GPIO line values of a GPIO chip and maintain the state ***until the process exits***\n\n...\n\nNote: the state of a GPIO line controlled over the character device reverts to default\nwhen the last process referencing the file descriptor representing the device file exits.\nThis means that it\u0027s wrong to run gpioset, have it exit and expect the line to continue\nbeing driven high or low. It may happen if given pin is floating but it must be interpreted\nas undefined behavior.\n```\n\n(Thanks @arj for the pointer on that.)\n\nFrom a bit of digging through the kernel code, I think that undefined-ness may stem at least in part from the `gc-\u003efree()` callback here: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpio/gpiolib.c?id\u003dv6.0#n2029\n\nSo, it\u0027s not surprising that it may happen to work on your particular system, but it\u0027s not guaranteed and we probably shouldn\u0027t be relying on it (it may well vary between different devices \u0026 drivers, e.g. due to differences in the `-\u003efree()` callback linked above).",
+      "parentUuid": "e4380052_da2fab9a",
+      "revId": "a82526dc88c8795bf36e7ed61359a5815c1fb98e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
