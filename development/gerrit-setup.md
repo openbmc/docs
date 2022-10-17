@@ -12,7 +12,7 @@
 
 ##### Update Git Identity
 
-* `git config --global --add user.name "Your name" (eg. John Smith)`
+* `git config --global --add user.name "Your name" (eg. John Smith, Nitin Kumar Kotania)`
 * `git config --global --add user.email "youremail@your-domain"
     (eg. jsmith@somedomain.com)`
 * (Optional) `git config --global --add diff.tool "preferred diff tool"
