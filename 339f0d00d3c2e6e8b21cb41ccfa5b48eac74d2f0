@@ -1,0 +1,221 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8c04605_66bd4a1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-18T18:22:35Z",
+      "side": 1,
+      "message": "Excellent start.  The only concerns from my perspective are in missing design details, but this is a great start, and I\u0027m willing to bet can land.",
+      "revId": "339f0d00d3c2e6e8b21cb41ccfa5b48eac74d2f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84a3ee97_d8141d80",
+        "filename": "designs/redfish-composability.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-18T18:22:35Z",
+      "side": 1,
+      "message": "Great requirements section.  Concise, but very clear what the external facing APIs we\u0027re adding are.  There\u0027s a few missing details around what properties will do what, but eh, I\u0027m not that worried about it.  Good work!",
+      "revId": "339f0d00d3c2e6e8b21cb41ccfa5b48eac74d2f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4edfd48b_b3cce6d9",
+        "filename": "designs/redfish-composability.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-18T18:22:35Z",
+      "side": 1,
+      "message": "Nit, DBus APIs don\u0027t create Redfish systems.  Probably just remove the word redfish.",
+      "range": {
+        "startLine": 139,
+        "startChar": 34,
+        "endLine": 139,
+        "endChar": 41
+      },
+      "revId": "339f0d00d3c2e6e8b21cb41ccfa5b48eac74d2f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "570571b6_5e2c7845",
+        "filename": "designs/redfish-composability.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-18T18:22:35Z",
+      "side": 1,
+      "message": "This section is a little lacking.  \"I want to make some new DBus interfaces\" is how I\u0027m reading this, which arguably could\u0027ve just been a PDI review.\n\nSome important things that I see missing here:\n\n1. What is the overall data path?  user -\u003e Redfish -\u003e bmcweb -\u003e DBus is pretty clear, but presuably that needs to go Dbus -\u003e Some daemon? -\u003e Hardware?  And I think the righthand side of that graph is important.  Presumably we\u0027re not going to run hypservisors on the BMC.\n\n2. This should call out how this interacts with other existing services.  Do composed systems show up as an Item.System?  Are there associations to the existing Item.Dimm/Item.Drive resources to map the composed resources?  How does Reset work?\n\n3. Do we need to complete the multi-host design first, so that we can enumerate multiple System instances?  I would expect the answer is yes.\n\n4. Give a couple examples of what paths, interfaces, and methods would look like in your example you gave earlier.",
+      "revId": "339f0d00d3c2e6e8b21cb41ccfa5b48eac74d2f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33f86da1_0f0efcab",
+        "filename": "designs/redfish-composability.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-18T18:22:35Z",
+      "side": 1,
+      "message": "This section is a little lacking.  \"I want to make some new DBus interfaces\" is how I\u0027m reading this, which arguably could\u0027ve just been a PDI review for the interfaces you want to add.  Some things that I think need called out in the design section.\n\n1. How do the existing DBus interfaces interact with this?  (DIMM, Host, State.Chassis, ect).  What does a composed system look like on DBus.\n\n2. What daemons are implementing this, and what are the communication channels for these daemons?  Is there an expectation of multiple daemons to implement this?  User -\u003e Redfish -\u003e bmcweb -\u003e DBus is pretty clear, but the chain seems to end at that point.  What hosts those dbus APIS?\n\n3. Could you call out some examples of what the dbus interfaces look like for a composed system?  Does it have a reset API?  Does it have Inventory APIs?  It\u0027s not clear to me how that would work.\n\n4. How would at a DBus level would we differentiate between a composed system and a \"normal\" system?  Or do we care?",
+      "revId": "339f0d00d3c2e6e8b21cb41ccfa5b48eac74d2f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19407108_e23cef7a",
+        "filename": "designs/redfish-composability.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-18T18:22:35Z",
+      "side": 1,
+      "message": "This is an alternative?  I\u0027m pretty sure we\u0027re already going to follow Redfish and OpenBMC Dbus archictecture.",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 72
+      },
+      "revId": "339f0d00d3c2e6e8b21cb41ccfa5b48eac74d2f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51aaaee7_62a4f3fb",
+        "filename": "designs/redfish-composability.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-18T18:22:35Z",
+      "side": 1,
+      "message": "Or sensors, or user manager, or EM, or..... damn near everything except event service 😊",
+      "revId": "339f0d00d3c2e6e8b21cb41ccfa5b48eac74d2f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1cebd8f_eab37fa3",
+        "filename": "designs/redfish-composability.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-18T18:22:35Z",
+      "side": 1,
+      "message": "Security model?  Binary size?",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 39
+      },
+      "revId": "339f0d00d3c2e6e8b21cb41ccfa5b48eac74d2f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8bbe796_391f262d",
+        "filename": "designs/redfish-composability.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-18T18:22:35Z",
+      "side": 1,
+      "message": "This needs called out in the design section.  What does the composed-system daemon do?",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 59
+      },
+      "revId": "339f0d00d3c2e6e8b21cb41ccfa5b48eac74d2f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5293461_f818520c",
+        "filename": "designs/redfish-composability.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-18T18:22:35Z",
+      "side": 1,
+      "message": "will.",
+      "range": {
+        "startLine": 162,
+        "startChar": 15,
+        "endLine": 162,
+        "endChar": 20
+      },
+      "revId": "339f0d00d3c2e6e8b21cb41ccfa5b48eac74d2f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55187d81_5e9ae304",
+        "filename": "designs/redfish-composability.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-18T18:22:35Z",
+      "side": 1,
+      "message": "Are there any open tools that do this already that we could use to test?",
+      "revId": "339f0d00d3c2e6e8b21cb41ccfa5b48eac74d2f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
