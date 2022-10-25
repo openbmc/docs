@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "623302f3_10d59034",
+        "filename": "designs/redfish-multihost-firmware-update.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-10-25T12:53:16Z",
+      "side": 1,
+      "message": "I think it would be best to have 2 documents, or at least 2 different commits here. The title is \"multi-host firmware update support\" but the first thing mentioned in the problem description is updating \"non-BMC component firmware\". \n\nAlso, the bullet concept fits best with requirements, but these sections like Problem Description and Background and References should just be normal paragraphs.",
+      "revId": "80a1b8e50761bc86fa08798df058a57764340f82",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17efa719_baabcb29",
+        "filename": "designs/redfish-multihost-firmware-update.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-10-25T12:53:16Z",
+      "side": 1,
+      "message": "Are you proposing a change to the UpdateService Redifsh API? I\u0027m a bit lost on the proposal here. We need to fit within the specification. I see mention of json config files, and new D-Bus properties in Settings which don\u0027t make much sense to me.",
+      "revId": "80a1b8e50761bc86fa08798df058a57764340f82",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec3380d9_13a14097",
+        "filename": "designs/redfish-multihost-firmware-update.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-10-25T12:53:16Z",
+      "side": 1,
+      "message": "Looking at the Redfish spec, https://redfish.dmtf.org/schemas/v1/UpdateService.v1_11_1.json, it looks like this should be \"Targets\", is thatwhat you mean to use? If so, the parameter would be a URI.",
+      "range": {
+        "startLine": 52,
+        "startChar": 58,
+        "endLine": 52,
+        "endChar": 64
+      },
+      "revId": "80a1b8e50761bc86fa08798df058a57764340f82",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
