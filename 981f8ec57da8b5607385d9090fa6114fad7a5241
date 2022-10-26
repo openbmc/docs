@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e46ca71a_f1a90077",
+        "filename": "architecture/code-update/u-boot-mirroring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001633
+      },
+      "writtenOn": "2022-10-26T15:20:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1973be7f_59c29b38",
+      "revId": "981f8ec57da8b5607385d9090fa6114fad7a5241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e4d83b2_1255ce96",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-10-25T04:20:37Z",
       "side": 1,
       "message": "just a doubt ,if we are updating both primary and altrenative image, and if the update image is corrupted it can bring down the setup right ?\n\nor is it like alternative image is updated only if there is a miss match in ECC futionality ?",
+      "range": {
+        "startLine": 17,
+        "startChar": 2,
+        "endLine": 17,
+        "endChar": 80
+      },
+      "revId": "981f8ec57da8b5607385d9090fa6114fad7a5241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9ed6a6a_d82f9b89",
+        "filename": "architecture/code-update/u-boot-mirroring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001633
+      },
+      "writtenOn": "2022-10-26T15:20:08Z",
+      "side": 1,
+      "message": "FW update process first updates the primary u-boot image. BMC will boot from\nthe primary u-boot and as part of the boot process, obmc-flash-mmc-mirroruboot\nservice copies the primary u-boot image to the alternative u-boot image.\n\nI will update the design section.",
+      "parentUuid": "1e4d83b2_1255ce96",
       "range": {
         "startLine": 17,
         "startChar": 2,
@@ -77,6 +119,48 @@
         "endLine": 23,
         "endChar": 136
       },
+      "revId": "981f8ec57da8b5607385d9090fa6114fad7a5241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cad85f7a_daf32342",
+        "filename": "architecture/code-update/u-boot-mirroring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001633
+      },
+      "writtenOn": "2022-10-26T15:20:08Z",
+      "side": 1,
+      "message": "No, before mirroring we need to make sure that the image was able to boot the BMC.",
+      "parentUuid": "8772c55e_3c5a7aad",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 136
+      },
+      "revId": "981f8ec57da8b5607385d9090fa6114fad7a5241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b4b9f8e_0c8416be",
+        "filename": "architecture/code-update/u-boot-mirroring.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001633
+      },
+      "writtenOn": "2022-10-26T15:20:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "666f5966_87477521",
       "revId": "981f8ec57da8b5607385d9090fa6114fad7a5241",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
