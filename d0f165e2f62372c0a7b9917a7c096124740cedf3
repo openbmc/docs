@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da9b6a7b_005fe7d5",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-10-31T22:19:57Z",
+      "side": 1,
+      "message": "As implementation details, we can write codes so that it allows either a single role or a list of privileges.\n\nI can bring this up as a Github issue in DMTF.",
+      "parentUuid": "3d6ed7d5_8915968d",
+      "range": {
+        "startLine": 249,
+        "startChar": 18,
+        "endLine": 249,
+        "endChar": 25
+      },
+      "revId": "d0f165e2f62372c0a7b9917a7c096124740cedf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4529e0d_3fee5452",
         "filename": "designs/redfish-oauth.md",
         "patchSetId": 1
@@ -77,6 +101,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "76d4c97d_72fb455c",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-10-31T22:19:57Z",
+      "side": 1,
+      "message": "Clients can still use one side TLS to connect to the resource server and claims their identity by username/password in the system. This is how BasicAuth and Session login currently work in BMCWeb.\n\nThese usernames have to be registered with the server",
+      "parentUuid": "e4529e0d_3fee5452",
+      "revId": "d0f165e2f62372c0a7b9917a7c096124740cedf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8716c22a_13ad4239",
         "filename": "designs/redfish-oauth.md",
         "patchSetId": 1
@@ -88,6 +130,24 @@
       "writtenOn": "2022-10-31T21:29:39Z",
       "side": 1,
       "message": "This feels like a gap, but I haven\u0027t really had a chance to wrap my head around this.\n\nThere really doesn\u0027t seem to be any standard way in either DMTF or OAuth to describe the key management for the token signature.\n\nThat makes me think that there are one of two ways that the PKI can be managed:\n\n1) Distributed signing keys along with X.509 root certificates.\n2) Have the authorization server pre-register the signing key by hitting an endpoint in the resource server.\n\nWould it be future proof to just say that the signing key is in phosphor-cert-manager, and leave it to the next person to figure out how they want to wire it up?",
+      "revId": "d0f165e2f62372c0a7b9917a7c096124740cedf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1be6b1_60b1e0c5",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-10-31T22:19:57Z",
+      "side": 1,
+      "message": "\u003e 1) Distributed signing keys along with X.509 root certificates.\n\u003e 2) Have the authorization server pre-register the signing key by hitting an endpoint in the resource server.\n\nGreat suggestion, I can add these two options in the next patchset.\n\n\u003e Would it be future proof to just say that the signing key is in phosphor-cert-manager, and leave it to the next person to figure out how they want to wire it up?\n\nYes, I can mention this in the next patchset.",
+      "parentUuid": "8716c22a_13ad4239",
       "revId": "d0f165e2f62372c0a7b9917a7c096124740cedf3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
