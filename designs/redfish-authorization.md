@@ -85,10 +85,10 @@ the user is who they claim they are, there are two main authentication methods:
 1. PAM based: use Linux-PAM to do username/password style of authentication
 2. TLS based: use the Public Key infrastructure to verify signature of peer's
 certificates; then use identities (in X509 certificates, these are Common Name
-or Subject Alternative Name).
+or Subject Alternative Name) as user names.
 
-After getting the peer's username, BMCWeb sends DBus queries to
-phosphor-user-manager to query the User's privileges and uses a hardcoded map
+After getting the peer's user name, BMCWeb sends DBus queries to
+phosphor-user-manager to query the user's privileges and uses a hardcoded map
 to convert the privileges to Redfish roles. The hardcoded map is listed below:
 
 | Phosphor-user-manager privileges (implemented as groups) | BMCWeb Redfish Roles |
@@ -132,8 +132,8 @@ configured at compile time including:
 4. the mapping from Redfish roles to Redfish Privileges
 5. the operation-to-privilege mapping
 
-However, modern systems has use cases where Redfish roles, Redfish privileges,
-and operation-to-privilege mapping needs to change when the system keeps
+However, modern systems have use cases where Redfish roles, Redfish privileges,
+and operation-to-privilege mapping need to change when the system keeps
 running. E.g., a new micro-service is introduced and needs to talk to existing
 BMCs in the fleet, we need to propagate a configuration so that this new peer
 gets a proper Redfish role and is authorized to access certain resources
@@ -153,7 +153,7 @@ micro-service has at least ConfigureComponents Redfish privilege, which leads
 to being able to patch an EthernetInterface resource.
 
 ## Requirements
-BMCWeb implements a dynamic Redfish Authorization system:
+BMC implements a dynamic Redfish authorization system:
 
 1. Clients shall be able to add new OEM Redfish privileges without recompile
 2. Clients shall be able to add new OEM Redfish roles and assign it with any
