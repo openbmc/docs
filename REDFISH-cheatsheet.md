@@ -185,5 +185,18 @@ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH h
 curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH https://${bmc}/redfish/v1/Managers/bmc/NetworkProtocol -d '{"IPMI":{"ProtocolEnabled": false}}'
 ```
 
+---
+
+## SNMPTRAP event client
+Add a SNMPTRAP event client
+```
+curl -k -H "X-Auth-Token: $token" -X POST https://${bmc}/redfish/v1/EventService/Subscriptions -d '{"Destination": "snmp://<ip address>:<port>", "SubscriptionType": "SNMPTrap", "Protocol": "SNMPv2c"}'
+```
+
+Delete a SNMPTRAP event client
+```
+curl -k -H "X-Auth-Token: $token" -X DELETE https://${bmc}/redfish/v1/EventService/Subscriptions/snmp1
+```
+
 
 [1]: https://www.dmtf.org/standards/redfish
