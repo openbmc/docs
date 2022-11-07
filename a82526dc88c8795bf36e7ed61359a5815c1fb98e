@@ -270,6 +270,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e1f3c00_7b258e15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2022-11-07T04:39:24Z",
+      "side": 1,
+      "message": "Zev is right, the issue is that this service is a \"oneshot\" service and libgpiod doesn\u0027t support that. The level is not guaranteed to persist.\n\nLike Zev suggested, we should use a gpio-hog in the dts for lines that we want to set and forget. See the documentation here: https://www.kernel.org/doc/Documentation/devicetree/bindings/gpio/gpio.txt.\n\nIf we actually have some important logic that needs to run to determine how to set the GPIO\u0027s, then that should be a long-running service that controls the GPIO through libgpiod. For those, I think we should include the actual data center use-case that we\u0027re targeting.",
+      "parentUuid": "fedd1cda_6782530c",
+      "revId": "a82526dc88c8795bf36e7ed61359a5815c1fb98e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "663e19b4_d899ebeb",
         "filename": "designs/gpio-initialization-service.md",
         "patchSetId": 1
