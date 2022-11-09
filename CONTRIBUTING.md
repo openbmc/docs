@@ -229,9 +229,20 @@ Try to include the component you are changing at the front of your subject line;
 this typically comes in the form of the class, module, handler, or directory you
 are modifying. e.g. "apphandler: refactor foo to new API"
 
-Loosely, we try to follow the 50/72 rule for commit messages - that is, the
-subject line should not exceed 50 characters and the body should not exceed 72
-characters. This is common practice in many projects which use Git.
+Commit messages should follow the 50/72 rule: the subject line should not exceed
+50 characters and the body should not exceed 72 characters. This is common
+practice in many projects which use Git.
+
+Exceptions to this are allowed in the form of links, which can be represented in
+the form of:
+
+'''
+This implements [1]
+
+....
+
+[1] https://openbmc.org/myverylongurl.
+'''
 
 All commit messages must include a "Signed-off-by" line, which indicates that
 you the contributor have agreed to the Developer Certificate of Origin
