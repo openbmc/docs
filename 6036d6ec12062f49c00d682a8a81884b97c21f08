@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37b9316f_8a02016c",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-11-15T20:15:59Z",
+      "side": 1,
+      "message": "Thanks! Done",
+      "parentUuid": "e1a9b333_af9af9c6",
+      "range": {
+        "startLine": 86,
+        "startChar": 30,
+        "endLine": 86,
+        "endChar": 40
+      },
+      "revId": "6036d6ec12062f49c00d682a8a81884b97c21f08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d405e51c_1d7f0dd7",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8eda5e9c_f54abe7d",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-11-15T20:15:59Z",
+      "side": 1,
+      "message": "For the proposed workflow here, it\u0027s a pretty straightforward check: |local time| \u003c\u003d |create time| + |valid time|. |local time| can be get from std library, |create time| + |valid time| are just strings in the JWT.\n\nCould you elaborate why you think it\u0027s complicated here?",
+      "parentUuid": "d405e51c_1d7f0dd7",
+      "range": {
+        "startLine": 122,
+        "startChar": 58,
+        "endLine": 122,
+        "endChar": 68
+      },
+      "revId": "6036d6ec12062f49c00d682a8a81884b97c21f08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e2552fc1_126c2578",
         "filename": "designs/redfish-oauth.md",
         "patchSetId": 2
@@ -60,6 +108,30 @@
       "writtenOn": "2022-11-15T07:46:52Z",
       "side": 1,
       "message": "In BMC the privileges are bound to a user group, how do you manage the user that is logged in to the BMC?",
+      "range": {
+        "startLine": 178,
+        "startChar": 21,
+        "endLine": 178,
+        "endChar": 39
+      },
+      "revId": "6036d6ec12062f49c00d682a8a81884b97c21f08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a544412_3ce0b2fe",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-11-15T20:15:59Z",
+      "side": 1,
+      "message": "Yes, there are two flavors:\n\n1. Redfish Privileges in JTW claim. We might send a dbus call to phosphor-user-manager to check if these privileges are in the system. Or we just skip the check, and directly use these strings as is when performing intersection.\n\n2. Redfish Roles in JTW claim. We need to send a DBus query to phosphor-user-manager to check what privileges this role has.\n\nI understand privileges are stored as groups. I have an approved design doc to add OEM privileges and roles in https://github.com/openbmc/docs/blob/master/designs/redfish-authorization.md",
+      "parentUuid": "e2552fc1_126c2578",
       "range": {
         "startLine": 178,
         "startChar": 21,
