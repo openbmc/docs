@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e22c061_d0788f35",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-11-16T10:49:35Z",
+      "side": 1,
+      "message": "By \"complicated\" I mean the session timeout, would this mean the session timeout is set every time when an SSO login is performed?",
+      "parentUuid": "8eda5e9c_f54abe7d",
+      "range": {
+        "startLine": 122,
+        "startChar": 58,
+        "endLine": 122,
+        "endChar": 68
+      },
+      "revId": "6036d6ec12062f49c00d682a8a81884b97c21f08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e2552fc1_126c2578",
         "filename": "designs/redfish-oauth.md",
         "patchSetId": 2
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Yes, there are two flavors:\n\n1. Redfish Privileges in JTW claim. We might send a dbus call to phosphor-user-manager to check if these privileges are in the system. Or we just skip the check, and directly use these strings as is when performing intersection.\n\n2. Redfish Roles in JTW claim. We need to send a DBus query to phosphor-user-manager to check what privileges this role has.\n\nI understand privileges are stored as groups. I have an approved design doc to add OEM privileges and roles in https://github.com/openbmc/docs/blob/master/designs/redfish-authorization.md",
       "parentUuid": "e2552fc1_126c2578",
+      "range": {
+        "startLine": 178,
+        "startChar": 21,
+        "endLine": 178,
+        "endChar": 39
+      },
+      "revId": "6036d6ec12062f49c00d682a8a81884b97c21f08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dde0b9bd_b1a021e5",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2022-11-16T10:49:35Z",
+      "side": 1,
+      "message": "I still have the question about the user who logged in.\nWhen the user logged in via OAuth will the session be associated with a user in phosphor-user-manager?",
+      "parentUuid": "1a544412_3ce0b2fe",
       "range": {
         "startLine": 178,
         "startChar": 21,
