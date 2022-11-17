@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e51a2d9e_f70c7c61",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-11-17T01:21:56Z",
+      "side": 1,
+      "message": "I see where you are from now. I have two options here,\n\n1. not use the session codes at all in BMCWeb. This means every request will go to token verification. This might affect performance but I need to evaluate how slow it is. To my understanding, verifying a signature of short token should be fast.\n\n2. use session. Whenever we found there is no session for this token, we create a new session and set the session timeout to min(CurrTime + MaxSessionTimeout, CurrTime + TokenValidFor).\n\nMakes sense to you?",
+      "parentUuid": "7e22c061_d0788f35",
+      "range": {
+        "startLine": 122,
+        "startChar": 58,
+        "endLine": 122,
+        "endChar": 68
+      },
+      "revId": "6036d6ec12062f49c00d682a8a81884b97c21f08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e2552fc1_126c2578",
         "filename": "designs/redfish-oauth.md",
         "patchSetId": 2
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "I still have the question about the user who logged in.\nWhen the user logged in via OAuth will the session be associated with a user in phosphor-user-manager?",
       "parentUuid": "1a544412_3ce0b2fe",
+      "range": {
+        "startLine": 178,
+        "startChar": 21,
+        "endLine": 178,
+        "endChar": 39
+      },
+      "revId": "6036d6ec12062f49c00d682a8a81884b97c21f08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73295d4c_d43ad08d",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000682
+      },
+      "writtenOn": "2022-11-17T01:21:56Z",
+      "side": 1,
+      "message": "No, there is no concept of \"user\" in authorization delegation. Only either \"Redfish Role\" or \"Redfish privileges\".\n\nFor mTLS connections, we might check if the peer\u0027s identity matches the subject role.",
+      "parentUuid": "dde0b9bd_b1a021e5",
       "range": {
         "startLine": 178,
         "startChar": 21,
