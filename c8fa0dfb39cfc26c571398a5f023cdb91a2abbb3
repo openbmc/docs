@@ -58,6 +58,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "301b7d83_e551850d",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "Take out from the requirements.\nNew version only says `Allow users to save extra (arbitrary) durations.`\nThen put details in `Proposed design`",
+      "parentUuid": "9965e551_9750a95f",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 80
+      },
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "283e60e0_b50b328f",
@@ -81,6 +105,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46dc95ca_c05aa50e",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "Remove the redfish part from this design. `BMCWeb` might be one of the consumer of this service. But it is not part of the the design.",
+      "parentUuid": "283e60e0_b50b328f",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 17
+      },
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4046e825_6b338e20",
@@ -94,6 +142,30 @@
       "writtenOn": "2022-08-22T17:06:22Z",
       "side": 1,
       "message": "This seems to be repeated, and from the requirements, it\u0027s not clear what these other services would be inside the bmc that need the information.  Please clarify.",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 65
+      },
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8f5e821_e1c6a306",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "Take out from the requirements.\n\n\u003e it\u0027s not clear what these other services would be inside the bmc that need the information.  Please clarify.\n\nI think machine-health related daemon will be interested in this information since boot time is one of the factor of performance.",
+      "parentUuid": "4046e825_6b338e20",
       "range": {
         "startLine": 79,
         "startChar": 0,
@@ -129,6 +201,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "efa6dfd8_8fcc2eb0",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "Because `Host.RestartCause` is aiming for `why` this reboot is been performed. While we plan to export `what` kind of reboot.\nIf we can clearly map every `Host.RestartCause` to a certain reboot type (halt/reboot) then we can still use that.",
+      "parentUuid": "4673d4a6_08870182",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 79
+      },
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "857914a3_57282396",
         "filename": "designs/BootTimeMonitor.md",
         "patchSetId": 16
@@ -140,6 +236,30 @@
       "writtenOn": "2022-08-22T17:06:22Z",
       "side": 1,
       "message": "This is the first mention of measuring \"retry\"  can you give some definition to that?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 18
+      },
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59cf770f_39832059",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "857914a3_57282396",
       "range": {
         "startLine": 84,
         "startChar": 0,
@@ -167,6 +287,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56617c20_ce72109f",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "Take it out from the requirement and put in the implementation.",
+      "parentUuid": "1115024d_7dd2c94f",
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bc1f60d_52ec7d9d",
@@ -190,6 +328,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bd13e94_c80393d4",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "Done. Put more details in the `IPMI blob` section.",
+      "parentUuid": "6bc1f60d_52ec7d9d",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 56
+      },
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "daf897d5_c3589bc8",
@@ -203,6 +365,30 @@
       "writtenOn": "2022-08-22T17:06:22Z",
       "side": 1,
       "message": "Why are both blobs and new oem commands required?",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 14
+      },
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "008e02df_b171ffd6",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "From my understanding a lightweight communication shouldn\u0027t use blob.\nSo I choose IPMI OEM command to send the notification/duration since the command is trivial and use blob to received the boot flow and durations.\n\nIf using OEM+blob is not recommanded. We can only use one of them.",
+      "parentUuid": "daf897d5_c3589bc8",
       "range": {
         "startLine": 88,
         "startChar": 0,
@@ -300,6 +486,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a500dbb2_f48fa07a",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "\u003e 1. What does the user-facing API look like?\n`Interfaces` section describe this part.\n\n\u003e 2. What is the connection between the various daemons?\nDBus\n\n\u003e 3. Which daemons are fundamentally in charge of what pieces?\nThere will be 1~3 daemons in this design.\n\n1. One for handling IPMI OEM command. (Can be merged to existing proper daemon. In Google we have https://github.com/openbmc/google-ipmi-sys)\n2. One for handling IPMI blob transfer. (Can be merged to existing proper daemon. https://github.com/openbmc/google-misc/tree/master/subprojects/metrics-ipmi-blobs)\n3. One for handling all other functionalities.\n\nOnly the third one is required. The first 2 can be merged into proprt exsiting daemon.",
+      "parentUuid": "966e6d95_e9d940f2",
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fa19673_f64000e1",
@@ -313,6 +517,30 @@
       "writtenOn": "2022-08-22T17:06:22Z",
       "side": 1,
       "message": "I\u0027m not sure I agree with that.  phosphor-watchdog is intended to monitor the host state, and already has a number of these interfaces already.  Can you talk through the technical details of why this is required.",
+      "range": {
+        "startLine": 297,
+        "startChar": 0,
+        "endLine": 299,
+        "endChar": 12
+      },
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3fc7f4a_cd8acb95",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "\u003e phosphor-watchdog is intended to monitor the host state,\nFrom my understanding `phosphor-watchdog` is mainly for checking whether host is alive or not.\nGot pet \u003d alive\nNo pet \u003d dead\n\nIn that case watchdog doesn\u0027t know why the host is petting/not petting. Nor what state is host at.\nSo put the reboot process profiling in this repo doesn\u0027t look right to me.",
+      "parentUuid": "9fa19673_f64000e1",
       "range": {
         "startLine": 297,
         "startChar": 0,
@@ -346,6 +574,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d035e9e2_48454dc7",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "Updated.\nIn the latest version I mentioned that we can put this design as part of `phosphor-state-manager`\nBut I am okay to have an individual repo as well.",
+      "parentUuid": "67cafff9_b9b6ab5f",
+      "range": {
+        "startLine": 307,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 5
+      },
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "338edc29_62e9139e",
@@ -369,6 +621,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfd574d8_230d1750",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "Yes, unit test will cover most of the case of this design.\nThe most important test is to ensure that all the state-transition has been cover so there is no surprise for the state machine.\n\n```\n-   Unittest for each individual functions\n-   Mock the state change of `CurrentHostState` to ensure an unexpected reboot\n    can be handled correctly.\n-   Mock the receiving IPMI command to ensure the state-transition is expected.\n```",
+      "parentUuid": "338edc29_62e9139e",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 37
+      },
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d811a9b_3c46923d",
@@ -382,6 +658,30 @@
       "writtenOn": "2022-08-22T17:06:22Z",
       "side": 1,
       "message": "Which machine types will support this feature?",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 46
+      },
+      "revId": "c8fa0dfb39cfc26c571398a5f023cdb91a2abbb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc60e423_fbb7398f",
+        "filename": "designs/BootTimeMonitor.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-11-30T07:20:01Z",
+      "side": 1,
+      "message": "Testing plan is updated.\nWe can pretend we receive IPMI OEM command from host by mocking it.",
+      "parentUuid": "8d811a9b_3c46923d",
       "range": {
         "startLine": 321,
         "startChar": 0,
