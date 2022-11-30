@@ -16,6 +16,86 @@
       "message": "Added Andrew Geissler as reviewer since he is the maintainer of `phosphor-state-manager`\n",
       "revId": "019d2a01a5dd7b6847934c9095198bae7e77f6c1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e4e0149_a2d3e750",
+        "filename": "designs/host-boot-time-monitor.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-11-30T17:03:31Z",
+      "side": 1,
+      "message": "nit: these \"\\\" are not needed in markdown docs",
+      "range": {
+        "startLine": 23,
+        "startChar": 71,
+        "endLine": 23,
+        "endChar": 72
+      },
+      "revId": "019d2a01a5dd7b6847934c9095198bae7e77f6c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a544f3_230edfee",
+        "filename": "designs/host-boot-time-monitor.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-11-30T17:03:31Z",
+      "side": 1,
+      "message": "I was excited at the start of the doc to see reference to using BootProgress as that\u0027s a generic d-bus property that anyone can update. For example, on our IBM systems, we utilize PLDM as the communication protocol between the BMC and Host. That path updates the BootProgress property. Is there a way to at least make a generic D-Bus property here that could be updated by IPMI or PLDM so others could utilize this function? Or maybe xyz/openbmc_project/Time/Boot is the generic object that BootProgress OR IPMI OEM could update?",
+      "range": {
+        "startLine": 138,
+        "startChar": 47,
+        "endLine": 138,
+        "endChar": 51
+      },
+      "revId": "019d2a01a5dd7b6847934c9095198bae7e77f6c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4adf2655_f12e16b2",
+        "filename": "designs/host-boot-time-monitor.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-11-30T17:03:31Z",
+      "side": 1,
+      "message": "I wonder if by default we could just use BootProgress/CurrentHostState (getting more limited information), and if a config flag is passed in, we rely on the IPMI OEM path on those systems to update it instead?",
+      "revId": "019d2a01a5dd7b6847934c9095198bae7e77f6c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ac2aec2_7c8c8969",
+        "filename": "designs/host-boot-time-monitor.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-11-30T17:03:31Z",
+      "side": 1,
+      "message": "The phosphor-state-manager-host package is usually not utilized by systems using x86-power-control so this would have to be a separate package within phosphor-state-manager. Which I think is fine to host the d-bus object and interface (but not any of the IPMI code logic that sets the d-bus object)",
+      "revId": "019d2a01a5dd7b6847934c9095198bae7e77f6c1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
