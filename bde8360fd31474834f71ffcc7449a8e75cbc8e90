@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91fafafe_44ced6e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-12-02T16:54:08Z",
+      "side": 1,
+      "message": "High level I think this will be a useful feature. Tracking boot progress and timings is something a lot of people are interested in. I didn\u0027t review much of the technical details around IPMI or the actual time calculations.",
+      "revId": "bde8360fd31474834f71ffcc7449a8e75cbc8e90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41a48ee9_0b6154c7",
+        "filename": "designs/host-boot-time-monitor.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-12-02T16:54:08Z",
+      "side": 1,
+      "message": "Have you put any thought into how we could retrieve this timing data via Redfish from external clients?",
+      "revId": "bde8360fd31474834f71ffcc7449a8e75cbc8e90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9156751_ad1b73c9",
+        "filename": "designs/host-boot-time-monitor.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-12-02T16:54:08Z",
+      "side": 1,
+      "message": "I\u0027m not going to use this IPMI feature on my systems but high level, it seems like you\u0027re really intertwining the host and BMC firmware here. Why not keep it generic where host just sends a \"I reached this point\" like it does with BootProgress and have the time and duration calculations all done on the BMC? i.e. why does the host need to be tracking all this timing info between steps now?",
+      "revId": "bde8360fd31474834f71ffcc7449a8e75cbc8e90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
