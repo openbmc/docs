@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9b865dc_11f07b34",
+        "filename": "designs/host-boot-time-monitor.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-12-05T03:08:51Z",
+      "side": 1,
+      "message": "Yes, I was planning to propose new Redfish schema to DMTF because I didn\u0027t find proper schema for now.\nHowever it haven\u0027t been done so currently there is no good Redfish schema to store timing data.\nThus I removed Redfish part since the implementation won\u0027t have anything related to Redfish.",
+      "parentUuid": "41a48ee9_0b6154c7",
+      "revId": "bde8360fd31474834f71ffcc7449a8e75cbc8e90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9156751_ad1b73c9",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-12-02T16:54:08Z",
       "side": 1,
       "message": "I\u0027m not going to use this IPMI feature on my systems but high level, it seems like you\u0027re really intertwining the host and BMC firmware here. Why not keep it generic where host just sends a \"I reached this point\" like it does with BootProgress and have the time and duration calculations all done on the BMC? i.e. why does the host need to be tracking all this timing info between steps now?",
+      "revId": "bde8360fd31474834f71ffcc7449a8e75cbc8e90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da974217_7e7770e1",
+        "filename": "designs/host-boot-time-monitor.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-12-05T03:08:51Z",
+      "side": 1,
+      "message": "Sorry I didn\u0027t elaborate clearly. Current design is the same as you said.\n\nDuring the host boot up, the only thing that host needs to tell BMC is \"I reached this point\", \"I reached that point\". That\u0027s the purpose of `Notify` command.\n\nThe command `SetDuration` is for additional/extra durations (It\u0027s optional)\nFor example, we may initiate the smart NIC during the `Loader` stage and we want to track how long it takes as well.\nIn that case the host can utilize `SetDuration` command to tell BMC: \"Help me to report this timing info to DBus\". So that other BMC Daemons can use it.\n\nFor the purpose of last command `SetRebootType` is that BMC can\u0027t distinguish the host reboot is `Halt` or `Reboot` by itself. So we need host to told us. (This also optional)",
+      "parentUuid": "e9156751_ad1b73c9",
       "revId": "bde8360fd31474834f71ffcc7449a8e75cbc8e90",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
