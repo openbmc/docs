@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1fe3cdd_097d81ee",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-12-07T21:43:00Z",
+      "side": 1,
+      "message": "Adding \"Bytes\" to phosphor-dbus-interfaces was rejected\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/51779\n\nOnly physical sensor types are modeled in phosphor-dbus-interfaces and phosphor-health-monitor is \"bound to\" using sensors, thus causing a deadlock. So the progress to do what is proposed in this proposal to support the types of metrics that can\u0027t be expressed as \"utilization sensors\" (regardless of as part of phosphor-health-monitor or a new daemon)",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 24
+      },
+      "revId": "6d498fa0b40ea0d1196d6a933fee800df73bc5ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fdaa1399_099eb8b0",
         "filename": "designs/metric-collector.md",
         "patchSetId": 1
@@ -59,6 +82,52 @@
         "startChar": 0,
         "endLine": 35,
         "endChar": 132
+      },
+      "revId": "6d498fa0b40ea0d1196d6a933fee800df73bc5ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb822adc_9f5d3799",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-12-07T21:43:00Z",
+      "side": 1,
+      "message": "DBus data bandwidth is about 4 MB/s or ~5K messages per second as one of our previous experiments.\n\nFor small message sizes, # of messages per second is the limiting factor.\nFor large message sizes, bandwidth is the limiting factor.\n\nIf DBus is not sufficient, we can pass a file descriptor to the consumer, similarly to phosphor-debug-collector",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 42
+      },
+      "revId": "6d498fa0b40ea0d1196d6a933fee800df73bc5ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5b52f68_cad2f68f",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-12-07T21:43:00Z",
+      "side": 1,
+      "message": "In my understanding: \"lightweight\" in terms of \"obtaining metrics\" being a self-sufficient task, similar to the collector daemon in \"schedviz\", or \"traced\" in Perfetto. Obtaining metrics doesn\u0027t need to be designed to, or be limited to be IPMI-compatible like phosphor-health-monitor.",
+      "range": {
+        "startLine": 43,
+        "startChar": 62,
+        "endLine": 43,
+        "endChar": 73
       },
       "revId": "6d498fa0b40ea0d1196d6a933fee800df73bc5ab",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
