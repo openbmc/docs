@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38fcc301_a330a59a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T22:55:34Z",
+      "side": 1,
+      "message": "This is WIP still so I\u0027m not going to give any score.  Wanted to give some early feedback though.",
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c92ca10_042bf500",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T22:55:34Z",
+      "side": 1,
+      "message": "I suspect it would be useful to compare and contrast the telemetry implementation too.",
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e994997_c2bb6b52",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T22:55:34Z",
+      "side": 1,
+      "message": "I don\u0027t think this is true.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 96
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a565bb7_4e44a1a7",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T22:55:34Z",
+      "side": 1,
+      "message": "This is certainly not true since we have Utilization sensors already.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 92
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d20cf7e6_dd303efa",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T22:55:34Z",
+      "side": 1,
+      "message": "Considering both of the restrictions above are false you might want to revisit this... ;)",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 161
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f957600_b4bbb021",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T22:55:34Z",
+      "side": 1,
+      "message": "This is fundamentally the reason why things like \"Bytes\" were rejected from the Sensors implementation.  We don\u0027t allow arbitrary strings on dbus like this.  You have no programmatic way to (at compile time) know what \"properties\" are going to be available between daemons and what they mean.  They\u0027re all just trust-me-human strings that we plop in code somewhere and this doesn\u0027t scale.\n\nYou need to use either real dbus enumerations or interfaces to represent the constructs you want to represent.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 68
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea4439c2_3868e887",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T22:55:34Z",
+      "side": 1,
+      "message": "Please make sure the dbus interfaces you are proposing have a corresponding proposal in phosphor-dbus-interfaces.  We can\u0027t go forward with a design until we see an initial stab at those.",
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
