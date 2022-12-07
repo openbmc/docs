@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "087a09eb_99938931",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-12-07T23:43:15Z",
+      "side": 1,
+      "message": "Adding my view of the current limitations of phosphor-health-monitor",
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c92ca10_042bf500",
@@ -60,6 +77,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80eacbbe_f25610fc",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-12-07T23:43:15Z",
+      "side": 1,
+      "message": "To be more specific:\n* Sensors read through ipmitool can have ranges beyond 0~255, but their values are still \"quantized to 8-bit\". They are still a one-to-one linear or non-linear mapping between [0x00~0xFF] and the configured range, with 256 distinct values.\n* phosphor-health-monitor\u0027s DBus objects are all Sensors. They are also now made compatible to `ipmitool`, so users will expect them to be IPMI-compliant.",
+      "parentUuid": "2e994997_c2bb6b52",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 96
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a565bb7_4e44a1a7",
         "filename": "designs/metric-collector.md",
         "patchSetId": 5
@@ -83,6 +124,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e43800c_a842a350",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-12-07T23:43:15Z",
+      "side": 1,
+      "message": "Utilization sensors alone does not free p-h-m from the burdens of from physical sensors enough so as to be able to cover all kinds of metrics, such as kb/s, bytes, and \"number of open file descriptors\", etc.\n\nAnd also, even if we get rid of the limit on units, only scalar values are supported in Sensor.Values, so we still can\u0027t export graphs, spans, binary blobs, etc.",
+      "parentUuid": "2a565bb7_4e44a1a7",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 92
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d20cf7e6_dd303efa",
         "filename": "designs/metric-collector.md",
         "patchSetId": 5
@@ -94,6 +159,30 @@
       "writtenOn": "2022-12-07T22:55:34Z",
       "side": 1,
       "message": "Considering both of the restrictions above are false you might want to revisit this... ;)",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 161
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c9cb675_b3a85a95",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-12-07T23:43:15Z",
+      "side": 1,
+      "message": "The problem is \"not all metrics could be modeled by sensors\", so we will either add \"non-sensor metrics\" to phosphor-health-monitor, or create this new daemon.\n\nThe \"real restriction\" is how phosphor-health-monitor appears to be trapped and self-limited with IPMI compatiblity which corroborates the fact that it must use xyz.openbmc_project.Sensor.Value interfaces, and in this proposal, we are looking for a way to model and make use of metric data without this restriction.",
+      "parentUuid": "d20cf7e6_dd303efa",
       "range": {
         "startLine": 26,
         "startChar": 0,
