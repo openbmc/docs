@@ -119,6 +119,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5cced5f2_66de60fc",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-08T17:53:11Z",
+      "side": 1,
+      "message": "I\u0027m still not following what limitation the IPMI handlers causing them to be quantized imposes on phosphor-health-monitor (and all other providers of sensors).\n\n\u003e They are also now made compatible to `ipmitool`, so users will expect them to be \nIPMI-compliant.\n\n\"expect them to be\"?  If we have some requirements here on sensors, I must not know what they are, and we should get them documented in phosphor-dbus-interfaces.  I don\u0027t know why IPMI would be imposing requirements on other pieces of code.  I personally don\u0027t care about IPMI on my systems.",
+      "parentUuid": "80eacbbe_f25610fc",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 96
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a565bb7_4e44a1a7",
         "filename": "designs/metric-collector.md",
         "patchSetId": 5
@@ -166,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f060c654_4c709cfe",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-08T17:53:11Z",
+      "side": 1,
+      "message": "\u003e Utilization sensors alone does not free p-h-m from the burdens of from physical sensors enough so as to be able to cover all kinds of metrics, such as kb/s, bytes, and \"number of open file descriptors\", etc.\n\nThere is no requirement that PHM implements exclusively Sensor.Value objects either though.\n\n\u003e And also, even if we get rid of the limit on units, only scalar values are supported in Sensor.Values, so we still can\u0027t export graphs, spans, binary blobs, etc.\n\nThree comments:\n\n1. Can you point me to a definition of \"Metric\" that you\u0027re using in this context?  I don\u0027t understand what a \"binary blob metric\" is.  I\u0027m slightly concerned you\u0027re using the word Metric in a Company-Specific way that nobody else is reading into this document.\n\n2. This response leads me to believe we are missing a \"Use Case\" very early in this document.  What are you trying to solve with a \"Metric Collector\", from a user perspective, that isn\u0027t solved already?\n\n3. I sure hope we\u0027re not trying to propose a \"I want to store any arbitrary thing in a random KV-store interface and have it exposed on dbus\" because that isn\u0027t going to fly.  I still expect to see well-documented and programmatically useful interface.  Arbitrary string-referenced fields isn\u0027t acceptable.  If we need to propose new interfaces to satisfy what you need, let\u0027s do it.",
+      "parentUuid": "5e43800c_a842a350",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 92
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d20cf7e6_dd303efa",
         "filename": "designs/metric-collector.md",
         "patchSetId": 5
@@ -201,6 +249,30 @@
       "side": 1,
       "message": "The problem is \"not all metrics could be modeled by sensors\", so we will either add \"non-sensor metrics\" to phosphor-health-monitor, or create this new daemon.\n\nThe \"real restriction\" is how phosphor-health-monitor appears to be trapped and self-limited with IPMI compatiblity which corroborates the fact that it must use xyz.openbmc_project.Sensor.Value interfaces, and in this proposal, we are looking for a way to model and make use of metric data without this restriction.",
       "parentUuid": "d20cf7e6_dd303efa",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 161
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "221c1d3a_822baad7",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-08T17:53:11Z",
+      "side": 1,
+      "message": "\u003e The \"real restriction\" is how phosphor-health-monitor appears to be trapped and self-limited with IPMI compatiblity which corroborates the fact that it must use xyz.openbmc_project.Sensor.Value interfaces, and in this proposal, we are looking for a way to model and make use of metric data without this restriction.\n\nAs mentioned above, I\u0027m not sure what \"trap\" this is.  I could very well be forgetting though.",
+      "parentUuid": "9c9cb675_b3a85a95",
       "range": {
         "startLine": 26,
         "startChar": 0,
