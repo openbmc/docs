@@ -1,25 +1,25 @@
 # Logging BIOS POST Codes Through Redfish
 
-Author:
-  Terry Duncan
+Author: Terry Duncan
 
-Other contributors:
-  Jason Bills, Zhikui Ren
+Other contributors: Jason Bills, Zhikui Ren
 
-Created:
-  December 23, 2019
+Created: December 23, 2019
 
 ## Problem Description
+
 BIOS Power-On Self-Test (POST) codes are exposed on DBUS but not currently over
 Redfish. This describes a method to expose the BIOS POST codes over the Redfish
 interface using the logging service.
 
 ## Background and References
-The standard Redfish LogService and LogEntry schemas will be used to expose
-BIOS POST codes. An additional log service (PostCodes) will be added to
-the LogServiceCollection.
+
+The standard Redfish LogService and LogEntry schemas will be used to expose BIOS
+POST codes. An additional log service (PostCodes) will be added to the
+LogServiceCollection.
 
 Sample [LogService](https://redfish.dmtf.org/schemas/LogService_v1.xml) entry:
+
 ```
 https://obmc/redfish/v1/Systems/system/LogServices/PostCodes
 {
@@ -43,6 +43,7 @@ https://obmc/redfish/v1/Systems/system/LogServices/PostCodes
 
 Events will be exposed using the
 [LogEntry](https://redfish.dmtf.org/schemas/LogEntry_v1.xml) schema.
+
 ```
 https://obmc/redfish/v1/Systems/system/LogServices/PostCodes/Entries
 {
@@ -75,9 +76,9 @@ https://obmc/redfish/v1/Systems/system/LogServices/PostCodes/Entries
 }
 ```
 
-A new
-[MessageRegistry](https://redfish.dmtf.org/schemas/MessageRegistry_v1.xml)
+A new [MessageRegistry](https://redfish.dmtf.org/schemas/MessageRegistry_v1.xml)
 schema entry defines the format for the message.
+
 ```
 https://obmc/redfish/v1/Registries/OpenBMC/OpenBMC
 {
@@ -109,16 +110,19 @@ https://obmc/redfish/v1/Registries/OpenBMC/OpenBMC
 ```
 
 ## Requirements
-The Redfish Interface shall be Redfish compliant and pass the Redfish
-compliancy tests.
 
-The Redfish interface shall expose POST codes tracked on DBUS since the last
-BMC reset.
+The Redfish Interface shall be Redfish compliant and pass the Redfish compliancy
+tests.
+
+The Redfish interface shall expose POST codes tracked on DBUS since the last BMC
+reset.
 
 ## Proposed Design
+
 Currently, OpenBMC exposes BIOS POST codes on DBus using the
 xyz.openbmc_project.State.Boot.PostCode service. The existing interface tracks
 POST codes for the past 100 host boot events and the current boot cycle index.
+
 ```
 xyz.openbmc_project.State.Boot.PostCode
     GetPostCodes(q undefined) → [uint64] undefined
@@ -128,6 +132,7 @@ xyz.openbmc_project.State.Boot.PostCode
 
 The GetPostCodes method is called using the boot cycle index to retrieve the
 codes for the boot cycle.
+
 ```
 {
   "call": "GetPostCodes",
@@ -152,6 +157,7 @@ codes for the boot cycle.
 The existing DBus GetPostCodes method will remain for backward compatibility. A
 new method GetPostCodesTS will be added to include an ISO formatted time stamp
 with micro-second resolution along with each POST code.
+
 ```
 {
   "call": "GetPostCodesTS",
@@ -175,6 +181,7 @@ with micro-second resolution along with each POST code.
 
 The DBus DeleteAll interface will be implemented to remove entries. The Redfish
 ClearLog action will call the DBus DeleteAll interface.
+
 ```
 {
   "call": "DeleteAll",
@@ -186,6 +193,7 @@ ClearLog action will call the DBus DeleteAll interface.
 ```
 
 ## Alternatives Considered
+
 Consideration was given to using the existing DBus method and not exposing
 associated time stamps. In this case, a single log entry could be used per boot
 cycle exposing a string with all POST codes associated with that boot cycle.
@@ -196,8 +204,10 @@ rather than using the LogEntry schema. Use of OEM extensions to Redfish are
 discouraged. It can be revisited if DMTF adds a schema for POST codes.
 
 ## Impacts
-Backward compatibility remains with the existing DBUS interface method.
-Minimal performance impact is expected to track timestamps.
+
+Backward compatibility remains with the existing DBUS interface method. Minimal
+performance impact is expected to track timestamps.
 
 ## Testing
+
 Compliance with Redfish will be tested using the Redfish Service Validator.

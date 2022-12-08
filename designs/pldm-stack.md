@@ -5,6 +5,7 @@ Author: Deepak Kodihalli <dkodihal@linux.vnet.ibm.com> <dkodihal>
 Created: 2019-01-22
 
 ## Problem Description
+
 On OpenBMC, in-band IPMI is currently the primary industry-standard means of
 communication between the BMC and the Host firmware. We've started hitting some
 inherent limitations of IPMI on OpenPOWER servers: a limited number of sensors,
@@ -25,6 +26,7 @@ Host, BMC - BMC, BMC - Network Controller and BMC - Other (for e.g. sensor)
 devices.
 
 ## Background and References
+
 PLDM is designed to be an effective interface and data model that provides
 efficient access to low-level platform inventory, monitoring, control, event,
 and data/parameters transfer functions. For example, temperature, voltage, or
@@ -32,9 +34,9 @@ fan sensors can have a PLDM representation that can be used to monitor and
 control the platform using a set of PLDM messages. PLDM defines data
 representations and commands that abstract the platform management hardware.
 
-PLDM groups commands under broader functions, and defines
-separate specifications for each of these functions (also called PLDM "Types").
-The currently defined Types (and corresponding specs) are : PLDM base (with
+PLDM groups commands under broader functions, and defines separate
+specifications for each of these functions (also called PLDM "Types"). The
+currently defined Types (and corresponding specs) are : PLDM base (with
 associated IDs and states specs), BIOS, FRU, Platform monitoring and control,
 Firmware Update and SMBIOS. All these specifications are available at:
 
@@ -68,8 +70,9 @@ MCTP. This is defined in a spec of its own, and the design for this binding will
 be proposed separately.
 
 ## Requirements
-How different BMC applications make use of PLDM messages is outside the scope
-of this requirements doc. The requirements listed here are related to the PLDM
+
+How different BMC applications make use of PLDM messages is outside the scope of
+this requirements doc. The requirements listed here are related to the PLDM
 protocol stack and the request/response model:
 
 - Marshalling and unmarshalling of PLDM messages, defined in various PLDM Type
@@ -107,13 +110,14 @@ protocol stack and the request/response model:
 - It should be possible to plug-in OEM PLDM types/functions into the PLDM stack.
 
 ## Proposed Design
+
 This document covers the architectural, interface, and design details. It
 provides recommendations for implementations, but implementation details are
 outside the scope of this document.
 
 The design aims at having a single PLDM daemon serve both the requester and
-responder functions, and having transport specific endpoints to communicate
-on different channels.
+responder functions, and having transport specific endpoints to communicate on
+different channels.
 
 The design enables concurrency aspects of the requester and responder functions,
 but the goal is to employ asynchronous IO and event loops, instead of multiple
@@ -143,8 +147,8 @@ functionality for new PLDM (standard as well as OEM) Types. The libraries would
 implement a "register" API to plug-in handlers for specific PLDM messages.
 Something like:
 
-template <typename Handler, typename... args>
-auto register(uint8_t type, uint8_t command, Handler handler);
+template <typename Handler, typename... args> auto register(uint8_t type,
+uint8_t command, Handler handler);
 
 This allows for providing a strongly-typed C++ handler registration scheme. It
 would also be possible to validate the parameters passed to the handler at
@@ -152,10 +156,11 @@ compile time.
 
 ### Request/Response Model
 
-The PLDM daemon links with the encode/decode and provider libs. The daemon
-would have to implement the following functions:
+The PLDM daemon links with the encode/decode and provider libs. The daemon would
+have to implement the following functions:
 
 #### Receiver/Responder
+
 The receiver wakes up on getting notified of incoming PLDM messages (via D-Bus
 signal or callback from the transport layer) from a remote PLDM device. If the
 message type is "Request" it would route them to a PLDM provider library. Via
@@ -170,22 +175,22 @@ API blocks for a considerably long duration, then it would have to be run in a
 thread of it's own.
 
 If the incoming PLDM message is of type "Response", then the receiver emits a
-D-Bus signal pointing to the response message. Any time the message is too
-large to fit in a D-Bus payload, the message is written to a file, and a
-read-only file descriptor pointing to that file is contained in the D-Bus
-signal.
+D-Bus signal pointing to the response message. Any time the message is too large
+to fit in a D-Bus payload, the message is written to a file, and a read-only
+file descriptor pointing to that file is contained in the D-Bus signal.
 
 #### Requester
+
 Designing the BMC as a PLDM requester is interesting. We haven't had this with
 IPMI, because the BMC was typically an IPMI server. PLDM requester functions
 will be spread across multiple OpenBMC applications (instead of a single big
 requester app) - based on the responder they're talking to and the high level
 function they implement. For example, there could be an app that lets the BMC
-upgrade firmware for other devices using PLDM - this would be a generic app
-in the sense that the same set of commands might have to be run irrespective
-of the device on the other side. There could also be an app that does fan
-control on a remote device, based on sensors from that device and algorithms
-specific to that device.
+upgrade firmware for other devices using PLDM - this would be a generic app in
+the sense that the same set of commands might have to be run irrespective of the
+device on the other side. There could also be an app that does fan control on a
+remote device, based on sensors from that device and algorithms specific to that
+device.
 
 ##### Proposed requester design
 
@@ -195,17 +200,17 @@ A requester app/flow comprises of the following :
   and unpack PLDM responses.
 
 - A D-Bus API to generate a unique PLDM instance id. The id needs to be unique
-  across all outgoing PLDM messages (from potentially different processes).
-  This needs to be on D-Bus because the id needs to be unique across PLDM
-  requester app processes.
+  across all outgoing PLDM messages (from potentially different processes). This
+  needs to be on D-Bus because the id needs to be unique across PLDM requester
+  app processes.
 
 - A requester client API that provides blocking and non-blocking functions to
   transfer a PLDM request message and to receive the corresponding response
-  message, over MCTP (the blocking send() will return a PLDM response).
-  This will be a thin wrapper over the socket API provided by the mctp demux
-  daemon. This will provide APIs for common tasks so that the same may not
-  be re-implemented in each PLDM requester app. This set of API will be built
-  into the encode/decode library (so libpldm would house encode/decode APIs, and
+  message, over MCTP (the blocking send() will return a PLDM response). This
+  will be a thin wrapper over the socket API provided by the mctp demux daemon.
+  This will provide APIs for common tasks so that the same may not be
+  re-implemented in each PLDM requester app. This set of API will be built into
+  the encode/decode library (so libpldm would house encode/decode APIs, and
   based on a compile time flag, the requester APIs as well). A PLDM requester
   app can choose to not use the client requester APIs, and instead can directly
   talk to the MCTP demux daemon.
@@ -265,7 +270,6 @@ a) With blocking API
         |close_connection()             |                              |                                 |
         +                               +                              +                                 +
 ```
-
 
 b) With non-blocking API
 
@@ -335,17 +339,19 @@ signal recvPLDM(uint8 mctp_eid, uint8 pldm_instance_id, uint8 msg[])
 
 PLDM requester apps can then invoke the above applications. While this
 simplifies things for the user, it has two disadvantages :
+
 - the app implementing such an interface could be a single point of failure,
   plus sending messages concurrently would be a challenge.
 - the message payload could be large (several pages), and copying the same for
   D-Bus transfers might be undesirable.
 
 ### Multiple transport channels
+
 The PLDM daemon might have to talk to remote PLDM devices via different
 channels. While a level of abstraction might be provided by MCTP, the PLDM
-daemon would have to implement a D-Bus interface to target a specific
-transport channel, so that requester apps on the BMC can send messages over
-that transport. Also, it should be possible to plug-in platform specific D-Bus
+daemon would have to implement a D-Bus interface to target a specific transport
+channel, so that requester apps on the BMC can send messages over that
+transport. Also, it should be possible to plug-in platform specific D-Bus
 objects that implement an interface to target a platform specific transport.
 
 ### Processing PLDM FRU information sent down by the host firmware
@@ -384,15 +390,17 @@ BMC:
   as it does today.
 
 ## Alternatives Considered
-Continue using IPMI, but start making more use of OEM extensions to
-suit the requirements of new platforms. However, given that the IPMI
-standard is no longer under active development, we would likely end up
-with a large amount of platform-specific customisations. This also does
-not solve the hardware channel issues in a standard manner.
-On OpenPOWER hardware at least, we've started to hit some of the limitations of
-IPMI (for example, we have need for >255 sensors).
+
+Continue using IPMI, but start making more use of OEM extensions to suit the
+requirements of new platforms. However, given that the IPMI standard is no
+longer under active development, we would likely end up with a large amount of
+platform-specific customisations. This also does not solve the hardware channel
+issues in a standard manner. On OpenPOWER hardware at least, we've started to
+hit some of the limitations of IPMI (for example, we have need for >255
+sensors).
 
 ## Impacts
+
 Development would be required to implement the PLDM protocol, the
 request/response model, and platform specific handling. Low level design is
 required to implement the protocol specifics of each of the PLDM Types. Such low
@@ -402,6 +410,7 @@ Design and development needs to involve the firmware stacks of management
 controllers and management devices of a platform management subsystem.
 
 ## Testing
+
 Testing can be done without having to depend on the underlying transport layer.
 
 The responder function can be tested by mocking a requester and the transport

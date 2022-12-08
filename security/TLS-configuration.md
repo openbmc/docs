@@ -1,50 +1,52 @@
 # How to configure the server TLS certificates for authentication
-Author:
-  Zbigniew Kurzynski <zbigniew.kurzynski@intel.com>
 
-Created:
-  May 8, 2020
+Author: Zbigniew Kurzynski <zbigniew.kurzynski@intel.com>
+
+Created: May 8, 2020
 
 Related documents:
-* [Redfish TLS User Authentication](https://github.com/openbmc/docs/blob/master/designs/redfish-tls-user-authentication.md)
+
+- [Redfish TLS User Authentication](https://github.com/openbmc/docs/blob/master/designs/redfish-tls-user-authentication.md)
 
 ## Introduction
-With help of this guidebook you should be able to create both client and
-server certificates signed by a CA that can be used to authenticate user
-requests to an OpenBMC server. You will also learn how to enable and test
-the OpenBMC TLS authentication.
+
+With help of this guidebook you should be able to create both client and server
+certificates signed by a CA that can be used to authenticate user requests to an
+OpenBMC server. You will also learn how to enable and test the OpenBMC TLS
+authentication.
 
 ## Certificates
-For a certificate to be marked as valid, it (and every certificate in the
-chain) has to meet these conditions:
 
-* `KeyUsage` contains required purpose `digitalSignature` and `keyAgreement`
-(see rfc 3280 4.2.1.3)
-* `ExtendedKeyUsage` contains required purpose `clientAuth` for client
-certificate and `serverAuth` for server certificate (see rfc 3280 4.2.1.13)
-* public key meets minimal bit length requirement
-* certificate has to be in its validity period
-* `notBefore` and `notAfter` fields have to contain valid time
-* has to be properly signed by certificate authority
-* certificate is well-formed according to X.509
-* issuer name has to match CA's subject name for client certificate
-* issuer name has to match the fully qualified domain name of your OpenBMC
-host
+For a certificate to be marked as valid, it (and every certificate in the chain)
+has to meet these conditions:
 
-If you already have certificates you can skip to [Enable TLS authentication
-](#Enable-TLS-authentication) or go to [Verify certificates](#Verify-certificates)
-and check if they meet the above requirements.
+- `KeyUsage` contains required purpose `digitalSignature` and `keyAgreement`
+  (see rfc 3280 4.2.1.3)
+- `ExtendedKeyUsage` contains required purpose `clientAuth` for client
+  certificate and `serverAuth` for server certificate (see rfc 3280 4.2.1.13)
+- public key meets minimal bit length requirement
+- certificate has to be in its validity period
+- `notBefore` and `notAfter` fields have to contain valid time
+- has to be properly signed by certificate authority
+- certificate is well-formed according to X.509
+- issuer name has to match CA's subject name for client certificate
+- issuer name has to match the fully qualified domain name of your OpenBMC host
+
+If you already have certificates you can skip to
+[Enable TLS authentication ](#Enable-TLS-authentication) or go to
+[Verify certificates](#Verify-certificates) and check if they meet the above
+requirements.
 
 ### Prepare configuration files
 
-To generate certificates with required parameters some modification must be
-made to the default openssl configuration file.
+To generate certificates with required parameters some modification must be made
+to the default openssl configuration file.
 
-First create a new folder named `ca` and create a configuration file using
-the default configuration as a template (we do not want to change the
-original one). The location of the configuration file may vary depending on
-the operating system. For Ubuntu it is usually `/usr/lib/ssl/openssl.cnf`,
-but can also can be at `/etc/ssl/openssl.cnf`. For Cygwin it might be
+First create a new folder named `ca` and create a configuration file using the
+default configuration as a template (we do not want to change the original one).
+The location of the configuration file may vary depending on the operating
+system. For Ubuntu it is usually `/usr/lib/ssl/openssl.cnf`, but can also can be
+at `/etc/ssl/openssl.cnf`. For Cygwin it might be
 `/etc/defaults/etc/pki/tls/openssl.cnf` or `/etc/pki/tls/openssl.cnf`.
 
 ```
@@ -53,8 +55,8 @@ cd ~/ca
 cp /usr/lib/ssl/openssl.cnf openssl-client.cnf
 ```
 
-Then open the client `~/ca/openssl-client.cnf` file in your favorite editor,
-for example `vi`.
+Then open the client `~/ca/openssl-client.cnf` file in your favorite editor, for
+example `vi`.
 
 ```
 vi ~/ca/openssl-client.cnf
@@ -92,8 +94,8 @@ extendedKeyUsage = serverAuth
 ```
 
 Create two additional configuration files `myext-client.cnf` and
-`myext-server.cnf` for the client and server certificates respectively.
-Without these files no extensions are added to the certificate.
+`myext-server.cnf` for the client and server certificates respectively. Without
+these files no extensions are added to the certificate.
 
 ```
 cat << END > myext-client.cnf
@@ -103,6 +105,7 @@ extendedKeyUsage = clientAuth
 authorityKeyIdentifier = keyid
 END
 ```
+
 ```
 cat << END > myext-server.cnf
 [ my_ext_section ]
@@ -113,32 +116,37 @@ END
 ```
 
 ### Create a new CA certificate
+
 First we need to create a private key to sign the CA certificate.
+
 ```
 openssl genrsa -out CA-key.pem 2048
 ```
 
-Now we can create a CA certificate, using the previously generated key.
-You will be prompted for information which will be incorporated into the
-certificate, such as Country, City, Company Name, etc.
+Now we can create a CA certificate, using the previously generated key. You will
+be prompted for information which will be incorporated into the certificate,
+such as Country, City, Company Name, etc.
 
 ```
 openssl req -new -config openssl-client.cnf -key CA-key.pem -x509 -days 1000 -out CA-cert.pem
 ```
 
 ### Create client certificate signed by given CA certificate
+
 To create a client certificate, a signing request must be created first. For
 this another private key will be needed.
 
 Generate a new key that will be used to sign the certificate signing request:
+
 ```
 openssl genrsa -out client-key.pem 2048
 ```
+
 Generate a certificate signing request.
 
 You will be prompted for the same information as during CA generation, but
-provide **the OpenBMC system user name**  for the `CommonName` attribute of
-this certificate.  In this example, use **root**.
+provide **the OpenBMC system user name** for the `CommonName` attribute of this
+certificate. In this example, use **root**.
 
 ```
 openssl req -new -config openssl-client.cnf -key client-key.pem -out signingReqClient.csr
@@ -146,26 +154,31 @@ openssl req -new -config openssl-client.cnf -key client-key.pem -out signingReqC
 
 Sign the certificate using your `CA-cert.pem` certificate with following
 command:
+
 ```
 openssl x509 -req -extensions my_ext_section -extfile myext-client.cnf -days 365 -in signingReqClient.csr -CA CA-cert.pem -CAkey CA-key.pem -CAcreateserial -out client-cert.pem
 ```
+
 The file `client-cert.pem` now contains a signed client certificate.
 
 ### Create server certificate signed by given CA certificate
-For convenience we will use the same CA generated in paragraph [Create a new
-CA certificate](#Create-a-new-CA-certificate), although a different one could
-be used.
+
+For convenience we will use the same CA generated in paragraph
+[Create a new CA certificate](#Create-a-new-CA-certificate), although a
+different one could be used.
 
 Generate a new key that will be used to sign the server certificate signing
 request:
+
 ```
 openssl genrsa -out server-key.pem 2048
 ```
+
 Generate a certificate signing request. You will be prompted for the same
-information as during CA generation, but provide **the fully qualified
-domain name of your OpenBMC server** for the `CommonName` attribute of this
-certificate. In this example it will be `bmc.example.com`. A wildcard can
-be used to protect multiple host, for example a certificate configured for
+information as during CA generation, but provide **the fully qualified domain
+name of your OpenBMC server** for the `CommonName` attribute of this
+certificate. In this example it will be `bmc.example.com`. A wildcard can be
+used to protect multiple host, for example a certificate configured for
 `*.example.com` will secure www.example.com, as well as mail.example.com,
 blog.example.com, and others.
 
@@ -175,12 +188,15 @@ openssl req -new -config openssl-server.cnf -key server-key.pem -out signingReqS
 
 Sign the certificate using your `CA-cert.pem` certificate with following
 command:
+
 ```
 openssl x509 -req -extensions my_ext_section -extfile myext-server.cnf -days 365 -in signingReqServer.csr -CA CA-cert.pem -CAkey CA-key.pem -CAcreateserial -out server-cert.pem
 ```
+
 The file `server-cert.pem` now contains a signed server certificate.
 
 ### Verify certificates
+
 To verify the signing request and both certificates you can use following
 commands.
 
@@ -194,19 +210,20 @@ openssl req -in signingReqServer.csr -noout -text
 
 Below are example listings that you can compare with your results. Pay special
 attention to attributes like:
- * Validity in both certificates,
- * `Issuer` in `client-cert.pem`, it must match to `Subject` in `CA-cert.pem`,
- * Section *X509v3 extensions* in `client-cert.pem` it should contain proper
-values,
- * `Public-Key` length, it cannot be less than 2048 bits.
- * `Subject` CN in `client-cert.pem`, it should match existing OpemBMC user
-name.
-In this example it is **root**.
- * `Subject` CN in `server-cert.pem`, it should match OpemBMC host name.
-In this example it is **bmc.example.com **. (see rfc 3280
-4.2.1.11 for name constraints)
+
+- Validity in both certificates,
+- `Issuer` in `client-cert.pem`, it must match to `Subject` in `CA-cert.pem`,
+- Section _X509v3 extensions_ in `client-cert.pem` it should contain proper
+  values,
+- `Public-Key` length, it cannot be less than 2048 bits.
+- `Subject` CN in `client-cert.pem`, it should match existing OpemBMC user name.
+  In this example it is **root**.
+- `Subject` CN in `server-cert.pem`, it should match OpemBMC host name. In this
+  example it is **bmc.example.com **. (see rfc 3280 4.2.1.11 for name
+  constraints)
 
 Below are fragments of generated certificates that you can compare with.
+
 ```
 CA-cert.pem
     Data:
@@ -241,6 +258,7 @@ CA-cert.pem
          45:47:91:62:10:bd:3e:a8:da:98:33:65:cc:11:23:95:06:1b:
          ee:d3:78:84
 ```
+
 ```
 client-cert.pem
     Data:
@@ -275,6 +293,7 @@ client-cert.pem
          25:cb:5e:0a:37:fb:a1:ab:b0:c4:62:fe:51:d3:1c:1b:fb:11:
          56:57:4c:6a
 ```
+
 ```
 server-cert.pem
     Data:
@@ -313,11 +332,11 @@ server-cert.pem
 ## Installing CA certificate on OpenBMC
 
 The CA certificate can be installed via Redfish Service. The file `CA-cert.pem`
-can not be uploaded directly but must be sent embedded in a valid JSON
-string, which requires `\`, `"`, and control characters must be escaped.
-This means all content is placed in a single string on a single line by
-encoding the line endings as `\n`. The command below prepares a whole POST
-body and puts it into a file named: `install_ca.json`.
+can not be uploaded directly but must be sent embedded in a valid JSON string,
+which requires `\`, `"`, and control characters must be escaped. This means all
+content is placed in a single string on a single line by encoding the line
+endings as `\n`. The command below prepares a whole POST body and puts it into a
+file named: `install_ca.json`.
 
 ```
 cat << END > install_ca.json
@@ -331,8 +350,8 @@ END
 To install the CA certificate on the OpenBMC server post the content of
 `install_ca.json` with this command:
 
-Where `${bmc}` should be `bmc.example.com`. It is convenient to export it
-as an environment variable.
+Where `${bmc}` should be `bmc.example.com`. It is convenient to export it as an
+environment variable.
 
 ```
 curl --user root:0penBmc -d @install_ca.json -k -X POST https://${bmc}/redfish/v1/Managers/bmc/Truststore/Certificates
@@ -342,20 +361,18 @@ curl --user root:0penBmc -d @install_ca.json -k -X POST https://${bmc}/redfish/v
 Credentials `root:0penBmc` can be replaced with any system user name and
 password of your choice but with proper access rights to resources used here.
 
+After successful certificate installation you should get positive HTTP response
+and a new certificate should be available under this resource collection.
 
-After successful certificate installation you should get positive HTTP
-response and a new certificate should be available under this resource
-collection.
 ```
 curl --user root:0penBmc -k https://${bmc}/redfish/v1/Managers/bmc/Truststore/Certificates
 
 ```
 
-An auto-generated self-signed server certificate is already present on
-OpenBMC by default. To use the certificate signed by our CA it must be
-replaced. Additionally we must upload to OpenBMC the private key that was
-used to sign the server certificate. A proper message mody can be prepared
-the with this command:
+An auto-generated self-signed server certificate is already present on OpenBMC
+by default. To use the certificate signed by our CA it must be replaced.
+Additionally we must upload to OpenBMC the private key that was used to sign the
+server certificate. A proper message mody can be prepared the with this command:
 
 ```
 cat << END > replace_cert.json
@@ -385,6 +402,7 @@ To check current state of the TLS authentication method use this command:
 ```
 curl --user root:0penBmc -k https://${bmc}/redfish/v1/AccountService
 ```
+
 and verify that the attribute `Oem->OpenBMC->AuthMethods->TLS` is set to true.
 
 To enable TLS authentication use this command:
@@ -400,30 +418,31 @@ curl --user root:0penBmc  -k -X PATCH -H "ContentType:application/json" --data '
 ```
 
 Other authentication methods like basic authentication can be enabled or
-disabled as well using the same mechanism. All supported authentication
-methods are available under attribute `Oem->OpenBMC->AuthMethods` of the
+disabled as well using the same mechanism. All supported authentication methods
+are available under attribute `Oem->OpenBMC->AuthMethods` of the
 `/redfish/v1/AccountService` resource.
 
 ## Using TLS to access OpenBMC resources
 
-If TLS is enabled, valid CA certificate was uploaded and the server
-certificate was replaced it should be possible to execute curl requests
-using only client certificate, key, and CA like below.
+If TLS is enabled, valid CA certificate was uploaded and the server certificate
+was replaced it should be possible to execute curl requests using only client
+certificate, key, and CA like below.
 
 ```
 curl --cert client-cert.pem --key client-key.pem -vvv --cacert CA-cert.pem https://${bmc}/redfish/v1/SessionService/Sessions
 ```
+
 ## Common mistakes during TLS configuration
 
-* Invalid date and time on OpenBMC,
+- Invalid date and time on OpenBMC,
 
-* Testing Redfish resources, like `https://${bmc}/redfish/v1` which are
-always available without any authentication will always result with success,
-even when TLS is disabled or certificates are invalid.
+- Testing Redfish resources, like `https://${bmc}/redfish/v1` which are always
+  available without any authentication will always result with success, even
+  when TLS is disabled or certificates are invalid.
 
-* Certificates do not meet the requirements. See paragraphs
-[Verify certificates](#Verify-certificates).
+- Certificates do not meet the requirements. See paragraphs
+  [Verify certificates](#Verify-certificates).
 
-* Attempting to load the same certificate twice will end up with an error.
+- Attempting to load the same certificate twice will end up with an error.
 
-* Not having phosphor-bmcweb-cert-config in the build.
+- Not having phosphor-bmcweb-cert-config in the build.

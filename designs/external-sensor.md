@@ -18,30 +18,30 @@ gives some example usages of it.
 There are 10 existing sensor daemons in _dbus-sensors_. Why add another sensor
 daemon?
 
-*   Most of the existing sensor daemons are tied to one particular physical
-    quantity they are measuring, such as temperature, and are hardcoded as such.
-    An externally-updated sensor has no such limitation, and should be flexible
-    enough to measure any physical quantity currently supported by OpenBMC.
+- Most of the existing sensor daemons are tied to one particular physical
+  quantity they are measuring, such as temperature, and are hardcoded as such.
+  An externally-updated sensor has no such limitation, and should be flexible
+  enough to measure any physical quantity currently supported by OpenBMC.
 
-*   Essentially all of the existing sensor daemons obtain the sensor values they
-    publish to D-Bus by reading from local hardware (typically by reading from
-    virtual files provided by the _hwmon_[^3] subsystem of the Linux kernel).
-    None of the daemons are currently designed with the intention of accepting
-    values pushed in from an external source. Although there is some debugging
-    functionality to add this feature to other sensor daemons[^25], it is not
-    the primary purpose for which they were designed.
+- Essentially all of the existing sensor daemons obtain the sensor values they
+  publish to D-Bus by reading from local hardware (typically by reading from
+  virtual files provided by the _hwmon_[^3] subsystem of the Linux kernel). None
+  of the daemons are currently designed with the intention of accepting values
+  pushed in from an external source. Although there is some debugging
+  functionality to add this feature to other sensor daemons[^25], it is not the
+  primary purpose for which they were designed.
 
-*   Even if the debugging functionality of an existing daemon were to be used,
-    the daemon would still need a valid configuration tied to recognized
-    hardware, as detected by _entity-manager_[^4], in order for the daemon to
-    properly initialize itself and participate in the OpenBMC software stack.
+- Even if the debugging functionality of an existing daemon were to be used, the
+  daemon would still need a valid configuration tied to recognized hardware, as
+  detected by _entity-manager_[^4], in order for the daemon to properly
+  initialize itself and participate in the OpenBMC software stack.
 
-*   For the same reason it is desirable for existing sensor daemons to detect
-    and properly indicate failures of their underlying hardware, it is desirable
-    for _ExternalSensor_ to detect and properly indicate loss of timely sensor
-    updates from their external source. This is a new feature, and does not
-    cleanly fit into the architecture of any existing sensor daemon, thus a new
-    daemon is the correct choice for this behavior.
+- For the same reason it is desirable for existing sensor daemons to detect and
+  properly indicate failures of their underlying hardware, it is desirable for
+  _ExternalSensor_ to detect and properly indicate loss of timely sensor updates
+  from their external source. This is a new feature, and does not cleanly fit
+  into the architecture of any existing sensor daemon, thus a new daemon is the
+  correct choice for this behavior.
 
 For these reasons, _ExternalSensor_ has been added[^5], as the eleventh sensor
 daemon in _dbus-sensors_.
@@ -116,46 +116,46 @@ are listed below. All of these are mandatory parameters, unless mentioned as
 optional. For fields listed as "Numeric" below, this means that it can be either
 integer or valid floating-point.
 
-*   "Name": String. The sensor name, which this sensor will be known as. A
-    mandatory component of the `entity-manager` configuration, and the resulting
-    D-Bus object path.
+- "Name": String. The sensor name, which this sensor will be known as. A
+  mandatory component of the `entity-manager` configuration, and the resulting
+  D-Bus object path.
 
-*   "Units": String. This parameter is unique to _ExternalSensor_. As
-    _ExternalSensor_ is not tied to any particular physical hardware, it can
-    measure any physical quantity supported by OpenBMC. This string will be
-    translated to another string via a lookup table[^19], and forms another
-    mandatory component of the D-Bus object path.
+- "Units": String. This parameter is unique to _ExternalSensor_. As
+  _ExternalSensor_ is not tied to any particular physical hardware, it can
+  measure any physical quantity supported by OpenBMC. This string will be
+  translated to another string via a lookup table[^19], and forms another
+  mandatory component of the D-Bus object path.
 
-*   "MinValue": Numeric. The minimum valid value for this sensor. Although not
-    used by _ExternalSensor_ directly, it is a valuable hint for services such
-    as IPMI, which need to know the minimum and maximum valid sensor values in
-    order to scale their reporting range accurately. As _ExternalSensor_ is not
-    tied to one particular physical quantity, there is no suitable default value
-    for minimum and maximum. Thus, unlike other sensor daemons where this
-    parameter is optional, in _ExternalSensor_ it is mandatory.
+- "MinValue": Numeric. The minimum valid value for this sensor. Although not
+  used by _ExternalSensor_ directly, it is a valuable hint for services such as
+  IPMI, which need to know the minimum and maximum valid sensor values in order
+  to scale their reporting range accurately. As _ExternalSensor_ is not tied to
+  one particular physical quantity, there is no suitable default value for
+  minimum and maximum. Thus, unlike other sensor daemons where this parameter is
+  optional, in _ExternalSensor_ it is mandatory.
 
-*   "MaxValue": Numeric. The maximum valid value for this sensor. It is treated
-    similarly to "MinValue".
+- "MaxValue": Numeric. The maximum valid value for this sensor. It is treated
+  similarly to "MinValue".
 
-*   "Timeout": Numeric. This parameter is unique to _ExternalSensor_. It is the
-    timeout value, in seconds. If this amount of time elapses with no new
-    updates received over D-Bus from the external source, this sensor will be
-    deemed stale. The value of this sensor will be replaced with floating-point
-    _NaN_, as described above. This field is optional. If not given, the timeout
-    feature will be disabled for this sensor (so it will never be deemed stale).
+- "Timeout": Numeric. This parameter is unique to _ExternalSensor_. It is the
+  timeout value, in seconds. If this amount of time elapses with no new updates
+  received over D-Bus from the external source, this sensor will be deemed
+  stale. The value of this sensor will be replaced with floating-point _NaN_, as
+  described above. This field is optional. If not given, the timeout feature
+  will be disabled for this sensor (so it will never be deemed stale).
 
-*   "Type": String. Must be exactly "ExternalSensor". This string is used by
-    _ExternalSensor_ to obtain configuration information from _entity-manager_
-    during initialization. This string is what differentiates JSON stanzas
-    intended for _ExternalSensor_ versus JSON stanzas intended for other
-    _dbus-sensors_ sensor daemons.
+- "Type": String. Must be exactly "ExternalSensor". This string is used by
+  _ExternalSensor_ to obtain configuration information from _entity-manager_
+  during initialization. This string is what differentiates JSON stanzas
+  intended for _ExternalSensor_ versus JSON stanzas intended for other
+  _dbus-sensors_ sensor daemons.
 
-*   "Thresholds": JSON dictionary. This field is optional. It is passed through
-    to the main _Sensor_ class during initialization, similar to other sensor
-    daemons. Other than that, it is not used by _ExternalSensor_.
+- "Thresholds": JSON dictionary. This field is optional. It is passed through to
+  the main _Sensor_ class during initialization, similar to other sensor
+  daemons. Other than that, it is not used by _ExternalSensor_.
 
-*   "PowerState": String. This field is optional. Similarly to "Thresholds", it
-    is passed through to the main _Sensor_ class during initialization.
+- "PowerState": String. This field is optional. Similarly to "Thresholds", it is
+  passed through to the main _Sensor_ class during initialization.
 
 Here is an example. The sensor created by this stanza will form this object
 path: /xyz/openbmc_project/sensors/temperature/HostDevTemp
@@ -221,15 +221,25 @@ reading this, then most likely, it was successful!
 [^7]: https://github.com/openbmc/dbus-sensors/blob/master/src/HwmonTempMain.cpp
 [^8]: https://think-async.com/Asio/
 [^9]: https://github.com/openbmc/dbus-sensors/blob/master/include/sensor.hpp
-[^10]: https://github.com/openbmc/docs/blob/master/architecture/ipmi-architecture.md
-[^11]: https://www.intel.com/content/www/us/en/servers/ipmi/ipmi-intelligent-platform-mgt-interface-spec-2nd-gen-v2-0-spec-update.html
+[^10]:
+    https://github.com/openbmc/docs/blob/master/architecture/ipmi-architecture.md
+
+[^11]:
+    https://www.intel.com/content/www/us/en/servers/ipmi/ipmi-intelligent-platform-mgt-interface-spec-2nd-gen-v2-0-spec-update.html
+
 [^12]: https://www.dmtf.org/standards/redfish
-[^13]: https://www.boost.org/doc/libs/1_75_0/doc/html/boost_asio/overview/timers.html
+[^13]:
+    https://www.boost.org/doc/libs/1_75_0/doc/html/boost_asio/overview/timers.html
+
 [^14]: https://anniecherkaev.com/the-secret-life-of-nan
-[^15]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml
+[^15]:
+    https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml
+
 [^16]: https://cr.yp.to/proto/utctai.html
 [^17]: https://github.com/openbmc/openbmc/issues/1892
-[^18]: https://github.com/openbmc/entity-manager/blob/master/docs/my_first_sensors.md
+[^18]:
+    https://github.com/openbmc/entity-manager/blob/master/docs/my_first_sensors.md
+
 [^19]: https://github.com/openbmc/dbus-sensors/blob/master/src/SensorPaths.cpp
 [^20]: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/36206
 [^21]: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/41398

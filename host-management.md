@@ -5,7 +5,8 @@ structure, accessible over REST.
 
 Note: Authentication
 
-See the details on authentication at [REST-cheatsheet](https://github.com/openbmc/docs/blob/master/REST-cheatsheet.md#establish-rest-connection-session).
+See the details on authentication at
+[REST-cheatsheet](https://github.com/openbmc/docs/blob/master/REST-cheatsheet.md#establish-rest-connection-session).
 
 This document uses token based authentication method:
 
@@ -17,22 +18,24 @@ $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/...
 
 ## Inventory
 
-The system inventory structure is under the `/xyz/openbmc_project/inventory` hierarchy.
+The system inventory structure is under the `/xyz/openbmc_project/inventory`
+hierarchy.
 
 In OpenBMC the inventory is represented as a path which is hierarchical to the
 physical system topology. Items in the inventory are referred to as inventory
 items and are not necessarily FRUs (field-replaceable units). If the system
-contains one chassis, a motherboard, and a CPU on the motherboard, then the
-path to that inventory item would be:
+contains one chassis, a motherboard, and a CPU on the motherboard, then the path
+to that inventory item would be:
 
-   `inventory/system/chassis0/motherboard0/cpu0`
+`inventory/system/chassis0/motherboard0/cpu0`
 
-The properties associated with an inventory item are specific to that item.
-Some common properties are:
+The properties associated with an inventory item are specific to that item. Some
+common properties are:
 
- * `Version`: A code version associated with this item.
- * `Present`: Indicates whether this item is present in the system (True/False).
- * `Functional`: Indicates whether this item is functioning in the system (True/False).
+- `Version`: A code version associated with this item.
+- `Present`: Indicates whether this item is present in the system (True/False).
+- `Functional`: Indicates whether this item is functioning in the system
+  (True/False).
 
 The usual `list` and `enumerate` REST queries allow the system inventory
 structure to be accessed. For example, to enumerate all inventory items and
@@ -60,17 +63,17 @@ temperature sensors would be `sensors/temperature/cpu[n]`.
 
 These are some common properties:
 
- * `Value`: Current value of the sensor
- * `Unit`: Unit of the value and "Critical" and "Warning" values
- * `Scale`: The scale of the value and "Critical" and "Warning" values
- * `CriticalHigh` & `CriticalLow`: Sensor device upper/lower critical threshold
-bound
- * `CriticalAlarmHigh` & `CriticalAlarmLow`: True if the sensor has exceeded the
-critical threshold bound
- * `WarningHigh` & `WarningLow`: Sensor device upper/lower warning threshold
-bound
- * `WarningAlarmHigh` & `WarningAlarmLow`: True if the sensor has exceeded the
-warning threshold bound
+- `Value`: Current value of the sensor
+- `Unit`: Unit of the value and "Critical" and "Warning" values
+- `Scale`: The scale of the value and "Critical" and "Warning" values
+- `CriticalHigh` & `CriticalLow`: Sensor device upper/lower critical threshold
+  bound
+- `CriticalAlarmHigh` & `CriticalAlarmLow`: True if the sensor has exceeded the
+  critical threshold bound
+- `WarningHigh` & `WarningLow`: Sensor device upper/lower warning threshold
+  bound
+- `WarningAlarmHigh` & `WarningAlarmLow`: True if the sensor has exceeded the
+  warning threshold bound
 
 A temperature sensor might look like:
 
@@ -96,7 +99,7 @@ A temperature sensor might look like:
       "status": "ok"
     }
 
-Note the value of this sensor is 34.625C (34625 * 10^-3).
+Note the value of this sensor is 34.625C (34625 \* 10^-3).
 
 Unlike IPMI, there are no "functional" sensors in OpenBMC; functional states are
 represented in the inventory.
@@ -121,11 +124,12 @@ start the OS, or cannot reliably log to the OS.
 
 The properties associated with an event log are as follows:
 
- * `Message`: The type of event log (e.g. "xyz.openbmc_project.Inventory.Error.NotPresent").
- * `Resolved` : Indicates whether the event has been resolved.
- * `Severity`: The level of problem ("Info", "Error", etc.).
- * `Timestamp`: The date of the event log in epoch time.
- * `Associations`: A URI to the failing inventory part.
+- `Message`: The type of event log (e.g.
+  "xyz.openbmc_project.Inventory.Error.NotPresent").
+- `Resolved` : Indicates whether the event has been resolved.
+- `Severity`: The level of problem ("Info", "Error", etc.).
+- `Timestamp`: The date of the event log in epoch time.
+- `Associations`: A URI to the failing inventory part.
 
 To list all reported event logs:
 
@@ -165,7 +169,8 @@ To read a specific event log:
       "status": "ok"
     }
 
-To delete an event log (log 1 in this example), call the `Delete` method on the event:
+To delete an event log (log 1 in this example), call the `Delete` method on the
+event:
 
     $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data" : []}' https://${bmc}/xyz/openbmc_project/logging/entry/1/action/Delete
 
@@ -179,39 +184,43 @@ With OpenBMC, the Host boot options are stored as D-Bus properties under the
 `control/host0/boot` path. Properties include
 [`BootMode`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Boot/Mode.interface.yaml),
 [`BootSource`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Boot/Source.interface.yaml)
-and if the host is based on x86 CPU also [`BootType`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Boot/Type.interface.yaml).
+and if the host is based on x86 CPU also
+[`BootType`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Control/Boot/Type.interface.yaml).
 
- * Set boot mode:
+- Set boot mode:
 
-   ```
-    $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootMode -d '{"data": "xyz.openbmc_project.Control.Boot.Mode.Modes.Regular"}'
-   ```
+  ```
+   $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootMode -d '{"data": "xyz.openbmc_project.Control.Boot.Mode.Modes.Regular"}'
+  ```
 
- * Set boot source:
+- Set boot source:
 
-    ```
-    $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootSource -d '{"data": "xyz.openbmc_project.Control.Boot.Source.Sources.Default"}'
-    ```
+  ```
+  $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootSource -d '{"data": "xyz.openbmc_project.Control.Boot.Source.Sources.Default"}'
+  ```
 
- * Set boot type (valid only if host is based on the x86 CPU):
+- Set boot type (valid only if host is based on the x86 CPU):
 
-    ```
-    $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootType -d '{"data": "xyz.openbmc_project.Control.Boot.Type.Types.EFI"}'
-    ```
+  ```
+  $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootType -d '{"data": "xyz.openbmc_project.Control.Boot.Type.Types.EFI"}'
+  ```
 
-Also there are boolean [`Enable`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Object/Enable.interface.yaml) properties that control if the boot source override is persistent or one-time, and if the override is enabled or not.
+Also there are boolean
+[`Enable`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Object/Enable.interface.yaml)
+properties that control if the boot source override is persistent or one-time,
+and if the override is enabled or not.
 
- * Set boot override one-time flag:
+- Set boot override one-time flag:
 
-    ```
-    $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/one_time/attr/Enabled -d '{"data": "true"}'
-    ```
+  ```
+  $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/one_time/attr/Enabled -d '{"data": "true"}'
+  ```
 
- * Enable boot override:
+- Enable boot override:
 
-    ```
-    $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/Enabled -d '{"data": "true"}'
-    ```
+  ```
+  $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/Enabled -d '{"data": "true"}'
+  ```
 
 ## Host State Control
 
@@ -243,7 +252,6 @@ To reboot the host:
 $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Host.Transition.Reboot"}' https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 ```
 
-
 More information about Host State Management can be found here:
 https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/State
 
@@ -256,19 +264,19 @@ subsequent boots to determine which parts should be ignored.
 The BMC implements a function that simply clears this partition. This function
 can be called as follows:
 
-  * Method 1: From the BMC command line:
+- Method 1: From the BMC command line:
 
-      ```
-      busctl call org.open_power.Software.Host.Updater \
-        /org/open_power/control/gard \
-        xyz.openbmc_project.Common.FactoryReset Reset
-      ```
+  ```
+  busctl call org.open_power.Software.Host.Updater \
+    /org/open_power/control/gard \
+    xyz.openbmc_project.Common.FactoryReset Reset
+  ```
 
-  * Method 2: Using the REST API:
+- Method 2: Using the REST API:
 
-      ```
-      $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data":[]}' https://${bmc}/org/open_power/control/gard/action/Reset
-      ```
+  ```
+  $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data":[]}' https://${bmc}/org/open_power/control/gard/action/Reset
+  ```
 
 Implementation: https://github.com/openbmc/openpower-pnor-code-mgmt
 
@@ -300,8 +308,8 @@ The 2 service files involved with the host watchdog are:
     obmc-enable-host-watchdog@0.service
 
 `phosphor-watchdog@poweron` starts the host watchdog service and
-`obmc-enable-host-watchdog` starts the watchdog timer. Both are run as a part
-of the `obmc-host-startmin@.target`. Service dependencies ensure the service is
+`obmc-enable-host-watchdog` starts the watchdog timer. Both are run as a part of
+the `obmc-host-startmin@.target`. Service dependencies ensure the service is
 started before the enable is called.
 
 The default watchdog timeout can be found within the [dbus interface
@@ -310,4 +318,5 @@ specification][2] (Interval property).
 The host controls the watchdog timeout and enable/disable once it starts.
 
 [1]: https://github.com/openbmc/phosphor-watchdog
-[2]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Watchdog.interface.yaml
+[2]:
+  https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Watchdog.interface.yaml

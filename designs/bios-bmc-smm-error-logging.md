@@ -1,13 +1,14 @@
 # BIOS->BMC SMM Error Logging Queue Daemon
 
 Author:
-*  Brandon Kim / brandonkim@google.com / @brandonk
+
+- Brandon Kim / brandonkim@google.com / @brandonk
 
 Other contributors:
-*  Marco Cruz-Heredia / mcruzheredia@google.com
 
-Created:
-  Mar 15, 2022
+- Marco Cruz-Heredia / mcruzheredia@google.com
+
+Created: Mar 15, 2022
 
 ## Problem Description
 
@@ -26,9 +27,9 @@ shared memory. These will be listed in the "Alternatives Considered" section.
 
 Different BMC vendors support different methods such as Shared Memory (SHM, via
 LPC / eSPI) and P2A or PCI Mailbox, but the existing daemon that utilizes them
-do it over IPMI blob to communicate where and how much data has been
-transferred (see [phosphor-ipmi-flash](https://github.com/openbmc/phosphor-ipmi-flash)
-and [libmctp/astlpc](https://github.com/openbmc/libmctp/blob/master/docs/bindings/vendor-ibm-astlpc.md))
+do it over IPMI blob to communicate where and how much data has been transferred
+(see [phosphor-ipmi-flash](https://github.com/openbmc/phosphor-ipmi-flash) and
+[libmctp/astlpc](https://github.com/openbmc/libmctp/blob/master/docs/bindings/vendor-ibm-astlpc.md))
 
 ## Requirements
 
@@ -62,21 +63,21 @@ reduce duplication of code.
 Taken from Marco's (mcruzheredia@google.com) internal design document for the
 circular buffer, the data structure of its header will look like the following:
 
-| Name       | Size        | Offset      | Written by   | Description       |
-| ---------- | ----------- | ----------- | ------------ | ----------------- |
-| BMC Interface Version | 4 bytes | 0x0 | BMC at init | Allows the BIOS to determine if it is compatible with the BMC |
-| BIOS Interface Version | 4 bytes | 0x4 | BIOS at init  | Allows the BMC to determine if it is compatible with the BIOS |
-| Magic Number | 16 bytes | 0x8 | BMC at init | Magic number to set the state of the queue as described below.  Written by BMC once the memory region is ready to be used. Must be checked by BIOS before logging. BMC can change this number when it suspects data corruption to prevent BIOS from writing anything during reinitialization |
-| Queue size | 3 bytes | 0x18 | BMC at init | Indicates the size of the region allocated for the circular queue. Written by BMC on init only, should not change during runtime. **This includes the size of the header and UE region size** |
-| Uncorrectable Error region size | 2 bytes | 0x1b | BMC at init | Indicates the size of the region reserved for Uncorrectable Error (UE) logs. Written by BMC on init only, should not change during runtime |
-| BMC flags | 4 bytes | 0x1d | BMC | <ul><li>BIT0 - BMC UE reserved region “switch”<ul><li>Toggled when BMC reads a UE from the reserved region.</li></ul><li>BIT1 - Overflow<ul><li>Lets BIOS know BMC has seen the overflow incident</li><li>Toggled when BMC acks the overflow incident</li></ul><li>BIT2 - BMC_READY<ul><li>BMC sets this bit once it has received any initialization information it needs to get from the BIOS before it’s ready to receive logs.</li></ul> |
-| BMC read pointer | 3 bytes | 0x21 | BMC | Used to allow the BIOS to detect when the BMC was unable to read the previous error logs in time to prevent the circular buffer from overflowing. |
-| Padding | 4 bytes | 0x24 | Reserved | Padding for 8 byte alignment |
-| BIOS flags | 4 bytes | 0x28 | BIOS | <ul><li>BIT0 - BIOS UE reserved region “switch”<ul><li> Toggled when BIOS writes a UE to the reserved region.</li></ul><li>BIT1 - Overflow<ul><li>Lets the BMC know that it missed an error log</li><li>Toggled when BIOS sees overflow and not already overflowed</li></ul><li>BIT2 - Incomplete Initialization<ul><li>Set when BIOS has attempted to initialize but did not see BMC ack back with `BMC_READY` bit in BMC flags</li></ul>|
-| BIOS write pointer | 3 bytes | 0x2c | BIOS | Indicates where the next log will be written by BIOS. Used to tell BMC when it should read a new log |
-| Padding | 1 byte | 0x2f | Reserved | Padding for 8 byte alignment |
-| Uncorrectable Error reserved region | TBD1 | 0x30 | BIOS | Reserved region only for UE logs. This region is only used if the rest of the buffer is going to overflow and there is no unread UE log already in the region.  |
-| Error Logs from BIOS | Size of the Buffer - 0x30 - TBD1 | 0x30 + TBD1 | BIOS | Logs vary by type, so each log will self-describe with a header. This region will fill up the rest of the buffer |
+| Name                                | Size                             | Offset      | Written by   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------------------- | -------------------------------- | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BMC Interface Version               | 4 bytes                          | 0x0         | BMC at init  | Allows the BIOS to determine if it is compatible with the BMC                                                                                                                                                                                                                                                                                                                                                                               |
+| BIOS Interface Version              | 4 bytes                          | 0x4         | BIOS at init | Allows the BMC to determine if it is compatible with the BIOS                                                                                                                                                                                                                                                                                                                                                                               |
+| Magic Number                        | 16 bytes                         | 0x8         | BMC at init  | Magic number to set the state of the queue as described below. Written by BMC once the memory region is ready to be used. Must be checked by BIOS before logging. BMC can change this number when it suspects data corruption to prevent BIOS from writing anything during reinitialization                                                                                                                                                 |
+| Queue size                          | 3 bytes                          | 0x18        | BMC at init  | Indicates the size of the region allocated for the circular queue. Written by BMC on init only, should not change during runtime. **This includes the size of the header and UE region size**                                                                                                                                                                                                                                               |
+| Uncorrectable Error region size     | 2 bytes                          | 0x1b        | BMC at init  | Indicates the size of the region reserved for Uncorrectable Error (UE) logs. Written by BMC on init only, should not change during runtime                                                                                                                                                                                                                                                                                                  |
+| BMC flags                           | 4 bytes                          | 0x1d        | BMC          | <ul><li>BIT0 - BMC UE reserved region “switch”<ul><li>Toggled when BMC reads a UE from the reserved region.</li></ul><li>BIT1 - Overflow<ul><li>Lets BIOS know BMC has seen the overflow incident</li><li>Toggled when BMC acks the overflow incident</li></ul><li>BIT2 - BMC_READY<ul><li>BMC sets this bit once it has received any initialization information it needs to get from the BIOS before it’s ready to receive logs.</li></ul> |
+| BMC read pointer                    | 3 bytes                          | 0x21        | BMC          | Used to allow the BIOS to detect when the BMC was unable to read the previous error logs in time to prevent the circular buffer from overflowing.                                                                                                                                                                                                                                                                                           |
+| Padding                             | 4 bytes                          | 0x24        | Reserved     | Padding for 8 byte alignment                                                                                                                                                                                                                                                                                                                                                                                                                |
+| BIOS flags                          | 4 bytes                          | 0x28        | BIOS         | <ul><li>BIT0 - BIOS UE reserved region “switch”<ul><li> Toggled when BIOS writes a UE to the reserved region.</li></ul><li>BIT1 - Overflow<ul><li>Lets the BMC know that it missed an error log</li><li>Toggled when BIOS sees overflow and not already overflowed</li></ul><li>BIT2 - Incomplete Initialization<ul><li>Set when BIOS has attempted to initialize but did not see BMC ack back with `BMC_READY` bit in BMC flags</li></ul>  |
+| BIOS write pointer                  | 3 bytes                          | 0x2c        | BIOS         | Indicates where the next log will be written by BIOS. Used to tell BMC when it should read a new log                                                                                                                                                                                                                                                                                                                                        |
+| Padding                             | 1 byte                           | 0x2f        | Reserved     | Padding for 8 byte alignment                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Uncorrectable Error reserved region | TBD1                             | 0x30        | BIOS         | Reserved region only for UE logs. This region is only used if the rest of the buffer is going to overflow and there is no unread UE log already in the region.                                                                                                                                                                                                                                                                              |
+| Error Logs from BIOS                | Size of the Buffer - 0x30 - TBD1 | 0x30 + TBD1 | BIOS         | Logs vary by type, so each log will self-describe with a header. This region will fill up the rest of the buffer                                                                                                                                                                                                                                                                                                                            |
 
 ### Initialization
 
@@ -114,17 +115,17 @@ Encoded JSON (BEJ) payloads.
 
 ## Alternatives Considered
 
-* IPMI was considered, did not meet our speed requirement of writing 1KB entry
+- IPMI was considered, did not meet our speed requirement of writing 1KB entry
   in about 50 microseconds.
-  * For reference, initial PCI Mailbox performance measurement showed 1KB entry
+  - For reference, initial PCI Mailbox performance measurement showed 1KB entry
     write took roughly 10 microseconds.
-* LPC / eSPI was also considered but our BMC's SHM buffer was limited to 4KB
+- LPC / eSPI was also considered but our BMC's SHM buffer was limited to 4KB
   which was not enough for our use case.
-* `libmctp` and MCTP PCIe VDM were considered.
-  * `libmctp`'s current implementation relies on LPC as the transport binding
+- `libmctp` and MCTP PCIe VDM were considered.
+  - `libmctp`'s current implementation relies on LPC as the transport binding
     and IPMI KCS for synchronization. LPC as discussed, does not fit our current
     need and synchronization does not work.
-  * We may use MCTP PCIe VDM on our future platforms once we have more resources
+  - We may use MCTP PCIe VDM on our future platforms once we have more resources
     with expertise both from the BMC and the BIOS side (which we currently lack)
     for our current project timeline.
 
@@ -136,6 +137,7 @@ especially if the polling rate is set too high.
 ### Organizational
 
 This design will require 2 repositories:
+
 - bios-bmc-smm-error-logger
   - This repository will implement the daemon described in this document
   - Proposed maintainer: wltu@google.com , brandonkim@google.com
@@ -149,7 +151,6 @@ This design will require 2 repositories:
 
 Unit tests will cover each parts of the daemon, mainly:
 
-*  Initialization
-*  Circular buffer processing
-*  Decoding / Processing library
-
+- Initialization
+- Circular buffer processing
+- Decoding / Processing library

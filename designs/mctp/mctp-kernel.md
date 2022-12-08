@@ -11,38 +11,37 @@ platform.
 
 # Requirements for a kernel implementation
 
- * The MCTP messaging API should be an obvious application of the existing POSIX
-   socket interface
+- The MCTP messaging API should be an obvious application of the existing POSIX
+  socket interface
 
- * Configuration should be simple for a straightforward MCTP endpoint: a single
-   network with a single local endpoint id (EID).
+- Configuration should be simple for a straightforward MCTP endpoint: a single
+  network with a single local endpoint id (EID).
 
- * Infrastructure should be flexible enough to allow for more complex MCTP
-   networks, allowing:
+- Infrastructure should be flexible enough to allow for more complex MCTP
+  networks, allowing:
 
-    - each MCTP network (as defined by section 3.2.31 of DSP0236) may
-      consist of multiple local physical interfaces, and/or multiple EIDs;
+  - each MCTP network (as defined by section 3.2.31 of DSP0236) may consist of
+    multiple local physical interfaces, and/or multiple EIDs;
 
-    - multiple distinct (ie., non-bridged) networks, possibly containing
-      duplicated EIDs between networks;
+  - multiple distinct (ie., non-bridged) networks, possibly containing
+    duplicated EIDs between networks;
 
-    - multiple local EIDs on a single interface, and
+  - multiple local EIDs on a single interface, and
 
-    - customisable routing/bridging configurations within a network.
+  - customisable routing/bridging configurations within a network.
 
-
-# Proposed Design #
+# Proposed Design
 
 The design contains several components:
 
- * An interface for userspace applications to send and receive MCTP messages: A
-   mapping of the sockets API to MCTP usage
+- An interface for userspace applications to send and receive MCTP messages: A
+  mapping of the sockets API to MCTP usage
 
- * Infrastructure for control and configuration of the MCTP network(s),
-   consisting of a configuration utility, and a kernel messaging facility for
-   this utility to use.
+- Infrastructure for control and configuration of the MCTP network(s),
+  consisting of a configuration utility, and a kernel messaging facility for
+  this utility to use.
 
- * Kernel drivers for physical interface bindings.
+- Kernel drivers for physical interface bindings.
 
 In general, the kernel components cover the transport functionality of MCTP,
 such as message assembly/disassembly, packet forwarding, and physical interface
@@ -64,16 +63,16 @@ reception of MCTP packets on their associated hardware channels. Under Linux,
 the namespace for these interfaces is separate from other network interfaces -
 such as those for ethernet.
 
-## Structure: interfaces & networks #
+## Structure: interfaces & networks
 
 The kernel models the local MCTP topology through two items: interfaces and
 networks.
 
 An interface (or "link") is an instance of an MCTP physical transport binding
 (as defined by DSP0236, section 3.2.47), likely connected to a specific hardware
-device. This is represented as a `struct netdevice`, and has a user-visible
-name and index (`ifindex`). Non-hardware-attached interfaces are permitted, to
-allow local loopback and/or virtual interfaces.
+device. This is represented as a `struct netdevice`, and has a user-visible name
+and index (`ifindex`). Non-hardware-attached interfaces are permitted, to allow
+local loopback and/or virtual interfaces.
 
 A network defines a unique address space for MCTP endpoints by endpoint-ID
 (described by DSP0236, section 3.2.31). A network has a user-visible identifier
@@ -86,9 +85,9 @@ or more interfaces.
 If multiple networks are present, each may contain EIDs that are also present on
 other networks.
 
-## Sockets API ##
+## Sockets API
 
-### Protocol definitions ###
+### Protocol definitions
 
 We define a new address family (and corresponding protocol family) for MCTP:
 
@@ -153,13 +152,13 @@ specified with a new `sockaddr` type:
     #define MCTP_TAG_RSP(x) (x & MCTP_TAG_MASK) /* response to a request: clear TO, keep value */
 ```
 
-### Syscall behaviour ###
+### Syscall behaviour
 
 The following sections describe the MCTP-specific behaviours of the standard
 socket system calls. These behaviours have been chosen to map closely to the
 existing sockets APIs.
 
-#### `bind()`: set local socket address ####
+#### `bind()`: set local socket address
 
 Sockets that receive incoming request packets will bind to a local address,
 using the `bind()` syscall.
@@ -185,26 +184,26 @@ than a response.
 The `smctp_tag` value will configure the tags accepted from the remote side of
 this socket. Given the above, the only valid value is `MCTP_TAG_OWNER`, which
 will result in remotely "owned" tags being routed to this socket. Since
-`MCTP_TAG_OWNER` is set, the 3 least-significant bits of `smctp_tag` are
-not used; callers must set them to zero. See the [Tag behaviour for transmitted
-messages](#tag-behaviour-for-transmitted-messages) section for more details. If
-the `MCTP_TAG_OWNER` bit is not set, `bind()` will fail with an errno of
-`EINVAL`.
+`MCTP_TAG_OWNER` is set, the 3 least-significant bits of `smctp_tag` are not
+used; callers must set them to zero. See the
+[Tag behaviour for transmitted messages](#tag-behaviour-for-transmitted-messages)
+section for more details. If the `MCTP_TAG_OWNER` bit is not set, `bind()` will
+fail with an errno of `EINVAL`.
 
 A `smctp_network` value of `MCTP_NET_ANY` will configure the socket to receive
 incoming packets from any locally-connected network. A specific network value
 will cause the socket to only receive incoming messages from that network.
 
 The `smctp_addr` field specifies a local address to bind to. A value of
-`MCTP_ADDR_ANY` configures the socket to receive messages addressed to any
-local destination EID.
+`MCTP_ADDR_ANY` configures the socket to receive messages addressed to any local
+destination EID.
 
 The `smctp_type` field specifies which message types to receive. Only the lower
 7 bits of the type is matched on incoming messages (ie., the most-significant IC
 bit is not part of the match). This results in the socket receiving packets with
 and without a message integrity check footer.
 
-#### `connect()`: set remote socket address ####
+#### `connect()`: set remote socket address
 
 Sockets may specify a socket's remote address with the `connect()` syscall:
 
@@ -243,18 +242,18 @@ socket. The only valid value is `MCTP_TAG_OWNER`, which will result in an
 "owned" tag to be allocated for this socket, and will remain allocated for all
 future outgoing messages, until either the socket is closed, or `connect()` is
 called again. If a tag cannot be allocated, `connect()` will report an error,
-with an errno value of `EAGAIN`. See the [Tag behaviour for transmitted
-messages](#tag-behaviour-for-transmitted-messages) section for more details. If
-the `MCTP_TAG_OWNER` bit is not set, `connect()` will fail with an errno of
-`EINVAL`.
+with an errno value of `EAGAIN`. See the
+[Tag behaviour for transmitted messages](#tag-behaviour-for-transmitted-messages)
+section for more details. If the `MCTP_TAG_OWNER` bit is not set, `connect()`
+will fail with an errno of `EINVAL`.
 
 Requesters which connect to a single responder will typically use `connect()` to
 specify the peer address and tag for future outgoing messages.
 
-#### `sendto()`, `sendmsg()`, `send()` & `write()`: transmit an MCTP message ####
+#### `sendto()`, `sendmsg()`, `send()` & `write()`: transmit an MCTP message
 
-An MCTP message is transmitted using one of the `sendto()`, `sendmsg()`, `send()`
-or `write()` syscalls. Using `sendto()` as the primary example:
+An MCTP message is transmitted using one of the `sendto()`, `sendmsg()`,
+`send()` or `write()` syscalls. Using `sendto()` as the primary example:
 
 ```c
     struct sockaddr_mctp addr;
@@ -304,9 +303,9 @@ subject to the same invalidation logic as on an unconnected socket: It is
 expired either by timeout or by a subsequent `sendto()`.
 
 The `sendmsg()` system call allows a more compact argument interface, and the
-message buffer to be specified as a scatter-gather list. At present no
-ancillary message types (used for the `msg_control` data passed to `sendmsg()`)
-are defined.
+message buffer to be specified as a scatter-gather list. At present no ancillary
+message types (used for the `msg_control` data passed to `sendmsg()`) are
+defined.
 
 Transmitting a message on an unconnected socket with `MCTP_TAG_OWNER` specified
 will cause an allocation of a tag, if no valid tag is already allocated for that
@@ -316,10 +315,10 @@ any previous allocation has been performed (to for a different remote EID), that
 allocation is lost. This tag behaviour can be controlled through the
 `MCTP_TAG_CONTROL` socket option.
 
-Sockets will only receive responses to requests they have sent (with TO=1) and may
-only respond (with TO=0) to requests they have received.
+Sockets will only receive responses to requests they have sent (with TO=1) and
+may only respond (with TO=0) to requests they have received.
 
-#### `recvfrom()`, `recvmsg()`, `recv()` & `read()`: receive an MCTP message ####
+#### `recvfrom()`, `recvmsg()`, `recv()` & `read()`: receive an MCTP message
 
 An MCTP message can be received by an application using one of the `recvfrom()`,
 `recvmsg()`, `recv()` or `read()` system calls. Using `recvfrom()` as the
@@ -357,7 +356,7 @@ the remote address is already known, or the message does not require a reply.
 Like the send calls, sockets will only receive responses to requests they have
 sent (TO=1) and may only respond (TO=0) to requests they have received.
 
-#### `getsockname()` & `getpeername()`: query local/remote socket address ####
+#### `getsockname()` & `getpeername()`: query local/remote socket address
 
 The `getsockname()` system call returns the `struct sockaddr_mctp` value for the
 local side of this socket, `getpeername()` for the remote (ie, that used in a
@@ -367,11 +366,11 @@ connect()). Since the tag value is a property of the remote address,
 Calling `getpeername()` on an unconnected socket will result in an error of
 `ENOTCONN`.
 
-#### Socket options ####
+#### Socket options
 
 The following socket options are defined for MCTP sockets:
 
-##### `MCTP_ADDR_EXT`: Use extended addressing information in sendmsg/recvmsg #####
+##### `MCTP_ADDR_EXT`: Use extended addressing information in sendmsg/recvmsg
 
 Enabling this socket option allows an application to specify extended addressing
 information on transmitted packets, and access the same on received packets.
@@ -398,8 +397,7 @@ If the `addrlen` specified to `sendto()` or `recvfrom()` is sufficient to
 contain this larger structure, then the extended addressing fields are consumed
 / populated respectively.
 
-
-##### `MCTP_TAG_CONTROL`: manage outgoing tag allocation behaviour #####
+##### `MCTP_TAG_CONTROL`: manage outgoing tag allocation behaviour
 
 The set/getsockopt argument is a `mctp_tagctl` structure:
 
@@ -430,46 +428,44 @@ the setsockopt operation.
 
 Changing the default tag control behaviour should only be required when:
 
- * the socket is sending messages with TO=1 (ie, is a requester); and
- * messages are sent to multiple different destination EIDs from the one
-   socket.
+- the socket is sending messages with TO=1 (ie, is a requester); and
+- messages are sent to multiple different destination EIDs from the one socket.
 
-
-#### Syscalls not implemented ####
+#### Syscalls not implemented
 
 The following system calls are not implemented for MCTP, primarily as they are
 not used in `SOCK_DGRAM`-type sockets:
 
- * `listen()`
- * `accept()`
- * `ioctl()`
- * `shutdown()`
- * `mmap()`
+- `listen()`
+- `accept()`
+- `ioctl()`
+- `shutdown()`
+- `mmap()`
 
-### Userspace examples ###
+### Userspace examples
 
 These examples cover three general use-cases:
 
- - **requester**: sends requests to a particular (EID, type) target, and
-   receives responses to those packets
+- **requester**: sends requests to a particular (EID, type) target, and receives
+  responses to those packets
 
-   This is similar to a typical UDP client
+  This is similar to a typical UDP client
 
- - **responder**: receives all locally-addressed messages of a specific
-   message-type, and responds to the requester immediately.
+- **responder**: receives all locally-addressed messages of a specific
+  message-type, and responds to the requester immediately.
 
-   This is similar to a typical UDP server
+  This is similar to a typical UDP server
 
- - **controller**: a specific service for a bus owner; may send broadcast
-   messages, manage EID allocations, update local MCTP stack state. Will
-   need low-level packet data.
+- **controller**: a specific service for a bus owner; may send broadcast
+  messages, manage EID allocations, update local MCTP stack state. Will need
+  low-level packet data.
 
-   This is similar to a DHCP server.
+  This is similar to a DHCP server.
 
-#### Requester ####
+#### Requester
 
-"Client"-side implementation to send requests to a responder, and receive a response.
-This uses a (fictitious) message type of `MCTP_TYPE_ECHO`.
+"Client"-side implementation to send requests to a responder, and receive a
+response. This uses a (fictitious) message type of `MCTP_TYPE_ECHO`.
 
 ```c
     int main() {
@@ -519,11 +515,11 @@ This uses a (fictitious) message type of `MCTP_TYPE_ECHO`.
     }
 ```
 
-#### Responder ####
+#### Responder
 
 "Server"-side implementation to receive requests and respond. Like the client,
-This uses a (fictitious) message type of `MCTP_TYPE_ECHO` in the `struct
-sockaddr_mctp`; only messages matching this type will be received.
+This uses a (fictitious) message type of `MCTP_TYPE_ECHO` in the
+`struct sockaddr_mctp`; only messages matching this type will be received.
 
 ```c
     int main() {
@@ -578,7 +574,7 @@ sockaddr_mctp`; only messages matching this type will be received.
     }
 ```
 
-#### Broadcast request ####
+#### Broadcast request
 
 Sends a request to a broadcast EID, and receives (unicast) replies. Typical
 control protocol pattern.
@@ -656,13 +652,13 @@ control protocol pattern.
     }
 ```
 
-### Implementation notes ###
+### Implementation notes
 
-#### Addressing ####
+#### Addressing
 
 Transmitted messages (through `sendto()` and related system calls) specify their
-destination via the `smctp_network` and `smctp_addr` fields of a `struct
-sockaddr_mctp`.
+destination via the `smctp_network` and `smctp_addr` fields of a
+`struct sockaddr_mctp`.
 
 The `smctp_addr` field maps directly to the destination endpoint's EID.
 
@@ -681,7 +677,7 @@ network.
 MCTP responders should use the EID and network values of an incoming request to
 specify the destination for any responses.
 
-#### Bridging/routing ####
+#### Bridging/routing
 
 The network and interface structure allows multiple interfaces to share a common
 network. By default, packets are not forwarded between interfaces.
@@ -694,7 +690,7 @@ As per DSP0236, packet reassembly does not occur during the forwarding process.
 If the packet is larger than the MTU for the destination interface/route, then
 the packet is dropped.
 
-#### Tag behaviour for transmitted messages ####
+#### Tag behaviour for transmitted messages
 
 On every message sent with the tag-owner bit set ("TO" in DSP0236), the kernel
 must allocate a tag that will uniquely identify responses over a (destination
@@ -706,9 +702,9 @@ that specific remote EID.
 
 This allocation will expire when any of the following occur:
 
- * the socket is closed
- * a new message is sent to a new destination EID
- * an implementation-defined timeout expires
+- the socket is closed
+- a new message is sent to a new destination EID
+- an implementation-defined timeout expires
 
 Because the "tag space" is limited, it may not be possible for the kernel to
 allocate a unique tag for the outgoing message. In this case, the `sendto()`
@@ -724,8 +720,8 @@ particular destination address, they may use the `connect()` call to set a
 persistent remote address. In this case, the tag will be allocated during
 connect(), and remain reserved for this socket until any of the following occur:
 
- * the socket is closed
- * the remote address is changed through another call to `connect()`.
+- the socket is closed
+- the remote address is changed through another call to `connect()`.
 
 In particular, calling `sendto()` with a different address does not release the
 tag reservation.
@@ -740,11 +736,10 @@ when a reply is received, as there may be multiple replies to a broadcast.
 For this reason, applications wanting to send to the broadcast address should
 use the `connect()` system call to reserve a tag, and guarantee its availability
 for future message transmission. Note that this will remove the tag value for
-use with *any other EID*. Sending to the broadcast address should be avoided; we
+use with _any other EID_. Sending to the broadcast address should be avoided; we
 expect few applications will need this functionality.
 
-
-#### MCTP Control Protocol implementation ####
+#### MCTP Control Protocol implementation
 
 Aside from the "Resolve endpoint EID" message, the MCTP control protocol
 implementation would exist as a userspace process, `mctpd`. This process is
@@ -758,30 +753,30 @@ data on incoming control protocol requests. It would interact with the kernel's
 route table via a netlink interface - the same as that implemented for the
 [Utility and configuration interfaces](#utility-and-configuration-interfaces).
 
-### Neighbour and routing implementation ###
+### Neighbour and routing implementation
 
 The packet-transmission behaviour of the MCTP infrastructure relies on a single
 routing table to lookup both route and neighbour information. Entries in this
 table are of the format:
 
- | EID range | interface | physical address | metric | MTU | flags | expiry |
- |-----------|-----------|------------------|--------|-----|-------|--------|
+| EID range | interface | physical address | metric | MTU | flags | expiry |
+| --------- | --------- | ---------------- | ------ | --- | ----- | ------ |
 
 This table can be updated from two sources:
 
-  * From userspace, via a netlink interface (see the
-    [Utility and configuration interfaces](#utility-and-configuration-interfaces)
-    section).
+- From userspace, via a netlink interface (see the
+  [Utility and configuration interfaces](#utility-and-configuration-interfaces)
+  section).
 
-  * Directly within the kernel, when basic neighbour information is discovered.
-    Kernel-originated routes are marked as such in the flags field, and have a
-    maximum validity age, indicated by the expiry field.
+- Directly within the kernel, when basic neighbour information is discovered.
+  Kernel-originated routes are marked as such in the flags field, and have a
+  maximum validity age, indicated by the expiry field.
 
 Kernel-discovered routing information can originate from two sources:
 
-  * physical-to-EID mappings discovered through received packets
+- physical-to-EID mappings discovered through received packets
 
-  * explicit endpoint physical-address resolution requests
+- explicit endpoint physical-address resolution requests
 
 When a packet is to be transmitted to an EID that does not have an entry in the
 routing table, the kernel may attempt to resolve the physical address of that
@@ -791,7 +786,7 @@ kernel-originated route into the routing table.
 
 This is the only kernel-internal usage of MCTP Control Protocol messages.
 
-## Utility and configuration interfaces ##
+## Utility and configuration interfaces
 
 A small utility will be developed to control the state of the kernel MCTP stack.
 This will be similar in design to the 'iproute2' tools, which perform a similar
@@ -800,7 +795,7 @@ function for the IPv4 and IPv6 protocols.
 The utility will be invoked as `mctp`, and provide subcommands for managing
 different aspects of the kernel stack.
 
-### `mctp link`: manage interfaces ###
+### `mctp link`: manage interfaces
 
 ```sh
     mctp link set <link> <up|down>
@@ -809,7 +804,7 @@ different aspects of the kernel stack.
     mctp link set <link> bus-owner <hwaddr>
 ```
 
-### `mctp network`: manage networks ###
+### `mctp network`: manage networks
 
 ```sh
     mctp network create <network-id>
@@ -818,14 +813,14 @@ different aspects of the kernel stack.
     mctp network delete <network-id>
 ```
 
-### `mctp address`: manage local EID assignments ###
+### `mctp address`: manage local EID assignments
 
 ```sh
     mctp address add <eid> dev <link>
     mctp address del <eid> dev <link>
 ```
 
-### `mctp route`: manage routing tables ###
+### `mctp route`: manage routing tables
 
 ```sh
     mctp route add net <network-id> eid <eid|eid-range> via <link> [hwaddr <addr>] [mtu <mtu>] [metric <metric>]
@@ -833,7 +828,7 @@ different aspects of the kernel stack.
     mctp route show [net <network-id>]
 ```
 
-### `mctp stat`: query socket status ###
+### `mctp stat`: query socket status
 
 ```sh
     mctp stat
@@ -842,10 +837,9 @@ different aspects of the kernel stack.
 A set of netlink message formats will be defined to support these control
 functions.
 
+# Design points & alternatives considered
 
-# Design points & alternatives considered #
-
-## Including message-type byte in send/receive buffers ##
+## Including message-type byte in send/receive buffers
 
 This design specifies that message buffers passed to the kernel in send syscalls
 and from the kernel in receive syscalls will have the message type byte as the
@@ -865,7 +859,7 @@ of all protocols in order to correctly deconstruct the payload data.
 Therefore, we transfer the message payload as-is to userspace, without any
 modification by the kernel.
 
-## MCTP message-type specification: using `sockaddr_mctp.smctp_type` rather than protocol ##
+## MCTP message-type specification: using `sockaddr_mctp.smctp_type` rather than protocol
 
 This design specifies message-types to be passed in the `smctp_type` field of
 `struct sockaddr_mctp`. An alternative would be to pass it in the `protocol`
@@ -877,7 +871,8 @@ argument of the `socket()` system call:
 
 The `smctp_type` implementation was chosen as it better matches the "addressing"
 model of the message type; sockets are bound to an incoming message type,
-similar to the IP protocol's model of binding UDP sockets to a local port number.
+similar to the IP protocol's model of binding UDP sockets to a local port
+number.
 
 There is no kernel behaviour that depends on the specific type (particularly
 given the design choice above), so it is not suited to use the protocol argument
@@ -886,8 +881,7 @@ here.
 Future additions that perform protocol-specific message handling, and so alter
 the send/receive buffer format, may use a new protocol argument.
 
-
-## Networks referenced by index rather than UUID ##
+## Networks referenced by index rather than UUID
 
 This design proposes referencing networks by an integer index. The MCTP standard
 does optionally associate a RFC4122 UUID with a networks; it would be possible
@@ -902,44 +896,44 @@ of `struct sockaddr_mctp`, as type `uuid_t`) complicates assignment.
 Instead, the index integer is used instead, in a similar fashion to the integer
 index used to reference `struct netdevice`s elsewhere in the network stack.
 
+## Tag behaviour alternatives
 
-## Tag behaviour alternatives ##
-
-We considered *several* different designs for the tag handling behaviour. A
+We considered _several_ different designs for the tag handling behaviour. A
 brief overview of the more-feasible of those, and why they were rejected:
 
-### Each socket is allocated a unique tag value on creation ###
+### Each socket is allocated a unique tag value on creation
 
 We could allocate a tag for each socket on creation, and use that value when a
 tag is required. This, however:
 
- * needlessly consumes a tag on non-tag-owning sockets (ie, those which send
-   with TO=0 - responders); and
+- needlessly consumes a tag on non-tag-owning sockets (ie, those which send with
+  TO=0 - responders); and
 
- * limits us to 8 sockets per network.
+- limits us to 8 sockets per network.
 
-### Tags only used for message packetisation / reassembly ###
+### Tags only used for message packetisation / reassembly
 
 An alternative would be to completely dissociate tag allocation from sockets;
 and only allocate a tag for the (short-lived) task of packetising a message, and
-sending those packets. Tags would be released when the last packet has been sent.
+sending those packets. Tags would be released when the last packet has been
+sent.
 
 However, this removes any facility to correlate responses with the correct
 socket, which is the purpose of the TO bit in DSP0236. In order for the sending
 application to receive the response, we would either need to:
 
- * limit the system to one socket of each message type (which, for example,
-   precludes running a requester and a responder of the same type); or
+- limit the system to one socket of each message type (which, for example,
+  precludes running a requester and a responder of the same type); or
 
- * forward all incoming messages of a specific message-type to all sockets
-   listening on that type, making it trivial to eavesdrop on MCTP data of
-   other applications
+- forward all incoming messages of a specific message-type to all sockets
+  listening on that type, making it trivial to eavesdrop on MCTP data of other
+  applications
 
-### Allocate a tag for one request/response pair ###
+### Allocate a tag for one request/response pair
 
 Another alternative would be to allocate a tag on each outgoing TO=1 message,
-and then release that allocation after the incoming response to that tag (TO=0) is
-observed.
+and then release that allocation after the incoming response to that tag (TO=0)
+is observed.
 
 However, MCTP protocols exist that do not have a 1:1 mapping of responses to
 requests - more than one response may be valid for a given request message. For

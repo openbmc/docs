@@ -57,7 +57,10 @@
        image
 
 ```
-- [1] [Software D-Bus Object](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software)
+
+- [1]
+  [Software D-Bus Object](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software)
 - [*] In a static layout configuration, the images are stored in RAM and the
-      content is written to flash during BMC reboot. Reference the update and
-      shutdown scripts provided by [initrdscripts](https://github.com/openbmc/openbmc/tree/master/meta-phosphor/recipes-phosphor/initrdscripts)
+  content is written to flash during BMC reboot. Reference the update and
+  shutdown scripts provided by
+  [initrdscripts](https://github.com/openbmc/openbmc/tree/master/meta-phosphor/recipes-phosphor/initrdscripts)

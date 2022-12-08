@@ -85,7 +85,7 @@ $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" user di
 $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" user enable <userid>
 ```
 
-##  Field-replaceable Unit (FRU)
+## Field-replaceable Unit (FRU)
 
 #### 1. View FRU information
 
@@ -181,6 +181,7 @@ $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" channel
 ## Chassis
 
 #### 1. Display information about the high-level status of the system rack and
+
 #### power subsystem.
 
 ```
@@ -247,7 +248,9 @@ Currently supported devices:
 
 ##
 
-If you want to make your override persistent over reboots use the `persistent` option:
+If you want to make your override persistent over reboots use the `persistent`
+option:
+
 ```
 $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" chassis bootdev <device> options=persistent
 ```
@@ -255,13 +258,15 @@ $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" chassis
 ##
 
 If the main host machine is based on the x86 CPU you need also pay attention to
-the legacy/EFI mode selector. By default IPMI overrides boot source with the legacy
-mode enabled. To set EFI mode use `efiboot` option:
+the legacy/EFI mode selector. By default IPMI overrides boot source with the
+legacy mode enabled. To set EFI mode use `efiboot` option:
+
 ```
 $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" chassis bootdev <device> options=efiboot
 ```
 
 You can combine options with a help of `,`:
+
 ```
 $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" chassis bootdev <device> options=persistent,efiboot
 ```
@@ -269,6 +274,7 @@ $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" chassis
 ##
 
 To read current boot source override setting:
+
 ```
 $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" chassis bootparam get 5
 ```
@@ -341,6 +347,7 @@ $ ipmitool -C 17 -H "$BMC_IP" -I lanplus -U "$BMC_USER" -P "$BMC_PASSWD" session
 ## Serial Over Lan (SOL)
 
 #### 1. Retrieve Serial-Over-LAN configuration information for the specified
+
 #### channel.
 
 ```

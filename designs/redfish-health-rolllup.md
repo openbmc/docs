@@ -1,6 +1,6 @@
 # Redfish Health and Status
 
-Author: James Feist  !jfei
+Author: James Feist !jfei
 
 Other contributors: None
 
@@ -8,10 +8,10 @@ Created: 2019-04-17
 
 ## Problem Description
 
-Redfish Status has 3 main properties: Health,
-HealthRollup, and State. We need ways to be able to determine from a high level
-the health of contained components. We also need to be able to determine the
-health of individual components.
+Redfish Status has 3 main properties: Health, HealthRollup, and State. We need
+ways to be able to determine from a high level the health of contained
+components. We also need to be able to determine the health of individual
+components.
 
 ## Background and References
 
@@ -37,6 +37,7 @@ https://<bmc-addr>/redfish/v1/Managers/bmc/EthernetInterfaces/eth1, where the
 ethernet interface failing needs to contribute to bmc health.
 
 Some examples of health with different use cases are:
+
 - Individual Sensors
 - Chassis containing sensors
 - Managers/BMC
@@ -71,6 +72,7 @@ Item interface:
 https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item.interface.yaml
 
 ## Requirements
+
 - Must minimize D-Bus calls needed to get health rollup
 - Must minimize new D-Bus objects being created
 - Should try to utilize existing D-Bus interfaces
@@ -85,11 +87,11 @@ OperationalStatus failed to critical.
 
 ### Chassis / System Health
 
-Chassis have individual sensors. Cross reference the individual sensors with
-the global health. If any of the sensors of the chassis are in the
-global health association for warning, the chassis rollup is warning.
-Likewise if any inventory for the chassis is in the global health critical, the
-chassis is critical. The global inventory item will be
+Chassis have individual sensors. Cross reference the individual sensors with the
+global health. If any of the sensors of the chassis are in the global health
+association for warning, the chassis rollup is warning. Likewise if any
+inventory for the chassis is in the global health critical, the chassis is
+critical. The global inventory item will be
 xyz.openbmc_project.Inventory.Item.Global.
 
 ### Chassis / System Health Rollup
@@ -108,11 +110,10 @@ warning as the inventory that it contains is warning at a global level.
 
 ## Alternatives Considered
 
-A new daemon to track global health state. Although this would be difficult
-to reuse to track individual component health.
+A new daemon to track global health state. Although this would be difficult to
+reuse to track individual component health.
 
 ## Impacts
-
 
 ## Testing
 

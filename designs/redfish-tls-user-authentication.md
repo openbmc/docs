@@ -1,13 +1,10 @@
 # Redfish TLS User Authentication
 
-Author:
-  Kamil Kowalski <kamil.kowalski@intel.com>
+Author: Kamil Kowalski <kamil.kowalski@intel.com>
 
-Other contributors:
-  None
+Other contributors: None
 
-Created:
-  June 7, 2019
+Created: June 7, 2019
 
 ## Problem Description
 
@@ -25,6 +22,7 @@ SSL certificates provides validity periods, ability to revoke access from CA
 level, and many other security features.
 
 Reference documents:
+
 - [Certificate Schema Definition](https://redfish.dmtf.org/schemas/v1/Certificate_v1.xml)
 - [CertificateLocations Schema Definition](https://redfish.dmtf.org/schemas/v1/CertificateLocations_v1.xml)
 - [CertificateService Schema Definition](https://redfish.dmtf.org/schemas/v1/CertificateService_v1.xml)
@@ -33,8 +31,9 @@ Reference documents:
 - [RFC 8446 - TLS 1.3 Specification](https://tools.ietf.org/html/rfc8446)
 
 ### Dictionary
-**Redfish API** - Redfish API as defined by DMTF
-**Redfish** - Redfish API implementation in BMCWeb
+
+**Redfish API** - Redfish API as defined by DMTF **Redfish** - Redfish API
+implementation in BMCWeb
 
 ## Requirements
 
@@ -45,12 +44,11 @@ push it towards modern security standards compliance.
 
 ### Process overview
 
-Whenever ``CA``'s certificate changes ``User`` shall provide ``Redfish`` with
-it. After that is completed, user should request a **CSR** (**C**ertificate
-**S**igning **R**equest) from ``Redfish`` to get a request allowing to generate
-proper ``user``'s certificate from ``CA``. After this
-certificate is acquired, ``User`` can use this certificate when initializing
-HTTPS sessions.
+Whenever `CA`'s certificate changes `User` shall provide `Redfish` with it.
+After that is completed, user should request a **CSR** (**C**ertificate
+**S**igning **R**equest) from `Redfish` to get a request allowing to generate
+proper `user`'s certificate from `CA`. After this certificate is acquired,
+`User` can use this certificate when initializing HTTPS sessions.
 
 ```
 ┌──┐                           ┌────┐                                 ┌───────┐
@@ -101,32 +99,33 @@ HTTPS sessions.
 #### Uploading CA Certificate
 
 CA's certificates for user authentication are kept at
-``/redfish/v1/AccountService/TLSAuth/Certificates``. There can be
-more than one, so user must use certificate that is signed by **any CA** that
-have their valid certificate stored there. New certificates can be uploaded
-by *POST*ing new certificate object on CertificateCollection.
+`/redfish/v1/AccountService/TLSAuth/Certificates`. There can be more than one,
+so user must use certificate that is signed by **any CA** that have their valid
+certificate stored there. New certificates can be uploaded by *POST*ing new
+certificate object on CertificateCollection.
 
 Example POST payload:
+
 ```json
 {
-    "CertificateString": "... <Certificate String> ...",
-    "CertificateType": "PEM"
+  "CertificateString": "... <Certificate String> ...",
+  "CertificateType": "PEM"
 }
 ```
 
 Should CA certificate get invalid (compromised, out-of-date, etc.) it is
-recommended to use ``#CertificateService.ReplaceCertificate`` action at
-``/redfish/v1/CertificateService``, to avoid wasting space and performance
+recommended to use `#CertificateService.ReplaceCertificate` action at
+`/redfish/v1/CertificateService`, to avoid wasting space and performance
 unnecessarily for processing invalid certificates.
 
-Example ``#CertificateService.ReplaceCertificate`` action payload executed on
-``/redfish/v1/CertificateService/Actions/CertificateService.ReplaceCertificate``:
+Example `#CertificateService.ReplaceCertificate` action payload executed on
+`/redfish/v1/CertificateService/Actions/CertificateService.ReplaceCertificate`:
 
 ```json
 {
-    "CertificateUri": "/redfish/v1/AccountService/TLSAuth/Certificates/1",
-    "CertificateString": "... <Certificate String> ...",
-    "CertificateType": "PEM"
+  "CertificateUri": "/redfish/v1/AccountService/TLSAuth/Certificates/1",
+  "CertificateString": "... <Certificate String> ...",
+  "CertificateType": "PEM"
 }
 ```
 
@@ -200,11 +199,12 @@ User can generate CSR in any way that is convenient to him.
 ```
 
 Certificate based authentication has the highest priority, because of the design
-of *Boost.Beast/Boost.ASIO/OpenSSL* as the certificate verification is being
-done at the very beginning of HTTPS request processing. *OpenSSL* library is
+of _Boost.Beast/Boost.ASIO/OpenSSL_ as the certificate verification is being
+done at the very beginning of HTTPS request processing. _OpenSSL_ library is
 responsible for determining whether certificate is valid or not. For certificate
 to be marked as valid, it (and every certificate in chain) has to meet these
 conditions:
+
 - does KeyUsage contain required data ("digitalSignature" and "keyAgreement")
 - does ExtendedKeyUsage contain required data (contains "clientAuth")
 - public key meets minimal bit length requirement
@@ -217,7 +217,7 @@ conditions:
 - issuer name has to match CA's subject name
 
 After these checks a callback is invoked providing result of user<->CA matching
-status. There, in case of success Redfish extracts username from ``CommonName``
+status. There, in case of success Redfish extracts username from `CommonName`
 and verifies if user does exist in the system.
 
 As can be seen on the flow diagram, Redfish will use **the first valid**
@@ -226,9 +226,9 @@ only one set of credentials/authentication data in a single request to be sure
 what will be used, otherwise there is no certainty which credential are used
 during operation.
 
-User can configure which methods are available in ``/redfish/v1/AccountService``
-OEM schema. The sequence of credential verification stays the same regardless
-of configuration. Whitelist verification is always-on, because of Redfish
+User can configure which methods are available in `/redfish/v1/AccountService`
+OEM schema. The sequence of credential verification stays the same regardless of
+configuration. Whitelist verification is always-on, because of Redfish
 specification and other accessibility requirements.
 
 User certificate does not have to be signed by the exact CAs whose certificates
@@ -267,15 +267,15 @@ Testing should be conducted on currently supported auth methods beside TLS, to
 confirm that their behavior did not change, and did not suffer any regression.
 
 As for TLS auth itself:
-1. Flow described in [Process overview](###process-overview)
-should be tested, to confirm that after going through it, everything works as
-expected.
+
+1. Flow described in [Process overview](###process-overview) should be tested,
+   to confirm that after going through it, everything works as expected.
 2. Validity period tests - to confirm that certificates that are not-yet-valid
-and expired ones are not accepted, by both - changing validity periods in
-certificates themselves, as well as modifying time on BMC itself
+   and expired ones are not accepted, by both - changing validity periods in
+   certificates themselves, as well as modifying time on BMC itself
 3. Removing CA certificate and confirming that user will not be granted access
-after that when using certificate that worked before removal.
+   after that when using certificate that worked before removal.
 4. Chain certificates verification - checking that chained certificates are
-accepted as required.
+   accepted as required.
 5. Negative tests for breaking user's certificate - invalid username, invalid
-validity period, invalid CA, binary broken certificate, etc.
+   validity period, invalid CA, binary broken certificate, etc.

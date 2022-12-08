@@ -1,14 +1,12 @@
 # phosphor-audit
 
-Author:
-  Ivan Mikhaylov, [i.mikhaylov@yadro.com](mailto:i.mikhaylov@yadro.com)
+Author: Ivan Mikhaylov, [i.mikhaylov@yadro.com](mailto:i.mikhaylov@yadro.com)
 
-Other contributors:
-  Alexander Amelkin, [a.amelkin@yadro.com](mailto:a.amelkin@yadro.com)
-  Alexander Filippov, [a.filippov@yadro.com](mailto:a.filippov@yadro.com)
+Other contributors: Alexander Amelkin,
+[a.amelkin@yadro.com](mailto:a.amelkin@yadro.com) Alexander Filippov,
+[a.filippov@yadro.com](mailto:a.filippov@yadro.com)
 
-Created:
-  2019-07-23
+Created: 2019-07-23
 
 ## Problem Description
 
@@ -22,8 +20,8 @@ be conducted in order to find out the person responsible for the unwelcome
 changes. Currently, most changes leave no trace in OpenBMC logs, which hampers
 the aforementioned investigation.
 
-It is required to develop a mechanism that would allow for tracking such
-user activity, logging it, and taking certain actions if necessary.
+It is required to develop a mechanism that would allow for tracking such user
+activity, logging it, and taking certain actions if necessary.
 
 ## Background and References
 
@@ -44,30 +42,30 @@ via D-Bus.
 
 ## Requirements
 
- * Provide a unified method of logging user actions independent of the user
-   interface, where possible user actions are:
-   * Redfish/REST PUT/POST/DELETE/PATCH
-   * IPMI
-   * PAM
-   * PLDM
-   * Any other suitable service
- * Provide a way to configure system response actions taken upon certain user
-   actions, where possible response actions are:
-   * Log an event
-   * Notify an administrator or an arbitrary notification receiver
-   * Run an arbitrary command
- * Provide a way to configure notification receivers:
-   * E-mail
-   * SNMP
-   * Instant messengers
-   * D-Bus
+- Provide a unified method of logging user actions independent of the user
+  interface, where possible user actions are:
+  - Redfish/REST PUT/POST/DELETE/PATCH
+  - IPMI
+  - PAM
+  - PLDM
+  - Any other suitable service
+- Provide a way to configure system response actions taken upon certain user
+  actions, where possible response actions are:
+  - Log an event
+  - Notify an administrator or an arbitrary notification receiver
+  - Run an arbitrary command
+- Provide a way to configure notification receivers:
+  - E-mail
+  - SNMP
+  - Instant messengers
+  - D-Bus
 
 ## Proposed Design
 
-The main idea is to catch D-Bus requests sent by user interfaces, then handle the
-request according to the configuration. In future, support for flexible policies
-may be implemented that would allow for better flexibility in handling and
-tracking.
+The main idea is to catch D-Bus requests sent by user interfaces, then handle
+the request according to the configuration. In future, support for flexible
+policies may be implemented that would allow for better flexibility in handling
+and tracking.
 
 The phosphor-audit service represents a service that provides user activity
 tracking and corresponding action taking in response of user actions.
@@ -113,21 +111,23 @@ before sending it to the audit service, if the request is filtered out, it will
 be dropped at this moment and will no longer be processed. After the filter
 check, the audit event call sends the data through D-Bus to the audit service
 which makes a decision regarding next steps. Also, it caches list of possible
-commands (blacklist or whitelist) and status of its service (disabled or enabled).
-If the service in undefined state, the call checks if service alive or not.
+commands (blacklist or whitelist) and status of its service (disabled or
+enabled). If the service in undefined state, the call checks if service alive or
+not.
 
- > `audit_event(type, rc, request, user, host, data)`
- > *  type - type of event source : IPMI, REST, PAM, etc.
- > *  rc   - return code of the handler event (status, rc, etc.)
- > *  request - a generalized identifier of the event, e.g. ipmi command
- > (cmd/netfn/lun), web path, or anything else that can describe the event.
- > *  user - the user account on behalf of which the event was processed.
- >           depends on context, NA/None in case of user inaccessibility.
- > *  source - identifier of the host that the event has originated from. This can
- >     be literally "host" for events originating from the local host (via locally
- >     connected IPMI), or an IP address or a hostname of a remote host.
- > *  data - any supplementary data that can help better identify the event
- >      (e.g., some first bytes of the IPMI command data).
+> `audit_event(type, rc, request, user, host, data)`
+>
+> - type - type of event source : IPMI, REST, PAM, etc.
+> - rc - return code of the handler event (status, rc, etc.)
+> - request - a generalized identifier of the event, e.g. ipmi command
+>   (cmd/netfn/lun), web path, or anything else that can describe the event.
+> - user - the user account on behalf of which the event was processed. depends
+>   on context, NA/None in case of user inaccessibility.
+> - source - identifier of the host that the event has originated from. This can
+>   be literally "host" for events originating from the local host (via locally
+>   connected IPMI), or an IP address or a hostname of a remote host.
+> - data - any supplementary data that can help better identify the event (e.g.,
+>   some first bytes of the IPMI command data).
 
 Service itself can control flow of events with configuration on its side.
 
@@ -140,8 +140,7 @@ Pseudocode for example:
     audit_event(HOST_IPMI, "shutting down the host"(rc=0), "host poweroff",
                        NULL, NULL, NULL)
 
-`audit_event(blob_data)`
-Blob can be described as structure:
+`audit_event(blob_data)` Blob can be described as structure:
 
     struct blob_audit
     {
@@ -158,26 +157,28 @@ that the call should be processed via predefined list of actions which are set
 in the server configuration.
 
 Step by step execution of call:
- * client's layer
-    1. checks if audit is enabled for such service
-    2. checks if audit event should be whitelisted or blacklisted at
-       the audit service side for preventing spamming of unneeded events
-       to audit service
-    3. send the data to the audit service via D-Bus
- * server's layer
-    1. accept D-Bus request
-    2. goes through list of actions for each services
+
+- client's layer
+  1. checks if audit is enabled for such service
+  2. checks if audit event should be whitelisted or blacklisted at the audit
+     service side for preventing spamming of unneeded events to audit service
+  3. send the data to the audit service via D-Bus
+- server's layer
+  1. accept D-Bus request
+  2. goes through list of actions for each services
 
 How the checks will be processed at client's layer:
- 1. check the status of service and cache that value
- 2. check the list of possible actions which should be logged and cache them also
- 3. listen on 'propertiesChanged' event in case of changing list or status
-    of service
+
+1.  check the status of service and cache that value
+2.  check the list of possible actions which should be logged and cache them
+    also
+3.  listen on 'propertiesChanged' event in case of changing list or status of
+    service
 
 ## Service configuration
 
-The configuration structure can be described as tree with set of options,
-as example of structure:
+The configuration structure can be described as tree with set of options, as
+example of structure:
 
 ```
 [IPMI]
@@ -205,29 +206,29 @@ as example of structure:
 Options can be updated via D-Bus properties. The audit service listens changes
 on configuration file and emit 'PropertiesChanged' signal with changed details.
 
-* The whitelisting and blacklisting
+- The whitelisting and blacklisting
 
- > Possible list of requests which have to be filtered and processed.
- > 'Whitelist' filters possible requests which can be processed.
- > 'Blacklist' blocks only exact requests.
+> Possible list of requests which have to be filtered and processed. 'Whitelist'
+> filters possible requests which can be processed. 'Blacklist' blocks only
+> exact requests.
 
-* Enable/disable the event processing for directed services, where the directed
+- Enable/disable the event processing for directed services, where the directed
   service is any suitable services which can use audit service.
 
- > Each audit processing type can be disabled or enabled at runtime via
- > config file or D-Bus property.
+> Each audit processing type can be disabled or enabled at runtime via config
+> file or D-Bus property.
 
-* Notification setup via SNMP/E-mail/Instant messengers/D-Bus
+- Notification setup via SNMP/E-mail/Instant messengers/D-Bus
 
- > The end recipient notification system with different transports.
+> The end recipient notification system with different transports.
 
-* Logging
+- Logging
 
- > phosphor-logging, journald or anything else suitable for.
+> phosphor-logging, journald or anything else suitable for.
 
-* User actions
+- User actions
 
- > Running a command as consequenced action.
+> Running a command as consequenced action.
 
 ## Workflow
 
@@ -295,24 +296,25 @@ An example of possible flow:
 
 ## Notification mechanisms
 
-The unified model for reporting accidents to the end user, where the transport can be:
+The unified model for reporting accidents to the end user, where the transport
+can be:
 
-* E-mail
+- E-mail
 
-  > Sending a note to directed recipient which set in configuration via
-  > sendmail or anything else.
+  > Sending a note to directed recipient which set in configuration via sendmail
+  > or anything else.
 
-* SNMP
+- SNMP
 
   > Sending a notification via SNMP trap messages to directed recipient which
   > set in configuration.
 
-* Instant messengers
+- Instant messengers
 
   > Sending a notification to directed recipient which set in configuration via
   > jabber/sametime/gtalk/etc.
 
-* D-Bus
+- D-Bus
 
   > Notify the other service which set in configuration via 'method_call' or
   > 'signal'.
@@ -322,40 +324,45 @@ rules is set inside configuration. It is possible to pick up rules at runtime.
 
 ## User Actions
 
- * Exec application via 'system' call.
- * The code for directed handling type inside handler itself.
-   As example for 'net ipmi' in case of unsuccessful user login inside handler:
-   * Sends a notification to administrator.
-   * echo heartbeat > /sys/class/leds/alarm_red/trigger
+- Exec application via 'system' call.
+- The code for directed handling type inside handler itself. As example for 'net
+  ipmi' in case of unsuccessful user login inside handler:
+  - Sends a notification to administrator.
+  - echo heartbeat > /sys/class/leds/alarm_red/trigger
 
 ## Alternatives Considered
 
-Processing user requests in each dedicated interface service and logging
-them separately for each of the interfaces. Scattered handling looks like
-an error-prone and rigid approach.
+Processing user requests in each dedicated interface service and logging them
+separately for each of the interfaces. Scattered handling looks like an
+error-prone and rigid approach.
 
 ## Impacts
 
 Improves system manageability and security.
 
 Impacts when phosphor-audit is not enabled:
- - Many services will have slightly larger code size and longer CPU path length
-   due to invocations of audit_event().
- - Increased D-Bus traffic.
 
-Impacts when phosphor-audit is enabled:
-All of the above, plus:
- - Additional BMC processor time needed to handle audit events.
- - Additional BMC flash storage needed to store logged events.
- - Additional outbound network traffic to notify users.
- - Additional space for notification libraries.
+- Many services will have slightly larger code size and longer CPU path length
+  due to invocations of audit_event().
+- Increased D-Bus traffic.
+
+Impacts when phosphor-audit is enabled: All of the above, plus:
+
+- Additional BMC processor time needed to handle audit events.
+- Additional BMC flash storage needed to store logged events.
+- Additional outbound network traffic to notify users.
+- Additional space for notification libraries.
 
 ## Testing
 
 `dbus-send` as command-line tool for generating audit events.
 
 Scenarios:
- - For each supported service (such as Redfish, net IPMI, host IPMI, PLDM), create audit events, and validate they get logged.
- - Ensure message-type and request-type filtering works as expected.
- - Ensure basic notification actions work as expected (log, command, notify).
- - When continuously generating audit-events, change the phosphor-audit service's configuration, and validate no audit events are lost, and the new configuration takes effect.
+
+- For each supported service (such as Redfish, net IPMI, host IPMI, PLDM),
+  create audit events, and validate they get logged.
+- Ensure message-type and request-type filtering works as expected.
+- Ensure basic notification actions work as expected (log, command, notify).
+- When continuously generating audit-events, change the phosphor-audit service's
+  configuration, and validate no audit events are lost, and the new
+  configuration takes effect.

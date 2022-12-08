@@ -9,8 +9,8 @@ Edition) varies by platform and may differ in your organization, but the
 [Docker Docs](https://docs.docker.com/install/) are a good place to start
 looking.
 
-Check that the installation was successful by running `sudo docker run
-hello-world`.
+Check that the installation was successful by running
+`sudo docker run hello-world`.
 
 Each repository is built locally within the CI using the bootstrap.sh and
 automake toolchain.
@@ -66,8 +66,8 @@ WORKSPACE=$(pwd) UNIT_TEST_PKG=phosphor-hwmon NO_FORMAT_CODE=1 \
 ./openbmc-build-scripts/run-unit-test-docker.sh
 ```
 
-`NO_FORMAT_CODE=1` tells the script to skip the `format-code.sh` so that it
-will not format the code and thus your repo could contain un-committed changes.
+`NO_FORMAT_CODE=1` tells the script to skip the `format-code.sh` so that it will
+not format the code and thus your repo could contain un-committed changes.
 
 ## Run CI for testing purposes only
 

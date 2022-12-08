@@ -2,8 +2,7 @@
 
 Author: Andrew Geissler (geissonator)
 
-Other contributors:
-  Jason Bills (jmbills)
+Other contributors: Jason Bills (jmbills)
 
 Created: Jan 22, 2020
 
@@ -23,25 +22,27 @@ This support will also map to the existing IPMI Chassis Control command.
 
 [phoshor-state-manager][2] implements the xyz.openbmc_project.State.\*
 interfaces. These interfaces control and track the state of the BMC, Chassis,
-and Host within an OpenBMC managed system. The README within the repository
-can provide some further background information. [bmcweb][3], OpenBMC's web
-server and front end Redfish interface, then maps commands to the ResetType
-object to the appropriate xyz.openbmc_project.State.* D-Bus interface.
+and Host within an OpenBMC managed system. The README within the repository can
+provide some further background information. [bmcweb][3], OpenBMC's web server
+and front end Redfish interface, then maps commands to the ResetType object to
+the appropriate xyz.openbmc_project.State.\* D-Bus interface.
 
-The goal with this design is to enhance the xyz.openbmc_project.State.*
-interfaces to support more of the Redfish ResetType. Specifically this design
-is looking to support the capability to reboot an operating system on a system
+The goal with this design is to enhance the xyz.openbmc_project.State.\*
+interfaces to support more of the Redfish ResetType. Specifically this design is
+looking to support the capability to reboot an operating system on a system
 without cycling power to the chassis.
 
 Currently phosphor-state-manager supports the following:
-  - Chassis: On/Off
-  - Host: On/Off/Reboot
+
+- Chassis: On/Off
+- Host: On/Off/Reboot
 
 The `Reboot` to the host currently causes a power cycle to the chassis.
 
 ### Redfish
 
 The Redfish [ResetType][1] has the following operations associated with it:
+
 ```
 "ResetType": {
     "enum": [
@@ -76,23 +77,23 @@ The Redfish [ResetType][1] has the following operations associated with it:
 
 ### IPMI
 
-The IPMI specification defines a Chassis Control Command with a chassis
-control parameter as follows:
+The IPMI specification defines a Chassis Control Command with a chassis control
+parameter as follows:
 
-| Option | Description |
-| --- | --- |
-| power down | Force system into soft off (S4/S45) state. This is for ‘emergency’ management power down actions. The command does not initiate a clean shut-down of the operating system prior to powering down the system. |
-| power up |  |
-| power cycle | This command provides a power off interval of at least 1 second following the deassertion of the system’s POWERGOOD status from the main power subsystem. It is recommended that no action occur if system power is off (S4/S5) when this action is selected, and that a D5h “Request parameter(s) not supported in present state.” error completion code be returned. |
-| hard reset | In some implementations, the BMC may not know whether a reset will cause any particular effect and will pulse the system reset signal regardless of power state. |
-| pulse Diagnostic Interrupt | Pulse a version of a diagnostic interrupt that goes directly to the processor(s). This is typically used to cause the operating system to do a diagnostic dump (OS dependent). |
-| Initiate a soft-shutdown of OS |  |
+| Option                         | Description                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| power down                     | Force system into soft off (S4/S45) state. This is for ‘emergency’ management power down actions. The command does not initiate a clean shut-down of the operating system prior to powering down the system.                                                                                                                                                           |
+| power up                       |                                                                                                                                                                                                                                                                                                                                                                        |
+| power cycle                    | This command provides a power off interval of at least 1 second following the deassertion of the system’s POWERGOOD status from the main power subsystem. It is recommended that no action occur if system power is off (S4/S5) when this action is selected, and that a D5h “Request parameter(s) not supported in present state.” error completion code be returned. |
+| hard reset                     | In some implementations, the BMC may not know whether a reset will cause any particular effect and will pulse the system reset signal regardless of power state.                                                                                                                                                                                                       |
+| pulse Diagnostic Interrupt     | Pulse a version of a diagnostic interrupt that goes directly to the processor(s). This is typically used to cause the operating system to do a diagnostic dump (OS dependent).                                                                                                                                                                                         |
+| Initiate a soft-shutdown of OS |                                                                                                                                                                                                                                                                                                                                                                        |
 
 ## Requirements
 
 - Keep legacy support where `xyz.openbmc_project.State.Host.Transition.Reboot`
-  causes a graceful shutdown of the host, a power cycle of the chassis, and
-  a starting of the host.
+  causes a graceful shutdown of the host, a power cycle of the chassis, and a
+  starting of the host.
 - Support a reboot of the host with chassis power on
   - Support `GracefulRestart` (where the host is notified of the reboot)
   - Support `ForceRestart` (where the host is not notified of the reboot)
@@ -106,16 +107,19 @@ control parameter as follows:
 ## Proposed Design
 
 Create two new `xyz.openbmc_project.State.Host.Transition` options:
+
 - `ForceWarmReboot`, `GracefulWarmReboot`
 
 Create a new `xyz.openbmc_project.State.Chassis.Transition` option:
+
 - `PowerCycle`
 
-The existing bmcweb code uses some additional xyz.openbmc_project.State.*
+The existing bmcweb code uses some additional xyz.openbmc_project.State.\*
 interfaces that are not defined within phosphor-dbus-interfaces. These are
 implemented within the x86-power-control repository which is an alternate
-implementation to phosphor-state-manager. It has the following mapping for
-these non-phosphor-dbus-interfaces
+implementation to phosphor-state-manager. It has the following mapping for these
+non-phosphor-dbus-interfaces
+
 - `ForceRestart` -> `xyz.openbmc_project.State.Chassis.Transition.Reset`
 - `PowerCycle` -> `xyz.openbmc_project.State.Chassis.Transition.PowerCycle`
 
@@ -126,31 +130,33 @@ change the current bmcweb mapping for `ForceRestart` to a new host transition:
 A `GracefulRestart` will map to our new host transition:
 `xyz.openbmc_project.State.Host.Transition.GracefulWarmReboot`
 
-The `PowerCycle` operation is dependent on the current state of the host.
-If host is on, it will map to `xyz.openbmc_project.State.Host.Transition.Reboot`
+The `PowerCycle` operation is dependent on the current state of the host. If
+host is on, it will map to `xyz.openbmc_project.State.Host.Transition.Reboot`
 otherwise it will map to
 `xyz.openbmc_project.State.Chassis.Transition.PowerCycle`
 
-To summarize the new Redfish to xyz.openbmc_project.State.* mappings:
+To summarize the new Redfish to xyz.openbmc_project.State.\* mappings:
+
 - `ForceRestart` -> `xyz.openbmc_project.State.Host.Transition.ForceWarmReboot`
-- `GracefulRestart`-> `xyz.openbmc_project.State.Host.Transition.GracefulWarmReboot`
+- `GracefulRestart`->
+  `xyz.openbmc_project.State.Host.Transition.GracefulWarmReboot`
 - `PowerCycle`:
   - If host on: `xyz.openbmc_project.State.Host.Transition.Reboot`
   - If host off: `xyz.openbmc_project.State.Chassis.Transition.PowerCycle`
 
-The full mapping of Redfish and IPMI to xyz.openbmc_project.State.* is as
+The full mapping of Redfish and IPMI to xyz.openbmc_project.State.\* is as
 follows:
 
-| Redfish | IPMI | xyz.openbmc_project.State.Transition |
-| --- | --- | --- |
-| ForceOff | power down | Chassis.Off |
-| ForceOn | power up | Host.On |
-| ForceRestart | hard reset | Host.ForceWarmReboot |
-| GracefulRestart |  | Host.GracefulWarmReboot |
-| GracefulShutdown | soft off | Host.Off |
-| On | power up | Host.On |
-| PowerCycle (host on) | power cycle | Host.Reboot |
-| PowerCycle (host off) |  | Chassis.PowerCycle |
+| Redfish               | IPMI        | xyz.openbmc_project.State.Transition |
+| --------------------- | ----------- | ------------------------------------ |
+| ForceOff              | power down  | Chassis.Off                          |
+| ForceOn               | power up    | Host.On                              |
+| ForceRestart          | hard reset  | Host.ForceWarmReboot                 |
+| GracefulRestart       |             | Host.GracefulWarmReboot              |
+| GracefulShutdown      | soft off    | Host.Off                             |
+| On                    | power up    | Host.On                              |
+| PowerCycle (host on)  | power cycle | Host.Reboot                          |
+| PowerCycle (host off) |             | Chassis.PowerCycle                   |
 
 ## Alternatives Considered
 

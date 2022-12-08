@@ -36,26 +36,25 @@ Please read the IPMI BLOB protocol design as primer
 
 The following statements are reflective of the initial requirements.
 
-*   Any update mechanism must provide support for UBI tarballs and legacy
-    (static layout) flash images. Leveraging the BLOB protocol allows a system
-    to provide support for any image type simply by implementing a mechanism for
-    handling it.
+- Any update mechanism must provide support for UBI tarballs and legacy (static
+  layout) flash images. Leveraging the BLOB protocol allows a system to provide
+  support for any image type simply by implementing a mechanism for handling it.
 
-*   Any update mechanism must allow for triggering an image verification step
-    before the image is used.
+- Any update mechanism must allow for triggering an image verification step
+  before the image is used.
 
-*   Any update mechanism must allow implementing the data staging via different
-    in-band mechanisms.
+- Any update mechanism must allow implementing the data staging via different
+  in-band mechanisms.
 
-*   Any update mechanism must provide a handshake or equivalent protocol for
-    coordinating the data transfer. For instance, whether the BMC should enable
-    the P2A bridge and what region to use or whether to turn on the LPC memory
-    map bridge.
+- Any update mechanism must provide a handshake or equivalent protocol for
+  coordinating the data transfer. For instance, whether the BMC should enable
+  the P2A bridge and what region to use or whether to turn on the LPC memory map
+  bridge.
 
-*   Any update mechanism must attempt to maintain security, insomuch as not
-    leaving a memory region open by default. For example, before starting the
-    verification step, access to the staged firmware image must not be still
-    accessible from the host.
+- Any update mechanism must attempt to maintain security, insomuch as not
+  leaving a memory region open by default. For example, before starting the
+  verification step, access to the staged firmware image must not be still
+  accessible from the host.
 
 ## Proposed Design
 
@@ -86,11 +85,11 @@ the list of supported mechanisms for the blob.
 
 The blob ids for the mechanisms will be as follows:
 
-Flash Blob Id    | Type
----------------- | -------------
-`/flash/image`   | Static Layout
-`/flash/tarball` | UBI
-`/flash/bios`    | Host BIOS image
+| Flash Blob Id    | Type            |
+| ---------------- | --------------- |
+| `/flash/image`   | Static Layout   |
+| `/flash/tarball` | UBI             |
+| `/flash/bios`    | Host BIOS image |
 
 The flash handler will determine what commands it should expect to receive and
 responses it will return given the blob opened, based on the flags provided to
@@ -103,9 +102,9 @@ started.
 
 The following blob ids are defined for storing the hash for the image:
 
-Hash Blob     | Id Mechanism
-------------- | --------------------
-`/flash/hash` | Whichever flash blob was opened
+| Hash Blob     | Id Mechanism                    |
+| ------------- | ------------------------------- |
+| `/flash/hash` | Whichever flash blob was opened |
 
 The flash handler will only allow one open file at a time, such that if the host
 attempts to send a firmware image down over IPMI BlockTransfer, it won't allow
@@ -125,9 +124,9 @@ purpose is to trigger and monitor the firmware verification process. Therefore,
 the BmcBlobOpen command will fail until both the hash and image file are closed.
 Further on the ideal command sequence below.
 
-Trigger Blob    | Note
---------------- | ------------------------
-`/flash/verify` | Verify Trigger Mechanism
+| Trigger Blob    | Note                     |
+| --------------- | ------------------------ |
+| `/flash/verify` | Verify Trigger Mechanism |
 
 When the verification file is closed, if verification was completed
 successfully, it'll add an update blob id, defined below.
@@ -136,41 +135,41 @@ The verification process used is not defined by this design.
 
 #### Update Blob
 
-The update blob id is available once `/flash/verify` is closed with a valid image
-or tarball. The update blob needs to be opened and commit() called on that blob
-id to trigger the update mechanism.
+The update blob id is available once `/flash/verify` is closed with a valid
+image or tarball. The update blob needs to be opened and commit() called on that
+blob id to trigger the update mechanism.
 
 The update process can be checked periodically by calling stat() on the update
 blob id.
 
-Update Blob     | Note
---------------- | ------------------------
-`/flash/update` | Trigger Update Mechanism
+| Update Blob     | Note                     |
+| --------------- | ------------------------ |
+| `/flash/update` | Trigger Update Mechanism |
 
 The update process used is not defined by this design.
 
 #### Cleanup Blob
 
-The cleanup blob id is always present.  The goal of this blob is to handle
-deletion of update artifacts on failure, or success.  It can be implemented to
-do any manner of cleanup required, but for systems under memory pressure, it is
-a convenient cleanup mechanism.
+The cleanup blob id is always present. The goal of this blob is to handle
+deletion of update artifacts on failure, or success. It can be implemented to do
+any manner of cleanup required, but for systems under memory pressure, it is a
+convenient cleanup mechanism.
 
 The cleanup blob has no state or knowledge and is meant to provide a simple
-system cleanup mechanism.  This could also be accomplished by warm rebooting
-the BMC.  The cleanup blob will delete a list of files.  The cleanup blob has
-no state recognition for the update process, and therefore can interfere with
-an update process.  The host tool will only use it on failure cases.  Any other
-tool developed should respect this and not employ it unless the goal is to
-cleanup artifacts.
+system cleanup mechanism. This could also be accomplished by warm rebooting the
+BMC. The cleanup blob will delete a list of files. The cleanup blob has no state
+recognition for the update process, and therefore can interfere with an update
+process. The host tool will only use it on failure cases. Any other tool
+developed should respect this and not employ it unless the goal is to cleanup
+artifacts.
 
-To trigger the cleanup, simply open the blob, commit, and close.  It has no
-knowledge of the update process.  This simplification is done through the
-design of a convenience mechanism instead of a required mechanism.
+To trigger the cleanup, simply open the blob, commit, and close. It has no
+knowledge of the update process. This simplification is done through the design
+of a convenience mechanism instead of a required mechanism.
 
-Cleanup Blob     | Note
----------------- | -------------------------
-`/flash/cleanup` | Trigger Cleanup Mechanism
+| Cleanup Blob     | Note                      |
+| ---------------- | ------------------------- |
+| `/flash/cleanup` | Trigger Cleanup Mechanism |
 
 ### Caching Images
 
@@ -292,7 +291,7 @@ hash) indicating they are in progress. The name will be `flash/active/image` and
 in progress. Closing the file does not delete the staged images. Only delete
 will.
 
-***Note*** The active image blob_ids cannot be opened. This can be reconsidered
+**_Note_** The active image blob_ids cannot be opened. This can be reconsidered
 later.
 
 #### BmcBlobRead
@@ -364,7 +363,7 @@ process.
 If the image verification fails, it will automatically delete any files
 associated with the update.
 
-***Note:*** During development testing, a developer will want to upload files
+**_Note:_** During development testing, a developer will want to upload files
 that are not signed. Therefore, an additional bit will be added to the flags to
 change this behavior.
 

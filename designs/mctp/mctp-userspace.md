@@ -12,8 +12,8 @@ OpenBMC system.
 ## Proposed Design
 
 The MCTP core specification just provides the packetisation, routing and
-addressing mechanisms. The actual transmit/receive of those packets is up to
-the hardware binding of the MCTP transport.
+addressing mechanisms. The actual transmit/receive of those packets is up to the
+hardware binding of the MCTP transport.
 
 For OpenBMC, we would introduce a MCTP daemon, which implements the transport
 over a configurable hardware channel (eg., Serial UART, I2C or PCIe), and
@@ -74,14 +74,14 @@ daemon would use a message queue to enable message reception/transmission to a
 blocked daemon, but this would be of a limited size. Handlers whose sockets
 exceed this queue would be disconnected from the daemon.
 
-One design intention of the multiplexer daemon is to allow a future
-kernel-based MCTP implementation without requiring major structural changes to
-handler applications. The socket-based interface facilitates this, as the
-unix-domain socket interface could be fairly easily swapped out with a new
-kernel-based socket type.
+One design intention of the multiplexer daemon is to allow a future kernel-based
+MCTP implementation without requiring major structural changes to handler
+applications. The socket-based interface facilitates this, as the unix-domain
+socket interface could be fairly easily swapped out with a new kernel-based
+socket type.
 
-MCTP is intended to be an optional component of OpenBMC. Platforms using
-OpenBMC are free to adopt it as they see fit.
+MCTP is intended to be an optional component of OpenBMC. Platforms using OpenBMC
+are free to adopt it as they see fit.
 
 ### Demultiplexer daemon interface
 
@@ -115,22 +115,20 @@ the destination EID.
 The rest of the message data is the complete MCTP message, including MCTP
 message type field.
 
-The daemon does not provide a facility for clients to specify or retrieve
-values for the tag field in individual MCTP packets.
-
+The daemon does not provide a facility for clients to specify or retrieve values
+for the tag field in individual MCTP packets.
 
 ## Alternatives Considered
 
 In terms of an MCTP daemon structure, an alternative is to have the MCTP
-implementation contained within a single process, using the libmctp API
-directly for passing messages from the core code to application-level handlers.
-The drawback of this approach is that this single process needs to implement
-all possible functionality that is available over MCTP, which may be quite a
+implementation contained within a single process, using the libmctp API directly
+for passing messages from the core code to application-level handlers. The
+drawback of this approach is that this single process needs to implement all
+possible functionality that is available over MCTP, which may be quite a
 disjoint set. This would likely lead to unnecessary restrictions on the
 implementation of those application-level handlers (programming language,
-frameworks used, etc).  Also, this single-process approach would likely need
-more significant modifications if/when MCTP protocol support is moved to the
-kernel.
+frameworks used, etc). Also, this single-process approach would likely need more
+significant modifications if/when MCTP protocol support is moved to the kernel.
 
 The interface between the demultiplexer daemon and clients is currently defined
 as a socket-based interface. However, an alternative here would be to pass MCTP

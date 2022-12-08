@@ -1,4 +1,5 @@
 # OpenBMC Developer Documentation
+
 This directory is focused on providing OpenBMC developers with the instructions
 they need to get up and going with OpenBMC development. This can be reviewed in
 any order you like, but the recommended flow can be found below.

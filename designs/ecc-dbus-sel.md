@@ -30,12 +30,11 @@ memory ECC SEL as well.
 #### Requirements
 
 Currently, the OpenBMC project does not support ECC event logs in D-Bus because
-there is no relevant ECC information in the OpenBMC D-Bus architecture.
-The new ECC D-Bus information will be added to the OpenBMC project and an ECC
-monitor service will be created to fetch the ECC count (ce_count/ue_count) from
-the EDAC driver. And make sure the EDAC driver must be loaded and ECC/other
-correctable or ECC/other uncorrectable counts need to be obtained from the EDAC
-driver.
+there is no relevant ECC information in the OpenBMC D-Bus architecture. The new
+ECC D-Bus information will be added to the OpenBMC project and an ECC monitor
+service will be created to fetch the ECC count (ce_count/ue_count) from the EDAC
+driver. And make sure the EDAC driver must be loaded and ECC/other correctable
+or ECC/other uncorrectable counts need to be obtained from the EDAC driver.
 
 #### Proposed Design
 
@@ -44,8 +43,8 @@ systems (such as certain versions of Linux, macOS, and Windows) that allow
 detection and correction of memory errors, which helps identify problems before
 they become catastrophic faulty memory module.
 
-Many ECC memory systems use an "external" EDAC between the CPU and the memory
-to fix memory error. Most host integrate EDAC into the CPU's integrated memory
+Many ECC memory systems use an "external" EDAC between the CPU and the memory to
+fix memory error. Most host integrate EDAC into the CPU's integrated memory
 controller.
 
 According to Section 42.2 of the IPMI specification, Table 42 [2], these SEL
@@ -77,17 +76,14 @@ counts and uncorrectable ECC counts in the EDAC driver.
 
 It also provide the following path on D-Bus:
 
-- bus name    : `xyz.openbmc_project.Memory.ECC`
+- bus name : `xyz.openbmc_project.Memory.ECC`
 - object path : `/xyz/openbmc_project/metrics/memory/BmcECC`
-- interface   : `xyz.openbmc_project.Memory.MemoryECC`
+- interface : `xyz.openbmc_project.Memory.MemoryECC`
 
-The interface with the following properties:
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| isLoggingLimitReached | bool | ECC logging reach limits|
-| ceCount| int64 | correctable ECC events |
-| ueCount| int64 | uncorrectable ECC events |
-| state| string | bmc ECC event state |
+The interface with the following properties: | Property | Type | Description | |
+-------- | ---- | ----------- | | isLoggingLimitReached | bool | ECC logging
+reach limits| | ceCount| int64 | correctable ECC events | | ueCount| int64 |
+uncorrectable ECC events | | state| string | bmc ECC event state |
 
 The error types for `xyz::openbmc_project::Memory::Ecc::Error::ceCount` and
 `ueCount` and `isLoggingLimitReached` will be created which generated the error
@@ -100,25 +96,24 @@ format.
 
 - correctable ECC log : when fetching the `ce_count` from EDAC driver parameter
   and the count exceeds previous count.
-- uncorrectable ECC log : when fetching the `ue_count` from EDAC driver parameter
-  and the count exceeds previous count.
+- uncorrectable ECC log : when fetching the `ue_count` from EDAC driver
+  parameter and the count exceeds previous count.
 - logging limit reached log : When the correctable ECC log reaches the
   `maximum quantity`.
 
 #### Alternatives Considered
 
 Another consideration is that there is no stopping the recording of the ECC
-logging mechanism.
-When the checks `ce_count` and value exceeds the previous value, it will record
-the ECC log. But this will encounter a lot of ECC logs, and BMC memory will
-also be occupied.
+logging mechanism. When the checks `ce_count` and value exceeds the previous
+value, it will record the ECC log. But this will encounter a lot of ECC logs,
+and BMC memory will also be occupied.
 
 #### Impacts
 
-This application implementation only needs to make some changes when
-creating the event log, so it has minimal impact on the rest of the system.
+This application implementation only needs to make some changes when creating
+the event log, so it has minimal impact on the rest of the system.
 
 #### Testing
 
-Depending on the platform hardware design, this test requires an ECC
-driver to make fake ECC errors and then check the scenario is good.
+Depending on the platform hardware design, this test requires an ECC driver to
+make fake ECC errors and then check the scenario is good.

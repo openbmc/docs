@@ -8,20 +8,22 @@
 
 # Webui-vue
 
-The [webui-vue](https://github.com/openbmc/webui-vue) repository
-will replace phosphor-webui once it is deprecated. Webui-vue uses the
-[Vue.js](https://vuejs.org/) framework to interact with the BMC via the
-Redfish API.
+The [webui-vue](https://github.com/openbmc/webui-vue) repository will replace
+phosphor-webui once it is deprecated. Webui-vue uses the
+[Vue.js](https://vuejs.org/) framework to interact with the BMC via the Redfish
+API.
 
 Visit [README.md](https://github.com/openbmc/webui-vue/blob/master/README.md) to
-learn more about why the Vue.js application was created, features needed to reach parity and why it is
-replacing the Angular.JS application.
+learn more about why the Vue.js application was created, features needed to
+reach parity and why it is replacing the Angular.JS application.
 
-Visit [CONTRIBUTING.md](https://github.com/openbmc/webui-vue/blob/master/CONTRIBUTING.md)
-to find information on project set-up, design information, and contributing processes.
+Visit
+[CONTRIBUTING.md](https://github.com/openbmc/webui-vue/blob/master/CONTRIBUTING.md)
+to find information on project set-up, design information, and contributing
+processes.
 
-Visit the [OpenBMC Web UI Style Guide](https://openbmc.github.io/webui-vue/)
-to find information on:
+Visit the [OpenBMC Web UI Style Guide](https://openbmc.github.io/webui-vue/) to
+find information on:
 
 - Coding Standards
 - Guidelines
@@ -29,7 +31,8 @@ to find information on:
 - Components Usage
 - Quick Start References
 
-Visit the [OpenBMC Web UI Themes Guide - How to customize](https://openbmc.github.io/webui-vue/themes/customize.html)
+Visit the
+[OpenBMC Web UI Themes Guide - How to customize](https://openbmc.github.io/webui-vue/themes/customize.html)
 to learn how to create custom builds to meet your branding and customization
 needs for:
 
@@ -42,8 +45,8 @@ needs for:
 
 Connect to Web UI in QEMU
 
-1. You will need the QEMU session running per instructions in the
-   "Download and Start QEMU Session" section of
+1. You will need the QEMU session running per instructions in the "Download and
+   Start QEMU Session" section of
    [dev-environment](https://github.com/openbmc/docs/blob/master/development/dev-environment.md).
 
 2. Assuming you used the default of 2443 for the HTTPS port in your QEMU
@@ -59,15 +62,15 @@ connect. OpenBMC is running with a self-signed SSL certificate.
 
 The [phosphor-webui](https://github.com/openbmc/phosphor-webui) repository
 provides a web-based interface for an OpenBMC. It uses the
-[AngularJS](https://angularjs.org/) framework to interact with the BMC via REST API calls. It allows users
-to view hardware information, update firmware, set network settings, and much
-more.
+[AngularJS](https://angularjs.org/) framework to interact with the BMC via REST
+API calls. It allows users to view hardware information, update firmware, set
+network settings, and much more.
 
-See directions below to learn [how to customize
-phosphor-webui](#customize-phosphor-webui).
+See directions below to learn
+[how to customize phosphor-webui](#customize-phosphor-webui).
 
-Phosphor-webui was built on AngularJS and AngularJS goes End of Life June 30,
-2021.
+Phosphor-webui was built on AngularJS and AngularJS goes End of Life June
+30, 2021.
 
 ## Customize Phosphor-webui
 
@@ -79,9 +82,11 @@ Phosphor-webui was built on AngularJS and AngularJS goes End of Life June 30,
 
 2. Install appropriate packages and start web UI
 
-   Follow the directions in the phosphor-webui [README](https://github.com/openbmc/phosphor-webui/blob/master/README.md)
-   to install the required packages and start the web UI. You can use the
-   development environment created in [dev-environment](https://github.com/openbmc/docs/blob/master/development/dev-environment.md)
+   Follow the directions in the phosphor-webui
+   [README](https://github.com/openbmc/phosphor-webui/blob/master/README.md) to
+   install the required packages and start the web UI. You can use the
+   development environment created in
+   [dev-environment](https://github.com/openbmc/docs/blob/master/development/dev-environment.md)
    or your own system assuming you install the required packages noted in the
    README.
 
@@ -120,9 +125,9 @@ Phosphor-webui was built on AngularJS and AngularJS goes End of Life June 30,
 
    Kill your npm run using Ctrl^C.
 
-4. Customize the header with the new image and verify
-   The header is on every page in the web UI. It has a smaller version of the
-   logo in it which we are changing with this step.
+4. Customize the header with the new image and verify The header is on every
+   page in the web UI. It has a smaller version of the logo in it which we are
+   changing with this step.
 
    Similar to the previous step, modify the appropriate HTML for the header:
 
@@ -140,14 +145,14 @@ Phosphor-webui was built on AngularJS and AngularJS goes End of Life June 30,
 
    Browse to https://localhost:8080 and verify your new image is on the header.
 
-   Note that you will need to log in to view the header. Point the web UI to your
-   QEMU session by typing the QEMU session (e.g. localhost:2443) in the "BMC HOST
-   OR BMC IP ADDRESS" field.
+   Note that you will need to log in to view the header. Point the web UI to
+   your QEMU session by typing the QEMU session (e.g. localhost:2443) in the
+   "BMC HOST OR BMC IP ADDRESS" field.
 
    Note that in the HTML where you're replacing the images, there is also the
-   corresponding text that goes with the images. Changing the text to match
-   with your logo is also something you can easily do to customize your creation
-   of an OpenBMC system.
+   corresponding text that goes with the images. Changing the text to match with
+   your logo is also something you can easily do to customize your creation of
+   an OpenBMC system.
 
    And that's it! You've downloaded, customized, and run the OpenBMC
    phosphor-webui code!

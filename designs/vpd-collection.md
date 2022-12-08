@@ -5,12 +5,13 @@ Author: Santosh Puranik <santosh.puranik@in.ibm.com> <santosh.puranik>
 Created: 2019-06-11
 
 ## Problem Description
+
 On OpenBMC, Vital Product Data (VPD) collection is limited to only one or two
-Field Replaceable Units (FRUs) today - one example is the BMC FRU.
-On OpenPower systems, the BMC also supports just one VPD format, the
-[OpenPower VPD] [1] format.  As a part of its enterprise class servers, IBM will
-use the IPZ format VPD, which the BMC currently does not support.
-Certain FRUs also have keyword format VPD.
+Field Replaceable Units (FRUs) today - one example is the BMC FRU. On OpenPower
+systems, the BMC also supports just one VPD format, the [OpenPower VPD] [1]
+format. As a part of its enterprise class servers, IBM will use the IPZ format
+VPD, which the BMC currently does not support. Certain FRUs also have keyword
+format VPD.
 
 The BMC requires to read VPD for all FRUs for several reasons:
 
@@ -19,21 +20,22 @@ The BMC requires to read VPD for all FRUs for several reasons:
 
 - Several use cases on the BMC require that the applications decide on a certain
   code path based on what level of FRU is plugged in. For example, the
-  application that controls voltage regulators might need to set
-  different registers based on the version of the voltage regulator FRU.
+  application that controls voltage regulators might need to set different
+  registers based on the version of the voltage regulator FRU.
 
 - There are use cases for the BMC to send VPD data to the host
   hypervisor/operating system (over PLDM). This is mainly so that the host can
   get VPD that is not directly accessible to it.
 
-The VPD data itself may reside on an EEPROM (typical) or may be
-synthesized out of certain parameters of the FRU (atypical - for FRUs that do
-not have an EEPROM).
+The VPD data itself may reside on an EEPROM (typical) or may be synthesized out
+of certain parameters of the FRU (atypical - for FRUs that do not have an
+EEPROM).
 
 This design document aims to define a high level design for VPD collection and
-VPD access on OpenBMC. It does *not* cover low level API details.
+VPD access on OpenBMC. It does _not_ cover low level API details.
 
 ## Background and References
+
 Essentially, the IPZ VPD structure consists of key-value pairs called keywords.
 Each keyword can be used to contain specific data about the FRU. For example,
 the SN keyword will contain a serial number that can uniquely identify an
@@ -59,6 +61,7 @@ for the following details:
   format VPD is simply a CRC.
 
 ## Requirements
+
 The following are requirements for the VPD function on OpenBMC:
 
 - The BMC must collect VPD for all FRUs that it has direct access to by the time
@@ -70,8 +73,8 @@ The following are requirements for the VPD function on OpenBMC:
 
   Some of the VPD will need to be exchanged with the host.
 
-  Manufacturing and Service engineers need the ability to view and program
-  the FRU VPD without powering the system ON.
+  Manufacturing and Service engineers need the ability to view and program the
+  FRU VPD without powering the system ON.
 
   Certain system level VPD is also used by applications on the BMC to determine
   the system type, model on which it is running.
@@ -104,6 +107,7 @@ The following are requirements for the VPD function on OpenBMC:
   collects VPD for)
 
 ## Proposed Design
+
 This document covers the architectural, interface, and design details. It
 provides recommendations for implementations, but implementation details are
 outside the scope of this document.
@@ -111,8 +115,8 @@ outside the scope of this document.
 The proposal here is to build upon the existing VPD collection design used by
 open power. The current implementation consists of the following entities:
 
-- [op-vpd-parser] [2] service, which parses the contents of an EEPROM
-  containing VPD in the OpenPower VPD format.
+- [op-vpd-parser] [2] service, which parses the contents of an EEPROM containing
+  VPD in the OpenPower VPD format.
 
 - A udev [rule] [3] that is used by systemd to launch the above service as
   EEPROM devices are connected.
@@ -137,22 +141,22 @@ updates will be made:
   would have to filter out non-VPD EEPROMs somehow.
 
 - Each udev rule will be setup to launch an instance of one of the VPD parser
-  services (The format of the VPD in any given EEPROM are known at build time
-  as they are system specific)
+  services (The format of the VPD in any given EEPROM are known at build time as
+  they are system specific)
 
 - The service (one instance of ipz-vpd-parser or keyword-vpd-parser), when
-  launched, will read the EEPROM, parse its contents and use config files
-  to determine what VPD contents to store in the inventory.
+  launched, will read the EEPROM, parse its contents and use config files to
+  determine what VPD contents to store in the inventory.
 
 - The service will update the inventory D-Bus object with the contents of the
-  VPD in the following format: There will be one interface per
-  record (ex, VINI record) which will have each keyword as a property
-  (ex, FN, PN). This will allow us to support multiple records that can have the
-  same keyword and will also serve as means to logically group keywords in the
-  inventory, quite similar to how they are grouped in the actual VPD.
-  For example (some names here are made up, but they help illustrate the point),
-  for the VINI record containing keywords SN, FN and CCIN, the representation in
-  D-Bus would look like:
+  VPD in the following format: There will be one interface per record (ex, VINI
+  record) which will have each keyword as a property (ex, FN, PN). This will
+  allow us to support multiple records that can have the same keyword and will
+  also serve as means to logically group keywords in the inventory, quite
+  similar to how they are grouped in the actual VPD. For example (some names
+  here are made up, but they help illustrate the point), for the VINI record
+  containing keywords SN, FN and CCIN, the representation in D-Bus would look
+  like:
 
 ```
 Interface: com.ibm.ipzvpd.VINI
@@ -176,19 +180,23 @@ Properties:
   manage parallel writes to EEPROMs. The VPD writer service will expose D-bus
   interfaces to update VPD for a FRU given its inventory path.
 
-- Generation of the udev rules and configs shall be layered such that
-  they can be tweaked on a per-system basis.
+- Generation of the udev rules and configs shall be layered such that they can
+  be tweaked on a per-system basis.
 
 ### Open topics
+
 Some open questions:
 
 - Some more thought is needed on how concurrent maintenance (replacing a FRU
-  when the host is up and running) will be handled.  That will be presented in
+  when the host is up and running) will be handled. That will be presented in
   its own design document.
 
 ## Alternatives Considered
+
 The following alternative designs were considered:
+
 ### Write a standalone VPD server app
+
 One option considered was to develop a standalone, do-it-all VPD application on
 the BMC that collects all of the VPD by BMC standby. The application has to be a
 daemon that will expose a set of D-bus interfaces to:
@@ -213,11 +221,13 @@ This option was rejected for the following reasons:
   option allows us to do.
 
 ### Build upon the entity manager
-Using the entity manager: https://github.com/openbmc/entity-manager.
-The Entity manager has an application called the FruDevice, which probes
-/dev/i2c/ for EEPROMs, reads (IPMI format) VPD and stores it on DBUS.
+
+Using the entity manager: https://github.com/openbmc/entity-manager. The Entity
+manager has an application called the FruDevice, which probes /dev/i2c/ for
+EEPROMs, reads (IPMI format) VPD and stores it on DBUS.
 
 The application could be enhanced to:
+
 - Add support for other VPD formats such as the IPZ and keyword format.
 - Perhaps update a different set of data into a different DBUS object, like the
   Inventory manager.
@@ -236,7 +246,9 @@ This option was rejected for the following reasons:
   entire /dev/ tree to pick out EEPROMs.
 
 ## Impacts
+
 The following impacts have been identified:
+
 - The services to parse VPD and store it in the inventory will add some time to
   the BMC boot flow. The impact should be kept to a minimum by achieving maximum
   possible parallelism in the launching of these services.
@@ -245,17 +257,21 @@ The following impacts have been identified:
   interested in.
 
 ## Testing
+
 VPD parsing function can be tested by faking out the VPD EEPROMs as files on the
 filesystem. Such testing can also ensure that the right set of VPD data makes
 its way into the OpenBMC Inventory. There is also a proposal to build in a file
 mode into the application. The file mode will not need real hardware to test the
 code functions, but can use files on the BMC to mimic the EEPROMs.
 
-VPD writes can be tested by writing a small command line utility
-that can invoke the VPD write application's APIs to write VPD.
+VPD writes can be tested by writing a small command line utility that can invoke
+the VPD write application's APIs to write VPD.
 
-[1]:https://www-355.ibm.com/systems/power/openpower/posting.xhtml?postingId=1D060729AC96891885257E1B0053BC95
-[2]:https://github.com/openbmc/meta-openpower/blob/master/recipes-phosphor/vpd/openpower-fru-vpd/op-vpd-parser.service
-[3]:https://github.com/openbmc/meta-openpower/blob/master/recipes-phosphor/vpd/openpower-fru-vpd/70-op-vpd.rules
-[4]:https://github.com/openbmc/meta-openpower/blob/master/recipes-phosphor/vpd/openpower-fru-vpd-layout/layout.yaml
-
+[1]:
+  https://www-355.ibm.com/systems/power/openpower/posting.xhtml?postingId=1D060729AC96891885257E1B0053BC95
+[2]:
+  https://github.com/openbmc/meta-openpower/blob/master/recipes-phosphor/vpd/openpower-fru-vpd/op-vpd-parser.service
+[3]:
+  https://github.com/openbmc/meta-openpower/blob/master/recipes-phosphor/vpd/openpower-fru-vpd/70-op-vpd.rules
+[4]:
+  https://github.com/openbmc/meta-openpower/blob/master/recipes-phosphor/vpd/openpower-fru-vpd-layout/layout.yaml

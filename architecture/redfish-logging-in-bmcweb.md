@@ -1,19 +1,19 @@
 # Redfish Event Logging in bmcweb
 
-This guide is intended to help developers add new messages to the bmcweb
-Redfish event log.
+This guide is intended to help developers add new messages to the bmcweb Redfish
+event log.
 
-Redfish Message Objects can be represented in different ways. In bmcweb, we
-have chosen to use Message Registries with Message Objects that are referenced
-using a MessageId and MessageArgs fields.
+Redfish Message Objects can be represented in different ways. In bmcweb, we have
+chosen to use Message Registries with Message Objects that are referenced using
+a MessageId and MessageArgs fields.
 
 Additional details can be found in the
 [Redfish Specification](http://redfish.dmtf.org/schemas/DSP0266_1.6.1.html).
 
 ## Message Registries
 
-The first step when adding a new message to the Redfish event log is to find
-or add an appropriate message in a Message Registry.
+The first step when adding a new message to the Redfish event log is to find or
+add an appropriate message in a Message Registry.
 
 The bmcweb Message Registries are located under
 "\redfish-core\include\registries" in source code, and they can be examined
@@ -22,8 +22,7 @@ through Redfish under "/redfish/v1/Registries".
 If an appropriate message exists, note the
 
 1. Title of the Message Object (required as the MessageKey in the MessageId).
-2. Args (notated as "%x") in the "Message" field
-(required for the MessageArgs).
+2. Args (notated as "%x") in the "Message" field (required for the MessageArgs).
 
 If an appropriate message does not exist, new messages can be added as follows:
 
@@ -37,28 +36,27 @@ If an appropriate message does not exist, new messages can be added as follows:
 
 ## Logging Messages
 
-Logging messages is done by providing a Redfish MessageId and any
-corresponding MessageArgs to bmcweb.
+Logging messages is done by providing a Redfish MessageId and any corresponding
+MessageArgs to bmcweb.
 
 A Redfish MessageId is represented in this format:
 
 `RegistryName.MajorVersion.MinorVersion.MessageKey`
 
-bmcweb will search the specified Message Registry for the MessageKey,
-construct the final message using the MessageArgs, and display that in the
-event log.
+bmcweb will search the specified Message Registry for the MessageKey, construct
+the final message using the MessageArgs, and display that in the event log.
 
 ### journal-based Redfish Logging
 
-The journal is the current mechanism used to log Redfish Messages. bmcweb
-looks for two fields in the journal metadata:
+The journal is the current mechanism used to log Redfish Messages. bmcweb looks
+for two fields in the journal metadata:
 
 - `REDFISH_MESSAGE_ID`: A string holding the MessageId
 - `REDFISH_MESSAGE_ARGS`: A string holding a comma-separated list of args
 
 These fields can be added to a journal entry using either the
-`phosphor::logging::entry()` command or directly using the
-`sd_journal_send()` command.
+`phosphor::logging::entry()` command or directly using the `sd_journal_send()`
+command.
 
 ### Examples
 
@@ -81,8 +79,8 @@ holds the ResourceCreated message:
 },
 ```
 
-Since there are no parameters, no MessageArgs are required, so this message
-can be logged to the journal as follows:
+Since there are no parameters, no MessageArgs are required, so this message can
+be logged to the journal as follows:
 
 ```cpp
 phosphor::logging::log<log::level>(
@@ -100,6 +98,7 @@ sd_journal_send("MESSAGE=%s", "journal text", "PRIORITY=%i", <LOG_LEVEL>,
 ```
 
 #### Logging a ResourceErrorThresholdExceeded event
+
 The
 [Resource Event Message Registry](https://redfish.dmtf.org/registries/ResourceEvent.1.0.0.json)
 holds the ResourceErrorThresholdExceeded message:
@@ -127,8 +126,8 @@ This message has two parameters, `%1` and `%2`, as indicated in the
 `"NumberOfArgs"` field. The meaning and types of these parameters are derived
 from the `"Message"` and `"ParamTypes"` fields in the Message Registry.
 
-In this example, `%1` is a string holding the property name and `%2` is a
-number holding the threshold value.
+In this example, `%1` is a string holding the property name and `%2` is a number
+holding the threshold value.
 
 The parameters are filled from a comma-separated list of the MessageArgs, so
 this message can be logged to the journal as follows:

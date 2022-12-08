@@ -2,34 +2,37 @@
 
 Author: Adriana Kobylak < anoo! >
 
-Other contributors: Joel Stanley < shenki! >,
-                    Milton Miller
+Other contributors: Joel Stanley < shenki! >, Milton Miller
 
 Created: 2019-06-20
 
 ## Problem Description
+
 Proposal to define an initial storage design for an eMMC device. This includes
 filesystem type, partitioning, volume management, boot options and
 initialization, etc.
 
 ## Background and References
+
 OpenBMC currently supports raw flash such as the SPI NOR found in the systems
 based on AST2400 and AST2500, but there is no design for managed NAND.
 
 ## Requirements
-- Security: Ability to enforce read-only, verification of official/signed
-  images for production.
+
+- Security: Ability to enforce read-only, verification of official/signed images
+  for production.
 
 - Updatable: Ensure that the filesystem design allows for an effective and
   simple update mechanism to be implemented.
 
-- Simplicity: Make the system easy to understand, so that it is easy to
-  develop, test, use, and recover.
+- Simplicity: Make the system easy to understand, so that it is easy to develop,
+  test, use, and recover.
 
 - Code reuse: Try to use something that already exists instead of re-inventing
   the wheel.
 
 ## Proposed Design
+
 - The eMMC image layout and characteristics are specified in a meta layer. This
   allows OpenBMC to support different layouts and configurations. The tarball to
   perform a code update is still built by image_types_phosphor, so a separate
@@ -78,6 +81,7 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
   as it currently does for NOR chips.
 
 ## Alternatives Considered
+
 - Store U-Boot and the Linux kernel in a separate SPI NOR flash device, since
   SOCs such as the AST2500 do not support executing U-Boot from an eMMC. In
   addition, having the Linux kernel on the NOR saves from requiring U-Boot
@@ -89,11 +93,11 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
 
   Format the NOR as it is currently done for a system that supports UBI: a fixed
   MTD partition for U-Boot, one for its environment, and a UBI volume spanning
-  the remaining of the flash. Store the dual kernel volumes in the UBI partition.
-  This approach allows the re-use of the existing code update interfaces, since
-  the static approach does not currently support storing two kernel images.
-  Selection of the desired kernel image would be done with the existing U-Boot
-  environment approach.
+  the remaining of the flash. Store the dual kernel volumes in the UBI
+  partition. This approach allows the re-use of the existing code update
+  interfaces, since the static approach does not currently support storing two
+  kernel images. Selection of the desired kernel image would be done with the
+  existing U-Boot environment approach.
 
   Static MTD partitions could be created to store the kernel images, but
   additional work would be required to introduce a new method to select the
@@ -190,18 +194,18 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
     the same paths as to prevent changes to the applications that rely on the
     location of that data.
 
-  - Provisioning: Since the LVM userspace tools don't offer an offline
-    mode, it's not straightforward to assemble an LVM disk image from a bitbake
-    task. Therefore, have the initramfs create the LVM volume and fetch the
-    rootfs file into tmpfs from an external source to flash the volume. The
-    rootfs file can be fetched using DHCP, UART, USB key, etc. An alternative
-    option include to build the image from QEMU, this would require booting QEMU
-    as part of the build process to setup the LVM volume and create the image
-    file.
+  - Provisioning: Since the LVM userspace tools don't offer an offline mode,
+    it's not straightforward to assemble an LVM disk image from a bitbake task.
+    Therefore, have the initramfs create the LVM volume and fetch the rootfs
+    file into tmpfs from an external source to flash the volume. The rootfs file
+    can be fetched using DHCP, UART, USB key, etc. An alternative option include
+    to build the image from QEMU, this would require booting QEMU as part of the
+    build process to setup the LVM volume and create the image file.
 
 ## Impacts
-This design would impact the OpenBMC build process and code update
-internal implementations but should not affect the external interfaces.
+
+This design would impact the OpenBMC build process and code update internal
+implementations but should not affect the external interfaces.
 
 - openbmc/linux: Kernel changes to support the eMMC chip and its filesystem.
 - openbmc/openbmc: Changes to create an eMMC image.
@@ -211,7 +215,9 @@ internal implementations but should not affect the external interfaces.
   filesystem.
 
 ## Testing
+
 Verify OpenBMC functionality in a system containing an eMMC. This system could
 be added to the CI pool.
 
-[pre-init script]: https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/preinit-mounts/preinit-mounts/init
+[pre-init script]:
+  https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/preinit-mounts/preinit-mounts/init

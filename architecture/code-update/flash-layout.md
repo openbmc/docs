@@ -1,4 +1,5 @@
 # OpenBMC Flash Layout and Filesystem Documentation
+
 This file is focused on providing information about the flash setup that the
 code update application requires to be supported out-of-the-box, which includes
 how the Linux filesystem is setup, filesystem layouts, overlays, boot options,
@@ -6,7 +7,9 @@ and how code update updates the flash modules and boots the new image. See
 [code-update.md](code-update.md) for details about code update interfaces.
 
 ## Design considerations
+
 ### Boot loading and init
+
 For system initialization and bootstrap, [Das U-Boot][] was selected as the
 bootloader.
 
@@ -19,6 +22,7 @@ passed in the device tree, including the flash partitions and the kernel command
 line embedded in the tree.
 
 ### Runtime management
+
 For runtime management, the [systemd][] system and service manager was chosen
 for its configuration, dependency, and triggered action support, as well as its
 robust recovery.
@@ -28,6 +32,7 @@ to be mounted. The filesystems for /dev, /sys, and /proc may be mounted before
 starting systemd. Reference the [systemd File Hierarchy Requirements][].
 
 ### Root filesystem
+
 For storage of the root filesystem, a read-only volume was selected. This allows
 the majority of the filesystem content, including all executables and static
 data files, to be stored in a read-only filesystem image. Replacing read-only
@@ -54,12 +59,14 @@ implementation, and details are located in the Supported Filesystem Choices
 section below.
 
 ## Supported Filesystem Choices
+
 OpenBMC supports code update for the following types of filesystems. Additional
 information is given for each filesystem such as how the filesystem is stored on
 flash, how the filesystem is instantiated during system boot/init, and how code
 update handles the filesystem.
 
 ### Writable Filesystem Options
+
 #### JFFS2 on MTD partition
 
 The majority of the filesystem is stored in a read-only squashfs in an MTD
@@ -116,19 +123,25 @@ flash and the U-Boot environment selects which kernel to use.
 This is a work in progress. See the [eMMC Design Document][].
 
 ### Auxiliary Filesystems
-A tmpfs is used for /tmp, /run, and similar, while /dev, /proc, and
-/sys are supported by their normal kernel special filesystems, as specified by
-the FHS.
+
+A tmpfs is used for /tmp, /run, and similar, while /dev, /proc, and /sys are
+supported by their normal kernel special filesystems, as specified by the FHS.
 
 ## Other
+
 Additional Bitbake layer configurations exist for Raspberry Pi and x86 QEMU
 machines, but are provided primarily for code development and exploration. Code
 update for these environments is not supported.
 
-[Das U-Boot]: https://www.denx.de/wiki/U-Boot
-[systemd]: https://github.com/openbmc/docs/blob/master/architecture/openbmc-systemd.md
-[systemd File Hierarchy Requirements]: https://www.freedesktop.org/wiki/Software/systemd/FileHierarchy/
-[FHS]: https://refspecs.linuxfoundation.org/fhs.shtml
-[obmc-phosphor-initfs]: https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/initrdscripts/obmc-phosphor-initfs.bb
-[preinit-mounts]: https://github.com/openbmc/openbmc/tree/master/meta-phosphor/recipes-phosphor/preinit-mounts
-[eMMC Design Document]: https://github.com/openbmc/docs/blob/master/architecture/code-update/emmc-storage-design.md
+[das u-boot]: https://www.denx.de/wiki/U-Boot
+[systemd]:
+  https://github.com/openbmc/docs/blob/master/architecture/openbmc-systemd.md
+[systemd file hierarchy requirements]:
+  https://www.freedesktop.org/wiki/Software/systemd/FileHierarchy/
+[fhs]: https://refspecs.linuxfoundation.org/fhs.shtml
+[obmc-phosphor-initfs]:
+  https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/initrdscripts/obmc-phosphor-initfs.bb
+[preinit-mounts]:
+  https://github.com/openbmc/openbmc/tree/master/meta-phosphor/recipes-phosphor/preinit-mounts
+[emmc design document]:
+  https://github.com/openbmc/docs/blob/master/architecture/code-update/emmc-storage-design.md
