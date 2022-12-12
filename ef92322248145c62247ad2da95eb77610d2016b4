@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e033190c_c1e8c055",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-12-12T07:43:42Z",
+      "side": 1,
+      "message": "We have a real-world system that is comprised of a large box (which we control), surrounding a smaller box that\u0027s provided by a third-party vendor (which we do not control). The smaller box contains critical components, and all we have from the vendor is an embedded Redfish server providing us with temperature readings. Our large box has fans, under our control, and we are responsible for keeping that smaller box cool during operation. The smaller box has no cooling ability of its own, and it\u0027s our fans that blow on it, so we have to know the temperature of it, via these Redfish readings, in order to regulate our fans.",
+      "parentUuid": "907fa716_c79c430d",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7a9a045_df560c2b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-11T22:22:47Z",
       "side": 1,
       "message": "Will authentication be required/supported?",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 74
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa965504_98f0dd31",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-12-12T07:43:42Z",
+      "side": 1,
+      "message": "Not in the first release. I have provisions in the configuration for allowing username/password of the HTTP server to be configured, and for using HTTPS instead of HTTP, but these are only placeholders for now, and not implemented as code yet.",
+      "parentUuid": "f7a9a045_df560c2b",
       "range": {
         "startLine": 64,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fc3c82e_211f3f55",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-12-12T07:43:42Z",
+      "side": 1,
+      "message": "If the reading attempt fails, the local Value of the corresponding D-Bus sensor will be set to \"NaN\". Is this what is meant by \"Not Available\", or is that something else?\n\nAs for thresholds, I plan to also support thresholds, although most likely not in the first release.",
+      "parentUuid": "34551e33_59ef63ac",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 72
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05a7dcd2_bd85b175",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-11T22:22:47Z",
       "side": 1,
       "message": "These sensors will also be included in SDR, and sensors URI in bmcweb, right?",
+      "range": {
+        "startLine": 130,
+        "startChar": 70,
+        "endLine": 131,
+        "endChar": 47
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77319ff5_f837243d",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-12-12T07:43:42Z",
+      "side": 1,
+      "message": "As for the SDR, no, that is an IPMI-only feature, to my knowledge.\n\nAs for the Sensors endpoint in bmcweb, I hadn\u0027t planned on it. Here\u0027s why. It wouldn\u0027t make sense for the same sensor to be served via Redfish from two different servers. If there\u0027s already a perfectly-good Redfish server on the network serving those sensors, then it would not add any advantage to serve the same sensors again via bmcweb. Also, I want to be sure to avoid infinite recursion if somebody configures RedfishSensor to read from \"localhost\" for example.",
+      "parentUuid": "05a7dcd2_bd85b175",
       "range": {
         "startLine": 130,
         "startChar": 70,
