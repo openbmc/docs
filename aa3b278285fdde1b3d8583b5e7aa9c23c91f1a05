@@ -76,6 +76,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0776e8f_24dc63ca",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2022-12-12T21:26:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75ca8ee6_406bc517",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 249
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c92ca10_042bf500",
@@ -89,6 +113,24 @@
       "writtenOn": "2022-12-07T22:55:34Z",
       "side": 1,
       "message": "I suspect it would be useful to compare and contrast the telemetry implementation too.",
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c10b6fee_f792b8a9",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2022-12-12T21:26:20Z",
+      "side": 1,
+      "message": "Done, If there is more important info that I missed, I would be happy to add more",
+      "parentUuid": "2c92ca10_042bf500",
       "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -166,6 +208,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84ec80b6_18f017a5",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2022-12-12T21:26:20Z",
+      "side": 1,
+      "message": "This has been updated to show the special circumstances of the Utilization Sensors and the intent behind phosphor-health-monitor. If this is wrong or misleading, then I would be happy to fix it.",
+      "parentUuid": "5cced5f2_66de60fc",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 96
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a565bb7_4e44a1a7",
         "filename": "designs/metric-collector.md",
         "patchSetId": 5
@@ -225,6 +291,30 @@
       "side": 1,
       "message": "\u003e Utilization sensors alone does not free p-h-m from the burdens of from physical sensors enough so as to be able to cover all kinds of metrics, such as kb/s, bytes, and \"number of open file descriptors\", etc.\n\nThere is no requirement that PHM implements exclusively Sensor.Value objects either though.\n\n\u003e And also, even if we get rid of the limit on units, only scalar values are supported in Sensor.Values, so we still can\u0027t export graphs, spans, binary blobs, etc.\n\nThree comments:\n\n1. Can you point me to a definition of \"Metric\" that you\u0027re using in this context?  I don\u0027t understand what a \"binary blob metric\" is.  I\u0027m slightly concerned you\u0027re using the word Metric in a Company-Specific way that nobody else is reading into this document.\n\n2. This response leads me to believe we are missing a \"Use Case\" very early in this document.  What are you trying to solve with a \"Metric Collector\", from a user perspective, that isn\u0027t solved already?\n\n3. I sure hope we\u0027re not trying to propose a \"I want to store any arbitrary thing in a random KV-store interface and have it exposed on dbus\" because that isn\u0027t going to fly.  I still expect to see well-documented and programmatically useful interface.  Arbitrary string-referenced fields isn\u0027t acceptable.  If we need to propose new interfaces to satisfy what you need, let\u0027s do it.",
       "parentUuid": "5e43800c_a842a350",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 92
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1ce92ca_860a262e",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2022-12-12T21:26:20Z",
+      "side": 1,
+      "message": "Updated the document to include the special circumstances of utilization sensors\n\n1. Metric is now defined in the doc. I will further clarify if needed.\n2. The use case has been made much more explicit. This is a good point that i will need to put much more emphasis on\n3. No the requirements have been updated to prevent this from happening.",
+      "parentUuid": "f060c654_4c709cfe",
       "range": {
         "startLine": 22,
         "startChar": 0,
@@ -308,6 +398,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98901139_bee40d90",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2022-12-12T21:26:20Z",
+      "side": 1,
+      "message": "Updated the restrictions, please take another look. Thank you!",
+      "parentUuid": "221c1d3a_822baad7",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 161
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d12b8426_32e1dc43",
         "filename": "designs/metric-collector.md",
         "patchSetId": 5
@@ -331,6 +445,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0ac9673_344a5157",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2022-12-12T21:26:20Z",
+      "side": 1,
+      "message": "Updated the problem descriptions. How they are implemented is not important to the design. This establishes how the metrics that are scraped are exported to dbus.",
+      "parentUuid": "d12b8426_32e1dc43",
+      "range": {
+        "startLine": 40,
+        "startChar": 33,
+        "endLine": 40,
+        "endChar": 99
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f957600_b4bbb021",
         "filename": "designs/metric-collector.md",
         "patchSetId": 5
@@ -342,6 +480,30 @@
       "writtenOn": "2022-12-07T22:55:34Z",
       "side": 1,
       "message": "This is fundamentally the reason why things like \"Bytes\" were rejected from the Sensors implementation.  We don\u0027t allow arbitrary strings on dbus like this.  You have no programmatic way to (at compile time) know what \"properties\" are going to be available between daemons and what they mean.  They\u0027re all just trust-me-human strings that we plop in code somewhere and this doesn\u0027t scale.\n\nYou need to use either real dbus enumerations or interfaces to represent the constructs you want to represent.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 68
+      },
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "543d0e1e_09f7105b",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2022-12-12T21:26:20Z",
+      "side": 1,
+      "message": "Real dbus interface proposal is linked in newest patch. The \"arbitrary string\" must always be a property of the dbus interface xyz.openbmc_project.Metric.",
+      "parentUuid": "2f957600_b4bbb021",
       "range": {
         "startLine": 60,
         "startChar": 0,
@@ -383,6 +545,24 @@
       "side": 1,
       "message": "will do",
       "parentUuid": "ea4439c2_3868e887",
+      "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54b9f08b_a352ccbf",
+        "filename": "designs/metric-collector.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2022-12-12T21:26:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea92343e_2e86a6f8",
       "revId": "aa3b278285fdde1b3d8583b5e7aa9c23c91f1a05",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
