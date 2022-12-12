@@ -1,0 +1,266 @@
+# HostRebootTimeMonitor
+
+Author: Michael Shen <gpgpgp@google.com>
+
+Other contributors: Medicine Yeh <medicineyeh@google.com>
+
+Created: December 12, 2022
+
+## Problem Description
+
+In the server area boot time is one of the key factors of the performance.
+Having a detailed reboot time measurement provides us a clear data of the time
+cost of each reboot [stage](#definition-of-each-stage). Although the host can
+collect the boot time breakdown with systemd, the shutdown time for both
+user services and OS kernel are still missing. Especially, the later one is
+impossible to be measured by the host itself. In addition, when a reboot or
+power cycle happens during a reboot flow, there is no way to recover the exact
+reboot duration on each stage because the current standard does not have the
+context of a reboot flow.
+
+This design provides an out-of-band solution to monitor both hardware and
+software events from the hosts and breakdown the boot time by its stages. Also,
+the proposed monitoring service can record the exact events happened during the
+whole reboot flow and provide this information for triaging the root cause of a
+long reboot time.
+
+## Background and References
+
+### phosphor-state-manager
+
+phosphor-state-manager is an OpenBMC Daemon which tracks and controls the state
+of different objects including the BMC, Chassis, Host, and Hypervisor. Some of
+the interface provides useful properties that can be leveraged in reboot time
+measurement. For example
+[CurrentHostState](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Host.interface.yaml)
+provides tells us current host firmware state; And
+[BootProgress](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Boot/Progress.interface.yaml)
+tells us current host boots to which process.
+
+References:
+
+1.  https://github.com/openbmc/phosphor-state-manager
+2.  https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Host.interface.yaml
+3.  https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Boot/Progress.interface.yaml
+
+## Requirements
+
+HostRebootTimeMonitor should
+
+1.  Breakdown the reboot flow into individual **stages**. A reboot flow starts
+    from the end of serving state and ends when the OS enters any of the
+    interaction mode (serving state), e.g. multi-user mode and graphical mode.
+2.  Each stage should be seamless and the summation of stage durations should
+    be the wall clock total reboot duration.
+3.  Report the real reboot flow with its timestamp and durations even there
+    are extra reboot/power cycle events happened in the whole reboot flow.
+    There are some example cases in the [following section]
+    (#reboot-flow-examples).
+4.  Have a special ToS5 stage to record the time transition from the last
+    shutdown stage to the S5 state. Typically, this represents the duration of
+    the last mile like kernel shutdown time which cannot be self-measured
+    precisely at the boundary.
+5.  Allow users to store the actual shutdown logic in the reboot flow. A reboot
+    flow might be triggered by either halt, poweroff, reboot, or kexec.
+6.  Allow users to save extra (arbitrary) durations so that a user can monitor
+    any durations they are interested in.
+7.  Last host reboot information needs to be persisted until the next host
+    reboot flow starts.
+8.  Support multi-host, i.e. each host should have its own data.
+
+## Proposed Design
+
+Here is an example of a standard reboot flow that demonstrates the concepts. The
+design relies on both host (hardware) events and IPMI commands sent from the
+hosts to facilitate the reboot time breakdown and monitoring in a reboot flow.
+
+```
+            power cycle start                                                          power cycle ends
+                    |                                                                          |
+                    |                                                                          |
+                    |                                                                          |
+                    | Userspace |      |     |          |        |        |        |           |
+Stage       Serving | Shutdown  | ToS5 | Off | Firmware | Loader | Kernel | InitRD | Userspace | Serving
+           ---------+------------------+-----+----------+--------+--------+--------+-----------+----------
+                    |           |      |     |          |        |        |        |           |
+                    |           |      |     |          |        |        |        |           |
+                    |           |      |     |          |        |        |        |           |
+                    |  T_last_down_end |    T_s0        |  T_loader_end   |   T_initrd_end     |
+                    |                  |                |                 |                    |
+Timestamp           |                  |                |                 |                    |
+                    |                  |                |                 |                    |
+               T_down_start           T_s5            T_fw_end        T_kernel_end          T_user_end
+
+```
+
+* `T_<timestamp>` represent the timestamp of a [notification command](#TODO link
+    to command).
+
+### Reboot flow
+
+Firstly, one of the most important concept is that there is a definition of
+start and end of a reboot flow. These two events are required in any reboot
+flow. If any is missing, the data is undefined.
+* start event: `T_serving_end` and `T_s0` are both the trigger of start.
+* end event: `T_user_end` is the only event.
+
+After a `start` event is triggered, the monitoring service will enter the
+monitoring mode and record all the collected events until reaching
+the `end` event. Note that, in monitoring mode, the monitoring service
+ignores all `start` events.
+
+### Duration of each stage
+
+The reboot time breakdown problem can be generalized to counting the duration
+spent on each state in a state machine. For example, here is a state transition
+with correlated duration denoted by its name. The duration in state A is 5s,
+state B is 10s, and state C is 16s.
+
+```
+Start --> A(1s) -(0.1s)-> B(2s) -(0.1s)-> A(4s) -(0.1s)-> B(8s) -(0.1s)-> C(16s) --> End
+```
+
+However, the state transition might not be free. In the example above, the
+state transition time of A is `0.1s` while B is `0.1s+0.1s=0.2s`.
+
+To measure the duration of each transient stage in a reboot flow, this design
+defines the duration as:
+
+```
+the end time of current stage - the end time of the last stage
+```
+
+Transition time is only measured when a self-measured duration is given in that
+notification command. When the duration is non zero, the transient stage
+will use that as the duration. In addition, the transition time will be
+calculated by
+
+```
+(the end time of current stage - the end time of the last stage) - duration
+```
+
+There are some alternatives but non of them can provide the same feature:
+* host reports begin/end pair of each stage:
+    This does not represent the actual transition time because not all the
+    stage can send IPMI commands at the very beginning and end of the code.
+    For example, the at the end of the userspace, there is no file system
+    available but there might still be some services need to be turned off.
+    Another example is that early part of BIOS code is controlled by the CPU
+    vendor and there is no source code. There is no way to send IPMI commands.
+* host just sends only end notification without durations:
+    This is impossible to measure the stage transition time.
+
+### Special cases of reboot duration
+
+#### ToS5
+
+During a reboot flow, there are shutdown process and boot up process.
+These two are very similar but different because of requirement 4.
+
+To calculate the duration of `ToS5` stage, the IPMI command has a flag to
+indicate whether this is a notification during shutdown or boot up. The
+duration of `ToS5` is defined as:
+
+```
+T_S5_state - T_last_notification_command
+```
+
+#### Off
+
+Off is another special stage to calculate how long the host has been put off.
+This is defined by two host hardware events instead of IPMI commands.
+```
+T_S0_state - T_the_first_S5_state
+```
+
+### Store custom durations
+
+All the durations reported from set duration commands will be stored and
+reported. HostBootTimeMonitor does not use it for any other purposes.
+
+
+## Reboot flow examples
+-   Tray power-cycle process:
+    `S5->Off->S0->Firmware->Loader->Kernel->InitRD->Userspace->Serving`
+-   Non-graceful reboot process:
+    `Serving->Off->Firmware->Loader->Kernel->InitRD->Userspace->Serving`
+-   Graceful reboot process: `Serving->Userspace
+    Shutdown->ToS5->Off->Firmware->Loader->Kernel->InitRD->Userspace->Serving`
+
+## Implementation
+
+### DBus
+
+DBus will be used as the interface to receive notifications/durations and export
+the boot flow and total duration for each stages.
+The DBus interfaces should provide:
+
+-   Notify
+-   SetDuration
+-   SetRebootTime
+-   GetRebootFlow
+-   GetAllDurations
+
+### IPMI OEM commands
+
+Here we introduce 3 additional IPMI OEM commands that allow the host to send the
+duration or notification to BMC since IPMI is one of the most common interface
+between the host and the BMC. The format is shown in the example below. (Google
+OEM group will be used in the example)
+
+| Command                                   | Bytes                                                                                                                                                             |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Notify (To notify BMC to tag a timestamp) | <netfn+cmd+oem (5 bytes)>* + <subcommand for notification (1 byte)> + <flag for this notification (1 byte)> + <duration in ms (8 bytes)> + <length of duration name (1 byte)> + <duration name (n bytes)> |
+|                                           | e.g. 0x2e 0x32 0x79 0x2b 0x00 0x20 0x00 0xa0 0xbb 0x0d 0x00 0x00 0x00 0x00 0x00 0x04 0x55 0x73 0x65 0x72 (Flag = 1 (boot flow) Duration = 15 mins, Name = "User" in this example)           |
+| Set duration                              | <netfn+cmd+oem (5 bytes)>* + <subcommand for set duration (1 byte)> + <duration in ms (8 bytes)> + <length of duration name (1 byte)> + <duration name (n bytes)> |
+|                                           | e.g. 0x2e 0x32 0x79 0x2b 0x00 0x21 0xa0 0xbb 0x0d 0x00 0x00 0x00 0x00 0x00 0x04 0x44 0x48 0x43 0x50 (Duration = 15 mins, Name = "DHCP" in this example)           |
+| Set reboot type                           | <netfn+cmd+oem (5 bytes)>* + <subcommand for set duration (1 byte)> + <duration in ms (8 bytes)> + <length of duration name (1 byte)> + <duration name (n bytes)> |
+|                                           | e.g. 0x2e 0x32 0x79 0x2b 0x00 0x22 0x00 (Reboot type=0x00)                                                                                                        |
+
+### IPMI blob
+
+The IPMI blob is mainly for export boot flow and duration for each stage to
+host. The raw data will be similar to [HostBootTimeInfo](#date-structure). (one
+vector for the pair of notification and timestamp, another vector for the pair
+of stages and its duration.) Then we will serialize that raw data and put it
+into a blob.
+
+## Alternatives Considered
+
+### Measure the reboot time from current service directly
+
+In current OpenBMC we have
+[phosphor-state-manager](https://github.com/openbmc/phosphor-state-manager) and
+[x86-power-control](https://github.com/openbmc/x86-power-control) that provides
+the `BootProgress` and `CurrentHostState`. We could measure the time delta of a
+certain state transition to know how long it takes to transition from a stage to
+another stage. However we would like the measurement to be more detailed and
+more flexible. So we propose this design instead.
+
+## Impacts
+
+-   Need new IPMI OEM commands
+    -   Notify
+    -   Set duration
+    -   Set reboot type
+-   Need new DBus interfaces `xyz/openbmc_project/Time/Boot`
+
+### Organizational
+
+No new repository is required. Phosphor-state-manager will be modified to
+implement this design.
+
+Repository maintainer list:
+
+-   phosphor-state-manager
+    -   geissonator@yahoo.com
+
+## Testing
+
+What we will test in CI:
+
+-   Unittest for each individual functions
+-   Mock the state change of `CurrentHostState` to ensure an unexpected reboot
+    can be handled correctly.
+-   Mock the receiving IPMI command to ensure the state-transition is expected.
+
