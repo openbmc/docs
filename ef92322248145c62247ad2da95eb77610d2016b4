@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "325e25c7_362b0040",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-12-17T02:51:27Z",
+      "side": 1,
+      "message": "ACK. Thanks for explaining",
+      "parentUuid": "e033190c_c1e8c055",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7a9a045_df560c2b",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Not in the first release. I have provisions in the configuration for allowing username/password of the HTTP server to be configured, and for using HTTPS instead of HTTP, but these are only placeholders for now, and not implemented as code yet.",
       "parentUuid": "f7a9a045_df560c2b",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 74
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7e083f2_6fed47f9",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-12-17T02:51:27Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "aa965504_98f0dd31",
       "range": {
         "startLine": 64,
         "startChar": 0,
@@ -142,6 +190,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c9b0157_185ddfea",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-12-17T02:51:27Z",
+      "side": 1,
+      "message": "There is also a Availability interface. But sounds like these sensors are going to be analogous to other sensors except the \"read\" method.",
+      "parentUuid": "0fc3c82e_211f3f55",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 72
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05a7dcd2_bd85b175",
@@ -179,6 +251,30 @@
       "side": 1,
       "message": "As for the SDR, no, that is an IPMI-only feature, to my knowledge.\n\nAs for the Sensors endpoint in bmcweb, I hadn\u0027t planned on it. Here\u0027s why. It wouldn\u0027t make sense for the same sensor to be served via Redfish from two different servers. If there\u0027s already a perfectly-good Redfish server on the network serving those sensors, then it would not add any advantage to serve the same sensors again via bmcweb. Also, I want to be sure to avoid infinite recursion if somebody configures RedfishSensor to read from \"localhost\" for example.",
       "parentUuid": "05a7dcd2_bd85b175",
+      "range": {
+        "startLine": 130,
+        "startChar": 70,
+        "endLine": 131,
+        "endChar": 47
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e21fa4b_25311416",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-12-17T02:51:27Z",
+      "side": 1,
+      "message": "Sounds like mostly your initial goal is to be able to read the sensors value and include them in thermal control. But I think BMC web and ipmi host may automatically pick them up when scanning dbus for sensor objects and add them to collection.",
+      "parentUuid": "77319ff5_f837243d",
       "range": {
         "startLine": 130,
         "startChar": 70,
