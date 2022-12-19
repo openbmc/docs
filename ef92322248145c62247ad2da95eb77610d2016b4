@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c35734dc_0e424158",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "Overall, I think there\u0027s a design here that could work.  As a general theme, this doc has lots of tangents into unrelated topics that could be removed, which would improve the design considerably.\n\nOne thing that I think this doc is missing is a layout of how the system connections will go on dbus.  Considering these are sensors that cannot be exposed outside the system, it\u0027s not clear how ipmi/redfish can know that those sensors shouldn\u0027t be exposed outside the box.\n\nIt also isn\u0027t clear how this integrates with the aggregation work that\u0027s already been done to make redfish trees forwardable through the system.",
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "907fa716_c79c430d",
         "filename": "designs/redfish-sensor-design.md",
         "patchSetId": 1
@@ -74,6 +91,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64f8b965_361db874",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "I think this sentence can be removed.  Given that we have things like External Sensor, this doesn\u0027t seem correct.",
+      "range": {
+        "startLine": 19,
+        "startChar": 41,
+        "endLine": 20,
+        "endChar": 65
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a5b2e4c_20d33290",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "Please write these requirements as requirements.  Please avoid in the requirements section listing a specific daemon, or implementation.  Requirements here could be something like:\n\n- Must be able to read a redfish-presented sensor from another device and add it to a PID loop\n\nBut as written, it doesn\u0027t decouple the requirements from the implementation.  Please make an attempt to decouple them.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 45
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f7a9a045_df560c2b",
         "filename": "designs/redfish-sensor-design.md",
         "patchSetId": 1
@@ -138,6 +201,144 @@
         "startChar": 0,
         "endLine": 66,
         "endChar": 74
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "547eeb93_624a3056",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "What does \"indirectly\" mean here?",
+      "range": {
+        "startLine": 75,
+        "startChar": 29,
+        "endLine": 77,
+        "endChar": 12
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98aa9b34_74f570b1",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "I\u0027m really not understanding what the connection to magnet links are.  There\u0027s no p2p service in any bmc I\u0027m aware of, so it\u0027s not clear how you\u0027d use DHT to solve this.",
+      "range": {
+        "startLine": 80,
+        "startChar": 68,
+        "endLine": 82,
+        "endChar": 16
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60dbc355_af063c2c",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "This seems like it would duplicate a lot of code with the aggregation that\u0027s already present in bmcweb.  Can you comment on how we can avoid having two different things accessing sensors across redfish instances?  As-is, the existing aggregation code aggregates sensor values as well as other values, so it seems like most of the code to do this is already present, and wouldn\u0027t need to be rewritten?",
+      "range": {
+        "startLine": 98,
+        "startChar": 10,
+        "endLine": 98,
+        "endChar": 35
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3724d1b9_c43c9840",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "Considering that the only thing this will have in common is the dbus interfaces, is dbus-sensors the right place for this?",
+      "range": {
+        "startLine": 99,
+        "startChar": 1,
+        "endLine": 99,
+        "endChar": 12
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d70520e1_1ac3426f",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "How do you avoid duplicating the values across interfaces.  As-is, the redfish aggregation is going to aggregate the sensor values into the redfish tree.  Considering this is adding values to dbus, won\u0027t this add duplicate sensors to the tree?",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 41
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79f37929_4ee4ca5c",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "I don\u0027t think this comparison to external sensor is valuable to this design.  Most sensors operate on a \"pull\" design, a comparison to those, which you\u0027ve already done above, would be much better.",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 63
       },
       "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -304,6 +505,162 @@
         "startChar": 70,
         "endLine": 131,
         "endChar": 47
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21292cf8_330632da",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "\u003e As for the SDR, no, that is an IPMI-only feature\n\nAs you\u0027ve written your design, yes, they would show up in the SDR, which seems like a problem that needs to be overcome.",
+      "parentUuid": "4e21fa4b_25311416",
+      "range": {
+        "startLine": 130,
+        "startChar": 70,
+        "endLine": 131,
+        "endChar": 47
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9301921c_8b9ac3c7",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "bmcweb is also a redfish client.  Please take a look at http_client.hpp",
+      "range": {
+        "startLine": 144,
+        "startChar": 27,
+        "endLine": 144,
+        "endChar": 65
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2e6d6b2_1ed06ffb",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "Can we agree that the code needs to be shared between the two?  I don\u0027t think sharing the code would mean that two daemons couldnt\u0027 have some differing paths.\n\nConsidering the amount of effort that\u0027s already been put into hardening the http_client implementation in bmcweb, I worry that we\u0027re going to duplicate a lot of things that were very hard-earned if we don\u0027t reused the code.",
+      "range": {
+        "startLine": 145,
+        "startChar": 51,
+        "endLine": 147,
+        "endChar": 6
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95a703cc_1da94bc7",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "I\u0027m not sure I agree with that, considering we\u0027re talking about a trusted interface.  I do agree with your conclusion.",
+      "range": {
+        "startLine": 155,
+        "startChar": 62,
+        "endLine": 156,
+        "endChar": 5
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61d43558_ab8ce230",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "I\u0027m not sure that matters in this case?  bmcweb as it is already lives on DBus, even IF we put everything in one daemon (which I agree, we shouldn\u0027t) that should still work, right?",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 23
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c9e4edf_5519afaf",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "Please write up the retry and failure procedures.  Sockets fail in VERY different ways than normal sysfs interfaces do, and that needs accounted for in the design.",
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2338dae7_0444216b",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-12-19T19:26:50Z",
+      "side": 1,
+      "message": "See above.  This is not true as your design is written, it will change Redfish and IPMI.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 29
       },
       "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
