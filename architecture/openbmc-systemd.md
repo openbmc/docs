@@ -113,7 +113,7 @@ start the host power on target.
 
 The `obmc-host-quiesce@.target` is utilized in host error scenarios. When the
 `obmc-host-quiesce@0.target` is entered, it puts the host state D-Bus
-[object][https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/state/host.interface.yaml]
+[object](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Host.interface.yaml)
 in a `Quiesced` state.
 
 ## Server Emergency Power Off due to Error
