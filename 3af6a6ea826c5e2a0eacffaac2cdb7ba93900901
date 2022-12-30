@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d917285_98cc2fe9",
+        "filename": "designs/redfish-sensor-config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001360
+      },
+      "writtenOn": "2022-12-30T23:01:55Z",
+      "side": 1,
+      "message": "Usual sensor URI is something like this:\n/redfish/v1/Chassis/\u003cCHASSIS_ID\u003e/Sensors/\u003cSENSOR_NAME\u003e\n\nIf we specify RedfishName for each Chassis and Sensor and build path using it, then isn\u0027t it essentially same thing.\n\nWould it be possible to probe Chassis based on BOM info like Product Name. Then find all resources it contains.",
+      "revId": "3af6a6ea826c5e2a0eacffaac2cdb7ba93900901",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9062e9be_7aa3bc34",
+        "filename": "designs/redfish-sensor-config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1001360
+      },
+      "writtenOn": "2022-12-30T23:01:55Z",
+      "side": 1,
+      "message": "Is this limitation because of limitation of http client library being used, which does not support timeout? If there is no HTTP response does the redfish sensor wait indefinitely?",
+      "revId": "3af6a6ea826c5e2a0eacffaac2cdb7ba93900901",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dc975dc_92fcae28",
+        "filename": "designs/redfish-sensor-config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1001360
+      },
+      "writtenOn": "2022-12-30T23:01:55Z",
+      "side": 1,
+      "message": "Multi-threaded should be possible and would be better performing when RedfishServer is slow to respond. If the sum of time taken to read all sensors is longer then the polling period then Readings will always be stale.",
+      "range": {
+        "startLine": 242,
+        "startChar": 3,
+        "endLine": 242,
+        "endChar": 19
+      },
+      "revId": "3af6a6ea826c5e2a0eacffaac2cdb7ba93900901",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
