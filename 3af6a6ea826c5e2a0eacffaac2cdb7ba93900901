@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b54483e_8fa3f9c8",
+        "filename": "designs/redfish-sensor-config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-12-31T00:32:25Z",
+      "side": 1,
+      "message": "Yes, that\u0027s true for \"bmcweb\", but that URL layout can\u0027t be assumed. The server could put it anywhere. It\u0027s best to discover it by walking through the Redfish tree and following the appropriate links.\n\nThat\u0027s what the discovery phase of RedfishSensor does now. It walks through the tree and matches it up based on immutable string characteristics of the Chassis and Sensor objects that it finds, such as manufacturer, model number, product name, and so on.",
+      "parentUuid": "9d917285_98cc2fe9",
+      "revId": "3af6a6ea826c5e2a0eacffaac2cdb7ba93900901",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9062e9be_7aa3bc34",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55423452_779e7922",
+        "filename": "designs/redfish-sensor-config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-12-31T00:32:25Z",
+      "side": 1,
+      "message": "Yes. Boost Beast does not support asynchronous resolving of DNS names unless threads are enabled. Boost Beast also doesn\u0027t support built-in timeouts for many operations. The assumption is that you will add your own timers around them, and use the timers to enforce your own timeouts. I will add this feature in the future.",
+      "parentUuid": "9062e9be_7aa3bc34",
+      "revId": "3af6a6ea826c5e2a0eacffaac2cdb7ba93900901",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6dc975dc_92fcae28",
@@ -48,6 +84,30 @@
       "writtenOn": "2022-12-30T23:01:55Z",
       "side": 1,
       "message": "Multi-threaded should be possible and would be better performing when RedfishServer is slow to respond. If the sum of time taken to read all sensors is longer then the polling period then Readings will always be stale.",
+      "range": {
+        "startLine": 242,
+        "startChar": 3,
+        "endLine": 242,
+        "endChar": 19
+      },
+      "revId": "3af6a6ea826c5e2a0eacffaac2cdb7ba93900901",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "435a2ca4_cab8c457",
+        "filename": "designs/redfish-sensor-config.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000520
+      },
+      "writtenOn": "2022-12-31T00:32:25Z",
+      "side": 1,
+      "message": "That\u0027s correct about it falling behind if it takes longer to read all sensors than there is time available during the sensor reading interval. Data is not considered stale, though, until more time has elapsed (currently I am using 4 seconds, to declare data stale if no update has been available for 4 seconds).\n\nI will look into multithreaded, once I get it up and running with single thread behavior.",
+      "parentUuid": "6dc975dc_92fcae28",
       "range": {
         "startLine": 242,
         "startChar": 3,
