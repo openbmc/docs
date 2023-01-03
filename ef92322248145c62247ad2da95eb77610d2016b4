@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f39cc04f_aa3c7465",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "\u003e I\u0027m not sure how a layout would work, or what is meant by \"system connections\".\n\nWhich components communicate with which other components within the system?  What APIs do they use?",
+      "parentUuid": "89c8744d_9546b5b3",
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "907fa716_c79c430d",
         "filename": "designs/redfish-sensor-design.md",
         "patchSetId": 1
@@ -203,6 +221,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd3ad78a_e161e0a8",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "the requirements section should be for requirements, which should not assume an implementation.  This is to explicitly decouple the requirements from the implementation, to track WHY things are being done, rather than WHAT is being done.  The what is arguably less important.",
+      "parentUuid": "d0aa231a_279713fb",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 45
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f7a9a045_df560c2b",
         "filename": "designs/redfish-sensor-design.md",
         "patchSetId": 1
@@ -321,6 +363,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d17a9163_467175a0",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "Maybe use a more specific word \"Shall follow section X of the redfish spec\"",
+      "parentUuid": "eab96892_94137259",
+      "range": {
+        "startLine": 75,
+        "startChar": 29,
+        "endLine": 77,
+        "endChar": 12
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98aa9b34_74f570b1",
         "filename": "designs/redfish-sensor-design.md",
         "patchSetId": 1
@@ -356,6 +422,30 @@
       "side": 1,
       "message": "A magnet link is just a description of how such a link works: instead of encoding a destination\u0027s URL directly, hint at that destination in a roundabout manner, by specifying desired attributes of it (in P2P\u0027s case, it would be file size, checksum, and so forth), and letting the system go out and resolve it to the correct destination desired. This protects against destination URL that frequently move or change. No P2P or DHT or BitTorrent or anything, I\u0027m just using \"magnet link\" here as a general familiar term to describe the concept of using attributes to hint at the desired URL instead of specifying that URL exactly.",
       "parentUuid": "98aa9b34_74f570b1",
+      "range": {
+        "startLine": 80,
+        "startChar": 68,
+        "endLine": 82,
+        "endChar": 16
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a24e273_604618c4",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "I think the whole section on magnet links should be removed.  It adds very little value to the overall, and confuses the solution.",
+      "parentUuid": "a04d0dea_ab4494e3",
       "range": {
         "startLine": 80,
         "startChar": 68,
@@ -415,6 +505,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15226706_6c3ec0a9",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "\u003e I added some more to \"Alternatives Considered\" which addresses this. Reason is, using a Redfish aggregator would just bring the remote Redfish sensors onto the local Redfish server. The goal is to bring the Redfish sensors onto D-Bus, not just mirror them on the local Redfish server.\n\n\"Bring to dbus\" and \"mirror\" aren\u0027t that different in terms of code.  Most of the code is in retry logic, and redfish tree accesors.\n\n\u003e \n\u003e Also, if two different things access sensors on Redfish interfaces, that isn\u0027t a problem. A good Redfish server can handle two clients at once.\n\nI\u0027m not worried about multiple connections, I\u0027m worried about duplicating code that we\u0027ve already spent significant effort to get right (error handling, url parsing, ect).  Also, there are Redfish servers that cannot handle multiple clients at once.",
+      "parentUuid": "780ceb61_b12c3705",
+      "range": {
+        "startLine": 98,
+        "startChar": 10,
+        "endLine": 98,
+        "endChar": 35
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3724d1b9_c43c9840",
         "filename": "designs/redfish-sensor-design.md",
         "patchSetId": 1
@@ -462,6 +576,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84238907_64e54cb2",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "I don\u0027t think so.  dbus-sensors is for hardware -\u003e dbus conversions.  It has almost nothing in common code-wise with a TCP socket -\u003e dbus conversion.\n\nI would prefer this go into something Redfish-specific.",
+      "parentUuid": "3dadd0a7_5f2ca1ff",
+      "range": {
+        "startLine": 99,
+        "startChar": 1,
+        "endLine": 99,
+        "endChar": 12
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d70520e1_1ac3426f",
         "filename": "designs/redfish-sensor-design.md",
         "patchSetId": 1
@@ -497,6 +635,30 @@
       "side": 1,
       "message": "I expanded on this, under the Impacts section, as mentioned in an earlier comment. It avoids adding duplicates to bmcweb, or creating any new local Redfish sensors. It does this by not creating a Chassis to contain the D-Bus sensors published locally by RedfishSensor. That way, bmcweb will not pick them up.",
       "parentUuid": "d70520e1_1ac3426f",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 41
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79940241_989902a7",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "Doesn\u0027t answer the question for the other interfaces (ie IPMI) which doesn\u0027t use the chassis association.",
+      "parentUuid": "ed0bd0c6_8e5a090e",
       "range": {
         "startLine": 101,
         "startChar": 0,
@@ -770,6 +932,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ca76509_659d84d9",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "\u003e I consider it a feature, not a bug. \n\nPlease call this out in your requirements section then.",
+      "parentUuid": "e81fb4d2_57065dd3",
+      "range": {
+        "startLine": 130,
+        "startChar": 70,
+        "endLine": 131,
+        "endChar": 47
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9301921c_8b9ac3c7",
         "filename": "designs/redfish-sensor-design.md",
         "patchSetId": 1
@@ -817,6 +1003,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f98d30b_b41b8386",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "Yes.  The aggregation code already uses this.",
+      "parentUuid": "291b2160_64c1857e",
+      "range": {
+        "startLine": 144,
+        "startChar": 27,
+        "endLine": 144,
+        "endChar": 65
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2e6d6b2_1ed06ffb",
         "filename": "designs/redfish-sensor-design.md",
         "patchSetId": 1
@@ -852,6 +1062,30 @@
       "side": 1,
       "message": "Hmm. I\u0027m open to that, but it\u0027s an implementation detail. I\u0027m open to reusing the code. I took a look at the http_client.hpp file in bmcweb. Can it be decoupled from Crow?",
       "parentUuid": "c2e6d6b2_1ed06ffb",
+      "range": {
+        "startLine": 145,
+        "startChar": 51,
+        "endLine": 147,
+        "endChar": 6
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f58d9ba3_6b4e00ab",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "\u003e it\u0027s an implementation detail.\n\nNot at this level.  It\u0027s a pretty key design point of reuse versus rewrite.  You\u0027re right, it\u0027s not a \"requirement\" but it is part of the design.\n\n\u003e Can it be decoupled from Crow?\n\nIt was never a part of crow, so I\u0027m not sure what you mean.",
+      "parentUuid": "cf798d4c_dc34af58",
       "range": {
         "startLine": 145,
         "startChar": 51,
@@ -958,6 +1192,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fba71b2e_4f24b4b3",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "Please update the document to account for the difference here.",
+      "parentUuid": "edbebeb8_d0e76dec",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 23
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c9e4edf_5519afaf",
         "filename": "designs/redfish-sensor-design.md",
         "patchSetId": 1
@@ -987,6 +1245,24 @@
       "side": 1,
       "message": "Isn\u0027t that more of an implementation issue than a design issue? Where to put it in this document at? I have added it in the \"Alternatives Considered\" section, alongside the other strawmen.",
       "parentUuid": "4c9e4edf_5519afaf",
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5131a4c_80672640",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "\u003e Isn\u0027t that more of an implementation issue than a design issue? \n\nNo.  It should be part of the requirements.",
+      "parentUuid": "786d91d0_9be937b1",
       "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1028,6 +1304,30 @@
       "side": 1,
       "message": "I rewrote and expanded this area a little. It doesn\u0027t fundamentally change Redfish, IPMI, or D-Bus, but rather, makes use of existing API there.",
       "parentUuid": "2338dae7_0444216b",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 29
+      },
+      "revId": "ef92322248145c62247ad2da95eb77610d2016b4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee632178_763d7bab",
+        "filename": "designs/redfish-sensor-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-01-03T17:56:31Z",
+      "side": 1,
+      "message": "That\u0027s fine it uses existing APIs, but there IS user impact, which is the point of this section.",
+      "parentUuid": "c5906f69_d8d4858a",
       "range": {
         "startLine": 183,
         "startChar": 0,
