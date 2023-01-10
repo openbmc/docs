@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78863b7b_930cc193",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000052
+      },
+      "writtenOn": "2023-01-10T19:53:33Z",
+      "side": 1,
+      "message": "Is the purpose for just system metrics?  All BMC firmware metrics? I think the name metric collector might be too generic.  It could be confused with other host related telemetry.",
+      "revId": "024bfe79e4e011baa9b9f7f93197ceeaf7393ded",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e3eb109_139f2c6b",
+        "filename": "designs/bmc-metric-collector.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000052
+      },
+      "writtenOn": "2023-01-10T19:53:33Z",
+      "side": 1,
+      "message": "It would be nice to support storing some set of timestamped metrics instead of the latest cached metric value.  The metric collector might sample at a higher frequency, and some downstream exporter will read in a batch from the metric collector at lower frequency, saves on dbus transactions.",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 26
+      },
+      "revId": "024bfe79e4e011baa9b9f7f93197ceeaf7393ded",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51880a2e_e97d476f",
+        "filename": "designs/bmc-metric-collector.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000052
+      },
+      "writtenOn": "2023-01-10T19:53:33Z",
+      "side": 1,
+      "message": "What are the expected use cases? Reading metrics one by one over dbus seems really inefficient.  Is the use case for some client to only care about one or two of a metric?  Or is it more likely to want to read a subset or even the entirety?  A collector would want to read an entirety potentially.  If there are different collection frequencies then a more sophisticated collection methods need to be supported on the interface.\n\nThere was an interested discussion back in 2018 on how to collect metrics\nhttps://lists.ozlabs.org/pipermail/openbmc/2017-December/thread.html#10063\nhttps://lists.ozlabs.org/pipermail/openbmc/2018-January/thread.html#10288\n(or https://lore.kernel.org/openbmc/?q\u003dMetrics+vs+Logging)\n\nIt\u0027s not as relevant today, doesn\u0027t discuss Redfish.  But the points about reliability of the collection daemon, graceful failures are still valid.",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 49
+      },
+      "revId": "024bfe79e4e011baa9b9f7f93197ceeaf7393ded",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
