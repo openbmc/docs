@@ -407,6 +407,25 @@ relevant to OpenBMC work:
 - Ensure that your code compiles without warnings, especially for changes to the
   kernel.
 
+## Best practices for Systemd use by OpenBMC
+
+- Systemd services should be contained within the OpenBMC repository they are
+  associated with
+
+- Systemd services should list their dependencies using Wants/After to ensure
+  required service are started
+
+- If your repository provides a shared library, it should appropriately handle
+  any D-Bs dependencies it has
+
+  This may be clear documentation on what type of error or exception is returned
+  or it may be ensuring the required D-Bus service is automatically activated
+  upon calling it.
+
+- See this
+[doc](https://github.com/openbmc/docs/blob/master/architecture/openbmc-systemd.md)
+for more information on OpenBMC and its use of Systemd
+
 ## Pace of Review
 
 Contributors who are used to code reviews by their team internal to their own
