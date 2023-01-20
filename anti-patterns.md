@@ -429,3 +429,60 @@ that is more generally applicable (e.g. host power-on procedures).
 
 Consider what functionality the GPIO provides and design or exploit an existing
 interface to expose that behaviour instead.
+
+## Very long lambda callbacks
+
+### Identification
+
+C++ code that is similar to the following:
+
+```cpp
+dbus::utility::getSubTree("/", interfaces,
+                         [asyncResp](boost::system::error_code& ec,
+                                     MapperGetSubTreeResult& res){
+                            <too many lines of code>
+                         })
+```
+
+### Description
+
+Inline lambdas, while useful in some contexts, are difficult to read, and have
+inconsistent formatting with tools like `clang-format`, which causes significant
+problems in review, and in applying patchsets that might have minor conflicts.
+In addition, because they are declared in a function scope, they are difficult
+to unit test, and produce log messages that are difficult to read given their
+unnamed nature. They are also difficult to debug, lacking any symbol name to
+which to attach breakpoints or tracepoints.
+
+### Background
+
+Lambdas are a natural approach to implementing callbacks in the context of
+asynchronous IO. Further, the Boost and sdbusplus ASIO APIs tend to encourage
+this approach. Doing something other than lambdas requires more effort, and so
+these options tend not to be chosen without pressure to do so.
+
+### Resolution
+
+Prefer to either use `std::bind_front` and a method or static function to handle
+the return, or a lambda that is less than 10 lines of code to handle an error
+inline. In cases where `std::bind_front` cannot be used, such as in
+`sdbusplus::asio::connection::async_method_call`, keep the lambda length less
+than 10 lines, and call the appropriate function for handling non-trivial
+transforms.
+
+```cpp
+void afterGetSubTree(std::shared_ptr<bmcweb::AsyncResp>& asyncResp,
+                     boost::system::error_code& ec,
+                     MapperGetSubTreeResult& res){
+   <many lines of code>
+}
+dbus::utility::getSubTree("/xyz/openbmc_project/inventory", interfaces,
+                         std::bind_front(afterGetSubTree, asyncResp));
+```
+
+See also the [Cpp Core Guidelines][] for generalized guidelines on when lambdas
+are appropriate. The above recommendation is aligned with the Cpp Core
+Guidelines.
+
+[Cpp Core Guidelines]:
+  https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f11-use-an-unnamed-lambda-if-you-need-a-simple-function-object-in-one-place-only
