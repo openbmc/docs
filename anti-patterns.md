@@ -523,3 +523,40 @@ segregation in path from the implementation serves no purpose.
 
 Place internal header files immediately alongside source files containing the
 corresponding implementation.
+
+## Externalising D-Bus dependencies
+
+### Identification
+
+The systemd service unit for the daemon contains dependencies on the
+mapper-wait@ service unit.
+
+```
+Wants=mapper-wait@-xyz-openbmc_project-inventory.service
+After=mapper-wait@-xyz-openbmc_project-inventory.service
+```
+
+### Description
+
+Daemons whose service unit depends on `mapper-wait@.service` are unlikely to
+appropriately handle the failure of object's D-Bus connection.
+
+### Background
+
+The mapper abstracts the connection name of the daemon hosting an object at a
+given D-Bus path by allowing services to query which connection hosts such an
+object. Given that, there's no way to rely on D-Bus service activation to
+acquire access to the object, hence the provision of mapper-wait. However, it's
+likely that applications depending on mapper-wait assume the dependency is
+always satisfied in time.
+
+### Resolution
+
+Applications should be written in an event-driven manner that allows them to
+cope with zero instances of their required object paths being present in the
+system. Further, reliance on the mapper should be restricted to cases there's an
+undefined number of objects implementing a given interface and no constraint on
+the arrangement of connections hosting them (e.g. objects implementing
+`xyz.openbmc_project.Sensor.Value`).
+
+For all other cases it's possible to exploit well-known connection names.
