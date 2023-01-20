@@ -485,3 +485,41 @@ Guidelines.
 
 [Cpp Core Guidelines]:
   https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f11-use-an-unnamed-lambda-if-you-need-a-simple-function-object-in-one-place-only
+
+## Placing internal headers in a parallel subtree
+
+### Identification
+
+Declaring types and functions that do not participate in a public API of a
+library in header files that do not live alongside their implementation in the
+source tree.
+
+### Description
+
+There's no reason to put internal headers in a parallel subtree (for example,
+`include/`). It's more effort to organise, puts unnecessary distance between
+declarations and definitions, and increases effort required in the build system
+configuration.
+
+### Background
+
+In C and C++, header files expose the public API of a library to its consumers
+and need to be installed onto the developer's system in a location known to the
+compiler. To delineate which header files are to be installed and which are not,
+the public header files are often placed into an `include/` subdirectory of the
+source tree to mark their importance.
+
+Any functions or structures that are implementation details of the library
+should not be provided in its installed header files. Ignoring this philosphy
+over-exposes the library's design and may lead to otherwise unnecessary API or
+ABI breaks in the future.
+
+Further, projects whose artifacts are only application binaries have no public
+API or ABI in the sense of a library. Any header files in the source tree of
+such projects have no need to be installed onto a developer's system and
+segregation in path from the implementation serves no purpose.
+
+### Resolution
+
+Place internal header files immediately alongside source files containing the
+corresponding implementation.
