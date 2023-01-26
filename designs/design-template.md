@@ -81,7 +81,8 @@ solve? Who are the users of this solution? What is required to be produced? What
 is the scope of this effort? Your job here is to quickly educate others about
 the details you know about the problem space, so they can help review your
 implementation. Roughly estimate relevant details. How big is the data? What are
-the transaction rates? Bandwidth?
+the transaction rates? Bandwidth? How will the feature be configured, and what
+option class does it fall into? (see archiecture/optionality.md)
 
 ## Proposed Design
 
