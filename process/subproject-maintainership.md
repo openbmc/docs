@@ -125,7 +125,7 @@ become a maintainer:
 > - expertise: typically demonstrated by significant contributions to the code
 >   or code reviews
 
-[FOSS]: https://en.wikipedia.org/wiki/Free_and_open-source_software
+[foss]: https://en.wikipedia.org/wiki/Free_and_open-source_software
 
 Further, the community of maintainers inside the project [isn't broad enough to
 accommodate the review load][ed-is-only-human]. While unresponsive maintainers
