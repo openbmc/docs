@@ -124,6 +124,24 @@
       "parentUuid": "5842c802_5e8ced8e",
       "revId": "43e516eda177cc19a6e0f02b224466c1e743ea15",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db15fe38_e3971daa",
+        "filename": "anti-patterns.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-29T22:46:56Z",
+      "side": 1,
+      "message": "You\u0027re not waiting for an interface to show up, you\u0027re waiting for a path to show up on an unknown service.  Yes, this is what mapper does.  I don\u0027t think we want everyone reimplementing mapper in their own process.  Therefore, we\u0027d need an API that mapper provides that gives similar results as what mapper-wait does?  This is why I don\u0027t think there is anything obvious to point to as a solution here.",
+      "parentUuid": "895d677f_d1b072b6",
+      "revId": "43e516eda177cc19a6e0f02b224466c1e743ea15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
