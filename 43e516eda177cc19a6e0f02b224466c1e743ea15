@@ -160,6 +160,24 @@
       "parentUuid": "db15fe38_e3971daa",
       "revId": "43e516eda177cc19a6e0f02b224466c1e743ea15",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4f96f50_3c428adc",
+        "filename": "anti-patterns.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-29T23:40:07Z",
+      "side": 1,
+      "message": "\u003e Better to wait for a well known connection name that is guaranteed to provide the path of interest,\n\nI strongly disagree with this from as an architectural choice.  We\u0027ve gone back and forth on it.  \n\nGenerally speaking it doesn\u0027t work for cases where there are multiple of something, unless we shove everything of one type in a single executable.  This pretty much precludes any possibility of non-open implementations of anything and it also makes multi-host designs much harder with the current code-base.",
+      "parentUuid": "95cde6a0_9bea128a",
+      "revId": "43e516eda177cc19a6e0f02b224466c1e743ea15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
