@@ -196,6 +196,24 @@
       "parentUuid": "c4f96f50_3c428adc",
       "revId": "43e516eda177cc19a6e0f02b224466c1e743ea15",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db503bcc_6b53de3a",
+        "filename": "anti-patterns.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-01-30T02:00:21Z",
+      "side": 1,
+      "message": "That\u0027s only required in some cases, not all. Here\u0027s a quick analysis of stuff using `mapper-wait@.service`:\n\nhttps://gist.github.com/amboar/2de16ec94e9595e87122f6f0d3772a42\n\nDependencies targeted by this anti-pattern are those that aren\u0027t parameterised:\n\n```\nWants\u003dmapper-wait@-org-openbmc-HostIpmi-1.service\n        meta-phosphor/recipes-phosphor/ipmi/phosphor-ipmi-host/xyz.openbmc_project.Ipmi.Internal.SoftPowerOff.service\n\nWants\u003dmapper-wait@-org-openbmc-mboxd.service\n        meta-phosphor/recipes-phosphor/mboxd/mboxd/mboxd-reload@.service\n\nWants\u003dmapper-wait@-xyz-openbmc_project-control-nvme.service\n        meta-quanta/meta-gbs/recipes-gbs/gbs-sysinit/files/gbs-sysinit.service\n        meta-quanta/meta-gbs/recipes-phosphor/sensors/phosphor-nvme/xyz.openbmc_project.nvme.manager.service.replace\n\nWants\u003dmapper-wait@-xyz-openbmc_project-inventory.service\n        meta-ibm/recipes-phosphor/fans/phosphor-fan/swift/phosphor-cooling-type@.service\n        meta-ibm/recipes-phosphor/fans/phosphor-fan/witherspoon/phosphor-cooling-type@.service\n        meta-ingrasys/meta-zaius/recipes-phosphor/gpio/phosphor-gpio-monitor/phosphor-gpio-presence@.service\n        meta-inspur/meta-fp5280g2/recipes-phosphor/fans/phosphor-fan/phosphor-cooling-type@.service\n        meta-openpower/recipes-phosphor/network/first-boot-set-mac/first-boot-set-mac@.service\n        meta-openpower/recipes-phosphor/occ/openpower-occ-control/org.open_power.OCC.Control.service\n        meta-openpower/recipes-phosphor/vpd/openpower-fru-vpd/op-vpd-parser.service\n        meta-phosphor/recipes-phosphor/dbus/phosphor-dbus-monitor/phosphor-msl-verify.service\n        meta-phosphor/recipes-phosphor/ipmi/phosphor-ipmi-fru/obmc-read-eeprom@.service\n        meta-quanta/meta-gbs/recipes-gbs/gbs-sysinit/files/gbs-sysinit.service\n        meta-quanta/meta-gbs/recipes-phosphor/gpio/phosphor-gpio-monitor/phosphor-gpio-presence@.service.replace\n        meta-quanta/meta-olympus-nuvoton/recipes-olympus-nuvoton/power/first-boot-set-psu/first-boot-set-psu@.service\n\nWants\u003dmapper-wait@-xyz-openbmc_project-led-groups.service\n        meta-ibm/meta-romulus/recipes-phosphor/gpio/id-button/id-button-pressed.service\n        meta-ibm/recipes-phosphor/gpio/id-button/id-button-pressed.service\n        meta-phosphor/recipes-phosphor/leds/phosphor-led-manager/obmc-fru-fault-monitor.service\n\nWants\u003dmapper-wait@-xyz-openbmc_project-network-snmp.service\n        meta-ibm/recipes-phosphor/dbus/phosphor-dbus-monitor/phosphor-dbus-monitor-snmp.conf\n\nWants\u003dmapper-wait@-xyz-openbmc_project-settings-fanctrl.service\n        meta-quanta/meta-gbs/recipes-google/acpi-power-state/acpi-power-state-daemon/gbs-host-s0-set-failsafe.service\n        meta-quanta/meta-gbs/recipes-google/acpi-power-state/acpi-power-state-daemon/gbs-host-s5-set-failsafe.service\n```\n\nMost of these I suspect are provided by a single process, in which case an alternative implementation just needs to acquire the well known connection name.\n\nPerhaps I have a misunderstanding?",
+      "parentUuid": "c4f96f50_3c428adc",
+      "revId": "43e516eda177cc19a6e0f02b224466c1e743ea15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
