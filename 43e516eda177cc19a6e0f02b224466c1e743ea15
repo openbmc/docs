@@ -214,6 +214,24 @@
       "parentUuid": "c4f96f50_3c428adc",
       "revId": "43e516eda177cc19a6e0f02b224466c1e743ea15",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c636d404_e026e319",
+        "filename": "anti-patterns.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-30T14:26:34Z",
+      "side": 1,
+      "message": "\u003e non-open implementations can claim com.foocorp.foo and xyz.openbmc_project.foo at the same time, announcing their \u0027alternativeness\u0027 by way of com.foocorp and advertising their API compatibility by way of xyz.openbmc_project.\n\nI agree when there is intentionally only \"one of\".  I was thinking more specifically about a proposal Google brought up at OCP, which they claimed they had Intel and AMD on board with, to add an interface for crash-dump like data collection that both Intel and AMD would have closed-source services for.  A blade / chassis-manager design can\u0027t handle a \"reserved name for the location of the crash-dump initiation\" since you can have a mixture of AMD/Intel/Ampere blades.\n\n\u003e If I were to interpret this as an invitation to add latency and complexity in the general case to satisfy my specific use cases, what would be wrong with that?\n\nI\u0027m sure there is a spectrum of complexity here, so I don\u0027t know what you have in mind behind this question.  I don\u0027t see prefacing calls with a mapper lookup as significant complexity.\n\nI gave multi-host designs as an example because, yes, it is something I care about.  IBM has mentioned some kind of aggregation service in a multi-node design of their own.  I don\u0027t know how you make that work without mapper because you have some local entities and some hosted by the aggregation service.  Maybe I\u0027ve just not thought about it enough.\n\nIn terms of \"my specific use cases\", it probably depends on the specific complexity and contributor(s), no?  An addition of complexity proposed by a major contributor, I think, merits more consideration than one by a drive-by.  But, even in terms of major contributors there is probably some point where the complexity is more than other maintainers are willing to absorb.\n\n\u003e That\u0027s only required in some cases, not all. Here\u0027s a quick analysis of stuff using mapper-wait@.service:\n\nI do agree that most of these can likely be simplified to avoid the mapper-wait.  We also need to consider ones installed by repositories directly because there are many of those.  For what it\u0027s worth, on Bletchley which is a \"simple\" design (as there is no IPMI/PLDM to the managed hosts), there are lots of mapper-waits as well.\n\n```\nroot@bletchley:/lib/systemd/system# ls *.service | xargs grep Wants\u003dmapper-wait | wc -l\n62\n```\n\nAnother thing which comes to mind is that we do still have some processes which are claiming their busname before they create their objects (which is not correct in most cases), so it isn\u0027t always a simple mapper-wait to dbus-activation transformation.\n\n\u003e Wants\u003dmapper-wait@-org-openbmc-HostIpmi-1.service\n\nThis one looks like a hard-coded parameterization.  Not sure the intent there, but anything with \u0027org.openbmc\u0027 probably deserves to be re-examined anyhow.\n\n\u003e Wants\u003dmapper-wait@-xyz-openbmc_project-inventory.service\n\nThis one is likely wrong anyhow considering EM exists (at least for meta-phosphor recipes).",
+      "parentUuid": "db503bcc_6b53de3a",
+      "revId": "43e516eda177cc19a6e0f02b224466c1e743ea15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
