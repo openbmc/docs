@@ -114,6 +114,80 @@ string:"/" int32:0 array:string:"xyz.openbmc_project.Sensor.Threshold.Warning"
 
 Find all object paths and services that implement a specific interface.
 
+### GetAssociatedSubTree
+
+Use this method to find the objects, services, and interfaces in the specified
+subtree that implement a certain interface and an endpoint of the inputted
+associationPath. If no interfaces are passed in, then all
+objects/services/interfaces in the subtree and associated endpoint are returned.
+If interfaces are passed in, then only those interfaces are returned in the
+output.
+
+Inputs:
+
+- param: associationPath - the path to look for the association endpoints.
+- param: subtree - the root of the tree. Using "/" will search the whole tree
+- param: depth - the maximum depth of the tree past the root to search. Use 0 to
+  search all
+- param: interfaces - an optional list of interfaces to constrain the search to
+
+Output:
+
+- Map of object paths to a map of service names to their interfaces that is in
+  the associated endpoints
+
+```
+dbus-send --system --print-reply \
+--dest=xyz.openbmc_project.ObjectMapper \
+/xyz/openbmc_project/object_mapper \
+xyz.openbmc_project.ObjectMapper.GetAssociatedSubTree \
+objpath:"/${ASSOCIATED_PATH}" \
+objpath:"/" int32:0 array:string:"xyz.openbmc_project.Sensor.Threshold.Warning"
+
+   array [
+      dict entry(
+         string "/xyz/openbmc_project/sensors/current/ps0_output_current"
+         array [
+            dict entry(
+               string "xyz.openbmc_project.Hwmon-1040041051.Hwmon1"
+               array [
+                  string "xyz.openbmc_project.Sensor.Threshold.Critical"
+                  string "xyz.openbmc_project.Sensor.Threshold.Warning"
+                  string "xyz.openbmc_project.Sensor.Value"
+               ]
+            )
+         ]
+      )
+      dict entry(
+         string "/xyz/openbmc_project/sensors/current/ps1_output_current"
+         array [
+            dict entry(
+               string "xyz.openbmc_project.Hwmon-1025936882.Hwmon1"
+               array [
+                  string "xyz.openbmc_project.Sensor.Threshold.Critical"
+                  string "xyz.openbmc_project.Sensor.Threshold.Warning"
+                  string "xyz.openbmc_project.Sensor.Value"
+               ]
+            )
+         ]
+      )
+...
+
+
+# All output must be in the association endpoints
+busctl get-property  xyz.openbmc_project.ObjectMapper \
+   /${ASSOCIATED_PATH} \
+  xyz.openbmc_project.Association endpoints
+as N "/xyz/openbmc_project/sensors/current/ps0_output_current" \
+  "/xyz/openbmc_project/sensors/current/ps1_output_current" \
+  ...
+```
+
+#### Example Use Case
+
+Find all object paths and services that implement a specific interface
+and endpoint of the inputted associationPath.
+
 ### GetSubTreePaths
 
 This is the same as GetSubTree, but only returns object paths
@@ -142,6 +216,50 @@ string:"/" int32:0 array:string:"xyz.openbmc_project.Sensor.Threshold.Warning"
       string "/xyz/openbmc_project/sensors/power/ps0_input_power"
 ...
    ]
+```
+
+#### Example Use Case
+
+Find all object paths that implement a specific interface.
+
+### GetAssociatedSubTreePaths
+
+This is the same as GetAssociatedSubTreePaths, but only returns object paths
+
+Inputs:
+
+- param: associationPath - the path to look for the association endpoints.
+- param: subtree - the root of the tree. Using "/" will search the whole tree
+- param: depth - the maximum depth of the tree past the root to search. Use 0 to
+  search all
+- param: interfaces - an optional list of interfaces to constrain the search to
+
+Output:
+
+- array of object paths in that subtree that is in the associated endpoints
+
+```
+dbus-send --system --print-reply \
+--dest=xyz.openbmc_project.ObjectMapper \
+/xyz/openbmc_project/object_mapper \
+xyz.openbmc_project.ObjectMapper.GetAssociatedSubTreePaths \
+objpath:"/${ASSOCIATED_PATH}" objpath:"/" int32:0 array:string:"xyz.openbmc_project.Sensor.Threshold.Warning"
+
+   array [
+      string "/xyz/openbmc_project/sensors/current/ps0_output_current"
+      string "/xyz/openbmc_project/sensors/current/ps1_output_current"
+      string "/xyz/openbmc_project/sensors/power/ps0_input_power"
+...
+   ]
+
+# All output must be in the association endpoints
+busctl get-property  xyz.openbmc_project.ObjectMapper \
+   /${ASSOCIATED_PATH} \
+  xyz.openbmc_project.Association endpoints
+as N "/xyz/openbmc_project/sensors/current/ps0_output_current" \
+  "/xyz/openbmc_project/sensors/current/ps1_output_current" \
+  "/xyz/openbmc_project/sensors/power/ps0_input_power" \
+  ...
 ```
 
 #### Example Use Case
@@ -211,7 +329,8 @@ string:"/xyz/openbmc_project/inventory/system" array:string:
 
 #### Example Use Case
 
-Find a parent object that implements a specific interface.
+Find a parent object that implements a specific interface
+and endpoint of the inputted associationPath.
 
 ## Associations
 
