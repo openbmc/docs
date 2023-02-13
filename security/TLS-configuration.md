@@ -354,7 +354,7 @@ Where `${bmc}` should be `bmc.example.com`. It is convenient to export it as an
 environment variable.
 
 ```
-curl --user root:0penBmc -d @install_ca.json -k -X POST https://${bmc}/redfish/v1/Managers/bmc/Truststore/Certificates
+curl --user root:0penBmc -d @install_ca.json -k -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Managers/bmc/Truststore/Certificates
 
 ```
 
@@ -391,7 +391,7 @@ To replace the server certificate on the OpenBMC server post the content of
 `replace_cert.json` with this command:
 
 ```
-curl --user root:0penBmc -d @replace_cert.json -k -X POST https://${bmc}/redfish/v1/CertificateService/Actions/CertificateService.ReplaceCertificate/
+curl --user root:0penBmc -d @replace_cert.json -k -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/CertificateService/Actions/CertificateService.ReplaceCertificate/
 
 ```
 
