@@ -240,6 +240,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a84b82b9_c56f0c78",
+        "filename": "designs/oem/ibm/nag-on-openbmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000084
+      },
+      "writtenOn": "2023-02-13T03:25:52Z",
+      "side": 1,
+      "message": "These are the possible members to expose\n\n1. log entries with a special flag set to indicate that failure is important\n2. HW Isolation entries \n3. Forced deconfigurations\n4. FCO number and policies\n\nRespective services expose 1 and 2, and settings expose 4\nbut to model 3, all the deconfigurable units need to be modeled by some service.\n\nBut even after all these are available as dbus, we need a service to capture it and put it in a JSON file, right?",
+      "parentUuid": "1ed65c68_2eef2be8",
+      "revId": "4b8f7c050ff3df3cba1ad021f1662d30db605400",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1bcb039e_77a33f5b",
         "filename": "designs/oem/ibm/nag-on-openbmc.md",
         "patchSetId": 4
