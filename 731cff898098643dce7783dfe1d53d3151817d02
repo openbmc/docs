@@ -33,6 +33,24 @@
       "message": "I would definitely prefer Signature here.  The readability on OuterScope is rather poor in my opinion.",
       "revId": "731cff898098643dce7783dfe1d53d3151817d02",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e807c34d_d6577839",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-02-13T19:23:22Z",
+      "side": 1,
+      "message": "In this case, in my opinion, the direct readability takes a lower precedence to code reviews and diffs.  For long lambdas, with Signature set on this, any change to the lambda signature would cause a large diff, as the code below it got re-wrapped in odd ways, which would show up as many lines of change for what amounted to a minor change.  This more than once caused bugs, because we couldn\u0027t effectively review what had changed.\n\nIt should also be noted that the clang-format documentation specifically calls out \"callback-heavy code\" of which I think most asio daemons would qualify.\n\nIdeally there would be an \"OuterScope + 1\" setting, which would give both readability through indent, as well as clean diffs, but so far as I know, that doesn\u0027t exist.\n\nI\u0027m in support of this patchset as it\u0027s written.",
+      "parentUuid": "ebca63a8_aabc7e7e",
+      "revId": "731cff898098643dce7783dfe1d53d3151817d02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
