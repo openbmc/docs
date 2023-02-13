@@ -408,13 +408,13 @@ and verify that the attribute `Oem->OpenBMC->AuthMethods->TLS` is set to true.
 To enable TLS authentication use this command:
 
 ```
-curl --user root:0penBmc  -k -X PATCH -H "ContentType:application/json" --data '{"Oem": {"OpenBMC": {"AuthMethods": { "TLS": true} } } }' https://${bmc}/redfish/v1/AccountService
+curl --user root:0penBmc  -k -X PATCH -H "Content-Type: application/json" --data '{"Oem": {"OpenBMC": {"AuthMethods": { "TLS": true} } } }' https://${bmc}/redfish/v1/AccountService
 ```
 
 To disable TLS authentication use this command:
 
 ```
-curl --user root:0penBmc  -k -X PATCH -H "ContentType:application/json" --data '{"Oem": {"OpenBMC": {"AuthMethods": { "TLS": false} } } }' https://${bmc}/redfish/v1/AccountService
+curl --user root:0penBmc  -k -X PATCH -H "Content-Type: application/json" --data '{"Oem": {"OpenBMC": {"AuthMethods": { "TLS": false} } } }' https://${bmc}/redfish/v1/AccountService
 ```
 
 Other authentication methods like basic authentication can be enabled or
