@@ -290,9 +290,9 @@ The control of this policy can already bet set via the Redfish API.
 
 ```
 #  Power Restore Policy
-curl -k -X PATCH -d '{"PowerRestorePolicy":"AlwaysOn"}' https://${bmc}/redfish/v1/Systems/system
-curl -k -X PATCH -d '{"PowerRestorePolicy":"AlwaysOff"}' https://${bmc}/redfish/v1/Systems/system
-curl -k -X PATCH -d '{"PowerRestorePolicy":"LastState"}' https://${bmc}/redfish/v1/Systems/system
+curl -k -H "Content-Type: application/json" -X PATCH -d '{"PowerRestorePolicy":"AlwaysOn"}' https://${bmc}/redfish/v1/Systems/system
+curl -k -H "Content-Type: application/json" -X PATCH -d '{"PowerRestorePolicy":"AlwaysOff"}' https://${bmc}/redfish/v1/Systems/system
+curl -k -H "Content-Type: application/json" -X PATCH -d '{"PowerRestorePolicy":"LastState"}' https://${bmc}/redfish/v1/Systems/system
 ```
 
 For testing, each policy should be set and verified. The one_time aspect should
