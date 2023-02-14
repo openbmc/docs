@@ -69,6 +69,24 @@
       "parentUuid": "e807c34d_d6577839",
       "revId": "731cff898098643dce7783dfe1d53d3151817d02",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8964149e_bffe97e8",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-02-14T01:59:19Z",
+      "side": 1,
+      "message": "Alright, I found an example by changing the behavior in bmcweb:\n\n```\n--- a/http/http_connection.hpp\n+++ b/http/http_connection.hpp\n@@ -166,12 +166,12 @@ class Connection :\n             adaptor.async_handshake(boost::asio::ssl::stream_base::server,\n                                     [this, self(shared_from_this())](\n                                         const boost::system::error_code\u0026 ec) {\n-                if (ec)\n-                {\n-                    return;\n-                }\n-                doReadHeaders();\n-            });\n+                                        if (ec)\n+                                        {\n+                                            return;\n+                                        }\n+                                        doReadHeaders();\n+                                    });\n```\n\nIt isn\u0027t as simple as 1 vs 2 indentation levels.  I still think it is really ugly to read, but I also understand about the indentation being over-indented and causing high diff churn.",
+      "parentUuid": "57e74b2f_605b0fc9",
+      "revId": "731cff898098643dce7783dfe1d53d3151817d02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
