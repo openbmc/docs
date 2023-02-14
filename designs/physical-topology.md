@@ -61,9 +61,9 @@ bmcweb.
 
 ### phosphor-dbus-interfaces
 
-In the interface definition for Chassis inventory items, we add an association
-definition for each of the relationship types listed above and corresponding
-association definitions for the other item types linking back to a Chassis item.
+In the interface definition for Inventory/Item or the more specific subtypes, we
+add an association definition for each of the relationship types listed above
+and corresponding association definitions linking back to that item.
 
 ### Inventory Managers
 
@@ -75,15 +75,15 @@ Associations, so no changes are needed here.
 #### entity-manager
 
 For entity-manager, we add new `Exposes` stanzas for the upstream and downstream
-ports in the JSON configurations. The upstream port has a connector type (such
-as a backplane connector, power input, etc). The downstream port has type
+ports in the JSON configurations. The upstream port has a type ending in `Port`
+(such as a `BackplanePort`, `PowerInputPort`, etc). The downstream port has type
 `DownstreamPort` and a `ConnectsToType` property that refers to the upstream
 port based on its type.
 
 New code in entity-manager matches these properties and exposes associations on
 D-Bus based on the types of the inventory objects involved. Two Chassis objects
-will have `chassisContains` and `chassisContainedBy`, a Chassis and PowerSupply
-will have `poweredBy` and `powers` respectively, etc.
+will have `containing` and `contained_by`, a Chassis and PowerSupply will have
+`powering` and `powered_by` respectively, etc.
 
 Example JSON configurations:
 
@@ -93,8 +93,8 @@ superchassis.json
 {
     "Exposes": [
         {
-            "Name": "MyConnector",
-            "Type": "BackplaneConnector"
+            "Name": "MyPort",
+            "Type": "BackplanePort"
         }
     ],
     "Name": "Superchassis",
@@ -109,7 +109,7 @@ subchassis.json:
 {
     "Exposes": [
         {
-            "ConnectsToType": "BackplaneConnector",
+            "ConnectsToType": "BackplanePort",
             "Name": "MyDownstreamPort",
             "Type": "DownstreamPort"
         }
@@ -136,13 +136,13 @@ Example `busctl` calls:
 
 ```
 $ busctl get-property xyz.openbmc_project.ObjectMapper \
-/xyz/openbmc_project/inventory/system/chassis/Superchassis/chassisContains \
+/xyz/openbmc_project/inventory/system/chassis/Superchassis/containing \
 xyz.openbmc_project.Association endpoints
 
 as 1 "/xyz/openbmc_project/inventory/system/chassis/Subchassis"
 
 $ busctl get-property xyz.openbmc_project.ObjectMapper \
-/xyz/openbmc_project/inventory/system/chassis/Subchassis/chassisContainedBy \
+/xyz/openbmc_project/inventory/system/chassis/Subchassis/contained_by \
 xyz.openbmc_project.Association endpoints
 
 as 1 "/xyz/openbmc_project/inventory/system/chassis/Superchassis"
@@ -196,3 +196,12 @@ existing repositories.
 All new code in entity-manager and bmcweb will be unit tested using existing
 frameworks and infrastructure. We will add new end-to-end tests in
 openbmc-test-automation to ensure the Redfish output is correct.
+
+## Update history
+
+### February 14, 2023
+
+- Update the example port type and name from `Connector` to `Port`
+- Change the association names based on feedback from phosphor-dbus-interfaces
+  maintainers (chassisContains -> containing, chassisContainedBy ->
+  contained_by, etc)
