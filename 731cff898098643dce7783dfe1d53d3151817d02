@@ -51,6 +51,24 @@
       "parentUuid": "ebca63a8_aabc7e7e",
       "revId": "731cff898098643dce7783dfe1d53d3151817d02",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57e74b2f_605b0fc9",
+        "filename": "style/cpp/.clang-format",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-02-14T01:54:59Z",
+      "side": 1,
+      "message": "\u003e For long lambdas, with Signature set on this, any change to the lambda signature would cause a large diff, as the code below it got re-wrapped in odd ways, which would show up as many lines of change for what amounted to a minor change.\n\nI\u0027m trying to reconcile this with the how the documentation suggests it works.  Why does a signature change cause the whole lambda to be re-wrapped?  The indentation level of the code itself doesn\u0027t seem like it should change based on this:\n\n\u003e Signature (the default) causes the lambda body to be indented one additional level relative to the indentation level of the signature.  OuterScope forces the lambda body to be indented one additional level relative to the parent scope containing the lambda signature.\n\nIt seems like the question is only about if the body gets indented 2 levels or 1.",
+      "parentUuid": "e807c34d_d6577839",
+      "revId": "731cff898098643dce7783dfe1d53d3151817d02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
