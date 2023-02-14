@@ -1,0 +1,169 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e877810f_ed5b33af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-02-14T20:25:50Z",
+      "side": 1,
+      "message": "please wrap at 72/50, not a custom amount. https://cbea.ms/git-commit/",
+      "revId": "da4b1b76f6f7e4eb89dbb1a626ca3bb325c875df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "931fbd5f_90145a4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-02-14T20:25:50Z",
+      "side": 1,
+      "message": "Wrote in a very IBM-centric way, using IBM terminology, would prefer this be wrote using industry standards. \nI don\u0027t understand why a JSON file is needed here (or a special dump). Don\u0027t understand what the Redfish API is lacking for the client to get this via the API (unresolved service action event logs).",
+      "revId": "da4b1b76f6f7e4eb89dbb1a626ca3bb325c875df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "368619f8_a8ecbdd5",
+        "filename": "designs/oem/ibm/nag-on-openbmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-02-14T20:25:50Z",
+      "side": 1,
+      "message": "NAG stand for anything?",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 6
+      },
+      "revId": "da4b1b76f6f7e4eb89dbb1a626ca3bb325c875df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9163395c_5dba2e3a",
+        "filename": "designs/oem/ibm/nag-on-openbmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-02-14T20:25:50Z",
+      "side": 1,
+      "message": "We map SRC to Redfish\u0027s EventId. I would prefer we use industry standard terminology here  \n\n                \"EventId\": {\n                    \"description\": \"The unique instance identifier for an event.\",\n                    \"longDescription\": \"If present, this LogEntry records an Event and the value shall indicate a unique identifier for the event, the format of which is implementation dependent.\",",
+      "revId": "da4b1b76f6f7e4eb89dbb1a626ca3bb325c875df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f79254f2_52d39848",
+        "filename": "designs/oem/ibm/nag-on-openbmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-02-14T20:25:50Z",
+      "side": 1,
+      "message": "Redfish\u0027s Resolution is the property for the directed maintenance procedures\n\n                \"Resolution\": {\n                    \"description\": \"Used to provide suggestions on how to resolve the situation that caused the log entry.\",\n                    \"longDescription\": \"This property shall contain the resolution of the log entry.  Services should replace the resolution defined in the message registry with a more specific resolution in a log entry.\",",
+      "revId": "da4b1b76f6f7e4eb89dbb1a626ca3bb325c875df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3d9d757_94d4b8d7",
+        "filename": "designs/oem/ibm/nag-on-openbmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-02-14T20:25:50Z",
+      "side": 1,
+      "message": "A gaurd record is just a Redfish Log Entry?",
+      "range": {
+        "startLine": 56,
+        "startChar": 44,
+        "endLine": 56,
+        "endChar": 57
+      },
+      "revId": "da4b1b76f6f7e4eb89dbb1a626ca3bb325c875df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df7f9651_3f2ca7c3",
+        "filename": "designs/oem/ibm/nag-on-openbmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-02-14T20:25:50Z",
+      "side": 1,
+      "message": "Do we have anything in the Redfish API today for ServiceActionNeeded? If the Event isn\u0027t Resolved and has a Resolution, doesn\u0027t that mean a service action is needed? I bet we could get Redfish to add a property like ServiceActionNeeded.. Why can\u0027t the client get this information from the Redfish API vs a JSON file. Support is being added to bmcweb for Redfish query parameter. The filter query parameter could be useful here.",
+      "revId": "da4b1b76f6f7e4eb89dbb1a626ca3bb325c875df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b093267_ea2f47d0",
+        "filename": "designs/oem/ibm/nag-on-openbmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-02-14T20:25:50Z",
+      "side": 1,
+      "message": "We map this to the Redfish Model",
+      "revId": "da4b1b76f6f7e4eb89dbb1a626ca3bb325c875df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e90bf6ff_53e87ebe",
+        "filename": "designs/oem/ibm/nag-on-openbmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-02-14T20:25:50Z",
+      "side": 1,
+      "message": "Why a new Hardware Isolation manager application vs putting in an exisiting applicaiton like phosphor-logging. Not saying it is wrong to put in a new application, but wondering why \n\n\n\"A command line application will be developed to check whether there are error\nlogs or isolation records matching the nag criteria. This application will\ncreate a special error event if a matching criterion is found. \"",
+      "revId": "da4b1b76f6f7e4eb89dbb1a626ca3bb325c875df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
