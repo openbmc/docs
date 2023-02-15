@@ -1,4 +1,4 @@
-# User Management - OpenBMC - Design document
+#User Management - OpenBMC - Design document
 
 ## Scope
 
@@ -45,19 +45,21 @@ webserver who will be able to login to webserver/REDFISH & IPMI etc.)
 _Note: Group names are for representation only and can be modified/extended
 based on the need_
 
-| Sl. No | Group Name | Purpose / Comments                                               |
-| -----: | ---------- | ---------------------------------------------------------------- |
-|      1 | ssh        | Users in this group are only allowed to login through SSH.       |
-|      2 | ipmi       | Users in this group are only allowed to use IPMI Interface.      |
-|      3 | redfish    | Users in this group are only allowed to use REDFISH Interface.   |
-|      4 | web        | Users in this group are only allowed to use webserver Interface. |
+| Sl. No | Group Name  | Purpose / Comments                                               |
+| -----: | ----------- | ---------------------------------------------------------------- |
+|      1 | ssh         | Users in this group are only allowed to login through SSH.       |
+|      2 | ipmi        | Users in this group are only allowed to use IPMI Interface.      |
+|      3 | redfish     | Users in this group are only allowed to use REDFISH Interface.   |
+|      4 | web         | Users in this group are only allowed to use webserver Interface. |
+|      5 | hostconsole | Users in this group are only allowed to ssh to port 2200 and     |
+|        |             | viewing the host console in the gui.                             |
 
 ## Supported Privilege Roles
 
 OpenBMC supports privilege roles which are common across all the supported
-groups (i.e. User will have same privilege for REDFISH / Webserver / IPMI /
-SSH). User can belong to any one of the following privilege roles at any point
-of time.
+groups (i.e. User will have same privilege for REDFISH / Webserver / IPMI / SSH
+/ HostConsole). User can belong to any one of the following privilege roles at
+any point of time.
 
 _Note: Privileges are for representation only and can be modified/extended based
 on the need_
@@ -438,9 +440,10 @@ stacked pam modules.
 
 ## LDAP
 
-SSH, Redfish and Webserver interface allows the user to authenticate against an
-LDAP directory. IPMI interface cannot be used to authenticate against LDAP,
-since IPMI needs the password in clear text at the time of session setup.
+SSH, Redfish, Webserver and HostConsole interface allows the user to
+authenticate against an LDAP directory. IPMI interface cannot be used to
+authenticate against LDAP, since IPMI needs the password in clear text at the
+time of session setup.
 
 In OpenBMC, PAM based authentication is implemented, so for both LDAP users and
 local users, the authentication flow is the same.
