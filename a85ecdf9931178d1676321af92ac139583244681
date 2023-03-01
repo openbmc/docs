@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6dc6936_224d11fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2023-03-01T04:24:10Z",
+      "side": 1,
+      "message": "Thank you for the proposal, I think we need some more details on the daemon design though.",
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92c25047_81b6e2a6",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2023-03-01T04:24:10Z",
+      "side": 1,
+      "message": "Do you mean the existing pldm daemon would be extended to handle RDE as well? Or is this a new daemon proposal? If it is the former case, I suggest we call it pldm daemon itself and not RDE daemon.",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 77
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ce6719b_741ac7a3",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2023-03-01T04:24:10Z",
+      "side": 1,
+      "message": "Can you capture the design details of the daemon? This should preferably include:\n(1) D-Bus interfaces hosted by the objects of the daemon\n(2) RDE is a special protocol that converges PLDM and Redfish worlds. I would like to see how do you plan to converge the *proposed daemon* and bmcweb(current Redfish server). In my mind, bmcweb is the right place to host the user facing part of the RDE specification, and there should be an abstraction layer in bmcweb that handles an underlying RDE device.\n(3) How do you plan to handle the Redfish payload \u003c-\u003e BEJ translations?\n(4) How do you plan to model the different type of RDE devices? Ex: NIC RDE devices could have network related schemas where as RAID controllers might have storage related schemas- so the question is how does the daemon design model the different types of possible RDE devices?\n(5) Usually RDE devices will have PLDM Type 2 as well (Monitoring and Control) - this is to facilitate the RDE PDRs. Currently the PLDM Type 2 is already handled by pldm daemon; so can you capture the flow of type 2 and type 6 during RDE initialisation phase?",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 18
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5976fbda_1f36fd92",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000410
+      },
+      "writtenOn": "2023-03-01T04:24:10Z",
+      "side": 1,
+      "message": "CRUD ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 7
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
