@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f74c2e02_22d8a40d",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001582
+      },
+      "writtenOn": "2023-03-01T18:57:36Z",
+      "side": 1,
+      "message": "It is a new daemon. RDE daemon is a sub directory in the `pldm` repo itself.",
+      "parentUuid": "92c25047_81b6e2a6",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 77
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ce6719b_741ac7a3",
         "filename": "designs/redfish-device-enablement.md",
         "patchSetId": 2
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c42e88e_703c906c",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001582
+      },
+      "writtenOn": "2023-03-01T18:57:36Z",
+      "side": 1,
+      "message": "This design is focusing majorly on the requester library and RDE daemon iteraction.\n\nBut to summarize, that is correct we will receive the requests via BMCWeb and the BMCWeb Aggregator design is focusing on handling the multiple RDE devices, as it will forward the request over DBus call, with parameters such as URI, payload, etc.\nI would rather write a separate design doc, that captures BMCWeb and RDE daemon interactions, etc.; and maybe keep this as an interaction between RDE Daemon and requester library, but I am open to suggestions.\n\n--\nTo answer a couple of questions: \n- We are thinking of something called an RDE translator (which would be nothing but a couple of cpp files within the rde subdirectory) that takes care of converting the payload or any data received from Redfish request into a RDE compatible format. \nWe already have `libbej` in openbmc that encodes and decodes the",
+      "parentUuid": "3ce6719b_741ac7a3",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 18
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5976fbda_1f36fd92",
         "filename": "designs/redfish-device-enablement.md",
         "patchSetId": 2
@@ -77,6 +125,30 @@
       "writtenOn": "2023-03-01T04:24:10Z",
       "side": 1,
       "message": "CRUD ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 7
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "216bfb5e_f8ca7d62",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001582
+      },
+      "writtenOn": "2023-03-01T18:57:36Z",
+      "side": 1,
+      "message": "Primarily create, read, update operations. I can change it to read and update operations for now. Since that is what we are focussing on.",
+      "parentUuid": "5976fbda_1f36fd92",
       "range": {
         "startLine": 102,
         "startChar": 2,
