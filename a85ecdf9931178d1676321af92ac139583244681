@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2521a602_af4d1218",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001582
+      },
+      "writtenOn": "2023-03-01T19:11:19Z",
+      "side": 1,
+      "message": "-- Continuing the previous comment--\n* Yes the RDE devices have PLDM Type 2, where we need to get the PDRs from the RDE device. Since we were keeping the RDE as a completely separate entity, we were currently sending the type 2 and 6 requests directly from RDE daemon to the rde devices and storing them within itself during the initialization phase (That is again using the requester library).\n\nAlso, when you say PLDM already handles Type2, does it mean PLDM has facility to send the request to the RDE device and store the PDRs?",
+      "parentUuid": "7c42e88e_703c906c",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 18
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5976fbda_1f36fd92",
         "filename": "designs/redfish-device-enablement.md",
         "patchSetId": 2
