@@ -79,8 +79,8 @@ holds the ResourceCreated message:
 },
 ```
 
-Since there are no parameters, no MessageArgs are required, so this message can
-be logged to the journal as follows:
+Since there are no parameters, no MessageArgs are required, so this message
+can be logged to the journal as follows:
 
 ```cpp
 phosphor::logging::log<log::level>(
@@ -98,7 +98,6 @@ sd_journal_send("MESSAGE=%s", "journal text", "PRIORITY=%i", <LOG_LEVEL>,
 ```
 
 #### Logging a ResourceErrorThresholdExceeded event
-
 The
 [Resource Event Message Registry](https://redfish.dmtf.org/registries/ResourceEvent.1.0.0.json)
 holds the ResourceErrorThresholdExceeded message:
@@ -149,4 +148,74 @@ sd_journal_send("MESSAGE=%s", "journal text", "PRIORITY=%i", <LOG_LEVEL>,
                 "ResourceEvent.1.0.ResourceErrorThresholdExceeded",
                 "REDFISH_MESSAGE_ARGS=%s,%d", "Property Name",
                 propertyValue, NULL);
+```
+
+### D-Bus-based Redfish Logging
+
+Compiling bmcweb with `-DBMCWEB_ENABLE_REDFISH_DBUS_LOG_ENTRIES=ON` option,
+bmcweb will look to
+[phosphor-logging](https://github.com/openbmc/phosphor-logging) for D-Bus log
+entries. The entries will be translated to Redfish EventLog Entries. The logs
+can be done by calling the method `"Create"` from phosphor-logging. When an
+entry is created, there is also a consistent log file generated at
+`/var/lib/phosphor-logging/errors/`.
+
+This implementation will disable the journal-based logging.
+
+### Examples
+
+#### Logging with MessageId and MessageArgs
+
+The phosphor-logging should recognize `MessageId` and `MessageArgs` in
+`AdditonalData`, and publish them on D-Bus.
+
+Take the ResourceErrorThresholdExceeded event above for example:
+
+```cpp
+std::map<std::string, std::string> additionalData;
+additionalData.emplace("REDFISH_MESSAGE_ID",
+                       "ResourceEvent.1.0.ResourceErrorThresholdExceeded");
+additionalData.emplace("REDFISH_MESSAGE_ARGS", "propertyName,proertyValue");
+additionalData.emplace("other data", otherData);
+
+auto bus = sdbusplus::bus::new_default();
+auto reqMsg = bus.new_method_call("xyz.openbmc_project.Logging",
+                                  "/xyz/openbmc_project/logging",
+                                  "xyz.openbmc_project.Logging.Create",
+                                  "Create");
+reqMsg.append("journal text", <LOG_LEVEL>, additionalData);
+
+try
+{
+    auto respMsg = bus.call(reqMsg);
+}
+catch (sdbusplus::exception_t& e)
+{
+    phosphor::logging::log<phosphor::logging::level::ERR>(e.what());
+}
+```
+
+#### Logging without MessageId and MessageArgs
+
+The logging can also be done without `MessageId` and `MessageArgs`. Redfish
+will show the message provided instead of getting message from registries.
+
+```cpp
+std::map<std::string, std::string> additionalData;
+additionalData.emplace("other data", otherData);
+
+auto reqMsg = bus.new_method_call("xyz.openbmc_project.Logging",
+                                  "/xyz/openbmc_project/logging",
+                                  "xyz.openbmc_project.Logging.Create",
+                                  "Create");
+reqMsg.append("event message", <LOG_LEVEL>, additionalData);
+
+try
+{
+    auto respMsg = bus.call(reqMsg);
+}
+catch (sdbusplus::exception_t& e)
+{
+    phosphor::logging::log<phosphor::logging::level::ERR>(e.what());
+}
 ```
