@@ -1,7 +1,8 @@
 # OpenBMC REST API
 
-The primary management interface for OpenBMC is REST. This document provides
-some basic structure and usage examples for the REST interface.
+The OpenBMC REST API is disabled by default in bmcweb. Most of the functionality
+is available on Redfish. This document provides some basic structure and usage
+examples for the OpenBMC REST interface.
 
 The schema for the rest interface is directly defined by the OpenBMC D-Bus
 structure. Therefore, the objects, attributes and methods closely map to those
