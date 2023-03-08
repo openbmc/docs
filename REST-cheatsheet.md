@@ -1,7 +1,10 @@
 # OpenBMC REST cheat sheet
 
 This document is intended to provide a set of REST client commands for OpenBMC
-usage.
+usage. OpenBMC REST is disabled by default in bmcweb. For more information, see
+https://github.com/openbmc/bmcweb/commit/47c9e106e0057dd70133d50e928e48cbc68e709a.
+Most of the functionality previously provided by OpenBMC REST is available in
+Redfish.
 
 ## Using CURL commands
 
@@ -14,7 +17,7 @@ either an authentication token or the username and password passed in as part of
 the URL for non-read-only methods.
 
 Starting with the 2.7 OpenBMC release (August 2019), bmcweb is the default REST
-server.
+server. The phosphor-rest-server repository was archived in October 2022.
 
 ### Establish REST connection session
 
