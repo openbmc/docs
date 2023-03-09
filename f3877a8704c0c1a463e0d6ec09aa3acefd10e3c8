@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f17dc27_cfe30ed5",
+        "filename": "architecture/redfish-logging-in-bmcweb.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-03-09T14:07:11Z",
+      "side": 1,
+      "message": "This is not workable.  I don\u0027t want to see details of Redfish spread across every application.  There is no reason for any particular daemon to be tied to any particular management protocol.  Otherwise, we\u0027re going to start seeing IPMI_ARGS and PLDM_ARGS and ...\n\nIn my opinion, the REDFISH_MESSAGE_ID should be able to be generated from the phosphor-logging event type.  The MESSAGE_ARGS should simply be _all_ of the arguments of the phosphor-logging event type.",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 76
+      },
+      "revId": "f3877a8704c0c1a463e0d6ec09aa3acefd10e3c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
