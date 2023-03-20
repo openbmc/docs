@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e56dedc5_c8785a0c",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001582
+      },
+      "writtenOn": "2023-03-20T16:55:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "424bbe1c_b9e17617",
+      "range": {
+        "startLine": 17,
+        "startChar": 24,
+        "endLine": 17,
+        "endChar": 38
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92c25047_81b6e2a6",
@@ -101,6 +125,30 @@
       "writtenOn": "2023-03-08T05:18:56Z",
       "side": 1,
       "message": "typo: CRUD (also I recommend spelling it out on first use)",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecb32fbe_4000c546",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001582
+      },
+      "writtenOn": "2023-03-20T16:55:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e16516e5_c7207fd1",
       "range": {
         "startLine": 26,
         "startChar": 13,
@@ -184,6 +232,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "812d1291_8a408364",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001582
+      },
+      "writtenOn": "2023-03-20T16:55:16Z",
+      "side": 1,
+      "message": "-- On PLDM supporting PDR --\nI am not sure if PLDM daemon is requesting for PDRs from RDE device.\n\nI think in the case of RDE, we request the RDE device for Device PDRs and store them to use for URI-resource id mapping, hence it would be exclusively handled by the RDE daemon itself. \n\nYou can correct me if my understanding seems wrong w.r.t PLDM PDR implementation.",
+      "parentUuid": "2521a602_af4d1218",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 18
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f610b1d5_e9199705",
         "filename": "designs/redfish-device-enablement.md",
         "patchSetId": 2
@@ -195,6 +267,30 @@
       "writtenOn": "2023-03-20T07:00:25Z",
       "side": 1,
       "message": "We already have a PLDM discovery part(PLDM base) implementation under review \nhttps://gerrit.openbmc.org/c/openbmc/docs/+/47252/18/designs/pldm-stack.md#340\nhttps://gerrit.openbmc.org/c/openbmc/pldm/+/51443/\n\nAdding the same here might be a duplicate. Also, 2 separate daemons handling same device (assigning TID etc..) might not be a good idea. I believe, PLDM RDE can be an extension of existing PLDM daemon itself.",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 19
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b8ca1c9_f5bcdebd",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001582
+      },
+      "writtenOn": "2023-03-20T16:55:16Z",
+      "side": 1,
+      "message": "Does this support setting up PLDM on multiple RDE devices? If yes, how will it distinguish between RDE devices?\n\nRight now it seems like it is sending a message to an Eid, what if we have same EID and the only way to distinguish between devices is netid?\n\nAlso when you say that PLDM RDE `can be an extension`, do you mean not having a separate daemon??\n\nBecause RDE needs to do a lot of work- \n\n* RDE Discovery including RDE Negotiate parameters, RDE medium parameters and then catering to RDE requests **on demand**, such as read, update, etc.\n\n* Also, there could be multiple RDE devices that would need that setup which would require setting up the PLDM Base discovery on each of them and (as I mentioned) could be having same EID but diff netID (which we could produce randomly on start up etc.). \n\n* The discovery of RDE Devices would also be a bit challenging: For instance, lets say there are USB devices that are RDE devices, one needs to discover/monitor them (maybe via `Detector` in EntityManager) and having a `Reactor` somewhere at the RDE side. We would need to tie up Dbus methods to the interfaces for each RDE device to cater to the read/update etc. request. Hence there would be a lot more processes that would be RDE specific (\u0026 not just PLDM per se) in this case. \n * Just a quick summary on detector-reactor design for RDE Devices:\n   * Each of the RDE device detected would be put up as an object path in the Entity Manager based on some probe logic\n   * Then the reactor, would detect those object paths (at the RDE end) and create rde specific object paths for each RDE device with DBus methods exposed for each of the CRUD operations.\n   * Then the DBus methods will be executed during any CRUD operation requests.\n \nI think having RDE within the PLDM daemon can convolute a lot of things and would strongly propose having a separate RDE daemon.\n\nLet me know what you think about it!",
+      "parentUuid": "f610b1d5_e9199705",
       "range": {
         "startLine": 83,
         "startChar": 0,
@@ -290,6 +386,30 @@
       "side": 1,
       "message": "(I think Sumanth was just pointing out the typo)",
       "parentUuid": "6dc74f83_26ba27d0",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 7
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "032d4278_f64f7e1e",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001582
+      },
+      "writtenOn": "2023-03-20T16:55:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "68f32953_586b4569",
       "range": {
         "startLine": 102,
         "startChar": 2,
