@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe42ed1d_4f77a5c4",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001317
+      },
+      "writtenOn": "2023-03-23T01:20:53Z",
+      "side": 1,
+      "message": "Here, after receiving the response from RDE device it is mentioned that we use \"Stored Dictionaries\" to decode the response. \n1) Suggestion would be to fetch the required dictionaries on the fly so that we will save some space. \n2) If plan is to move with the approach of using stored dictionaries how are we planning to delete the same when the device is removed ? Could you please share some info on that ?",
+      "revId": "4e6fea98b634ba94de34cd3dd770727253b436fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c057ffd_952d2347",
         "filename": "designs/redfish-device-enablement.md",
         "patchSetId": 5
@@ -79,6 +96,24 @@
       "side": 1,
       "message": "Technically we do need PDR information for each device. But for starters, out of the PDR information what we actually need is just a mapping from URI to a resource Id (since RDE device only recognizes resources by Resource ID and every Redfish URI must have a corresponding Resource ID in an RDE Device).\n\nWe can definitely work on PDR information storage in further phases.",
       "parentUuid": "f9d6594f_e2838180",
+      "revId": "4e6fea98b634ba94de34cd3dd770727253b436fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd346187_b9852eb8",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1001317
+      },
+      "writtenOn": "2023-03-23T01:20:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e1860587_64800c79",
       "revId": "4e6fea98b634ba94de34cd3dd770727253b436fe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
