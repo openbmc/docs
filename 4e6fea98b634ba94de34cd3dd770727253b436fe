@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4dbfc0f_140f3025",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001582
+      },
+      "writtenOn": "2023-03-23T22:06:43Z",
+      "side": 1,
+      "message": "1) Yes, the dictionaries would be eventually stored on the fly as they are part of RDE Discovery phase. For getting dictionaries we require a set of resource IDs. The resource IDs will be retrieved when we implement PLDM PDR type for RDE daemon. (This design is not including the PLDM PDR as of now- which would take care of getting the resource ids, resource id to URI mapping etc.). But for sure the dictionaries would be populated in maps dynamically for all the required resource IDs supported by the RDE device.\n\n2) We are running a Detector-Reactor architecture for monitoring RDE Devices. Once the reactor gets a signal (using a DBus matcher) that a RDE device is removed, we can clean up the Dictionaries in the map. That should not be much of a problem (more of an implementation thing). \n\nShort answer: Our reactor should take care of cleaning up object paths and any related data for the removed RDE device. Correspondingly, the reactor should also take care of creating paths, doing discoveries when a new device is found.",
+      "parentUuid": "fe42ed1d_4f77a5c4",
+      "revId": "4e6fea98b634ba94de34cd3dd770727253b436fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c057ffd_952d2347",
         "filename": "designs/redfish-device-enablement.md",
         "patchSetId": 5
@@ -114,6 +132,24 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "e1860587_64800c79",
+      "revId": "4e6fea98b634ba94de34cd3dd770727253b436fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56178a95_2d735d69",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1001582
+      },
+      "writtenOn": "2023-03-23T22:06:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bd346187_b9852eb8",
       "revId": "4e6fea98b634ba94de34cd3dd770727253b436fe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
