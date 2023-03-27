@@ -452,5 +452,6 @@ reallyLongFunctionCall(foo,
   will do.
 
 - Use `uint8_t`, `int16_t`, `uint32_t`, `int64_t`, etc. for types where size is
-  important due to hardware interaction. Do not use them, without good reason,
-  when hardware interaction is not involved; prefer size_t or int instead.
+  important due to interactions with hardware or some externally defined API/ABI
+  (such as a system call or library interface). Do not use them, without good
+  reason, when such interaction is not involved; prefer size_t or int instead.
