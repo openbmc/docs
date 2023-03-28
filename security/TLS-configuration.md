@@ -354,7 +354,7 @@ Where `${bmc}` should be `bmc.example.com`. It is convenient to export it as an
 environment variable.
 
 ```
-curl --user root:0penBmc -d @install_ca.json -k -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Managers/bmc/Truststore/Certificates
+curl --user root:0penBmc -d @install_ca.json -k -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Managers/bmc/Certificates
 
 ```
 
@@ -365,7 +365,7 @@ After successful certificate installation you should get positive HTTP response
 and a new certificate should be available under this resource collection.
 
 ```
-curl --user root:0penBmc -k https://${bmc}/redfish/v1/Managers/bmc/Truststore/Certificates
+curl --user root:0penBmc -k https://${bmc}/redfish/v1/Managers/bmc/Certificates
 
 ```
 
