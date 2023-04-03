@@ -376,6 +376,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ece35109_3e1768d3",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2023-04-03T07:36:19Z",
+      "side": 1,
+      "message": "PLDM Type 2 implementation is in review - https://gerrit.openbmc.org/c/openbmc/pldm/+/53961\n\nYou can find more patches if you look at the relation chain. And doing PLDM type 2 operations inside a separate RDE daemon can be destructive (eg: A case where 2 daemons are sending getPDR command in parallel to same PLDM device)",
+      "parentUuid": "c3003872_7c3d4adb",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 18
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f610b1d5_e9199705",
         "filename": "designs/redfish-device-enablement.md",
         "patchSetId": 2
@@ -411,6 +435,30 @@
       "side": 1,
       "message": "Does this support setting up PLDM on multiple RDE devices? If yes, how will it distinguish between RDE devices?\n\nRight now it seems like it is sending a message to an Eid, what if we have same EID and the only way to distinguish between devices is netid?\n\nAlso when you say that PLDM RDE `can be an extension`, do you mean not having a separate daemon??\n\nBecause RDE needs to do a lot of work- \n\n* RDE Discovery including RDE Negotiate parameters, RDE medium parameters and then catering to RDE requests **on demand**, such as read, update, etc.\n\n* Also, there could be multiple RDE devices that would need that setup which would require setting up the PLDM Base discovery on each of them and (as I mentioned) could be having same EID but diff netID (which we could produce randomly on start up etc.). \n\n* The discovery of RDE Devices would also be a bit challenging: For instance, lets say there are USB devices that are RDE devices, one needs to discover/monitor them (maybe via `Detector` in EntityManager) and having a `Reactor` somewhere at the RDE side. We would need to tie up Dbus methods to the interfaces for each RDE device to cater to the read/update etc. request. Hence there would be a lot more processes that would be RDE specific (\u0026 not just PLDM per se) in this case. \n * Just a quick summary on detector-reactor design for RDE Devices:\n   * Each of the RDE device detected would be put up as an object path in the Entity Manager based on some probe logic\n   * Then the reactor, would detect those object paths (at the RDE end) and create rde specific object paths for each RDE device with DBus methods exposed for each of the CRUD operations.\n   * Then the DBus methods will be executed during any CRUD operation requests.\n \nI think having RDE within the PLDM daemon can convolute a lot of things and would strongly propose having a separate RDE daemon.\n\nLet me know what you think about it!",
       "parentUuid": "f610b1d5_e9199705",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 19
+      },
+      "revId": "a85ecdf9931178d1676321af92ac139583244681",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cc726ef_fe3acf49",
+        "filename": "designs/redfish-device-enablement.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2023-04-03T07:36:19Z",
+      "side": 1,
+      "message": "\u003eDoes this support setting up PLDM on multiple RDE devices? If yes, how will it distinguish between RDE devices?\n\nToday it doesn\u0027t support RDE. But the changes to support multiple PLDM devices on different network is under review. Few major changes\nhttps://gerrit.openbmc.org/q/topic:AF_MCTP\nhttps://gerrit.openbmc.org/c/openbmc/pldm/+/51443\n\n\u003eRight now it seems like it is sending a message to an Eid, what if we have same EID and the only way to distinguish between devices is netid?\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/47519\nAbove terminus manager implementation will introduce transport layer abstraction and introduce TID for device identification in PLDM layer. And in multinetwork MCTP transport layer, we will have network id and EID to identify a device but on PLDM layer TID alone should be good enough.\n\n\u003eAlso when you say that PLDM RDE can be an extension, do you mean not having a separate daemon??\n\nYes. The reason being 2 daemons will not be able to perform terminus discovery (TID assignment). Also, if PDR handling (https://gerrit.openbmc.org/c/openbmc/pldm/+/53961/40) is implemented by one daemon and RDE is done by other, how do we manage cases where PDRs(Eg: Redfish resource PDR) needs to be shared etc..\n\nBasically, even if we are going with separate RDE daemon, we should handle interdependency with other PLDM types, and it should coexist with existing PLDM daemons.\nExample: As first step, PLDM base discovery (TID assignment by TerminusManager) should happen and then based on the supported PLDM types, corresponding subtype functionalities needs to be performed. Thus, avoiding duplicate TID assignment.",
+      "parentUuid": "7b8ca1c9_f5bcdebd",
       "range": {
         "startLine": 83,
         "startChar": 0,
