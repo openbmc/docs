@@ -16,6 +16,24 @@
       "message": "I\u0027m not sure if it fits here exactly but I wouldn\u0027t mind seeing words to discourage build-time configurable features as it blows up the CI matrix. Features that are disabled by default at build time don\u0027t tend to get test coverage and are frequently broken. Generally, effort should be made to make it possible to build all supported features for an application in a single build configuration.",
       "revId": "0f8a802bd323acd269864b50d8b9dc9c34f8a579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1167d35f_8b908e42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-04-27T17:18:01Z",
+      "side": 1,
+      "message": "\u003e I\u0027m not sure if it fits here exactly but I wouldn\u0027t mind seeing words to discourage build-time configurable features as it blows up the CI matrix.\n\nAgreed it\u0027s something that we should tackle, but that\u0027s a can of worms I\u0027d like to avoid in this patch.  To some extent we need to extend this to include a definition of \"features\" and \"policies\".  Policies (for example https://github.com/openbmc/bmcweb/blob/02e01b5108d46720a0b438c0d79952464320d954/meson_options.txt#L296) aren\u0027t things that can be simply enabled or disabled like a feature can, and require the developer to make a choice about how their system should respond, and we need to differentiate them before we can talk about the CI matrix, although I\u0027m not sure the CI matrix blowup is as big of a deal as we think.  Ideally folks are committing enough CI resources and machine layers that their configs of the matrix can be tested, and if it\u0027s a configuration nobody uses, so be it.\n\n\u003e Features that are disabled by default at build time don\u0027t tend to get test coverage and are frequently broken.\n\nAgreed.\n\n\u003e Generally, effort should be made to make it possible to build all supported features for an application in a single build configuration.\n\nEasier said than done, and has implications for things like \"should developers wait for builds to finish for features they\u0027ll never use?\"\n\nThese are all interesting questions, but I\u0027d like to keep this patchset on the less controversial stuff for the moment if that\u0027s ok.",
+      "parentUuid": "137bce28_8ef5279a",
+      "revId": "0f8a802bd323acd269864b50d8b9dc9c34f8a579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
