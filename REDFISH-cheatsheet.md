@@ -36,7 +36,7 @@ export bmc_token=<token>
 
 ```
 export bmc=xx.xx.xx.xx
-export token=`curl -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d '{"username" :  "root", "password" :  "0penBmc"}' | grep token | awk '{print $2;}' | tr -d '"'`
+export token=$(curl -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d '{"username" :  "root", "password" :  "0penBmc"}' | awk -F'"' '/token/ {print $4;}')
 curl -k -H "X-Auth-Token: $token" https://${bmc}/redfish/v1/...
 ```
 
