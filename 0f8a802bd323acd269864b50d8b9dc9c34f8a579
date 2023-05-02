@@ -70,6 +70,24 @@
       "parentUuid": "10e06d64_8882f2ff",
       "revId": "0f8a802bd323acd269864b50d8b9dc9c34f8a579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41a98d3e_3ed3d102",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-05-02T15:53:54Z",
+      "side": 1,
+      "message": "\u003e Any build-time options are enabled by default\n\nRight, so should I have to enable IBM OEM Redfish by default?  Should IBM have to enable Google OEM by default?  Should the insecure options be the default?  I think the answer is more subtle than just enabling everything.\n\n#2 makes sense to me.\n\n\u003e on-by-default means that they get build and test coverage in CI.\n\nBut it also means that if those patches have insecurities or stability problems, they take on that burden as well without realizing it.  I think there\u0027s some nuance in defaults that I\u0027m not fully prepared to write down yet, because I\u0027m still trying to work it out in my head.\n\n\u003e https://gerrit.openbmc.org/c/openbmc/pldm/+/62954\n\nYep......   I think \"don\u0027t break the build for things that are working\" is a different statement 😊",
+      "parentUuid": "5f36ce6f_b9b893a8",
+      "revId": "0f8a802bd323acd269864b50d8b9dc9c34f8a579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
