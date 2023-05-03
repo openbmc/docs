@@ -106,6 +106,24 @@
       "parentUuid": "41a98d3e_3ed3d102",
       "revId": "0f8a802bd323acd269864b50d8b9dc9c34f8a579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dad686d_be441dd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-05-03T15:59:54Z",
+      "side": 1,
+      "message": "\u003e \u003e \u003e Any build-time options are enabled by default\n\u003e \u003e \n\u003e \u003e Right, so should I have to enable IBM OEM Redfish by default?  Should IBM have to enable Google OEM by default?  Should the insecure options be the default?  I think the answer is more subtle than just enabling everything.\n\u003e \n\u003e I think you\u0027re conflating meson option defaults and distro/machine configuration here.\n\u003e \n\u003e meson option defaults values are relevant for developers working on the repository directly, and CI.\n\u003e \n\u003e `PACKAGECONFIG`s for the distro and the machine should always be tightly scoped to the requirements of the machine and rarely accept defaults specified by the underlying repository.\n\u003e Relying on the repository defaults is lazy and should be addressed immediately by fully describing the configuration required for the machine via `PACKAGECONFIG`.\n\u003e  \n\u003e \u003e \n\u003e \u003e #2 makes sense to me.\n\u003e \u003e \n\u003e \u003e \u003e on-by-default means that they get build and test coverage in CI.\n\u003e \u003e \n\u003e \u003e But it also means that if those patches have insecurities or stability problems, they take on that burden as well without realizing it.  I think there\u0027s some nuance in defaults that I\u0027m not fully prepared to write down yet, because I\u0027m still trying to work it out in my head.\n\u003e \n\u003e I think it\u0027s likely addressed by my discussion above.\n\u003e \n\u003e \u003e \n\u003e \u003e \u003e https://gerrit.openbmc.org/c/openbmc/pldm/+/62954\n\u003e \u003e \n\u003e \u003e Yep......   I think \"don\u0027t break the build for things that are working\" is a different statement 😊\n\u003e \n\u003e right, but the build was only broken after I enabled the off-by-default option, which meant it wasn\u0027t caught in CI\n\n\nI\u0027m not sure I agree with everything above about machines having to know every configuration option, but that\u0027s good to know this is where the root of our disagreement is.  My understanding is that today Meson defaults and CI are identical.  I think we both agree that CI should test as many configurations as it can, including the everything-enabled build, but back to this review, I\u0027m not sure how to add that without making statements about infrastructure that doesn\u0027t yet exist.  I don\u0027t believe we have any matrix testing capability, aside from the per-machine matrix, so I\u0027m not sure what this doc could even say aside from something idealistic.",
+      "parentUuid": "77197e1f_71218259",
+      "revId": "0f8a802bd323acd269864b50d8b9dc9c34f8a579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
