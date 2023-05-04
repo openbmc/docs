@@ -124,6 +124,24 @@
       "parentUuid": "77197e1f_71218259",
       "revId": "0f8a802bd323acd269864b50d8b9dc9c34f8a579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebcdbd92_f0d65c18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-05-04T01:58:48Z",
+      "side": 1,
+      "message": "\u003e \u003e \u003e \u003e Any build-time options are enabled by default\n\u003e \u003e \u003e \n\u003e \u003e \u003e Right, so should I have to enable IBM OEM Redfish by default?  Should IBM have to enable Google OEM by default?  Should the insecure options be the default?  I think the answer is more subtle than just enabling everything.\n\u003e \u003e \n\u003e \u003e I think you\u0027re conflating meson option defaults and distro/machine configuration here.\n\u003e \u003e \n\u003e \u003e meson option defaults values are relevant for developers working on the repository directly, and CI.\n\u003e \u003e \n\u003e \u003e `PACKAGECONFIG`s for the distro and the machine should always be tightly scoped to the requirements of the machine and rarely accept defaults specified by the underlying repository.\n\u003e \u003e Relying on the repository defaults is lazy and should be addressed immediately by fully describing the configuration required for the machine via `PACKAGECONFIG`.\n\u003e \u003e  \n\u003e \u003e \u003e \n\u003e \u003e \u003e #2 makes sense to me.\n\u003e \u003e \u003e \n\u003e \u003e \u003e \u003e on-by-default means that they get build and test coverage in CI.\n\u003e \u003e \u003e \n\u003e \u003e \u003e But it also means that if those patches have insecurities or stability problems, they take on that burden as well without realizing it.  I think there\u0027s some nuance in defaults that I\u0027m not fully prepared to write down yet, because I\u0027m still trying to work it out in my head.\n\u003e \u003e \n\u003e \u003e I think it\u0027s likely addressed by my discussion above.\n\u003e \u003e \n\u003e \u003e \u003e \n\u003e \u003e \u003e \u003e https://gerrit.openbmc.org/c/openbmc/pldm/+/62954\n\u003e \u003e \u003e \n\u003e \u003e \u003e Yep......   I think \"don\u0027t break the build for things that are working\" is a different statement 😊\n\u003e \u003e \n\u003e \u003e right, but the build was only broken after I enabled the off-by-default option, which meant it wasn\u0027t caught in CI\n\u003e \n\u003e \n\u003e I\u0027m not sure I agree with everything above about machines having to know every configuration option, but that\u0027s good to know this is where the root of our disagreement is.\n\nRight, we can iterate on the concepts outside of this patch.\n\nBut to try to round out the discussion, I don\u0027t think it\u0027s required that all machines know all options. Absence of an option in `PACKAGECONFIG` implies that the option is disabled, not that build system\u0027s default value is applied. Only an absence of a `PACKAGECONFIG[...]` specification for the option in the package\u0027s recipe implies the build system\u0027s default value. If the recipe specifies a `PACKAGECONFIG[...]` for each build system options then an empty `PACKAGECONFIG` explicitly disables all options. Machines therefore only need to explicitly enable what they care about.\n\n\u003e My understanding is that today Meson defaults and CI are identical.\n\nRight. It\u0027s easiest if CI just uses the defaults for options so we don\u0027t have to specify the options in CI.\n\n\u003e I think we both agree that CI should test as many configurations as it can, including the everything-enabled build\n\nAgree.\n\n\u003e but back to this review, I\u0027m not sure how to add that without making statements about infrastructure that doesn\u0027t yet exist. I don\u0027t believe we have any matrix testing capability, aside from the per-machine matrix, so I\u0027m not sure what this doc could even say aside from something idealistic.\n\nI\u0027m trying to argue that we don\u0027t need any further infrastructure to exist :) Rather, we should properly exploit bitbake\u0027s `PACKAGECONFIG` to control what\u0027s built by bitbake for a particular machine. From there, the only statement we need is that any build option introduced in a subproject must be enabled by default so we get CI coverage.\n\nHaving said that, I\u0027ve already +1\u0027ed the patch. I\u0027ll mark this as resolved so we can discuss it separately.",
+      "parentUuid": "1dad686d_be441dd2",
+      "revId": "0f8a802bd323acd269864b50d8b9dc9c34f8a579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
