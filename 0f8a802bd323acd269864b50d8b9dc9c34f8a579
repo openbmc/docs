@@ -142,6 +142,24 @@
       "parentUuid": "1dad686d_be441dd2",
       "revId": "0f8a802bd323acd269864b50d8b9dc9c34f8a579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0381da07_d325e2d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-05-04T15:52:26Z",
+      "side": 1,
+      "message": "\u003e Absence of an option in PACKAGECONFIG implies that the option is disabled\n\nIf all options were simple enable/disable, I would completely agree with you, but there\u0027s things like \"should you enforce content-type?\" or \"Should you support legacy incorrect behavior?\" that doesn\u0027t cleanly fit into a feature enabled model, and for new platforms, certainly shouldn\u0027t be the default.\n\n\u003e Rather, we should properly exploit bitbake\u0027s PACKAGECONFIG to control what\u0027s built by bitbake for a particular machine.\n\nThis is making more sense now what you\u0027re proposing, and while I wish our platform maintainers were more active, I worry that they\u0027re not going to keep their PACKAGECONFIG up to date, and asking a user of a feature that should be the default for all platforms to go update N platforms work of config seems like overkill.\n\n\u003e Having said that, I\u0027ve already +1\u0027ed the patch.\n\nThank you for the discussion.  I really appreciate it.",
+      "parentUuid": "ebcdbd92_f0d65c18",
+      "revId": "0f8a802bd323acd269864b50d8b9dc9c34f8a579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
