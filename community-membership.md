@@ -128,6 +128,9 @@ an [OWNERS] file.
   - Providing results and insight to the community on platform-specific issues.
 - Expected to be responsive to review requests as per [community expectations]
 - Assigned changes to review and test related to the platform
+- Communicating with the technical-oversight-forum any long-term (> 1 month)
+  absences, or resignation of this responsibilities, through a change to the
+  [OWNERS] file.
 
 ## Approver
 
