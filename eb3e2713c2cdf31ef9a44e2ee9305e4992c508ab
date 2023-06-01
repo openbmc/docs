@@ -1,0 +1,262 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a5b7674_c51fa111",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "Overall, I would really like to foster this kind of experimental development, regardless of whether I think it will help.  My recommendations for proceeding are:\n\n1. Hash out the non-trivial examples.  This doc cherry-picks one example in the existing code that has not been moved over to the latest unpack methods, picks an example that doesn\u0027t handle errors properly, and example where an exact string conversion is allowed (which is not the majority of our code).  If these are the only cases handled, I think we\u0027re better off being consistent with the old code.  Any such solution will need to handle:\n1. Enumerations\n2. Cases where a DBus error is not an internal error, and vice versa\n3. Cases where we need to call the mapper.\n4. The PATCH path\n5. Cases where keys exist on multiple objects.\n\n\n2. Start porting code over, and measure:\n  a. the speed.  Unless we change the sdbusplus interfaces, I\u0027d be surprised if we could get significantly faster than what\u0027s there (a few simple loops), so whatever solution we come up with would need to be equivalent.\n  b. Binary size impact: how much larger does it make the binaries.\n  c. Developer impact.\n  d. Memory impact.",
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7aa3aff_0c351195",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "Please add the existing ways we solve this today.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 73
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1e07094_6c6b90dd",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "I disagree with this statement.  Just because it\u0027s non-trivial to do a conversion does not mean that doing properties one at a time is desirable.",
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cf8563f_c799fb9c",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "What does this mean?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 21
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d5d0e22_40d4e2db",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "You\u0027re looking at nearly the oldest example we have.  Please use as your example code that relies on sdbusplus::unpackPropertiesNoThrow, which is the current state of the art for this kind of thing, and is greatly reduced in size compared to your example.\n\nAlso, please add an example that handles errors per DBUS_USAGE.md.  The above does not, which makes the problem appear simpler.",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 0
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55ad9cbe_27f7a551",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "This is:\n1. Missing error handling.\n2. Cherry picks a case where a property is 1:1\n3. does not include any request or response structures, so it\u0027s not clear to me how this could work.",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 98
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e960435_ffb06ed7",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "Non trivial lambdas are disallowed in the coding standard.",
+      "range": {
+        "startLine": 205,
+        "startChar": 20,
+        "endLine": 214,
+        "endChar": 20
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2a278fe_c34bb309",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "Please do not use \"onSuccess\" and \"onFailure\" type callbacks.\n\n1. Because consistency with boost asio keeps the mental load low.\n2. Because in many cases, splitting the callback handlers requires all parameters to be reference counted, which is extra overhead and code.",
+      "range": {
+        "startLine": 245,
+        "startChar": 7,
+        "endLine": 245,
+        "endChar": 16
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb0e87c3_8b48daf5",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "This requires memory all times given its static nature.  Have you compared the memory usage between the existing approach and this one?",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 43
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb26e2a4_d4ff2628",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "Please actually include error handling",
+      "range": {
+        "startLine": 305,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 37
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2c15659_0ccd2b10",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "The intent of this is to manage the user facing api, which I agree, you can just say no user facing API impact.",
+      "range": {
+        "startLine": 345,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 49
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ab25ae3_25030910",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T15:38:59Z",
+      "side": 1,
+      "message": "Binary size impact?  Memory impact?",
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
