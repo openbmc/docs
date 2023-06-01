@@ -1,0 +1,406 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca916f6_26d08218",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "Overall, this feels like someone was given the direction \"find a way to use auditd on openbmc\".\n\nI would like to see this document amended with a large section about what auditd gets us here that ISN\u0027T present in the existing logging daemons, or could be easily retrofitted into the existing logging daemons.  Is auditd usefule because it\u0027s owned by the kernel?  Is it that it\u0027s running as root?  It\u0027s non blocking?  It obeys some specification we\u0027re trying to meet?  That\u0027s not clear from the document.\n\nI would also ask that the folks review and update the LAST design doc that was published on this, rather than just writing a new one proposing a similar thing (or at the very least answer my comments on the last doc).  Publishing a new one just causes us to rehash the same conversations without context.\n\nOverall, there\u0027s probably a path to get this overall auditing feature on master, but my worries are:\n1. Duplication of logging code.\n2. Putting more dependencies directly in bmcweb, instead of rolling them out to another daemon.  Does the auditd logging calls provide non-blocking asio hooks, or are we putting blocking calls into bmcweb again (which has caused issues in the past)?  \n3. What does the Redfish implementation of this look like?  What\u0027s proposed below doesn\u0027t match up with the standard, and could use a good runthrough by someone with a good understanding of the spec.\n4. The requirements aren\u0027t written as requirements.\n5. How does this design apply to more than just redfish/bmcweb in the future?  Even if that\u0027s not an immediate requirement, it needs to be part of the design.",
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66fe9eb5_cbec7152",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "This seems like a critical problem, and would prevent approval of the aformentioned specification?  Can you list WHY these aren\u0027t included?",
+      "range": {
+        "startLine": 23,
+        "startChar": 57,
+        "endLine": 24,
+        "endChar": 39
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f55c6ca_f5a89155",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "Does this design account for the issues raised in that document?  How does this design differ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 52,
+        "endLine": 44,
+        "endChar": 33
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d9c552_1a0c418b",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "Why?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 70
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33ffaec7_bbc6dc4d",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "Can you provide examples and pointers the code for a rest server using auditd for the same purpose?",
+      "range": {
+        "startLine": 58,
+        "startChar": 5,
+        "endLine": 58,
+        "endChar": 23
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd078e7a_af7a73a1",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "ANy performance requirements?  Does this need to be selectable at build-time?  Does this need to implement the Redfish audit logging correctly?  Do users need to be able to access the logs produced?  Does it need to comply to any standards?  Does it need to roll over?  Handle eventing?\n\nPlease give this requirements section another shot.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 15
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54abb616_28dd6262",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "\"auditd\" is not a requirement.  It would go in your proposed design.",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 47
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17d96949_75e78721",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "Please also enumerate the API in the middle.  how is the GUI to access these events?",
+      "range": {
+        "startLine": 78,
+        "startChar": 21,
+        "endLine": 78,
+        "endChar": 69
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ddf8fc8_cf0242bc",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "Complete request is:\n1. Directly in the hot path of the connection.\n2. Called multiple times per request.\n\n\nI don\u0027t think it\u0027s viable to have these events pushed in that method.",
+      "range": {
+        "startLine": 86,
+        "startChar": 35,
+        "endLine": 87,
+        "endChar": 62
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "106f575c_e4f4397a",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "There are designs in discussion about moving the pam call out of bmcweb.  Please find those discussions and weigh in on them.",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 24
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a87a4246_fad045f2",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "What does this mean?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 57
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c31dafa_e3a43fc7",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "Please add to your requirements.",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 20
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d96bb97_f5183e3a",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "This is the wrong URI.  You\u0027ve attached the log to computersystem.  Is should go under manager.",
+      "range": {
+        "startLine": 108,
+        "startChar": 27,
+        "endLine": 108,
+        "endChar": 41
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e345322_bc377fc7",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "Putting this in the bmcweb process itself is a hard no from me.  Please put these kinds of things into another application.  bmcweb is not for business logic.  It is an entrypoint to other dbus daemons, and the more things we put into it, the more likely it is that it induces critical failures.\n\nThis is also going to be important when this feature extends beyond redfish.",
+      "range": {
+        "startLine": 131,
+        "startChar": 70,
+        "endLine": 134,
+        "endChar": 0
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d825c6f_e1eb62a2",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "Please put the alternatives in the alternatives section, and enumerate:\n\n1. Using one of the three existing logging mechanisms to handle this.\n2. Using another daemon to handle this.\n3. Using a simple ring buffer instead of auditd.\n4. Monitoring for DBus events rather than redfish events.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 77
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b9e1d91_85b49677",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "The auditd subsystem provides Redfish endpoints?",
+      "range": {
+        "startLine": 138,
+        "startChar": 74,
+        "endLine": 140,
+        "endChar": 34
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12a864bb_df7ad399",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "This wasn\u0027t in your requirements.  If this is true, it basically invalidates this test.",
+      "range": {
+        "startLine": 158,
+        "startChar": 73,
+        "endLine": 160,
+        "endChar": 10
+      },
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ad36909_a042efed",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-01T23:16:05Z",
+      "side": 1,
+      "message": "I suspect you will need a new repository for the new application going in.",
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
