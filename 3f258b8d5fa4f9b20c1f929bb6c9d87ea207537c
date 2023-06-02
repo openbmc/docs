@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce4cd301_7bbe4084",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000182
+      },
+      "writtenOn": "2023-06-02T06:31:03Z",
+      "side": 1,
+      "message": "Main idea of phosphor-audit to make a C++ wrapper for backend calls like from auditd, to add more flexibility in possible usages with different approaches. In your case you\u0027re adding auditd inside bmcweb but all other parts(ipmi,pldm,pam \u0026 etc) needs to be updated too to stick with this way. I don\u0027t think that is possible to make it just for bmcweb, in bmc a lot of places where you have to put those audit hooks. And if auditd changed to something else what it will be, another rework of bmcweb?",
+      "revId": "3f258b8d5fa4f9b20c1f929bb6c9d87ea207537c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66fe9eb5_cbec7152",
