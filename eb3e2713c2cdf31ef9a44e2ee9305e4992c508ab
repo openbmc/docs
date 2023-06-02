@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "86fdb442_2548fddc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-06-02T15:28:43Z",
+      "side": 1,
+      "message": "I haven\u0027t read through the entire document but I wanted to leave one high-level remark.\n\nThere is work underway to significantly improve the dbus library in order to add support for asynchronous operations with C++ coroutines.  Once this is applied in applications like bmcweb it should significantly reduce the callback-nesting we current have there.\n\nThere is already a generator for the client bindings using C++ coroutines.  The two major features I need to add yet in order to make this useful for bmcweb migration are:\n\n  - Add an equivalent of a \"get-all-properties\" call which returns back some kind of struct containing all the properties from the remote interface.\n  \n  - Port the ASIO service we have in sdbusplus to build on top of the C++ coroutine context so that boost code and co-routine support can co-exist.\n  \nI hope to have both of these done by the end of the month, but it could be up to 2 months before this is completed.",
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a5b7674_c51fa111",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 7
