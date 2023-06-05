@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "951daa45_ac87cda5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "1) I will add examples that handle errors. This is WIP.\n2) Example for enumeration has been added.\n3) Can you elaborate on this(\"where a DBus error is not an internal error, and vice versa\") . Will 1) cover this?\n4) The code will be mainly used in places where DbusManged object to Redfish Json conversion is required. This is similar to how STL hides the looping construct and gives callbacks with unwrapped values to do the necessary transformation. So calling Mapper directly is not needed.\n5) I think by PATCH you are referring to conversion from redfish to Dbus. The utility is for doing the conversion the other way around. Perhaps, we can take this up after finishing the current one. \n6) I was thinking about it as a post-processing phase where we can merge multiple parser results into single Json. Need to see how Nlohmann does the Json merge for the same key. If that works then we can do the merge within  single pass. WIP\n\n7) The utility was written to use in a new requirement. Yes, will do the porting for an existing use case to measure the regression caused in performance and memory front. Do we have any existing benchmark available?",
+      "parentUuid": "0a5b7674_c51fa111",
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f7aa3aff_0c351195",
         "filename": "designs/dbus_to_redfish_converter.md",
         "patchSetId": 7
@@ -48,6 +66,30 @@
       "writtenOn": "2023-06-01T15:38:59Z",
       "side": 1,
       "message": "Please add the existing ways we solve this today.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 73
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "710bfdb0_6a73b41f",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "In the proposed design if you wanted to process a property then you will make an entry in handler table. I think this will be equal to absense of the \"if\" statement in processing loop for the property in the current code.",
+      "parentUuid": "f7aa3aff_0c351195",
       "range": {
         "startLine": 28,
         "startChar": 0,
@@ -77,6 +119,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eca61ece_e0d5799b",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "In the current design also properties are handled one at a time in an \"if block\". In new design each if block is converted into a callback. And the loop that driving the parser process is hidden behind the parser Object, which gives illusion of a property at time.",
+      "parentUuid": "b1e07094_6c6b90dd",
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4cf8563f_c799fb9c",
         "filename": "designs/dbus_to_redfish_converter.md",
         "patchSetId": 7
@@ -88,6 +148,30 @@
       "writtenOn": "2023-06-01T15:38:59Z",
       "side": 1,
       "message": "What does this mean?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 21
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc4ef498_0a29a817",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "The meaning is there in the next line. At present we need to look at at least two places to see full transformation of a property .1) Inside the if block where debus values are stored in an intermediate structure. 2) From the structure to redfish Json conversion located at some other place.",
+      "parentUuid": "4cf8563f_c799fb9c",
       "range": {
         "startLine": 48,
         "startChar": 0,
@@ -123,6 +207,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58134555_672b5c82",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "sdbusplus::unpackPropertiesNoThrow will be able to unpack the data into given variable for a given Interface. But that does not avoid the for loops and if checks in the code. I have seen in some places unpackPropety is being used to just handle one property at a time, which may not be optimal as the unpackPropety will again search for the property value from the available properties. The API call tend to get longer if you wanted to unpack multiple properties using single call. After unpacking you need to write code to convert the variable value to refish json again with necessary error handling.",
+      "parentUuid": "0d5d0e22_40d4e2db",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 0
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55ad9cbe_27f7a551",
         "filename": "designs/dbus_to_redfish_converter.md",
         "patchSetId": 7
@@ -134,6 +242,30 @@
       "writtenOn": "2023-06-01T15:38:59Z",
       "side": 1,
       "message": "This is:\n1. Missing error handling.\n2. Cherry picks a case where a property is 1:1\n3. does not include any request or response structures, so it\u0027s not clear to me how this could work.",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 98
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d95fd5a2_6b306242",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "1) WIP \n2) I have mentioned non-trivial example where 1:1 mapping is not possible.\n3) I think you are referring to the additional header attributes in redfish schema. You can always add any additional properties to the final json. Perhaps, an example port will make it all clear.",
+      "parentUuid": "55ad9cbe_27f7a551",
       "range": {
         "startLine": 118,
         "startChar": 0,
@@ -169,6 +301,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92ece45a_0685ebb8",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "I am not sure about what you mean by non trivial lambda. The parser API gets its inspiration from BMCWEB_ROUTE. Here you can see that lengthy callbacks are registered for handling specific URL. The frame-work takes care of routing and parameter un-wrappping for you.  The Parser in the proposal does similar work for you.",
+      "parentUuid": "8e960435_ffb06ed7",
+      "range": {
+        "startLine": 205,
+        "startChar": 20,
+        "endLine": 214,
+        "endChar": 20
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2a278fe_c34bb309",
         "filename": "designs/dbus_to_redfish_converter.md",
         "patchSetId": 7
@@ -180,6 +336,30 @@
       "writtenOn": "2023-06-01T15:38:59Z",
       "side": 1,
       "message": "Please do not use \"onSuccess\" and \"onFailure\" type callbacks.\n\n1. Because consistency with boost asio keeps the mental load low.\n2. Because in many cases, splitting the callback handlers requires all parameters to be reference counted, which is extra overhead and code.",
+      "range": {
+        "startLine": 245,
+        "startChar": 7,
+        "endLine": 245,
+        "endChar": 16
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "287652d2_504912ae",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "Reworked on the API. On-succes handler is removed. Now the parse function takes completion token callbacks similar to boost APIs.",
+      "parentUuid": "d2a278fe_c34bb309",
       "range": {
         "startLine": 245,
         "startChar": 7,
@@ -215,6 +395,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "348bf07c_9e0623d3",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "you need not always create objects in global scope. You can choose to create it as local. Yes, will check memory and performance impacts.",
+      "parentUuid": "cb0e87c3_8b48daf5",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 43
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb26e2a4_d4ff2628",
         "filename": "designs/dbus_to_redfish_converter.md",
         "patchSetId": 7
@@ -226,6 +430,30 @@
       "writtenOn": "2023-06-01T15:38:59Z",
       "side": 1,
       "message": "Please actually include error handling",
+      "range": {
+        "startLine": 305,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 37
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ba7ecfb_7c1840e0",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eb26e2a4_d4ff2628",
       "range": {
         "startLine": 305,
         "startChar": 0,
@@ -259,6 +487,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "882c46f5_bf1a5f1c",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a2c15659_0ccd2b10",
+      "range": {
+        "startLine": 345,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 49
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ab25ae3_25030910",
@@ -272,6 +524,24 @@
       "writtenOn": "2023-06-01T15:38:59Z",
       "side": 1,
       "message": "Binary size impact?  Memory impact?",
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2181c688_b13cd7ea",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-06-05T14:11:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1ab25ae3_25030910",
       "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
