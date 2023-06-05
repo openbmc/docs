@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36df01ab_90a9c9ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-05T16:37:19Z",
+      "side": 1,
+      "message": "\u003e 1) I will add examples that handle errors. This is WIP.\n\u003e 2) Example for enumeration has been added.\n\u003e 3) Can you elaborate on this(\"where a DBus error is not an internal error, and vice versa\") . Will 1) cover this?\n\nPlease take a look at the code, there are plenty of examples of this.\n\n\u003e 4) The code will be mainly used in places where DbusManged object to Redfish Json conversion is required. This is similar to how STL hides the looping construct and gives callbacks with unwrapped values to do the necessary transformation. So calling Mapper directly is not needed.\n\nI\u0027m not sure how calling dbus objects avoids calling the mapper.  Can you elaborate?  The existing state of the art already gets rid of the loops (at least most of them) so I\u0027m not sure what the advantage is here, but once you have a non-trivial example ported, that will be more obvious.\n\n\u003e 5) I think by PATCH you are referring to conversion from redfish to Dbus. The utility is for doing the conversion the other way around. Perhaps, we can take this up after finishing the current one. \n\nWe will have to evaluate if only solving one direction is worth the overhead here.\n\n\u003e 6) I was thinking about it as a post-processing phase where we can merge multiple parser results into single Json. Need to see how Nlohmann does the Json merge for the same key. If that works then we can do the merge within  single pass. WIP\n\u003e \n\u003e 7) The utility was written to use in a new requirement. Yes, will do the porting for an existing use case to measure the regression caused in performance and memory front. Do we have any existing benchmark available?\n\nPlease take a look at the commit messages where the existing mechanisms were added for the tests we generally run.",
+      "parentUuid": "951daa45_ac87cda5",
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f7aa3aff_0c351195",
         "filename": "designs/dbus_to_redfish_converter.md",
         "patchSetId": 7
@@ -120,6 +138,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7cc510f_43ae80ea",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-05T16:37:19Z",
+      "side": 1,
+      "message": "we don\u0027t always have an IF.  We only have an if if it\u0027s possible that the property potentially doesn\u0027t exist, or we have to merge two properties with some rules.",
+      "parentUuid": "710bfdb0_6a73b41f",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 73
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b1e07094_6c6b90dd",
         "filename": "designs/dbus_to_redfish_converter.md",
         "patchSetId": 7
@@ -149,6 +191,24 @@
       "side": 1,
       "message": "In the current design also properties are handled one at a time in an \"if block\". In new design each if block is converted into a callback. And the loop that driving the parser process is hidden behind the parser Object, which gives illusion of a property at time.",
       "parentUuid": "b1e07094_6c6b90dd",
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2e60c32_2c1983ad",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-05T16:37:19Z",
+      "side": 1,
+      "message": "\u003e In the current design also properties are handled one at a time in an \"if block\".\n\nThere\u0027s only an if block if the properties are optional.  If they\u0027re required, there is no if block.\n\n\u003e And the loop that driving the parser process is hidden behind the parser Object, which gives illusion of a property at time.\n\nIMO, this abstracts in a way that people won\u0027t be able to debug as easily, and doesn\u0027t integrate as well with our secure coding style.\n\nWith that said, I\u0027m happy to see you start to port the non-trivial examples, and I\u0027d love to be surprised.",
+      "parentUuid": "eca61ece_e0d5799b",
       "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -190,6 +250,30 @@
       "side": 1,
       "message": "The meaning is there in the next line. At present we need to look at at least two places to see full transformation of a property .1) Inside the if block where debus values are stored in an intermediate structure. 2) From the structure to redfish Json conversion located at some other place.",
       "parentUuid": "4cf8563f_c799fb9c",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 21
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d54cc936_0203462c",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-05T16:37:19Z",
+      "side": 1,
+      "message": "\u003e The meaning is there in the next line. At present we need to look at at least two places to see full transformation of a property .1) Inside the if block where debus values are stored in an intermediate structure. 2) From the structure to redfish Json conversion located at some other place.\n\nYou keep saying this \"inside the if block\" which doesn\u0027t exist if the properties are non-optional.  And if they\u0027re optional, I think the IF is a good abstraction to make sure that we can handle errors properly.",
+      "parentUuid": "fc4ef498_0a29a817",
       "range": {
         "startLine": 48,
         "startChar": 0,
@@ -249,6 +333,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a17d0aa4_9c9c2d68",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-05T16:37:19Z",
+      "side": 1,
+      "message": "\u003e sdbusplus::unpackPropertiesNoThrow will be able to unpack the data into given variable for a given Interface. But that does not avoid the for loops and if checks in the code.\n\nPlease take a look at something like:\nhttps://github.com/openbmc/bmcweb/blob/472bd202da308ea7ba6c9f5606e025367b52fccc/redfish-core/lib/cable.hpp#L27\n\nIt does avoid at least one level of loop.\n\n\n\u003e I have seen in some places unpackPropety is being used to just handle one property at a time, which may not be optimal\n\nDo you have data to back this up?  a loop of a single entry seems like a case that we wouldn\u0027t normally need to optimize for, because we\u0027d be calling org.freedesktop.DBus.Properties.Get.\n\n\u003e as the unpackPropety will again search for the property value from the available properties.\n\nThis was profiled quite a bit.  The N^2 algorithm actually ended up faster, and considerably more binary-size dense.\n\n\u003e The API call tend to get longer if you wanted to unpack multiple properties using single call\n\n\u003e After unpacking you need to write code to convert the variable value to refish json again with necessary error handling.\n\nIn the above example, the \"convert the variable value to refish json\" doesn\u0027t go away.",
+      "parentUuid": "58134555_672b5c82",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 0
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55ad9cbe_27f7a551",
         "filename": "designs/dbus_to_redfish_converter.md",
         "patchSetId": 7
@@ -284,6 +392,30 @@
       "side": 1,
       "message": "1) WIP \n2) I have mentioned non-trivial example where 1:1 mapping is not possible.\n3) I think you are referring to the additional header attributes in redfish schema. You can always add any additional properties to the final json. Perhaps, an example port will make it all clear.",
       "parentUuid": "55ad9cbe_27f7a551",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 98
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06ba621a_5c4edbc2",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-05T16:37:19Z",
+      "side": 1,
+      "message": "\u003e 1) WIP \n\u003e 2) I have mentioned non-trivial example where 1:1 mapping is not possible.\n\nIt would be good if you could add an example of, say, sensors.\n\n\u003e 3) I think you are referring to the additional header attributes in redfish schema. You can always add any additional properties to the final json. Perhaps, an example port will make it all clear.\n\nNo, I\u0027m saying that the underlying HTTP types we use are Request (which represents the user request) and Response (which represents a users response).  If these aren\u0027t passed in somewhere, I don\u0027t see how this can actually effect the result.",
+      "parentUuid": "d95fd5a2_6b306242",
       "range": {
         "startLine": 118,
         "startChar": 0,
@@ -343,6 +475,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05d96d17_173ebfc0",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-05T16:37:19Z",
+      "side": 1,
+      "message": "\u003e I am not sure about what you mean by non trivial lambda.\n\nLambdas that are more than a line or two are difficult to debug.\n\n\u003e The parser API gets its inspiration from BMCWEB_ROUTE. Here you can see that lengthy callbacks are registered for handling specific URL.\n\ngenerally not as lambdas, and in the cases where they\u0027re still lambdas, we\u0027re working on porting them to normal functions.\n\n\u003e The frame-work takes care of routing and parameter un-wrappping for you.  The Parser in the proposal does similar work for you.\n\nUnderstood, but large lambdas doing actual computation are still not allowed.",
+      "parentUuid": "92ece45a_0685ebb8",
+      "range": {
+        "startLine": 205,
+        "startChar": 20,
+        "endLine": 214,
+        "endChar": 20
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2a278fe_c34bb309",
         "filename": "designs/dbus_to_redfish_converter.md",
         "patchSetId": 7
@@ -378,6 +534,30 @@
       "side": 1,
       "message": "Reworked on the API. On-succes handler is removed. Now the parse function takes completion token callbacks similar to boost APIs.",
       "parentUuid": "d2a278fe_c34bb309",
+      "range": {
+        "startLine": 245,
+        "startChar": 7,
+        "endLine": 245,
+        "endChar": 16
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2b75149_c95c475a",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-05T16:37:19Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "287652d2_504912ae",
       "range": {
         "startLine": 245,
         "startChar": 7,
@@ -425,6 +605,30 @@
       "side": 1,
       "message": "you need not always create objects in global scope. You can choose to create it as local. Yes, will check memory and performance impacts.",
       "parentUuid": "cb0e87c3_8b48daf5",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 43
+      },
+      "revId": "eb3e2713c2cdf31ef9a44e2ee9305e4992c508ab",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f258c421_d7f2f6c0",
+        "filename": "designs/dbus_to_redfish_converter.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-06-05T16:37:19Z",
+      "side": 1,
+      "message": "I don\u0027t think you\u0027re understanding.  I\u0027m not commenting on the scope of the variable, I\u0027m commenting on the fact that it\u0027s static, so it will malloc and use memory all the time.",
+      "parentUuid": "348bf07c_9e0623d3",
       "range": {
         "startLine": 283,
         "startChar": 0,
