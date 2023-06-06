@@ -58,6 +58,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fbbeacb_7df695b4",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-06-06T09:32:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12bc7bbe_56527bda",
+      "range": {
+        "startLine": 11,
+        "startChar": 11,
+        "endLine": 11,
+        "endChar": 18
+      },
+      "revId": "a245e1b1a2ac1ba960283a53596b40f87fc4dd2b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffa9d064_9bea5a50",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-06-02T15:20:53Z",
       "side": 1,
       "message": "I thought IBM had something implemented for this?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 43
+      },
+      "revId": "a245e1b1a2ac1ba960283a53596b40f87fc4dd2b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8965c739_27973780",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-06-06T09:32:33Z",
+      "side": 1,
+      "message": "I see that IBM team implemented an application which controls CPU\u0027s power via OCC device. This design implements an application that follows DCMI specification which are not depended on the hardware.",
+      "parentUuid": "ffa9d064_9bea5a50",
       "range": {
         "startLine": 11,
         "startChar": 0,
@@ -100,6 +148,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7fa9c563_c8f9876d",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-06-06T09:32:33Z",
+      "side": 1,
+      "message": "Thank you for your information, but if the system does not have the OCC device, we can not use openpower-occ-control app. This design follows DCMI specification which are not depended on the hardware, we can apply this solution anywhere.",
+      "parentUuid": "cc324909_a11f6b60",
+      "revId": "a245e1b1a2ac1ba960283a53596b40f87fc4dd2b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6fd85ef_16f149ba",
         "filename": "designs/power-manager.md",
         "patchSetId": 5
@@ -111,6 +177,24 @@
       "writtenOn": "2023-06-02T16:42:09Z",
       "side": 1,
       "message": "A user power cap can also be specified via GUI or Redfish.\nThe OCC will then create a PEL if the system exceeds that user specified power cap.\nThis is intended on being a power saving feature, not for system protection, so I don\u0027t think this would be a reason to power off a system.\n\nHere is the user power limit (PowerCap / PowerCapEnable properties): \n```# busctl introspect xyz.openbmc_project.Settings /xyz/openbmc_project/control/host0/power_cap\nNAME                                  TYPE      SIGNATURE RESULT/VALUE FLAGS\norg.freedesktop.DBus.Introspectable   interface -         -            -\n.Introspect                           method    -         s            -\norg.freedesktop.DBus.Peer             interface -         -            -\n.GetMachineId                         method    -         s            -\n.Ping                                 method    -         -            -\norg.freedesktop.DBus.Properties       interface -         -            -\n.Get                                  method    ss        v            -\n.GetAll                               method    s         a{sv}        -\n.Set                                  method    ssv       -            -\n.PropertiesChanged                    signal    sa{sv}as  -            -\nxyz.openbmc_project.Control.Power.Cap interface -         -            -\n.MaxPowerCapValue                     property  u         2777         emits-change writable\n.MinPowerCapValue                     property  u         1778         emits-change writable\n.MinSoftPowerCapValue                 property  u         556          emits-change writable\n.PowerCap                             property  u         1000         emits-change writable\n.PowerCapEnable                       property  b         false        emits-change writable```\nAnd via Redfish: /redfish/v1/Chassis/chassis/EnvironmentMetrics\n```    \"PowerLimitWatts\": {\n        \"AllowableMax\": 2777,\n        \"AllowableMin\": 1778,\n        \"ControlMode\": \"Disabled\",\n        \"SetPoint\": 1000\n    }```\n\nThe OCC is always monitoring the power to ensure it is within the system power limit. Again if consumption exceeds the system power limit (AllowableMax property), it is moved to safe mode to keep the hardware safe but still operational.",
+      "revId": "a245e1b1a2ac1ba960283a53596b40f87fc4dd2b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7a41569_8e979944",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-06-06T09:32:33Z",
+      "side": 1,
+      "message": "The safe mode only is available on the OCC device, if the system does not have OCC device, we should turn off the host or make OEM action (Users can implement a simulated \"safe mode\" in this mode).",
+      "parentUuid": "c6fd85ef_16f149ba",
       "revId": "a245e1b1a2ac1ba960283a53596b40f87fc4dd2b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -134,6 +218,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c1f6686_d7a64dcb",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-06-06T09:32:33Z",
+      "side": 1,
+      "message": "OCC is specified for IBM system. In other systems, I think they can get the total power consumption via dbus-sensor (PSU sensor) or virtual-sensor.",
+      "parentUuid": "55fcc93d_b6e279e6",
+      "revId": "a245e1b1a2ac1ba960283a53596b40f87fc4dd2b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bec7f2c4_566b2d45",
         "filename": "designs/power-manager.md",
         "patchSetId": 5
@@ -151,6 +253,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a2695305_b29a7fc5",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-06-06T09:32:33Z",
+      "side": 1,
+      "message": "I updated this section. Please look again",
+      "parentUuid": "bec7f2c4_566b2d45",
+      "revId": "a245e1b1a2ac1ba960283a53596b40f87fc4dd2b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "886c7dcb_df072f3c",
         "filename": "designs/power-manager.md",
         "patchSetId": 5
@@ -162,6 +282,24 @@
       "writtenOn": "2023-06-02T15:20:53Z",
       "side": 1,
       "message": "It looks like the \"Organizational\" section was deleted or an old template was used when you wrote this.  That is pretty important in this case because it sounds like you\u0027re going to be requesting a new repository?",
+      "revId": "a245e1b1a2ac1ba960283a53596b40f87fc4dd2b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ed62a63_e3fe6147",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-06-06T09:32:33Z",
+      "side": 1,
+      "message": "Thank you for your information, I added \"Organizational\" section.  Please look again.",
+      "parentUuid": "886c7dcb_df072f3c",
       "revId": "a245e1b1a2ac1ba960283a53596b40f87fc4dd2b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
