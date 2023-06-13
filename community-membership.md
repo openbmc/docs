@@ -49,7 +49,7 @@ are expected to remain active contributors to the community.
 - Actively contributing to 1 or more subprojects.
 - **[Submit a CLA]**
 
-## Reviewer
+## Designated Reviewer
 
 Reviewers are capable of reviewing code for quality and correctness on some part
 of a subproject. They are knowledgeable about both the codebase and software
