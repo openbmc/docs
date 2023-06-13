@@ -7,7 +7,7 @@ roles are scoped to these subrepos.
 | Role                | Expectations                                           | Requirements                                                                                           | Defined by                                                   |
 | ------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
 | Code Contributor    | Abide by the code of conduct                           | Executed Contributor License Agreement                                                                 | Merged Code                                                  |
-| Reviewer            | Review contributions from other members                | History of review in a subproject                                                                      | [OWNERS] file reviewer entry                                 |
+| Designated Reviewer | Review contributions from other members                | History of review in a subproject                                                                      | [OWNERS] file reviewer entry                                 |
 | Platform Maintainer | Review and maintain contributions to a single platform | History of testing and ownership of a given single platform                                            | [OWNERS] entry within the meta-\* subfolder for the platform |
 | Approver            | Review and maintain contributions to a portion of code | Demonstrated responsibility and excellent technical judgement for the portion of code across platforms | subproject [OWNERS] file _owners_ entry                      |
 | Subproject owner    | Set direction and priorities for a subproject          | Demonstrated responsibility and excellent technical judgement for the subproject across platforms      | subproject [OWNERS] file _owners_ entry                      |
@@ -49,11 +49,11 @@ are expected to remain active contributors to the community.
 - Actively contributing to 1 or more subprojects.
 - **[Submit a CLA]**
 
-## Reviewer
+## Designated Reviewer
 
-Reviewers are capable of reviewing code for quality and correctness on some part
-of a subproject. They are knowledgeable about both the codebase and software
-engineering principles.
+Designated Reviewers are capable of reviewing code for quality and correctness
+on some part of a subproject. They are knowledgeable about both the codebase and
+software engineering principles.
 
 **Defined by:** _reviewers_ entry in an OWNERS file in a repo owned by the
 OpenBMC project.
