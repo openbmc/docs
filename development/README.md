@@ -7,7 +7,7 @@ any order you like, but the recommended flow can be found below.
 1. [Development Environment Setup](dev-environment.md)
 
    Start here. This shows how to setup an OpenBMC development environment using
-   its Software Development Kit and how to start the software emulator, QEMU.
+   its bitbake build process and how to start the software emulator, QEMU.
 
 2. [Hello World](sdk-hello-world.md)
 
