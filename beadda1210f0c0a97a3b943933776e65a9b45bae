@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62cf38dc_6b585901",
+        "filename": "designs/aggregation/phosphor-state-manager-aggregation.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-06-14T16:37:38Z",
+      "side": 1,
+      "message": "What about using chassis?\nThis could be a sled/blade/etc, right?\nChassis seems more broad and more OpenBMC/Redfish like.",
+      "range": {
+        "startLine": 50,
+        "startChar": 35,
+        "endLine": 50,
+        "endChar": 40
+      },
+      "revId": "beadda1210f0c0a97a3b943933776e65a9b45bae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c969bcb4_37d365aa",
+        "filename": "designs/aggregation/phosphor-state-manager-aggregation.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-06-14T16:37:38Z",
+      "side": 1,
+      "message": "Can you talk about Redfish aggregation? Links some of it. Looking at the Redfish specification (DSP 0266, looking at version 1.18.0. \n\nSection 16.1.1\n\n\"Implicit and complex aggregators\n\nThere are at least two classes of Redfish aggregators:\n\nImplicit aggregators. An example of an implicit aggregator is an enclosure manager, such as a manager of blades in an enclosure. This implementation has ComputerSystem resources representing blades in the ComputerSystemCollection resource, and one or more Manager resources in the ManagerCollection resource. It also would likely have a Chassis resource for each blade and a Chassis resource for the enclosure, which would use the Contains property in Links to express the containment relationship to the individual blades. This class of aggregator has tight coupling with system design, and proxies requests to and from the blades to perform management functions.\nComplex aggregators. An example of a complex aggregator is a rack-level manager, fabric manager, or a manager of similar scale, especially if it represents resources that it gathers through the proxy of information from other managers, like BMCs. The sources that this manager aggregates are more complex in nature and potentially varying. This manager probably has an interface to the resources and proxies the Redfish service on behalf of each set of resources. At this scale, a Redfish client would prefer to provide common functions, such as resetting a set of systems, to the Redfish service as a whole rather than invoking actions individually to achieve scalability requirements. This class of service also may need assistance in adding members to the service, such as providing address and account information for the aggregator to contact the components and initiate the proxy of Redfish operations.\"\n\nThis appears to be a lot of what you doing here?",
+      "revId": "beadda1210f0c0a97a3b943933776e65a9b45bae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
