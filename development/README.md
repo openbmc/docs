@@ -9,10 +9,10 @@ any order you like, but the recommended flow can be found below.
    Start here. This shows how to setup an OpenBMC development environment using
    its bitbake build process and how to start the software emulator, QEMU.
 
-2. [Hello World](sdk-hello-world.md)
+2. [Hello World](devtool-hello-world.md)
 
-   This shows how to use the Software Development Kit as you build and test your
-   OpenBMC changes within QEMU.
+   This shows how to use the yocto tool, devtool, to extract an OpenBMC source
+   repository, build, and test your changes within QEMU.
 
 3. [Web UI Development](web-ui.md)
 
