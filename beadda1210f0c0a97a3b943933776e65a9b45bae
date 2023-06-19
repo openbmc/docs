@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87c28084_c52a2017",
+        "filename": "designs/aggregation/phosphor-state-manager-aggregation.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-06-19T20:01:39Z",
+      "side": 1,
+      "message": "Here were some comments from an internal review:\n- Be consistent with terminology. Rack Manager, Sled (remove non-aggregator).\n- Focus on use case of interest, example from Redfish spec, utilizing a Rack Manager\n- Must support use case where a boot of host firmware can include a chassis power on to all sleds, waiting for that to complete, and then running commands from rack manager to configure the SMP across the sleds.\n- With some system designs including peer (redundant) rack manager, and redundant management clients, need to ensure composed system requests are rejected if an operation is already in progress (i.e. don\u0027t allow multiple power on operations to a composed system)\n- Need a good path mechanism for a sled to request a composed system reboot (host firmware will pick an arbitrary sled for communication and make request)\n- Need an example of a composed system power off",
+      "revId": "beadda1210f0c0a97a3b943933776e65a9b45bae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62cf38dc_6b585901",
@@ -24,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d333b0f4_3398910b",
+        "filename": "designs/aggregation/phosphor-state-manager-aggregation.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-06-19T20:01:39Z",
+      "side": 1,
+      "message": "As a \"sled\" contains a Manager, Chassis, and System, using \"Chassis\" doesn\u0027t seem to fit great. I know we discussed offline and you were going to dig a bit more. For now I\u0027m going to stick with sled, and I\u0027ll probably add some comments to more clearly define that.",
+      "parentUuid": "62cf38dc_6b585901",
+      "range": {
+        "startLine": 50,
+        "startChar": 35,
+        "endLine": 50,
+        "endChar": 40
+      },
+      "revId": "beadda1210f0c0a97a3b943933776e65a9b45bae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c969bcb4_37d365aa",
@@ -37,6 +78,24 @@
       "writtenOn": "2023-06-14T16:37:38Z",
       "side": 1,
       "message": "Can you talk about Redfish aggregation? Links some of it. Looking at the Redfish specification (DSP 0266, looking at version 1.18.0. \n\nSection 16.1.1\n\n\"Implicit and complex aggregators\n\nThere are at least two classes of Redfish aggregators:\n\nImplicit aggregators. An example of an implicit aggregator is an enclosure manager, such as a manager of blades in an enclosure. This implementation has ComputerSystem resources representing blades in the ComputerSystemCollection resource, and one or more Manager resources in the ManagerCollection resource. It also would likely have a Chassis resource for each blade and a Chassis resource for the enclosure, which would use the Contains property in Links to express the containment relationship to the individual blades. This class of aggregator has tight coupling with system design, and proxies requests to and from the blades to perform management functions.\nComplex aggregators. An example of a complex aggregator is a rack-level manager, fabric manager, or a manager of similar scale, especially if it represents resources that it gathers through the proxy of information from other managers, like BMCs. The sources that this manager aggregates are more complex in nature and potentially varying. This manager probably has an interface to the resources and proxies the Redfish service on behalf of each set of resources. At this scale, a Redfish client would prefer to provide common functions, such as resetting a set of systems, to the Redfish service as a whole rather than invoking actions individually to achieve scalability requirements. This class of service also may need assistance in adding members to the service, such as providing address and account information for the aggregator to contact the components and initiate the proxy of Redfish operations.\"\n\nThis appears to be a lot of what you doing here?",
+      "revId": "beadda1210f0c0a97a3b943933776e65a9b45bae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04dae98d_28beb71f",
+        "filename": "designs/aggregation/phosphor-state-manager-aggregation.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-06-19T20:01:39Z",
+      "side": 1,
+      "message": "Yeah that\u0027s some good stuff and definitely the area we\u0027re looking at (the complex aggregators). I\u0027m going to change our terminology over to a \"Rack Manager\". I\u0027m kind of threading the needle with how much Redfish I bring in here. At a high level, this is d-bus and basic bmc to bmc communication over existing Redfish. There is a lot that goes into creating the composed systems and such, but to a certain extent I just want to reference your doc on all that :)",
+      "parentUuid": "c969bcb4_37d365aa",
       "revId": "beadda1210f0c0a97a3b943933776e65a9b45bae",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
