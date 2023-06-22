@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4d2e715_69db93fe",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-06-22T09:22:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b5c3cfa_4d9b94ea",
+      "revId": "6d0d032e8536ab8bcfdcf9a6fc44ca651c72b8cc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb6b8104_9fa10a25",
@@ -52,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ca2d034_a5d556a1",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-06-22T09:22:49Z",
+      "side": 1,
+      "message": "Almost total power consumption of the system come from CPU\u0027s power, therefore, I think the power-management application should not compare total power consumption and power limit while CPU is off.",
+      "parentUuid": "eb6b8104_9fa10a25",
+      "revId": "6d0d032e8536ab8bcfdcf9a6fc44ca651c72b8cc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78b32407_1216b76c",
@@ -65,6 +101,24 @@
       "writtenOn": "2023-06-22T08:47:07Z",
       "side": 1,
       "message": "Do we need this? We already have power_reading.json inside phosphor-ipmi-config",
+      "revId": "6d0d032e8536ab8bcfdcf9a6fc44ca651c72b8cc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14b8199e_fd16d33d",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-06-22T09:22:49Z",
+      "side": 1,
+      "message": "Currently, OpenBmc does not have any applicaiton to monitor total power consumption, therefore, ipmid needs a configuration file (power_reading.json) to indicate the sensor which presents total power consumption (the value of current/avg/max/min are the same). I see this is a workaround solution to support \"ipmiitool dcmi power reading\" command.\n\nWhen power management application is implemented, we have to remove ipmid code which relates to power_reading.json file.",
+      "parentUuid": "78b32407_1216b76c",
       "revId": "6d0d032e8536ab8bcfdcf9a6fc44ca651c72b8cc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
