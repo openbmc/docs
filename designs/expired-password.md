@@ -153,8 +153,8 @@ This design is intended to cover any cause of expired password, including both
 the BMC's initial expired password and password expired for another cause such
 as aging or via the `passwd --expire` command.
 
-This design is intended to enable the phosphor-webui web application to
-implement a password change dialog for the signon screen.
+This design is intended to enable the webui-vue web application to implement a
+password change dialog for the signon screen.
 
 Per the above design, when the web app uses either `/login` or
 `/redfish/v1/SessionService` to establish a session and the account has an
