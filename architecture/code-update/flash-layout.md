@@ -118,9 +118,18 @@ AST2500, allow booting from an alternate flash on failure and this UBI option
 supports this feature. For this support, a copy of each kernel is stored on each
 flash and the U-Boot environment selects which kernel to use.
 
+##### With root as initramfs
+
+Alternatively to squashfs, the root filesystem can be stored in a cpio format
+and placed as the initramfs for the kernel's FIT image so that the BMC is
+entirely running from a ramdisk. This option is enabled via the
+`obmc-static-norootfs` OpenBMC distro feature.
+
 #### ext4 on eMMC
 
-This is a work in progress. See the [eMMC Design Document][].
+See the [eMMC Design Document][] for details.
+
+This option is enabled via the `phosphor-mmc` OpenBMC distro feature.
 
 ### Auxiliary Filesystems
 
