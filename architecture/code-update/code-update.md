@@ -1,11 +1,17 @@
 # OpenBMC Code Update
 
-Two BMC Code layouts are available:
+The BMC Code layouts are described in the [Flash Layout Document][].
 
-- Static, non-UBI layout
-- UBI layout - enabled via `obmc-ubi-fs` distro feature
+This document describes the code update process, which supports the following
+layouts:
 
-This document describes the code update that supports both layouts.
+- Static - This is the default configuration.
+- Static Dual Image - Enables the code update process to support 2 copies of the
+  firmware image in a static layout. Enabled via the `static-dual-image`
+  software manager packageconfig option. Refer to the Implementation section
+  below for details.
+- UBI layout - Enabled via the `obmc-ubi-fs` OpenBMC distro feature.
+- eMMC layout - Enabled via the `mmc_layout` OpenBMC distro feature.
 
 ### Steps to Update
 
@@ -391,7 +397,7 @@ any host patches located in `/usr/local/share/pnor/`.
 The factory reset interface can be found here:
 https://github.com/openbmc/phosphor-dbus-interfaces/blob/02b39246d45ea029a1652a49cc20eab7723dd63b/xyz/openbmc_project/Common/FactoryReset.interface.yaml
 
-### Image Storage Location
+### Image Storage Location and Flash Layout
 
 #### Static layout
 
@@ -414,6 +420,20 @@ images to be stored. By default, only the BMC chip is used. To use both, set
 
 ### Implementation
 
-More information about the implementation of the code update can be found at
-https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software
-and https://github.com/openbmc/phosphor-bmc-code-mgmt
+More information about the implementation of the code update can be found at the
+[Software Manager README][] and the [BMC Code Update repo][].
+
+Additional references:
+
+- [Software manager recipe][] lists supported packageconfig combinations.
+- [Code Update compiler options][] describes each option.
+
+[flash layout document]:
+  https://github.com/openbmc/docs/blob/master/architecture/code-update/flash-layout.md
+[software manager readme]:
+  https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/README.md
+[bmc code update repo]: https://github.com/openbmc/phosphor-bmc-code-mgmt
+[software manager recipe]:
+  https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/flash/phosphor-software-manager_git.bb
+[code update compiler options]:
+  https://github.com/openbmc/phosphor-bmc-code-mgmt/blob/master/meson_options.txt
