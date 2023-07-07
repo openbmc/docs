@@ -1,0 +1,217 @@
+# Phosphor license service feature design
+
+Author: Abhilash Raju
+
+Other contributors: Raviteja Bailapudi
+
+Created: 05/07/2023
+
+## Glossary
+
+- PLDM - Platform Level Data Model
+- PLM - Phosphor License Manager
+
+## Problem Description
+
+Systems can be shipped with additional hardware than what was purchased in order
+to support flexible consumption based model. The hardware can be released on
+demand by purchasing licenses. One of the examples would be to control the
+firmware updates using licenses, by not allowing the new driver installation
+which is released beyond certain date which system is entitled for. Thus a
+mechanism is need to facilitate installation, monitoring and management of
+licenses.
+
+Scope of this design limited to
+
+1. Installation of license file
+2. Fetch details of installed license file
+3. Fetch progess status of license installation
+
+This design document does not cover
+
+1. License expiration use case
+2. Expiry notification use case
+
+## Background and References
+
+## Requirements
+
+Implement redfish license install/delete interfaces for redfish clients based on
+the schema defined
+[here](https://redfish.dmtf.org/schemas/v1/LicenseService.v1_1_0.json)
+
+## Proposed Design
+
+The license manager is a demon that facilitate license installation , management
+and monitoring procedures. The demon hosts set of Dbus objects and properties in
+order to keep track of installed license and its expiration dates.
+
+The below Diagram shows the data flow in the installation sequence.
+
+1. Client will post a redfish install request with file path as parameter
+2. BmcWeb calls install Interface method hosted by PLM
+3. PLM notifies back with progress status
+4. A Redfish event will be sent back to the client
+5. PLM Downloads the file from the URL
+6. PLM send the file data to Host via using pldm file IO commands
+7. Host parses the data, check validity, and Installs the license
+8. Installed license details will be sent back to PLM. PLM parses the file and
+   creates/update license object based on the parsed details
+9. PLM notifies BmcWeb the install sucess/failure status
+10. Corresponding Redfish event will be sent back to the client
+
+### Design Flow
+
+```ascii
+┌─────────┐         ┌─────────┐          ┌─────────┐             ┌─────────┐
+│Client   │         │ BmcWeb  │          │  PLM    │             │  Host   │
+└────┬────┘         └─────┬───┘          └────┬────┘             └─────┬───┘
+     │                    │                   │                        │
+     │   Install          │                   │                        │
+     ├────────────────────►                   │                        │
+     │                    │                   │                        │
+     │                    ├────┐              │                        │
+     │                    │    │ Create Task  │                        │
+     │                    │    │              │                        │
+     │                    ◄────┘              │                        │
+     │                    │  Install Method   │                        │
+     │                    ├───────────────────►                        │
+     │                    │                   │                        │
+     │                    │   Update Status   │                        │
+     │                    ◄───────────────────┤                        │
+     │                    │                   │                        │
+                          ├────┐              │                        │
+     │                    │    │ Update Task  │                        │
+     │                    ◄────┘              │                        │
+     │ Progress Event     │                   │                        │
+     ◄────────────────────┤                   │                        │
+     │                    │ Dowload File      │                        │
+     ◄────────────────────┼───────────────────┤                        │
+     │                    │                   │  File Data(PLDM IO)    │
+     │                    │                   ├────────────────────────►  Parse Data
+     │                    │                   │                        ┌───────┐
+     │                    │                   │                        │       │
+     │                    │                   │                        │       │  Check Validity  &
+     │                    │                   │                        ◄───────┘  Install License
+     │                    │                   │                        │
+     │                    │                   │                        │
+     │                    │                   │                        │
+     │                    │                   │                        │
+     │                    │                   │License Details(PLDM IO)
+     │                    │                   ◄────────────────────────┐
+     │                    │                   │                        │
+     │                    │                   │ Update Dbus            │
+     │                    │                   ├─────┐                  │
+     │                    │                   │     │                  │
+     │                    │                   │     │                  │
+     │                    │                   │     │                  │
+     │                    │                   ◄─────┘                  │
+     │                    │   Install status  │                        │
+     │                    ◄───────────────────┤                        │
+     │                    │                   │                        │
+     │                    ├──────┐            │                        │
+     │                    │      │            │                        │
+     │                    │      │Update Task │                        │
+     │                    ◄──────┘            │                        │
+     │                    │                   │                        │
+     │ Finished/Cancelled │                   │                        │
+     │     Event          │                   │                        │
+     ◄────────────────────┤                   │                        │
+     │                    │                   │                        │
+     │                    │                   │                        │
+     │                    │                   │                        │
+```
+
+## Alternatives considered:
+
+Instead of adding new PLM we can incorporate changes directly to PLDM But PLDM
+is trying to decouple all service specific logic from it in order to make it a
+light weight component focusing only on host interfacing functionalities. So
+attempt to add modification related to license manager in PLDM is discarded.
+
+### Alternate Design
+
+```ascii
+┌─────────┐         ┌─────────┐          ┌─────────┐             ┌─────────┐
+│Client   │         │ BmcWeb  │          │  PLDM   │             │  Host   │
+└────┬────┘         └─────┬───┘          └────┬────┘             └─────┬───┘
+     │                    │                   │                        │
+     │   Install          │                   │                        │
+     ├────────────────────►                   │                        │
+     │                    │                   │                        │
+     │                    ├────┐              │                        │
+     │                    │    │ Create Task  │                        │
+     │                    │    │              │                        │
+     │                    ◄────┘              │                        │
+     │                    │  Install Method   │                        │
+     │                    ├───────────────────►                        │
+     │                    │                   │                        │
+     │                    │   Update Status   │                        │
+     │                    ◄───────────────────┤                        │
+     │                    │                   │                        │
+                          ├────┐              │                        │
+     │                    │    │ Update Task  │                        │
+     │                    ◄────┘              │                        │
+     │ Progress Event     │                   │                        │
+     ◄────────────────────┤                   │                        │
+     │                    │ Dowload File      │                        │
+     ◄────────────────────┼───────────────────┤                        │
+     │                    │                   │     File Data          │
+     │                    │                   ├────────────────────────►  Parse Data
+     │                    │                   │                        ┌───────┐
+     │                    │                   │                        │       │
+     │                    │                   │                        │       │  Check Validity  &
+     │                    │                   │                        ◄───────┘  Install License
+     │                    │                   │                        │
+     │                    │                   │                        │
+     │                    │                   │                        │
+     │                    │                   │                        │
+     │                    │                   │ License Details
+     │                    │                   ◄────────────────────────┐
+     │                    │                   │                        │
+     │                    │                   │ Update Dbus            │
+     │                    │                   ├─────┐                  │
+     │                    │                   │     │                  │
+     │                    │                   │     │                  │
+     │                    │                   │     │                  │
+     │                    │                   ◄─────┘                  │
+     │                    │   Install status  │                        │
+     │                    ◄───────────────────┤                        │
+     │                    │                   │                        │
+     │                    ├──────┐            │                        │
+     │                    │      │            │                        │
+     │                    │      │Update Task │                        │
+     │                    ◄──────┘            │                        │
+     │                    │                   │                        │
+     │ Finished/Cancelled │                   │                        │
+     │     Event          │                   │                        │
+     ◄────────────────────┤                   │                        │
+     │                    │                   │                        │
+     │                    │                   │                        │
+     │                    │                   │                        │
+
+```
+
+## Impacts
+
+### Bmcweb
+
+Redfish endpoint implementation. Convertiong of Redfish json to dbus properties
+Implementation of Task monitor
+
+### license-manager
+
+Creation of lincense dbus objects, monitoring installation progress
+
+### pldm
+
+APIs for host interfacing
+
+## Testing
+
+The following BAT(basic acceptace test) has to be executed
+
+1. Install Lincese using Redfish API->varify the intallation progress using Task
+   tracker uri -> varify success
+2. Query installed license informations using redfish API
+3. Try to install malformed license->varify the rejection status
