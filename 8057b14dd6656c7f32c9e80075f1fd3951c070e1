@@ -16,6 +16,908 @@
       "message": "Any more comments?",
       "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "433accd4_5dc01e88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "I\u0027ve had an interest in how to integrate security and modern systems for a while.  After  seeing this topic in the security working group minutes I started researching the OAuth standard over the new year.  Unfortunately, life events beyond my control have demanded my attention delaying this review.  I have tried to give specific citations to specifications.  If desired I can share links to videos on YouTube of conference presentations etc (there are some that compare the OAuth framework to real life analogues with different levels of being contrived; I particularly enjoyed a recent 50 minute video comparing to a centuries old hotel incrementally adding requirements in response to new threats and then briefly showing the corresponding OAuth flow).\n\nI\u0027ve tried to temper my comments and I do realize that opensource projects require people to actually contribute code and its motivated by their use cases.  I believe this proposal describes an honest design that can be used by hyperscalers.  However, I think it was written after reading the Redfish Specification missing some other references especially about framework components not described therein.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89105fbe_ec8bd513",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The Redfish Specification talks about the option for supporting the OAuth 2.0 authorization framework, not integrating it.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "506de5ab_4bd976f1",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "### Native Redfish authentication\n\nWhile explicitly allowing additional methods of authentication, the Redfish Specification requires two methods be implemented: HTTP Basic Authorization and Redfish Session authentication using a defined login endpoint.  Both of these submit a username and unencrypted password with minimal encoding for transparency as credentials although they do so over a TLS secured channel.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "622ee717_581e8c3e",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "user to Redfish Role and/or Redfish Privileges mappings.",
+      "range": {
+        "startLine": 73,
+        "startChar": 20,
+        "endLine": 73,
+        "endChar": 32
+      },
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26635ac1_a9909b38",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "I assert validation of the token should also result in the delegation of the authentication of the user, and requiring an account increases the security concerns.  I\u0027ll expand this argument in the discussion of requirements below.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c776c38c_c3796c40",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "While this language is copied from the Redfish specification, it is inaccurate. From section 3 overview of RFC7519 \n\u003e JWTs represent a set of claims that is as a JSON object that is encoded in a JWS or JWE structure.\n\n\u003e A JWT is represented as a sequence of URL-safe parts separated by period (\u0027.\u0027) characters.  Each part contains a base64url-encoded value.\n\nA JWT uses either the compact JWS encoding or the compact JWE encoding but neither employ compression.  The compact encodings merely use shorter member names for some object members (many header parameters are 3-7 character strings) and avoid encoding possibly redundant information targeting support of multiple recipients.  In contrast each part is subjected to base64url encoding resulting in the use of only 6 bits of each 8-bit byte before joining them with a period.  However the result is a URL safe string suitable for direct inclusion in headers.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fce1198_33896412",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "consists of -\u003e contains.\n\nThe JOSE header contains parameters describing the cryptographic operations applied to the JWT and optionally additional properties (RFC7519 section 5).  The Redfish Specification requires processing the cryptographic algorithm (`alg`) and the token type (`typ`) when present, but other parameters should be processed.  Various RFCs describe other parameters; for instance the metadata service conditionally requires a key be identified (listing a prior key allows for rotation without service interruption).",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03b06189_8fcf4c8a",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "Note: Both this and the prior paragraph simply list items the Redfish Service requires be present or processed and could be summarized in the Requirements section as process the required headers.  The statement about required claims is not true for JWTs in general.\n\nThe exception to the above statement is the description scope claim contains the Redfish Roles or Redfish Privileges authorized to the client.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2d3dfb7_a980b06a",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "Configuration of the Redfish service to recognize an OAuth provider is described by the data model, specifically in DSP0268 the OAuth2 property contains an OAuth2Service property described in 6.41.3 Properties of 6.41 ExternalAccountProvider 1.6.0 (added in 1.3.0 as part of the 2021.2 release) and section 6.41.4.3 Mode describes Discovery and Manual configuration via the RFC8414 metadata endpoint of the authorization service.\n\nDSP0268 6.41\n\nOther RFCs likely relevant to BMCWeb as a Resource Server under the OAuth 2.0 framework:\n\nWhile Bearer tokens are nominally usable by anyone who can find them, RFC8705 describes how they can be constrained to be presented over a X.509 secured mTLS channel, restricting their use to the possessor(s) of the private key of said certificate.\n\nRFC6750 Bearer tokens and the Authorization Bearer scheme\nRFC2618 OAuth 2.0 security threat model\nRFC7517 jwks keyset\nRFC7800 Proof-of-Possession including defining the confirmation (`cnf`) claim \nRFC8414 OAuth metadata service\nRFC8705 restricting JWT validity requiring a mTLS secured by a X.509 certificate\n\nAdditional background containing possible requirements to consider when creating an OAuth 2.0 framework authorization service (ordered by RFC number):\nRFC7009 Token Revocation\nRFC7521 Assertion framework\nRFC7522 grants using SAML Assertions\nRFC7523 grants using JWT\nRFC7636 PKCE Proof Key for Code Exchange\nRFC7662 Token Introspection (endpoint to ask if a token is valid and its claims)\nRFC8693 Token Exchange (includes impersonation and delegation)\n\nMethods for clients to request specific claims in tokens:\nRFC8707 resource parameter (request a specific value in audience claim)\nRFC9101 JWT-secured auth requests (JAR)\nRFC9126 Pushed auth requests (PAR) describes iss should be the metadata endpoint\nRFC9396 Rich Authorization Requests (RAR) (for fine grained tokens)",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774f5920_47b4281b",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The resource owner is an entity or person, not a service or algorithm to be implemented.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40e6b959_16188a1d",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "needs",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48a7dcda_70293b59",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The client is the software though which the user accesses the resource server.  While it may be acting on its own authority, it may also be acting on behalf of a user and present the users credentials.\n\nThe paragraph asserts the Redfish server doesn\u0027t understand the credentials without describing any challenges to doing so or how they are overcome.\n\nMy nth attempt for a replacement:\n### Motivation and Challenges\n\nAuthorization referes to the process to decide if a request is permitted.  It authenticates (proves valid or true) credentials (statements about qualifications, background, or attributes about a subject) about the requester and may reference additional credentials from additional sources such as a user account.  Credentials are often presented as a set of claims, each describing an attribute of the user or another claim.  Criteria established by the owner or his delegate is then used to make the decision.\n\nIn Redfish it starts with the presentation of credentials by the requester.  While allowing additional methods of authentication, the specification requires at least two methods are implemented (HTTP Basic Authentication and Redfish Session login); both take use a username to locate an account and a password to authenticate with (something-you-know).  Once authenticated, the Redfish Role assigned to the provided account is retrieved and then the associated Set of Redfish Privileges is obtained.  Finally, the set of privileges are evaluated against those required to perform the requested operation and a decision is made.  While accounts may be retrieved from an external account provider (for example an LDAP provider), the required authentication methods expect to verify a password to authenticate the account holder.\n\n\u003eModern enterprises deploy a centralized system to manage identity (one example is Google\u0027s LOAS cluster manager but there are several providers including commercial and open-source solutions).  In addition to providing the enterprise with a single point of control, they allow users to establish a single sign-on (SSO) session allowing them to supply multiple applications with credentials without authenticating to each one individually.\n\n\nHowever there are several challenges to integrating a service with an identity system.\n\nDepending on sensitivity or access provided by the credentials being supplied the  the system may consult a dynamic threat model or other rules to request multiple authentication factors (MFA) to go beyond or instead of requesting a password (something you know) when authenticating the identity of a user; indeed, protocols in the FIDO2 family allow credentials to be presented while maintaining security and privacy without the use of a password.  While there are several standard claims that can be used to provided, deployments are permitted and encouraged to augment them with custom claims.  A deployment may associate client application with a profile to select which custom and standard claims should be included but allow neither the name of the claim nor the format of content to be adjusted.  An owner may establish require a number of custom and standard claims when authorizing privileges to perform  operations.  The critera may vary depending on the current use or may reflect the assignment of a specific user to a system.  In addition, there are several frameworks that describe how to format credentials for presentation to services (including as SAML assertions expressed in XML, as a JWT containing claims encoded in a JSON object, or as opaque tokens) and validate them (requiring the distribution of cryptographic keys or presentation of credentials to an API endpoint).  \n\n\nThe Redfish Specification describes requirements when a service decides to support the OAuth 2.0 framework to delegate some parts of the authorization process.  The description results in the extraction of Redfish Roles and Redfish Privileges to be applied when authorizing to an operation requested by the client.  It includes several requirements on the framework including the delivery of the access token by the client in an Authorization header using the Bearer scheme.  It requires the authorization server to format access tokens as a JWT and including specific values for standard claims.  As is good practice, it expects the token to include claims specific to the service (ignoring aggregation).  It also adds requirements on the service to process several claims and required support in the data model of specific configuration through, and how to express Redfish Roles and Redfish Privileges in the standard scope claim.  \n\n\u003eBy supporting the OAuth 2.0 framework as described in the Redfish Specification a single process can be written employed to extract the Redfish Roles and Privileges to be applied to a given request from the authorization token provided in the Authorization header using the Bearer scheme and parse it as a JWT which is then validated using information obtained from the data model either obtained and cached via discovery from the OAuth metadata service endpoint or configured manually.\n\n\nThis delegates the burden of understanding the user credentials and interaction with the resource owner to a suitably configured authorization service.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "845ce91d_b2ff7f85",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "This subsection states a fact (no current service implements the OAuth framework) without any motivation.  It makes a second statement (the Redfish service doesn\u0027t understand the credentials) makes a leap to \"OAuth is a natural fit\".\n\nHowever it doesn\u0027t present any justification why the authorization service should be near the Redfish Service and part of the BMC deployment.\n\nThe requirements describes an gRPC service to generate tokens and an ad-hoc (OEM) out of band method to distribute the corresponding public key to BMCWeb.  However, it does so without addressing any requirements of actually being an OAuth 2.0 authorization service.\n\n\nWhile I agree there does appear to be a gap between many OAuth service implementations out there and a scalable deployment of Resource servers with Redfish service endpoints to be controlled (indeed, RFC2618 describing the security threat model in 2013 explicitly avoids identification of resource servers or locating authorization servers), I am not convinced supplying the said token service advances that goal.  Regardless, upon presenting said service and proposing to share its public key via private, out of band methods this proposal missed the requirement to implement the OAuth2 property in the account service including the requirements and recommendations contained in the descriptions of the required properties in the Redfish Data Model.\n\nFurther discussion is in the requirements and Proposed design sections.\n\n\n### My idealized authorization service for a fleet of Redfish servers\n\n\nWhen I was exploring the OAuth 2.0 specification and landscape (including OpenID 1.0, and later OAuth 2.1 draft), it seems like most providers are expecting to authorize a (scalable list of) users to authenticate to a (scalable list of) client applications each accessing a single (or limited set of) service endpoint(s).  Many providers feature cross-authentication of users from other systems (either or both of SAML and OpenID Connect), and several support the import of identity information from other systems including LDAP and/or Active Directory, most offer several forms of MFA to authenticate users.  \n\nWith the OAuth 2.0 framework having been in existence for over a decade there are several products that can both act as an authentication service and act as a client to another system via a concept called federation.  Some provide a rules language and an overlapping set support writing code to intervene and adjust the claims supplied in the token.   Some place strict limits on the manipulation of standard claims.\n\nWhile I explored service offering documentation of different servers or frameworks to different depths, few if any seem to provide scaling of resource servers available to a client (although some supplied client frameworks only check an audience `aud` claim on an opt-in basis).  Many expect each Resource Server to be registered as a client even when no direct communication is required to validate credentials.\n\nRFC8707 defines the `resource` parameter to allow the client to inform the authorization server a specific resource server it intends to present with the requested token.  This allows the authorization server to construct the token to meet the servers requirements.  The client to identifies an absolute URI that can be used (possibly with mapping) to identify requested audience(s) (explicitly allowing repitition for requesting multiple resources) to place in the audience claim of the issued token.  In addition to describing the behavior for the authorization endpoint, its behavior for the token endpoint is also described, allowing a refresh token (or equivalently an assertion grant) to be customized with a specific audience for the granted token, possibly restricted by the source token.  \n\nThis parameter seems to be closely aligned with my ideal deployment, where a single authorization server supporting many redfish service endpoints each accessed by a few common clients that request tokens using either their own identity when pure automatin or combined with that of their invoking user.  A Resource Owner would describe criteria for claims presented by a federated system such as membership in a collection of users be it a group or assigned role might authorize Redfish Roles or Privileges and it may include specific supplementary attributes for specific privileges on specific servers.  When a client requests a scope (optionally that includes a Redfish defined scope) no Redfish scope not requested by the client would be included (this might require knowledge of the Role to Privilege mapping or the ability to query it or rules for allowed downgrade of Roles).\n\nNote: There are several RFCs describing how the client can supply parameters to an authorization request.  While RFC9101 describes a method to offer request parameters securely, it requires all parameters to be in the same request JWT including the client_id, so would not scale to general requests.  RFC9126 both expands on RFC9101 but also clarifies the aud claim when referring to RFC7523, declaring one but requiring 3 variants to be accepted.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4299469a_ed933ab7",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "Redfish requires that if `typ` is not present it is assumed to be JWT.   (Note JWT is case sensitive).",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea84e4c8_ac7c4420",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "Security hazard  (for all JWT):  It must only support asymmetric (public/private) algorithms (otherwise the publicly displayed public key can be using by another algorithm where it is treated as a symmetric key by an attacker).",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9188d8f1_72c799fb",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "RFC 8705 describes in detail how a mTLS certificate can be used with an JWT Bearer token to limit the presenter of the token.   It describes placing a confirmation method claim (`cnf` object RFC7800) in the token with the SHA256 thumbprint of the x.509 certificate (`x5t#S256`).\n\nThis allows the delegation to the OAuth server the task of authenticating the possessor of the certificate private key before issuing the Barer token.  In fact it describes 5 ways for a client to link a x509 PKI certificate in the authorization server (`tls_client_auth_subject_dn`, `tls_client_auth_san_dns`, `tls_client_auth_san_uri`, `tls_client_auth_san_ip`, `tls_client_auth_san_email`) in addition to 2 ways to register a client that will self-sign its X.509 client certificate (with `jwks` or `jwks_uri`).\n\n\n(From YouTube videos of conference presentations, this RFC was created as the first of two methods for proof of possession to meet UK banking regulations, allowing rapid deployment for those who had PKI in place.)",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abfb1b61_fc829eed",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "along with (or beside) -- it\u0027s independent.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28b9debe_ea3b7b10",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The described service does not implement an OAuth authorization server, rather it describes a token minting service for its client(s) (authorized by a mTLS certificate) to create signed JWT Bearer tokens.  This is a security context to token service (what some implementations refer to as STS to JWT), far from a complete OAuth authorization service.\n\nTo be an OAuth authorization server it must implement OAuth flows and endpoints described in OAuth related RFCs.  RFC6749 describes two protocol endpoints provided by the the authorization server (section 3), one to provide an access token and one to interact with the resource owner via browser redirect to provide authorization grants.  The proposed server implements neither of these and is therefore not an authorization server an any OAuth framework.\n\nIf this were an OAuth authorization service, then additional RFCs apply.\nRFC 7521 describes the Assertion framework for OAuth client authorization and authorization grants, and RFC7523 describes JWTs when used as such assertions.  RFC7523 states creating tokens for such a server requires the authorization endpoint to be listed as the audience (or an application profile to specify some other comparison for the audience).  Alternatively, RFC8693 describes JSON token exchange over HTTP, both for delegation and impersonation, both for cross-domain and defining the actor role in explicit cross-identity usage.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8da33d0_01280dbf",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "RFC8705 gives several requirements when using mTLS to authenticate a client to the authorization server.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e126ed6f_9a55eb4a",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The data model (DSP2068 2022.02) gives hints on how the authz server is conveyed to the Redfish service:  specifically, `Mode` `Discovery` or `Offline` (6.36.4.3) and `OAuth2Service` (`Audience`, `Issuer`, `Mode`, `OAuthServiceSigningKeys`) (6.36.3), which has statements about read only vs read write access depending on the state of Mode.  In turn this points out RFC8414 which has standard service information endpoints, including the public key be given in a json web key set (`jwks`) or at a https URL (`jwks_url`) and requiring intended usage notation if there is more than one key in the set.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "534a4f9a_d7c1b4b5",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "There hasn\u0027t been a mention of what URI are going to be published or supported for the audience (`aud`) claim.   Under `OAuth2Service` `Audience` property, the long description incudes\n\u003e For example, a MAC address or UUID for the manager can uniquely identify the service\n\nand these are likely more permanent than the hostname or IP address, both of which could be assigned via DHCP (there are defined URN namespace for both UUID and MAC, in addition to the normal https authority).\n\nOAuth security guidelines warn of confusing tokens meant for one RP being supplied to another, and this header is one of several used to detect such Mix-ups.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1ef2b73_38a65a1f",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "This paragraph should be in the proposed design section as its describing the example architecture, not stating requirements.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46da7964_07af9afd",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "Resource owners are people (or entities) not software.  While it doesn\u0027t give details, RFC6749 section 3 states the interaction between clients and resource owners granting an authorization grant is initiated via user-agent redirection at the authorization endpoint.  Alternatively, RFC7521 describes a framework for additional methods of conveying the authorization grant.\n\nThe proposed design has confused several of the OAuth defined roles, even though the definition were copied into this document.  After a few revisions I feel I have proposed descriptions that uses OAuth roles more accurately without significantly adjusting the design.  It does point out that the proxy as described combines both the roles of a client and an embedded authorization server in addition to its implied proxy service initiation endpoint.  I have tried to differentiate the roles ignoring the details of the actual transport.\n\nSuggested replacement:\n\u003e Details of the how the Resource Owner conveys authorization grants to clients are outside this proposal, however we provide an example architecture where a Resource Owner provides a combined Redfish proxy service with embedded authorization service, relying on the token service on the BMC to hold an ephemeral public/private key that is transported to the Redfish Service outside of the Redfish Data Model.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf04cf3a_21e7f0b3",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "nit: dumps\nThis implies a new mode to obtain some of the required service information.  This appears to describe a new OEM Mode.  It doesn\u0027t specify how the required issuer claim will be transported.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58002636_b1d24b5a",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "the client makes a request to the proxy service.\n\nQuestion: how does the proxy identify the requested resource server?",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c592622d_cfe96ad9",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "the authorization service (embedded in the box labled proxy service) authenticates the client and determines the authorized roles and/or privileges granted by the Resource Owner; in the example diagram, the authentication method is LOAS (Google\u0027s cluster authentication system).",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3f3c9d2_d32501e4",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "the",
+      "range": {
+        "startLine": 181,
+        "startChar": 65,
+        "endLine": 181,
+        "endChar": 68
+      },
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd548e56_8d1e5ef2",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The authorization service (embedded in the proxy service) requests the token service to mint a authorization token.  Within the request, the authorization service specifies the Redfish role or Redfish privileges granted by the resource owner.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b057547_178a45e9",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "the token(authz) server receives the token request; it verifies the peer is authorized by the resource owner via validating the client via the mTLS channel; ...\n\n... to the authorization service as an JWT object.  The JWT is returned to the proxy service via the (internal) token endpoint.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9424ee47_fd878aba",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The proxy service",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bf5d7f4_7775d603",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "by the proxy service.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b485b2ad_da0d2b0b",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "the token server",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55809c59_bb856da5",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "why include none?",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f74a9751_dda0e683",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "Why is this described as a single redfish role instead of a scope string, which can contain a list of redfish privileges for instance?   When specified as a redfish role I would expect the scope claim to be Redfish.Role.\u003cstring\u003e.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bba1019_301b352f",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "(If this service is determined to not be the issuer the value for that claim will need to be added)",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2038bc1_0c70e26b",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "SIGHUP (I presume)",
+      "range": {
+        "startLine": 232,
+        "startChar": 57,
+        "endLine": 232,
+        "endChar": 64
+      },
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67cac97e_daabe687",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "While this auto-configuration may be convenient, its neither the Discovery nor the Offline method defined in the data model.  I suppose the normal OEM extension could be created, but our policy for OEM usage requires raising use cases with the DTMF before adding them.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b47a3490_581a5b2b",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "This only supports owners who can supply their own firmware and requires a firmware update the owner list.  Its unclear how the peer is identified as a member of the list.  Some kind of certificate for each member?  How is the trust in the client certificate obtained?  In contrast, the redfish data model supports configuration of the OAuth service including using https to verify contact with a trusted server.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd80cc68_0181897d",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "This fixed string is not nearly unique to be considered a URI.   If you meant the URL of the server, please state as such.  The data model expects this to be the metadata endpoint.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b37d1f3e_44577010",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "see above comment on possible audience values.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5623834d_97ce356a",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "requires persistence of the counter; alternatively, a cryptographically random value to be reasonably certain to avoid collision.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "881a1772_0a26fb7a",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The described API is a long way from describing an OAuth framework authorization server.  While most of the server is presumed to be implemented elsewhere (as code that calls the gRPC endpoint), this proposal only describes the security sensitive penultimate step of minting the access token and returning it to the client without describing any audit requirements or other considerations.\n\n   Continued via comment in the alternatives section.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d50a82a_0d53569d",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The typ claim must be optional and assumed to be JWT per Table 44 — OAuth 2.0 JWT JOSE Header parameters in the Redfish specification.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a189600_711d86ed",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "the `exp` claim must be checked per the RFCs.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e511971b_e128d787",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "RFC8705 defines 4 ways for a mTLS x509 certificate to identify a client (the software) to the authorization server and explicitly differentiates the subject claim between a JWT describing the client to the authorization server with the sub claim when used in a token issued with an audience, which is explicitly vague if the subject claim is the client, an abstract identifier of the user, or some other identifier.\n\nPlease use the RFC method to bind the mTLS certificate (and private key holder) to the bearer token.  There are several ways for the identity to be expressed in the certificate, and its not delegation if we attempt to authenticate the identity.  The possession of the private key as used to establish the session is enough to show the OAuth service trusts the client.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cf1a7cc_216c05be",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The data model Isuers claim exports the supported values to be contained in the aud claim.  In the long description mention is made to consider using a mac address or service identifier.  In BMCWeb our service identifier is derived from the machine-id (usually randomly generated once at initial bmc os install) and could be exposed as urn:uuid:\u003cstd-formatted-string\u003e.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a0e3747_3ae61c93",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The data model describes how both are represented, and is required when implementing Delegation via OAuth.\n\nWhile Mode Discovery requires a https client, such support has been in bmcweb since August.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfc5a06c_83621da1",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "While separating the authz service does isolate the requirements from the bmcweb codebase, locating a gRPC service on the BMC to mint tokens authorization tokens doesn\u0027t appear to actually address a pinch point; instead, it only offers to partially shortcut configuring the authorization service to the Redfish service.  \n\nEach client still has to locate the token generattion service for each service and would still be required to obtain an authorization grant token specific to that authorization service, thus just moving the scaling issue up one level.  \n\nIn addition, as described, the security model requires compile time customization of the resource owner credentials, limiting the usage to owners who compile their own deployment and an update each key rotation.\n\nIn contrast, using a more centralized service can start to address the scaling and provide a flexible, standards compliant deployment.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56e74655_e0ec5544",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "### Configure a KeyCloak server for test\n\nKeyCloak is an Apache 2.0 licensed server under active development that ships a Kubernetes ready Docker image with REST endpoints to configure a service.  While being written in java probably precludes it running on the BMC, it may be adapted to scale in the future.\n\n##### watch keycloak for RFC8707\nWhile not required to test using the service via a JWT, it appears that an interpretation of RFC8707 similar to my desired model has been discussed for implementation in keycloak [keycloak-resource]() but has not been fully accepted or implemented in the current 21.1 release, instead just the initial audience mapping support [keycloak-audience](), along with registering each resource server as a confidential client.  Also the reskhrce claim is explicitly not being processed for refresh tokens; I suggest change from a group of resource servers to a specific one should be allowed.  Perhaps by providing use cases similar the one described above may encourage community acceptance.\n\n[keycloak-resource](https://github.com/keycloak/keycloak/issues/14355) https://github.com/keycloak/keycloak/issues/14355\n[keycloak-audience](https://www.keycloak.org/docs/latest/server_admin/#audience-support) https://www.keycloak.org/docs/latest/server_admin/#audience-support",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1794a614_41ecea36",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "This proposal does not address how the web GUI might interact with an OAuth framework.  Single page applications (SPA) must be treated as public clients because they can not keep a secret.  There are significant security concerns providing Bearer tokens to web browsers, and several owners may not support public clients.  See draft-ietf-oauth-browser-based-apps for discussion including mitigation strategies like backend for frontend (BFF), token mediation (TMI), and others.",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec69841c_9a71cdaa",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "any thoughts on JWT library?  Since crypto and validation is security sensitive.\na quick search for jwt cpp found two,\n- one last updates 6 years ago\n  - readme describes private key lifetime \n- a second, active one\n  - header only \n  - allows choice of json and crypto providers \n  - probably started about 2020 \n  - labeled 0.6\n  - spare time support",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2fddb45_640a5070",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "missing new line at end of file",
+      "revId": "8057b14dd6656c7f32c9e80075f1fd3951c070e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01eae5fb_60f42e9e",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "The Redfish specification requires the `exp` claim be present and be processed.  To avoid confusion, standards rely on application profiles to differentiate between access tokens and other uses of JSON Web Tokens, for example the security event token specification (SET, RFC8417 section 4.1), which can be used to log security relevant events, explicitly omits and rejects the exp claim.\n\nTokens may be rejected when otherwise valid for policy reasons; there is a standard introspection endpoint (RFC7662) that will identify arbitrary tokens from an associated token endpoint as invalid (eg to implement revocation) or valid.  Regardless, the lifetime of the token should be limited at the authorization service.  ByteDance like all users is welcome to add additional checks for tokens in their downstream code as they desire.\n\nIf the concern is using a token near the end of its lifetime being used to persist the usage of a token via a Redfish session beyond its lifetime realize that session creation requires a POST with a username and password and therefore do not provide a path to authenticate to an account.\n\nIf verifying tokens via processing their algorithm and signature (Nam option 1) proves to be too expensive then they can be presented to an introspection service (RFC7662) which can be used as part of a token revocation system however encrypting for transport over TLS is likely as or more expensive as validating the JWT;",
+      "parentUuid": "e51a2d9e_f70c7c61",
+      "range": {
+        "startLine": 122,
+        "startChar": 58,
+        "endLine": 122,
+        "endChar": 68
+      },
+      "revId": "6036d6ec12062f49c00d682a8a81884b97c21f08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e2552fc1_126c2578",
         "filename": "designs/redfish-oauth.md",
         "patchSetId": 2
@@ -228,6 +252,30 @@
       "side": 1,
       "message": "No, there is no concept of \"user\" in authorization delegation. Only either \"Redfish Role\" or \"Redfish privileges\".\n\nFor mTLS connections, we might check if the peer\u0027s identity matches the subject role.",
       "parentUuid": "dde0b9bd_b1a021e5",
+      "range": {
+        "startLine": 178,
+        "startChar": 21,
+        "endLine": 178,
+        "endChar": 39
+      },
+      "revId": "6036d6ec12062f49c00d682a8a81884b97c21f08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "582ea4a9_b70e26c6",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "RFC8705 describes how to bind a bearer token to a mTLS client certificate (when the same mTLS client certificate is used to authenticate to the authorization server and the resource (Redfish) server).\n\n##### In regards to identifying a user:\nRFC7523 (JWT Profile for OAuth 2.0 Authentication and Authorization Grants) gives requirements for the authorization server and gives expectations for the subject (`sub`) claim for an authorization JWT.  It describes the subject being authorized accessor, but explicitly states the subject claim can be pseudonymous and may be opaque (section 3 requirement 2 A).\n\nThis means the JWT subject (`sub`) combined with the issuer (`iss`) claim can be used as an identifier (eg for audit, ownership of subscriptions, tasks, and any other uses of `ConfigureSelf`), but `sub` should not be interpreted beyond that, certainly not as a user account in the `ManagerAccount` service implemented by phosphor-user-manager.\n\nValidating the access token provides the requirement to authenticate the request.  Requiring a Redfish Session implies knowledge of the password assigned to an account and allows the access to the Role assigned to the account by omitting the access token from the request.  In addition it requires some method to maintain accounts visible to the account service and defeats the concepts of SSO and passwordless.  The RFCs explicitly forbid multiple values of the Authentication header or multiple schemes for its use to be defined.  We should honor that intent by not allowing a session to be specified.  See also the discussion about session lifetimes; avoiding the session avoids the confusion.",
+      "parentUuid": "73295d4c_d43ad08d",
       "range": {
         "startLine": 178,
         "startChar": 21,

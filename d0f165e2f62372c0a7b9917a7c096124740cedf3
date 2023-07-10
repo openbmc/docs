@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b2f1af2_82837203",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "Replace Authz service with Token service\nReplace Resource Owner with proxy service.   If desired split the box to iniclude into authorization service communicating with the above Token service.",
+      "revId": "d0f165e2f62372c0a7b9917a7c096124740cedf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d6ed7d5_8915968d",
         "filename": "designs/redfish-oauth.md",
         "patchSetId": 1
@@ -84,6 +101,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2fc950a_e73cae40",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "Correction: scope is space separated not comma separated (The Redfish specification is consistent with OAuth, just this comment is incorrect).\n\n\nWhy is this described as a Redfish Role (implying a single role adding Redfish.Role.\u003crpc-value\u003e will be in the claim) instead of this being a string with the complete value of the scope claim?",
+      "parentUuid": "da9b6a7b_005fe7d5",
+      "range": {
+        "startLine": 249,
+        "startChar": 18,
+        "endLine": 249,
+        "endChar": 25
+      },
+      "revId": "d0f165e2f62372c0a7b9917a7c096124740cedf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4529e0d_3fee5452",
         "filename": "designs/redfish-oauth.md",
         "patchSetId": 1
@@ -113,6 +154,24 @@
       "side": 1,
       "message": "Clients can still use one side TLS to connect to the resource server and claims their identity by username/password in the system. This is how BasicAuth and Session login currently work in BMCWeb.\n\nThese usernames have to be registered with the server",
       "parentUuid": "e4529e0d_3fee5452",
+      "revId": "d0f165e2f62372c0a7b9917a7c096124740cedf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "578cba35_d22088fa",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "Delegation is the transfer of authority to a trusted entity.   \n\nThe overview section (13.4.1) introduces the concept of Authorization and sepeartes the mapping of users to roles and roles and then to privileges (13.4.2.1) from the privilege to operation model (13.4.3) describing the required privileges.\n\nWhile it is not clearly stated how the concept of users or sessions interact with OAuth tokens, the section is titled Delegated authorization with OAuth (13.4.4) and it describes how JWT tokens use the scope claims with defined values to provide the privileges (13.4.4.4).\n\nTo me this means that users are not required (and sessions, which require a password, will not be created) because 13.4.4 OAuth Delegation describes an alternative to the privilege model described in 13.4.2.\n\n\nA key point of using OAuth tokens is to delegate the identification to the outside infrastructure and just enforce the authorization in the Resource Server (it also allows the user to be granted authorization only through the client).  Requiring an account violates this concept.  \n\nRequiring users to be registered significantly increases the administrative burden.  Requiring a password goes against the purpose of using an SSO, and any password assigned to the user is not visible to the client for all recommended OAuth flows.  While SCIM defines endpoints (2.0 2015, RFC7643, RFC7644, RFC7642) to maintain users and groups across systems, it uses a push model of account updates which would not scale.  OpenID was created to extend OAuth with authentication (the concept of who is using it) by adding an ID_token (not provided to the resource server, rather only to the client), however the Redfish spec only talks about authorization (what privileges are granted) and hence limits itself to OAuth 2.0.  (There are several videos describing the difference including how it can be a client (software) vs a user initiating the request, etc).  \n\nRecently the OAuth community has described methods for restricting the use of Bearer tokens, including to use over a mTLS channel security by an X.509 certificate (implictly proving the private key through the use of the certificate) and later DPoP (currently submited to the RFC editor for publication, this system does not require forwarding of the client certificate).\n\nIt may be a desired to explicitly reject any requests with a bearer token to access an X-Auth-Token session.",
+      "parentUuid": "76d4c97d_72fb455c",
       "revId": "d0f165e2f62372c0a7b9917a7c096124740cedf3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -166,6 +225,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "7e1be6b1_60b1e0c5",
+      "revId": "d0f165e2f62372c0a7b9917a7c096124740cedf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1de625f7_3dd95e56",
+        "filename": "designs/redfish-oauth.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T16:23:12Z",
+      "side": 1,
+      "message": "Section 13.4.4.2 of Redfish requires the OAuth2 proprty in the AccountService resource to be implemented.  The Data Model and Schema Guide points to OAuth2Service 6.2.4.10 (1.10+, 2021.x) listinig Audience, Issuer, OAuth2ServiceSigningKeys, Mode, and OEM.   Issuer is described as the RFC8414 service address of the OAuth2 provider.  The OAuth2ServiceSigningKeys property is described as RFC7517 defined and shall be the value at the jwks_url string of the OAuth 2.0 service metadata if Mode is Discovery, and configured if mode is Offline.",
+      "parentUuid": "dee571ec_58024738",
       "revId": "d0f165e2f62372c0a7b9917a7c096124740cedf3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
