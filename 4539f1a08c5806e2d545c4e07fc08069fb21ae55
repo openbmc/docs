@@ -33,6 +33,108 @@
       "message": "We already have the NCSI application to get the package and channel info..What is not there is we don\u0027t publish it on to the D-bus.\n\nAs Patrick asked in the other comments why do we want to  have all this info on the D-bus.",
       "revId": "4539f1a08c5806e2d545c4e07fc08069fb21ae55",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b59d8f76_626af192",
+        "filename": "designs/network/ncsi-discovery-support.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T07:59:24Z",
+      "side": 1,
+      "message": "space after comma and no capitalization",
+      "revId": "4539f1a08c5806e2d545c4e07fc08069fb21ae55",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9803fc9_2648a899",
+        "filename": "designs/network/ncsi-discovery-support.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T07:59:24Z",
+      "side": 1,
+      "message": "where is the design to inject PLDM messages via RBT?\n\nThe current ncsi stack only allows OEM userspace to inject oem packets",
+      "revId": "4539f1a08c5806e2d545c4e07fc08069fb21ae55",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aad7462_e8e442e4",
+        "filename": "designs/network/ncsi-discovery-support.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T07:59:24Z",
+      "side": 1,
+      "message": "the selected state can change at any time.  why is this desirable?\n\nthe package id is fixed.\n\nconversely the guid is defined at the package level and should remain fixed, so this would make sense along with the package id.",
+      "revId": "4539f1a08c5806e2d545c4e07fc08069fb21ae55",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9082ed16_95a0cd35",
+        "filename": "designs/network/ncsi-discovery-support.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T07:59:24Z",
+      "side": 1,
+      "message": "the active state can change at any time.\n\nthe link state can change at any time.\n\nthe kernel keeps track via AEN packets but doesn\u0027t signal userspace\n\nI\u0027d rather not have userspace trying to monitor the packets keeping track itself, so a signaling interface is not appropriate.    Maybe a get method if required, but how do we expect",
+      "revId": "4539f1a08c5806e2d545c4e07fc08069fb21ae55",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be733ff1_84876132",
+        "filename": "designs/network/ncsi-discovery-support.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T07:59:24Z",
+      "side": 1,
+      "message": "not until you explain how it will be used",
+      "revId": "4539f1a08c5806e2d545c4e07fc08069fb21ae55",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90030e44_94ef4a36",
+        "filename": "designs/network/ncsi-discovery-support.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-07-10T07:59:24Z",
+      "side": 1,
+      "message": "it\u0027s exposing stale information.   either its not needed or more justification",
+      "revId": "4539f1a08c5806e2d545c4e07fc08069fb21ae55",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
