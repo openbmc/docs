@@ -1,7 +1,7 @@
 ### BMC Health Monitor
 
-Author: Vijay Khemka <vijaykhemka@fb.com>; <vijay!> Sui Chen
-<suichen@google.com>
+Author: Vijay Khemka <vijaykhemka@fb.com>, Sui Chen <suichen@google.com>, Jagpal
+Singh Gill <paligill@gmail.com>
 
 Created: 2020-05-04
 
@@ -34,8 +34,8 @@ Among those tasks, 1), 2), and 3) are the producer’s responsibility. 4) is
 accomplished by both the producer and consumer. 5) is up to the consumer.
 
 We realize there is some overlap between sensors and health monitoring in terms
-of design rationale and existing infrastructure, so we largely follow the sensor
-design rationale. There are also a few differences between sensors and metrics:
+of design rationale and existing infrastructure. But there are also quite a few
+differences between sensors and metrics:
 
 1. Sensor data originate from hardware, while most metrics may be obtained
    through software. For this reason, there may be more commonalities between
@@ -45,11 +45,15 @@ design rationale. There are also a few differences between sensors and metrics:
 2. Most sensors are instantaneous readings, while metrics might accumulate over
    time, such as “uptime”. For those metrics, we might want to do calculations
    that do not apply to sensor readings.
+3. Metrics can represent device attributes which don't change, for example,
+   total system memory which is constant. Contrary, the primary intention of
+   sensors is to sense the change in attributes and represent that variability.
+4. Metrics are expressed in native units such as bytes for memory. Sensors
+   infrastructure doesn't adhere to this and community has rejected the proposal
+   to add bytes for sensor unit.
 
-As such, BMC Health Monitoring infrastructure will be an independent package
-that presents health monitoring data in the sensor structure as defined in
-phosphor-dbus-interface, supporting all sensor packages and allowing metrics to
-be accessed and processed like sensors.
+Based on above, it doesn't sound reasonable to use sensors for representing the
+metrics data.
 
 ## Background and References
 
@@ -60,13 +64,19 @@ References: dbus-monitor
 The metric producer should provide
 
 - A daemon to periodically collect various health metrics and expose them on
-  DBus
+  DBus.
 - A dbus interface to allow other services, like redfish and IPMI, to access its
-  data
-- Capability to configure health monitoring
-- Capability to take action as configured when values crosses threshold
-- Optionally, maintain a certain amount of historical data
-- Optionally, log critical / warning messages
+  data.
+- Capability to configure health monitoring for wide variety of metrics, such as
+  Memory Utilization, CPU Utilization, Reboot Statistics, etc.
+- Capability to provide granular details for various metric types, for example -
+  - Memory Utilization - Free Memory, Shared Memory, Buffered&CachedMemory, etc.
+  - CPU Utilization - Userspace CPU Utilization, Kernelspace CPU Utilization,
+    etc.
+  - Reboot Statistics - Normal reboot count, Reboot count with failures, etc.
+- Capability to take action as configured when values crosses threshold.
+- Optionally, maintain a certain amount of historical data.
+- Optionally, log critical / warning messages.
 
 The metric consumer may be written in various different ways. No matter how the
 consumer is obtained, it should be able to obtain the health metrics from the
@@ -82,15 +92,17 @@ for
 
 1. Configuration
 2. Metric collection and
-3. Metric staging tasks
+3. Metric staging & disperse tasks
 
-For 1) Configuration, There is a JSON configuration file for threshold,
-frequency of monitoring in seconds, window size and actions. For example,
+For 1) Configuration, the daemon will have a default in code configuration.
+Platform may supply a configuration file if it wants to over-ride the specific
+default attributes. The format for the JSON configuration file is as under -
 
 ```json
-  "CPU" : {
+  "kernel" : {
     "Frequency" : 1,
     "Window_size": 120,
+    "Type": "CPU",
     "Threshold":
     {
         "Critical":
@@ -107,9 +119,10 @@ frequency of monitoring in seconds, window size and actions. For example,
         }
     }
   },
-  "Memory" : {
+  "available" : {
     "Frequency" : 1,
     "Window_size": 120,
+    "Type": "Memory",
     "Threshold":
     {
         "Critical":
@@ -128,26 +141,63 @@ out usage of system rather than taking a spike in usage data. Log : A boolean
 value which allows to log an alert. This field is an optional with default value
 for this in critical is 'true' and in warning it is 'false'. Target : This is a
 systemd target unit file which will called once value crosses its threshold and
-it is optional.
+it is optional. Type: This indicates the type of configuration entry. Possible
+values are Memory, CPU, Reboot, Storage.
 
 For 2) Metric collection, this will be done by running certain functions within
 the daemon, as opposed to launching external programs and shell scripts. This is
 due to performance and security considerations.
 
-For 3) Metric staging, the daemon creates a D-bus service named
-"xyz.openbmc_project.HealthMon" with object paths for each component:
-"/xyz/openbmc_project/sensors/utilization/cpu",
-"/xyz/openbmc_project/sensors/utilization/memory", etc. which will result in the
-following D-bus tree structure
+For 3) Metric staging & disperse, the daemon creates a D-bus service named
+"xyz.openbmc_project.HealthManager". The design proposes new
+[Metrics Dbus interfaces](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/64914).
 
-"xyz.openbmc_project.HealthMon":
+| Interface Name                       | Purpose                                                                        |
+| :----------------------------------- | :----------------------------------------------------------------------------- |
+| xyz.openbmc_project.Metrics.Value    | Interface to represent value for Metrics.                                      |
+| xyz.openbmc_project.Metrics.Reset    | Interface to reset persistent Metrics counters.                                |
+| xyz.openbmc_project.Common.Threshold | Interface to represent Metric thresholds and signals for threshold violations. |
+
+Each metric will be exposed on a specific object path and above interfaces will
+be implemented at these paths. Reset Interfaces are optional and may only be
+implemented for persistent counters/intervals.
 
 ```
-    /xyz/openbmc_project
-    └─/xyz/openbmc_project/sensors
-      └─/xyz/openbmc_project/sensors/utilization/CPU
-      └─/xyz/openbmc_project/sensors/utilization/Memory
+/xyz/openbmc_project
+    |- /xyz/openbmc_project/metrics/bmc/memory/total
+    |- /xyz/openbmc_project/metrics/bmc/memory/free
+    |- /xyz/openbmc_project/metrics/bmc/memory/available
+    |- /xyz/openbmc_project/metrics/bmc/memory/shared
+    |- /xyz/openbmc_project/metrics/bmc/memory/buffered_and_cached
+    |- /xyz/openbmc_project/metrics/bmc/cpu/user
+    |- /xyz/openbmc_project/metrics/bmc/cpu/kernel
+    |- /xyz/openbmc_project/metrics/bmc/reboot/count
+    |- /xyz/openbmc_project/metrics/bmc/reboot/count_with_failure
 ```
+
+Servers for Metrics Data
+
+| Interface Name     | Interface Server        | Info Source                                            |
+| :----------------- | :---------------------- | :----------------------------------------------------- |
+| Memory Utilization | phosphor-health-manager | /proc/meminfo                                          |
+| CPU Utilization    | phosphor-health-manager | /proc/stat                                             |
+| Reboot Statistics  | phosphor-state-manager  | Persistent counters incremented based on reboot status |
+
+Multiple devices of same type -
+
+In case there are multiple devices of same type, the D-Bus path can be extended
+to add context about **"which device"**. For example -
+
+```
+/xyz/openbmc_project/metrics/device-0/memory/total
+/xyz/openbmc_project/metrics/device-1/memory/total
+...
+```
+
+These paths can be hosted by different daemons, for example, pldmd can host DBus
+paths for BICs if master BMC uses PLDM to communicate with BIC. The Value
+interface for each metric would need to be associated with the appropriate
+system inventory item.
 
 ## Alternatives Considered
 
@@ -160,19 +210,73 @@ binary as well as a shell script. It turns out running shell script is too slow,
 while running an external program might have security concerns (in that the 3rd
 party program will need to be verified to be safe).
 
+Collected: Collectd provides multiple plugins which allows to gather wide
+variety of metrics from various sources and provides mechanisms to store them in
+different ways. For exposing these metrics to DBus, a Collectd C plugin can be
+written.
+
+Pros:
+
+- Off the shelf tool with support for lot of metrics.
+
+Cons:
+
+- Due to support for wide variety of systems (Linux, Solaris, OpenBSD, MacOSX,
+  AIX, etc) and applications, the amount of code for each Collected plugin is
+  pretty significant. Given the amount of functionality needed for openBMC,
+  Collectd seems heavyweight. Majority of phosphor-health-monitor code will be
+  around exposing the metrics on Dbus which will also be needed for Collectd
+  plugin. Hence, directly reading from /proc/<fileX> seems lightweight as code
+  already exist for it.
+- Collected has minimal support for threshold monitoring and doesn't allow
+  starting systemd services on threshold violations.
+
+## Future Enhancements
+
+Extend Metrics Dbus interface for -
+
+- Storage
+- Inodes
+- Port/Network Statistics
+- BMC Daemon Statistics
+
 ## Impacts
 
 Most of what the Health Monitoring Daemon does is to do metric collection and
 update DBus objects. The impacts of the daemon itself should be small.
 
+The proposed design changes the DBus interface from Sensors to Metrics, so
+following daemons would need to refactored/updated to account for interface
+change -
+
+- [BMCWeb](https://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/manager_diagnostic_data.hpp)
+- [phosphor-host-ipmid](https://grok.openbmc.org/xref/openbmc/openbmc/meta-quanta/meta-s6q/recipes-phosphor/configuration/s6q-yaml-config/ipmi-sensors.yaml?r=e4f3792f#82)
+
+## Organizational
+
+### Does this design require a new repository?
+
+No, changes will go into phosphor-health-monitor.
+
+### Which repositories are expected to be modified to execute this design?
+
+- phosphor-health-monitor
+- phosphor-state-manager
+- BMCWeb
+- phosphor-host-ipmid
+
 ## Testing
 
-To verify the daemon is functionally working correctly, we can monitor the DBus
-traffic generated by the Daemon, and the readings on the Daemon’s DBus objects.
+### Unit Testing
 
-This can also be tested over IPMI/Redfish using sensor command as some of
-metrics data are presented as sensors like CPU and Memory are presented as
-utilization sensors.
+To verify the daemon is functioning correctly, monitor the DBus traffic
+generated by the Daemon and the metric values from Daemon’s DBus objects.
+Automated unit testing will be covered via GTest.
 
-To verify the performance aspect, we can stress-test the Daemon’s DBus
-interfaces to make sure the interfaces do not cause a high overhead.
+### Integration Testing
+
+Manual end to end testing can be performed via Redfish GET for
+ManagerDiagnosticData. The end to end automated testing will be covered using
+openbmc-test-automation. To verify the performance aspect, we can stress-test
+the Daemon’s DBus interfaces to make sure the interfaces do not cause a high
+overhead.
