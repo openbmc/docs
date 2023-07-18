@@ -1,0 +1,405 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71a78624_0b8f1f32",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "I\u0027m fine with this document being used for alignment, but once we get alignment we should really modify the existing design document with the additions.  You\u0027ve called this \u0027v2\u0027 but I don\u0027t think we\u0027re really throwing away all the code and starting over.  You\u0027re just adding a new feature here.",
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de3e0d5_9cca3160",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "nit: You might need to make these bullet points so prettier doesn\u0027t combine them onto one line.  This looks pretty ugly in the current form.",
+      "range": {
+        "startLine": 3,
+        "startChar": 52,
+        "endLine": 3,
+        "endChar": 80
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b348b9f_ef3dc2e5",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "nit: comma.",
+      "range": {
+        "startLine": 19,
+        "startChar": 50,
+        "endLine": 19,
+        "endChar": 51
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "527b6d52_c0aeca88",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "Are these concepts that show up in Redfish?  If so, fine, but if not we\u0027d probably not want them exposed on dbus either.  This is a fairly Linux-specific implementation (which obviously openbmc is also) so I\u0027d be surprised to see them documented in the Redfish schemas that way.",
+      "range": {
+        "startLine": 21,
+        "startChar": 58,
+        "endLine": 21,
+        "endChar": 79
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c567692f_5eb579e9",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "This is partially because the current implementation uses Sensors and not Metrics and Utilization-Sensors are the only option.  You might need a remark that adding Bytes to Sensors has previously been rejected in phosphor-dbus-interfaces.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 50
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0499a4a_26608f37",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "I don\u0027t know what this means.",
+      "range": {
+        "startLine": 58,
+        "startChar": 35,
+        "endLine": 58,
+        "endChar": 56
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7236544a_57b2098c",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "I don\u0027t think this is necessary to place in the design document.  This sounds like code refactoring that should be agreed to between you and the repository maintainer(s).",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 43
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab408717_e724bd80",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "I\u0027m confused by this.\n\n1. The interface listed above (https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/64914/2/yaml/xyz/openbmc_project/Metrics/BMC/CpuUtilization.interface.yaml) has multiple metrics in the same interface.  So \"each metric is a different dbus interface\" is not true.\n\n2. I don\u0027t know how we expect thresholds to work with the interface proposed.",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 43
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97ffd127_a2a0f0ad",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "I don\u0027t have enough information as to \"how\" on this point.",
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1283149e_6e357146",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "nit: sp",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 15
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b95ba86_10c7561c",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "Not necessary in this document.",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 103
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfea47e7_53f60864",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "This statement is a bit loaded.  😄\n\nI don\u0027t think this needs to be in the design document anyhow.",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 14
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baa52b99_726df786",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "Wow!  Are we really going to do this?  Are we going to use the new async client bindings from PDI?\n\n[[ I don\u0027t think this should be in the design document either, but you should be sure to have some discussions with the bmcweb maintainer(s) about that.  I\u0027d be fully in support of it but I suspect we need to get some work done in sdbusplus to make it happen also. ]]",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 20
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7371862b_387a3400",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "A side-effect of both the proposed design and this design is that I\u0027d like to see support for \"well-known names\" in sdbusplus/PDI.  That way we can limit the strings sprinkled around.",
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a7a3413_b5f16462",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "This is not obvious which Pro is for which.  Is this section for the \"mainline proposal\" or the \"alternative design\"?",
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93ffa6a7_ec7da107",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "What is the line for here and in a few cases below?",
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d649816_c45dd4a8",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "We should probably list those here.",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 73
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22845e05_11b677ae",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "Anything need to be handled in phosphor-host-ipmid?  Are we losing any functionality if we don\u0027t handle this in that repository and do we care?",
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aced68a7_d414d37e",
+        "filename": "designs/bmc-health-monitor-v2.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T20:04:56Z",
+      "side": 1,
+      "message": "Changes in P-H-M can be covered with GTest.  It is fine to specify that the bulk of functional changes are happening there and it will be covered by google test.\n\nWe also need to cover the integration-level testing.  How are we testing the bmcweb code?  We, at a minimum, need to pass the Redfish Validator.  Are we adding openbmc-test-automation cases to cover this?",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 12
+      },
+      "revId": "29d2a06b0883ff2daf80cee176dfb97dc8766777",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
