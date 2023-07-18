@@ -16,6 +16,373 @@
       "message": "@patrick@stwcx.xyz Hi Patrick, could you help review it? Thanks!",
       "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c7adb9c_dea6aa4a",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "I see sections missing from this document based on the design document template.  For example, it seems like you\u0027re going to be requesting a new repository and there is some questions in the current template that talk about code organization.  Please check over the template and add any missing sections.",
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b418dda0_6f107d10",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "lowercase.  This isn\u0027t an acronym.",
+      "range": {
+        "startLine": 23,
+        "startChar": 46,
+        "endLine": 23,
+        "endChar": 50
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9564bda2_0ad17490",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "Can we link to the spec instead of DMTF?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 34
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8c48bb9_07472523",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "Are there any hardware protocols you are focused on?  Or does SPDM work on any MCTP end-point?  It looks to me like there are multiple protocols listed on the DMTF website, so you should be clear about what you\u0027re planning to support.  (I see MCTP, \"Storage\", and TCP bindings listed on DMTF\u0027s website.)",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 52
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be5e6c24_58c0658d",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "It\u0027s unfortunate they\u0027ve named this action based on the specific protocol.",
+      "range": {
+        "startLine": 50,
+        "startChar": 11,
+        "endLine": 50,
+        "endChar": 36
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28ebeae3_58d6b8bc",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "We should NOT be linking to raw PLDM resources here.  The PLDM resource should have been translated into a normal Inventory object before your daemon gets ahold of it.\n\nThere is not a single existing code reference to Source.PLDM.FRU in the whole openbmc organization.",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 3
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c41055f_8f069536",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "How will it know to do these things?",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 51
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4ba3191_db32070f",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "lowercase",
+      "range": {
+        "startLine": 97,
+        "startChar": 41,
+        "endLine": 97,
+        "endChar": 45
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0683a3e7_54df303f",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "Can\u0027t this be improved?",
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5414cc1b_63d744b9",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "I don\u0027t think this is true.  Otherwise we couldn\u0027t support mTLS.",
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf7861df_96efe53e",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "nit: sp",
+      "range": {
+        "startLine": 110,
+        "startChar": 20,
+        "endLine": 110,
+        "endChar": 29
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3beed11_91ba771e",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "You use the word \"certificate management\" here, but is there really \"management\" being done?  Aren\u0027t you just advertising the certificate that the device presents to you?  What kind of management is there?\n\n(Please elaborate on this in the document if you want to continue to use the word \"management\").",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 31
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "605b79d2_f71b91b9",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "I don\u0027t think `systems` is a good choice.  The SPDM isn\u0027t associated exclusively with a system and I don\u0027t know what valid values are for `{systemId}`.  A shared NIC, in a multi-host design, can support SPDM.  The SPDM certificate is associated to the NIC and not to any single system.",
+      "range": {
+        "startLine": 127,
+        "startChar": 13,
+        "endLine": 127,
+        "endChar": 20
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eb7c507_845ff9c7",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "I think it is a little awkward to require direct naming here to match.  Is Ed aligned with that?\n\nThe \"Systems\" objects are driven by entity-manager config / detection.  I think the SystemId we currently use (since multi-host isn\u0027t fully supported) is just a static name, but in the not too distant future this will be driven by specific Inventory and/or State objects being present.",
+      "range": {
+        "startLine": 130,
+        "startChar": 21,
+        "endLine": 130,
+        "endChar": 31
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6da7e3d7_3a622802",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "These are not how we name dbus paths.  The Chassis stuff is under /xyz/openbmc_project/inventory usually and doesn\u0027t necessarily have hierarchy.  \n\nI don\u0027t know what {ChassisId} refers but shouldn\u0027t that be an association?",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 58
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5348b7f9_a672d18d",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "I hope we\u0027re not going down a path that we have device-specific SPDM daemons??  That isn\u0027t clear until I get to the very bottom of this document.\n\nSPDM goes over standard protocols, such as MCTP.  Why would we need anything device specific in this daemon, other than maybe the discovery pieces?",
+      "range": {
+        "startLine": 157,
+        "startChar": 30,
+        "endLine": 157,
+        "endChar": 68
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7adaffc_3c7a2017",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-18T19:31:11Z",
+      "side": 1,
+      "message": "We need to have good unit tests in this new proposed repository.\n\nIdeally we would add system integration tests in to openbmc-test-automation.",
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
