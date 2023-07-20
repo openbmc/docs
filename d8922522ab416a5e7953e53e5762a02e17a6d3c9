@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "273c024c_3b9360c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "Hi Patrick, thanks a lot for the constructive comments! I will update the doc and upload a new version to respond to questions raised in the comments. Some design choices are still open for discussion. I shared my proposal in the comments and would like to hear your feedback.\n\n@Ed Tanous, there is one question(comment at #130) raised in the comments that need your feedback, could you also help take a look?\n\nThanks!",
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c7adb9c_dea6aa4a",
@@ -35,6 +52,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eabc652_445cedf6",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "Only one subsection \" ### Organizational\" under \"Impacts\" is missing. I will add it in the newer version.\n\nSo far, this design doc only requires changes in existing repos:\n   - https://github.com/openbmc/bmcweb\n   - https://github.com/openbmc/phosphor-dbus-interfaces\n   \nIn the future, we may create a reference dbus daemon that does SPDM attestation in a different repo, but it is optional.",
+      "parentUuid": "2c7adb9c_dea6aa4a",
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b418dda0_6f107d10",
@@ -48,6 +83,30 @@
       "writtenOn": "2023-07-18T19:31:11Z",
       "side": 1,
       "message": "lowercase.  This isn\u0027t an acronym.",
+      "range": {
+        "startLine": 23,
+        "startChar": 46,
+        "endLine": 23,
+        "endChar": 50
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88ffc8bc_eb6a2bf2",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b418dda0_6f107d10",
       "range": {
         "startLine": 23,
         "startChar": 46,
@@ -81,6 +140,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0310bb86_1d266e2e",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9564bda2_0ad17490",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 34
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8c48bb9_07472523",
@@ -94,6 +177,30 @@
       "writtenOn": "2023-07-18T19:31:11Z",
       "side": 1,
       "message": "Are there any hardware protocols you are focused on?  Or does SPDM work on any MCTP end-point?  It looks to me like there are multiple protocols listed on the DMTF website, so you should be clear about what you\u0027re planning to support.  (I see MCTP, \"Storage\", and TCP bindings listed on DMTF\u0027s website.)",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 52
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9d0d6ce_dceaa945",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "There are multiple transport layer protocols that can carry SPDM messages. For example, Libspdm support a SPDM + MCTP binding and also a SPDM + PCIe-DOE binding. The transport layer protocol should be transparent to bmcweb  and dbus interfaces design. \n\nWe can separate the D-Bus daemon into two parts, the upper part provide interfaces to expose SPDM related properties, like links to device certificates, method to get measurements; the lower part manage the connection with a SPDM responder device.\nOnly the D-Bus daemon lower part will need to decide how it wants to talk to the SPDM-capable device (the responder) : through MCTP or PCIe DOE.\n\nThis design doc will be focusing on the upper part of dbus daeson(dbus interfaces) and bmcweb changes. It is not binded to a certain transport layer protocol, like MCTP or PCIe DOE.",
+      "parentUuid": "a8c48bb9_07472523",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -127,6 +234,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47fb3645_94333bf7",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "Yes, the parameters and return format for the method is quite specific to SPDM though.",
+      "parentUuid": "be5e6c24_58c0658d",
+      "range": {
+        "startLine": 50,
+        "startChar": 11,
+        "endLine": 50,
+        "endChar": 36
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28ebeae3_58d6b8bc",
@@ -140,6 +271,30 @@
       "writtenOn": "2023-07-18T19:31:11Z",
       "side": 1,
       "message": "We should NOT be linking to raw PLDM resources here.  The PLDM resource should have been translated into a normal Inventory object before your daemon gets ahold of it.\n\nThere is not a single existing code reference to Source.PLDM.FRU in the whole openbmc organization.",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 3
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42c0ac15_f77f6e08",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "I see.\n\nOn the consumer side(BMCWeb/Redfish), they need to query about \"SKU\", \"Serial Number\", \"Manufacturer\", \"UUID\" and so on, most of which has been implemented as property in FRU interface. To gather these info, can we make the following assumption?:\n 1) Some Inventory object created for the trusted component and implement the FRU interface;\n 2) BMCWeb will be able to find the associated object for the trusted component object and gather information about the trusted component from there.",
+      "parentUuid": "28ebeae3_58d6b8bc",
       "range": {
         "startLine": 68,
         "startChar": 4,
@@ -173,6 +328,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "797a4189_19a2f3b3",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "The daemon that manage the TrustedComponent and ComponentIntegrity objects will have the information to initialize these objects.\n\nFor example, for a GPU dbus daemon, it can create the dbus objects during initialization for the GPU root of trust element.",
+      "parentUuid": "1c41055f_8f069536",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 51
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4ba3191_db32070f",
@@ -186,6 +365,30 @@
       "writtenOn": "2023-07-18T19:31:11Z",
       "side": 1,
       "message": "lowercase",
+      "range": {
+        "startLine": 97,
+        "startChar": 41,
+        "endLine": 97,
+        "endChar": 45
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db40e5dc_bf4c15e3",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b4ba3191_db32070f",
       "range": {
         "startLine": 97,
         "startChar": 41,
@@ -213,6 +416,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7e6fe6a_15c9eab4",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "It makes sense for the original use cases. For example, one HTTPS server only need to manage one certificate/certificate chain.",
+      "parentUuid": "0683a3e7_54df303f",
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5414cc1b_63d744b9",
@@ -230,6 +451,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57e6b41f_d9765a42",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "On the server side, the cert manager needs access to the private key to perform sign (CSR) request. When create a cert manager (for HTTPS), it asks about the path to the private key.",
+      "parentUuid": "5414cc1b_63d744b9",
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf7861df_96efe53e",
@@ -243,6 +482,30 @@
       "writtenOn": "2023-07-18T19:31:11Z",
       "side": 1,
       "message": "nit: sp",
+      "range": {
+        "startLine": 110,
+        "startChar": 20,
+        "endLine": 110,
+        "endChar": 29
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c083059_6ae533f6",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf7861df_96efe53e",
       "range": {
         "startLine": 110,
         "startChar": 20,
@@ -276,6 +539,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02e195b3_840743ea",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "So for the device certificate, there isn\u0027t much management service: only minor \"management\" if you count create and replace as management service.\n\nI will rephrase it to make it more clear.",
+      "parentUuid": "d3beed11_91ba771e",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 31
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "605b79d2_f71b91b9",
@@ -289,6 +576,30 @@
       "writtenOn": "2023-07-18T19:31:11Z",
       "side": 1,
       "message": "I don\u0027t think `systems` is a good choice.  The SPDM isn\u0027t associated exclusively with a system and I don\u0027t know what valid values are for `{systemId}`.  A shared NIC, in a multi-host design, can support SPDM.  The SPDM certificate is associated to the NIC and not to any single system.",
+      "range": {
+        "startLine": 127,
+        "startChar": 13,
+        "endLine": 127,
+        "endChar": 20
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7feb0595_3fc598a7",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "For the certificates, we only need a place to put all device certificates. I would prefer a flat structure to simplify the searching. When we have one system, it is Ok to put all device certificates under this one system. There is no need to create a complex hierarchy under systems/ for certificates.\n\nIf a NIC is shared among multiple systems, would it be ok to have a certificate object copy under both system/ directory? \n\nIn summary, we just want to create a new category under \"/xyz/openbmc_project/certs/\" to put device certificates. Using \"systems\" help us to create a relatively simple structure. \n\nThe systems example comes from the Redfish Resource and Schema Guide (https://www.dmtf.org/sites/default/files/standards/documents/DSP2046_2022.3.pdf, page 226).",
+      "parentUuid": "605b79d2_f71b91b9",
       "range": {
         "startLine": 127,
         "startChar": 13,
@@ -322,6 +633,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f2c6d17_168c7631",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "I\u0027m not familiar with the naming of systems here. It is intuitive to use the \"system\" same name in the Redfish resource path, otherwise, we need to create a lookup table for mapping them. \n\n@Ed, could you help provide directions here?",
+      "parentUuid": "5eb7c507_845ff9c7",
+      "range": {
+        "startLine": 130,
+        "startChar": 21,
+        "endLine": 130,
+        "endChar": 31
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6da7e3d7_3a622802",
@@ -335,6 +670,30 @@
       "writtenOn": "2023-07-18T19:31:11Z",
       "side": 1,
       "message": "These are not how we name dbus paths.  The Chassis stuff is under /xyz/openbmc_project/inventory usually and doesn\u0027t necessarily have hierarchy.  \n\nI don\u0027t know what {ChassisId} refers but shouldn\u0027t that be an association?",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 58
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e2f5dec_295a5c68",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "Actually, I\u0027m not sure about the convention of how we organize the dbus objects. Especially for the trusted component and component integrity objects, as they are new schema to be implemented. I am trying to give an example by mimicking how Redfish organize the resources. But I am open to follow any D-Bus convention of organizing these new type of objects.\n\nI think association make sense here. My question is: should we create a directory for component integrity objects and trusted component objects? For example:\n\n- `/xyz/openbmc_project/ComponentIntegrity/{ComponentIntegrityId}\n- `/xyz/openbmc_project/TrustedComponent/{TrustedComponentId}`\n- `/xyz/openbmc_project/certs/systems/{SystemId}/{CertId}`\n\nIn BMCWeb, we can reconstruct the following structure info by query the association information of Chassis:\n`/redfish/v1/Chassis/{ChassisId}/TrustedComponent/{TrustedComponentId}`",
+      "parentUuid": "6da7e3d7_3a622802",
       "range": {
         "startLine": 145,
         "startChar": 0,
@@ -368,6 +727,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4636cb77_f835a8c9",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "\"Can we create a device neutral SPDM daemon?\" is non-trivia question, I will address it by adding more information in the design doc.",
+      "parentUuid": "5348b7f9_a672d18d",
+      "range": {
+        "startLine": 157,
+        "startChar": 30,
+        "endLine": 157,
+        "endChar": 68
+      },
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7adaffc_3c7a2017",
@@ -381,6 +764,24 @@
       "writtenOn": "2023-07-18T19:31:11Z",
       "side": 1,
       "message": "We need to have good unit tests in this new proposed repository.\n\nIdeally we would add system integration tests in to openbmc-test-automation.",
+      "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbaf00f0_e85da769",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-07-20T23:54:13Z",
+      "side": 1,
+      "message": "If we include the dbus daemon, yes, we need system integration tests. If it is only about the bmcweb and dbus interfaces changes, the Redfish Service Validator seems to be sufficient to me.",
+      "parentUuid": "d7adaffc_3c7a2017",
       "revId": "d8922522ab416a5e7953e53e5762a02e17a6d3c9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
