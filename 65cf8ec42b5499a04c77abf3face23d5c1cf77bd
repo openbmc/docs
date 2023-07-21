@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0abbd805_7726c6a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2023-07-21T18:57:59Z",
+      "side": 1,
+      "message": "This design is looking good to me a way to satisfy various audit requirements such as those given by the NIAP Virtualization Protection Profile mentioned in this design.",
+      "revId": "65cf8ec42b5499a04c77abf3face23d5c1cf77bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93c4f9a3_524f4bc4",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2023-07-21T18:57:59Z",
+      "side": 1,
+      "message": "Proposed new requirements:\n- All auditable events recorded.  The implementation shall not drop events it is configured to audit, even if the system is busy, unless the audit buffer is full and set to not wrap.\n\n- Offload protocol does not skip events.  For the use case of an external audit server whose purpose is to offload audit events from the BMC, the implementation shall support a protocol that guarantees no audit events are skipped as the external server downloads and deletes audit events.  (For example, we don\u0027t want the external server to get confused and delete an audit record before it downloads it.)  The proposed design should suggest such a protocol.",
+      "revId": "65cf8ec42b5499a04c77abf3face23d5c1cf77bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7078e6f8_1bc7b1a8",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2023-07-21T18:57:59Z",
+      "side": 1,
+      "message": "Proposed unit test: Audit collection stress test.\nOn a heavily loaded BMC, continuously perform various events which should produce audit records, and validate all events are audited.  Stress can be from various BMC operations such a firmware upload (without rebooting the BMC!), or reading logs, or a program running which chews up spare CPU cycles, etc.  Maybe the testcase can run for an hour or so.\n\nProposed unit test: Dynamic offload of audit records.\nOperate your BMC to continuously write audit events, and have an external audit server continuously download and delete those audit records from the BMC.  Be careful follow the protocol (to be determined) to delete only those records it just downloaded.  The external audit server can be mocked-up: it must interact with the BMC but can just print out the records it downloads.  Validate the records obtained by the the audit server are as expected, with no missing (omitted) records.  Maybe the testcase can run for an hour or so.",
+      "revId": "65cf8ec42b5499a04c77abf3face23d5c1cf77bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
