@@ -358,6 +358,24 @@
       "parentUuid": "aa630c56_142c5317",
       "revId": "123767bee7143187373b4c8622992052d5020a33",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb32dc15_aa8da432",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2023-07-24T21:25:18Z",
+      "side": 1,
+      "message": "I think I see your point.  I think this design should be reviewed for its applicability for use by the other interfaces.  For example, if uses of network IPMI (such as via ipmitool) started writing audit records: these records should be added via the same auditd interface and be readable via the Redfish interfaces per this design.\n\nWhen those interfaces want to start writing audit records, I imagine they would update this design to reflect, for example, each of these could extend this design:\n- Write audit records for each use of ipmitool.\n- Write audit records when attempting to create SSH sessions.\n- Etc.\n\nAll of these new audit record types would go to the same place (auditd) regardless of which interface wrote them.\n\nWith that said, I think this design is perfectly suited to be extended for use by other BMC external interfaces.",
+      "parentUuid": "13026258_2c01cf7f",
+      "revId": "123767bee7143187373b4c8622992052d5020a33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
