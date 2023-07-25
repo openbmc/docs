@@ -123,4 +123,4 @@ members.
 Points required for Active membership (in the preceding 6 months):
 
 - Normal - 15 points.
-- Highly-Productive - 100 points.
+- Highly-Productive - 80 points.
