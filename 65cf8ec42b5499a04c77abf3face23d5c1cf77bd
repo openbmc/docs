@@ -72,6 +72,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "adae9fa4_2f499efd",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2023-08-10T16:12:09Z",
+      "side": 1,
+      "message": "Thanks [numbered points correspond to the bullets above].\n1. To ensure: all auditable events are recorded: I hope this design can incorporate some audit standards from NIAP\u0027s VPP requirements\nVPP version is 1.1, dated 2021-06-14: https://www.niap-ccevs.org/MMO/PP/PP_VIRTUALIZATION_BASE_V1.1.pdf\nspecifically requirement from the VPP\u0027s FAU_STG_EXT.1 (quote):\n\n - Failure of audit data capture due to lack of disk space or pre-defined limit.\n - On failure of logging function, capture record of failure and record upon restart of logging function.\n \n---end of quote---\n\nTo handle this requirement, it may be sufficient to configure the audit service to write a log entry, for example, when (all of):\n- The audit service starts.\n- The audit service has wrapped, meaning some older entries are lost. \n- The audit service stops logging because it is out of space and is set to not wrap. \n- The audit service resumes logging (for whatever reason). \n- If the audit service restarts because systemd noticed it had stopped due to an unexpected error, perhaps the restart mechanism could write an audit entry which gives details about this failure.\n\nShould any part of this be added to the design requirement?  I would like to see this mentioned, for example, as requirement to audit the audit function itself.\n\n2. To ensure: Offload protocol does not skip events: I think it is fair to say this design does not handle audit offload streaming.  So I retract my proposed requirement for this point.",
+      "parentUuid": "79feb7a1_5ef247c5",
+      "revId": "65cf8ec42b5499a04c77abf3face23d5c1cf77bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deaa1319_b049ad63",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2023-08-10T16:12:09Z",
+      "side": 1,
+      "message": "Proposed test idea: Audit records persist across BMC restart.\nTest steps: Reboot the BMC while creating audit records.  After the BMC regains its function, ensure audit records which were created just before the reboot are present.  In particular, ensure that no auditable no events - which happened while the BMC was rebooting - are lost.\nNote: For network-facing audit events, this test is intended only to cover the time before the BMC stops listening to its network ports (failed to connect - connection refused).  Note that, in general, auditable events may happen even when the BMC is not connected to the network.\n\nI think the requirement to \"not lose events\" implicitly covers this.\nPractically to implement this, it may be sufficient to stop the BMC\u0027s network services before stopping its audit service, and stop the audit collection service as late as possible (presuming audit events are persisted to the BMC\u0027s flash storage).",
+      "revId": "65cf8ec42b5499a04c77abf3face23d5c1cf77bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7078e6f8_1bc7b1a8",
         "filename": "designs/auditLog.md",
         "patchSetId": 3
