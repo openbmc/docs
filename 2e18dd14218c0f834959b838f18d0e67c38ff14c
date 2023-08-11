@@ -102,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32206de3_35ceca23",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2023-08-11T15:30:25Z",
+      "side": 1,
+      "message": "\u003e When user configure the standard mode has the Duration is 10ms, it means the timeframe of this option is 10ms, not the sampling periodic of Power-monitor.\n\nI thought the sampling period was for Power Limit detection.\n\n\nI looked at 6.6 of DCMI spec and think I understand better.  I think you can update the wording to match the DCMI spec to help clarify here. (6.6.5.2 examples were helpful)  or even reference the DCMI spec directly here.\n\nStandard mode provides a non-periodic sampling of the power readings\nEnhanced mode provides a periodic rolling average of power readings over one or more sampling periods.\n\nStatistics reporting time period:\nFor Standard Mode Timeframe in milliseconds, over which the controller collects\nstatistics\nFor Enhanced Mode Timeframe reflects the Averaging Time period in units.",
+      "parentUuid": "ba2a7d31_3ef9a1b9",
+      "revId": "2e18dd14218c0f834959b838f18d0e67c38ff14c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff3038cf_e231f143",
         "filename": "designs/power-manager.md",
         "patchSetId": 13
