@@ -156,6 +156,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2a0b40b_24331f34",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2023-08-16T15:26:47Z",
+      "side": 1,
+      "message": "From my reading of the spec:\nThe sampling interval of the Get Power Reading command is based on the current mode (standard / enhanced)\nI would interpret that \"sampling interval\" statement as the power limit will be reading a new power value at the same interval as specified in the sampling period.\n\nThe correction time is how long it needs to be over the limit before considering the limit to have been exceeded.\nI would assume if the Correction Time limit is less than the sampling interval, then the power would still be read at the Correction Time interval, but the comment in the spec seems to imply that the readings are only done on the sampling interval.",
+      "parentUuid": "850ded58_e8e71449",
+      "revId": "2e18dd14218c0f834959b838f18d0e67c38ff14c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff3038cf_e231f143",
         "filename": "designs/power-manager.md",
         "patchSetId": 13
