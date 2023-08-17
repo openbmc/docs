@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "924551c9_1fe2ba17",
+        "filename": "designs/managed-fru-filesystem-support.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-17T22:38:38Z",
+      "side": 1,
+      "message": "But then you\u0027ve leaped to a design point in the Problem Description... that\u0027s backwards.",
+      "parentUuid": "cfb433bb_d8cad373",
+      "range": {
+        "startLine": 12,
+        "startChar": 27,
+        "endLine": 14,
+        "endChar": 60
+      },
+      "revId": "df50006d8f864dc2eac8b0490d8526111a6492c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4dfd6e65_0cd5766e",
         "filename": "designs/managed-fru-filesystem-support.md",
         "patchSetId": 1
@@ -97,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5192705a_7d1db292",
+        "filename": "designs/managed-fru-filesystem-support.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-17T22:38:38Z",
+      "side": 1,
+      "message": "Since you\u0027ve not worked on the project tons, I want to be clear about this: if a comment was along the lines of \"there isn\u0027t enough content in the doc for me to understand what you\u0027re describing\", it needs an update to the doc because someone else is likely to have the same problem and they shouldn\u0027t have to trace all the Gerrit history to figure it out.",
+      "parentUuid": "e75b2f64_94571aa0",
+      "range": {
+        "startLine": 20,
+        "startChar": 40,
+        "endLine": 20,
+        "endChar": 47
+      },
+      "revId": "df50006d8f864dc2eac8b0490d8526111a6492c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4fc7429_6dbed3d9",
         "filename": "designs/managed-fru-filesystem-support.md",
         "patchSetId": 1
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "The encrypted data in the secure element is a proprietary (non-standard-FRU) format. Specific fields (the same ones as when HPE still used I2C-based FRU blobs) are being surfaced from that data.",
       "parentUuid": "b4fc7429_6dbed3d9",
+      "range": {
+        "startLine": 33,
+        "startChar": 20,
+        "endLine": 36,
+        "endChar": 0
+      },
+      "revId": "df50006d8f864dc2eac8b0490d8526111a6492c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d330563e_4558999f",
+        "filename": "designs/managed-fru-filesystem-support.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-17T22:38:38Z",
+      "side": 1,
+      "message": "The \"how do we handle non-standard, potentially proprietary FRU formats\" is a good design point to attempt to resolve here.  I think fundamentally that\u0027s a major point of the discussion / proposal.\n\nIt was not obvious from the rest of the doc that you have a proprietary FRU data format.  Most of the doc reads as \"we have code that does this and we want you to take it\" rather than \"this is our problem and here is the \u0027why\u0027 to point to this proposed solution\".",
+      "parentUuid": "e762557c_d484c13c",
       "range": {
         "startLine": 33,
         "startChar": 20,
@@ -226,6 +298,30 @@
       "side": 1,
       "message": "I will revise to go into more detail here- but my original thinking was that it wouldn\u0027t matter how the files were created as long as they can be found in the expected spots.\n\nIn HPE\u0027s case, there\u0027s existing (proprietary) code that decrypts data in a secure element, then copies specific data to a space in RAM. From there, there is some uBoot code (open sourced, but HPE-specific implementation) that transfers the data onto the filesystem.",
       "parentUuid": "e8ca65b2_e1a29bbd",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 20
+      },
+      "revId": "df50006d8f864dc2eac8b0490d8526111a6492c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5de0f35_1c294bdf",
+        "filename": "designs/managed-fru-filesystem-support.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-17T22:38:38Z",
+      "side": 1,
+      "message": "\u003e In HPE\u0027s case, there\u0027s existing (proprietary) code that decrypts data in a secure element, then copies specific data to a space in RAM. From there, there is some uBoot code (open sourced, but HPE-specific implementation) that transfers the data onto the filesystem.\n\nThis is also partially backwards.  \"We did this thing in u-boot and now need to support it\".  We should have a cohesive discussion on the whole flow.\n\nThe fundamental design requirements are:\n* \"We have a non-standard FRU format\"\n* \"We have a non-EEPROM device to get data from\"\n\nFrom there, there are probably more than a singular design that would get us there.  That is what the \"Alternative Designs\" section is for.",
+      "parentUuid": "ddd9c314_287b0c09",
       "range": {
         "startLine": 56,
         "startChar": 0,
