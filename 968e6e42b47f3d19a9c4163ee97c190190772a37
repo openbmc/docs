@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1c395db_912bb9bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "Thanks for the review Ed. Addressed your comments and added responses. Thanks",
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd435e57_b3db9df3",
@@ -31,6 +48,30 @@
       "writtenOn": "2023-08-12T02:20:00Z",
       "side": 1,
       "message": "Nit, this can be removed, we\u0027re in the requirements section.  There\u0027s no need for a preface.",
+      "range": {
+        "startLine": 33,
+        "startChar": 2,
+        "endLine": 33,
+        "endChar": 74
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05049574_de68560e",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cd435e57_b3db9df3",
       "range": {
         "startLine": 33,
         "startChar": 2,
@@ -66,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f25c0436_8e442cb9",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "Here the semantics of schedule is either immediately or on reset and its defined in update settings in next line. Update settings basically maps to applySettings in Redfish schema, but for now i am only considering these 2 options (immediately or onReset). I think other options related to maintenance window can be managed outside BMC, so our implementation don\u0027t need to consider them. Please let me know if you have any concerns or still think we should change the name.",
+      "parentUuid": "1def1aca_4bae3f09",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 22
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51df87cf_203dfd45",
         "filename": "designs/code-update.md",
         "patchSetId": 4
@@ -77,6 +142,30 @@
       "writtenOn": "2023-08-12T02:20:00Z",
       "side": 1,
       "message": "I don\u0027t see this covered in the design.  Does this assume a host reset?  Or the device in questions reset?",
+      "range": {
+        "startLine": 36,
+        "startChar": 30,
+        "endLine": 36,
+        "endChar": 39
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d0cb764_afd5e5cd",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "My understanding is that this is a device specific detail, i.e. does image apply need a device or host reset and we don\u0027t need to cover it in design.",
+      "parentUuid": "51df87cf_203dfd45",
       "range": {
         "startLine": 36,
         "startChar": 30,
@@ -110,6 +199,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c8ea37d_19e94510",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c1ac5bec_a9e61a11",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 42
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d66c180_8340a2f8",
@@ -123,6 +236,30 @@
       "writtenOn": "2023-08-12T02:20:00Z",
       "side": 1,
       "message": "nit, the requirement here is \"Unprivileged daemons with only access to dbus should be able to perform, and accept a firmware update\".",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 64
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c1aa5ac_7cf61634",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d66c180_8340a2f8",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -156,6 +293,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dc7e1eb_4b539aff",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "Sure, gave it a 3 second window .",
+      "parentUuid": "61a9982f_89a96881",
+      "range": {
+        "startLine": 42,
+        "startChar": 32,
+        "endLine": 42,
+        "endChar": 39
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "297d833d_6eabc6e2",
@@ -169,6 +330,30 @@
       "writtenOn": "2023-08-12T02:20:00Z",
       "side": 1,
       "message": ".... using the most applicable Redfish error message.",
+      "range": {
+        "startLine": 44,
+        "startChar": 42,
+        "endLine": 44,
+        "endChar": 49
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02c29191_be41c36f",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "I don\u0027t think we should tailor this requirement specifically for Redfish. For any other client like IPMI it should work accordingly.",
+      "parentUuid": "297d833d_6eabc6e2",
       "range": {
         "startLine": 44,
         "startChar": 42,
@@ -202,6 +387,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88710524_4fde6af3",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "Changed Vendors to Hardware Vendors.\n\nImage format related -\n1. openBMC image would definitely use the same image format.\n2. Hardware vendors for CPLD, NIC, VR should be able to use image format of their choice. So, this requirement is in relation to that.\n\nMoved the Requirement#7 up and changed the wording as below to make it explicit\n\n\"Hardware vendors shall be able to choose any image format for their component with no imposition to use generic or single one.\"",
+      "parentUuid": "b4abc621_195812f3",
+      "range": {
+        "startLine": 45,
+        "startChar": 3,
+        "endLine": 45,
+        "endChar": 11
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a398b66b_e60b8b26",
@@ -225,6 +434,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aacc19ab_bfa606dd",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a398b66b_e60b8b26",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 45
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3be50d93_d30fe2ce",
@@ -238,6 +471,30 @@
       "writtenOn": "2023-08-12T02:20:00Z",
       "side": 1,
       "message": "Please remove.  At the moment nobody is owning multi-host support in redfish, despite several requests for ownership, and an approved design.  Lets get single-system firmware update working with multiple devices, then multi-host redfish (or vice versa order if you\u0027d rather).  Doing both at the same time is going to basically guarantee that your patches can\u0027t land because they will break some behavior.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 48
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d84c5f29_0da6c1d4",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "After discussing with Patrick i have changed this requirement to \"Able to update multiple devices of same type residing on the board\" since that is already part of current single host architecture.",
+      "parentUuid": "3be50d93_d30fe2ce",
       "range": {
         "startLine": 49,
         "startChar": 0,
@@ -273,6 +530,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e18466b8_82d0b1f8",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "The current design doesn\u0027t consider sensor scanning as a requirement. Refer to my next comment for more details.",
+      "parentUuid": "3aa2097b_d31c0096",
+      "range": {
+        "startLine": 52,
+        "startChar": 46,
+        "endLine": 52,
+        "endChar": 60
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df9b28f4_907595cf",
         "filename": "designs/code-update.md",
         "patchSetId": 4
@@ -296,6 +577,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7dcc76f8_84f9eac8",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "This requirement is covered under \"Uninterrupted Updates\" section in design. \n\nAs mentioned in my previous comment current design doesn\u0027t consider \"sensor scanning\" as a requirement, but if needed we can rename ActivationBlocksTransitions to something more generic so it can serve as a indication to not perform certain actions when update is in flight.",
+      "parentUuid": "df9b28f4_907595cf",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 24
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f728abe_c7000c23",
         "filename": "designs/code-update.md",
         "patchSetId": 4
@@ -307,6 +612,30 @@
       "writtenOn": "2023-08-12T02:20:00Z",
       "side": 1,
       "message": "It would help quite a bit if you could push this somewhere (probably your personal github) where this can be rendered.  It\u0027s basically impossible to review in code review.\n\nIs there a way to #include this in markdown (I don\u0027t know if there is) so this file is less cluttered?",
+      "range": {
+        "startLine": 59,
+        "startChar": 3,
+        "endLine": 59,
+        "endChar": 10
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f7ebef1_fb7743e1",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "I did some digging, but sorry, couldn\u0027t find a tag in markdown which has native support for it.\n\nSure, i have pushed it here https://github.com/jagpalgill/Code-Update/blob/main/Proposed-Design.md",
+      "parentUuid": "7f728abe_c7000c23",
       "range": {
         "startLine": 59,
         "startChar": 3,
@@ -342,6 +671,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "644d34a4_82c90153",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "As mentioned, the long term goal is not to have two different code stacks but just one. But i don\u0027t think doing a complete switchover in one go is possible and even advisable. And yes, as you mentioned there would need to be a rollover period for this across multiple daemons but in interim period we may support 2 code flows.",
+      "parentUuid": "10c306cc_b33ede7d",
+      "range": {
+        "startLine": 259,
+        "startChar": 45,
+        "endLine": 259,
+        "endChar": 74
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c35dfbe2_32171390",
         "filename": "designs/code-update.md",
         "patchSetId": 4
@@ -353,6 +706,24 @@
       "writtenOn": "2023-08-12T18:20:16Z",
       "side": 1,
       "message": "Any user-api facing impacts?  Even if the goal is to not have any user facing API impacts, explicitly listing that would be a good idea.",
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd5ddccb_f57dfa5c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c35dfbe2_32171390",
       "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -374,6 +745,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "886c8e86_32ffe213",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "Added the section.",
+      "parentUuid": "8363dbe1_903fca59",
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "473e7ab8_cc032293",
@@ -387,6 +776,30 @@
       "writtenOn": "2023-08-12T02:20:00Z",
       "side": 1,
       "message": "This is deprecated.  I\u0027m pretty sure you meant webui-vue?",
+      "range": {
+        "startLine": 278,
+        "startChar": 0,
+        "endLine": 278,
+        "endChar": 61
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3bac0cc_80dedf73",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "NOTE: I derived this list from doing code search and checking what uses the existing code-update interface. So, yes based on below comment in Readme for \"phosphor-webui\" it would have been webui-vue, but i don\u0027t see webui-vue using the code-update interface, hence dropping it from list.\n\n\"webui-vue repository is a replacement for phosphor-webui.\"",
+      "parentUuid": "473e7ab8_cc032293",
       "range": {
         "startLine": 278,
         "startChar": 0,
@@ -422,6 +835,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e13650d_ef04a0cc",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "It was mostly related to incorporate any changes related to https://github.com/openbmc/openbmc-tools/blob/cff0bfa003d9f8a2f12f13c9b80646315c6f6b8c/openbmctool/openbmctool.py#L397",
+      "parentUuid": "6de913b9_73816692",
+      "range": {
+        "startLine": 279,
+        "startChar": 0,
+        "endLine": 279,
+        "endChar": 59
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "14e3ea7e_e0c8c24c",
         "filename": "designs/code-update.md",
         "patchSetId": 4
@@ -433,6 +870,30 @@
       "writtenOn": "2023-08-12T02:20:00Z",
       "side": 1,
       "message": "This is also deprecated.  Nothing uses phosphor-rest-server anymore now that bmcweb has taken over.",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 73
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6332bef7_eece8e46",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-08-22T01:36:51Z",
+      "side": 1,
+      "message": "Sure, will drop it.",
+      "parentUuid": "14e3ea7e_e0c8c24c",
       "range": {
         "startLine": 280,
         "startChar": 0,
