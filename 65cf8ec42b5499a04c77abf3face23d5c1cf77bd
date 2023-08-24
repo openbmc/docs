@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41a2e63e_b221d11f",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2023-08-24T20:19:33Z",
+      "side": 1,
+      "message": "Regarding bullet 1:\n\nThe Linux auditd daemon does write audit records when it starts and stops running. Additionally, it logs failures to write audit records, or log rotation to the system log. Configuration values can enable sending email or ignoring these errors.\n\nTo try to capture this requirement I\u0027ve added a bullet to the requirements on logging of the audit service itself. (Prior patch already added bullet on handling of logging failure.) I\u0027ve also added some details of the Linux auditd handling in this area to the \"Audit Backend Service\" section.",
+      "parentUuid": "adae9fa4_2f499efd",
+      "revId": "65cf8ec42b5499a04c77abf3face23d5c1cf77bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "deaa1319_b049ad63",
         "filename": "designs/auditLog.md",
         "patchSetId": 3
@@ -101,6 +119,24 @@
       "writtenOn": "2023-08-10T16:12:09Z",
       "side": 1,
       "message": "Proposed test idea: Audit records persist across BMC restart.\nTest steps: Reboot the BMC while creating audit records.  After the BMC regains its function, ensure audit records which were created just before the reboot are present.  In particular, ensure that no auditable no events - which happened while the BMC was rebooting - are lost.\nNote: For network-facing audit events, this test is intended only to cover the time before the BMC stops listening to its network ports (failed to connect - connection refused).  Note that, in general, auditable events may happen even when the BMC is not connected to the network.\n\nI think the requirement to \"not lose events\" implicitly covers this.\nPractically to implement this, it may be sufficient to stop the BMC\u0027s network services before stopping its audit service, and stop the audit collection service as late as possible (presuming audit events are persisted to the BMC\u0027s flash storage).",
+      "revId": "65cf8ec42b5499a04c77abf3face23d5c1cf77bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1be1179_8fbe4c86",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2023-08-24T20:19:33Z",
+      "side": 1,
+      "message": "Good point, I\u0027ve added this additional case.",
+      "parentUuid": "deaa1319_b049ad63",
       "revId": "65cf8ec42b5499a04c77abf3face23d5c1cf77bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
