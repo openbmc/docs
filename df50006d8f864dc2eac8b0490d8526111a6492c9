@@ -546,6 +546,30 @@
       },
       "revId": "df50006d8f864dc2eac8b0490d8526111a6492c9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a111449d_3ed7738e",
+        "filename": "designs/managed-fru-filesystem-support.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-08-25T16:54:48Z",
+      "side": 1,
+      "message": "\u003e The fundamental design requirements are:\n\u003e\n\u003e \"We have a non-standard FRU format\"\n\"We have a non-EEPROM device to get data from\"\nFrom there, there are probably more than a singular design that would get us there. That is what the \"Alternative Designs\" section is for.\n\n+1\ndescriptions on what these devices are and how they can be read would be helpful. The design would cover end to end flow, i.e. from data in these devices to dbus properties that can be probed by entity-manager.\n\n\u003e  there is some uBoot code (open sourced, but HPE-specific implementation) that transfers the data onto the filesystem.\nwhere is this open sourced u-boot code? Good to add a reference link",
+      "parentUuid": "73689bca_fa91a553",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 20
+      },
+      "revId": "df50006d8f864dc2eac8b0490d8526111a6492c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
