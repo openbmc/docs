@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7889d85e_93447d33",
+        "filename": "designs/sol-sysrq.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-08-25T03:54:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e668a6b2_cf15fe3d",
+      "range": {
+        "startLine": 22,
+        "startChar": 3,
+        "endLine": 22,
+        "endChar": 56
+      },
+      "revId": "10eb128a57055a31c211c2c66ee1a3d2c05c60f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03465274_6b842639",
@@ -41,6 +65,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df108722_1b887ef3",
+        "filename": "designs/sol-sysrq.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-08-25T03:54:47Z",
+      "side": 1,
+      "message": "It\u0027s the same as `\\n~B` below, let me rephrase here to make it more clear.",
+      "parentUuid": "03465274_6b842639",
+      "revId": "10eb128a57055a31c211c2c66ee1a3d2c05c60f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "864429c3_172c76ac",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-08-22T00:16:24Z",
       "side": 1,
       "message": "Given we\u0027re talking about `ipmitool` here, isn\u0027t the break triggered by `Ctrl-Break` as mentioned above? Are we proposing adding another mechanism?\n\n`~B` is an SSH-ism as far as I can determine. Given that obmc-console can be tunnelled over SSH (as it is currently using dropbear) are we trying to make `ipmitool` consistent with SSH?",
+      "revId": "10eb128a57055a31c211c2c66ee1a3d2c05c60f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ea8f98b_f1363f20",
+        "filename": "designs/sol-sysrq.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-08-25T03:54:47Z",
+      "side": 1,
+      "message": "The above mentioned `ctrl-break` in ipmitool is not accurate, it\u0027s actually `\\n~B`.\nUpdated here.",
+      "parentUuid": "864429c3_172c76ac",
       "revId": "10eb128a57055a31c211c2c66ee1a3d2c05c60f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -77,6 +137,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db682d73_95c74837",
+        "filename": "designs/sol-sysrq.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-08-25T03:54:47Z",
+      "side": 1,
+      "message": "Good question.\nWe actually tried to input `\\n~B` to trigger the sysrq, but failed.\nIn the SOL\u003c-\u003ebmcweb communication, when user hit a key, the data is sent to bmcweb directly like byte by byte, so the check in `bmcweb` will not catch the whole `\\n~B` sequence.\n\nBy sending the key code by a WebUI button, it makes sure bmcweb could receive the whole sequence, and handle it as expect.\n\nIs there any suggestion on handling the case?",
+      "parentUuid": "b5335e98_f85b71f3",
+      "revId": "10eb128a57055a31c211c2c66ee1a3d2c05c60f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ffa0b46_0c078301",
         "filename": "designs/sol-sysrq.md",
         "patchSetId": 2
@@ -88,6 +166,24 @@
       "writtenOn": "2023-08-22T00:16:24Z",
       "side": 1,
       "message": "`\\n~B`.",
+      "revId": "10eb128a57055a31c211c2c66ee1a3d2c05c60f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e6969c5_2e086fe1",
+        "filename": "designs/sol-sysrq.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-08-25T03:54:47Z",
+      "side": 1,
+      "message": "Right, will update.",
+      "parentUuid": "2ffa0b46_0c078301",
       "revId": "10eb128a57055a31c211c2c66ee1a3d2c05c60f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
