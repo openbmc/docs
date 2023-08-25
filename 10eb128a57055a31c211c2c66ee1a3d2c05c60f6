@@ -155,6 +155,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32c695c2_725e6dfe",
+        "filename": "designs/sol-sysrq.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-08-25T06:47:30Z",
+      "side": 1,
+      "message": "Okay, it sounds like bmcweb needs better text stream processing. Essentially you need to insert a little state-machine that you send all input characters through to do the pattern matching.\n\n```mermaid\n---\ntitle: SSH escape state machine\n---\nstateDiagram-v2\n    direction LR\n    [*] --\u003e Empty\n    Empty --\u003e Emit: [^#92;n]\n    Emit --\u003e Empty\n    Empty --\u003e Newline: [#92;n]\n    Newline --\u003e Escape: [~]\n    Escape --\u003e EmitEscapeCode: [B]\n    EmitEscapeCode --\u003e Empty\n```\n\n[Here\u0027s a rendered version](https://mermaid.live/edit#pako:eNp1UD1PAzEM_SuR2dBl6UaQGPiQGICB22iKZF1MG3FJTjkfqKrKb8ckPV0XMjnP7_nZ7wBdcgQGtNY2sueejGrbR0VjhwOpkZFJBex2PpKNhVWwe4_bjEF_rWxU8pzP1LFPUT29VmR9uVFa36iHMPC-QqU8gZ6NWr9fXK2u42buev5f8ULfvewgonPNCa2ysrIQfuaB9YbZr37v5F7h3J6ZLo3FHhoIlAN6J-Ec_rgWeEeBLBgpHeZPCzYehYcTp3YfOzCcJ2pgGtwSEJgP7EdByXlO-bmmXUJvYMD4ltLMOf4CWjd96w)",
+      "parentUuid": "db682d73_95c74837",
+      "revId": "10eb128a57055a31c211c2c66ee1a3d2c05c60f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ffa0b46_0c078301",
         "filename": "designs/sol-sysrq.md",
         "patchSetId": 2
