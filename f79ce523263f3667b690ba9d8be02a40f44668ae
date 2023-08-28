@@ -985,6 +985,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cdc28fe_c73033d0",
+        "filename": "designs/managed-fru-filesystem-support.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-08-28T14:30:43Z",
+      "side": 1,
+      "message": "After digging into this and talking with some other HPE folks, I\u0027m increasingly feeling like your suggestion of uBoot -\u003e DBus is a better path forward.\n\nThanks a ton for your suggestions- I would have realized that subproject\u0027s functionality otherwise (It doesn\u0027t seem like any machines currently reference it in a recipe).\n\nAssuming we switch over to using phosphor-u-boot-env-mgr for HPE\u0027s process, would you suggest updating (or closing and replacing) this design doc to describe HPE\u0027s secure element -\u003e u-boot -\u003e d-bus process in terms of phosphor-u-boot-env-mgr?\n\nOr would it make more sense to just add some HPE-specific code to phosphor-u-boot-env-mgr for moving HPE-specific \u0027FRU\u0027 data over to d-bus, then submit it to Gerrit for direct commentary/discussion?",
+      "parentUuid": "c1b24879_78d1b85f",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 74
+      },
+      "revId": "f79ce523263f3667b690ba9d8be02a40f44668ae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "025f19e5_5d030a91",
         "filename": "designs/managed-fru-filesystem-support.md",
         "patchSetId": 2
