@@ -173,6 +173,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30a4a58d_805d7e9b",
+        "filename": "designs/sol-sysrq.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-08-28T08:49:36Z",
+      "side": 1,
+      "message": "It is the client\u0027s job to send the signal, e.g. it\u0027s ipmitool that sends the signal.\n\nSo in WebUI-\u003ebmcweb case, probably it is WebUI\u0027s job to send the signal.\nWe actually tried to send the OOB message from the websocket directly, but it looks like websocket does not support OOB message and thus we have to handle it in bmcweb.\n\nCurrently for simplicity, it\u0027s implemented the that that WebUI send the sequence directly, so that bmcweb could handle it easily.\n\nIf we really want to introduce the `SSH escapse state machine` in bmcweb, it\u0027s doable but makes it a bit more complex.",
+      "parentUuid": "32c695c2_725e6dfe",
+      "revId": "10eb128a57055a31c211c2c66ee1a3d2c05c60f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ffa0b46_0c078301",
         "filename": "designs/sol-sysrq.md",
         "patchSetId": 2
