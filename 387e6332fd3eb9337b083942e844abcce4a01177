@@ -50,6 +50,24 @@
       "message": "I\u0027m a little concerned this could cause a lot of new small repos in openbmc. I\u0027d prefer one large repo where we use the OWNERS file to determine who maintains which sub-directories.",
       "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63b8ce0d_dd33567c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-30T20:54:09Z",
+      "side": 1,
+      "message": "\u003e I\u0027d prefer one large repo where we use the OWNERS file to determine who maintains which sub-directories.\n\nWhy?  Isn\u0027t this just a monorepo by another name?\n\nI don\u0027t expect there to really be a lot of sharing between the update portions of this.  It also gives a clear path for supporting non-opensource updates (which, while not a primary focus of this project, is an unfortunate reality).\n\nI don\u0027t really think there is a lot of [code] overlap in update for the BMC, voltage regulators (i2c), NICs (pldm), and CPLDs (JTAG).  Do we really want all these different interfaces, and corresponding access libraries, needing to be linked into a single repository?  What happens if/when various CPLD vendors give us separate libraries for their special flavor of JTAG?\n\nMy opinion is that if the interface requires a lot of boiler-code that is copied around various repositories, we\u0027ve failed in defining the interface.  Let\u0027s fix that (if it is a problem) rather than trying to cram everything into one big repo.",
+      "parentUuid": "957a2e83_7808d463",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
