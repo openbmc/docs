@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fea5b569_18e2a8ff",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-08-30T19:11:29Z",
+      "side": 1,
+      "message": "I wonder if we need a requirement to support devices that have primary/backup designs. For example, some systems have 2 flash chips for BMC firmware. Some have a single emmc that it is carved up into 2 copies. Is that all abstracted by the service implementing the update?",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61a13cf8_4f27876d",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-08-30T19:11:29Z",
+      "side": 1,
+      "message": "We\u0027ve had memory issues before (our images can be 100MB+ in size). Multiple of these sticking around in memory for parallel updates could be dangerous. Is there any chance of being able to still offload to /tmp and then send the fd to that file to the update services vs. keeping it all in bmcweb memory? Does allowing bmcweb access to /tmp really raise security concerns?",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "957a2e83_7808d463",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-08-30T19:11:29Z",
+      "side": 1,
+      "message": "I\u0027m a little concerned this could cause a lot of new small repos in openbmc. I\u0027d prefer one large repo where we use the OWNERS file to determine who maintains which sub-directories.",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
