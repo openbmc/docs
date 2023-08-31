@@ -20,6 +20,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60cbf142_8543b134",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T16:13:48Z",
+      "side": 1,
+      "message": "\u003e I wonder if we need a requirement to support devices that have primary/backup designs.\n\nWe could add the requirement, but this feels device specific, and unimportant to this level.  I don\u0027t know of any \"standard\" for AB updates, so I suspect each device daemon will implement its own mechanism.\n\n\u003e For example, some systems have 2 flash chips for BMC firmware. Some have a single emmc that it is carved up into 2 copies. Is that all abstracted by the service implementing the update?\n\nYes.",
+      "parentUuid": "fea5b569_18e2a8ff",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a907c7e7_3a9fdf28",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T16:13:48Z",
+      "side": 1,
+      "message": "Please don\u0027t point to personal repositories in project documents.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 70
+      },
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61a13cf8_4f27876d",
         "filename": "designs/code-update.md",
         "patchSetId": 6
@@ -31,6 +72,41 @@
       "writtenOn": "2023-08-30T19:11:29Z",
       "side": 1,
       "message": "We\u0027ve had memory issues before (our images can be 100MB+ in size). Multiple of these sticking around in memory for parallel updates could be dangerous. Is there any chance of being able to still offload to /tmp and then send the fd to that file to the update services vs. keeping it all in bmcweb memory? Does allowing bmcweb access to /tmp really raise security concerns?",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cb953a7_7f60665a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T16:13:48Z",
+      "side": 1,
+      "message": "\u003e  Is there any chance of being able to still offload to /tmp and then send the fd to that file to the update services\n\nWhat does this fix?  /tmp uses ram, so does bmcweb.  In theory it\u0027s pretty trivial to write the FD in, say 8k increments so we don\u0027t double count memory, but I don\u0027t see this as terribly important to this design, but an implementation detail.\n\nI suspect this needs to say \"Implementations need to implement appropriate memory limits to prevent parallel updates from running the bmc out of memory.\"",
+      "parentUuid": "61a13cf8_4f27876d",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5695ef2_19cdfe94",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T16:13:48Z",
+      "side": 1,
+      "message": "Can you give some more details here?  In the simplest case, lets take a power supply that supports PMBUS update, but requires no other commands run to that device while the update is in progress (as is pretty common), how would this interface prevent access to that device from, for example, dbus-sensors?  We likely can\u0027t stop ALL sensor scanning, because that would be a thermal problem for the server, so how would this interface know WHICH things to stop scanning?",
       "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -102,6 +178,47 @@
       "side": 1,
       "message": "I suggest working with Ed on a proposal for a monorepo then.  We shouldn\u0027t debate that in every individual feature design proposal.",
       "parentUuid": "8aac1f16_04df294b",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95648da3_89819f57",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T16:13:48Z",
+      "side": 1,
+      "message": "\u003e Why? Isn\u0027t this just a monorepo by another name?\n\nI don\u0027t believe so.  This looks more like dbus-sensors or bmcweb, which centralize one function into a single repo.\n\n\nFWIW, because these are going to share a transport to whatever device (i2c, pldm, whatever) I would expect the implementations of each to go in the repo that deals with that transport to avoid duplicating code and dependencies.  (i2c devices in dbus-sensors, pldm in pldmd, etc).  To support things like stopping sensor scanning when firmware updates are in progress (as is required by a lot of devices), it helps a lot to have the implementation for a complete device in one daemon.\n\n\nI share Andrews concerns that:\n1. As written going to create a lot of new repositories, and the repo creation overhead today is still high, which will possibly limit the number of devices we can support.  Considering we\u0027re likely to support 10s if not 100s of devices, that number of repos doesn\u0027t seem wise.\n2. This is going to de-incentivize core maintainers to maintain firmware update as a whole, given that each repo will likely have different maintainers (if this isn\u0027t the plan, let me know).  This is what we\u0027ve seen with the IPMI repos that are repo-per-oem.\n\nAlso, in the context of this doc, it doesn\u0027t seem wise to approve the creation of wildcard repos with no fixed bound or listed maintainers.",
+      "parentUuid": "88828a14_566dcc1f",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0917d319_d51841fb",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T16:13:48Z",
+      "side": 1,
+      "message": "The intent here is that you actually name the people, and ensure they have appropriate participation stats to maintain this amount of code.  If \"Hardware vendors\" are going to maintain this, then those hardware vendors need to be on the design doc.  It\u0027s really difficult to approve the creation of wildcard repos without a named person as maintainer.",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 38
+      },
       "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

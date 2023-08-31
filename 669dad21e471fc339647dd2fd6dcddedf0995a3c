@@ -98,6 +98,30 @@
       },
       "revId": "669dad21e471fc339647dd2fd6dcddedf0995a3c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2133529_d9f6e167",
+        "filename": "designs/code-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T16:13:48Z",
+      "side": 1,
+      "message": "\u003e For BMC code update, we can update the existing phosphor-bmc-code-mgmt to reflect the new design. Even currently, we have different repos for psu and pnor (phoshpor-psu-code-mgmt, phosphor-pnor-code-mgmt). Probably we can have one repo per component category (for example, phosphor-vr-code-mgmt for VR) but in general we don\u0027t see much code sharing (even within same category)\n\nReally?  This doesn\u0027t seem accurate.  All i2c devices are pretty likely to share wrappers around libi2c.  What you\u0027re saying is also the opposite of what we\u0027ve seen in dbus-sensors with regards to VRs, where the majority of code is common, and only the last few lines of the specific commands changes per device, while the transports retries, etc all remain the same.  How did you come to the conclusion that the per-device code would differ significantly?\n\n\u003e as only shared piece will be the DBus interface which already reside in a common repository (phosphor-dbus-interfaces). Please let me know your thoughts?",
+      "parentUuid": "955180a3_d26e32cb",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 11
+      },
+      "revId": "669dad21e471fc339647dd2fd6dcddedf0995a3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -131,6 +131,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "693e0156_d7a505e6",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T16:13:48Z",
+      "side": 1,
+      "message": "Lets get that written down.  The term \"schedule\" is overloaded.",
+      "parentUuid": "f25c0436_8e442cb9",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 22
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51df87cf_203dfd45",
         "filename": "designs/code-update.md",
         "patchSetId": 4
@@ -599,6 +623,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a963f74_bcdd6e01",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T16:13:48Z",
+      "side": 1,
+      "message": "\u003e This requirement is covered under \"Uninterrupted Updates\" section in design. \n\u003e \n\u003e As mentioned in my previous comment current design doesn\u0027t consider \"sensor scanning\" as a requirement, but if needed we can rename ActivationBlocksTransitions to something more generic so it can serve as a indication to not perform certain actions when update is in flight.\n\nNeed more details on how ActivationBlocksTransitions would solve this problem.  Stopping sensor scanning while firmware updates are in progress is a pretty common requirement across devices.  I asked more questions on that comment, so I\u0027m closing this one.",
+      "parentUuid": "7dcc76f8_84f9eac8",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 24
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f728abe_c7000c23",
@@ -683,6 +731,30 @@
       "side": 1,
       "message": "As mentioned, the long term goal is not to have two different code stacks but just one. But i don\u0027t think doing a complete switchover in one go is possible and even advisable. And yes, as you mentioned there would need to be a rollover period for this across multiple daemons but in interim period we may support 2 code flows.",
       "parentUuid": "10c306cc_b33ede7d",
+      "range": {
+        "startLine": 259,
+        "startChar": 45,
+        "endLine": 259,
+        "endChar": 74
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac79bccb_f32d7a8c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T16:13:48Z",
+      "side": 1,
+      "message": "\u003e As mentioned, the long term goal is not to have two different code stacks but just one. But i don\u0027t think doing a complete switchover in one go is possible and even advisable.\n\nAt no point did I say \"in one go\", I asked for a \"timeline\" that showed a progression, including who was going to own the steps.  If there\u0027s a plan to get everyone moved over to the new one, lets get that written down.  If the plan is to keep two sets of code around forever (like happened in a couple other cases in the past, and I now get to maintain) that won\u0027t get my support.\n\n\u003e And yes, as you mentioned there would need to be a rollover period for this across multiple daemons but in interim period we may support 2 code flows.",
+      "parentUuid": "644d34a4_82c90153",
       "range": {
         "startLine": 259,
         "startChar": 45,
@@ -871,6 +943,30 @@
       "side": 1,
       "message": "This is a very old tool that was used as a bridge between our transition from IPMI to the REST api to Redfish. I\u0027d be fine if you just list an assumption that this will not be supported with this new design as everyone should just be using redfish directly at this point.",
       "parentUuid": "3e13650d_ef04a0cc",
+      "range": {
+        "startLine": 279,
+        "startChar": 0,
+        "endLine": 279,
+        "endChar": 59
+      },
+      "revId": "968e6e42b47f3d19a9c4163ee97c190190772a37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e39d5ab9_6c008417",
+        "filename": "designs/code-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T16:13:48Z",
+      "side": 1,
+      "message": "+1 to Andrews comment.  openbmctool uses the Rest API, which is deprecated.",
+      "parentUuid": "0dcc9717_5178595b",
       "range": {
         "startLine": 279,
         "startChar": 0,
