@@ -220,6 +220,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "acbdb67a_ac09973a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T17:25:09Z",
+      "side": 1,
+      "message": "\u003e I\u0027m fine with transport-level update repositories.  I suspect that pldmd will be one of the primary implementations.  I just don\u0027t want to see a direction that _requires_ us to put { i2c, pldm, jtag, spi, BMC, BIOS } updates all in one giant repo.  The \"updates interferes with sensor collection\" is one good reason why it doesn\u0027t belong into a single large repo because then we end up with coordination between ... for example ... dbus-sensors and phosphor-bmc-code-mgmt.\n\u003e \n\u003e I think Jagpal can adjust the wording to be transport-centric (or device-type-centric) rather than device-centric.  From an OpenBMC perspective we can aim at that.\n\nSounds good to me.  This will be a significant improvement.\n\n\u003e \n\u003e Hopefully the design still allows proprietary update methods (in non-OSS repositories) because that seems to be something that a number of companies have been interested in.\n\nI can\u0027t see why it would prevent that, and I think it supports that mode.  If it\u0027s proprietary, do whatever you want, and reuse/copy whatever transport code you\u0027d like into a private daemon and maintain it.  For upstream, we should avoid copying code for similar transports.\n\n\u003e  Typically this is related to custom silicon where there are not public data sheets.  It seems relatively straight-forward for us to come up with a design where they can drop-in their own repositories without having to modify bmcweb, etc.\n\nAgreed, and I think just having it on dbus supports that, so long as we\u0027re using the mapper to look up EM devices that support update.  It\u0027s basically the same as the sensor model, which seems to work (there\u0027s probably more downstream vendor-specific sensor code than there is upstream at this point).",
+      "parentUuid": "9625d0d9_fa9444a6",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0917d319_d51841fb",
         "filename": "designs/code-update.md",
         "patchSetId": 6
