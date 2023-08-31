@@ -38,6 +38,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41323d28_12426b83",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-31T18:06:01Z",
+      "side": 1,
+      "message": "One thing I missed the first time around, that\u0027s kind of implied, but I think should explicitly be called out is the ability to map a given physical component to the update \"slot\" for that device.  Given that we\u0027re going to support multiple devices and not have a custom format that determines what devices an update payload supports, that would mean that a user needs to be able to ask Redfish to implement the UpdateService.Targets property, which would need to have some mapping in dbus (X firmware update API is for Y processor/drive/power supply).\n\nI don\u0027t see that called out here.  If you\u0027d rather deal with that in a PDI \n (and presumably entity-manager) review, that\u0027s fine with me.",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a907c7e7_3a9fdf28",
         "filename": "designs/code-update.md",
         "patchSetId": 6
