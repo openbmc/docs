@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64c06246_aee60aa2",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-09-05T08:49:40Z",
+      "side": 1,
+      "message": "It should be other daemons that manage devices supporting SPDM. As explained earlier, we do not provide a generic SPDM daemon implementation. We intend to provide a library to help with implementing the SPDM daemon as it really depends on the what device it is and how it is connected to the BMC (via, PCIe, or MCTP) when it comes to device initialization and transport layer initialization.",
+      "parentUuid": "cb112a84_12e1306b",
+      "range": {
+        "startLine": 148,
+        "startChar": 64,
+        "endLine": 149,
+        "endChar": 24
+      },
+      "revId": "1d47fc466f7145ab5ad584b7f00479fd43804cae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e8294c3e_00def06f",
         "filename": "designs/redfish-spdm-attestation.md",
         "patchSetId": 4
@@ -54,6 +78,24 @@
       "writtenOn": "2023-09-02T05:56:04Z",
       "side": 1,
       "message": "Is this expected to be done in this daemon or other daemons that manages the device?",
+      "revId": "1d47fc466f7145ab5ad584b7f00479fd43804cae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c03aa49a_4850bbb0",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-09-05T08:49:40Z",
+      "side": 1,
+      "message": "This should be done in this SPDM daemon. Typically, this SPDM daemon will call to libspdm library to construct SPDM protocol messages, which will further call into transport layer send/receive function to exchange messages between BMC and the device.\n\nTo be clarified, the SPDM daemon can be an independent daemon or it can be a service provided by the device management daemon. In this design, we do not force it into one way or another. Instead, we intend to provide a library to help implement the feature needed by this SPDM daemon.",
+      "parentUuid": "e8294c3e_00def06f",
       "revId": "1d47fc466f7145ab5ad584b7f00479fd43804cae",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
