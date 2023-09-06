@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "193804de_d286f92e",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-09-06T22:28:54Z",
+      "side": 1,
+      "message": "Yes, i agree with Ed that it looks more of a device specific detail and would be better if device specific daemon handles it as per their fit.",
+      "parentUuid": "60cbf142_8543b134",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2945afdc_78179852",
@@ -49,6 +67,30 @@
       "writtenOn": "2023-08-31T18:16:57Z",
       "side": 1,
       "message": "Is there any thought given to being able to package these device images into the BMC image, and then having the BMC code do the device updates after it starts up with an image that contains new versions?  Or at least there wouldn\u0027t be a reason that we couldn\u0027t write some code to do the updates with these new daemons say when the BMC gets to Ready after a code update?  IBM only ever provides a single image for all of its firmware.",
+      "range": {
+        "startLine": 47,
+        "startChar": 3,
+        "endLine": 47,
+        "endChar": 38
+      },
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2319df8_fd74cfe2",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-09-06T22:28:54Z",
+      "side": 1,
+      "message": "@Matt, I am not sure if providing a new BMC image for updating a related component would be reasonable. This way every such update cycle will result in bumping the BMC version as it will get tied to it. It will also increase the BMC image size. I would let other folks to share their thoughts.",
+      "parentUuid": "2945afdc_78179852",
       "range": {
         "startLine": 47,
         "startChar": 3,
@@ -76,6 +118,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaae742c_f613c1a2",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-09-06T22:28:54Z",
+      "side": 1,
+      "message": "Done.\n\nPlease refer to the update flow sequence diagram. It covers how does a Redfish Target URI gets mapped to the DBus path. I have added a section on Associations in doc for more details on this.\nAlso the design is not imposing any restriction for any specific image format.",
+      "parentUuid": "41323d28_12426b83",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a907c7e7_3a9fdf28",
@@ -89,6 +149,30 @@
       "writtenOn": "2023-08-31T16:13:48Z",
       "side": 1,
       "message": "Please don\u0027t point to personal repositories in project documents.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 70
+      },
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4378a2d_15e86cf9",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-09-06T22:28:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a907c7e7_3a9fdf28",
       "range": {
         "startLine": 60,
         "startChar": 0,
@@ -134,6 +218,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8e993dc_5b4bf3b5",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-09-06T22:28:54Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "1cb953a7_7f60665a",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5695ef2_19cdfe94",
@@ -147,6 +249,24 @@
       "writtenOn": "2023-08-31T16:13:48Z",
       "side": 1,
       "message": "Can you give some more details here?  In the simplest case, lets take a power supply that supports PMBUS update, but requires no other commands run to that device while the update is in progress (as is pretty common), how would this interface prevent access to that device from, for example, dbus-sensors?  We likely can\u0027t stop ALL sensor scanning, because that would be a thermal problem for the server, so how would this interface know WHICH things to stop scanning?",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43ee18a0_cbcd84da",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-09-06T22:28:54Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "b5695ef2_19cdfe94",
       "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -276,6 +396,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aa0ecb8_faf2ab93",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-09-06T22:28:54Z",
+      "side": 1,
+      "message": "Done.\n\nDevice transport level for repo distribution seems to strike the right balance. Sure, will update the design doc to reflect this.",
+      "parentUuid": "acbdb67a_ac09973a",
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0917d319_d51841fb",
@@ -289,6 +427,30 @@
       "writtenOn": "2023-08-31T16:13:48Z",
       "side": 1,
       "message": "The intent here is that you actually name the people, and ensure they have appropriate participation stats to maintain this amount of code.  If \"Hardware vendors\" are going to maintain this, then those hardware vendors need to be on the design doc.  It\u0027s really difficult to approve the creation of wildcard repos without a named person as maintainer.",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 38
+      },
+      "revId": "387e6332fd3eb9337b083942e844abcce4a01177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bab8c11_59d198d6",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2023-09-06T22:28:54Z",
+      "side": 1,
+      "message": "Done.\n\nAdded details on repo ownership and modification owner.\n\nWe still need a Volunteer for modifications to openpower-pnor-code-mgmt. Probably, will check with anoo or gmills as they are the maintainer for that repo or they can suggest someone.",
+      "parentUuid": "0917d319_d51841fb",
       "range": {
         "startLine": 276,
         "startChar": 0,
