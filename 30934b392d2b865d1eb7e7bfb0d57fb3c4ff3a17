@@ -34,6 +34,24 @@
       "parentUuid": "40088e4a_b4a80898",
       "revId": "30934b392d2b865d1eb7e7bfb0d57fb3c4ff3a17",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a5b08be_3737730c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-09-07T11:05:09Z",
+      "side": 1,
+      "message": "If you have solid rationale, it needs to be added to the docs.\n\n\u003e How to support ...\n\nAs I have written in the previous discussions, the way to do this is to create proper dbus objects to represent the concept you are trying to expose as an IPMI sensor and then write code to turn the non-generic dbus object into a generic IPMI sensor.\n\nRedfish doesn\u0027t have a \"discrete sensor\", but instead has something more like our specific dbus objects.  If you do all this work on a \"discrete sensor\" for IPMI, it only works for IPMI and you have to completely redo the backend later on for Redfish.  If you do it as a specific dbus object now, yes, it makes it more work on the IPMI side but that work isn\u0027t throw-away when someone wants to expose the same information over Redfish.  Also, from an architecture perspective it allows *other* BMC applications to also access the information; with \"discrete sensor\" we have random strings laying around the code that have special meaning based on the desired IPMI sensor name.",
+      "parentUuid": "5f81485b_a4f6daa0",
+      "revId": "30934b392d2b865d1eb7e7bfb0d57fb3c4ff3a17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
