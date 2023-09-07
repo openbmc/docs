@@ -16,6 +16,24 @@
       "message": "“Discrete sensors” has been discussed multiple times in the past and rejected. I don’t see enough in this proposal as to why it is now a good direction. \n\nPlease read through https://lore.kernel.org/openbmc/YznibmIQxFIRa+mf@heinlein/ and any linked-to discussions.",
       "revId": "30934b392d2b865d1eb7e7bfb0d57fb3c4ff3a17",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f81485b_a4f6daa0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001223
+      },
+      "writtenOn": "2023-09-07T05:48:44Z",
+      "side": 1,
+      "message": "Many of the enterprise and cloud data center is still using IPMI for out of \nband manageability with proprietary BMC firmware. If they wanted to switch to \nopen source-based firmware stack like openbmc, many of the mandatory IPMI \ncommands and IPMI functionality are not available today. Even though Redfish \nis next to IPMI but not everyone is fully migrated to redfish, still legacy \nIPMI support is required and used in the production. As per IPMI specification \nany sensor can be analog or discrete based on the reading and sensor events \ncan be generated based on discrete or digital discrete or threshold based.\n\n\nExample: Any GPIO pins can be considered as discrete or digital discrete \nsensors. Similarly any state of the components and its transition can also be \nrepresented through discrete. Discrete sensors are not only used for event \ngeneration, it is not event only SDR type, it is also used like threshold \nsensors to know the status of the sensors when the event is occurred and to \nget the details of the full, compact sensor data record.\n\nProblem Description:\n\nRefer Table 42 in ipmi-second-gen-interface-spec-v2-rev1-1 specification.\nHow to generically support all the discrete sensor event/reading type code\nrange from 02h to 7Fh\n\nRefer Table 42.2 in ipmi-second-gen-interface-spec-v2-rev1-1.html specification.\nHow to generically support all type of the discrete sensors and offset\n\nHow to list all the sensors and SDR in ipmi and Redfish similar to threshold sensors?\n\nHow to support other IPMI functionality like “add SEL” if no sensor for discrete?\n\nHow to support PEF and PET?\n\nCommon framework is required to handle the discrete type in the community,\nall other alternative approach doesn’t meet the spec requirement.\nAlso not good to have two different design for threshold and discrete.\nExample: https://github.com/openbmc/phosphor-host-ipmid/blob/master/scripts/sensor-example.yaml \nWe also need to check how other contributors are using IPMI discrete sensors(not only for event).\n\nEveryone is following their own way in discrete sensor case, so it would be\nbetter to have concise discussion to conclude. If no plan to support the IPMI\nbased features since it is more using redfish driven model , let the community\nknow the same.",
+      "parentUuid": "40088e4a_b4a80898",
+      "revId": "30934b392d2b865d1eb7e7bfb0d57fb3c4ff3a17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
