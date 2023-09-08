@@ -681,6 +681,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "edeac54c_0b34d652",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-09-08T20:34:58Z",
+      "side": 1,
+      "message": "It looks like this is a parameter of CollectDiagnosticData, not an actual property of the LogService?  https://redfish.dmtf.org/schemas/v1/LogService.v1_4_0.json\n\n        \"CollectDiagnosticData\": {\n            \"additionalProperties\": false,\n            \"description\": \"The action to collect the diagnostic data for the given type.  When the diagnostic data is collected, a new log entry will be created and the additional data referenced by the new log entry will contain the diagnostic data.\",\n            \"longDescription\": \"This action shall collect the diagnostic data for the given type.  The `Location` header in the response shall contain a URI to a resource of type LogEntry that contains the diagnostic data.  The AdditionalDataURI property in the referenced LogEntry resource shall contain the URI to download the diagnostic data.\",\n            \"parameters\": {\n                \"DiagnosticDataType\": {\n                    \"$ref\": \"#/definitions/LogDiagnosticDataTypes\",\n                    \"description\": \"The type of diagnostic data to collect.\",\n                    \"longDescription\": \"This parameter shall contain the type of diagnostic data to collect.\",\n                    \"requiredParameter\": true\n                },\n                \"OEMDiagnosticDataType\": {\n                    \"description\": \"The OEM-defined type of diagnostic data to collect.\",\n                    \"longDescription\": \"This parameter shall contain the OEM-defined type of diagnostic data to collect.  This parameter shall be required if DiagnosticDataType is `OEM`.\",\n                    \"type\": \"string\"\n                }\n            },\n            \"patternProperties\": {\n                \"^([a-zA-Z_][a-zA-Z0-9_]*)?@(odata|Redfish|Message)\\\\.[a-zA-Z_][a-zA-Z0-9_]*$\": {\n                    \"description\": \"This property shall specify a valid odata or Redfish property.\",\n                    \"type\": [\n                        \"array\",\n                        \"boolean\",\n                        \"integer\",\n                        \"number\",\n                        \"null\",\n                        \"object\",\n                        \"string\"\n                    ]\n                }\n            },\n            \"properties\": {\n                \"target\": {\n                    \"description\": \"Link to invoke action\",\n                    \"format\": \"uri-reference\",\n                    \"type\": \"string\"\n                },\n                \"title\": {\n                    \"description\": \"Friendly action name\",\n                    \"type\": \"string\"\n                }\n            },\n            \"type\": \"object\",\n            \"versionAdded\": \"v1_2_0\"\n        },\n        \"LogDiagnosticDataTypes\": {\n            \"enum\": [\n                \"Manager\",\n                \"PreOS\",\n                \"OS\",\n                \"OEM\"",
+      "parentUuid": "fde876b8_6bae90ad",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 35
+      },
+      "revId": "6b79b02161796bdcf37d560ba84030953f52545e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c51a34e_c527b088",
         "filename": "designs/auditLog.md",
         "patchSetId": 5
