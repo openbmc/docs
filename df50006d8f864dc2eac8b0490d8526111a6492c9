@@ -146,6 +146,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e5ee973_3ce3ebb7",
+        "filename": "designs/managed-fru-filesystem-support.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-09-12T18:33:08Z",
+      "side": 1,
+      "message": "I\u0027m now planning to update this doc (not 66369) to turn it into a proposal that would add a \u0027u-boot-env FRU-alternative\u0027 daemon to Entity-Manager, relying on phsophor-u-boot-env-mgr to take data from u-boot environmental variables in order to move it to d-bus (instead of relying on the filesystem for a medium as the current proposal does).\n\nAlternatives covered will include the possibility of using a more-HPE-specific daemon for identifying HPE HW this way, and will also discuss the possibility of hosting the daemon outside of Entity-Manager.\n\nOnce the new version is up, I plan to ask for input on Discord (assuming no one suggests a different avenue).",
+      "parentUuid": "881c6dea_c9c6710f",
+      "range": {
+        "startLine": 12,
+        "startChar": 27,
+        "endLine": 14,
+        "endChar": 60
+      },
+      "revId": "df50006d8f864dc2eac8b0490d8526111a6492c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4dfd6e65_0cd5766e",
         "filename": "designs/managed-fru-filesystem-support.md",
         "patchSetId": 1
@@ -610,6 +634,30 @@
       "side": 1,
       "message": "I will definitely keep this in mind for future design docs and updates. \n\nBased on a suggestion I got in the comments of this doc, I\u0027m now looking into phosphor-u-boot-env-mgr for moving data directly from u-Boot to D-Bus, which seems like it would more cleanly solve HPE\u0027s issue re: hardware identification in Entity Manager.\n\nIf we go that path, would it be better to update (or entirely replace) this design doc with one that goes into the HPE-specific secure element -\u003e u-boot -\u003e d-bus path in terms of that subproject?\n\nOr would something a like a \u0027small\u0027 bit of code to move a select set of u-Boot env variables (when found) be better to just submit to gerrit and have it commented on directly? \n\nI don\u0027t think any publicly available machines currently use u-boot-env-mgr in a recipe.\n\nThat said, if there\u0027s any call in the community to push forward with a filesystem based way of moving data to D-Bus, I\u0027m happy to keep pushing forward here, even if HPE moves over to relying on phosphor-u-boot-env-mgr (and skips the filesystem reading/writing steps).",
       "parentUuid": "a111449d_3ed7738e",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 20
+      },
+      "revId": "df50006d8f864dc2eac8b0490d8526111a6492c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e39b482_b450b28b",
+        "filename": "designs/managed-fru-filesystem-support.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-09-12T18:33:08Z",
+      "side": 1,
+      "message": "I\u0027m now planning to update this proposal to discuss creating a \u0027u-boot-env FRU-alternative\u0027 daemon (non-HPE-specific) in Entity-Manager that would make use of the phosphor-u-boot-env-mgr service (if exists) to move HW identifying data to D-Bus.\n\nIn the alternatives section, I plan to discuss the possibility of using a more solidly HPE-specific daemon instead of a generalized one, as well as the possibility of hosting such a daemon outside of Entity-Manager (thought I think it makes sense to keep something like that in Entity-Manager).\n\nOnce I\u0027ve got it up, I plan to link it on Discord and ask for input re: where this kind of code should live, and for any additional considerations. Let me know if there are other avenues you think I should consider for that kind of discussion, thanks!",
+      "parentUuid": "411b6258_39d8d621",
       "range": {
         "startLine": 56,
         "startChar": 0,
