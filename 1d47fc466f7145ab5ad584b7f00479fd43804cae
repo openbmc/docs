@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "326d27fe_eb971094",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-09-12T13:11:13Z",
+      "side": 1,
+      "message": "Yes, we plan to provide a library and a demo dbus daemon. The dbus daemon will use the library, but also needs to implement device-specific way to talk to the device.\n\nThe demo dbus daemon and library will be a second step following the spdm support in bmcweb and D-Bus interfaces.",
+      "parentUuid": "be689add_7935bfea",
+      "range": {
+        "startLine": 40,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 52
+      },
+      "revId": "1d47fc466f7145ab5ad584b7f00479fd43804cae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb112a84_12e1306b",
@@ -135,6 +159,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "913c4c3a_3ea2b621",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-09-12T13:11:13Z",
+      "side": 1,
+      "message": "So far, in my prototype, it is the dbus daemon that does all the steps here.  After a quick look at entity-manager( not familiar with it before) , it seems to be a good fit for scenario. Let me dig more into it and see how it will simplify the implementation.\n\nBTW, it seems to be part of the dbus daemon work, which is a second step. For the first step, I was hoping to focus on adding bmcweb and dbus interface support for spdm.",
+      "parentUuid": "334d652a_bef0a967",
+      "range": {
+        "startLine": 148,
+        "startChar": 1,
+        "endLine": 151,
+        "endChar": 24
+      },
+      "revId": "1d47fc466f7145ab5ad584b7f00479fd43804cae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8294c3e_00def06f",
@@ -201,6 +249,30 @@
       "writtenOn": "2023-09-11T19:19:31Z",
       "side": 1,
       "message": "System isn\u0027t a good descriptor.  Since the cert manager is using /xyz/openbmc_project/certs, maybe this can be something like \u0027/xyz/openbmc_device_certs\u0027",
+      "range": {
+        "startLine": 189,
+        "startChar": 13,
+        "endLine": 189,
+        "endChar": 20
+      },
+      "revId": "1d47fc466f7145ab5ad584b7f00479fd43804cae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "debb8000_e2346d74",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001816
+      },
+      "writtenOn": "2023-09-12T13:11:13Z",
+      "side": 1,
+      "message": "Do you mean `/xyz/openbmc_project/device_certs` ? it seems `/xyz/openbmc_project/` is a prefix for all openbmc related resources.",
+      "parentUuid": "d6936a07_6e29e841",
       "range": {
         "startLine": 189,
         "startChar": 13,
