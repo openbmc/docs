@@ -156,6 +156,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fefd09c9_fb8db6d7",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2023-09-14T21:32:10Z",
+      "side": 1,
+      "message": "The specs specify that only authorized users can disable auditing if allowed; and if auditing is disabled then that itself is logged. So a runtime option is not prevented due to the Protection Profiles.\n\nThe Linux audit subsystem does the logging of its configuration changes and protects who is allowed to do them; so it satisfies the Protection Profiles in that respect. It can also be configured to prevent auditing from being disabled without a reboot which would also satisfy the Protection Profiles.\n\nAdding a runtime control to the OpenBMC audit service would add complexity without clear benefit. Hence a runtime option is not included in the requirements.",
+      "parentUuid": "34c9e9fe_40e4bc6e",
+      "revId": "123767bee7143187373b4c8622992052d5020a33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de96c866_108c347a",
         "filename": "designs/auditLog.md",
         "patchSetId": 2
