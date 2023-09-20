@@ -118,6 +118,30 @@
       },
       "revId": "a521bdd6d3768bc5eb0fd3d0f3941d2ecbea9686",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6570519a_85264d13",
+        "filename": "designs/no-fru-device-hw-detect.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-09-20T21:33:20Z",
+      "side": 1,
+      "message": "Based on your earlier comment, I\u0027ve changed interface \u0026 daemon names in the documentation to \u0027uBootHWID,\u0027 pending further naming suggestions.\n\nI think it\u0027s worth noting that the service file being proposed for Entity-Manager should only startup if an image has explicitly imported u-boot-env-mgr (no public recipes do at this time) and the service there is running first. \n\nI also have the impression that adding new HW discovery \u0027channels\u0027 to Entity-Manager alongside the existing frudevice daemon (which is focused on HW discovery via i2c EEPROM reads) *might* set good precedent re: having hardware discovery daemons grouped in one spot, with one daemon per channel used for discovery.\n\n(I am taking a closer look at how that IBM code you linked earlier implements things in general btw- thanks again for that link)",
+      "parentUuid": "2c1a18c2_6a50a048",
+      "range": {
+        "startLine": 50,
+        "startChar": 9,
+        "endLine": 50,
+        "endChar": 31
+      },
+      "revId": "a521bdd6d3768bc5eb0fd3d0f3941d2ecbea9686",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
