@@ -1,0 +1,13 @@
+Checks: '
+    -*,
+    readability-function-size,
+    readability-function-cognitive-complexity
+'
+CheckOptions:
+  - { key: readability-function-size.LineThreshold,             value: 60 } # [1]
+  - { key: readability-function-size.ParameterThreshold,        value: 6 }  # [2]
+  - { key: readability-function-cognitive-complexity.Threshold, value: 10 } # [3]
+
+# [1] https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple
+# [2] https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f2-a-function-should-perform-a-single-logical-operation
+# [3] https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple
