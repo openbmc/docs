@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f26abfbd_78e16b9e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-02T21:25:44Z",
+      "side": 1,
+      "message": "Please wrap your commit 50/72",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6b4fa3f_d720df2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-02T21:25:44Z",
+      "side": 1,
+      "message": "nitpick, link this at the bottom with something like\n\ncpp core guidlelines [1]\n\nThen at the bottom\n\n\n[1] https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines\n\n\n\nThis is a nit, fix if you think it makes your commit better.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7702007d_63775ac2",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -20,6 +66,69 @@
         "endLine": 33,
         "endChar": 60
       },
+      "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eaf5f72_65c842d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-02T21:25:44Z",
+      "side": 1,
+      "message": "I think this is deprecated?  We can just point at the coding standard?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 65
+      },
+      "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40b1ef82_8daae69a",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-02T21:25:44Z",
+      "side": 1,
+      "message": "Do we want to start with these only as warnings instead of hard errors?\n\nI think that would be a much easier way to roll this out.  We can take a look at what kinds of failures this flags, and as repos come into spec, or add NOLINT flags where appropriate, we can have repos start enforcing the rule.\n\nThen once all repos are enabled, you can work with maintainers to start refactoring the functions to be more to your liking.  Seem reasonable?",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a50174a8_fba19d07",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-02T21:25:44Z",
+      "side": 1,
+      "message": "Is it possible to include comments with the links to F.2 and F.2 in cppcoreguidlelines so it\u0027s more clear why these are here?  If this file doesn\u0027t support comments, no need to worry about it, but it would be nice to have a pointer.  Most of the other rules we have the clang-tidy rule itself links to the check, so we don\u0027t really need a link.",
       "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
