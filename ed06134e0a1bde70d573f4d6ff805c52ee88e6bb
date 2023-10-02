@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95940e1d_07b9d035",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2023-10-02T20:32:37Z",
+      "side": 1,
+      "message": "I like this idea in general. Working out the state machine to make sure it behaves correctly on this multi-key situation is tricky. I took a stab, but am still not sure it is correct.",
+      "revId": "ed06134e0a1bde70d573f4d6ff805c52ee88e6bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eb3b554_7ce31eea",
+        "filename": "designs/sol-sysrq.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2023-10-02T20:32:37Z",
+      "side": 1,
+      "message": "This is not quite the full picture. If the byte is a newline, it should still be emitted immediately, and then we are in the next loop that waits for the next byte. If ~, send break, otherwise emit and go back to empty.\n\nI am not sure if I got this right, but here\u0027s my take:\n\n\n---\ntitle: SSH escape state machine\n---\nstateDiagram-v2\n    direction LR\n    [*] --\u003e Empty\n    Empty --\u003e Emit: [^#92;n]\n    Emit --\u003e Empty\n    Empty --\u003e EmitNewline: [#92;n]\n    EmitNewline --\u003e Emit: [^~]\n    EmitNewline --\u003e Escape: [~]\n    Escape --\u003e EmitEscapeCode: [B]\n    Escape --\u003e EmitTilde: [^B]\n    EmitTilde --\u003e Emit\n    EmitEscapeCode --\u003e Empty\n\nThe trickiest bit is that on \\n -\u003e ~ -\u003e [^B] you still need to emit ~ before whatever key comes after ~ that is not B.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 27
+      },
+      "revId": "ed06134e0a1bde70d573f4d6ff805c52ee88e6bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
