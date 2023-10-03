@@ -39,6 +39,30 @@
       },
       "revId": "ed06134e0a1bde70d573f4d6ff805c52ee88e6bb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22f8818e_b0e74deb",
+        "filename": "designs/sol-sysrq.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-03T03:27:35Z",
+      "side": 1,
+      "message": "As an experiment I implemented the state machine. We don\u0027t need quite so many states:\n\nhttps://gist.github.com/amboar/57e481ecd241f28a13b182ddcd1ca2cb\n\nHere\u0027s the output:\n\n```\n$ ./escape \\\n\u003e \"$(printf \"abc\")\" \\\n\u003e \"$(printf \"\\nabc\")\" \\\n\u003e \"$(printf \"\\n~abc\")\" \\\n\u003e \"$(printf \"\\n~Babc\")\" \\\n\u003e \"$(printf \"a\\n~Bbc\")\" \\\n\u003e \"$(printf \"ab\\n~Bc\")\" \\\n\u003e \"$(printf \"abc\\n~B\")\" \\\n\u003e \"$(printf \"abc\\n~\")\"\nabc\n---\n\nabc\n---\n\n~abc\n---\n\u003cBREAK\u003eabc\n---\na\u003cBREAK\u003ebc\n---\nab\u003cBREAK\u003ec\n---\nabc\u003cBREAK\u003e\n---\nabc\n~\n---\n```",
+      "parentUuid": "3eb3b554_7ce31eea",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 27
+      },
+      "revId": "ed06134e0a1bde70d573f4d6ff805c52ee88e6bb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
