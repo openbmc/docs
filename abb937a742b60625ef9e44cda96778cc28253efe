@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be4f6b92_befbe4dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-03T12:13:08Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "f26abfbd_78e16b9e",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6b4fa3f_d720df2a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-02T21:25:44Z",
       "side": 1,
       "message": "nitpick, link this at the bottom with something like\n\ncpp core guidlelines [1]\n\nThen at the bottom\n\n\n[1] https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines\n\n\n\nThis is a nit, fix if you think it makes your commit better.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0532ab8_cbba906a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-03T12:13:08Z",
+      "side": 1,
+      "message": "it does make it better 😊 Thanks.",
+      "parentUuid": "b6b4fa3f_d720df2a",
       "range": {
         "startLine": 12,
         "startChar": 0,
@@ -94,6 +142,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d93b2d6_dd02c97e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-03T12:13:08Z",
+      "side": 1,
+      "message": "I\u0027m unsure about it. Picked the latest jenkins run from ci-repository as an example (https://jenkins.openbmc.org/job/ci-repository/74640/console). Here, very many warnings are displayed, and would almost certainly be ignored by \u003e90% of developers, as the job was successful.\n\nPeople almost never care about warnings. They just get buried in the endless amount of logs.\n\nRegarding the point about strict adherence: Ed mentioned (over here https://gerrit.openbmc.org/c/openbmc/bmcweb/+/66823) that certain functions\ncan be excluded from some checks by using NOLINT. \n\nAnd i agree that some functions such as constructors might take many parameters for good reasons, and some functions are just inherently nontrivial, with lots of branches and splitting them up for the sake of cyclomatic complexity would just make them more confusing.\n\nThat\u0027s part of the reason i proposed very lax thresholds in the beginning, until i was asked to back up the values. Cpp Core Guidelines are more strict.\n\nBut using NOLINT we can just exempt some parts of the code from these rules.",
+      "parentUuid": "04788a1f_e27036fb",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 60
+      },
+      "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4eaf5f72_65c842d4",
@@ -107,6 +179,30 @@
       "writtenOn": "2023-10-02T21:25:44Z",
       "side": 1,
       "message": "I think this is deprecated?  We can just point at the coding standard?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 65
+      },
+      "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d871a2c_56f6d2d3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-03T12:13:08Z",
+      "side": 1,
+      "message": "i removed the fluff.",
+      "parentUuid": "4eaf5f72_65c842d4",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -164,6 +260,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7e0f260_18183d96",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-03T12:13:08Z",
+      "side": 1,
+      "message": "Agreed.",
+      "parentUuid": "c9460d2b_127893e9",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a50174a8_fba19d07",
@@ -195,6 +315,24 @@
       "side": 1,
       "message": "+1",
       "parentUuid": "a50174a8_fba19d07",
+      "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "decb1d6e_24312614",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-03T12:13:08Z",
+      "side": 1,
+      "message": "included the comments.",
+      "parentUuid": "aa14fa9e_1b61bffe",
       "revId": "abb937a742b60625ef9e44cda96778cc28253efe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

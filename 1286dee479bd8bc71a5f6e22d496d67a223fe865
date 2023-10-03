@@ -144,6 +144,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d2ee66e_d117064f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-03T12:13:08Z",
+      "side": 1,
+      "message": "how do they differ? Is there a function to map one to the other?",
+      "parentUuid": "86f4d1a8_ac169aea",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "1286dee479bd8bc71a5f6e22d496d67a223fe865",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a69af869_a4a4ac78",
@@ -175,6 +199,24 @@
       "side": 1,
       "message": "\u003e This commit now looks much closer to something I can get behind.  Thanks for the good work!  I would like to see some evidence that hard-enforcement of these rules produces a better result in terms of actual code, and ideally change to make this soft enforcement (warning, rather than error).  If that\u0027s a matter of just picking a project and putting together a refactoring patchset series to bring it into compliance, that would be good to show how much better enforcing this can be.  Feel free to target any project I maintain and I\u0027d be happy to review your patches (or feel free to work with another maintainer).\n\n+1\n\n\u003e \n\u003e If it helps you, please take a look at most of my clang-tidy commits, where in general when enabling it, I will include a number of diffs that show fixed issues that were made better by enabling the flag.  Feel free to use these as a reference.\n\n+1\n\n\u003e \n\u003e Please bear in mind, that this is no requirement that you fix ALL issues in the project, but just enabling this rule without any additional refactoring examples is just a new burden to the project maintainers, rather than being a help.\n\n+1",
       "parentUuid": "a69af869_a4a4ac78",
+      "revId": "1286dee479bd8bc71a5f6e22d496d67a223fe865",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "404bf510_b984a7b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-03T12:13:08Z",
+      "side": 1,
+      "message": "I picked one of your smaller projects to begin with, ipmbbridge.\nhttps://gerrit.openbmc.org/c/openbmc/ipmbbridge/+/66866\n\nThe review for correctness of the refactoring might be the harder part.\nFollowing the control flow and making sure it is still the same as before.\n\nEnabling and enforcing checks for function size and cyclomatic complexity (with exceptions for some functions) could make it easier to review refactorings like this in the future, as there are less paths through the code one needs to check.",
+      "parentUuid": "61fecd9e_1920a201",
       "revId": "1286dee479bd8bc71a5f6e22d496d67a223fe865",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
