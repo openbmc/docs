@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "514b891b_6b4246c5",
+        "filename": "designs/no-fru-device-hw-detect.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-10-04T20:27:14Z",
+      "side": 1,
+      "message": "I don\u0027t know the lifetime of your method how you check if its up to date, but did you consider using a reserved memory region https://github.com/openbmc/linux/blob/dev-6.5/Documentation/devicetree/bindings/reserved-memory/memory-region.yaml or even a pstore file to hold the content instead of forcing it into the u-boot environment?  The environment is usually in a fixed location in flash and writing it every boot may cause a wear out concern.  Alternatively this would tie up some amount of RAM.  (If you have already considered how to check before rewriting the enviornment you can state so, but the only reason I see that you selected it was because the environment to dbus path already existed).\n\n(Yes, pstore is normally used for logging of events, traces, console messages, etch and so configuration could be considered off topic for that.  But I\u0027d also say the u-boot environment is too).",
+      "revId": "452cd8d94e1ca3ba83ddecc30fad04916aa6dc36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e18ae09_0d84f5df",
         "filename": "designs/no-fru-device-hw-detect.md",
         "patchSetId": 7
