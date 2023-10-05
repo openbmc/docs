@@ -170,6 +170,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28ff172b_0d17f986",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-05T17:14:37Z",
+      "side": 1,
+      "message": "Both clang-tidy and cppcoreguideslines have documentation that can explain how they function better than I can in a commit message.  One is a test for \"cognative complexity\" the other is a test for \"cyclomatic complexity\".  I don\u0027t have the full details on if they\u0027re the same.\n\nhttps://clang.llvm.org/extra/clang-tidy/checks/readability/function-cognitive-complexity.html\n\nhttps://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\nOne asks for \"10 different paths\" the other asks for complexity.",
+      "parentUuid": "5d2ee66e_d117064f",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "1286dee479bd8bc71a5f6e22d496d67a223fe865",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a69af869_a4a4ac78",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -217,6 +241,24 @@
       "side": 1,
       "message": "I picked one of your smaller projects to begin with, ipmbbridge.\nhttps://gerrit.openbmc.org/c/openbmc/ipmbbridge/+/66866\n\nThe review for correctness of the refactoring might be the harder part.\nFollowing the control flow and making sure it is still the same as before.\n\nEnabling and enforcing checks for function size and cyclomatic complexity (with exceptions for some functions) could make it easier to review refactorings like this in the future, as there are less paths through the code one needs to check.",
       "parentUuid": "61fecd9e_1920a201",
+      "revId": "1286dee479bd8bc71a5f6e22d496d67a223fe865",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe68dbfa_67ad959c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-05T17:14:37Z",
+      "side": 1,
+      "message": "Can you please pick a project that already has clang-tidy enabled, and a little less trivial?   ipmbridge doesn\u0027t run tidy at all today (although is something I\u0027d love to see happen) and hasn\u0027t really been refactored since Dawid wrote it, so it\u0027s really hard to evaluate if these checks actually help, or what their impact is on code review.  It also has a negligible amount of code, so I don\u0027t have confidence that the refactor we\u0027re seeing there is actually representative. \n\nEven with that, I\u0027m seeing some worrying things about the settings we\u0027ve picked, namely the max params number.  cppcoreguildelines, says to \"be suspicious\" at 7 params, not that it\u0027s outright banned.  I wonder if the hard limit should be closer to 20-30, given that a lot of structs in c++ need initialized in a constructor, and the existing tidy checks don\u0027t seem to make a distinction there.  Is there a way we can do better?  Have you done any research into other projects that have enabled these checks, and what values they chose as a hard backstop?  I\u0027m hoping we\u0027re not the first that\u0027s enabling these checks.\n\n\u003e The review for correctness of the refactoring might be the harder part.\n\nAgreed.  How would you suggest we handle that?  If refactoring causes significant numbers of failures, that seems like it would defeat the goals of having readable code cause fewer bugs.\n\n\u003e as there are less paths through the code one needs to check.\n\nI don\u0027t quite understand this.  In total, there\u0027s the same number of paths, they\u0027re just separated differently, right?  Arguably there\u0027s more paths, because methods can now be called from whereever.\n\nInterestingly enough making the code more readable results in a 70 line increase in total code in that small ipmb example.  Not sure how much we can determine from that, but it\u0027s interesting the net is such a large positive number.",
+      "parentUuid": "404bf510_b984a7b6",
       "revId": "1286dee479bd8bc71a5f6e22d496d67a223fe865",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

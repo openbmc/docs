@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84757d5b_4b418fa8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-05T17:14:37Z",
+      "side": 1,
+      "message": "the exact words are \"be suspicious\"",
+      "range": {
+        "startLine": 23,
+        "startChar": 20,
+        "endLine": 23,
+        "endChar": 24
+      },
+      "revId": "34d88eb211a9cf37a4b280a6b88e25cd07afd3f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0af4385f_a85351b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-05T17:14:37Z",
+      "side": 1,
+      "message": "I don\u0027t see anything added here about the plan.  As-is, it\u0027s just a new test that no project passes, so is arguably a net negative to the project.  Can you outline what the goal is here, and who is taking responsibility for getting at least some of the codebase up to the standard.",
+      "revId": "34d88eb211a9cf37a4b280a6b88e25cd07afd3f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fa28a3a_3b94a63f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-05T17:14:37Z",
+      "side": 1,
+      "message": "Is it your intention to get these passing across a subset of the project, or just to enable the tests?  (please answer in your commit message).  This commit functionally is only documentation which is good to get consensus (which I think we have), now what\u0027s the plan for the actual refactoring work?\n\nA couple things of note that I see in the ipmbridge patchset now:\n\nThe NOLINTBEGIN directives themselves only show the tidy check that failed, and don\u0027t make it very obvious which parameter of the test actually failed.  It took me a good bit of looking to be able to tell that some NOLINT directives were for extra params.  Also, NOLINTBEGIN and NOLINTEND make more of a mess than I would\u0027ve thought.  Does NOLINT not work?  Can we not refactor these functions?  This makes me worried about the readability being worse with that param enabled.  I would probably advocate for removing the param limit for the moment until we can solve these issues, and come up with a strategy for refactoring.\n\nMore importantly ipmbbridge is so little code, and is already relatively structured, that I\u0027m not sure we\u0027re doing ourselves a service picking it as an example.  It\u0027s also not run on very many platforms, so it\u0027s not a great place to start to look at how many bugs we cause as part of these refactoring.  It\u0027s likely that any bugs we inject wouldn\u0027t be found for a very long time (as has happened in the past) and we don\u0027t get enough code reviews on that project to see how it effects code submissions that violate these rules.",
+      "revId": "34d88eb211a9cf37a4b280a6b88e25cd07afd3f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
