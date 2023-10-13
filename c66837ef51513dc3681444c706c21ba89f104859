@@ -16,6 +16,63 @@
       "message": "Addressed comments, please review.",
       "revId": "c66837ef51513dc3681444c706c21ba89f104859",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2422a36a_8345ad69",
+        "filename": "designs/code-update.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-10-13T21:29:32Z",
+      "side": 1,
+      "message": "I think array here like \n\n                \"Targets\": {\n                    \"description\": \"An array of URIs that indicate where to apply the update image.\",\n                    \"format\": \"uri-reference\",\n                    \"items\": {\n                        \"type\": [\n                            \"string\",\n                            \"null\"\n                        ]\n                    },\n                    \"longDescription\": \"This property shall contain zero or more URIs that indicate where to apply the update image when using the URI specified by the MultipartHttpPushUri property to push a software image.  These targets should correspond to software inventory instances or their related items.  If this property is not present or contains no targets, the service shall apply the software image to all applicable targets, as determined by the service.  If the target specifies a device resource, the software image file shall be applied to the specified device.  If the target specifies a resource collection, the software image shall be applied to each applicable member of the specified collection.  If the target resource specifies an Aggregate resource, the software image file shall be applied to each applicable element of the specified aggregate.  If the target resource specifies a ComputerSystem resource, the software image file shall be applied to the applicable components within the specified computer system.\",\n                    \"readonly\": false,\n                    \"type\": \"array\",\n                    \"versionAdded\": \"v1_6_0\"\n                }\n            },\n\nfrom https://redfish.dmtf.org/schemas/v1/UpdateService.v1_12_0.json",
+      "range": {
+        "startLine": 70,
+        "startChar": 80,
+        "endLine": 70,
+        "endChar": 96
+      },
+      "revId": "c66837ef51513dc3681444c706c21ba89f104859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7983f27f_b15798c1",
+        "filename": "designs/code-update.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-10-13T21:29:32Z",
+      "side": 1,
+      "message": "I think after BMCW has the inventory item(s), it needs an association or something to determine what is the code update app for that inventory item. \nA mapper call might also be needed",
+      "revId": "c66837ef51513dc3681444c706c21ba89f104859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afe78129_e2dc9062",
+        "filename": "designs/code-update.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-10-13T21:29:32Z",
+      "side": 1,
+      "message": "Need the service here.. Not clear how you got it",
+      "revId": "c66837ef51513dc3681444c706c21ba89f104859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
