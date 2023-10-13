@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff850d31_c1403665",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-13T01:23:07Z",
+      "side": 1,
+      "message": "Hi Abilash, a couple of things still need clarification in my opinion. I\u0027ve left comments inline.",
+      "revId": "49ac920b353c57007c74dce3339f6e1f467d4844",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c203de8_d353ce82",
+        "filename": "designs/phosphor_license_manager.md",
+        "patchSetId": 28
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-13T01:23:07Z",
+      "side": 1,
+      "message": "What do you mean by 7? The way it\u0027s described makes it sound like you plan on using inotify? If so, that\u0027s not a direction I would prefer this to take. This can all be achieved through DBus without invoking inotify.\n\nI think it would be best to have a discussion of the concrete DBus interfaces and objects exposed by the services to help clarify the intent.",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 63
+      },
+      "revId": "49ac920b353c57007c74dce3339f6e1f467d4844",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7bc5949_d509f1e6",
+        "filename": "designs/phosphor_license_manager.md",
+        "patchSetId": 28
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-13T01:23:07Z",
+      "side": 1,
+      "message": "Given that bmcweb is handling the redfish request, the download manager is handling the file transfer, the host is handling licence validation, and pldmd is hosting license-related data provided by the host, the role of the license manager is not entirely clear to me.\n\nWhat are the significant negative impacts on pldmd that make it a poor choice?",
+      "revId": "49ac920b353c57007c74dce3339f6e1f467d4844",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
