@@ -54,7 +54,6 @@ end (sorted by term conclusion followed by alphabetically by preferred name):
 
 | Name               | Term Conclusion |
 | :----------------- | :-------------: |
-| Brad Bishop        |   2023-10-01    |
 | Andrew Jeffery     |   2024-04-01    |
 | Jason Bills        |   2024-04-01    |
 | Patrick Williams   |   2024-04-01    |
