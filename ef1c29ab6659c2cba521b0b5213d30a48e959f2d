@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92e4eb08_7210a76a",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-10-14T22:01:30Z",
+      "side": 1,
+      "message": "There is already work underway to be able to leverage coroutine style instead.  Before we jump to a different programming paradigm, I think we should have a comparison of the ergonomics between:\n\n- Reactor\n- Co-routines\n- Sender / Receiver (std::execution)\n\nI realize Reactor is popular in Java (and some other languages) but since there isn\u0027t a readily available C++ implementation, that hints to me there might be better (ergonomically) patterns in the C++ language.",
+      "range": {
+        "startLine": 15,
+        "startChar": 24,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4892ff7f_59977ca6",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-10-14T22:01:30Z",
+      "side": 1,
+      "message": "This seems to be a mostly unsupported statement.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 43
+      },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df0a07f2_5ced34df",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-10-14T22:01:30Z",
+      "side": 1,
+      "message": "This sounds very similar to the Sender/Receiver pattern from the std::execution proposal.",
+      "range": {
+        "startLine": 47,
+        "startChar": 59,
+        "endLine": 48,
+        "endChar": 68
+      },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "145fc188_fdfce269",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-10-14T22:01:30Z",
+      "side": 1,
+      "message": "How will this interact with the use of generated dbus bindings?",
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adda38ae_922821e1",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-10-14T22:01:30Z",
+      "side": 1,
+      "message": "I don\u0027t see any \"alternative\" proposed.  What is existing art in this space?  There are other programming paradigms as well.  What are existing implementations in this space?  Is there some thing we could pick up that already exists, such as Boost or std::execution (which is already picked up by sdbusplus)?",
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf744f68_f534b89a",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-10-14T22:01:30Z",
+      "side": 1,
+      "message": "I don\u0027t think we should start with an open-ended \"create a new library\".  We should find a real problem that we can solve and co-develop this code along-side showing ergonomic improvements in a specific application (or set of applications).\n\nIf, after more complete \"alternatives\" investigation, we want to go this direction, we could start with it being part of a proposed-to-be-refactored repository (like bmcweb?) and then split out once it has some level of maturity.",
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
