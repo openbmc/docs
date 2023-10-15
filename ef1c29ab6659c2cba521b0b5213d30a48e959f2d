@@ -3,6 +3,86 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85b011f1_32339445",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-15T21:43:33Z",
+      "side": 1,
+      "message": "Please wrap your text properly.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 0
+      },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50cc16d2_0761508d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-15T21:43:33Z",
+      "side": 1,
+      "message": "I reviewed this a bit;  I don\u0027t feel like a design doc is the right medium for this discussion.  It leads to this doc which is VERY abstract in its application on how this applies.  It makes some mention that this will be applied to bmcweb, but as the bmcweb maintainer, I really don\u0027t think i understand how this is going to help.\n\nit\u0027s also really not clear how it relates to: https://gerrit.openbmc.org/c/openbmc/bmcweb/+/63609 if at all, which shows that these kinds of approaches lead to corner cases or code breakages.\n\nOverall, i would not be in support of giving a repository, but I don\u0027t think that\u0027s required to start this coding project.  Just pick a repository, make a folder where your library code will go, and show how this design can give less complexity and overall code.  Once we have some examples of this being done, it\u0027s a lot easier to look at concretely rolling this out.\n\nYou\u0027ll note that in the history, we have plenty of examples of large changes (python -\u003e c++ for example) that had no design doc, but were executed one at a time, by iterating and making the code better, faster, and less buggy.  I suspect that\u0027s the right approach here.",
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0136125_d188228a",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-15T21:43:33Z",
+      "side": 1,
+      "message": "you already have a license server design doc out, which has gotten pretty significant feedback that still hasn\u0027t been addressed.  Pushing this design in the same time period gives the impression that you don\u0027t intend on finishing that design, which will likely take quite some time to complete.",
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c02b3a8_03c69f32",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-15T21:43:33Z",
+      "side": 1,
+      "message": "Given you\u0027re not a maintainer, pushing a design that didn\u0027t have any contributions from folks seems like an issue.",
+      "range": {
+        "startLine": 5,
+        "startChar": 20,
+        "endLine": 5,
+        "endChar": 24
+      },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92e4eb08_7210a76a",
         "filename": "designs/reactor.md",
         "patchSetId": 3
@@ -14,6 +94,30 @@
       "writtenOn": "2023-10-14T22:01:30Z",
       "side": 1,
       "message": "There is already work underway to be able to leverage coroutine style instead.  Before we jump to a different programming paradigm, I think we should have a comparison of the ergonomics between:\n\n- Reactor\n- Co-routines\n- Sender / Receiver (std::execution)\n\nI realize Reactor is popular in Java (and some other languages) but since there isn\u0027t a readily available C++ implementation, that hints to me there might be better (ergonomically) patterns in the C++ language.",
+      "range": {
+        "startLine": 15,
+        "startChar": 24,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16738cc2_b4e34985",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-15T21:43:33Z",
+      "side": 1,
+      "message": "+1.",
+      "parentUuid": "92e4eb08_7210a76a",
       "range": {
         "startLine": 15,
         "startChar": 24,
@@ -43,6 +147,47 @@
         "endLine": 28,
         "endChar": 43
       },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1215c7df_ef15a223",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-15T21:43:33Z",
+      "side": 1,
+      "message": "+1.  I would highly recommend getting involved in code reviews, so you can back up a statement like this with examples.",
+      "parentUuid": "4892ff7f_59977ca6",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 43
+      },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "155da91f_e61190dc",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-15T21:43:33Z",
+      "side": 1,
+      "message": "This whole paragraph doesn\u0027t list any requirements, yet it\u0027s in the requirements section.",
       "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
