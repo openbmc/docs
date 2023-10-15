@@ -56,6 +56,24 @@
       "message": "Given that bmcweb is handling the redfish request, the download manager is handling the file transfer, the host is handling licence validation, and pldmd is hosting license-related data provided by the host, the role of the license manager is not entirely clear to me.\n\nWhat are the significant negative impacts on pldmd that make it a poor choice?",
       "revId": "49ac920b353c57007c74dce3339f6e1f467d4844",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84f01d7e_46dd90f5",
+        "filename": "designs/phosphor_license_manager.md",
+        "patchSetId": 28
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2023-10-15T12:16:23Z",
+      "side": 1,
+      "message": "+1\n\nIf the license manager is just for grabbing the licenses , why can\u0027t pldm do it ? why do we need a separate application ?\n\nAre we also thinking about a design on systems that does not have a working pldm stack ? are we also planning to for example : have ipmi work as well to transfer the data ?",
+      "parentUuid": "f7bc5949_d509f1e6",
+      "revId": "49ac920b353c57007c74dce3339f6e1f467d4844",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
