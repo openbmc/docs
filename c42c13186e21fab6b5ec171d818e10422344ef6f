@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1702cc3f_1eb25410",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-15T21:51:08Z",
+      "side": 1,
+      "message": "Overall, I don\u0027t really get what we\u0027re trying to accomplish here.  As it stands, the project routinely gets the complaint that we have too much duplication, and there\u0027s no documentation of which daemons people should be using.  This is obviously not the fault of this design doc, but it\u0027s just \"yet another thing\" that people now have to decide.\n\nI\u0027m also a little worried about duplication of code in the thresholds, util, and sensor libraries within dbus-sensors.  I don\u0027t see any plan for breaking those out, so I\u0027m assuming the plan is to just duplicate the code?  That doesn\u0027t sound great.\n\nOverall, I\u0027m not following what problem it\u0027s solving, and I\u0027d like to propose a simpler compromise:\n\ndbus-sensors repository gets renamed to dbus-reactors.  This needed to happen a long time ago, as there\u0027s a lot of non-sensor logic in dbus-sensors today, and already people are confused by the name.\n\nnvmesensor gets renamed in meson to nvmed, and moved into a sub folder in dbus sensors (and for that matter, we should move each sensor under its own folder anyway).  Andrew gets added in the OWNERS file.\n\nDoes that address that concerns?  The only technical reason I could think of for needing a repo would be if we intend on using this outside of OpenBMC, in which case, it would have my full support, but as-written, this really feels like it\u0027s just making things more complicated for developers.",
+      "revId": "c42c13186e21fab6b5ec171d818e10422344ef6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35760f78_3605d7eb",
+        "filename": "designs/nvmesensor-code-migration.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-15T21:51:08Z",
+      "side": 1,
+      "message": "Why are these problems for the current setup?  Just make nvme a folder, and be done with it?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "c42c13186e21fab6b5ec171d818e10422344ef6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b5b168e_752b00ef",
+        "filename": "designs/nvmesensor-code-migration.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-15T21:51:08Z",
+      "side": 1,
+      "message": "?????  nvmed is surely going to reuse the existing sensor, thresholding, and utils code?  That\u0027s going to have api impact, right?",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 68
+      },
+      "revId": "c42c13186e21fab6b5ec171d818e10422344ef6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eb4879f_46c50540",
+        "filename": "designs/nvmesensor-code-migration.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-15T21:51:08Z",
+      "side": 1,
+      "message": "This seems like the exact opposite of what we want.  I\u0027ve heard many times developers complaining that we have too many repositories, and it\u0027s difficult to find stuff.",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 79
+      },
+      "revId": "c42c13186e21fab6b5ec171d818e10422344ef6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
