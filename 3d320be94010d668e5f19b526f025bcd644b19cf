@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "432615fe_ee63b99c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2023-10-16T15:39:50Z",
+      "side": 1,
+      "message": "Thank you for the review. I\u0027ve responded to the latest comments and pushed a slight update to the design.",
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1b2ba5c_5cb67469",
@@ -31,6 +48,24 @@
       "writtenOn": "2023-10-10T06:24:18Z",
       "side": 1,
       "message": "Can administrator delete a particular event? if yes then how it being catered through this design?\nor \nUser can delete the whole trail but he can not modify/delete any specific log.",
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90913d0d_dc970403",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2023-10-16T15:39:50Z",
+      "side": 1,
+      "message": "Deleting of the log files or individual entries is not supported through this interface.\n\nThis choice is in alignment with the BMC Protection Profile (https://commoncriteriaportal.org/files/ppfiles/anssi-profil-pp-2022_01en.pdf). Section 4.4, T.Unauthorised table entry specifies even an administrator cannot delete the audit log file.",
+      "parentUuid": "d1b2ba5c_5cb67469",
       "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -87,6 +122,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73d709f0_5ddbf5e3",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2023-10-16T15:39:50Z",
+      "side": 1,
+      "message": "Yes this design was started based on Manoj\u0027s POC work. The goal is to update that commit to reflect this design on community acceptance.\n\nThere were review comments from the bmcweb maintainer with concern about calling libaudit directly from bmcweb due to performance: https://gerrit.openbmc.org/c/openbmc/bmcweb/+/55532/comments/fdb4ec6e_2fe4d271\n\nand, review comment on earlier iteration of this design from the bmcweb maintainer with concern about putting libaudit dependencies directly into bmcweb: https://gerrit.openbmc.org/c/openbmc/docs/+/63915/comments/6ca916f6_26d08218\n\nSo I updated the design to add the D-Bus services to address those comments.",
+      "parentUuid": "162858d3_dd578d3c",
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb748120_fa37aab6",
@@ -100,6 +153,24 @@
       "writtenOn": "2023-10-10T06:24:18Z",
       "side": 1,
       "message": "Does it create the D-bus object for each log?",
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efb71c6b_a364af8e",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2023-10-16T15:39:50Z",
+      "side": 1,
+      "message": "No. The expectation is that the amount of data preserved by an audit log is quite large due to preserving 3-6 months of auditable actions.",
+      "parentUuid": "eb748120_fa37aab6",
       "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -135,6 +206,24 @@
       "side": 1,
       "message": "This is to delete the whole audit log trail.",
       "parentUuid": "1256bda0_41766549",
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dee34459_1740ee53",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2023-10-16T15:39:50Z",
+      "side": 1,
+      "message": "I have not included this method in the design to reflect the BMC Protection Profile guidance. See my response to other review comment for more details. (https://gerrit.openbmc.org/c/openbmc/docs/+/63915/comment/d1b2ba5c_5cb67469/)",
+      "parentUuid": "ce7fd57f_476aa954",
       "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -176,6 +265,30 @@
       "side": 1,
       "message": "I guess but really getting down in the implementation details when doing that.  I would be fine with this as is. \nShould we have multiple messages?",
       "parentUuid": "4afe190e_ac8400e3",
+      "range": {
+        "startLine": 238,
+        "startChar": 1,
+        "endLine": 238,
+        "endChar": 58
+      },
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59f10735_88a59483",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2023-10-16T15:39:50Z",
+      "side": 1,
+      "message": "I was purposefully not defining the MessageId here to conform to the design-template.md guidance: \"intended to be extensive documentation for a new feature\".\n\nAs I have continued with prototyping I do believe there will be multiple messages added to the registry. I\u0027ll update to indicate plural here for clarity.",
+      "parentUuid": "7962640c_34846f28",
       "range": {
         "startLine": 238,
         "startChar": 1,
