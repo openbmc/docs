@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05b9f32a_6848743e",
+        "filename": "designs/no-fru-device-hw-detect.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-17T19:33:08Z",
+      "side": 1,
+      "message": "How would folks feel about a daemon (likely hosted by Entity-Manager) that picks up data for D-Bus from /proc/device-tree/chosen? \n\nhttps://www.kernel.org/doc/Documentation/devicetree/bindings/chosen.txt\n\nIt turns out we\u0027re using \u0027chosen -\u003e d-bus\u0027 daemons in proof of concept code already, and I may have been confusing things in previous discussions about it by referring to reads from there as \u0027filesystem access\u0027 (which resulted in some of the pushback re: relying on the filesystem that lead to the focus on phosphor-uboot-env-mgr)\n\nAnd you are correct- we started looking into using into phosphor-uboot-env-mgr mostly because HPE is relying u-boot to parse data from u-Bootblock.\n\nThat HW ID data is being passed to u-boot via a location in RAM by u-BootBlock, which is retrieving the data we need from a secure element with no direct BMC access.\n\nIf there are no objections, I\u0027ll be working on updating documentation to discuss a potential \u0027chosen -\u003e d-bus\u0027 daemon instead of relying of phosphor-uboot-env-mgr.",
+      "parentUuid": "34fdb99e_9530e1b7",
+      "revId": "452cd8d94e1ca3ba83ddecc30fad04916aa6dc36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e18ae09_0d84f5df",
         "filename": "designs/no-fru-device-hw-detect.md",
         "patchSetId": 7
