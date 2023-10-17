@@ -157,6 +157,7 @@ For 3) Metric staging & disperse, the daemon creates a D-bus service named
 | xyz.openbmc_project.Metrics.Value    | Interface to represent value for Metrics.                                      |
 | xyz.openbmc_project.Metrics.Reset    | Interface to reset persistent Metrics counters.                                |
 | xyz.openbmc_project.Common.Threshold | Interface to represent Metric thresholds and signals for threshold violations. |
+| xyz.openbmc_project.Time.EpochTime   | Interface to indicate when the metric was collected.                           |
 
 Each metric will be exposed on a specific object path and above interfaces will
 be implemented at these paths. Reset Interfaces are optional and may only be
