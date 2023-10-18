@@ -165,6 +165,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8db7540_e3450cf4",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-10-18T05:12:27Z",
+      "side": 1,
+      "message": "By maintainability, I was talking about quality of a framework that can promote readable and modular application code through its APIs. \n\nSince we are already talking about new proposal with std::exec, I assume there exists an opinion on current one. \n\nGiving feedback on the contribution, why it will not work and what can make it work ,  may be helpful here.",
+      "parentUuid": "fd96cdc1_0d77d7fc",
+      "range": {
+        "startLine": 5,
+        "startChar": 20,
+        "endLine": 5,
+        "endChar": 24
+      },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92e4eb08_7210a76a",
@@ -262,6 +286,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea44c7e4_a0c19d7b",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-10-18T05:12:27Z",
+      "side": 1,
+      "message": "I don\u0027t understand what you mean by blocking call. If you are looking for usage of threads in the code, then you are reading it wrong. The server delegates  client handling to a thread once connection is made. In that way the server is concurrent.The scheduler from the std::exec will schedule the execution of client work using a thread pool. Please look at [dumserver](https://github.com/abhilashraju/chaibeast/blob/main/dump_server/dump_server.cpp)  to see how this framework will be used. \n\nIf you talking about the listening socket. Then you are partially correct. It uses an infinite loop waiting for new connection (but it does it asynchronously).I was a bit lazy in fixing it. \n\nIt was an experimental project ,where I tried to mix Boost ASIO and std::exec , which have two different ideas about how to schedule work. \n\nSince there is already work going on in the direction of std::exec and coroutines(I did not see any proposal so far), this project can be example for “what must not be done or what  must be done” when you mix asio and std::exec together.\n\nI would prefer simpler code with affordable performance than highly optimised complicated code with unnecessary performance gains. Judging the performance just by reading the code may not be correct. We should test it and prove it. Don’t speculate performance. \n\nI would set necessary performance bench mark, writer simpler code, test against bench mark, try to optimise the code if needed.",
+      "parentUuid": "0a2fae45_a074e681",
+      "range": {
+        "startLine": 15,
+        "startChar": 24,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4892ff7f_59977ca6",
         "filename": "designs/reactor.md",
         "patchSetId": 3
@@ -345,6 +393,30 @@
       "side": 1,
       "message": "what does \"non composable callbacks\" even mean?",
       "parentUuid": "7a06e36e_0abc548a",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 43
+      },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5db96c1e_f2242415",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2023-10-18T05:12:27Z",
+      "side": 1,
+      "message": "I should have said composable task instead. Look at the example code and assemblyline analogy I mentioned in the doc. \nThe basic idea is to design a data flow from a Source to Sink passing through several operators(tasks). You can develop each separately, connect them, attach new operators in between, change Source or Sink whenever needed.\nIf you still have doubt, I think I cannot convince you anymore.\n\nYou can suggest an alternative approach for the examples and compare them.",
+      "parentUuid": "a5b95601_bfc78d7e",
       "range": {
         "startLine": 26,
         "startChar": 0,
