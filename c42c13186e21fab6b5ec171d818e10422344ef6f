@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a75d3799_8ad6340a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T04:53:57Z",
+      "side": 1,
+      "message": "\u003e Overall, I don\u0027t really get what we\u0027re trying to accomplish here.\n\nThis sentence is a bit of a tar-pit for me mentally. I thought I made some reasonable arguments for wanting to separate nvmesensor out from dbus-sensors. Maybe they\u0027re not air-tight or fully substantiated. I could improve that, but I\u0027m not sure it\u0027s worth the effort if there are underlying fundamental disagreements. It feels like there are. I think we need to understand that before I tackle the other points here.",
+      "parentUuid": "57cdd0a3_ab95c891",
+      "revId": "c42c13186e21fab6b5ec171d818e10422344ef6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35760f78_3605d7eb",
         "filename": "designs/nvmesensor-code-migration.md",
         "patchSetId": 8
@@ -49,6 +67,30 @@
       "writtenOn": "2023-10-15T21:51:08Z",
       "side": 1,
       "message": "Why are these problems for the current setup?  Just make nvme a folder, and be done with it?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "c42c13186e21fab6b5ec171d818e10422344ef6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4a73ff8_7fb0cc4d",
+        "filename": "designs/nvmesensor-code-migration.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T04:53:57Z",
+      "side": 1,
+      "message": "I think with your background of wanting a monorepo[[1][],[2][]] it doesn\u0027t appear as a problem to you. I don\u0027t share the view that monorepos are an obvious win, and we\u0027ve struggled to find common ground on the concept in the past. I\u0027m concerned your perspective there is the sticking point and any more detailed arguments I make here won\u0027t matter in comparison to that broad brush.\n\n[1]: https://lore.kernel.org/openbmc/CAH2-KxAJS_U8\u003dmeCxp8ue7n0bmnzeRpyZOPZpy0h1cFEbbz-HA@mail.gmail.com/\n[2]: https://lore.kernel.org/openbmc/3df049fc-e5ec-449e-b696-a2ca86c37ed3@www.fastmail.com/\n\nHowever, to try to address your question:\n\nRegarding 1, perhaps this is solved by renaming the repository to acknowledge its role as you suggest. However, it would be good to substantiate the claim that it has gone beyond just sensors already so we have a shared understanding of the scope of the problem.\n\nRegarding 2, if a particular daemon dominates the codebase it can become a bit of an activity distraction for people not working on it. Separating out the code helps separate the distraction.\n\nRegarding 3, dbus-sensors is currently home to 11 daemons. Refactorings in one can easily escalate to a generalised solution that should be applied across many or all of them. The (comparative, future) complexity of something like nvmesensor makes me wary of such refactorings. Separating out the code isolates it in space. Anyone contributing to the isolated codebase are specifically there to contribute to nvmesensor and the burden of testing it is a basic expectation. That\u0027s less true if a refactoring motivated by something in psusensor escalates to also touching nvmesensor.\n\nA particular concern is that much of the (future) function of nvmesensor is driven by a number of complex standards documents. Having some familiarity with them all is not an expectation we can level at all dbus-sensors contributors, but can be expected of anyone needing to contribute to an isolated codebase. In my opinion the separation addresses social and maintenance concerns rather than a specific technical deficiency that can be solved by just making nvme a folder and being done with it.",
+      "parentUuid": "35760f78_3605d7eb",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -84,6 +126,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b099dc5_36fef16a",
+        "filename": "designs/nvmesensor-code-migration.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T04:53:57Z",
+      "side": 1,
+      "message": "You\u0027re considering the exposed D-Bus interfaces as the API here? Or something else? If we can clarify that then I think we can improve this section.",
+      "parentUuid": "6b5b168e_752b00ef",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 68
+      },
+      "revId": "c42c13186e21fab6b5ec171d818e10422344ef6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5eb4879f_46c50540",
         "filename": "designs/nvmesensor-code-migration.md",
         "patchSetId": 8
@@ -95,6 +161,30 @@
       "writtenOn": "2023-10-15T21:51:08Z",
       "side": 1,
       "message": "This seems like the exact opposite of what we want.  I\u0027ve heard many times developers complaining that we have too many repositories, and it\u0027s difficult to find stuff.",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 79
+      },
+      "revId": "c42c13186e21fab6b5ec171d818e10422344ef6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2731e98a_2add155e",
+        "filename": "designs/nvmesensor-code-migration.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T04:53:57Z",
+      "side": 1,
+      "message": "\u003e This seems like the exact opposite of what we want. I\u0027ve heard many times developers complaining that we have too many repositories\n\nI\u0027m familiar with your concerns here. However, much of this seemed to stem from internal discussion. I haven\u0027t seen much of it in the community itself. Can we substantiate this with first-hand commentary in the community so we can be confident it\u0027s something the community cares about? If you could provide a few references that would be helpful.\n\nOtherwise, we\u0027re going to rat-hole ourselves about exactly what it is that \"we\" want.\n\n\u003e it\u0027s difficult to find stuff.\n\nI feel the problem is that we have a lot of stuff. One way or another stuff is difficult to find because of the volume. I\u0027m not following the leap that it\u0027s a lot of repositories that are causing that. Github code search exists. One way or another someone\u0027s going to have to either enable the `nvmesensor` `PACKAGECONFIG` for `dbus-sensors` or add the `nvmesensor` package to their `IMAGE_INSTALL` (via whatever mechanism they choose). It\u0027s the same amount of typing one way or another. It\u0027s not clear to me that splitting it out makes the integration worse.",
+      "parentUuid": "5eb4879f_46c50540",
       "range": {
         "startLine": 272,
         "startChar": 0,
