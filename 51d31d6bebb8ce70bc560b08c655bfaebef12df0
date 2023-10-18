@@ -1,0 +1,256 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57f888da_d65511b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "Hi Christopher, thanks for iterating on this with us. As a point of organisation, if you think you\u0027ve resolved a problem identified in the comments please make sure to tick the `Resolved` checkbox so they can be hidden from view on subsequent revisions. I\u0027ve marked a handful of comments as resolved.\n\nOn the content, I think we\u0027re converging on a reasonable design. There are still some bits left to work through though. Let me know what you think of some of the ideas.",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a10c3f6a_81097e11",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "Nitpick: If we\u0027re going to use acronyms I much prefer they\u0027re explicitly defined. A practical place to define them is inline, immediately adjacent to their initial expanded form. For instance, in the paragraph above, you could put:\n\n\u003e Instead, baseboard HW data is stored in a secure element (SE) ...\n\n(In quoting that I\u0027ve just noticed you\u0027ve used HW as an abbreviation also!)\n\nBut honestly, it doesn\u0027t save much. Perhaps avoid acronyms altogether and just use the expanded form?",
+      "range": {
+        "startLine": 37,
+        "startChar": 56,
+        "endLine": 37,
+        "endChar": 58
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6083295e_2c19d504",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "Can you please unpack u-BootBlock for us in the text? Is it a pure software solution? Is it additional hardware that snoops the SPI bus and controls system reset lines? What is it? Whether it\u0027s proprietary or not might be a problem that\u0027s outside the scope here, but I would appreciate some more details.",
+      "range": {
+        "startLine": 38,
+        "startChar": 3,
+        "endLine": 38,
+        "endChar": 28
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50bdee45_73f6f603",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "Just checking that you do mean an overlay here, as that is a specific concept in devicetree land.",
+      "range": {
+        "startLine": 42,
+        "startChar": 47,
+        "endLine": 42,
+        "endChar": 66
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b83bf4af_3992b4b0",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "Bit of a nitpick, but you\u0027re discussing u-boot, and then make reference to a linux kernel pseudo filesystem interface. If you want to discuss `/proc/device-tree/chosen` it would be good to formulate the sentence in terms of Linux rather than u-boot.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0130adc1_770d94bc",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "In terms of the entire sentence, did your implementation do this already? Or is this what you\u0027re proposing? Because if it\u0027s part of what you\u0027re proposing then it doesn\u0027t belong in the \"Background and References\" section.",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83173745_03862431",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "Again a bit of a nitpick, but maybe \u0027attributes\u0027 or \u0027paths\u0027 are better terms here? I associate a file handle with a file descriptor, something that\u0027s dynamically created as part of execution of an application by opening a file, where this is discussing the \u0027files\u0027 themselves.",
+      "range": {
+        "startLine": 43,
+        "startChar": 40,
+        "endLine": 43,
+        "endChar": 52
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c42e264_cd2114c8",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "My feeling is that this is not entirely in the spirit of the `chosen` node. My understanding of the `chosen` node is that it\u0027s sort-of a convenience node to communicate an administrative policy choice for booting the system. For reference, the [devicetree specification](https://github.com/devicetree-org/devicetree-specification/releases/download/v0.3/devicetree-specification-v0.3.pdf) says this in 3.5 `/chosen` Node:\n\n\u003e The `/chosen` node does not represent a real device in the system but describes parameters chosen or specified by the system firmware at run time.\n\nThe information you\u0027re proposing to embed in `chosen` here sound a lot more like concrete \"facts\" about the hardware. To me they feel like they should go elsewhere. Perhaps you can provide some specific examples of the information you plan to store in the `chosen` node to help us understand whether it\u0027s appropriate?\n\nFor instance, if what you\u0027re exposing is information like the platform class, revision, serial number, and other related data, then perhaps the kernel\u0027s `soc_device` subsystem can help:\n\nhttps://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/sys_soc.h?h\u003dv6.6-rc6\n\nWe expose some bits and pieces for Aspeed SoCs:\n\nhttps://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/soc/aspeed/aspeed-socinfo.c?h\u003dv6.6-rc6\n\nThis yields the following on an Aspeed AST2600:\n\n```\nroot@ast2600:~# grep . /sys/devices/soc0/*\n/sys/devices/soc0/family:AST2600\n/sys/devices/soc0/machine:AST2600 EVB\n/sys/devices/soc0/revision:A3\n/sys/devices/soc0/serial_number:0932ba2112109613\n/sys/devices/soc0/soc_id:05030303\nroot@ast2600:~# \n```\n\nA useful escape hatch for any other properties might be via `custom_attr_group`:\n\nhttps://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/sys_soc.h?h\u003dv6.6-rc6#n18\n\nIn terms of implementation you might map the reserve memory specified in the devicetree and parse your data out into the `soc_device` attributes.",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c006a4a3_1a6b0b72",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "I don\u0027t think this makes sense - EM probes are evaluated any time an object appears, disappears or changes. I don\u0027t think there should be any timing relationship specified with respect to EM.\n\nHowever, given the information is a product of the system booting, we can anticipate it is present before EM starts.",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 60,
+        "endChar": 36
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40b964d8_cb69c797",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "I don\u0027t see a reason to bake in this implementation-specific detail. You\u0027re trying to represent generic FRU information right? Why does that need to be tied to the underlying source of the data? Essentially I think you\u0027re over-specifying the interface.",
+      "range": {
+        "startLine": 65,
+        "startChar": 48,
+        "endLine": 65,
+        "endChar": 59
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "994c43a0_7529251a",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "Again, I\u0027d love some more context for u-BootBlock and this secure element (if they\u0027re not the same?)",
+      "range": {
+        "startLine": 74,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 53
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e391cf4_d50689bb",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T23:49:58Z",
+      "side": 1,
+      "message": "I wish others had as much of a grip on what goes in the Alternatives Considered section as you\u0027ve demonstrated here. This is a great boneyard!",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
