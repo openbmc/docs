@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6bda3349_abf5a4c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T06:47:33Z",
+      "side": 1,
+      "message": "Thanks. The proposal should be able to account for any counter-arguments - my arguments need to stand on their own. I think where we\u0027ve landed is that I\u0027ve made a case, but not a compelling case, for splitting out nvmesensor.\n\nThat\u0027s okay. I think we can set this proposal aside for now. We can make some of the improvements you\u0027ve suggested (move daemon-specific code into daemon-specific subdirectories, rename the project to reset expectations, adjust OWNERS settings to control merge capabilities of maintainers) and see if they address my concerns. If not, we can reassess when we have more data.\n\nI\u0027ll leave this open for a couple of days to allow for other comments. If there\u0027s nothing further I\u0027ll abandon the proposal and close the issue on the TOF repository.\n\nThanks for the feedback!",
+      "parentUuid": "736bc871_796cd305",
+      "revId": "c42c13186e21fab6b5ec171d818e10422344ef6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35760f78_3605d7eb",
         "filename": "designs/nvmesensor-code-migration.md",
         "patchSetId": 8
@@ -162,6 +180,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cabcbe07_31a81f15",
+        "filename": "designs/nvmesensor-code-migration.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T06:47:33Z",
+      "side": 1,
+      "message": "\u003e I think my background on being a dbus-sensors maintainer also helps. I do think having all the em reactors in one place has helped dbus sensor to have intelligent defaults (all sensors included by default) and get adoption faster than would\u0027ve otherwise happened if it was a bunch of repos.\n\nThat\u0027s a fair point. I wasn\u0027t intending to exclude your experience there, but did want to highlight your preference for a significant reduction in repos 😊\n\n\u003e Why are generalized refactorings a problem? Maybe I misunderstood the above, but making refactorings apply to a generalized solution seems like a good thing?\n\nThe paragraph was meant to be taken in context with the one following it :) Refactorings are good, though I have concerns about some of the complexities involved, that\u0027s all.\n\n\u003e This is fair, but the OWNERS files have a inherit flag that I think covers this? We can give subfolder maintainership that\u0027s exclusive to those with the spec understanding?\n\nThat sounds like it\u0027s worth an experiment.",
+      "parentUuid": "6059cbdd_ebab0e3f",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "c42c13186e21fab6b5ec171d818e10422344ef6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6b5b168e_752b00ef",
         "filename": "designs/nvmesensor-code-migration.md",
         "patchSetId": 8
@@ -221,6 +263,30 @@
       "side": 1,
       "message": "There are 3 shared libraries in the dbus-sensors today.  They contain the utils code that\u0027s shared across all sensors (there\u0027s other shared code in headers as well).\n\nSpecifically these:\n\nhttps://github.com/openbmc/dbus-sensors/blob/e98adf5bf33c6651fd9e854a37cc5056df5f683b/src/meson.build#L8\n\nI\u0027m ok with a little ambiguity here, so long as the plan isn\u0027t \"reimplement thresholding and EM dbus scanning/update code in an nvme specific way.\"",
       "parentUuid": "0b099dc5_36fef16a",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 68
+      },
+      "revId": "c42c13186e21fab6b5ec171d818e10422344ef6f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60899c6a_67aee90c",
+        "filename": "designs/nvmesensor-code-migration.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-18T06:47:33Z",
+      "side": 1,
+      "message": "I\u0027m not sure how you intended \"reimplement\" to be interpreted, but the rough intent was to duplicate the existing code into the separate repo 😊",
+      "parentUuid": "776950aa_43979659",
       "range": {
         "startLine": 251,
         "startChar": 0,
