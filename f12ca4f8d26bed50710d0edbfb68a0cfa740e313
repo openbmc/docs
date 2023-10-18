@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b122dbbf_f3835339",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-18T15:44:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "279225d0_8cf241f5",
+      "revId": "f12ca4f8d26bed50710d0edbfb68a0cfa740e313",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "365b1bae_60a22a34",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87e43e97_a1afe7bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-18T15:44:49Z",
+      "side": 1,
+      "message": "- to me it is obvious that these checks would help to improve the codebase.\n  Arriving at blanket values is easy, as some of them are suggested by \n  C++ Core Guidelines.\n\n- not advocating for enabling these as warnings across all openbmc repos.\n  Warnings that no one reads do not help. This patch is for \u0027docs\u0027 only\n  and should reflect an agreement in the community about how the code should look.\n  If and when to enable the warnings / hard errors would be something on a\n  per-repository basis.\n\n- putting mergeable refactorings as a requirement for arriving at some values\n  creates an incentive to refactor a \u0027little less trivial\u0027 project.\n  Large refactorings are very much bugprone without tests.\n  \n  Agreeing on some values and then starting with the smaller projects\n  would probably go much more smoothly.\n\n- there is almost no tradeoff. It simply results in better code.\n  The tradeoff is having to do a NOLINT once in a while.\n\n- if there is no consensus, then new and existing subprojects can\n  sprout functions of unbounded size, nesting and parameter count,\n  worsening the situation.",
+      "parentUuid": "365b1bae_60a22a34",
+      "revId": "f12ca4f8d26bed50710d0edbfb68a0cfa740e313",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78b597ff_dff9d9b2",
@@ -48,6 +84,30 @@
       "writtenOn": "2023-10-06T15:33:42Z",
       "side": 1,
       "message": "What does this mean?  The default value isn\u0027t implemented?",
+      "range": {
+        "startLine": 14,
+        "startChar": 58,
+        "endLine": 15,
+        "endChar": 69
+      },
+      "revId": "f12ca4f8d26bed50710d0edbfb68a0cfa740e313",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4cd9458_1ef6e7ad",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-10-18T15:44:49Z",
+      "side": 1,
+      "message": "It means that clang-tidy apparently does not implement cyclomatic complexity.",
+      "parentUuid": "78b597ff_dff9d9b2",
       "range": {
         "startLine": 14,
         "startChar": 58,
