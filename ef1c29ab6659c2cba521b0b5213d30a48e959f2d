@@ -61,6 +61,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef49b40a_50d18696",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-18T05:39:09Z",
+      "side": 1,
+      "message": "\u003e I felt that the reactor approach suits better to solve the same problem.\n\nI\u0027d highly recommend evangelizing your code and see if others agree with you, and get some numbers on performance comparisons, binary size comparisons, and total lines of code comparisons.  If your intention is to write a totally new websever to be run as an alternative to bmcweb, it looks like you have a great start.  If any of my knowledge of bmcweb can help you, feel free to ask me questions (just don\u0027t do it in this review 😊)",
+      "parentUuid": "f041ec30_2310bcaa",
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f0136125_d188228a",
         "filename": "designs/reactor.md",
         "patchSetId": 3
@@ -298,6 +316,30 @@
       "side": 1,
       "message": "I don\u0027t understand what you mean by blocking call. If you are looking for usage of threads in the code, then you are reading it wrong. The server delegates  client handling to a thread once connection is made. In that way the server is concurrent.The scheduler from the std::exec will schedule the execution of client work using a thread pool. Please look at [dumserver](https://github.com/abhilashraju/chaibeast/blob/main/dump_server/dump_server.cpp)  to see how this framework will be used. \n\nIf you talking about the listening socket. Then you are partially correct. It uses an infinite loop waiting for new connection (but it does it asynchronously).I was a bit lazy in fixing it. \n\nIt was an experimental project ,where I tried to mix Boost ASIO and std::exec , which have two different ideas about how to schedule work. \n\nSince there is already work going on in the direction of std::exec and coroutines(I did not see any proposal so far), this project can be example for “what must not be done or what  must be done” when you mix asio and std::exec together.\n\nI would prefer simpler code with affordable performance than highly optimised complicated code with unnecessary performance gains. Judging the performance just by reading the code may not be correct. We should test it and prove it. Don’t speculate performance. \n\nI would set necessary performance bench mark, writer simpler code, test against bench mark, try to optimise the code if needed.",
       "parentUuid": "0a2fae45_a074e681",
+      "range": {
+        "startLine": 15,
+        "startChar": 24,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "ef1c29ab6659c2cba521b0b5213d30a48e959f2d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65a8754d_51b350ef",
+        "filename": "designs/reactor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-18T05:39:09Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t understand what you mean by blocking call. If you are looking for usage of threads in the code, then you are reading it wrong. The server delegates  client handling to a thread once connection is made. In that way the server is concurrent.The scheduler from the std::exec will schedule the execution of client work using a thread pool. Please look at [dumserver](https://github.com/abhilashraju/chaibeast/blob/main/dump_server/dump_server.cpp)  to see how this framework will be used. \n\nRight, you\u0027ve chosen a threading model (similar to Apache rather than an async model (similar to nginx).  There are tradeoffs between the two, and there are certainly bmcs that go the route you\u0027ve gone.\n\n\u003e \n\u003e If you talking about the listening socket. Then you are partially correct. It uses an infinite loop waiting for new connection (but it does it asynchronously).I was a bit lazy in fixing it. \n\u003e \n\u003e It was an experimental project ,where I tried to mix Boost ASIO and std::exec , which have two different ideas about how to schedule work. \n\nCool.  I love to see the experimentation.\n\n\u003e \n\u003e Since there is already work going on in the direction of std::exec and coroutines(I did not see any proposal so far), this project can be example for “what must not be done or what  must be done” when you mix asio and std::exec together.\n\nCool.\n\n\u003e \n\u003e I would prefer simpler code with affordable performance than highly optimised complicated code with unnecessary performance gains.\n\u003e Judging the performance just by reading the code may not be correct. We should test it and prove it. Don’t speculate performance. \n\nI made no statements about performance.  FWIW, things like sailfish took a similar approach to the one you\u0027re taking.  you might look at those for inspiration.\n\n\u003e \n\u003e I would set necessary performance bench mark, writer simpler code, test against bench mark, try to optimise the code if needed.\n\nSounds like a good plan.",
+      "parentUuid": "ea44c7e4_a0c19d7b",
       "range": {
         "startLine": 15,
         "startChar": 24,
