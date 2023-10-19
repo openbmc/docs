@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08297a34_780f1968",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "Much appreciated, thanks!",
+      "parentUuid": "57f888da_d65511b5",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a10c3f6a_81097e11",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-10-18T23:49:58Z",
       "side": 1,
       "message": "Nitpick: If we\u0027re going to use acronyms I much prefer they\u0027re explicitly defined. A practical place to define them is inline, immediately adjacent to their initial expanded form. For instance, in the paragraph above, you could put:\n\n\u003e Instead, baseboard HW data is stored in a secure element (SE) ...\n\n(In quoting that I\u0027ve just noticed you\u0027ve used HW as an abbreviation also!)\n\nBut honestly, it doesn\u0027t save much. Perhaps avoid acronyms altogether and just use the expanded form?",
+      "range": {
+        "startLine": 37,
+        "startChar": 56,
+        "endLine": 37,
+        "endChar": 58
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67eb7b29_c7058f75",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "I\u0027ll fix this in the next draft.",
+      "parentUuid": "a10c3f6a_81097e11",
       "range": {
         "startLine": 37,
         "startChar": 56,
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a78920d4_f343c7b8",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "I will correct this in the next draft, but it\u0027s a software bit that uses a set of included keys to verify the bootblock before the rest of the process is allowed to begin.",
+      "parentUuid": "6083295e_2c19d504",
+      "range": {
+        "startLine": 38,
+        "startChar": 3,
+        "endLine": 38,
+        "endChar": 28
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50bdee45_73f6f603",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 7
@@ -77,6 +143,30 @@
       "writtenOn": "2023-10-18T23:49:58Z",
       "side": 1,
       "message": "Just checking that you do mean an overlay here, as that is a specific concept in devicetree land.",
+      "range": {
+        "startLine": 42,
+        "startChar": 47,
+        "endLine": 42,
+        "endChar": 66
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ede2039_2d55b9d0",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "It\u0027s my current understanding that (our HPE-specific) u-Boot uses a device tree overlay inserted into the \u0027flat device tree\u0027 avail at u-Boot time to make the HW ID data available in chosen/ once the boot process is farther along.",
+      "parentUuid": "50bdee45_73f6f603",
       "range": {
         "startLine": 42,
         "startChar": 47,
@@ -152,6 +242,72 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d270d76_819aaf85",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "HPE-specific u-Boot code that outputs the HW ID data to chosen/ exists and is publicly available @ https://github.com/HewlettPackard/gxp-uboot",
+      "parentUuid": "0130adc1_770d94bc",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91efb0fb_a8b493ff",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "83173745_03862431",
+      "range": {
+        "startLine": 43,
+        "startChar": 40,
+        "endLine": 43,
+        "endChar": 52
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c6fabb4_cd721785",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b83bf4af_3992b4b0",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c42e264_cd2114c8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 7
@@ -169,6 +325,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "339a6c1c_640c41db",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "Thanks a ton for the detailed suggestion writeup - it is extremely helpful info for my investigations!\n\n(Written a little later, after talking to some folks): Our process currently has u-Boot putting together a device-tree overlay that points to a location in RAM that contains HW ID data (placed there in the step before u-Boot fires up) and gets inserted into the flat device-tree that\u0027s available to u-Boot.\n\nWhen this device-tree binary is consumed, the data we need becomes available in device-tree/chosen/\n\nAt the moment, I have the impression that reserved-memory regions aren\u0027t available for writing at the time that u-Boot is doing its work.\n\nFor now, I\u0027m not sure what options are available for getting data out of u-Boot past device-tree overlays -\u003e device-tree/chosen/ or using u-Boot env variables and picking up the data from there with something like phosophor-uboot-env-mgr.\n\nI will continue to investigate.",
+      "parentUuid": "4c42e264_cd2114c8",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c006a4a3_1a6b0b72",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 7
@@ -180,6 +354,30 @@
       "writtenOn": "2023-10-18T23:49:58Z",
       "side": 1,
       "message": "I don\u0027t think this makes sense - EM probes are evaluated any time an object appears, disappears or changes. I don\u0027t think there should be any timing relationship specified with respect to EM.\n\nHowever, given the information is a product of the system booting, we can anticipate it is present before EM starts.",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 60,
+        "endChar": 36
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc0c3c8_651d0fe7",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "I hadn\u0027t realized that probes were evaluated more than once. Good info, thanks!\n\nI\u0027ll correct this bit in the next draft.",
+      "parentUuid": "c006a4a3_1a6b0b72",
       "range": {
         "startLine": 59,
         "startChar": 1,
@@ -215,6 +413,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14318732_76bb0242",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "I\u0027m not sure I\u0027d describe it as generic FRU data- HPE\u0027s HW ID data is not in a usual FRU storage blob format, and the data fields only line up in a few places against recognized FRU storage data fields (we\u0027ve got fields like part-number and pca_part-number, for example)",
+      "parentUuid": "40b964d8_cb69c797",
+      "range": {
+        "startLine": 65,
+        "startChar": 48,
+        "endLine": 65,
+        "endChar": 59
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "994c43a0_7529251a",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 7
@@ -238,6 +460,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26979582_da0615b5",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "Will do in the next draft to come. u-BootBock and the secure element are separate things. \n\n...But after talking with some folks, I\u0027ve realized it\u0027s inaccurate to say that it\u0027s the \u0027u-BootBlock\u0027 that\u0027s actually communicating with the secure element - it\u0027s actually another (HPE-specific) component in the boot chain that fires up before u-Boot, and relies of info (keys, I believe) passed up from u-BootBlock.\n\nI\u0027ll aim to clarify more in the next draft.",
+      "parentUuid": "994c43a0_7529251a",
+      "range": {
+        "startLine": 74,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 53
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e391cf4_d50689bb",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 7
@@ -249,6 +495,24 @@
       "writtenOn": "2023-10-18T23:49:58Z",
       "side": 1,
       "message": "I wish others had as much of a grip on what goes in the Alternatives Considered section as you\u0027ve demonstrated here. This is a great boneyard!",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5281dcb_96f84157",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-19T20:46:21Z",
+      "side": 1,
+      "message": "I appreciate that, and will aim to keep it up in the future!",
+      "parentUuid": "2e391cf4_d50689bb",
       "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
