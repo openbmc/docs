@@ -70,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d410c457_291faa94",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2023-10-20T10:45:52Z",
+      "side": 1,
+      "message": "Can not access this pdf but why we can not delete the whole audit trail?",
+      "parentUuid": "90913d0d_dc970403",
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34235437_f8aba12f",
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "Since this is an Redfish LogEntry would function in terms of Redfish event like any other LogEntry",
       "parentUuid": "34235437_f8aba12f",
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cc0ec4c_31811d3a",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2023-10-20T10:45:52Z",
+      "side": 1,
+      "message": "Can you please help me in identifying that how we are sendig the event for Journal log service?\nhttps://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/log_services.hpp#L2369",
+      "parentUuid": "25510f16_05b73150",
       "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -140,6 +176,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97898a37_ab4f28a9",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2023-10-20T10:45:52Z",
+      "side": 1,
+      "message": "Having the D-bus transaction for each operation(POST/PATCH/DELETE) increases the D-bus traffic.\nIf we have non blocking socket which is writing the audit log and doesn\u0027t block the bmcweb,Should not be a issue.",
+      "parentUuid": "73d709f0_5ddbf5e3",
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb748120_fa37aab6",
@@ -171,6 +225,24 @@
       "side": 1,
       "message": "No. The expectation is that the amount of data preserved by an audit log is quite large due to preserving 3-6 months of auditable actions.",
       "parentUuid": "eb748120_fa37aab6",
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c28de7b5_a8f4be05",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2023-10-20T10:45:52Z",
+      "side": 1,
+      "message": "How you are going to support fetch the individual log entry?\n\nseems you mentioned somewhere each audit log entry has a unique audit event id. This can be used here.\n\nFollowing audit logs captured from the Manoj Commit. where is the audit ID in this?\nIf it is auid\u003d4294967295 then it is same for all the audit logs given in the commit.\nhttps://gerrit.openbmc.org/c/openbmc/bmcweb/+/55532\n\n1. Authentication successful - below is the event generated in\n /var/log/audit/audit.log file\ntype\u003dUSYS_CONFIG msg\u003daudit(1691436001.865:9): pid\u003d255 uid\u003d0 auid\u003d4294967295 ses\u003d4294967295 msg\u003d\u0027op\u003dPOST:/login acct\u003d\"root\" exe\u003d\"/usr/bin/bmcweb\" hostname\u003dp10bmc addr\u003d::ffff:10.0.2.1 terminal\u003d? res\u003dsuccess\u0027UID\u003d\"root\" AUID\u003d\"unset\"\n\n2. Authentication failed\n\ntype\u003dUSYS_CONFIG msg\u003daudit(1691436064.995:10): pid\u003d255 uid\u003d0 auid\u003d4294967295 ses\u003d4294967295 msg\u003d\u0027op\u003dPOST:/login acct\u003d\"janet\" exe\u003d\"/usr/bin/bmcweb\" hostname\u003dp10bmc addr\u003d::ffff:10.0.2.1 terminal\u003d? res\u003dfailed\u0027UID\u003d\"root\" AUID\u003d\"unset\"",
+      "parentUuid": "efb71c6b_a364af8e",
       "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -294,6 +366,29 @@
         "startChar": 1,
         "endLine": 238,
         "endChar": 58
+      },
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fab9e455_e67e70ff",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2023-10-20T10:45:52Z",
+      "side": 1,
+      "message": "which tool you used to get these numbers?",
+      "range": {
+        "startLine": 437,
+        "startChar": 0,
+        "endLine": 442,
+        "endChar": 0
       },
       "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
