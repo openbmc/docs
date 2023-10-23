@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd90750a_e8fd26df",
+        "filename": "designs/code-update.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2023-10-23T17:58:27Z",
+      "side": 1,
+      "message": "Per an offline discussion, there\u0027s a use case where it\u0027s desired to upload an image and later activate it, which is possible with the existing d-bus interfaces. In order to continue to support this use case, we would need to add support to an additional OperationApplyTime. I suggest \"OnStartUpdateRequest\", where the image would be staged until the user issued a \"StartUpdate\" action via the SimpleUpdate command. This option is probably simpler and more flexible than \"AtMaintenanceWindowStart\" because it doesn\u0027t require to specify the time when the update should automatically start.",
+      "revId": "c66837ef51513dc3681444c706c21ba89f104859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2422a36a_8345ad69",
         "filename": "designs/code-update.md",
         "patchSetId": 9
