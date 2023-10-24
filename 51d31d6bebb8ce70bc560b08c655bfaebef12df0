@@ -149,6 +149,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4745941b_dd94ae54",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-24T22:42:50Z",
+      "side": 1,
+      "message": "You\u0027ve got it right.",
+      "parentUuid": "f466b8c1_a958c2f9",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50bdee45_73f6f603",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 7
@@ -232,6 +250,30 @@
       "side": 1,
       "message": "A device tree overlay is a specifically formatted device tree blob that has additional data and is designed to patch an existing tree.   While there is not userspace api, the kernel documentation gives some notes.\n\nI would guess you are simply merging content into the flat device tree and not producing an overlay that is later applied by U-boot (or the kernel).\n\nhttps://www.kernel.org/doc/html/latest/devicetree/overlay-notes.html\nhttps://github.com/openbmc/linux/blob/dev-6.5/drivers/of/overlay.c\nhttps://github.com/openbmc/linux/blob/dev-6.5/drivers/of/dynamic.c\nhttps://github.com/dgibson/dtc/blob/2283dd78eff5b37a092988e04fd873b040ad27c6/Documentation/manual.txt#L697",
       "parentUuid": "6c2ee34f_6b233478",
+      "range": {
+        "startLine": 42,
+        "startChar": 47,
+        "endLine": 42,
+        "endChar": 66
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9fbd414_83bcf858",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-24T22:42:50Z",
+      "side": 1,
+      "message": "I\u0027ll talk with the guy who did the u-boot code to confirm, but you very well may be correct there.",
+      "parentUuid": "60372d18_a049aa43",
       "range": {
         "startLine": 42,
         "startChar": 47,
@@ -409,6 +451,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e6055d6e_de142dc4",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-24T22:42:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9dca9692_fd64b161",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c42e264_cd2114c8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 7
@@ -456,6 +516,24 @@
       "side": 1,
       "message": "I agree this is not related to the original OpenFirmware IEEE1275 usage of chosen (which was to communicate ihandles, open instances of drivers).   Linux has extended this to store phandles (references to other nodes in the tree) in several defined properties (eg, linux,stdout-path vs stdout), and devicetree.org has extended its definition to be \"chosen by system firmware\".\nhttps://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst#chosen-node\n\nHowever, the information parsed in your board fixup is all hardware information and should be placed according to standard bindings.\nhttps://github.com/HewlettPackard/gxp-uboot/blob/5aa47dcfa086fdde8093baa55fa0586e5b0ef56d/board/hpe/gxp/gxp_board.c#L249\n\nmac_0 and mac_1 should be placed in the driver nodes as local-mac-address.  U-boot had code to set the eth\u003cn\u003eaddr envionment variables to the associated device tree entries (which I expect may set mac-address).\n\nhttps://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter4-device-bindings.rst#local-mac-address-property\n\nSimilarly, there are standard properties for model and serial-number \nhttps://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst#root-node\nwhich should probably be assigned to the root node.   I don\u0027t know what the pca is but having a device node representing it with its part number and serial would be expected.  (Note: I just read Andrew\u0027s comment about the soc device generic driver, which makes sense for hardware registers).\n\nIf you want to expose the raw blobs with their crc consider something like a /firmware node or sub-node describing specific stores (roms / images).",
       "parentUuid": "339a6c1c_640c41db",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ada65c0_f3ac9de7",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-24T22:42:50Z",
+      "side": 1,
+      "message": "I really appreciate the writeup and the links, thanks!\n\nI hadn\u0027t considered it might be an option to define arbitrarily named device-tree nodes for things like \u0027pca_sn\u0027 (a serial number assigned after manufacture, if I remember correctly) instead of putting everything under chosen/ \n\n(...I *am* understanding that part of your suggestion correctly, right?)\n\nI also wasn\u0027t aware of the devicetree-specification docs at that link before now, and it looks loaded with useful info in a much less dry-looking format that the docs I\u0027ve been reading re: device-tree so far. So extra thanks for taking the time to link \u0027em.\n\nI\u0027ll give this (and your other comments) some solid consideration before continuing on with my next draft.",
+      "parentUuid": "778c2506_fac69969",
       "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -687,6 +765,30 @@
       "side": 1,
       "message": "I didn\u0027t find u-BootBlock defined in the upstream u-boot repository.  Please use terms defined by upstream.",
       "parentUuid": "89011521_7df9b125",
+      "range": {
+        "startLine": 74,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 53
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a257db20_102c1295",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-10-24T22:42:50Z",
+      "side": 1,
+      "message": "Will do. After discussing things with some folks at HPE, it was brought to my attention that the data is actually read by code in \u0027BootBlock,\u0027 not in u-BootBlock. \n\nu-BootBlock\u0027s job is just to validate BootBlock with a built-in public key before allowing the rest of the boot process to continue.\n\nThe next draft will correct this, and will expand further on the process.",
+      "parentUuid": "ad4738a6_f4ffb690",
       "range": {
         "startLine": 74,
         "startChar": 14,
