@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dca65a6_81d461c1",
+        "filename": "architecture/code-update/u-boot-mirroring.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-10-24T21:03:47Z",
+      "side": 1,
+      "message": "Note the portion mmcblk0 the 0 is assigned dynamically (although most systems only have one eMMC device), while the boot0 and boot1 are eMMC specfic namespaces for additional function and not software defined partitioning.  Linux exposes these as separate device minors.",
+      "revId": "ddc0f23ea83e5902e8562746bab67e8c416fb74a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2fa3de0_9530a02c",
+        "filename": "architecture/code-update/u-boot-mirroring.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-10-24T21:03:47Z",
+      "side": 1,
+      "message": "Is the hardware checked that we actually booted off the primary u-boot image?  If not this will just proceed to corrupt the state image.\n\nCan we make the service more generic (mirror u-boot), with the locations based on the selected layout and hardware support (ubi, emmc boot partitions, bootloader selected device with soc support)?",
+      "revId": "ddc0f23ea83e5902e8562746bab67e8c416fb74a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
