@@ -132,6 +132,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f466b8c1_a958c2f9",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-10-24T17:23:21Z",
+      "side": 1,
+      "message": "I am guessing this commit https://github.com/u-boot/u-boot/commit/384fc0fef13dae9c1567c1f1a6cdac491e7e2b90",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50bdee45_73f6f603",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 7
@@ -191,6 +208,30 @@
       "side": 1,
       "message": "Okay, that would be excellent background to add to the document.",
       "parentUuid": "3ede2039_2d55b9d0",
+      "range": {
+        "startLine": 42,
+        "startChar": 47,
+        "endLine": 42,
+        "endChar": 66
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60372d18_a049aa43",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-10-24T17:23:21Z",
+      "side": 1,
+      "message": "A device tree overlay is a specifically formatted device tree blob that has additional data and is designed to patch an existing tree.   While there is not userspace api, the kernel documentation gives some notes.\n\nI would guess you are simply merging content into the flat device tree and not producing an overlay that is later applied by U-boot (or the kernel).\n\nhttps://www.kernel.org/doc/html/latest/devicetree/overlay-notes.html\nhttps://github.com/openbmc/linux/blob/dev-6.5/drivers/of/overlay.c\nhttps://github.com/openbmc/linux/blob/dev-6.5/drivers/of/dynamic.c\nhttps://github.com/dgibson/dtc/blob/2283dd78eff5b37a092988e04fd873b040ad27c6/Documentation/manual.txt#L697",
+      "parentUuid": "6c2ee34f_6b233478",
       "range": {
         "startLine": 42,
         "startChar": 47,
@@ -350,6 +391,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9dca9692_fd64b161",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-10-24T17:23:21Z",
+      "side": 1,
+      "message": "It was, line 40.",
+      "parentUuid": "63f637f7_851395be",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c42e264_cd2114c8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 7
@@ -379,6 +438,24 @@
       "side": 1,
       "message": "Thanks a ton for the detailed suggestion writeup - it is extremely helpful info for my investigations!\n\n(Written a little later, after talking to some folks): Our process currently has u-Boot putting together a device-tree overlay that points to a location in RAM that contains HW ID data (placed there in the step before u-Boot fires up) and gets inserted into the flat device-tree that\u0027s available to u-Boot.\n\nWhen this device-tree binary is consumed, the data we need becomes available in device-tree/chosen/\n\nAt the moment, I have the impression that reserved-memory regions aren\u0027t available for writing at the time that u-Boot is doing its work.\n\nFor now, I\u0027m not sure what options are available for getting data out of u-Boot past device-tree overlays -\u003e device-tree/chosen/ or using u-Boot env variables and picking up the data from there with something like phosophor-uboot-env-mgr.\n\nI will continue to investigate.",
       "parentUuid": "4c42e264_cd2114c8",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "778c2506_fac69969",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-10-24T17:23:21Z",
+      "side": 1,
+      "message": "I agree this is not related to the original OpenFirmware IEEE1275 usage of chosen (which was to communicate ihandles, open instances of drivers).   Linux has extended this to store phandles (references to other nodes in the tree) in several defined properties (eg, linux,stdout-path vs stdout), and devicetree.org has extended its definition to be \"chosen by system firmware\".\nhttps://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst#chosen-node\n\nHowever, the information parsed in your board fixup is all hardware information and should be placed according to standard bindings.\nhttps://github.com/HewlettPackard/gxp-uboot/blob/5aa47dcfa086fdde8093baa55fa0586e5b0ef56d/board/hpe/gxp/gxp_board.c#L249\n\nmac_0 and mac_1 should be placed in the driver nodes as local-mac-address.  U-boot had code to set the eth\u003cn\u003eaddr envionment variables to the associated device tree entries (which I expect may set mac-address).\n\nhttps://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter4-device-bindings.rst#local-mac-address-property\n\nSimilarly, there are standard properties for model and serial-number \nhttps://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst#root-node\nwhich should probably be assigned to the root node.   I don\u0027t know what the pca is but having a device node representing it with its part number and serial would be expected.  (Note: I just read Andrew\u0027s comment about the soc device generic driver, which makes sense for hardware registers).\n\nIf you want to expose the raw blobs with their crc consider something like a /firmware node or sub-node describing specific stores (roms / images).",
+      "parentUuid": "339a6c1c_640c41db",
       "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -586,6 +663,30 @@
       "side": 1,
       "message": "Yes. Please provide context for all of the relevant components.",
       "parentUuid": "26979582_da0615b5",
+      "range": {
+        "startLine": 74,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 53
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad4738a6_f4ffb690",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-10-24T17:23:21Z",
+      "side": 1,
+      "message": "I didn\u0027t find u-BootBlock defined in the upstream u-boot repository.  Please use terms defined by upstream.",
+      "parentUuid": "89011521_7df9b125",
       "range": {
         "startLine": 74,
         "startChar": 14,
