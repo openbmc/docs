@@ -179,6 +179,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0be7ccc_03dfdefb",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-10-25T20:57:26Z",
+      "side": 1,
+      "message": "\u003e Can you please help me in identifying that how we are sendig the event for Journal log service?\nhttps://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/log_services.hpp#L2369\n\nSeems outside this design. https://github.com/openbmc/bmcweb/blob/db7b3876bc537dc927f162952e060d91ed1e3f7b/redfish-core/lib/event_service.hpp#L171 is the event implementation \n\nI thought we were supporting more types of events but looks like maybe only tasks https://github.com/openbmc/bmcweb/blob/8d1b46d7f8d39db2ba048f9e9007106ca3a28c9b/redfish-core/lib/event_service.hpp#L34 \n\nI do feel this is outside of this design. The Redfish events here would work like other LogEntries e.g. https://github.com/openbmc/bmcweb/blob/8d1b46d7f8d39db2ba048f9e9007106ca3a28c9b/redfish-core/lib/log_services.hpp#L1531",
+      "parentUuid": "3139fdb7_36938307",
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "162858d3_dd578d3c",
         "filename": "designs/auditLog.md",
         "patchSetId": 6
