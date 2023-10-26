@@ -195,6 +195,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5f4b916_1715ed37",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2023-10-26T21:09:49Z",
+      "side": 1,
+      "message": "The Redfish EventService support is outside the scope of this design. However I can forsee a future extension which would add this support. It would use the Linux audisp mechanism to watch for new audit events and parse them into a file to be read by bmcweb. Then using the Redfish EventService design mechanism using inotify to watch that file for updates it could push/SSE updates to any subscribers.\n\nI\u0027ve added a line to this design to indicate the potential future extension of this design.",
+      "parentUuid": "f0be7ccc_03dfdefb",
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "162858d3_dd578d3c",
@@ -438,6 +456,30 @@
       "writtenOn": "2023-10-20T10:45:52Z",
       "side": 1,
       "message": "which tool you used to get these numbers?",
+      "range": {
+        "startLine": 437,
+        "startChar": 0,
+        "endLine": 442,
+        "endChar": 0
+      },
+      "revId": "3d320be94010d668e5f19b526f025bcd644b19cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e219c127_bbdbaa19",
+        "filename": "designs/auditLog.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2023-10-26T21:09:49Z",
+      "side": 1,
+      "message": "I used \u0027time\u0027 on an Ubuntu server performing the curl commands. I then gathered the output into an Excel spreadsheet to compute the statistics using its builtin function. (E.g. Mean -\u003e \u003dAVERAGE(); Median -\u003e \u003dMEDIAN(), etc.)",
+      "parentUuid": "fab9e455_e67e70ff",
       "range": {
         "startLine": 437,
         "startChar": 0,
