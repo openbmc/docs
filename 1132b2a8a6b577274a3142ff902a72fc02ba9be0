@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3519c2f_24f67e86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-10-30T03:37:39Z",
+      "side": 1,
+      "message": "Thank you for your comments, please find out my answer as below.",
+      "parentUuid": "7217e085_920e2940",
+      "revId": "1132b2a8a6b577274a3142ff902a72fc02ba9be0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1dbd782f_3056b091",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-10-27T05:40:02Z",
       "side": 1,
       "message": "But why is this not what you\u0027re proposing? Why is your proposal better?",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 68
+      },
+      "revId": "1132b2a8a6b577274a3142ff902a72fc02ba9be0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c259a82e_313376b5",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-10-30T03:37:39Z",
+      "side": 1,
+      "message": "The Telemetry provides a solution for monitoring Max/Min/Avg/Current values of sensors. But as I investigate, when users create a report, Telemetry creates a buffer to store reading values. If we use the Telemetry to monitor total power consumption with the multiple time frame options (1 day, 2 hours, 3 days ...), so many buffers will be created to store reading values. In the power-manager, we create one buffer to support multiple time frame options.\n\nBeside that, the minimum of Interval is 1000ms (but in Power-monitoring, we expect the maximum of Interval is 1000ms).",
+      "parentUuid": "1dbd782f_3056b091",
       "range": {
         "startLine": 262,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b114a842_3e61d289",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-10-30T03:37:39Z",
+      "side": 1,
+      "message": "In the IPMID and Redfish, they implemented power-limit feature, but it is not enough. Therefore, we have to update ipmid and Redfish to fully support power limit feature.\nYou can refer to below links for more information about the status of ipmid and Redfish.\n- https://github.com/openbmc/phosphor-host-ipmid/blob/master/dcmihandler.cpp#L338\n- https://github.com/openbmc/bmcweb/blob/522377dcb85082da598403e104a44d621b4c2bb4/redfish-core/lib/power.hpp#L120",
+      "parentUuid": "be5f7f50_42338141",
+      "range": {
+        "startLine": 268,
+        "startChar": 35,
+        "endLine": 269,
+        "endChar": 12
+      },
+      "revId": "1132b2a8a6b577274a3142ff902a72fc02ba9be0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "201ceb87_0f3f85a0",
@@ -77,6 +143,24 @@
       "writtenOn": "2023-10-27T05:40:02Z",
       "side": 1,
       "message": "If you\u0027re asking for a new repository can you fill out a technical oversight forum issue?\n\nhttps://github.com/openbmc/technical-oversight-forum/issues/new?assignees\u003d\u0026labels\u003drepository\u0026projects\u003d\u0026template\u003drepo_request.md\u0026title\u003d",
+      "revId": "1132b2a8a6b577274a3142ff902a72fc02ba9be0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75546d5f_00946a6b",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-10-30T03:37:39Z",
+      "side": 1,
+      "message": "Yes, I will update later when this Design is approved",
+      "parentUuid": "201ceb87_0f3f85a0",
       "revId": "1132b2a8a6b577274a3142ff902a72fc02ba9be0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
