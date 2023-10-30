@@ -16,6 +16,230 @@
       "message": "Hi Patrick, this design doc has been updated after a discussion with Jeremy Kerr. Now we have agreed on a single SPDM daemon design. Please help take a look, thanks!",
       "revId": "7e77281d62dc5a716cdf02b40e1c2e74a346d0ee",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7bfe244_415f713e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-30T23:53:39Z",
+      "side": 1,
+      "message": "Hi Zhichuang, broadly the proposal seems reasonable to me and I don\u0027t have any particular architectural concerns. I do have some implementation queries and formatting requests in-line. Thanks for the write-up!",
+      "revId": "7e77281d62dc5a716cdf02b40e1c2e74a346d0ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93f3a42e_a1cb5a32",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-30T23:53:39Z",
+      "side": 1,
+      "message": "Typo: component",
+      "range": {
+        "startLine": 92,
+        "startChar": 66,
+        "endLine": 92,
+        "endChar": 75
+      },
+      "revId": "7e77281d62dc5a716cdf02b40e1c2e74a346d0ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eeeb68e_49f86dab",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-30T23:53:39Z",
+      "side": 1,
+      "message": "Can you please add a link to the implementation?",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 65
+      },
+      "revId": "7e77281d62dc5a716cdf02b40e1c2e74a346d0ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74af741b_453ee544",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-30T23:53:39Z",
+      "side": 1,
+      "message": "Can you please mark-up `ComponentIntegrity` and `TrustedComponent` as fixed-width (backticks), that will help them stand out in the rendered document.\n\nPlease audit the whole document for this as I\u0027ve seen a few places where this change could be made.",
+      "range": {
+        "startLine": 105,
+        "startChar": 25,
+        "endLine": 105,
+        "endChar": 64
+      },
+      "revId": "7e77281d62dc5a716cdf02b40e1c2e74a346d0ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a21b19f_298dd8b7",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-30T23:53:39Z",
+      "side": 1,
+      "message": "s/binded/bound/ 😊",
+      "range": {
+        "startLine": 109,
+        "startChar": 26,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "7e77281d62dc5a716cdf02b40e1c2e74a346d0ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94094c63_9c93357c",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-30T23:53:39Z",
+      "side": 1,
+      "message": "I think this motivates some discussion of an (internal?) transport abstraction. Do you have thoughts there? Can you unpack them in the text for us if so?\n\nTHe PLDM stack might be a useful reference. In libpldm we provide a transport abstraction that\u0027s used by PLDM so most of the code doesn\u0027t have to care about how it\u0027s talking to a device, only that it can:\n\nhttps://github.com/openbmc/libpldm/blob/main/include/libpldm/transport.h\n\nAn equivalent for SPDM would likely be useful.\n\nActually, does libspdm support something like that already?",
+      "range": {
+        "startLine": 110,
+        "startChar": 46,
+        "endLine": 112,
+        "endChar": 30
+      },
+      "revId": "7e77281d62dc5a716cdf02b40e1c2e74a346d0ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "578318bd_f3eefbf6",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-30T23:53:39Z",
+      "side": 1,
+      "message": "Why on the command-line? What\u0027s driving that statement? Can we add some more justification there? I have no background on PCIe-DOE though, so this is potentially an ignorant query/request 😊",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 48
+      },
+      "revId": "7e77281d62dc5a716cdf02b40e1c2e74a346d0ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb81666e_893e3fa1",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-30T23:53:39Z",
+      "side": 1,
+      "message": "Backticks for fixed-width again here.",
+      "range": {
+        "startLine": 138,
+        "startChar": 50,
+        "endLine": 139,
+        "endChar": 21
+      },
+      "revId": "7e77281d62dc5a716cdf02b40e1c2e74a346d0ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c516ce3_dd11eb0c",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-30T23:53:39Z",
+      "side": 1,
+      "message": "Backticks for fixed-width again here",
+      "range": {
+        "startLine": 147,
+        "startChar": 39,
+        "endLine": 147,
+        "endChar": 63
+      },
+      "revId": "7e77281d62dc5a716cdf02b40e1c2e74a346d0ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa6033fd_9cfe2f95",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-30T23:53:39Z",
+      "side": 1,
+      "message": "Backticks for these objects as well",
+      "range": {
+        "startLine": 186,
+        "startChar": 45,
+        "endLine": 187,
+        "endChar": 33
+      },
+      "revId": "7e77281d62dc5a716cdf02b40e1c2e74a346d0ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
