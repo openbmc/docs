@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a7e5da1_a6ce7b3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-31T00:10:25Z",
+      "side": 1,
+      "message": "Hi Thang, thanks for the updates. I think there\u0027s still a little more to unpack in the `Alternatives Considered` section so I\u0027ve requested some changes. I\u0027m hoping that we can strengthen the argument with a bit more information there. If so, I think I\u0027m happy with the proposal, so I hope that we only need one more pass.",
+      "revId": "a1e2b47401650421bd5ccdf7bbeda07c9c6e6905",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67ee5df8_591794db",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-31T00:10:25Z",
+      "side": 1,
+      "message": "Can we change the implementation of the telemetry daemon? What are the impacts of that? Is it undesirable? If so, why?\n\nCan you please unpack the answers to these questions in the text?",
+      "range": {
+        "startLine": 264,
+        "startChar": 70,
+        "endLine": 268,
+        "endChar": 19
+      },
+      "revId": "a1e2b47401650421bd5ccdf7bbeda07c9c6e6905",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a42c1501_004d5491",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-31T00:10:25Z",
+      "side": 1,
+      "message": "What\u0027s the constraint that forces a minimum polling period of 1000ms? Can we make the telemetry daemon poll faster, or exploit `PropertiesChanged` signals? If that\u0027s undesirable, why?\n\nCan you please unpack the answer to these questions in the text?",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 63
+      },
+      "revId": "a1e2b47401650421bd5ccdf7bbeda07c9c6e6905",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f04e968d_76481156",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-10-31T00:10:25Z",
+      "side": 1,
+      "message": "Are there any other reasons that reworking the telemetry daemon is not desirable? For example, having the telemetry daemon adjust the system power caps feels a bit out-of-scope. If that argument makes sense, then adding it to the document would help motivate keeping the implementation out of telemetry.",
+      "revId": "a1e2b47401650421bd5ccdf7bbeda07c9c6e6905",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
