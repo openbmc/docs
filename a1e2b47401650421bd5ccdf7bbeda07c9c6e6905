@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7cfdc59_ba3115b2",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-11-03T07:25:42Z",
+      "side": 1,
+      "message": "\u003e Can we change the implementation of the telemetry daemon? What are the impacts of that? Is it undesirable? If so, why?\n\nThe Telemetry design follow `Redfish Telemetry White Paper` specification (https://www.dmtf.org/sites/default/files/standards/documents/DSP2051_1.0.1.pdf). We should not modify Telemetry to adapt with power-manager application.\n\u003e \n\u003e Can you please unpack the answers to these questions in the text?\n\nWhat do you think if I update those statement to this one:\n\"To monitor sensor\u0027s values, the Telemetry has to create buffer to store reading values for each metric report. If users want to monitor Max/Min/Avg of a sensor in a time frame (E.g: 1 hour), users have to create 3 different metric reports, and the Telemetry has to create 3 buffers to store reading values. In case user want to monitor Max/Min/Avg total power consumption in multiple time frames (E.g: 1 hour, 5 hours, 1 day ...), the Telemetry has to create so much buffer to store reading values for each time frame. On the other side, power-manager only uses 1 buffer to store reading values of total power consumption.\"",
+      "parentUuid": "67ee5df8_591794db",
+      "range": {
+        "startLine": 264,
+        "startChar": 70,
+        "endLine": 268,
+        "endChar": 19
+      },
+      "revId": "a1e2b47401650421bd5ccdf7bbeda07c9c6e6905",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a42c1501_004d5491",
         "filename": "designs/power-manager.md",
         "patchSetId": 19
@@ -120,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5ff4803_3ebb2af3",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-11-03T07:25:42Z",
+      "side": 1,
+      "message": "\u003e What\u0027s the constraint that forces a minimum polling period of 1000ms? Can we make the telemetry daemon poll faster, or exploit `PropertiesChanged` signals? If that\u0027s undesirable, why?\n\nThe `Redfish Telemetry White Paper` is using `CollectionDuration` property to indicate the Interval. And this property is follow ISO 8601, the smallest time units is `seconds\". You can refer to https://en.wikipedia.org/wiki/ISO_8601#Durations for more information.\n\u003e \n\u003e Can you please unpack the answer to these questions in the text?\n\nWhat do you think if I update it to:\n\"The `Redfish Telemetry White Paper` is using `CollectionDuration` property to indicate the Interval. And this property is follow ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601#Durations), the smallest time units is `seconds\". Therefore the minimum of Interval is 1000ms (but in Power-monitoring, we expect the maximum of Interval is 1000ms)\"",
+      "parentUuid": "a42c1501_004d5491",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 63
+      },
+      "revId": "a1e2b47401650421bd5ccdf7bbeda07c9c6e6905",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f04e968d_76481156",
         "filename": "designs/power-manager.md",
         "patchSetId": 19
@@ -131,6 +179,24 @@
       "writtenOn": "2023-10-31T00:10:25Z",
       "side": 1,
       "message": "Are there any other reasons that reworking the telemetry daemon is not desirable? For example, having the telemetry daemon adjust the system power caps feels a bit out-of-scope. If that argument makes sense, then adding it to the document would help motivate keeping the implementation out of telemetry.",
+      "revId": "a1e2b47401650421bd5ccdf7bbeda07c9c6e6905",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "536d5c57_74e372ab",
+        "filename": "designs/power-manager.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2023-11-03T07:25:42Z",
+      "side": 1,
+      "message": "The Telemetry is design to monitor sensors value, not control the power, therefore it seems updating Telemetry to control power is out-of-scope. Using Telemetry to implement power-monitor feature wastes so much resource to create buffers to store reading values. I think we should keep current implementation of Telemetry.",
+      "parentUuid": "f04e968d_76481156",
       "revId": "a1e2b47401650421bd5ccdf7bbeda07c9c6e6905",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
