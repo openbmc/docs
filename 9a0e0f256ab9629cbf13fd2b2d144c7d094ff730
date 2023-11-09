@@ -1,0 +1,238 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30dcc84a_05939ff6",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "We need more contents here (or in the design).  What specifically is this daemon going to do?  What existing dbus objects is it expecting to interact with?  What dbus interfaces need to be hosted by this daemon?  What new dbus interfaces are going to be proposed to facilitate this requirement?",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 66
+      },
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d74845b_6fc29676",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "Could be?  Or will be?  This is where you\u0027re defining the design.  You shouldn\u0027t have unanswered because it directly impacts your implementation.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 22
+      },
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "805d2d07_6d18216e",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "Do these need to be \"libraries\"?  I don\u0027t think we have any need for that.  We should structure this like pldmd, right?  Where providers are just part of the daemon.",
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27c067ed_a4ff90e8",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "Why?",
+      "range": {
+        "startLine": 80,
+        "startChar": 57,
+        "endLine": 81,
+        "endChar": 12
+      },
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f124df4_b5e45370",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "Definitely need more examples here.",
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59d3274e_bdc002da",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "Please point to this proposed dbus API.  I can\u0027t picture it from this sentence.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 43
+      },
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bebf44a9_c41554c8",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "Why would we be sending raw CCI messages?  We should not be exposing protocol details to the rest of the BMC.  Present these as dbus objects or listen to existing dbus objects (and react to signals from them) to initiate requests.",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 20
+      },
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94c683e8_2c9b7ddd",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "Can you give a concrete example?  I don\u0027t know why we\u0027d need to talk to a single remote device over multiple channels.",
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d35e96c7_f22a391e",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "Alternatives that should be discussed:\n\n- CCI as a shared library.\n- Added to an existing MCTP daemon.\n- Added to pldmd.\n- Added to libmctp (or libpldm).",
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "179bbb4f_e0ac2ff4",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "Please fill in.",
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f47bac1_63f2d3bc",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "Delphine is not eligible to be a maintainer.  We will need to have a TOF member act as a proxy maintainer to start with.  That will probably end up being me.",
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af8d94f0_acc978a4",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-09T03:41:36Z",
+      "side": 1,
+      "message": "Please fill in.  We should, at a minimum, have googletest.\n\nWill we be doing any tests in openbmc-test-automation?",
+      "revId": "9a0e0f256ab9629cbf13fd2b2d144c7d094ff730",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
