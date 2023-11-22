@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8f3c4e7_62eb8500",
+        "filename": "designs/gpio-monitor-lib.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-22T22:02:19Z",
+      "side": 1,
+      "message": "I\u0027m having trouble determining what the scope/structure of this \"library\" looks like.  We generally don\u0027t want to have shared libraries.  If this is valuable to have as a shared library, I\u0027d be curious why it shouldn\u0027t go into the C++ bindings of libgpiod.\n\nIf all that is being proposed is a refactor of phosphor-gpio-monitor for consistency, go for it.  We don\u0027t necessarily need a project-wide design doc for that.\n\nIf you really do want a new shared library, I think this document needs a lot more content/context as to what the shared library will provide and what the API will look like.  (And we would need the alternatives considered filled out with why libgpiod enhancements are off the table.)",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 79
+      },
+      "revId": "5774459810d5801f0b4586a6a4dfc901a5c9af8f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
