@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0923989e_e545c763",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-11-27T23:23:53Z",
+      "side": 1,
+      "message": "Hi Chris, thanks again for the updates. I\u0027ve got a couple of comments regarding formatting and an outstanding community query on integrating devicetree support directly into EM, but other than that it\u0027s starting to feel sensible.\n\nHowever, can you please mark old conversations that we\u0027ve worked through as resolved so it\u0027s clear we\u0027re making progress?",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94f235a7_070934f8",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-11-27T23:23:53Z",
+      "side": 1,
+      "message": "Can we add the discussion about exposing the reserved memory under Linux to the \"Alternatives Considered\" section?",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 44,
+        "endChar": 48
+      },
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3f49fd6_1041f54f",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-11-27T23:23:53Z",
+      "side": 1,
+      "message": "This link fails to render correctly in the document:\n\nhttps://gerrit.openbmc.org/plugins/gitiles/openbmc/docs/+/970732c63eeadc74254bb5c39a68e4a79216db5a/designs/oem/hpe/hpe_hw_detect_no-fru.md#background-and-references\n\nNote that markdown generally supports \"reference links\" that allow you to separate the URL from the hyperlink markup:\n\nhttps://github.github.com/gfm/#reference-link\n\nYou can do this instead:\n\n```\n... [\u0027model\u0027 and \u0027serial-number,\u0027 which both have well-known paths in the device tree root][dt-spec-chap3-root-node].\n\n[dt-spec-chap3-root-node]: https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst#root-node\n```",
+      "range": {
+        "startLine": 47,
+        "startChar": 27,
+        "endLine": 49,
+        "endChar": 113
+      },
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "149d5e75_53e1a7c5",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-11-27T23:23:53Z",
+      "side": 1,
+      "message": "I\u0027m wondering whether we just glue devicetree probe support directly into EM and save the DBus side of things.\n\nI\u0027ve brought it up on Discord also:\n\nhttps://discord.com/channels/775381525260664832/819741065531359263/1178834869351092254",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 10
+      },
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f45b4523_4075f54d",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-11-27T23:23:53Z",
+      "side": 1,
+      "message": "I wouldn\u0027t say \"written to file paths in ...\" but rather \"exposed as devicetree attributes\"",
+      "range": {
+        "startLine": 97,
+        "startChar": 20,
+        "endLine": 97,
+        "endChar": 27
+      },
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3664310_0c24ed18",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-11-27T23:23:53Z",
+      "side": 1,
+      "message": "A formatting comment rather than a content comment, but can you make the various cases, the pros and the cons subheaders so we can more easily distinguish them from the properties?\n\n```\n## Alternatives Considered\n\n### All HW ID data is ...\n\n#### Pros\n1. ...\n2. ...\n\n#### Cons\n1. ...\n2. ...\n```\n\nAlso, instead of bullets it\u0027s much more useful to use numbered lists so we can discuss the properties by reference to their number.",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
