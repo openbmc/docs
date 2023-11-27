@@ -286,6 +286,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59db7a83_3e8c1b99",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-11-27T16:44:44Z",
+      "side": 1,
+      "message": "I did confirm that you were right about how the device tree was being modified. I\u0027ve corrected that in the new version of the doc. Thanks again for all the links and info, it\u0027s all been very valuable hep!",
+      "parentUuid": "b9fbd414_83bcf858",
+      "range": {
+        "startLine": 42,
+        "startChar": 47,
+        "endLine": 42,
+        "endChar": 66
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b83bf4af_3992b4b0",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 7
@@ -534,6 +558,24 @@
       "side": 1,
       "message": "I really appreciate the writeup and the links, thanks!\n\nI hadn\u0027t considered it might be an option to define arbitrarily named device-tree nodes for things like \u0027pca_sn\u0027 (a serial number assigned after manufacture, if I remember correctly) instead of putting everything under chosen/ \n\n(...I *am* understanding that part of your suggestion correctly, right?)\n\nI also wasn\u0027t aware of the devicetree-specification docs at that link before now, and it looks loaded with useful info in a much less dry-looking format that the docs I\u0027ve been reading re: device-tree so far. So extra thanks for taking the time to link \u0027em.\n\nI\u0027ll give this (and your other comments) some solid consideration before continuing on with my next draft.",
       "parentUuid": "778c2506_fac69969",
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8e72b22_f523ac25",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-11-27T16:44:44Z",
+      "side": 1,
+      "message": "Thanks again for the suggestions -- after some discussion and some proof of concept tests, the new version of this \u0027how to detect HPE hardware\u0027 design doc now focuses on *just* the well known device-tree \u0027model\u0027 and \u0027serial-number\u0027 paths in device-tree for now.\n\nMy thinking is that \u0027model\u0027 is enough to identify the HW to Entity-Manager, and \u0027serial-number\u0027 is low hanging fruit (won\u0027t be used for HW ID, but we\u0027ll very likely want to provide serial number info over redfish in the future)\n\nIf/when this design is approved and implemented, I expect to revisit this doc in the future to add more \u0027nice to have\u0027 HPE-specific fields into the mix (likely gated behind a model check, so other platforms won\u0027t be affected) -- maybe under a /proc/device-tree/baseboard/ path, or something similar. \n\nI assume additional discussion will be required since we\u0027d be coming up with arbitrary nodes to store info in, which is why I chose to leave it out while we get something \u0027working\u0027 off the ground.",
+      "parentUuid": "6ada65c0_f3ac9de7",
       "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -789,6 +831,30 @@
       "side": 1,
       "message": "Will do. After discussing things with some folks at HPE, it was brought to my attention that the data is actually read by code in \u0027BootBlock,\u0027 not in u-BootBlock. \n\nu-BootBlock\u0027s job is just to validate BootBlock with a built-in public key before allowing the rest of the boot process to continue.\n\nThe next draft will correct this, and will expand further on the process.",
       "parentUuid": "ad4738a6_f4ffb690",
+      "range": {
+        "startLine": 74,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 53
+      },
+      "revId": "51d31d6bebb8ce70bc560b08c655bfaebef12df0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03b2b649_355b224c",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-11-27T16:44:44Z",
+      "side": 1,
+      "message": "I\u0027ve now updated info re: the HPE boot process - let me know if more detail would be preferred, thanks!",
+      "parentUuid": "a257db20_102c1295",
       "range": {
         "startLine": 74,
         "startChar": 14,
