@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f6902ba_012ea715",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-11-28T23:18:39Z",
+      "side": 1,
+      "message": "\u003e Is the access channel to the secure element only available during the early boot phase, or can the HW ID data still be retrieved once Linux is up and running on the BMC?\n\nI hadn\u0027t got a direct answer to that by my inferred answer was \"no\", but it\u0027s not clear to me why it\u0027s \"no\" (maybe some e.g. TrustZone-style separation of privileged hardware?). Clarification of the mechanics would be a good addition to the document.\n\n\u003e If the former, could we just have u-boot drop the entire blob into a designated FDT node?\n\nI think that\u0027s where things are at now? There was also discussion about exposing the mentioned reserved memory via Linux, but it seems that\u0027s not preserved long enough in the boot process? It\u0027s not clear to me whether that is a requirement, a constraint, or some kind of engineering decision that might have more flexibility.\n\n\u003e Does the proprietary data format preclude having an open-source parser for it?\n\nI think that\u0027s in their u-boot fork that transforms the data in the reserved memory into attributes in the devicetree.",
+      "parentUuid": "efb4633f_267a3e16",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94f235a7_070934f8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 9
@@ -158,6 +176,24 @@
       "side": 1,
       "message": "\u003e Also, instead of bullets it\u0027s much more useful to use numbered lists so we can discuss the properties by reference to their number.\n\nNot to get too bikesheddy here, but FWIW I don\u0027t 100% agree there -- IMO numbering is more applicable when there is a particular meaningful order for the items (like steps in a sequence, whereas this is basically just a set with an arbitrary order imposed for the purpose of writing it down).  It also incurs more ancillary book-keeping work if any adjustments are made (adding or removing at anything but the end of the list implies a bunch of renumbering of existing entries).  The markdown feature of allowing you to write just a plain `1.` on every entry and have \"real\" numbers assigned when rendered helps there, but then you kinda defeat the intended purpose here in that you lose the ability to usefully refer to item number N when looking at the un-rendered source (which for me anyway is a pretty large fraction of the time).",
       "parentUuid": "f3664310_0c24ed18",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f37c2ea_6c3a24e0",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-11-28T23:18:39Z",
+      "side": 1,
+      "message": "It\u0027s less about an ordering and more about a unique identifier. It just happens to be the case that Markdown\u0027s unique identifiers also provide ordering. I also don\u0027t find numbering that much of a burden when there\u0027s only a handful of related elements. I didn\u0027t do a survey to figure out whether I\u0027m in the minority there though 😊",
+      "parentUuid": "9e8a2897_e843e033",
       "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
