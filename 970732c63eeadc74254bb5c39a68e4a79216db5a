@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "efb4633f_267a3e16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-11-28T23:07:20Z",
+      "side": 1,
+      "message": "Apologies for being fairly late to the party here -- I *think* I\u0027ve read or at least skimmed through all the discussion that\u0027s taken place here (hopefully I haven\u0027t missed something where my thoughts here have already been addressed) but: to take a step back for a moment, it seems like there are two relatively independent aspects in consideration here:\n\n - how to retrieve hardware ID data from where it\u0027s stored\n - the format of that data and how to parse it into useful metadata fields\n \nThe problem at hand is that HPE hardware does non-standard things for both.\n\nLooking at the existing state of things, E-M\u0027s fru-device daemon only supports the standard IPMI FRU data format, but it *is* capable of retrieving that data via different means (manual userspace I2C transactions, reading from an eeprom file provided by a kernel driver, or from a regular file in `/etc`).  In a hypothetical world in which HPE systems still had their hardware ID data stored in the secure element but did so in the standard IPMI FRU format, I think the approach to take would be to create a means to plumb that data into the existing fru-device daemon.\n\nLooking at the other side, in another hypothetical in which HPE systems used the same proprietary data format they do but stored it in a standard I2C eeprom, I\u0027d be inclined to just add some logic to fru-device to make it able to recognize and parse the alternate format -- in fact, while it\u0027s been a bit dormant for a while, I\u0027ve actually made some efforts on that front previously (for a different format, obviously): https://gerrit.openbmc.org/c/openbmc/entity-manager/+/49341\n\nSo given the above, what I\u0027m wondering is if we could just make fru-device handle it itself, without introducing any new daemons or the like.  I guess my open question would be:\n\n - Is the access channel to the secure element only available during the early boot phase, or can the HW ID data still be retrieved once Linux is up and running on the BMC?\n   - If the latter, would it be feasible to create a driver that would expose that data as a file in a way similar to how I2C eeprom data is exposed in sysfs?\n   - If the former, could we just have u-boot drop the entire blob into a designated FDT node?\n\n - Does the proprietary data format preclude having an open-source parser for it?",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94f235a7_070934f8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 9
@@ -123,6 +140,24 @@
       "writtenOn": "2023-11-27T23:23:53Z",
       "side": 1,
       "message": "A formatting comment rather than a content comment, but can you make the various cases, the pros and the cons subheaders so we can more easily distinguish them from the properties?\n\n```\n## Alternatives Considered\n\n### All HW ID data is ...\n\n#### Pros\n1. ...\n2. ...\n\n#### Cons\n1. ...\n2. ...\n```\n\nAlso, instead of bullets it\u0027s much more useful to use numbered lists so we can discuss the properties by reference to their number.",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e8a2897_e843e033",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-11-28T23:07:20Z",
+      "side": 1,
+      "message": "\u003e Also, instead of bullets it\u0027s much more useful to use numbered lists so we can discuss the properties by reference to their number.\n\nNot to get too bikesheddy here, but FWIW I don\u0027t 100% agree there -- IMO numbering is more applicable when there is a particular meaningful order for the items (like steps in a sequence, whereas this is basically just a set with an arbitrary order imposed for the purpose of writing it down).  It also incurs more ancillary book-keeping work if any adjustments are made (adding or removing at anything but the end of the list implies a bunch of renumbering of existing entries).  The markdown feature of allowing you to write just a plain `1.` on every entry and have \"real\" numbers assigned when rendered helps there, but then you kinda defeat the intended purpose here in that you lose the ability to usefully refer to item number N when looking at the un-rendered source (which for me anyway is a pretty large fraction of the time).",
+      "parentUuid": "f3664310_0c24ed18",
       "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
