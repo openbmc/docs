@@ -20,6 +20,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb05d9e6_9cd18e62",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-11-30T21:43:23Z",
+      "side": 1,
+      "message": "nit: typo.",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 15
+      },
+      "revId": "288fcecf61bd7e5f42aa7468567ab203763c7741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f4320ea_4ad6ca1f",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-11-30T21:43:23Z",
+      "side": 1,
+      "message": "These seem like requirements, not a design.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 33
+      },
+      "revId": "288fcecf61bd7e5f42aa7468567ab203763c7741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd4597a1_4ee72c41",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-11-30T21:43:23Z",
+      "side": 1,
+      "message": "Maybe this is just how i\u0027m reading the doc, but at this point, \"trusted component\" isn\u0027t really defined.  Does trusted component mean a physical component (an add in card, cpu, ect) or a ROT?  If we\u0027re going off the Redfish definition of TrustedComponent (ie a ROT) we need to say that.",
+      "range": {
+        "startLine": 68,
+        "startChar": 24,
+        "endLine": 68,
+        "endChar": 41
+      },
+      "revId": "288fcecf61bd7e5f42aa7468567ab203763c7741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8db71525_f4bfc91b",
         "filename": "designs/redfish-spdm-attestation.md",
         "patchSetId": 12
@@ -79,6 +148,30 @@
       "side": 1,
       "message": "Can we go ahead and change this text then to suggest we\u0027re going to request a new repo?  We probably should open an issue to the TOF to create it also.",
       "parentUuid": "b7b1f607_14bef077",
+      "range": {
+        "startLine": 247,
+        "startChar": 58,
+        "endLine": 248,
+        "endChar": 47
+      },
+      "revId": "288fcecf61bd7e5f42aa7468567ab203763c7741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "588db413_0a15e01d",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-11-30T21:43:23Z",
+      "side": 1,
+      "message": "Generally designs are intended to be holistic across OpenBMC, not just a single daemons worth of implementation.  As a guideline, we don\u0027t check in code into bmcweb without both the interfaces present in PDI and a functional backend being available in OpenBMC.  Not requiring that in the past has caused significant thrash (see bifurcated virtual media implementations).  Happy to discuss if someone thinks there\u0027s a way to support a non-upstream backend, but the statement in the doc makes me think the order is incorrect, we should be approving an SPDM backend design first, then follow up with bmcweb which hopefully doesn\u0027t even need a design doc, because it\u0027s just following the normal DBus -\u003e Redfish conversion rules.\n\nWith that said, this design lists unit tests (redfish service validator), and integration tests, so I\u0027m a little surprised that this design doesn\u0027t include a backend, given that a backend would be required for any of the below to pass.  \"Design for SPDM Attestation D-Bus Daemon, demonstrating how to fetch the attestation results over D-Bus\" also would imply that this new daemon would require a repo?\n\nI suspect those two opposing things need clarified in the text of this commit.\n\nJust FYI to all, despite my name being listed as a contributor, I don\u0027t have a lot to do with the current implementation anymore, so I will leave it up to others to work through whether a repo is required and either updating the doc with that intent, or getting the repo request started with the TOF.  I\u0027d note that the starter patchset of getting the schemas enabled is here:\n\nhttps://gerrit.openbmc.org/c/openbmc/bmcweb/+/61702\n\nFeel free to use that as a starting point, or do your own thing.",
+      "parentUuid": "8db71525_f4bfc91b",
       "range": {
         "startLine": 247,
         "startChar": 58,
