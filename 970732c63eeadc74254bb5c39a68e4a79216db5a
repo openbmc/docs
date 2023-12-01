@@ -126,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34fb3726_2790e4db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-01T22:14:34Z",
+      "side": 1,
+      "message": "\u003e I\u0027m wondering is if we could just make fru-device handle it itself, without introducing any new daemons or the like\n\nInterestingly, the very first thing I submitted on this topic was a block of code proposed for FRU-Device that could read from \u0027arbitrary paths in the filesystem\u0027 (but the HPE-example usage was setup to read HPE data from inside the device-tree/chosen node).\n\n\nI called it a \u0027managed FRU\u0027 at the time (got pushback on that name), but we\u0027ll probably turn it into a separate daemon and call it something else once a design doc is accepted, at the code here is modified where needed to fit the \u0027new\u0027 design.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/65669\n   \nOne of the bigger pushbacks was on the idea that 1 daemon should be responsible for only 1 channel, and that FRU-Device is aimed at EEPROM over I2C reads (with a coding-convenience exception for reading an EEPROM blob from a location in the OS filesystem).\n\n-------------\n\n\u003eIs the access channel to the secure element only available during the early boot phase, or can the HW ID data still be retrieved once Linux is up and running on the BMC?\n\nThe secure element storing the data is not directly accessible by BMC. An HPE bootloader runs before u-Boot, accesses the secure element, and uses a predetermined location in RAM to pass the data along for pickup by u-Boot code.\n \nThe location in RAM is not protected, so there\u0027s no guarantee of the contents after u-Boot\u0027s stage finishes and the rest of the boot process begins (even though it *theoretically* should be unchanged in the short term).\n \n -----------------------\n \n\u003eDoes the proprietary data format preclude having an open-source parser for it?\n \nThe parser is open source and can be found in HPE\u0027s forked u-boot code @ https://github.com/HewlettPackard/gxp-uboot/\n \n -----------------------------\n \n\u003eThere was also discussion about exposing the mentioned reserved memory via Linux, but it seems that\u0027s not preserved long enough in the boot process? It\u0027s not clear to me whether that is a requirement, a constraint, or some kind of engineering decision that might have more flexibility.\n\nAs my current understanding goes, we can reserve memory via u-Boot making modifications to the flat device-tree, but we can\u0027t define data to populate that memory space from there. \n\nAs I understand it, by the time the modified flat device tree has been consumed by the kernel and the memory is actually reserved, we don\u0027t have guarantees that the RAM location u-Boot would have read from hasn\u0027t been overwritten (though it\u0027s \"probably\" fine).",
+      "parentUuid": "a3d33e6e_4463e72a",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94f235a7_070934f8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 9
@@ -314,6 +332,30 @@
       "side": 1,
       "message": "Reflecting on it I think exposing a devicetree probe capability opens up opportunities much wider than are necessary to meet HP\u0027s needs. I feel that\u0027s motivating in your questions Milton and is reasonable cause for concern. Maybe we should also reconsider whether injecting the data into the devicetree is the right thing to do at all, but we have been going around on it a bit, and it feels like we\u0027ll get a bit bogged down. Maybe it\u0027s best if we don\u0027t expose the devicetree capability to the EM config files and chug on with the D-Bus probe approach. We could at least contain exploitation of the devicetree more easily that way.",
       "parentUuid": "7be8515a_7d3a34c4",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 10
+      },
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac95d4e5_f5ceb407",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-01T22:14:34Z",
+      "side": 1,
+      "message": "If we\u0027re leaning back towards a specific daemon for reading from device-tree paths, I\u0027m definitely good with that.",
+      "parentUuid": "efefd645_5812a018",
       "range": {
         "startLine": 88,
         "startChar": 0,
