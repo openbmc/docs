@@ -95,6 +95,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61ac7d8e_d0e49ba8",
+        "filename": "designs/make-staticntpservers-network-irrelevant.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-12-01T07:29:07Z",
+      "side": 1,
+      "message": "There is NTP setting as well in\nhttps://www.freedesktop.org/software/systemd/man/latest/timesyncd.conf.html#NTP\u003d",
+      "parentUuid": "491a1f51_2735bae9",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "c99741a99463efc5eeaa03715b5382c3213c413e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a350022c_dae73f65",
@@ -108,6 +132,30 @@
       "writtenOn": "2023-12-01T07:17:09Z",
       "side": 1,
       "message": "This is the same design principle was followed for NTP and NameServer/DNS, \nNameServer/NTP server can be different for different networks, Hence tied to the ethernetInterface.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 12
+      },
+      "revId": "c99741a99463efc5eeaa03715b5382c3213c413e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "757fcac0_811336e0",
+        "filename": "designs/make-staticntpservers-network-irrelevant.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2023-12-01T07:29:07Z",
+      "side": 1,
+      "message": "This doc is to propose to sets NTP servers that apply globally in BMC, instead of per ethernet interface.\n\nSo that bmcweb could use the setting directly, instead of querying all the ethernet interfaces.",
+      "parentUuid": "a350022c_dae73f65",
       "range": {
         "startLine": 20,
         "startChar": 0,
