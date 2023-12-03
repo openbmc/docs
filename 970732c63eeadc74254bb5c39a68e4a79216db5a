@@ -144,6 +144,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e6878e5_68140074",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-03T23:34:40Z",
+      "side": 1,
+      "message": "\u003e The secure element storing the data is not directly accessible by BMC. An HPE bootloader runs before u-Boot, accesses the secure element\n\nYou keep stating this and not explaining the mechanics of it. How does this isolation work? What is it that prevents u-boot from accessing the secure element? How does the HPE bootloader talk to the secure element? Is it attached via I2C? SPI? 1W? A bunch of stuff here is unclear and I think that lack of clarity is preventing us from providing further feedback.\n\n\u003e and uses a predetermined location in RAM to pass the data along for pickup by u-Boot code.\n\u003e\n\u003e The location in RAM is not protected, so there\u0027s no guarantee of the contents after u-Boot\u0027s stage finishes and the rest of the boot process begins (even though it theoretically should be unchanged in the short term).\n\nI\u0027m going to poke at this claim a bit more. u-boot has the ability to reserve chunks of memory for various reasons. You can find a bunch of related code in https://github.com/HewlettPackard/gxp-uboot/blob/v2020.10-gxp-openbmc/common/board_f.c by searching `reserve_`. I think it\u0027s possible to make this all line up so we can expose the data to userspace under linux via reserved memory.\n\n\u003e As my current understanding goes, we can reserve memory via u-Boot making modifications to the flat device-tree, but we can\u0027t define data to populate that memory space from there. \n\nBut if you define the reserved memory region as the region that\u0027s already populated by the HPE bootloader, then there\u0027s no need to populate it, as it\u0027s already populated. However, if for some reason they need to be different locations, then it should just be a `memcpy()`?",
+      "parentUuid": "34fb3726_2790e4db",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94f235a7_070934f8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 9
@@ -356,6 +374,30 @@
       "side": 1,
       "message": "If we\u0027re leaning back towards a specific daemon for reading from device-tree paths, I\u0027m definitely good with that.",
       "parentUuid": "efefd645_5812a018",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 10
+      },
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f67ab8d_d06abb11",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-03T23:34:40Z",
+      "side": 1,
+      "message": "Okay. Though first I think we need to resolve our revisit of the reserved memory approach above.",
+      "parentUuid": "ac95d4e5_f5ceb407",
       "range": {
         "startLine": 88,
         "startChar": 0,
