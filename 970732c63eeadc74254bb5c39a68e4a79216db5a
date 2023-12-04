@@ -162,6 +162,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c4270a28_8bc9acee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-04T15:30:29Z",
+      "side": 1,
+      "message": "The poking is definitely appreciated! \n\nIt had not occurred to me that it would be possible to mark an already-populated space in RAM as \u0027reserved\u0027 and then read from it after boot. I think I\u0027d just assumed the reservation process would wipe the memory clear during boot.\n\nWe\u0027ll do some experimenting and then I\u0027ll get back to you on this. \n\nTo confirm-- assuming using reserved memory path works out and we can dump a blob, then have a daemon (hosted in Entity-Manager, I still assume) parse the HPE format -- is this strongly preferred over using device-tree model and serial-number paths?\n\nI feel like device-tree/model and /serial-number make sense in a \"maybe other entities might have a use for this\" kind of way -- but at the same time, maybe establishing a pathway for reserved memory reads could be just as useful... I think I\u0027ll leave it up to more experienced folks to offer guidance here 😊\n\nI\u0027ll also ask around for the level of detail re: secure element access you\u0027re asking about. Off the top of my head, I believe a proprietary driver that HPE doesn\u0027t own is involved in communicating with the secure element. I believe the driver is authorized for release in HPE\u0027s bootblock, but not elsewhere. I\u0027ll have to ask about the specific communication channel used.",
+      "parentUuid": "2e6878e5_68140074",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94f235a7_070934f8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 9
@@ -398,6 +416,30 @@
       "side": 1,
       "message": "Okay. Though first I think we need to resolve our revisit of the reserved memory approach above.",
       "parentUuid": "ac95d4e5_f5ceb407",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 10
+      },
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57c94d4e_17bc569c",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-04T15:30:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8f67ab8d_d06abb11",
       "range": {
         "startLine": 88,
         "startChar": 0,
