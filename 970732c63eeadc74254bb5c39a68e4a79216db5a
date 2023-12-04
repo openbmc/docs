@@ -180,6 +180,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "940c5ff7_fb6fdc70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-04T22:58:02Z",
+      "side": 1,
+      "message": "\u003e We\u0027ll do some experimenting and then I\u0027ll get back to you on this. \n\nGreat, thanks for continuing to iterate on this with us. It\u0027s a great example of how working with upstream should work (though it\u0027s often squashed by competing pressures).\n\n\u003e To confirm-- assuming using reserved memory path works out and we can dump a blob, then have a daemon (hosted in Entity-Manager, I still assume) parse the HPE format -- is this strongly preferred over using device-tree model and serial-number paths?\n\nReally it depends on the other information. There\u0027s no harm in duplicating the model and serial number data between the devicetree and the blob, but shoving arbitrary data into the devicetree doesn\u0027t immediately sit well with me. It\u0027s not an opaque data transport, it\u0027s a well-defined data structure (with schemas) for describing undiscoverable hardware.\n\n\u003e I\u0027ll also ask around for the level of detail re: secure element access you\u0027re asking about.\n\nThanks for continuing to work with us on this as well 😊",
+      "parentUuid": "c4270a28_8bc9acee",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94f235a7_070934f8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 9
