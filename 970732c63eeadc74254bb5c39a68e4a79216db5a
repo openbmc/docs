@@ -198,6 +198,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "848cb1fc_db7e9f4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-12-05T15:12:38Z",
+      "side": 1,
+      "message": "While any memory can be marked reserved, there are some considerations if you want to relocate the block before passing to the Linux kernel.    Normally U-Boot places itself at the top of RAM (there is a variable to adjust this limit).  In addition you need linear memory for the fit, the kernel and initramfs (or other initrd) copied from the fit.  The kernel decompressor allocates the full kernel image and stack, and then invokes the kernel itself.  The other consideration is that the kernel will allocate memory in at least page chunks, and groups binary pairs up to at least the large page size, so having at least page alignment is good.",
+      "parentUuid": "940c5ff7_fb6fdc70",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94f235a7_070934f8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 9
