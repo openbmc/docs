@@ -252,6 +252,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be63ddd3_f1c860b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-06T23:47:30Z",
+      "side": 1,
+      "message": "\u003e Also - I\u0027ve confirmed that what I said previously about Secure Element communication was correct - the bootloader\u0027s communication with it relies on a 3rd party driver, and there are solid restrictions on how drivers that communicate with the SE can be released.\n\nCan you please add this explanation to the text - it\u0027s useful to know we have more of a political constraint and than a technical constraint.\n\n\u003e What would folks think about a daemon for reading in \u0027model\u0027 and \u0027serial-number\u0027 from device-tree, then separately pulling additional data from reserved memory through a reserved-memory daemon later on? (reserved memory experimentation is ongoing).\n\nThat sounds like a reasonable solution to me. For what it\u0027s worth IBM already does something similar (search for `IBMCompatibleSystem` - thought I think Matt Spinler is moving them away from that towards a generic `Compatible` interface)\"\n\n\u003e An additional detail I\u0027ve recently discovered is that the \u0027model\u0027 value we\u0027re currently looking to rely on for HPE platform IDs actually comes from a separate (CPLD-based memory) device than the rest of the HW ID blob comes from; the HPE u-Boot code just originally grouped the output together under device-tree/chosen as a hidden implementation detail.\n\nPlease also integrate this note into the text.\n\n\u003e That said, I don\u0027t think BMC needs to be \u0027aware\u0027 of the origins of the model value if it\u0027s just getting it from the standard device-tree/model path.\n\nAgreed. However, please make sure the details are in this document so in the future we can understand how we came to whatever decisions we make.",
+      "parentUuid": "7e71ca59_e9f6952c",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94f235a7_070934f8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 9
