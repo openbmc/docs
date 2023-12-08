@@ -324,6 +324,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73bb646b_07b33faf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-08T21:14:42Z",
+      "side": 1,
+      "message": "My suspicion is that it\u0027s more an \u0027in practice\u0027",
+      "parentUuid": "ac770357_1cf40884",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94f235a7_070934f8",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 9
@@ -359,6 +377,30 @@
       "side": 1,
       "message": "Can do. \n\nThe biggest hurdle as I understand it is that we can define a reserved memory space from inside u-Boot through modifications to the \u0027flat\u0027 device-tree, but I wasn\u0027t able to find discussion of methods to pre-populate that reserved memory with data *before* the flat device-tree is consumed by the kernel.\n\nThere\u0027s nothing protecting the chunk of RAM that our u-Boot code is using as a pickup point, so there\u0027s no solid guarantee of the contents after that point (even though they should in theory be unchanged for at least awhile).",
       "parentUuid": "94f235a7_070934f8",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 44,
+        "endChar": 48
+      },
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75629c5f_8eceadce",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-08T21:14:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d1dd061b_b1f87f21",
       "range": {
         "startLine": 42,
         "startChar": 9,
@@ -441,6 +483,30 @@
       "side": 1,
       "message": "Thanks for the tip!",
       "parentUuid": "d3f49fd6_1041f54f",
+      "range": {
+        "startLine": 47,
+        "startChar": 27,
+        "endLine": 49,
+        "endChar": 113
+      },
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0098e82_4025563a",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-08T21:14:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "363cfc6f_0d57e255",
       "range": {
         "startLine": 47,
         "startChar": 27,
@@ -594,6 +660,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d1ae51e_32c5cfdd",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-08T21:14:42Z",
+      "side": 1,
+      "message": "The new draft references another (doesn\u0027t exist yet) OEM/HPE design doc for transporting arbitrary HW ID data via reserved-memory. \n\nThe alternatives considered section now also mentions the pros/cons for reading \u0027model\u0027 through reserved-memory instead of device-tree/model. It also now includes the \u0027what if probes could handle device-tree paths\u0027 pros/cons too.",
+      "parentUuid": "57c94d4e_17bc569c",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 10
+      },
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f45b4523_4075f54d",
@@ -631,6 +721,30 @@
       "side": 1,
       "message": "I\u0027ll do this in the next draft.",
       "parentUuid": "f45b4523_4075f54d",
+      "range": {
+        "startLine": 97,
+        "startChar": 20,
+        "endLine": 97,
+        "endChar": 27
+      },
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b08b010c_17f3bd59",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-08T21:14:42Z",
+      "side": 1,
+      "message": "Shoot - missed this point in the latest draft. I\u0027ll put up another one soon with this correction added too.",
+      "parentUuid": "9b15e31f_e659d5ae",
       "range": {
         "startLine": 97,
         "startChar": 20,
@@ -708,6 +822,24 @@
       "side": 1,
       "message": "I\u0027ll update the formatting here in the next draft.",
       "parentUuid": "3f37c2ea_6c3a24e0",
+      "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "043b295a_21f17782",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-08T21:14:42Z",
+      "side": 1,
+      "message": "Another point I missed in patchset 9, but should have fixed up in patchset 10 shortly.",
+      "parentUuid": "3e5b5252_eb8990f6",
       "revId": "970732c63eeadc74254bb5c39a68e4a79216db5a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
