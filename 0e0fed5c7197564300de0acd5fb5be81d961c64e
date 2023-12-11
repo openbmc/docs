@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f715e044_90002015",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-11T00:02:32Z",
+      "side": 1,
+      "message": "Hi Chris - I\u0027m having fewer design concerns so I think we\u0027re converging on something acceptable. I have a few comments on the structure of the document itself, and another on the content of the blob we retrieve from the secure element.",
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6404d783_8216c5fe",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-11T00:02:32Z",
+      "side": 1,
+      "message": "Some of the sentences here feel redundant. Can you please reword it?\n\nAlso to pick at a detail, my understanding is that it\u0027s not the case there\u0027s \"no direct BMC access\", that implies to me there\u0027s no hardware connection. Perhaps something like:\n\n\u003e The proprietary, HPE-controlled bootblock firmware communicates with a secure element to retrieve portions of the platform vital product data (VPD). It uses a driver whose implementation is strictly license-controlled and cannot be publicly released. The open source portions of the boot chain must adapt to the bootblock\u0027s reserved memory ABI for providing the VPD from the secure element.\n\nAlso I think it\u0027s worth discussing the extent of the other data provided through this interface. I dug up what I think is the relevant code-path in your u-boot fork:\n\nhttps://github.com/HewlettPackard/gxp-uboot/blob/384fc0fef13dae9c1567c1f1a6cdac491e7e2b90/board/hpe/gxp/gxp_board.c#L211-L216\n\nSo it looks like the GXP and PCA (what\u0027s the PCA?) part number and serial number, NIC MAC addresses? Are there other properties too or is this the set?\n\nBecause, you can exploit the `mac-address` property from the `ethernet-controller` devicetree schema to deal with the MAC metadata:\n\nhttps://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/ethernet-controller.yaml?h\u003dv6.7-rc5#n20\n\nAm I looking in the right place here?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 58
+      },
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88a98ac1_6725e846",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-11T00:02:32Z",
+      "side": 1,
+      "message": "This needs to be in square brackets: `[dt-spec-chap3-root-node]`. If you check the rendered link it\u0027s still not right 😊\n\nhttps://gerrit.openbmc.org/plugins/gitiles/openbmc/docs/+/0e0fed5c7197564300de0acd5fb5be81d961c64e/designs/oem/hpe/hpe_hw_detect_no-fru.md",
+      "range": {
+        "startLine": 59,
+        "startChar": 87,
+        "endLine": 59,
+        "endChar": 112
+      },
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d04a943_b56d4b9d",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-11T00:02:32Z",
+      "side": 1,
+      "message": "I think it would help to specifically mention the PDI `Compatible` interface here",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 65
+      },
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a8a45b3_5e8e847f",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-11T00:02:32Z",
+      "side": 1,
+      "message": "You need to be careful with your nested bullet points below. The nesting isn\u0027t always entirely correct. Have a look at the rendered version:\n\nhttps://gerrit.openbmc.org/plugins/gitiles/openbmc/docs/+/0e0fed5c7197564300de0acd5fb5be81d961c64e/designs/oem/hpe/hpe_hw_detect_no-fru.md#alternatives-considered\n\nI think this would be much easier to manage with sub-headings and bullet lists that are not nested.",
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0af420f5_dc06c434",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-11T00:02:32Z",
+      "side": 1,
+      "message": "Can you unpack this concern a bit? I don\u0027t recall that being part of the discussions - they were more around the grammar of a devicetree probe statement, and opening the can of worms of matching on any old devicetree node.\n\nAlso with the semi-colon separator you\u0027re really creating a list-within-a-list. We\u0027re already using a markdown list, just make the second portion a separate markdown list element.",
+      "range": {
+        "startLine": 121,
+        "startChar": 7,
+        "endLine": 121,
+        "endChar": 59
+      },
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37ce52e5_30f9629c",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-11T00:02:32Z",
+      "side": 1,
+      "message": "Right, this is what I was discussing in the previous comment.",
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
