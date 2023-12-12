@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af7298a1_2e07874b",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-12T23:12:47Z",
+      "side": 1,
+      "message": "\u003e Since you mention it, I guess it might make sense to go ahead and include \u0027mac-address\u0027 in the scope of this proposal since it seems like low-hanging fruit re: well-defined device-tree properties. \n\nRight, yeah I think it makes sense to take care of the low-hanging fruit, even if it\u0027s not the primary focus of the document.\n\nI\u0027d appreciate it if you can describe that list of properties in the document itself. Unpacking \"blob\" to \"here\u0027s a handful of concrete properties\" is really helpful for reasoning about the problem we\u0027re trying to solve. I had imagined you had kilobytes of weird metadata, but that\u0027s not the case at all, and it\u0027s relatively well defined.\n\n\u003e I mostly just left it out because I\u0027ve been focused on getting \u0027device-tree/model\u0027 for a system identifier-- but I\u0027m happy to go ahead and include it now if folks feel like it makes sense to do that now instead of worrying about it later.\n\nSounds good!",
+      "parentUuid": "1f62a56c_94a9447b",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 58
+      },
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88a98ac1_6725e846",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 12
@@ -161,6 +185,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "12ccbe7a_89dde785",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-12T23:12:47Z",
+      "side": 1,
+      "message": "Oh. Sorry. PDI is [openbmc/phosphor-dbus-interfaces](https://github.com/openbmc/phosphor-dbus-interfaces). The `Compatible` interface is this:\n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Decorator/Compatible.interface.yaml",
+      "parentUuid": "8db35bb4_c7078439",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 65
+      },
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a8a45b3_5e8e847f",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 12
@@ -231,6 +279,30 @@
       "side": 1,
       "message": "My thinking is that if probe statements are responsible for calling code that pulls from arbitrary data in device-tree, there\u0027s potential for something breaking in the code there to affect probe behavior for devices that would be otherwise working.\n\nThis is just speculation on my part. Do you think I should take that point out?",
       "parentUuid": "0af420f5_dc06c434",
+      "range": {
+        "startLine": 121,
+        "startChar": 7,
+        "endLine": 121,
+        "endChar": 59
+      },
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd79824c_4bdc078b",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-12-12T23:12:47Z",
+      "side": 1,
+      "message": "Yeah, please take that out. We don\u0027t need to speculate implementation bugs 😊",
+      "parentUuid": "5548d528_5fb26fb9",
       "range": {
         "startLine": 121,
         "startChar": 7,
