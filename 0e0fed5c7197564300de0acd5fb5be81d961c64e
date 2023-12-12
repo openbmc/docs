@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f62a56c_94a9447b",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-12T22:04:35Z",
+      "side": 1,
+      "message": "I will reword this part, thanks for the input here.\n\nAnd yes, you\u0027re looking in the right place.\n\nPCA_xx is an ID tied directly to a specific part like the mainboard, while the non-PCA version like \u0027PCA_SerialNumber vs. SerialNumber) is assigned to the assembled unit when it\u0027s put together in the factory.\n\nOther than\n- PartNumber\n- PCA_PartNumber\n- SerialNumber\n- PCA_SerialNumber\n- Mac 1\n- MAC 2\n\nThere\u0027s also Server_id, which comes from a CPLD-based memory device, and is (now) output as device-tree/model\n\nThe main one we care about is server_id (model) since that value remains the same across a given platform, even if different mainboard revisions are used from one unit to another (they\u0027d have different pca_PartNumbers).\n\nSince you mention it, I guess it might make sense to go ahead and include \u0027mac-address\u0027 in the scope of this proposal since it seems like low-hanging fruit re: well-defined device-tree properties. \n\nPresumably, this MAC data is *just* for passing status info to redfish/WebUI -- I don\u0027t believe we plan to rely on d-Bus for any MAC-address-reliant functionality at this time.\n\nI mostly just left it out because I\u0027ve been focused on getting \u0027device-tree/model\u0027 for a system identifier-- but I\u0027m happy to go ahead and include it now if folks feel like it makes sense to do that now instead of worrying about it later.",
+      "parentUuid": "6404d783_8216c5fe",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 58
+      },
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88a98ac1_6725e846",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 12
@@ -54,6 +78,30 @@
       "writtenOn": "2023-12-11T00:02:32Z",
       "side": 1,
       "message": "This needs to be in square brackets: `[dt-spec-chap3-root-node]`. If you check the rendered link it\u0027s still not right 😊\n\nhttps://gerrit.openbmc.org/plugins/gitiles/openbmc/docs/+/0e0fed5c7197564300de0acd5fb5be81d961c64e/designs/oem/hpe/hpe_hw_detect_no-fru.md",
+      "range": {
+        "startLine": 59,
+        "startChar": 87,
+        "endLine": 59,
+        "endChar": 112
+      },
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "345fcc1a_464db40a",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-12T22:04:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "88a98ac1_6725e846",
       "range": {
         "startLine": 59,
         "startChar": 87,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8db35bb4_c7078439",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-12T22:04:35Z",
+      "side": 1,
+      "message": "I\u0027m putting together a new draft based on your latest comments (Thanks again for the above and beyond in-depth commentary!) -- but could you clarify what you mean by \"mention the PDI compatible interface\"? I\u0027m drawing a blank on what \u0027PDI\u0027 is in this context.",
+      "parentUuid": "8d04a943_b56d4b9d",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 65
+      },
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a8a45b3_5e8e847f",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 12
@@ -100,6 +172,24 @@
       "writtenOn": "2023-12-11T00:02:32Z",
       "side": 1,
       "message": "You need to be careful with your nested bullet points below. The nesting isn\u0027t always entirely correct. Have a look at the rendered version:\n\nhttps://gerrit.openbmc.org/plugins/gitiles/openbmc/docs/+/0e0fed5c7197564300de0acd5fb5be81d961c64e/designs/oem/hpe/hpe_hw_detect_no-fru.md#alternatives-considered\n\nI think this would be much easier to manage with sub-headings and bullet lists that are not nested.",
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a803908_67a26fbc",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-12T22:04:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7a8a45b3_5e8e847f",
       "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -129,6 +219,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5548d528_5fb26fb9",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-12T22:04:35Z",
+      "side": 1,
+      "message": "My thinking is that if probe statements are responsible for calling code that pulls from arbitrary data in device-tree, there\u0027s potential for something breaking in the code there to affect probe behavior for devices that would be otherwise working.\n\nThis is just speculation on my part. Do you think I should take that point out?",
+      "parentUuid": "0af420f5_dc06c434",
+      "range": {
+        "startLine": 121,
+        "startChar": 7,
+        "endLine": 121,
+        "endChar": 59
+      },
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37ce52e5_30f9629c",
         "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
         "patchSetId": 12
@@ -140,6 +254,24 @@
       "writtenOn": "2023-12-11T00:02:32Z",
       "side": 1,
       "message": "Right, this is what I was discussing in the previous comment.",
+      "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1fa9fff_ae6dd772",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-12-12T22:04:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "37ce52e5_30f9629c",
       "revId": "0e0fed5c7197564300de0acd5fb5be81d961c64e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
