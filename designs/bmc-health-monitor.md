@@ -154,8 +154,8 @@ For 3) Metric staging & disperse, the daemon creates a D-bus service named
 
 | Interface Name                       | Purpose                                                                        | Required/Optional |
 | :----------------------------------- | :----------------------------------------------------------------------------- | :---------------- |
-| xyz.openbmc_project.Metrics.Value    | Interface to represent value for Metrics.                                      | Required          |
-| xyz.openbmc_project.Metrics.Reset    | Interface to reset persistent Metrics counters.                                | Optional          |
+| xyz.openbmc_project.Metric.Value     | Interface to represent value for Metrics.                                      | Required          |
+| xyz.openbmc_project.Metric.Reset     | Interface to reset persistent Metrics counters.                                | Optional          |
 | xyz.openbmc_project.Common.Threshold | Interface to represent Metric thresholds and signals for threshold violations. | Optional          |
 | xyz.openbmc_project.Time.EpochTime   | Interface to indicate when the metric was collected.                           | Optional          |
 
@@ -164,15 +164,15 @@ be implemented at these paths.
 
 ```
 /xyz/openbmc_project
-    |- /xyz/openbmc_project/metrics/bmc/memory/total
-    |- /xyz/openbmc_project/metrics/bmc/memory/free
-    |- /xyz/openbmc_project/metrics/bmc/memory/available
-    |- /xyz/openbmc_project/metrics/bmc/memory/shared
-    |- /xyz/openbmc_project/metrics/bmc/memory/buffered_and_cached
-    |- /xyz/openbmc_project/metrics/bmc/cpu/user
-    |- /xyz/openbmc_project/metrics/bmc/cpu/kernel
-    |- /xyz/openbmc_project/metrics/bmc/reboot/count
-    |- /xyz/openbmc_project/metrics/bmc/reboot/count_with_failure
+    |- /xyz/openbmc_project/metric/bmc/memory/total
+    |- /xyz/openbmc_project/metric/bmc/memory/free
+    |- /xyz/openbmc_project/metric/bmc/memory/available
+    |- /xyz/openbmc_project/metric/bmc/memory/shared
+    |- /xyz/openbmc_project/metric/bmc/memory/buffered_and_cached
+    |- /xyz/openbmc_project/metric/bmc/cpu/user
+    |- /xyz/openbmc_project/metric/bmc/cpu/kernel
+    |- /xyz/openbmc_project/metric/bmc/reboot/count
+    |- /xyz/openbmc_project/metric/bmc/reboot/count_with_failure
 ```
 
 Servers for Metrics Data
@@ -189,8 +189,8 @@ In case there are multiple devices of same type, the D-Bus path can be extended
 to add context about **"which device"**. For example -
 
 ```
-/xyz/openbmc_project/metrics/device-0/memory/total
-/xyz/openbmc_project/metrics/device-1/memory/total
+/xyz/openbmc_project/metric/device-0/memory/total
+/xyz/openbmc_project/metric/device-1/memory/total
 ...
 ```
 
