@@ -1,5 +1,18 @@
 # Subproject Maintainership and Forward Progress
 
+<!--toc:start-->
+- [Subproject Maintainership and Forward Progress](#subproject-maintainership-and-forward-progress)
+  - [Process](#process)
+  - [Problem Description](#problem-description)
+  - [Scope](#scope)
+  - [Considerations](#considerations)
+    - [Social](#social)
+    - [Technical](#technical)
+    - [Security](#security)
+    - [Synthesis of Considerations](#synthesis-of-considerations)
+  - [Defining and Determining Unresponsiveness](#defining-and-determining-unresponsiveness)
+<!--toc:end-->
+
 ## Process
 
 1. A complaint is raised to the TOF about lack of forward progress in a
