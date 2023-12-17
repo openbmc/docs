@@ -18,12 +18,12 @@
 
 1. A complaint is raised to the TOF about lack of forward progress in a
    subproject
-2. The TOF validates the complaint against the pre-conditions and definitions
-   described below
+2. The TOF validates the complaint against the
+   [pre-conditions and definitions described below](#defining-and-determining-unresponsiveness)
    1. The complaint is valid if all the pre-conditions are met and the behavior
-      exceeds the limits outlined in the definitions above
+      exceeds the limits outlined in the definitions below
    2. The complaint is partially valid if the pre-conditions are met and but the
-      behaviour does not exceed the limits outlined in the definitions above
+      behaviour does not exceed the limits outlined in the definitions below
    3. The complaint is invalid if the pre-conditions are not met
 3. If the complaint is valid the TOF notifies the current maintainers of the
    impending addition of maintainers
