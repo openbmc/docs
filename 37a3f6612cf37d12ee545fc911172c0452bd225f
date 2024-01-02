@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0651f66_ae7bc557",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-02T17:41:50Z",
+      "side": 1,
+      "message": "What is the proposed standardization though... seems like this proposal is \"do things the AMD way in an AMD repository\"?",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 44
+      },
+      "revId": "37a3f6612cf37d12ee545fc911172c0452bd225f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96f3f08d_10c8ef73",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-02T17:41:50Z",
+      "side": 1,
+      "message": "Why are we proposing OEM Redfish interfaces?  Has this been proposed to the Redfish Forum already?\n\nI suspect you haven\u0027t read this: https://github.com/openbmc/bmcweb/blob/a88942019fdd3d8fc366999f7c178f3e1c18b2fe/OEM_SCHEMAS.md#L1",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 35
+      },
+      "revId": "37a3f6612cf37d12ee545fc911172c0452bd225f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9cf0c7a_632c1f89",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-02T17:41:50Z",
+      "side": 1,
+      "message": "This implies there can only be one crashdump application on a single BMC.  There are multi-host BMCs that use an SMC* to abstract much of the processor specifics away.  It is possible to have different processor vendors installed in a single chassis.\n\n(*) Satellite management controller.",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 29
+      },
+      "revId": "37a3f6612cf37d12ee545fc911172c0452bd225f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "002d3c61_968abc17",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-02T17:41:50Z",
+      "side": 1,
+      "message": "There was a lot of feedback given on this topic on the ML and Github issue before.  Primarily, the question was asked as to why this can\u0027t be integrated into phosphor-debug-collector.  I believe IBM has some code for doing that for their systems, right?\n\nThis section needs a lot more depth before we can move forward.",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 69
+      },
+      "revId": "37a3f6612cf37d12ee545fc911172c0452bd225f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d144c4e_bab8e56a",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-02T17:41:50Z",
+      "side": 1,
+      "message": "Neither of you meet the requirements listed under this document to be the initial maintainers.  We\u0027ll need someone from the TOF (or otherwise qualified) to be mentor maintainers to start with.\n\nhttps://github.com/openbmc/docs/blob/a8fff53a66656f884632322841d697c89bdba871/community-membership.md?plain\u003d1#L183",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 62
+      },
+      "revId": "37a3f6612cf37d12ee545fc911172c0452bd225f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "328628b6_7ff96ab8",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-02T17:41:50Z",
+      "side": 1,
+      "message": "Unit tests planned?  Any integration tests written in Robot?\n\nWhat you are describing here is \"test driving\" and not \"testing\".  There is no way for anyone to recreate and/or re-verify your efforts when making code changes, which puts us into a really bad spot.",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 26
+      },
+      "revId": "37a3f6612cf37d12ee545fc911172c0452bd225f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
