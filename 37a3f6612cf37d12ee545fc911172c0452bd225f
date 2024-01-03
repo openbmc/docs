@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "03ccc93e_63311a1f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2024-01-03T03:56:03Z",
+      "side": 1,
+      "message": "fix column length \u003e80.",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 207
+      },
+      "revId": "37a3f6612cf37d12ee545fc911172c0452bd225f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0651f66_ae7bc557",
         "filename": "designs/oem/amd/amd-bmc-ras.md",
         "patchSetId": 6
@@ -83,6 +106,30 @@
       "writtenOn": "2024-01-02T17:41:50Z",
       "side": 1,
       "message": "There was a lot of feedback given on this topic on the ML and Github issue before.  Primarily, the question was asked as to why this can\u0027t be integrated into phosphor-debug-collector.  I believe IBM has some code for doing that for their systems, right?\n\nThis section needs a lot more depth before we can move forward.",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 69
+      },
+      "revId": "37a3f6612cf37d12ee545fc911172c0452bd225f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91f135d5_f3b591bb",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2024-01-03T03:56:03Z",
+      "side": 1,
+      "message": "High level design direction followed here is aligned to the proposed design in the hw-fault-monitor design document.\nhttps://grok.openbmc.org/xref/openbmc/docs/designs/hw-fault-monitor.md?r\u003df4febd00.\nThe new Repository is used to host the AMD processor specific applications for monitoring and capturing AMD processor specific register using APML protocols.  And remaining flow is same as mentioned in the  hw-fault monitor design document.\n\nExisting IBM Host specific dump infrastructure is also using similar approach for managing POWER processor specific applications, like openpower-hw-diags for monitoring errors and openpower-debug-collector with the help of other openpower hosted repo\u0027s to capture the processor specific chipset register information. \nAs discussed earlier PDC is mainly for managing debug data and providing required interface to external users , not for Hosting processor specific error monitoring and data collection using host centric mechanisms.\n\nAbinya will be adding more details here on the pros/cons of using existing repository for this use case",
+      "parentUuid": "002d3c61_968abc17",
       "range": {
         "startLine": 153,
         "startChar": 0,
@@ -177,6 +224,30 @@
       "writtenOn": "2024-01-02T17:41:50Z",
       "side": 1,
       "message": "Unit tests planned?  Any integration tests written in Robot?\n\nWhat you are describing here is \"test driving\" and not \"testing\".  There is no way for anyone to recreate and/or re-verify your efforts when making code changes, which puts us into a really bad spot.",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 26
+      },
+      "revId": "37a3f6612cf37d12ee545fc911172c0452bd225f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d5e244a_6b76ad2a",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2024-01-03T03:56:03Z",
+      "side": 1,
+      "message": "Unit testing code will be supported as OpenBMC standards.\nThere is no significant impact expected with regards CI testing.\nAbinaya will be adding details on this here.",
+      "parentUuid": "328628b6_7ff96ab8",
       "range": {
         "startLine": 181,
         "startChar": 0,
