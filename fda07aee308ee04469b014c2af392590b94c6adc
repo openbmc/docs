@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87e97037_7da1c716",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-04T22:45:53Z",
+      "side": 1,
+      "message": "Hi Chris, I have a couple of comments on the design, but mostly comments on your use of Markdown. If you can clean those up then I think this is pretty close to something I\u0027m comfortable accepting.",
+      "revId": "fda07aee308ee04469b014c2af392590b94c6adc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c7af312_fe7e8efc",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-04T22:45:53Z",
+      "side": 1,
+      "message": "Typo: proprietary",
+      "range": {
+        "startLine": 47,
+        "startChar": 36,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "fda07aee308ee04469b014c2af392590b94c6adc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91752fec_3e1066f6",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-04T22:45:53Z",
+      "side": 1,
+      "message": "This link syntax is still incorrect, you need square brackets (`[]`) for the URL portion where the portion is \"reference-style\", and not parens (`()`), which require the URL be provided directly inline\n\nSee the original markdown specification:\n\nhttps://daringfireball.net/projects/markdown/syntax#link\n\nAnd Github\u0027s specification for Github-Flavored Markdown:\n\nhttps://github.github.com/gfm/#reference-link\n\nYou can check the result in Gerrit\u0027s gitiles instance:\n\nhttps://gerrit.openbmc.org/plugins/gitiles/openbmc/docs/+/fda07aee308ee04469b014c2af392590b94c6adc/designs/oem/hpe/hpe_hw_detect_no-fru.md",
+      "range": {
+        "startLine": 72,
+        "startChar": 87,
+        "endLine": 72,
+        "endChar": 112
+      },
+      "revId": "fda07aee308ee04469b014c2af392590b94c6adc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8eb18c8_42ae4bd5",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-04T22:45:53Z",
+      "side": 1,
+      "message": "This link syntax is also incorrect. See above.",
+      "range": {
+        "startLine": 74,
+        "startChar": 50,
+        "endLine": 74,
+        "endChar": 81
+      },
+      "revId": "fda07aee308ee04469b014c2af392590b94c6adc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "850eaf39_313a2bdd",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-04T22:45:53Z",
+      "side": 1,
+      "message": "I think we can drop this as a requirement, really it\u0027s detail that is the result of a political (licensing) situation. Those may change over time.",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 21
+      },
+      "revId": "fda07aee308ee04469b014c2af392590b94c6adc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6a47d64_8347c9a9",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-04T22:45:53Z",
+      "side": 1,
+      "message": "I don\u0027t think this is right? We were discussing the `Compatible` interface previously:\n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Decorator/Compatible.interface.yaml\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/66369/comment/8d04a943_b56d4b9d/",
+      "range": {
+        "startLine": 137,
+        "startChar": 2,
+        "endLine": 137,
+        "endChar": 32
+      },
+      "revId": "fda07aee308ee04469b014c2af392590b94c6adc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f158ce0b_1382e61d",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-04T22:45:53Z",
+      "side": 1,
+      "message": "Okay, so the nested bullets look at least semantically correct now. However, I would still prefer that we use nested headers here (which are automatically linkable), and then numbered lists inside that. So:\n\n```\n### Entity-Manager probes are extended to handle reading data from arbitrary devicetree nodes\n\n#### Pros\n\n1. No new daemon required\n\n#### Cons\n\n1. May encourage undesired devicetree exploitation\n\n### A `reserved-memory` node in the devicetree is used for transport of `serial-number` and `model` ID data\n\n#### Pros\n\n1. ...\n2. ...\n\n#### Cons\n\n1. ...\n2. ...\n\n...\n```",
+      "revId": "fda07aee308ee04469b014c2af392590b94c6adc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e22c79b_45fedaa4",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-04T22:45:53Z",
+      "side": 1,
+      "message": "This is combining a markdown-specified bullet list (`- `) with an ad-hoc ordered list using syntax that is not specified by markdown  (`a) `). Can you please keep to specified markdown constructs? That makes maintenance a lot easier.\n\nHere\u0027s the syntax for a markdown numbered list:\n\nhttps://daringfireball.net/projects/markdown/syntax#list\n\n(https://github.github.com/gfm/#ordered-list-marker)",
+      "range": {
+        "startLine": 146,
+        "startChar": 4,
+        "endLine": 146,
+        "endChar": 8
+      },
+      "revId": "fda07aee308ee04469b014c2af392590b94c6adc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02b0cad8_72f13675",
+        "filename": "designs/oem/hpe/hpe_hw_detect_no-fru.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-04T22:45:53Z",
+      "side": 1,
+      "message": "Typo: environment",
+      "range": {
+        "startLine": 188,
+        "startChar": 46,
+        "endLine": 188,
+        "endChar": 59
+      },
+      "revId": "fda07aee308ee04469b014c2af392590b94c6adc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
