@@ -548,6 +548,107 @@ from PLDM terminus, `pldmd` should remove the sensor from poll list and then
 send necessary commands (e.g., `EventMessageBufferSize` and `SetEventReceiver`)
 to PLDM terminus for the initialization.
 
+### Effecter hosting
+
+'pldmd' retrieves a list of numeric effecters from PLDM terminus in formats of
+Numeric Effecter PDR via PDR Repository commands (GetPDRRepositoryInfo, GetPDR).
+With these PDRs, some essential attributes of each effecter can be aware of
+among applications which have access to D-Bus and need to read/write to the
+effecters (baseUnit, maxSettable, minSettable, nominalValue, normalMax,
+normalMin, ratedMax, ratedMin). 'pldmd' can use libpldm encode/decode APIs
+(encode_get_pdr_repository_info_req, decode_get_pdr_repository_info_resp,
+encode_get_pdr_req, decode_get_pdr_resp, encode_set_numeric_effecter_value_req,
+decode_set_numeric_effecter_value_resp) to build the command messages to and
+decode the reponse messages from the PLDM terminus.
+
+Regarding to the static device described in section 8.3.1 of DSP0248 1.2.2, the
+device uses PLDM for access only and doesn't support PDRs. The PDRs for the
+device needs to be encoded by Platform specific PDR JSON file by the platform
+developer. 'pldmd' will generate these effecter PDRs encoded by JSON files and
+parse them as the same as the PDRs fetched by PLDM terminus.
+
+'pldmd' should expose effecters as D-Bus object paths and provide
+interfaces/properties for other applications to read effecter attributes and
+read/write effecter values. The name of effecter object paths can either be
+formed utilizing the Terminus name (mapped by EID from a json configuration file
+or in Terminus Entity Auxiliary Name PDR) and the effecterName field in the
+Effecter Auxiliary Names PDR.
+
+```
+/xyz/openbmc_project/<effecter_type>/<$TerminusName_$EffecterAuxName>
+```
+
+Or the effecterName field and the TID if the terminus does not have the
+configured name.
+
+```
+/xyz/openbmc_project/<effecter_type>/<$EffecterAuxName_TID#>
+```
+
+Or the effecter index with the TID if the effecter does not have the
+effecterAuxiliaryNames PDR and the Terminus does not have the configured name.
+
+```
+/xyz/openbmc_project/<effecter_type>/<$EffecterID#_TID#>
+```
+
+After the discovery of PLDM effecters, 'pldmd' should initialize all found
+effecters by necessary commands and set essential effecter attributes to D-Bus.
+The initial state of the effecter can be set (with SetNumericEffecterEnable)
+depending on the effecterInit field in the PDR using command. If the effecter
+has an InitPDR, the effecterData field in InitPDR will be used as an initial
+effecter value on D-Bus. Otherwise, 'pldmd' should send GetNumericEffecterValue
+commands to the terminus and initialize the values on D-Bus accordingly. If
+'pldmd' fails to do so, the initial value on D-Bus will be Nan.
+
+After all the initialization, it starts watching value setting signal for each
+effecter on D-Bus from different BMC applications. Then, 'pldmd' forwards the
+SetNumericEffecterValue request to PLDM terminus after building the needed
+commands.
+
+pldmd' should update the effecter value on D-Bus after getting the response of
+SetNumericEffecterValue command successfully. If 'pldmd' failed to get the
+response from PLDM terminus or the completion code returned by PLDM terminus is
+not PLDM_SUCCESS, the Functional property of State.Decorator.OperationalStatus
+D-Bus interface should be updated to false. TransitionInterval field in the PDR
+of each effecter should be exposed to D-Bus for applications to be aware of the
+timeout needed to wait for the completion of the Set Property action to the
+effecter value property.
+
+If 'pldmd' acknowledges any change in effecterOperationalState from
+effecterEvent via PlatformEventMessage or from SetNumericEffecterEnable command,
+it will update the corresponding effecter value on D-Bus accordingly. If
+effecterOperationalState is disabled/unavailable, the value will be Nan.
+
+### Proposed Effecter D-Bus interfaces
+
+Effecters come in 2 types: numeric effecters and state effecters with the former
+sharing a common list of base units with numeric sensors but requiring the
+ability to be written to.
+[xyz.openbmc_project.Sensor.Value](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml)
+interface has a writable property Value but it is suppposed to report sensor
+values, not to control something. Moreover, users and applications will need to
+have important knowledge over the effecters they are going to set to (e.g
+MinValue, MaxValue, Unit,...). Therefore, there's a need to bring up an
+interface that can be used to control effecters and also holds some major
+attributes about that effecter. This interface is not limit to PLDM, but can be
+used to set values to any control D-Bus object that has common characteristics
+to a numeric effecter.
+
+#### Numeric effecter
+
+- xyz.openbmc_project.Effecter.Numeric
+
+  - Properties:
+    - Value (writable)
+    - MaxValue
+    - MinValue
+    - TransitionInterval
+    - Unit [enum]
+
+All the range fields are normalized to base unit and are unavailable unless set
+from PDRs. Except for Unit, all the other properties are double-typed.
+
 ## Alternatives Considered
 
 Continue using IPMI, but start making more use of OEM extensions to suit the
