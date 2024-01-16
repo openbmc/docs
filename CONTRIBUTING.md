@@ -327,7 +327,7 @@ are:
 
 `gitdir=$(git rev-parse --git-dir)`
 
-`scp -p -P 29418 openbmc.gerrit:hooks/commit-msg ${gitdir}/hooks`
+`scp -p -O -P 29418 openbmc.gerrit:hooks/commit-msg ${gitdir}/hooks`
 
 To submit a change set, commit your changes, and push to the Gerrit server,
 where 'gerrit' is the name of the remote added with the git remote add command:
