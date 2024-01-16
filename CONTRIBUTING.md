@@ -325,9 +325,11 @@ to identify commits that belong to the same review. Configure your git
 repository to automatically add a Change-Id to your commit messages. The steps
 are:
 
-`gitdir=$(git rev-parse --git-dir)`
-
-`scp -p -P 29418 openbmc.gerrit:hooks/commit-msg ${gitdir}/hooks`
+```
+gitdir=$(git rev-parse --git-dir)
+curl https://gerrit.openbmc.org/tools/hooks/commit-msg -o ${gitdir}/hooks/commit-msg
+chmod +x ${gitdir}/hooks/commit-msg`
+```
 
 To submit a change set, commit your changes, and push to the Gerrit server,
 where 'gerrit' is the name of the remote added with the git remote add command:
