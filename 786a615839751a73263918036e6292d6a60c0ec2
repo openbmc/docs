@@ -33,6 +33,24 @@
       "message": "Have you tried this already? The Names property on that interface is an array.  I wonder if EM can handle that yet.",
       "revId": "786a615839751a73263918036e6292d6a60c0ec2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d615db8d_0ee440a8",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-01-17T16:02:43Z",
+      "side": 1,
+      "message": "Not yet-- I had been thinking properties like \u0027model\u0027 could be added under Decorator.Compatible, but after your question, I had a look in phosphor-dbus-interfaces\u0027s /Inventory/Decorator/* and it clicked that xyz.openbmc_project.Inventory.Decorator.Asset would a far better candidate, especially since it already defines properties for Model and Serial-Number\n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/0aadbe41aadd155d91e2bda1c471ac85a7dffee9/yaml/xyz/openbmc_project/Inventory/Decorator/Asset.interface.yaml\n\nI\u0027m going to update the doc to reference that interface instead, if there are no objections.",
+      "parentUuid": "3303d106_b473f6b5",
+      "revId": "786a615839751a73263918036e6292d6a60c0ec2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
