@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c690747_a6055630",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-18T16:16:22Z",
+      "side": 1,
+      "message": "What does \"PLDM_Device\" refer to here?  I don\u0027t think magic strings like that are helpful.\n\nIs there anything from the device itself that we can derive?  Do we know at least IANA and/or device IDs from elsewhere in PLDM?  Can we come up with a useful identifier?  Something like what you get out of `lspci` or `lsusb` is way more useful than \"PLDM_Device_5\".",
+      "range": {
+        "startLine": 376,
+        "startChar": 44,
+        "endLine": 376,
+        "endChar": 56
+      },
+      "revId": "71564e1f042756d738eb7d3aed6bb1832104ebc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a82d60cc_e84c6762",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-18T16:16:22Z",
+      "side": 1,
+      "message": "I would suggest TID goes first.\n\ndevice_TID5_sensor3\ndevice_TID5_sensor4\n\nvs\n\ndevice_sensor3_TID5\ndevice_sensor4_TID5",
+      "range": {
+        "startLine": 376,
+        "startChar": 66,
+        "endLine": 376,
+        "endChar": 71
+      },
+      "revId": "71564e1f042756d738eb7d3aed6bb1832104ebc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
