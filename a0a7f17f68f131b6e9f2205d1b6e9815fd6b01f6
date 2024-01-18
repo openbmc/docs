@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "046ac863_f6d5935a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-18T16:12:57Z",
+      "side": 1,
+      "message": "I see a lot of PLDMisms that you\u0027re trying to push into the dbus interface.  This is a no-go.  I understand PLDM might not map cleanly into our current dbus model, but in no way should application X have to know about PLDM special properties.  Let\u0027s fix the whole dbus model if it doesn\u0027t work and not try to carve out ways that PLDM is special.",
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87313d26_c3474d6e",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-18T16:12:57Z",
+      "side": 1,
+      "message": "For what purpose?",
+      "range": {
+        "startLine": 445,
+        "startChar": 0,
+        "endLine": 447,
+        "endChar": 27
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "704bcc70_6175758b",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-18T16:12:57Z",
+      "side": 1,
+      "message": "These are not sensors.  Let\u0027s not overload that namespace.",
+      "range": {
+        "startLine": 453,
+        "startChar": 20,
+        "endLine": 453,
+        "endChar": 29
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4c54b94_f2de6fc8",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-18T16:12:57Z",
+      "side": 1,
+      "message": "How do we intend these to be useful to programs?  Arbitrary names and/or string comparisons don\u0027t seem very helpful.",
+      "range": {
+        "startLine": 460,
+        "startChar": 45,
+        "endLine": 460,
+        "endChar": 68
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f82ad59f_ecb1d41e",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-18T16:12:57Z",
+      "side": 1,
+      "message": "What are we doing about these?  I don\u0027t see any proposal.  At least specify you\u0027re not handling them yet.",
+      "range": {
+        "startLine": 500,
+        "startChar": 49,
+        "endLine": 500,
+        "endChar": 65
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d90aa587_6c621db5",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-18T16:12:57Z",
+      "side": 1,
+      "message": "You need to explain why this is a problem because it isn\u0027t obvious to me.\n\nIf you want the BMC to _set_ effectors, those are something totally different, aren\u0027t they?",
+      "range": {
+        "startLine": 504,
+        "startChar": 0,
+        "endLine": 506,
+        "endChar": 25
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ead08fb3_1817c545",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-18T16:12:57Z",
+      "side": 1,
+      "message": "Again, why do I care?  \"effecter attributes\" are something special to PLDM.  I _don\u0027t_ want those becoming entrenched in the rest of the code base.",
+      "range": {
+        "startLine": 506,
+        "startChar": 26,
+        "endLine": 508,
+        "endChar": 0
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
