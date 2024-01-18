@@ -524,3 +524,103 @@ segregation in path from the implementation serves no purpose.
 
 Place internal header files immediately alongside source files containing the
 corresponding implementation.
+
+## Ill-defined data structuring in `lg2` message strings
+
+### Identification
+
+Attempts at encoding information into the journal's MESSAGE string that is at
+most only plausible to parse using a regex while also reducing human
+readability. For example:
+
+```
+error(
+    "Error getting time, PATH={BMC_TIME_PATH} TIME INTERACE={TIME_INTF}  ERROR={ERR_EXCEP}",
+    "BMC_TIME_PATH", bmcTimePath, "TIME_INTF", timeInterface,
+    "ERR_EXCEP", e);
+```
+
+### Description
+
+[`lg2` is OpenBMC's preferred C++ logging interface][phosphor-logging-lg2]
+and is implemented on top of the systemd journal and its library APIs.
+[systemd-journald provides structured logging][systemd-structured-logging],
+which allows us to capture additional metadata alongside the provided message.
+
+[phosphor-logging-lg2]:
+    https://github.com/openbmc/phosphor-logging/blob/master/docs/structured-logging.md
+[systemd-structured-logging]:
+    https://0pointer.de/blog/projects/journal-submit.html
+
+The concept of structured logging allows for convenient programmable access
+to metadata associated with a log event. The journal captures a default set
+of metadata with each message logged. However, the primary way the entries
+are exposed to users is `journalctl`'s default behaviour of printing just the
+`MESSAGE` value for each log entry. This may lead to a misunderstanding that
+the printed message is the only way to expose related metadata for investigating
+defects.
+
+For human ergonomics `lg2` provides the ability to interpolate structured data
+into the journal's `MESSAGE` string. This aids with human inspection of the logs
+as it becomes possible to highlight important metadata for a log event. However,
+it's not intended that this interpolation be used for ad-hoc, ill-defined
+attempts at exposing metadata for automated analysis.
+
+All key-value pairs provided to the `lg2` logging APIs are captured in the
+structured log event, regardless of whether any particular key is interpolated
+into the `MESSAGE` string. It is always possible to recover the information
+associated with the log event even if it's not captured in the `MESSAGE` string.
+
+`phosphor-time-manager` demonstrates a reasonable use of the `lg2` APIs. One
+logging instance in the code [is as follows][phosphor-time-manager-lg2]:
+
+[phosphor-time-manager-lg2]:
+    https://github.com/openbmc/phosphor-time-manager/blob/5ce9ac0e56440312997b25771507585905e8b360/manager.cpp#L98
+
+```
+info("Time mode has been changed to {MODE}", "MODE", newMode);
+```
+
+By default, this renders in the output of `journalctl` as:
+
+```
+Sep 23 06:09:57 bmc phosphor-time-manager[373]: Time mode has been changed to xyz.openbmc_project.Time.Synchronization.Method.NTP
+```
+
+However, we can use some journalctl commandline options to inspect the
+structured data associated with the log entry:
+
+```
+# journalctl --identifier=phosphor-time-manager --boot --output=verbose | grep -v '    _' | head -n 9
+Sat 2023-09-23 06:09:57.645208 UTC [s=85c1cb5f8e02445aa110a5164c9c07f6;i=244;b=ffd111d3cdca41c8893bb728a1c6cb20;m=133a5a0;t=606009314d0d9;x=9a54e8714754a6cb]
+    PRIORITY=6
+    MESSAGE=Time mode has been changed to xyz.openbmc_project.Time.Synchronization.Method.NTP
+    LOG2_FMTMSG=Time mode has been changed to {MODE}
+    CODE_FILE=/usr/src/debug/phosphor-time-manager/1.0+git/manager.cpp
+    CODE_LINE=98
+    CODE_FUNC=bool phosphor::time::Manager::setCurrentTimeMode(const std::string&)
+    MODE=xyz.openbmc_project.Time.Synchronization.Method.NTP
+    SYSLOG_IDENTIFIER=phosphor-time-manager
+```
+
+Here we find that `MODE` and its value are captured as its own metadata entry in
+the structured data, as well as being interpolated into `MESSAGE` as requested.
+Additionally, from the log entry we can find _how_ `MODE` was interpolated into
+`MESSAGE` using the format string captured in the `LOG2_FMTMSG` metadata entry.
+
+`LOG2_FMTMSG` also provides a stable handle for identifying the existence of a
+specific class of log events in the journal, further aiding automated analysis.
+
+### Background
+
+A variety of patches such as [PLDM:Catching exception precisely and printing
+it][openbmc-gerrit-67994] added a number of ad-hoc, ill-defined attempts at
+providing all the metadata through the `MESSAGE` entry.
+
+[openbmc-gerrit-67994]: https://gerrit.openbmc.org/c/openbmc/pldm/+/67994
+
+### Resolution
+
+`lg2` messages should be formatted for consumption by humans. They should not
+contain ad-hoc, ill-defined attempts at integrating metadata for automated
+analysis.
