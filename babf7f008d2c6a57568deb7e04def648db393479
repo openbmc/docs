@@ -16,6 +16,86 @@
       "message": "Hello, could anyone please help to review this design document?",
       "revId": "babf7f008d2c6a57568deb7e04def648db393479",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c0f7177_fd2a8af3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-19T05:13:11Z",
+      "side": 1,
+      "message": "I think there are concerns in two directions, both too much detail in some parts and and not enough detail in others. Otherwise, I think this needs a much broader audience. It needs review from:\n\n1. bmcweb maintainers\n2. phosphor-host-ipmid maintainers\n3. phosphor-dbus-interfaces maintainers\n4. phosphor-user-manager maintainers\n\nand possibly others.",
+      "revId": "babf7f008d2c6a57568deb7e04def648db393479",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a30a5195_b37f7645",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-19T05:13:11Z",
+      "side": 1,
+      "message": "This feels like it\u0027s being overly specific?\n\nAlso is there a reason that this information shouldn\u0027t come from entity-manager?",
+      "range": {
+        "startLine": 78,
+        "startChar": 40,
+        "endLine": 78,
+        "endChar": 60
+      },
+      "revId": "babf7f008d2c6a57568deb7e04def648db393479",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce11ce0_2d09b8fe",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-19T05:13:11Z",
+      "side": 1,
+      "message": "Can you please be more specific here? What interface is this property part of? What process hosts objects that expose that interface? Has this been defined in phosphor-dbus-interfaces, or is it just a proposal?",
+      "range": {
+        "startLine": 80,
+        "startChar": 58,
+        "endLine": 80,
+        "endChar": 74
+      },
+      "revId": "babf7f008d2c6a57568deb7e04def648db393479",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38879aff_0ca6cc1e",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-19T05:13:11Z",
+      "side": 1,
+      "message": "Again I think things are getting a bit specific here.\n\nBut also, does this accommodate multiple hosts managed by a single BMC?",
+      "revId": "babf7f008d2c6a57568deb7e04def648db393479",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
