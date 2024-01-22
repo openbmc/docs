@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1feee9c1_32d766cf",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-01-22T16:10:33Z",
+      "side": 1,
+      "message": "What do you think if I create an interface NumericControl under https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Control with a list of properties: Value (writable), MaxValue, MinValue, Unit, TransitionInterval?\n\nThis Control folder contains many interfaces that support setting values for different purposes. \n\nThis NumericControl interface will not have bias to PLDM and can also be used to set values to any control object on D-Bus which has common characteristics to a numeric sensor.",
+      "parentUuid": "046ac863_f6d5935a",
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87313d26_c3474d6e",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 2
@@ -64,6 +82,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8048341d_1aea6e2e",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-01-22T16:10:33Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "704bcc70_6175758b",
+      "range": {
+        "startLine": 453,
+        "startChar": 20,
+        "endLine": 453,
+        "endChar": 29
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4c54b94_f2de6fc8",
@@ -89,6 +131,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ecb36c9b_a960b615",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-01-22T16:10:33Z",
+      "side": 1,
+      "message": "I think these effecters better have meaningful names so they can be viewed on Web by users and for users to easily identify and set values to them. Moreover, they needn\u0027t always be strings, they are only strings if the PDRs provide the Auxiliary names which is the intention of the platform.",
+      "parentUuid": "b4c54b94_f2de6fc8",
+      "range": {
+        "startLine": 460,
+        "startChar": 45,
+        "endLine": 460,
+        "endChar": 68
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f82ad59f_ecb1d41e",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 2
@@ -100,6 +166,30 @@
       "writtenOn": "2024-01-18T16:12:57Z",
       "side": 1,
       "message": "What are we doing about these?  I don\u0027t see any proposal.  At least specify you\u0027re not handling them yet.",
+      "range": {
+        "startLine": 500,
+        "startChar": 49,
+        "endLine": 500,
+        "endChar": 65
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89d493b7_d5048c88",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-01-22T16:10:33Z",
+      "side": 1,
+      "message": "Sorry, this is the design for numeric effecters but I was so into making it generic for both types and forgot to clarify. Commit msg updated.",
+      "parentUuid": "f82ad59f_ecb1d41e",
       "range": {
         "startLine": 500,
         "startChar": 49,
@@ -135,6 +225,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5b6ea1d_7354db3d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-01-22T16:10:33Z",
+      "side": 1,
+      "message": "I made a mistake saying Sensor.Value is non-writable. I meant that Sensor.Value\u0027s supposed to report sensor value, not be used as a control interface. So I think there\u0027s a need to have another interface that can be used to set effecters, with some properties under it that applications/users will need to have better knowledge over what they should set to the effecters. Updated to clarify my intention.",
+      "parentUuid": "d90aa587_6c621db5",
+      "range": {
+        "startLine": 504,
+        "startChar": 0,
+        "endLine": 506,
+        "endChar": 25
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ead08fb3_1817c545",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 2
@@ -146,6 +260,30 @@
       "writtenOn": "2024-01-18T16:12:57Z",
       "side": 1,
       "message": "Again, why do I care?  \"effecter attributes\" are something special to PLDM.  I _don\u0027t_ want those becoming entrenched in the rest of the code base.",
+      "range": {
+        "startLine": 506,
+        "startChar": 26,
+        "endLine": 508,
+        "endChar": 0
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25613c19_c72194af",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-01-22T16:10:33Z",
+      "side": 1,
+      "message": "I agree most of the attributes I want to publish are too specific to PLDM, I will remove them.\n\nBut I think MinValue, MaxValue, Unit are essential for applications to pre-check the input value before setting it onto D-Bus. Like https://github.com/openbmc/phosphor-dbus-interfaces/blob/70301b9c16dc5e3e220472933affb7906b513bf4/yaml/xyz/openbmc_project/Control/VoltageRegulatorControl.interface.yaml#L17\n\nBesides, TransitionInterval is like a timeout for clients of this interface to know how much time it should wait till the dbus operation completes. Because it expects that the dbus property should only be set after the value is successfully set down to the target place (in this case to the other terminus).\n\nSo, I intend to keep the property list of Value, MaxValue, MinValue, Unit, TransitionInterval.",
+      "parentUuid": "ead08fb3_1817c545",
       "range": {
         "startLine": 506,
         "startChar": 26,
