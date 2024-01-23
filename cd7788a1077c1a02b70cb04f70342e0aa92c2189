@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5d0f4f0_b180c875",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e25212fa_61a2b7e1",
+      "range": {
+        "startLine": 336,
+        "startChar": 0,
+        "endLine": 336,
+        "endChar": 20
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f32d7ffe_94d43d96",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-21T22:55:23Z",
       "side": 1,
       "message": "Please backtick this one so it stands out: `SupportedMessageTypes`",
+      "range": {
+        "startLine": 339,
+        "startChar": 15,
+        "endLine": 339,
+        "endChar": 36
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b53ad69_557b5be6",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f32d7ffe_94d43d96",
       "range": {
         "startLine": 339,
         "startChar": 15,
@@ -112,6 +160,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9d34129_ebdb5f6b",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Updated. Please help checking.\n```\n`pldmd` will maintain a terminus table to manage the PLDM terminus in system.\nWhen `pldmd` received the updated EID table from MCTP D-Bus interface, `pldmd`\nshould check if the EID support PLDM message type(0x01) and then adds the EID\nwhich is not in the terminus table yet. When the terminus EID is removed from\nMCTP D-Bus interface, `pldmd` should also clean up the removed endpoint from the\nterminus table.\n\nFor each of terminus in the table, `pldmd` will go through below steps before\nstart manage the terminus:\n- Init terminus\n- Discovery terminus\n- Terminus monitoring and controlling\nAll of the added APIs, Monitoring/Controlling tasks of the terminus will be\nremoved when it is removed from the terminus table.\n```",
+      "parentUuid": "98b66991_f01cfe08",
+      "range": {
+        "startLine": 346,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 77
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be396f62_c2dd6259",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c94d30a_2903acc3",
+      "range": {
+        "startLine": 346,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 7
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6a75bd2_032da7b7",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 20
@@ -135,6 +231,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e84e373f_457260fd",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "I refactor the text\n```\n`pldmd` should expose the found PLDM sensor to D-Bus object path\n`/xyz/openbmc*project/sensors/\u003csensor_type\u003e/SensorName`. The format of\n`sensorName` can be \u003c$TerminusName_$SensorAuxName\u003e, \u003cTID#_$SensorAuxName\u003e,\n\u003c$TerminusName_SensorID#\u003e or \u003cTID#_SensorID#\u003e. \u003c$TerminusName\u003e and\n\u003c$SensorAuxName\u003e will be included in the `sensorName` whenever they exist.\n```",
+      "parentUuid": "b6a75bd2_032da7b7",
+      "range": {
+        "startLine": 352,
+        "startChar": 60,
+        "endLine": 355,
+        "endChar": 43
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf5b7f34_c00143ca",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 20
@@ -146,6 +266,30 @@
       "writtenOn": "2024-01-21T22:55:23Z",
       "side": 1,
       "message": "Okay, so this is what you refer to by management above? Exposing DBus a object representing the terminus to be consumed by other processes?\n\nI\u0027d like to see this motivation presented at the top, not buried towards the end of the paragraph.",
+      "range": {
+        "startLine": 355,
+        "startChar": 44,
+        "endLine": 358,
+        "endChar": 28
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa34e777_4033c9db",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "cf5b7f34_c00143ca",
       "range": {
         "startLine": 355,
         "startChar": 44,
@@ -181,6 +325,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ce1e0a0_948b1b3e",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "I updated those sentences:\n```\nAll of the added D-Bus object path and D-Bus interfaces, Monitoring/Controlling\ntasks from above steps of the terminus will be removed when it is removed from\nthe terminus table.\n```\nThis has much meaning and meat with the exception for the terminus manager role.",
+      "parentUuid": "35969e88_149b3bee",
+      "range": {
+        "startLine": 358,
+        "startChar": 29,
+        "endLine": 360,
+        "endChar": 25
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40093092_5c9b985c",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 20
@@ -192,6 +360,30 @@
       "writtenOn": "2024-01-21T22:55:23Z",
       "side": 1,
       "message": "Recommended for what purpose? It\u0027s not clear to me what we\u0027re trying to achieve, and it follows that it\u0027s not clear how this helps.",
+      "range": {
+        "startLine": 364,
+        "startChar": 60,
+        "endLine": 365,
+        "endChar": 36
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da6ac5fa_3f20f2d5",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "The \"Terminus Entity Auxiliary Name PDR\" include the \u003c$TerminusName\u003e which is unique for the device and have much meaning than TID#. This \u003c$TeminusName\u003e will be include the terminus inventory D-Bus objects paths and also SensorName which helps differential the sensors between the termini.",
+      "parentUuid": "40093092_5c9b985c",
       "range": {
         "startLine": 364,
         "startChar": 60,
@@ -227,6 +419,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d505bd0c_922825ed",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Updated.\nThe \"Terminus Entity Auxiliary name PDRs\" will encode the terminus name for the PDRs responding terminus. This is how TID can be mapped to $TerminusName.",
+      "parentUuid": "3a7c4820_80bf9d16",
+      "range": {
+        "startLine": 365,
+        "startChar": 37,
+        "endLine": 366,
+        "endChar": 80
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "406cfc22_d85edff9",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 20
@@ -238,6 +454,30 @@
       "writtenOn": "2024-01-21T22:55:23Z",
       "side": 1,
       "message": "You need a space before the opening parenthesis. Please audit the rest of the patch to address this issue.",
+      "range": {
+        "startLine": 371,
+        "startChar": 38,
+        "endLine": 371,
+        "endChar": 39
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "290edbe5_bbc307bb",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "406cfc22_d85edff9",
       "range": {
         "startLine": 371,
         "startChar": 38,
@@ -273,6 +513,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "76ec542f_ad0f33bb",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "16f1fbf8_15602a87",
+      "range": {
+        "startLine": 373,
+        "startChar": 19,
+        "endLine": 374,
+        "endChar": 76
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce6f479f_16e9839a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 20
@@ -284,6 +548,30 @@
       "writtenOn": "2024-01-21T22:55:23Z",
       "side": 1,
       "message": "This sounds like pldmd will accumulate a collection of json files for such devices, a bit like entity-manager\u0027s `configurations/` directory. If that\u0027s the case, then this document should propose a schema?",
+      "range": {
+        "startLine": 377,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 60
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a38b9a8_f54e4e16",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "I don\u0027t have much idea about the schema for those PDRs configuration file. We can use the current format of PDRs json in `configurations/`.",
+      "parentUuid": "ce6f479f_16e9839a",
       "range": {
         "startLine": 377,
         "startChar": 0,
@@ -319,6 +607,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b10fbc20_ecef390f",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "As my opinion, The sensor will be reported to the user through Redfish and BMC Web, It is better use the terminus name and sensor name instead of #TID and #SensorID. Using CPU0_DIMM0_Temp is better than TID0_SENSOR0.\nUsing terminus name and also sensor name will also the user monitoring the system without the PLDM knowledge.",
+      "parentUuid": "a1c4b4d9_8b19985e",
+      "range": {
+        "startLine": 383,
+        "startChar": 0,
+        "endLine": 389,
+        "endChar": 79
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d1573b5_4df972ee",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 20
@@ -330,6 +642,30 @@
       "writtenOn": "2024-01-21T22:55:23Z",
       "side": 1,
       "message": "Backticks for each of these.",
+      "range": {
+        "startLine": 400,
+        "startChar": 36,
+        "endLine": 401,
+        "endChar": 43
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "717c55c9_4732e236",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d1573b5_4df972ee",
       "range": {
         "startLine": 400,
         "startChar": 36,
@@ -363,6 +699,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50fbd858_524e154b",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2f7e9b5_2dcee5b8",
+      "range": {
+        "startLine": 406,
+        "startChar": 24,
+        "endLine": 406,
+        "endChar": 40
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be1249f4_e65cc7f1",
@@ -386,6 +746,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dff8ed5f_4fea7d52",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be1249f4_e65cc7f1",
+      "range": {
+        "startLine": 408,
+        "startChar": 16,
+        "endLine": 408,
+        "endChar": 28
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56754716_dd796b90",
@@ -399,6 +783,30 @@
       "writtenOn": "2024-01-21T22:55:23Z",
       "side": 1,
       "message": "Backticks",
+      "range": {
+        "startLine": 409,
+        "startChar": 0,
+        "endLine": 409,
+        "endChar": 33
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9abb95fc_cbbe0ffc",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:13:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56754716_dd796b90",
       "range": {
         "startLine": 409,
         "startChar": 0,
