@@ -45,6 +45,54 @@
       },
       "revId": "71564e1f042756d738eb7d3aed6bb1832104ebc6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e33f327c_84a41ea6",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:19:27Z",
+      "side": 1,
+      "message": "I updated the design spec to use \"Terminus Name\" which can get from the \"Terminus Entity Auxiliary Names PDR\", or from the `Name` field in the Static EID configuration such as https://github.com/openbmc/entity-manager/blob/master/configurations/yosemite4_floatingfalls.json#L7.",
+      "parentUuid": "6c690747_a6055630",
+      "range": {
+        "startLine": 376,
+        "startChar": 44,
+        "endLine": 376,
+        "endChar": 56
+      },
+      "revId": "71564e1f042756d738eb7d3aed6bb1832104ebc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "008ace30_3050cc6a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-23T07:19:27Z",
+      "side": 1,
+      "message": "I updated spec, the sensor name can be:\n\n\u003c$TerminusName_$SensorAuxName\u003e,\n\u003cTID#\\_$SensorAuxName\u003e,\n\u003c$TerminusName_SensorID#\u003e\n\u003cTID#\\_SensorID#\u003e.\n\n\u003c$TerminusName\u003e and \u003c$SensorAuxName\u003e will be included in the `sensorName` whenever they exist.",
+      "parentUuid": "a82d60cc_e84c6762",
+      "range": {
+        "startLine": 376,
+        "startChar": 66,
+        "endLine": 376,
+        "endChar": 71
+      },
+      "revId": "71564e1f042756d738eb7d3aed6bb1832104ebc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
