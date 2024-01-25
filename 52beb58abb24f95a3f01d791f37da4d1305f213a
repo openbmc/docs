@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cda91c86_42001532",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-25T08:13:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "023aa5ff_ca9690a1",
+      "range": {
+        "startLine": 429,
+        "startChar": 54,
+        "endLine": 429,
+        "endChar": 57
+      },
+      "revId": "52beb58abb24f95a3f01d791f37da4d1305f213a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5580996_fc0615a5",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-24T09:28:30Z",
       "side": 1,
       "message": "is this defined somewhere in the PLDM platform spec ? I only see ..\nsensor aux names , entity aux names, effecter aux names, and there is terminus locator pdr, but i dont see terminus entity aux names pdr. I cannot seem to find it. May be adding a reference to the spec helps here.",
+      "range": {
+        "startLine": 433,
+        "startChar": 19,
+        "endLine": 433,
+        "endChar": 54
+      },
+      "revId": "52beb58abb24f95a3f01d791f37da4d1305f213a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe363847_73be6909",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-25T08:13:49Z",
+      "side": 1,
+      "message": "`Terminus Entity Auxiliary Names PDR` is `Entity Auxiliary Names PDR` of the terminus entity. Which include the name of terminus and also the EntityContainerID of the terminus.\nI updated spec as below:\n```\nBeside the \u003cTID#\u003e, terminus can also have \u003c$TerminusName\u003e or \u003c$DeviceName\u003e which\ncan be encoded in the Terminus\u0027s `Entity Auxiliary Names PDR` (section 28.18 of\nDSP0248 1.2.1) or in the MCTP endpoint configuration file [Entity-Manager EID\nconfiguration](https://github.com/openbmc/entity-manager/blob/master/configurations/yosemite4_floatingfalls.json#L7).\nFor terminus which supports the sensors, effecter and state PDRs, the Terminus\u0027s\n`Entity Auxiliary Names PDR` is recommended to be included.\n```",
+      "parentUuid": "a5580996_fc0615a5",
       "range": {
         "startLine": 433,
         "startChar": 19,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48dfff7b_07379258",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-25T08:13:49Z",
+      "side": 1,
+      "message": "Yes, that\u0027s true. Behind the sensors we also need the entity association PDRs.\nI updated the design.",
+      "parentUuid": "493b285f_8d54e487",
+      "range": {
+        "startLine": 446,
+        "startChar": 2,
+        "endLine": 449,
+        "endChar": 18
+      },
+      "revId": "52beb58abb24f95a3f01d791f37da4d1305f213a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "626f3d70_86bd26ac",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 24
@@ -100,6 +172,30 @@
       "writtenOn": "2024-01-24T09:28:30Z",
       "side": 1,
       "message": "what do you mean by this ?",
+      "range": {
+        "startLine": 510,
+        "startChar": 38,
+        "endLine": 511,
+        "endChar": 28
+      },
+      "revId": "52beb58abb24f95a3f01d791f37da4d1305f213a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a53ba296_3cec3ab2",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-25T08:13:49Z",
+      "side": 1,
+      "message": "Updated the design for more clear description.",
+      "parentUuid": "626f3d70_86bd26ac",
       "range": {
         "startLine": 510,
         "startChar": 38,
@@ -133,6 +229,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e08de867_4f7c6fc9",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-25T08:13:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d524a5d2_533b9fb3",
+      "range": {
+        "startLine": 519,
+        "startChar": 0,
+        "endLine": 519,
+        "endChar": 30
+      },
+      "revId": "52beb58abb24f95a3f01d791f37da4d1305f213a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "135cf043_feb9be9a",
@@ -146,6 +266,30 @@
       "writtenOn": "2024-01-24T09:28:30Z",
       "side": 1,
       "message": "this is already mentioned above, please fix the document.",
+      "range": {
+        "startLine": 521,
+        "startChar": 0,
+        "endLine": 523,
+        "endChar": 75
+      },
+      "revId": "52beb58abb24f95a3f01d791f37da4d1305f213a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18ac207c_7f052d70",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2024-01-25T08:13:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "135cf043_feb9be9a",
       "range": {
         "startLine": 521,
         "startChar": 0,
