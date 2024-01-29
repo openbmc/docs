@@ -1,0 +1,210 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b576b6c_64162bf7",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-01-29T23:34:29Z",
+      "side": 1,
+      "message": "Does this just mean that the proposal in this document is only expected to be used HPE/GXP systems?  If so I think it could be worded more clearly (and also if not, since I\u0027m not entirely sure what else it might mean).",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 1
+      },
+      "revId": "557f592cc0c1fdf9440334b0d3e13ccb284f109f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c54a87e_711c3e58",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-01-29T23:34:29Z",
+      "side": 1,
+      "message": "Is all CHIF traffic SMIF messages, or are there other types of messages that might also need to be supported?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 12
+      },
+      "revId": "557f592cc0c1fdf9440334b0d3e13ccb284f109f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84a1f4b3_a86189c2",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-01-29T23:34:29Z",
+      "side": 1,
+      "message": "[Mostly-tangential curiosity:] Hmm, so the BMC\u0027s i2c layout is directly exposed to the host?  That seems a bit surprising based on the platforms I\u0027m familiar with, and if the host needs that information I sort of wonder about potential security ramifications of what it might be doing with it...",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 26
+      },
+      "revId": "557f592cc0c1fdf9440334b0d3e13ccb284f109f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68d35fbe_ae9789b6",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-01-29T23:34:29Z",
+      "side": 1,
+      "message": "How symmetric is the interface between the host \u0026 the BMC?  Is there any possibility of reusing that driver (or parts of it) on the BMC?",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 68
+      },
+      "revId": "557f592cc0c1fdf9440334b0d3e13ccb284f109f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11a5f512_ddc12f62",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-01-29T23:34:29Z",
+      "side": 1,
+      "message": "What\u0027s the relationship between SMIF messages and ROM requests here -- are they distinct, separate things, or is the latter a subset (particular type) of the former?",
+      "range": {
+        "startLine": 74,
+        "startChar": 43,
+        "endLine": 74,
+        "endChar": 75
+      },
+      "revId": "557f592cc0c1fdf9440334b0d3e13ccb284f109f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4afc6bd_a74bc2d1",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-01-29T23:34:29Z",
+      "side": 1,
+      "message": "To clarify that the service isn\u0027t poking the bus directly, might this be more accurately described as something like \"decode received packets delivered by driver\"?",
+      "revId": "557f592cc0c1fdf9440334b0d3e13ccb284f109f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a53358c_ac18f13d",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-01-29T23:34:29Z",
+      "side": 1,
+      "message": "...and similarly, maybe \"via CHIF driver\" instead of \"on CHIF bus\" here?",
+      "revId": "557f592cc0c1fdf9440334b0d3e13ccb284f109f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e608dec_7bf513b0",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-01-29T23:34:29Z",
+      "side": 1,
+      "message": "If there\u0027s going to be an open-source implementation in upstream OpenBMC, is there any public documentation available for packet formats and such?",
+      "range": {
+        "startLine": 108,
+        "startChar": 15,
+        "endLine": 108,
+        "endChar": 66
+      },
+      "revId": "557f592cc0c1fdf9440334b0d3e13ccb284f109f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6974898_542f8fcd",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-01-29T23:34:29Z",
+      "side": 1,
+      "message": "Surnames probably good to include?  (And maybe contact info like email addresses or discord handles too.)",
+      "revId": "557f592cc0c1fdf9440334b0d3e13ccb284f109f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db0ea0a_542c964b",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-01-29T23:34:29Z",
+      "side": 1,
+      "message": "Nit: I think there\u0027s an apostrophe missing here.",
+      "revId": "557f592cc0c1fdf9440334b0d3e13ccb284f109f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
