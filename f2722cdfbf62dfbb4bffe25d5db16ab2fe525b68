@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01191e57_184f808e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-29T02:39:41Z",
+      "side": 1,
+      "message": "Hi Abinaya, I\u0027ve made several comments. Some are to do with markdown and layout, but others are more pressing concerns with the design or presentation of the design details.",
+      "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b526fd4b_06eba79b",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-29T02:39:41Z",
+      "side": 1,
+      "message": "The glossary makes reference to the UEFI spec and APML (which presumably has a specification as well). However, there\u0027s currently no link to the referenced document here in the `Background and References` section. Can you please fix that?",
+      "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47c334d6_13994cad",
@@ -32,6 +66,29 @@
       "side": 1,
       "message": "As mentioned, the mechanism to monitor and collect crashdump data via APML interface is specific to AMD processors and cannot be used on other platforms. But packaging the crashdump record is done in a standardized way by following the CPER format.",
       "parentUuid": "47c334d6_13994cad",
+      "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "242fdf92_f9e56702",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-29T02:39:41Z",
+      "side": 1,
+      "message": "Can you please make this a proper markdown link? E.g.\n\n```\n...\n2. Provide a mechanism to format crash data as per [the UEFI specification][uefi-specification-2.10]\n\n[uefi-specification-2.10]: https://uefi.org/specs/UEFI/2.10/\n...\n```",
+      "range": {
+        "startLine": 64,
+        "startChar": 3,
+        "endLine": 64,
+        "endChar": 38
+      },
       "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -108,6 +165,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96eafaa1_6f42f74a",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-29T02:39:41Z",
+      "side": 1,
+      "message": "I strongly prefer you don\u0027t try to over-generalise at this point. Just write this as if you\u0027re solving your specific problem, i.e. in the context of AMD processors inspected via APML. Adding parentheses everywhere to specify the AMD case is what I don\u0027t want to see.\n\nOnce we get others who have crash-dump concerns reviewing this document we can work on consensus on how to generalise it. At that point we can discuss other implementations like PECI, FSI, etc.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 1
+      },
+      "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "824fee03_cb3e6369",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-29T02:39:41Z",
+      "side": 1,
+      "message": "This seems overly specific. Why is it necessary to specify the path here?",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 25
+      },
+      "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cddeb0e7_55ecf5d7",
         "filename": "designs/oem/amd/amd-bmc-ras.md",
         "patchSetId": 7
@@ -119,6 +222,69 @@
       "writtenOn": "2024-01-24T23:31:01Z",
       "side": 1,
       "message": "Whats the existing Redfish interface for retrieving the crashdump? If there is one is it sufficient enough to support the flow and expose the required info?",
+      "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d900a6b6_9a7155e1",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-29T02:39:41Z",
+      "side": 1,
+      "message": "Generally the OpenBMC data model (for better or worse) is to represent objects on DBus and not so much on the filesystem. Why have we opted for the filesystem here?\n\nAre the bmcweb maintainers on-board with this proposal?\n\nHow does it interact with phosphor-debug-collector?",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 18
+      },
+      "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fd4e5a6_46a62c37",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-29T02:39:41Z",
+      "side": 1,
+      "message": "This goes into a lot of detail about the mechanics of collecting the crashdump at the APML library level, but it doesn\u0027t do much at all to illustrate the OpenBMC specific pieces that you\u0027re proposing here.\n\nI still haven\u0027t internalised how the dbus interfaces and various repositories interact in the proposal. I would like to see a diagram of those interactions if we are to have a diagram (or, in addition to this diagram).",
+      "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fda1303_ff9fa410",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-29T02:39:41Z",
+      "side": 1,
+      "message": "markdown links tend to misbehave across line-breaks. For instance, you can see that the link is not correctly displayed in the rendered document here:\n\nhttps://gerrit.openbmc.org/plugins/gitiles/openbmc/docs/+/f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68/designs/oem/amd/amd-bmc-ras.md#amd-bmc-ras-application-high-level-architectural-diagram\n\nPlease fix the link.",
+      "range": {
+        "startLine": 147,
+        "startChar": 46,
+        "endLine": 148,
+        "endChar": 53
+      },
       "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -171,6 +337,23 @@
       "side": 1,
       "message": "To get an early review from the community, a Gerrit request was raised for the com.amd.Crashdump.Configuration dbus interface. Please check the link https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/65683",
       "parentUuid": "35a514a9_010dc975",
+      "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76fa67bd_1ca488b8",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-29T02:39:41Z",
+      "side": 1,
+      "message": "I think some of the queries above should drive expansion of this section. This section is meant to compel the reader that your proposed design is the best design. That means addressing all the alternative design points throughout and arguing against them. For instance, the discussion about the use of `/var/lib/bmc-ras` instead of exploiting DBus representations.",
       "revId": "f2722cdfbf62dfbb4bffe25d5db16ab2fe525b68",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
