@@ -655,6 +655,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1adbd588_8442e5e2",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-29T03:50:02Z",
+      "side": 1,
+      "message": "I think you\u0027re conflating things here. Why is the DBus path the only source of how things are named in the Redfish output?\n\nRegardless you now have several constraints you need to deal with:\n\n1. [Valid Object Paths in DBus](https://dbus.freedesktop.org/doc/dbus-specification.html#message-protocol-marshaling-object-path)\n2. [Sensor names in section 28.8 and effector names in section 28.15 from DSP0248 v1.2.2](https://www.dmtf.org/sites/default/files/standards/documents/DSP0248_1.2.2.pdf)\n3. There\u0027s no specification for terminus names that I can find.\n\nFrom 1. DBus object path elements are constrained to the character set `[A-Z][a-z][0-9]_` and path elements must not be empty. Further, the specification is clear on the behaviour of applications:\n\n\u003e  Implementations must not send or accept messages with invalid object paths.\n\nFrom 2, the sensorName and effecterName field may be:\n\n1. Absent\n2. A null-terminated unicode string\n3. The null string (0x0000, UTF-16 (BE)).\n\nThis requires that:\n\n1. You do appropriate encoding and decoding of the character buffers such that we can handle UTF-16 BE and ASCII\n2. You mangle the name of the sensor or effecter to have it conform to the DBus path name constraints. You will need to specify a mangling behaviour. It should be possible to recover the true name of the sensor from the mangled name.\n\nRegarding 3,  Do we assume that terminus names are specified in the same manner as sensors and effectors? If so, we have the same constraints as above, which leads us to:\n\nYou\u0027re proposing a path encoding scheme that has ambiguities. As an application I may observe the following paths being published (among others:\n\n1. `/xyz/openbmc_project/sensors/\u003csensor_type\u003e/_`\n2. `/xyz/openbmc_project/sensors/\u003csensor_type\u003e/__`\n3. `/xyz/openbmc_project/sensors/\u003csensor_type\u003e/0_1`\n\nRegarding 1, under our assumption about the terminus name, it\u0027s unclear whether:\n\n- The terminus name is the null string or absent\n- The sensor/effecter name is the null string or absent\n\nRegarding 2, under our assumption about the terminus name, there are no constraints on the terminus, sensor or effecter name content, other than that it is valid UTF-16 BE. It\u0027s valid to call a terminus, sensor or effecter `_`. It\u0027s also valid for the terminus, sensor or effecter name to be absent. This leads to the ambiguity as to whether the first or second underscore in the object name is associated with the terminus or the sensor/effecter\n\nRegarding 3, under our assumption about the terminus name, there are no constraints on the terminus, sensor or effecter name content, other than that it is valid UTF-16 BE. It\u0027s ambiguous as to whether the values `0` and `1` represent the TID and sensor ID, or the terminus name and sensor auxiliary name, or some mix of the two, as the values may be either a string converted to a string (e.g. the string with UTF-16 BE encoding `[0x0030, 0x0000]` for `0`), or integers converted to a string. That may be pathological, but the ambiguity exists regardless.\n\nThis is all solved if we remove the flexibility of what you\u0027re proposing, and define the object path pattern as:\n\n```\n/xyz/openbmc_project/sensors/\u003csensor_type\u003e/$TID/$SensorID\n```\n\nFrom there we can host an interface on `/xyz/openbmc_project/sensors/\u003csensor_type\u003e/$TID` that exposes the terminus name, and the same interface on `/xyz/openbmc_project/sensors/\u003csensor_type\u003e/$TID/$SensorID` that exposes the sensor name. My proposal does not require a lossless mangling scheme and removes the ambiguities.",
+      "parentUuid": "b10fbc20_ecef390f",
+      "range": {
+        "startLine": 383,
+        "startChar": 0,
+        "endLine": 389,
+        "endChar": 79
+      },
+      "revId": "cd7788a1077c1a02b70cb04f70342e0aa92c2189",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d1573b5_4df972ee",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 20
