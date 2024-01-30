@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98ab9e21_a7bee1bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T00:18:25Z",
+      "side": 1,
+      "message": "Hi Andrew (great name btw), I\u0027ve provided some preliminary comments. I hope you don\u0027t mind 😊",
+      "revId": "e890d297aa219135cd51b27ff83a0f9f583a6cb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b657a944_332e6cd7",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T00:18:25Z",
+      "side": 1,
+      "message": "Do you have a link to the specification of the protocol and the BMC side of the hardware interface? They would be a great help in understanding the context for the proposal.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 61
+      },
+      "revId": "e890d297aa219135cd51b27ff83a0f9f583a6cb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c4eb6ed_ee726665",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T00:18:25Z",
+      "side": 1,
+      "message": "How applicable is this driver to the BMC side of the problem?\n\nAlso: perhaps it would be better to use a git.kernel.org link? e.g:\n\nhttps://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/misc/hpilo.c?h\u003dv6.7\n\nFinally, markdown links don\u0027t need the angle brackets 😊",
+      "revId": "e890d297aa219135cd51b27ff83a0f9f583a6cb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aa9a857_d88208e9",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T00:18:25Z",
+      "side": 1,
+      "message": "This seems more like background than requirements ...",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 15
+      },
+      "revId": "e890d297aa219135cd51b27ff83a0f9f583a6cb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6da3e2a1_17e36b62",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T00:18:25Z",
+      "side": 1,
+      "message": "... and this seems more like a part of the proposal 😊",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 74
+      },
+      "revId": "e890d297aa219135cd51b27ff83a0f9f583a6cb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0755ef68_83cd1cc9",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T00:18:25Z",
+      "side": 1,
+      "message": "These are requirements though 😊 However, do you have a link to the protocol specification?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 16
+      },
+      "revId": "e890d297aa219135cd51b27ff83a0f9f583a6cb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26e92551_0e74b904",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T00:18:25Z",
+      "side": 1,
+      "message": "Do you have a prototype patch implementing this driver in the kernel? I think the primary concern is the shape of the userspace interfaces. The current proposal splits the design at the SMIF packet level. What other possibilities are there for the boundary between the kernel and userspace?\n\nThe options should be argued for in the proposed solution and against in the `Alternatives Considered` section.",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 18
+      },
+      "revId": "e890d297aa219135cd51b27ff83a0f9f583a6cb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38fa80fe_b725acda",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T00:18:25Z",
+      "side": 1,
+      "message": "Can you please add the TOF members as reviewers on this proposal?",
+      "range": {
+        "startLine": 112,
+        "startChar": 4,
+        "endLine": 112,
+        "endChar": 9
+      },
+      "revId": "e890d297aa219135cd51b27ff83a0f9f583a6cb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89770546_6bf3ec8f",
+        "filename": "designs/oem/hpe/CHIF-Service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T00:18:25Z",
+      "side": 1,
+      "message": "Quite a few 😊\n\nCan you please review this list in the context of expectations laid out here:\n\nhttps://github.com/openbmc/docs/blob/master/community-membership.md#subproject-owner\n\nI suspect we should have a TOF member on the list as well.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 16
+      },
+      "revId": "e890d297aa219135cd51b27ff83a0f9f583a6cb5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
