@@ -16,6 +16,86 @@
       "message": "Any more comments? Or should we move forward with this design?",
       "revId": "0253f2dcf671352864ec7e64a07065b615a8a9f0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87839705_b3058626",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T23:06:33Z",
+      "side": 1,
+      "message": "Hi Zhichuang - thanks for the prompt for reviews. There\u0027s been some recent activity around how we configure systems using entity-manager and mctpd. I\u0027ve left some comments inline around this.",
+      "revId": "0253f2dcf671352864ec7e64a07065b615a8a9f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acc5f3d0_59110722",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T23:06:33Z",
+      "side": 1,
+      "message": "I don\u0027t think that we should require a specific schema for a trusted device? I think we can exploit the (already merged) `MCTPEndpoint` schema? Here\u0027s a conversation about how we integrate mctpd with EM:\n\nhttps://github.com/CodeConstruct/mctp/pull/17\n\nI\u0027m working on a proof-of-concept `mctpreactor` daemon in dbus-sensors to handle the configuration.\n\nFrom there the SPDM daemon should only need to monitor `mctpd` for `InterfacesAdded` signals providing the `xyz.openbmc_project.MCTP.Endpoint` interface, which exposes the message types supported by the endpoint in the `SupportedMessageTypes` member. This way there\u0027s no specific support required for SPDM devices in the EM configuration schemas.\n\nI\u0027d like to see this direction incorporated into the document.",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 41
+      },
+      "revId": "0253f2dcf671352864ec7e64a07065b615a8a9f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6ab1e53_08666017",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T23:06:33Z",
+      "side": 1,
+      "message": "We shouldn\u0027t need any double-checking.",
+      "range": {
+        "startLine": 142,
+        "startChar": 71,
+        "endLine": 144,
+        "endChar": 10
+      },
+      "revId": "0253f2dcf671352864ec7e64a07065b615a8a9f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c8908d5_bd749192",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-01-30T23:06:33Z",
+      "side": 1,
+      "message": "If we take the approach I suggest above then the diagram changes a little such that the SPDM daemon doesn\u0027t interact with Entity Manager, only with `mctpd` and the devices.",
+      "revId": "0253f2dcf671352864ec7e64a07065b615a8a9f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
