@@ -1,0 +1,158 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8253b618_24ca51a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-01T23:27:56Z",
+      "side": 1,
+      "message": "Hi Quang, a few more comments, but I think this is an improvement over PS1.",
+      "revId": "f87689b7610029bd9a497df4f10caf1f51c5403c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8361150a_8e693d52",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-01T23:27:56Z",
+      "side": 1,
+      "message": "Not only this, but it also specifies that accounts should be removed on changes to service and host state. That affects the boot path on the BMC and ties into phosphor-state-manager. The maintainers of the latter should review this document also.",
+      "revId": "f87689b7610029bd9a497df4f10caf1f51c5403c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "352cbbb4_13d83042",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-01T23:27:56Z",
+      "side": 1,
+      "message": "An example is good, though I\u0027d prefer we talk about an EM schema to make things concrete.\n\nAlso, does this have any impact on phosphor-networkd?",
+      "revId": "f87689b7610029bd9a497df4f10caf1f51c5403c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1de7cd3_b67f8bce",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-01T23:27:56Z",
+      "side": 1,
+      "message": "Surely we don\u0027t require the complexity of DBus. libc already provides facilities for this problem, e.g. [getgrouplist(3)](https://www.man7.org/linux/man-pages/man3/getgrouplist.3.html).",
+      "range": {
+        "startLine": 91,
+        "startChar": 57,
+        "endLine": 94,
+        "endChar": 55
+      },
+      "revId": "f87689b7610029bd9a497df4f10caf1f51c5403c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f5c7d78_6bf48e2e",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-01T23:27:56Z",
+      "side": 1,
+      "message": "No, it needs to react to EM publishing or unpublishing configurations at any time. This is a fundamental behaviour of EM (it\u0027s part of an event-driven system)",
+      "range": {
+        "startLine": 110,
+        "startChar": 6,
+        "endLine": 110,
+        "endChar": 18
+      },
+      "revId": "f87689b7610029bd9a497df4f10caf1f51c5403c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54f5a7e2_af1bc080",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-01T23:27:56Z",
+      "side": 1,
+      "message": "This is example configuration of a bitbake recipe for the feature. It\u0027s configuration that\u0027s provided by the recipe to meson. I the description is a bit confused?\n\nAlso, use of `EXTRA_OEMESON` tends to be a bit of a hack in recipes. The idiomatic approach is to define a `PACKAGECONFIG` switch to enable/disable the behaviour (that way the declaration to enable or disable the option in the recipe is not influenced by the implemented build system).",
+      "revId": "f87689b7610029bd9a497df4f10caf1f51c5403c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9677631b_6c7a3664",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-01T23:27:56Z",
+      "side": 1,
+      "message": "Generally things in \"alternatives considered\" are competing options with the proposal, but are worse in some way. It\u0027s not clear to me that this is even a competing option. It sounds like it should be a consideration of the proposal?",
+      "revId": "f87689b7610029bd9a497df4f10caf1f51c5403c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74d962d9_06741b82",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-01T23:27:56Z",
+      "side": 1,
+      "message": "Please switch \"configuration\" to \"schema\"",
+      "range": {
+        "startLine": 141,
+        "startChar": 21,
+        "endLine": 141,
+        "endChar": 34
+      },
+      "revId": "f87689b7610029bd9a497df4f10caf1f51c5403c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
