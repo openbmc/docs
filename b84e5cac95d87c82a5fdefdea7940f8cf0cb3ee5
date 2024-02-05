@@ -1,0 +1,204 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3483b9d1_67c2b77c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-05T03:53:41Z",
+      "side": 1,
+      "message": "Hi Quang, thanks for iterating on this. I\u0027ve made some further comments.",
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19e29608_9b33e410",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-05T03:53:41Z",
+      "side": 1,
+      "message": "You need a space after the `,`",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 9
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d035d7f_b1df1ec2",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-05T03:53:41Z",
+      "side": 1,
+      "message": "Thanks for adding the schema and an example. Great work.",
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bb95980_c8001fad",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-05T03:53:41Z",
+      "side": 1,
+      "message": "I think this needs some refinement. The efficient way for this to be correct is that bmcweb register for `InterfacesAdded`, `InterfacesRemoved` and `NameOwnerChanged` signals from EntityManager to learn of new `HostInterface` configurations, and then query for any that have currently been exposed. This yields correctness in the face of arbitrary restart ordering of EntityManager and bmcweb.",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 45
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc5ec7b7_0af87fd2",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-05T03:53:41Z",
+      "side": 1,
+      "message": "Can you unpack this a bit further? Bootstrap accounts have an impact on platform security, so it\u0027s essential that their authentication is correct. The implementation bears some discussion.\n\nSo the intent is to depend on membership in specific subnets? Another approach might be to [create interface-specific sockets using `SO_BINDTODEVICE`](https://www.man7.org/linux/man-pages/man7/socket.7.html) and only allow the bootstrap accounts on those sockets (the latter feels to me like the most direct path to correctness, as it\u0027s the interface that\u0027s defined as associated with the host in the EM config).\n\nAlso, arguably, it should only be possible to create these accounts through something that\u0027s known to be a host interface. Are there changes required to `phosphor-host-ipmid` to manage that, if e.g. `phosphor-net-ipmid` is enabled?",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 8
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "733398ab_d22152a7",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-05T03:53:41Z",
+      "side": 1,
+      "message": "So I suspect the work for this is actually in phosphor-user-manager, to listen to the signals emitted by phosphor-state-manager or x86-power-control.",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 53
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f3c6953_0beceac9",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-05T03:53:41Z",
+      "side": 1,
+      "message": "Why is this worse than your proposed design?",
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70fd950a_501f0826",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-05T03:53:41Z",
+      "side": 1,
+      "message": "Why is this worse than your proposed design?",
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdae8b8f_32c301a4",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-05T03:53:41Z",
+      "side": 1,
+      "message": "Why is this worse than your proposed design? Also, I don\u0027t think this is a specific concern in the face of e.g. systemd\u0027s stable interface naming policies? Not to say someone won\u0027t add a specific udev rule that renames an interfaces, but that\u0027s kinda their fault if they break things that way?",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 40
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38181c3e_20fe0411",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-05T03:53:41Z",
+      "side": 1,
+      "message": "Will this need changes to `phosphor-user-manager` such that we can ask it to delete all users who are members of a specific group?",
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
