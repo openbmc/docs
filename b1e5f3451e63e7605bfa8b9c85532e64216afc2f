@@ -166,6 +166,430 @@
       },
       "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a93aded_d83dc568",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "IMO, this design is communicating data with uboot, therefore it goes in a daemon that communicates with uboot, https://github.com/openbmc/phosphor-u-boot-env-mgr which also has the advantage that the existing code will now be better maintained.  Even if none of the code is in common, sharing the repo with all uboot communication code is organizationally much better in my opinion, because it adds to the idea that solutions are generic, not platform specific.  Keep in mind, phosphor-u-boot-env-mgr has less executable code than this design document has words, so getting it maintained and used shouldn\u0027t be a huge burden to put on the authors of this document.\n\nI don\u0027t really buy into the idea that HPe platforms are so unique that they require yet another daemon to communicate data from uboot into dbus.  Maybe it operates in some unique ways using some unique ram regions but it\u0027s still transferring data uboot-\u003edbus, and should share the code that already exists, even if it\u0027s only in name. \"If the HPe u-boot node exists\" seems like something that the code could trivially branch on and be added to by others later.\n\nIn addition, this document needs unified with https://gerrit.openbmc.org/c/openbmc/docs/+/65678\n\nWhich still has a number of open comments from core maintainers, and has an author comment that says:\n\n\u003e I\u0027m now planning to update this proposal to discuss creating a \u0027u-boot-env FRU-alternative\u0027 daemon (non-HPE-specific) in Entity-Manager that would make use of the phosphor-u-boot-env-mgr service (if exists) to move HW identifying data to D-Bus.\"\n\nHopefully it\u0027s easy to see why I\u0027m confused why there\u0027s yet another design doc for what amounts to the same feature.\n\nGiven how long this design has been in-progress, I\u0027m assuming this implementation already exists in a fork somewhere?  To be clear, working code isn\u0027t a prerequisite for a design approval, but if it exists, providing a pointer to it would likely answer quite a few questions better than text descriptions, and give us something to point to when making specific suggestions about dbus interfaces.",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c91da47d_513a6d9a",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "This sounds very similar to the Tyan file format (which FRU device handles) or the VPD IBM parser design.  Could you please add those into your background?  Ideally also with details on why this design is taking a different approach.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 65
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a54c7df_66df8232",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "I\u0027m not quite understanding this section.  If there are portions that are required to make this work that cannot be open sourced, what\u0027s the point of this design?  If nobody can build a GXP OpenBMC image that works, why open source just a portion?  Just keep the proprietary implementation, support it, and call it done.  Calling something \"OpenBMC\" without open sourcing the code to actually make it work it doesn\u0027t seem appropriate, or useful to a user.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 47
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e64842f0_8bbbb827",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "Getting this into an upstream uboot or openbmc uboot would presumably be a prerequisite of acceptance of this design?  has that discussion been started?  Can you link it?",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 58
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7684dbb9_0bd5b018",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "Why is openbmc pointing at this u-boot fork?\n\nhttps://github.com/openbmc/openbmc/blob/8a4267b756cd3dadf58a01d1c96764f8d80077ee/meta-hpe/meta-gxp/recipes-bsp/u-boot/u-boot-common-gxp_2020.10.inc#L12C1-L13C1\n\npresumably HPe would need to follow the process that Nuvoton and Aspeed did, and get it included in https://github.com/openbmc/u-boot  Have you discussed that with Joel?\n\nAs written this seems like it\u0027s in direct contradiction of\nhttps://github.com/openbmc/docs/blob/master/meta-layer-guidelines.md\n\nTrying to propose \"generic\" solutions that apply to everything when the underlying implementation seems like we\u0027re making a huge amount of technical debt.\n\nThe fact that HPe is both a system manufacturer, and makes its own BMC was maybe why this was allowed?",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89209727_502dc791",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "In the past we haven\u0027t put manufacturer specific daemons in entity-manager.  the IBM VPD is parsed by its own repo.  Any reason we\u0027d put it in EM this time around?  If we\u0027re changing that, should we move the IBM daemon into EM?\n\nThe doc you reference still has quite a few open comments, and is really difficult to reconcile with this design.",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 81
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7fcf0b3_e571f130",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "This seems like an issue in naming.\n\nEntity manager files are intended to represent what physically exists on a component such that it\u0027s not debatable what the interfaces are, and those without OpenBMC experience can write config files.\n\nxyz.openbmc_project.Inventory.Decorator.Compatible doesn\u0027t represent anything about the physical board, and means nothing in the real world without knowing exactly how the software is configured.  I suspect we would need naming that conveys something to the effect of: \"HPe format FRU manufacturer field equals X\"\n\nThus we\u0027re not relying on a particular distro/software config to write those Compatible flags, which would require the EM config writer to understand a lot more about how OpenBMC is structured, and whos probe elements might be subjective.\n\nYou\u0027ll notice the existing FRU device entries follow this \"IPMI FRU Manufacturer field equals X\" pattern.  An example of an IBM OEM parser is below.\n\nhttps://github.com/openbmc/entity-manager/blob/8d2ed842534cc63b446321faa17b5d400350f6a3/configurations/rainier_1s4u_chassis.json#L24C23-L24C23\n\nthat example then publishes xyz.openbmc_project.Inventory.Decorator.Compatible as a result.  Your design is inverting that.  At a minimum we need to use something other than Compatible as the EM probe, so we don\u0027t have a disconnect between which object owns the Compatible interface.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 38
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dba13ab_7fc05810",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "Please wrap your document on 80 character boundaries.  There are lots of issues, this is only one.  Please fix all of them.\n\nI\u0027m assuming it wasn\u0027t intentional for these to be headings.  They appear to be text.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 94
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86bc574f_247f6187",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "Agreed.",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 51
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c9376fa_5ffaaff7",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "Would increase code reuse and testing.",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "369fce52_4a57a163",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "What does this mean?  The \"preferred\" design has the same chain length, right?  It just puts a new daemon in the entity-manager repo instead of reusing an existing one?",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 74
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "809fc311_7eb9a6f3",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "Why is this a con?  Saving cycles doesn\u0027t seem like a bad thing, even if it isn\u0027t important?",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 12
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3693a99b_64c91477",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "Better abstraction is another pro.",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5beb64d7_066667df",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "?  what does this mean?  I\u0027m really not sure why the location of the code would change how things are able to be leveraged?",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 58
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6d2601e_b8f6c668",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "I\u0027m not really following how this is different aside from where you\u0027re putting the new daemon.  FWIW, putting all uboot communication code in the same place seems like it would save significant dependencies?\n\nIf I\u0027m understanding the design correctly, this alternative would be my preference.",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 132
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fafb049_9455cb86",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "https://gerrit.openbmc.org/c/openbmc/docs/+/65678 still lists \n\n\u003e This proposal aims to leverage\n[phosphor-u-boot-enviornmental-manager](https://github.com/openbmc/phosphor-u-boot-env-mgr)\u0027s\nu-Boot -\u003e D-Bus data transfer functionality in order to bridge the gap from\nu-Boot to make passed-through HW data available on D-Bus, where it can be acted\nupon by Entity-Manager processes.\n\n\nPresumably that needs updated and synced up with this one?\n\n\nFWIW, I\u0027m having a lot of trouble syncing those two documents in my head.  They\u0027re effectively solving the same problem, were written by the same author, and have tons of overlap between them, while not being consistent in what they say the implementation is.\n\nCan we combine them please into a single \"Here\u0027s how to detect HPe hardware\" document so that we have one consistent source for how this is designed?",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c49ad47_eaf07704",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "Why not just enable phosphor uboot env manager by default?  Seems similar to what we\u0027re already proposing, just we\u0027re instead putting code in EM.",
+      "range": {
+        "startLine": 221,
+        "startChar": 36,
+        "endLine": 222,
+        "endChar": 11
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fe7e11e_c6a81303",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "not sure I agree with this, and as worded, \"feeling messy\" isn\u0027t very easy to connect with given its so abstract.\n\n\nAt the end of the day, SOME daemon needs to translate the raw data structures into high level DBus interfaces.  This can be:\n\nEntity-manager.  Given the fact that entity-manager doesn\u0027t currently talk directly to hardware, this seems ill advised, and would cause worse failure modes (failure to get uboot data would cause failure of all EM configs).\n\nphosphor-u-boot-env-mgr.  This would be my preference, given it already has a design for exposing uboot information to DBus.  Even if the code doesn\u0027t currently do it exactly the way we want, having all the uboot-\u003edbus communication code in one place seems like a good idea.  I would advise enabling this daemon by default, similar to what the \"put this in entity-manager\" approach is wanting\n\nNew daemon in entity-manager repo.  I\u0027m not sure entity-manager is the right fit here, as I\u0027m not really sure what code this implementation and entity-manager would share.  Large amounts of shared code instead of copied code would be the only reason I would support this, but I don\u0027t really see it.  Most of the code in EM is specific to EM.",
+      "range": {
+        "startLine": 227,
+        "startChar": 3,
+        "endLine": 228,
+        "endChar": 60
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d93193b_4984cf6e",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "Still need to answer who will maintain this code.  Presumably the existing entity-manager maintainers don\u0027t have a GXP system, so is someone from HPe getting added to reviews for correctness?  Please get that person added as a reviewer and start doing code reviews of EM patchsets.",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bc856c6_d2a5a7f4",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-06T20:13:19Z",
+      "side": 1,
+      "message": "That\u0027s not really what this section is for.  Are you going to write:\n\nUnit tests?\nFunctional tests?\nManual tests?\n\nYou\u0027ve called out which platform you plan on testing on, which is good, lets just get the next level of detail on how you intend to test this.",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 56
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
