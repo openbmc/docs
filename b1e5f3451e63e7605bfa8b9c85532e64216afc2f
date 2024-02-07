@@ -223,6 +223,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75f58ef9_28c8b2a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-07T02:06:54Z",
+      "side": 1,
+      "message": "\u003e I would just like to see that preboot (uboot for now) to userspace communications are done in the same daemon\n\nMy immediate feeling is that is too ill-defined to say no to stuff people propose for it, and that it would become a maintenance concern. It\u0027s already covering the u-boot environment (which Linux has no visibility of) and the devicetree (which Linux _does_ have visibility of). I don\u0027t feel like that is particularly coherent.\n\n\u003e and the interfaces are such that someone with access to a mainboard could reasonably construct a proper probe statement.\n\nCan you unpack what your expectations are here? Where\u0027s the line for \"reasonably construct\"?",
+      "parentUuid": "c021be83_8107b1a0",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c91da47d_513a6d9a",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 18
@@ -305,6 +323,30 @@
       "side": 1,
       "message": "\u003e I\u0027m an open source enthusiast as much as any other, but I think we need to be a bit pragmatic here. Is it ideal? No. Is the bootblock required by their secure-boot architecture? Yes. Are there other similarities in the ecosystem? Well, the Aspeed boot ROM isn\u0027t open source either (this would be useful just for inspection purposes).\n\nRight, but I can do a build with the ROM as part of it.  Maybe I misunderstood, so let me ask the pointed question:\n\nWhen this design doc is done, can I build a bmc that boots on an HPE platform and see this feature function as intended?  From the sounds of this text block the answer is no, but given the above that we\u0027re comparing to the aspeed boot rom, which I CAN build and run (even if it\u0027s a binary blob), that\u0027s a different consideration entirely.\n\n\u003e \n\u003e Let\u0027s acknowledge that HPE are making pretty good progress with making the *rest* of their BMC stack open source. I prefer progress over perfection.\n\nAbsolutely.  I mentioned on discord that this point is probably out of scope for this design discussion.  Resolving in this context.",
       "parentUuid": "8b51f0fc_44b51256",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 47
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a56a2b2_8becf789",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-07T02:06:54Z",
+      "side": 1,
+      "message": "As I understand it, you can take HPE\u0027s OpenBMC tree, build it and boot it on one of their supported platforms, so long as you\u0027ve done the appropriate key management magic to allow booting your firmware build.\n\nThat\u0027s based on the statement by Jean-Marie at OSFC here, at about 3m50s:\n\nhttps://www.osfc.io/2023/talks/provision-open-source-firmware-system-at-scale/",
+      "parentUuid": "6b5a2d4f_292beedd",
       "range": {
         "startLine": 54,
         "startChar": 0,
@@ -463,6 +505,30 @@
       "side": 1,
       "message": "Decorator.Asset again, doesn\u0027t mean anything in the real world, so when we do board ports, people will need to go look up what exists.\n\nHow about something like:\nSpiFlashFru(Model \u003d )\n\nThe physical board has a fru field in flash, which is what we\u0027re technically probing on, and exists in the real world.  \"devicetree\" doesn\u0027t exist to a hardware engineer, so I\u0027m intentionally avoiding using it as an interface name.",
       "parentUuid": "fb229664_474521e5",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 38
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eb13944_5da0899d",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-07T02:06:54Z",
+      "side": 1,
+      "message": "\u003e \"devicetree\" doesn\u0027t exist to a hardware engineer, so I\u0027m intentionally avoiding using it as an interface name.\n\nSure, I don\u0027t think it\u0027s necessary to include implementation details such as \"devicetree\" in an interface name.\n\n\u003e The physical board has a fru field in flash, which is what we\u0027re technically probing on, and exists in the real world.\n\nThat\u0027s not what this document asserts though. From the description in \"Background and References\":\n\n\u003e For GXP-based Gen 11 HPE platforms, proprietary HPE-controlled bootblock firmware communicates with a secure element to provide necessary VPD. This process uses a driver whose implementation is strictly license-controlled and cannot be publicly released. The open source portions of the boot chain must adapt to the bootblock\u0027s reserved memory application binary interface (ABI) for providing VPD from the secure element.\n\nand \n\n\u003e Additionally, code in u-Boot gathers MAC addresses for the BMC\u0027s network interfaces, along with retrieving a \u0027server_id\u0027 value from an embedded CPLD-based memory device. This value is unique to each model of HPE platform, and will be used for platform-wide identification. In comparison, the data in the aforementioned blob may be used for recognizing finer details like specific board revisions for a given platform.\n\nThis suggests we should have something like `SecureElement(Model \u003d )` for the baseboard, or `CPLD(Model \u003d )` for the platform?\n\nThat _would_ tend to make it HPE-specific, but you\u0027re kinda forcing that by trying to strip out any abstraction?",
+      "parentUuid": "1a052fd6_f30e2efb",
       "range": {
         "startLine": 132,
         "startChar": 0,
@@ -794,6 +860,30 @@
       "side": 1,
       "message": "\u003e It was on the basis that it is an alternative to fru-device, which also lives in the EM repo, and it doesn\u0027t have anywhere near the complexity of something like the IBM VPD stuff.\n\nmy key point is that I would like to see like communication paths put in the same daemon.  communicating u-boot -\u003e userspace seems like a class of communication that organizationally should live together.\n\nAs far as where it specifically lives, if we really want EM, I\u0027m fine with that, but lets start by moving phosphor-uboot-env manager in, and go from there.",
       "parentUuid": "8de8f18f_3485293f",
+      "range": {
+        "startLine": 227,
+        "startChar": 3,
+        "endLine": 228,
+        "endChar": 60
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf9bf55d_d7bfc023",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-07T02:06:54Z",
+      "side": 1,
+      "message": "I guess this comes back to my concerns about a pre-boot communications daemon in https://gerrit.openbmc.org/c/openbmc/docs/+/66369/comments/1a93aded_d83dc568",
+      "parentUuid": "9a55b2a2_c484cc05",
       "range": {
         "startLine": 227,
         "startChar": 3,
