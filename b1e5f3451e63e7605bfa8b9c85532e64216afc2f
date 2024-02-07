@@ -187,6 +187,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fce7cff0_6d577e6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-07T00:29:16Z",
+      "side": 1,
+      "message": "\u003e IMO, this design is communicating data with uboot, therefore it goes in a daemon that communicates with uboot, https://github.com/openbmc/phosphor-u-boot-env-mgr\n\nLet\u0027s hold up there. I think there\u0027s a bit more nuance to it than that. The environment is not the only method via which u-boot exchanges data with other parts of the system. The devicetree is another, and its purpose is to describe the hardware. Modifying devicetrees at runtime is expected practice - firmware often generates them at runtime.\n\nThe purpose of the u-boot environment is to allow configuration of the behaviour of u-boot. Ideally it shouldn\u0027t have a purpose beyond that.\n\nThe complete list of properties that HPE are concerned with are enumerated in the document:\n\n1. `server_id` (platform model id)\n2. `pca_part_number` (baseboard part no)\n3. `pca_serial_number` (baseboard serial no)\n4. `part_number` (platform product no, set at assembly by factory)\n5. `serial_number` (system serial no, assigned at assembly by factory)\n6. `mac0` (if present: MAC address for dedicated BMC network interface)\n7. `mac1` (if present: MAC address for secondary network interface that may or may not be shared with host)\n\nThe network device schema provides the [`local-mac-address` property](https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter4-device-bindings.rst#local-mac-address-property), addressing `mac0` (6) and `mac1` (7).\n\nThe [`model` property](https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst?plain\u003d1#L39) should encode `pca_part_number` (2) if this is where the GXP SoC is situated. Under that assumption the [`serial-number` property](https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst?plain\u003d1#L53) addresses `pca_serial_number` (3). The baseboard model should be what\u0027s driving the EM configs, it represents the hardware that\u0027s present.\n\nAs an alternative regarding 1, IBM, for example, embed the platform model string in the `model` property:\n\nhttps://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts?h\u003dv6.7#n11\n\nThis method might be used to expose `server_id` (1) or possibly `part_number` (4), but really I think we need to have the EM config probe on the baseboard if that\u0027s where the GXP SoC is situated.\n\nInformation should be placed where it\u0027s designed to go. As far as I\u0027m concerned, that\u0027s the devicetree for the properties discussed above, with the caveat that it may be necessary to put the MAC addresses into the u-boot environment for the purpose of enabling networking in u-boot.\n\nIf we have to use the environment to convey some of the information that doesn\u0027t fit anywhere else, then so be it. But I think the design point is feasible using specified properties in the devicetree for their designated purpose.\n\n\u003e I don\u0027t really buy into the idea that HPe platforms are so unique that they require yet another daemon to communicate data from uboot into dbus\n\nI don\u0027t think the design-point of hosting specific data from the devicetree is unexpected. HPE might be the first people to hit on it, but it\u0027s certainly more broadly applicable. It\u0027s not code that is specific to a HPE platform design. It has broader utility.\n\n\u003e In addition, this document needs unified with https://gerrit.openbmc.org/c/openbmc/docs/+/65678\n\n+1, I\u0027ve been confused by this several times.",
+      "parentUuid": "1a93aded_d83dc568",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c91da47d_513a6d9a",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 18
@@ -221,6 +239,30 @@
       "writtenOn": "2024-02-06T20:13:19Z",
       "side": 1,
       "message": "I\u0027m not quite understanding this section.  If there are portions that are required to make this work that cannot be open sourced, what\u0027s the point of this design?  If nobody can build a GXP OpenBMC image that works, why open source just a portion?  Just keep the proprietary implementation, support it, and call it done.  Calling something \"OpenBMC\" without open sourcing the code to actually make it work it doesn\u0027t seem appropriate, or useful to a user.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 47
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b51f0fc_44b51256",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-07T00:29:16Z",
+      "side": 1,
+      "message": "I\u0027m an open source enthusiast as much as any other, but I think we need to be a bit pragmatic here. Is it ideal? No. Is the bootblock required by their secure-boot architecture? Yes. Are there other similarities in the ecosystem? Well, the Aspeed boot ROM isn\u0027t open source either (this would be useful just for inspection purposes).\n\nLet\u0027s acknowledge that HPE are making pretty good progress with making the *rest* of their BMC stack open source. I prefer progress over perfection.",
+      "parentUuid": "2a54c7df_66df8232",
       "range": {
         "startLine": 54,
         "startChar": 0,
@@ -296,6 +338,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3b14b9b_ccf34323",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-07T00:29:16Z",
+      "side": 1,
+      "message": "This wouldn\u0027t be a manufacturer-specific daemon. It would be a small amount of code exposing the root `model` and `serial-number` devicetree properties on D-Bus that is applicable on almost any system.",
+      "parentUuid": "89209727_502dc791",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 81
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b7fcf0b3_e571f130",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 18
@@ -307,6 +373,30 @@
       "writtenOn": "2024-02-06T20:13:19Z",
       "side": 1,
       "message": "This seems like an issue in naming.\n\nEntity manager files are intended to represent what physically exists on a component such that it\u0027s not debatable what the interfaces are, and those without OpenBMC experience can write config files.\n\nxyz.openbmc_project.Inventory.Decorator.Compatible doesn\u0027t represent anything about the physical board, and means nothing in the real world without knowing exactly how the software is configured.  I suspect we would need naming that conveys something to the effect of: \"HPe format FRU manufacturer field equals X\"\n\nThus we\u0027re not relying on a particular distro/software config to write those Compatible flags, which would require the EM config writer to understand a lot more about how OpenBMC is structured, and whos probe elements might be subjective.\n\nYou\u0027ll notice the existing FRU device entries follow this \"IPMI FRU Manufacturer field equals X\" pattern.  An example of an IBM OEM parser is below.\n\nhttps://github.com/openbmc/entity-manager/blob/8d2ed842534cc63b446321faa17b5d400350f6a3/configurations/rainier_1s4u_chassis.json#L24C23-L24C23\n\nthat example then publishes xyz.openbmc_project.Inventory.Decorator.Compatible as a result.  Your design is inverting that.  At a minimum we need to use something other than Compatible as the EM probe, so we don\u0027t have a disconnect between which object owns the Compatible interface.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 38
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb229664_474521e5",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-07T00:29:16Z",
+      "side": 1,
+      "message": "\u003e xyz.openbmc_project.Inventory.Decorator.Compatible doesn\u0027t represent anything about the physical board, and means nothing in the real world without knowing exactly how the software is configured. I suspect we would need naming that conveys something to the effect of: \"HPe format FRU manufacturer field equals X\"\n\nWhat about https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Decorator/Asset.interface.yaml ?\n\nIt lives in the `Decorator` namespace, but it does all the things we need it to do.",
+      "parentUuid": "b7fcf0b3_e571f130",
       "range": {
         "startLine": 132,
         "startChar": 0,
@@ -492,6 +582,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "591a03a8_8d647c5b",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-07T00:29:16Z",
+      "side": 1,
+      "message": "See https://github.com/openbmc/docs/blob/master/anti-patterns.md#dbus-interface-representing-gpios",
+      "parentUuid": "532b95b0_f499d1d4",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 58
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6d2601e_b8f6c668",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 18
@@ -566,6 +680,30 @@
       "writtenOn": "2024-02-06T20:13:19Z",
       "side": 1,
       "message": "not sure I agree with this, and as worded, \"feeling messy\" isn\u0027t very easy to connect with given its so abstract.\n\n\nAt the end of the day, SOME daemon needs to translate the raw data structures into high level DBus interfaces.  This can be:\n\nEntity-manager.  Given the fact that entity-manager doesn\u0027t currently talk directly to hardware, this seems ill advised, and would cause worse failure modes (failure to get uboot data would cause failure of all EM configs).\n\nphosphor-u-boot-env-mgr.  This would be my preference, given it already has a design for exposing uboot information to DBus.  Even if the code doesn\u0027t currently do it exactly the way we want, having all the uboot-\u003edbus communication code in one place seems like a good idea.  I would advise enabling this daemon by default, similar to what the \"put this in entity-manager\" approach is wanting\n\nNew daemon in entity-manager repo.  I\u0027m not sure entity-manager is the right fit here, as I\u0027m not really sure what code this implementation and entity-manager would share.  Large amounts of shared code instead of copied code would be the only reason I would support this, but I don\u0027t really see it.  Most of the code in EM is specific to EM.",
+      "range": {
+        "startLine": 227,
+        "startChar": 3,
+        "endLine": 228,
+        "endChar": 60
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8de8f18f_3485293f",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-07T00:29:16Z",
+      "side": 1,
+      "message": "It was on the basis that it is an alternative to fru-device, which also lives in the EM repo, and it doesn\u0027t have anywhere near the complexity of something like the IBM VPD stuff.",
+      "parentUuid": "4fe7e11e_c6a81303",
       "range": {
         "startLine": 227,
         "startChar": 3,
