@@ -41,7 +41,9 @@ The PSU firmware shall be updated in the below cases:
    filesystem, BMC shall update the PSU firmware;
 3. When a PSU is replaced and the version is older than the one in BMC's
    filesystem, BMC shall update the PSU firmware.
-4. There are cases that a system could use different models of PSUs, and thus
+4. An optional 'override' parameter may be specified to do the update
+   in the above cases regardless of which PSU image is newer.
+5. There are cases that a system could use different models of PSUs, and thus
    different PSU firmware images need to be supported.
 
 For some PSUs, it is risky to do PSU code update while the host is running to
@@ -136,15 +138,15 @@ updated to the PSU. This will be done by the same service described above.
 ### Update on replaced PSU
 
 When a PSU is replaced, and the firmware version is older than the one in BMC
-filesystem, it shall be updated. This will be done by the same service described
-above.
+filesystem (or if the optional 'override' parameter is specified), it shall be
+updated. This will be done by the same service described above.
 
 1. On start, the service will subscribe to the PropertiesChanged signal to the
    PSU object path to monitor the PSU presence status. (Or maybe subscribe the
    InterfacesAdded/Removed signal?)
 2. When a PSU's presence status is changed from false to true (or the
-   InterfacesAdded event occurs), the service will check the new PSU's model,
-   firmware version to decide if the firmware needs to be updated.
+   PropertiesChanged event occurs), the service will check the new PSU's model
+   and firmware version to decide if the firmware needs to be updated.
 3. If yes, the service will find the matched vendor-specific tool to perform the
    code update.
 4. The following process will be the same as [Update by API].
@@ -198,15 +200,12 @@ It requires the manual tests to verify the PSU code update process.
 - Verify the PSU code update will fail if the vendor-specific tool fails on
   pre-condition check, of fails on updating PSU.
 - Verify the PSU code update is performed after a new BMC image is updated
-  containing a new version of PSU firmware.
-- Verify the PSU code update is performed after a PSU with old firmware is
-  plugged in.
+  containing a new (or different, if 'override' used) version of PSU firmware.
+- Verify the PSU code update is performed after a PSU with old (or different,
+  if 'override' is used) firmware is plugged in.
 
-[1]:
-  https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software
+[1]: https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software
 [2]: https://github.com/openbmc/phosphor-bmc-code-mgmt/
 [3]: https://github.com/openbmc/openpower-pnor-code-mgmt/
-[4]:
-  https://github.com/openbmc/phosphor-dbus-interfaces/blob/57b878d048f929643276f1bf7fdf750abc4bde8b/xyz/openbmc_project/Software/Version.interface.yaml#L14
-[5]:
-  https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml
+[4]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/57b878d048f929643276f1bf7fdf750abc4bde8b/xyz/openbmc_project/Software/Version.interface.yaml#L14
+[5]: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml
