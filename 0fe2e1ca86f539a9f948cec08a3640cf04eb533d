@@ -16,6 +16,24 @@
       "message": "Where does this \"override\" come from?  There isn\u0027t anything in the dbus model to represent this, is there?",
       "revId": "0fe2e1ca86f539a9f948cec08a3640cf04eb533d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4c5555b_38e1263b",
+        "filename": "designs/psu-firmware-update.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2024-02-14T00:04:15Z",
+      "side": 1,
+      "message": "It would be another param passed into the call for the vendor-specific tool that knows the format of the firmware level for that specific type of psu.\n\nEg, in https://github.com/openbmc/phosphor-psu-code-mgmt/blob/master/meson.options:\n\noption(\u0027PSU_VERSION_COMPARE_UTIL\u0027,\n       type: \u0027string\u0027,\n       value: \u0027/usr/bin/psutils --raw --compare --override\u0027,\n       description: \u0027The command and arguments to compare PSU versions\u0027)",
+      "parentUuid": "bc3afd76_c0ee176a",
+      "revId": "0fe2e1ca86f539a9f948cec08a3640cf04eb533d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
