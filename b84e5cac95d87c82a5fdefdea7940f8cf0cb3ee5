@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ae7f45e_46e4d7d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-20T09:19:22Z",
+      "side": 1,
+      "message": "Thank you. Added you as the contributor.",
+      "parentUuid": "3483b9d1_67c2b77c",
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19e29608_9b33e410",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-02-05T03:53:41Z",
       "side": 1,
       "message": "You need a space after the `,`",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 9
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06438077_a9c7eb25",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-20T09:19:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "19e29608_9b33e410",
       "range": {
         "startLine": 12,
         "startChar": 8,
@@ -58,6 +100,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "365998bf_706d2572",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-20T09:19:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6d035d7f_b1df1ec2",
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bb95980_c8001fad",
@@ -71,6 +131,30 @@
       "writtenOn": "2024-02-05T03:53:41Z",
       "side": 1,
       "message": "I think this needs some refinement. The efficient way for this to be correct is that bmcweb register for `InterfacesAdded`, `InterfacesRemoved` and `NameOwnerChanged` signals from EntityManager to learn of new `HostInterface` configurations, and then query for any that have currently been exposed. This yields correctness in the face of arbitrary restart ordering of EntityManager and bmcweb.",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 45
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0a09967_db3f40f2",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-20T09:19:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1bb95980_c8001fad",
       "range": {
         "startLine": 152,
         "startChar": 0,
@@ -104,6 +188,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47d5b209_56196350",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-20T09:19:22Z",
+      "side": 1,
+      "message": "I intent not to depend on specific subnets but the IP address of the host interface itself and I do not see any use case which this method may expose any security risk. \n\nThe IP address of the host interface is only one for each host, it may change but it will be bond to the a specific ethernet interface or the MAC address which is already known in advance when we build the system.\n\nSince we read the IP address of the host interface by extracting the ethernet interface from `entity-manager` configuration and use that ethernet interface to search for its IP address via `xyz.openbmc_project.Network`. So even the IP address changes, we can still update it and use the correct host interface IP address.",
+      "parentUuid": "fc5ec7b7_0af87fd2",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 8
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "733398ab_d22152a7",
@@ -117,6 +225,30 @@
       "writtenOn": "2024-02-05T03:53:41Z",
       "side": 1,
       "message": "So I suspect the work for this is actually in phosphor-user-manager, to listen to the signals emitted by phosphor-state-manager or x86-power-control.",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 53
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efa95b80_b42d4ce3",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-20T09:19:22Z",
+      "side": 1,
+      "message": "Acknowledged. Yes, `phosphor-user-manager` needs to listen to signals from `phosphor-state-manager` and `BMCWeb` to delete bootstrap account.",
+      "parentUuid": "733398ab_d22152a7",
       "range": {
         "startLine": 168,
         "startChar": 0,
@@ -144,6 +276,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "beb9e8a7_d33764b1",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-20T09:19:22Z",
+      "side": 1,
+      "message": "Acknowledged. Added more detailed in Patchset 4.",
+      "parentUuid": "0f3c6953_0beceac9",
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70fd950a_501f0826",
@@ -157,6 +307,24 @@
       "writtenOn": "2024-02-05T03:53:41Z",
       "side": 1,
       "message": "Why is this worse than your proposed design?",
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8c8fe35_a5d28a4f",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-20T09:19:22Z",
+      "side": 1,
+      "message": "Acknowledged. Added more detailed in Patchset 4.",
+      "parentUuid": "70fd950a_501f0826",
       "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -184,6 +352,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1eaa652_24e9f0b8",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-20T09:19:22Z",
+      "side": 1,
+      "message": "As I mentioned in comment in PS2, this method added complexity in implementation code but if all reviwers prefer it, I\u0027m ok with that decision.\n\nIf someone does somethings bad to break the system intentionally or inadvertently, that is nothing we can do to prevent; think about the scenario where someone brings down a service and ask why it not work.",
+      "parentUuid": "fdae8b8f_32c301a4",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 40
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38181c3e_20fe0411",
@@ -197,6 +389,24 @@
       "writtenOn": "2024-02-05T03:53:41Z",
       "side": 1,
       "message": "Will this need changes to `phosphor-user-manager` such that we can ask it to delete all users who are members of a specific group?",
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2bac76c_aa6ac576",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-20T09:19:22Z",
+      "side": 1,
+      "message": "Acknowledged. Yes, added this requirement.",
+      "parentUuid": "38181c3e_20fe0411",
       "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
