@@ -16,6 +16,373 @@
       "message": "Quang, can you please update your name in Gerrit settings?  https://gerrit.openbmc.org/settings/ -\u003e Full Name.  Otherwise the Gerrit emails come as \"Name of user not set\".",
       "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b96ed2_3221beb3",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "nit: I\u0027d prefer \u00276\u0027 here.",
+      "range": {
+        "startLine": 31,
+        "startChar": 48,
+        "endLine": 31,
+        "endChar": 51
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02253be3_3470ae56",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "Nit: 9.",
+      "range": {
+        "startLine": 37,
+        "startChar": 61,
+        "endLine": 37,
+        "endChar": 65
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1919f3e_bdeedc64",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "Can we define what \"reset\" means in this context?  (or is this wording direct from the spec?)",
+      "range": {
+        "startLine": 60,
+        "startChar": 26,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "476435e5_171dfcbd",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "I\u0027m still not convinced this is possible.  How do you ensure, in Linux, that a particular USB device is assigned \"usb0\"?  How do you ensure that someone doesn\u0027t plug a USB network device into a USB slot and _that_ gets assigned usb0?\n\nI really don\u0027t think we should use usb0 in the design document as an example because it likely leads to a security vulnerability to someone that doesn\u0027t really understand the system, but just follows your example.  I would strongly suggest your implementation have a udev rule that explicitly assigns the device, ideally something like `usb-inband`.",
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36856f59_7a201b61",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "eth2 at least comes from the device tree, so that one is fine.",
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68d3f6a5_2cd1cee7",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "Can we align with what is already in the docs/redfish-authorization.md?  I think `openbmc-rfr-bootstrap` would be more appropriate.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 44
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8067b52_4cb289f3",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "How are you going to configure the host IP address?\n\nIt isn\u0027t worded here, but I suspect this implies IPv4.  What do we do about hosts that don\u0027t even have IPv4 configured?  ( I know of some host configurations that are exclusively IPv6 ).",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 48
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07ba781a_eaa3e4af",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "nit: IPMI",
+      "range": {
+        "startLine": 144,
+        "startChar": 53,
+        "endLine": 144,
+        "endChar": 57
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54513992_9d854f6a",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "nit: 9",
+      "range": {
+        "startLine": 144,
+        "startChar": 17,
+        "endLine": 144,
+        "endChar": 21
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83e6304e_12c1bf77",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "The really annoying thing here is that we\u0027re going to be regularly modifying the `/etc/passwd` and `/etc/group` files.  While the extra wear is probably minimal, it does mean these files are guaranteed to be in the overlay instead of ever relying on the one from the flash image.  This puts additional work on upgrades (which we aren\u0027t really covering today).",
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f2c9030_5bdfd768",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "How?  PSM doesn\u0027t signal individual daemons.\n\nIs PUM going to install a systemd service that triggers itself?",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 53
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eacb6dab_0d464ef8",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "How?  Again, we don\u0027t have daemons randomly signalling each other.  If this is a requirement, add a dependency on the bmcweb service.\n\nI\u0027m not really understanding what this achieves.  Should we really be doing this when bmcweb is enabled or disabled?  I don\u0027t really why a restart of bmcweb should trigger a clear of the bootstrap users and how the host-user is suppose to know this happened.",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 19
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59ad13b9_e7aa17d0",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "spelling",
+      "range": {
+        "startLine": 191,
+        "startChar": 28,
+        "endLine": 191,
+        "endChar": 34
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d070d31_7852a7eb",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "You\u0027re basically treating IP address as a \"password\".  Anyone can still hook up a USB, use the magic IP address, and gain access to the system.  I don\u0027t think using the IP address is a sufficient security mechanism.",
+      "range": {
+        "startLine": 190,
+        "startChar": 41,
+        "endLine": 193,
+        "endChar": 0
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5e6e5f1_246e0774",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "These should be backtick (`) quoted and not double-quote (\").",
+      "range": {
+        "startLine": 207,
+        "startChar": 2,
+        "endLine": 207,
+        "endChar": 18
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcb0f6a8_c7e043d8",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "There shall not be a change to PSM to accomplish this design.  I\u0027ve stated above my reasons.  Random signaling of specific state between daemons is not an acceptable architecture.",
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1629200_3f3b5538",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T13:40:11Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to match the design.",
+      "range": {
+        "startLine": 223,
+        "startChar": 9,
+        "endLine": 223,
+        "endChar": 65
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
