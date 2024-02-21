@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "659656d6_b5555f87",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-21T07:04:37Z",
+      "side": 1,
+      "message": "@Andrew Jeffery\nSince now I propose multiple host configuration in `entity manager`, this design not limit to single host; it now supports multiple host system. What we need to do is that we need to specify what interface for which host. Let\u0027s say, we need to assign `host0` and `host1` link to `eth0`, `eth1`, respectively in advance and they are static assignment in `entity-manager`.",
+      "parentUuid": "d4f827dc_6ccf05cf",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 64
+      },
+      "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "191b0863_006cca47",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 4
@@ -102,6 +126,30 @@
       "writtenOn": "2024-02-21T00:27:34Z",
       "side": 1,
       "message": "typo: receiving",
+      "range": {
+        "startLine": 152,
+        "startChar": 29,
+        "endLine": 152,
+        "endChar": 37
+      },
+      "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "891c5559_64144671",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-21T07:04:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "191b0863_006cca47",
       "range": {
         "startLine": 152,
         "startChar": 29,
@@ -135,6 +183,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb299249_985e5188",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-21T07:04:37Z",
+      "side": 1,
+      "message": "Acknowledged. Added more detailed.",
+      "parentUuid": "9340c219_41453464",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 40
+      },
+      "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4c2cad1_f3e9c638",
@@ -148,6 +220,24 @@
       "writtenOn": "2024-02-21T00:27:34Z",
       "side": 1,
       "message": "Can you list the `SO_BINDTODEVICE` approach for constraining what network sources can use bootstrap accounts as an alternative as well, along with why it\u0027s worse than your proposed solution?",
+      "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f66cf1fb_8c8a6b4c",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-02-21T07:04:37Z",
+      "side": 1,
+      "message": "`SO_BINDTODEVICE` will bind ethernet device (device name) to socket for transfering data via that socket.\n\nIn this design, I do not intent to send/receive data via that ethernet device. What I aim to do here is that authenticating if a connection request is (1) from a bootstrap account and (2) sent from host (via host interface).\n\nWhen a connection request comes, there are 2 information of it we can use for the bootstrap account authentication, they are username and requester\u0027s IP address of connection request.\n\nFor (1), we can use username to check the group name.\nFor (2), we want to ensure that the IP address of the connection request are from host (the host interface IP address). Since we already have host interface IP address acquired from `entity-manager` configuration, we just need to compare the 2 IP addresses (comparing IP string value) then we know that IP address is from host interface or not. It is really straightforward.\n\nSo, I think `SO_BINDTODEVICE` approach is a bit off-topic for authenticating bootstrap accounts.",
+      "parentUuid": "b4c2cad1_f3e9c638",
       "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
