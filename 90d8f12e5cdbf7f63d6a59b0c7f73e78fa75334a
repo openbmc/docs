@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d29b69d_e50f1d39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-21T00:27:34Z",
+      "side": 1,
+      "message": "Hi Quang, I have a few more things on which I\u0027d like clarification.",
+      "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60b57524_5aad210c",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-21T00:27:34Z",
+      "side": 1,
+      "message": "This seems like you\u0027re putting constraints on the network topology (one host?) and configuration (static only)? Can you unpack that? Should this work with one BMC host interface with multiple hosts managed via the BMC? Even if the justification is \"in-band IPMI constrains us to one host\" that would help. But even under that circumstance, how do you ensure the host\u0027s interface is configured to meet the assumptions of the BMC\u0027s EM configuration for it? DHCP would be one method of avoiding broken assumptions, but it seems it\u0027s not accommodated by the proposal?",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 64
+      },
+      "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "191b0863_006cca47",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-21T00:27:34Z",
+      "side": 1,
+      "message": "typo: receiving",
+      "range": {
+        "startLine": 152,
+        "startChar": 29,
+        "endLine": 152,
+        "endChar": 37
+      },
+      "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9340c219_41453464",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-21T00:27:34Z",
+      "side": 1,
+      "message": "Why is this worse?",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 40
+      },
+      "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4c2cad1_f3e9c638",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-21T00:27:34Z",
+      "side": 1,
+      "message": "Can you list the `SO_BINDTODEVICE` approach for constraining what network sources can use bootstrap accounts as an alternative as well, along with why it\u0027s worse than your proposed solution?",
+      "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
