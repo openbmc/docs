@@ -115,6 +115,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e7e21d93_d9442f49",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-22T01:18:06Z",
+      "side": 1,
+      "message": "I\u0027m struggling with your response there because I don\u0027t feel like it addresses my point. I was trying to unpack who \"owns\" the link in the sense of e.g. DHCP. We could also go with \"no-one\" and potentially use zero-conf addressing, but then you\u0027d have to be careful of routing across multiple interfaces.\n\nRequiring static addressing feels concerning because the network configuration for the host and the BMC need to be synchronised somehow. Avoiding static addressing would help that, but there\u0027s a complexity trade-off. It\u0027s okay to state that dynamic addressing is out-of-scope, but it should be stated explicitly in the document along with the reason why.",
+      "parentUuid": "659656d6_b5555f87",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 64
+      },
+      "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "191b0863_006cca47",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 4
@@ -238,6 +262,24 @@
       "side": 1,
       "message": "`SO_BINDTODEVICE` will bind ethernet device (device name) to socket for transfering data via that socket.\n\nIn this design, I do not intent to send/receive data via that ethernet device. What I aim to do here is that authenticating if a connection request is (1) from a bootstrap account and (2) sent from host (via host interface).\n\nWhen a connection request comes, there are 2 information of it we can use for the bootstrap account authentication, they are username and requester\u0027s IP address of connection request.\n\nFor (1), we can use username to check the group name.\nFor (2), we want to ensure that the IP address of the connection request are from host (the host interface IP address). Since we already have host interface IP address acquired from `entity-manager` configuration, we just need to compare the 2 IP addresses (comparing IP string value) then we know that IP address is from host interface or not. It is really straightforward.\n\nSo, I think `SO_BINDTODEVICE` approach is a bit off-topic for authenticating bootstrap accounts.",
       "parentUuid": "b4c2cad1_f3e9c638",
+      "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe1a987a_594db581",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-02-22T01:18:06Z",
+      "side": 1,
+      "message": "What you have is effectively a trusted physical ethernet adapter: It\u0027s trusted because it has a direct, internal physical connection to the host, to the exclusion of other devices. We know this because it\u0027s asserted to be the case via the EM configuration provided, which should be generated from the platform schematics. The IP addresses are irrelevant and arbitrary for the purpose of security, they\u0027re only used because they\u0027re required to speak redfish, and at the moment they have to take specific values because you\u0027re requiring static addressing. You\u0027re then leaning on those specific addresses as a proxy for whether the connection is trusted.\n\nUsing `SO_BINDTODEVICE` associates a (listening) socket with the trusted adapter, therefore any connection it accepts is also trusted (by its bound adapter\u0027s internal physical association with the host, to the exclusion of other devices). This removes some of the complexity of your proposal as you no-longer need to define and compare IP addresses, and perhaps addresses Patrick\u0027s security concern as well. Some check is required in order to implement the proposal at all, so I don\u0027t some effort to associate the socket with a trusted interface causes much concern there.\n\nIn my mind `SO_BINDTODEVICE` directly ties the security of the design (only allowing authentication of bootstrap accounts on internal host interfaces) to the device providing the property (the physical adapter). It works with static or dynamic addressing, because again the addresses aren\u0027t relevant for the purpose of upholding the security property. I don\u0027t think the concept is off-topic.",
+      "parentUuid": "f66cf1fb_8c8a6b4c",
       "revId": "90d8f12e5cdbf7f63d6a59b0c7f73e78fa75334a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
