@@ -214,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fcb5e499_92c318a1",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:50:48Z",
+      "side": 1,
+      "message": "Made the same comment as @arj.\n\n\u003e I do not see any use case which this method may expose any security risk.\n\nWhat if the host interface has the same ip address as a non host interface?  That seems like a security risk.\n\n\u003e it may change but it will be bond to the a specific ethernet interface or the MAC address which is already known in advance when we build the system.\n\nThis isn\u0027t documented anywhere in your design.  When the system is built, how will those be assigned?",
+      "parentUuid": "47d5b209_56196350",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 8
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "733398ab_d22152a7",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 3
@@ -249,6 +273,30 @@
       "side": 1,
       "message": "Acknowledged. Yes, `phosphor-user-manager` needs to listen to signals from `phosphor-state-manager` and `BMCWeb` to delete bootstrap account.",
       "parentUuid": "733398ab_d22152a7",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 53
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2d65445_6cedef34",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:50:48Z",
+      "side": 1,
+      "message": "Why is this necessary?  Can\u0027t the next call to SetBootStrapAccount just overwrite the credentials from the last boot?  Deleting the bootstrap account on shutdown would imply that we don\u0027t think the password itself is secure.  If we think that, we need to make it secure by design, not by deleting the password from an interface.\n\nI vote we just remove this from the design.  Detecting a host reset in a secure way that can\u0027t be faked by software is non-trivial, and doesn\u0027t add any value in this case, given that the host will likely be up for a long time, and therefore credentials will be valid for a long time.  Invalidating them on shutdown doesn\u0027t add additional security, and makes the solution more complex.",
+      "parentUuid": "efa95b80_b42d4ce3",
       "range": {
         "startLine": 168,
         "startChar": 0,
@@ -366,6 +414,30 @@
       "side": 1,
       "message": "As I mentioned in comment in PS2, this method added complexity in implementation code but if all reviwers prefer it, I\u0027m ok with that decision.\n\nIf someone does somethings bad to break the system intentionally or inadvertently, that is nothing we can do to prevent; think about the scenario where someone brings down a service and ask why it not work.",
       "parentUuid": "fdae8b8f_32c301a4",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 40
+      },
+      "revId": "b84e5cac95d87c82a5fdefdea7940f8cf0cb3ee5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45286ecb_e59f6d9d",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:50:48Z",
+      "side": 1,
+      "message": "We should just be using systemd BindToDevice here, that way we\u0027re pushing the complexity to systemd to get right, and not relying on mac address or ip address, which might be duplicated between interfaces.  Ideally they wouldn\u0027t be, but if an attacker is trying to get in, they might duplicate them on purpose.",
+      "parentUuid": "a1eaa652_24e9f0b8",
       "range": {
         "startLine": 184,
         "startChar": 0,
