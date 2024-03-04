@@ -454,6 +454,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2fd80a0_d0e4b789",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "Isn\u0027t this already true today?  phosphor-user-manager already writes those files, but I\u0027m not sure what the alternative is?",
+      "parentUuid": "07280ce4_f36fac6e",
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f2c9030_5bdfd768",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 5
@@ -630,6 +648,30 @@
       "side": 1,
       "message": "bootstrap accounts are treated as a normal account in authetication, which means if a bootstrap account makes a connection request, `bmcweb` will do authenticating (if any, depends on configurations) as a normal account which are (authentication.hpp):\n1. performTLSAuth()\n2. performXtokenAuth()\n3. performCookieAuth()\n4. performTokenAuth()\n5. performBasicAuth()\nand one more authentication is added, that is 6.performBootstrapAccountAuth(). In this final step of the authentication, we do the authentication which mentioned in this design. I don\u0027t see any use case which results in a security risk here, or am I missing any thing here?",
       "parentUuid": "5d070d31_7852a7eb",
+      "range": {
+        "startLine": 190,
+        "startChar": 41,
+        "endLine": 193,
+        "endChar": 0
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "952f9e3e_1e0b4994",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t think using the IP address is a sufficient security mechanism.\n\nI commented essentially this same statement later, but I agree.  Identifying a NIC based on IP address is error prone at best.  We should be explicitly binding a specific device.\n\n\n\u003e performBootstrapAccountAuth()\n\nWhen we get to code, we can talk about this, but auth of the bootstrap needs to occur based on the connection itself being from the correct source, not anything to do with the payload itself.",
+      "parentUuid": "089bc047_e759e91e",
       "range": {
         "startLine": 190,
         "startChar": 41,

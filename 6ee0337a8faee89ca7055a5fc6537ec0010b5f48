@@ -33,6 +33,373 @@
       "message": "Hi @Patrick, \nThere is a +1, do you still have any concerns/feedbacks on this document? Thank you.",
       "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc92d731_33b8414c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "Overall, I think OpenBMC we can do better than DSP0270, which is really only required on platforms where we can\u0027t trust the source of a given connection/packet.\n\nGiven that we have systemd/socket activation, we should be able to simply bind a new socket to the given interface, and pass that data to bmcweb that THIS socket is trusted, and should bypass auth checks.  FWIW, I started this work a long time ago here: https://gerrit.openbmc.org/c/openbmc/bmcweb/+/35265\n\nIf we still wanted to do the \"pass a password through ipmi command\" thing, we still could, but we need to be very explicit about:\n\n1. Where bootstrap credentials are allowed to be used and what actions they\u0027re allowed to use.  Do they get full admin rights?  Are there explicitly allowed permissions for the host interface?\n\n2. How we identify a connection coming from the host.  Both in code (ideally a systemd activated socket bound to that port) and in configuration.  This is a design point that other BMCs have ignored and have lead to things like: https://cve.mitre.org/cgi-bin/cvename.cgi?name\u003dCVE-2023-34330\nThe fact that that is possible at a design level should be unacceptable for OpenBMC\n\n\n\n\nA simpler design might be for bmcweb itself to store the bootstrap account credentials as a type of Session, that way avoiding possible reuse of those credentials on other interfaces (IPMI/PLDM).  Given that we don\u0027t intend for these credentials to be a generic thing, but a redfish-specific thing, and bmcweb needs a branch anyway for \"is host interface\" that seems reasonable.\nbmcweb would provide a \"SetBootstrapCredentials(path \u003cfor host\u003e)\" Dbus API that IPMID could call directly, avoiding both writing to /etc/password, and potentially allowing other PAM authenticated devices to log in.  That api would return a struct\u003cusername, password\u003e using the internal bmcweb random-string generation routines (which have been already vetted as providing correct randomized data).  The password could be signed using the bmc private key, similar to JWT, which would avoid having to store the generated credential at all (needs more thought).\n\nWe might also consider launching the host interface in its own bmcweb process for process isolation.  That sounds difficult to get the Redfish interfaces right, but might be worth it.\n\nWe then would also return a username that we can immediately identify as bootstrap.  Something like:\n\nopenbmc_bootstrap_user_\u003cRandom digits\u003e, which bmcweb can check with username.starts_with(\"openbmc_bootstrap_\") \u0026\u0026 \u003cisFromHostInterface\u003e\nand use that to:\n\n1. Deny attempts to log into the bootstrap username from non host interfaces.\n2. Allow ONLY logins coming from the bootstrap interface.\n\nThis design also makes it trivial to implement the part of DSP0270 that this doc missed, which is the Get manager certificate fingerprint IPMI command.  In theory implementing that allows a host to set up a trusted TLS connection to the BMC.\n\n\n\nPersonally, I think DSP0270 was written in 2017, a time when passing around passwords was still SOMEWHAT acceptable.  Now in 2024, Redfish supports mutual TLS and auth that supports forward secrecy, so ideally we would be passing some sort of cryptographic primitive rather than a password.",
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b51e2004_10af6f36",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "Please put background on other BMC stacks that have implemented this, and have had extremely high severity CVEs because of it.  I would like to see them referenced in the testing section on how we\u0027re going to avoid a similar problems.",
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d60834fe_149a72fb",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "These are linux naming schemes, which shouldn\u0027t be present in an EM config file.\n\nIn EM this would be something like\n\nType: AspeedNIC\nIndex: 1\nConnectedSecurelyToHost: True\n\n\n\"HostInterface\" and \"Eth0\" don\u0027t exist in the real world, they are names in a given devicetree.  The first NIC on an aspeed or nuvoton does exist in the real world, so that\u0027s what we use in an EM config.  We also use the type Aspeed to differentiate the Aspeed NIC from a usb NIC, or a plugged in PCIe NIC, which might also be eth0.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 26
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea2824c8_eab86783",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "The above makes it look like there are two ports connected to the host?  Are there any systems where that\u0027s actually the case?",
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fac883b_8845cb9d",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "Considering that we today don\u0027t enforce group membership in pam, I see this as a significant change to current.  Please comment on the existing mailing list and code reviews that are proposing to change this.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 56
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bb7da1d_8ed34e78",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "This section seems incomplete.  Once it has verified the user belongs to that group, then what?",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 21
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee3f0f37_54225c47",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "Which daemon will add the udev rule?  What happens in the interim where the entity-manager config hasn\u0027t been instantiated yet?  Because this is a security boundary, and high risk, we need to explicitly document what failure modes look like.",
+      "range": {
+        "startLine": 142,
+        "startChar": 65,
+        "endLine": 144,
+        "endChar": 40
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fbc568b_f438a9dc",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "This will make the bootstrap interface available from interfaces that are NOT the host interface.  I\u0027m fairly certain you want to provide some way to note that a user is a bootstrap user?",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 44
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08ad00e4_6cd1de35",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "BMCWEB does not manage NICs, that\u0027s phosphor-networkds job.  Doing what you propose here is equivalent to putting business logic in bmcweb itself.",
+      "range": {
+        "startLine": 154,
+        "startChar": 9,
+        "endLine": 156,
+        "endChar": 34
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2b15ad8_4fd202b8",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "Persistently?  Non persistently?  How does this information expire?  In memory?",
+      "range": {
+        "startLine": 157,
+        "startChar": 72,
+        "endLine": 158,
+        "endChar": 19
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58921035_271110f4",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "nit, compare.",
+      "range": {
+        "startLine": 160,
+        "startChar": 54,
+        "endLine": 160,
+        "endChar": 62
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8570e7b_3f322339",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "How will it do this?  How do we ensure that there are no conflicts?  What if there are two NICs with the same IP address?  What if the NIC has ipv4 and ipv6?\n\nLots of questions here;  I\u0027m happy to see them answered in code, but just doing a string compare of an ip address isn\u0027t going to work for a security boundary.",
+      "range": {
+        "startLine": 160,
+        "startChar": 45,
+        "endLine": 161,
+        "endChar": 77
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ebc138d_585a720e",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "How will it do this?  There\u0027s no way to map a given user account to a given \"off\" signal.",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 77
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64f4d29b_dcd30fa0",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "What \"connection\"?  Does \"reset\" isn\u0027t well defined.  Is this on service restart?  HUP?  Both?",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 63
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67d1a99b_966b6f7c",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "Why is adding a property a bad thing?",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 42
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68dbc83a_cc37184e",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "Given this provides a way to possibly bypass security, I suspect that we\u0027ll still need a meson option.",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 71
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3de7f4c_ee49ba16",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-04T19:42:16Z",
+      "side": 1,
+      "message": "WAAAAAY longer testing section needed here.  This is making changes to a security boundary in a non trivial way.",
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
