@@ -103,7 +103,7 @@ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST ht
 Proceed with caution:
 
 ```
-curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Managers/bmc/Actions/Manager.ResetToDefaults -d '{"ResetToDefaultsType": "ResetAll"}'
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/Managers/bmc/Actions/Manager.ResetToDefaults -d '{"ResetType": "ResetAll"}'
 ```
 
 ---
