@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1353778e_0a2d43eb",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-03-18T05:19:50Z",
+      "side": 1,
+      "message": "Consult with NIC vendor, NIC core dump will contain up to two crash dump in it.\nAlthough the spec provide the flexibility to dump different dumps, I think the coredump is sufficient for our debug purpose.",
+      "parentUuid": "42658c4c_5df03284",
+      "revId": "8ea41fef3cfaffa0e1e467c8f15ac8c27756d310",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e705b3d7_a1cd27d1",
         "filename": "designs/ncsi-coredump.md",
         "patchSetId": 3
@@ -48,6 +66,30 @@
       "writtenOn": "2024-03-14T02:58:31Z",
       "side": 1,
       "message": "Is the net-ncsi code in the kernel used for NC-SI over MCTP?  How do we handle NICs that only have i2c connections to the BMC (not NCSI sideband protocol)?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 57
+      },
+      "revId": "8ea41fef3cfaffa0e1e467c8f15ac8c27756d310",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d4ff9cc_e7e9c10a",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-03-18T05:19:50Z",
+      "side": 1,
+      "message": "After checking the NC-SI over MCTP spec section 7:\nhttps://www.dmtf.org/sites/default/files/standards/documents/DSP0261_1.3.0.pdf\nIt\u0027s seems the dump cmd(0x4d) is not supported, we will confirm this with NIC vendor.",
+      "parentUuid": "e705b3d7_a1cd27d1",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -94,6 +136,30 @@
       "writtenOn": "2024-03-14T02:58:31Z",
       "side": 1,
       "message": "We\u0027ll need to identify which NC-SI link this will target?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 114
+      },
+      "revId": "8ea41fef3cfaffa0e1e467c8f15ac8c27756d310",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d538bc04_e6c0b3f9",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-03-18T05:19:50Z",
+      "side": 1,
+      "message": "Yes, ncsi-netlink could accept \"interface\" parameter. I think we could pass it by dbus.",
+      "parentUuid": "aac9f6ab_f457ff58",
       "range": {
         "startLine": 19,
         "startChar": 0,
