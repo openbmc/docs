@@ -168,6 +168,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26f1d665_fe2eaede",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "47ed1056_68526eed",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 0
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a93aded_d83dc568",
@@ -241,6 +265,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98f7aef1_2010f90a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "Will follow up on this point on Discord, but I\u0027ve gotten the \u0027okay\u0027 for to have folks from HPE (starting with myself, expanding roster as needed) agree to take on a maintainer role for phosphor-u-boot-env-mgr and to base the device-tree -\u003e d-bus daemon we\u0027d like to use from there. The more we\u0027ve looked into it, the more sense it seems to make to keep this daemon associated with u-boot-specific code.\n\n---------------------------------------------------------\n\nRe: 2 design doc versions-- \n\nShort Summary: The linked doc was initially described (perhaps incorrectly) as a generalized \u0027file system -\u003e d-bus\u0027 design, and described an existing (but no longer relevant) Gerrit submission that enables the existing fru-device daemon in Entity-Manager to source data from device-tree/chosen nodes.\n\nThe other doc (this one) started as an OEM/HPE-specific \u0027how HPE will leverage the system in the first doc to read from device-tree/chosen nodes\u0027 design. After much community discussion, this doc slowly transformed from something HPE-specific into a more generalized \u0027device-tree -\u003e D-bus\u0027 design with applications outside of HPE systems. I think the old doc can be deleted at this point.\n\n-----------------\nA rough ordering of events w/ links:\n\n1. Submitted fru-device daemon code changes to Gerrit for handling device-tree/chosen nodes. Was described to OBMC community as an \u0027arbitrary file system -\u003e d-bus daemon\u0027 -- this got a fair bit of pushback, largely relating to the \u0027arbitrary file systems\u0027 description. This was corrected to narrow focus on \u0027device-tree nodes\u0027 in later discussions.  Gerrit code submission @ https://gerrit.openbmc.org/c/openbmc/entity-manager/+/65669\n\n2. Was asked to submit a design document for the above changes. Submitted the doc @ https://gerrit.openbmc.org/c/openbmc/docs/+/65678 (originally focused on describing the already-submitted code, and describing the reasoning for it)\n\t\n3. Submitted an additional \u0027OEM/HPE\u0027 version of the doc to https://gerrit.openbmc.org/c/openbmc/docs/+/66369 (current doc), intending for the \u0027generalized\u0027 doc to describe a generic method for \u0027arbitrary file system -\u003e dbus\u0027 handling, with the OEM/HPE version giving deeper HPE-specific background, plus going into detail about HPE\u0027s specific needs and requirements, along with info on how the \u0027general\u0027 system would be applied to device-tree nodes for HPE\u0027s HW requirements.\n\t\n4. Based on community discussions, the  document was changed from a \"arbitrary file system -\u003e d-bus daemon\" to instead discuss an \"HPE FRU -\u003e d-bus daemon\" hosted in the phosphor-u-boot-env-mgr subproject instead of in entity-manager\n\t\n5. After further discussion, got pushback about the \u0027d-bus chain getting long\u0027 (likely due to a convoluted suggestion on my end re: using code in Entity-Manager to decide if an HPE-specific daemon in phosphor-u-boot-env-mgr should be started).\n\t \n6. I realized the community didn\u0027t consider \u0027device-tree -\u003e dbus\u0027 to be as objectionable as an \u0027arbitrary file system -\u003e d-bus daemon\u0027 so a rebranding of existing code/plans happened around here. \n\n7. Based on community discussion, I decided to switch design focus to \u0027device-tree -\u003e d-bus daemon\u0027 and started deciding on which fields were necessary + low hanging fruit that made sense to include\n\t\n8. After more community discussion, we decided that the OEM/HPE doc had been edited down into a general use doc, so it was moved out of the OEM/HPE subdirectories and rebranded to the doc we\u0027re on now.\n\nOther than the discussion history in it, I think the original doc is irrelevant at this point, and can be removed to future avoid confusion.\n\nI\u0027m still considering creating an additional document (once all this stuff is settled) in the future that gives some kind of general purpose \u0027here\u0027s things to consider and look at when thinking about a new daemon for entity-manager HW ID\u0027 doc in the future -- largely because of how confusing I found things at first.\n\nIf/when that happens, such a doc would include info like existing daemons, and design preferences like how we\u0027d prefer one channel per daemon, or to keep daemons associated with their data sources -- both of which are seemingly violated by current fru-device daemon implementation in the Entity-Manager subproject. Things like that definitely caused plenty of extra confusion on my end early on.",
+      "parentUuid": "75f58ef9_28c8b2a5",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c91da47d_513a6d9a",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 18
@@ -252,6 +294,30 @@
       "writtenOn": "2024-02-06T20:13:19Z",
       "side": 1,
       "message": "This sounds very similar to the Tyan file format (which FRU device handles) or the VPD IBM parser design.  Could you please add those into your background?  Ideally also with details on why this design is taking a different approach.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 65
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f17ea75f_86d4b8b7",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c91da47d_513a6d9a",
       "range": {
         "startLine": 13,
         "startChar": 0,
@@ -382,6 +448,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93257197_2e7edac7",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "In the short term, an HPE-fork of OpenBMC will include recipes to point to the public HPE-fork of u-boot (currently needed for more than just this HW identification bit), \n\nIn the longer term, there\u0027s an ongoing effort to boot HPE hardware on top of the latest \u0027official\u0027 u-boot code with minimal changes on top, and we plan to work on upstreaming that once it\u0027s ready to go.",
+      "parentUuid": "e64842f0_8bbbb827",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 58
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7684dbb9_0bd5b018",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 18
@@ -393,6 +483,24 @@
       "writtenOn": "2024-02-06T20:13:19Z",
       "side": 1,
       "message": "Why is openbmc pointing at this u-boot fork?\n\nhttps://github.com/openbmc/openbmc/blob/8a4267b756cd3dadf58a01d1c96764f8d80077ee/meta-hpe/meta-gxp/recipes-bsp/u-boot/u-boot-common-gxp_2020.10.inc#L12C1-L13C1\n\npresumably HPe would need to follow the process that Nuvoton and Aspeed did, and get it included in https://github.com/openbmc/u-boot  Have you discussed that with Joel?\n\nAs written this seems like it\u0027s in direct contradiction of\nhttps://github.com/openbmc/docs/blob/master/meta-layer-guidelines.md\n\nTrying to propose \"generic\" solutions that apply to everything when the underlying implementation seems like we\u0027re making a huge amount of technical debt.\n\nThe fact that HPe is both a system manufacturer, and makes its own BMC was maybe why this was allowed?",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82e72ade_4bd701fc",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "HPE has a lot of working hardware on OBMC based on internal proof of concept code that wasn\u0027t originally built with upstreaming acceptance in mind. A few of us have been put to the task of porting whatever we can to from \u0027proof of concept\u0027 to \u0027upstream ready\u0027 with an aim of reducing the difference between mainstream code and internal dev builds as much as possible.\n\nIn the shorter term, I believe the plan is to have a public HPE fork of OpenBMC available on Github with a handful of recipes added that point to any HPE-specific repos with components that haven\u0027t gone through the OBMC acceptance processes. \n\nIn the longer term, we\u0027re going to be working to upstream whatever we can, with an ultimate hope of not needing an HPE-specific fork(s) anymore. We\u0027ll be looking to knock off training wheels by removing recipes for forked components when and where we can over time.\n\nIn the medium-longer term for u-boot, there is an effort to work out a \u0027minimal\u0027 set of changes that will allow HPE hardware to boot on top of mainstream u-boot that I believe has been seeing progress. The current plan is to eventually upstream that effort once it\u0027s ready.",
+      "parentUuid": "7684dbb9_0bd5b018",
       "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -434,6 +542,30 @@
       "side": 1,
       "message": "This wouldn\u0027t be a manufacturer-specific daemon. It would be a small amount of code exposing the root `model` and `serial-number` devicetree properties on D-Bus that is applicable on almost any system.",
       "parentUuid": "89209727_502dc791",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 81
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c19ecf9_3b7d5783",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "Looking like we\u0027ll probably be hosting this proposed daemon in phosphor-uboot-env-mgr after all. \n\nThe more I\u0027ve looked into that option after it was last suggested, the more it seems like it makes sense to separate these d-bus daemons according to the data source this way.",
+      "parentUuid": "d3b14b9b_ccf34323",
       "range": {
         "startLine": 128,
         "startChar": 0,
@@ -541,6 +673,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd710179_135c7c99",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "I\u0027m currently leaning towards \u0027BMCPrebootContext\u0027 that was suggested as a \u0027generic\u0027 name in the discord chat, especially since it\u0027ll still apply even if the device-tree is altered from somewhere other than u-boot.\n\nThat still sound good to everyone?",
+      "parentUuid": "1eb13944_5da0899d",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 38
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5dba13ab_7fc05810",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 18
@@ -552,6 +708,30 @@
       "writtenOn": "2024-02-06T20:13:19Z",
       "side": 1,
       "message": "Please wrap your document on 80 character boundaries.  There are lots of issues, this is only one.  Please fix all of them.\n\nI\u0027m assuming it wasn\u0027t intentional for these to be headings.  They appear to be text.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 94
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9764c9e1_859751f5",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "I did intentionally turn these into headings that could be referenced via links -- based on a suggestion I got previously -- and found that wrapping the characters at the 80 character boundaries broke for the heading format for longer \u0027titles.\u0027\n\nI found at least one other accepted design doc (the only one I checked with a more complex list of \u0027alternatives\u0027 like the ones here) that used the same formatting.\n\nI\u0027ve also since discovered I can add line-breaks that don\u0027t break formatting with \u003cbr/\u003e, so I\u0027ve added that to the next draft.",
+      "parentUuid": "5dba13ab_7fc05810",
       "range": {
         "startLine": 137,
         "startChar": 0,
@@ -602,6 +782,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d524474_15ecf50f",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3c9376fa_5ffaaff7",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "369fce52_4a57a163",
@@ -615,6 +813,30 @@
       "writtenOn": "2024-02-06T20:13:19Z",
       "side": 1,
       "message": "What does this mean?  The \"preferred\" design has the same chain length, right?  It just puts a new daemon in the entity-manager repo instead of reusing an existing one?",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 74
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3d72002_c2e50d2b",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "I\u0027ve gone ahead and overhauled how this \u0027alternative\u0027 is described since we\u0027re actually looking to rely on phosphor-uboot-env-mgr now -- but I think part of the original complaint I got was re: having an HPE-only daemon in phosphor-uboot-env-mgr and trying to figure out how to make sure the daemon would only fire off on HPE machines and not waste cycles on non-HPE systems. \n\nThere may have been a suggestion to have behavior in the HPE daemon change based on what was read onto d-bus from the existing fru-device daemon, which may have been part of the \"chain is getting uncomfortably long\" comments.",
+      "parentUuid": "369fce52_4a57a163",
       "range": {
         "startLine": 199,
         "startChar": 0,
@@ -648,6 +870,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffbf8490_af993508",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "809fc311_7eb9a6f3",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 12
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3693a99b_64c91477",
@@ -661,6 +907,24 @@
       "writtenOn": "2024-02-06T20:13:19Z",
       "side": 1,
       "message": "Better abstraction is another pro.",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6488aa5_649b5cd3",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3693a99b_64c91477",
       "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -738,6 +1002,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65548ce6_533c1d65",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "Thanks for the heads up -- removed.",
+      "parentUuid": "591a03a8_8d647c5b",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 58
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6d2601e_b8f6c668",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 18
@@ -749,6 +1037,30 @@
       "writtenOn": "2024-02-06T20:13:19Z",
       "side": 1,
       "message": "I\u0027m not really following how this is different aside from where you\u0027re putting the new daemon.  FWIW, putting all uboot communication code in the same place seems like it would save significant dependencies?\n\nIf I\u0027m understanding the design correctly, this alternative would be my preference.",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 132
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "413c7dc5_0fe2a762",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "Good point. This \u0027alternative\u0027 has now been removed since the design is now aiming to land a non-HPE-specific daemon in phosphor-u-boot-env-mgr.",
+      "parentUuid": "a6d2601e_b8f6c668",
       "range": {
         "startLine": 216,
         "startChar": 0,
@@ -778,6 +1090,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c92def4_1eec8a5e",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "Absolutely. I\u0027ve attempted to give a brief history of that doc and this one in another comment, but essentially, that one started out as a \"general file system -\u003e dbus\" design doc, and this doc started as a \"HPE-specific use of general file system to read from device-tree/chosen -\u003e dbus\" design doc.\n\n(in retrospect, if I would have called it a devicetree -\u003e dbus doc from the start, which is what we were looking to do with device-tree/chosen at the time, I think I would have gotten less initial pushback).\n\nAt some point, this doc had enough HPE-specific stuff stripped out in revisions to just call it a \u0027generalized\u0027 version. \n\nA new HPE-specific doc about adding HPE-specific fields is likely to come in the future. I\u0027m thinking I\u0027m just going to mark the other doc as \u0027closed\u0027 to avoid future confusion.",
+      "parentUuid": "4fafb049_9455cb86",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0c49ad47_eaf07704",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 18
@@ -789,6 +1119,30 @@
       "writtenOn": "2024-02-06T20:13:19Z",
       "side": 1,
       "message": "Why not just enable phosphor uboot env manager by default?  Seems similar to what we\u0027re already proposing, just we\u0027re instead putting code in EM.",
+      "range": {
+        "startLine": 221,
+        "startChar": 36,
+        "endLine": 222,
+        "endChar": 11
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de1449af_6f7de6a1",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "This definitely makes more sense to me now, especially since this is no longer an HPE-specific daemon being proposed to be hosted in phosphor-uboot-env-mgr",
+      "parentUuid": "0c49ad47_eaf07704",
       "range": {
         "startLine": 221,
         "startChar": 36,
@@ -896,6 +1250,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0f55d3df_abced098",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "The more I\u0027ve thought about it, the more I find myself thinking the suggestion to host this daemon in phosphor-u-boot-env-mgr makes sense, since from the OBMC kernel\u0027s perspective, a flat device tree is  being handed off from u-boot.\n\nI believe there was a comment thread somewhere that asked if folks from HPE would be willing to step up as maintainers for that repo, and I\u0027ve gotten the \u0027okay\u0027 to agree to that, if there\u0027s still interest. \n\nI\u0027ll bring it up on Discord for community discussion,",
+      "parentUuid": "cf9bf55d_d7bfc023",
+      "range": {
+        "startLine": 227,
+        "startChar": 3,
+        "endLine": 228,
+        "endChar": 60
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d93193b_4984cf6e",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 18
@@ -913,6 +1291,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2eac0146_5358c418",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "I\u0027ve updated the organizational section to discuss the use of phosphor-u-boot-env-mgr, and having HPE maintainers (starting with myself) on board.",
+      "parentUuid": "3d93193b_4984cf6e",
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9bc856c6_d2a5a7f4",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 18
@@ -924,6 +1320,30 @@
       "writtenOn": "2024-02-06T20:13:19Z",
       "side": 1,
       "message": "That\u0027s not really what this section is for.  Are you going to write:\n\nUnit tests?\nFunctional tests?\nManual tests?\n\nYou\u0027ve called out which platform you plan on testing on, which is good, lets just get the next level of detail on how you intend to test this.",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 56
+      },
+      "revId": "b1e5f3451e63e7605bfa8b9c85532e64216afc2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90c0b607_c80a051c",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-21T16:13:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9bc856c6_d2a5a7f4",
       "range": {
         "startLine": 249,
         "startChar": 0,
