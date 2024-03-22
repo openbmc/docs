@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "265c709a_c76bf3b5",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-22T19:59:42Z",
+      "side": 1,
+      "message": "Don\u0027t we already have dbus interfaces for all of these attributes?  Why do we need to define a new dbus interface?  \n\n\nIt seems like you\u0027re describing:\n\nu-boot -\u003e new daemon -\u003e entity-manager -\u003e dbus inventory objects.\n\nWhy not cut entity-manager out of it and just make the dbus inventory objects directly? (maybe this belongs in an alternatives)\n\nAny reason why we couldn\u0027t make the same arbitrary-ish interface that FruDevice makes?  Unfortunately that interface is also not-documented, but we could fix that.  Most of these fields you\u0027ve listed already have analogs in IPMI.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 26
+      },
+      "revId": "8422c6799981adcaa86784168e1439cfe4a7d373",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
