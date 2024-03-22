@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3f1b31b_c2e1761c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-22T18:51:01Z",
+      "side": 1,
+      "message": "How do folks feel about creating an interface named \u0027xyz.openbmc_project.MachineContext\u0027 for the proposed daemon to send data to?",
+      "revId": "a3c3ce2aa1f1b6827a1620437baeda2638dc3a93",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30800b9c_f392d1fb",
@@ -31,6 +48,30 @@
       "writtenOn": "2024-03-22T01:14:32Z",
       "side": 1,
       "message": "This is already mentioned in the previous paragraph, so I think we can drop it. After dropping it I think you can merge the remaining sentence in this paragraph into the following paragraph.",
+      "range": {
+        "startLine": 67,
+        "startChar": 32,
+        "endLine": 69,
+        "endChar": 1
+      },
+      "revId": "a3c3ce2aa1f1b6827a1620437baeda2638dc3a93",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8732b353_a05e5d80",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-22T18:51:01Z",
+      "side": 1,
+      "message": "Thanks for the suggestion",
+      "parentUuid": "30800b9c_f392d1fb",
       "range": {
         "startLine": 67,
         "startChar": 32,
@@ -66,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88ea4885_737df729",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-22T18:51:01Z",
+      "side": 1,
+      "message": "Two of the suggestions I originally heard from Ed were \"UbootDeviceModel\" or \n\"if you really wanted to be generic, you could call it BMCPrebootContext.\"\n\nSounds like we\u0027ve got one vote against \u0027BMCPrebootContext,\u0027 and I\u0027m not sure about using \u0027UbootDeviceModel\u0027 particularly because I\u0027m aware of efforts by HPE and (I believe it was) IBM with kernel-level efforts from Xilinx to enable dynamic modifications to the device tree after u-boot is \u0027done.\u0027 \n\nIf the choice was between \u0027Platform\u0027 or \u0027Machine,\u0027 I think I like \u0027Machine\u0027 a little better since this interface will include information that applies to a specific machine, but may not apply platform-wide -- things like MAC addresses or serial-numbers.\n\nWhat do folks think about calling it \u0027xyz.openbmc_project.MachineContext\u0027?\n \nI\u0027ll bring this up in up on Discord for further discussion.",
+      "parentUuid": "a2a72830_f4385807",
+      "range": {
+        "startLine": 124,
+        "startChar": 33,
+        "endLine": 124,
+        "endChar": 70
+      },
+      "revId": "a3c3ce2aa1f1b6827a1620437baeda2638dc3a93",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a5b7996_043691b5",
         "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
         "patchSetId": 24
@@ -77,6 +142,30 @@
       "writtenOn": "2024-03-22T01:14:32Z",
       "side": 1,
       "message": "Please trim trailing whitespace 😊",
+      "range": {
+        "startLine": 128,
+        "startChar": 77,
+        "endLine": 128,
+        "endChar": 79
+      },
+      "revId": "a3c3ce2aa1f1b6827a1620437baeda2638dc3a93",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18be1ae0_f8c52b21",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-22T18:51:01Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "6a5b7996_043691b5",
       "range": {
         "startLine": 128,
         "startChar": 77,
@@ -128,6 +217,54 @@
         "startChar": 31,
         "endLine": 145,
         "endChar": 33
+      },
+      "revId": "a3c3ce2aa1f1b6827a1620437baeda2638dc3a93",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea3cb02d_93fb3148",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-22T18:51:01Z",
+      "side": 1,
+      "message": "Thanks for the markdown explanations. I\u0027ve gone ahead and removed the entire link since it goes to a now-outdated design doc anyways.",
+      "parentUuid": "9f87cd6f_ca7e8c5f",
+      "range": {
+        "startLine": 145,
+        "startChar": 31,
+        "endLine": 145,
+        "endChar": 33
+      },
+      "revId": "a3c3ce2aa1f1b6827a1620437baeda2638dc3a93",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0096aab0_b921b3b2",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-03-22T18:51:01Z",
+      "side": 1,
+      "message": "Good catch! And I\u0027m just realizing that link goes to the old soon-to-be-abandoned design doc this one has superseded.\n\nIf there are no objections, I\u0027ll go ahead and mark the older doc as abandoned.",
+      "parentUuid": "96d5b41d_943b6a2b",
+      "range": {
+        "startLine": 145,
+        "startChar": 3,
+        "endLine": 145,
+        "endChar": 29
       },
       "revId": "a3c3ce2aa1f1b6827a1620437baeda2638dc3a93",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
