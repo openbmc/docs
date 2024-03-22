@@ -54,13 +54,13 @@ end (sorted by term conclusion followed by alphabetically by preferred name):
 
 | Name               | Term Conclusion |
 | :----------------- | :-------------: |
-| Andrew Jeffery     |   2024-04-01    |
-| Jason Bills        |   2024-04-01    |
-| Patrick Williams   |   2024-04-01    |
-| William Kennington |   2024-04-01    |
 | Andrew Geissler    |   2024-10-01    |
 | Ed Tanous          |   2024-10-01    |
 | Zev Weiss          |   2024-10-01    |
+| Andrew Jeffery     |   2025-04-01    |
+| Jason Bills        |   2025-04-01    |
+| Patrick Williams   |   2025-04-01    |
+| William Kennington |   2025-04-01    |
 
 ## OpenBMC Development Community
 
