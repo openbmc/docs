@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e58176fa_bd1de713",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-03-25T02:41:48Z",
+      "side": 1,
+      "message": "Hi Chris, just a couple of points on style.",
+      "revId": "1a8b33daf684200b62cceca1c2ba7ffe7ee95999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14002eab_965c4b29",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-03-25T02:41:48Z",
+      "side": 1,
+      "message": "Need to delete the stray backtick 😊",
+      "range": {
+        "startLine": 223,
+        "startChar": 53,
+        "endLine": 223,
+        "endChar": 55
+      },
+      "revId": "1a8b33daf684200b62cceca1c2ba7ffe7ee95999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6f803fc_4ef11f96",
+        "filename": "designs/entity-manager-hw-detect-via-device-tree.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-03-25T02:41:48Z",
+      "side": 1,
+      "message": "I stronly prefer you don\u0027t use a C-style comment here. I\u0027d rather you use a multi-line list entry:\n\n```\n1. xyz.openbmc_project.Decorator.\\*\n\n   \"Doesn\u0027t represent anything about the physical board\" - Ed Tanous.\n\n2. xyz.openbmc_project.FRUDevice\n\n   The data is not coming from a FRU device.\n```\n\netc. Or, use a table with \"Proposal\" and \"Reason for Rejection\" columns.\n\nRegardless of the choice, please audit the rest of the document and fix any other instances in a similar way.",
+      "range": {
+        "startLine": 229,
+        "startChar": 36,
+        "endLine": 229,
+        "endChar": 38
+      },
+      "revId": "1a8b33daf684200b62cceca1c2ba7ffe7ee95999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
