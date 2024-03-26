@@ -1,0 +1,433 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c010c36b_bb6bed7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "Thanks Matt...some good stuff in the upstream.\n\nAdded a few comments and questions.",
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "645aaed3_4d9c7627",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "We could add, \"How the Passive BMC be able to get the Active BMC applications data to give a consistent view of the state of the system if the failover is requested\"?",
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "994b832c_0ca04d32",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "I think \"Service\", right?\n\nand I feel we could add an abbreviation of the FRU as well.\n\nbut, I wonder whether we need to call it a \"Flexible Service Interface\" or \"Field Replaceable Unit Service Interface\".\n\nSome references I noticed in public forum\n\nhttps://openpowerfoundation.org/specifications/fsi/\nhttps://www.qemu.org/docs/master/specs/fsi.html",
+      "range": {
+        "startLine": 71,
+        "startChar": 35,
+        "endLine": 71,
+        "endChar": 42
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9e71723_b9b56894",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "Common?",
+      "range": {
+        "startLine": 75,
+        "startChar": 5,
+        "endLine": 75,
+        "endChar": 9
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24332107_fa5b4063",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "sibling BMC? I think we could mention whether are we referring to sibling BMC or Host here,",
+      "range": {
+        "startLine": 86,
+        "startChar": 33,
+        "endLine": 86,
+        "endChar": 40
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c39afd0_5a3a074d",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "Is it a hard rule for the OpenBMC project or is it a IBM-specific requirement?\n\nI feel the OpenBMC project consumer could choose whether they need to allow the role detection (Active and Passive) based on the inter-network cable connection, and want to allow the system to boot, right?",
+      "range": {
+        "startLine": 99,
+        "startChar": 39,
+        "endLine": 99,
+        "endChar": 43
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8830faa_1b8693c4",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "It seems you did not mention the PLDM like LN106 so there is no PLDM stack in the Passive BMC from this proposal but, do you think we need to specify here how the Passive BMC supports a failover interface for the Host? Like the \"MCTP over KCS\"?\n\nI think you captured that below (LN402). If you feel it will be duplicate content here then I am ok.",
+      "range": {
+        "startLine": 109,
+        "startChar": 64,
+        "endLine": 110,
+        "endChar": 30
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d898ad_8c21269b",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "I think we could add the \"RedundancyEnabled\" property must be true since I feel we will update this property in an error case in case we cannot support the failover for some error case.",
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "363618c1_6408ecc7",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "is it true? \n\nSay, for example, the Active BMC trying to reboot, and for some reason, it takes some time and crosses some timeout from the external/internal entity (Redfish client/Host) point of view so it will initiate a failover, right? or There should be a way to prevent this?",
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0200eb62_2d1316c8",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "Suggestion: How about \"obmc-active.target\"?",
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8f811bb_620a06ef",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "Suggestion: How about \"bmc-active.service\"? or \"active-bmc.service\"?\n\nI feel, start and stop all depends on the systemd commands.",
+      "range": {
+        "startLine": 187,
+        "startChar": 6,
+        "endLine": 187,
+        "endChar": 27
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26c34056_4a148ff4",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "It is not covering the design for the Passive BMC service?\n\nI think this design proposal mentions that when the BMC comes up, it will come up with Passive mode and detect its role by looking at the data area then kick start the obmc-active target that starts all Active BMC services.\n\nWhat about the case, if there are a few services that need to run in the Passive BMC after the role detection? For example, MCTP over KCS daemon to handle failover requests or the sync daemon in the passive BMC?\n\nI assume we need to follow a similar approach \"obmc-bmc-active.target\" that is, \"obmc-bmc-passive.target\", right? I feel we need to add that design details here.",
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97c4c6e6_814f0d67",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "Just a doubt, won\u0027t we prefer \"phosphor\" as a prefix for the application if it is proposed as a common application?\n\nFor example, \"phosphor-rbmc-state-manager\"?",
+      "range": {
+        "startLine": 229,
+        "startChar": 59,
+        "endLine": 229,
+        "endChar": 77
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb794f56_e05f565d",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "I did not get it. is it referring that, the \"RedundancyEnabled\" property will be changed by the Active-BMC only?",
+      "range": {
+        "startLine": 268,
+        "startChar": 50,
+        "endLine": 268,
+        "endChar": 63
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43af73bd_f84ba063",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "If it\u0027s only for the Active-BMC then how does the Passive-BMC prevent its failover operation if requested?",
+      "range": {
+        "startLine": 330,
+        "startChar": 43,
+        "endLine": 330,
+        "endChar": 49
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1be4a7bc_be6e994d",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "How are we preventing this operation in the Active from the DBus design point of view? Is it based on the Role property?",
+      "range": {
+        "startLine": 331,
+        "startChar": 43,
+        "endLine": 331,
+        "endChar": 50
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33e060f7_d3f525f0",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "Pause/Disable the data sync?\n\nand looks like all steps start with 1, is it intention?",
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d26f31a_41744442",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "Resume/Enable the data sync?",
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b26e7b1d_c899e3e0",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "Is it need to add in the LN262 table?",
+      "range": {
+        "startLine": 375,
+        "startChar": 44,
+        "endLine": 375,
+        "endChar": 60
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffa587e4_ec9d3ff1",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "I think it\u0027s not clear which BMC itself triggers a failover. For example, If the Active-BMC external network of the Redfish client and the host interface is broken then the Active-BMC will trigger a failover and how?\n\nI think this design does not cover that case or interface so maybe we could highlight that or we could extend this design if there is a use case?\n\nSimilarly, inter-BMC cable is broken then how the failover will be triggered?\n\nI am not sure, if we will cover these error cases in the design doc, so please feel free to correct me if I am wrong.",
+      "range": {
+        "startLine": 386,
+        "startChar": 35,
+        "endLine": 387,
+        "endChar": 72
+      },
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af630bf0_b4137c4c",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-03-26T13:51:31Z",
+      "side": 1,
+      "message": "Good to add the below points??\n\n- The Pacemaker resource manager expects to create a resource for all required systemd services with its dependency services, it does not automatically detect and add it as part of the Pacemaker resource configuration.\n\n- The BMC does not need to trigger a failover if any service is failed to start. By default, the pacemaker just moves the failed service from one node to another node. It required a lot of configuration to prevent.",
+      "revId": "ebe101219a7313b2843db00d176447edc279836f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
