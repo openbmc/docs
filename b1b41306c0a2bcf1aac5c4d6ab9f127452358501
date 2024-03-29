@@ -490,6 +490,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92978e19_839ceb1b",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "bootstrap account is used to create admin accounts at the time we set up the system, once the admin accounts are created, bootstrapp account should be deleted on the next reset of the system. Therefore, I don\u0027t expect the action create/delete bootstrap account happen quite often or changing `/etc/passwd` so often.",
+      "parentUuid": "eaa130d5_48c8950a",
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f2c9030_5bdfd768",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 5
@@ -690,6 +708,30 @@
       "side": 1,
       "message": "\u003e I don\u0027t think using the IP address is a sufficient security mechanism.\n\nI commented essentially this same statement later, but I agree.  Identifying a NIC based on IP address is error prone at best.  We should be explicitly binding a specific device.\n\n\n\u003e performBootstrapAccountAuth()\n\nWhen we get to code, we can talk about this, but auth of the bootstrap needs to occur based on the connection itself being from the correct source, not anything to do with the payload itself.",
       "parentUuid": "089bc047_e759e91e",
+      "range": {
+        "startLine": 190,
+        "startChar": 41,
+        "endLine": 193,
+        "endChar": 0
+      },
+      "revId": "b1b41306c0a2bcf1aac5c4d6ab9f127452358501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74a7ca35_8f23b1c3",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "If we choose systemd socket activation approach, the boostrap account authentication will be:\n1. check if a user is belonged to bootstrap account group\n2. check if the connecion is from host by checking the `isFromHost` flag which will be set to true when connection is from host interface.",
+      "parentUuid": "952f9e3e_1e0b4994",
       "range": {
         "startLine": 190,
         "startChar": 41,

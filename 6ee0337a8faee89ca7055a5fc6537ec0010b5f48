@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f190f58d_fdd9e32d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "Thank you for your feedback Ed.\nI think using systemd activated socket and option `BindToDevice\u003d` to bind the host interface is a good choice. Andrew also suggested using SO_BINDTODEVICE which I think the idea is similar.\nThat said, using `BindToDevice\u003d` option, when there is a connection from host interface comes in, a flag `isFromHost` is set to true to indicate the the connection is from host, combining with the information of user group, we know the account is a bootstrap account and from host interface.\n\nIf we implemement this way, there is no need for configuration of host interface in entity manage and hence some of your reviews below will be resolved.",
+      "parentUuid": "bc92d731_33b8414c",
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b51e2004_10af6f36",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 6
@@ -118,6 +136,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8db57895_a786b1c6",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "If we use systemd activation approach, this configuration will be removed",
+      "parentUuid": "4d5d4a4d_5156f2bb",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 26
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea2824c8_eab86783",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 6
@@ -129,6 +171,24 @@
       "writtenOn": "2024-03-04T19:42:16Z",
       "side": 1,
       "message": "The above makes it look like there are two ports connected to the host?  Are there any systems where that\u0027s actually the case?",
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "787e7213_7c1f5b67",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "In the blade server system, we have multiple hosts, that\u0027s why we need hostN for this configuration.",
+      "parentUuid": "ea2824c8_eab86783",
       "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -156,6 +216,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b825ac3_68ca2701",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5fac883b_8845cb9d",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 56
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bb7da1d_8ed34e78",
@@ -169,6 +253,30 @@
       "writtenOn": "2024-03-04T19:42:16Z",
       "side": 1,
       "message": "This section seems incomplete.  Once it has verified the user belongs to that group, then what?",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 21
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea1f51a5_60ee22d3",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "After checking the current account of connection request is a bootstrap account, we then check if the connection is from host which current design based on ethernet interface and IP address.",
+      "parentUuid": "2bb7da1d_8ed34e78",
       "range": {
         "startLine": 134,
         "startChar": 0,
@@ -227,6 +335,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "472dc37d_f9d1eadf",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "yes, correct, the `CreateUser` method need a flag to know that we want to create a bootstrap account or a normal account.",
+      "parentUuid": "9fbc568b_f438a9dc",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 44
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08ad00e4_6cd1de35",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 6
@@ -238,6 +370,30 @@
       "writtenOn": "2024-03-04T19:42:16Z",
       "side": 1,
       "message": "BMCWEB does not manage NICs, that\u0027s phosphor-networkds job.  Doing what you propose here is equivalent to putting business logic in bmcweb itself.",
+      "range": {
+        "startLine": 154,
+        "startChar": 9,
+        "endLine": 156,
+        "endChar": 34
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75a8e66c_a30c374b",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "bmcweb can query NICs info via service `xyz.openbmc_project.Network` but it will slow down the connecion time of a connection request. Caching NICs IP data is a way to avoid this situation.\nBut now, like I said, if we change to use systemd socket activation, we do not need to cache these info.",
+      "parentUuid": "08ad00e4_6cd1de35",
       "range": {
         "startLine": 154,
         "startChar": 9,
@@ -273,6 +429,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af826bb9_036c5c4f",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "The NICs info will be updated when bmcweb starts up and when there are changing in entity manager configuration, so it will last as soon as bmcweb is still working.",
+      "parentUuid": "a2b15ad8_4fd202b8",
+      "range": {
+        "startLine": 157,
+        "startChar": 72,
+        "endLine": 158,
+        "endChar": 19
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "58921035_271110f4",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 6
@@ -284,6 +464,30 @@
       "writtenOn": "2024-03-04T19:42:16Z",
       "side": 1,
       "message": "nit, compare.",
+      "range": {
+        "startLine": 160,
+        "startChar": 54,
+        "endLine": 160,
+        "endChar": 62
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aefa57d6_2eac8b41",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "58921035_271110f4",
       "range": {
         "startLine": 160,
         "startChar": 54,
@@ -342,6 +546,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9b8aadeb_de10ab1c",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "When receing the signals indicating that host is transitioning to off, all of the bootstrap accounts which belong to bootstrap user group will be deleted.",
+      "parentUuid": "4ebc138d_585a720e",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 77
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64f4d29b_dcd30fa0",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 6
@@ -353,6 +581,30 @@
       "writtenOn": "2024-03-04T19:42:16Z",
       "side": 1,
       "message": "What \"connection\"?  Does \"reset\" isn\u0027t well defined.  Is this on service restart?  HUP?  Both?",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 63
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "270ce283_18c2bbea",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "The term `reset` is mentioned but not defined in DSP0270. It is not mentioned when the redfish service is going to off or in the process of initializing the service, so I believe we can use it in both cases. Adding dependency to delete bootstrap account at startup time is easier to implement.",
+      "parentUuid": "64f4d29b_dcd30fa0",
       "range": {
         "startLine": 176,
         "startChar": 0,
@@ -388,6 +640,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46214618_eb336990",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "No, it isn\u0027t. But leveraging something available is better than requesting to add a new property.",
+      "parentUuid": "67d1a99b_966b6f7c",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 42
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68dbc83a_cc37184e",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 6
@@ -399,6 +675,30 @@
       "writtenOn": "2024-03-04T19:42:16Z",
       "side": 1,
       "message": "Given this provides a way to possibly bypass security, I suspect that we\u0027ll still need a meson option.",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 71
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "532383a3_268e6fce",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1001612
+      },
+      "writtenOn": "2024-03-29T09:47:31Z",
+      "side": 1,
+      "message": "with that being said, if we choose the approach systemd socket activation, we do not need host interface configuration anymore.",
+      "parentUuid": "68dbc83a_cc37184e",
       "range": {
         "startLine": 187,
         "startChar": 0,
