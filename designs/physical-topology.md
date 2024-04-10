@@ -186,6 +186,24 @@ phosphor-inventory-manager, then the D-Bus interfaces exported by them will not
 change. If consumers of inventory data such as bmcweb do not find the new
 associations, then their output such as Redfish will not change either.
 
+Another major impact that came as a byproduct of this design, is that any
+applications responsible for managing inventory must ensure that each leaf node
+in their D-Bus path is unique. Failure to do so would result in the inventory not
+being published in Redfish, as inventory-consuming applications such as openbmc/bmcweb
+are specifically designed to identify resources solely based on leaf nodes.
+
+For instance, if we wish to expose both adapters in Redfish, an inventory hosting
+application cannot have two distinct D-Bus objects with the following path
+hierarchy:
+
+- chassis/motherboard/slot1/adapter1
+  - hosting the Item.PCIeDevice interface
+- chassis/motherboard/slot2/adapter1
+  - hosting the Item.PCIeDevice interface
+
+As both D-Bus objects share the same leaf node, it would lead to a URL conflict.
+and only one of the adapter will be exposed in redfish.
+
 ### Organizational
 
 Does this repository require a new repository? No - all changes will go in
