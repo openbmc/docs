@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c307053_9b88fbc8",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-12T21:43:51Z",
+      "side": 1,
+      "message": "Presumably there\u0027s requirements around mapping a user to a Redfish role?  Otherwise what\u0027s the point in identifying the user as more than just \"meta-user\"",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 38
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d504ff8a_e1edee10",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-12T21:43:51Z",
+      "side": 1,
+      "message": "How will these users get created?  Redfish?",
+      "range": {
+        "startLine": 81,
+        "startChar": 3,
+        "endLine": 82,
+        "endChar": 47
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1792495_253c48d6",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-12T21:43:51Z",
+      "side": 1,
+      "message": "Why abbreviate?  service_zeus seems like it makes more sense in terms of an actual user?\n\nThis question kinda pokes a little at this is just trying to enforce Metas existing certificate naming semantics on /etc/password.\n\nCould we do something more generic like, \"We replace colons in the CommonName field with underscores and try to match the user\"\n\nThe change functionally in that approach would be a minimal difference, but doesn\u0027t require documenting or supporting metas internal cert structure in code.  In the odd case that meta decided to add \"external user\", \"Domain\", or any other new prefixes, OpenBMC doesn\u0027t have to care, that\u0027s your companies business, we just try to match common name.  In terms of result, the only thing that I think changes would be that host:/hostname would change to two underscores host__hostname, which in code we could either make the change (which would look a little weird in pam), or we could make the rule collapse multiple sequential escaped tokens into one, so the result is identical.\n\nThis also avoids questions like \"How are domain names escaped\", \"Do we enforce the 255 character domain name limit for service names?\" and all manner of other questions that I would rather NOT ask, just to keep this simple.",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 60
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0da2fdf4_03bdc223",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
