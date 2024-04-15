@@ -38,6 +38,58 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6e916f5_276b218f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-15T15:59:23Z",
+      "side": 1,
+      "message": "User Principal name looks like it\u0027s in one of the formats\n\nusername, domain/username, or username@domain.\n\nWhich is awkwardly close to what you guys have.  All good if it can\u0027t work, but it\u0027s so close it\u0027s at least worth asking.",
+      "parentUuid": "02fd6a31_0a8cd8b5",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba85f5a0_e5f51ec7",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-15T15:59:23Z",
+      "side": 1,
+      "message": "Missing all background on the fact that Redfish has a full stack of in-specification solutions for this stuff.  CommonName matching, UPN, etc.",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81000a8a_62d8c1a8",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-15T15:59:23Z",
+      "side": 1,
+      "message": "Given that Redfish has a standard for CertificateMappingAttribute that, how do you see us handling that parameter when we\u0027re in \"meta mode\"?\n\nToday, we the code essentially would just put CommonName, because that\u0027s what it does.  If we\u0027re not mapping to a common name, I\u0027m not sure what we should expose in Redfish to denote that this system supports Metas certificate encoding scheme.",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c307053_9b88fbc8",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -173,6 +225,70 @@
         "endLine": 84,
         "endChar": 60
       },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f26854b_85289451",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-15T15:59:23Z",
+      "side": 1,
+      "message": "\u003e \u003e Could we do something more generic like, \"We replace colons in the CommonName field with underscores and try to match the user\"\n\u003e \n\u003e Unfortunately it\u0027s common to have Subject CNs like \"user:kawajiri/hostname.facebook.com` (where the hostname part is irrelevant and would produce sth like \"user_kawmarco_hostname_facebook.com\").\n\nWhy is this a problem?\n\n\u003e \n\u003e Also trying to keep the code explicit and avoid character replacements as much as possible given it\u0027s security-sensitive code (e.g. escaping/collapsing characters can give margin to identity collisions)\n\nThis is fair.  The other thing I realized is that linux usernames actually have very few limits on what characters are allowed, so I\u0027m more confused what we\u0027re trying to accomplish here.  Based on my reading (which could be wrong), you could just create a username of\n\nuser:kawmarco/dev123.facebook.com\n\nAnd require no changes to anything, including bmcweb, considering that unix allows colons, forward slashes and periods in their names.\n\nWas this considered?\n\n\u003e \n\u003e \u003e In the odd case that meta decided to add \"external user\", \"Domain\", or any other new prefixes, OpenBMC doesn\u0027t have to care, that\u0027s your companies business, we just try to match common name\n\u003e \n\u003e I can make the code generic to any `\u003ctype\u003e` field, but not sure if it\u0027s much of a code complexity win (e.g. we\u0027d still need to handle the `type\u003d\"host\"` special case).\n\u003e \n\u003e If it\u0027s any help on avoiding taking too much community attention on this, Meta is very conservative on any changes on its client certificates (the subject name field has been using this scheme since I started five years ago), I doubt you\u0027ll see many change requests to the meta subject CN parsing code in the long term, if at all.\n\nThat\u0027s not what I\u0027m asking for, I\u0027m asking for us to consider implementations that don\u0027t require special handling of CommonName that might be different, because we have to maintain an option, a separate set of tests, and it makes that path incompatible with other paths.  It implies that every company is putting in their own \"flavor\" of certificates in at compile time, which given there are standards for this kind of thing, and this is Redfish, there\u0027s 3 CommonName modes already supported by Redfish as a standard, it isn\u0027t great to be adding a company specific OEM path that isn\u0027t documented.  If we can avoid it, we should.  If we can\u0027t avoid it, so be it, but I\u0027d like to at least discuss options that don\u0027t involve needing bmcweb to maintain special knowledge of how meta certificates are structured.",
+      "parentUuid": "bd65829c_70d4ca84",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 60
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99469292_5e5b5b88",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-15T15:59:23Z",
+      "side": 1,
+      "message": "?  Usernames are passed to pam as is.  There\u0027s no need to translate at all.",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 64
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de2a20d5_facc2dcf",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-15T15:59:23Z",
+      "side": 1,
+      "message": "Can we add:\n\nEscaping common name using a fixed set of rules (what we talked about and discounted above).\n\nMatching common name based on exact username matches (including special characters passed to DBus).\n\nAdding a \"CertificateName\" or \"CommonName\" parameter to user creation in phosphor-user-manager that bmcweb can use to match a certificate to a user.  In theory this means that folks can just encode \"this is what my CA calls this user\" and we don\u0027t have to worry about any implementation specific details.\n\nEnforcing Redfish as a standard, and just not allowing code upstream that implements non-standard conforming Redfish implementations.  (At a design level, this is something we should at least discuss, why this is different than the other OEM redfish stuff we normally would say \"Talk to DMTF first\").  I do think this is different, but we should at least write it down.",
       "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
