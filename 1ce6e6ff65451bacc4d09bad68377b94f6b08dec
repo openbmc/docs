@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22dc54b9_47f7fc52",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001910
+      },
+      "writtenOn": "2024-04-15T15:34:54Z",
+      "side": 1,
+      "message": "Will escalate this internally to our certs team, I\u0027m assuming not from what I see in `openssl x509 -in $client_cert -text`\u0027s output",
+      "parentUuid": "02fd6a31_0a8cd8b5",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c307053_9b88fbc8",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -31,6 +49,30 @@
       "writtenOn": "2024-04-12T21:43:51Z",
       "side": 1,
       "message": "Presumably there\u0027s requirements around mapping a user to a Redfish role?  Otherwise what\u0027s the point in identifying the user as more than just \"meta-user\"",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 38
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef0bc593_adb4f384",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001910
+      },
+      "writtenOn": "2024-04-15T15:34:54Z",
+      "side": 1,
+      "message": "Yes, e.g. services that only need to query sensor endpoints have users with the `ReadOnly` role.",
+      "parentUuid": "2c307053_9b88fbc8",
       "range": {
         "startLine": 69,
         "startChar": 0,
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "099ef0da_f28ce842",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001910
+      },
+      "writtenOn": "2024-04-15T15:34:54Z",
+      "side": 1,
+      "message": "Yes, through `POST /redfish/v1/AccountService/Accounts`",
+      "parentUuid": "d504ff8a_e1edee10",
+      "range": {
+        "startLine": 81,
+        "startChar": 3,
+        "endLine": 82,
+        "endChar": 47
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1792495_253c48d6",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -89,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd65829c_70d4ca84",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001910
+      },
+      "writtenOn": "2024-04-15T15:34:54Z",
+      "side": 1,
+      "message": "\u003e Could we do something more generic like, \"We replace colons in the CommonName field with underscores and try to match the user\"\n\nUnfortunately it\u0027s common to have Subject CNs like \"user:kawajiri/hostname.facebook.com` (where the hostname part is irrelevant and would produce sth like \"user_kawmarco_hostname_facebook.com\").\n\nAlso trying to keep the code explicit and avoid character replacements as much as possible given it\u0027s security-sensitive code (e.g. escaping/collapsing characters can give margin to identity collisions)\n\n\u003e In the odd case that meta decided to add \"external user\", \"Domain\", or any other new prefixes, OpenBMC doesn\u0027t have to care, that\u0027s your companies business, we just try to match common name\n\nI can make the code generic to any `\u003ctype\u003e` field, but not sure if it\u0027s much of a code complexity win (e.g. we\u0027d still need to handle the `type\u003d\"host\"` special case).\n\nIf it\u0027s any help on avoiding taking too much community attention on this, Meta is very conservative on any changes on its client certificates (the subject name field has been using this scheme since I started five years ago), I doubt you\u0027ll see many change requests to the meta subject CN parsing code in the long term, if at all.",
+      "parentUuid": "c1792495_253c48d6",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 60
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0da2fdf4_03bdc223",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -100,6 +190,30 @@
       "writtenOn": "2024-04-12T16:01:57Z",
       "side": 1,
       "message": "nit: spelling? organizational\n\n(Unless this is a British English spelling I\u0027m not familiar with ;) )",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 19
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c4277a5_1d4a2437",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001910
+      },
+      "writtenOn": "2024-04-15T15:34:54Z",
+      "side": 1,
+      "message": "Undecided Gdocs-Markdown-Export spelling, will fix :-P",
+      "parentUuid": "0da2fdf4_03bdc223",
       "range": {
         "startLine": 119,
         "startChar": 4,
