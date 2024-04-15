@@ -56,6 +56,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a38ef70c_d6ce2a3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-15T16:18:11Z",
+      "side": 1,
+      "message": "At a design-level, I\u0027d like us to explore options that don\u0027t involve bmcweb doing any kind of special logic.  Bmcweb ideally should be a DBus to Redfish translator, and ideally shouldn\u0027t be decoding any special string patterns on its own, but should be relying on other things on DBus that can do the job.  When CommonName matching was a single \"read the username string string and compare to a dbus path\", that\u0027s easy and not business logic.  When we\u0027re parsing complex semantics from it and doing transforms, that\u0027s business logic that should be done in a daemon somewhere.",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba85f5a0_e5f51ec7",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
