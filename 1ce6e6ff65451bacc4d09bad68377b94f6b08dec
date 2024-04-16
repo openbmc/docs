@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b3b13b11_3e96370f",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001910
+      },
+      "writtenOn": "2024-04-16T16:08:16Z",
+      "side": 1,
+      "message": "Fair, will add 👍",
+      "parentUuid": "ba85f5a0_e5f51ec7",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "81000a8a_62d8c1a8",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -272,6 +290,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ca980b3a_e04fde58",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001910
+      },
+      "writtenOn": "2024-04-16T16:08:16Z",
+      "side": 1,
+      "message": "\u003e \u003e Unfortunately it\u0027s common to have Subject CNs like \"user:kawajiri/hostname.facebook.com` (where the hostname part is irrelevant and would produce sth like \"user_kawmarco_hostname_facebook.com\").\n\u003e\n\u003e Why is this a problem?\n\nFor example, an user identity can be in a number of hosts (I tend to have 2 to 3 development servers running, so three distinct hostnames), which means we\u0027d have several system users for the same logical identity and have to install users for each user+host combination (so the total number of users would multiply accordingly)\n\n\n\u003e And require no changes to anything, including bmcweb, considering that unix allows colons, forward slashes and periods in their names.\n\nThe slash and colon characters are the troublesome ones, e.g. from a test bletchley unit:\n```\n# useradd \u0027user:with/special.characters\u0027\nuseradd: invalid user name \u0027user:with/special.characters\u0027: use --badname to ignore\n# useradd \u0027user_with/special.characters\u0027\nuseradd: invalid user name \u0027user_with/special.characters\u0027: use --badname to ignore\n# useradd \u0027user_with_special.characters\u0027 # succeeds\n```\n\n\n\u003e I\u0027m asking for us to consider implementations that don\u0027t require special handling of CommonName that might be different\n\nThat\u0027s a fair point, our \"the identity we care about is a substring of the Subject CN according to this set of rules\" use case doesn\u0027t fit existing  `CertificateMappingAttribute` matching modes.\n\nI don\u0027t have context on proposing redfish standard changes, but I suppose we can try proposing a redfish standard change so `CertificateMappingAttribute` has a regex pattern matching mode or a configurable `sed`-like preprocessing step as a long-term effort.",
+      "parentUuid": "0f26854b_85289451",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 60
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99469292_5e5b5b88",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -295,6 +337,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2502fc7c_9a77f94f",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001910
+      },
+      "writtenOn": "2024-04-16T16:08:16Z",
+      "side": 1,
+      "message": "I don\u0027t have much context on PAM, but what I meant here was doing the username translation (e.g. `user:kawmarco/dev123.facebook.com` -\u003e `user_kawmarco`) fully in PAM instead of maintaining logic in `bmcweb`",
+      "parentUuid": "99469292_5e5b5b88",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 64
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de2a20d5_facc2dcf",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -306,6 +372,24 @@
       "writtenOn": "2024-04-15T15:59:23Z",
       "side": 1,
       "message": "Can we add:\n\nEscaping common name using a fixed set of rules (what we talked about and discounted above).\n\nMatching common name based on exact username matches (including special characters passed to DBus).\n\nAdding a \"CertificateName\" or \"CommonName\" parameter to user creation in phosphor-user-manager that bmcweb can use to match a certificate to a user.  In theory this means that folks can just encode \"this is what my CA calls this user\" and we don\u0027t have to worry about any implementation specific details.\n\nEnforcing Redfish as a standard, and just not allowing code upstream that implements non-standard conforming Redfish implementations.  (At a design level, this is something we should at least discuss, why this is different than the other OEM redfish stuff we normally would say \"Talk to DMTF first\").  I do think this is different, but we should at least write it down.",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e24ebd4_cd3834b3",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1001910
+      },
+      "writtenOn": "2024-04-16T16:08:16Z",
+      "side": 1,
+      "message": "Fair, will add 👍",
+      "parentUuid": "de2a20d5_facc2dcf",
       "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
