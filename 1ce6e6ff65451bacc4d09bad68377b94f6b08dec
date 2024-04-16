@@ -362,6 +362,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de0d5eb1_73b214a1",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001910
+      },
+      "writtenOn": "2024-04-16T18:20:54Z",
+      "side": 1,
+      "message": "\u003e \"the hostname part is irrelevant\" worries me a little from a security perspective; In that case, shouldn\u0027t we be matching that \"hostname.facebook.com\" matches THIS bmcs hostname?\n\nNot sure I understood the question, the `hostname.facebook.com` bit is in the client certificate (e.g. the one from my development server). \n\nUsing the `user_kawmarco` as a user with Administrator role as an example, the BMC should only grant access to a privileged endpoint/action if:\n\n1. The provided client certificate is valid and trusted (using the Meta CAs installed in the BMC)\n2. The user (`user_kawajiri`) parsed from the Subject CN in the client certificate (`user:kawajiri/hostname.facebook.com`, `hostname.facebook.com` is the client hostname) is an Administrator user in the BMC\n\n\u003e Otherwise a certificate issued against any BMC could be used to log into any machine that has your user on it, not just the one the CA intended?\n\nWe only deploy host client certificates to BMCs, so they would only be able to identify as a BMC host (e.g. `Subject CN\u003dhost:/a_bmc.facebook.com`) to other systems.\n\nRegular `user:` client certificates in servers have `400` permissions attached to them (so an attacker would have to escalate privileges to be able to use e.g. my user certificate to impersonate me).",
+      "parentUuid": "c6564f49_89334703",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 60
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99469292_5e5b5b88",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -421,6 +445,30 @@
       "side": 1,
       "message": "Ah, gotcha.",
       "parentUuid": "2502fc7c_9a77f94f",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 64
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "343ab08c_20d90170",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001910
+      },
+      "writtenOn": "2024-04-16T18:20:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3697800a_b004f352",
       "range": {
         "startLine": 106,
         "startChar": 4,
