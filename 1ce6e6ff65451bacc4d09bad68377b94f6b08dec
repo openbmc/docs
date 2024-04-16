@@ -314,6 +314,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "106fdf40_01321bb6",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-16T16:42:35Z",
+      "side": 1,
+      "message": "\u003e \u003e \u003e Unfortunately it\u0027s common to have Subject CNs like \"user:kawajiri/hostname.facebook.com` (where the hostname part is irrelevant and would produce sth like \"user_kawmarco_hostname_facebook.com\").\n\u003e \u003e\n\u003e \u003e Why is this a problem?\n\u003e \n\u003e For example, an user identity can be in a number of hosts (I tend to have 2 to 3 development servers running, so three distinct hostnames), which means we\u0027d have several system users for the same logical identity and have to install users for each user+host combination (so the total number of users would multiply accordingly)\n\n\"the hostname part is irrelevant\" worries me a little from a security perspective;  In that case, shouldn\u0027t we be matching that \"hostname.facebook.com\" matches THIS bmcs hostname?  Otherwise a certificate issued against any BMC could be used to log into any machine that has your user on it, not just the one the CA intended?\n\n\u003e \n\u003e \n\u003e \u003e And require no changes to anything, including bmcweb, considering that unix allows colons, forward slashes and periods in their names.\n\u003e \n\u003e The slash and colon characters are the troublesome ones, e.g. from a test bletchley unit:\n\u003e ```\n\u003e # useradd \u0027user:with/special.characters\u0027\n\u003e useradd: invalid user name \u0027user:with/special.characters\u0027: use --badname to ignore\n\u003e # useradd \u0027user_with/special.characters\u0027\n\u003e useradd: invalid user name \u0027user_with/special.characters\u0027: use --badname to ignore\n\u003e # useradd \u0027user_with_special.characters\u0027 # succeeds\n\u003e ```\n\nWhat happens when you use --badname?  I was looking at the unix documentation, not the docs for useradd.\n\n\u003e \n\u003e \n\u003e \u003e I\u0027m asking for us to consider implementations that don\u0027t require special handling of CommonName that might be different\n\u003e \n\u003e That\u0027s a fair point, our \"the identity we care about is a substring of the Subject CN according to this set of rules\" use case doesn\u0027t fit existing  `CertificateMappingAttribute` matching modes.\n\u003e \n\u003e I don\u0027t have context on proposing redfish standard changes, but I suppose we can try proposing a redfish standard change so `CertificateMappingAttribute` has a regex pattern matching mode or a configurable `sed`-like preprocessing step as a long-term effort.\n\nThat seems like overkill, especially when UPN already exists.  I doubt anyone but facebook is going to use this unique scheme.",
+      "parentUuid": "ca980b3a_e04fde58",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 60
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99469292_5e5b5b88",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -349,6 +373,30 @@
       "side": 1,
       "message": "I don\u0027t have much context on PAM, but what I meant here was doing the username translation (e.g. `user:kawmarco/dev123.facebook.com` -\u003e `user_kawmarco`) fully in PAM instead of maintaining logic in `bmcweb`",
       "parentUuid": "99469292_5e5b5b88",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 64
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3697800a_b004f352",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-16T16:42:35Z",
+      "side": 1,
+      "message": "Ah, gotcha.",
+      "parentUuid": "2502fc7c_9a77f94f",
       "range": {
         "startLine": 106,
         "startChar": 4,
