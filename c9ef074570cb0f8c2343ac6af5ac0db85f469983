@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e7280d8_412a2686",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-04-25T05:16:00Z",
+      "side": 1,
+      "message": "Either BMC will have the capability to pause synchronization/redundancy, as both the rbmc and data_sync daemon operate on both BMCs. Each BMC will be equipped to retrieve the status of the sibling BMC via heartbeat signals, as detailed in the redundant BMC design documentation.",
+      "parentUuid": "b5adaa5e_a09c0163",
+      "revId": "c9ef074570cb0f8c2343ac6af5ac0db85f469983",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74047aa4_341428fa",
         "filename": "designs/redundant_bmc_data_synchronization.md",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-25T04:35:51Z",
       "side": 1,
       "message": "is there any way to know if all the data b/w active and passive in sync already\nso that full sync can be skipped during failover?",
+      "revId": "c9ef074570cb0f8c2343ac6af5ac0db85f469983",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "271f19ea_0ba6a7e6",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2024-04-25T05:16:00Z",
+      "side": 1,
+      "message": "The full sync is triggered from the new Active BMC to the old Active BMC, which means there\u0027s a possibility of data alteration during failover.\n\nRegarding your initial inquiry, rsync utilizes modification date/size or checksum-based synchronization, ensuring it refrains from syncing data if it\u0027s already consistent.",
+      "parentUuid": "74047aa4_341428fa",
       "revId": "c9ef074570cb0f8c2343ac6af5ac0db85f469983",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
