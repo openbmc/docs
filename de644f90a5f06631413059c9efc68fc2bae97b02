@@ -187,6 +187,64 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9e41a9e_8db9b83e",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-04-26T20:32:48Z",
+      "side": 1,
+      "message": "I\u0027d vote we don\u0027t allow redundancy to ever be enabled until a full synch is first done. So in this case, the passive BMC can not be available as a redundant resource until we do a full synch.",
+      "parentUuid": "9a5a1a13_f5f87a6a",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 7
+      },
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1acb8bf_124d9490",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-04-26T20:32:48Z",
+      "side": 1,
+      "message": "The failover will be initiated via the passive BMC, and in some cases the Active BMC will no longer be available. I don\u0027t think we can guarantee a full synch will be available, unless this is more the AFO path (where both BMC\u0027s are in a good state)?",
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "122fb773_f327e089",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-04-26T20:32:48Z",
+      "side": 1,
+      "message": "I\u0027m hoping in most cases everyone can just use a default of some sort for this.",
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f81f2600_496b1dcf",
         "filename": "designs/redundant_bmc_data_synchronization.md",
         "patchSetId": 4
