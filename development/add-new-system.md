@@ -367,8 +367,8 @@ Romulus.
             "name": "BMC_POWER_UP",
             "pin": "D1",
             "direction": "out"
-        },
-    ...
+        }
+    ]
 }
 ```
 
