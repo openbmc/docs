@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94c03adb_37d04313",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-30T00:36:56Z",
+      "side": 1,
+      "message": "Hi Ramesh - the general gist of my comments is far more detail is required for this document to be useful to the community. Without the detail there is no way to establish whether what your proposing is something other community members can leverage, as there\u0027s no way to establish whether your set of constraints is disjoint from anyone else\u0027s.\n\nYou seem to have your own reasoning happening behind the scenes that\u0027s not yet unpacked in the text - please make sure to provide the details for all the concerns that your proposal rests on.",
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1dc3a99_93de8f09",
@@ -55,6 +72,30 @@
       "side": 1,
       "message": "There might be a few scenarios where external network or host communication could fail, prompting an attempt to initiate a failover and switch roles.\n\nDoes it helps you? I will rephrase it with some more details.",
       "parentUuid": "c1dc3a99_93de8f09",
+      "range": {
+        "startLine": 69,
+        "startChar": 69,
+        "endLine": 71,
+        "endChar": 43
+      },
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e726f33_1cd2dc98",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-30T00:36:56Z",
+      "side": 1,
+      "message": "More details please. Enumerating the list of error conditions under consideration would be helpful.",
+      "parentUuid": "fb6ac521_c7ea9ea0",
       "range": {
         "startLine": 69,
         "startChar": 69,
@@ -114,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80f9af86_e2992973",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-30T00:36:56Z",
+      "side": 1,
+      "message": "What are the conditions for when a full sync is required?",
+      "parentUuid": "8730f521_e92324f2",
+      "range": {
+        "startLine": 74,
+        "startChar": 47,
+        "endLine": 74,
+        "endChar": 56
+      },
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c70bd6ae_3bc1178b",
         "filename": "designs/redundant_bmc_data_synchronization.md",
         "patchSetId": 4
@@ -161,6 +226,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d15481c1_5cd3362c",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-30T00:36:56Z",
+      "side": 1,
+      "message": "So you have some slack in the proposal - ultimately you require consistency of state between the active and passive BMCs at the point that the passive BMC transitions to active. However, that\u0027s likely also the most inconvenient point in time to finalise the consistency, mainly because the transitions is presumably occurring because the active BMC has failed in some manner. At that point if there are any inconsistencies, chances are they cannot be resolved. So there\u0027s the happy case, where consistency has been achieved prior to the active BMC failing, but then there are a couple of unhappy cases:\n\n1. The passive BMC configuration is self-consistent but outdated relative to the state of (what was) the active BMC\n2. The passive BMC configuration is not self-consistent, due to a failure of the active BMC during a synchronisation to the passive BMC.\n\nThe second is essentially not possible to recover from automatically without a more drastic action to roll it back in some way that at least makes the configuration self-consistent but outdated (1). A problem I see is that there\u0027s not really discussion of checkpoints/transactions to provide 1 in order to recover from 2. The proposal mostly considers the happy cases.",
+      "parentUuid": "16814be2_ac9c6484",
+      "range": {
+        "startLine": 87,
+        "startChar": 44,
+        "endLine": 87,
+        "endChar": 58
+      },
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ace6ed40_b19130ae",
         "filename": "designs/redundant_bmc_data_synchronization.md",
         "patchSetId": 4
@@ -196,6 +285,30 @@
       "side": 1,
       "message": "Sorry, I could not get your points, could you please elaborate.",
       "parentUuid": "ace6ed40_b19130ae",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 76
+      },
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "931dc281_4e1754db",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-30T00:36:56Z",
+      "side": 1,
+      "message": "There\u0027s no discussion of what you\u0027re doing to avoid conflicts or ABA races. You really should unpack what constraints your leaning on to avoid them, if you\u0027re going to claim that they\u0027re not something you will need to deal with.",
+      "parentUuid": "50cd8704_21564971",
       "range": {
         "startLine": 90,
         "startChar": 0,
@@ -302,6 +415,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "710891bb_05359fb3",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-30T00:36:56Z",
+      "side": 1,
+      "message": "\u003e However, I\u0027m unsure if you\u0027re referring to a scenario where multiple files are updated together for the same process and need to be synchronized in the same order. If this is what you mean, we haven\u0027t encountered such a use case yet.\n\nWhat use-cases are you considering? You need to enumerate them in this document if you\u0027re going to rely on that argument.\n\nPlease be specific, don\u0027t write in the abstract. Details are important in distributed systems.",
+      "parentUuid": "7f5ea0ed_8307881d",
+      "range": {
+        "startLine": 114,
+        "startChar": 37,
+        "endLine": 114,
+        "endChar": 58
+      },
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68f1f282_45f35db3",
         "filename": "designs/redundant_bmc_data_synchronization.md",
         "patchSetId": 4
@@ -337,6 +474,30 @@
       "side": 1,
       "message": "\u003e What happens if a failure occurs half-way through synchronisation? Does the system need to be resilient to this (I would suggest yes)?\n\nIf our retry attempts continue to fail, we must disable redundancy as indicated in line 120.\n\nI think rsync stores its data in a temporary file until the transfer is complete, after which it moves it to the original file. Do you see it differently?\n\n\u003e TLA+ and TLC would be quite helpful here. \n\nI\u0027m not familiar with this topic either, but I\u0027m happy to add it. Could you provide more context or details about what you\u0027re referring to?",
       "parentUuid": "68f1f282_45f35db3",
+      "range": {
+        "startLine": 115,
+        "startChar": 1,
+        "endLine": 115,
+        "endChar": 54
+      },
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "338a8da6_fcec74c9",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-30T00:36:56Z",
+      "side": 1,
+      "message": "\u003e If our retry attempts continue to fail, we must disable redundancy as indicated in line 120.\n\nWho\u0027s retrying and why? How are they retrying? Worked examples would be helpful (though a TLA+ specification would be better :) )\n\n\u003e \u003e TLA+ and TLC would be quite helpful here. \n\u003e\n\u003e I\u0027m not familiar with this topic either, but I\u0027m happy to add it. Could you provide more context or details about what you\u0027re referring to?\n\nSure. The best way to learn TLA+ that I\u0027ve found is this website:\n\nhttps://www.learntla.com/\n\nA good entry-point to understand how it helps is the [Conceptual Overview](https://www.learntla.com/intro/conceptual-overview.html#chapter-overview)",
+      "parentUuid": "03790290_67603d42",
       "range": {
         "startLine": 115,
         "startChar": 1,
@@ -549,6 +710,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52a6f79a_0fa952da",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-30T00:36:56Z",
+      "side": 1,
+      "message": "\u003e We haven\u0027t encountered any scenarios where the same file is updated on both sides, so this design doesn\u0027t propose a solution for that situation.\n\nYou must enumerate all scenarios you\u0027re considering otherwise there\u0027s no way for the community to establish whether or not your set of constraints is appropriate for any other member\u0027s own problems. Without that information it\u0027s not a benefit to the community, and you might as well keep this all downstream?",
+      "parentUuid": "5c70a0da_50a080d7",
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e71d0827_c35392a3",
         "filename": "designs/redundant_bmc_data_synchronization.md",
         "patchSetId": 4
@@ -596,6 +775,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f6a7004_5f58d5dc",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-30T00:36:56Z",
+      "side": 1,
+      "message": "\u003e However, we only need to sync specific persisted files and directories.\n\nWhich files? Which directories? Can you please enumerate them?\n\n\u003e we must relocate them to a separate logical volume to replicate them through DRBD\n\nWhy is this not feasible? You can symlink them into the right places?\n\nRegardless, please make sure to elaborate in the document itself, not only in replies to my comments.",
+      "parentUuid": "780bba65_217a21e6",
+      "range": {
+        "startLine": 201,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 1
+      },
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba0a6084_18ed108d",
         "filename": "designs/redundant_bmc_data_synchronization.md",
         "patchSetId": 4
@@ -631,6 +834,30 @@
       "side": 1,
       "message": "DRBD offers two modes: Single Primary mode, where only one node can access the filesystem at any given time, even for reading; and Dual Primary mode, where both nodes can access the filesystem concurrently. However, for Dual Primary mode, a clustered filesystem like GFS/OCFS is necessary, as it employs DLM (Distributed Lock Manager) for locking. Therefore, we\u0027ll need to use GFS/OCFS filesystem instead of ext4.\n\nPlease let me know if require additional details on this aspect in the design document.",
       "parentUuid": "ba0a6084_18ed108d",
+      "range": {
+        "startLine": 208,
+        "startChar": 54,
+        "endLine": 209,
+        "endChar": 46
+      },
+      "revId": "de644f90a5f06631413059c9efc68fc2bae97b02",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774d16d3_f7c3c6e1",
+        "filename": "designs/redundant_bmc_data_synchronization.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-30T00:36:56Z",
+      "side": 1,
+      "message": "\u003e Please let me know if require additional details on this aspect in the design document.\n\nYes, I need additional details. Please enumerate what applications violate the constraint you have here (that you can\u0027t simulataneously read on both DRDB volumes) and why this is required.",
+      "parentUuid": "5b7e59b3_270fd4a5",
       "range": {
         "startLine": 208,
         "startChar": 54,
