@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af0279c0_43754a28",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-05-09T21:54:23Z",
+      "side": 1,
+      "message": "If the sibling is dead or missing then the remaining BMC would be active.",
+      "parentUuid": "da1d6c51_b0e91674",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 56
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a8035c5_b5935f1e",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 4
@@ -37,6 +61,24 @@
       "writtenOn": "2024-04-26T01:33:00Z",
       "side": 1,
       "message": "What specification work has been done to ensure the expected states are reached during failure scenarios? For instance, how is the previous role persisted (filesystem?)? What if it doesn\u0027t persist (missing fsync followed by a crash?)?\n\nTLA+ and TLC would go a long way here 😊",
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11e14327_9d8ce56e",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-05-09T21:54:23Z",
+      "side": 1,
+      "message": "I haven\u0027t gotten there yet.  We\u0027ll see if it will TLA+ or not.  If we\u0027re down into having to deal with ballooning failure cases it would probably be better to do a catch all and basically reboot and try again if something goes haywire.",
+      "parentUuid": "0a8035c5_b5935f1e",
       "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
