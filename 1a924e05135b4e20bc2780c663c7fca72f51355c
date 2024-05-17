@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e68a6db8_27655169",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-17T17:48:25Z",
+      "side": 1,
+      "message": "Very nice! Overall, it looks good to me and adds some great improvements.\n\nA couple concerns are about the performance of the logs being on D-Bus vs. in the filesystem:\n\nFirst is the start-up performance.  Do we have data on how long it takes to reload 10,000 D-Bus logs?  And could this slow down boot time overall?\n\nSecond is Redfish performance.  Do we know how long it takes for bmcweb to read 10,000 logs from D-Bus when the URL is accessed?  If it\u0027s a long time, this may need to be mitigated with something like displaying the first page of logs while loading the remaining logs in the background.\n\nIf there is a performance impact, do we need to consider an alternative to D-Bus for storing event logs?",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4c684b3_6ffda3e9",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-17T17:48:25Z",
+      "side": 1,
+      "message": "typo: `is a versioned`",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec3c7688_a7bea62b",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-17T17:48:25Z",
+      "side": 1,
+      "message": "typo: `do not currently`?",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32a8dc0e_6d8e198b",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-17T17:48:25Z",
+      "side": 1,
+      "message": "typo: `will be recorded`",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08691f29_c2448947",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-17T17:48:25Z",
+      "side": 1,
+      "message": "I like the shorter name.  Also, what does `commit` mean?  Is there a more descriptive name that could be used if we move it to `lg2`?",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27637727_b8365b32",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-17T17:48:25Z",
+      "side": 1,
+      "message": "typo: `for a developer to`",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58e1b1f8_07991d26",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-17T17:48:25Z",
+      "side": 1,
+      "message": "typo: `syntax has similar`",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "048de494_4f159935",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-17T17:48:25Z",
+      "side": 1,
+      "message": "typo: `replace it with the`",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b9a7b77_5743c409",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-17T17:48:25Z",
+      "side": 1,
+      "message": "I assume these will need to be moved to an Intel downstream vendor addition to the registry?",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
