@@ -137,6 +137,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e304a770_319c2922",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-20T12:22:55Z",
+      "side": 1,
+      "message": "The old interface did the pairing like this and it was pretty verbose.  The lg2 interface allows 2 or 3 elements (depending on if you\u0027re using flags or not) without the wrapper, so this follows the same conventions.\n\nAbove that, once you construct a sub-object (such as a std::pair you described) you can no longer do constexpr analysis of the parameters.  This precludes doing compile time assurance that all the tuples have been provided.",
+      "parentUuid": "e6291f2a_fb15e2ce",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58e1b1f8_07991d26",
