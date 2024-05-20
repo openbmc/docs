@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83b3205b_e578ac75",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-05-20T06:46:38Z",
+      "side": 1,
+      "message": "I am not sure if it is an option, Have you considered using [otel logs](https://opentelemetry.io/docs/concepts/signals/logs/ )? This will give better tooling support for analysis and debug tracing.",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ec3c7688_a7bea62b",
         "filename": "designs/event-logging.md",
         "patchSetId": 2
@@ -99,6 +116,23 @@
       "writtenOn": "2024-05-17T17:48:25Z",
       "side": 1,
       "message": "typo: `for a developer to`",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6291f2a_fb15e2ce",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-05-20T06:46:38Z",
+      "side": 1,
+      "message": "looks like this is key value pairs. But that is not evident in the argument passing. Is it too verbose to do as below?\n```\n UpdateFailure(m_p(\"TARGET\", \"BMC Flash A\"),m_p(\"ERRNO\", rc), m_p(\"CALLOUT_HARDWARE\", bmc_object_path));\n```\nYou can see the implementation [here](https://godbolt.org/z/rGfMrneW3)",
       "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
