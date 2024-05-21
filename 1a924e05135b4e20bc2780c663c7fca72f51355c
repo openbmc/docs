@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79365404_dd19878a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-21T13:51:02Z",
+      "side": 1,
+      "message": "\u003e I previously did experiments with increasing the logging daemon to hold 30k events and there was nothing noticeable, except that creating that many events took a long time to write to the NOR flash. I did not explicitly measure start-up though.\n\nI see.  My worry is that it would take a comparatively long time to read the data and re-generate all the D-Bus entries on start-up vs. rsyslog that has almost no start-up cost.\n\nIt may just be us, but we\u0027re starting to run into issues where D-Bus gets saturated and causes other issues.  So, I\u0027m just thinking through if there may be an alternative to D-Bus as the shared log storage that could solve this.  For example, if we can provide a well-defined filesystem storage format, could consumers like bmcweb directly read from there, and `commit`ed logs would not need to be added to D-Bus?\n\n\u003e As far as pagination, I\u0027m not positive if this is something Redfish would support anyhow; this sounds like something that the webui might want but not inherent to Redfish.\n\nIt doesn\u0027t do any pre-loading in the background, but the Redfish log supports pagination and shows only the first 1000 logs by default to provide a quicker response to the user request when there are a lot of logs.",
+      "parentUuid": "187cae7c_e8401954",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4c684b3_6ffda3e9",
         "filename": "designs/event-logging.md",
         "patchSetId": 2
@@ -225,6 +243,24 @@
       "side": 1,
       "message": "The choice of `commit` was already in phosphor-logging and probably comes from IBM internal terminology.  It means \"take this in-memory error object and add it to the permanent record\".  I\u0027m not sure if you have ideas on a better verb.",
       "parentUuid": "08691f29_c2448947",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca559ce7_1da96dc1",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-21T13:51:02Z",
+      "side": 1,
+      "message": "Now that I know what it means, `commit` is okay for me. `store` or `persist` are some ideas, but if everyone is already familiar with `commit`, it\u0027s probably not worth changing.\n\nSorry, I\u0027m not familiar with the API.  Is it two steps? Log first then commit?  If so, could we make it one step and do something like change `commit` to a flag to determine if it should go to the permanent record?",
+      "parentUuid": "ecac0888_63bc9487",
       "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -436,6 +472,24 @@
       "side": 1,
       "message": "At this point, I don\u0027t think they need to be moved, as the existing rsyslog mechanization will still work, right?\n\nI don\u0027t expect that we will remove the existing OpenBMC Redfish registry, at least not for a while.  My understanding from Ed is that these are \"locked in\" for external backwards compatibility.\n\nThe best bet though, in order to both maintain the backwards compatibility and to update to the new error interfaces, is to have these applications define error events in `com.intel` in phosphor-dbus-interfaces with the `redfish-mapping` directive pointing to these \"old\" ones.",
       "parentUuid": "5b9a7b77_5743c409",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9967682b_790b9b39",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2024-05-21T13:51:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "147c301f_bf2a197f",
       "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
