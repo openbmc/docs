@@ -74,6 +74,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "325414a7_0080c025",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Can you please add links to the existing Redfish message registry, and current rules surrounding modifications to the registry:\n\nhttps://github.com/openbmc/bmcweb/blob/master/redfish-core/include/registries/openbmc_message_registry.readmefirst.md\n\nhttps://github.com/openbmc/bmcweb/blob/master/redfish-core/include/registries/openbmc.json\n\n\nIn addition, the existing rules on https://github.com/openbmc/bmcweb/blob/master/OEM_SCHEMAS.md#oem-compatibility-and-authority\n\nProbably need to be linked somewhere, because they call out some of the concerns here.",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb51f068_de7b89da",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "?  IPMI SEL is by definition not human readable, maybe make it more clear that the OpenBMC SEL is the one that\u0027s human readable?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 44
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb632872_535f1ac9",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "In both these cases you\u0027re quoting the output of ipmi tools which are doing the stringification in the tools themselves, not the actual SEL implementation in the bmc.  In terms of the IPMI implementation, the user facing API for these two systems threshold event are identical, and can use whatever string the user chooses.  Note the oracle example is using ipmitool, and would produce the same log event on openbmc.\n\nI understand what you\u0027re getting at, but if we need an example at all, lets come up with an actual example that causes compatibility problems in software interfaces.",
+      "range": {
+        "startLine": 33,
+        "startChar": 67,
+        "endLine": 36,
+        "endChar": 63
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4c684b3_6ffda3e9",
         "filename": "designs/event-logging.md",
         "patchSetId": 2
@@ -162,6 +225,93 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c18d3be_266e985c",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "\u003e There isn\u0027t currently any plan to use OpenTelemetry inside all the BMC applications.\n\nOtel was discussed a while ago on discord, and currently has POCs for HTTP request logging.  OTEL has recently added text-logging support, so in terms of not having to invent our own logging protocol, and being compatible with standards, it\u0027s certainly something we should discuss. With that said, I\u0027m not sure a simple \"just use OTEL\" design alone solves the problems that Redfish message registry solves.\n\n[1] https://github.com/edtanous/bmcweb/tree/otel",
+      "parentUuid": "ecac1136_dfe28a4f",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39b7d983_031b077e",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "See comment below, I suspect this line can be removed.",
+      "range": {
+        "startLine": 87,
+        "startChar": 43,
+        "endLine": 88,
+        "endChar": 69
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fe9abb2_49fc087e",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Can you reword to enumerate what \"complete\" is here.  In terms of user facing behavior, one implements the complete subset of\nPerformance for many entries\nEventing\nCompliant redfish LogCollection support\nMessage registries\n\n\nThe dbus-logging has gaps in eventing and message registry production.\n\nIf we\u0027re talking about \"doesn\u0027t provide a dbus interface\" we should call that out specifically for each one, but I\u0027m not aware of any user-facing feature that the rsyslog implementation doesn\u0027t implement that phosphor-logging does.  I\u0027m sure something exists, but it would be good to have that written down.",
+      "range": {
+        "startLine": 173,
+        "startChar": 60,
+        "endLine": 174,
+        "endChar": 10
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0779b1be_1070c73a",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Can we define this?  The only thing \"Redfish aware\" is the fact that these have to map to a Message registry;  As a trivial example, we could take the existing solution and change REDFISH_MESSAGE_ID -\u003e OPENBMC_MESSAGE_ID in the journal logs, and then we\u0027d be done with a lot less effort and thrash, right?\n\nI think defining this line better will help call out the above as not a viable solution.",
+      "range": {
+        "startLine": 178,
+        "startChar": 20,
+        "endLine": 178,
+        "endChar": 35
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ec3c7688_a7bea62b",
         "filename": "designs/event-logging.md",
         "patchSetId": 2
@@ -191,6 +341,97 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "ec3c7688_a7bea62b",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b6d8906_86e53e33",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "This seems out of scope, or I\u0027m not following why this matters?",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 67
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "697d7da2_00205443",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "I don\u0027t see anything in the design below that solves this directly.  Presumably the testing requirements for new patches already solves this, but were just enforced inconsistently?",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a66cb86_0dc9d05c",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Add: Error version sets must support functional semantic versioning, in that messages are not removed or modified for a given user-facing API.",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21289e3c_51775f01",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Logging system must be capable of producing user-facing, DMTF correct, and OCP-compatible messages, such as the platform registry published by DMTF:\nhttps://redfish.dmtf.org/registries/Platform.1.0.1.json",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5e0e9bb_4a83d304",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Add \"existing user facing interfaces should be able to be maintained\".",
       "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -279,6 +520,195 @@
       "side": 1,
       "message": "Now that I know what it means, `commit` is okay for me. `store` or `persist` are some ideas, but if everyone is already familiar with `commit`, it\u0027s probably not worth changing.\n\nSorry, I\u0027m not familiar with the API.  Is it two steps? Log first then commit?  If so, could we make it one step and do something like change `commit` to a flag to determine if it should go to the permanent record?",
       "parentUuid": "ecac0888_63bc9487",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6814ec31_19fae771",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Lets remove the bmcweb should take a hard dependency on phosphor-dbus-interfaces discussion to another place (like the patchset that adds this support).  I think having it here distracts from the overall goal.  If we\u0027re adding PDI to bmcweb, someone needs to think about it holistically, not just for one feature.",
+      "range": {
+        "startLine": 395,
+        "startChar": 64,
+        "endLine": 397,
+        "endChar": 20
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb4ba4b9_b71184c3",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Mentioned elsewhere, but I\u0027ll put it here as well, To do this without dropping existing phosphor-logging features, PDI needs a consistent mapping for.  MessageId, Severity, Message, and Resolution.  Today the severity and Resolution strings in the phosphor-logging implementation are not tied to a message id or message string, so it would be good if somewhere (it would be fine if it were in code) we enumerated what the solution to that was planned to be.",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62acfa21_18070ca0",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "What is a LoggingEvent?",
+      "range": {
+        "startLine": 411,
+        "startChar": 44,
+        "endLine": 411,
+        "endChar": 56
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22ee4b38_f1f981d2",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Else, the log is omitted?",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b876d862_63c6ced7",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "While I think this is a hard problem (although worth tackling) I\u0027m not really sure what this has to do with the existing EventLog design?",
+      "range": {
+        "startLine": 427,
+        "startChar": 0,
+        "endLine": 428,
+        "endChar": 28
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd6fecd3_454d0e89",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Lets change to \"will omit the message from the log collection\".  Client implementations shouldn\u0027t be aware that the backend is DBus when they\u0027re looking at Redfish, and directly posting a dbus object path to the client facing API defeats that purpose.",
+      "range": {
+        "startLine": 428,
+        "startChar": 29,
+        "endLine": 429,
+        "endChar": 79
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1cf2c58_8a112132",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "If we\u0027re generating this code, why generate a template?  Could we instead just generate the args constructor, then you\u0027ll get compile failures if an arg is missing in a non-template message, and the code is much easier to read.\n\nUpdateProgress(std::string_view TARGET, int64_t ERRNO, sdbusplus::message::object_path CALLOUT_HARDWARE);\n\nHaving multiple levels of generated code seems like an issue.",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0058bf5_b43bbd1b",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Considering that all the asio reactor daemons can\u0027t throw (because they\u0027re being executed from the executor, and don\u0027t have a stack to throw through), some alternative will need to exist to this, right?  Or are we planning on moving dbus-sensors and bmcweb over to coroutines before this design gets implemented?  Can we get the intent documented?",
+      "range": {
+        "startLine": 558,
+        "startChar": 0,
+        "endLine": 561,
+        "endChar": 3
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4792c7d_f2a4452f",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": ".... please add\n\n\"And require a deprecation strategy that Redfish does not recommend\"",
+      "range": {
+        "startLine": 573,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 69
+      },
       "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -426,6 +856,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "50590c38_cbab48b0",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "This should be removed, because it\u0027s unimportant to the point, while this might be true from reading the code, functionally the version hasn\u0027t been required to be correct in code for a very long time, and today arguably serves as a \"this is the version this message was added in\" hint to the reader, rather than an actual version that gets published.  The user-facing API will always publish the event under the latest registry version, so this only appears to be a problem in when reading code, and is arguably just a clean up exercise that hasn\u0027t happened yet, because it doesn\u0027t really matter.\n\nThis is non-obvious, and not a great C API to readers of the code, but as far as users are concerned, it works.",
+      "range": {
+        "startLine": 735,
+        "startChar": 37,
+        "endLine": 736,
+        "endChar": 35
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36508ea0_791c355e",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Can you enumerate this better or just remove this sentence?  The standard registries have evolved over time, so comparing a message registry written in 2018 to DMTF registries written in 2024 isn\u0027t a fair comparison, and implies that we should just always use a DMTF registry, without implementing anything OpenBMC unique.  If that\u0027s the intent, great, but clearly that\u0027s not the point of this doc, so calling out this comparison, unless you can show that these messages had an equivalent messages in 2018, is playing monday morning quarterback and a distraction from the overall design.  Obviously for new code we would use the DMTF registries, but old code that existed before those registries should continue to work, and IMO, we should have a path for logging things that maybe aren\u0027t consistently used enough for a standard.\n\nHow we want to handle that epoch events of \"DMTF now supports a message that we previously had OEM support for\" is something we can certainly discuss a better opinion on, but I think it would be different from what this doc is trying to accomplish.",
+      "range": {
+        "startLine": 739,
+        "startChar": 41,
+        "endLine": 740,
+        "endChar": 77
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "048de494_4f159935",
         "filename": "designs/event-logging.md",
         "patchSetId": 2
@@ -455,6 +931,52 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "048de494_4f159935",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10c71fec_1a34257d",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Can this come with a guarantee that all client code has been changed to support the new interfaces?  This is a user facing API surface that I don\u0027t think we can just change unless we have agreement from the known clients that use it, and even just enumerating all the software that use this interface is difficult, much less getting a breaking change into all of them released.\n\nI really don\u0027t think we can break compatibility here.",
+      "range": {
+        "startLine": 745,
+        "startChar": 29,
+        "endLine": 745,
+        "endChar": 38
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06015509_b16fcdd0",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "I feel like this is missing a sentence on what happens after that.  After that we just break all the implementations that currently work?  I\u0027m not really following why this would be necessary if the new method handles all the same features as the old, wouldn\u0027t we just transition the implementation to the new call sites, and verify that we can faithfully implement the new interface?\n\nIs this just out of lack of wanting to put in that effort and testing?",
+      "range": {
+        "startLine": 747,
+        "startChar": 17,
+        "endLine": 748,
+        "endChar": 6
+      },
       "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -508,6 +1030,63 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "147c301f_bf2a197f",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "061f9fea_2cb76cc8",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "This should be estimated before we approve this design.",
+      "range": {
+        "startLine": 841,
+        "startChar": 25,
+        "endLine": 844,
+        "endChar": 25
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0846dbbd_4c30deeb",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "Missing impacts to user-facing Redfish APIs and features.  Please enumerate them.",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ea41437_6c3ac365",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-21T20:47:47Z",
+      "side": 1,
+      "message": "As an alternative design, what if we just renamed everything called REDFISH_MESSAGE_ID to OPENBMC_MESSAGE_ID, and had phosphor-logging post OPENBMCPDI_MESSAGE_ID in the logs it generates?  Both of those changes seem pretty doable in short order, and gets us to at least have a common place where we\u0027re logging close enough to the same data structure that we can start to decompose this problem into pieces and combine things downstream.\n\nAs this design is written, I\u0027m worried about the number of patchsets the above is going to take to accomplish, and the amount of working code (both openbmc and client implementations) that this is proposing we just mothball with no alternative interface.\n\nIf we did the above, bmcweb can pretty trivially support all 3 variations of REDFISH_MESSAGE_ID, OPENBMC_MESSAGE_ID, and OPENBMCPDI_MESSAGE_ID (once we get a PDI registry set up and working) for a time by just checking for the IDs, we keep eventing supported, and we keep the existing message registry supported.  This also gives us a pretty simple path to supporting multiple log entry types, by just supporting something like DMTF_PLATFORM_MESSAGE_ID.\n\nThere\u0027s obviously implementation issues with what exists, but it gives us a starting point to poke at pieces one at a time instead of needing some  epoch event for both client facing APIs and internal logging APIs, which I don\u0027t see how I can be in support of.",
       "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
