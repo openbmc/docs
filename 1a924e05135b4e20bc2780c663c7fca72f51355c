@@ -819,6 +819,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60e5778e_442614a0",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-21T23:13:46Z",
+      "side": 1,
+      "message": "Your code examples work with types but not values.  You can also do static compile-time checking of c-string/string_view values, as long as they are constexpr, but the moment you pass them to the constructor of pair they lose the constexpr-ness such that you can\u0027t work on them anymore.\n\nThis, conceptually, is also how std::format ensures that your format strings are valid at compile-time.",
+      "parentUuid": "c3bcc4ff_c30a3530",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58e1b1f8_07991d26",
