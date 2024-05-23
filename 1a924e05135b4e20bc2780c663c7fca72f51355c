@@ -837,6 +837,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5718b711_f578fed6",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-05-23T04:54:41Z",
+      "side": 1,
+      "message": "Actually it works for values too. Can\u0027t we do whatever compile time check we needed before wrapping it in to pair? As I did in the example above?\nSince we are talking about the API, can we do something like below\n```\nUpdateFailure(1_target \u003c\u003c \"BMC Flash A\", 2_errno \u003c\u003c rc, 3_call_hard \u003c\u003c bmc_object_path);\n```\nNot sure if it is getting complicated. My intention was to be explicit about grouping related params.  Simplest would be \n```\nUpdateFailure({\"TARGET\", \"BMC Flash A\"}, {\"ERRNO\", rc},{\"CALLOUT_HARD\",bmc_object_path});\n```",
+      "parentUuid": "60e5778e_442614a0",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58e1b1f8_07991d26",
