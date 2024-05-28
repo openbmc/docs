@@ -1,0 +1,406 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4649ca0d_62b97a88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "Lots of disjoint comments.",
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc4b6683_00dc4c6c",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "Is the design doc template the best model for this?  I see a lot of reading to be done before we get to what the rules are. I wonder if we should restructure this as something that extends or replaces:\n\nhttps://github.com/openbmc/docs/blob/master/meta-layer-guidelines.md#meta-layer-recipes-should-only-point-to-well-maintained-open-source-projects\n\n\nAnd maybe have sections that invert this:\n```\nRules for openbmc repositories\n\u003clist of rules\u003e\n\nRules for openbmc owned recipes\n\u003clist of rules\u003e\n\n\nIntent:\n\n\u003cparagraphs of why those two sections have those rules\u003e\n\n```\n\n\nAs currently organized, it takes a lot of reading to get to what 99% of folks are coming to a doc like this for, the rules.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 28
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfb485c8_a8a02b1e",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "I don\u0027t know if I necessarily agree with this.  The goal is having proper abstractions from the hardware such that we can implement something that works, have a reasonable chance that it survives more than 3 months, have a chance that it \"just works\" for the next implementer, and clients outside of OpenBMC implement against it as an API.\n\n\nIn terms of this doc, I would take this out, and put it more in the framework of maintainership.\n\n\"OpenBMC wants to enable as many machines as possible with as many common paths shared between machines as possible, under the hope of keeping stability in its implementation between systems.\"",
+      "range": {
+        "startLine": 44,
+        "startChar": 66,
+        "endLine": 46,
+        "endChar": 76
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af49d5bc_656eb03a",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "I think you\u0027ve mixed up ideas here a little, and I\u0027d like to see them separated in this doc.  There are two concepts:\n\n- A Hardware specific feature (implementation for a driver, support for hardware, or other things that only exist on that platform).\n- Support for a vendor-specific feature. (OEM extensions, debug APIs, Redfish, etc).\n\nThese are two different things that we accidentally combine quite often and quite easily.  Yocto differentiates between them with the \"machine\" and \"distro\" concepts.\n\nI think as a matter of this policy, we need to be very clear about the difference, and the policies for each.  I suspect that hardware-specific-features, we could document a policy of \"Don\u0027t break other people unnecessarily\" and we\u0027d be pretty close.\n\nIn terms of vendor-specific features, many of which apply to more than one system, we need to come up with a policy that doesn\u0027t tie those things to a specific platform, and abstracts them in a way similar to yocto.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 24
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55a95f13_9a234cd5",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "nit, remove.  \"latest clang features\" I\u0027m assuming is talking about clang-tidy, which is a manual process.",
+      "range": {
+        "startLine": 59,
+        "startChar": 42,
+        "endLine": 59,
+        "endChar": 56
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68b73966_7bb83b61",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "I suspect this could be removed to the absentee maintainers documentation.  CI is great, I agree, but I\u0027m not sure what it has to do with this policy.",
+      "range": {
+        "startLine": 59,
+        "startChar": 58,
+        "endLine": 61,
+        "endChar": 26
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb8cad46_a29e4077",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "Lets rephrase to something like\n```\nNew repositories should be added in the case where they can be maintained over the long term without taking resources away from other project efforts.  Having a set of guidelines for this process helps to speed up new code development within the project.\n```",
+      "range": {
+        "startLine": 64,
+        "startChar": 25,
+        "endLine": 65,
+        "endChar": 36
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48c13a4b_dbc5bb12",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "This is the thing I would like moved into its own category.  \"I\u0027m trying to implement my own API\" is a different bar than than \"I\u0027m trying to support the existing interfaces on new hardware\".  Mixing the two in this doc implies that they\u0027re the same.",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 12
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d26ff9_f0f31786",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "Lets invert this to something like \"To add a repository to openbmc, it should meet the minimum bar X\".\n\nHardware vendors, ODMs, and clients can publish what they want;  It\u0027s open source.  This document governs what we can do in openbmc/openbmc",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 19
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af1c356c_3c4896bd",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "I\u0027m not really sure what you intended here.  \"exposing dbus interfaces\" doesn\u0027t really seem like a reason we would avoid including something in the project.  By that argument, we shouldn\u0027t include systemd?  I suspect this needs some wording around the DBus interface namespacing, and that things outside of the project shouldn\u0027t be claiming the openbmc dbus interface naming conventions?",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 80
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa5d46d3_1e8be28b",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "Lets just remove this, and replace with a blanket statement about \"writing hard rules for anything is hard without defeating intent, these are guidelines to be used by the openbmc TOF in their decision to approve or not approve new recipes or repos.\"",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 52
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68518a8e_5485d09d",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "I don\u0027t know if this is the case in all scenarios.  Arguably this would mean that libpeci and libpldm should exist outside of openbmc (yes, I recognize they\u0027re each different, and that\u0027s on purpose)?",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 74
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01d6ce8d_357a32d7",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "In this case, we should arguably just not use the dependency at all, right?  Incompatible license doesn\u0027t seem like a care where we\u0027d want an external repo that we pointed to.",
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6e7d6cf_3df9194b",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "\"have not been submitted to linux upstream\"",
+      "range": {
+        "startLine": 93,
+        "startChar": 34,
+        "endLine": 93,
+        "endChar": 41
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "053b0e81_c65ec5ef",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "Lets rephrase this to \"Does not have an existing and active maintainer\".\n\nMentioning history implies that situations can never improve.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 69
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fa936cf_a4711c3b",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "Lets rephrase this a little:\n\nIt is a feature that is believed to be generally useful to the OpenBMC organization.\n  - Determination made by the TOF.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 54
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f87de4b_02912d1c",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "?  If it\u0027s consuming openbmc dbus apis, it\u0027s openbmc specific, and not hardware agnostic, right?",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 34
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc69a5b4_ee5b7d0a",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T19:24:35Z",
+      "side": 1,
+      "message": "This part needs specified.  I don\u0027t think we should be adding any recipes to a meta-\u003cvendor\u003e repository, because (to pick on IBM a little) it mixes the idea of \"machines that have an IBM power processor\" with \"Machines that implement IBMs software policies.\"\n\nNot all IBM machines have a Power processor, and not all Power machines will take on IBMs software policies.\n\nIn a perfect world, I think we\u0027d only implement hardware-specific details in a machine layer, and implement things that are specific to a vendor in a distro, but we\u0027re not really there yet.",
+      "range": {
+        "startLine": 104,
+        "startChar": 48,
+        "endLine": 104,
+        "endChar": 63
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
