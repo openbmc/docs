@@ -132,6 +132,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "579cd317_134314ac",
+        "filename": "designs/cper-records.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-28T17:17:35Z",
+      "side": 1,
+      "message": "Can we get someone from the ARM CLA to do the first push into the repository?  Right now their code is licensed with Apache 2, which if we fork it we can continue down that path fine.  One of the advantages the CLA gives us is if we ever need to relicense in the future (for example an \"Apache 3\" due to new legal developments) we can.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 4
+      },
+      "revId": "58816b185705dcadc54ef49fe0a7528ee394bc88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "476a5d0f_58f07d95",
         "filename": "designs/cper-records.md",
         "patchSetId": 4
@@ -161,6 +184,69 @@
       "side": 1,
       "message": "Some of them were multi-line and multi-sentence, which is why I didn\u0027t go with bulleted list, but sure, I can make that change.",
       "parentUuid": "476a5d0f_58f07d95",
+      "revId": "58816b185705dcadc54ef49fe0a7528ee394bc88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a98cc7c_30072133",
+        "filename": "designs/cper-records.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-28T17:17:35Z",
+      "side": 1,
+      "message": "This seems vague enough to not be satisfied.  Who determines what is \"decoded\" and what isn\u0027t?  Aren\u0027t there almost always details at a hardware level that only the original vendor has?\n\nHow does `libcper` on its own satisfy this?  Does it just generate a string?  This is probably out of scope for now, but it seems like we need some way to eventually populate a LogEntry in Redfish?",
+      "revId": "58816b185705dcadc54ef49fe0a7528ee394bc88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58bb1e2a_25784bd3",
+        "filename": "designs/cper-records.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-28T17:17:35Z",
+      "side": 1,
+      "message": "I don\u0027t know what this is implying?  A specific language?  Does this preclude `oreboot`?\n\nCan we just be more direct about what the implications of this are?",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 9
+      },
+      "revId": "58816b185705dcadc54ef49fe0a7528ee394bc88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04e44b43_c3f38919",
+        "filename": "designs/cper-records.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-28T17:17:35Z",
+      "side": 1,
+      "message": "I would prefer if this is also done in a way that supports heterogeneous systems (ex. blade style chassis).",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 64
+      },
       "revId": "58816b185705dcadc54ef49fe0a7528ee394bc88",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -214,6 +300,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb21dfe2_30a3cf06",
+        "filename": "designs/cper-records.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-28T17:17:35Z",
+      "side": 1,
+      "message": "Can we enumerate what these users are?  If it is a bunch of proprietary code, why do we care?",
+      "range": {
+        "startLine": 67,
+        "startChar": 50,
+        "endLine": 69,
+        "endChar": 57
+      },
+      "revId": "58816b185705dcadc54ef49fe0a7528ee394bc88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dcbde8d4_188eee64",
         "filename": "designs/cper-records.md",
         "patchSetId": 4
@@ -243,6 +352,23 @@
       "side": 1,
       "message": "Yes please.  I fully expect that once we get libcper into a place where we can start making modifications to it (that isn\u0027t one person or companies fork), we can start having a lot of code restructuring conversations that we can\u0027t have right now.",
       "parentUuid": "dcbde8d4_188eee64",
+      "revId": "58816b185705dcadc54ef49fe0a7528ee394bc88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d5e9896_1b2a9caf",
+        "filename": "designs/cper-records.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-28T17:17:35Z",
+      "side": 1,
+      "message": "phosphor-logging?",
       "revId": "58816b185705dcadc54ef49fe0a7528ee394bc88",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
