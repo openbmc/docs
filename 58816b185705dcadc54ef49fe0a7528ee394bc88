@@ -284,6 +284,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e7084eb_8b422407",
+        "filename": "designs/cper-records.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T21:40:48Z",
+      "side": 1,
+      "message": "ACK.  Closing this as I think we have the original concern addressed.  John will push the initial code.  Feel free to reopen if there are still concerns here.",
+      "parentUuid": "06b8f5c5_4ba716af",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 4
+      },
+      "revId": "58816b185705dcadc54ef49fe0a7528ee394bc88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "476a5d0f_58f07d95",
@@ -386,6 +410,24 @@
       "side": 1,
       "message": "\u003e I expected that the answer to \"how decoded is decoded\" is decided as we develop the repository\n\nAre there cases where one system vendor has a different opinion in how much should be decoded?  As in, they might want to hide details of their system.  Is this something we care about?",
       "parentUuid": "bbcad613_371cae1e",
+      "revId": "58816b185705dcadc54ef49fe0a7528ee394bc88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2985cab3_4ec32d4d",
+        "filename": "designs/cper-records.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T21:40:48Z",
+      "side": 1,
+      "message": "\u003e Are there cases where one system vendor has a different opinion in how much should be decoded?\n\nI think that\u0027s covered by CPER records having different UIDs?  Presumably if they wanted a different decoding, they should define a new UID?  I suspect as we dive into this more, we\u0027ll have to come up with compile-time policies around filtering so that people can do what they want for their policy.",
+      "parentUuid": "8026a31d_15e9cc53",
       "revId": "58816b185705dcadc54ef49fe0a7528ee394bc88",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
