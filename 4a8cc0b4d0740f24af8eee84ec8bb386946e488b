@@ -16,6 +16,24 @@
       "message": "My recollection is that there are a few new dependencies that the current libcper pulls in also, which do not have recipes in upstream already.  Are those recipes going to be sent upstream or are we owning those also?",
       "revId": "4a8cc0b4d0740f24af8eee84ec8bb386946e488b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db2ee244_55f415f8",
+        "filename": "designs/cper-records.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-29T21:23:22Z",
+      "side": 1,
+      "message": "I\u0027ll submit whatever is needed to openembedded, not a big deal.  I know there was a question of the base64 implementation, which has been replaced with yet another base64 implementation in the meson-dev branch that this doc will pull.\n\nMy intent once this is somewhere we can work on it is to either pull one of the existing single-file solutions already in openbmc to replace the hard dependency, or upstream the base64 recipe to open embedded.  Base64 decoding doesn\u0027t seem like the kind of thing that\u0027s worth taking a dependency on a library for such a small piece of code\n\nThe intent is not to add any recipes aside from libcper into meta-phosphor or openbmc/openbmc.",
+      "parentUuid": "d366e17f_e0ae58ae",
+      "revId": "4a8cc0b4d0740f24af8eee84ec8bb386946e488b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
