@@ -153,6 +153,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00f102a2_c0c45adb",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-05-29T10:37:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecb36c9b_a960b615",
+      "range": {
+        "startLine": 460,
+        "startChar": 45,
+        "endLine": 460,
+        "endChar": 68
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f82ad59f_ecb1d41e",
@@ -247,6 +271,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09d25831_f83f9c4a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-05-29T10:37:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5b6ea1d_7354db3d",
+      "range": {
+        "startLine": 504,
+        "startChar": 0,
+        "endLine": 506,
+        "endChar": 25
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ead08fb3_1817c545",
@@ -284,6 +332,30 @@
       "side": 1,
       "message": "I agree most of the attributes I want to publish are too specific to PLDM, I will remove them.\n\nBut I think MinValue, MaxValue, Unit are essential for applications to pre-check the input value before setting it onto D-Bus. Like https://github.com/openbmc/phosphor-dbus-interfaces/blob/70301b9c16dc5e3e220472933affb7906b513bf4/yaml/xyz/openbmc_project/Control/VoltageRegulatorControl.interface.yaml#L17\n\nBesides, TransitionInterval is like a timeout for clients of this interface to know how much time it should wait till the dbus operation completes. Because it expects that the dbus property should only be set after the value is successfully set down to the target place (in this case to the other terminus).\n\nSo, I intend to keep the property list of Value, MaxValue, MinValue, Unit, TransitionInterval.",
       "parentUuid": "ead08fb3_1817c545",
+      "range": {
+        "startLine": 506,
+        "startChar": 26,
+        "endLine": 508,
+        "endChar": 0
+      },
+      "revId": "a0a7f17f68f131b6e9f2205d1b6e9815fd6b01f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5c33196_ba8b22f9",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-05-29T10:37:21Z",
+      "side": 1,
+      "message": "Hi, I scoped out the attributes that are needed to be on DBUS into 4:\nxyz.openbmc_project.Effecter.Numeric\n  - Value (writable)\n  - MaxValue\n  - MinValue\n  - TransitionInterval\n  - Unit [enum]\n\nWe see this interface as a means of control that does not take effect directly on BMC, but let any communication protocol write the values to the other end of the communication.\n\nWe aim at a design that PLDM service will hold all the sensor and effecter object paths that it manages the reading/writing between BMC and other terminus, and let the consumers of those sensors/effecters interact with them via D-Bus.\n\nWe already have the Sensor.Value interface for numeric sensors. We are trying to look for an interface that is generic for OpenBMC but still can represent basic numeric PLDM effecter. We really appreciate if you can give some advice so we can proceed with this and can avoid invasing dbus interface with PLDM terms.",
+      "parentUuid": "25613c19_c72194af",
       "range": {
         "startLine": 506,
         "startChar": 26,
