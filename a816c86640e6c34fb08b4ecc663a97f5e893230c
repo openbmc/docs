@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "619a0e65_90b6638f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "(There is a lot here so I might have missed some.  I think I\u0027ve responded to most of the highlights in the document also but I\u0027ll try to respond to parts here also.)\n\n\u003e Logging should be performant.\n\nI will address this by adding a compile option that turns `lg2::commit` into an `OPENBMC_MESSAGE_ID` record in the journal and bypass `phosphor-logging` (and add support in rsyslog config / bmcweb).  This allows effectively seamless transition for systems leveraging the rsyslog path today.\n\nI\u0027m trying to decouple the \"phosphor-logging might have performance problems\" from \"get a consistent API people can code to for logging and reporting a wider class of issues\".\n\n\u003e We need to solve the \"Everyone wants their own registry\" problem\n\nI tried to solve this in the design already, so I must be either missing your concern or poorly communicating.  There are some options in the design:\n\n1. Participants in OpenBMC can add `com.company` events in `phosphor-dbus-interfaces`.  These are most useful for script-generated events, IPMI/PLDM OEM events, etc.  Maybe these are useful for the OEM sections of `phosphor-debug-collector` also.  I think we wouldn\u0027t have `dbus-sensors`, as an example, create these.\n\n2. Downstream systems can create their own `phosphor-dbus-interfaces` style repository to hold their own downstream events; part of this will be having their own identifier.\n\n3. There is a `redfish-mapping` keyword in the YAML definition that allows translation of an internal BMC event to an existing external Redfish Message Registry record.\n\n\u003e Eventing\n\nI wasn\u0027t aware of this implementation.  Thanks for pointing it out.  I\u0027ll add it to the `bmcweb` section (and general design requirements).\n\n\u003e Support for log paging\n\nWill also add this.\n\n\u003e If the messages are OpenBMC specific, they need to be selectable at build time given the wide variety of places that OpenBMC is deployed.\n\nI tried to cover this with the following requirement:\n\n```\n - The implementation must have a mechanism for vendors to be able to disable\n    specific tracing events to conform to their own system design requirements.\n```\n\nIs this what you had in mind or something else?\n\n\u003e If a system wants an openbmc-specific implementation, there\u0027s always dbus-rest, which faithfully publishes the existing phosphor-logging system with eventing that folks can use to meet these requirements trivially, and in a way that doesn\u0027t require any conversion.\n\nI don\u0027t understand how this is an acceptable solution on a number of counts.\n\n* We already have an OpenBMC message registry and someone worked with DMTF to get it so OpenBMC is a valid prefix (even though we don\u0027t own openbmc.com).  We\u0027ve therefore already concluded that an \"openbmc-specfic registry\" is perfectly acceptable?\n\n* dbus-rest has known security issues and is not standardized.  At least Redfish LogEntry (and everything else we gain from using the bmcweb implementation of Redfish) is standardized.\n\n* We already have a phosphor-logging to Redfish translation; all I\u0027m proposing is making it better, right?\n\n\u003e In terms of final user facing output, what I\u0027d like to see is:\n\u003e Individual end-platforms, SOC components, and organizations can enumerate their own versioned, namespaced message registries.\n\u003e Message logging in code isn\u0027t duplicated per-company/organization/registry/logging implementation.\n\u003e Components within OpenBMC can implement upstream, and in a way that doesn\u0027t burden bmcweb or other component maintainers, an OCP or DMTF created message registry implementation that\u0027s selectable, versionable, and able to be implemented\n\u003e The common implementation should be able to hit everyones performance targets and features.\n\nMy belief is, with updates, I\u0027ve covered all of this.  I\u0027m willing to incorporate adds and follow-ons where there are gaps though.\n\n\u003e As written, I don\u0027t see this design getting there. In terms of next steps, I\u0027d suggest that we:\n\nWhat are the timelines for making that happen and are others willing to invest time to participate in this?  As written, it feels like a lot of \"committee work\" that will take a long time to execute on.\n\nI\u0027m currently looking at this design as my primary development focus here for the next few months.  My feeling is that my proposal here is a huge step in the right direction, but I\u0027m not deluded enough to believe it is going to be perfect in the first iteration.\n\nRight now we are effectively at an impasse.  Some maintainers have rejected `REDFISH_MESSAGE_ID`; some maintainers have rejected `phosphor-logging`.  I don\u0027t see any way someone can design a computer system that is able to be serviced with the status quo.  As we\u0027ve worked through the Yosemite4 design there are a lot of serviceability gaps where in the \"Facebook OpenBMC\" we would have just inserted some random print statement (ala REDFISH_MESSAGE_ID) and my impression is that that won\u0027t be accepted across the board.  I\u0027m attempted to move us past the impasse.\n\nAre there any one-way doors in this design that we can identify?  If there are, I\u0027d like to have us assess those and understand what the risk is and how we can mitigate it.  If there aren\u0027t any one-way doors, unless there is a better proposal and manpower backing it, is there anything that should preclude us from starting in this direction?",
+      "parentUuid": "98f67912_09a6dc94",
+      "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa732715_fe18d1cf",
@@ -48,6 +66,30 @@
       "writtenOn": "2024-05-28T22:06:01Z",
       "side": 1,
       "message": "where",
+      "range": {
+        "startLine": 28,
+        "startChar": 29,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2658769_ccdaddb3",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa732715_fe18d1cf",
       "range": {
         "startLine": 28,
         "startChar": 29,
@@ -81,6 +123,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d13e11db_6e50cd81",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Interesting...\n\nI converted it to a permalink then to the file you mentioned (as master changes over time this version is likely to change).",
+      "parentUuid": "4e96ed3f_c8e9c16f",
+      "range": {
+        "startLine": 93,
+        "startChar": 2,
+        "endLine": 93,
+        "endChar": 100
+      },
+      "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77dea7cb_fc64df65",
@@ -94,6 +160,30 @@
       "writtenOn": "2024-05-28T22:06:01Z",
       "side": 1,
       "message": "Would it be possible to link some example code here as this seems to be the actual problem statement?",
+      "range": {
+        "startLine": 162,
+        "startChar": 10,
+        "endLine": 164,
+        "endChar": 23
+      },
+      "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fe9b3ed_5242a470",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "I assume these \"code examples\" are contained in private repositories that various companies have.  All of the ones I\u0027m aware of at Meta are...\n\nKeep in mind that these are all assumed to be software running outside of the BMC.  The BMC wouldn\u0027t use the Redfish events itself for internal interactions.",
+      "parentUuid": "77dea7cb_fc64df65",
       "range": {
         "startLine": 162,
         "startChar": 10,
@@ -129,6 +219,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a0c44f4_1194e065",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "I was expecting similar format, but hadn\u0027t decided if exact or similar was required.  Do you have an opinion one way or the other?\n\nIf the \"new events\" are obviously different than the \"old events\", it makes it easier for bmcweb to be able to know if the transformation to the Redfish event can be done successfully.  But, I can see how if you already have external code that relies on the \"old event\" names you might prefer they are left alone.\n\nI think this is similar to Ed\u0027s question about what do we do with the existing \"OpenBMC\" registry.",
+      "parentUuid": "ebf3e85e_f802613f",
+      "range": {
+        "startLine": 378,
+        "startChar": 0,
+        "endLine": 380,
+        "endChar": 53
+      },
+      "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "91cac877_1834772f",
         "filename": "designs/event-logging.md",
         "patchSetId": 3
@@ -140,6 +254,30 @@
       "writtenOn": "2024-05-29T12:19:01Z",
       "side": 1,
       "message": "I have a question:\n\nHow will redfish-mapping help point to a Redfish resource using the object path?\n\nI\u0027m trying to understand how the following Redfish message registries will work with this design:\n\n- PropertyValueResourceConflict\n- ResourceCreationConflict\n\nDo we need to define the interface of an object to transform it into an external interface resource like Redfish?",
+      "range": {
+        "startLine": 521,
+        "startChar": 29,
+        "endLine": 521,
+        "endChar": 40
+      },
+      "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb764906_6f1f67f9",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Later in the doc I wrote this:\n\n\u003e 4. A mechanism should be implemented to translate DBus `object_path` references\n   to Redfish Resource URIs. When an `object_path` cannot be translated,\n   `bmcweb` will use a prefix such as `object_path:` in the `MessageArgs` value.\n   \nIf we want an internal BMC error to map to these particular Redfish messages, we would need a corresponding internal event defined (in the YAML format) with the same properties as those required by the Redfish event.  Then we would use the `redfish-mapping: Base.PropertyValueResourceConflict` on that internal event definition as the hint that bmcweb should turn the internal event into that pre-defined Redfish event.",
+      "parentUuid": "91cac877_1834772f",
       "range": {
         "startLine": 521,
         "startChar": 29,
@@ -163,6 +301,30 @@
       "writtenOn": "2024-05-20T21:31:23Z",
       "side": 1,
       "message": "What do you mean by this?",
+      "range": {
+        "startLine": 618,
+        "startChar": 20,
+        "endLine": 619,
+        "endChar": 31
+      },
+      "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bb1edab_e7fb832b",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "If you want to make your own errors downstream you cannot use \"OpenBMC\" as the Redfish Message Registry prefix.  You should use \"IBM...\".",
+      "parentUuid": "5c2e2dea_61a6ecf6",
       "range": {
         "startLine": 618,
         "startChar": 20,
@@ -198,6 +360,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d4891fd_fc0c50f4",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "No, by adding new yaml files in their own downstream repository.\n\nAdded a few statements throughout.",
+      "parentUuid": "6e70af41_ddf642d3",
+      "range": {
+        "startLine": 620,
+        "startChar": 50,
+        "endLine": 621,
+        "endChar": 60
+      },
+      "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "edcb889d_815d0676",
         "filename": "designs/event-logging.md",
         "patchSetId": 3
@@ -209,6 +395,30 @@
       "writtenOn": "2024-05-20T21:31:23Z",
       "side": 1,
       "message": "so if someone has a downstream version of a repo and adds a downstream only error, what do they do?  Make a new yaml file in their forked PDI?",
+      "range": {
+        "startLine": 626,
+        "startChar": 43,
+        "endLine": 629,
+        "endChar": 46
+      },
+      "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8753395_107dc057",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Clarified.",
+      "parentUuid": "edcb889d_815d0676",
       "range": {
         "startLine": 626,
         "startChar": 43,
@@ -267,6 +477,41 @@
       "writtenOn": "2024-05-21T18:02:37Z",
       "side": 1,
       "message": "The Report() interface would look the same? (when someone wants to just log an error, not throw it). Also, the event interface would use the same Report API?",
+      "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efd4fbab_e710ce08",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Added a clarifying sentence here and in other places about no-throw contexts.  You could alternatively called `Example(...).commit()`.",
+      "parentUuid": "3443dad3_c38bf4f1",
+      "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1e755ed_f666c333",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "I\u0027m leaving comments in this section unaddressed currently.  There are likely aspects I don\u0027t fully grasp yet.",
       "revId": "a816c86640e6c34fb08b4ecc663a97f5e893230c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

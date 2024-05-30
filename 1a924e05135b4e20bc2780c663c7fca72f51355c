@@ -112,6 +112,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54251949_3a7fde48",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Adjusted the wording.",
+      "parentUuid": "cb51f068_de7b89da",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 44
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb632872_535f1ac9",
@@ -125,6 +149,30 @@
       "writtenOn": "2024-05-21T20:47:47Z",
       "side": 1,
       "message": "In both these cases you\u0027re quoting the output of ipmi tools which are doing the stringification in the tools themselves, not the actual SEL implementation in the bmc.  In terms of the IPMI implementation, the user facing API for these two systems threshold event are identical, and can use whatever string the user chooses.  Note the oracle example is using ipmitool, and would produce the same log event on openbmc.\n\nI understand what you\u0027re getting at, but if we need an example at all, lets come up with an actual example that causes compatibility problems in software interfaces.",
+      "range": {
+        "startLine": 33,
+        "startChar": 67,
+        "endLine": 36,
+        "endChar": 63
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac36b8d2_e02c4c35",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Can you give me a more concrete example?  All of the events produced by \"facebook openbmc\" are raw strings and not from ipmitool, but I was trying to avoid pointing to that.\n\n\u003e Note the oracle example is using ipmitool, and would produce the same log event on openbmc.\n\nI don\u0027t believe this is true about OpenBMC, is it?  Do we really reverse the phosphor-logging event type back into an IPMI standard event that matches what Oracle is doing?  I thought we do a stringification.",
+      "parentUuid": "fb632872_535f1ac9",
       "range": {
         "startLine": 33,
         "startChar": 67,
@@ -305,6 +353,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d2a44a2_3bd513e7",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "The REDFISH_MESSAGE_ID, I was considering \"incomplete\" because various maintainers have refused to accept code conforming to that design.  It also doesn\u0027t work for systems which have enabled the phosphor-logging approach, which is at least all of the IBM systems.\n\nI updated it to say this:\n```\n- There are two different implementations of error logging, neither of which are\n  both complete and fully accepted by maintainers, and do not cover tracing\n  events.\n```",
+      "parentUuid": "3fe9abb2_49fc087e",
+      "range": {
+        "startLine": 173,
+        "startChar": 60,
+        "endLine": 174,
+        "endChar": 10
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0779b1be_1070c73a",
@@ -318,6 +390,30 @@
       "writtenOn": "2024-05-21T20:47:47Z",
       "side": 1,
       "message": "Can we define this?  The only thing \"Redfish aware\" is the fact that these have to map to a Message registry;  As a trivial example, we could take the existing solution and change REDFISH_MESSAGE_ID -\u003e OPENBMC_MESSAGE_ID in the journal logs, and then we\u0027d be done with a lot less effort and thrash, right?\n\nI think defining this line better will help call out the above as not a viable solution.",
+      "range": {
+        "startLine": 178,
+        "startChar": 20,
+        "endLine": 178,
+        "endChar": 35
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9de50a9_f6adca4b",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "I\u0027ve added this sentence (since I also had similar in the phosphor-logging):\n\n\u003e The approach also does not provide comple-time assurance of appropriate metadata\n  collection, which can lead to producing code being out-of-date with the\n  message registry definitions.\n\nWhat you\u0027ve proposed might be an alternative (using an OPENBMC_MESSAGE_ID instead of REDFISH_MESSAGE_ID), but this is under the \"Status Quo\" section.  As currently defined, the current approach is Redfish centric (and is even in a document titled \"redfish-logging-in-bmcweb\").  I don\u0027t think there is anything incorrect about what I wrote even if we have disagreement on the importance of the issues, right?",
+      "parentUuid": "0779b1be_1070c73a",
       "range": {
         "startLine": 178,
         "startChar": 20,
@@ -386,6 +482,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3397bce0_661a0f60",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Let me expand the words.  This is part of the \"incomplete approach\" because metadata can be lost today as an error flows from one daemon to another.",
+      "parentUuid": "8b6d8906_86e53e33",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 67
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "697d7da2_00205443",
@@ -399,6 +519,24 @@
       "writtenOn": "2024-05-21T20:47:47Z",
       "side": 1,
       "message": "I don\u0027t see anything in the design below that solves this directly.  Presumably the testing requirements for new patches already solves this, but were just enforced inconsistently?",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c12c3a79_0d00c2cf",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "https://xkcd.com/927/ ?\n\nI\u0027m not sure what to say here.  Much of the code uses one approach; some of the code uses a different approach.  Those two different approaches are what leads to the different reporting.  Having the same approach, backed by YAML definitions just like our dbus interfaces, should solve this?",
+      "parentUuid": "697d7da2_00205443",
       "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -420,6 +558,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1069e649_d860a0b4",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Just so I\u0027m aware what do you mean by \"modified\"?  Messages can have new arguments, can\u0027t they?\n\nI added: \n\n\u003e - For Redfish, the transformation must comply with the Redfish standard\n\u003e requirements, such as conforming to semantic versioning expectations.",
+      "parentUuid": "5a66cb86_0dc9d05c",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21289e3c_51775f01",
@@ -437,6 +593,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f778a49d_8eb5f736",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "I think this is a requirement on bmcweb and not the \"logging system\"? 😄\n\nI\u0027ll add something.\n\n\u003e     - For Redfish, the transformation should allow mapping internally defined\n\u003e      events to pre-existing Redfish Message Registries for broader\n\u003e      compatibility.",
+      "parentUuid": "21289e3c_51775f01",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5e0e9bb_4a83d304",
@@ -450,6 +624,24 @@
       "writtenOn": "2024-05-21T20:47:47Z",
       "side": 1,
       "message": "Add \"existing user facing interfaces should be able to be maintained\".",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8015605e_f244dd76",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "I don\u0027t know what this means.  Can you expand?",
+      "parentUuid": "a5e0e9bb_4a83d304",
       "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -542,6 +734,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a236784_2579345b",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "You create an object in internal memory and potentially pass it along.  At some point you decide to \"commit\" that event to the record (if you haven\u0027t handled it).\n\nI\u0027m going to leave this for now.  Interested in other feedback on the naming.",
+      "parentUuid": "ca559ce7_1da96dc1",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6814ec31_19fae771",
@@ -555,6 +765,30 @@
       "writtenOn": "2024-05-21T20:47:47Z",
       "side": 1,
       "message": "Lets remove the bmcweb should take a hard dependency on phosphor-dbus-interfaces discussion to another place (like the patchset that adds this support).  I think having it here distracts from the overall goal.  If we\u0027re adding PDI to bmcweb, someone needs to think about it holistically, not just for one feature.",
+      "range": {
+        "startLine": 395,
+        "startChar": 64,
+        "endLine": 397,
+        "endChar": 20
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e062fb2_e1d9ea2f",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Why is this such an issue?  I don\u0027t know what \"think about it holistically\" means.  What is the stumbling block today?\n\nYou\u0027ve previously said that \"just the strings\" wasn\u0027t a strong enough reason.  There are already client-bindings that have stronger compile-time guarantees than what you get with the boost stuff, which could be leveraged, but obviously need some experimentation.\n\nI can be explicit that this is hidden behind an option?  But, it seems like a good thing to be able to consume the project-wide event registry as part of your typical development flow to me.  What does \"enough features\" to justify this look like?",
+      "parentUuid": "6814ec31_19fae771",
       "range": {
         "startLine": 395,
         "startChar": 64,
@@ -584,6 +818,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8c744d5_4f72ef9d",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "These are covered under the \"YAML format\" section.  Would you prefer it also written somewhere else?  Please let me know the preferred area.",
+      "parentUuid": "bb4ba4b9_b71184c3",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "62acfa21_18070ca0",
         "filename": "designs/event-logging.md",
         "patchSetId": 2
@@ -595,6 +847,30 @@
       "writtenOn": "2024-05-21T20:47:47Z",
       "side": 1,
       "message": "What is a LoggingEvent?",
+      "range": {
+        "startLine": 411,
+        "startChar": 44,
+        "endLine": 411,
+        "endChar": 56
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c983e159_678f255a",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Done.\n\nToo much Logging (phosphor-logging) vs Log (Redfish) and this one slipped in.",
+      "parentUuid": "62acfa21_18070ca0",
       "range": {
         "startLine": 411,
         "startChar": 44,
@@ -622,6 +898,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84bf3145_4222ff1f",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Added:\n\n\u003e Otherwise, the `Logging.Entry::Message` will be used\n\u003e directly with no further transformation (as is done today).",
+      "parentUuid": "22ee4b38_f1f981d2",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b876d862_63c6ced7",
@@ -635,6 +929,30 @@
       "writtenOn": "2024-05-21T20:47:47Z",
       "side": 1,
       "message": "While I think this is a hard problem (although worth tackling) I\u0027m not really sure what this has to do with the existing EventLog design?",
+      "range": {
+        "startLine": 427,
+        "startChar": 0,
+        "endLine": 428,
+        "endChar": 28
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "742f6af8_9d094743",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Because many of the existing and future Redfish events need some way to identify a failing entity?  How do we do this otherwise?\n\nI really don\u0027t think identifying parts is something to just omit from the design, considering \"CALLOUT_*\" metadata records are already something baked into the phosphor-logging design and are certainly necessary for servicing a machine.",
+      "parentUuid": "b876d862_63c6ced7",
       "range": {
         "startLine": 427,
         "startChar": 0,
@@ -670,6 +988,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd4e19a5_62b327af",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Today these are arbitrary strings.  An object_path is either equivalent or better.\n\nThere are so many ways that the values of the identifier strings in a Redfish Message can change through a BMC update, that I do not consider them an \"API\".\n\nEmitting _something_ at least tells you in test phases that you\u0027re missing the translation.  Emitting _nothing_ means that you think your machine is perfectly fine when it isn\u0027t.  This is not an acceptable approach to me.",
+      "parentUuid": "cd6fecd3_454d0e89",
+      "range": {
+        "startLine": 428,
+        "startChar": 29,
+        "endLine": 429,
+        "endChar": 79
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1cf2c58_8a112132",
         "filename": "designs/event-logging.md",
         "patchSetId": 2
@@ -681,6 +1023,24 @@
       "writtenOn": "2024-05-21T20:47:47Z",
       "side": 1,
       "message": "If we\u0027re generating this code, why generate a template?  Could we instead just generate the args constructor, then you\u0027ll get compile failures if an arg is missing in a non-template message, and the code is much easier to read.\n\nUpdateProgress(std::string_view TARGET, int64_t ERRNO, sdbusplus::message::object_path CALLOUT_HARDWARE);\n\nHaving multiple levels of generated code seems like an issue.",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a08052f_7d45fac6",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "What happens if you have two strings?  How do you know the right one got put in the right positon?\n\n```\nUpdateFailure(\"TARGET\", \"BMC Flash A\", \"ERRNO\", rc, \"CALLOUT_HARDWARE\", bmc_object_path);\nvs\nUpdateFailure(\"BMC Flash A\", rc, bmc_object_path);\n```\n\nI agree the second one is \"easier to read\", simply because there is less to it, but I don\u0027t think it is \"easier to review\" for correctness.  I then have to, as a maintainer, go back and read both the definition and expected order to know if the right thing was done.\n\nI\u0027m pretty sure I can get the template-generated static_asserts to be pretty clear as to what went wrong.",
+      "parentUuid": "e1cf2c58_8a112132",
       "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -708,6 +1068,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "adee2dcf_29e1a2c6",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "I\u0027ll add a non-throw example.  I thought I wrote that as a requirement elsewhere, but I\u0027ll be clearer.",
+      "parentUuid": "c0058bf5_b43bbd1b",
+      "range": {
+        "startLine": 558,
+        "startChar": 0,
+        "endLine": 561,
+        "endChar": 3
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4792c7d_f2a4452f",
@@ -721,6 +1105,30 @@
       "writtenOn": "2024-05-21T20:47:47Z",
       "side": 1,
       "message": ".... please add\n\n\"And require a deprecation strategy that Redfish does not recommend\"",
+      "range": {
+        "startLine": 573,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 69
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "034c93c5_98b091cb",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "I don\u0027t know what this means.  Code could always just stop creating the event (or using a different event name for the same concept).  Isn\u0027t it better to be clear that the event is deprecated?",
+      "parentUuid": "c4792c7d_f2a4452f",
       "range": {
         "startLine": 573,
         "startChar": 0,
@@ -933,6 +1341,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2dc7e777_1f1a8959",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "I\u0027m not convinced \"it works\" all the time.\n\nWhat happens when a message argument is added?  You are emitting an event with \"0.1.0\" but only exposing in the registry the \"0.4.0\" definition with the new argument.",
+      "parentUuid": "50590c38_cbab48b0",
+      "range": {
+        "startLine": 735,
+        "startChar": 37,
+        "endLine": 736,
+        "endChar": 35
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36508ea0_791c355e",
         "filename": "designs/event-logging.md",
         "patchSetId": 2
@@ -1111,6 +1543,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f390e706_155233de",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "To be clear, I think that increasing the logs to 10k+ is not something that we\u0027ll do across the board and immediately.  Systems that currently have it at 300 will see no effect.  I wrote below, and will elaborate in the document, that I think we can come up with a plan to leave the rsyslog aspects in place for systems that aren\u0027t ready to make that move (until we work through the performance implications).  The \"raise the limit to 10k\" is going to be something that we\u0027ll work through over time and if we decide that \"phosphor-logging storing everything in dbus and backed by JSON files in flash\" is a poor implementation, we can adjust to that also.",
+      "parentUuid": "061f9fea_2cb76cc8",
+      "range": {
+        "startLine": 841,
+        "startChar": 25,
+        "endLine": 844,
+        "endChar": 25
+      },
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0846dbbd_4c30deeb",
@@ -1130,6 +1586,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c04db7e_6f01f741",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "Which \"impacts to user-facing Redfish APIs and features\" do you mean?  The previous line covers the enhancements to functionality, but I\u0027m not positive which you are referring to otherwise.",
+      "parentUuid": "0846dbbd_4c30deeb",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ea41437_6c3ac365",
         "filename": "designs/event-logging.md",
         "patchSetId": 2
@@ -1141,6 +1615,24 @@
       "writtenOn": "2024-05-21T20:47:47Z",
       "side": 1,
       "message": "As an alternative design, what if we just renamed everything called REDFISH_MESSAGE_ID to OPENBMC_MESSAGE_ID, and had phosphor-logging post OPENBMCPDI_MESSAGE_ID in the logs it generates?  Both of those changes seem pretty doable in short order, and gets us to at least have a common place where we\u0027re logging close enough to the same data structure that we can start to decompose this problem into pieces and combine things downstream.\n\nAs this design is written, I\u0027m worried about the number of patchsets the above is going to take to accomplish, and the amount of working code (both openbmc and client implementations) that this is proposing we just mothball with no alternative interface.\n\nIf we did the above, bmcweb can pretty trivially support all 3 variations of REDFISH_MESSAGE_ID, OPENBMC_MESSAGE_ID, and OPENBMCPDI_MESSAGE_ID (once we get a PDI registry set up and working) for a time by just checking for the IDs, we keep eventing supported, and we keep the existing message registry supported.  This also gives us a pretty simple path to supporting multiple log entry types, by just supporting something like DMTF_PLATFORM_MESSAGE_ID.\n\nThere\u0027s obviously implementation issues with what exists, but it gives us a starting point to poke at pieces one at a time instead of needing some  epoch event for both client facing APIs and internal logging APIs, which I don\u0027t see how I can be in support of.",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3da0ba26_40c6a4df",
+        "filename": "designs/event-logging.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T17:58:39Z",
+      "side": 1,
+      "message": "I really don\u0027t want new REDFISH_MESSAGE_ID or \"OPENBMC_MESSAGE_ID\" hand-coded events written.  But, I think this does possibly give us a way around the performance concerns.\n\nI\u0027m going to add a sub-section to have meson option / PACKAGECONFIG to have the `lg2::commit` bypass phosphor-logging and instead add the information to the journal, along the same lines as the REDFISH_MESSAGE_ID.  This allows us to:\n\n- Keep the status quo on the bmcweb/rsyslog stuff for systems that want to go that route.\n- Keep the event limits low for systems that already have that working.\n- Separately experiment with increasing the limits and understanding / improving the performance implications of that.",
+      "parentUuid": "0ea41437_6c3ac365",
       "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
