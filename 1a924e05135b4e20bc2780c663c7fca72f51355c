@@ -72,6 +72,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2df9c6ee_e117fc31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-30T18:36:08Z",
+      "side": 1,
+      "message": "\u003e Is there something more efficient done here? It seems without using the journal we may even be increasing our d-bus traffic?\n\nIf you already have 3K of logs, I don\u0027t think this should have any (or it will be net positive) impact.  There is no change to the amount of dbus content and only minor change to the data flowing over it.  (Most of your PELs are already going by a direct path to phosphor-logging)\n\nI\u0027ve adjusted the document to have a mitigation for people already using rsyslog mechanism.  Optimizing phosphor-logging daemon is certainly on the list of stuff to experiment with, but in my opinion, slightly tangential (since the design now allows the status quo for both existing implementation approaches).",
+      "parentUuid": "cc099a24_2c780abe",
+      "revId": "1a924e05135b4e20bc2780c663c7fca72f51355c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "325414a7_0080c025",
