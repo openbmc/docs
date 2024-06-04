@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "17509b57_3bc2e09b",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "I\u0027m not seeing the bang for the buck on moving over to that. It seems like quite a bit of text as well but others can weigh in if they feel otherwise. The struggle with this doc is that for this first review of this doc, I wanted the \"how we got to these requirements\" to be the more important part of this review. Once we agree then you\u0027re right, the requirements will be the more important part. I\u0027m fine if someone wants to come in after and refactor/move these requirements elsewhere.",
+      "parentUuid": "fc4b6683_00dc4c6c",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 28
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dfb485c8_a8a02b1e",
         "filename": "hw-vendor-repos-policy.md",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2024-05-28T19:24:35Z",
       "side": 1,
       "message": "I don\u0027t know if I necessarily agree with this.  The goal is having proper abstractions from the hardware such that we can implement something that works, have a reasonable chance that it survives more than 3 months, have a chance that it \"just works\" for the next implementer, and clients outside of OpenBMC implement against it as an API.\n\n\nIn terms of this doc, I would take this out, and put it more in the framework of maintainership.\n\n\"OpenBMC wants to enable as many machines as possible with as many common paths shared between machines as possible, under the hope of keeping stability in its implementation between systems.\"",
+      "range": {
+        "startLine": 44,
+        "startChar": 66,
+        "endLine": 46,
+        "endChar": 76
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7dee4f3_2b66cf8d",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfb485c8_a8a02b1e",
       "range": {
         "startLine": 44,
         "startChar": 66,
@@ -87,6 +135,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0840e1c_e3751ed4",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Defined the 2 categories and broke into separate sections in requirements below.",
+      "parentUuid": "af49d5bc_656eb03a",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 24
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55a95f13_9a234cd5",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-05-28T19:24:35Z",
       "side": 1,
       "message": "nit, remove.  \"latest clang features\" I\u0027m assuming is talking about clang-tidy, which is a manual process.",
+      "range": {
+        "startLine": 59,
+        "startChar": 42,
+        "endLine": 59,
+        "endChar": 56
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3794f76a_785d2ac5",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55a95f13_9a234cd5",
       "range": {
         "startLine": 59,
         "startChar": 42,
@@ -133,6 +229,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81583e64_934a3355",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Let me rephrase a bit, the point I was trying to make is that a repository hosted within OpenBMC is easier to maintain then a repository outside of OpenBMC. So philosophically I wanted to note that, but then talk about the drawbacks in the next paragraph of having so many repos.\n\ni.e. new yocto update breaks a systemd service feature we\u0027ve been utilizing, causing the need for multiple service file updates in multiple repositories. It was much easier to get that change into OpenBMC hosted repos vs. other external repos that OpenBMC CI machines were using.",
+      "parentUuid": "68b73966_7bb83b61",
+      "range": {
+        "startLine": 59,
+        "startChar": 58,
+        "endLine": 61,
+        "endChar": 26
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb8cad46_a29e4077",
@@ -146,6 +266,30 @@
       "writtenOn": "2024-05-28T19:24:35Z",
       "side": 1,
       "message": "Lets rephrase to something like\n```\nNew repositories should be added in the case where they can be maintained over the long term without taking resources away from other project efforts.  Having a set of guidelines for this process helps to speed up new code development within the project.\n```",
+      "range": {
+        "startLine": 64,
+        "startChar": 25,
+        "endLine": 65,
+        "endChar": 36
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "103ed72e_0f5041d1",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb8cad46_a29e4077",
       "range": {
         "startLine": 64,
         "startChar": 25,
@@ -179,6 +323,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4c9fa2d_3f4f1779",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48c13a4b_dbc5bb12",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 12
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96d26ff9_f0f31786",
@@ -192,6 +360,30 @@
       "writtenOn": "2024-05-28T19:24:35Z",
       "side": 1,
       "message": "Lets invert this to something like \"To add a repository to openbmc, it should meet the minimum bar X\".\n\nHardware vendors, ODMs, and clients can publish what they want;  It\u0027s open source.  This document governs what we can do in openbmc/openbmc",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 19
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54f3f97d_5ebc892d",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d26ff9_f0f31786",
       "range": {
         "startLine": 85,
         "startChar": 0,
@@ -225,6 +417,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0089de92_7558834e",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "This came from our TOF discussion. The idea being that if it needs other OpenBMC repositories, it has incentive to be in OpenBMC. That\u0027s more for the software features though so I\u0027ll see if I can rephrase and move under that section.",
+      "parentUuid": "af1c356c_3c4896bd",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 80
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa5d46d3_1e8be28b",
@@ -238,6 +454,30 @@
       "writtenOn": "2024-05-28T19:24:35Z",
       "side": 1,
       "message": "Lets just remove this, and replace with a blanket statement about \"writing hard rules for anything is hard without defeating intent, these are guidelines to be used by the openbmc TOF in their decision to approve or not approve new recipes or repos.\"",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 52
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7337551d_b5dcd3bb",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Done, added as blanket statement at start of requirements section.",
+      "parentUuid": "aa5d46d3_1e8be28b",
       "range": {
         "startLine": 89,
         "startChar": 0,
@@ -271,6 +511,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29b15a97_fa0a5eb0",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Removed this section and focused on what is needed to get in.",
+      "parentUuid": "68518a8e_5485d09d",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 74
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01d6ce8d_357a32d7",
@@ -288,6 +552,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de804450_68e56ccd",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "01d6ce8d_357a32d7",
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6e7d6cf_3df9194b",
@@ -301,6 +583,30 @@
       "writtenOn": "2024-05-28T19:24:35Z",
       "side": 1,
       "message": "\"have not been submitted to linux upstream\"",
+      "range": {
+        "startLine": 93,
+        "startChar": 34,
+        "endLine": 93,
+        "endChar": 41
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5bbd0db_1e817369",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b6e7d6cf_3df9194b",
       "range": {
         "startLine": 93,
         "startChar": 34,
@@ -334,6 +640,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffdd0f22_9fcbc4f6",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "053b0e81_c65ec5ef",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 69
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fa936cf_a4711c3b",
@@ -347,6 +677,30 @@
       "writtenOn": "2024-05-28T19:24:35Z",
       "side": 1,
       "message": "Lets rephrase this a little:\n\nIt is a feature that is believed to be generally useful to the OpenBMC organization.\n  - Determination made by the TOF.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 54
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcad30e7_eccc997a",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fa936cf_a4711c3b",
       "range": {
         "startLine": 99,
         "startChar": 0,
@@ -380,6 +734,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10636fe3_4268ad08",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Not sure I get you on this one. This was from our TOF call where we tried to set some criteria on when it made sense to pull something into OpenBMC. If it consumes OpenBMC API\u0027s (like openpower-vpd-parser) then that could be an argument for it being under the OpenBMC org, even though it\u0027s supporting a vendor-specific VPD format. I tried to add a bit more clarity.",
+      "parentUuid": "0f87de4b_02912d1c",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 34
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc69a5b4_ee5b7d0a",
@@ -393,6 +771,30 @@
       "writtenOn": "2024-05-28T19:24:35Z",
       "side": 1,
       "message": "This part needs specified.  I don\u0027t think we should be adding any recipes to a meta-\u003cvendor\u003e repository, because (to pick on IBM a little) it mixes the idea of \"machines that have an IBM power processor\" with \"Machines that implement IBMs software policies.\"\n\nNot all IBM machines have a Power processor, and not all Power machines will take on IBMs software policies.\n\nIn a perfect world, I think we\u0027d only implement hardware-specific details in a machine layer, and implement things that are specific to a vendor in a distro, but we\u0027re not really there yet.",
+      "range": {
+        "startLine": 104,
+        "startChar": 48,
+        "endLine": 104,
+        "endChar": 63
+      },
+      "revId": "a574ac2a8e67e46739f88746723263163fe4a775",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beb72b47_27919339",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-06-04T16:47:50Z",
+      "side": 1,
+      "message": "Broke up requirements into the 2 sections and added the \"perfect world\" direction to philosophy section.",
+      "parentUuid": "dc69a5b4_ee5b7d0a",
       "range": {
         "startLine": 104,
         "startChar": 48,
