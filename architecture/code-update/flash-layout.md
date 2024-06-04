@@ -10,8 +10,7 @@ and how code update updates the flash modules and boots the new image. See
 
 ### Boot loading and init
 
-For system initialization and bootstrap, [Das U-Boot][] was selected as the
-bootloader.
+For system initialization and bootstrap, [Das U-Boot][] was selected as the bootloader.
 
 After basic initialization of the system, the bootloader may present a prompt
 and/or start automatic boot. The commands and/or data to select the boot image

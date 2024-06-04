@@ -23,14 +23,12 @@ and service shown.
 
 OpenBMC's services and the interfaces they provide are controlled by `systemd`.
 This document references OpenBMC `systemd` unit names to help link concepts to
-the source code. The reader is assumed to be familiar with [systemd concepts][].
-The templated units ("unit@.service") may be omitted for clarity. Relevant
-details from the unit file may be shown, such as the program which implements a
-service.
+the source code. The reader is assumed to be familiar with [systemd
+concepts][]. The templated units ("unit@.service") may be omitted for clarity. Relevant
+details from the unit file may be shown, such as the program which implements a service.
 
 The OpenBMC [Service Management][] interface can control `systemd` services. For
-example, disabling a BMC service will disable the corresponding external
-interface.
+example, disabling a BMC service will disable the corresponding external interface.
 
 [systemd concepts]:
   https://www.freedesktop.org/software/systemd/man/systemd.html#Concepts
@@ -252,8 +250,8 @@ for example Unix domain sockets.
         +--------------------------------------------------+
 ```
 
-To learn more, read the [Phosphor D-Bus interface docs][] and search for README
-files in various subdirectories under the xyz/openbmc_project path.
+To learn more, read the [Phosphor D-Bus interface docs][] and search for README files
+in various subdirectories under the xyz/openbmc_project path.
 
 [phosphor d-bus interface docs]:
   https://github.com/openbmc/phosphor-dbus-interfaces

@@ -135,8 +135,8 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
 
 - No initramfs: It may be possible to boot the rootfs by passing the UUID of the
   logical volume to the kernel, although a [pre-init script][] will likely still
-  be needed. Therefore, having an initramfs would offer a more standard
-  implementation for initialization.
+  be needed. Therefore, having an initramfs would offer a more standard implementation
+  for initialization.
 
 - FAT MBR partitioning: FAT is a simple and well understood partition table
   format. There is space for 4 independent partitions. Alternatively one slot

@@ -213,14 +213,23 @@ reading this, then most likely, it was successful!
 ## Footnotes
 
 [^1]: https://gerrit.openbmc.org/q/owner:krellan%2540google.com
+
 [^2]: https://github.com/openbmc/dbus-sensors/blob/master/README.md
+
 [^3]: https://www.kernel.org/doc/html/latest/hwmon/index.html
+
 [^4]: https://github.com/openbmc/entity-manager/blob/master/README.md
+
 [^5]: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/36206
+
 [^6]: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/35476
+
 [^7]: https://github.com/openbmc/dbus-sensors/blob/master/src/HwmonTempMain.cpp
+
 [^8]: https://think-async.com/Asio/
+
 [^9]: https://github.com/openbmc/dbus-sensors/blob/master/include/sensor.hpp
+
 [^10]:
     https://github.com/openbmc/docs/blob/master/architecture/ipmi-architecture.md
 
@@ -228,22 +237,32 @@ reading this, then most likely, it was successful!
     https://www.intel.com/content/www/us/en/servers/ipmi/ipmi-intelligent-platform-mgt-interface-spec-2nd-gen-v2-0-spec-update.html
 
 [^12]: https://www.dmtf.org/standards/redfish
+
 [^13]:
     https://www.boost.org/doc/libs/1_75_0/doc/html/boost_asio/overview/timers.html
 
 [^14]: https://anniecherkaev.com/the-secret-life-of-nan
+
 [^15]:
     https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml
 
 [^16]: https://cr.yp.to/proto/utctai.html
+
 [^17]: https://github.com/openbmc/openbmc/issues/1892
+
 [^18]:
     https://github.com/openbmc/entity-manager/blob/master/docs/my_first_sensors.md
 
 [^19]: https://github.com/openbmc/dbus-sensors/blob/master/src/SensorPaths.cpp
+
 [^20]: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/36206
+
 [^21]: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/41398
+
 [^22]: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/39294
+
 [^23]: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/41394
+
 [^24]: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/41397
+
 [^25]: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/16177

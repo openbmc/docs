@@ -5,7 +5,8 @@ Follow links to learn more about OpenBMC features:
 - [BMCWeb][] HTTP/Web server
 - [WebUI Vue][] web application
 - REST Management: [BMCWeb Redfish][], [Phosphor REST APIs][] includes [Host
-  management REST APIs][]
+  management
+  REST APIs][]
 - [D-Bus interfaces][] describes internal interfaces
 - [D-Bus Object Mapper][]
 - [Remote KVM][]

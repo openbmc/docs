@@ -37,9 +37,9 @@ PasswordChangeRequired the same as an account that is invalid for any other
 reason. Some servers (such as the OpenSSH server) handle the
 PasswordChangeRequired by implementing a "password change dialog".
 
-The [Redfish Specification version 1.7.0][] section 13.2.6.1 ("Password change
-required handling") provides the ManagerAccount resource v1.3 with a
-PasswordChangeRequired property which supports a password change dialog.
+The [Redfish Specification version 1.7.0][] section 13.2.6.1 ("Password change required
+handling") provides the ManagerAccount resource v1.3 with a PasswordChangeRequired
+property which supports a password change dialog.
 
 [redfish specification version 1.7.0]:
   https://www.dmtf.org/sites/default/files/standards/documents/DSP0266_1.7.0.pdf

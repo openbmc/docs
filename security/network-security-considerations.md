@@ -6,14 +6,13 @@ these threats.
 
 This is only intended to be a guide; security is ultimately the responsibility
 of projects which choose to incorporate OpenBMC into their project. If you find
-a security vulnerability, please consider [how to report a security
-vulnerability][].
+a security vulnerability, please consider [how to report a security vulnerability][].
 
 [how to report a security vulnerability]:
   https://github.com/openbmc/docs/blob/master/security/how-to-report-a-security-vulnerability.md
 
-Threats to the BMC are classified using the [CIA triad][]. All threat types are
-significant; here is an example of each:
+Threats to the BMC are classified using the [CIA triad][]. All threat types are significant;
+here is an example of each:
 
 - Confidentiality: If an attacker can get data from the BMC, they may be able to
   chain other vulnerabilities to establish a covert information channel to get
@@ -52,9 +51,9 @@ packages for the BMC referenced by your machine's configuration. For example, in
 the `https://github.com/openbmc/meta-aspeed` repository under
 `recipes-kernel/linux/linux-aspeed_git.bb`.
 
-Per [CVE 1999-0524][], responding to certain ICMP packets can give an attacker
-more information about the BMC's clock or subnet, which can help with subsequent
-attacks. OpenBMC responds to all ICMP requests.
+Per [CVE 1999-0524][], responding to certain ICMP packets can give an attacker more
+information about the BMC's clock or subnet, which can help with subsequent attacks.
+OpenBMC responds to all ICMP requests.
 
 [cve 1999-0524]: https://nvd.nist.gov/vuln/detail/CVE-1999-0524
 
@@ -109,9 +108,9 @@ Services can be disabled in several ways:
 1.  Configure OpenBMC recipes to build the unwanted feature out of the BMC's
     firmware image. This gives the BMC the advantage of a smaller attack
     surface.
-2.  Implement something like the [Redfish ManagerNetworkProtocol][] properties
-    for IPMI, SSH, and other BMC services, possibly by using shell commands like
-    'systemctl disable ipmid' and 'systemctl stop ipmid'.
+2.  Implement something like the [Redfish ManagerNetworkProtocol][] properties for
+    IPMI, SSH, and other BMC services, possibly by using shell commands like 'systemctl
+    disable ipmid' and 'systemctl stop ipmid'.
 
 [redfish managernetworkprotocol]:
   https://redfish.dmtf.org/schemas/ManagerNetworkProtocol.v1_4_0.json
@@ -209,9 +208,9 @@ https://www.dmtf.org/standards/redfish.
 
 #### The webui-vue Web application
 
-General considerations for Web applications such as given by [OWASP Web
-Application Security Guidance][] apply to OpenBMC. The webui-vue uses username
-and password-based authentication, and REST APIs for subsequent access.
+General considerations for Web applications such as given by [OWASP
+Web Application Security Guidance][] apply to OpenBMC. The webui-vue uses
+username and password-based authentication, and REST APIs for subsequent access.
 
 [owasp web application security guidance]:
   https://www.owasp.org/index.php/Web_Application_Security_Guidance
