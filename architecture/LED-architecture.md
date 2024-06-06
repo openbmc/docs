@@ -8,7 +8,7 @@ the scope of this document.
 ## D-Bus
 
 ```
-Service     xyx.openbmc_project.LED.GroupManager
+Service     xyz.openbmc_project.LED.GroupManager
 Path        /xyz/openbmc_project/led/groups/<label>
 Interfaces  xyz.openbmc_project.Led.Group
 
