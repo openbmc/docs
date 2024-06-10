@@ -3,6 +3,460 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb757a36_9954accc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "This design reads as something that if implemented like designed, could be just done in a meta-redudant-machines meta layer and maintained separate from openbmc.  As designed, I find it really hard to believe that any parts of this would be reusable on another system, given the implementation specific nature of it, lack of per-machine configurable policies, and FSI specific implementation.  Maybe I\u0027m missing some intent around upstreaming this at all.  Is there an overall industry call for these kinds of redundant implementations?\n\nWith that said, if we can come to a consensus that we can get this in a surgical way that doesn\u0027t require every daemon to be coding against an abstractly defined standard to be \"redundant bmc compatible\" I\u0027m fine with having it.  As written, I don\u0027t think this design us over the bar.  The important things that I think we need to enumerate are:\n\n1. What are the system interfaces.\n2. What are ALL daemons now required to do to be \"redundant bmc compatible\".  If this is non trivial, I see this design as a non-starter.\n3. What does the flow look like for triggering a redundant action.  (ideally we\u0027d start by keeping this self contained around either automatic or manual user intervention, not both).\n\nOverall in implementation I\u0027d really like to see this avoid systemd targets directly, and use some variation of power states.  Arguably \"you\u0027re a redundant bmc\" looks very similar (interface wise) to a powered off state, so I think if we could share that design space, we\u0027d end up with a result that\u0027s able to be reasoned about on non-redundant platforms, and we\u0027d at least have a hope of not breaking one another.\n\n\nWe also need to enumerate the \"how do we elect a leader\" problem a little better. modern implementations in other industries would be using some form of Paxos consensus algorithm over a network to determine the \"current\" and redundant bmcs.  I\u0027m a little surprised none of that is documented here.  Presumably FSI has some internal hardware magic for this, but leaving that part for other users as \"up to the implementation\" makes it seem like this is really not a generic solution, and IBM just trying to reduce their maintenance burden.  That might be fine, but we need to make sure we\u0027re not just placing the maintenance burden on OpenBMC as a project.",
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f79fb4f_ba41789c",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "Neither of these seem like \"minimum services\". Why are Redfish and the webui special?  Shouldn\u0027t both forward to the primary bmc?  We should probably get a better definition of what \"minimal\" means here, because it\u0027s unlikely that all designs are going to agree.",
+      "range": {
+        "startLine": 153,
+        "startChar": 10,
+        "endLine": 153,
+        "endChar": 65
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "501c33b4_1d7d9c17",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "What does this mean?",
+      "range": {
+        "startLine": 154,
+        "startChar": 68,
+        "endLine": 156,
+        "endChar": 10
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25c2e93f_577c1a13",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "Could we instead just treat this as some kind of additional power state?  Most daemons already have the capability to handle \"power off\" for their connected devices.  \"Passive BMC\" seems a lot more like just another version of \"device is powered off\".\nThat seems like a better overall project direction.  I suspect that very few BMCs will take this feature, given it\u0027s so different from other systems.  At least if we treat this as an additional, or similar to power state, and not a bunch of systemd targets, we have a way to model and test it without having the IBM platform this is implemented on, and in the ideal, we get more power state handling between services.",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 60
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d1e338c_4460bd96",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "This seems like a design that\u0027s going to cause a lot of problems.  Lots of services are looking for multi-user.target, so this design is proposing to change all of them to suddenly look for less?  That seems like every service now has to be openbmc specific.",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 46
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c592340f_68cb32fa",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "How will these be maintained?  As is, the current direction is to put service files into the individual repos, so will every application need a change here?",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 21
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9f52bc0_c9ffabff",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "Doesn\u0027t this mess up all systems that don\u0027t have this target?  Or is there a way that this can only be installed if this feature is enabled in a meta layer?",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 70
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a7408f5_433e73e1",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "This seems like something we\u0027d normally just create a dbus interface for?",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 65
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e06e928_ec9fb89c",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "should we just call this -redundant-bmc?\n\n\n\"state manager\" adds no value in the naming.  All dbus daemons maintain some state.",
+      "range": {
+        "startLine": 233,
+        "startChar": 10,
+        "endLine": 233,
+        "endChar": 28
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e517822c_db6a846a",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "This makes some of the more important parts of this design not really reusable between systems the service itself highly ibm specific.",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 36
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cbd7609_85d7c086",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it just be the same as the existing bmc path?\n\n/xyz/openbmc_project/state/bmc ?\n\nwhy are we adding the redundancy_info path namespace?  It seems like extra steps for no benefit.",
+      "range": {
+        "startLine": 258,
+        "startChar": 28,
+        "endLine": 258,
+        "endChar": 52
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48d4dc6c_8ef98e3d",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "Why would we version this?",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08be2961_30e2cc40",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "This should arguably go on a chassis?  Maybe something like \"redundancy position\"?",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6360dad1_08d09356",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "Why \"Previous Role\" Won\u0027t these always be inverses of one another?",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7367728d_82c99c89",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "?  Why is this configurable?  Given the systemd design, I can\u0027t imagine how this could just be disabled.",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90fc78d3_ecbcbb64",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "What does this have to do with redundancy?  This seems like a separate interface",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c379c0c7_707e90e3",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "Which BMC state?  For the current BMC doesn\u0027t this duplicate the state?",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d56951af_1991bb3a",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "What does this do?  Shouldn\u0027t this be a method call, not a property?",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f45dd28a_0e90067e",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "We have dbus interfaces for versions.  We shouldn\u0027t invent a new one.",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cc92464_616cc819",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "Overall, there\u0027s a lot of information in this struct that really feels specific to FSI, and should just be kept in that implementation and not put on DBus at all.  I see no reason why we would make, say, heartbeat available to other dbus services if there\u0027s no reason for them to use it.",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da1d6c51_b0e91674",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 4
@@ -121,6 +575,75 @@
       "side": 1,
       "message": "As long as that upholds the liveness needs of the system (good things always happen eventually). For instance, some care is probably needed to ensure you don\u0027t end up in an unbounded reboot loop.\n\nhttps://www.hillelwayne.com/post/safety-and-liveness/ is handy.",
       "parentUuid": "11e14327_9d8ce56e",
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3daefc17_334a08a8",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "?????  This seems like a very important part of the interface design.  If we\u0027re syncing files anyway (presumably over network), why use FSI at all?  At least answering that in the design doc seems important.",
+      "range": {
+        "startLine": 316,
+        "startChar": 10,
+        "endLine": 317,
+        "endChar": 25
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62bee228_88f8d034",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "Through what property/Action?",
+      "range": {
+        "startLine": 356,
+        "startChar": 55,
+        "endLine": 356,
+        "endChar": 78
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b49769c_c9ac4b86",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-10T18:52:32Z",
+      "side": 1,
+      "message": "so.... there are impacts to non-redudant bmc systems?  Can we quantify how much this will impact non redundant systems?",
+      "range": {
+        "startLine": 440,
+        "startChar": 1,
+        "endLine": 441,
+        "endChar": 20
+      },
       "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
