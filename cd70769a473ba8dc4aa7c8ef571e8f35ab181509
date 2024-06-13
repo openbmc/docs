@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "395388d9_6d6bf93a",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-06-13T16:44:47Z",
+      "side": 1,
+      "message": "It\u0027s not clear to me why I wouldn\u0027t always go this route (which isn\u0027t what we want, right)?  And ... we haven\u0027t added any requirements when going this route.\n\nThis should be our worst-case, but when we go this route we need to have some requirements / commitments from the external repository.  For example:\n\n- we cannot have them re-writing git history once we add them.\n- we need to have some kind of SLA commitment on fixing issues induced by newer compilers (especially if any machine in our CI system is leveraging these recipes).",
+      "range": {
+        "startLine": 41,
+        "startChar": 14,
+        "endLine": 42,
+        "endChar": 19
+      },
+      "revId": "cd70769a473ba8dc4aa7c8ef571e8f35ab181509",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cf7ee2a_6991077f",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-06-13T16:44:47Z",
+      "side": 1,
+      "message": "I think we said there is an additional requirement that repositories that depend on openbmc repositories _must_ be hosted by openbmc.  We don\u0027t want a spider web of dependencies.  If someone wants to change, for example, phosphor-dbus-interfaces we need to be able to apply the appropriate changes across all our repos and not have to go to other organizations in order to get CI passing.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 76
+      },
+      "revId": "cd70769a473ba8dc4aa7c8ef571e8f35ab181509",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3e7e844_196acbc6",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-06-13T16:44:47Z",
+      "side": 1,
+      "message": "Hopefully this is for vendors that are selling that hardware?  I want to make sure we have language that precludes us being expected to host code for some random CPLD design that Vendor X made that is only in Vendor X\u0027s own systems.",
+      "revId": "cd70769a473ba8dc4aa7c8ef571e8f35ab181509",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76a849fa_6ad19c5d",
+        "filename": "hw-vendor-repos-policy.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-06-13T16:44:47Z",
+      "side": 1,
+      "message": "nit: APIs.  It is not possessive.",
+      "range": {
+        "startLine": 64,
+        "startChar": 34,
+        "endLine": 64,
+        "endChar": 40
+      },
+      "revId": "cd70769a473ba8dc4aa7c8ef571e8f35ab181509",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
