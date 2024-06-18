@@ -124,20 +124,6 @@ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST ht
 
 ---
 
-## Firmware ApplyTime:
-
-```
-curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH -d '{"HttpPushUriOptions":{"HttpPushUriApplyTime":{"ApplyTime":"Immediate"}}}' https://${bmc}/redfish/v1/UpdateService
-```
-
-or
-
-```
-curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH -d '{"HttpPushUriOptions":{"HttpPushUriApplyTime":{"ApplyTime":"OnReset"}}}' https://${bmc}/redfish/v1/UpdateService
-```
-
----
-
 ## Firmware update
 
 Firmware update: Note the `<image file path>` must be a tarball.
