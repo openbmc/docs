@@ -104,6 +104,24 @@
       "parentUuid": "8a9ef58f_e3b195a2",
       "revId": "cfe840d61d153a3fbebd3052e43615aa1bf75dde",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b053dbc_2738b92b",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-06-19T08:43:57Z",
+      "side": 1,
+      "message": "Hi Andrew,\n\nThanks for providing the detailed overview. The connection based mux control can work out for the interactive use-case and can also be made to work for the logging use case.\n\nThe point about the additional implementation required in other projects is **very convincing**. \n\n\nFor the unified vs split tree, we can go with the unified tree if that\u0027s what you prefer. The split tree would also work since there would be nothing new in the tree.\n\nIt\u0027s mainly a question of what to expose to other projects initially. So i\u0027m fine to do the unified tree.\n\nIn that case, we do not need to have an extra dbus interface or any changes to phosphor-dbus-interfaces, is this correct?\n\n\n\u003e TODO: Rejig the sections below after review feedback on the above\n\nAs we agree on the mux control mechanism to be connection based, i leave the next revision up to you if that\u0027s ok.",
+      "parentUuid": "05c1a037_647550ac",
+      "revId": "cfe840d61d153a3fbebd3052e43615aa1bf75dde",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
