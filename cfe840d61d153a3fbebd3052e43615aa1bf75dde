@@ -122,6 +122,24 @@
       "parentUuid": "05c1a037_647550ac",
       "revId": "cfe840d61d153a3fbebd3052e43615aa1bf75dde",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aa707a7_ee3aec37",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-06-20T00:31:25Z",
+      "side": 1,
+      "message": "\u003e In that case, we do not need to have an extra dbus interface or any changes to phosphor-dbus-interfaces, is this correct?\n\nRight, I think now that we have consensus on connection-based mux control, we can drop the extra interface entirely.\n\nRegarding the split vs unified tree: I don\u0027t particularly mind which we choose. The unified tree will still consume fewer resources (we only need one DBus connection vs N connections for an N-port mux), but it\u0027s an implementation detail that doesn\u0027t lock us into an ABI. I\u0027ll leave the choice up to you.\n\n\u003e As we agree on the mux control mechanism to be connection based, i leave the next revision up to you if that\u0027s ok.\n\nYep, happy to do that. I\u0027ll include the reasoning about the design choices from the first comment in this thread as well.",
+      "parentUuid": "8b053dbc_2738b92b",
+      "revId": "cfe840d61d153a3fbebd3052e43615aa1bf75dde",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
