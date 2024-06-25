@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c2960b3_ffff1935",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2024-06-25T03:36:00Z",
+      "side": 1,
+      "message": "Nice work on the progression through the various implementation choices.\n\nAll looks good to me - I have a query about an improvement inline, and a couple of super minor wording fixes, but your discretion on whether changes are required there.",
+      "revId": "f1acb8aa74f914f4d6802eded487ac319350bc5f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d82e529_3c82eeec",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2024-06-25T03:36:00Z",
+      "side": 1,
+      "message": "This isn\u0027t a ssh-login-specific mechanism though, right? It could be any interface that is separate from the console data channel.\n\n(say, a selection in the web interface...)\n\nIf so, could this read:\n\n\u003e […] rather, they defer to making the user affect the change themselves, through some other separate interface.",
+      "revId": "f1acb8aa74f914f4d6802eded487ac319350bc5f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dbe6c63_a90bf2df",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2024-06-25T03:36:00Z",
+      "side": 1,
+      "message": "minor wording: \"wants *to* select\"",
+      "revId": "f1acb8aa74f914f4d6802eded487ac319350bc5f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d931d98_789405f5",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2024-06-25T03:36:00Z",
+      "side": 1,
+      "message": "Then, if we make this more general at line 179, this would refer to whatever that separate interface is:\n\n\u003e The first assumes that this interface is exposed at all, and accessible to users who need access to the muxed consoles\n\n... which is probably a reasonable part of the design, it it were to be implemented this way.\n\nHowever, the big issue with this case is that it\u0027s pretty janky to require the user to manage two *distinct* interfaces to the console: the actual data channel, and the mux control.",
+      "revId": "f1acb8aa74f914f4d6802eded487ac319350bc5f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23790a1c_0de53bd4",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2024-06-25T03:36:00Z",
+      "side": 1,
+      "message": "minor wording: \"it\u0027s\" -\u003e \"its\"",
+      "revId": "f1acb8aa74f914f4d6802eded487ac319350bc5f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
