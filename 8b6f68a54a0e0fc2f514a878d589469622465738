@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "19769551_0b46e901",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "I added to the doc:\n- why we use FSI and not just the network.\n- which applications are impacted\n- which applications we don\u0027t want to run when the BMC is passive, and how this is done without having to modify the application or its service file.  I would still lean toward doing it this way as opposed to having to go in and modifying those applications to look at a new D-Bus property, though could be convinced otherwise.\n\nAlso in the doc:\n- how a failover is triggered - only externally except for one case.\n- how our use of FSI is hidden behind xyz.openbmc_project D-Bus interfaces\n- The new D-Bus properties that will be used by Redfish or others to know if redundant is active or a BMC\u0027s role.\n- The D-Bus API to get data from the sibling.\n- Which Redfish schema we plan to get updates into.\n- What we use to know if a BMC can be active.\n\nAs far as using one of the consensus algorithms... for just dealing with 2 BMCs it didn\u0027t seem worth the trouble.  We have specific things to look at to choose the active, and also we don\u0027t need instantaneous failovers with zero interruption like say a database cluster would have.  Someone on the team prototyped pacemaker with corosync, and it didn\u0027t do what we needed, which I mentioned in the document.\n\nI realize that redundancy can always be more complex, but what we have here is what we think we can execute in our timelines.  If someone needs to enhance it later I don\u0027t see why that couldn\u0027t be done.\n\nIf after all of my updates you still don\u0027t think it belongs upstream, I guess we will have to deal with that.  Hopefully we can still get our interfaces defined in PDI and be able to write bmcweb code against those to generate the Redfish behavior we need, assuming we can get it into the DMTF.",
+      "parentUuid": "b205b6c8_6227fdca",
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f79fb4f_ba41789c",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 4
@@ -49,6 +67,30 @@
       "writtenOn": "2024-06-10T18:52:32Z",
       "side": 1,
       "message": "Neither of these seem like \"minimum services\". Why are Redfish and the webui special?  Shouldn\u0027t both forward to the primary bmc?  We should probably get a better definition of what \"minimal\" means here, because it\u0027s unlikely that all designs are going to agree.",
+      "range": {
+        "startLine": 153,
+        "startChar": 10,
+        "endLine": 153,
+        "endChar": 65
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "165ee0a2_1d1d476a",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "I elaborated on what I meant here, which was that we don\u0027t want to run services that would attempt to access hardware they can\u0027t, or attempt to talk to the host.",
+      "parentUuid": "0f79fb4f_ba41789c",
       "range": {
         "startLine": 153,
         "startChar": 10,
@@ -82,6 +124,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e233aee3_d434baab",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "Reworded to state that when a failover is requested by an external entity, the request will go to the passive BMC.",
+      "parentUuid": "501c33b4_1d7d9c17",
+      "range": {
+        "startLine": 154,
+        "startChar": 68,
+        "endLine": 156,
+        "endChar": 10
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25c2e93f_577c1a13",
@@ -95,6 +161,30 @@
       "writtenOn": "2024-06-10T18:52:32Z",
       "side": 1,
       "message": "Could we instead just treat this as some kind of additional power state?  Most daemons already have the capability to handle \"power off\" for their connected devices.  \"Passive BMC\" seems a lot more like just another version of \"device is powered off\".\nThat seems like a better overall project direction.  I suspect that very few BMCs will take this feature, given it\u0027s so different from other systems.  At least if we treat this as an additional, or similar to power state, and not a bunch of systemd targets, we have a way to model and test it without having the IBM platform this is implemented on, and in the ideal, we get more power state handling between services.",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 60
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9fbaf87_e0009411",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "One of our goals, which you also brought up in another comment, was to not have to have normal daemons be redundancy aware.  So the thinking is it would be better to just not start them when not needed as opposed to having to modify them to not do things when the BMC is passive.\n\nI think that eliminates most of the testing concern?  As the daemon just isn\u0027t running so it can\u0027t misbehave.  It does mean that if they would start as part of multi-user.target they would be starting later, as part of obmc-bmc-active.target, but as long as the dependencies are right that should be fine.\n\nI tried to elaborate and add text to make it more clear what the idea is.  If you still would rather have the services started anyway we can of course discuss further.\n\nI will add a list of the daemon that are actually involved into the doc.",
+      "parentUuid": "25c2e93f_577c1a13",
       "range": {
         "startLine": 157,
         "startChar": 0,
@@ -128,6 +218,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ab066de_1bce005b",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "I added changes to hopefully better describe what the plan is, which specifically makes it so it doesn\u0027t matter what target the original service was linked to.\n\nIf you still have concerns about this after these updates, we can discuss further.",
+      "parentUuid": "9d1e338c_4460bd96",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 46
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c592340f_68cb32fa",
@@ -151,6 +265,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7df532bd_8274f887",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "No, it will all be done from one place.\n\nI made some updates to hopefully explain this better, and also added a link to a commit that implements how it would/could be done.",
+      "parentUuid": "c592340f_68cb32fa",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 21
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9f52bc0_c9ffabff",
@@ -164,6 +302,30 @@
       "writtenOn": "2024-06-10T18:52:32Z",
       "side": 1,
       "message": "Doesn\u0027t this mess up all systems that don\u0027t have this target?  Or is there a way that this can only be installed if this feature is enabled in a meta layer?",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 70
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b892d36_667e8a54",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "Correct, it would only be installed if the redundant-bmc machine feature was enabled.  Did some rewording to try to make it more clear.",
+      "parentUuid": "a9f52bc0_c9ffabff",
       "range": {
         "startLine": 171,
         "startChar": 0,
@@ -199,6 +361,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a379cad5_186b5488",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "Can you elaborate? I had thought ConditionPathExists was the standard way to prevent a service file from doing anything in certain cases.  For example, there are a dozen uses of it in phosphor-state-manager already.  Here are 2 of them:\n\nphosphor-reset-chassis-on@.service:ConditionPathExists\u003d/run/openbmc/chassis@%i-on \nphosphor-reset-host-running@.service:ConditionPathExists\u003d/run/openbmc/host@%i-on\n\nSo while those normally would start as multi-target.user, they just wouldn\u0027t do anything unless the chassis/host was on.",
+      "parentUuid": "1a7408f5_433e73e1",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 65
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e06e928_ec9fb89c",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 4
@@ -210,6 +396,30 @@
       "writtenOn": "2024-06-10T18:52:32Z",
       "side": 1,
       "message": "should we just call this -redundant-bmc?\n\n\n\"state manager\" adds no value in the naming.  All dbus daemons maintain some state.",
+      "range": {
+        "startLine": 233,
+        "startChar": 10,
+        "endLine": 233,
+        "endChar": 28
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eea637a_dc076023",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "Done.\n\nWas just following the existing naming conventions of the daemons in phosphor-state-manager.",
+      "parentUuid": "1e06e928_ec9fb89c",
       "range": {
         "startLine": 233,
         "startChar": 10,
@@ -245,6 +455,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81dd04d2_5924f7e3",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "I restructured the D-Bus sections to make them hopefully easier to understand.  Now the first section on D-Bus, \u0027D-Bus Representation\u0027 will be the properties phosphor-redundant-bmc would host to provide status about itself.\n\nThe second section, \u0027Inter-BMC Communication\u0027, will describe how a second daemon will host an interface that provides information from the sibling via D-Bus properties.  That daemon hides the method used to get that data, i.e. FSI vs network or whatever.\n\nThe idea is that someone else could use something besides FSI by using their own daemon that provides the same sibling D-Bus interface.",
+      "parentUuid": "e517822c_db6a846a",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 36
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6cbd7609_85d7c086",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 4
@@ -256,6 +490,30 @@
       "writtenOn": "2024-06-10T18:52:32Z",
       "side": 1,
       "message": "Wouldn\u0027t it just be the same as the existing bmc path?\n\n/xyz/openbmc_project/state/bmc ?\n\nwhy are we adding the redundancy_info path namespace?  It seems like extra steps for no benefit.",
+      "range": {
+        "startLine": 258,
+        "startChar": 28,
+        "endLine": 258,
+        "endChar": 52
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93cf7d27_7aa07ed8",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cbd7609_85d7c086",
       "range": {
         "startLine": 258,
         "startChar": 28,
@@ -289,6 +547,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28bd202b_e511ce44",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "This was the version of the API provided to/from the sibling, in case a property was added in a newer version of code there would be a way to know if it could be expected or not.  I\u0027ll drop it for now until we see a real need for it, or can think of a different way to handle that.",
+      "parentUuid": "48d4dc6c_8ef98e3d",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08be2961_30e2cc40",
@@ -302,6 +584,30 @@
       "writtenOn": "2024-06-10T18:52:32Z",
       "side": 1,
       "message": "This should arguably go on a chassis?  Maybe something like \"redundancy position\"?",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "138a81de_94a96b0b",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "I thought about it some more, and I think I can remove this.  The worry was if the cabling was so bad that both BMCs thought they had the same position.  However we\u0027re going to have some cable validation code that should catch that.",
+      "parentUuid": "08be2961_30e2cc40",
       "range": {
         "startLine": 269,
         "startChar": 0,
@@ -335,6 +641,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a567925_071a10d9",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6360dad1_08d09356",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7367728d_82c99c89",
@@ -348,6 +678,30 @@
       "writtenOn": "2024-06-10T18:52:32Z",
       "side": 1,
       "message": "?  Why is this configurable?  Given the systemd design, I can\u0027t imagine how this could just be disabled.",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6694e3ec_6391c1cd",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "In the \u0027Startup and Discovery\u0027 section I added reasons that redundancy (failovers) wouldn\u0027t be enabled.  For example if the BMCs had mismatched code levels.",
+      "parentUuid": "7367728d_82c99c89",
       "range": {
         "startLine": 272,
         "startChar": 0,
@@ -381,6 +735,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84319f15_3e5e5f91",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "We want to know if the sibling has been provisioned.  It makes it easier to know if we can expect a good network connection or not.",
+      "parentUuid": "90fc78d3_ecbcbb64",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c379c0c7_707e90e3",
@@ -404,6 +782,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88f43c2e_87ab9b39",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "I fixed the design so now there is just a /xyz/openbmc_project/state/bmc/bmc1 path to read data from the sibling.  The sibling\u0027s BMC state will be on that path so that we can know if it\u0027s at Ready or not. (we use the Quiesced state, and we wouldn\u0027t want to enable redundancy/failovers if the passive BMC is Queisced).",
+      "parentUuid": "c379c0c7_707e90e3",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d56951af_1991bb3a",
@@ -417,6 +819,30 @@
       "writtenOn": "2024-06-10T18:52:32Z",
       "side": 1,
       "message": "What does this do?  Shouldn\u0027t this be a method call, not a property?",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd70049a_78d74c17",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "Removed this. was overcomplicating something.",
+      "parentUuid": "d56951af_1991bb3a",
       "range": {
         "startLine": 275,
         "startChar": 0,
@@ -452,6 +878,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4fc4f30_fc8229a0",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "I added some reasoning in this section about why we just want to use this property for the sibling version and not add the Software.Version one again, though it\u0027s more important for the BMC.State interface that has additional properties on it, some of which are writeable.\n\nI did change it to a string though.",
+      "parentUuid": "f45dd28a_0e90067e",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1cc92464_616cc819",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 4
@@ -463,6 +913,30 @@
       "writtenOn": "2024-06-10T18:52:32Z",
       "side": 1,
       "message": "Overall, there\u0027s a lot of information in this struct that really feels specific to FSI, and should just be kept in that implementation and not put on DBus at all.  I see no reason why we would make, say, heartbeat available to other dbus services if there\u0027s no reason for them to use it.",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 55
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5793bae4_78742dc2",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "I changed up how the D-Bus was done to just the /xyz/openbmc_project/state/bmc1 path to get data from the sibling, which is being provided by the daemon that reads from the sibling and not phosphor-redundant-bmc. \n\nSo this will be how the code can get the sibling\u0027s heartbeat.\n\nI think that alleviates the concern, but if not will revisit.",
+      "parentUuid": "1cc92464_616cc819",
       "range": {
         "startLine": 277,
         "startChar": 0,
@@ -544,6 +1018,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56296e14_f38055a1",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "Sorry, somehow I missed this question earlier.\n\nI think the only way that could happen is with bad cabling between the BMCs.  If it\u0027s just a 2 chassis system that isn\u0027t cabled together, then they would act like 2 separate systems and while there at least wouldn\u0027t be hardware access problems, hopefully the hardware management console software would notice and complain - the details there remain to be worked out.\n\nWe\u0027re looking into what information the cable validation code would be able to get when there are multiple chassis where at least one is cabled correctly to both BMCs, so that we could still tell there is another BMC alive even though we don\u0027t have direct access.  For example if each BMC writes something somewhere in the FSI space of every chassis it can talk to then the other could see it.  That hasn\u0027t been fully fleshed out yet.",
+      "parentUuid": "0afea7d6_e3b3d6e7",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 56
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a8035c5_b5935f1e",
@@ -597,6 +1095,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21523405_002072fa",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "Good article, thanks.",
+      "parentUuid": "0af8e6a9_616af170",
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3daefc17_334a08a8",
@@ -610,6 +1126,30 @@
       "writtenOn": "2024-06-10T18:52:32Z",
       "side": 1,
       "message": "?????  This seems like a very important part of the interface design.  If we\u0027re syncing files anyway (presumably over network), why use FSI at all?  At least answering that in the design doc seems important.",
+      "range": {
+        "startLine": 316,
+        "startChar": 10,
+        "endLine": 317,
+        "endChar": 25
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de94ef69_dc639bb3",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "I reworded one of the requirements to state how we still have the boot the system even if the network is bad, so must still be able to choose a single active BMC, which we can do using FSI.  We wouldn\u0027t be syncing anything of course and redundancy would be disabled, but at least the user can still run their system.\n\nThe program wouldn\u0027t budge on this, and also won\u0027t give us a redundant network connection.",
+      "parentUuid": "3daefc17_334a08a8",
       "range": {
         "startLine": 316,
         "startChar": 10,
@@ -643,6 +1183,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3620b308_d240a158",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "Added a link to the section below where it is described.",
+      "parentUuid": "62bee228_88f8d034",
+      "range": {
+        "startLine": 356,
+        "startChar": 55,
+        "endLine": 356,
+        "endChar": 78
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b49769c_c9ac4b86",
@@ -656,6 +1220,30 @@
       "writtenOn": "2024-06-10T18:52:32Z",
       "side": 1,
       "message": "so.... there are impacts to non-redudant bmc systems?  Can we quantify how much this will impact non redundant systems?",
+      "range": {
+        "startLine": 440,
+        "startChar": 1,
+        "endLine": 441,
+        "endChar": 20
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27ff50c4_a0a4268c",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-26T21:37:18Z",
+      "side": 1,
+      "message": "All I meant is that in the field, our system will have a management application that runs somewhere else (referred to as the management console above) that drives the code updates would do it this way.  Now that I think about it, that probably isn\u0027t relevant to this document since it doesn\u0027t affect code, and also I\u0027m sure isn\u0027t the only way to do it.\n\nI\u0027ll just remove it.\n\nAlso I\u0027ll check if I missed any other impacts.",
+      "parentUuid": "8b49769c_c9ac4b86",
       "range": {
         "startLine": 440,
         "startChar": 1,
