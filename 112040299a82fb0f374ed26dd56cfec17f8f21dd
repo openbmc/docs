@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f4114c2_d5cc0b26",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-27T18:10:44Z",
+      "side": 1,
+      "message": "Yea.  I\u0027ll mention that.",
+      "parentUuid": "60399402_8c70cb85",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 39
+      },
+      "revId": "112040299a82fb0f374ed26dd56cfec17f8f21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05816778_6885237a",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-26T22:37:42Z",
       "side": 1,
       "message": "I don\u0027t really like the way this is implemented.  It means that any service we(you?) decide should be active-bmc-only has to be added to the phosphor-state-manager recipe and/or bbappend.  Shouldn\u0027t we come up with a mechanism that this can be done in the source recipe?  Seems like this is a relatively simple bbclass and/or extension to the obmc-phosphor-systemd.bbclass?",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 39
+      },
+      "revId": "112040299a82fb0f374ed26dd56cfec17f8f21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68e43242_1f481f63",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-27T18:10:44Z",
+      "side": 1,
+      "message": "I was trying to not affect any recipes directly.  Sounds like that isn\u0027t a concern, so I\u0027ll try what suggest.",
+      "parentUuid": "05816778_6885237a",
       "range": {
         "startLine": 283,
         "startChar": 0,
@@ -66,6 +114,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c127d71_85a1e03d",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-27T18:10:44Z",
+      "side": 1,
+      "message": "Wasn\u0027t thinking the udev rules wouldn\u0027t fire, at least for ones in the system inside other chassis.  You could be right, I\u0027ll look into it.",
+      "parentUuid": "f65d57f8_a4476781",
+      "revId": "112040299a82fb0f374ed26dd56cfec17f8f21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "666b30be_694e498b",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 5
@@ -77,6 +143,30 @@
       "writtenOn": "2024-06-26T22:37:42Z",
       "side": 1,
       "message": "How do you stop entity-manager from probing your FRU EEPROMs behind the FSI? Is this handled by kernel bind calls preventing those i2c busses from showing up until it is active?\n\nDo you even use entity-manager here?  I didn\u0027t think entity-manager could handle the openpower-fru-parser content?",
+      "range": {
+        "startLine": 319,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 37
+      },
+      "revId": "112040299a82fb0f374ed26dd56cfec17f8f21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d1c4369_4254f8df",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-27T18:10:44Z",
+      "side": 1,
+      "message": "We use EM purely for the sensor configs and not for inventory.  The probes are for openpower-vpd-parser fields so anything we don\u0027t read VPD for won\u0027t be in EM (though there are some PIM issues with syncing I mention below).",
+      "parentUuid": "666b30be_694e498b",
       "range": {
         "startLine": 319,
         "startChar": 0,
@@ -112,6 +202,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4e74034_31bd925c",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-27T18:10:44Z",
+      "side": 1,
+      "message": "The one that is Active only is on a unique interface, as is the one that is Passive only.  So the interface would only be created for certain roles.  I\u0027ll see if I can reword better.",
+      "parentUuid": "1df43ac4_217c54c0",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 100
+      },
+      "revId": "112040299a82fb0f374ed26dd56cfec17f8f21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f3ec2cd_d177876d",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 5
@@ -123,6 +237,30 @@
       "writtenOn": "2024-06-26T22:37:42Z",
       "side": 1,
       "message": "So?  Why does that mean you can\u0027t allow initiating a failover from the active?",
+      "range": {
+        "startLine": 375,
+        "startChar": 65,
+        "endLine": 376,
+        "endChar": 63
+      },
+      "revId": "112040299a82fb0f374ed26dd56cfec17f8f21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c18e4352_2c096834",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-27T18:10:44Z",
+      "side": 1,
+      "message": "True.  As it is now, one could use Redfish aggregation to request the failover going through the active BMC.\n\nOtherwise, we have to put in some sort of other plumbing to get that request to the passive BMC which to actually start it.  Would you think there\u0027s a need for that?",
+      "parentUuid": "9f3ec2cd_d177876d",
       "range": {
         "startLine": 375,
         "startChar": 65,
@@ -158,6 +296,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "172671fa_6e32edf0",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-27T18:10:44Z",
+      "side": 1,
+      "message": "These are hosted by the the phosphor-redundant-bmc daemon that is just in the phosphor-state-management repo.  someone previously requested them to still be on the /xyz/openbmc_project/state/bmc0 object path, though I don\u0027t have a preference here.  Will check if I can reword something.",
+      "parentUuid": "0f6a2e11_bf9890b8",
+      "range": {
+        "startLine": 393,
+        "startChar": 0,
+        "endLine": 394,
+        "endChar": 62
+      },
+      "revId": "112040299a82fb0f374ed26dd56cfec17f8f21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa8992de_328982ce",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 5
@@ -169,6 +331,24 @@
       "writtenOn": "2024-06-26T22:37:42Z",
       "side": 1,
       "message": "What is \"SW App\"?",
+      "revId": "112040299a82fb0f374ed26dd56cfec17f8f21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edf6514e_83f18731",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-27T18:10:44Z",
+      "side": 1,
+      "message": "was trying to shorten xyz.openbmc_project.Software.BMC.Updater.  Will fix.",
+      "parentUuid": "fa8992de_328982ce",
       "revId": "112040299a82fb0f374ed26dd56cfec17f8f21dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -198,6 +378,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a15b107_b9886522",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-27T18:10:44Z",
+      "side": 1,
+      "message": "will fix",
+      "parentUuid": "8fea1189_17634bb5",
+      "range": {
+        "startLine": 552,
+        "startChar": 2,
+        "endLine": 552,
+        "endChar": 11
+      },
+      "revId": "112040299a82fb0f374ed26dd56cfec17f8f21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1ee4b14d_cf81fa05",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 5
@@ -209,6 +413,30 @@
       "writtenOn": "2024-06-26T22:37:42Z",
       "side": 1,
       "message": "What is a \"log ID\"?\n\nHow do you handle logs deleted from one BMC being deleted from the other?",
+      "range": {
+        "startLine": 559,
+        "startChar": 0,
+        "endLine": 563,
+        "endChar": 69
+      },
+      "revId": "112040299a82fb0f374ed26dd56cfec17f8f21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b8077c1_475f13ef",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-06-27T18:10:44Z",
+      "side": 1,
+      "message": "It\u0027s the \u0027Id\u0027 property on xyz.openbmc_project.Logging.Entry which also is in the object path.\n\nWe\u0027ll have to mirror deletes as well. I\u0027ll add that.",
+      "parentUuid": "1ee4b14d_cf81fa05",
       "range": {
         "startLine": 559,
         "startChar": 0,
