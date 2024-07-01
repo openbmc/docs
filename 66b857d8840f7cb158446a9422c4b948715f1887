@@ -311,6 +311,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6990b61e_75ce48da",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-07-01T12:47:28Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "566ff2f9_bc1a66ea",
+      "range": {
+        "startLine": 382,
+        "startChar": 59,
+        "endLine": 382,
+        "endChar": 70
+      },
+      "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67a00547_6ca95b3a",
@@ -395,6 +419,30 @@
       "writtenOn": "2024-06-28T15:09:05Z",
       "side": 1,
       "message": "Why is that a good or bad thing?  We could similarly have a combined tree and not expose information about the mux right?  On the surface, this seems like complexity in the implementation side that is unnecessary (and in some cases actually non-preferred).",
+      "range": {
+        "startLine": 444,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 28
+      },
+      "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eed4be1_5e2b6cc7",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-07-01T12:47:28Z",
+      "side": 1,
+      "message": "In the combined tree, the mux topology is exposed since through the console\u0027s\ndbus name the object paths of all consoles connected to that mux are visible.\n\n```\nbusctl tree --user xyz.openbmc_project.Console.host1\n└─/xyz\n  └─/xyz/openbmc_project\n    └─/xyz/openbmc_project/console\n      ├─/xyz/openbmc_project/console/host1\n      └─/xyz/openbmc_project/console/host2\n```\n\nSo through this output we already know that there is 2 consoles connected to a mux.\n\nWhen there is an important reason,\na transition from split-tree to unified-tree can be done with low probability of regression.\n\nThe other direction would probably break some stuff (example below)\n```\nbusctl call xyz.openbmc_project.Console.host1 \\\n/xyz/openbmc_project/console/host2 \\\nxyz.openbmc_project.Console.Access Connect\n```\n\nWould not agree that there is much complexity on the implementation side.\n\nIt may have a higher resource consumption due to the additional dbus setup per-console. That is worrisome, but i would prefer\n\nconceptual integrity \u003e performance \n\nin those cases.\nFor me, being able to connect to one console via the dbus name of another console is definitely breaking conceptual integrity and creating n ways of doing something.",
+      "parentUuid": "4f03c908_fa541e52",
       "range": {
         "startLine": 444,
         "startChar": 0,
