@@ -475,6 +475,30 @@
       },
       "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5831b34_c46e59b2",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-07-01T20:59:36Z",
+      "side": 1,
+      "message": "It is really easy to depend upon things like a specific bus name existing.\n\nOn the other hand it can be really hard to find all those places where that happens. There is no search tool i know of that can find all the code that would break if we no longer have the console id as part of the bus name.\n\nEven github search cannot find all those places.\n\nSo i\u0027m for keeping the existing behavior and having the console-id be part of the bus name.\n\nAnd i\u0027m not looking forward to expanding the scope of this change even further and making who-knows-which changes in phosphor-host-ipmid,\nplus filling that maintainer in on all the details and *hoping* they will see it the same way.\n\nWhich alternative dbus name would you suggest?\n\nWe have to have n different dbus names anyways if there are n physical uart on a system, since the most recent design has 1 process per physical UART.\n\nSome alternatives:\n\n- [1] have only 1 obmc-console process in the whole BMC which is capable to handle    multiple physical uarts\n  and the muxes that may be behind those.\n  Something plain like ```xyz.openbmc_project.Console```\n\n- [2] have the physical UART provide the dbus name, e.g. ```xyz.openbmc_project.Console.TTYS0``` and then the individual consoles\n  are available via the object paths.\n\nSo option [1] can be ruled out immediately due to implementation difficulty.\n\nOption [2] may be ruled out since there may be still code depending on the console id being part of the bus name. \n\nAre there other options?",
+      "parentUuid": "b1b83068_51ca4bd5",
+      "range": {
+        "startLine": 444,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 28
+      },
+      "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
