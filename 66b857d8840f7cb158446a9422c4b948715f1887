@@ -451,6 +451,30 @@
       },
       "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1b83068_51ca4bd5",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-07-01T19:34:30Z",
+      "side": 1,
+      "message": "\u003e For me, being able to connect to one console via the dbus name of another console is definitely breaking conceptual integrity and creating n ways of doing something.\n\nWhat are we accomplishing by even using \"Console.host1\" as the busname?  There is no reason to do this.  Having bus-names and object paths matching up is really a foreign concept and not necessary.\n\nI think you mentioned backwards compatibility, but backwards compatibility _with what_?  The only thing I see is _maybe_ this one:\n\n```\nphosphor-host-ipmid/transporthandler.cpp\n1678:                    ctx, \"xyz.openbmc_project.Console.default\",\n1680:                    \"xyz.openbmc_project.Console.UART\", \"Baud\", baudRate))\n```",
+      "parentUuid": "1eed4be1_5e2b6cc7",
+      "range": {
+        "startLine": 444,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 28
+      },
+      "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
