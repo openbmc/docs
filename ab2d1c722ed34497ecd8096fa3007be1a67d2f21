@@ -16,6 +16,24 @@
       "message": "Is this design still relevant?\n\nIt would certainly save some resources to expose all the LEDs in one process.\n\nThinking about it, this design could perhaps even be done in a backwards compatible way by still acquiring all the\n\nxyz.openbmc_project.LED.Controller.\u003cLED_NAME\u003e\n\nbus names in addition to\n\nxyz.openbmc_project.LED.Controller\n\nThen the led-specific dbus names can be disabled via meson option.",
       "revId": "ab2d1c722ed34497ecd8096fa3007be1a67d2f21",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40f3af13_7334d097",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-07-01T19:38:20Z",
+      "side": 1,
+      "message": "\u003e Is this design still relevant?\n\nI think so.  The work wasn\u0027t quite done and I don\u0027t think Andrew Jeffery gave final approval.  If you want to take over the commit, that seems fine.\n\n\u003e Thinking about it, this design could perhaps even be done in a backwards compatible way by still acquiring all the\n\nWe can do that if needed.  We shouldn\u0027t make 1-busname:1-object_path pairing though.  It should be pretty straightforward to migrate the few cases where code is going directly to a named-busname.  I see only 2 real cases (phosphor-nvme and intel-ipmi-oem).\n\n```\n$ rg \"LED.Controller.\" -l              \nphosphor-led-sysfs/README.md\nphosphor-led-sysfs/controller.cpp\nphosphor-nvme/README.md\nphosphor-nvme/nvme_config.json\nintel-ipmi-oem/include/manufacturingcommands.hpp\n```",
+      "parentUuid": "d559fc45_627a5334",
+      "revId": "ab2d1c722ed34497ecd8096fa3007be1a67d2f21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
