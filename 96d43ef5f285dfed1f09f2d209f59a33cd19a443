@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c67f7367_37e60f00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Seems like we have 2 big one\u0027s here. I could find no uses within the code base of either of these features. Redfish doesn\u0027t even have an API to control on a per-network interface within ManagerNetworkProtocol. So for for the sake of simplicity, I was making a try at just removing them. It does not sound like that\u0027s going to fly.\n\nSo I\u0027ll put the port number change requirement back in. \nDo you really think we need the per-network interface control? I see no use of that currently and there doesn\u0027t seem to be a Redfish way to control it?",
+      "parentUuid": "eb3a98a1_d457e3e5",
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b522b74f_7c05256f",
         "filename": "designs/service-config-manager.md",
         "patchSetId": 1
@@ -66,6 +84,30 @@
       "writtenOn": "2024-05-22T21:24:47Z",
       "side": 1,
       "message": "?????  Huh?\n\nMy understanding of this problem (from a 10000ft view, because I didn\u0027t write or participate in it) is that systemd doesn\u0027t have a mechanism for adjusting the port used for a given service on dbus, so when you implement the Redfish ManagerNetworkProtocol schema, something needs to read/modify/write the socket file, then call daemon-reload, and restart the service to actually effect the change.  That was logic that shouldn\u0027t live in bmcweb, ipmi, or pldm, so service-config-manager was created.  I thought that was the niche that service-config-manager lived in, but this makes it sound like it\u0027s not needed anymore?\n\nDoes systemd provide APIs to do this now?",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 14,
+        "endChar": 47
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "885ca93e_0493b4c1",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "I don\u0027t see that feature used anywhere (adjusting the port number) so I assumed it was something someone thought they may need but didn\u0027t. I was hoping as a part of the overall simplification of this repo, to get rid of this function. As noted above, I\u0027ll leave it in.",
+      "parentUuid": "b522b74f_7c05256f",
       "range": {
         "startLine": 13,
         "startChar": 10,
@@ -122,6 +164,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "494db6fc_0599c1d7",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Yeah, valid point that it\u0027s somewhat tangential. But it\u0027s definitely a limitation I want to address with these changes so I\u0027d like to leave in.",
+      "parentUuid": "4789aefb_2b44931a",
+      "range": {
+        "startLine": 31,
+        "startChar": 28,
+        "endLine": 32,
+        "endChar": 23
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9046c654_40562744",
@@ -135,6 +201,30 @@
       "writtenOn": "2024-05-22T21:24:47Z",
       "side": 1,
       "message": "Redfish provides APIs for interacting with that stuff (ManagerNetworkProtocol), can you note why those don\u0027t work for this case?  (Ideally making the case to DMTF with patches to the schema that do work).",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 51
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4284ac0f_0de90536",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "The complexity is that there\u0027s no persistent data within service-config-manager that clearly states IPMI enabled/disabled. It\u0027s just /dev/null links out in /etc and such that systemd puts in place when systemctl disable is called. I\u0027d like a more specific persisted d-bus property that we can replicate back and forth. I\u0027ll update text to clarify.",
+      "parentUuid": "9046c654_40562744",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -168,6 +258,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d109865_3e25c7cc",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaa1e1ba_5b1aab08",
+      "range": {
+        "startLine": 45,
+        "startChar": 77,
+        "endLine": 47,
+        "endChar": 39
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd57b713_526fd396",
@@ -181,6 +295,30 @@
       "writtenOn": "2024-05-22T21:24:47Z",
       "side": 1,
       "message": "This is not a requirement.  \"true abstraction\" doesn\u0027t mean anything.  I suspect this can just be removed, and the list below turned into a normal bulleted requirements list.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 70
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa62e55a_9af620ba",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd57b713_526fd396",
       "range": {
         "startLine": 51,
         "startChar": 0,
@@ -214,6 +352,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dcb2438_7764440c",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Noted the removal of per-network interface capability (as noted above there are no uses and no Redfish API to utilize it). Also specifically noted removal of Running property and made a separate requirement below about ability to configure port number for a service.",
+      "parentUuid": "dfd61569_948865ac",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 12
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "faa30fb0_f7d0de44",
@@ -227,6 +389,30 @@
       "writtenOn": "2024-05-22T21:24:47Z",
       "side": 1,
       "message": "How does one implement per-network-interface level service control then?  I suspect we need both APIs in a complete solution.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 34
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a66df39_bedd92f0",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "faa30fb0_f7d0de44",
       "range": {
         "startLine": 54,
         "startChar": 0,
@@ -262,6 +448,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a88fe30_810f1f30",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "When I wrote this I didn\u0027t see anything on a quick grok, but I do see one use of masked out in openbmc/intel-ipmi-oem. A masked service will not start even to satisfy a dependency (whereas a disabled service will). I\u0027ll have to follow up on whether that is still a requirement by the Intel team.",
+      "parentUuid": "80d347bc_94e1a636",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 76
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e97bba5_e7d95e8f",
         "filename": "designs/service-config-manager.md",
         "patchSetId": 1
@@ -273,6 +483,30 @@
       "writtenOn": "2024-05-22T21:24:47Z",
       "side": 1,
       "message": "You\u0027ve created a requirement about a non-requirement here.  Can we avoid the negative.\n\n\"Services that are not currently running shall be represented on the aformentioned dbus interface\"",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 58,
+        "endChar": 31
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdd9f5c1_9f1d1649",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e97bba5_e7d95e8f",
       "range": {
         "startLine": 58,
         "startChar": 3,
@@ -300,6 +534,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "765c4d8d_9c40cf93",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Agree, this current behavior has resulted in some weird delays and such in the GUI I believe.",
+      "parentUuid": "a0d4aeab_c12f45a6",
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32c17b41_522ad27d",
@@ -313,6 +565,30 @@
       "writtenOn": "2024-05-22T21:24:47Z",
       "side": 1,
       "message": "this will be through systemd service files, similar to how the socket files are persisted?",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 76
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65aeba09_b0179761",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "nlohmann json files for the policy settings, which then will be utilized to know the systemd d-bus calls to make (which will create the files in /etc and such).",
+      "parentUuid": "32c17b41_522ad27d",
       "range": {
         "startLine": 68,
         "startChar": 0,
@@ -346,6 +622,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8d79dc5_bf09d18a",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f03b9447_db9c0a44",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 26
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7aed4919_80b6eb22",
@@ -359,6 +659,24 @@
       "writtenOn": "2024-05-22T21:24:47Z",
       "side": 1,
       "message": "IPMI requires being able to set these things on a per-nic basis, correct?  (I haven\u0027t looked in a long time).",
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eeeec1d_93236d2d",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "I couldn\u0027t find anything in the code utilizing this but I\u0027ll add on IPMI devs.",
+      "parentUuid": "7aed4919_80b6eb22",
       "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -428,6 +746,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78179da6_376f61e5",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "I\u0027d like to remove the ability to target per interfaces since I can\u0027t find any need for it and it adds unneeded complexity to the code.",
+      "parentUuid": "e61843ca_2b15c295",
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a37de710_389e8617",
         "filename": "designs/service-config-manager.md",
         "patchSetId": 1
@@ -439,6 +775,24 @@
       "writtenOn": "2024-05-22T21:24:47Z",
       "side": 1,
       "message": "ipmi?",
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4cb8ca3_d4611571",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a37de710_389e8617",
       "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -460,6 +814,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1942c011_4de43c8c",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56f5f4ac_d8668c11",
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31427705_5aaddff7",
@@ -473,6 +845,30 @@
       "writtenOn": "2024-05-22T21:24:47Z",
       "side": 1,
       "message": "Can you enumerate this a little?  I suspect this is just:\n\nTest redfish can enable and disable an API, and the service is available on the port specified once enabled/disabled.\n\nTest redfish can change the port of a given service, and the service port changes.\n\nTest that IPMI can change the enabled state of a given service.",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 73
+      },
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "639e7c93_75905ad2",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-07-02T20:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31427705_5aaddff7",
       "range": {
         "startLine": 146,
         "startChar": 0,
