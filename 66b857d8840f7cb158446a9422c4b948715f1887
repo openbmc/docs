@@ -540,6 +540,30 @@
       },
       "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9506988d_c560ad1c",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-07-02T18:20:35Z",
+      "side": 1,
+      "message": "It can be `xyz.openbmc_project.Console.\u003cPID\u003e` for all it matters.  These names are not important to the dbus architecture.  They just need to be unique.\n\nDon\u0027t we have per-TTY config files?  Or are we now going to a single big config file?  How does each process know which parts of the file it is responsible for?  Seems like we have to have some argument here that can be used for uniqueness.\n\n\u003e And i\u0027m not looking forward to expanding the scope of this change even further and making who-knows-which changes in phosphor-host-ipmid,\nplus filling that maintainer in on all the details and hoping they will see it the same way.\n\nIsn\u0027t this a 1 one line change?  If they don\u0027t accept the change, their code is broken, right?  I don\u0027t see the problem.  Let it be broken if they don\u0027t want to accept your string change, right?\n\nOr, like I\u0027ve mentioned before, maintain the \"old names\" as a backwards compatibility.  You can have N busnames in a single process on the same dbus connection.  We\u0027ve done exactly that many times before.",
+      "parentUuid": "fb24c98a_b4b62cd1",
+      "range": {
+        "startLine": 444,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 28
+      },
+      "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
