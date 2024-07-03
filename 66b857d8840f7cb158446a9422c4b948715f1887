@@ -564,6 +564,30 @@
       },
       "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1262f6b2_882c0c96",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-07-03T01:41:14Z",
+      "side": 1,
+      "message": "\u003e It can be xyz.openbmc_project.Console.\u003cPID\u003e for all it matters. These names are not important to the dbus architecture. They just need to be unique.\n\nYes. However, this is not a new requirement. The _existing behaviour_ of obmc-console is to take a bus name with the console ID appended (as the console ID must be unique). The bus name scheme is not a change that Alexander is proposing. The concern that\u0027s being addressed is to find a sensible solution that _doesn\u0027t_ change that existing behaviour in the face of a UART mux.\n\n\u003e Don\u0027t we have per-TTY config files?\n\nYes\n\n\u003e Or are we now going to a single big config file?\n\nNo, there is still a per-TTY config file. However, if there\u0027s a mux behind that TTY, then the behaviour of the mux is specified in the config file for the TTY.\n\n\u003e You can have N busnames in a single process on the same dbus connection.\n\nThis is what I was proposing (the unified object tree). I prefer it, as it reduces the resources required by obmc-console-server (only 1 bus connection rather than N). However, as it\u0027s largely an implementation detail I left that decision to Alexander for now. I have no concerns with specifying the unified-tree approach here if that\u0027s your preference as well.",
+      "parentUuid": "9506988d_c560ad1c",
+      "range": {
+        "startLine": 444,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 28
+      },
+      "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
