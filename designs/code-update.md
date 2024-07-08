@@ -75,14 +75,9 @@ loop For every RedfishTargetURI
   note over BMCW: Get serviceName corresponding to the object path <br>from mapper.
   BMCW ->> CU: StartUpdate(Image, ApplyTime)
 
-  note over CU: Verify Image
-  break Image Verification FAILED
-      CU -->> BMCW: {NULL, Update.Error}
-      BMCW -->> CL: Return Error
-  end
   note over CU: Swid = <DeviceX>_<RandomId>
   note over CU: ObjectPath = /xyz/openbmc_project/Software/<SwId>
-  CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Version<br> at ObjectPath
+  CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at ObjectPath with Status = NotReady
   CU -->> BMCW: {ObjectPath, Success}
   CU ->> CU: << Delegate Update for asynchronous processing >>
 
@@ -97,9 +92,19 @@ loop For every RedfishTargetURI
           BMCW -->>CL: TaskStatus
       end
   and << Asynchronous Update in Progress >>
-      CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at ObjectPath with Status = Ready
+      note over CU: Verify Image
+      break Image Verification FAILED
+        CU ->> CU: Activation.Status = Invalid
+        CU --) BMCW: Notify Activation.Status change
+      end
+      CU ->> CU: Activation.Status = Ready
+      CU --) BMCW: Notify Activation.Status change
+
+      CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Version<br> at ObjectPath
       CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.ActivationProgress<br> at ObjectPath
       CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.ActivationBlocksTransition<br> at ObjectPath
+      CU ->> CU: Activation.Status = Activating
+      CU --) BMCW: Notify Activation.Status change
       note over CU: Start Update
       loop
           CU --) BMCW: Notify ActivationProgress.Progress change
