@@ -62,17 +62,16 @@ participant CU as <deviceX>CodeUpdater<br> ServiceName: xyz.openbmc_project.Soft
 
 % Bootstrap Action for CodeUpdater
 note over CU: Get device access info from<br> /xyz/openbmc_project/inventory/system/... path
-note over CU: VersionId = Version Read from <deviceX> + Salt
-CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Update<br> at /xyz/openbmc_project/Software/<deviceX>/<VersionId>
-CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Version<br> at /xyz/openbmc_project/Software/<deviceX>/<VersionId>
-CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at /xyz/openbmc_project/Software/<deviceX>/<VersionId> <br> with Status = Active
+note over CU: Swid = <DeviceX>_<RandomId>
+CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Update<br> at /xyz/openbmc_project/Software/<SwId>
+CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Version<br> at /xyz/openbmc_project/Software/<SwId>
+CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at /xyz/openbmc_project/Software/<SwId> <br> with Status = Active
 CU ->> CU: Create functional association <br> from Version to Inventory Item
 
 CL ->> BMCW: HTTP POST: /redfish/v1/UpdateService/update <br> (Image, settings, RedfishTargetURIArray)
 
 loop For every RedfishTargetURI
-  note over BMCW: Map RedfishTargetURI to<br> System Inventory Item
-  note over BMCW: Get object path (i.e. /xyz/openbmc_project/Software/<deviceX>/<VersionId>)<br>for associated Version interface to System Inventory Item
+  note over BMCW: Map RedfishTargetURI /redfish/v1/UpdateService/FirmwareInventory/<SwId> to<br> Object path /xyz/openbmc_project/software/<SwId>
   note over BMCW: Get serviceName corresponding to the object path <br>from mapper.
   BMCW ->> CU: StartUpdate(Image, ApplyTime)
 
@@ -81,8 +80,8 @@ loop For every RedfishTargetURI
       CU -->> BMCW: {NULL, Update.Error}
       BMCW -->> CL: Return Error
   end
-  note over CU: VersionId = Version from Image + Salt
-  note over CU: ObjectPath = /xyz/openbmc_project/Software/<deviceX>/<VersionId>
+  note over CU: Swid = <DeviceX>_<RandomId>
+  note over CU: ObjectPath = /xyz/openbmc_project/Software/<SwId>
   CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Version<br> at ObjectPath
   CU -->> BMCW: {ObjectPath, Success}
   CU ->> CU: << Delegate Update for asynchronous processing >>
@@ -209,7 +208,7 @@ components) or not.
 ### Update multiple devices of same type
 
 - For same type devices, extend the Dbus path to specify device instance, for
-  example, /xyz/openbmc_project/Software/\<deviceX>/\<InstanceNum>/\<VersionId>.
+  example, /xyz/openbmc_project/Software/\<deviceX>\_\<InstanceNum>\_\<SwId>.
   All the corresponding interfaces can reside on this path and same path will be
   returned from xyz.openbmc_project.Software.Update.StartUpdate.
 
