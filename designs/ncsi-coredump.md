@@ -1,6 +1,6 @@
 # NC-SI core dump
 
-Author: DelphineCCChiu (<Delphine_CC_Chiu@wiwynn.com>)
+Author: Jerry C Chen (<jerry.c.chen.wiwynn@gmail.com>)
 
 Created: 03/12/2024
 
