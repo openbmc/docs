@@ -588,6 +588,30 @@
       },
       "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee865876_1cf85c63",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-07-11T13:54:59Z",
+      "side": 1,
+      "message": "Is there any update here or anything that should be changed about the design?\nHow can we move forward?\n\nI believe evolving the current dbus representation in a backwards-compatible way is a reasonable choice.\n\nIf the bus names truly do not matter, changing them later on should not be an issue. If they do matter then we are not breaking things with this design.\n\n\u003e Isn\u0027t this a 1 one line change? If they don\u0027t accept the change, their code is broken, right? I don\u0027t see the problem. Let it be broken if they don\u0027t want to accept your string change, right?\n\nTheir code is broken because it expects the default console id. The user could have configured something else.\n\nSo to fix it and retrieve the baudrate we would have to go via the mapper if we do not hardcode any bus name. Then we would also have to decide for which console we want to request that baudrate. So it would be more than a 1 line patch and probably require some knowledge of ```phosphor-host-ipmid```. Like what the value is even used for.\n\nAlternatively we could add a meson option to ```phosphor-host-ipmid``` to configure the console id for that call. You see where i\u0027m going with this.",
+      "parentUuid": "1262f6b2_882c0c96",
+      "range": {
+        "startLine": 444,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 28
+      },
+      "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
