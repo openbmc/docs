@@ -88,6 +88,23 @@
       "parentUuid": "33bd4d70_482b15af",
       "revId": "ab2d1c722ed34497ecd8096fa3007be1a67d2f21",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddc39778_187bdf92",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-07-12T15:02:24Z",
+      "side": 1,
+      "message": "i think this may already be legacy.\nIt looks like the color can now be directly encoded in devicetree, e.g.\n\narch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts +91\n\n```\n|       |       led-0 {\n|       |       |       function \u003d LED_FUNCTION_STATUS;\n|       |       |       color \u003d \u003cLED_COLOR_ID_GREEN\u003e;\n|       |       |       label \u003d \"panel1\";\n|       |       |       gpios \u003d \u003c\u0026gpio3 21 GPIO_ACTIVE_LOW\u003e;\n|       |       |       default-state \u003d \"off\";\n|       |       };\n```\n\narch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi +32\n\narch/arm/boot/dts/aspeed/aspeed-bmc-facebook-fuji.dts +352",
+      "revId": "ab2d1c722ed34497ecd8096fa3007be1a67d2f21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
