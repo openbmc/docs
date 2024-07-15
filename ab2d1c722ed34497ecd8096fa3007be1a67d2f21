@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6135725_0c36c6e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-07-15T10:33:10Z",
+      "side": 1,
+      "message": "Changed my mind here.\n\nEven if the existing changes have nothing to do with multi-host specifically, i\u0027m reluctant to touch filenames and splitting up designs and such. Because this change already went through revisions and had received CR+1 at one point. We do not need to rip everything apart to put it together slightly different.\n\nI did not read the full discussion but i see different benefits\n\n- simplify phosphor-led-sysfs by making it one process\n\n- thereby provide a way to possibly expose multiple LEDs as one in the future\n  (not sure if that\u0027s really needed or if phosphor-led-manager can handle the LED Policy on its own)\n\nThe existing patch series only handles the one-process approach, but the design is also not explicit in how the grouping should work here, only that this design enables it\u0027s implementation should it be necessary.\n\nBut unrelated to multi-host and LED policy, the one-process approach is beneficial.\n\nAt this point i don\u0027t see any unresolved comments for this design besides\nthe hardcoded bus name in ```phosphor-nvme``` and ```intel-ipmi-oem```\n\nI assume it\u0027s expected that i create patches in those repos to move this design forward. \n\nIf there is anything else still needing to be changed, comment so i can try to fix it 👍",
+      "parentUuid": "eef454a0_3fadcbb6",
+      "revId": "ab2d1c722ed34497ecd8096fa3007be1a67d2f21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ddc39778_187bdf92",
         "filename": "designs/multihost-physical-led.md",
         "patchSetId": 15
@@ -103,6 +121,24 @@
       "writtenOn": "2024-07-12T15:02:24Z",
       "side": 1,
       "message": "i think this may already be legacy.\nIt looks like the color can now be directly encoded in devicetree, e.g.\n\narch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts +91\n\n```\n|       |       led-0 {\n|       |       |       function \u003d LED_FUNCTION_STATUS;\n|       |       |       color \u003d \u003cLED_COLOR_ID_GREEN\u003e;\n|       |       |       label \u003d \"panel1\";\n|       |       |       gpios \u003d \u003c\u0026gpio3 21 GPIO_ACTIVE_LOW\u003e;\n|       |       |       default-state \u003d \"off\";\n|       |       };\n```\n\narch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi +32\n\narch/arm/boot/dts/aspeed/aspeed-bmc-facebook-fuji.dts +352",
+      "revId": "ab2d1c722ed34497ecd8096fa3007be1a67d2f21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc501dbc_0a6400b8",
+        "filename": "designs/multihost-physical-led.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-07-15T10:33:10Z",
+      "side": 1,
+      "message": "But we can keep this design ```devicename:color:function``` as is and maybe later switch to using the properties from devicetree, if they are exposed suitably.",
+      "parentUuid": "ddc39778_187bdf92",
       "revId": "ab2d1c722ed34497ecd8096fa3007be1a67d2f21",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
