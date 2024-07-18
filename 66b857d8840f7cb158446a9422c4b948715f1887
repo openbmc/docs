@@ -612,6 +612,30 @@
       },
       "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "627684f4_0a1b7ca1",
+        "filename": "designs/uart-mux-support.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-07-18T21:43:40Z",
+      "side": 1,
+      "message": "I\u0027m fine if you want to keep the backwards compatible bus-names for the time being until we can figure out how to transition off of them.\n\nMy preference is to _not_ do the split dbus design though.  It\u0027s more work, sets people up for additional bad behaviors (of not using mapper), and is foreign to the way the rest of the processes work.\n\nIf you have to keep the split design in order to maintain backwards compatibility, I\u0027d like to see a remark here that we\u0027re doing it for a time for the backwards compatibility reasons and our intention is to fix up the users and move forward.",
+      "parentUuid": "ee865876_1cf85c63",
+      "range": {
+        "startLine": 444,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 28
+      },
+      "revId": "66b857d8840f7cb158446a9422c4b948715f1887",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
