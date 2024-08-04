@@ -452,6 +452,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2fd32c2_2de2140f",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-04T23:49:41Z",
+      "side": 1,
+      "message": "@Ed I don\u0027t know what unix documentation you were looking at, but  `:` is the primary separaor of the passwd family of files and three is no provision to escape it.  It\u0027s implicitly documented in `passwd(5)` `shadow(5)` and family in the Linux man pages.   Beyond this, it\u0027s recommended to not contain capital letters likely because of historical login logic to set TTY mode for case translation for uppercase only terminals. (and yes I have used one of these 6 bit terminals).\n\nLooking at the PAM man pages, I found the `PAM_RHOST` field, and this seems ideal to represent this part of the identity.\n\nlooking further, I realized that any PAM module is allowed to change the PAM context including the `PAM_USER` and applications are explicitly required to query each time they are called.   this means that the decision to strip this host from the user can tin a the PAM stack instead of bmcweb and allows the stack to determine if or when to strip such data.  This could also be extended to substitute the forbidden `:` character.\n\n(I actually was looking if pam_unix allowed an alternative passwd file but this is not the case :( )",
+      "parentUuid": "9844bfa5_f214d911",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 60
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d010504f_6403b0b1",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-04T23:49:41Z",
+      "side": 1,
+      "message": "the standard redfish administrator role can modify these, right?   do you plan to only give administrator to these service users and restrict the role with an alternative recommended administrator?",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99469292_5e5b5b88",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -547,6 +588,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "559c51b5_9e7b082c",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-04T23:49:41Z",
+      "side": 1,
+      "message": "why not?   it\u0027s a generic C string, and the memory is statically shared,(do not free do not overwrite notes on all API)",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de2a20d5_facc2dcf",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -576,6 +634,23 @@
       "side": 1,
       "message": "Fair, will add 👍",
       "parentUuid": "de2a20d5_facc2dcf",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cd6d28c_e25d8b63",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-04T23:49:41Z",
+      "side": 1,
+      "message": "another option is to generate an oauth token pinned to the mtls certificate but this would require client changes in addition to additional infrastructure, but each renewal could verify the permissions in the DB.  it would not require the account service in the machine instead roles or permissions are communicated in the token.  I also haven\u0027t explored the redfish forum updates and guidance since the add of oauth and sessions are not available imo.\n\nI don\u0027t know if this meets your local validation rules the machine could rekey its trust with the ca.\n\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/58313",
       "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
