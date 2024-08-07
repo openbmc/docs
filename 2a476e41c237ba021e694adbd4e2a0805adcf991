@@ -22,6 +22,527 @@
       },
       "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "984f7e10_e819d814",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "I made it partway through the review, and came to the conclusion that this design needs more effort put in.\n\nAlmost every reference to Redfish properties or messages don\u0027t exist in the currently published schemas (despite a few actually calling out a version).  If you\u0027re publishing \"new\" potential things that could be added to the DMTF standard, please state that explicitly, but what it looks like is that someone wrote up an idealized OTP flow without actually checking what ended up in the Redfish specification.\n\nThe examples of Redfish requests to do the actions are incorrect, and the internal details on how this actually works inside pam reference methods that don\u0027t seem to match the PAM documentation or existing bmcweb code.  There\u0027s a lack of details on how the internal OpenBMC daemons communicate aside from some references to us adding new interfaces to dbus (which ideally would be in a phosphor-dbus-interfaces review).\n\nI completely understand if some of these details aren\u0027t known at this time, and if you want to start pushing patches under an option flag (that we\u0027ll likely need anyway), that seems like a much better place to start and iterate on than a design doc.  Said another way, I don\u0027t really see a \"change\" in design here aside from adding the google pam module.  We\u0027re using the existing user manager service to handle a new type of user management, using the existing dbus paths, and adding 2-3 new properties in accordance with the DMTF specification.  I suspect we can get that done without having to have this much design, and just get agreement that:\n\n1. We\u0027ll pull in the google pam module.\n2. We\u0027ll add interfaces to support OTP (in a PDI review).\n3. We\u0027ll add bmcweb changes that match the Redfish spec and are managed in a similar way to how the existing user parameters are managed.\n4. The option will be selectable at compile time.\n5. Secrets will be stored on disk.\n\n\nIf we agree on those things, I suspect this document can be much... much shorter, and we can focus on actually defining the implementation correctly in code.",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e4ebf1d_f682d4a8",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "Please specify this as actual requirements.  \"Support GoogleAuthenticator Time-based One-time Password\" could mean we implement an authenticator server, or a token generator, neither of which i suspect you intended.",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df78a3fd_6f5fe8d5",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "How?  What interfaces will they use?  At compile time or runtime?  I suspect you need to call out that this needs to be enabled/disabled at both runtime and compile time.",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bcf7537_368eeb5b",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "?  This seems like an odd requirement.  Can we back this up with something that specifies that this is acceptable.  Ideally with something like: https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html\n\nOr alternatively, I suspect that we need to invert this requirement, and make it \"a user may enable two factor auth for their account.\"",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8921dd1b_f6519fbd",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "Remove.  We will follow the existing DMTF privilege registry like we do for all other things.  If you want to change that, and have openbmc maintain its own registry, that\u0027s a much larger scope than this doc.  Either the existing dmtf registry meets this requirement, and this is noop, or it doesn\u0027t and this requirement belongs to DMTF.",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 19
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cd22801_af008a77",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "Remove.  This isn\u0027t a requirement of the implementation.  The BMC already has mechanisms for keeping time, that I don\u0027t think you plan on changing.",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "819eb040_07f1b7a8",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "This seems like it should go in background.  It mentions nothing about the \"design\" and only walks through a normal workflow.",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 29
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62d7ef9f_fe0bf053",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "This needs more details.  How will requirements like some users have OTP requirements, and other don\u0027t be implemented?",
+      "range": {
+        "startLine": 95,
+        "startChar": 67,
+        "endLine": 96,
+        "endChar": 79
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dbdcced_0e664789",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "What is this?",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03e11ec4_69edbdd5",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "what does \"CreateSecretKey\" do?",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2e9730f_d45bece5",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "typo.",
+      "range": {
+        "startLine": 102,
+        "startChar": 20,
+        "endLine": 102,
+        "endChar": 27
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "912d95ae_d0145e6d",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "what interface/path are all these things implemented on?  Providing an example might be better here.",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5afc8ef5_83b7e5e3",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "Not nearly enough detail here.  What resources are we adding support for?  Which properties?",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 38
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee60f4de_5d9cbcd5",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "These 3 all read like a task list.  HOW does \"bmcweb implement\" these things?  what does it implement of the redfish spec?",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 16
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bf08bba_12fe92b0",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "GenerateSecretKeyRequired doesn\u0027t exist as a valid Redfish base regisry response.  Is it possible you need to discuss your workflow with DMTF?  Or is there something I\u0027m missing.\n\n\nThis line item needs way more details on what\u0027s being implemented, and how this is going to work.  As written, I\u0027m not even sure what we intend to implement in the user-facing Redfish API, much less how the internals work.",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 67
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cedca87d_e61e0068",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "This action doesn\u0027t exist anywhere in DMTF documentation, and based on the fact that I don\u0027t see a namespace attached, I\u0027m assuming you just made it up?  What am I missing?\n\nhttps://github.com/search?q\u003drepo%3ADMTF%2FRedfish-Publications%20GenerateSecretKey\u0026type\u003dcode",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29a99d18_41770f40",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "Not a design element.  Possibly a requirement.",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 51
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e820377_fd6a3d64",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "\"Users expected\" isn\u0027t a design.  How does bmcweb accept these OTP tokens?  What happens if they\u0027re not provided?",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 28
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7c89950_a796dbfd",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "Please update \"MFA token parameter\" to actually reference the Redfish documentation.  Redfish \"parameters\" are passed via query parameters, which this certainly wouldn\u0027t be.  If you meant \"Property\", you should specify the exact name of the property, including the namespace.",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 26
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7740748_63566d57",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "pam_authenticate doesn\u0027t accept a password or a token.  Either update this with the correct API you plan to use, or remove from this design (as it\u0027s probably detail that\u0027s better handled in code review).",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 66
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95c638d7_8500dc7c",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "This kind of detail about what properties we\u0027re implementing needs handled above.  Also keep in mind that this example wouldn\u0027t work as written, as there\u0027s no SecretKey included.",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 3
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdba4d17_e5a474df",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "?\n\nhttps://github.com/DMTF/Redfish-Publications/tree/main/registries\n\nare the existing registries.  GenerateSecretKeyRequired doesn\u0027t show up.",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 45
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b26a8f59_94ca12d4",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "HTTP servers don\u0027t \"Throw\".  Please update this with correct terminology and properties that reference the redfish standard.",
+      "range": {
+        "startLine": 192,
+        "startChar": 63,
+        "endLine": 194,
+        "endChar": 71
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92d88b07_cef13947",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "Another place where this key doesn\u0027t exist:\n\nhttps://github.com/DMTF/Redfish-Publications/blob/main/registries/Base.1.8.1.json",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 58
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fa0c7bb_76bcf6e6",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:09:54Z",
+      "side": 1,
+      "message": "This doesn\u0027t exist in the ManagerAccount Schema.\n\nhttps://github.com/DMTF/Redfish-Publications/blob/main/csdl/ManagerAccount_v1.xml",
+      "range": {
+        "startLine": 219,
+        "startChar": 69,
+        "endLine": 219,
+        "endChar": 86
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
