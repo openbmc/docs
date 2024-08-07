@@ -476,6 +476,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f3e59763_3e5d42a4",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T00:31:11Z",
+      "side": 1,
+      "message": "\u003e @Ed I don\u0027t know what unix documentation you were looking at, but  `:` is the primary separaor of the passwd family of files and three is no provision to escape it.  It\u0027s implicitly documented in `passwd(5)` `shadow(5)` and family in the Linux man pages.\n\nyep, you\u0027re right, the : would need some level of escaping, but the thought is that\u0027s something we could document more generally, which shifts the responsibility of creating correct users onto an individual system, rather than having to explicitly parse a custom cert.\n\n\n\u003e Beyond this, it\u0027s recommended to not contain capital letters likely because of historical login logic to set TTY mode for case translation for uppercase only terminals. (and yes I have used one of these 6 bit terminals).\n\nbmc doesn\u0027t have \"historical logic logic\", so I think we\u0027re safe there.\n\n\n\u003e \n\u003e Looking at the PAM man pages, I found the `PAM_RHOST` field, and this seems ideal to represent this part of the identity.\n\u003e \n\u003e looking further, I realized that any PAM module is allowed to change the PAM context including the `PAM_USER` and applications are explicitly required to query each time they are called.   this means that the decision to strip this host from the user can tin a the PAM stack instead of bmcweb and allows the stack to determine if or when to strip such data.  This could also be extended to substitute the forbidden `:` character.\n\u003e \n\u003e (I actually was looking if pam_unix allowed an alternative passwd file but this is not the case :( )\n\nI suspect the part you\u0027re missing in the above is that there\u0027s no connection between MTLS auth and pam.  MTLS authenticates using root certs.  PAM authenticates via a username/password.  In theory we could treat the common name as a \"password\", but that seems complex and error prone.",
+      "parentUuid": "d2fd32c2_2de2140f",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 60
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d010504f_6403b0b1",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -487,6 +511,24 @@
       "writtenOn": "2024-08-04T23:49:41Z",
       "side": 1,
       "message": "the standard redfish administrator role can modify these, right?   do you plan to only give administrator to these service users and restrict the role with an alternative recommended administrator?",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27af00d7_feb870d3",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T00:31:11Z",
+      "side": 1,
+      "message": "What you\u0027re asking for is essentially a modifyable and flexible privilege registry, which we don\u0027t have today, and I don\u0027t believe this design is planning on changing.  Today we grab the DMTF one out of maintainers just not having the bandwidth to audit the various privilege types, and the lack of use in practice.\n\nI would expect this design to use the DMTF privilege registry.",
+      "parentUuid": "d010504f_6403b0b1",
       "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -651,6 +693,24 @@
       "writtenOn": "2024-08-04T23:49:41Z",
       "side": 1,
       "message": "another option is to generate an oauth token pinned to the mtls certificate but this would require client changes in addition to additional infrastructure, but each renewal could verify the permissions in the DB.  it would not require the account service in the machine instead roles or permissions are communicated in the token.  I also haven\u0027t explored the redfish forum updates and guidance since the add of oauth and sessions are not available imo.\n\nI don\u0027t know if this meets your local validation rules the machine could rekey its trust with the ca.\n\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/58313",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acc72118_d5dae047",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T00:31:11Z",
+      "side": 1,
+      "message": "\u003e another option is to generate an oauth token pinned to the mtls certificate but this would require client changes in addition to additional infrastructure, but each renewal could verify the permissions in the DB.  \n\nHaving a centralized global DB would someone defeat the purpose of MTLS, which is generally implemented as distributed.\n\n\u003e it would not require the account service in the machine instead roles or permissions are communicated in the token.  I also haven\u0027t explored the redfish forum updates and guidance since the add of oauth and sessions are not available imo.\n\u003e \n\u003e I don\u0027t know if this meets your local validation rules the machine could rekey its trust with the ca.\n\u003e \n\u003e \n\u003e https://gerrit.openbmc.org/c/openbmc/docs/+/58313",
+      "parentUuid": "3cd6d28c_e25d8b63",
       "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
