@@ -136,6 +136,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90713eb1_d3bdc9f6",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-08T19:36:57Z",
+      "side": 1,
+      "message": "When I say \"back this up\" I\u0027d like to see a link reference to a security authority that this is the right thing to do.",
+      "parentUuid": "53bcf7d6_f91d56b3",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8921dd1b_f6519fbd",
         "filename": "designs/google-authenticator-mfa.md",
         "patchSetId": 12
@@ -212,6 +230,24 @@
       "side": 1,
       "message": "right, TOTP based authentication based on time on the machine.\nIf mobile device which generates TOTP token does not match with the BMC time then\nTOTP won\u0027t work and authentication fails.\nso captured that point here..",
       "parentUuid": "1cd22801_af008a77",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb84ccbb_23633ebd",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-08T19:36:57Z",
+      "side": 1,
+      "message": "That\u0027s a good thing to capture in background as a way this can fail, but it\u0027s not a requirement.\n\nAnother thing you might mention is the fact that a number of BMCs don\u0027t include a hardware RTC, so do we need to have special provisions for only allowing OTP when we know the time as been set correctly?",
+      "parentUuid": "2256539b_c04df211",
       "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -312,6 +348,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c26d187d_ac70b108",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-08T19:36:57Z",
+      "side": 1,
+      "message": "Right, but not all users require OTP, others don\u0027t.  It\u0027s not clear how \"enhancing\" the existing pam configuration files accomplishes that requirement.",
+      "parentUuid": "3dc02211_f52698b1",
+      "range": {
+        "startLine": 95,
+        "startChar": 67,
+        "endLine": 96,
+        "endChar": 79
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7dbdcced_0e664789",
         "filename": "designs/google-authenticator-mfa.md",
         "patchSetId": 12
@@ -347,6 +407,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e8b2671_c2ab8fcb",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-08T19:36:57Z",
+      "side": 1,
+      "message": "Can you change this to make clear which of these interfaces exist at global scope, and which interfaces exist at user scope?  Right now it\u0027s quite confusing.",
+      "parentUuid": "7e8fc3c9_8f1bd326",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03e11ec4_69edbdd5",
         "filename": "designs/google-authenticator-mfa.md",
         "patchSetId": 12
@@ -376,6 +454,24 @@
       "side": 1,
       "message": "This method call google-authenticator to create TOTP secret key for that user.\nsecret will be generated \u0026 placed in a file under user\u0027s home directory,\nsame secret key will be used to verify totp for that user authentication",
       "parentUuid": "03e11ec4_69edbdd5",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44c640c5_931fa290",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-08T19:36:57Z",
+      "side": 1,
+      "message": "Answer in your document please.  Your answer makes sense, but your doc just says there\u0027s an interface with a method, it doesn\u0027t specify what it does or now it works.",
+      "parentUuid": "dceef221_48cddbb3",
       "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -539,6 +635,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b89150ad_2a8777ee",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-08T19:36:57Z",
+      "side": 1,
+      "message": "Please make that clear in your doc somewhere that we are operating on _potential_ schema changes that aren\u0027t published yet.",
+      "parentUuid": "db71fd3f_12df3b91",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 67
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cedca87d_e61e0068",
         "filename": "designs/google-authenticator-mfa.md",
         "patchSetId": 12
@@ -568,6 +688,24 @@
       "side": 1,
       "message": "yes, this does not exist in DMTF schemas\nI have proposed this new action to DMTF.",
       "parentUuid": "cedca87d_e61e0068",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "085fa962_11477075",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-08T19:36:57Z",
+      "side": 1,
+      "message": "Same answer.",
+      "parentUuid": "b09e7144_2808a688",
       "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -797,6 +935,30 @@
       "side": 1,
       "message": "yeah I agree, i have captured these examples as per suggested/proposed schemas to DMTF",
       "parentUuid": "95c638d7_8500dc7c",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 3
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae76f81a_e940947b",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-08T19:36:57Z",
+      "side": 1,
+      "message": "Can we update the examples so they would actually work as written?",
+      "parentUuid": "585d7623_566c9cf3",
       "range": {
         "startLine": 160,
         "startChar": 0,
