@@ -782,6 +782,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf2ab9d3_5b691ce1",
+        "filename": "designs/service-config-manager.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-08-12T20:35:29Z",
+      "side": 1,
+      "message": "I started this design out with a few goals:\n\n1. Remove the per-interface enable/disable and the ability to configure ports. I figured these were added at a time that we thought we may need them and now that we\u0027re much further along and not using them, we could remove them and the very complicated code that comes with them. Based on this review, it does not seem like removing either of these are viable.\n\n2. Simplify the enable/masked/running concept. The fact an Intel IPMI OEM library uses the Masked call makes this one tricky. It\u0027s going to be difficult to remove an existing call like that because it was obviously added for some specific reason.\n\n3. Fix the issue where you have to run the service you want to disable before you can enable/disable it.\n\n4. Persist the enable/disable info in a way that it can easily be synchronized to a redundant BMC\n\n5. Some other miscellaneous items that came up in this review like enhancing the error reporting and ensuring the d-bus API doesn\u0027t return until the operation is actually complete\n\nSo, I\u0027m starting to think it may be time to just abandon this design doc and focus on 3 and 4 via code reviews. So some light refactoring + 3 and 4.",
+      "parentUuid": "1e3e1f96_589f8bdc",
+      "revId": "96d43ef5f285dfed1f09f2d209f59a33cd19a443",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a37de710_389e8617",
         "filename": "designs/service-config-manager.md",
         "patchSetId": 1
