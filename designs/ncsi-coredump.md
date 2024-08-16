@@ -37,8 +37,9 @@ for dump creation will be:"xyz.openbmc_project.Dump.Manager
 /xyz/openbmc_project/dump/nic xyz.openbmc_project.Dump.Create".
 
 To indicate which NC-SI link to target, The CreateDump method need one
-additional input parameter: "NICTarget". An EID or network interface, such as
-eth0 could be a valid value.
+additional input parameter:
+["Target"](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/73761).
+An EID or network interface, such as eth0 could be a valid value.
 
 ### Dump Retrieval
 
