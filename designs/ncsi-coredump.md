@@ -29,11 +29,12 @@ This feature requires Linux kernel to support transferring new NC-SI command
 ### Interface
 
 This design will reuse existing phosphor-debug-collector module:
-<https://github.com/openbmc/phosphor-debug-collector> and extend the dump
-creation interface with a new "NC-SICoreDump" dump type.
+<https://github.com/openbmc/phosphor-debug-collector>.
 
-The D-Bus interface for dump creation will be:"xyz.openbmc_project.Dump.Manager
-/xyz/openbmc_project/dump/bmc xyz.openbmc_project.Dump.Create"
+The
+[D-Bus interface](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/73760)
+for dump creation will be:"xyz.openbmc_project.Dump.Manager
+/xyz/openbmc_project/dump/nic xyz.openbmc_project.Dump.Create".
 
 To indicate which NC-SI link to target, The CreateDump method need one
 additional input parameter: "NICTarget". An EID or network interface, such as
