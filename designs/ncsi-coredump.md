@@ -29,7 +29,7 @@ This feature requires Linux kernel to support transferring new NC-SI command
 ### Interface
 
 This design will reuse existing phosphor-debug-collector module:
-<https://github.com/openbmc/phosphor-debug-collector> and extent the dump
+<https://github.com/openbmc/phosphor-debug-collector> and extend the dump
 creation interface with a new "NC-SICoreDump" dump type.
 
 The D-Bus interface for dump creation will be:"xyz.openbmc_project.Dump.Manager
