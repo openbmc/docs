@@ -500,6 +500,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33f9d699_06a7d5cb",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-17T00:50:28Z",
+      "side": 1,
+      "message": "Agree that historical restrictions on case are not relevant just giving background for justification of the man page note.\n\nI have not studied how we obtain the account information from the \nfiles PAM supports but ignore the password.   I would have thought a sufficient rule before checking the password would have worked but if mTLS is already going directly to dbua then this makes less sense.\n\nIf we continue to parse the CN into type, user, and hostname it seems like validation or ignoring if any should be outside the core parsing (without studying the implications.\n\nRegarding how domain is escaped, DNS has a well established mapping from alpha num underscore to utf, so it\u0027s just separators.  I have no idea if their DNS would include such names, and if not expect the escaped vs human name in the CN (or scan a scam for limit until support is added).",
+      "parentUuid": "f3e59763_3e5d42a4",
+      "range": {
+        "startLine": 84,
+        "startChar": 57,
+        "endLine": 84,
+        "endChar": 60
+      },
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d010504f_6403b0b1",
         "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
         "patchSetId": 3
@@ -711,6 +735,24 @@
       "side": 1,
       "message": "\u003e another option is to generate an oauth token pinned to the mtls certificate but this would require client changes in addition to additional infrastructure, but each renewal could verify the permissions in the DB.  \n\nHaving a centralized global DB would someone defeat the purpose of MTLS, which is generally implemented as distributed.\n\n\u003e it would not require the account service in the machine instead roles or permissions are communicated in the token.  I also haven\u0027t explored the redfish forum updates and guidance since the add of oauth and sessions are not available imo.\n\u003e \n\u003e I don\u0027t know if this meets your local validation rules the machine could rekey its trust with the ca.\n\u003e \n\u003e \n\u003e https://gerrit.openbmc.org/c/openbmc/docs/+/58313",
       "parentUuid": "3cd6d28c_e25d8b63",
+      "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf7cb0a1_e4622038",
+        "filename": "designs/oem/meta/meta-inc-mtls-on-bmcweb.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-17T00:50:28Z",
+      "side": 1,
+      "message": "the text said their source of truth was a DB (see line 90-91 of PS 3)",
+      "parentUuid": "acc72118_d5dae047",
       "revId": "1ce6e6ff65451bacc4d09bad68377b94f6b08dec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
