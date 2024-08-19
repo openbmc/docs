@@ -1,0 +1,480 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e92319ae_cec87b8f",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "are these achieved or just communication when the role was established (as the election is in the hardware specific daemon).\nthe what was explained but not how.   \n\nshould more become redfish via restricted role to give the BMC access to sibling state especially wrt redundancy enable?   or it\u0027s part of the system sync service mentioned? or is that just file sync.\n\nin other words beyond the aliveness and mentioned you try signaling over hardware specific can the rest rely on the network and be common?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d840b8b5_4b10d4a8",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "My initial read thought this implied a separate UI application and I was going to challenge how it was selected but in impacts you just anticipate selective panel availability.",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd5b9b61_08ff323f",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "This is set active service.\na second passive service may be useful for BMC ready determination that could conflict with fallover and this.\n\nseparating will help address the comments I\u0027m the next block.",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "274cbf0f_de4e0f6a",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "putting it in the same target requires every conditional service to take a dependancy in this active passive service.   wouldn\u0027t it be simpler to do this as a prerequisite of the active target?\n(is this a thing?)\n\nin which case can a common service host a dbua object with the role and host actions to start as active or initiate fallover) (much of this block started with just the context to this point with minor edits and some updates after reading the rest of the document) ohh you separated the service in response to feedback but didn\u0027t get the implications here)\n\ngoing back to @Ed comment, could this be optional manager State?  hence just another system state waiting for hardware access?   \nreading the rest a separate application may make sense but having it\u0027s transition be driven by methods from the hardware discovery still makes sense \n(reading further got some updated design but missed BMC ready implications)\n\nafter processing the implications of fallover from passive to active without a reboot this is definitely the wrong way to condition the service.   while it blocks the startup of the services it creates state where the target state is active without me service running and fallover won\u0027t actually restart them without isolating to the previous mukti-user target.   the psm conditional execution is for where the preconditioning commands prior to establishing to the active state are actively harmful.\n\nso eg forcing the hardware access away from the sibling BMC makes sense to be conditional preventing failed BMC from interfering with the now active BMC.\n\n\nthe BMC active target needs to have a hard dependency to being selected as active.  not just conditionally starting service to a common ready state.\n\nmaybe this is a file to enable a single onshot persistent service which the rest of the target takes a hard dependency but need to prohibit it from being stopped.\n\nsimilarly the passive might conditionally enable unforced failover .",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deb28e03_37dd1394",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "won\u0027t this imply set active passive service will be inferred to start as part of multi user service? also hence it would always become active?\n\nor the condition us evaluated before the dependent initiation is this documented?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8d1381d_6e514cfd",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "could this be useful to the customer for testing or isolating in automatic external initiation?   while lab and manufacturing can\u0027t justify the requirements it\u0027s worded to be restricted to those users.",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f114f471_11671a4c",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "does this imply all states (code level mismatched)? or\nwould it have a force takeover that is more destructive to any current host states? or would force always destroy the host states?\n\n\ninstead of a force parameter why not a separate \n`ForcedTakeover` action? to manager reset actions?  this would allow OEM refinement or additional beyond nominal takeover (eg just couldn\u0027t find siblings or some expected hardware vs unprovisioned or code mismatched)\n\nor an enum parameter that could expand by redfish OEM Does redfish have this concept?). Thia would allow eg try to preserve host state or force off on etc.   getting a failure message back from a reset action with why the takeover was rejected/blocked is difficult and may have OEM limits.   maybe someone wants to be try to release the hardware and give up the active role on the active BMC for a graceful takeover.",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c89d9717_048a7056",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "Thia is hosted by the common application?   how does it communicate with the hardware specific service?  why wouldn\u0027t it be common?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f39ff63_ed2cdf54",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "which daemon are we back to the hardware specific?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d14ab72_c3a060f7",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "All if this is common correct?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c55ecce2_13446d3d",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "separate this into another paragraph, it\u0027s changing topic from IBM design to theoretical other systems",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b12558a_9a55c218",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "so this is somehow from the sibling?   can the initial role be found or defaulted until network access and sync is achieved?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d84f18e_b30f6094",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "won\u0027t this complicate factory reset?\n\nwhy not leave it to provisiong to initiate a fallover to transition to active the first time?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f08c44ca_899e0ebb",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "repeative with lime 467 above.   kept separate for emphasis and separation of thought implies keeping this instance may be preferable.",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "736d3f13_731ad38a",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "this seems like a substate of passive ....  passive, limited, active",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e83aec3f_25103809",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "this would no longer be ready right?  I understand it\u0027s good gate to transition, but if it\u0027s rebooted will it be able to transition to redundancy enabled or would it require a force takeover?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c2fd545_def867b7",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "hmmm what does it mean to do a full sync in fallover?  \nseems like the possibility previously active would need to be alive \n\nshould the sync be part of allowing redundancy but just some kind of file consistently check (eliminate/clean up partially transferred files) be before active, and the redundancy enabled be deferred?\n\nwriting this tells me then the passive could be left behind and would need to be aware it will need to use force fallover.   hmmm...",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "559f8171_da2daa6d",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "why is update role not before taking over hardware access?\n\nwouldn\u0027t it always be required to ensure the hardware access is to whichever BMC is active? \n\nif hardware is only partially discovered due to latent issues the previously active BMC just not fully available.\n\nthis points out that BMC ready is now broken it\u0027s no longer services started and redfish resources stable.  should it not be set until passive role is decided and cleared from failover initiated until completed?  should we send a reboot event for unaware client to reset their state?\n\nthe manager needs to also check that fallover in progress is false before trying to manage the system / or enumerating the Reddish tree ?  I see it\u0027s also role active.",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "914f4359_dbd22d38",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "watt for the passive BMC to reach it\u0027s BMC ready?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c7f6c15_9a956256",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "this seems to require the passive BMC to be notified it to enable it\u0027s redundancy enabled State?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0af57306_d4f15999",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "it would seem to me that after forcing the previously active BMC away is unique, once done and the role set to active the sibling reset a could be released and the reboot block removed.   \n\ndiscovery of the hardware should just be part of establisheing the active system state (target) once the hardware is forced away (I understand that establisheing access and forcing sibling isolation might be required or more efficient in a single bus walk but checking would be every time).   \n\nthis would reduce the reset block duration especially during discovery which would seem to be a high risk to hang.\n\nfailover in progress would persist and may affect role selection (maybe only check access vs force switch access and hence block failed BMC from becoming master without force but allowing force)\n\nshould we make isolation it\u0027s own service with systemd time limit to allow better failures response even if it requires outside initiated recovery ?   still seems better than requiring access to force reboot eg by power interruptions to the BMC.  \n\nalternative instead of it\u0027s own service the r\ngeneric role transition can establish the block and time the method call to the hardware but this might impose concurrency constraints should it be a method to trigger and a signal to complete?\n\nhow to interact between role and role transition service and the hardware role state can be TBD.",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66057152_c35d9aed",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "so this can be redfish aggregation to initiate a graceful takeover?    how does it know the partner has a better view until it attempts to probe?   is/can this decision made before reaching active?   should a failure cause it to remove itself from redundancy enabled before initiating the fallover request to the sibling?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eb6acfc_16e37dcd",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "UI needs to treat passive to active as a new connection and throw away it\u0027s cache of empty collections.   see the BMC ready discussion in fallover action.",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb8438c7_db5c3657",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "how should delete or mark service be handled if the sibling is unreachable?   does it need to have redundancy disabled?  should the BMC identifier be used to control the master source to delete?\n\nwhat if the BMC is placed in the opposite site eg for problem isolation?  should it be provisioned or hardware location id?\n\nthe Web UI is currently sorting by id not time although this is being discussed in discord.  is this desirable?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51d9afa3_893c5767",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "this implies stopping and restarting the service?   \ncan we instead create a virtual? plug dect when it becomes active?\n\nhow is the system serial checked is it exposed always for mismatch trouble shooting?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bea9c515_ea7707eb",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "adding watches seems excessive will consume kernel memory for each file, especially when a limited number will be changed in each sync.   preferably the sync daemon could write the state ov r dbua directly but alternatively a signal to re-read and signal changes?   do we need to have many restricted from modification when in passive role (obviously not the role determination state).   does this imply syncing to a temporary directory?   would it also psm to do change detection more directly and eliminate the sync daemon from having to detect unchanged settings and eliminate false changed signals?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf21ecce_13ed2c16",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "will the override wants leave default [Wants] in the service file?  does this break systemctl enable disabled?   can the target be filtered during bbappend or service install to adjust the target?   (do we only remove multi user target?)",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca9eb37d_7c3a5728",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-19T10:26:30Z",
+      "side": 1,
+      "message": "see above discussiin in fallover re BMC ready.",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
