@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40b5bae8_90e50f62",
+        "filename": "designs/bmc-reboot-cause-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-20T11:41:08Z",
+      "side": 1,
+      "message": "I suspect this is going to be an issue for some existing hardware designs.  CARDRESET was \"power on reset\" because, that\u0027s what a CARDRESET is suppose to show, right?  Why are we using that for a watchdog now an using EXTERN2 as something other than the watchdog?",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 11
+      },
+      "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd36da50_0f6461e4",
+        "filename": "designs/bmc-reboot-cause-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-20T11:41:08Z",
+      "side": 1,
+      "message": "What is a \"System Event Log\"?  This is an IPMI term.  I assume you\u0027re going to be making a new record per https://github.com/openbmc/docs/blob/master/designs/event-logging.md ?",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 35
+      },
+      "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d737f3fc_9775f834",
+        "filename": "designs/bmc-reboot-cause-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-20T11:41:08Z",
+      "side": 1,
+      "message": "This is the opposite of intuitive to me...",
+      "range": {
+        "startLine": 88,
+        "startChar": 37,
+        "endLine": 89,
+        "endChar": 56
+      },
+      "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5321c549_72902bc2",
+        "filename": "designs/bmc-reboot-cause-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-20T11:41:08Z",
+      "side": 1,
+      "message": "I\u0027ve looked at the kernel documentation and maybe CARDRESET _is_ suppose to be used for the watchdog reset:\n\n```\n\t\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\t\t\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\tWDIOF_CARDRESET\t\tCard previously reset the CPU\n\t\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\t\t\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\nThe last reboot was caused by the watchdog card\n```\n\nSee https://github.com/openbmc/linux/blob/6e4436539ae182dc86d57d13849862bcafaa4709/Documentation/watchdog/watchdog-api.rst#environmental-monitoring\n\nWe will need to get alignment from existing upstream users as to why EXTERN1 was previously used for this.  It looks like the code in phosphor-state-manager was added by Tim Lee from Nuvoton.",
+      "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
