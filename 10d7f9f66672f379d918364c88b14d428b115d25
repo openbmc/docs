@@ -20,6 +20,74 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43a7f050_d3828fbc",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2024-08-20T06:51:07Z",
+      "side": 1,
+      "message": "FSI is FRU Support Interface.",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78ef7e4a_d284ade8",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2024-08-20T06:51:07Z",
+      "side": 1,
+      "message": "The processors have slave FSI ?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "074a67d4_bda866a1",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2024-08-20T06:51:07Z",
+      "side": 1,
+      "message": "u meant BMC chip or card here ?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e9a415a_04fb91cf",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2024-08-20T06:51:07Z",
+      "side": 1,
+      "message": "The BMCs? means both active and passive must report via PLDM and redfish ?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d840b8b5_4b10d4a8",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
@@ -82,6 +150,40 @@
       "writtenOn": "2024-08-19T10:26:30Z",
       "side": 1,
       "message": "won\u0027t this imply set active passive service will be inferred to start as part of multi user service? also hence it would always become active?\n\nor the condition us evaluated before the dependent initiation is this documented?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a7908b7_34d5d5b8",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2024-08-20T06:51:07Z",
+      "side": 1,
+      "message": "what will be the default and is the value persisted ?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c649f87e_2047e545",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2024-08-20T06:51:07Z",
+      "side": 1,
+      "message": "is this persisted ?",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -269,6 +371,29 @@
       "writtenOn": "2024-08-19T10:26:30Z",
       "side": 1,
       "message": "this would no longer be ready right?  I understand it\u0027s good gate to transition, but if it\u0027s rebooted will it be able to transition to redundancy enabled or would it require a force takeover?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9dcbc61_e80318ab",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1000348
+      },
+      "writtenOn": "2024-08-20T06:51:07Z",
+      "side": 1,
+      "message": "will sync happen before the services are started ? what would it sync at this time ? persisted data or only base information held by the RBMC app?",
+      "range": {
+        "startLine": 496,
+        "startChar": 9,
+        "endLine": 497,
+        "endChar": 51
+      },
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
