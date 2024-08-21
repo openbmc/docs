@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1bdc86dc_c988458f",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-21T21:22:30Z",
+      "side": 1,
+      "message": "from my knowledge of POWER 8, 9, and 10:\neach proxcrsdor is a slave.  it also has masters and multiple hubs (addressable path relays largely but not totally transparent) to boot and service the other processors in the complex and the memory buffers attached to it.  this asymmetric topology is used for BMC\u003c\u003eon SOC controllers, module VPD i2c, and by the boot firmware to synchronize the high speed busses from a single two wire connection (replacing the 4-6 wires of jtag and interrupts).",
+      "parentUuid": "78ef7e4a_d284ade8",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "074a67d4_bda866a1",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
@@ -143,6 +161,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5bf7c787_1e24e097",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-21T21:22:30Z",
+      "side": 1,
+      "message": "The C is for controller and I think that\u0027s accurate.\n\nIt doesn\u0027t matter how it\u0027s packaged or what driver or specific hardware is involved these are functional requirements.  just that the controller can access and control these resources.",
+      "parentUuid": "074a67d4_bda866a1",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5105df3_843af124",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-21T21:22:30Z",
+      "side": 1,
+      "message": "is this a universal or IBM requirement?\n\nmaybe (secure) communication (and authorization / identification) with the sibling requires provisioning.   The cached resource  would likely be invalid and redundancy disabled.\n\nbut I could see some systems would not want to require a manufacturing reset or equivalent before moving a card to test it.  (I understand IBM may have additional reasons to enforce this constraint).\n\nimplementation can be deferred with appropriate comments - it\u0027s a feature for a hypothetical someone else.   it\u0027s probably better that it would defer to the sibling but some may not require it to block becoming active.\n\nthinking back it also applies equally to the first point.  \n\nalso how does the serial become cached?   should it be the provisioned serial number?",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6e9a415a_04fb91cf",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
@@ -171,6 +224,24 @@
       "writtenOn": "2024-08-21T20:49:25Z",
       "side": 1,
       "message": "will fix.",
+      "parentUuid": "6e9a415a_04fb91cf",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "459f079c_5421356b",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-08-21T21:22:30Z",
+      "side": 1,
+      "message": "I think both / each BMC should report its role state via redfish.   Theat the host can obtain the same information is a requirement but specifying via PLDM is a product choice.",
       "parentUuid": "6e9a415a_04fb91cf",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
