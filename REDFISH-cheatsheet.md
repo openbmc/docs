@@ -134,6 +134,15 @@ uri=$(curl -k -H "X-Auth-Token: $token" https://${bmc}/redfish/v1/UpdateService 
 curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/octet-stream" -X POST -T <image file path> https://${bmc}${uri}
 ```
 
+Firmware update using multi-part form data: Note the `<apply time>` can be
+`OnReset` or `Immediate`.
+
+```
+uri=$(curl -k -H "X-Auth-Token: $token" https://${bmc}/redfish/v1/UpdateService | jq -r ' .MultipartHttpPushUri')
+
+curl -k -H "X-Auth-Token: $token" -H "Content-Type:multipart/form-data" -X POST -F UpdateParameters="{\"Targets\":<firmware inventory target URI>,\"@Redfish.OperationApplyTime\":<apply time>};type=application/json" -F "UpdateFile=@<image file path>;type=application/octet-stream" https://${bmc}${uri}
+```
+
 TFTP Firmware update using TransferProtocol: Note: The `<image file path>`
 contains the address of the TFTP service:
 `xx.xx.xx.xx/obmc-phosphor-xxxxx-xxxxxxxxx.static.mtd.tar`
