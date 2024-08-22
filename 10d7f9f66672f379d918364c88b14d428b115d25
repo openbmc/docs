@@ -71,6 +71,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3653cd2_80c941c2",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T15:27:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b5bdd3a_82ca1ea4",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78ef7e4a_d284ade8",
@@ -120,6 +138,24 @@
       "side": 1,
       "message": "from my knowledge of POWER 8, 9, and 10:\neach proxcrsdor is a slave.  it also has masters and multiple hubs (addressable path relays largely but not totally transparent) to boot and service the other processors in the complex and the memory buffers attached to it.  this asymmetric topology is used for BMC\u003c\u003eon SOC controllers, module VPD i2c, and by the boot firmware to synchronize the high speed busses from a single two wire connection (replacing the 4-6 wires of jtag and interrupts).",
       "parentUuid": "78ef7e4a_d284ade8",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d95c83e4_fd4d54ee",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T15:27:24Z",
+      "side": 1,
+      "message": "Is there just some rewording preferred here?",
+      "parentUuid": "1bdc86dc_c988458f",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -194,6 +230,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "133965a7_975e1e9d",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T15:27:24Z",
+      "side": 1,
+      "message": "\u003e is this a universal or IBM requirement?\n\nI guess it\u0027ll be universal until someone comes along with a different requirement.\n\n\u003e also how does the serial become cached? should it be the provisioned serial number?\n\nThe SN will be written either before or part of provisioning.  It\u0027ll be read by the BMCs when they start up.  On the reboot after provisioning they\u0027ll get the final value.",
+      "parentUuid": "b5105df3_843af124",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e9a415a_04fb91cf",
@@ -243,6 +297,24 @@
       "side": 1,
       "message": "I think both / each BMC should report its role state via redfish.   Theat the host can obtain the same information is a requirement but specifying via PLDM is a product choice.",
       "parentUuid": "6e9a415a_04fb91cf",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47c42f82_de7796d7",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T15:27:24Z",
+      "side": 1,
+      "message": "That\u0027s a good way to put it.  done.",
+      "parentUuid": "459f079c_5421356b",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -474,6 +546,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9274238_2d5fb8d3",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T15:27:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8590e5cf_7de4c252",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f114f471_11671a4c",
@@ -645,6 +735,24 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "c55ecce2_13446d3d",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6627612_b69aa097",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T15:27:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d0eeed7_dc4c477f",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -871,6 +979,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae7d6303_d086853a",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T15:27:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f7d8573_6d9bd97f",
+      "range": {
+        "startLine": 496,
+        "startChar": 9,
+        "endLine": 497,
+        "endChar": 51
+      },
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c2fd545_def867b7",
@@ -902,6 +1034,24 @@
       "side": 1,
       "message": "\u003e seems like the possibility previously active would need to be alive \n\nI probably need to reword this.  The sync happens as part of enabling redundancy after the new passive BMC has already come back from its reboot.\n\n\u003e should the sync be part of allowing redundancy but just some kind of file consistently check (eliminate/clean up partially transferred files) be before active, and the redundancy enabled be deferred?\n\nI think the full sync just looks the same as other times we enable redundancy, so we wouldn\u0027t need to do anything special?  Can you elaborate if you think otherwise?\n\n\u003e writing this tells me then the passive could be left behind and would need to be aware it will need to use force fallover. hmmm...\n\nI think I maybe just need to reword this to better state how we will do the full sync when/if the new passive comes back up, because I can\u0027t think of how we\u0027d be in danger of it getting left behind.",
       "parentUuid": "1c2fd545_def867b7",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57b64272_70730caf",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T15:27:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b7b6478_bb20d02d",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -972,6 +1122,24 @@
       "side": 1,
       "message": "yea.  Will reword.",
       "parentUuid": "914f4359_dbd22d38",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c48e737_3253a4e0",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T15:27:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eacc6841_ef5b7172",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1112,6 +1280,24 @@
       "side": 1,
       "message": "good point. Will add.",
       "parentUuid": "0eb6acfc_16e37dcd",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50d50fbe_62557ceb",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T15:27:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f806d10_f1551e3e",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
