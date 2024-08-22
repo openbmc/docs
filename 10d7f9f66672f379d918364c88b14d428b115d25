@@ -408,6 +408,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee800c58_459ffa5b",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T20:19:52Z",
+      "side": 1,
+      "message": "\u003e you separated the service in response to feedback but didn\u0027t get the implications here\n\nI don\u0027t think I understand which implications you\u0027re talking about.\n\n\u003e definitely the wrong way to condition the service. while it blocks the startup of the services it creates state where the target state is active without me service running and fallover won\u0027t actually restart them without isolating to the previous mukti-user target.\n\nSo with the following, which does work:\n1. multi-user.target is kicked off:\n2. Apps with a ConditionFileExists\u003dactive don\u0027t start, but systemd says the units are active so everything can proceed.\n3. multi-user.target is reached\n4. Sometime later, the new RBMC PSM app starts obmc-bmc-active.target\n5. The apps from before now actually start\n6. obmc-bmc-active.target is reached\n\nCould you point out the better sequence?\n\n\u003e the BMC active target needs to have a hard dependency to being selected as active. not just conditionally starting service to a common ready state.\n\nSo you don\u0027t think code starting the bmc-active target when the active role is chosen is good enough?  Can you elaborate how you think it should work?",
+      "parentUuid": "5f329564_beb91c43",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "deb28e03_37dd1394",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
