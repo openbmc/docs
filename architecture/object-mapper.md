@@ -188,6 +188,88 @@ as N "/xyz/openbmc_project/sensors/current/ps0_output_current" \
 Find all object paths and services that implement a specific interface and
 endpoint of the input associationPath.
 
+### GetAssociatedSubTreeById
+
+Use this method to find the objects, services, and interfaces in the specified
+subtree that implement certain interfaces and endpoints that end by input `id`.
+If no interfaces are passed in, then all objects/services/interfaces in the
+subtree and associated endpoint are returned. If interfaces are passed in, then
+only those interfaces are returned in the output.
+
+Inputs:
+
+- param: id - The leaf name of the dbus path, uniquely identifying a specific
+  component or entity within the system.
+- param: objectPath - The object path for which the result should be fetched.
+- param: subtreeInterfaces - a list of interfaces to constrain the search to
+- param: association - The endpoint association.
+- param: endpointInterfaces - An array of interfaces used to filter associated
+  endpoint paths.
+
+Output:
+
+- Map of object paths to a map of service names to their interfaces that are in
+  the associated endpoints that ends with `id`
+
+```text
+ID="chassis"
+ASSOCIATION="powered_by"
+dbus-send --system --print-reply \
+--dest=xyz.openbmc_project.ObjectMapper \
+/xyz/openbmc_project/object_mapper \
+xyz.openbmc_project.ObjectMapper.GetAssociatedSubTreeById \
+string:"${ID}" string:"/xyz/openbmc_project/inventory" \
+array:string:"xyz.openbmc_project.Inventory.Item.Chassis" \
+string:"${ASSOCIATION}" \
+array:string:"xyz.openbmc_project.Inventory.Item.PowerSupply"
+
+   array [
+      dict entry(
+         string "/xyz/openbmc_project/inventory/system/chassis/motherboard/powersupply0"
+         array [
+            dict entry(
+               string "xyz.openbmc_project.Inventory.Manager"
+               array [
+                  ...
+                  string "xyz.openbmc_project.Inventory.Item"
+                  string "xyz.openbmc_project.Inventory.Item.PowerSupply"
+                  ...
+               ]
+            )
+         ]
+      )
+      dict entry(
+         string "/xyz/openbmc_project/inventory/system/chassis/motherboard/powersupply1"
+         array [
+            dict entry(
+               string "xyz.openbmc_project.Inventory.Manager"
+               array [
+                  ...
+                  string "xyz.openbmc_project.Inventory.Item"
+                  string "xyz.openbmc_project.Inventory.Item.PowerSupply"
+                  ...
+               ]
+            )
+         ]
+      )
+      ....
+...
+
+# All output must be in the association endpoints that ends with the given `id`
+CHASSIS_PATH=/xyz/openbmc_project/inventory/system/chassis
+busctl get-property  xyz.openbmc_project.ObjectMapper \
+   /xyz/openbmc_project/inventory/system/chassis/${ASSOCIATION} \
+  xyz.openbmc_project.Association endpoints
+as N "/xyz/openbmc_project/inventory/system/chassis/motherboard/powersupply0" \
+"/xyz/openbmc_project/inventory/system/chassis/motherboard/powersupply1" \
+ ...
+```
+
+#### Example Use Case
+
+Find all object paths and services that implement a specific interface and
+endpoint of the input associationPath.
+
 ### GetSubTreePaths
 
 This is the same as GetSubTree, but only returns object paths
@@ -260,6 +342,59 @@ as N "/xyz/openbmc_project/sensors/current/ps0_output_current" \
   "/xyz/openbmc_project/sensors/current/ps1_output_current" \
   "/xyz/openbmc_project/sensors/power/ps0_input_power" \
   ...
+```
+
+#### Example Use Case
+
+Find all object paths that implement a specific interface and endpoint of the
+input associationPath.
+
+### GetAssociatedSubTreePathsById
+
+This is the same as GetAssociatedSubTreePathsById, but only returns object paths
+
+Inputs:
+
+- param: id - The leaf name of the dbus path, uniquely identifying a specific
+  component or entity within the system.
+- param: objectPath - The object path for which the result should be fetched.
+- param: subtreeInterfaces - a list of interfaces to constrain the search to
+- param: association - The endpoint association.
+- param: endpointInterfaces - An array of interfaces used to filter associated
+  endpoint paths.
+
+Output:
+
+- Map of object paths to a map of service names to their interfaces that are in
+  the associated endpoints that ends with `id`
+
+```text
+ID="chassis"
+ASSOCIATION="powered_by"
+dbus-send --system --print-reply \
+--dest=xyz.openbmc_project.ObjectMapper \
+/xyz/openbmc_project/object_mapper \
+xyz.openbmc_project.ObjectMapper.GetAssociatedSubTreePathsById \
+string:"${ID}" string:"/xyz/openbmc_project/inventory" \
+array:string:"xyz.openbmc_project.Inventory.Item.Chassis" \
+string:"${ASSOCIATION}" \
+array:string:"xyz.openbmc_project.Inventory.Item.PowerSupply"
+
+   array [
+      string "/xyz/openbmc_project/inventory/system/chassis/motherboard/powersupply0"
+      string "/xyz/openbmc_project/inventory/system/chassis/motherboard/powersupply1"
+       ...
+   ]
+...
+
+# All output must be in the association endpoints that ends with the given `id`
+CHASSIS_PATH=/xyz/openbmc_project/inventory/system/chassis
+busctl get-property  xyz.openbmc_project.ObjectMapper \
+   /xyz/openbmc_project/inventory/system/chassis/${ASSOCIATION} \
+  xyz.openbmc_project.Association endpoints
+as N "/xyz/openbmc_project/inventory/system/chassis/motherboard/powersupply0" \
+"/xyz/openbmc_project/inventory/system/chassis/motherboard/powersupply1" \
+ ...
 ```
 
 #### Example Use Case
