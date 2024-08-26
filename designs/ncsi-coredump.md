@@ -56,6 +56,76 @@ under specific folder.
 The following block diagram illustrate entire dump procedure and relationship
 between modules:
 
+### Redfish Integration for NIC Core Dumps
+
+The NIC core dump functionality will support interaction through the Redfish API as
+part of this design, in addition to the existing DBus-based interface.
+This enhancement allows users to trigger and manage NIC core dumps using a
+standardized Redfish interface, making the process more accessible and easier to
+integrate with broader system management tools that utilize Redfish.
+
+When a user sends a Redfish request to create a NIC dump, the Redfish service
+leverages the existing DBus CreateDump method by issuing a corresponding command
+to the xyz.openbmc_project.Dump.Manager service. The specific target path is
+determined by the NIC device, which is encoded in the URL rather than passed as
+a parameter in the payload. The response from the DBus command, which includes
+details such as the dump’s status and file location, is then formatted into a
+JSON object and returned to the user via the Redfish API.
+
+Example Usage Redfish Endpoint: Each NIC device should have a separate endpoint.
+For example:
+
+/redfish/v1/Managers/bmc/LogServices/NIC0Dump/Actions/LogService.CreateDump
+/redfish/v1/Managers/bmc/LogServices/NIC1Dump/Actions/LogService.CreateDump
+
+Mapped DBus Path:
+
+/xyz/openbmc_project/dump/nic {"Target": "eth0"}
+/xyz/openbmc_project/dump/nic {"Target": "eth1"}
+
+Triggering a NIC Dump via Redfish:
+
+curl -k -u 'username:password' -X POST \
+-H "Content-Type: application/json" \
+-d '{}' \
+https://"bmc-ip"/redfish/v1/Managers/bmc/LogServices/NIC0Dump/Actions/LogService.CreateDump
+
+Example Redfish Response:
+
+```json
+{
+  "Id": "1",
+  "Name": "NIC0 Dump",
+  "Status": "Completed",
+  "DumpType": "NIC",
+  "Timestamp": "2024-08-23T10:00:00+00:00",
+  "DownloadURL":
+  "https://"bmc-ip"/redfish/v1/Managers/bmc/LogServices/NIC0Dump/Entries/1/Actions/Download"
+}
+```
+
+Downloading the Dump File: curl -k -u 'username:password' \
+https://"bmc-ip"/redfish/v1/Managers/bmc/LogServices/NIC0Dump/Entries/1/Actions/Download \
+--output
+nic0_dump_1.log
+
+Explanation of the Workflow
+
+1. Redfish Request: The user initiates the creation of a NIC dump by sending a
+   POST request to a NIC-specific Redfish endpoint.
+
+2. DBus Command Execution: The Redfish service triggers the corresponding DBus
+   CreateDump command, which creates the dump and returns important details,
+   such as the dump status and file location.
+
+3. Redfish Response: The Redfish service provides the user with a JSON response
+   containing all necessary information, including the status of the dump and a
+   direct URL to download the file.
+
+4. Downloading the File: The user uses the provided download URL to retrieve the
+   dump file directly from the BMC, following the standard Redfish download
+   process.
+
 ```text
 
                            +----------------+           +-----------+
