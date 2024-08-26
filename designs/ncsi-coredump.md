@@ -56,6 +56,69 @@ under specific folder.
 The following block diagram illustrate entire dump procedure and relationship
 between modules:
 
+### Redfish Integration for NIC Core Dumps
+The NIC core dump functionality now supports interaction through the Redfish API, 
+in addition to the existing DBus-based interface. This enhancement allows users 
+to trigger and manage NIC core dumps using a standardized Redfish interface, 
+making the process more accessible and easier to integrate with broader system 
+management tools that utilize Redfish.
+
+When a user sends a Redfish request to create a NIC dump, the Redfish service 
+leverages the existing DBus CreateDump method by issuing a corresponding command 
+to the xyz.openbmc_project.Dump.Manager service, targeting the 
+/xyz/openbmc_project/dump/nic path. The response from the DBus command, which 
+includes details such as the dump’s status and file location, is then formatted 
+into a JSON object and returned to the user via the Redfish API.
+
+Example Usage:
+
+Redfish Endpoint:
+/redfish/v1/Managers/bmc/LogServices/NICDump/Actions/LogService.CreateDump
+
+Mapped DBus Path:
+/xyz/openbmc_project/dump/nic
+
+Triggering a NIC Dump via Redfish:
+curl -k -u 'username:password' -X POST \
+-H "Content-Type: application/json" \
+-d '{"DumpType": "nic", "Target": "eth0"}' \
+https://<bmc-ip>/redfish/v1/Managers/bmc/LogServices/NICDump/Actions/LogService.CreateDump
+
+Example Redfish Response:
+
+{
+  "Id": "1",
+  "Name": "NIC Dump",
+  "Status": "Completed"
+  "Path": "/xyz/openbmc_project/dump/nic/entry/1",
+  "DumpType": "nic",
+  "Target": "eth0",
+  "Timestamp": "2024-08-23T10:00:00+00:00",
+  "DownloadURL": "https://<bmc-ip>/files/ncsi.log"
+}
+
+Downloading the Dump File:
+
+curl -k -u 'username:password' \
+https://<bmc-ip>/files/ncsi.log \
+--output ncsi_dump.log
+
+Explanation of the Workflow:
+1. Redfish Request: The user initiates the creation of a NIC dump by sending a 
+POST request to the specified Redfish endpoint. This request is then handled by 
+the Redfish service, which triggers the corresponding DBus command.
+
+2. DBus Command Execution: The DBus command creates the dump and returns critical 
+details such as the DBus path and the physical file location of the dump. 
+The Redfish service retrieves this information and prepares a response for the user.
+
+3. Redfish Response: The Redfish service provides the user with a JSON response 
+that includes all necessary information, such as the status of the dump, 
+the DBus path, and a direct URL to download the dump file.
+
+4. Downloading the File: The user can then use the provided download URL to retrieve 
+the dump file directly from the BMC.
+
 ```text
 
                            +----------------+           +-----------+
