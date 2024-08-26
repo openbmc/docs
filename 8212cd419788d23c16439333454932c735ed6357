@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6416423_a955866c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-08-26T17:27:49Z",
+      "side": 1,
+      "message": "\"Xncsi-coredump: Add Redfish Interface for NIC Core Dumps\"\n\ntypo \"X\" in comment description.",
+      "revId": "8212cd419788d23c16439333454932c735ed6357",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e216516_5ca462cb",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-08-26T17:27:49Z",
+      "side": 1,
+      "message": "This is the support which will be added as part of this design, but doesn\u0027t exist already. Please fix the wording accordingly.",
+      "revId": "8212cd419788d23c16439333454932c735ed6357",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71eb03cf_06224aeb",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-08-26T17:27:49Z",
+      "side": 1,
+      "message": "I was discussing with mraineri from Redfish on this. I was checking if it would be possible to extend the EthernetInterface to have a LogService ref and extend the DiagnosticDataType to include NIC as well https://redfishforum.com/thread/1081/logservice-entry-nic-logdiagnosticdatatypes",
+      "revId": "8212cd419788d23c16439333454932c735ed6357",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c345fe38_8bbd76c9",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-08-26T17:27:49Z",
+      "side": 1,
+      "message": "I suppose you are planning to rely on NIC FRU to create these multiple paths, is it? If thats true then please mention it explicitly and i suppose \"Target\" parameter proposed in the original design won\u0027t be required?",
+      "revId": "8212cd419788d23c16439333454932c735ed6357",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bec568e_da86be97",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-08-26T17:27:49Z",
+      "side": 1,
+      "message": "This output doesn\u0027t seem to conform to Redfish LogEntry?https://redfish.dmtf.org/schemas/v1/LogEntry.v1_16_2.json",
+      "revId": "8212cd419788d23c16439333454932c735ed6357",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abbf2bd7_48d35beb",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-08-26T17:27:49Z",
+      "side": 1,
+      "message": "As per ncsi spec, coredump and crashdump are 2 different data handles section 8.4.14 https://www.dmtf.org/sites/default/files/standards/documents/DSP0222_1.2.0.pdf. Do you plan to extract both of them as part of single request? How do you plan to expose it to user?",
+      "revId": "8212cd419788d23c16439333454932c735ed6357",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
