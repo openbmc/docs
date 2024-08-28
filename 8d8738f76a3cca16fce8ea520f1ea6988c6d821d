@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e927b3e_19b67483",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000294
+      },
+      "writtenOn": "2024-08-28T02:45:16Z",
+      "side": 1,
+      "message": "Hi @Patrick NC Lin,\n\nSeems this is a bit historic and was probably defined when watchdogs were not typically integrated. Documentation/watchdog/watchdog-api.rst says:\n`Card previously reset the CPU`\n\nAccording to `reset the CPU` that similar to `Power On Reset` means CPU reset and all values be reset to default. That’s why we use this specific `WDIOF_CARDRESET` to identify `POR`, not `WDIOF_EXTERN1` or `WDIOF_EXTERN2`.\n\nIf BMC have more than one watchdog resets support, we need to know which watchdog reset used on platform through watchdog driver DTS. Ex: `ext1-reset-type \u003d “wd0”` (or “wd1”, “wd2” etc.). Thus, we define WDIOF_EXTERN1 as watchdog reset.\n\nIf BMC have more than one software resets support, we also need to know which software reset used on platform through watchdog driver DTS. Ex: `ext2-reset-type \u003d “sw1”` (or “sw2”, “sw3” etc.). Thus, we define WDIOF_EXTERN2 as software reset.\n\nHowever, the WDIOF_EXTERN2 we haven’t implemented it yet in phosphor-state-manager and phosphor-dbus-interfaces. We might upstream it if we have conclusion. Thanks.",
+      "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40b5bae8_90e50f62",
