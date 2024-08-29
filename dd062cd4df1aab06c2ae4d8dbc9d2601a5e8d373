@@ -38,6 +38,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87d7632c_e3020fcd",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-29T15:00:31Z",
+      "side": 1,
+      "message": "Currently EM properties are all read only except for the few that are in the allow list, which are then also persisted when written.  So Present would just have to be added to that.",
+      "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a37e050_14a4cc81",
         "filename": "designs/inventory/gpio-based-hardware-inventory.md",
         "patchSetId": 3
@@ -67,6 +84,41 @@
       "side": 1,
       "message": "\u003e EM made a semi-attempt at adding the inventory.item iface today\n\ndoes it \u0027make\u0027 an attempt currently? Or are you talking about a patch that got merged today?\n\nThe new interaction is to answer the requirement for hardware inventory where the hardware is detected via gpio.\n\nIt may be special/proprietary hardware and there may not be a special daemon to handle it. Since it is not worth all that effort to make a special daemon and it is not needed for some components. But we still want the inventory and presence.\n\nSo the idea is for EM and some presence daemon to work together to accomplish what is currently being accomplished with phosphor-inventory-manager and a presence daemon.\n\nEM will be better for that use case since it can be dynamic. phosphor-inventory-manager only supports the static configuration.",
       "parentUuid": "1a37e050_14a4cc81",
+      "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97271060_9c126e0b",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-29T15:00:31Z",
+      "side": 1,
+      "message": "Right here https://github.com/openbmc/entity-manager/blob/master/src/entity_manager.cpp#L623 is what I was referring to.  So as it is now, nothing in EM holds a Present property.  Though I think that isn\u0027t really that relevant to what you have here after all.  It\u0027s easy enough to fix, I just didn\u0027t quite have the motivation to do it since nothing seems to be broken.\n\n\u003e EM will be better for that use case since it can be dynamic\n\nYep, makes sense. It would also be easy to add associations between say the items and their parent FRU if necessary for Redfish.",
+      "parentUuid": "26abddba_dbe31d7d",
+      "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87ea0e03_244012d6",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-29T15:00:31Z",
+      "side": 1,
+      "message": "could you add the \"Exposes\" [ ] around this just so it\u0027s clear?\n\nAnd then would it work like:\n\n```\nchassis.json\n{\n  Exposes:\n  [ \n     {\n         Name:  cable0\n         ...\n     }\n  ]\n   ...\n   Name:  Chassis\n }\n```\n  \n  would have EM make the objects:\n  \n```\n  inventory/system/chassis/Chassis\n  inventory/system/cables/cable0  ?\n       Present:  true/false\n```",
       "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
