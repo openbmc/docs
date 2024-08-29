@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "112b8ebe_7bf9547c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-29T19:23:49Z",
+      "side": 1,
+      "message": "Tim, as best I can tell, this whole discussion of Nuvoton support is from an unsubmitted patch, isn\u0027t it?  (https://github.com/Nuvoton-Israel/linux/commit/fdaeb53a7ca6b378315f0a584ff42a61efdec4d3). I don\u0027t see any indication that this was submitted to the LKML.\n\nI\u0027ve tried to read the upstream drivers in Linux. From what I can tell \"Power On Reset\" is typically modeled by a 0 in the status.  CARDRESET is typically used for the watchdog itself triggering and causing a reset.  (The current Aspeed chip uses this, pcwd.c uses this, via_wdt.c uses this.).\n\nI think the confusion in the Nuvoton side is that you have a signal in your watchdog hardware called \"card reset\" which is used to indicate POR state.  Tomer mapped this to the WDIOF_CARDRESET, since it has the same name, but that isn\u0027t generally the upstream approach.",
+      "parentUuid": "123155f7_c8ef6815",
+      "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40b5bae8_90e50f62",
         "filename": "designs/bmc-reboot-cause-update.md",
         "patchSetId": 4
