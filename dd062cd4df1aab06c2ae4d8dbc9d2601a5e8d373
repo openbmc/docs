@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7f1fa72_0bd348df",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-08-29T14:31:07Z",
+      "side": 1,
+      "message": "Yes, all of the interfaces. Since no other software will be taking responsibility for these items (other than presence daemon detecting it),\nthe EM can expose the required inventory interfaces.\n\nNoted that the given json is just a configuration fragment, not a complete config.\n\nThanks for your review. Happy to discuss further concerns/ideas.",
+      "parentUuid": "c711037a_7c88f9ce",
+      "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a37e050_14a4cc81",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-08-29T14:16:54Z",
       "side": 1,
       "message": "EM made a semi-attempt at adding the inventory.item iface today, but it never called initialize(), and also it didn\u0027t put on the PrettyName and Present properties that are required.  In the existing code, Present would always be true because it\u0027s being created after the probe matched.  I\u0027m not sure then how this new interaction would work?",
+      "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26abddba_dbe31d7d",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-08-29T14:31:07Z",
+      "side": 1,
+      "message": "\u003e EM made a semi-attempt at adding the inventory.item iface today\n\ndoes it \u0027make\u0027 an attempt currently? Or are you talking about a patch that got merged today?\n\nThe new interaction is to answer the requirement for hardware inventory where the hardware is detected via gpio.\n\nIt may be special/proprietary hardware and there may not be a special daemon to handle it. Since it is not worth all that effort to make a special daemon and it is not needed for some components. But we still want the inventory and presence.\n\nSo the idea is for EM and some presence daemon to work together to accomplish what is currently being accomplished with phosphor-inventory-manager and a presence daemon.\n\nEM will be better for that use case since it can be dynamic. phosphor-inventory-manager only supports the static configuration.",
+      "parentUuid": "1a37e050_14a4cc81",
       "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
