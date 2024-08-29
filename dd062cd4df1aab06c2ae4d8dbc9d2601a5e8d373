@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c711037a_7c88f9ce",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-29T14:16:54Z",
+      "side": 1,
+      "message": "So EM will hold all of the inventory interfaces, including Inventory.Item that holds Present?\n\nAnd is the JSON on line 126 a standalone file?  If so, if you were to check that into the repo, wouldn\u0027t every single system then start putting those ifaces on D-bus?\n\nOr is that snippet an Exposes element inside another file? Could you specify that\u0027s the case if so?\n\nAfter that is cleared up, I\u0027m sure I\u0027ll have more questions",
+      "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a37e050_14a4cc81",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-29T14:16:54Z",
+      "side": 1,
+      "message": "EM made a semi-attempt at adding the inventory.item iface today, but it never called initialize(), and also it didn\u0027t put on the PrettyName and Present properties that are required.  In the existing code, Present would always be true because it\u0027s being created after the probe matched.  I\u0027m not sure then how this new interaction would work?",
+      "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
