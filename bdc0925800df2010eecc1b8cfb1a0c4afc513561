@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "934b1589_7893b532",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000212
+      },
+      "writtenOn": "2024-08-29T18:50:25Z",
+      "side": 1,
+      "message": "Let me use a real system as an example:\n\nWe have minerva board with the 6 fan control boards,\neach with presence GPIO pins: https://github.com/openbmc/linux/blob/dev-6.6/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts#L654 (PRSNT_FCB_[TOP|MIDDLE|BOTTOM]_[0|1]_N).\n\nBut we also have an EEPROM on these boards. So the primary inventory mechanism for this using EM is https://github.com/openbmc/entity-manager/blob/master/configurations/minerva_fanboard.json#L1280. It gets probed when the EEPROM is found and a valid FRUID is read.\n\nOne minor problem we have is to recognize the difference between a misplugged or faulty EEPROM of the fan-board vs a missing fan-board. So, I was seeing a potential here where we could mark this inventory as present but we also have an EM configuration for this.",
+      "parentUuid": "3b008ae1_a253eff0",
+      "revId": "bdc0925800df2010eecc1b8cfb1a0c4afc513561",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d02ac1ae_a59ff0f6",
         "filename": "designs/inventory/gpio-based-hardware-inventory.md",
         "patchSetId": 2
