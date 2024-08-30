@@ -16,6 +16,241 @@
       "message": "@Abinaya/@Jayanth, If the crashdump needs to be a user initiated action via BMCWeb how would that be handled as AMD RAS is a daemon of its own. How ould BMCWeb, phosphor-debug-collector and AMD RAS daemon interaction work in that scenarios?",
       "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86c9c6b1_c57ae44b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-30T22:31:55Z",
+      "side": 1,
+      "message": "I\u0027m not sure how much we really need to hold this up any further;  It\u0027s close enough, and so long as we get responses to the open things before code starts getting pushed, and code gets pushed in a reasonable manner (not just a single dump from https://github.com/AMDESE/amd-bmc-ras) I think I\u0027m ok with going forward.\n\nMy asks in the future:\n1. LibCPER is a common library that we should use for CPER decoding going forward.  I believe it already supports some subset of AMDs messages, so we should keep that as a common cper component.  If AMD folks want to own the AMD portion of the decode, please add yourself as reviewers going forward.\n2. I would like to see CPER storage somewhat standardized such that (similar to IPMI) we\u0027re just plugging in new CPER sources (APML, ARM SSIF, etc) rather than writing a new application every time.  This is outside of what this document is suggesting, but there\u0027s enough folks working on CPER at the moment, that this seems like a worthwhile goal.",
+      "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c03b6aa5_4aa65f0a",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-30T22:31:55Z",
+      "side": 1,
+      "message": "This reads like a different design, and doesn\u0027t really go into details.  What parameters?",
+      "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b52a386a_370807eb",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-30T22:31:55Z",
+      "side": 1,
+      "message": "What you\u0027ve described here is essentially what https://github.com/openbmc/bios-bmc-smm-error-logger does.  Can this be included in the background as to why this application won\u0027t meet this requirement?\n\nhttps://github.com/openbmc/bios-bmc-smm-error-logger/blob/1a64356f6dc40bfbc76594a51df1ec3f32bbbd69/include/dbus/file_notifier.hpp#L18",
+      "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e24d2620_51a2f3a5",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-30T22:31:55Z",
+      "side": 1,
+      "message": "Not enough detail. \"BMC\" doesn\u0027t really describe the software that actually does this operation.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 9
+      },
+      "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47027747_9d792a54",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-30T22:31:55Z",
+      "side": 1,
+      "message": "This is the first mention in the design of \"BMC policy configuration\".  Is this runtime or compile time?  What stores the config?",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 38
+      },
+      "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce5ea07a_3faebb55",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-30T22:31:55Z",
+      "side": 1,
+      "message": "CPER is a binary format, and has many options for how storage works.  Can we get a little details here?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 7
+      },
+      "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bf39e0e_3062894e",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-30T22:31:55Z",
+      "side": 1,
+      "message": "This reads like a requirement.  Move to requirements section.  Is N one of the configurable things?",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 34
+      },
+      "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16b6ec87_edfe8ae3",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-30T22:31:55Z",
+      "side": 1,
+      "message": "?  This makes it sound like this review isn\u0027t really ready to approve?",
+      "range": {
+        "startLine": 220,
+        "startChar": 31,
+        "endLine": 222,
+        "endChar": 14
+      },
+      "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86ff7318_f0e85758",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-30T22:31:55Z",
+      "side": 1,
+      "message": "I would be good if we could point out why https://github.com/openbmc/bios-bmc-smm-error-logger is system specific?  To my understanding, it reads from a PCIe sysfs interface in a very similar way APML does.  I can understand that it might be reasonable to keep them separate, and that the \"SMM\" in the name is poorly defined, but to my understanding that repo isn\u0027t processor specific.\n\nAlso, as far as I know AMD processors are \"X86\" as well, so maybe we should call out Intel/Power?",
+      "range": {
+        "startLine": 231,
+        "startChar": 56,
+        "endLine": 232,
+        "endChar": 8
+      },
+      "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e9314e4_aa90c91a",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-30T22:31:55Z",
+      "side": 1,
+      "message": "I\u0027m not sure how using CPER or not changes the security impact",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 50
+      },
+      "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38553ba8_34ddbdd6",
+        "filename": "designs/oem/amd/amd-bmc-ras.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-30T22:31:55Z",
+      "side": 1,
+      "message": "Jayanth shows that he\u0027s in emeritus status, where his contributions as of late haven\u0027t met the minimum bar for a contributor.  Is this a mistake in our scoring?",
+      "range": {
+        "startLine": 260,
+        "startChar": 34,
+        "endLine": 260,
+        "endChar": 42
+      },
+      "revId": "d99671537304e24c7ebfdede270cae2318652a8c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
