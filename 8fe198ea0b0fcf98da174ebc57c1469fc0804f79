@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2fede5f_de73fabc",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-09-04T16:24:21Z",
+      "side": 1,
+      "message": "This seems like a really big alternative design point that needs to be explored further.  I\u0027d much prefer entity-manager to be extended to handle GPIO-based presence directly (or by probe matches on some other daemon) rather than state being spread across phosphor-gpio-monitor _and_ entity-manager.\n\nEM allowing Presence to not always be true, but instead written by other processes, seems like a very large deviation from the current design.\n\nJagpal is working on leak detection and it seems like his design also needs entity-manager configuration after the detection of a leak-reporting-cable.  I would expect this feature and his feature to be closely related.  Your design should allow configuration to be exposed due to GPIO state (of the cable being presence) so that his daemon can consume the EM config for leaks reported by that cable.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 53
+      },
+      "revId": "8fe198ea0b0fcf98da174ebc57c1469fc0804f79",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
