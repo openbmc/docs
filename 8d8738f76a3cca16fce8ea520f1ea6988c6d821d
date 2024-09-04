@@ -56,6 +56,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "6d35b8c9_2523ae8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000294
+      },
+      "writtenOn": "2024-09-04T02:50:05Z",
+      "side": 1,
+      "message": "@Patrick Williams\n\nThanks for your feedback. Indeed, Nuvoton watchdog driver support reset cause for Power-On-Reset, Watchdog reset and Software reset. The patch is ready to submit by Tomer recently. For Kernel side, watchdog driver need to translate the reason to Userspace and customer can just change DTS `card-reset-type \u003d \"wdX\"` and `ext1-reset-type \u003d \"porst\"` to decide which reset cause through Nuvoton watchdog driver.\n\nFor OpenBMC side, we can help to exchange WDIOF_CARRESET and WDIOF_EXTERN1 in phosphor-state-manager and phosphor-dbus-interfaces if we have conclusion. Thanks.",
+      "parentUuid": "112b8ebe_7bf9547c",
+      "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "bc1b8048_ed164d63",
         "filename": "designs/bmc-reboot-cause-update.md",
         "patchSetId": 4
