@@ -3,6 +3,74 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e53bf40_bf86feb5",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-09-06T21:18:44Z",
+      "side": 1,
+      "message": "a leak?   missing detector?",
+      "revId": "f45d90dec72f11b38d13572520176bf91040691b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12ed2ece_778f0b8d",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-09-06T21:18:44Z",
+      "side": 1,
+      "message": "digital or discrete?",
+      "revId": "f45d90dec72f11b38d13572520176bf91040691b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8bbdc88_cdaa0998",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-09-06T21:18:44Z",
+      "side": 1,
+      "message": "the detector is to enable taking action vs taking action such as closing a valve right?\n\noh it looks like you are describing proposed actions to take when monitoring but didn\u0027t transition the requirements to be a monitoring application.\n\nafter reading the complete file it seems like you are combining the monitoring exposing the state of the sensor with the reaction such as initiating power off.",
+      "revId": "f45d90dec72f11b38d13572520176bf91040691b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9b52fd8_ea2e2d76",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-09-06T21:18:44Z",
+      "side": 1,
+      "message": "this would be health of the sensor?",
+      "revId": "f45d90dec72f11b38d13572520176bf91040691b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f390433_0980e4df",
         "filename": "designs/liquid-leak-detection.md",
         "patchSetId": 8
@@ -31,6 +99,23 @@
       "writtenOn": "2024-09-06T19:18:26Z",
       "side": 1,
       "message": "Ignoring the Target keyword for a moment, I think this could all be defined in entity-manager as it describes hardware.  Assuming EM ends up creating the cable object, you could use the same \u0027physical topology\u0027 (there\u0027s a design doc for it) tricks to automatically add associations.\n\nThe major reason is the JSON config file method may break when you have to support more than 1 system out of the same flash image.\n\nAs for the target, in EM you may not want to hardcode a target name, but you could just make it into an enum, like: Action: HardPowerOffRack.",
+      "revId": "f45d90dec72f11b38d13572520176bf91040691b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "618f0904_cd623099",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-09-06T21:18:44Z",
+      "side": 1,
+      "message": "the cooling zone?   I\u0027d expect the detector to establish the severity.   the impact of loosing the cooling zone and isolatio might drive how quickly you initiate shutdown/timeout or hard off )if you even have shutoff control)",
       "revId": "f45d90dec72f11b38d13572520176bf91040691b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
