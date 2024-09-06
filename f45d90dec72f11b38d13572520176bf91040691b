@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f390433_0980e4df",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-09-06T19:18:26Z",
+      "side": 1,
+      "message": "As mentioned in https://gerrit.openbmc.org/c/openbmc/docs/+/74022, that design and this design are pretty similar. \n\nI think this cable data would fit in entity-manager, in the config file of whichever FRU the GPIO is on.  You\u0027d need some daemon to do the presence detect and put something onto D-Bus that EM could probe, so it could create the cable inventory interfaces.",
+      "revId": "f45d90dec72f11b38d13572520176bf91040691b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26ca6bf4_b12ee18a",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-09-06T19:18:26Z",
+      "side": 1,
+      "message": "Ignoring the Target keyword for a moment, I think this could all be defined in entity-manager as it describes hardware.  Assuming EM ends up creating the cable object, you could use the same \u0027physical topology\u0027 (there\u0027s a design doc for it) tricks to automatically add associations.\n\nThe major reason is the JSON config file method may break when you have to support more than 1 system out of the same flash image.\n\nAs for the target, in EM you may not want to hardcode a target name, but you could just make it into an enum, like: Action: HardPowerOffRack.",
+      "revId": "f45d90dec72f11b38d13572520176bf91040691b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
