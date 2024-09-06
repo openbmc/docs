@@ -316,6 +316,24 @@
       "parentUuid": "17d6bd0f_e7572797",
       "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fcc7ef7_157440dc",
+        "filename": "designs/bmc-reboot-cause-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-09-06T15:23:34Z",
+      "side": 1,
+      "message": "I don\u0027t think most chips with upstream drivers assume POR goes through the watchdog.  A POR is usually \"no value in the watchdog\".\n\nThe wiring of your chip \"EXTERN1\" to be used by the power on relay is a board-specific design choice.  This probably isn\u0027t something we should codify as a requirement, is it?  Or are we going to say all BMC have to do that going forward?  Have all BMCs done this in the past?  Probably not...",
+      "parentUuid": "87a445ea_cd490967",
+      "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
