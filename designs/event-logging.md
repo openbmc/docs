@@ -520,103 +520,8 @@ events:
 
 Each `foo.events.yaml` file would be used to generate both the C++ classes (via
 `sdbusplus`) for exception handling and event reporting, as well as a versioned
-Redfish Message Registry for the errors and events. The YAML schema is as
-follows:
-
-```yaml
-$id: https://openbmc-project.xyz/sdbusplus/events.schema.yaml
-$schema: https://json-schema.org/draft/2020-12/schema
-title: Event and error definitions
-type: object
-$defs:
-  event:
-    type: array
-    items:
-      type: object
-      properties:
-        name:
-          type: string
-          description:
-            An identifier for the event in UpperCamelCase; used as the class and
-            Redfish Message ID.
-        en:
-          type: object
-          description: The details for English.
-          properties:
-            description:
-              type: string
-              description:
-                A developer-applicable description of the error reported. These
-                form the "description" of the Redfish message.
-            message:
-              type: string
-              description:
-                The end-user message, including placeholders for arguemnts.
-            resolution:
-              type: string
-              description: The end-user resolution.
-        severity:
-          enum:
-            - emergency
-            - alert
-            - critical
-            - error
-            - warning
-            - notice
-            - informational
-            - debug
-          description:
-            The `xyz.openbmc_project.Logging.Entry.Level` value for this
-            error.  Only applicable for 'errors'.
-        redfish-mapping:
-          type: string
-          description:
-            Used when a `sdbusplus` event should map to a specific Redfish
-            Message rather than a generated one. This is useful when an internal
-            error has an analog in a standardized registry.
-        deprecated:
-          type: string
-          pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
-          description:
-            Indicates that the event is now deprecated and should not be created
-            by any OpenBMC software, but is required to still exist for
-            generation in the Redfish Message Registry. The version listed here
-            should be the first version where the error is no longer used.
-        metadata:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: The name of the metadata field.
-              type:
-                enum:
-                  - string
-                  - size
-                  - int64
-                  - uint64
-                  - double
-                  - object_path
-                description: The type of the metadata field.
-              primary:
-                type: boolean
-                description:
-                  Set to true when the metadata field is expected to be part of
-                  the Redfish `MessageArgs` (and not only in the extended
-                  `DiagnosticData`).
-properties:
-  version:
-    type: string
-    pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
-    description:
-      The version of the file, which will be used as the Redfish Message
-      Registry version.
-errors:
-  $ref: "#/definitions/event"
-events:
-  $ref: ":#/definitions/event"
-```
+Redfish Message Registry for the errors and events. The [YAML
+schema][yaml-schema] is contained in the sdbusplus repository.
 
 The above example YAML would generate C++ classes similar to:
 
@@ -659,6 +564,9 @@ throw UpdateFailure("TARGET", "BMC Flash A", "ERRNO", rc, "CALLOUT_HARDWARE", bm
 
 If one of the fields, such as `ERRNO` were omitted, a compile failure will be
 raised indicating the first missing field.
+
+[yaml-schema]:
+  https://github.com/openbmc/sdbusplus/blob/master/tools/sdbusplus/schemas/events.schema.yaml
 
 ### Versioning Policy
 
