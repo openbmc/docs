@@ -298,6 +298,24 @@
       "parentUuid": "5321c549_72902bc2",
       "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87a445ea_cd490967",
+        "filename": "designs/bmc-reboot-cause-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1002199
+      },
+      "writtenOn": "2024-09-06T06:43:35Z",
+      "side": 1,
+      "message": "It seems that everyone agrees CARDRESET is equal to watchdog reset. The problem now is \"power-on-reset\". There may be two possible approaches.\n\nThe first one is to categorize into the \"default\" one since \"power-on-reset\" is not defined clearly in the document and it may not be a monitoring item. Namely, the bootReason (https://github.com/openbmc/phosphor-state-manager/blob/master/bmc_state_manager.cpp#L288) will be,\n\ncase WDIOF_CARDRESET: watchdog\ndefault             : power on\n\n\nThe second approach is to categorize \"power-on-reset\" into WDIOF_EXTERN1. Because, from the document mentioned by Williams, WDIOF_EXTERN is triggered by the external relay. Usually, an external HW relay is used to control the HW board power.\n  \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d  \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n   WDIOF_EXTERN1    External relay 1\n  \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d  \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nIf this method is adopted, the bootReason will be\n\ncase WDIOF_EXTERN1  : power on\ncase WDIOF_CARDRESET: watchdog",
+      "parentUuid": "17d6bd0f_e7572797",
+      "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
