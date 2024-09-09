@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b07a6900_8916fdc4",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-09T12:54:50Z",
+      "side": 1,
+      "message": "Hm, let\u0027s discuss Patrick\u0027s point about EM possibly doing the presence itself. If it does it on it\u0027s own then maybe there is on need to have a Present\u003dfalse state at all.",
+      "parentUuid": "87d7632c_e3020fcd",
+      "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a37e050_14a4cc81",
@@ -108,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f78b94b5_2fce4e8b",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-09T12:54:50Z",
+      "side": 1,
+      "message": "\u003e So as it is now, nothing in EM holds a Present property.\n\n\u0027Present\u0027 property naturally complicates things. I\u0027m also not sure if all other daemons properly handle this property. So if there is a dbus object with an inventory interface, and Present\u003dfalse, will it be detected as absent by the other daemons?\n\nFor the static inventory the \u0027Present\u0027 property seems to have worked out, but imagine exposing large amounts of \u0027possibly present\u0027 inventory objects in dbus, leading to dbus bloat. \n\nThen all the daemons have to query \u0027Present\u0027 property before proceeding with anything.",
+      "parentUuid": "97271060_9c126e0b",
+      "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87ea0e03_244012d6",
         "filename": "designs/inventory/gpio-based-hardware-inventory.md",
         "patchSetId": 3
@@ -119,6 +155,24 @@
       "writtenOn": "2024-08-29T15:00:31Z",
       "side": 1,
       "message": "could you add the \"Exposes\" [ ] around this just so it\u0027s clear?\n\nAnd then would it work like:\n\n```\nchassis.json\n{\n  Exposes:\n  [ \n     {\n         Name:  cable0\n         ...\n     }\n  ]\n   ...\n   Name:  Chassis\n }\n```\n  \n  would have EM make the objects:\n  \n```\n  inventory/system/chassis/Chassis\n  inventory/system/cables/cable0  ?\n       Present:  true/false\n```",
+      "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9e678b9_8d08ec86",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-09T12:54:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87ea0e03_244012d6",
       "revId": "dd062cd4df1aab06c2ae4d8dbc9d2601a5e8d373",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

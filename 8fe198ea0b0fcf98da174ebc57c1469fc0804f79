@@ -22,6 +22,30 @@
       },
       "revId": "8fe198ea0b0fcf98da174ebc57c1469fc0804f79",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9569c672_79a1b189",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-09T12:54:50Z",
+      "side": 1,
+      "message": "\u003e This seems like a really big alternative design point that needs to be explored further. I\u0027d much prefer entity-manager to be extended to handle GPIO-based presence directly (or by probe matches on some other daemon) rather than state being spread across phosphor-gpio-monitor and entity-manager.\n\nMakes sense to me, but this is explicitly out of scope of the EM design as per it\u0027s readme. That\u0027s from August 2020.\n\n\u003e Entity manager shall not directly participate in the detection of devices, and instead will rely on other D-Bus applications to publish interfaces that can be detected.\n\nSo it\u0027s good to have the EM maintainers here to discuss this.\n\nIf EM were to directly use the GPIOs to detect hw, it would simplify the logic.\nBecause the gpio can be requested synchronously, failing if another program already requested it. So there would be no need to expose configuration, wait for the other daemon to generate the property changed event, and then proceeding to probe other things.",
+      "parentUuid": "a2fede5f_de73fabc",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 53
+      },
+      "revId": "8fe198ea0b0fcf98da174ebc57c1469fc0804f79",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
