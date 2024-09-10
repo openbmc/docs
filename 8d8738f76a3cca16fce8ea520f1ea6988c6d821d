@@ -334,6 +334,24 @@
       "parentUuid": "87a445ea_cd490967",
       "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b571763_f75a5773",
+        "filename": "designs/bmc-reboot-cause-update.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1002129
+      },
+      "writtenOn": "2024-09-10T05:11:11Z",
+      "side": 1,
+      "message": "Hi @Patrick William,\n\nSo, are you saying that the watchdog driver does not need to handle the POR?\n\nI believe @Chin-Ting\u0027s first proposed method aligns with your understanding: when the phosphor-state-manager reads a default value (0), it indicates that the watchdog has not modified this value. \nAt this point, phosphor-state-manager can interpret this scenario as a POR, which would align with your statement that \"A POR is usually no value in the watchdog.\" \nDoes that sound correct to you?",
+      "parentUuid": "8fcc7ef7_157440dc",
+      "revId": "8d8738f76a3cca16fce8ea520f1ea6988c6d821d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
