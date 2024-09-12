@@ -115,7 +115,10 @@ loop For every RedfishTargetURI
       CU ->> CU: Delete Interface<br> xyz.openbmc_project.Software.ActivationBlocksTransition
       CU ->> CU: Delete Interface<br> xyz.openbmc_project.Software.ActivationProgress
       alt ApplyTime == Immediate
-          note over CU: Reset Device and<br> update functional association to System Inventory Item
+          note over CU: Reset Device
+          CU ->> CU: Update functional association to System Inventory Item
+          CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Update<br> at ObjectPath
+          note over CU: Delete all interfaces on previous ObjectPath
       else
           note over CU: Create active association to System Inventory Item
       end
