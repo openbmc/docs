@@ -154,6 +154,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "185fafe3_e2e2c86d",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-09-13T22:02:21Z",
+      "side": 1,
+      "message": "Microsoft provides its administrators with a per-user option\nhttps://learn.microsoft.com/en-us/answers/questions/101179/how-to-disable-the-two-factor-authentication-from\n\nOWASP acknowledges its a thing, albeit a high security risk\nhttps://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html#when-to-require-mfa\n\nOne use case is to enable a user until they can recover their 2fa.\nAnother might be there is difficulty obtaining the correct time blocking TOTP.",
+      "parentUuid": "90713eb1_d3bdc9f6",
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8921dd1b_f6519fbd",
         "filename": "designs/google-authenticator-mfa.md",
         "patchSetId": 12
@@ -1147,6 +1165,30 @@
       "side": 1,
       "message": "yes, this action does not exist in DMTF schemas\nI have proposed this new action to DMTF.",
       "parentUuid": "7fa0c7bb_76bcf6e6",
+      "range": {
+        "startLine": 219,
+        "startChar": 69,
+        "endLine": 219,
+        "endChar": 86
+      },
+      "revId": "2a476e41c237ba021e694adbd4e2a0805adcf991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83d61efb_38651055",
+        "filename": "designs/google-authenticator-mfa.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-09-13T22:02:21Z",
+      "side": 1,
+      "message": "this proposal would leak security information to an unauthenticated user.\n\nmy read of the property guide was that multiple MFA could be Described.  I\u0027d expect only failure and the exact cause to be a log entry.\n\n(don\u0027t differentiate between 2fa not configured vs token mismatch.  policy can even request the token)",
+      "parentUuid": "8de27d06_b78c640f",
       "range": {
         "startLine": 219,
         "startChar": 69,
