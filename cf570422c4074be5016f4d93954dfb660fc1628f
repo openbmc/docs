@@ -16,6 +16,24 @@
       "message": "Just so we get the whole picture, could you also do an EM config that does the GPIODevice probe for one of the above devices?",
       "revId": "cf570422c4074be5016f4d93954dfb660fc1628f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2c1fce0_eecaedf0",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-16T08:56:34Z",
+      "side": 1,
+      "message": "Yes, the below config is for probing on the newly detected fan board.\n\nIt probes on the \n```\nxyz.openbmc_project.Configuration.GPIODeviceDetected\n```\ndbus interface.\n\nI\u0027m not certain this is the right name for the interface though.\n\nBecause the prefix\n```\nxyz.openbmc_project.Configuration.\n```\nis usually meant for configuration.\n\nBut also an inventory interface is not right, since the inventory should be exposed by entity-manager. The presence daemon does not need to know the type of device.\nSo it should not expose an inventory interface.\n\nBut i am also not certain that it\u0027s ok to just make up dbus interfaces without going through pdi (unless it\u0027s \u0027xyz.openbmc_project.Configuration.*\u0027 namespace).\n\nSo i chose the dbus interface as seen in the probe statement below.",
+      "parentUuid": "f88199bd_d1675987",
+      "revId": "cf570422c4074be5016f4d93954dfb660fc1628f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
