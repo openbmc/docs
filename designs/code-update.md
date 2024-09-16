@@ -198,6 +198,57 @@ Image parsing will be performed in \<deviceX>CodeUpdater and since
 image format for the firmware image. This fulfills the
 [Requirement# 7](#requirements).
 
+#### PLDM Image Packaging
+
+The PLDM for
+[Firmware Update Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0267_1.3.0.pdf)
+provides a standardized format for packaging images that includes both standard
+and user-defined descriptors. This format can be used to package images for
+firmware updates for non-PLDM devices as well. For such devices, the following
+descriptors can be processed and validated by CodeUpdaters.
+
+| PLDM Package Descriptor | Decsriptor Type |                                                                                       Description                                                                                       |
+| :---------------------: | :-------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|   IANA Enterprise ID    |    Standard     |                                   [IANA Enterprise Id](https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers) of the hardware vendor                                   |
+|       ASCII Model       |    Standard     | Compatible name (com.\<vendor\>.Hardware.\<XXX\>) specified by hardware vendor in [phosphor-dbus-interfaces](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/com). |
+
+#### Entity Manager Configuration
+
+The entity manager configuration can provide firmware-related information as
+part of board configurations, which can be utilized for firmware validation and
+modeling device access details. These D-Bus objects can then be consumed by the
+CodeUpdater service to manage updates for the relevant firmware entities.
+
+For common firmware info definition
+[refer](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/75947)
+
+The following example is one such instance of this definition for an i2c CPLD
+device.
+
+```json
+"Exposes": [
+  ...
+  {
+    "Name": "MB_LCMX02_2000HC",
+    "Type": "CPLD",
+    "FirmwareInfo" :
+    {
+      "VendorIANA": 0000A015,
+      "Compatible": "com.meta.Hardware.Yosemite4.MedusaBoard.CPLD.LCMX02_2000HC"
+    }
+    ...
+  },
+  ...
+]
+```
+
+- `Type`: This field is used by the CodeUpdater service to determine which
+  firmware EM configurations it should process.
+- `VendorIANA`: This field maps to the `IANA Enterprise ID` descriptor in PLDM
+  package header.
+- `Compatible`: This field maps to the `ASCII Model` descriptor in PLDM package
+  header.
+
 ### Multi part Images
 
 A multi part image has multiple component images as part of one image package.
