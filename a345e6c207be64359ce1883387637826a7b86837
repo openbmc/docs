@@ -1,0 +1,612 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37de4cdc_f200903a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "FWIW, the Nvidia reference for this does everything in dbus-sensors (GPIO based and ADC based);  That\u0027s not to say it\u0027s better to organize things in new repos, but it does exist, so clearly dbus-sensors is one place this problem can be solved.\n\nThere\u0027s a significant update to Redfish coming to solve a lot of these interface issues that wasn\u0027t really mentioned in this design, and I don\u0027t think can be mentioned at the moment.  We were waiting for the Redfish schemas for leak detection to be published (because you can\u0027t talk about redfish schemas until they\u0027re released).\n\nThis design skirted around this by just not being complete, which I guess works?  But we should complete it before we approve new repos.",
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98ab82d1_0c6c25a0",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "Huh?  This is news to me.  PSUs have presence and LED status, and there\u0027s plenty of other counter examples.",
+      "range": {
+        "startLine": 21,
+        "startChar": 57,
+        "endLine": 22,
+        "endChar": 74
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0678684d_80b86015",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "I suspect I understand why, but we need to enumerate WHY it would be difficult to just add the needed features here to the point that it justifies a new thing.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 65
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1daeeb0e_c834e42e",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "If it\u0027s beyond the scope of the document, can we just list 74022 as a prerequisite for this being approved?",
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ccbaec2_4242792d",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "Need way more details.\n1. What hardware interfaces are supported.\n2. what does \"Raise alerts\" mean?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 51
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ff1a5a6_8fdf4a68",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "This needs more detail around \"hot plug\" requirements.  Are the leak detectors ADCs?  GPIOs?  I2c devices?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 15
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ba2445b_61a45e2c",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "Need more details on how a \"severity level\" would work with a leak.",
+      "range": {
+        "startLine": 36,
+        "startChar": 35,
+        "endLine": 36,
+        "endChar": 51
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a02d967e_4ae6b0e2",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "Is this design \"take appropriate remediation actions\"  if it\u0027s another component taking action, mention that not as a requirement.",
+      "range": {
+        "startLine": 36,
+        "startChar": 55,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36d01531_accbd4c7",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "\"hot plug\" implies that the cable is expected to be removed and shouldn\u0027t error if it\u0027s remove.  Maybe we just call it removable?  idk.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 65
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "899346c5_d30e6f65",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "This isn\u0027t a requirement.  Need details on which properties, collections, and interfaces you\u0027re planning on implementing.\n\nFYI, there\u0027s reference Nvidia code that does this already if you want somewhere to start from, or if you\u0027re implementing your own set of Redfish interfaces, that works too.",
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "060338e2_65a6b598",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "Can you wrap this so it\u0027s readable?  I get you\u0027re making a table, but it still needs to be readable in markdown.",
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06e8bf46_3fc1e25c",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "Cooling zone isn\u0027t a leak detector zone.  They\u0027re different things fundamentall.",
+      "range": {
+        "startLine": 51,
+        "startChar": 3,
+        "endLine": 51,
+        "endChar": 35
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "697fde50_3684b2b5",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be Item.LeakDetector?  Cooling namespace hasn\u0027t been defined, and I don\u0027t really think it\u0027s a good idea.  A leak detector lives in two namespaces. Inventory and State.",
+      "range": {
+        "startLine": 52,
+        "startChar": 22,
+        "endLine": 52,
+        "endChar": 30
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f03d1143_531edde8",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "xyz.openbmc_project.Inventory.Item isn\u0027t an interface?",
+      "range": {
+        "startLine": 53,
+        "startChar": 3,
+        "endLine": 53,
+        "endChar": 37
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00fef894_0f66237e",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "You define an EM config below, then define a non EM config here.  You should be consistent.  If your intent is to implement this on an EM system, use EM to define your configs.\n\nIf your intent is to use phosphor-inventory-manager, use on disk configs, just be consistent.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 1
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca2383af_12e40212",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "?  What does this design have to do with cables?  I suspect you need to remove mention of cables in this doc for the moment and just defer to the other doc.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 3
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "071f605f_91c766a3",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "not sure what cable monitor has to do with leaks?",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 61
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "782ee13d_90936592",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "80 char widths please.  I get that\u0027s a pain.",
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbf90241_7781ee52",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "Do we really need an explicit enable?  What function would it serve?",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 124
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba794544_e0d4e483",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "Might want to be a little more specific about this, because there\u0027s a lot of leak detector types.\n\nThis should probably be something like\n\nGpioLiquidDetector.",
+      "range": {
+        "startLine": 132,
+        "startChar": 13,
+        "endLine": 132,
+        "endChar": 31
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f186e894_5cbc51d5",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "I think we have this problem other places, but I wonder if we should be making these \"ActiveLow\" instead of just low/high.\n\nMight not be a problem for this.",
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4458f8f0_ff8268f3",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "?  I can\u0027t tell if this is a pointer to another EM config entry that doesn\u0027t exist, or if this is supposed to be a type.  \"Zone\" as a collection of components is something we already do for fans a bit, we should model something similar.",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 19
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aa98abf_d3ac5d28",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "In Redfish this is generally configurable, so I suspect this should be\n\nDefaultAction: PowerOff\n\n\"Rack power off\" has no concept in openbmc, we have chassis power off and host power off.",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 28
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6554c796_d85e58d1",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "can we just call this \"leak detector\"\n\nManager is overused and isn\u0027t descriptive",
+      "range": {
+        "startLine": 141,
+        "startChar": 10,
+        "endLine": 141,
+        "endChar": 17
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00f14800_99409416",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "Why not just on event?  There\u0027s other examples in dbus sensors of polling for events.",
+      "range": {
+        "startLine": 146,
+        "startChar": 43,
+        "endLine": 146,
+        "endChar": 61
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "115c532b_4857419b",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "nit \"registers a leak\" is different than \"enabled\"",
+      "range": {
+        "startLine": 147,
+        "startChar": 52,
+        "endLine": 147,
+        "endChar": 59
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be8e68af_558ebf78",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "continue this with \"And can\u0027t be added because A, B, C\"  FWIW I agree with you, but lets get it enumerated why separation is important.",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 0
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc9fcfe_2aa505d2",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-17T01:00:06Z",
+      "side": 1,
+      "message": "That\u0027s not really what impacts is for.\n\nIf you\u0027re polling, you\u0027re adding system load.\nIf the leak detection system crashes and there\u0027s a leak, hardware is broken.",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 61
+      },
+      "revId": "a345e6c207be64359ce1883387637826a7b86837",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
