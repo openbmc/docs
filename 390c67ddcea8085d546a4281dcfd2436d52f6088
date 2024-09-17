@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9487d1d2_ee6e1156",
+        "filename": "designs/code-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-09-17T17:19:42Z",
+      "side": 1,
+      "message": "\u003e Will the respective Code Update daemon be responsible to validate this or\nentity-manager during config validation?\n\nThe EM Configuration objects exposed via DBus will be consumed by CodeUpdater daemons. What goes into EM JSON config i have mentioned in next section which would be part of platform/board configs.\n\nThe CodeUpdater daemon will be responsible for validating this info against the descriptors in the PLDM image package (it receives for update). \n\n\u003e Is there a mapping from the \u0027ASCII Model\u0027 to the IANA Enterprise Ids?\nOr how else would they validate the configuration.\n\nAny reason we need this mapping? EM exposes both of these and they both would be available for CodeUpdater to use.",
+      "parentUuid": "82143868_9424ac43",
+      "revId": "390c67ddcea8085d546a4281dcfd2436d52f6088",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a1f2405_a9afa537",
         "filename": "designs/code-update.md",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2024-09-17T09:23:23Z",
       "side": 1,
       "message": "Can we rename \u0027VendorId\u0027 to \u0027VendorIdIANA\u0027  or \u0027VendorIANA\u0027 or something like that to make it clear that it\u0027s an IANA Id and not something else.\n\nSo people do not have to look that up in some schema and it\u0027s obvious from the configuration.",
+      "revId": "390c67ddcea8085d546a4281dcfd2436d52f6088",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02f7e337_4ef7e07e",
+        "filename": "designs/code-update.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-09-17T17:19:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a1f2405_a9afa537",
       "revId": "390c67ddcea8085d546a4281dcfd2436d52f6088",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
