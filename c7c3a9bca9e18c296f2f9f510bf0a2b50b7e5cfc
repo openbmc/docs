@@ -177,6 +177,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1fd3d1f_7aabbdc7",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-09-24T18:50:12Z",
+      "side": 1,
+      "message": "This is more of an implementation question rather than a design one. Let\u0027s continue the discussion on the Discord link I shared earlier to involve a wider audience. I will mark this as resolved for now, but please let me know if you have any other questions or concerns.",
+      "parentUuid": "d574951a_5693d33e",
+      "revId": "c7c3a9bca9e18c296f2f9f510bf0a2b50b7e5cfc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a7514c3_0189a893",
@@ -226,6 +244,24 @@
       "side": 1,
       "message": "nah it can still go into dbus-sensors, even if it\u0027s not a sensor.\n\nIt would be too confusing to have it somewhere else. Just because the repo name does not 100% match all the daemons inside, it\u0027s not an excuse to exacerbate the repo bloat.\n\nFor entity-manager, there is also FruDevice inside that repo and i\u0027m not aware it has caused any issues.\n\ndbus-sensors has lots of common code related to thresholds and configuration parsing for sensors. Unless you plan to refactor all of that and put it into a common library, then how will you re-use that code?",
       "parentUuid": "74adf07a_ab79c677",
+      "revId": "c7c3a9bca9e18c296f2f9f510bf0a2b50b7e5cfc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4852aace_be1a8cd0",
+        "filename": "designs/liquid-leak-detection.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-09-24T18:50:12Z",
+      "side": 1,
+      "message": "\u003e nah it can still go into dbus-sensors, even if it\u0027s not a sensor.\n\u003e \n\u003e It would be too confusing to have it somewhere else. Just because the repo name does not 100% match all the daemons inside, it\u0027s not an excuse to exacerbate the repo bloat.\n\nThe reason for this is not the name of the repository itself, but rather the idea of grouping together a collection of related applications under the same repository based on what I believe could potentially be included in that repository in the future. These applications are all related to a very specific feature related to liquid cooling.\n\n\u003e For entity-manager, there is also FruDevice inside that repo and i\u0027m not aware it has caused any issues.\n\n\u003e dbus-sensors has lots of common code related to thresholds and configuration parsing for sensors. Unless you plan to refactor all of that and put it into a common library, then how will you re-use that code?\n \nRegarding where this code should go, it is more of an organizational question that we need to address. We have an open TOF issue for this topic and I will also start a thread on Discord to discuss some of the important open topics, including this one.",
+      "parentUuid": "f53aab0f_d2417819",
       "revId": "c7c3a9bca9e18c296f2f9f510bf0a2b50b7e5cfc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
