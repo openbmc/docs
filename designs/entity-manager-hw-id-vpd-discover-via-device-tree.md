@@ -114,10 +114,9 @@ potentially for other hardware as well).
 
 - Vital product data must be parsed and published to D-Bus
 
-- D-Bus properties for interface(s) at path
-  `xyz/openbmc_project/Inventory/MachineContext` may be populated using
-  retrieved VPD values as appropriate to offer a D-Bus path for common specific
-  model identifying details.
+- D-Bus properties for interface(s) at path `xyz/openbmc_project/MachineContext`
+  may be populated using retrieved VPD values as appropriate to offer a D-Bus
+  path for common specific model identifying details.
 
 - Vital product data properties should be referenced in Entity-Manager config
   'probe' statement(s) in order to key configuration enablement off them.
@@ -221,7 +220,7 @@ High Level Flow:
 1. Doesn't save much effort compared to a generalized non-HPE-specific solution
 2. Harder to leverage code for potential future cases
 
-### Service is hosted in Entity-Manager
+### Service is hosted in Entity-Manager [ACCEPTED after TOF re-examination]
 
 #### Pros:
 
@@ -230,6 +229,13 @@ High Level Flow:
 #### Cons:
 
 1. Community doesn't want to host VPD -> DBus daemons in Entity-Manager repo
+
+Follow-up: A Technical Oversight Forum discussion has reached consensus that it
+would be better to host this device-tree VPD daemon in Entity-Manager alongside
+the existing fru-device daemon rather than to create a dedicated repo for a
+daemon as simple as this one, or to force into another even less-related repo.
+
+https://github.com/openbmc/technical-oversight-forum/issues/38
 
 ### Service is hosted in Phosphor-u-boot-env-mgr
 
@@ -316,7 +322,7 @@ High Level Flow:
    https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/73260/comment/e0226ae4_d7e514dd/
 
    Follow-up: Landed on interface: xyz.openbmc_project.Inventory.Decorator.Asset
-   @ path xyz/openbmc_project/Inventory/MachineContext
+   @ path xyz/openbmc_project/MachineContext
 
 ## Impacts
 
@@ -332,20 +338,18 @@ rely on this service for Entity-Manager HW/config detection.
 
 ### Does this design require a new repository?
 
-Yes. At this time, each of the [Channel] VPD -> D-Bus services (other than
-Fru_Device hosted in the Entity-Manager repo) has its own dedicated repository,
-so it would make sense to follow that pattern by creating a repo dedicated to
-hosting this service.
-
-### Who will be the initial maintainer(s) of this repository?
-
-`Christopher Sides` &`Ian Woloschin` from HPE will be maintainers, with early
-oversight from an experienced member of the OBMC community.
+No. After some discussion, a Technical Oversight Forum consensus was reached to
+have the device-tree VPD parser daemon hosted in the Entity-Manager repo
+alongside the existing fru-device daemon.
 
 ### Which repositories are expected to be modified to execute this design?
 
-Entity-Manager will have configuration files added for HPE hardware that make
-use of the new interface properties via probe statements.
+Technical Oversight Forums consensus has been reached that this device-tree VPD
+daemon will be hosted in Entity-Manager alongside the existing FRU-device VPD
+daemon.
+
+Entity-Manager will also have configuration files added for HPE hardware that
+make use of the new interface properties via probe statements.
 
 ## Testing
 
