@@ -221,7 +221,7 @@ High Level Flow:
 1. Doesn't save much effort compared to a generalized non-HPE-specific solution
 2. Harder to leverage code for potential future cases
 
-### Service is hosted in Entity-Manager
+### Service is hosted in Entity-Manager [ACCEPTED after TOF re-examination]
 
 #### Pros:
 
@@ -230,6 +230,13 @@ High Level Flow:
 #### Cons:
 
 1. Community doesn't want to host VPD -> DBus daemons in Entity-Manager repo
+
+Follow-up: a Technical Oversight Forum discussion has reached consensus that it
+would be better to host device-tree VPD daemon in Entity-Manager alongside the
+existing fru-device daemon rather than to create a dedicated repo for it, or
+force into another less-related repo.
+
+https://github.com/openbmc/technical-oversight-forum/issues/38
 
 ### Service is hosted in Phosphor-u-boot-env-mgr
 
@@ -332,15 +339,9 @@ rely on this service for Entity-Manager HW/config detection.
 
 ### Does this design require a new repository?
 
-Yes. At this time, each of the [Channel] VPD -> D-Bus services (other than
-Fru_Device hosted in the Entity-Manager repo) has its own dedicated repository,
-so it would make sense to follow that pattern by creating a repo dedicated to
-hosting this service.
-
-### Who will be the initial maintainer(s) of this repository?
-
-`Christopher Sides` &`Ian Woloschin` from HPE will be maintainers, with early
-oversight from an experienced member of the OBMC community.
+No. After some discussion, a Technical Oversight Forum consensus was reached to
+have the device-tree VPD parser daemon hosted in the Entity-Manager repo
+alongside the existing fru-device daemon.
 
 ### Which repositories are expected to be modified to execute this design?
 
