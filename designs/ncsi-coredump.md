@@ -2,6 +2,8 @@
 
 Author: DelphineCCChiu (<Delphine_CC_Chiu@wiwynn.com>)
 
+Other contributors: Jagpal Singh Gill paligill@gmail.com
+
 Created: 03/12/2024
 
 ## Problem Description
@@ -26,34 +28,66 @@ This feature requires Linux kernel to support transferring new NC-SI command
 
 ## Proposed Design
 
-### Interface
+This design will utilize the existing
+[phosphor-debug-collector](https://github.com/openbmc/phosphor-debug-collector)
+module.
 
-This design will reuse existing phosphor-debug-collector module:
-<https://github.com/openbmc/phosphor-debug-collector>.
+### D-Bus Interface
 
 The
 [D-Bus interface](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/73760)
-for dump creation will be:"xyz.openbmc_project.Dump.Manager
-/xyz/openbmc_project/dump/nic xyz.openbmc_project.Dump.Create".
+for dump creation will
+be:`xyz.openbmc_project.Dump.Manager /xyz/openbmc_project/dump/nic xyz.openbmc_project.Dump.Create`.
 
-To indicate which NC-SI link to target, The CreateDump method need one
+To indicate which NC-SI link to target, the CreateDump method need one
 additional input parameter:
-["Target"](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/73761).
+[`Target`](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/73761).
 An EID or network interface, such as eth0 could be a valid value.
+
+To specify that the entity manager configuration is for a NIC, a new inventory
+decorator called `xyz.openbmc_project.Inventory.Decorator.NIC` will be used.
+More details about this decorator will be provided in the next section.
+
+### Entity Manager
+
+The schema definition for `xyz.openbmc_project.Inventory.Decorator.NIC`
+decorator is as follows:
+
+```
+"NIC": {
+    "additionalProperties": false,
+    "properties": {
+        "DeviceIndex": {
+            "type": ["string", "number"]
+        },
+        "NCSIOverMCTP" {
+            "type": "boolean"
+        },
+    },
+    "required": ["DeviceIndex", "NCSIOverMCTP"],
+    "type": "object"
+},
+```
+
+- DeviceIndex: This field can take on values such as "eth0" or "0".
+- NCSIOverMCTP: This field indicates whether the NIC uses MCTP as a transport
+  for NCSI commands, or if it uses Netlink instead.
 
 ### Dump Retrieval
 
 Using standard NC-SI command: Retrieve Data From NC(0x4D) to get the dumps by
 NC-SI over RBT or NC-SI over MCTP protocol. All NC-SI dump procedure will be
-implemented in ncsi-netlink and ncsi-mctp utility in phosphor-networkd:
-<https://github.com/openbmc/phosphor-networkd/blob/master/src/ncsi_netlink_main.cpp>
+implemented in
+[ncsi-netlink](https://github.com/openbmc/phosphor-networkd/blob/master/src/ncsi_netlink_main.cpp)
+utility in phosphor-networkd with support for both crashdump and coredump.
 
 ### Integrate with phosphor-debug-collector
 
-Since phosphor-debug-collector using shell scripts for data collection, a new
-collector script named "ncsicoredump" will be added. This script will help to
-call ncsi-netlink or ncsi-mctp by different NICTarget and generate dump file
-under specific folder.
+A new extension for NIC needs to be added in phosphor-debug-collector that can
+implement the D-Bus interface mentioned above. Since phosphor-debug-collector
+using shell scripts for data collection, a new collector script named
+"ncsicoredump" will be added. This script will help to call ncsi-netlink or
+ncsi-mctp by different NICTarget and generate dump file under specific folder.
 
 The following block diagram illustrate entire dump procedure and relationship
 between modules:
@@ -86,9 +120,9 @@ between modules:
                                     |                          |
                                     |                          |
                                     |                          |
-      +------------+       +--------v-------+          +-------v------+        +------------+
+      +------------+       +--------v-------+          +--------------+        +------------+
       |            |       |                |          |              |        |            |
-      |  DumpFile  <-------+  NCSI-NetLink  |          |  NCSI-MCTP   +-------->  DumpFile  |
+      |  DumpFile  |<------+  NCSI-NetLink  |          |  NCSI-MCTP   +------->|  DumpFile  |
       |            |       |                |          |              |        |            |
       +------------+       +--------^-------+          +-------^------+        +------------+
                                     |                          |
@@ -109,6 +143,19 @@ between modules:
                            +-------------------------------------------+
 
 ```
+
+For full system dumps, the phosphor-debug-collector will utilize the
+`xyz.openbmc_project.Inventory.Decorator.NIC` inventory decorator to determine
+the number of NICs in the system and gather other relevant information. Based on
+this information, the Dreport flow will be called accordingly.
+
+### BMCWeb
+
+Currently, the Ethernet Interface does not support LogService. However, this
+feature has been requested through the
+[Redfish Forum](https://redfishforum.com/thread/1081/logservice-entry-nic-logdiagnosticdatatypes),
+and once it becomes available, the LogService will be extended to support
+Redfish URIs for EthernetInterfaces as well.
 
 ## Alternatives Considered
 
