@@ -186,6 +186,29 @@
       "message": "I understand having a NIC object with an interface to describe the parameters to request the dump and pump packets towards it sounds useful, but it\u0027s not an invenntory decorator its an object computed from the inventory pieces.\n\n\nEDIT: this nextp paragrapge was before I read that its actually a NCSI not a PLDM transport\n\u003e Also, this seems to totally ignore the (stale but open on last check) proposals to NCSI endpoints and the RMII and corresponding MCTP associations based on their GUID property.   While I had lots of questions to those since I hadn\u0027t read ncsi 1.2 at the time and understood less of mctp, pldm and their layering, my chief concern was how it was going to integrate with and not conflict with the kernel NC-SI stack.\n\nDo you have patches for kernel nc-si to allow sending and reciving RMII correction NC Block Data?   Note that kernel support is required if the kernel stack is required because of how the anti-replay works (and last i checked only OEM messages were permitted to be generated from a netlink).  (Yes I\u0027ve seen the userspace netlink-util patches but not the kernel)  Prevviosly I was assuming the users were using something like the  gbmc userspace nc-si stack.\n\n\n(Note: having read and understood the nc-si spec and some of the linux network driver / interface architecture I have thoughts on how to rewrite it to truly support the spec but its about item 4 on my major projects hobby list).",
       "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb4efe0a_e0f8b94e",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2024-10-17T13:47:16Z",
+      "side": 1,
+      "message": "Can you elaborate , what exactly system dump means here ? PDC also uses system dump in different context in the existing design documents. This is avoid confusion the terminology.\n\nAlso please include information how this dump look , is it going to be system scope , or again multiple entry for each Nics?",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 21
+      },
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
