@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d0eb37f_6b066f48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-17T11:06:42Z",
+      "side": 1,
+      "message": "it\u0027s way to late and reading the background changed details of some of my perspectives.",
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63e0cce3_ce468f91",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-17T11:06:42Z",
+      "side": 1,
+      "message": "I\u0027m not finding the support for anything other than OEM packets\n\nhttps://github.com/torvalds/linux/blob/c964ced7726294d40913f2127c3f185a92cb4a41/net/ncsi/ncsi-cmd.c#L329C24-L329C52\n\nThis check and override was added to avoid userspace from injecting netlink packets that interfere with the kernel nc-si driver.\n\nInterjecting raw frames with netlink ethertype will cause conflicts and dropped packets when the 1 byte sequence number matches the kernel packet, where the NIC is allowed (encouraged) to assume the contents are unchanged and it was just a retransmission\n\nare there patches pending ?\n\nIt seems like we should add ncsi commands to create LDM in RBT (although we need to confer with CodeConstruct how it relates to AF_MCTP and PLDM in MCTP) and to stream this NC BLOCK data (which only seems to be identified by an initial block number then just a sequence).",
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1098753e_cb54a972",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-17T11:06:42Z",
+      "side": 1,
+      "message": "this seem to be a poor approachpproach.  nether of these are physical, they are both dynamically asigned each boot.\n\nThe contents of this decorator would have to be probed and dynamically evaluated each boot.\n\nIf you want an inventory decorator you should identify either the physical inentoriy item eg the adaptor  card in the corresponding pci slot and the port (eg sfp port) and deccorate that.  the ncsi address is formed by the rmii conection to the ncs-si port (not sure if redfish has this covered), the package strappinig (which should be a variable passed to the instance of the package as there are straps to select which of 3 package id is used), and the channel number (which is likely a fixed assignment for a given adapter and likely NIC).  (I\u0027m not confirming the redfish names at this hour but know there are logical and physical entities)\n\n\nBottom line, I think the computation of this inventory decorator is not trivial and should be hosted somewhere; either an application or a library to walk inventory interfaces.  possibly several simple decorators and probably 1 or more associations will be needed to identify the package and port although I could see both when the package is a passed variable analogous to $bus for i2c)",
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2b70641_84ea6fdb",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-17T11:06:42Z",
+      "side": 1,
+      "message": "this would be decorated at inventory on the adapter",
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49031fcd_e31eed0d",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-17T11:06:42Z",
+      "side": 1,
+      "message": "and this would likely be fixed at the package",
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0604f1ed_4efee275",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-17T11:06:42Z",
+      "side": 1,
+      "message": "this should be pldm transport not NC SI transport\n\n(or show me the proposed nc-si flow vs a pldm flow)",
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "901d4120_bacddcc8",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-17T11:06:42Z",
+      "side": 1,
+      "message": "replace netlink with RBT\n\nRBT is the NC SI term for rmii based transport, which uses Ethernet frames over an extension of a rmii (reduced (pin count ) management interface (designed for connecting a MAC to a phy).\n\nnetlink is an interface to the kernel network stack.\n\n\nWhen I saw this diff (until I read the reference material liinks and the whole document) I assumed this was a dump using PLDM conmmands over some transport.\n\nis nc-si over smbus // i2c defined? it was implemented.  due to transport speed it might only be usable for small dumps like a backtrace or kernel oops equivalent.\n\n(why capitalize netlink it\u0027s not an acrony?)",
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5c1ce0d_8d92962a",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-17T11:06:42Z",
+      "side": 1,
+      "message": "this name seems to be from a different proposal",
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2caa1907_7eff54f0",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-17T11:06:42Z",
+      "side": 1,
+      "message": "(rework after above considerations)",
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "328b505a_82b3e88a",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-17T11:06:42Z",
+      "side": 1,
+      "message": "if you are dumping a device it should be attached to a package which is a package level property.  if it\u0027s only dumping a specific port then the decorator would be attached to the port interface or logical interface.\n\nI dont know if the channel is always required or ignored or its upto the NIC firmware and its architecture.",
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f05b112a_d7640e17",
+        "filename": "designs/ncsi-coredump.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-17T11:06:42Z",
+      "side": 1,
+      "message": "I understand having a NIC object with an interface to describe the parameters to request the dump and pump packets towards it sounds useful, but it\u0027s not an invenntory decorator its an object computed from the inventory pieces.\n\n\nEDIT: this nextp paragrapge was before I read that its actually a NCSI not a PLDM transport\n\u003e Also, this seems to totally ignore the (stale but open on last check) proposals to NCSI endpoints and the RMII and corresponding MCTP associations based on their GUID property.   While I had lots of questions to those since I hadn\u0027t read ncsi 1.2 at the time and understood less of mctp, pldm and their layering, my chief concern was how it was going to integrate with and not conflict with the kernel NC-SI stack.\n\nDo you have patches for kernel nc-si to allow sending and reciving RMII correction NC Block Data?   Note that kernel support is required if the kernel stack is required because of how the anti-replay works (and last i checked only OEM messages were permitted to be generated from a netlink).  (Yes I\u0027ve seen the userspace netlink-util patches but not the kernel)  Prevviosly I was assuming the users were using something like the  gbmc userspace nc-si stack.\n\n\n(Note: having read and understood the nc-si spec and some of the linux network driver / interface architecture I have thoughts on how to rewrite it to truly support the spec but its about item 4 on my major projects hobby list).",
+      "revId": "6b09bfee79b3d79d948fdf8c8704971242a3a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
