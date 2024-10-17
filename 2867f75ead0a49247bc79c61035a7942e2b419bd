@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffcba72a_db157bd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2024-10-17T06:14:21Z",
+      "side": 1,
+      "message": "Have some comments/questions to understand the PLDM/Non-PLDM flow.",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1567ed43_2370ba47",
+        "filename": "designs/code-update.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2024-10-17T06:14:21Z",
+      "side": 1,
+      "message": "How PLDM packages are to be handled is not very clear to me. I think there\u0027s some information in the \"Multi part Images\" section, but that doesn\u0027t answer all of the following questions I have:\n\n1) It seems like the design expects a RedfishTargetURI must be provided by the user. However, that is not mandatory and would likely not be provided when the FW package is PLDM based. How does Bmcweb connect to the PLDM service in this case. Since PLDM can determine existing SW versions based on the Type 5 spec, it could create multiple SW versions based on how many PLDM FW endpoints are found.\n- Is it the case that when no Target URI is provided, bmcweb will invoke StartUpdate on all services that implement this inteface and it is up to the service to determine whether the package is relevant or not (that sounds risky)?\n\n2) How about the case where the the PLDM FW package has component images for PLDM and non-PLDM devices (we do this at Nvidia and I believe are not the only ones doing this) - which service is supposed to parse out the PLDM and non-PLDM components (pldmd/bmcweb)? It seems like the EM confgs below help in this regard, but not sure how.",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f63eb150_c2fa930f",
+        "filename": "designs/code-update.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2024-10-17T06:14:21Z",
+      "side": 1,
+      "message": "How are the supposed to be used? Can you give an example for PLDM package containing both PLDM and non-PLDM component images?",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "046febff_a9861cdc",
+        "filename": "designs/code-update.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2024-10-17T06:14:21Z",
+      "side": 1,
+      "message": "configurations or component images?",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80ff857e_99611c32",
+        "filename": "designs/code-update.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2024-10-17T06:14:21Z",
+      "side": 1,
+      "message": "What is the reason to do this mapping? Why did we pick only two descriptors from PLDM Type 5?",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
