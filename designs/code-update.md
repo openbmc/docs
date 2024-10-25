@@ -242,6 +242,72 @@ entities.
 - `Compatible`: This field maps to the `ASCII Model` descriptor in PLDM package
   header.
 
+### Pre and Post Update Conditions
+
+The Code Updater daemon can be configured to run platform-specific pre and post
+update systemd targets using a JSON configuration file.
+
+#### JSON schema
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Components": {
+      "description": "The component list.",
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "Component": {
+              "type": "string",
+              "description": "The name of the component."
+            },
+            "PreSetupTarget": {
+              "type": "string",
+              "decsription": "The systemd target service that should be run before starting an update."
+            },
+            "PostSetupTarget": {
+              "type": "string",
+              "description": "The systemd target service that should be run after an update has finished."
+            }
+          },
+          "required": ["Component", "PreSetupTarget", "PostSetupTarget"]
+        }
+      ],
+      "uniqueItems": true
+    }
+  },
+  "required": ["Components"]
+}
+```
+
+- For PLDM devices, the `Component` field should correspond to the downstream
+  component name.
+- For non-PLDM components, the `Component` field should correspond to the EM
+  configuration name.
+
+#### Example
+
+```json
+{
+  "Components": [
+    {
+      "Component": "Comp1",
+      "PreSetupTarget": "Comp1_PreSetup.service",
+      "PostSetupTarget": "Comp1_PostSetup.service"
+    },
+    {
+      "Component": "Comp2",
+      "PreSetupTarget": "Comp2_PreSetup.service",
+      "PostSetupTarget": "Comp2_PostSetup.service"
+    }
+  ]
+}
+```
+
 ### Multi part Images
 
 A multi part image has multiple component images as part of one image package.
