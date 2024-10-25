@@ -252,6 +252,53 @@ device firmware.
 - `CompatibleHardware`: This field maps to the `ASCII Model` descriptor in PLDM
   package header.
 
+### Pre and Post Update Conditions
+
+Certain device updates may necessitate specific configurations or actions to be
+executed before or after the update process. One such example of a post update
+action is the device reset. While these actions can be integrated into the
+update process for some updaters, it is often ideal to define them as structured
+hooks within the firmware update process. This section aims to establish such
+hooks for applicable updaters.
+
+The Code Updater daemon can check for and execute systemd targets with the
+following naming conventions:
+
+- <DeviceName>\_PreUpdate@.service (runs before update)
+- <DeviceName>\_PostUpdate@.service (runs after a successful update)
+
+- `DeviceName`: This refers to `CompatibleHardware` from EM schema or
+  `ASCII Model` of downstream device in case of PLDM device.
+
+#### Discovering and Executing Pre/Post Update Services
+
+The CodeUpdater daemon uses the
+[GetUnitFileState](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html)
+method from org.freedesktop.systemd1.Manager interface to discover if the
+optional Pre and Post Update services exist for a specific component. If the
+service doesn't exist, the CodeUpdater daemon logs a warning message and
+proceeds.
+
+To start these services, the CodeUpdater uses the
+[StartUnit](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html)
+method from org.freedesktop.systemd1.Manager interface exposed by systemd
+service.
+
+#### Handling Pre/Post Update Service Completion
+
+For a discovered pre/post update service, the CodeUpdater waits for completion
+by registering for the
+[JobRemoved](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html)
+signal for org.freedesktop.systemd1.Manager interface. Depending on the returned
+status, the CodeUpdater decides to fail or proceed further and updates the
+activation status accordingly.
+
+#### Handling Hanging Tasks
+
+To handle ever-hanging tasks, pre and post update services can specify
+"RuntimeMaxSec", which helps terminate the service and deliver the designated
+state via the JobRemoved signal.
+
 ### Multi part Images
 
 A multi part image has multiple component images as part of one image package.
