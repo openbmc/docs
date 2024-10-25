@@ -252,6 +252,21 @@ device firmware.
 - `CompatibleHardware`: This field maps to the `ASCII Model` descriptor in PLDM
   package header.
 
+### Pre and Post Update Conditions
+
+Certain device updates may necessitate specific configurations or actions to be
+executed before or after the update process. One such example of a post update
+action is the device reset. While these actions can be integrated into the
+update process for some updaters, it is often ideal to define them as structured
+hooks within the firmware update process. This section aims to establish such
+hooks for applicable updaters.
+
+The Code Updater daemon can check for and execute systemd targets with the
+following naming conventions:
+
+- <DeviceName>\_PreUpdate.service (run before update)
+- <DeviceName>\_PostUpdate.service (run after update)
+
 ### Multi part Images
 
 A multi part image has multiple component images as part of one image package.
