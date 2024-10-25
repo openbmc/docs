@@ -91,6 +91,30 @@
       },
       "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "694ac94d_ca393409",
+        "filename": "designs/cable-monitor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-25T06:19:57Z",
+      "side": 1,
+      "message": "\u003e Can you please rather describe the file in jsonschema, and then use this as a concrete example? That way we have a proper specification for the code to implement, and aren\u0027t left at the whime of \"whatever the code does\"\n\nSure i can define a json schema.\n\n\u003e \n\u003e However, the proposal is that this lives in dbus-sensors, which are reactors to entity-manager configs. None (that I\u0027m aware) of consume a configuration file; all the configuration comes from EM. Why is this different?\n\nIf you believe that another repository or a new one would be more appropriate for this, we can add it there.\n\n\u003e \n\u003e Can you unpack why the necessary cable config can\u0027t be described via EM?\n\nThis configuration file will be stored in a writable filesystem section that is added at runtime. It specifies the cables that are expected to be connected during runtime, which is why it cannot be described via EM config.",
+      "parentUuid": "8ace3ea3_16091b68",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 3
+      },
+      "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
