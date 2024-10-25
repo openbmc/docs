@@ -252,6 +252,73 @@ device firmware.
 - `Compatible`: This field maps to the `ASCII Model` descriptor in PLDM package
   header.
 
+### Pre and Post Update Conditions
+
+The Code Updater daemon can be configured to run platform-specific pre and post
+update systemd targets using a JSON configuration file.
+
+#### JSON schema
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Components": {
+      "description": "The component list.",
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "Component": {
+              "type": "string",
+              "description": "The name of the component."
+            },
+            "PreUpdateTarget": {
+              "type": "string",
+              "decsription": "The systemd target service that should be run before starting an update."
+            },
+            "PostUpdateTarget": {
+              "type": "string",
+              "description": "The systemd target service that should be run after an update has finished."
+            }
+          },
+          "required": ["Component", "PreUpdateTarget", "PostUpdateTarget"]
+        }
+      ],
+      "uniqueItems": true
+    }
+  },
+  "required": ["Components"]
+}
+```
+
+- For a PLDM device, the `Component` field may correspond to
+  `ASCII Model Number` or `PCI Device ID` or `ACPI Product Identifier` or a
+  similar Identifier of the downstream device.
+- For a non-PLDM device, the `Component` field corresponds to the EM
+  configuration name.
+
+#### Example
+
+```json
+{
+  "Components": [
+    {
+      "Component": "Comp1",
+      "PreUpdateTarget": "Comp1_PreSetup.service",
+      "PostUpdateTarget": "Comp1_PostSetup.service"
+    },
+    {
+      "Component": "Comp2",
+      "PreUpdateTarget": "Comp2_PreSetup.service",
+      "PostUpdateTarget": "Comp2_PostSetup.service"
+    }
+  ]
+}
+```
+
 ### Multi part Images
 
 A multi part image has multiple component images as part of one image package.
