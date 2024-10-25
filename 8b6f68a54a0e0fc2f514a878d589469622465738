@@ -409,6 +409,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94fbc5d8_07c74d96",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "Looking again at ayatemd.unit(7) I see that while Condition* and Assert* can be set to the empty list and a new list started again, that [Wants] and friends is purely additive and therefore can\u0027t be removed in a dropin.\n\nSince [Wants] and friends are used by the enable and disable, and result in symlinks placed in the tree from the requesting objects, I was hoping that the bbclass could suppress the want links being installed to multi-user.target and rewriting them to be wants in active.target (vs partof in the conf file).   I was forgetting that the move of units to meson means they don\u0027t get processed by the bbclass but by the meson install.\n\nPerhaps we could write a post-install fixup that removes the multi-user wants (and links) and moves it to a common conf dropin and the class extension changes to the active.target.  However what you have is mostly working.  It is documented that condition not met is not a failure wants or requires, only requisite and above create that.  However, we are not building common packages shared across systems, we are building a custom filesystem image and this feature is known at build not something added when we install another package.  I was hoping we\u0027d not see the \"this is part of the multi-user target\" when browsing the unit files and only finding the conf dropin and saying \"oh, but its really not, it only started after the bmc has become active.\n\nAlso, it opens up races.  If one service wants another and both are part of the active target, the wants between them would be ignored because the condition was not met, but the second service could see the condition met and start assuming its want was recorded and the service is pending.  To avoid these we\u0027d need to make sure the multi-user target services were started before creating the active target.",
+      "parentUuid": "d7153824_998273f9",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 65
+      },
+      "revId": "8b6f68a54a0e0fc2f514a878d589469622465738",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e06e928_ec9fb89c",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 4

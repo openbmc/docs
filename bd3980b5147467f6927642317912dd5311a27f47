@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86db1d0e_2fefc303",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "How do these failures to be eligible to become active interact with the requirement to always have one become active?\n\nHow will a bmc decide it has a critical fault and should give up its previous state as active and how does the passive bmc become aware it should take over?   It has previously be established that its not a simple reboot and its not over the network.  what if its power fails?  what if its path to a given chassis is broken?  can it differentiate a given chassis power has failed vs a chassis to bmc cable has failed?\n\nAgain, it seems you have conflicting requirements: the baseline is the change from passive to active is externally triggered by the host or Redfish; yet you have to reach a winner when you have FSI, but you don\u0027t require ethernet (which would be the normal path to synchronize state from your active to backup) and you have various minimum connectivity requirements and its not clear how you would differentiate what is required.",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddfc1fa0_41bc9ed4",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "Not just IBM\u0027s configuration.   In general sensors and eeproms have state beyond a single i2c transaction and other alternative systems that, for example, just used multiple masters with each bmc having the ability to master on multi-master i2c buses, would have the same limitations.  A simpler statement could be:\n\nThe passive bmc must not probe or otherwise touch hardware not specifically designed for shared access and following its sharing protocol.",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc4e279_542604ee",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "What is an API over the PCIe link?\n\nThe above paragraph reads as a single common API.  But I don\u0027t think your host is actually invoking any Redfish APIs over PCIe or other networks; instead the requirement should methods to initiate the transition from both Redfish and the host (be it over PCIe to some unnamed hardware block, MCTP message or other communication).\n\nShould it state the requirement is a  method (or means) to initiate or trigger the passive BMC to start a fallover (takeover)?  Normally I would not call a register interface an API.  I guess it could be an internal API triggered by some access over the PCie bus or by some Redfish Action.",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfb70332_70eccc2a",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "looking down at comment on the default state being unknown \u003chttps://gerrit.openbmc.org/c/openbmc/docs/+/70233/comment/0f39ff63_ed2cdf54/\u003e, as an alternative to \"requiring an active bmc to be chosen and boot the syste\" an laternative equirement that would eliminate some of this ambiguity (at least when the redundancy is limited to 1+1) is\n\n- if a bmc can confirm the other (all other) bmc has determined itself to be passive (and not just unknown) and it is eligible to become the active bmc (no provisioning or fatal topology errors) it should choose itself.\n\nThis has the result of preserving the previously selected as active bmc; but allows a passive bmc to become active (presumably on a reboot) after the sibling has actively disqualified itself.   (so staging the power or similar could be an alternative to activly invoking the api).",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1026c1f_398d6963",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "The ordering of this section seems to me to be a bit random or stream of consciousness, likely just each new requirement was added to the end of the list.\n\nTo provide a concrete proposal, consider rouping requirements on role - active then passive, then takeover action:\n\nat most one active bmc\n\nonly active bmc access hardware no probe by passive\n\n(IBM) be able to boot without network -\u003e FSI\n\nable to elect an active and successfully boot the system without network contact to the passive bmc (? or just resume active role?)\n\nconditions that exclude a bmc becoming active:  provisioning, system serial not matching provisioning, various cables or other topology matching exxpectations\nactivbmc e bmc actively enable redundancy\n\nboth report role via redfish , redundancy enabled , and failover in progrress\n\nhost must obtain be able to obtain role, enabled state, and failover in progress\n\nactive bmc reports to host and redfish that redundancy is enabled.\n  - compaitble code versions\n  - sufficient data synchronization complete\n\nreboot of active doesn\u0027t trigger passive to becoming acive\n\nno requirement passive BMC itself will detect dead active\n\nmeans to cause passive bmc to fail the active bmc and become active itself. \n \nfailover can be initiated from host communication path or redfish\n\npassive to active transition without p a reboot; \n - active to passive will be placed in externl reset or reboot\n\nno rewriting of configuration files based on active or passive selection no addiition of conf files when transitioning\n  - if needed start the same server as a different, conflicting service",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b044ce2_89c84075",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "what are D-Bus event logs?   platform?  System?  something else?",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d19af2ec_f0f343fd",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "will this be handled by the data synchronization mechanism?   or just stating they will be actively pushed?   what is the timeline or policy to get the logs across, considering network partitioning or other lack of availability?\n\nshould this mearly state that xxx logs will be actively pushed to both BMCs to avoid loosing the logs when one becomes unavailable?",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf5f68b_471d964f",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html#PartOf\u003d\n\ndo we have other examples of PartOf ?   Since going active to passive is via a reboot or external reset, is the automatic start needed vs starting the active.target and having other service in its .wants?  You are already linking the objects in the target wants directory.\n\ndo we expect to trigger the Stop?  \n\nPart-of is not BindsTo so this unit culd be stopped removing this state file while the target is still active.\n\nUpdate: in openbmc/openbmc there are 4 files, one upstream starting xlock without a display manager, two setting a platform\u0027s fan speeds during power on/off.  I didn\u0027t check other repos).\n\nAs a starting point, are there any concerns with the anticipated few services that have a unique passive configuration that they start the passive configuration before stoping that unit and restarting with the active configuration?",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0ad6263_b0015086",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "propose remove the link from multi-user.target.wants\neven if lwe leave the multi-user.target in the Wants it wouldn\u0027t be recreated until a systemctl enable is invoked (unless there is a qa check)",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b567af0b_a561cc6a",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "this seems similar to my proposed requirement wording above.",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

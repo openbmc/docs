@@ -180,6 +180,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce6bf21b_53b7a4dd",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "perhaps qualifing with one of: FSI is also one of the methods by which the BMC can communicate with IBMs Power processors\n\nThe description talks about it being point to point but omits that it is a directed topology that often exposes additional downstream links to form a tree reaching many or most frus in the system (and thos with multiple upstream ports allow for multiple redundant or overlapping trees).\n\nnit: for which the .. have masters.",
+      "parentUuid": "d2914557_f0e738ee",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "074a67d4_bda866a1",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
@@ -392,6 +410,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66122c10_5ddbfc3e",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "As you anticipate its the same UI, please replace the last sentence.\n\nThe web UI will support accessing the passive BMC while being limited to the scope of its bmcweb Redfish and routes.",
+      "parentUuid": "3abcf395_1b3f0689",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd5b9b61_08ff323f",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
@@ -456,6 +492,24 @@
       "side": 1,
       "message": "\u003e you separated the service in response to feedback but didn\u0027t get the implications here\n\nI don\u0027t think I understand which implications you\u0027re talking about.\n\n\u003e definitely the wrong way to condition the service. while it blocks the startup of the services it creates state where the target state is active without me service running and fallover won\u0027t actually restart them without isolating to the previous mukti-user target.\n\nSo with the following, which does work:\n1. multi-user.target is kicked off:\n2. Apps with a ConditionFileExists\u003dactive don\u0027t start, but systemd says the units are active so everything can proceed.\n3. multi-user.target is reached\n4. Sometime later, the new RBMC PSM app starts obmc-bmc-active.target\n5. The apps from before now actually start\n6. obmc-bmc-active.target is reached\n\nCould you point out the better sequence?\n\n\u003e the BMC active target needs to have a hard dependency to being selected as active. not just conditionally starting service to a common ready state.\n\nSo you don\u0027t think code starting the bmc-active target when the active role is chosen is good enough?  Can you elaborate how you think it should work?",
       "parentUuid": "5f329564_beb91c43",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed06909d_151dd879",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "\u003e So with the following, which does work:\n\u003e 1. multi-user.target is kicked off:\n\u003e 2. Apps with a ConditionFileExists\u003dactive don\u0027t start, but systemd says the units are active so everything can proceed.\n\u003e 3. multi-user.target is reached\n\u003e 4. Sometime later, the new RBMC PSM app starts obmc-bmc-active.target\n\u003e 5. The apps from before now actually start\n\u003e 6. obmc-bmc-active.target is reached\n\u003e \n\u003e Could you point out the better sequence?\n\ncorrection 2.  Apps don\u0027t start but systemd ignores the units when condition not met unless its a Requisite dependency.\n\n2b apps with two configurations are started with passive configuration.\n4a. rbmc psm determines role should be active\n4b. hardware locks obtained, condition created\n4c bcm-active.target started starting other services.\n\n4b might be able to be implicit via after unit creating the condition file.\n\nIs there a statement that Conditions are not evaluated until After is met?  (I knkow we have had trouble with waiting for services even when Condition of the unit is not met, eg network online vs the second ethernet on Bonell).\n\n\u003e \u003e the BMC active target needs to have a hard dependency to being selected as active. not just conditionally starting service to a common ready state.\n\u003e \n\u003e So you don\u0027t think code starting the bmc-active target when the active role is chosen is good enough?  Can you elaborate how you think it should work?\n\nI was trying to say the target shouldn\u0027t be able to be active unless the state was chosen.  Maybe this means the target should have a requisite.  I think I was trying to say some services or state change (eeg stablishing the hardware paths and locks) should be accomplished before starting the active target.  Its good enough to start development.\n\nAlso see my concern about the possible race by using conditions above.",
+      "parentUuid": "ee800c58_459ffa5b",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -708,6 +762,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "771769a3_753d5e21",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "so this is rbmc-fsi.   the added comments are useful description, considering adding to the text.  see below for more on the prior comment.",
+      "parentUuid": "6b2e47d7_e378ddbc",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f39ff63_ed2cdf54",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
@@ -772,6 +844,24 @@
       "side": 1,
       "message": "Common as in both BMCs have the same fields?  yes.",
       "parentUuid": "8d14ab72_c3a060f7",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48d07ad5_135a1e72",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "When I read https://gerrit.openbmc.org/c/openbmc/docs/+/70233/comment/e517822c_db6a846a/ I took it to mean you were creating two daemons, one hosting an interface and doing things anticipated to be generic to redundancy, and a second that would implement the details fsi communication and report via methods to the first.\n\nHowever,  that is not apparently what you are describing.  I understand such a design would drive abstraction that is not currently used, so am fine but that was the context of my comments.",
+      "parentUuid": "3a6a57f5_5cc87e44",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -895,6 +985,24 @@
       "side": 1,
       "message": "\u003e won\u0027t this complicate factory reset?\n\nHow so? After a factory reset I don\u0027t see that one could expect the active BMC to necessarily stay the same.\n\nIn our manufacturing, redundancy will be disabled, so there won\u0027t be any failovers happening even though there will be provisioning.",
       "parentUuid": "3d84f18e_b30f6094",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebf29871_8aefd87f",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "I\u0027m not thinking about the factory reset in the factory.  More like reet-to-factory-delivered state factory reset in the field as part of a sanitization procedure or recovery procedure (eg admin password or network misconfiguration).\n\nBut I also fail to see the need to detect \"the first time through\" vs \"on subsequent reboots\", when there is already stipulation of an external agent and a provisioning process in the factory.",
+      "parentUuid": "6a86be86_b50468e6",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1165,6 +1273,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26efe07e_d8f546c1",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "[trimmed]\n\u003e \u003e this points out that BMC ready is now broken it\u0027s no longer services started and redfish resources stable. should it not be set until passive role is decided\n\u003e \n\u003e Our initial plan was to not even decide active/passive until we get to BMCReady, but yea, it may be better to hold it off.  I\u0027ll look into it.\n\nI was trying to look at it from a \"what changes does a management client need to be aware its talking to a system with a redundant management controller\".   If the controller isn\u0027t ready to manage the system because its still becoming active and discovering hardware it isn\u0027t ready.\n\n\u003e \u003e  should we send a reboot event for unaware client to reset their state?\n\u003e \n\u003e Anyone that cares should be listening for the role changed redfish event.  I don\u0027t think we\u0027ve found a requirement for a reboot event yet. (or maybe it already exists and is being used and I just don\u0027t know about it)\n\nAgain this is putting the onus on the external management client to konow its a redundant bnc system.   There is no current event for \"oh I just changed my role\" today it would be an OEM message, and even if you get it added to Redfish vs any existing client will have to be updated.",
+      "parentUuid": "6c5c35e6_a7000f69",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "914f4359_dbd22d38",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
@@ -1288,6 +1414,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b37a5ae_70d83ea7",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "\u003e \u003e maybe only check access vs force switch access and hence block failed BMC from becoming master without force but allowing force)\n\u003e \n\u003e Could you elaborate, I don\u0027t quite follow?\n\nI was thinking of two actions:  check access would be performed on a reboot after successfully reaching some checkpoint in the host boot sequence.\n\nalternatively it could set itself as the active path if the hardware doesn\u0027t indicate the other (another) bmc has set itself as the active master.\n\nthe force takeover would actively break the hardware locks and set itself as the master, and would be used when \"force takeover\" is selected, or maybe when it knows its holding the other bmc(s) in reset.\n \n\u003e \u003e should we make isolation it\u0027s own service with systemd time limit to allow better failures response even if it requires outside initiated recovery ?\n\u003e \n\u003e This would include everything in between the block and unblock of a BMC reboot?\n\u003e \n\u003e \u003e and time the method call to the hardware \n\u003e \n\u003e Is it the FSI local bus takeover and/or FSI scan you\u0027re talking about here, that you are worried about hanging?\n\nI\u0027m trying to avoid any hang or failure during the critical window where we are holding the alternate bmc(s) in reset and could loose control (yes including the local bus takeover), thus avoiding a hardware reset eg power off to regain management of the system.",
+      "parentUuid": "d1d75b56_6aac5eb7",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "66057152_c35d9aed",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
@@ -1317,6 +1461,24 @@
       "side": 1,
       "message": "\u003e so this can be redfish aggregation to initiate a graceful takeover?\n\nIf necessary, though if this is our only use of BMC-\u003eBMC redfish we\u0027d like to avoid it.  The active BMC can easily enough reboot itself into passive (by leaving a breadcrumb), then the question is can it also reboot the sibling such that it would know to come back as active, or can we just use an FSI backdoor to request a failover.\n\n\u003e how does it know the partner has a better view until it attempts to probe?\n\nWe\u0027re not going to know which is absolutely better until hostboot has gone though some steps, for example we can\u0027t know if hostboot can even talk to the BMC until after a boot starts.  So I think the plan is to gather up all the HW related results at some point in the boot (except for FSI cable errors which we can know before selecting the active with power off).\n\n\n\u003e should a failure cause it to remove itself from redundancy enabled before initiating the fallover request to the sibling?\n\nYea, it would need to somehow indicate redundancy can\u0027t be enabled.  We still need to work out a good way to track that.",
       "parentUuid": "66057152_c35d9aed",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64db26aa_45e14cab",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8a9fd76e_6c0150c8",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1411,6 +1573,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57b97f1e_3de139c5",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "[trimmed]\n\u003e \u003e  should the BMC identifier be used to control the master source to delete?\n\u003e \n\u003e Could you elaborate here, I don\u0027t quite follow the question?\n\nshould we delete the log on the bmc that created it and then replicate to the other (meaning logs created by the current passive would be deleted there before the current active)?   While this might prevent log deletion if the passive is unavailable, and would also have implications about log retention across a replacement of a bmc, but it would avoid a log appearing to be deleted coming back when the network partition has been repaired while also resolving a clean transaction when transitioning the active.\n\n\u003e \n\u003e \u003e what if the BMC is placed in the opposite site eg for problem isolation? should it be provisioned or hardware location id?\n\u003e \n\u003e So a BMC is moved to the other position? I don\u0027t think provisioning would be necessary, unless I\u0027m forgetting something.  I guess any new event logs would just have the new ID.\n\nthat would imply that the id is part of the provisioning and not part of the hardware state eg plug position.   that\u0027s ok but should be specified in the design or implementation.",
+      "parentUuid": "f83a987e_cbf83623",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51d9afa3_893c5767",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
@@ -1446,6 +1626,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9a3cf01_00702a99",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "\u003e \u003e can we instead create a virtual? plug dect when it becomes active?\n\u003e \n\u003e could you elaborate on how this would work?  I would like to avoid restarting it, so definitely open to something else here.\n\n\ninstead of waiting to start the service until reaching active state, start probe on a fru that only gets the system serial and gate probing the rest of the system until a plug detect says active role was selected.  this could also require the hardware access locks have been obtained or acquiring the locks is part of the probe process for each fru.\n\nProbing the system could also be gated by the system serial matching the provisioned value.\n\nOtherwise you need to host this system serial in some other inventory or discovery process.",
+      "parentUuid": "70d743a2_775da8b1",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bea9c515_ea7707eb",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
@@ -1475,6 +1673,24 @@
       "side": 1,
       "message": "\u003e  but alternatively a signal to re-read and signal changes?\n\nThat\u0027s not a bad idea, it would definitely be less code (and resources as you state above) than inotify watches, to just have a way to tell it to reread its persisted files.\n\n\u003e  do we need to have many restricted from modification when in passive role \n\nI don\u0027t think that would be necessary.  The understanding is that if it is changed on the passive it could get overwritten by a sync.\n\n\u003e  would it also psm to do change detection more...\n\nI didn\u0027t quite follow this.  Could you elaborate?",
       "parentUuid": "bea9c515_ea7707eb",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c10acf2_bcccf687",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-10-25T01:03:17Z",
+      "side": 1,
+      "message": "\u003e \u003e  do we need to have many restricted from modification when in passive role \n\u003e \n\u003e I don\u0027t think that would be necessary.  The understanding is that if it is changed on the passive it could get overwritten by a sync.\n\nThe understanding?  By Who?   If seatings are on D-Bus I\u0027d expect any that are settable by Redfish when active would be exposed when passive and then I\u0027m sure users would not have any understanding that settings are subject to overwrite by the active bmc.\n\n \n\u003e \u003e  would it also psm to do change detection more...\n\u003e \n\u003e I didn\u0027t quite follow this.  Could you elaborate?\n\npsm \u003d\u003e phosphor settings manager (and I had to think a bit, my bad, could have been state too).\n\nhaving the sync daemon write to a parallel tree and telling the settings manager to merge the changes would allow the normal PropertyChanged signal to be emitted and only when the property actually changes.  Much easier that having all downstream daemons to locate bind to the new settings service when it restarts.  (alternately settings manager could get deltas directly depending on the sync model).",
+      "parentUuid": "51a4d292_6cb693a7",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
