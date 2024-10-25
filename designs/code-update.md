@@ -252,6 +252,97 @@ device firmware.
 - `CompatibleHardware`: This field maps to the `ASCII Model` descriptor in PLDM
   package header.
 
+### Pre and Post Update Conditions
+
+Certain device updates may necessitate specific configurations or actions to be
+executed before or after the update process. One such example of a post update
+action is the device reset. While these actions can be integrated into the
+update process for some updaters, it is often ideal to define them as structured
+hooks within the firmware update process. This section aims to establish such
+hooks for applicable updaters.
+
+#### JSON schema for Configuration
+
+The Code Updater daemon can be configured to execute platform-specific pre and
+post update systemd targets, as defined by the JSON schema definition below:
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "description": "The definition for the pre and post update targets",
+      "type": "object",
+      "properties": {
+        "Identifier": {
+          "type": "string",
+          "description": "The unique identifier for a device or a component."
+        },
+        "PreUpdateTarget": {
+          "type": "string",
+          "decsription": "The systemd target service that should be run before starting an update."
+        },
+        "PostUpdateTarget": {
+          "type": "string",
+          "description": "The systemd target service that should be run after an update has finished successfully."
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}
+```
+
+- `Identifier` maps to `DeviceX` defined in the preceding sections.
+
+#### Example Configuration
+
+```json
+[
+  {
+    "Identifier": "Device1",
+    "PostUpdateTarget": "ABC_PostUpdate.service"
+  },
+  {
+    "Identifier": "Device2_ComponentX",
+    "PreUpdateTarget": "XYZ_PreUpdate.service",
+    "PostUpdateTarget": "XYZ_PostUpdate.service"
+  },
+  {
+    "Identifier": "Device3_ComponentY",
+    "PreUpdateTarget": "JKL_PreUpdate.service",
+    "PostUpdateTarget": "JKL_PostUpdate.service"
+  }
+]
+```
+
+#### Executing Pre/Post Update Services
+
+If no pre or post service is specified for an `Identifier`, it will be skipped.
+However, if a service is specified, it will be triggered and if the start fails,
+error handling procedures shall be executed accordingly.
+
+To start these services, the CodeUpdater uses the
+[StartUnit](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html)
+method from org.freedesktop.systemd1.Manager interface exposed by systemd
+service.
+
+#### Handling Pre/Post Update Service Completion
+
+For a triggered pre/post update service, the CodeUpdater waits for completion by
+registering for the
+[JobRemoved](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html)
+signal for org.freedesktop.systemd1.Manager interface. Depending on the returned
+status, the CodeUpdater decides to fail or proceed further and updates the
+activation status accordingly.
+
+#### Handling Hanging Tasks
+
+To handle ever-hanging tasks, pre and post update services can specify
+`RuntimeMaxSec`, which helps terminate the hanging service and deliver the
+designated state via the JobRemoved signal.
+
 ### Multi part Images
 
 A multi part image has multiple component images as part of one image package.
