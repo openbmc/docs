@@ -16,6 +16,24 @@
       "message": "i think this is difficult conceptually since configuring a systemd target loses all information about what that target is intended to do.\n\nIf the pre- and post-condition is hardcoded in the device-specific firmware update daemon then the potential for misconfiguration is removed.\n\nSince the pre- and post-condition is device specific.\n\nCan you provide any specific example of a use-case for the pre- and post-update target that can or should not be solved inside the device-specific update daemon.",
       "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d66703d4_dfef1e80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-28T06:20:50Z",
+      "side": 1,
+      "message": "\u003e i think this is difficult conceptually since configuring a systemd target loses all information about what that target is intended to do.\n\nNot sure what you mean by \"configuring a systemd target loses all information about what that target is intended to do.\"?\n\u003e \n\u003e If the pre- and post-condition is hardcoded in the device-specific firmware update daemon then the potential for misconfiguration is removed.\n\nNot all Code Updater deamons are device specific. PLDMd is one such example which can handle update for wide variety of PLDM devices, which can have different pre and post conditions. Also, for same device type pre and post conditions can change depending upon the platform type and where that particular component is positioned.\n\n\u003e \n\u003e Since the pre- and post-condition is device specific.\n\npre and post systemd targets can be device specific too.\n\n\u003e \n\u003e Can you provide any specific example of a use-case for the pre- and post-update target that can or should not be solved inside the device-specific update daemon.\n\nAs i mentioned above, PLDMd is such an example which handles update for all PLDM devices and pre \u0026 post conditions for devices can be different depending upon the platform type.",
+      "parentUuid": "c0f91c9a_641142ef",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
