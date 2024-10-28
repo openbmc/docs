@@ -72,6 +72,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d253b3c_293c0ff2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-28T09:30:38Z",
+      "side": 1,
+      "message": "\u003e Not sure what you mean by \"configuring a systemd target loses all information about what that target is intended to do.\"?\n\nYou posted a question here but marked my comment as resolved. If there is still questions, my comment is not resolved.\n\nWhat i mean here is that in your proposal, you suggest running configured systemd services before and after the update. The code updater application will have no way to know what these services are doing and thus refactoring the application logic will be very difficult.\n\n\u003e Not all Code Updater deamons are device specific. PLDMd is one such example which can handle update for wide variety of PLDM devices, which can have different pre and post conditions. Also, for same device type pre and post conditions can change depending upon the platform type and where that particular component is positioned.\n\nLooking at pldmd, if it is handling updates for multiple devices, it can handle all the required pre- and post- update logic internally.\n\n\u003e As i mentioned above, PLDMd is such an example which handles update for all PLDM devices and pre \u0026 post conditions for devices can be different depending upon the platform type.\n\nThat\u0027s not a specific example.\n\nAlso, is this change a design for pldmd? If so, maybe we should mark the pldm reviewers aswell to review the change.",
+      "parentUuid": "d66703d4_dfef1e80",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8ef7c62_9eb33e40",
+        "filename": "designs/code-update.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-28T09:30:38Z",
+      "side": 1,
+      "message": "Sorry for the dumb question, but which configuration file?\n\nWill it be part of EM configuration? \n\nIf so, why is it not part of a configuration for a device?\nInstead of having all of this as a separate ```Components``` array it\ncould be configured in the json object for the specific device.\n\nThat would make it easier for a code updater daemon to extract the config.\n\nIf it should not be part of EM config, why not?",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e93042e_09230c64",
+        "filename": "designs/code-update.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-28T09:30:38Z",
+      "side": 1,
+      "message": "Above you were referring to \n\n\u003e platform-specific pre and post\nupdate systemd targets \n\nbut now it\u0027s ```PreSetupTarget```, should it not be ```PreUpdateTarget```?",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3af7ca0b_20753cda",
+        "filename": "designs/code-update.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-28T09:30:38Z",
+      "side": 1,
+      "message": "Same here, ```PostUpdateTarget```",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4150283_3b003857",
         "filename": "designs/code-update.md",
         "patchSetId": 1
