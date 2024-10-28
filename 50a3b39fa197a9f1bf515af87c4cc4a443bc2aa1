@@ -139,6 +139,30 @@
       },
       "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eee66ae_7dd9fa01",
+        "filename": "designs/cable-monitor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-28T06:46:57Z",
+      "side": 1,
+      "message": "\u003e \u003e If you believe that another repository or a new one would be more appropriate for this, we can add it there.\n\u003e \n\u003e Woah, hold up. I feel you\u0027re replying from an established position there. Let\u0027s unwind things a little bit. I\u0027m trying to understand what you\u0027re proposing. Please don\u0027t assume that I have a complete understanding of what you\u0027re doing and am requiring you to do something different.\n\u003e \n\u003e Maybe the config file is necessary, but it sure is unique for dbus-sensors, and I want to establish it\u0027s something that\u0027s actually required.\n\nSure.\n\n\u003e \n\u003e \u003e This configuration file will be stored in a writable filesystem section that is added at runtime\n\u003e \n\u003e Where does it come from? \n\nIt can be hosted at runtime by the user or it can be part of image itself, but mostly it handles the use-case where it will be hosted by the user.\n\n\u003e When does it get created or updated? \n\nIt can be created at runtime into a writable filesystem path such as /var/lib.\n\n\n\u003e How is this coordinated with the daemon process?\n\nThe daemon process will perform inotify watch on the config file path and watch for its presense/update.",
+      "parentUuid": "8072fb0d_9f807ba5",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 3
+      },
+      "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
