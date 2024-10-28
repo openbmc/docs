@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ddebedb_28f0e5ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-28T06:06:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffcba72a_db157bd7",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1567ed43_2370ba47",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-17T06:14:21Z",
       "side": 1,
       "message": "How PLDM packages are to be handled is not very clear to me. I think there\u0027s some information in the \"Multi part Images\" section, but that doesn\u0027t answer all of the following questions I have:\n\n1) It seems like the design expects a RedfishTargetURI must be provided by the user. However, that is not mandatory and would likely not be provided when the FW package is PLDM based. How does Bmcweb connect to the PLDM service in this case. Since PLDM can determine existing SW versions based on the Type 5 spec, it could create multiple SW versions based on how many PLDM FW endpoints are found.\n- Is it the case that when no Target URI is provided, bmcweb will invoke StartUpdate on all services that implement this inteface and it is up to the service to determine whether the package is relevant or not (that sounds risky)?\n\n2) How about the case where the the PLDM FW package has component images for PLDM and non-PLDM devices (we do this at Nvidia and I believe are not the only ones doing this) - which service is supposed to parse out the PLDM and non-PLDM components (pldmd/bmcweb)? It seems like the EM confgs below help in this regard, but not sure how.",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44797a1a_9252f192",
+        "filename": "designs/code-update.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-28T06:06:28Z",
+      "side": 1,
+      "message": "\u003e How PLDM packages are to be handled is not very clear to me. I think there\u0027s some information in the \"Multi part Images\" section, but that doesn\u0027t answer all of the following questions I have:\n\u003e \n\u003e 1) It seems like the design expects a RedfishTargetURI must be provided by the user. However, that is not mandatory and would likely not be provided when the FW package is PLDM based. How does Bmcweb connect to the PLDM service in this case. \u0027\n\nThe TargetURI needs to be supplied even for devices to be updated by PLDMd service.\n\n\u003e Since PLDM can determine existing SW versions based on the Type 5 spec, it could create multiple SW versions based on how many PLDM FW endpoints are found.\n\nI suppose you are referring to the downstream devices discovered by PLDMd. If yes, then yes, the SW versions for downstream devices will be created by PLDMd based on discovered devices.\n\n\u003e - Is it the case that when no Target URI is provided, bmcweb will invoke StartUpdate on all services that implement this inteface and it is up to the service to determine whether the package is relevant or not (that sounds risky)?\n\u003e \n\u003e 2) How about the case where the the PLDM FW package has component images for PLDM and non-PLDM devices (we do this at Nvidia and I believe are not the only ones doing this) - which service is supposed to parse out the PLDM and non-PLDM components (pldmd/bmcweb)? It seems like the EM confgs below help in this regard, but not sure how.\n\nThe FW package will be parsed by the CodeUpdater daemon and not BMCWeb. Depending upon the TargetURI, BMCWeb will send the Update request to the appropriate backend CodeUpdater daemon.",
+      "parentUuid": "1567ed43_2370ba47",
       "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea08603a_5df67780",
+        "filename": "designs/code-update.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-28T06:06:28Z",
+      "side": 1,
+      "message": "\u003e How are the supposed to be used? Can you give an example for PLDM package containing both PLDM and non-PLDM component images?\n\nPLDMd handles update for all PLDM devices. Since, PLDM image packaging is a standard and it is being used for other(non-PLDM) devices as well. Client needs to provide the appropriate TargetURIs to all Targets to which the image applies and BMCWeb will forward the request to appropriate backend CodeUpdater daemon (PLDMd and other non-PLDMd backends).",
+      "parentUuid": "f63eb150_c2fa930f",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "046febff_a9861cdc",
         "filename": "designs/code-update.md",
         "patchSetId": 5
@@ -71,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a37b9c3_ad8af520",
+        "filename": "designs/code-update.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-28T06:06:28Z",
+      "side": 1,
+      "message": "Configurations, for example, CodeUpdater for CPLD will handle firmware EM configurations related to CPLDs.",
+      "parentUuid": "046febff_a9861cdc",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80ff857e_99611c32",
         "filename": "designs/code-update.md",
         "patchSetId": 5
@@ -82,6 +154,24 @@
       "writtenOn": "2024-10-17T06:14:21Z",
       "side": 1,
       "message": "What is the reason to do this mapping? Why did we pick only two descriptors from PLDM Type 5?",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ca63f0e_d8b0853c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-28T06:06:28Z",
+      "side": 1,
+      "message": "\u003e What is the reason to do this mapping? Why did we pick only two descriptors from PLDM Type 5?\n\nFor non-PLDM devices these 2 fields seems to be sufficient to perform the image validation, as CodeUpdater daemon for non-PLDMd will use these values for image validation.\nFor PLDMd these values (from EM configuration) are not applicable as they would be fetched from downstream PLDM devices and used by PLDMd for image validation.",
+      "parentUuid": "80ff857e_99611c32",
       "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
