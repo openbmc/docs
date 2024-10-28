@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ddc8a90_b41bf39a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2024-10-28T07:21:35Z",
+      "side": 1,
+      "message": "1) I think we need a design that works without target URIs as well. We can propose that as a follow up - Tom Joseph/I will propose that.\n\n2) Consider a case where the FW package has 5 images - 3 PLDM and 2 non-PLDM. So in this case there would be three code updaters (1 PLDM and 2 for the non-PLDM). If my understanding correct so far? If so:\n\na) Will the Redfish user have to supply 5 Target URIs?\n\nb) Since three target URIs correspond to PLDM devices, will bmcweb make 3 start update D-Bus calls to PLDMD? If not, how will it consolidate and know to make only one call to PLDMD?\n\nc) Will Bmcweb use (yet to be added?) libpldm APIs for the FW update package parsing and splitting up into component image sections?",
+      "parentUuid": "44797a1a_9252f192",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f63eb150_c2fa930f",
         "filename": "designs/code-update.md",
         "patchSetId": 5
@@ -172,6 +190,24 @@
       "side": 1,
       "message": "\u003e What is the reason to do this mapping? Why did we pick only two descriptors from PLDM Type 5?\n\nFor non-PLDM devices these 2 fields seems to be sufficient to perform the image validation, as CodeUpdater daemon for non-PLDMd will use these values for image validation.\nFor PLDMd these values (from EM configuration) are not applicable as they would be fetched from downstream PLDM devices and used by PLDMd for image validation.",
       "parentUuid": "80ff857e_99611c32",
+      "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb0af89a_a38f0330",
+        "filename": "designs/code-update.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2024-10-28T07:21:35Z",
+      "side": 1,
+      "message": "We can add more params as need be. We use UUID at Nvidia for the non-PLDM components.",
+      "parentUuid": "7ca63f0e_d8b0853c",
       "revId": "2867f75ead0a49247bc79c61035a7942e2b419bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
