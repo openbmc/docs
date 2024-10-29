@@ -140,13 +140,13 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
 
 - FAT MBR partitioning: FAT is a simple and well understood partition table
   format. There is space for 4 independent partitions. Alternatively one slot
-  can be chained into extended partitions, but each partition in the chan
+  can be chained into extended partitions, but each partition in the chain
   depends on the prior partition. Four partitions may be sufficient to meet the
   initial demand for a shared (single) boot filesystem design (boot, rofs-a,
   rofs-b, and read-write). Additional partitions would be needed for a dual boot
   volume design.
 
-  If common space is needed for the U-Boot environment, is is redundantly stored
+  If common space is needed for the U-Boot environment, it is redundantly stored
   as file in partition 1. The U-Boot SPL will be located here. If this is not
   needed, partition 1 can remain unallocated.
 
@@ -154,7 +154,7 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
 
   The read-write filesystem occupies partition 4.
 
-  If in the future there is demand for additional partitions, partition can be
+  If in the future there is demand for additional partitions, partitions can be
   moved into an extended partition in a future code update.
 
 - Device Mapper: The eMMC is divided using the device-mapper linear target,
