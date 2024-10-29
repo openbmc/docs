@@ -175,7 +175,7 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
   - Partitioning: If the eMMC is used to store the boot loader, a ext4 (or vfat)
     partition would hold the FIT image containing the kernel, initrd and device
     tree. This volume would be mounted as /boot. This allows U-Boot to load the
-    kernel since it doesn't have support for LVM. After the boot partition,
+    kernel since it does not have support for LVM. After the boot partition,
     assign the remaining eMMC flash as a single physical volume containing
     logical volumes, instead of fixed-size partitions. This provides flexibility
     for cases where the contents of a partition outgrow a fixed size. This also
@@ -194,8 +194,8 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
     the same paths as to prevent changes to the applications that rely on the
     location of that data.
 
-  - Provisioning: Since the LVM userspace tools don't offer an offline mode,
-    it's not straightforward to assemble an LVM disk image from a bitbake task.
+  - Provisioning: Since the LVM userspace tools do not offer an offline mode,
+    it is not straightforward to assemble an LVM disk image from a bitbake task.
     Therefore, have the initramfs create the LVM volume and fetch the rootfs
     file into tmpfs from an external source to flash the volume. The rootfs file
     can be fetched using DHCP, UART, USB key, etc. An alternative option include
