@@ -106,6 +106,42 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f38d1448_d6449c3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-30T07:11:41Z",
+      "side": 1,
+      "message": "The platform can specify this in the openbmc/openbmc layer and have it installed into the image.\n\nFor example - \nhttps://github.com/openbmc/phosphor-pid-control/blob/951aff4cd1ba07f6d25400b7ac87621e76267eab/configure.md?plain\u003d1#L32\n\nhttps://grok.openbmc.org/xref/openbmc/openbmc/meta-hpe/meta-dl385-g11/recipes-phosphor/fans/phosphor-pid-control_%25.bbappend?r\u003da4efaf7a#4",
+      "parentUuid": "c06d5018_27165974",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f4fda82_b34ab6db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-30T07:11:41Z",
+      "side": 1,
+      "message": "\u003e \u003e Not sure what you mean by \"configuring a systemd target loses all information about what that target is intended to do.\"?\n\u003e \n\u003e You posted a question here but marked my comment as resolved. If there is still questions, my comment is not resolved.\n\nWhen I looked into your comment, I noticed that it had already been resolved. I was initially confused about why this was the case, but it\u0027s possible that you marked it as resolved when you posted it.\n\n\u003e \n\u003e What i mean here is that in your proposal, you suggest running configured systemd services before and after the update. The code updater application will have no way to know what these services are doing and thus refactoring the application logic will be very difficult.\n\nIt\u0027s important to understand that not all CodeUpdater daemons need to implement this extension. If the CodeUpdater daemon can benefit from using it and it provides some abstraction, then it can choose to do so. That\u0027s why the wording says \"the Code Updater daemon can be configured\" rather than \"the Code Updater daemon should be configured\". For example, if we think it doesn\u0027t make much sense to add this extension for flash-based updates of BIOS, we can always skip it since it\u0027s all internal workings.\n\n\u003e \n\u003e \u003e Not all Code Updater deamons are device specific. PLDMd is one such example which can handle update for wide variety of PLDM devices, which can have different pre and post conditions. Also, for same device type pre and post conditions can change depending upon the platform type and where that particular component is positioned.\n\u003e \n\u003e Looking at pldmd, if it is handling updates for multiple devices, it can handle all the required pre- and post- update logic internally.\n\nThe PLDMd implementation follows the generic PLDM specification and does not include any device or platform-specific logic within its code.\n\n\u003e \n\u003e \u003e As i mentioned above, PLDMd is such an example which handles update for all PLDM devices and pre \u0026 post conditions for devices can be different depending upon the platform type.\n\u003e \n\u003e That\u0027s not a specific example.\n\u003e \n\u003e Also, is this change a design for pldmd? If so, maybe we should mark the pldm reviewers aswell to review the change.\n\nUnive Tien and Bright, who are working on the PLDM firmware update, have already been added to the reviewers list. They have reviewed this and provided their feedback.",
+      "parentUuid": "5d253b3c_293c0ff2",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8ef7c62_9eb33e40",
@@ -119,6 +155,24 @@
       "writtenOn": "2024-10-28T09:30:38Z",
       "side": 1,
       "message": "Sorry for the dumb question, but which configuration file?\n\nWill it be part of EM configuration? \n\nIf so, why is it not part of a configuration for a device?\nInstead of having all of this as a separate ```Components``` array it\ncould be configured in the json object for the specific device.\n\nThat would make it easier for a code updater daemon to extract the config.\n\nIf it should not be part of EM config, why not?",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f54f127_95310483",
+        "filename": "designs/code-update.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-30T07:11:41Z",
+      "side": 1,
+      "message": "\u003e Sorry for the dumb question, but which configuration file?\n\nThe platform can offer a configuration file in a specific format, such as JSON, which is commonly used by various daemons in openBMC.\n\n\u003e \n\u003e Will it be part of EM configuration? \n\nNo, it\u0027s not part of the EM configuration because I received feedback in the past to avoid specifying systemd targets in the EM configuration. However, it can be included in daemon-specific configurations.\n\n\u003e \n\u003e If so, why is it not part of a configuration for a device?\n\nFor the reason I previously stated.\n\n\u003e Instead of having all of this as a separate ```Components``` array it\n\u003e could be configured in the json object for the specific device.\n\u003e \n\u003e That would make it easier for a code updater daemon to extract the config.\n\u003e \n\u003e If it should not be part of EM config, why not?\n\nYes, it would have been straightforward to include this in the EM configuration since the previous patch already defined it for updatable components. However, there is a reason why it cannot be added, as I mentioned earlier.",
+      "parentUuid": "c8ef7c62_9eb33e40",
       "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -140,6 +194,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cd085a4_37baee90",
+        "filename": "designs/code-update.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-30T07:11:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e93042e_09230c64",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3af7ca0b_20753cda",
@@ -153,6 +225,24 @@
       "writtenOn": "2024-10-28T09:30:38Z",
       "side": 1,
       "message": "Same here, ```PostUpdateTarget```",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5c21a51_c28d4e0d",
+        "filename": "designs/code-update.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-30T07:11:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3af7ca0b_20753cda",
       "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -174,6 +264,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e64f611f_f5ed43e9",
+        "filename": "designs/code-update.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-30T07:11:41Z",
+      "side": 1,
+      "message": "Yes, you can use the ASCII Model number, i will update PR to reflect this.",
+      "parentUuid": "d4150283_3b003857",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b770a1f5_9433d958",
@@ -187,6 +295,24 @@
       "writtenOn": "2024-10-28T09:06:56Z",
       "side": 1,
       "message": "Some of the service units might be slot-specific, but seems like the schema here doesn\u0027t yet accommodate the slot variable pattern, perhaps we can introduce a wildcard for slot number here in cases, so that the given slot number could correctly match the specific unit file for specific slot.",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "703d06dd_61fbd61f",
+        "filename": "designs/code-update.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-30T07:11:41Z",
+      "side": 1,
+      "message": "If you use the \u0027ASCII Model Number\u0027 for the Component field, do you still need to rely on the slot number? Wouldn\u0027t the ASCII model number be unique for all components on a board? For same type of devices on different slots, shouldn\u0027t the PreUpdate and PostUpdate targets be the same?",
+      "parentUuid": "b770a1f5_9433d958",
       "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
