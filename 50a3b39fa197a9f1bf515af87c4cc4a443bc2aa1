@@ -163,6 +163,30 @@
       },
       "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe282fd7_e236b02f",
+        "filename": "designs/cable-monitor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-10-30T00:36:17Z",
+      "side": 1,
+      "message": "\u003e It can be hosted at runtime by the user or it can be part of image itself, but mostly it handles the use-case where it will be hosted by the user.\n\n\u003e It can be created at runtime into a writable filesystem path such as /var/lib.\n\nRight, but how does it get there? Does the user ssh in and drop it onto the system manually? Or something else?\n\n\u003e The daemon process will perform inotify watch on the config file path and watch for its presense/update.\n\nSure, I guess that\u0027s fine, though I\u0027d be interested in exploring whether we could use the usual D-Bus mechanisms (signals) for the same?",
+      "parentUuid": "6eee66ae_7dd9fa01",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 3
+      },
+      "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
