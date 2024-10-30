@@ -144,6 +144,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f531be6_ad3eb412",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-30T09:11:02Z",
+      "side": 1,
+      "message": "\u003e When I looked into your comment, I noticed that it had already been resolved. I was initially confused about why this was the case, but it\u0027s possible that you marked it as resolved when you posted it.\n\nsorry about that.\n\n\u003e Can you provide any specific example of a use-case for the pre- and post-update target that can or should not be solved inside the device-specific update daemon.\n\n\u003e As i mentioned above, PLDMd is such an example which handles update for all PLDM devices and pre \u0026 post conditions for devices can be different depending upon the platform type.\n\nThen pldmd can receive the specific pre- and post-condition as part of it\u0027s configuration. I do not see why it has to be a systemd service.",
+      "parentUuid": "6f4fda82_b34ab6db",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c8ef7c62_9eb33e40",
         "filename": "designs/code-update.md",
         "patchSetId": 1
@@ -173,6 +191,24 @@
       "side": 1,
       "message": "\u003e Sorry for the dumb question, but which configuration file?\n\nThe platform can offer a configuration file in a specific format, such as JSON, which is commonly used by various daemons in openBMC.\n\n\u003e \n\u003e Will it be part of EM configuration? \n\nNo, it\u0027s not part of the EM configuration because I received feedback in the past to avoid specifying systemd targets in the EM configuration. However, it can be included in daemon-specific configurations.\n\n\u003e \n\u003e If so, why is it not part of a configuration for a device?\n\nFor the reason I previously stated.\n\n\u003e Instead of having all of this as a separate ```Components``` array it\n\u003e could be configured in the json object for the specific device.\n\u003e \n\u003e That would make it easier for a code updater daemon to extract the config.\n\u003e \n\u003e If it should not be part of EM config, why not?\n\nYes, it would have been straightforward to include this in the EM configuration since the previous patch already defined it for updatable components. However, there is a reason why it cannot be added, as I mentioned earlier.",
       "parentUuid": "c8ef7c62_9eb33e40",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "964ec75b_6d4759ee",
+        "filename": "designs/code-update.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-10-30T09:11:02Z",
+      "side": 1,
+      "message": "\u003e No, it\u0027s not part of the EM configuration because I received feedback in the past to avoid specifying systemd targets in the EM configuration. However, it can be included in daemon-specific configurations.\n\nI believe we should be preferring EM based configuration since that it can be probed on specific devices and dbus interfaces.\n\nWith the daemon specific configuration it is problematic since it is fixed.\nSo the configuration already has to include all the components which may or may not be there which creates overhead and favors a fixed chassis configuration.\n\nAlso it will not be intuitive for users that they have to configure the Code Updater daemon both with EM config and also with the daemon specific configuration.\n\nThen there is the additional implementation overhead of detecting mismatch between those 2 configurations. Since they are inherently mismatched (dynamic vs static configuration)",
+      "parentUuid": "4f54f127_95310483",
       "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
