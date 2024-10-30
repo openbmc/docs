@@ -187,6 +187,30 @@
       },
       "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "addddf52_d73c89d4",
+        "filename": "designs/cable-monitor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-30T06:13:08Z",
+      "side": 1,
+      "message": "\u003e \u003e It can be hosted at runtime by the user or it can be part of image itself, but mostly it handles the use-case where it will be hosted by the user.\n\u003e \n\u003e \u003e It can be created at runtime into a writable filesystem path such as /var/lib.\n\u003e \n\u003e Right, but how does it get there? Does the user ssh in and drop it onto the system manually? Or something else?\n\nFor runtime config, yes, user will ssh and drop the config file into the system.\n\n\u003e \n\u003e \u003e The daemon process will perform inotify watch on the config file path and watch for its presense/update.\n\u003e \n\u003e Sure, I guess that\u0027s fine, \n\nSure, i am in process of finishing a prototype implementation using inotify.\n\n\u003e though I\u0027d be interested in exploring whether we could use the usual D-Bus mechanisms (signals) for the same?\n\nIs there any existing service in openBMC which can watch for filesystem updates/changes, for example, when a new file gets added to some dir?",
+      "parentUuid": "fe282fd7_e236b02f",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 3
+      },
+      "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
