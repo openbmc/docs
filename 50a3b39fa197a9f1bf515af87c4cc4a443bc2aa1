@@ -235,6 +235,30 @@
       },
       "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a40f79e_bec297fb",
+        "filename": "designs/cable-monitor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-10-31T18:10:57Z",
+      "side": 1,
+      "message": "\u003e \u003e Is there any existing service in openBMC which can watch for filesystem updates/changes, for example, when a new file gets added to some dir?\n\u003e \n\u003e I was rather thinking of having the config represented in DBus rather than having a DBus signal relay an inotify event (if I\u0027ve interpreted your question right). I don\u0027t think that indirection is necessary, use inotify directly if that\u0027s what\u0027s necessary.\n\nSure, will use inotify then.\n\nDo you have any suggestions on repo - dbus-sensors or something new or i shall open a TOF issue for that discussion?",
+      "parentUuid": "4b4b975f_db0d4dd9",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 3
+      },
+      "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
