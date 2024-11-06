@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aebe5374_1ad35110",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-06T16:05:43Z",
+      "side": 1,
+      "message": "This might be a complex enough edge case to not document here but want to make sure you are considering it.\n\nThe board containing the GPIO / connector itself could be removed.  In that case EM will remove the configuration, so `gpio-presence-sensor` itself needs a matcher for that.",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 65
+      },
+      "revId": "0fce9eefae83753f1c2037fe87db6072c5ee7c89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ad87e34_a4229da1",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-06T16:05:43Z",
+      "side": 1,
+      "message": "Can we go ahead and add this to PDI?",
+      "revId": "0fce9eefae83753f1c2037fe87db6072c5ee7c89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "706b4e41_0faf12f3",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-06T16:05:43Z",
+      "side": 1,
+      "message": "Why is polarity a string?",
+      "range": {
+        "startLine": 168,
+        "startChar": 30,
+        "endLine": 168,
+        "endChar": 36
+      },
+      "revId": "0fce9eefae83753f1c2037fe87db6072c5ee7c89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fef70e4a_bbe5cec6",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-06T16:05:43Z",
+      "side": 1,
+      "message": "This has nothing to do with the \"largeness\" of the system.  _All_ configs go into entity-manager.  They _all_ have to be unique among themselves.\n\nIf we have two different people using `DevicePresence(\"fanboard0\")`, entity-manager will load both of those configs, even if it isn\u0027t appropriate for the system.",
+      "revId": "0fce9eefae83753f1c2037fe87db6072c5ee7c89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
