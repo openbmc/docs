@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d7e0df4_352212b5",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-07T11:42:26Z",
+      "side": 1,
+      "message": "Yes, this is an implementation detail that all services need to consider that get their configuration from EM.\n\nI can add a diagram to clarify the flow and also add a new section to explain what happens when the configuration is removed from dbus.",
+      "parentUuid": "aebe5374_1ad35110",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 65
+      },
+      "revId": "0fce9eefae83753f1c2037fe87db6072c5ee7c89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ad87e34_a4229da1",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-11-06T16:05:43Z",
       "side": 1,
       "message": "Can we go ahead and add this to PDI?",
+      "revId": "0fce9eefae83753f1c2037fe87db6072c5ee7c89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aef9c52_0229b06e",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-07T11:42:26Z",
+      "side": 1,
+      "message": "There are no configuration interfaces in PDI, right?\nIt\u0027s EM specific internal dbus interfaces.\n\nAre the EM maintainers on board with this?\nOr will it be only this configuration interface.\n\nThat would be very inconsistent, to have one lonely configuration interface in PDI.",
+      "parentUuid": "2ad87e34_a4229da1",
       "revId": "0fce9eefae83753f1c2037fe87db6072c5ee7c89",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34e34819_4290eb99",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-07T11:42:26Z",
+      "side": 1,
+      "message": "It\u0027s EM configuration. Just grep for ```Polarity``` in EM configuration folder. They all define it as a string.",
+      "parentUuid": "706b4e41_0faf12f3",
+      "range": {
+        "startLine": 168,
+        "startChar": 30,
+        "endLine": 168,
+        "endChar": 36
+      },
+      "revId": "0fce9eefae83753f1c2037fe87db6072c5ee7c89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fef70e4a_bbe5cec6",
@@ -77,6 +143,24 @@
       "writtenOn": "2024-11-06T16:05:43Z",
       "side": 1,
       "message": "This has nothing to do with the \"largeness\" of the system.  _All_ configs go into entity-manager.  They _all_ have to be unique among themselves.\n\nIf we have two different people using `DevicePresence(\"fanboard0\")`, entity-manager will load both of those configs, even if it isn\u0027t appropriate for the system.",
+      "revId": "0fce9eefae83753f1c2037fe87db6072c5ee7c89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61df72f7_33131c6a",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-07T11:42:26Z",
+      "side": 1,
+      "message": "If people have config that is specific to a system, they can use EM ```AND``` conjunction in their PROBE statement. But i agree that that\u0027s inefficient and could lead to overhead within EM.\n\nAdjusted the statement to avoid any mention of \"Name\" that is not namespaced.",
+      "parentUuid": "fef70e4a_bbe5cec6",
       "revId": "0fce9eefae83753f1c2037fe87db6072c5ee7c89",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
