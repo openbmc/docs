@@ -162,6 +162,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05ae74ab_5d23e782",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-07T18:44:39Z",
+      "side": 1,
+      "message": "I am not sure what you mean by \"do not see why it has to be a systemd service.\", how to expect to specifcy pre post conditions in EM (let\u0027s say for discussion sake, i am not saying we should do it there) if they are not systemd targets? Keep in mind that these conditions can be very hardware or platform specific and can involve all sorts of arbitrary operations.",
+      "parentUuid": "6f531be6_ad3eb412",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c8ef7c62_9eb33e40",
         "filename": "designs/code-update.md",
         "patchSetId": 1
@@ -209,6 +227,24 @@
       "side": 1,
       "message": "\u003e No, it\u0027s not part of the EM configuration because I received feedback in the past to avoid specifying systemd targets in the EM configuration. However, it can be included in daemon-specific configurations.\n\nI believe we should be preferring EM based configuration since that it can be probed on specific devices and dbus interfaces.\n\nWith the daemon specific configuration it is problematic since it is fixed.\nSo the configuration already has to include all the components which may or may not be there which creates overhead and favors a fixed chassis configuration.\n\nAlso it will not be intuitive for users that they have to configure the Code Updater daemon both with EM config and also with the daemon specific configuration.\n\nThen there is the additional implementation overhead of detecting mismatch between those 2 configurations. Since they are inherently mismatched (dynamic vs static configuration)",
       "parentUuid": "4f54f127_95310483",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d79259f_fd58ae92",
+        "filename": "designs/code-update.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-07T18:44:39Z",
+      "side": 1,
+      "message": "\u003e \u003e No, it\u0027s not part of the EM configuration because I received feedback in the past to avoid specifying systemd targets in the EM configuration. However, it can be included in daemon-specific configurations.\n\u003e \n\u003e I believe we should be preferring EM based configuration since that it can be probed on specific devices and dbus interfaces.\n\u003e \n\u003e With the daemon specific configuration it is problematic since it is fixed.\n\nDon\u0027t understand what you mean by fixed?\n\n\u003e So the configuration already has to include all the components which may or may not be there which creates overhead and favors a fixed chassis configuration.\n\nIt seems that you are under the impression that there is only one version of the configuration file for all platforms and devices. However, this is not the case. Each platform can specify its own overrides in the openbmc/openbmc repo within its meta layer. These overrides are specified using .bbappend files on the original recipe and are installed in a location in the filesystem as expected by the daemon. For example, in the case of PLDMd, platformX will specify this configuration file in the openbmc/openbmc repo depending upon the devices that can be discovered dynamically on that platform.\n\n\u003e \n\u003e Also it will not be intuitive for users that they have to configure the Code Updater daemon both with EM config and also with the daemon specific configuration.\n\u003e \n\u003e Then there is the additional implementation overhead of detecting mismatch between those 2 configurations. Since they are inherently mismatched (dynamic vs static configuration)",
+      "parentUuid": "964ec75b_6d4759ee",
       "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
