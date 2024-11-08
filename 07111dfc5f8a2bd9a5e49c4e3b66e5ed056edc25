@@ -180,6 +180,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00ff4d0e_163ad878",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-08T09:18:14Z",
+      "side": 1,
+      "message": "\u003e how to expect to specifcy pre post conditions in EM\n\nJust list the different pre- and post-conditions. Providing a way to put any arbitrary systemd service is destabilizing the whole thing. In this entire discussion there was never once an specific example of any such condition.\n\nIt usually goes like this\n- provide extension point for flexibility\n- extension point becomes widely used, people assume it is required\n- depending on device, extension point is now required to work, people avoid patching the code updater since it\u0027s easier to just write systemd service in their own layer\n- extension point implicitly becomes required part of the design\n- the default (without extension point) does not work anymore\n\nThere are many examples of this\n- the ipmi UUID thingy (need custom dbus service to make \u0027ipmitool mc guid\u0027 work)\n- phosphor-watchdog\n- bmcweb redfish event log (needs rsyslog to be configured separately to make it work)\n\n\u003e Keep in mind that these conditions can be very hardware or platform specific and can involve all sorts of arbitrary operations.\n\nWhen the code updater is done updating the device, the update is complete.\nIf there is any steps needed as part of the update process, the code updater is responsible for completing those steps.\n\nWhen the code updater is done, anything after that is not part of the update process. So there is no need for the code updater to start any service, since the update is already complete.",
+      "parentUuid": "05ae74ab_5d23e782",
+      "revId": "07111dfc5f8a2bd9a5e49c4e3b66e5ed056edc25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c8ef7c62_9eb33e40",
         "filename": "designs/code-update.md",
         "patchSetId": 1
