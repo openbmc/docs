@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fc29140_b9d66c6e",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-11-15T05:03:24Z",
+      "side": 1,
+      "message": "If you\u0027re addressing a specific SMC communication issue, a daemon might be effective. However, for the broader challenge of REST/HTTPs/Redfish communication, it seems to add unnecessary complexity and reduces flexibility. Relying on a single application for all communications introduces a single point of failure. Additionally, the need for type-safe classes for Redfish schemas may stem from this added layer of indirection between the application and server. The two reasons you mentioned for a Redfish client daemon—reusability and security—are already addressed in the industry through HTTP libraries, OpenSSL, and various server-specific authentication and authorization methods.",
+      "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
