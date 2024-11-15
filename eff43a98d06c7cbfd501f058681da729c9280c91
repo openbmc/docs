@@ -16,6 +16,24 @@
       "message": "If you\u0027re addressing a specific SMC communication issue, a daemon might be effective. However, for the broader challenge of REST/HTTPs/Redfish communication, it seems to add unnecessary complexity and reduces flexibility. Relying on a single application for all communications introduces a single point of failure. Additionally, the need for type-safe classes for Redfish schemas may stem from this added layer of indirection between the application and server. The two reasons you mentioned for a Redfish client daemon—reusability and security—are already addressed in the industry through HTTP libraries, OpenSSL, and various server-specific authentication and authorization methods.",
       "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aa5e9d4_19d4eeec",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-11-15T19:45:57Z",
+      "side": 1,
+      "message": "1. This design/daemon is concentrating on enabling BMC to be able to communicate with SMCs that specifically can only talks Redfish, and has no intention for solving the broader challenge of REST/HTTPs/Redfish communication.\n2. Single point of failure also means single point of optimization/fix and no duplicated code, which is a reasonable tradeoff in this case as failure to communicating with SMCs is not something completely unacceptable.\n3. The client and server are still going to be communicate via Redfish directly, the type-safe classes are just client implementation detail of how to process response and construct request regarding Redfish protocol. It is a common and good practice to wrap complex raw json objects with classes, and the codegen lib will save engineer time for manually writing those classes. In terms of flexibility, even though I don\u0027t believe that\u0027s a must-have or high priority feature, the lib itself should have enough room for making change and improvement.\n4. The proposal daemon will definitely use some HTTP libraries that can provide\nindustry standard security feature and may apply SMC specific authentication and\nauthorization methods if any. The reason that security is being mentioned in the design is purely a comparison to \"redfish aggregation\", which exposing the SMC\ndirectly onto the external network. HTTP layer security won\u0027t solve this problem as we would like the SMC to be completely invisible to external other than the BMC.",
+      "parentUuid": "7fc29140_b9d66c6e",
+      "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
