@@ -41,6 +41,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5feca1d_da6fbbdd",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-11-20T21:01:36Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "00ef1586_7d332170",
+      "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7fc29140_b9d66c6e",
@@ -76,6 +94,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89e8027c_75d665c7",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-11-20T21:01:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aa5e9d4_19d4eeec",
+      "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "baef6918_1f297e4b",
@@ -89,6 +125,24 @@
       "writtenOn": "2024-11-17T07:33:39Z",
       "side": 1,
       "message": "Does this redfish client supports redfish event listener as well?",
+      "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6fe3027_2eb7713c",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-11-20T21:01:36Z",
+      "side": 1,
+      "message": "Not in the current plan, might support such feature in the future.",
+      "parentUuid": "baef6918_1f297e4b",
       "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -116,6 +170,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2df3c4e4_c6793321",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-11-20T21:01:36Z",
+      "side": 1,
+      "message": "Each task will maintain its own state in memory in some cpp struct and will be updated in every poll to the SMC. The state would mainly contain the result of the last poll (likely a map or vector of cpp object that corresponds to the exposed D-Bus object by leveraging the `sdbusplus` lib), as well as value needed for task execution such as last poll time.",
+      "parentUuid": "c6b6a4c6_b4dc9d8a",
+      "range": {
+        "startLine": 61,
+        "startChar": 42,
+        "endLine": 61,
+        "endChar": 79
+      },
+      "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "628c8c3d_74cc494b",
@@ -133,6 +211,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9016e397_b0218d79",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-11-20T21:01:36Z",
+      "side": 1,
+      "message": "Re-try should be supported. Error handling would be case by case depending on the feature. For example in sensor monitoring, if the SMC isn\u0027t available, the client would marked the monitored sensor as unavailable and probably emit a Event Log. Both retry and error handling should be configurable individually for each task by the configuration files to some extend.",
+      "parentUuid": "628c8c3d_74cc494b",
+      "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0344061_87ea9da1",
@@ -146,6 +242,24 @@
       "writtenOn": "2024-11-17T07:33:39Z",
       "side": 1,
       "message": "any other BMC can act as SMC here right?",
+      "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0182f55a_bbfd1943",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-11-20T21:01:36Z",
+      "side": 1,
+      "message": "Theoretically any device that accept Redfish protocol and can be reached by the host BMC can be the target SMC for this redfish client.",
+      "parentUuid": "e0344061_87ea9da1",
       "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
