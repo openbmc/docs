@@ -75,7 +75,8 @@ Inside the repo you just cloned, enter the following commands:
 
 ```
 gitdir=$(git rev-parse --git-dir)
-scp -p -P 29418 openbmc.gerrit:hooks/commit-msg ${gitdir}/hooks
+curl https://gerrit.openbmc.org/tools/hooks/commit-msg -o ${gitdir}/hooks/commit-msg
+chmod +x ${gitdir}/hooks/commit-msg
 ```
 
 This will enhance the `git commit` command to add a `Change-Id` to your commit
