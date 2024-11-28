@@ -107,7 +107,7 @@ impact? Upgradability impact?
 
 ### Organizational
 
-- Does this repository require a new repository? (Yes, No)
+- Does this proposal require a new repository? (Yes, No)
 - Who will be the initial maintainer(s) of this repository?
 - Which repositories are expected to be modified to execute this design?
 - Make a list, and add listed repository maintainers to the gerrit review.
