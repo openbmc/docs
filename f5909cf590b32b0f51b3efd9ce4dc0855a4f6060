@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cc9f2fe5_e0be2221",
+        "filename": "designs/code-update.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2024-12-02T15:21:31Z",
+      "side": 1,
+      "message": "`minimum` - The PLDM spec doesn\u0027t mandate descriptors, it could be PCIe descriptors, UUID of the device etc. IANA/ASCII model is a good example, will prefer the text to be flexible.\n\nFor example, if I classify the OCP recovery as non-PLDM updater, DEVICE_ID supports a bunch of Initial Descriptor Type (PCI, IANA, UUID etc)\n\nhttps://www.opencompute.org/documents/ocp-recovery-document-1p0-final-1-pdf",
+      "revId": "f5909cf590b32b0f51b3efd9ce4dc0855a4f6060",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8365e325_1907103a",
         "filename": "designs/code-update.md",
         "patchSetId": 7
@@ -14,6 +31,23 @@
       "writtenOn": "2024-11-07T19:59:59Z",
       "side": 1,
       "message": "Say this chip was also handled by psusensor.  It would share the same stansa as the dbus-sensors config with all the threshold and everything then?",
+      "revId": "f5909cf590b32b0f51b3efd9ce4dc0855a4f6060",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0152bd0f_e674417b",
+        "filename": "designs/code-update.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2024-12-02T15:21:31Z",
+      "side": 1,
+      "message": "Can we breakdown JSON object for the PLDM descriptors like below, so that the descriptors are not fixed, and can be made flexible.\n\n\"PLDMDescriptors\":{\n\"VendorIANA\": 0000A015,\n\"ASCIIModel\": \"xyz\"\n}",
       "revId": "f5909cf590b32b0f51b3efd9ce4dc0855a4f6060",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -49,6 +83,24 @@
       "side": 1,
       "message": "CPLD specific updater code will know about it. Also it can be handled as part of some pre update condition too, which is the next patch in the series (https://gerrit.openbmc.org/c/openbmc/docs/+/75500), in that patch its being discussed to see if specific target names can be moved to EM config or not? Whats your opinion?",
       "parentUuid": "b61b8ff5_5e142c6e",
+      "revId": "f5909cf590b32b0f51b3efd9ce4dc0855a4f6060",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93ef83a8_aba777d9",
+        "filename": "designs/code-update.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2024-12-02T15:21:31Z",
+      "side": 1,
+      "message": "On the platform I am working host needs to be powered ON for the CPLD update to happen, will review the follow up MR.",
+      "parentUuid": "14f4c50d_a6a4ece3",
       "revId": "f5909cf590b32b0f51b3efd9ce4dc0855a4f6060",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
