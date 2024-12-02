@@ -1,7 +1,8 @@
 # OpenBMC Security Advisory Template
 
 This has guidelines for OpenBMC repository maintainers to follow when creating
-new draft GitHub security advisories as part of the [Security response team guidelines][].
+new draft GitHub security advisories as part of the [Security response team
+guidelines][].
 
 Note that the sections under the "Description" section are intended for the
 security advisory "Description" field

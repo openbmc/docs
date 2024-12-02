@@ -8,9 +8,10 @@ Created: 2019-06-11
 
 On OpenBMC, Vital Product Data (VPD) collection is limited to only one or two
 Field Replaceable Units (FRUs) today - one example is the BMC FRU. On OpenPower
-systems, the BMC also supports just one VPD format, the [OpenPower VPD] [1] format.
-As a part of its enterprise class servers, IBM will use the IPZ format VPD, which
-the BMC currently does not support. Certain FRUs also have keyword format VPD.
+systems, the BMC also supports just one VPD format, the [OpenPower VPD] [1]
+format. As a part of its enterprise class servers, IBM will use the IPZ format
+VPD, which the BMC currently does not support. Certain FRUs also have keyword
+format VPD.
 
 The BMC requires to read VPD for all FRUs for several reasons:
 

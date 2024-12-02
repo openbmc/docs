@@ -15,8 +15,9 @@ roles are scoped to these subrepos.
 
 ## New contributors
 
-[New contributors] should be welcomed to the community by existing members, helped
-with review workflow, and directed to relevant documentation and communication channels.
+[New contributors] should be welcomed to the community by existing members,
+helped with review workflow, and directed to relevant documentation and
+communication channels.
 
 ## Established community members
 

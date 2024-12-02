@@ -29,15 +29,16 @@ the problem. Activities may include:
 - Privately engage community members to understand and address the problem.
   Anyone brought onboard should be given a link to the OpenBMC [security
   response team guidelines][].
-- Work to determine the scope and severity of the problem, such as [CVSS metrics][].
+- Work to determine the scope and severity of the problem, such as [CVSS
+  metrics][].
 - Work to create or identify an existing [CVE][].
 - Coordinate workarounds and fixes with you and the community.
 - Coordinate announcement details with you, such as timing or how you want to be
   credited.
 - Create an OpenBMC security advisory.
 
-Please refer to the [CERT Guide to Coordinated Vulnerability Disclosure][], (SPECIAL
-REPORT CMU/SEI-2017-SR-022) for additional considerations.
+Please refer to the [CERT Guide to Coordinated Vulnerability Disclosure][],
+(SPECIAL REPORT CMU/SEI-2017-SR-022) for additional considerations.
 
 Alternatives to this process:
 

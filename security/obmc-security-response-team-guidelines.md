@@ -47,8 +47,8 @@ Workflow highlights:
      response team. For example, link to these guidelines.
    - Coordinate with all collaborators and keep them informed.
 
-   Considerations in the [CERT Guide to Coordinated Vulnerability Disclosure][] (SPECIAL
-   REPORT CMU/SEI-2017-SR-022) may guide the process.
+   Considerations in the [CERT Guide to Coordinated Vulnerability Disclosure][]
+   (SPECIAL REPORT CMU/SEI-2017-SR-022) may guide the process.
 
    Example collaborations:
 
@@ -64,9 +64,10 @@ Workflow highlights:
       problems. When fixing the problem, use the contribution process but limit
       the details in the issue or use a private channel to discuss.
    3. Negotiate how the code review will proceed.
-      - Consider [contributing][] using a Gerrit [private change][] if everyone has
-        access to Gerrit.
-      - Consider using [Patch set][] emails to make reviews accessible to all stakeholders.
+      - Consider [contributing][] using a Gerrit [private change][] if everyone
+        has access to Gerrit.
+      - Consider using [Patch set][] emails to make reviews accessible to all
+        stakeholders.
    4. When agreed:
       - Publish a security advisory to the affected OpenBMC repository.
       - Make the Gerrit review publicly viewable.
@@ -76,18 +77,19 @@ Workflow highlights:
 Repository maintainer process steps: 1. Create a private gerrit code review and
 oversee development of the fix. 2. Create a draft advisory under
 github.com/openbmc/<REPO>/security/advisories. Please follow guidance in the
-[OpenBMC Security Advisory Template][]. Add the openbmc security-response group and
-other stakeholders to the advisory. 3. Review the security bulletin with stakeholders
-to get it ready to publish. 4. Work with the SRT to identify CVEs. If you are unsure
-what counts as a vulnerability, please consult with the SRT. For example, independent
-bugs should have separate CVEs. A security advisory can reference multiple CVEs.
-When the CVE is known, add it to the security advisory, and reference it in the commit
-message, stating how the fix relates to the CVE. For example: This fixes CVE-yyyy-nnnnn.
-Doing so helps downstream security responders. If the commit is a partial fix, please
-explain that and provide references to the other parts of the fix. 5. If stakeholders
-negotiate for coordinated disclosure, plan to release the fix and the security advisory
-on the negotiated day. 6. When the code fix and the advisory are both ready (subject
-to coordinated disclosure), please merge the fixes (and make any private review be
+[OpenBMC Security Advisory Template][]. Add the openbmc security-response group
+and other stakeholders to the advisory. 3. Review the security bulletin with
+stakeholders to get it ready to publish. 4. Work with the SRT to identify CVEs.
+If you are unsure what counts as a vulnerability, please consult with the SRT.
+For example, independent bugs should have separate CVEs. A security advisory can
+reference multiple CVEs. When the CVE is known, add it to the security advisory,
+and reference it in the commit message, stating how the fix relates to the CVE.
+For example: This fixes CVE-yyyy-nnnnn. Doing so helps downstream security
+responders. If the commit is a partial fix, please explain that and provide
+references to the other parts of the fix. 5. If stakeholders negotiate for
+coordinated disclosure, plan to release the fix and the security advisory on the
+negotiated day. 6. When the code fix and the advisory are both ready (subject to
+coordinated disclosure), please merge the fixes (and make any private review be
 public) publish the security advisory, and email the security-response team.
 
 [security vulnerability reporting process]: ./obmc-security-response-team.md
