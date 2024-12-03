@@ -138,6 +138,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2b2fd95_4e42e684",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-03T19:10:11Z",
+      "side": 1,
+      "message": "\u003e and has no intention for solving the broader challenge of REST/HTTPs/Redfish communication.\n\nSo we\u0027re duplicating a lot of code?  Unclear how that scales in this design.\n\nThis looks like it got marked done without really answering the overall question (which I had the same question below).  This design is proposing we do redfish parsing in more than one repository, whereas previously there was only one (bmcweb).  How do we make sure we\u0027re not duplicating a lot of code between them, and thereby requiring all redfish features be added twice, once to the aggregator and once to this client?\n\n\u003e Single point of failure\n\nNot sure I agree the tradeoff is reasonable, and single point of failure implies that we can\u0027t create new applications with shared code, rather than rewriting.  Please reword.  FWIW, the reason this wasn\u0027t rolled out into its own application for redfish aggregation is so that connections could be persistent, queued, and shared, so as not to overwhelm the Redfish server.  There\u0027s certainly a tradeoff here to discuss, but it needs discussed in the background section.\n\n\u003e common and good practice\n\nIs there any other Redfish client that\u0027s done this?  As someone who has tried and failed several times, I wasn\u0027t aware of any that are used at any kind of scale.  Others have tried (links below) and ended up having to fall back to normal HTTP.  I thought even the guys doing grpc rack manager had fallen back to passing around raw json objects and binary blobs because of the inconsistencies in the Redfish type system.\n\nAs much as I really want to see this succeed, I\u0027m worried we\u0027re going to solve 80% of the problem, then not have the ability to solve the last 20%\nto make a complete solution.\n\nhttps://github.com/Nordix/go-redfish\nhttps://gbmc.googlesource.com/gbmcweb/+/refs/heads/master",
+      "parentUuid": "89e8027c_75d665c7",
+      "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "baef6918_1f297e4b",
         "filename": "designs/redfish-client.md",
         "patchSetId": 3
