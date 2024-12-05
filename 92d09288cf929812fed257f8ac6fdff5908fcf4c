@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c281f13_22f3aee9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-05T18:51:11Z",
+      "side": 1,
+      "message": "\u003e DMTF - As the publish new schemas and develop new features. Some of these are unavailable for 6 months after merge, how is that handled if schemas are static?\n\nThe client here will depend on the schemas, similar to how bmcweb depends on the schemas.  As new versions are released, the dependency will be updated.\n\nSMCs might be running old versions.  The project will support old versions for a set amount of time and the client will be responsible for being backwards compatible (during that deprecation window).  We need to update this design document to specify the time window for backwards compatibility.\n\nSchemas are always backwards compatible; the only issue with backwards compatibility is when the BMC redfish client requires properties (or methods or whole schemas) that are only available in latest revisions.  This is the part that we will have a documented policy on timeliness.",
+      "parentUuid": "4b50e0bb_1b08761b",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce9351b1_60763cb7",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
