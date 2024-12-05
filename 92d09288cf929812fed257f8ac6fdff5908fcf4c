@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "264fc182_7ec8d781",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-05T19:25:30Z",
+      "side": 1,
+      "message": "bmcweb historically hasn\u0027t used schemas for code generation.  It does use the registries, but those are also checked in so it\u0027s easy to apply WIP DMTF changes to builds.\n\n\u003e We need to update this design document to specify the time window for backwards compatibility.\n\nDefinitely worth documenting what compatibility means here.  For example, Thermal/Power schemas are still \"supported\" by the standard, even if they might not be recommended, so would we deprecate those today?  Doesn\u0027t really need an answer, but at least some idealized goals here would be good to add.\n\n\u003e  the only issue with backwards compatibility is when the BMC redfish client requires properties (or methods or whole schemas) that are only available in latest revisions.\n\nOr if the SMC updates to a newer version than is available to the client, and we don\u0027t design the parser to handle that condition (new versions of existing schemas)",
+      "parentUuid": "3c281f13_22f3aee9",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce9351b1_60763cb7",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
@@ -130,6 +148,24 @@
       "side": 1,
       "message": "There has been no work on this in a 1.5 years and the design doc has always been marked WIP.  How is this relevant?  We can use this as a potential reference point, but it doesn\u0027t even satisfy all the goals that are listed in this document.\n\nWe can add a reference to that design.",
       "parentUuid": "9308b643_3d2d3cf3",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "886e7123_0c6a9569",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-05T19:25:30Z",
+      "side": 1,
+      "message": "\u003e There has been no work on this in a 1.5 years and the design doc has always been marked WIP.  How is this relevant?\n\nBecause it\u0027s the exact same thing, and the folks that pushed it might have some community interest in this design/the result?  Also documenting how this is different/similar would be good.\n\n\u003e  We can use this as a potential reference point, but it doesn\u0027t even satisfy all the goals that are listed in this document.\n\nThat sentence in more detail would be an excellent thing to add.  Which goals?\n\n\u003e \n\u003e We can add a reference to that design.\n\nThank you.",
+      "parentUuid": "3c563b2a_ac96e146",
       "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
