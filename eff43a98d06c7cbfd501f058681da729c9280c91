@@ -156,6 +156,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0288e3c7_58292225",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-12-06T04:10:33Z",
+      "side": 1,
+      "message": "@Xinyuan. \n\"I’m unclear about the purpose of the Redfish client service since no other service depends on it. My assumption is that other BMC services use it for external communications.\n\nWhile a single point of failure can streamline optimization and reduce code duplication, achieving this doesn’t require a single service. A library can provide the same benefits without introducing a single point of failure. If a service using the library fails, only that service is affected, and other HTTP services remain operational.\n\nBy replacing the DBus calls to the Redfish client service with HTTP library calls, any service can directly communicate with external SMCs.\"",
+      "parentUuid": "f2b2fd95_4e42e684",
+      "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "baef6918_1f297e4b",
         "filename": "designs/redfish-client.md",
         "patchSetId": 3
