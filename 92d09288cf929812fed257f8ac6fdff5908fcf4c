@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "352ecde0_dc0fdedc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-12-06T03:52:28Z",
+      "side": 1,
+      "message": "Adding code generation for redfish schema is useful only if it stands as a compile time contract between two services. But in this case it seems the only consumer of the generated class is redfish client service. The other end of consumer may not be even writtern in c++. I don\u0027t see any value in creating one more level of tooling side indirection . It just add to the development complexity instead. If some one really want to have type safe classes for json serialisation , it is already supported by nlohmann(https://github.com/nlohmann/json) . All you have to do is just add NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE to your application classes.",
+      "parentUuid": "12155b33_8d0ad5cc",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce9351b1_60763cb7",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
