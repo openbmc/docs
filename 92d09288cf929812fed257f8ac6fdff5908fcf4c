@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "62995aff_b05e314b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-12-07T04:18:55Z",
+      "side": 1,
+      "message": "This approach does come with certain limitations, as it’s not as straightforward as it might initially appear. The focus shifts from writing code to configuring metadata for code generation, which can result in class structures with specific naming conventions that may be challenging for users to search and navigate. Furthermore, code editors might offer limited support in this case, as the code is generated in the build directory. (I’ve personally encountered this challenge while working with DBus code.)\n\nIn most cases, we are only interested in a small subset of the data within a schema, rather than the entire dataset. However, the code generation approach retrieves all the data, which can lead to memory and performance inefficiencies. Ideally, we should only incur costs for the data we actually use.\n\n\nThere is an alternative approach that hasn’t been mentioned.\n```\n    JsonSerializer val(jsonData);\n    std::optional\u003cdouble\u003e CauReading;\n    std::optional\u003cdouble\u003e CritReading;\n    val.deserialize(\"Thresholds/LowerCaution/Reading\", CauReading,\n                    \"Thresholds/LowerCritical/Reading\", CritReading);\n    if (CauReading)\n    {\n        //your stuff\n    }\n    if (CritReading)\n    {\n        //your stuff\n    }\n```",
+      "parentUuid": "249da28f_3e1f22bc",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce9351b1_60763cb7",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
