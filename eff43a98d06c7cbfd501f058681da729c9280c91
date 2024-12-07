@@ -192,6 +192,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b15f9b00_83a5a9bd",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:35:30Z",
+      "side": 1,
+      "message": "\u003e A library can provide the same benefits without introducing a single point of failure.\n\nNot sure I agree with that. If there is a bug in the library that causes failure, every single caller using this library will hit the same failure, not a big difference than having a single service. If the failure root cause is not in the common code path but feature dependent code path, then the failure of one feature should not affect the others if we are able to properly isolate them within the service. At the extreme cases we can always span one process per feature/task to achieve the complete isolation.\n\n\u003e By replacing the DBus calls to the Redfish client service with HTTP library calls, any service can directly communicate with external SMCs\n\nSome BMC services may not do DBus call but wait for Dbus signal and act upon, so they do not directly communicate with external SMCs. They rely on some other daemon or service to talk to the SMCs and emit the dbus signal it\u0027s expected. This is one of the main purpose of this design is to provide such service/daemon.\n\nIn terms of HTTP library, I am actually happy to adopt it within the daemon once it is being merged upstream and have good enough feature parity.",
+      "parentUuid": "d711297b_98a6f2e1",
+      "revId": "eff43a98d06c7cbfd501f058681da729c9280c91",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "baef6918_1f297e4b",
         "filename": "designs/redfish-client.md",
         "patchSetId": 3
