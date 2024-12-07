@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "249da28f_3e1f22bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Let\u0027s take an example without codegen: suppose we get a `Sensor` from redfish request:\n```\n{\n  \"@odata.id\": \"/redfish/v1/Chassis/1/Sensors/sensorX\",\n  \"@odata.type\": \"#Sensor.v1_2_0.Sensor\",\n  \"Id\": \"sensorX\",\n  \"Name\": \"sensorX\",\n  \"Reading\": 12.077,\n  \"SparePartNumber\": \"XXX\",\n  \"ReadingType\": \"Voltage\",\n  \"ReadingUnits\": \"V\",\n  \"Status\": {\n    \"Health\": \"OK\",\n    \"State\": \"Enabled\"\n  },\n  \"Thresholds\": {\n    \"LowerCaution\": {\n      \"Reading\": 11.346\n    },\n    \"LowerCritical\": {\n      \"Reading\": 11.224\n    },\n    \"UpperCaution\": {\n      \"Reading\": 13.054\n    },\n    \"UpperCritical\": {\n      \"Reading\": 13.176\n    }\n  }\n  ...\n}\n```\nNow, we want to extract specific value from such response,  there is two way we can do so.\nFirst approach is to direct json access:\n```\njson sensor {jsonResponse};\nif (sensor.is_object()){\n  if (sensor.contains(\"Id\")) {\n    auto id \u003d sensor[\"Id\"].template get\u003cstring\u003e();\n    // do something with id \n  }\n  if (sensor.contains(\"ReadingType\")) {\n    auto readingType \u003d sensor[\"ReadingType\"].template get\u003cstring\u003e();\n    // either direct compare the string to map it to a enum class   \n  }\n  if (sensor.contains(\"@odata.type\")) {\n    auto odataType \u003d sensor[\"@odata.type\"].template get\u003cstring\u003e();\n    auto version \u003d getVersionFromOdataType(odataType);\n    if (version \u003e 1.9 \u0026\u0026 sensor.contains(\"SparePartNumber\")) {\n      // do something with spare part number\n    }\n  }\n  if (sensor.contains(\"Thresholds\") {\n    auto thresholds \u003d sensor[\"Thresholds];\n    if (thresholds.is_object() \u0026\u0026 thresholds.contains(\"LowerCaution\")) {\n      // do something with lower caution\n    }\n  }\n}\n```\nThe other way is to write a custom class that can be serialized and deserialized from json:\n```\nClass Sensor;\n...\njson sensorJson \u003d json::parse(jsonResponse);\nSensor sensor  \u003d sensorJson.template get\u003cSensor\u003e();\nif (auto id \u003d sensor.id(); id.hasValue()){\n  // do something with id\n}\nif (auto readingType \u003d sensor.readingType(); readingType.hasValue()){\n  // readingType already a enum class, do something with it\n}\nif (auto sparePartNumber \u003d sensor.sparePartNumber(); sensor.version() \u003e\u003d sensor.sparePartNumberVersionAdded() \u0026\u0026 sparePartNumber.hasValue()) {\n  // do something with spare part number\n}\nif (auto thresholds \u003d sensor.thresholds(); thresholds.has_value()) {\n  if (auto lowerCaution \u003d thresholds.lowerCaution(); lowerCaution.hasValue()) {\n    // do something with lower caution\n  }\n}\n```\n\nCompare with these two approach, I believe the latter one should be preferred as it provides better abstraction to prevent duplicated and tedious code (like all the OOP benefit).\n\nNow, in terms of writing the `Sensor` class, a human being would basically look at the redfish schema and translate its properties one-by-one to cpp class. This work is tedious, time consuming because there are roughly 2000+ unique class/typedef/enum/struct needed to written and in average 7 properties for each of those based on the latest redfish schema. Therefore, it would be much more efficient to write a lightweight codegen library that can take redfish schemas and turns into such data classes with static metadata (like which version is the property added/deprecated) filled in and correct dependency graph. In addition, whenever there is new version of redfish schema being published, we can just use the tool to target new set of schemas to generate class rather than having human being to figure out what change and change accordingly.",
+      "parentUuid": "352ecde0_dc0fdedc",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce9351b1_60763cb7",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
@@ -103,6 +121,24 @@
       "writtenOn": "2024-11-27T04:36:22Z",
       "side": 1,
       "message": "do you have any WIP code which we can take a look and test on our platform ? we are interested in the similar design and would like to contribute.",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3436ab7_89e73345",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "No WIP code is available yet. We will begin implementation and submit code for review once this design proposal has been accepted. If you\u0027re interested in contributing or collaborating, please feel free to reach out to me offline.",
+      "parentUuid": "ce9351b1_60763cb7",
       "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -130,6 +166,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d557e05_4f30abb6",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "eb5526ad_e92dd95f",
+      "range": {
+        "startLine": 12,
+        "startChar": 44,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f202f8c8_2d451a2d",
@@ -143,6 +203,30 @@
       "writtenOn": "2024-12-03T19:10:11Z",
       "side": 1,
       "message": "This is arguably just an aggregation bug that\u0027s been fixed in a couple different forks.  As written it implies that this is just not possible in the current design, which isn\u0027t true.",
+      "range": {
+        "startLine": 18,
+        "startChar": 69,
+        "endLine": 20,
+        "endChar": 76
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed6bb76e_23f82f1a",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "I\u0027m uncertain whether the Redfish aggregation provided by BMCweb can accommodate event logs from SMC in subscription mode. However, since this is not the primary use case that this design is trying to solve, I will remove this line.",
+      "parentUuid": "f202f8c8_2d451a2d",
       "range": {
         "startLine": 18,
         "startChar": 69,
@@ -225,6 +309,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac3d52fe_f2e53173",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Yes, as mentioned in the later design, the daemon will periodically poll the SMC to either get an up-to-date value of existing entries and update the corresponding properties on dbus (likely in sensor monitoring use case), or get new entries and populate them over dbus (likely in event log collection use case).",
+      "parentUuid": "0bf201fe_4a4bd11d",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d6f0ab1_bac2baea",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
@@ -242,6 +344,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "50f7f34d_3d0941f6",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "The \"flavor\" really depends on the Redfish implementation of the SMC, not that the client can decide, so the design should make the daemon as lightweight and flexible as possible, and move \"flavor\" to config as much as possible so that different machine can just have different config and call it good. Take sensor monitoring for example, the daemon will need to get Redfish [Sensor](https://www.dmtf.org/sites/default/files/standards/documents/DSP0268_2024.3.html#sensor-1101) from the redfish response, but which exact redfish path to get it and how exactly it is supposed to map to a dbus sensor would live in the config if possible. (some common mapping may still live within the Cpp code).",
+      "parentUuid": "5d6f0ab1_bac2baea",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa9afc13_12838751",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
@@ -253,6 +373,24 @@
       "writtenOn": "2024-11-27T04:36:22Z",
       "side": 1,
       "message": "does the config file allows picking the features. Example - I would like the daemon to do event log collection but not to do the sensor monitoring (the platform could have a different way to achieve this performance reasons.)",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "427cb2cd_592e625b",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Yes, that is the plan. For example, if we want the daemon to do event log collection, an \"eventLogCollection\" config would need to be created. If later we want the daemon to do sensor monitoring, a \"sensorMonitoring\" config should be added. Also, if we want to do event log collection towards a different SMC, another \"eventLogCollection\" config needs to be added with different target SMC.",
+      "parentUuid": "aa9afc13_12838751",
       "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -282,6 +420,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3523872d_a676eece",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "This is not hostname but the exact redfish URLs. For example, if we need sensorX from the SMC and the url to get it is `http://201.65.75.135/redfish/v1/Chassis/10/Sensors/55` then the config should contains something like ` {\"sensorX\": \"Chassis/10/Sensors/55\"}`, and the daemon would do the polling on this exact url to retrieve the sensor data.",
+      "parentUuid": "f1965bf9_479a7a08",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf7057ef_b573f41d",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
@@ -293,6 +455,24 @@
       "writtenOn": "2024-12-03T19:10:11Z",
       "side": 1,
       "message": "Is this daemon intended to be entity-manager enabled?  If so, this configuration information already exists and shouldn\u0027t be duplicated.\n\nNVM, I see the documentation below.  We can discuss there.",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4cd593a_65a9d789",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf7057ef_b573f41d",
       "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -320,6 +500,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "182b360b_c06b6e41",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "420d24a5_b0133b9d",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 25
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d176564_c78a851c",
@@ -333,6 +537,30 @@
       "writtenOn": "2024-12-03T19:10:11Z",
       "side": 1,
       "message": "Any reason we wouldn\u0027t do event service?  Logging and sensor metrics are already covered, and wouldn\u0027t require polling.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 36
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6894ce6a_a32c8606",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Some vendor SMC may not have event service available but polling would always feasible, thus we start with supporting polling and can add event/sensor subscription in the future if necessary.",
+      "parentUuid": "1d176564_c78a851c",
       "range": {
         "startLine": 59,
         "startChar": 0,
@@ -391,6 +619,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67ae55cd_abb2db69",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "The design is proposing to make the redfish-\u003edbus mapping configurable if possible so that SMC with different redfish implementation can ends up being the same shape of Dbus that host BMC expect, so it is likely not much common code to be shared with bmcweb.",
+      "parentUuid": "6602bb3a_d67ae6c8",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 100
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9283e367_b035cc8b",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
@@ -402,6 +654,30 @@
       "writtenOn": "2024-12-03T19:10:11Z",
       "side": 1,
       "message": "This would imply that we have a single config file?  That doesn\u0027t seem right.  Config files should be per-system, right?",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 18
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12bbd2d8_21702a83",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "No, this sentence means that multiple config files reside within on directory. Each system would definitely have different config file, or even files if there are more than one SMCs.",
+      "parentUuid": "9283e367_b035cc8b",
       "range": {
         "startLine": 86,
         "startChar": 0,
@@ -437,6 +713,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf928556_cd247896",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "https://github.com/DMTF/Redfish-Schema-C-Struct-Generator generates c struct with a bunch of raw pointer and char* within the classes, I don\u0027t think it is a good practice and usage for modern c++ program. It doesn\u0027t seem to provide room for non-standard parsing.\n\nThanks for your pointer to previous work that has been done, I\u0027ll definitely take a look at it. I think it is a good suggestion for adoption Redpath for the daemon when doing the actual redfish query, though it won\u0027t be in the scope of this codegen library as it is supposed to know nothing about what/how/where to query but only know how to parse json response to cpp class vise versa.",
+      "parentUuid": "479fd58d_ee7978b6",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 57
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16bd446e_d88d5f8d",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
@@ -448,6 +748,30 @@
       "writtenOn": "2024-12-03T19:10:11Z",
       "side": 1,
       "message": "How does this work for Redfish resources that are not JSON and have no schema but are still required for interacting?  $metadata might be a good example, LogEntry.AdditionalDataURI might be another good example.",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 33
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "286defaf_8e750b88",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "If there it is not a JSON or no schema, then no class will be generated. The caller needs to figure out how to interact with such things.",
+      "parentUuid": "16bd446e_d88d5f8d",
       "range": {
         "startLine": 107,
         "startChar": 0,
@@ -477,6 +801,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f55be3f_969fa7bf",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "For 1,2,3,5, every codegen redfish-schema-corresponding-cpp-class would have a `leftover` member that captured everything that is either not specified or violated the schema, so the parsing will never fail unless it\u0027s not even json. The intention of this library is to provide better compile time abstraction against standard Redfish schema, while allow fallback to direct json manipulation in edge case.\n\nFor 6, in the case of schemas is not able to checked in, we can always do the codegen first against the given schemas and checked in the generated cpp code instead.\n\nFor 4, if you are referring to key that contains \"@\" char or any other non-cpp-identifier-friendly char, we could have some sort of map between json key name \u003c-\u003e cpp member variable name to guide the json deserialization and serialization. I do have prototype that works.",
+      "parentUuid": "46e30a63_4911d1d5",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12fd4ce1_018c8733",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
@@ -488,6 +830,30 @@
       "writtenOn": "2024-12-03T19:10:11Z",
       "side": 1,
       "message": "This kind of abstraction isn\u0027t really documented in the design.  Why wouldn\u0027t the daemon just be responsible for all of it?  As stated in earlier comments, you\u0027re not creating a generalized redfish/http client, so there\u0027s no need for a library here.",
+      "range": {
+        "startLine": 114,
+        "startChar": 56,
+        "endLine": 116,
+        "endChar": 75
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97731c49_44fc36cf",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "The library itself is just codegen cpp classes that can be serialized and deserialized from json that conform to Redfish schema. It may also contains extra metadata such as which version this property is added or deprecated etc. The reason why this part is separated out is that we have interested to use this lib for internal tooling in Meta, and a separate lib would make it easier to import.",
+      "parentUuid": "12fd4ce1_018c8733",
       "range": {
         "startLine": 114,
         "startChar": 56,
@@ -546,6 +912,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bee2ae36_1f24ab44",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "The redfish client daemon will act as a translator to translate SMC vendor spec to BMC vendor spec according to the config. For example, the config can specify that if we get message id X from SMC, change it to message id Y when putting into the dbus path.",
+      "parentUuid": "80adc6ad_b46d8c2a",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 12
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1c1c613_56d25516",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
@@ -557,6 +947,30 @@
       "writtenOn": "2024-12-03T19:10:11Z",
       "side": 1,
       "message": "Can this sentence be rephrased?  I have no idea what \"SMC aware\" means in this context.",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 32
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c54e63d1_64c2959d",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d1c1c613_56d25516",
       "range": {
         "startLine": 142,
         "startChar": 0,
@@ -603,6 +1017,30 @@
       "writtenOn": "2024-12-03T19:10:11Z",
       "side": 1,
       "message": "Remove \"centralized\".  This would be the second redfish client.",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 32
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31d9fad3_f1592bc2",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8862d9ae_6df85e31",
       "range": {
         "startLine": 150,
         "startChar": 0,
@@ -724,6 +1162,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97cf78cc_218d58f8",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Sure, we can coverage to a single http client implementation once the HttpLibrary has been merged.",
+      "parentUuid": "4e3da34a_81bdea95",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2607954b_af235c87",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
@@ -735,6 +1191,30 @@
       "writtenOn": "2024-12-03T19:10:11Z",
       "side": 1,
       "message": "?  Flash impact?  start up impact?  It\u0027s kind of hard to say \"no\" impact.  \"minimal\" might be the better word here.",
+      "range": {
+        "startLine": 177,
+        "startChar": 68,
+        "endLine": 178,
+        "endChar": 14
+      },
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "565f5437_70db0aab",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2607954b_af235c87",
       "range": {
         "startLine": 177,
         "startChar": 68,
@@ -758,6 +1238,24 @@
       "writtenOn": "2024-12-03T19:10:11Z",
       "side": 1,
       "message": "I see no mention of any dependencies here.  Surely we\u0027re not reimplementing HTTP parsing, json parsing, etc?  What impacts will those new dependencies cause?\n\nI would expect to see some amount of design for:\n\n1. HTTP library choise (Existing ones in the project are boost beast or libredfish (which wraps libcurl).\n2. Json parsing library (existing is nlohmann::json).",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "983e371e_293b6293",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-07T01:13:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a3f1b35a_cba8abeb",
       "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
