@@ -1,0 +1,39 @@
+Checks: '
+-*,
+
+# Bugprone checks: Identify common bug-prone code constructs
+-bugprone-*,
+bugprone-branch-clone,
+
+# CERT checks: Ensure compliance with CERT Secure Coding Guidelines
+-cert-*,
+cert-err52-cpp,
+
+# Clang Analyzer checks: Perform static analysis to find potential issues
+-clang-analyzer-*,
+clang-analyzer-core.NullDereference,
+
+# C++ Core Guidelines checks: Promote best practices from the C++ Core Guidelines
+-cppcoreguidelines-*,
+cppcoreguidelines-init-variables,
+
+# Miscellaneous checks: Various useful checks that do not fit into other categories
+-misc-*,
+misc-definitions-in-headers,
+
+# Modernize checks: Encourage the use of modern C++ features and practices
+-modernize-*,
+modernize-use-nullptr,
+
+# Performance checks: Identify and suggest improvements for performance issues
+-performance-*,
+performance-for-range-copy,
+
+# Readability checks: Improve code readability and maintainability
+-readability-*,
+readability-braces-around-statements
+'
+
+WarningsAsErrors: '*'
+HeaderFilterRegex: '.*'
+FormatStyle: none
