@@ -201,6 +201,7 @@ and readability to enhance code quality and maintainability.
   catch potential issues early.
 - Comprehensive Coverage: Utilize misc-\* checks for additional coverage that
   doesn't fit into other categories but can still enhance code quality.
+  [clang-tidy-cpp](https://www.github.com/openbmc/docs/blob/master/style/cpp/.clang-tidy-cpp)
 
 #### Running Clang-Tidy in Docker
 
