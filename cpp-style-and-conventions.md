@@ -174,6 +174,9 @@ foundational template for all OpenBMC repositories. This configuration adheres
 to OpenBMC's recommended standards and incorporates checks as suggested by the
 clang-tidy documentation.
 
+[clang-tidy-cpp]
+(https://www.github.com/openbmc/docs/blob/master/style/cpp/.clang-tidy-cpp)
+
 Standardization: All repositories start with the same base configuration,
 ensuring consistent coding standards and checks. Customization: Maintainers can
 adjust the configuration to fit specific repository needs. Checks can be
