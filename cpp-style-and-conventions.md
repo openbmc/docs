@@ -183,6 +183,8 @@ clang-tidy documentation.
 - Activation: To use clang-tidy in a repository, rename the language specific
   .clang-tidy.[type] file to .clang-tidy.
 
+[clang-tidy-cpp](https://www.github.com/openbmc/docs/blob/master/style/cpp/.clang-tidy-cpp)
+
 #### Custom Configuration:
 
 Currently, OpenBMC supports a common configuration file for the entire
