@@ -159,6 +159,44 @@ used by CI.
 
 [Example .clang-format](https://www.github.com/openbmc/docs/blob/master/style/cpp/.clang-format)
 
+### Using .clang-tidy in OpenBMC Repositories
+
+Individual OpenBMC repositories can use clang-tidy to ensure code quality and
+adherence to coding standards. The OpenBMC CI infrastructure will automatically
+verify the code quality on code check-in if a .clang-tidy file is found within
+the root directory of the repository. This allows for automatic validation of
+code quality upon check-in.
+
+#### Standard Configuration
+
+A reference languagae .clang-tidy configuration file is provided to serve as
+a foundational template for all OpenBMC repositories. This configuration
+adheres to OpenBMC's recommended standards and incorporates checks as
+suggested by the clang-tidy documentation.
+
+Standardization: All repositories start with the same base configuration,
+ensuring consistent coding standards and checks.
+Customization: Maintainers can adjust the configuration to fit specific
+repository needs. Checks can be disabled by prefixing them with a '-'.
+C and C++ Checks: The configuration includes checks recommended by the
+clang-tidy documentation, promoting best practices for C and C++ code.
+Activation: To use clang-tidy in a repository, rename the languagae
+specific .clang-tidy.[type] file to .clang-tidy.
+
+#### Custom Configuration:
+Currently, OpenBMC supports a common configuration file for the entire
+repository, based on the source code. Custom configurations for different
+file types are not enabled. The format-code.sh script can be used to apply
+the common configuration. This script will be executed as part of CI if
+found in the root directory of the repository, and will check that there
+are no files that were modified after running it (similar to running
+clang-tidy manually).
+
+OpenBMC requires a clang-tidy of version 6.0 or greater. An example of how to
+run clang-tidy against all code in your repo can be found by referencing the
+[tool](https://github.com/openbmc/openbmc-build-scripts/blob/master/scripts/format-code.sh)
+used by CI.
+
 ### Bracket style
 
 - Utilize 'Allman' style brackets. Brackets are on their own line at the same
