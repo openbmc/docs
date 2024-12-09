@@ -159,6 +159,54 @@ used by CI.
 
 [Example .clang-format](https://www.github.com/openbmc/docs/blob/master/style/cpp/.clang-format)
 
+### Using .clang-tidy in OpenBMC Repositories
+
+Individual OpenBMC repositories can use clang-tidy to ensure code quality and
+adherence to coding standards. The OpenBMC CI infrastructure will automatically
+verify the code quality on code check-in if a .clang-tidy file is found within
+the root directory of the repository. This allows for automatic validation of
+code quality upon check-in.
+
+#### Standard Configuration
+
+A reference language .clang-tidy configuration file is provided to serve as a
+foundational template for all OpenBMC repositories. This configuration adheres
+to OpenBMC's recommended standards and incorporates checks as suggested by the
+[clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/)
+
+- Standardization: All repositories start with the same base configuration,
+  ensuring consistent coding standards and checks.
+- Customization:Maintainers can adjust the configuration to fit specific
+  repository needs. Checks can be disabled by prefixing them with a '-'.
+- C and C++ Checks: The configuration includes checks recommended by the
+  clang-tidy documentation, promoting best practices for C and C++ code.
+- Activation: To use clang-tidy in a repository, rename the language specific
+  .clang-tidy.[type] file to .clang-tidy.
+
+##### Choosing clang-tidy Checks
+
+- Project Requirements: Added checks such as cert-\* to address security needs.
+- Codebase Characteristics: Apply modernize-\* checks to update older codebases
+  to modern standards (for C++, this means modern C++ standards).
+- Common Issues: Implement bugprone-_ checks to catch frequent bug patterns and
+  readability-_ checks to improve code clarity.
+- Performance Goals: Enable performance-\* checks to identify and optimize
+  performance bottlenecks.
+- Best Practices: Enforce best practices with cppcoreguidelines-_ (for C++),
+  clang-analyzer-_, and other relevant checks to maintain high code quality and
+  catch potential issues early.
+- Comprehensive Coverage: Utilize misc-\* checks for additional coverage that
+  doesn't fit into other categories but can still enhance code quality.
+
+#### Running Clang-Tidy in Docker
+
+To use clang-tidy as part of a Docker-based setup, execute the following command
+to run the unit test script, which includes clang-tidy checks: '''
+./run-unit-test-docker.sh ''' This script will automatically handle the setup
+and execution of clang-tidy within the Docker container. For more details, refer
+to the
+[run-unit-test-docker.sh](https://github.com/openbmc/openbmc-build-scripts/blob/master/run-unit-test-docker.sh)
+
 ### Bracket style
 
 - Utilize 'Allman' style brackets. Brackets are on their own line at the same
