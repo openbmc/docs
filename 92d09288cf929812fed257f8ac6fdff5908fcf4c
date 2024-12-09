@@ -128,6 +128,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f076fb3f_3b320484",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-09T17:21:33Z",
+      "side": 1,
+      "message": "\u003e First approach is to direct json access:\n\nThe example given here:\n1. Doesn\u0027t follow best practices (we\u0027d generally not use contains and operator[] in proximity)  we\u0027d use find), and even that isn\u0027t best practice.  In practice, the helper functions in bmcweb we have now use a loop because it\u0027s faster/generates less code.\n2. Doesn\u0027t handle errors.  This is an important part of what we\u0027re talking about: How does this function if the schemas don\u0027t match in expected ways?  I see a couple exceptions thrown, but obviously a redfish client can\u0027t just crash when it sees an unexpected schema, so examples of error handling are important here.\n3. As Abhilash points out, can already be done with nlohmann::json directly.\n4. Doesn\u0027t implement Redfish schemas correctly.  Each property can be represented in Redfish as null, or return an expected error (something like retry-after) code from the backend.  Those don\u0027t seem to be represented in the backend.  Redfish clients have to handle the following states:\n5. Has no checking of @odata.id\n\n1. Value filled in with the appropriate type\n2. Value is null\n3. Value is filled in with the wrong type (this would be a bad implementation of redfish, but happens in practice).\n4. Value is not present.\n5. Value parent key is not present.\n6. Value is correct per redfish, but not representable in the struct (uint \u003e 64 bit for example)\n\nEach of these (with the possible exception of 5, because it could be combined with 4) needs to have some representation in the type safe struct.\n\nThese are the kinds of things that need called out in this design requirements.\n\n\u003e There is an alternative approach\n\nTo be clear, this is essentially a copy of what bmcweb does for reading redfish parameters.  Please check out readJson for how it\u0027s currently solved.  If it needs to be extended for this use case, it could be, but doesn\u0027t necessarily need to be.  To be clear, readJson as it exists today is imperfect for this use case, but does handle errors correctly.",
+      "parentUuid": "62995aff_b05e314b",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce9351b1_60763cb7",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
