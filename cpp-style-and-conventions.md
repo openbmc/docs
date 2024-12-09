@@ -159,6 +159,18 @@ used by CI.
 
 [Example .clang-format](https://www.github.com/openbmc/docs/blob/master/style/cpp/.clang-format)
 
+### Using .clang-tidy in OpenBMC Repositories
+
+Clang-tidy is utilized in OpenBMC repositories to offer static analysis support,
+enhancing code quality. The
+[OpenBMC CI infrastructure](https://github.com/openbmc/openbmc-build-scripts/blob/master/scripts/unit-test.py)
+automatically verifies code quality upon check-in if a .clang-tidy file is
+present in the repository's root directory. This configuration file outlines the
+clang-tidy checks, ensuring they adhere to OpenBMC's recommended standards.
+
+For detailed information on configuring and using clang-tidy, refer to the
+[clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/)
+
 ### Bracket style
 
 - Utilize 'Allman' style brackets. Brackets are on their own line at the same
