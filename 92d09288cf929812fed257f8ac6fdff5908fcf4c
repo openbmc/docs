@@ -182,6 +182,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ae35295_51bdce4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-12-10T11:07:11Z",
+      "side": 1,
+      "message": "Generated types should be placed within schema-specific namespaces to prevent collisions, even if it makes the code slightly more verbose. Using std::optional or std::expected for wrapping errors and optional data serialization can result in a modern C++ style, though this might be a subjective preference.\n \nC++ Templates can already generate such code, so why create another tool for the same purpose? When comparing the usage on the call side, there may not be any significant advantage to using tool-generated code.\n\nIt’s better to compare the call-side code, including error handling, for both the generated code and a JSON serializer approach like the one used in bmcweb before making a decision.",
+      "parentUuid": "d2d12ebf_72014950",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce9351b1_60763cb7",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
