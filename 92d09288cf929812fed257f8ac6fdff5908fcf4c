@@ -164,6 +164,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2d12ebf_72014950",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-10T08:56:08Z",
+      "side": 1,
+      "message": "It seems to me the concerning points can be summarized as the following points:\n1. naming convention: we will keep the generated code reflects the redfish schema as much as possible and people can actually examine the generated code directly to find the needed property/metadata etc.\n2. code editors support: seems to be a minor concern but there is definitely a doable way to improve it in the future if necessary\n3. memory and performance problem: I don\u0027t think there will be much overhead for memory and performance\n4. error handling: as I mentioned in other comment and also added to the design doc, the generated data class will be able to capture expected error into \"error\" field and unexpected error/key/value into \"leftover\" field so that the caller can decide what to do with it\n\nI also want to emphasize that the generated code primarily consists of data classes designed to encapsulate Redfish JSON responses. These classes expose both valid and invalid data, as well as any associated errors. The responsibility for handling this data and determining the appropriate logic lies with the caller. As such, this library is intended to be lightweight and focused, rather than a comprehensive solution for the broader spectrum of Redfish-related challenges.",
+      "parentUuid": "56bd462b_11446eee",
+      "revId": "92d09288cf929812fed257f8ac6fdff5908fcf4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce9351b1_60763cb7",
         "filename": "designs/redfish-client.md",
         "patchSetId": 4
