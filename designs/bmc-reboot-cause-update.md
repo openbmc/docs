@@ -57,32 +57,29 @@ causes, improving system reliability and monitoring. Belows are the details of
 the new additions and changes:
 
 1. Driver Provision by BMC Vendors:
-
-- Each BMC vendor must provide a driver to retrieve the BMC reboot cause and
-  record the result at the specified location.
+  - Each BMC vendor must provide a driver to retrieve the BMC reboot cause and
+    record the result at the specified location.
 
 2. Redefining Reboot Cause Type **WDIOF_EXTERN1**:
-
-- This type will henceforth represent a software reset.
+  - This one is still under discussion, so not all BMC vendors support this change.
+  - Currently, this flag is represent **Software reset** in userspace.
 
 3. Revise the Definition of **WDIOF_CARDRESET**:
-
-- The **WDIOF_CARDRESET** type will now specifically indicate resets caused by
-  the watchdog.
+  - The **WDIOF_CARDRESET** type will now specifically indicate resets caused by
+    the watchdog.
 
 4. Clarification of The **Power-on-reset case**:
-
-- When a BMC reset occured, but the flag in the bootstatus remains unchanged by
-  the watchdog driver (i.e., it stays at 0), this indicates that a
+  - When a BMC reset occured, but the flag in the bootstatus remains unchanged by
+    the watchdog driver (i.e., it stays at 0), this indicates that a
   **Power-on-reset** has occurred.
 
 5. Update Reboot Cause Interpretation:
 
-| phosphor-state-manager | bootstatus value | watchdog driver                  |
-| ---------------------- | ---------------- | -------------------------------- |
-| WDIOF_EXTERN1          | 0x04             | return 0x04 if reset by Software |
-| WDIOF_CARDRESET        | 0x20             | return 0x20 if reset by Watchdog |
-| POR                    | 0x00             | Do nothing                       |
+| phosphor-state-manager  | bootstatus value | watchdog driver                  |
+| ----------------------- | ---------------- | -------------------------------- |
+| WDIOF_EXTERN1(Optional) | 0x04             | return 0x04 if reset by Software |
+| WDIOF_CARDRESET         | 0x20             | return 0x20 if reset by Watchdog |
+| POR                     | 0x00             | Do nothing                       |
 
 6. Generate Corresponding Event Log:
 
