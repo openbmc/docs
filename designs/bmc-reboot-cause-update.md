@@ -63,7 +63,8 @@ the new additions and changes:
 
 2. Redefining Reboot Cause Type **WDIOF_EXTERN1**:
 
-- This type will henceforth represent a software reset.
+- This one is still under discussion, so not all BMC vendors support this change.
+- Currently, this flag is represent **Software reset** in userspace.
 
 3. Revise the Definition of **WDIOF_CARDRESET**:
 
@@ -78,11 +79,11 @@ the new additions and changes:
 
 5. Update Reboot Cause Interpretation:
 
-| phosphor-state-manager | bootstatus value | watchdog driver                  |
-| ---------------------- | ---------------- | -------------------------------- |
-| WDIOF_EXTERN1          | 0x04             | return 0x04 if reset by Software |
-| WDIOF_CARDRESET        | 0x20             | return 0x20 if reset by Watchdog |
-| POR                    | 0x00             | Do nothing                       |
+| phosphor-state-manager           | bootstatus value | watchdog driver                  |
+| -------------------------------- | ---------------- | -------------------------------- |
+| WDIOF_EXTERN1(Optional)          | 0x04             | return 0x04 if reset by Software |
+| WDIOF_CARDRESET                  | 0x20             | return 0x20 if reset by Watchdog |
+| POR                              | 0x00             | Do nothing                       |
 
 6. Generate Corresponding Event Log:
 
