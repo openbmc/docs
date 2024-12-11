@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb4e32d0_89c7d4b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-12-11T12:29:19Z",
+      "side": 1,
+      "message": "Copied some of the comments applicable to new doc here.",
+      "revId": "4371d5e7e12750cfa162c491abafd0d153484d49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ff00e54_e8a6eaa8",
+        "filename": "designs/http_library.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-12-11T12:29:19Z",
+      "side": 1,
+      "message": "From williamspatrick: But elsewhere you said you were using Boost and sdbusplus and ... ?  What do you really mean by this statement?\n\nReply : I meant a new external dependency. OpenBMC already relies on Boost and sdbusplus.",
+      "revId": "4371d5e7e12750cfa162c491abafd0d153484d49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c95ee3ed_094a6fb1",
+        "filename": "designs/http_library.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-12-11T12:29:19Z",
+      "side": 1,
+      "message": "From williamspatrick: None of this code is using the sdbusplus coroutine APIs.  I\u0027m rather confused by this reference considering this code:\\n\\nhttps://github.com/abhilashraju/coroserver/blob/18ac6a7d3ca2b0ec31393fcffeccd9b22b66b526/include/sdbus_calls.hpp#L84\n\nReply : Currently, the sdbusplus APIs have limitations. They only support stackful coroutines using yield_context from Boost.Asio. If we want to use C++ stackless coroutines, we need to rely on sdbusplus::context. However, I don\u0027t see a way to use both boost::asio::context and sdbusplus::context without spawning a separate thread. The design is assumed to target simple single-threaded asynchronous applications.\nThis implementation is intended as a reference to address the current limitations in sdbusplus. I hope these issues will be resolved in future updates to sdbusplus.",
+      "revId": "4371d5e7e12750cfa162c491abafd0d153484d49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "473e3a9a_363ca3ef",
+        "filename": "designs/http_library.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-12-11T12:29:19Z",
+      "side": 1,
+      "message": "From williamspatrick: This seems to be a strange statement to me.  Usually a *library* is written with sender/receivers (because it can be more efficient than co-routines) but any proper sender/receiver implementation should trivially be consumable by a co-routine based implementation.  The applications can be written with co-routines _or_ sender/receivers, but the library is done with sender/receivers exclusively.\n\nReply : I may need to rewrite this part. My intention was to say there\u0027s no need to introduce a dependency on the sender/receiver library in the HTTP library. If an application using the HTTP library wants to leverage senders/receivers, it can do so independently, as you\u0027ve already mentioned it\u0027s possible.\n\nI don\u0027t see any strong justification for using senders/receivers in the development of the HTTP library. However, if you believe using them would make the APIs easier to use, I\u0027m okay with it. Personally, I find that senders/receivers introduce a steep learning curve for developers. My main proposal is to design an HTTP library that fits well within the OpenBMC ecosystem.",
+      "revId": "4371d5e7e12750cfa162c491abafd0d153484d49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f17c8c2_26fc4101",
+        "filename": "designs/http_library.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2024-12-11T12:29:19Z",
+      "side": 1,
+      "message": "From williamspatrick: Boost/ASIO already supports sender/receivers.  https://www.boost.org/doc/libs/1_76_0/boost/asio/execution/sender.hpp\n\nWhat would a \"proven networking library\" look like?  stdexec, which is what the C++26 standard is all based on, can handle sockets.  Jagpal added support in sdbusplus for hooking sd_event-based file descriptors to sdbusplus/stdexec, which should also work for sockets.\n\nReply : Some time ago, when I looked into it, Boost.Asio didn’t offer any support for senders/receivers. I attempted to create a library combining both, but it turned out to be overly complex. If you have an HTTP library with simpler APIs ready, I’d be happy to discuss and compare. Simply mentioning that file descriptor support has been added doesn’t change this perspective.",
+      "revId": "4371d5e7e12750cfa162c491abafd0d153484d49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
