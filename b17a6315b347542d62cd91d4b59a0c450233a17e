@@ -74,6 +74,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d162f3cf_0e9ca883",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-12T17:26:09Z",
+      "side": 1,
+      "message": "We need some understanding of what it means to be a \"reference\".  I see the file below was copied from bmcweb (because bmcweb adds some things that shouldn\u0027t be in a general file, and also has history that no longer applies to modern tidy).  Is there a plan to sync this to all repositories and get the issues resolved?\n\nAs much as I really want to see us get to the point where we can claim that the majority of the code passes all these these checks, I don\u0027t think this patch gets us closer to that goal.  Rather than integrating the required changes to the repositories, we debate each individual check, which frankly is a waste of time at this point.  There\u0027s a lot of junk checks in tidy that I enabled in bmcweb just because it was there and passed.\n\nI would much rather we start with one check in the reference file that we want to universally apply, and get that deployed to all our c++ repos.  The actual check almost doesn\u0027t matter (I might recommend the no non-const global variables check), but getting it deployed across the project and the project passing ALSO gets the project compiling against clang, which enables different warnings, and when I\u0027ve turned it on in bmcweb/dbus-sensors/entity-manager, almost always found functional bugs (usually in an error handling case).\n\nOnce we are universally using tidy, and have the rules around things like NOLINT understood then we can incrementally add checks.\n\n\nTo be clear, I want us to get to the point where this can merge, I just think the incremental approach is better.\n\nTL; DR\nTimeline: One check universally applied -\u003e Several checks universally applied -\u003e This patch (or a variation of this patch)",
+      "revId": "b17a6315b347542d62cd91d4b59a0c450233a17e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8c1566c_9fb29f6c",
         "filename": "style/cpp/.clang-tidy-cpp",
         "patchSetId": 6
