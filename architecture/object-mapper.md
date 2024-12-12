@@ -57,9 +57,10 @@ a get property call.
 ### GetSubTree
 
 Use this method to find the objects, services, and interfaces in the specified
-subtree that implement a certain interface. If no interfaces are passed in, then
-all objects/services/interfaces in the subtree are returned. If interfaces are
-passed in, then only those interfaces are returned in the output.
+subtree that implement a certain interface. An optional list of interfaces may
+also be passed in to constrain the output to services that implement those
+specific interfaces. If no interfaces are passed in, then all
+objects/services/interfaces in the subtree are returned.
 
 Inputs:
 
@@ -118,10 +119,10 @@ Find all object paths and services that implement a specific interface.
 
 Use this method to find the objects, services, and interfaces in the specified
 subtree that implement a certain interface and an endpoint of the input
-associationPath. If no interfaces are passed in, then all
-objects/services/interfaces in the subtree and associated endpoint are returned.
-If interfaces are passed in, then only those interfaces are returned in the
-output.
+associationPath. An optional list of interfaces may also be passed in to
+constrain the output to services that implement those specific interfaces. If no
+interfaces are passed in, then all objects/services/interfaces in the subtree
+and associated endpoint are returned.
 
 Inputs:
 
@@ -192,9 +193,10 @@ endpoint of the input associationPath.
 
 Use this method to find the objects, services, and interfaces in the specified
 subtree that implement certain interfaces and endpoints that end by input `id`.
-If no interfaces are passed in, then all objects/services/interfaces in the
-subtree and associated endpoint are returned. If interfaces are passed in, then
-only those interfaces are returned in the output.
+An optional list of interfaces may also be passed in to constrain the output to
+services that implement those specific interfaces. If no interfaces are passed
+in, then all objects/services/interfaces in the subtree and associated endpoint
+are returned.
 
 Inputs:
 
