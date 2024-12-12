@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79f3a90c_a499eb78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-12T15:07:41Z",
+      "side": 1,
+      "message": "I think we have to be really careful about just suggesting that everyone enable every clang-tidy option in existence.  Some of these are coding style recommendations from Google, LLVM, etc. which are not our coding style.  Worse is that by enabling all of these, we end up with the _union_ of all coding styles that exist.\n\nI\u0027m fine with security and performance ones and ones raised by the cpp core guidelines (since we explicitly call that out anyhow) but I don\u0027t think we should enable big sets of the other ones.",
+      "revId": "b17a6315b347542d62cd91d4b59a0c450233a17e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8c1566c_9fb29f6c",
@@ -14,6 +31,103 @@
       "writtenOn": "2024-12-12T15:00:21Z",
       "side": 1,
       "message": "@ed BMCWeb curently using  OSX, Fuscia, Webkit specific checks, There is question cam from @stwcx and @manokiran on this Can you please provide inputs related to this ?",
+      "revId": "b17a6315b347542d62cd91d4b59a0c450233a17e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bab034be_e2954698",
+        "filename": "style/cpp/.clang-tidy-cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-12T15:07:41Z",
+      "side": 1,
+      "message": "There is no reason to have any OSX checks in our reference file.",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 64
+      },
+      "revId": "b17a6315b347542d62cd91d4b59a0c450233a17e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d96eeb32_ca582de0",
+        "filename": "style/cpp/.clang-tidy-cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-12T15:07:41Z",
+      "side": 1,
+      "message": "This one is another one that is a Google coding style but not ours.",
+      "revId": "b17a6315b347542d62cd91d4b59a0c450233a17e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9456925d_a73692ec",
+        "filename": "style/cpp/.clang-tidy-cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-12T15:07:41Z",
+      "side": 1,
+      "message": "This doesn\u0027t even do anything without additional configuration.",
+      "revId": "b17a6315b347542d62cd91d4b59a0c450233a17e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f274075_24893415",
+        "filename": "style/cpp/.clang-tidy-cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-12T15:07:41Z",
+      "side": 1,
+      "message": "Some of these are LLVMs coding styles but not our coding styles.  This is one I especially hate because it defeats the purpose of using auto in the first place.  How do we determine which of these we really care about?\n\nWe have almost 400 checks enabled in this file.  I don\u0027t see how that is practical to review and maintain this.",
+      "revId": "b17a6315b347542d62cd91d4b59a0c450233a17e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0378435c_bf8b6d7d",
+        "filename": "style/cpp/.clang-tidy-cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-12T15:07:41Z",
+      "side": 1,
+      "message": "This isn\u0027t appropriate for all repositories.  Should we even bother with it?",
+      "range": {
+        "startLine": 378,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 79
+      },
       "revId": "b17a6315b347542d62cd91d4b59a0c450233a17e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
