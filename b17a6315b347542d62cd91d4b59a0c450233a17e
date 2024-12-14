@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff6d4008_fddb89ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-14T22:02:13Z",
+      "side": 1,
+      "message": "\u003e Ed, Main focus of this patch series to stream line clang-tidy support enablement/support activity. mainly am focusing on item 1 to 4 now .mentioned below.\n\nWhat does \"Streamline\" mean in technical terms and how does this review help?\nKeep in mind, we already have a .clang-tidy file in this same folder you\u0027ve added this one, so I\u0027m really not sure how they relate or how creating a second file gets us higher quality.\n\nhttps://github.com/openbmc/docs/blob/master/style/cpp/.clang-tidy\n\nThat was checked in 10 months ago, and still isn\u0027t standard across the project, nor have I seen a lot of patches pushed to that end.  Just adding more checks makes the problem harder.\n\nWhat does \"Recommended\" mean in concrete terms?\n\n\u003e Finalize the categories to include in the clang-tidy configuration to enhance code quality and security.\n\nWhat does \"finalize\" mean here?  Are you intending to go do the work to turn all these on across the project?\n\nWriting a clang tidy file in a docs repo doesn\u0027t improve code quality.  Applying the clang-tidy file across the project and making sure the code is compliant improves quality.  If this patch is asking for \"Should I go start turning on checks?\" absolutely, I think everyone on this review will support you, and we can treat this review as aspirational.  This review doesn\u0027t need to merge for that work to start.\n\n\u003e 3.Start with a Minimal Set of Checks for Each Category:\n\nStart with ONE check was my recommendation (which is actually close to what the existing clang-tidy file does).  Turning on one tidy check actually gets us more checks because we\u0027re now compiling with clang, and which on its own gets us a lot more warnings.\n\n\u003e Repository owners can progressively enable more stringent checks.\n\nCan thusfar hasn\u0027t translated to \"will\".  I think this is key here, most maintainers don\u0027t have time for enabling these amount of checks.\n\nWe need some level of staging here.  Keep in mind, to get bmcweb compliant with tidy to the level it is has taken years. The original config file was automatically generated and took a couple of seconds.  I\u0027d like to see some indication that the parties involved actually intend to roll this out",
+      "parentUuid": "e6dc86f6_ea980f0e",
+      "revId": "b17a6315b347542d62cd91d4b59a0c450233a17e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8c1566c_9fb29f6c",
         "filename": "style/cpp/.clang-tidy-cpp",
         "patchSetId": 6
