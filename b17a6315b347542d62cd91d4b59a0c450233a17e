@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e6dc86f6_ea980f0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2024-12-14T11:31:02Z",
+      "side": 1,
+      "message": "Ed, Main focus of this patch series to stream line clang-tidy support enablement/support activity. mainly am focusing on item 1 to 4 now .mentioned below.\n1.Define a Common Configuration File Format:\nUse an automation-friendly format to facilitate future enhancements.\n\n2.Select Recommended Categories of Checks:\nFinalize the categories to include in the clang-tidy configuration to enhance code quality and security.\nRecommended categories: bugprone, cert, clang-analyzer, cppcoreguidelines, misc, modernize, performance, and readability.\nCoordinate with the OpenBMC team for any new categories to be included in the project.\n\n3.Start with a Minimal Set of Checks for Each Category:\nOption 1: Refer to .clang-tidy-cpp (added in review). This includes the use of OpenBMC recommended checks as a base, allowing repository owners to disable checks based on their use case.\nOption 2: Refer to .clang-tidy-cpp-v1 (added in review). This option disables all checks by category and enables only one check initially. This approach is more user-friendly and makes it easier to extend required checks under each category.\n\n4.Integrate Clang-Tidy into the Build System:\nAddress all issues reported by clang-tidy build errors before enabling checks.\nEnsure clang-tidy runs as part of the Continuous Integration (CI) pipeline.\n\n5.Adopt a Phased Approach:\nRepository owners can progressively enable more stringent checks.\nEnsure alignment with OpenBMC guidelines.\n\n6. Regularly Update Clang-Tidy:\nKeep clang-tidy and its configuration up-to-date with the latest versions and best practices.\nRegular updates ensure new checks and improvements are incorporated.",
+      "parentUuid": "d162f3cf_0e9ca883",
+      "revId": "b17a6315b347542d62cd91d4b59a0c450233a17e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8c1566c_9fb29f6c",
         "filename": "style/cpp/.clang-tidy-cpp",
         "patchSetId": 6
