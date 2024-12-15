@@ -16,6 +16,24 @@
       "message": "While I agree with some of the checks enabled in this file, I don\u0027t see how checking this duplicate into the docs repo does anything but cause more chaos.\n\nMy recommendation for a path forward would be to enable one check that can be universally applied, then start pushing patches to add it to the various repos in the project.  Once a majority of those projects are tidy enabled (or are at least in review), we can update the existing file with that one check.\n\nFWIW, this is essentially what I\u0027ve been doing over time as I get spare cycles, starting with bmcweb, then going to EM, dbus-sensors, etc.",
       "revId": "877bba49714561e64ca72c78d9ed3a2b6273b3a4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "104bc690_91c5c892",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2024-12-15T04:39:48Z",
+      "side": 1,
+      "message": "Thanks. I am also going same direction. Additionally added  category name in the file , to indicate what are the clang-tidy checks applicable for the C++ . This one need inputs. That will help to developers , where to start. Currently all the category is disabled. \nIn future the after fixing the issues config file is going to be some thing like category enabled and only failing one disabled kind. This will help to keep concise version of .clang-tidy , and avoid unsupported checks in the newer version if any.\n\n\"bugprone-*,\n- bugprone-branch-clone,  ( failed one only added, that will help users which one need to enable.\"",
+      "parentUuid": "1a5aaefa_ad8cb5ca",
+      "revId": "877bba49714561e64ca72c78d9ed3a2b6273b3a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
