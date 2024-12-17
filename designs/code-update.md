@@ -2,12 +2,17 @@
 
 Author: Jagpal Singh Gill <paligill@gmail.com>
 
+Other contributors: \
+Deepak Kodihalli <deepak.kodihalli.83@gmail.com> @dkodihal \
+Tom Joseph <rushtotom@gmail.com> @tomjose
+
 Created: 4th August 2023
 
 ## Problem Description
 
-This section covers the limitations discoverd with
-[phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt)
+This section covers the limitations discovered with
+[phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt) and
+the current code update design.
 
 1. Current code update flow is complex as it involves 3 different daemons -
    Image Manager, Image Updater and Update Service.
@@ -17,12 +22,40 @@ This section covers the limitations discoverd with
    requires write access to filesystem. This poses a security risk.
 4. Current design doesn't support parallel upgrades for different firmware
    ([Issue](https://github.com/openbmc/bmcweb/issues/257)).
+5. Current code update flow does not provide a unified code update to update the
+   PLDM and Non-PLDM devices on a platform with a single composite PLDM package
+   containing the firmware for both PLDM and Non-PLDM devices. Invoking the
+   Redfish API with the single composite PLDM package should update all the
+   firmware on the platform which is not currently supported.
+
+   5.1 Support not available to aggregate the update details and progress of the
+   code update across pldmd and multiple code updaters.
+
+   5.2 Targets are not forwarded from the bmcweb to pldmd or code updaters, so
+   select update of components with a single package is not possible.
+
+   5.3 Not all code updaters cannot be expected to interpret PLDM package
+   format, so forwarding the PLDM package to every code updater is not feasible.
+
+   5.4 No mechanism available to perform integrity check & authorization check
+   once for a single package, other than repeating the same checks on pldmd and
+   other code updaters.
+
+   5.5 No support available to guarantee components are updated in a specific
+   order when multiple components are contained in a single package.
+
+   5.6 No mechanism available to do pre and post operations at a platform level
+   for the code update, the current support for this operation is at a per
+   component level.
+   https://gerrit.openbmc.org/c/openbmc/docs/+/75500/5/designs/code-update.md
 
 ## Background and References
 
 - [phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt)
 - [Software DBus Interface](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software)
 - [Code Update Design](https://github.com/openbmc/docs/tree/master/architecture/code-update)
+- [PLDM for Firmware Update Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0267_1.3.0.pdf)
+- [Redfish Firmware Update White Paper](https://www.dmtf.org/sites/default/files/standards/documents/DSP2062_1.0.0.pdf)
 
 ## Requirements
 
@@ -30,6 +63,10 @@ This section covers the limitations discoverd with
 
 - Update settings shall be able to specify when to apply the image, for example
   immediately or on device reset or on-demand.
+- Able to use Targets to update specific component images using a multi-part
+  image format like PLDM package format.
+- Able to use ForceUpdate to override checks and optimisations to do a force
+  update
 
 2. Able to retrieve the update progress and status.
 3. Able to produce an interface complaint with
@@ -49,8 +86,95 @@ This section covers the limitations discoverd with
 10. Able to update multiple components in parallel.
 11. Able to restrict critical system actions, such as reboot for entity under
     update while the code update is in flight.
+12. Redfish task should aggregate the progress of the code update across pldmd
+    and multiple code updaters including pldmd. update and progress percentage
+    should be updated atleast every few minutes.
+13. Redfish task should include Redfish messages that indicate details of the
+    code update across multiple code updaters.
+
+- List of components updated
+- Update Redfish task with completion of different phases of code update like
+  Transfer, Verification and Apply Stages.
+- Steps needed for activating the updated firmware like power cycle, device
+  reset etc.
 
 ## Proposed Design
+
+The design proposes an optional code update manager that performs code update
+orchestration tasks when BMC needs to conduct code updates for all devices in a
+platform using a single composite PLDM package containing PLDM and Non-PLDM
+devices. The key details of the code update manager are as follows:
+
+1. Integrity and verification check of the PLDM package.
+2. Code updater manager to handle parsing the PLDM package and invoke code
+   updaters based on match.
+3. Code update manager to aggregate the progress across code updaters and PLDM
+   daemon.
+4. Code update manager to handle sequencing of code updaters when parallel
+   update is not possible.
+5. Code update manager will implement D-Bus interfaces for code update as
+   described in D-Bus interfaces section, additionally it will implement the
+   interface for code update manager so that bmcweb can route the firmware
+   package to the code update manager instead of individual code updaters.
+6. The lifetime of the firmware package is handled by bmcweb.
+7. For design simplicity, code update manager may not support parallel update,
+   when one firmware package is handled by code update manager.
+
+```mermaid
+   graph TD
+    subgraph bmcweb["bmcweb"]
+    end
+
+    subgraph FWManager["Code Update Manager"]
+        direction TB
+        B1["libpldm"] & B2["EM Config"]
+    end
+
+    subgraph NonPLDM["Non-PLDM Code Updater"]
+        direction TB
+        C1["libpldm"] & C2["EM Config"]
+    end
+
+    subgraph PLDM["PLDM UA"]
+        direction TB
+        P1["libpldm"] & P2["EM Config"]
+    end
+
+    bmcweb <-..-> |Code Update Mgr D-Bus Intf<br>━━━━━━━━━━━━<br>Code Update D-Bus Intf| FWManager
+    FWManager <--> |Code Update D-Bus Intf| NonPLDM
+    FWManager <--> |Code Update D-Bus Intf| PLDM
+    NonPLDM <--> |Device specific<br>bus/protocol| E[Non-PLDM endpoints]
+    PLDM <--> |MCTP| F[PLDM endpoints]
+
+    %% Legend
+    LegendTitle[Legend]
+    LegendTitle --- LegendItem1[" "]
+    LegendItem1 -.- LegendText1[Dotted boxes are optional]
+
+    classDef bmcweb fill:#f8f0ff,stroke:#333,stroke-width:1px;
+    classDef manager fill:#fff3e0,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+    classDef nonpldm fill:#f3e5f5,stroke:#333,stroke-width:1px;
+    classDef pldm fill:#e3f2fd,stroke:#333,stroke-width:1px;
+    classDef endpoints fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef libpldm fill:#ffcdd2,stroke:#333,stroke-width:1px;
+    classDef emconfig fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef legendTitle fill:none,stroke:none;
+    classDef legendItem fill:none,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+    classDef legendText fill:none,stroke:none;
+
+    class bmcweb bmcweb;
+    class FWManager manager;
+    class NonPLDM nonpldm;
+    class PLDM pldm;
+    class E,F endpoints;
+    class B1,C1,P1 libpldm;
+    class B2,C2,P2 emconfig;
+    class LegendTitle legendTitle;
+    class LegendItem1 legendItem;
+    class LegendText1 legendText;
+
+    style C1 stroke-dasharray: 5 5
+```
 
 ### Proposed End to End Flow
 
@@ -126,6 +250,113 @@ loop For every RedfishTargetURI
 end
 ```
 
+### Proposed End to End Flow with code update manager
+
+```mermaid
+sequenceDiagram
+  participant CL as RF Client
+  participant BMCW as bmcweb
+  participant MGR as Code update manager<br><br> ServiceName: xyz.openbmc_project.Software.Update.Manager
+  participant UA as PLDM UA<br><br> ServiceName: xyz.openbmc_project.PLDM
+  participant CU as <deviceX>CodeUpdater<br> ServiceName: xyz.openbmc_project.Software.<deviceX>
+
+  par
+    Note over MGR: Get device mapping info from EM config
+    MGR ->> MGR: Obj Path: /xyz/openbmc_project/software/manager <br><br> Create Interface:<br><br> xyz.openbmc_project.Software.Update.Manager<br>xyz.openbmc_project.Software.Update<br>
+  and
+    Note over UA: Discover MCTP endpoints supporting PLDM T5
+    Note over UA: Get additional information for devices from EM config
+    UA ->> UA: Create Interface<br> xyz.openbmc_project.Software.Version<br> at /xyz/openbmc_project/software/<comp_id> <br><br>Create functional association <br> from Version to Inventory Item
+    UA ->> UA: Obj Path: /xyz/openbmc_project/software/pldm <br><br> Create Interface:<br><br> xyz.openbmc_project.Software.Update
+  and
+    Note over CU: Get device access info from EM config
+    CU ->> CU: Obj Path: /xyz/openbmc_project/software/swid <br><br> Create Interface:<br><br> xyz.openbmc_project.Software.Update<br>
+    opt
+      CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Version at <br> /xyz/openbmc_project/software/<DeviceName>_<Instance><br><br>
+      CU ->> CU: Create functional association <br> from Version to Inventory Item
+    end
+  end
+
+CL ->> BMCW: HTTP POST: /redfish/v1/UpdateService/update-multipart <br> (Targets, ApplyTime, ForceUpdate, Oem)
+Note over BMCW: Stage the FW package<br> based on configured location
+Note over BMCW: If any Service implements xyz.openbmc_project.Software.Update.Manager<br> StartUpdate(Image, ApplyTime, Targets, ForceUpdate)
+BMCW ->> MGR: StartUpdate(Image, ApplyTime, Targets, ForceUpdate)
+Note over MGR: ObjectPath = /xyz/openbmc_project/software/<SwId>
+MGR ->> MGR: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at ObjectPath with Status = NotReady
+MGR -->> BMCW: {ObjectPath, Success}
+MGR ->> MGR: << Delegate Update for asynchronous processing >>
+par BMCWeb Processing
+    BMCW ->> BMCW: Create Matcher<br>(PropertiesChanged,<br> xyz.openbmc_project.Software.Activation,<br> ObjectPath)
+    BMCW ->> BMCW: Create Matcher<br>(PropertiesChanged,<br> xyz.openbmc_project.Software.ActivationProgress,<br> ObjectPath)
+    BMCW ->> BMCW: new msg
+    BMCW ->> BMCW: Create Task<br> to handle matcher notifications
+    BMCW -->> CL: <TaskNum>
+    loop
+    BMCW --) BMCW: Process notifications<br> and update Task attributes
+    CL ->> BMCW: /redfish/v1/TaskMonitor/<TaskNum>
+    BMCW -->> CL: TaskStatus
+    end
+and << Asynchronous Update in Progress >>
+    Note over MGR: Verification/Integrity check of the FW package
+        break FW Package Verification FAILED
+        MGR ->> MGR: Activation.Status = Invalid
+        MGR --) BMCW: Notify Activation.Status change
+        end
+    MGR ->> MGR: Activation.Status = Ready
+    MGR --) BMCW: Notify Activation.Status change
+    Note over MGR: Map PLDM descriptors to Non-PLDM updaters based on EM config
+    Note over MGR: PLDM and Non-PLDM updates started in parallel
+    MGR ->> MGR: Create Interface<br>xyz.openbmc_project.Software.ActivationProgress<br> at ObjectPath
+    MGR ->> MGR: Create Interface<br> xyz.openbmc_project.Software.ActivationBlocksTransition<br> at ObjectPath
+    MGR ->> MGR: Activation.Status = Activating
+    MGR --) BMCW: Notify Activation.Status change
+    Note over MGR: Manager aggregates the overall progress and completion of the PLDM package
+    loop
+        MGR --) BMCW: Notify ActivationProgress.Progress change
+    end
+    par <PLDM update in parallel>
+        MGR ->> UA: StartUpdate(Image, ApplyTime, Targets, ForceUpdate)
+        Note over UA: ObjectPath = /xyz/openbmc_project/software/<SwId>
+        UA ->> UA: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at ObjectPath with Status = NotReady
+        UA -->> MGR: {ObjectPath, Success}
+        Note over UA: Match descriptors from PLDM devices to PLDM package
+        UA ->> UA: Activation.Status = Ready
+        UA --) MGR: Notify Activation.Status change
+        UA ->> UA: Create Interface<br>xyz.openbmc_project.Software.ActivationProgress<br> at ObjectPath
+        UA ->> UA: Activation.Status = Activating
+        UA --) MGR: Notify Activation.Status change
+        Note over UA: Start PLDM T5 standard based FW update
+        loop
+            UA --) MGR: Notify ActivationProgress.Progress change
+        end
+        Note over UA: Finish FW update
+        UA ->> UA: Activation.Status = Active
+        UA --) MGR: Notify Activation.Status change
+    and <Non-PLDM updates in parallel>
+        MGR ->> CU: StartUpdate(Image, ApplyTime, Targets, ForceUpdate)
+        Note over CU: ObjectPath = /xyz/openbmc_project/software/<SwId>
+        CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at ObjectPath with Status = NotReady
+        CU -->> MGR: {ObjectPath, Success}
+        Note over CU: Read component images using libpldm APIs
+        CU ->> CU: Activation.Status = Ready
+        CU --) MGR: Notify Activation.Status change
+        CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.ActivationProgress<br> at ObjectPath
+        CU ->> CU: Activation.Status = Activating
+        CU --) MGR: Notify Activation.Status change
+        Note over CU: Start Update
+        loop
+            CU --) MGR: Notify ActivationProgress.Progress change
+        end
+        Note over CU: Finish FW update
+        CU ->> CU: Activation.Status = Active
+        CU --) MGR: Notify Activation.Status change
+    end
+    MGR ->> MGR: Activation.Status = Active
+    MGR --) BMCW: Notify Activation.Status change
+    MGR ->> MGR: Delete interface<br>xyz.openbmc_project.Software.ActivationBlocksTransition
+end
+```
+
 - Each upgradable hardware type may have a separate daemon (\<deviceX\> as per
   above flow) handling its update process and would need to implement the
   proposed interfaces in next section. This satisfies the
@@ -138,14 +369,15 @@ end
 
 The DBus Interface for code update will consist of following -
 
-| Interface Name                                                                                                                                                                                         | Existing/New |                               Purpose                               |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: | :-----------------------------------------------------------------: |
-| [xyz.openbmc_project.Software.Update](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/65738)                                                                                           |     New      |                       Provides update method                        |
-| [xyz.openbmc_project.Software.Version](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Version.interface.yaml)                                       |   Existing   |                        Provides version info                        |
-| [xyz.openbmc_project.Software.Activation](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml)                                 |   Existing   |                     Provides activation status                      |
-| [xyz.openbmc_project.Software.ActivationProgress](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationProgress.interface.yaml)                 |   Existing   |               Provides activation progress percentage               |
-| [xyz.openbmc_project.Software.ActivationBlocksTransition](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationBlocksTransition.interface.yaml) |   Existing   | Signifies barrier for state transitions while update is in progress |
-| [xyz.openbmc_project.Software.RedundancyPriority](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/RedundancyPriority.interface.yaml)                 |   Existing   |     Provides the redundancy priority for the version interface      |
+| Interface Name                                                                                                                                                                                         | New/Modify |                                                                                Purpose                                                                                 |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [xyz.openbmc_project.Software.Update](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Update.interface.yaml)                                         | Modify     | Provides update method, modified to include <br> Targets, ForceUpdate to match [Redfish UpdateService](https://redfish.dmtf.org/schemas/v1/UpdateService.v1_14_1.json) |
+| xyz.openbmc_project.Software.Manager                                                                                                                                                                   | New        |                                                            Provides identification for code update manager                                                             |
+| [xyz.openbmc_project.Software.Version](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Version.interface.yaml)                                       | Existing   |                                                                         Provides version info                                                                          |
+| [xyz.openbmc_project.Software.Activation](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml)                                 | Existing   |                                                                       Provides activation status                                                                       |
+| [xyz.openbmc_project.Software.ActivationProgress](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationProgress.interface.yaml)                 | Existing   |                                                                Provides activation progress percentage                                                                 |
+| [xyz.openbmc_project.Software.ActivationBlocksTransition](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationBlocksTransition.interface.yaml) | Existing   |                                                  Signifies barrier for state transitions while update is in progress                                                   |
+| [xyz.openbmc_project.Software.RedundancyPriority](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/RedundancyPriority.interface.yaml)                 | Existing   |                                                       Provides the redundancy priority for the version interface                                                       |
 
 Introduction of xyz.openbmc_project.Software.Update interface streamlines the
 update invocation flow and hence addresses the [Issue# 2](#problem-description)
