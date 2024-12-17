@@ -299,7 +299,6 @@ In the error handler:
 
    The following example log entries use an IPMI request to set network access
    on, but the user input is invalid.
-
    - BMC Developer: Reference internal applications, services, pids, etc. the
      developer would be familiar with.
 

@@ -448,7 +448,6 @@ steps:
 - If the terminus supports `GetPDRs` command type, `pldmd` will send that
   command to get the terminus PDRs. Based on the retrieved PDRs, `pldmd` will
   collect:
-
   - The association between the entities in the system using
     `Entity Association PDR` (section 28.17 of DSP0248 1.2.1).
   - The entity names using `Entity Auxiliary Names PDR` (Section 28.18 of

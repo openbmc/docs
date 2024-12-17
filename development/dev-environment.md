@@ -62,7 +62,6 @@ virtualization tool to run the development environment.
 
    **VirtualBox Tips** - You'll want copy/paste working between your VM and
    Host. To do that, once you have your VM up and running:
-
    - Devices -> Insert Guest Additions CD Image (install)
    - Devices -> Shared Clipboard -> Bidirectional
    - reboot (the VM)
