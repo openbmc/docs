@@ -2,14 +2,19 @@
 
 Author: Jagpal Singh Gill <paligill@gmail.com>
 
+Other contributors:
+
+- Deepak Kodihalli <deepak.kodihalli.83@gmail.com> @dkodihal
+- Tom Joseph <rushtotom@gmail.com> @tomjose
+
 Created: 4th August 2023
 
 Last Updated: Jun 09, 2025
 
 ## Problem Description
 
-This section covers the limitations discoverd with
-[phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt)
+This section covers the limitations discovered with
+[phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt).
 
 1. Current code update flow is complex as it involves 3 different daemons -
    Image Manager, Image Updater and Update Service.
@@ -25,6 +30,8 @@ This section covers the limitations discoverd with
 - [phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt)
 - [Software DBus Interface](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software)
 - [Code Update Design](https://github.com/openbmc/docs/tree/master/architecture/code-update)
+- [PLDM for Firmware Update Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0267_1.3.0.pdf)
+- [Redfish Firmware Update White Paper](https://www.dmtf.org/sites/default/files/standards/documents/DSP2062_1.0.2.pdf)
 
 ## Requirements
 
@@ -50,6 +57,10 @@ This section covers the limitations discoverd with
 10. Able to update multiple components in parallel.
 11. Able to restrict critical system actions, such as reboot for entity under
     update while the code update is in flight.
+12. Able to update the components with a multi part image when no Targets are
+    specified.
+13. Able to order component updates to a device as defined in the multi part
+    image format.
 
 ## Proposed Design
 
@@ -359,6 +370,137 @@ The user can also update the specific component by providing the image package
 with component as head node. The \<deviceX>CodeUpdater can implement the
 required logic to verify if the supplied image is targeted for itself (and child
 components) or not.
+
+### Multi part image handling
+
+This section describes how a multi part image format like PLDM can be handled by
+pldmd. The current approach
+[OpenBMC Gerrit change](https://gerrit.openbmc.org/c/openbmc/pldm/+/74774)
+starts parallel update for two components implemented by the same PLDM FD which
+will cause FW update to fail for one of the components and will break
+requirement #13. To meet this requirement pldmd needs to implement the
+xyz.openbmc_project.Software.Update D-Bus interface at the application level and
+not for individual FW inventory, pldmd can already handle component ordering to
+the same FD. There are two approaches described here, one orchestrated by pldmd
+and other orchestrated by bmcweb, the difference is if Non-PLDM updaters are
+initiated by pldmd or bmcweb.
+
+#### Orchestration by pldmd
+
+bmcweb to forward the multi-part image to the pldmd daemon along with the update
+parameters like
+[Targets](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/82235),
+[ForceUpdate](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/69992).
+pldmd will parse the PLDM package and initiate the FW update for PLDM devices
+based on the matching algorithm as defined in the PLDM T5 specification. pldmd
+will map Targets to corresponding MCTP endpoints and PLDM component IDs.
+
+1. pldmd implements standard interfaces:
+   - `xyz.openbmc_project.Software.Update`
+   - `xyz.openbmc_project.Software.Activation`
+   - `xyz.openbmc_project.Software.ActivationProgress`
+
+2. Non-PLDM code updaters:
+   - Nvidia platforms has additional requirement to update Non-PLDM devices
+     using components in the PLDM package.
+   - pldmd invokes the non-PLDM code updaters based on OEM D-Bus interfaces.
+     pldmd will orchestrate the lifetime of the Non-PLDM updates, so only single
+     RF task is created.
+   - Non-PLDM code updaters will parse the PLDM package using libpldm APIs and
+     the EM configuration and read the applicable component data to update the
+     Non-PLDM devices.
+   - pldmd orchestrating Non-PLDM devices is an optional feature and will be
+     enabled only for Nvidia platforms.
+
+```mermaid
+  graph TD
+    subgraph bmcweb["bmcweb"]
+    end
+
+    subgraph PLDM["pldmd"]
+        direction TB
+        P1["libpldm"] & P2["EM Config"]
+    end
+
+    subgraph NonPLDM["Non-PLDM Code Updater"]
+        direction TB
+        C1["libpldm"] & C2["EM Config"]
+    end
+
+    bmcweb <--> |Code Update D-Bus Intf| PLDM
+    PLDM <--> |OEM code update D-Bus Intf| NonPLDM
+    NonPLDM <--> |Device specific<br>bus/protocol| E[Non-PLDM endpoints]
+    PLDM <--> |MCTP| F[PLDM endpoints]
+
+
+    classDef bmcweb fill:#f8f0ff,stroke:#333,stroke-width:1px;
+    classDef manager fill:#fff3e0,stroke:#333,stroke-width:1px;
+    classDef nonpldm fill:#f3e5f5,stroke:#333,stroke-width:1px;
+    classDef pldm fill:#e3f2fd,stroke:#333,stroke-width:1px;
+    classDef endpoints fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef libpldm fill:#ffcdd2,stroke:#333,stroke-width:1px;
+    classDef emconfig fill:#ffffff,stroke:#333,stroke-width:1px;
+
+    class bmcweb bmcweb;
+    class NonPLDM nonpldm;
+    class PLDM pldm;
+    class E,F endpoints;
+    class C1,P1 libpldm;
+    class C2,P2 emconfig;
+```
+
+#### Aggregation by bmcweb
+
+bmcweb will forward the multi part image to all the code updaters that implement
+the Update interface. bmcweb will not parse the multi part image and will be
+parsed by the code updaters. bmcweb will aggregate the status and progress
+across all the code updaters to a single RF task.
+
+```mermaid
+  graph TD
+    subgraph bmcweb["bmcweb"]
+    end
+
+    subgraph NonPLDM["Non-PLDM Code Updater"]
+        direction TB
+        C1["libpldm"] & C2["EM Config"]
+    end
+
+    subgraph PLDM["PLDM UA"]
+        direction TB
+        P1["libpldm"] & P2["EM Config"]
+    end
+
+    bmcweb <--> |Code Update D-Bus Intf| NonPLDM
+    bmcweb <--> |Code Update D-Bus Intf| PLDM
+    NonPLDM <--> |Device specific<br>bus/protocol| E[Non-PLDM devices]
+    PLDM <--> |MCTP| F[PLDM T5 endpoints]
+
+    classDef bmcweb fill:#f8f0ff,stroke:#333,stroke-width:1px;
+    classDef manager fill:#fff3e0,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+    classDef nonpldm fill:#f3e5f5,stroke:#333,stroke-width:1px;
+    classDef pldm fill:#e3f2fd,stroke:#333,stroke-width:1px;
+    classDef endpoints fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef libpldm fill:#ffcdd2,stroke:#333,stroke-width:1px;
+    classDef emconfig fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef legendTitle fill:none,stroke:none;
+    classDef legendItem fill:none,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+
+    class bmcweb bmcweb;
+    class FWManager manager;
+    class NonPLDM nonpldm;
+    class PLDM pldm;
+    class E,F endpoints;
+    class B1,C1,P1 libpldm;
+    class B2,C2,P2 emconfig;
+    class LegendTitle legendTitle;
+    class LegendItem1 legendItem;
+```
+
+| Options                | Pros                                                                                                                                           | Cons                                                                                                                                                                                                                                                                     |
+| :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Aggregation by bmcweb  |                                                                                                                                                | - Business logic of aggregation the status of individual code updaters handled in bmcweb <br><br>- No support available to guarantee code updaters are invoked in a specific order <br><br>- No mechanism available for pre, post or common operations at platform level |
+| Orchestration by pldmd | - Specific ordering of invoking Non-PLDM code updaters feasible <br><br>- Support for platform specific operations associated with code update | - Added complexity in pldmd to orchestrate Non-PLDM devices                                                                                                                                                                                                              |
 
 ### Update multiple devices of same type
 
