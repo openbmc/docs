@@ -239,6 +239,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd1de04e_552ea393",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2024-12-17T04:45:38Z",
+      "side": 1,
+      "message": "The .clang-tidy-cpp file attached here is derived from the list at Clang-Tidy Checks and tailored for OpenBMC projects based on category levels instead of individual checks. For example, instead of listing all 100+ bugprone-xxx-xxx checks, I grouped them under the bugprone* category. This approach helps users enable or disable specific groups of checks more efficiently. Based on review feedback, no one wanted to review all 400 checks I initially added, so I opted for a category-based approach. This method still meets our initial requirements. Let me know if you need additional information on how developers can better enable clang-tidy coverage.\n\nFor more details on my approach, please refer to this commit.https://gerrit.openbmc.org/c/openbmc/phosphor-power/+/76608/\n\nRegarding automation, \"there\u0027s no fully automated way to generate the list\". As mentioned earlier, full automation requires some manual intervention due to the steps involved before enabling clang-tidy fixes. Let me know what kind of automation approach you are looking for, or we can discuss it on Discord if you need further clarification.\n\nYou can use the command clang-tidy-18 -list-checks -checks\u003d to list supported checks specific to clang-tidy version 18.",
+      "parentUuid": "06b40810_7d78826d",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "4606ddefbe6a1f8c72b4920478cc243801261bec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "85927bd4_98b2b50c",
