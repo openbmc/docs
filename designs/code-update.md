@@ -2,14 +2,19 @@
 
 Author: Jagpal Singh Gill <paligill@gmail.com>
 
+Other contributors:
+
+- Deepak Kodihalli <deepak.kodihalli.83@gmail.com> @dkodihal
+- Tom Joseph <rushtotom@gmail.com> @tomjose
+
 Created: 4th August 2023
 
-Last Updated: Jun 09, 2025
+Last Updated: Aug 29, 2025
 
 ## Problem Description
 
-This section covers the limitations discoverd with
-[phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt)
+This section covers the limitations discovered with
+[phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt).
 
 1. Current code update flow is complex as it involves 3 different daemons -
    Image Manager, Image Updater and Update Service.
@@ -25,6 +30,8 @@ This section covers the limitations discoverd with
 - [phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt)
 - [Software DBus Interface](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software)
 - [Code Update Design](https://github.com/openbmc/docs/tree/master/architecture/code-update)
+- [PLDM for Firmware Update Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0267_1.3.0.pdf)
+- [Redfish Firmware Update White Paper](https://www.dmtf.org/sites/default/files/standards/documents/DSP2062_1.0.2.pdf)
 
 ## Requirements
 
@@ -50,6 +57,10 @@ This section covers the limitations discoverd with
 10. Able to update multiple components in parallel.
 11. Able to restrict critical system actions, such as reboot for entity under
     update while the code update is in flight.
+12. Able to update the components with a multi part image when no Targets are
+    specified.
+13. Able to order component updates to a device as defined in the multi part
+    image format.
 
 ## Proposed Design
 
@@ -139,15 +150,16 @@ end
 
 The DBus Interface for code update will consist of following -
 
-| Interface Name                                                                                                                                                                                         | Existing/New |                               Purpose                               |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: | :-----------------------------------------------------------------: |
-| [xyz.openbmc_project.Software.Update](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/65738)                                                                                           |     New      |                       Provides update method                        |
-| [xyz.openbmc_project.Software.Version](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Version.interface.yaml)                                       |   Existing   |                        Provides version info                        |
-| [xyz.openbmc_project.Software.Activation](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml)                                 |   Existing   |                     Provides activation status                      |
-| [xyz.openbmc_project.Software.ActivationProgress](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationProgress.interface.yaml)                 |   Existing   |               Provides activation progress percentage               |
-| [xyz.openbmc_project.Software.ActivationBlocksTransition](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationBlocksTransition.interface.yaml) |   Existing   | Signifies barrier for state transitions while update is in progress |
-| [xyz.openbmc_project.Software.RedundancyPriority](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/RedundancyPriority.interface.yaml)                 |   Existing   |     Provides the redundancy priority for the version interface      |
-| [xyz.openbmc_project.Software.Asset](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software/Asset.interface.yaml)                                           |     New      |         Provides Manufacturer and Release Date information          |
+| Interface Name                                                                                                                                                                                         | Existing/New |                                                   Purpose                                                   |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: | :---------------------------------------------------------------------------------------------------------: |
+| [xyz.openbmc_project.Software.Update](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/65738)                                                                                           |     New      |                                           Provides update method                                            |
+| [xyz.openbmc_project.Software.MultipartUpdate](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905)                                                                                  |     New      | Interface to identify the multi part updater which can do code update based on the multi-part image format. |
+| [xyz.openbmc_project.Software.Version](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Version.interface.yaml)                                       |   Existing   |                                            Provides version info                                            |
+| [xyz.openbmc_project.Software.Activation](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml)                                 |   Existing   |                                         Provides activation status                                          |
+| [xyz.openbmc_project.Software.ActivationProgress](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationProgress.interface.yaml)                 |   Existing   |                                   Provides activation progress percentage                                   |
+| [xyz.openbmc_project.Software.ActivationBlocksTransition](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationBlocksTransition.interface.yaml) |   Existing   |                     Signifies barrier for state transitions while update is in progress                     |
+| [xyz.openbmc_project.Software.RedundancyPriority](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/RedundancyPriority.interface.yaml)                 |   Existing   |                         Provides the redundancy priority for the version interface                          |
+| [xyz.openbmc_project.Software.Asset](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software/Asset.interface.yaml)                                           |     New      |                             Provides Manufacturer and Release Date information                              |
 
 Introduction of xyz.openbmc_project.Software.Update interface streamlines the
 update invocation flow and hence addresses the [Issue# 2](#problem-description)
@@ -359,6 +371,57 @@ The user can also update the specific component by providing the image package
 with component as head node. The \<deviceX>CodeUpdater can implement the
 required logic to verify if the supplied image is targeted for itself (and child
 components) or not.
+
+### Multi part image handling w/o Targets
+
+A service intended to process firmware updates via a multi-part image, without
+explicit update targets, is required to implement the
+xyz.openbmc_project.Software.MultipartUpdate interface. The system permits only
+a single instance of this interface. If no targets are provided, bmcweb searches
+for the service exposing this interface and invokes the StartUpdate method at
+the associated object path.
+
+The PLDM package is an example of multi-part image format. At the application
+layer, the pldmd daemon implements both
+xyz.openbmc_project.Software.MultipartUpdate and
+xyz.openbmc_project.Software.Update D-Bus interfaces. Upon receiving a PLDM
+package, pldmd parses the content, applies the component-matching algorithm as
+defined by the PLDM Type 5 specification, and initiates firmware updates for
+relevant PLDM devices, also ensuring component updates are ordered per firmware
+device.
+
+pldmd implements standard interfaces:
+
+- `xyz.openbmc_project.Software.MultipartUpdate`
+- `xyz.openbmc_project.Software.Update`
+- `xyz.openbmc_project.Software.Activation`
+- `xyz.openbmc_project.Software.ActivationProgress`
+
+```mermaid
+  graph TD
+    subgraph bmcweb["bmcweb"]
+    end
+
+    subgraph PLDM["pldmd"]
+        direction TB
+        P1["libpldm"]
+    end
+
+    bmcweb <--> |MultipartUpdate D-Bus Intf<br>StartUpdate D-Bus Intf| PLDM
+    PLDM <--> |MCTP| F[PLDM endpoints]
+
+
+    classDef bmcweb fill:#f8f0ff,stroke:#333,stroke-width:1px;
+    classDef manager fill:#fff3e0,stroke:#333,stroke-width:1px;
+    classDef pldm fill:#e3f2fd,stroke:#333,stroke-width:1px;
+    classDef endpoints fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef libpldm fill:#ffcdd2,stroke:#333,stroke-width:1px;
+
+    class bmcweb bmcweb;
+    class PLDM pldm;
+    class F endpoints;
+    class P1 libpldm;
+```
 
 ### Update multiple devices of same type
 
