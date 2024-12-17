@@ -2,12 +2,16 @@
 
 Author: Jagpal Singh Gill <paligill@gmail.com>
 
+Other contributors: \
+Deepak Kodihalli <deepak.kodihalli.83@gmail.com> @dkodihal \
+Tom Joseph <rushtotom@gmail.com> @tomjose
+
 Created: 4th August 2023
 
 ## Problem Description
 
-This section covers the limitations discoverd with
-[phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt)
+This section covers the limitations discovered with
+[phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt).
 
 1. Current code update flow is complex as it involves 3 different daemons -
    Image Manager, Image Updater and Update Service.
@@ -23,6 +27,8 @@ This section covers the limitations discoverd with
 - [phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt)
 - [Software DBus Interface](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software)
 - [Code Update Design](https://github.com/openbmc/docs/tree/master/architecture/code-update)
+- [PLDM for Firmware Update Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0267_1.3.0.pdf)
+- [Redfish Firmware Update White Paper](https://www.dmtf.org/sites/default/files/standards/documents/DSP2062_1.0.0.pdf)
 
 ## Requirements
 
@@ -49,6 +55,8 @@ This section covers the limitations discoverd with
 10. Able to update multiple components in parallel.
 11. Able to restrict critical system actions, such as reboot for entity under
     update while the code update is in flight.
+12. Able to delegate component images in a multi part image to respective code
+    updaters without specifying Targets.
 
 ## Proposed Design
 
@@ -138,14 +146,15 @@ end
 
 The DBus Interface for code update will consist of following -
 
-| Interface Name                                                                                                                                                                                         | Existing/New |                               Purpose                               |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: | :-----------------------------------------------------------------: |
-| [xyz.openbmc_project.Software.Update](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/65738)                                                                                           |     New      |                       Provides update method                        |
-| [xyz.openbmc_project.Software.Version](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Version.interface.yaml)                                       |   Existing   |                        Provides version info                        |
-| [xyz.openbmc_project.Software.Activation](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml)                                 |   Existing   |                     Provides activation status                      |
-| [xyz.openbmc_project.Software.ActivationProgress](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationProgress.interface.yaml)                 |   Existing   |               Provides activation progress percentage               |
-| [xyz.openbmc_project.Software.ActivationBlocksTransition](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationBlocksTransition.interface.yaml) |   Existing   | Signifies barrier for state transitions while update is in progress |
-| [xyz.openbmc_project.Software.RedundancyPriority](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/RedundancyPriority.interface.yaml)                 |   Existing   |     Provides the redundancy priority for the version interface      |
+| Interface Name                                                                                                                                                                                         | New/Existing |                               Purpose                               |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :-----------------------------------------------------------------: |
+| [xyz.openbmc_project.Software.Update](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Update.interface.yaml)                                         | Existing     |                       Provides update method                        |
+| [xyz.openbmc_project.Software.Manager](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905)                                                                                          | New          |           Provides identification for code update manager           |
+| [xyz.openbmc_project.Software.Version](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Version.interface.yaml)                                       | Existing     |                        Provides version info                        |
+| [xyz.openbmc_project.Software.Activation](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml)                                 | Existing     |                     Provides activation status                      |
+| [xyz.openbmc_project.Software.ActivationProgress](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationProgress.interface.yaml)                 | Existing     |               Provides activation progress percentage               |
+| [xyz.openbmc_project.Software.ActivationBlocksTransition](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationBlocksTransition.interface.yaml) | Existing     | Signifies barrier for state transitions while update is in progress |
+| [xyz.openbmc_project.Software.RedundancyPriority](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/RedundancyPriority.interface.yaml)                 | Existing     |     Provides the redundancy priority for the version interface      |
 
 Introduction of xyz.openbmc_project.Software.Update interface streamlines the
 update invocation flow and hence addresses the [Issue# 2](#problem-description)
@@ -357,6 +366,180 @@ The user can also update the specific component by providing the image package
 with component as head node. The \<deviceX>CodeUpdater can implement the
 required logic to verify if the supplied image is targeted for itself (and child
 components) or not.
+
+An alternative approach delegates multi-part image processing to the optional
+code update manager daemon. This manager:
+
+1. Implements standard interfaces:
+
+   - `xyz.openbmc_project.Software.Manager`
+   - `xyz.openbmc_project.Software.Update`
+
+2. Orchestrates updates through:
+   - bmcweb invokes the update method implemented by the manager if it finds the
+     Manager interface
+   - Manager will invoke the update method implemented by individual code
+     updaters to pass the multi part image
+   - Aggregated status reporting:
+     - Success: All code updaters complete successfully, RF task is completed
+     - Failure: Any code updater fails, RF task is marked failed
+   - RF task progress is the average of the progress made by individual code
+     updaters
+
+If no `xyz.openbmc_project.Software.Manager` interface is found, bmcweb will
+handle multi part image as defined in the previous section.
+
+```mermaid
+  graph TD
+    subgraph bmcweb["bmcweb"]
+    end
+
+    subgraph FWManager["Code Update Manager"]
+        direction TB
+        B1["libpldm"] & B2["EM Config"]
+    end
+
+    subgraph NonPLDM["Non-PLDM Code Updater"]
+        direction TB
+        C1["libpldm"] & C2["EM Config"]
+    end
+
+    subgraph PLDM["PLDM UA"]
+        direction TB
+        P1["libpldm"] & P2["EM Config"]
+    end
+
+    bmcweb <-..-> |Code Update Mgr D-Bus Intf<br>━━━━━━━━━━━━<br>Code Update D-Bus Intf| FWManager
+    FWManager <--> |Code Update D-Bus Intf| NonPLDM
+    FWManager <--> |Code Update D-Bus Intf| PLDM
+    NonPLDM <--> |Device specific<br>bus/protocol| E[Non-PLDM endpoints]
+    PLDM <--> |MCTP| F[PLDM endpoints]
+
+    %% Legend
+    LegendTitle[Legend]
+    LegendTitle --- LegendItem1["Dotted indicates optional
+    entities"]
+
+    classDef bmcweb fill:#f8f0ff,stroke:#333,stroke-width:1px;
+    classDef manager fill:#fff3e0,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+    classDef nonpldm fill:#f3e5f5,stroke:#333,stroke-width:1px;
+    classDef pldm fill:#e3f2fd,stroke:#333,stroke-width:1px;
+    classDef endpoints fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef libpldm fill:#ffcdd2,stroke:#333,stroke-width:1px;
+    classDef emconfig fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef legendTitle fill:none,stroke:none;
+    classDef legendItem fill:none,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+
+    class bmcweb bmcweb;
+    class FWManager manager;
+    class NonPLDM nonpldm;
+    class PLDM pldm;
+    class E,F endpoints;
+    class B1,C1,P1 libpldm;
+    class B2,C2,P2 emconfig;
+    class LegendTitle legendTitle;
+    class LegendItem1 legendItem;
+
+    style C1 stroke-dasharray: 5 5
+```
+
+#### Proposed End to End Flow with code update manager
+
+```mermaid
+sequenceDiagram
+  participant CL as RF Client
+  participant BMCW as bmcweb
+  participant MGR as Code update manager<br><br> ServiceName: xyz.openbmc_project.Software.Update.Manager
+  participant UA as PLDM UA<br><br> ServiceName: xyz.openbmc_project.PLDM
+  participant CU as <deviceX>CodeUpdater<br> ServiceName: xyz.openbmc_project.Software.<deviceX>
+
+  par
+    Note over MGR: Get device mapping info from EM config
+    MGR ->> MGR: obj_path: /xyz/openbmc_project/software/manager <br><br> Create Interface:<br><br> xyz.openbmc_project.Software.Update.Manager<br>xyz.openbmc_project.Software.Update<br>
+  and
+    Note over UA: Discover MCTP endpoints supporting PLDM T5
+    Note over UA: Get additional information for devices from EM config
+    UA ->> UA: obj_path: /xyz/openbmc_project/software/<pldm_comp_id> <br><br> Create Interface:<br><br> xyz.openbmc_project.Software.Version<br><br>Create functional association <br> from Version to Inventory Item
+    UA ->> UA: obj_path: /xyz/openbmc_project/software/pldm <br><br> Create Interface:<br><br> xyz.openbmc_project.Software.Update
+  and
+    Note over CU: Get device access info from EM config
+    CU ->> CU: Obj Path: /xyz/openbmc_project/software/Swid <br><br> Create Interface:<br><br> xyz.openbmc_project.Software.Update<br>xyz.openbmc_project.Software.Version<br><br>Create functional association <br> from Version to Inventory Item
+  end
+
+CL ->> BMCW: HTTP POST: /redfish/v1/UpdateService/update-multipart <br> (ApplyTime, ForceUpdate)
+Note over BMCW: Stage the FW package<br> based on configured location
+Note over BMCW: If any Service implements xyz.openbmc_project.Software.Update.Manager<br> StartUpdate(Image, ApplyTime, ForceUpdate)
+BMCW ->> MGR: StartUpdate(Image, ApplyTime, ForceUpdate)
+Note over MGR: ObjectPath = /xyz/openbmc_project/software/<SwId>
+MGR ->> MGR: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at ObjectPath with Status = NotReady
+MGR -->> BMCW: {ObjectPath, Success}
+MGR ->> MGR: << Delegate Update for asynchronous processing >>
+par BMCWeb Processing
+    BMCW ->> BMCW: Create Matcher<br>(PropertiesChanged,<br> xyz.openbmc_project.Software.Activation,<br> ObjectPath)
+    BMCW ->> BMCW: Create Matcher<br>(PropertiesChanged,<br> xyz.openbmc_project.Software.ActivationProgress,<br> ObjectPath)
+    BMCW ->> BMCW: new msg
+    BMCW ->> BMCW: Create Task<br> to handle matcher notifications
+    BMCW -->> CL: <TaskNum>
+    loop
+    BMCW --) BMCW: Process notifications<br> and update Task attributes
+    CL ->> BMCW: /redfish/v1/TaskMonitor/<TaskNum>
+    BMCW -->> CL: TaskStatus
+    end
+and << Asynchronous Update in Progress >>
+    MGR ->> MGR: Activation.Status = Ready
+    MGR --) BMCW: Notify Activation.Status change
+    Note over MGR: Map PLDM descriptors to Non-PLDM updaters based on EM config
+    Note over MGR: PLDM and Non-PLDM updates started in parallel
+    MGR ->> MGR: Create Interface<br>xyz.openbmc_project.Software.ActivationProgress<br> at ObjectPath
+    MGR ->> MGR: Create Interface<br> xyz.openbmc_project.Software.ActivationBlocksTransition<br> at ObjectPath
+    MGR ->> MGR: Activation.Status = Activating
+    MGR --) BMCW: Notify Activation.Status change
+    Note over MGR: Manager aggregates the overall status and progress of the PLDM package
+    loop
+        MGR --) BMCW: Notify ActivationProgress.Progress change
+    end
+    par <PLDM update in parallel>
+        MGR ->> UA: StartUpdate(Image, ApplyTime, ForceUpdate)
+        Note over UA: ObjectPath = /xyz/openbmc_project/software/<SwId>
+        UA ->> UA: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at ObjectPath with Status = NotReady
+        UA -->> MGR: {ObjectPath, Success}
+        Note over UA: Match descriptors from PLDM devices to PLDM package
+        UA ->> UA: Activation.Status = Ready
+        UA --) MGR: Notify Activation.Status change
+        UA ->> UA: Create Interface<br>xyz.openbmc_project.Software.ActivationProgress<br> at ObjectPath
+        UA ->> UA: Activation.Status = Activating
+        UA --) MGR: Notify Activation.Status change
+        Note over UA: Start PLDM T5 standard based FW update
+        loop
+            UA --) MGR: Notify ActivationProgress.Progress change
+        end
+        Note over UA: Finish FW update
+        UA ->> UA: Activation.Status = Active
+        UA --) MGR: Notify Activation.Status change
+    and <Non-PLDM updates in parallel>
+        MGR ->> CU: StartUpdate(Image, ApplyTime, ForceUpdate)
+        Note over CU: ObjectPath = /xyz/openbmc_project/software/<SwId>
+        CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at ObjectPath with Status = NotReady
+        CU -->> MGR: {ObjectPath, Success}
+        Note over CU: Read component images using libpldm APIs
+        CU ->> CU: Activation.Status = Ready
+        CU --) MGR: Notify Activation.Status change
+        CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.ActivationProgress<br> at ObjectPath
+        CU ->> CU: Activation.Status = Activating
+        CU --) MGR: Notify Activation.Status change
+        Note over CU: Start Update
+        loop
+            CU --) MGR: Notify ActivationProgress.Progress change
+        end
+        Note over CU: Finish FW update
+        CU ->> CU: Activation.Status = Active
+        CU --) MGR: Notify Activation.Status change
+    end
+    MGR ->> MGR: Activation.Status = Active
+    MGR --) BMCW: Notify Activation.Status change
+    MGR ->> MGR: Delete interface<br>xyz.openbmc_project.Software.ActivationBlocksTransition
+end
+```
 
 ### Update multiple devices of same type
 
