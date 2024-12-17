@@ -2,12 +2,16 @@
 
 Author: Jagpal Singh Gill <paligill@gmail.com>
 
+Other contributors: \
+Deepak Kodihalli <deepak.kodihalli.83@gmail.com> @dkodihal \
+Tom Joseph <rushtotom@gmail.com> @tomjose
+
 Created: 4th August 2023
 
 ## Problem Description
 
-This section covers the limitations discoverd with
-[phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt)
+This section covers the limitations discovered with
+[phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt).
 
 1. Current code update flow is complex as it involves 3 different daemons -
    Image Manager, Image Updater and Update Service.
@@ -23,6 +27,8 @@ This section covers the limitations discoverd with
 - [phosphor-bmc-code-mgmt](https://github.com/openbmc/phosphor-bmc-code-mgmt)
 - [Software DBus Interface](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software)
 - [Code Update Design](https://github.com/openbmc/docs/tree/master/architecture/code-update)
+- [PLDM for Firmware Update Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0267_1.3.0.pdf)
+- [Redfish Firmware Update White Paper](https://www.dmtf.org/sites/default/files/standards/documents/DSP2062_1.0.0.pdf)
 
 ## Requirements
 
@@ -49,6 +55,8 @@ This section covers the limitations discoverd with
 10. Able to update multiple components in parallel.
 11. Able to restrict critical system actions, such as reboot for entity under
     update while the code update is in flight.
+12. Able to update the components with a multi part image when no Targets are
+    specified. 
 
 ## Proposed Design
 
@@ -138,14 +146,15 @@ end
 
 The DBus Interface for code update will consist of following -
 
-| Interface Name                                                                                                                                                                                         | Existing/New |                               Purpose                               |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: | :-----------------------------------------------------------------: |
-| [xyz.openbmc_project.Software.Update](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/65738)                                                                                           |     New      |                       Provides update method                        |
-| [xyz.openbmc_project.Software.Version](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Version.interface.yaml)                                       |   Existing   |                        Provides version info                        |
-| [xyz.openbmc_project.Software.Activation](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml)                                 |   Existing   |                     Provides activation status                      |
-| [xyz.openbmc_project.Software.ActivationProgress](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationProgress.interface.yaml)                 |   Existing   |               Provides activation progress percentage               |
-| [xyz.openbmc_project.Software.ActivationBlocksTransition](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationBlocksTransition.interface.yaml) |   Existing   | Signifies barrier for state transitions while update is in progress |
-| [xyz.openbmc_project.Software.RedundancyPriority](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/RedundancyPriority.interface.yaml)                 |   Existing   |     Provides the redundancy priority for the version interface      |
+| Interface Name                                                                                                                                                                                         | New/Existing |                               Purpose                               |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :-----------------------------------------------------------------: |
+| [xyz.openbmc_project.Software.Update](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Update.interface.yaml)                                         | Existing     |                       Provides update method                        |
+| [xyz.openbmc_project.Software.Manager](https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905)                                                                                          | New          |           Provides identification for code update manager           |
+| [xyz.openbmc_project.Software.Version](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Version.interface.yaml)                                       | Existing     |                        Provides version info                        |
+| [xyz.openbmc_project.Software.Activation](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/Activation.interface.yaml)                                 | Existing     |                     Provides activation status                      |
+| [xyz.openbmc_project.Software.ActivationProgress](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationProgress.interface.yaml)                 | Existing     |               Provides activation progress percentage               |
+| [xyz.openbmc_project.Software.ActivationBlocksTransition](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationBlocksTransition.interface.yaml) | Existing     | Signifies barrier for state transitions while update is in progress |
+| [xyz.openbmc_project.Software.RedundancyPriority](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/RedundancyPriority.interface.yaml)                 | Existing     |     Provides the redundancy priority for the version interface      |
 
 Introduction of xyz.openbmc_project.Software.Update interface streamlines the
 update invocation flow and hence addresses the [Issue# 2](#problem-description)
@@ -357,6 +366,151 @@ The user can also update the specific component by providing the image package
 with component as head node. The \<deviceX>CodeUpdater can implement the
 required logic to verify if the supplied image is targeted for itself (and child
 components) or not.
+
+### Multi part image handling with no Targets
+
+This section describes how a multi part image can be handled when no firmware targets
+are specified. There are two approaches described here.
+
+#### Aggregation by bmcweb
+
+bmcweb will forward the multi part image to all the code updaters that implement
+the Update interface. bmcweb will aggregate the status and progress across all the
+code updaters to the RF task.
+
+```mermaid  
+  graph TD
+    subgraph bmcweb["bmcweb"]
+    end
+
+    subgraph NonPLDM["Non-PLDM Code Updater"]
+        direction TB
+        C1["libpldm"] & C2["EM Config"]
+    end
+
+    subgraph PLDM["PLDM UA"]
+        direction TB
+        P1["libpldm"] & P2["EM Config"]
+    end
+
+    bmcweb <--> |Code Update D-Bus Intf| NonPLDM
+    bmcweb <--> |Code Update D-Bus Intf| PLDM
+    NonPLDM <--> |Device specific<br>bus/protocol| E[Non-PLDM devices]
+    PLDM <--> |MCTP| F[PLDM T5 endpoints]
+
+    classDef bmcweb fill:#f8f0ff,stroke:#333,stroke-width:1px;
+    classDef manager fill:#fff3e0,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+    classDef nonpldm fill:#f3e5f5,stroke:#333,stroke-width:1px;
+    classDef pldm fill:#e3f2fd,stroke:#333,stroke-width:1px;
+    classDef endpoints fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef libpldm fill:#ffcdd2,stroke:#333,stroke-width:1px;
+    classDef emconfig fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef legendTitle fill:none,stroke:none;
+    classDef legendItem fill:none,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+
+    class bmcweb bmcweb;
+    class FWManager manager;
+    class NonPLDM nonpldm;
+    class PLDM pldm;
+    class E,F endpoints;
+    class B1,C1,P1 libpldm;
+    class B2,C2,P2 emconfig;
+    class LegendTitle legendTitle;
+    class LegendItem1 legendItem;
+```
+
+#### Orchestartion by code-update-manager
+
+An alternative approach is for bmcweb to forward the  multi-part image 
+to the code-update-manager daemon if no targets are provided. The 
+code-update-manager will parse the multi part image and invoke the individual
+code updaters using the entity manager configuration. If the multi part
+image format is PLDM, the PLDM package will be forwarded to the
+pldmd for matching and udpate for PLDM T5 devices. The multi part image
+will be forwarded to the code updater if it supports parsing the multi
+part image format.
+
+1. code-update-manager implements standard interfaces:
+
+   - `xyz.openbmc_project.Software.Manager`
+   - `xyz.openbmc_project.Software.Update`
+   - `xyz.openbmc_project.Software.Activation`
+   - `xyz.openbmc_project.Software.ActivationProgress`
+
+2. Orchestrates updates with pldmd & individual code updaters:
+
+   - bmcweb invokes the Update method implemented by the code update manager
+   - code update manager will parse the multi part image format using the EM
+     configuration and forward it to each individual code updaters.
+   - code update manager will forward the PLDM package to pldmd to update
+     PLDM T5 devices
+   - code-update-manager aggregates status :
+     - Success: If all code updaters complete successfully, code-update-manager 
+                updates Activation D-Bus interface and RF task is marked success.
+     - Failure: Once all the code udpaters completes, if any of the code updater
+                fails, code-update-manager updates D-Bus and RF task is marked failed.
+     - Progress: code-update-manager updates ActivationProgress based on the progress
+                 made by the individual code updaters.
+
+```mermaid
+  graph TD
+    subgraph bmcweb["bmcweb"]
+    end
+
+    subgraph FWManager["Code Update Manager"]
+        direction TB
+        B1["libpldm"] & B2["EM Config"]
+    end
+
+    subgraph NonPLDM["Non-PLDM Code Updater"]
+        direction TB
+        C1["libpldm"] & C2["EM Config"]
+    end
+
+    subgraph PLDM["PLDM UA"]
+        direction TB
+        P1["libpldm"] & P2["EM Config"]
+    end
+
+    bmcweb <--> |Code Update Mgr D-Bus Intf<br>━━━━━━━━━━━━<br>Code Update D-Bus Intf| FWManager
+    FWManager <--> |Code Update D-Bus Intf| NonPLDM
+    FWManager <--> |Code Update D-Bus Intf| PLDM
+    NonPLDM <--> |Device specific<br>bus/protocol| E[Non-PLDM endpoints]
+    PLDM <--> |MCTP| F[PLDM endpoints]
+
+    %% Legend
+    LegendTitle[Legend]
+    LegendTitle --- LegendItem1["Dotted indicates optional
+    entities"]
+
+    classDef bmcweb fill:#f8f0ff,stroke:#333,stroke-width:1px;
+    classDef manager fill:#fff3e0,stroke:#333,stroke-width:1px;
+    classDef nonpldm fill:#f3e5f5,stroke:#333,stroke-width:1px;
+    classDef pldm fill:#e3f2fd,stroke:#333,stroke-width:1px;
+    classDef endpoints fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef libpldm fill:#ffcdd2,stroke:#333,stroke-width:1px;
+    classDef emconfig fill:#ffffff,stroke:#333,stroke-width:1px;
+    classDef legendTitle fill:none,stroke:none;
+    classDef legendItem fill:none,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+
+    class bmcweb bmcweb;
+    class FWManager manager;
+    class NonPLDM nonpldm;
+    class PLDM pldm;
+    class E,F endpoints;
+    class B1,C1,P1 libpldm;
+    class B2,C2,P2 emconfig;
+    class LegendTitle legendTitle;
+    class LegendItem1 legendItem;
+
+    style C1 stroke-dasharray: 5 5
+```
+
+| Options   | Pros | Cons  |
+|:------|:------|:------|
+| Aggregation by bmcweb      |   - No additional daemon required other than code updaters   |     - Business logic of aggregation the status of individual code updaters handled in bmcweb <br><br>- No support available to guarantee code updaters are updated in a specific order <br><br>- All the code updaters need to converge to parse a common multi part image format<br><br>- No mechanism available for pre, post or common operations at platform level       |
+| Orchestration by code-update-manager     | - code-update-manager extensible to support multiple multi image formats<br><br>- Individual code updaters have flexibility to choose the format of the firmare<br><br>- Specific ordering of invoking code updaters feasible based on platform configuration<br><br>- Support for platform specific operations associated with code update       |   - Added complexity because of manager service   |
+
 
 ### Update multiple devices of same type
 
