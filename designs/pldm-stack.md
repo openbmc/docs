@@ -552,6 +552,112 @@ from PLDM terminus, `pldmd` should remove the sensor from poll list and then
 send necessary commands (e.g., `EventMessageBufferSize` and `SetEventReceiver`)
 to PLDM terminus for the initialization.
 
+## File Transfer implementation
+
+[DSP0242 v1.0.0](https://www.dmtf.org/sites/default/files/standards/documents/DSP0242_1.0.0.pdf)
+defines messages and data structures used for transferring files between PLDM
+termini, within a PLDM subsystem. File Transfer specìication describes the
+mechanism that allows:
+
+- Discovery of files, directories and file/directory metadata available on a
+  PLDM terminus via PLDM PDR entries and File Transfer specific sensors, for
+  transfer purpose between File Host and File Client
+- Reading regular and serial FIFO type files
+
+`File Descriptor PDR` provides all the descriptions about a file object that
+File Client needs to know, including:
+
+1. A file has a `FileIdentifier` that is unique within a PLDM terminus, and a
+   `FileName`.
+2. A file can have `FileClassification` of `BootLog`, `SerialTxFIFO`,
+   `SerialRxFIFO`,`DiagnosticLog`, `CrashDumpFile`, `FileDirectory`,
+   `FRUDataFile`, `OEM`, etc... If a file is `OEM`, it can has its OEM
+   classification.
+3. A file classified as `FileDirectory` can have the logical containment
+   association with other files (it contains other files).
+4. A file that is not a directory shall have a sensor to report its size
+   (`Compact Numeric/Numeric Sensor`), and another to report its state
+   (`State Sensor`). These sensors can generate events (e.g when the file
+   reaches max size).
+5. `FileCapabilities` field in the PDR has bit settings, including the
+   conventional `DataType` of the file, which is either `Regular` (data can be
+   appended until maximum storage limit is reached) or `Serial` (data is removed
+   after successfully transferred to File Client or upon SerialFifo overflow).
+
+A File Client can send various PLDM File Transfer commands to the File Host:
+`DfOpen`, `DfClose`, `DfDelete`, `DfGetFileAttrib`, `DfSetFileAttrib`,
+`DfHeartbeat`, `DfRead`, `DfFiFoSend`. While most of the commands function as
+their names tell, `DfHeartbeat` is to keep the file from being unilaterally
+closed by File Host after opened and not read within the negotiated max
+interval, and `DfRead` involves multiple `MultipartReceive` commands
+([DSP0240 v1.1.x](http://www.dmtf.org/standards/published_documents/DSP1001_1.1.x.pdf))
+to File Host to initiate a transfer and correspondingly receive all the file
+content until there's no data to be read.
+
+In order for other applications to interact with these files via PLDM, `pldmd`
+should publish each `File Descriptor PDR` as a file object to D-Bus, with a
+`xyz.openbmc_project.File.Object` interface that has a `Read` method and
+essensial properties. The proposed D-Bus information will be:
+
+```
+-/xyz/openbmc_project/file/$TerminusName/$FileName
+
+xyz.openbmc_project.Association.Definitions
+.Associations  "contained_by"/"containing" <other file path>
+
+xyz.openbmc_project.File.Object
+.Name         string
+.Purpose      string enum [BootLog, SerialTxFIFO, SerialRxFIFO, DiagnosticLog, CrashDump, Directory, FRUData, OEM]
+.Size         uint64
+.Read()       unix_fd
+```
+
+It's not guaranteed that `FileName` is unique across termini, so file object
+should be placed under $TerminusName. It is not guaranteed to be unique within
+the terminus also, so when it comes to object path duplication, an ID in
+increasing order from 1 will be appended to duplicate `FileName`.
+
+The proposed D-Bus properties provide basic information about the file. As the
+file is transfered via PLDM, property values can be filled as following:
+
+- `Name` maps with `PDR::FileName`
+- `Purpose` maps with `PDR::FileClassification`
+- `Size` maps with the value read from the File Size Sensor associated with this
+  file
+
+A file object that has a containment association with another
+directory-classified file, will have a `contained_by`/`containing` association
+with that file, and the directory object will not implement `Size` and `Read()`.
+Alternatively, the file object path might possibly be placed one level behind
+the directory object path (e.g
+`/xyz/openbmc_project/file/$TerminusName/$DirName/$FileName`), and the directory
+object does not have to hold any interface or property.
+
+`Read()` method will call `DfOpen` using `PDR::FileIdentifier` to File Host to
+get the fd, then use this fd to call `DfRead` to File Host, and `DfClose` after
+reading all the content. Whether `DfHeartbeat` is used in between is per
+implementation. `Read()` will return a `unix_fd` of the file in form of Unix
+memfd, so callers will have to save the return fd to their memory, or to the
+filesystem depending on their needs.
+
+The `DfRead` flow depends on the `DataType` of the file, and the initialization
+flow of File Transfer are all described in the examples in `Section 10.` of
+DSP0242 v1.0.0.
+
+The scope of this design only covers transferring file content from File Host to
+File Client, so `DfWrite` command is not considered to implement into a
+`Write()` method on D-Bus. Callers are not expected to set file attributes via
+D-Bus in this design, but to use the attributes currently applied on the file.
+
+DSP0242 v1.0.0 allows multiple fds to be opened for a file instance, depending
+on `FileMaximumFileDescriptorCount` field in PDR. However, this design will
+block any call to `Read()` when another read action is being performed on the
+file instance, and returns `xyz.openbmc_project.Common.Error.Unavailable` to
+caller, so `pldmd` does not have to keep track of multiple access to the file.
+`xyz.openbmc_project.Common.File.Error.Open` or
+`xyz.openbmc_project.Common.File.Error.Read` will be returned to the caller of
+`Read()`, if File Client fails to open or read the file from File Host.
+
 ## Alternatives Considered
 
 Continue using IPMI, but start making more use of OEM extensions to suit the
