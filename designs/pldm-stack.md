@@ -552,6 +552,197 @@ from PLDM terminus, `pldmd` should remove the sensor from poll list and then
 send necessary commands (e.g., `EventMessageBufferSize` and `SetEventReceiver`)
 to PLDM terminus for the initialization.
 
+## File Transfer implementation
+
+[DSP0242 v1.0.0](https://www.dmtf.org/sites/default/files/standards/documents/DSP0242_1.0.0.pdf)
+defines messages and data structures used for transferring files between PLDM
+termini, within a PLDM subsystem. File Transfer specìication describes the
+mechanism that allows:
+
+- Discovery of files, directories and file/directory metadata available on a
+  PLDM terminus via PLDM PDR entries and File Transfer specific sensors, for
+  transfer purpose between File Host and File Client
+- Reading regular and serial FIFO type files
+
+`File Descriptor PDR` provides all the descriptions about a file object that
+File Client needs to know, including:
+
+1. A file has a `FileIdentifier` that is unique within a PLDM terminus, and a
+   `FileName`.
+2. A file can have `FileClassification` of `BootLog`, `SerialTxFIFO`,
+   `SerialRxFIFO`,`DiagnosticLog`, `CrashDumpFile`, `FileDirectory`,
+   `FRUDataFile`, `OEM`, etc... If a file is `OEM`, it can has its OEM
+   classification.
+3. A file classified as `FileDirectory` can have the logical containment
+   association with other files (it contains other files).
+4. A file that is not a directory shall have a sensor to report its size
+   (`Compact Numeric/Numeric Sensor`), and another to report its state
+   (`State Sensor`). These sensors can generate events (e.g when the file
+   reaches max size).
+5. `FileCapabilities` field in the PDR has bit settings, including the
+   conventional `DataType` of the file, which is either `Regular` (data can be
+   appended until maximum storage limit is reached) or `Serial` (data is removed
+   after successfully transferred to File Client or upon SerialFifo overflow).
+
+A File Client can send various PLDM File Transfer commands to the File Host:
+`DfOpen`, `DfClose`, `DfDelete`, `DfGetFileAttrib`, `DfSetFileAttrib`,
+`DfHeartbeat`, `DfRead`, `DfFiFoSend`. While most of the commands function as
+their names tell, `DfHeartbeat` is to keep the file from being unilaterally
+closed by File Host after opened and not read within the negotiated max
+interval, and `DfRead` involves multiple `MultipartReceive` commands
+([DSP0240 v1.1.x](http://www.dmtf.org/standards/published_documents/DSP1001_1.1.x.pdf))
+to File Host to initiate a transfer and correspondingly receive all the file
+content until there's no data to be read.
+
+### File D-Bus interface
+
+In order for other applications to interact with these files via PLDM, `pldmd`
+should publish each `File Descriptor PDR` as a file object to D-Bus, with a
+`xyz.openbmc_project.File.Object` interface that has a `Read` method and
+essensial properties. The properties should not be PLDM specific, and serve
+generic purposes as much as possible. The proposed D-Bus information will be:
+
+```
+-/xyz/openbmc_project/file/$TerminusName/$FileName
+
+xyz.openbmc_project.Association.Definitions
+.Associations  "contained_by"/"containing" <other file path>
+
+xyz.openbmc_project.File.Object
+.Name         string
+.Purpose      string enum [Diagnostic, Directory, FRUData, OEM]
+.Source       string
+.Size         uint64
+.Read()       unix_fd
+```
+
+It's not guaranteed that `FileName` is unique across termini, so file object
+should be placed under $TerminusName. It is not guaranteed to be unique within
+the terminus also, so when it comes to object path duplication, an ID in
+increasing order from 1 will be appended to the duplicate `FileName`s.
+
+`Source` can be `System` if the File Host is the Computer System.
+
+The proposed D-Bus properties provide basic information about the file. As the
+file is transfered via PLDM, property values can be filled as following:
+
+- `Name` maps with `PDR::FileName`
+- `Purpose` maps with `PDR::FileClassification` as `OEM`=`OEM`,
+  `Diagnostic`=`{BootLog, SerialTxFIFO, SerialRxFIFO, DiagnosticLog, CrashDump}`,
+  `Security`=`SecurityLog`, `FRU`=`FRUDataFile`,
+  `Telemetry`=`{TelemetryDataFile, TelemetryDataLog}`,
+  `Directory`=`FileDirectory`.
+- `Size` maps with the value read from the File Size Sensor associated with this
+  file
+
+A file object that has a containment association with another
+directory-classified file, will have a `contained_by`/`containing` association
+with that file, and the directory object will not implement `Size` and `Read()`.
+Alternatively, the file object path might possibly be placed one level behind
+the directory object path (e.g
+`/xyz/openbmc_project/file/$TerminusName/$DirName/$FileName`), and the directory
+object does not have to hold any interface or property.
+
+`Read()` method will call `DfOpen` using `PDR::FileIdentifier` to File Host to
+get the fd, then use this fd to call `DfRead` to File Host, and `DfClose` after
+reading all the content. Whether `DfHeartbeat` is used in between is per
+implementation. `Read()` will return a `unix_fd` of the file in form of Unix
+memfd, so callers will have to save the return fd to their memory, or to the
+filesystem depending on their needs.
+`xyz.openbmc_project.Common.File.Error.Open` or
+`xyz.openbmc_project.Common.File.Error.Read` will be returned to the caller of
+`Read()`, if File Client fails to open or read the file from File Host.
+
+The `DfRead` flow depends on the `DataType` of the file, and the initialization
+flow of File Transfer are all described in the examples in `Section 10.` of
+DSP0242 v1.0.0.
+
+### Scope
+
+The scope of this design only covers transferring file content from File Host to
+File Client, so `DfWrite` command is not considered to be implemented into a
+`Write()` method on D-Bus. Callers are not expected to set file attributes via
+D-Bus in this design, but to use the attributes currently applied on the file.
+
+DSP0242 v1.0.0 allows multiple fds to be opened for a file instance, depending
+on `FileMaximumFileDescriptorCount` field in PDR. However, this design will
+block any call to `Read()` when another read action is being performed on the
+file instance, and returns `xyz.openbmc_project.Common.Error.Unavailable` to
+caller, so `pldmd` does not have to keep track of multiple access to the file.
+
+[openbmc/pldm](https://github.com/openbmc/pldm) repository is expected to host
+this `File.Object` interface for PLDM file objects. Any other service that needs
+to expose file objects to be accessed can also implement this interface and set
+the underlying properties correspondingly.
+
+The users of the `File.Object` D-Bus interface initially will be the
+phosphor-dump-manager service from
+[phosphor-debug-collector](https://github.com/openbmc/phosphor-debug-collector)
+repository. This serves the collection of dumps that get generated and stored in
+host but can be offloaded through BMC by user requests for diagnostic
+collection. The intention is to let phosphor-dump-manager look for D-Bus objects
+that have the `File.Object` interface published, and base on the `Purpose` and
+`Source` properties to know if the file has Host diagnostic dump to offload. The
+action can be requested via Redfish, the dump entry and task status info can be
+represented to users via Redfish, using the existing LogService, LogEntry and
+TaskService resources
+(https://www.dmtf.org/sites/default/files/Redfish_Diagnostic_Data_Logging_Proposal_05-2020-WIP.pdf).
+Besides, with the defined classifications of `OEM` and `FRUData` for `Purpose`
+property, the files can also serve sending FRUData of devices and other OEM
+purposes via PLDM File Transfer model.
+
+### Alternatives
+
+`File Descriptor PDR`s introduced by File Host can be published in File Client
+filesystem as mountpoints with name format `$TerminusName_$PDR::FileName`.
+Open/Read/Close actions to the mountpoint result in DfOpen/DfRead/DfClose File
+Transfer commands being requested to the File Host. Until users conduct a read
+action from the file to another system file, that file will not hold any content
+on File Client disk or memory.
+
+#### libfuse
+
+This can be made possible with help from
+[libfuse userspace library](https://github.com/libfuse/libfuse), which helps
+programs communicate with FUSE (Filesystem in Userspace) kernel module to export
+a filesystem to the Linux kernel. There are two libfuse APIs that pass kernel
+incoming requests to the main program using callbacks: synchronous "high-level"
+API and asynchronous "low-level" API. "Low-level" API is chosen to not block
+`pldmd` tasks after the inodes are built, and events from FUSE will be
+registered to the systemd's sdevent loop. Callbacks can be mapped accordingly to
+the File Transfer commands. It's up to implementation to register callback
+function for reading current file size. The program that integrates with libfuse
+here will be `pldmd` service.
+
+The design is to let `pldmd` publish these mountpoints of File Host's device
+files into a predefined directory (e.g /etc/pldm/fileio/), and users will read
+from these mountpoints to collect the file content.
+
+#### Pros and cons
+
+With this design, File Host's files can appear in userspace filesystem just like
+tranditional files for user to interact. However, there is no other rigid
+argument to back this design, and there are many drawbacks:
+
+1. Users of those files need to be aware of the file name and directory where
+   the mountpoints are placed. For system usage, where the files can serve
+   common purpose to other interfaces such as FRU data reading via D-Bus, file
+   names are not as standard as D-Bus interface.
+
+2. Although libfuse's "low-level" API is non-blocking for the `pldmd`, calls to
+   the kernel's function `read()` that libfuse uses for reading files is
+   blocking calls, which is a no for single thread applications in OpenBMC (e.g
+   bmcweb). Usually, files like hwmon are polled periodically and saved to
+   memory to later respond to the read action from other applications, but in
+   this case, these files often holds diagnostic data or boot log, which are too
+   large for saving into memory.
+
+3. Exposure of the file content to the filesystem might impose the risk to data
+   preciseness because the content of the file is not assured to be consistent
+   all the way from File Host to users. In contrast to D-Bus interface which
+   returns `mem_fd` upon reading action and therefore preserve the preciseness
+   of data.
+
 ## Alternatives Considered
 
 Continue using IPMI, but start making more use of OEM extensions to suit the
