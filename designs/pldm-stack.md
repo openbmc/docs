@@ -556,6 +556,103 @@ from PLDM terminus, `pldmd` should remove the sensor from poll list and then
 send necessary commands (e.g., `EventMessageBufferSize` and `SetEventReceiver`)
 to PLDM terminus for the initialization.
 
+### File transfer
+
+DSP0242(https://www.dmtf.org/sites/default/files/standards/documents/DSP0242_1.0.0.pdf)
+defines messages and data structures used for transferring files between PLDM
+termini, within a PLDM subsystem. Which allows the File Host transfers
+`bootlog`, `DiagnosticLog`, `CrashDumpFile`, `FRUDataFile` or `OEMFile` to the
+File Client. The use cases of the file transfer can be
+
+- Transfer the boot log and diagnostic data of the termini such as SoC, PCIe
+  Devices, DIMM to BMC. Those info then can be log to Redfish and Ipmitool sel
+  log.
+- Transfer crash dump log before the device turn off, the log can be use to
+  identify the device issue.
+
+#### User interface
+
+The Redfish interface `/redfish/v1/Systems/Self/LogServices/Dump` will be used
+to as user interface to interact the Host File.
+
+- The action
+  `/redfish/v1/Systems/Self/LogServices/Dump/Actions/LogService.CollectDiagnosticData`
+  API will be used to trigger the `file collector service` to get the files from
+  the Host File. The input parameters to this action are
+  `{"DiagnosticDataType": "OEM","OEMDiagnosticDataType": "<OptionNames>"}`. The
+  `<OptionNames>` can be file names, group name of files, the device name or oem
+  defined name... This option will be handled by `file collector service` which
+  can't be overided by OEM service so it can be OEM defined.
+
+  This is non-blocking action. BMC will response for Redfish request with the
+  `<task_id>` while `file collector service` keeps querying the files from the
+  Host File. To simplize the implementation, BMC will only handle the Redfish
+  requests one by one.
+
+- The query of the URL `/redfish/v1/TaskService/Tasks/<task_id>` will reponse
+  the complete status of the triggered action. When the `file collector service`
+  completes collecting, the responsed `"TaskState"` will be set to `Complete`.
+
+- When the request to `/redfish/v1/TaskService/Tasks/<task_id>` is ended with
+  `"TaskState" : "Complete"`, the user can get download the file as dump log
+  entries use Redfish APIs
+  `/redfish/v1/Systems/system/LogServices/Dump/Entries/<Entry_Latest_Index>`.
+
+#### Dump extension
+
+`file-dump` extension will be implemented in `phosphor-dump-collector`. The
+extension will handle and response for the Redfish `LogServices/Dump` requests.
+The extension will forward the Redfish parameters and one created
+`random_unique_name` to the `file collector service`. The
+`file collecter service` then collects the files base on the redfish options
+from the host file and tar the collected files to
+`/var/lib/phosphor-debug-collector/system-dumps/random_unique_name`. The
+`file-dump` extension then creates one dump log entry with URL to the file tar
+to allow downloading the file using Redfish
+`/redfish/v1/Systems/system/LogServices/Dump/Entries/<Entry_Latest_Index>` API.
+Depend on the approach to collect the files from device (pldm-mctp interface,
+i2c message interface or OEM interface), the `file collector service` can be
+overide by OEM/ODM. For `pldm file transfer` approach, `file collector service`
+will be overided by `pldm_file_transfer.service`.
+
+#### Linux file system interface and Fuse
+
+As `file collecter service`, the `pldm_file_transfer.service` will handle
+collecting the files from the File Host. It will base on the input parameters
+`{"DiagnosticDataType": "OEM","OEMDiagnosticDataType": "<OptionNames>"}` from
+the Redfish APIs to identify which files will be collected. When the Redfish
+option requires collect multiple files, the `pldm_file_transfer` will collect
+the files one by one. It will tar the collected files to the
+`random_unique_name` file from file-dump extension at
+`/var/lib/phosphor-debug-collector/system-dumps/random_unique_name`.
+
+The `pldm_file_transfer.service` will interact with `pldmd` through the linux
+file system interface or D-Bus interface to collect the files from terminus. The
+service will use the file name to identify which file `pldmd` needs collect. The
+format of file name is <Terminus*name>*<FileName>. Where `Terminus name` is from
+Terminus's `Entity Auxiliary Names PDR` (section 28.18 of DSP0248 1.3.3) or in
+the MCTP Entity-manager endpoint EID configuration file. And `File Name` from
+`File Descriptor PDR` (section 28.30 File Descriptor PDR of DSP0248 V1.3.3).
+
+Because DSP242 V1.0.0 models "the discovery and access semantics on the industry
+standard ISO C Language FILE Library and enable easier and faster adoption. The
+ISO C Language FILE Library semantics, such as open, read, and close, are
+expected to be familiar to the reader" so using file system interface will be
+provide more advantage than D-Bus interface. With that interface, the file
+actions such `fOpen`, `fRead`, `fWrite` and `fClose` can be mapped 1:1 with PLDM
+File Transfer command `DfOpen`, `DfRead`, `DfWrite` and `DfClose` in DSP0242.
+The file system interface also provides the linux native way to manage the list
+of the available files from the temini in the system. the linux file linux
+command `ls`, `cat`, `vi`, `scp` can also be used.
+
+There are many solutions to implement the linux file system in user application
+such as `pldmd`, one of them is Fuse. `Fuse`(https://github.com/libfuse/libfuse)
+(Filesystem in Userspace) is an interface for userspace programs to export a
+filesystem to the Linux kernel. It is simple enough and also support the
+callback to handle linux file system actions. So it is chosen to use in `pldmd`.
+`pldmd` also supports the none-blocking mechanism to allow the file transfer
+request and other sensors/events request work consequently.
+
 ## Alternatives Considered
 
 Continue using IPMI, but start making more use of OEM extensions to suit the
