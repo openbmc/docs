@@ -196,6 +196,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6e391f4_eab1f4f7",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "ce6bf21b_53b7a4dd",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "074a67d4_bda866a1",
@@ -422,6 +440,24 @@
       "side": 1,
       "message": "As you anticipate its the same UI, please replace the last sentence.\n\nThe web UI will support accessing the passive BMC while being limited to the scope of its bmcweb Redfish and routes.",
       "parentUuid": "3abcf395_1b3f0689",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5053806_745129c4",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66122c10_5ddbfc3e",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -866,6 +902,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c672c7a4_ff1d9779",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48d07ad5_135a1e72",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c55ecce2_13446d3d",
@@ -950,6 +1004,24 @@
       "side": 1,
       "message": "\u003e so this is somehow from the sibling? \n\nNot sure what you\u0027re asking? We are getting the BMC state and a heartbeat from the sibling.\n\n\u003e can the initial role be found or defaulted until network access and sync is achieved?\n\nYes. Because we are using FSI, we can determine the initial role completely without  the network, which is why we are using it.",
       "parentUuid": "3b12558a_9a55c218",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33760045_97faa6fa",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b9c5c4c_226ae570",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1432,6 +1504,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77f72f58_c2d70dec",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "Need to think about this some more.",
+      "parentUuid": "7b37a5ae_70d83ea7",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "66057152_c35d9aed",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 7
@@ -1691,6 +1781,24 @@
       "side": 1,
       "message": "\u003e \u003e  do we need to have many restricted from modification when in passive role \n\u003e \n\u003e I don\u0027t think that would be necessary.  The understanding is that if it is changed on the passive it could get overwritten by a sync.\n\nThe understanding?  By Who?   If seatings are on D-Bus I\u0027d expect any that are settable by Redfish when active would be exposed when passive and then I\u0027m sure users would not have any understanding that settings are subject to overwrite by the active bmc.\n\n \n\u003e \u003e  would it also psm to do change detection more...\n\u003e \n\u003e I didn\u0027t quite follow this.  Could you elaborate?\n\npsm \u003d\u003e phosphor settings manager (and I had to think a bit, my bad, could have been state too).\n\nhaving the sync daemon write to a parallel tree and telling the settings manager to merge the changes would allow the normal PropertyChanged signal to be emitted and only when the property actually changes.  Much easier that having all downstream daemons to locate bind to the new settings service when it restarts.  (alternately settings manager could get deltas directly depending on the sync model).",
       "parentUuid": "51a4d292_6cb693a7",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3af61f31_257b8e06",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "I updated the text with some options.  Until we actually have a resource available to do this work, it\u0027s not that urgent for me to come to a final solution.",
+      "parentUuid": "0c10acf2_bcccf687",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

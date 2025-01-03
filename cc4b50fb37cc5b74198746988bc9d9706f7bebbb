@@ -112,6 +112,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b047a7dd_36b8e758",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "yea, that sounds like a good way to put it.",
+      "parentUuid": "45f95b21_c7aa87dc",
+      "revId": "cc4b50fb37cc5b74198746988bc9d9706f7bebbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdc69a93_08d2672c",
@@ -172,6 +190,24 @@
       "writtenOn": "2024-10-25T01:03:17Z",
       "side": 1,
       "message": "This paragrraph has one or two requirements hidden in lots of justification for the proposed design choices.\n\nA better statement of the requirement may be there is a requirement for the system to automatically boot without an active (a working) network on either or both BMCs (If it doesn\u0027t need to boot independent of the network and one of the bmcs had a network it could be instructed to become the active and then initiate the boot.  If its only that the system boot but not enable redundancy without network connectivity similar).\n\nIn addition to driving your selection of using the FSI as your negotiation interface (which happens to be required to initiate boot of the system), this also drives your requirement to always select one BMC as active instead of allowing both to remain passive until redfish initiates one to become active).\n\nactually; the above is one requirement, and possibly the scope of this one could be reduced to as an IBM specific requirement, that an active BMC needs to be chosen and the system be able to boot without a working ethernet network.  This leads to having the election over the FSI network.\n\nconsider moving the constraints (lack redundant network connectivity) to the background and references section above (eg point one listing the connections).  the statement about not achieving redundancy enabled is just a limitation in the proposed design.  or it could be added as a non-requirement when the network connection between them has failed.",
+      "revId": "cc4b50fb37cc5b74198746988bc9d9706f7bebbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c97913ae_d48178be",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "I tried to simplify this.",
+      "parentUuid": "773e31d1_690c9a06",
       "revId": "cc4b50fb37cc5b74198746988bc9d9706f7bebbb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -283,6 +319,24 @@
       "writtenOn": "2024-10-25T01:03:17Z",
       "side": 1,
       "message": "did you mean active vs passive or active/passive vs non-redundant?\n\nwhile i understand the later, how would a drop-in configuration be conditionally used between active and passive?\n\nor did you just intend to prevent a service file from being changed when the state trnsitions?\n\nI could see starting one service in passive, and having a second service for active that mutually conflicts with the passive one and manually selects a different configuration file, but typically drop-in directories are selected by the daemon or service name and not selectively read.\n\nUnless a service explicitly supports active and passive modes and provides a means to reselect which configuration (which seems contrary to the minimally invasive design goal of this proposal) it would seem that having some means of selecting a different service file, and if transition from passive to active without reboot is a requirement then having alternate units is required (vs selecting one during startup, as the selection would become stale or inconstant on restart).",
+      "revId": "cc4b50fb37cc5b74198746988bc9d9706f7bebbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52524132_b714b8b4",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "reworded this to just state the requirement is different services may need to run on active vs passive.",
+      "parentUuid": "978671b3_7d55cff9",
       "revId": "cc4b50fb37cc5b74198746988bc9d9706f7bebbb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -405,6 +459,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1315f4d5_3e973785",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "I believed these are resolved.",
+      "parentUuid": "0bb7a3f9_49a94b5a",
+      "range": {
+        "startLine": 465,
+        "startChar": 0,
+        "endLine": 469,
+        "endChar": 51
+      },
+      "revId": "cc4b50fb37cc5b74198746988bc9d9706f7bebbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7986cb7_1bdee2d4",
@@ -476,6 +554,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "750e5e99_6998433e",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "See above comment.",
+      "parentUuid": "f745f02b_309b7456",
+      "range": {
+        "startLine": 611,
+        "startChar": 0,
+        "endLine": 613,
+        "endChar": 7
+      },
+      "revId": "cc4b50fb37cc5b74198746988bc9d9706f7bebbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38b3bddb_ac69b8d8",
@@ -507,6 +609,24 @@
       "side": 1,
       "message": "My apologies for the [delay](https://gerrit.openbmc.org/c/openbmc/docs/+/71039/4#message-282527b803da39a1202483af7847103cfa9ca687) in the data sync design document. I\u0027ve been working on a POC and have been tied up with other priority items. I\u0027m aiming to share some references along with the design document to help address comments from the previous patch set.\n\nI hope this change can be reviewed independently. If you need any additional details, please let me know, and I\u0027ll work on providing an updated design document.",
       "parentUuid": "38b3bddb_ac69b8d8",
+      "revId": "cc4b50fb37cc5b74198746988bc9d9706f7bebbb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ddb1176_e1f55541",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a2b041d_05384a0a",
       "revId": "cc4b50fb37cc5b74198746988bc9d9706f7bebbb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dcfcf58_76d83c2c",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "I amended the first requirement to instead state that at most one BMC will be active, and added here that possibly these conditions could lead to no BMCs being active.",
+      "parentUuid": "86db1d0e_2fefc303",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddfc1fa0_41bc9ed4",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-10-25T01:03:17Z",
       "side": 1,
       "message": "Not just IBM\u0027s configuration.   In general sensors and eeproms have state beyond a single i2c transaction and other alternative systems that, for example, just used multiple masters with each bmc having the ability to master on multi-master i2c buses, would have the same limitations.  A simpler statement could be:\n\nThe passive bmc must not probe or otherwise touch hardware not specifically designed for shared access and following its sharing protocol.",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3aff0ef_d1078b1b",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "removed the mention of IBM.",
+      "parentUuid": "ddfc1fa0_41bc9ed4",
       "revId": "bd3980b5147467f6927642317912dd5311a27f47",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b03c7649_b386d450",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "Reworded to just state there must be a way on the passive BMC to start a failover.",
+      "parentUuid": "bcc4e279_542604ee",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfb70332_70eccc2a",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-10-25T01:03:17Z",
       "side": 1,
       "message": "looking down at comment on the default state being unknown \u003chttps://gerrit.openbmc.org/c/openbmc/docs/+/70233/comment/0f39ff63_ed2cdf54/\u003e, as an alternative to \"requiring an active bmc to be chosen and boot the syste\" an laternative equirement that would eliminate some of this ambiguity (at least when the redundancy is limited to 1+1) is\n\n- if a bmc can confirm the other (all other) bmc has determined itself to be passive (and not just unknown) and it is eligible to become the active bmc (no provisioning or fatal topology errors) it should choose itself.\n\nThis has the result of preserving the previously selected as active bmc; but allows a passive bmc to become active (presumably on a reboot) after the sibling has actively disqualified itself.   (so staging the power or similar could be an alternative to activly invoking the api).",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05c79d68_99ed6f54",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "What you said is correct. I think that\u0027s more part of the design as opposed to a requirement though, as I have below.",
+      "parentUuid": "cfb70332_70eccc2a",
       "revId": "bd3980b5147467f6927642317912dd5311a27f47",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f34cfb3_b19d1c45",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1026c1f_398d6963",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b044ce2_89c84075",
@@ -103,6 +193,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "440ace6d_14ec68e9",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b044ce2_89c84075",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d19af2ec_f0f343fd",
@@ -116,6 +224,24 @@
       "writtenOn": "2024-10-25T01:03:17Z",
       "side": 1,
       "message": "will this be handled by the data synchronization mechanism?   or just stating they will be actively pushed?   what is the timeline or policy to get the logs across, considering network partitioning or other lack of availability?\n\nshould this mearly state that xxx logs will be actively pushed to both BMCs to avoid loosing the logs when one becomes unavailable?",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a00531f_ecc059f0",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "There is a phosphor-logging section below that discusses this.  I almost wonder though if that should be its own design doc.",
+      "parentUuid": "d19af2ec_f0f343fd",
       "revId": "bd3980b5147467f6927642317912dd5311a27f47",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -139,6 +265,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95606d4c_06697ae9",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "I don\u0027t think we have any services with different passive vs active configs.",
+      "parentUuid": "8cf5f68b_471d964f",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e0ad6263_b0015086",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 10
@@ -156,6 +300,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "228c6b32_465beeae",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "I don\u0027t think there\u0027s a technical way to remove that link only for certain services.",
+      "parentUuid": "e0ad6263_b0015086",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b567af0b_a561cc6a",
         "filename": "designs/redundant-bmc.md",
         "patchSetId": 10
@@ -167,6 +329,24 @@
       "writtenOn": "2024-10-25T01:03:17Z",
       "side": 1,
       "message": "this seems similar to my proposed requirement wording above.",
+      "revId": "bd3980b5147467f6927642317912dd5311a27f47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf9e3bc1_de64b50f",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-03T16:40:17Z",
+      "side": 1,
+      "message": "Yea.",
+      "parentUuid": "b567af0b_a561cc6a",
       "revId": "bd3980b5147467f6927642317912dd5311a27f47",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
