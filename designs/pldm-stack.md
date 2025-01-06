@@ -370,28 +370,24 @@ host firmware sending down processor and core information via PLDM FRU commands,
 and the BMC making this information available via the Processor and
 ProcessorCollection schemas.
 
-This design is built around the pldmd and entity-manager applications on the
-BMC:
+This design is built around the pldmd on the BMC:
 
 - The pldmd asks the host firmware's PLDM stack for the host's FRU record table,
   by sending it the PLDM GetFRURecordTable command. The pldmd should send this
   command if the host indicates support for the PLDM FRU spec. The pldmd
   receives a PLDM FRU record table from the host firmware (
   www.dmtf.org/sites/default/files/standards/documents/DSP0257_1.0.0.pdf). The
-  daemon parses the FRU record table and hosts raw PLDM FRU information on
-  D-Bus. It will house the PLDM FRU properties for a certain FRU under an
-  xyz.openbmc_project.Inventory.Source.PLDM.FRU D-Bus interface, and house the
-  PLDM entity info extracted from the FRU record set PDR under an
-  xyz.openbmc_project.Source.PLDM.Entity interface.
+  daemon parses the FRU record table and hosts the PLDM FRU information on
+  D-Bus.
 
-- Configurations can be written for entity-manager to probe an interface like
-  xyz.openbmc_project.Inventory.Source.PLDM.FRU, and create FRU inventory D-Bus
-  objects. Inventory interfaces from the xyz.openbmc_project. Inventory
-  namespace can be applied on these objects, by converting PLDM FRU property
-  values into xyz.openbmc_project.Invnetory.Decorator.Asset property values,
-  such as Part Number and Serial Number, in the entity manager configuration
-  file. Bmcweb can find these FRU inventory objects based on D-Bus interfaces,
-  as it does today.
+- Pldmd will also host the FRU inventory D-Bus from the xyz.openbmc_project.
+  Inventory namespace can be applied on these objects, by converting PLDM FRU
+  property values into xyz.openbmc_project.Inventory.Decorator.Asset,
+  xyz.openbmc_project.Inventory.Decorator.Revision,
+  xyz.openbmc_project.Inventory.Decorator.AssetTag and
+  xyz.openbmc_project.Inventory.Decorator.Compatible interfaces property values,
+  such as Part Number, Serial Number, Versio, Names and AssetTag. Bmcweb can
+  find these FRU inventory objects based on D-Bus interfaces, as it does today.
 
 ### MCTP endpoint discovery
 
