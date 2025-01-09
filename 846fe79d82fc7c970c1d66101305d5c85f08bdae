@@ -16,6 +16,109 @@
       "message": "Man",
       "revId": "846fe79d82fc7c970c1d66101305d5c85f08bdae",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb2570e3_c472dff1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-09T18:07:37Z",
+      "side": 1,
+      "message": "This is making an edit to an existing design, when for the scope (adding new IPCs to openbmc) it really needs its own design doc, specifically the requirements and alternatives considered sections need filled out that justify fuse, and talk through the full usage of FUSE in the lifecycle of openbmc.\n\nMy \"default\" implementation for a PLDM file transfer feature I would expect to be:\n1. Create a dbus interface that allows requesting a file\n2. Implement DBus interface in pldm\n3. Implement Dbus interface in bmcweb to host the redfish interface (ideally sharing the code we already use for existing dump types)\n\nI\u0027d like to see at least of a minimum analysis of why that path isn\u0027t possible/nonperformant/unmaintainable documented.\n\n\nI really think FUSE would be an interesting addition from a diagnostics perspective, but in terms of hosting an API that the rest of the system can use, we\u0027ve found the fileystem to be lacking in its ability to handle errors, pass concurrent requests, model complex systems, or handle non-blocking IO in a single threaded daemon.  If we have those concerns addressed, ideally that would show up in the new design under impacts, and the design section would call out how those things are managed.\n\nFWIW, firmware updates just moved its mechanism AWAY from the filesystem because of these problems, so proposing we implement something that looks very much like the old firmware update system that we just moved away from should probably be addressed head on in the design doc as well.",
+      "revId": "846fe79d82fc7c970c1d66101305d5c85f08bdae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "050d426d_3f7d0d32",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-09T18:07:37Z",
+      "side": 1,
+      "message": "This is not the documentation for redfish.  This is the documentation for PLDM.",
+      "range": {
+        "startLine": 574,
+        "startChar": 0,
+        "endLine": 576,
+        "endChar": 52
+      },
+      "revId": "846fe79d82fc7c970c1d66101305d5c85f08bdae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6403d3ad_1174270e",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-09T18:07:37Z",
+      "side": 1,
+      "message": "Remove.  Task service versus normal call is an implementation detail that already exists in bmcweb.  We\u0027re not going to redesign TaskService as part of this design.",
+      "range": {
+        "startLine": 587,
+        "startChar": 0,
+        "endLine": 592,
+        "endChar": 0
+      },
+      "revId": "846fe79d82fc7c970c1d66101305d5c85f08bdae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e473faba_9382b135",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-09T18:07:37Z",
+      "side": 1,
+      "message": "How does FUSE communicate to bmcweb?  bmcweb specifically can\u0027t do blocking io calls today without blocking other connections (see COMMON_ERRORS.md), of which a filesystem read would be a blocking call to FUSE.\n\nIf you plan to implement a solution to this (threads, uring, etc) that really should be discussed in a patchset.",
+      "range": {
+        "startLine": 618,
+        "startChar": 0,
+        "endLine": 618,
+        "endChar": 41
+      },
+      "revId": "846fe79d82fc7c970c1d66101305d5c85f08bdae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba31d2fe_782a496a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-09T18:07:37Z",
+      "side": 1,
+      "message": "How about an alternative that just uses the existing DBus mechanisms for IPC?",
+      "revId": "846fe79d82fc7c970c1d66101305d5c85f08bdae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
