@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c7bfb96_52d6ac82",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-10T05:16:51Z",
+      "side": 1,
+      "message": "On OpenBMC, it should be one or more d-bus sensor apps, yes.",
+      "parentUuid": "3c504e04_5a0f0fa3",
+      "range": {
+        "startLine": 12,
+        "startChar": 21,
+        "endLine": 12,
+        "endChar": 57
+      },
+      "revId": "c2d444dbd02f32b2b493469868c2e4d0c71c3d42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e31ad6c7_6c12a1f5",
         "filename": "designs/libocpami.md",
         "patchSetId": 7
@@ -60,6 +84,30 @@
       "writtenOn": "2025-01-09T17:22:47Z",
       "side": 1,
       "message": "I understand libpldm had usage outside the BMC and is actually used in BIOS side work.  How is the library used for anything except a BMC?\n\nBased on what sounds like the scope, a total of 4 encode/decode functions, I\u0027m not seeing a good justification for the overhead of a \"library\".  Why should we use a worse language (which means someone is going to write a C++ wrapper around it in dbus-sensors anyhow) and all the overhead of a \"library\" to make other BMC implementations easier?\n\nWe have an architecture on OpenBMC of \"libraries are rare\".  I\u0027m not seeing enough words here to me to justify going against that architecture.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 10
+      },
+      "revId": "c2d444dbd02f32b2b493469868c2e4d0c71c3d42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea46d9dc_deabd811",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-10T05:16:51Z",
+      "side": 1,
+      "message": "The intent is to use this on device firmware implementations as well as non-openbmc BMC stacks. For that reason, we need to separate out the protocol and the BMC/device firmware stack specifics.\n\nThis is similar to libcper, libpldm.\n\nWe have a downstream app now, which like pldm, was originally implemented as a single service containing openbmc and protocol specifics. We\u0027d like to separate that out as noted above.\n\nGilbert - please add text to the doc to justify why we need a library.",
+      "parentUuid": "b4cf76db_81068c0a",
       "range": {
         "startLine": 30,
         "startChar": 0,
