@@ -16,6 +16,24 @@
       "message": "Why do we have \"PresencePinValues\" in the EM exposed configuration? Isn\u0027t the value suppose to be read by the gpio-presence-sensor for the given PresencePinNames, is this property mapping to pin polarity?",
       "revId": "2500da8c93d584e3650eb7f08fd29851d7ec8a60",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e34fe5d5_e746ec25",
+        "filename": "designs/inventory/gpio-based-hardware-inventory.md",
+        "patchSetId": 19
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-14T09:20:44Z",
+      "side": 1,
+      "message": "The word \u0027Polarity\u0027 does not make much sense to me when looking at multiple values. \n\n\u0027Polarity\u0027 can be either active-high or active-low. For example a reset pin can be active-low, meaning when it has value 0 / is pulled down, the chip is in reset.\n\nSo the reset is \u0027active\u0027 during that time.\n\n\nIn our case, the values from multiple gpios are considered together and each combined value has a meaning. So there is no \u0027active\u0027 state there and no pin which is \u0027active low\u0027 or \u0027active high\u0027.",
+      "parentUuid": "b7f6b979_45f728d9",
+      "revId": "2500da8c93d584e3650eb7f08fd29851d7ec8a60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
