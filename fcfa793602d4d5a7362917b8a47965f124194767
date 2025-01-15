@@ -16,6 +16,247 @@
       "message": "Ed - I pushed an update to address Andrew\u0027s comments but missed seeing your comments. I\u0027ll address them in the next update.",
       "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "328b2d02_4ef9aa1e",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-15T16:36:27Z",
+      "side": 1,
+      "message": "nit: `libocp-ami` ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fad19f9_c403ec99",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-15T16:36:27Z",
+      "side": 1,
+      "message": "I don\u0027t really know how OCP releases specs, but we\u0027re going to base code on a \"pre-1.0\" spec?\n\nWhat is the plan for future iterations of the spec + code?  I would like some words listed here as to the expected policy when it comes to implementation proposals out of draft specs.\n\nWriting code against draft specs in open source is potentially problematic; we need to have a consensus on the approach to be taken here.\n\n- Not everyone is a member of OCP and has access to draft specs.  This means we can end up with code proposals that public reviewers cannot confirm in any way.\n- Adding APIs for draft specs means we end up with \"users\".  If those draft specs do not make their way to publish state, we\u0027ve effectively forked the spec.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 150
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6065354c_de75ffe3",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-15T16:36:27Z",
+      "side": 1,
+      "message": "So we\u0027re implementing one particular section of a higher-level spec?  Why is the library proposed to be named after the entire spec?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5d34521_c6721862",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-15T16:36:27Z",
+      "side": 1,
+      "message": "Where is this expressed?  Anonymous \"desires\" aren\u0027t really a great way to base our code policy around.",
+      "range": {
+        "startLine": 31,
+        "startChar": 11,
+        "endLine": 31,
+        "endChar": 33
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50128e33_b71c3d56",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-15T16:36:27Z",
+      "side": 1,
+      "message": "I think we need a legitimate discussion in the \"alternatives\" about the merits of this.  As written this is kind a sweeping generalization without any pro/cons expressed.\n\nWhich \"device firmware stacks\" are we attempting to target?  How do you know you\u0027re going to target them successfully?\n\nI\u0027ve asked for more details in the \"APIs listed below\" section but I\u0027m not really getting a good picture of how much code we\u0027re really talking about here.  From my reading of the spec, we\u0027re proposing an entire library just to implement the encoding and decoding of the \"Bulk Telemetry\" command.  This should be like 20 lines of good C++ code.  At that point, the overhead we\u0027re spending here to even review this document, let alone create an entirely new [C] library with all the overhead of a \"stable API\", etc. just doesn\u0027t seem to justify this.  Just copy the code.  Someone could take the 3 pages of this spec and write this code for their platform in 2 hours.\n\nIs there something I\u0027m missing?",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39045b82_2de822a2",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-15T16:36:27Z",
+      "side": 1,
+      "message": "nit: add space after period.",
+      "range": {
+        "startLine": 53,
+        "startChar": 67,
+        "endLine": 53,
+        "endChar": 74
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9966b48_d56fdefc",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-15T16:36:27Z",
+      "side": 1,
+      "message": "I don\u0027t understand the correlation between the spec and the proposed \"example\" APIs.  The only thing I see in the spec is one message in the section \"Response message for bulk telemetry\" (maybe I\u0027m misreading).  How did we get to these 8 \"example\" functions and how do we determine what the not-yet-specified APIs are?",
+      "range": {
+        "startLine": 53,
+        "startChar": 71,
+        "endLine": 63,
+        "endChar": 47
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "008f102a_492e416d",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-15T16:36:27Z",
+      "side": 1,
+      "message": "Can we do this as a mermaid diagram?  I really don\u0027t like new ascii art diagrams because they\u0027re pretty difficult to edit.",
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d013acd6_6480cf40",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-15T16:36:27Z",
+      "side": 1,
+      "message": "Ed\u0027s name belongs here.",
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e75a933_efb567ac",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-15T16:36:27Z",
+      "side": 1,
+      "message": "This is intended as instruction related to the \"repositories\" above.  Make sure all dbus-sensors maintainers are added here, then delete this sentence.",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 15
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fa71382_b6469cc0",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-15T16:36:27Z",
+      "side": 1,
+      "message": "nit: This isn\u0027t the email address Ed uses in the community.",
+      "range": {
+        "startLine": 113,
+        "startChar": 16,
+        "endLine": 113,
+        "endChar": 34
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
