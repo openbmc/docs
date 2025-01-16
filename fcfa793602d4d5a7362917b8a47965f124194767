@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "315f2330_6acbdb8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "Thanks for the review, Patrick!",
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "328b2d02_4ef9aa1e",
@@ -31,6 +48,30 @@
       "writtenOn": "2025-01-15T16:36:27Z",
       "side": 1,
       "message": "nit: `libocp-ami` ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9521738_697d88cc",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "328b2d02_4ef9aa1e",
       "range": {
         "startLine": 1,
         "startChar": 2,
@@ -66,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e1708ba1_51d7e387",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "This is a great question! Yes, I need to add some text to make this clear.\n\nThe v1 spec is actually public now (https://www.opencompute.org/documents/ocp-gpu-accelerator-management-interfaces-v1-pdf), will update this doc.\n\nAs you see in the v1 spec (section 3.6), there are 2 ways to compose request messages (and responses) by device vendors in order to be compliant with the OCP spec - PCIe ID based and IANA based. Further, you can see that the command code itself can be vendor specific. Of course, there is the option to define certain command codes in the OCP spec itself and have the IANA set to OCP itself - this would be useful to avoid duplication of work to define commands for telemetry that are common to multiple vendors.\n\nWhat this means is: the code in this repo will correspond to either a public release of the OCP base spec or the public release of an OCP base spec compliant vendor spec (in which case the code could reside in a vendor/\u003ccompany\u003e directory).",
+      "parentUuid": "4fad19f9_c403ec99",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 150
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6065354c_de75ffe3",
         "filename": "designs/libocpami.md",
         "patchSetId": 10
@@ -77,6 +142,30 @@
       "writtenOn": "2025-01-15T16:36:27Z",
       "side": 1,
       "message": "So we\u0027re implementing one particular section of a higher-level spec?  Why is the library proposed to be named after the entire spec?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "218760a3_0f0c9023",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "We\u0027re doing that, and in addition there would be vendor sections (see my comment elsewhere). Those vendor specs are still OCP compliant, so I don\u0027t think we have an issue naming the repo as libocp-ami.",
+      "parentUuid": "6065354c_de75ffe3",
       "range": {
         "startLine": 19,
         "startChar": 0,
@@ -112,6 +201,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a014bd37_01df90c7",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "I will reword to indicate this as a design element for this library.\n\nWhat I noted is based on discussions Nvidia has had internally and with several customers and industry partners - most don\u0027t want to rewrite the protocol library part, even on device firmware and non-OpenBMC BMC firmware stacks.",
+      "parentUuid": "e5d34521_c6721862",
+      "range": {
+        "startLine": 31,
+        "startChar": 11,
+        "endLine": 31,
+        "endChar": 33
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50128e33_b71c3d56",
         "filename": "designs/libocpami.md",
         "patchSetId": 10
@@ -135,6 +248,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d0a1fbd_e2f84b54",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "I believe my response to your comment about OCP spec releases answers this. I will also add some more text for alternatives and impact section.",
+      "parentUuid": "50128e33_b71c3d56",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39045b82_2de822a2",
         "filename": "designs/libocpami.md",
         "patchSetId": 10
@@ -146,6 +283,30 @@
       "writtenOn": "2025-01-15T16:36:27Z",
       "side": 1,
       "message": "nit: add space after period.",
+      "range": {
+        "startLine": 53,
+        "startChar": 67,
+        "endLine": 53,
+        "endChar": 74
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a44cdff_60b11d38",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "39045b82_2de822a2",
       "range": {
         "startLine": 53,
         "startChar": 67,
@@ -181,6 +342,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5491376_44d25acf",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "I believe my response to your comment about OCP spec releases answers this.\n\nSome of these APIs are currently vendor defined and the ones that are deemed to be most common, as discussed by the OCP community involved in this, could move to the base OCP spec.",
+      "parentUuid": "d9966b48_d56fdefc",
+      "range": {
+        "startLine": 53,
+        "startChar": 71,
+        "endLine": 63,
+        "endChar": 47
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "008f102a_492e416d",
         "filename": "designs/libocpami.md",
         "patchSetId": 10
@@ -192,6 +377,24 @@
       "writtenOn": "2025-01-15T16:36:27Z",
       "side": 1,
       "message": "Can we do this as a mermaid diagram?  I really don\u0027t like new ascii art diagrams because they\u0027re pretty difficult to edit.",
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba070b29_a2e5904b",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "008f102a_492e416d",
       "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -209,6 +412,24 @@
       "writtenOn": "2025-01-15T16:36:27Z",
       "side": 1,
       "message": "Ed\u0027s name belongs here.",
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e60263c_80c27f2f",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d013acd6_6480cf40",
       "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -236,6 +457,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e37d8121_cba3623c",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9e75a933_efb567ac",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 15
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fa71382_b6469cc0",
@@ -249,6 +494,30 @@
       "writtenOn": "2025-01-15T16:36:27Z",
       "side": 1,
       "message": "nit: This isn\u0027t the email address Ed uses in the community.",
+      "range": {
+        "startLine": 113,
+        "startChar": 16,
+        "endLine": 113,
+        "endChar": 34
+      },
+      "revId": "fcfa793602d4d5a7362917b8a47965f124194767",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5319b5f_9dfc30b3",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-16T08:02:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1fa71382_b6469cc0",
       "range": {
         "startLine": 113,
         "startChar": 16,
