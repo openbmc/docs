@@ -1,6 +1,125 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f2af940_6cad159e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-22T13:46:49Z",
+      "side": 1,
+      "message": "Looks mostly good to me, have few comments.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb08ec1a_794e2faf",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-22T13:46:49Z",
+      "side": 1,
+      "message": "nit: current or current + proposed (and provide a link to the other gerrit proposal)?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1980fe55_f18f9966",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-22T13:46:49Z",
+      "side": 1,
+      "message": "nit: s/cannot/can",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b737b9a4_6b82a98a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-22T13:46:49Z",
+      "side": 1,
+      "message": "While this is a requirement, there is already a proposed D-Bus interface and this likely belongs in a different commit/patchset.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbebf925_81cae3ea",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-22T13:46:49Z",
+      "side": 1,
+      "message": "We need to state that the proposed \"code update manager\" is itself an optional code updater in terms of the current design/D-Bus interface perspective.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60cb6678_ef43d04b",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-22T13:46:49Z",
+      "side": 1,
+      "message": "What will be used for the match? EM config from the other proposal fom Jagpal? If so, please specify here.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2e000dd_c03a0907",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-22T13:46:49Z",
+      "side": 1,
+      "message": "I am not following point 7). If the manager delegates to other code updaters, why is the udpate not parallel?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "785b038a_68374285",
@@ -14,6 +133,23 @@
       "writtenOn": "2025-01-17T05:52:58Z",
       "side": 1,
       "message": "@rushtotom@gmail.com Currently bmcweb code supports use of RequestedActivation property to start the update.\nWith this change, are we planning to deprecate the older flow completely. Will that mean deprecating the use of RequestedActivation  in bmcweb?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab046f05_00e20d17",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-22T13:46:49Z",
+      "side": 1,
+      "message": "Column header should be existing/new/modify",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
