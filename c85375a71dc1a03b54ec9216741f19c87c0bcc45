@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24560bcb_95d251d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "There are quite a few open discussions from before.  If you feel you\u0027ve resolved them sufficiently with your latest updates, please mark them as resolved.",
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c394010b_f5111804",
@@ -43,6 +60,380 @@
         "startChar": 0,
         "endLine": 25,
         "endChar": 9
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07d91696_abafc3ea",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "Why couldn\u0027t these have been done as OEM messages in PLDM?  What required inventing a totally new protocol?\n\n\u003e PLDM T2 is not yet ready to be used across devices for all telemetry use-cases.\n\nShould this be elaborated on in the document?  Maybe in the \"Alternatives\"?",
+      "parentUuid": "68c121b9_9a50cf56",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 9
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a9ce787_996aa103",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "Where do those documents get published?  Are they under NDAs?",
+      "range": {
+        "startLine": 35,
+        "startChar": 5,
+        "endLine": 36,
+        "endChar": 40
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a14cb6be_bca235cf",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "Do we have evidence of this?  I don\u0027t think we want to see a bunch of vendor commands polluting a bunch of repositories.\n\nIn the rest of the document you\u0027ve only talked about dbus-sensors (potentially) but here you\u0027re using this as evidence for more.",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 43
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cff8404_58835d30",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "Why should we invest time in supporting other BMC stacks?  This should not be a requirement.  You\u0027re putting a burden on the open source community for closed source products??  Why should we?\n\nIf we are supporting other BMC stacks, why should we use C?  They can use C++, right?  It is only embedded OSes like Zephyr that have trouble with C++?",
+      "range": {
+        "startLine": 45,
+        "startChar": 21,
+        "endLine": 45,
+        "endChar": 53
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "634bea07_df5ff73a",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "What from the motivation drives this requirement?  I\u0027m fine with the requirement, in principle, but I don\u0027t understand where it came from.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 49
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc5cf643_73393abd",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "What does the protocol do about discover-ability?  How do I know which devices support what commands?  Are we just expecting this to be hard-coded in applications?  Is it expected to be some entity-manager config?\n\nHow do devices intend to version their protocol and commands?  Does OCP spec cover this?  What happens when version A of vendor hardware adds a command but version B modifies that command?",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 43
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51ec8d45_9dc97d52",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "On the surface, I\u0027m not too pleased about this not only pushing vendor commands into the applications above but also effectively forcing a fork of those applications.\n\nIf one vendor adds \"get_thermal_reading\" (as you had in the earlier drafts of this document) and another vendor adds \"get_thermal_reading\", we shouldn\u0027t have to call `vendor_a_get_thermal_reading` and `vendor_b_get_thermal_reading`.\n\nEffectively, this means we\u0027re going to have \"Nvidia applications\" and \"AMD applications\" in dbus-sensors.",
+      "range": {
+        "startLine": 73,
+        "startChar": 1,
+        "endLine": 74,
+        "endChar": 43
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5245348_cc8513c8",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "I need to see some more alternatives about vendor support.  I\u0027ve left comments above as to some starting gaps I see here.",
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4020ca8_12238da7",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "Again, how is this our problem?",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 52
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90478049_467c42bd",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "I\u0027m not sure what you\u0027re getting at.  If we follow this alternative we don\u0027t need a library.",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 67
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89524b12_5a0dee5b",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "Andrew Jeffery should be a maintainer also.",
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b422d35_91c5a138",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "nit: please fix the markdown for creating a list.\n\n1. Unit tests ...\n1. A command line ...\n1. Automation ...",
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a6e30a9_687cad7d",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "nit: `command line utility` or `CLI`",
+      "range": {
+        "startLine": 136,
+        "startChar": 4,
+        "endLine": 136,
+        "endChar": 20
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f3a24ff_e4d5d66a",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "Do we do this in libpldm?  I don\u0027t think so.\n\nThis is a whole aspect of your design that you\u0027ve slipped into \"testing\".  Please talk about it in the design sections.",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 69
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b488065f_5302b89c",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "How are we going to be able to do this?  These tests can only run with special hardware?  Or are there going to be QEMU models written?",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 20
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f850b3f4_b11702a8",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "nit: dbus-sensors",
+      "range": {
+        "startLine": 144,
+        "startChar": 36,
+        "endLine": 144,
+        "endChar": 49
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a49ad5c9_acddf3ee",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T14:53:12Z",
+      "side": 1,
+      "message": "nit: spelling",
+      "range": {
+        "startLine": 145,
+        "startChar": 35,
+        "endLine": 145,
+        "endChar": 45
       },
       "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
