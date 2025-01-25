@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9acc9e3e_cbab9207",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "\"optional code update manager\"\n\nCan you please add more detail on what you mean by optional?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "3f2af940_6cad159e",
@@ -14,6 +31,23 @@
       "writtenOn": "2025-01-22T13:46:49Z",
       "side": 1,
       "message": "Looks mostly good to me, have few comments.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36059338_cf1ae7b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "@rushtotom@gmail.com I am in process of reviewing the design and will add more feedback next week.",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -55,6 +89,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c8ecb54_17181a22",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "\"update to update\" redundant, please fix wording.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d5768f3_40e9732a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "Please don\u0027t impose a restriction that the packaging should be PLDM here. I would suggest to write something like multiple component images as part of single image package. Problem statement and requirements should not impose packaging specifics.\n\nPlease fix this in sub sub points as well.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2db2b7d_e3dd8d34",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "They don\u0027t have to be as BMCWeb itself initiates the update to the required targets by calling the start update interface. Even in your new requirement i don\u0027t see the need as BMCWeb will do the same job if targets are specified. You need to provide a usecase where targets are not specified.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1980fe55_f18f9966",
         "filename": "designs/code-update.md",
         "patchSetId": 6
@@ -84,6 +169,91 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "1980fe55_f18f9966",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3102dd64_7d9afea9",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "I am not sure why are you writing this as a limitation with the base design. Please check its specified as requirement # 8 there.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ec24260_d67349a2",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "\"integrity check \u0026 authorization check\"\nWhich checks are you referring here? Encrypted Image? Image with some signatures? Can you be more explicit?\n\nAlso some image checks are being proposed via https://gerrit.openbmc.org/c/openbmc/docs/+/74653",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93f6ccee_e58bc69e",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "This is a new requirement and not a limitation/restriction of design. You can call it a limitation if there is a flow in the design and its hindering you to add it as requirement. Please add this as requirement.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e63e01e4_712ee190",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "What do you mean by platform level? Can you be more explicit?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99e2c48a_45ce8bce",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "Current design already supports targets. You can specify the list along with multi part image and BMCWeb shall start the update for all the required targets by the supplied image. Not sure why you are stating this as a new requirement?",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -161,6 +331,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7928175_1019294e",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "Why is this a new requirement? that is already supported by the design for multiple targets use case and presented as a generic requirement in Step#2.\n\nFYI: While i wrote my requirements i was asked to write requirements in a very generic way with respect to user without any references to standards, specifications and technologies.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb82f84e_5ba9a2da",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "Not sure why you are adding this under the main section. All this should go under the names \"Multipart Image (no Target specified) Update Flow\".",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd7b6776_09fffa97",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "optional?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbebf925_81cae3ea",
         "filename": "designs/code-update.md",
         "patchSetId": 6
@@ -196,6 +417,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "54bd6257_18224434",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "\"containing PLDM and Non-PLDM devices.\"\n\nI would add \"containing PLDM and Non-PLDM devices with no targets specified.\" Because thats the only extra use case you are trying to handle. The target specified use case is already handled by current design.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "934b71fe_f643d80e",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "This should go into requirements section as its just a requirement. Also please add details in design on what is the specific requirement and how you intend to fulfill this requirement?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "60cb6678_ef43d04b",
         "filename": "designs/code-update.md",
         "patchSetId": 6
@@ -225,6 +480,74 @@
       "side": 1,
       "message": "Yes, EM config. https://gerrit.openbmc.org/c/openbmc/entity-manager/+/75947",
       "parentUuid": "60cb6678_ef43d04b",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9ab9d0c_a359e307",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "Most of these lines are written as such in problem statement and requirements. I don\u0027t see any details and they look redundant.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edb2c1bb_192e9841",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "Is there a proposal for this?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc774095_79e8aec8",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "How will BMCWeb knows it has to route the request to MultipartImage Code Updater rather than any other updater? This is the most important part. Please add details on this.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1432ac6_d72da836",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "What do you mean by this?",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -296,6 +619,40 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "38d99f66_98cefcb9",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c741b54_c1b67bac",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "Why is that so? Why can\u0027t parallel update for multiple Multipart Image package cannot be supported?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "738cc1c3_2d00bcc1",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T00:51:30Z",
+      "side": 1,
+      "message": "\"Code Update Mgr D-Bus Intf\"\n\nIs this a new interface? How does BMCWeb knows it has to call this interface instead of calling the Update DBus interface.",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
