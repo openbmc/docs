@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87d77caf_95c4a872",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T02:14:14Z",
+      "side": 1,
+      "message": "Added to the doc.",
+      "parentUuid": "370e6aae_2cda8820",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87f31c29_56922aa9",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "53b051bf_9cd80ac6",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T02:14:14Z",
+      "side": 1,
+      "message": "Whats the reason for you to limit and define the scope of the hooks?\n\nFor now, the usecase is for device reset. @unive.tien.wiwynn@gmail.com Are there any other usecases in PLDMd apart from Device reset?",
+      "parentUuid": "87f31c29_56922aa9",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0fae9456_8102aa66",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -48,6 +84,24 @@
       "writtenOn": "2025-01-24T11:09:12Z",
       "side": 1,
       "message": "\u003e The Code Updater daemon can check for and execute systemd targets with the\n\nWhy ```can check for```, which devices does this apply to?\nWhy are some daemons excluded from this requirement?",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8de32dc_1d3d377b",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T02:14:14Z",
+      "side": 1,
+      "message": "Because for device specific daemons like VR, BIOS it might not needed to be done differently and could be easily handled in common code.",
+      "parentUuid": "0fae9456_8102aa66",
       "revId": "427b732fecf6c59b473961693a04194be035ccbf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +142,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a4a545d_86e36949",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T02:14:14Z",
+      "side": 1,
+      "message": "\u003e Can you give an example for such a service definition?\n\u003e \n\u003e Are there any arguments passed to this service? Such as bus,addr?\n\u003e How are they passed?\n\nWhat you are asking for an implementation level detail such as args being passed in, those are implementation level design and not part of design. Moreover, a Code Updater may choose to pass or not pass args as per their need as long as they make sure their systemd DBus interface call to start service follows the same semantics for all services it starts.",
+      "parentUuid": "c54a36f3_0452c5e7",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88e4f04d_f0ab0eae",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T02:14:14Z",
+      "side": 1,
+      "message": "\u003e Is there any consideration of how the code updater will find those services?\n\nVia systemd Dbus interface.\n\n\u003e configuration? libsystemd? or filesystem lookup? \n\u003e \n\u003e What\u0027s the performance for that?\n\nI don\u0027t see any performance impact here, even if it is should be negligible as Firmware Update by itself is a rare task (not periodic).",
+      "parentUuid": "27a18663_b8674186",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67b751b6_d6c888a2",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -99,6 +189,24 @@
       "writtenOn": "2025-01-24T11:09:12Z",
       "side": 1,
       "message": "Is this run only after a successful update?\nOr also in the failure case?\nDoes the service know which is the case?",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "751098ee_d3fa3345",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-25T02:14:14Z",
+      "side": 1,
+      "message": "Only after a successful update as the name suggests. If there is a use case in future it can be extended to cover failure cases, for example, \u003cDeviceName\u003e\\_OnUpdateFailure.service, but i haven\u0027t seen that ask so don\u0027t see a use case for now.",
+      "parentUuid": "67b751b6_d6c888a2",
       "revId": "427b732fecf6c59b473961693a04194be035ccbf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
