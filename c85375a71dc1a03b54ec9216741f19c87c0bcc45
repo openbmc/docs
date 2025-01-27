@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2777bb40_e1c29e66",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "07d91696_abafc3ea",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 9
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a9ce787_996aa103",
         "filename": "designs/libocpami.md",
         "patchSetId": 12
@@ -102,6 +126,30 @@
       "writtenOn": "2025-01-24T14:53:12Z",
       "side": 1,
       "message": "Where do those documents get published?  Are they under NDAs?",
+      "range": {
+        "startLine": 35,
+        "startChar": 5,
+        "endLine": 36,
+        "endChar": 40
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "562d5d02_0ab7f3bb",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "I can\u0027t say this for certainty for all device vendors. The Nvidia specs are currently published under NDA.",
+      "parentUuid": "7a9ce787_996aa103",
       "range": {
         "startLine": 35,
         "startChar": 5,
@@ -125,6 +173,30 @@
       "writtenOn": "2025-01-24T14:53:12Z",
       "side": 1,
       "message": "Do we have evidence of this?  I don\u0027t think we want to see a bunch of vendor commands polluting a bunch of repositories.\n\nIn the rest of the document you\u0027ve only talked about dbus-sensors (potentially) but here you\u0027re using this as evidence for more.",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 43
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f164bb5_34de4e6f",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "I meant multiple d-bus sensors apps (sensors vs configuration vs debug tokens etc. - these needn\u0027t be a single app).",
+      "parentUuid": "a14cb6be_bca235cf",
       "range": {
         "startLine": 44,
         "startChar": 2,
@@ -160,6 +232,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87053651_dfe211b7",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "I can remove this requirement as it is not directly related OpenBMC related.",
+      "parentUuid": "9cff8404_58835d30",
+      "range": {
+        "startLine": 45,
+        "startChar": 21,
+        "endLine": 45,
+        "endChar": 53
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "634bea07_df5ff73a",
         "filename": "designs/libocpami.md",
         "patchSetId": 12
@@ -171,6 +267,30 @@
       "writtenOn": "2025-01-24T14:53:12Z",
       "side": 1,
       "message": "What from the motivation drives this requirement?  I\u0027m fine with the requirement, in principle, but I don\u0027t understand where it came from.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 49
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dae09128_8fef906d",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "It was thought that it is best to leave logging to user applications, and instead have the library return -errno for the sake of simplicity.",
+      "parentUuid": "634bea07_df5ff73a",
       "range": {
         "startLine": 55,
         "startChar": 0,
@@ -227,6 +347,54 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c0c90a3_aef3fd05",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "On OpenBMC, platform specific entity-manager configuration is expected.\n\nThe OCP spec does have an \"OCP version\" field. Vendor extensions can add their own command-specific versioning to denote modifications.",
+      "parentUuid": "fc5cf643_73393abd",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 43
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "295c254a_1e255c2b",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "This would be the case (multiple apps or a generic app with an abstraction that requires vendor specific implementation) as long as there are commands that device vendors support that are not in a standard spec.",
+      "parentUuid": "51ec8d45_9dc97d52",
+      "range": {
+        "startLine": 73,
+        "startChar": 1,
+        "endLine": 74,
+        "endChar": 43
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5245348_cc8513c8",
@@ -244,6 +412,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b785be2_14079985",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "I\u0027ll add some text for PLDM.",
+      "parentUuid": "f5245348_cc8513c8",
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4020ca8_12238da7",
@@ -257,6 +443,30 @@
       "writtenOn": "2025-01-24T14:53:12Z",
       "side": 1,
       "message": "Again, how is this our problem?",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 52
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0c0f42a_f640c283",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "Will remove.",
+      "parentUuid": "b4020ca8_12238da7",
       "range": {
         "startLine": 100,
         "startChar": 0,
@@ -292,6 +502,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89f2b7e5_e009f397",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "I will reword this.",
+      "parentUuid": "90478049_467c42bd",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 67
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89524b12_5a0dee5b",
         "filename": "designs/libocpami.md",
         "patchSetId": 12
@@ -303,6 +537,24 @@
       "writtenOn": "2025-01-24T14:53:12Z",
       "side": 1,
       "message": "Andrew Jeffery should be a maintainer also.",
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f5b489f_e99d103b",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "Will add Andrew and propose myself as a maintainer too.",
+      "parentUuid": "89524b12_5a0dee5b",
       "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -326,6 +578,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "282e5b52_07aaf542",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4b422d35_91c5a138",
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a6e30a9_687cad7d",
         "filename": "designs/libocpami.md",
         "patchSetId": 12
@@ -337,6 +607,30 @@
       "writtenOn": "2025-01-24T14:53:12Z",
       "side": 1,
       "message": "nit: `command line utility` or `CLI`",
+      "range": {
+        "startLine": 136,
+        "startChar": 4,
+        "endLine": 136,
+        "endChar": 20
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bbd58f1_443a851e",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2a6e30a9_687cad7d",
       "range": {
         "startLine": 136,
         "startChar": 4,
@@ -372,6 +666,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71757bde_bd3d0c5c",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "Good point about libpldm. This should probably be in an openbmc user app repo as an example/utility. I\u0027ll remove it from here.",
+      "parentUuid": "1f3a24ff_e4d5d66a",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 69
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b488065f_5302b89c",
         "filename": "designs/libocpami.md",
         "patchSetId": 12
@@ -383,6 +701,30 @@
       "writtenOn": "2025-01-24T14:53:12Z",
       "side": 1,
       "message": "How are we going to be able to do this?  These tests can only run with special hardware?  Or are there going to be QEMU models written?",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 20
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "961d63a0_9af57856",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b488065f_5302b89c",
       "range": {
         "startLine": 140,
         "startChar": 0,
@@ -418,6 +760,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dab822f0_550685a2",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f850b3f4_b11702a8",
+      "range": {
+        "startLine": 144,
+        "startChar": 36,
+        "endLine": 144,
+        "endChar": 49
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a49ad5c9_acddf3ee",
         "filename": "designs/libocpami.md",
         "patchSetId": 12
@@ -429,6 +795,30 @@
       "writtenOn": "2025-01-24T14:53:12Z",
       "side": 1,
       "message": "nit: spelling",
+      "range": {
+        "startLine": 145,
+        "startChar": 35,
+        "endLine": 145,
+        "endChar": 45
+      },
+      "revId": "c85375a71dc1a03b54ec9216741f19c87c0bcc45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97d8dfa7_f04bfc5c",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-01-27T07:52:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a49ad5c9_acddf3ee",
       "range": {
         "startLine": 145,
         "startChar": 35,
