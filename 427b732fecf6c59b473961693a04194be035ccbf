@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be2dcafc_3e15684a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-27T09:15:01Z",
+      "side": 1,
+      "message": "\u003e For now, the usecase is for device reset.\n\nLet\u0027s say that cannot be handled in the device specific code updater.\n\nCan we please add this example to the patch, with an explanation as to why it cannot be handled by the code updater.\n\nSo that people reading this in the future understand why the hooks where added and their use-case.",
+      "parentUuid": "53b051bf_9cd80ac6",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0fae9456_8102aa66",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "Because for device specific daemons like VR, BIOS it might not needed to be done differently and could be easily handled in common code.",
       "parentUuid": "0fae9456_8102aa66",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ac91c18_d8da69db",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-27T09:15:01Z",
+      "side": 1,
+      "message": "\u003e The Code Updater daemon can check for and execute systemd targets with the\n\nThis sounds like a surprise for the user. Can we change the wording to\n```The Code Updater daemon MUST check for and execute systemd targets ... OR log an error message that indicates it does not support such services.```\n\nThis is to avoid situations where the user has setup a service and then there is no response from the code updater and unclear if the code updater knows about the service. Since those services will be an interface also for downstream.\n\nAlso lets define if the update should proceed if the code updater finds such a service but does not support them.",
+      "parentUuid": "e8de32dc_1d3d377b",
       "revId": "427b732fecf6c59b473961693a04194be035ccbf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -196,6 +232,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "622d1203_b45904a5",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-27T09:15:01Z",
+      "side": 1,
+      "message": "Since multiple code updaters in multiple repos would be expected to implement this, let\u0027s add the discovery mechanism also to the document.",
+      "parentUuid": "88e4f04d_f0ab0eae",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d844ee7_626930d0",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-27T09:15:01Z",
+      "side": 1,
+      "message": "\u003e What you are asking for is an implementation level detail such as args being passed in (not part of design). \n\nI consider it to be part of the design as it will likely be used downstream and in openbmc/openbmc meta layers. That where people keep many of their systemd services for customization. If i understand correctly, what you are proposing is not something that can be easily refactored later on.\n\n\nIt would be good if this patch already outlined what the interface will look like between the code updater and systemd services. Will there be a common interface or will it be custom arguments for each device specific code updater? \nLet\u0027s add that to the patch also.\n\nAlso, what value does the service return to the code updater?\nIf the PreUpdate service fails, will the code updater proceed with the update?\nWhat will be logged? How long does the code updater wait until the\nservice hook is considered failed?",
+      "parentUuid": "4a040e17_cd5a4836",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67b751b6_d6c888a2",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -225,6 +297,24 @@
       "side": 1,
       "message": "Only after a successful update as the name suggests. If there is a use case in future it can be extended to cover failure cases, for example, \u003cDeviceName\u003e\\_OnUpdateFailure.service, but i haven\u0027t seen that ask so don\u0027t see a use case for now.",
       "parentUuid": "67b751b6_d6c888a2",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9226dc61_70158604",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-27T09:15:01Z",
+      "side": 1,
+      "message": "Nice, let\u0027s add it to the document, like\n```\u003cDeviceName\u003e\\_PostUpdate.service (runs only after successful update)```",
+      "parentUuid": "751098ee_d3fa3345",
       "revId": "427b732fecf6c59b473961693a04194be035ccbf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
