@@ -1,0 +1,314 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dc5a7d1_c4a64e83",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "Can you make this a named reference instead so we only define the URL once? So ...",
+      "range": {
+        "startLine": 13,
+        "startChar": 59,
+        "endLine": 13,
+        "endChar": 147
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "158b7468_8b68285d",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "... that way we don\u0027t need it again here",
+      "range": {
+        "startLine": 20,
+        "startChar": 59,
+        "endLine": 20,
+        "endChar": 147
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79ef8531_a6487853",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "Are we proposing the vendor spec itself is hosted in the libocpami repo? If so, that aligns with how I\u0027m requiring vendor-defined PLDM messages be managed for libpldm - the vendor must define the message structures under docs/ in the libpldm repo, and only after that the implementation follows. Experience suggests that the absence of this requirement causes a lot of confusion and frustration about the intent of an API.",
+      "range": {
+        "startLine": 35,
+        "startChar": 25,
+        "endLine": 36,
+        "endChar": 39
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf2b7e98_0543749b",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "Can you please elaborate on the motivations? The more specific the better. I don\u0027t think it\u0027s enough to just assert that there are motivations. Motivations for who? To what end?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 17
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f167e62_af4c9413",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "That you haven\u0027t set out the specific motivations above means this part of the argument lacks strength, in my opinion.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 26
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14bc9e26_a5d95377",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "If the only place the library is used is in various dbus-sensors applications, then I don\u0027t think there\u0027s much justification for C (why not C++?).\n\nIf you have use-cases in free-standing environments (card firmware, host firmware?) then please outline them above. I think that would better motivate a C implementation.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 27
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90d171ad_67e05c19",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "Not sure why this is a requirement. This is an implementation decision, and if necessary we can expose APIs to insert log callbacks. It just happens to be the case that we haven\u0027t done anything like this in libpldm, but there\u0027s no constraint making us avoid it (it just hasn\u0027t been necessary).",
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59ab0438_ac1cdf50",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "This doesn\u0027t come for free; you need to motivate doing this too. What problems is it solving? Best to be specific.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 37
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f58ca2e0_21226c0f",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "Oooh, I\u0027m interested if you have any feedback on the libpldm checklist. I\u0027m hoping it gives contributors knowledge of what I\u0027ll be reviewing for, so they can avoid common pitfalls before they push patches.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 22
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14de0773_ab169c5d",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "I guess we can bikeshed the naming later when we get to the implementation, but setting that aside, can we change the markdown syntax and invert the list/code relationship? So:\n\n```\n- `ocpami_encode_\u003ccommand\u003e_req()`\n...\n```\n\n?",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 3
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c89f5fd5_1dc1f366",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "Can we please use a consistent name throughout? `libocpami`?",
+      "range": {
+        "startLine": 75,
+        "startChar": 28,
+        "endLine": 75,
+        "endChar": 38
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3372949d_cfb12c49",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "This is a disadvantage (and the counter-argument), and so should not be an entry in a list of advantages, right?",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 25
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da99f437_9ea911c7",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "If you have multiple alternatives can you please put them under separate sub-headers so your arguments have a clear structure?",
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4da8998_96eae416",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-01-28T03:07:02Z",
+      "side": 1,
+      "message": "Can you be more specific here? How much time is \"considerable\"?\n\nRegardless, I think this is an argument beyond the scope of the document: The OCP AMI standard already exists. This is arguing against using it at all, which is a different argument to how the OCP AMI spec should be implemented.\n\nI imagine there are people that are unhappy that the choice was taken to route around the PLDM workgroup, but it is what it is for now.",
+      "range": {
+        "startLine": 102,
+        "startChar": 23,
+        "endLine": 102,
+        "endChar": 42
+      },
+      "revId": "797531d4a33ab86c2edbe6b356980d13a56a28b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
