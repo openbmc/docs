@@ -1,0 +1,825 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "407fae74_b62c7633",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Overall, I worry a little that we\u0027re not learning from the existing design things around error handling, connection persistence, parallel access, https support, and latency mitigation that are in the existing aggregation code.  There\u0027s existing art for a lot of these things, not only in the openbmc redfish aggregator, but in other open source redfish projects.  I\u0027m 100% in if we want to go write something new, but we need a requirements section that calls out things like protocol level persistence, latency, and other requirements that are required for performantly polling a Redfish API\n\nFWIW, The simple aggregator/beast/asio-based client I wrote below was just to proof (to myself) of concept to make sure that it was possible, and I wasn\u0027t missing something as far as technical correctness.  It\u0027s not required we use it or even consider it (although it would be good if you wanted to look at the existing http connection class to understand constraints), but it does incorporate a lot of the Redfish learnings OpenBMC as a project has already figured out rather than writing a new thing and relearning all those things all over again.\n\nOverall this design seems like it\u0027s reaching for innovation in:\n1. Coroutine based multi-request access in an HTTP library\n2. Type safe Redfish schema generation.\n3. Dbus -\u003e Redfish conversion.\n\nEach of these is a pretty huge ask on its own, and realistically need to be separated out into pieces.\n\nI truly believe that we as a project we can do all of these over time, but putting all of them in the same design doc with the lack of redfish conventions or examples of conversions make me worry that this design doesn\u0027t really understand the problem space.  Some things that I think could help this doc:\n1. A progression where we prioritize which parts are most important, and iterate over time.  IMO, a type safe json API is irrelevant if we can\u0027t successfully handle a redfish request.\n2. Some callouts on where the \"problems\" are in Redfish -\u003e Dbus conversion.\n3. Addition of actual Redfish vernacular and concrete vocabulary from the spec.\n4. How we plan on handling more than just golden path scenarios.\n\nAs an aside, I\u0027m sorry for the lack of timely feedback in this regard.  I\u0027m assuming your target is GB200, and if the HMC side of that can\u0027t support all these actions, then this whole design is moot 😊",
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af61c125_8beb2f87",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "nit, \"read\" and \"write\" aren\u0027t really redfish primitives.  You should really call out which things redfish primitives you\u0027re going to support (actions?  Resource creation?  Get?).",
+      "range": {
+        "startLine": 42,
+        "startChar": 37,
+        "endLine": 42,
+        "endChar": 51
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "798e10be_ba0cbe0a",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "In redfish terms, \"sensor monitoring\" is accomplished a bunch of different ways.  This requirement really needs more info.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 19
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f24fd881_fbc55871",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "If this is part of your requirements, you need to add requirements around handling stateful resources in Redfish, which require special handling.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 22
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "817e8bec_d1c933f1",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Requirements to add:\n\n1. Should be able to handle protocol-correct transitions in Redfish URIs between versions.\n2. Should be able to handle Redfish schema versions that were not available at compile time.\n\nOtherwise we\u0027re going to be constantly chasing both OEM schemas and DMTF schemas.",
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f93d6ee1_f2573da6",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "This is really part of the design, not part of the requirements.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 40
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec969e4c_bb2060a3",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Per redfish the protocol, the target URI is not defined at a protocol level, so if you want to create an \"HMC\" daemon and hardcode URIs, we can simplify this design a TON.  If we\u0027re shooting for a generic redfish client, the config file can\u0027t include URIs.\n\nKeep in mind that even on HMC, the URIs change between versions, so even for HMC a design that requires documenting every URI is already broken.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 33
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e57cb785_f0563144",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Considering to go Dbus -\u003e redfish requires the majority of the code in bmcweb, it seems reaaaaaaaallly unlikely we\u0027ll be able to specify this in a config file.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 29
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e53844af_08463dee",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "This sentence is lacking in detail.  bmcweb has 10s of thousands of lines of code to do the reverse of this.  I would assume that this would require something similar and needs to be called out how we\u0027re going to do the transform if we\u0027re doing it \"generically\".\n\nRedfish does not map directly or easily to dbus.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 37
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "871ff950_6f869dbb",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Can we focus on one example feature or start coding up example flows?  (possibly sensor monitor?)  This design is bypassing lots of complexity in this regard that I think is important.  For example sensor values can be read 4 different ways in Redfish (TelemetryService, MetricReport, Sensor, ThermalSubsystem/PowerSubsystem).  Which are we implementing?  All of them (which would be complete and correct to the redfish spec) or only one flow?\n\nIf we\u0027re implementing only one flow... which one are we doing?",
+      "range": {
+        "startLine": 73,
+        "startChar": 37,
+        "endLine": 75,
+        "endChar": 23
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "984ead23_da3cba01",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Should we talk through some simple field mapping?\n\nphsphor-logging right now doesn\u0027t implement MessageId for example, are we only mapping message as part of this effort, or does this intercept patricks messageid work?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 137
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f3b0a5f_6c049b1f",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Your design implements polling, then you link the Event schema (which doesn\u0027t support polling, as it\u0027s through EventService), so it\u0027s not clear what you\u0027re actually implementing?",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 93
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3238b72b_2deda01d",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "What is a \"write operation\" in Redfish?  Pretty sure you intend either resource creation or actions, but really not clear which from what you\u0027ve written.",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 20
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44586ba0_1059ebbe",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "UpdateService flows through http multipart queries, but you don\u0027t call out how that would map from dbus -\u003e HTTP.....  FYI, the Targets field in Redfish is highly flexible in what it allows, so it\u0027s important that we call this out.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 0
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d6f45d8_3d2c3379",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "This is an important part of your design that\u0027s missing.\n\nsdbusplus implements asio, coroutines, or sdevent reactors.  You need an HTTP library that integrates with one of those, or you have to have a threading model where you run your HTTP requests in another thread.\n\n\nbmcweb opts to do asio, and put boost beast in.  We could also adapt something like libcurl.\n\n\nTo have performant Redfish http, you need to implement http keepalive, but I don\u0027t see any mention of how that would work.",
+      "range": {
+        "startLine": 101,
+        "startChar": 66,
+        "endLine": 102,
+        "endChar": 51
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aed5a702_da125fe6",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "If we have per-device files, they probably should be integrated with EM so we can \"detect\" the hardware, just like we do for existing aggregation.  With that said, I really think a per-device/version/manufacturer files breaks the intent of Redfish.  We should be enumerating the interfaces the device supports using the Redfish tree.",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 0
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffa4a6c4_1862645d",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Not sure how this label works.......  Catalina isn\u0027t an HMC?  Shouldn\u0027t this be com.nvidia.GB200.HMC?",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 42
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d472e32_249b7a87",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "It\u0027s not clear to me:\n\nA. What does \"SensorA\" refer to.\nB. Why are we remapping names?  Can\u0027t we just use the HMC produced name?\nC. Why are we specifying types?  Redfish tells you the type of a sensor.\n\n\nCouldn\u0027t we just read all sensors, and expose them in dbus?  If we wanted to have a per-system exclude list we could, but starting with \"all sensors\" seems like a much more user friendly default, and in Redfish queries, makes your query a lot more efficient than polling sensors one at a time.",
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "818092e5_cef9b59c",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "You\u0027ve rewritten the design to specify Redpaths for property names.  Why do we need the typesafe struct now?\n\nI\u0027m not really following how we\u0027re going to have typesafe structs, then map the above redpaths to the typesafe structs?  Any clue what that code looks like?",
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "513cbe02_1f6619e1",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Pretty sure you don\u0027t want to link a chrome extension.",
+      "range": {
+        "startLine": 189,
+        "startChar": 22,
+        "endLine": 189,
+        "endChar": 72
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cfc633c_0e474848",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Remove this paragraph.  It\u0027s largely fluff, that doesn\u0027t really specify the engineering.",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 52
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8900a055_8e146d89",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "nit, typo.",
+      "range": {
+        "startLine": 199,
+        "startChar": 43,
+        "endLine": 199,
+        "endChar": 52
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab8335a8_c6dd22ee",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Remove this paragraph.  While Meta wanting to use this tool internally is great, this design doc is for OpenBMC.\n\nIf we want to make this tool usable outside of the project, we should specify that in the requirements section (is it a library?, application?  Utility?)",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 27
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "339783f3_770eb73c",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Nit (not required for this commit) but you might look at something like glaze.  It\u0027s a lot more modern, and implements a lot of the direct struct -\u003e json type things that would simplify a lot of this code and let you generate direct structs.",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 60
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56e0948a_8c69aa06",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Important pieces missing here:\n1. How does this library handle query parameters?  $expand is especially required for doing performant sensor polling.\n2. How does this library handle collections, non json payloads (required for logging).\n3. How does this library handle odata links? (required to access anything that isn\u0027t in ServiceRoot).\n\n\nI\u0027m happy to scope this down to just the sensor use case if that helps, but every implementation of a \"type safe\" struct for Redfish struggles with the issue that ServiceRoot technically can return every redfish struct in the tree.  That tends to result in worse code, but if you\u0027ve thought about how that works, lets look at what you propose and we can sort it out.",
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41bae62a_dd54befc",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Nit, needs reconciled with the claim above that you\u0027re using Events in this design.  Probably you meant LogEntryCollection?",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 38
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc445256_581fc36c",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "https://github.com/openbmc/bmcweb/commit/e89c16fd0d38920ca95bc71666a63c3ec945cb85\n\nTook a couple hours to write (totally untested) but puts the UUID into dbus.  Happy to talk through your design, but from a technical perspective, there\u0027s not that many differences here.\n\nCertainly there\u0027s advantages to your design if implemented fully, so lets continue to analyze.  There\u0027s a lot of good reasons to NOT go down the path above, but lets just make clear technical requirements because it\u0027s proposing a completely new stack.  There\u0027s a lot of missing requirements around how connections, dns lookups, and polling are implemented to not overwhelm the HMC that are already baked into the aggregator.  We should at least understand what was implemented and replicate it if we\u0027re going to libcurl.",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 226,
+        "endChar": 58
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09548832_b8b2cc8f",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "?  This really should be in your requirements if this is a consideration, although I\u0027m not really sure what it has to do with \"don\u0027t use aggregation\"",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 55
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e6125e7_cef33fee",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "FOR SURE this needs called out in your requirements if you\u0027re going to use it as a reason to not put this in.  In that requirement, we should document what the requirements are for uses outside the BMC.  In the past when we\u0027ve done that, (libcper, libpldm) we\u0027ve required code be in C to ensure reuse.",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 234,
+        "endChar": 59
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f0d3e12_4f3fd0f5",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "What does this even mean?  \"flavor\" \"seemlessly\" and \"duplicated\" all need defined.  The aggregator currently exposes Redfish to the client \"As the smc implements it\".  If we want to do some kinds of translation, we should call out requirements for that.",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 10
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "031b09be_21b72d94",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "This really seems like it goes in the requirements section.  Needing this behavior changes a lot of how we specify this stuff, and really changes your proposed design a lot.  FWIW, the redfish aggregator had to do things like this as well, but there was no way to keep it in a vendor agnostic way, so that code never got upstreamed.\n\nFWIW, in redfish ideally \"Name\" shouldn\u0027t really be something that\u0027s used for automation directly as this thing proposes.  \"RelatedItem\" tends to be the way to determine function/which sensor you\u0027re looking at.",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 249,
+        "endChar": 27
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20552ff4_1fdc49e7",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "No mention of how this would work.",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 12
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5f2e5f1_cce46b59",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "This is probably the wrong section for this.  If we wanted to filter OEM commands in the aggregator, the implementation would be trivial to write when we\u0027re doing the merge.",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 256,
+        "endChar": 34
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbed39d9_10745f53",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "?  The threading and queuing model of libredfish is the same as curl?  I\u0027m not really understanding that comment.",
+      "range": {
+        "startLine": 325,
+        "startChar": 29,
+        "endLine": 327,
+        "endChar": 13
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85815d37_276b28b5",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Considering that redfish only pushes quarterly and this tool doesn\u0027t actually need to change to support new redfish versions, it\u0027s not clearly to me that this is true.  Mike is still maintaining and is active in Redfish as far as I know. At the very least it would be good to chat with mike and understand some of the pitfalls you\u0027re likely to find.",
+      "range": {
+        "startLine": 338,
+        "startChar": 52,
+        "endLine": 339,
+        "endChar": 14
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbeed46e_d176b6f1",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "If this were true then bmcweb/the existing aggregator couldn\u0027t exist.......\n\nWhat I suspect the answer here is \"I\u0027d personally prefer to use coroutines as they\u0027re cleaner and newer\" which is absolutely valid.\n\nFWIW, I don\u0027t really have line of sight on how we\u0027re going to map coroutines to a multi-connection multi-in-flight-request HTTP client, but I\u0027m excited for the possibility and would like to see how that actually pans out in a way where.  Do you have any examples of this?\n\nAs some added requirements you should add (that are present in the existing aggregator).\n\n1. N multiple connections need to be supported (ie one connection doing a long log pull doesn\u0027t prevent sensors being scanned). Right now bmcweb defaults to an N of 4, but there are some forks that set it as high as 20.\n2. Multiple aggregate requests are supported in parallel (for example looping each LogService in a collection). Without blocking current requests.\n\nLets get this rewritten with the reality, which is you\u0027d prefer to use coroutines, and a little detail on what a coroutine based http request looks like when run in parallel, and this should be good.",
+      "range": {
+        "startLine": 344,
+        "startChar": 71,
+        "endLine": 348,
+        "endChar": 16
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1976baaa_21749a4e",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-29T22:43:37Z",
+      "side": 1,
+      "message": "Seems like we\u0027d have to define the external facing APIs to be able to use openbmc-test-automation?\n\nI\u0027m not really a stickler for \"how are you going to test this\" being long, but I don\u0027t really see how you can test an inward facing client using a tool hooked to external interfaces.",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 387,
+        "endChar": 18
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
