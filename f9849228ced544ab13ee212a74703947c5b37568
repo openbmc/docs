@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b4ce2412_a4ee5343",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "By optional it means the existing design works and code update manager can be leveraged for the additional requirements mentioned in this design doc.",
+      "parentUuid": "9acc9e3e_cbab9207",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3f2af940_6cad159e",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -104,6 +122,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9680d62c_1947926e",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1c8ecb54_17181a22",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d5768f3_40e9732a",
@@ -121,6 +157,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "085186e5_0aeb1b9b",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "\u003e multiple component images as part of single image package.\n\nSure, will use generic naming, and add PLDM as an example.",
+      "parentUuid": "0d5768f3_40e9732a",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2db2b7d_e3dd8d34",
@@ -134,6 +188,24 @@
       "writtenOn": "2025-01-25T00:51:30Z",
       "side": 1,
       "message": "They don\u0027t have to be as BMCWeb itself initiates the update to the required targets by calling the start update interface. Even in your new requirement i don\u0027t see the need as BMCWeb will do the same job if targets are specified. You need to provide a usecase where targets are not specified.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2292ad0_924ea901",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "PLDM package with multiple components is an example for this. The Targets can be used to update one of the components in the package. Once the package is forwarded to pldm daemon, if the Targets are not forwarded to pldm daemon it cannot exclude the other components in the package and update only one of the components.",
+      "parentUuid": "d2db2b7d_e3dd8d34",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -190,6 +262,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a118edf_69544a01",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "This is not mentioned as a limitation of the base design or to suggest that current design mandates all Non-PLDM code updaters to understand PLDM package.\n\nThis is with respect to the new requirement with PLDM packages containing both PLDM and Non-PLDM device, it might not be feasible to rewrite all the Non-PLDM code updaters to understand PLDM packaging and interpret it. So presents a case for code-update-manager to handle the responsibility in the case of such code updaters.",
+      "parentUuid": "3102dd64_7d9afea9",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ec24260_d67349a2",
@@ -203,6 +293,24 @@
       "writtenOn": "2025-01-25T00:51:30Z",
       "side": 1,
       "message": "\"integrity check \u0026 authorization check\"\nWhich checks are you referring here? Encrypted Image? Image with some signatures? Can you be more explicit?\n\nAlso some image checks are being proposed via https://gerrit.openbmc.org/c/openbmc/docs/+/74653",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "980c53b7_f1aee71a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "Integrity check for PLDM package is defined in the latest specification DSP0267_1.3.0, referring to that here. https://www.dmtf.org/sites/default/files/standards/documents/DSP0267_1.3.0.pdf.\n\nAuthorization check is a separate requirement for the BMC. This would be signatures for the PLDM package, authorization check needs to pass before code update is initiated.",
+      "parentUuid": "6ec24260_d67349a2",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -224,6 +332,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81a02799_d5f89997",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "I will add this in the requirement section.\n\nThis section is \"Problem Description\". I am not sure if everything has to be called out as limitation/restriction of the current design. I think it can be also stated as new problem statement/usecase that needs to be handled",
+      "parentUuid": "93f6ccee_e58bc69e",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e63e01e4_712ee190",
@@ -241,6 +367,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af4aa166_ce749284",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "A specific example is disabling global write protection for the platform before the code update; this grants write access to the flash for all devices and allows code update to proceed.\n\nThese pre and post operations are not at the component level https://gerrit.openbmc.org/c/openbmc/docs/+/75500/5/designs/code-update.md and is different from this proposal.",
+      "parentUuid": "e63e01e4_712ee190",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99e2c48a_45ce8bce",
@@ -254,6 +398,24 @@
       "writtenOn": "2025-01-25T00:51:30Z",
       "side": 1,
       "message": "Current design already supports targets. You can specify the list along with multi part image and BMCWeb shall start the update for all the required targets by the supplied image. Not sure why you are stating this as a new requirement?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85b3e553_3f4d1672",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "PLDM package with multiple components is an example for this. pldmd is code updater that handles a PLDM package and based on matching PLDM devices will update those (as described in DSP0267).\n\nThe Targets can be used to update one or many components in the package. Once the package is forwarded to pldm daemon without the targets, pldm daemon cannot exclude the components which it should not update based on the Target list.",
+      "parentUuid": "99e2c48a_45ce8bce",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -346,6 +508,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9fdd08f_96ce7289",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "The requirement here is to have a single Redfish task consolidating the progress and completion across all code updaters instead of separate Redfish tasks.\n\nI can avoid any mentions for RF and use generic language as much as possible.",
+      "parentUuid": "c7928175_1019294e",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb82f84e_5ba9a2da",
@@ -376,6 +556,42 @@
       "writtenOn": "2025-01-25T00:51:30Z",
       "side": 1,
       "message": "optional?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaee89e7_2fc99162",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "By optional it means the existing design works and code update manager can be leveraged for the additional requirements mentioned in this design doc.",
+      "parentUuid": "cd7b6776_09fffa97",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d89d3ef1_1bb1f805",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "eb82f84e_5ba9a2da",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -432,6 +648,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b9a3c27_6df519e9",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "I will reword this just to say, will address the requirements.",
+      "parentUuid": "54bd6257_18224434",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "934b71fe_f643d80e",
@@ -445,6 +679,24 @@
       "writtenOn": "2025-01-25T00:51:30Z",
       "side": 1,
       "message": "This should go into requirements section as its just a requirement. Also please add details in design on what is the specific requirement and how you intend to fulfill this requirement?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74470d7f_74893b50",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "I will move requirements to that section.",
+      "parentUuid": "934b71fe_f643d80e",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -501,6 +753,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e82f75f_4ee4c6ef",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "The end-to-end flow(diagram in mermaid) covers the details.",
+      "parentUuid": "a9ab9d0c_a359e307",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edb2c1bb_192e9841",
@@ -514,6 +784,24 @@
       "writtenOn": "2025-01-25T00:51:30Z",
       "side": 1,
       "message": "Is there a proposal for this?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7ee8262_814ce2ec",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "This will be accomplished using EM configuration since these are platform configs.",
+      "parentUuid": "edb2c1bb_192e9841",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -535,6 +823,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3e3fb51_64bec5de",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "bmcweb will use ObjectMapper to look if any service implements Code update manager D-Bus interface. It will delegate the PLDM firmware package to that service instead of bmcweb using Targets to match the Updater. The service will implement the CodeUpdate interface.",
+      "parentUuid": "cc774095_79e8aec8",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1432ac6_d72da836",
@@ -548,6 +854,24 @@
       "writtenOn": "2025-01-25T00:51:30Z",
       "side": 1,
       "message": "What do you mean by this?",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b090db94_2180a4c0",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "\u003e The lifetime of the firmware package is handled by bmcweb\nRemoving the firmware package after the update is not done by the code-update-manager instead by the bmcweb.",
+      "parentUuid": "c1432ac6_d72da836",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -640,6 +964,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ab741e9_5435737d",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "The update can be initiated in parallel by the code-update-manager, but the code update manager doesn\u0027t handle another FW package till the current one is completed, will update the document.",
+      "parentUuid": "6c741b54_c1b67bac",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "738cc1c3_2d00bcc1",
@@ -653,6 +995,24 @@
       "writtenOn": "2025-01-25T00:51:30Z",
       "side": 1,
       "message": "\"Code Update Mgr D-Bus Intf\"\n\nIs this a new interface? How does BMCWeb knows it has to call this interface instead of calling the Update DBus interface.",
+      "revId": "f9849228ced544ab13ee212a74703947c5b37568",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea753285_b4e0a224",
+        "filename": "designs/code-update.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-01-29T08:39:38Z",
+      "side": 1,
+      "message": "It is a new interface, which is proposed. I will push that shortly.\n\nbmcweb will use ObjectMapper to look if any service implements it. It will delegate the PLDM firmware package to that service. \n\u003cUpdate using regular flow\u003e",
+      "parentUuid": "738cc1c3_2d00bcc1",
       "revId": "f9849228ced544ab13ee212a74703947c5b37568",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
