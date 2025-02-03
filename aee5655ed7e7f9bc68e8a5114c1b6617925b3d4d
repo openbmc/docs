@@ -3,6 +3,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b359e8e_25cb5eca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-03T18:29:47Z",
+      "side": 1,
+      "message": "Key items for this review:\n1. bmcweb should be operating on an interface (ie dbus or the filesystem).  It should require no configurability based on whether a TPM is present, because in the design, the webserver itself shouldn\u0027t care.\n2. I\u0027d really like to see designs looked at that completely remove the need for the webserver to see the private key, because TLS connection specifics are done in a completely different application. https://github.com/h2o/neverbleed is one example of such an abstraction.  If the goal is to improve security, bmcweb having access to the private key at all means that there\u0027s a potential for leakage.\n3. Would like to see the design call out the actual interfaces between components.  Today, we have PCM and bmcweb which communicate via dbus and the filesystem for keys.",
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13f9324d_19503b66",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-03T18:29:47Z",
+      "side": 1,
+      "message": "This design does nothing to solve the \"scalability challenges\" nor \"performance bottlenecks\". I would expect this implementation to be slower.",
+      "range": {
+        "startLine": 13,
+        "startChar": 60,
+        "endLine": 14,
+        "endChar": 40
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c6e4b04_e03cda83",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-03T18:29:47Z",
+      "side": 1,
+      "message": "Can we be a little more specific about _which_ cryptographic operations and why?",
+      "range": {
+        "startLine": 17,
+        "startChar": 45,
+        "endLine": 17,
+        "endChar": 58
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88615de9_28b4a552",
         "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
         "patchSetId": 4
@@ -26,6 +89,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0afe410c_211cdf18",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-03T18:29:47Z",
+      "side": 1,
+      "message": "bmcweb should have no knowledge of the crypto provider.  It needs to be abstracted away appropriately through phosphor-certificate-manager.",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 6
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b289df3_3b151054",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-03T18:29:47Z",
+      "side": 1,
+      "message": "This is not a kind of flexibility I\u0027m interested in supporting, given that it\u0027s very unlikely that those configuring bmcweb have actually done an analysis of what the path is, and it\u0027s a lot more likely that someone makes a mistake.\n\nIf we want to select from one of a couple of paths, depending on whether the certificate is temporal or not (ie switch between /etc and /run), I\u0027m happy to see that implemented, but ideally we shouldn\u0027t be passing these through the filesystem at all.  pcm can just host the appropriate interface for bmcweb to grab the certificate.",
+      "range": {
+        "startLine": 157,
+        "startChar": 60,
+        "endLine": 158,
+        "endChar": 71
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "14d76ea8_e0351cc5",
         "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
         "patchSetId": 4
@@ -42,6 +151,29 @@
         "startChar": 0,
         "endLine": 171,
         "endChar": 1
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "252d1281_1146b59b",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-03T18:29:47Z",
+      "side": 1,
+      "message": "Doesn\u0027t this defeat the whole purpose of the design if the private key is available in plaintext?  I\u0027m not sure i understand how this option could be used correctly.",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 3
       },
       "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -82,6 +214,29 @@
         "startChar": 0,
         "endLine": 266,
         "endChar": 67
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3bbb243_f6f535fb",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-03T18:29:47Z",
+      "side": 1,
+      "message": "Please redesign so that this is largely removed.  PCM should be in charge of the certificate.  bmcweb should have no knowledge about where it came from.",
+      "range": {
+        "startLine": 282,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 12
       },
       "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
