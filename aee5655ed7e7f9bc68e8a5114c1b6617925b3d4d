@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88615de9_28b4a552",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-03T17:13:38Z",
+      "side": 1,
+      "message": "Is there any utility in the AST2600 root-of-trust / trustzone-secured enclave?  Would this be better from a performance stand-point?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 80
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14d76ea8_e0351cc5",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-03T17:13:38Z",
+      "side": 1,
+      "message": "nit: \"file://\" if you\u0027re going to call it a URI.",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 1
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7566c635_53514acb",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-03T17:13:38Z",
+      "side": 1,
+      "message": "There is one big issue with TPMs and the Aspeed chip that you might not be aware of.  The SPI hardware in the Aspeed chip does not allow bi-directional data flow, which makes it impossible to use this hardware for TPMs.  You instead have to enable the GPIO bit-bang driver in order to use this chip.\n\nYou mentioned the performance impact but this decreases performance even further.",
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c9377c1_db0910db",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-03T17:13:38Z",
+      "side": 1,
+      "message": "I understand you likely don\u0027t have code ready for this but it would be good to have real data here.  If enabling the TPM only allows you to do 1 connection-per-second, this is a feature nobody will ever enable.",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 266,
+        "endChar": 67
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1cbd51e_30a17cd8",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-03T17:13:38Z",
+      "side": 1,
+      "message": "Is there a QEMU model for TPMs?\n\nI know the one for SPI doesn\u0027t work.",
+      "range": {
+        "startLine": 292,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 66
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
