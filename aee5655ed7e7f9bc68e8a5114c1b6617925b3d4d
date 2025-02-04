@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "62867a48_757566f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-02-04T11:31:39Z",
+      "side": 1,
+      "message": "Hi Ed, Thanks alot for the feedback. I attempted to reply your comments inline. I do believe that by adopting the proposed design the private key will be virtually locked into the TPM/hardware providers and would not be exposed over the file system like it does today and even bmcweb would not be able to read the private key. There were some questions and problems on exposing the keys over dbus and files which I have outlined below, but happy to collaborate \u0026 work with you to fine-tune the design to make it secure \u0026 efficient.\n\nI wrote a sample server/client app that leverages the openssl 3.0API\u0027s and loads the tpm provider to do mTLS here at : https://github.com/manojkiraneda/mtls-with-tpm2/tree/main , this might give a better idea on what i am trying to do.",
+      "parentUuid": "8b359e8e_25cb5eca",
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "13f9324d_19503b66",
         "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
         "patchSetId": 4
