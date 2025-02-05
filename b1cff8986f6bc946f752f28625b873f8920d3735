@@ -3,6 +3,121 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4259ed61_b9ad745c",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "What does \"telemetry\" mean?  We don\u0027t usually use that word, outside of a particular meaning for a Redfish Telemetry Service, so I don\u0027t believe all readers have the same understanding as you do when you use that word.",
+      "range": {
+        "startLine": 18,
+        "startChar": 69,
+        "endLine": 18,
+        "endChar": 78
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed34435d_35624295",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "Please use a real markdown URL reference here.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 68
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c545350a_9ca2581b",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "You made mention of this here but then we only talked about dbus-sensors being affected.  I don\u0027t really understand the scope of what we\u0027re discussing.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 42
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e7a9646_308d7bad",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "You still haven\u0027t mentioned how we can be successful at this (here or elsewhere in the document).  What are we aiming for?  `libcper` was clear because it included UEFI header files to ensure compatiblity there.  `libpldm` is used by the IBM BIOS-like firmware.  How do we know if this is satisfied?",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 38
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a685827_2cea6a68",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "nit: I kind of asked for this to be called \u0027libocp-ami\u0027 in an earlier revision because I think it maps to the spec name better.  You changed it only in the exact spot I asked for the change and then in a later revision you got called out for inconsistency... so you changed it back.",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 21
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "693c205f_c688c498",
         "filename": "designs/libocpami.md",
         "patchSetId": 16
@@ -19,6 +134,92 @@
         "startChar": 0,
         "endLine": 82,
         "endChar": 1
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cbd0c65_fb9d2a0b",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "What is the long-term scope of this?\n\nElsewhere you wrote:\n\n\u003e This repo itself is not expected to result in D-Bus or other existing OpenBMC APIs from being modified.\n\nIf this is true, why isn\u0027t the library targeting something along those lines rather than exposing the raw vendor commands?\n\nThe earliest versions of this doc said there were going to be commands like this:\n\n```\n  - ocpami_encode_get_temperature_reading_req()\n  - ocpami_decode_get_temperature_reading_resp()\n  - ocpami_encode_get_current_power_draw_req()\n  - ocpami_decode_get_current_power_draw_resp()\n```\n\nThe current version of this document now has no scope for me to even understand what we\u0027re going to implement.  If those functions are some kind of indication of where we\u0027re going, why wouldn\u0027t we implement high level functions like this and let the library deal with \"which random vendor command do I use to get this on this particular piece of hardware\"?\n\nPushing outside the library a vendor-based API just leads to us having N different application implementations even if they\u0027re all using \"OCP-AMI\".  This [both the library and the \"protocol\"] provides us almost no value.",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 12
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdcc4323_0ddb9c74",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "There is still no discussion of how we handle versioning of commands and/or devices.  What happens when version 1 of your hardware supports command A-1 but version 2 of your hardware supports command A-2?  Such as `get_temp_reading` proposed previously.  We\u0027re now going to have `encode_temp_reading_2`?",
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6126e0e4_278f81a7",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "Here you\u0027re calling this out again as an advantage but said elsewhere you weren\u0027t looking to do it.  What is it?  I don\u0027t understand.",
+      "range": {
+        "startLine": 108,
+        "startChar": 2,
+        "endLine": 108,
+        "endChar": 57
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c409d8c_df401033",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "See... here you\u0027re talking about all kinds of ideas you have, but they\u0027re entirely omitted from the scope discussion.  You\u0027re asking for a library as if it is going to be an Nvidia sandbox to do whatever you want, but it doesn\u0027t feel like you\u0027re being forward about what you have planned.\n\nWhat is this library going to do?? I still have no idea.  Other than maybe \"anything we dream up\".",
+      "range": {
+        "startLine": 114,
+        "startChar": 5,
+        "endLine": 115,
+        "endChar": 13
       },
       "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -65,6 +266,121 @@
         "startChar": 59,
         "endLine": 117,
         "endChar": 46
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c313b0d7_f67ae75f",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "This is a very weak argument.  Neither PLDM nor OCP-AMI has any \"discovery\".  This means you have to know external information about the device you\u0027re interacting with.  Having to use a specific set of vendor VDM commands or having to use a specific set of PLDM OEM commands is equivalent.\n\nThe minimal amount of \"spec\" in the OCP-AMI for \"framing\" is little added value.",
+      "range": {
+        "startLine": 116,
+        "startChar": 59,
+        "endLine": 119,
+        "endChar": 0
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b10955d_f74b1154",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "I believe this has been pointed out before, but you don\u0027t currently meet the requirements set out for this (https://github.com/openbmc/docs/blob/master/community-membership.md#approver ).  You haven\u0027t even qualified as a TOF-qualified developer since before 2022 when we started that.",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 20
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ce8a533_9114e992",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "nit: prefer to sort alphabetically so as to not indicate some order of hierarchy.",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 20
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d21f583c_2d3b6e53",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "nit: spelling",
+      "range": {
+        "startLine": 148,
+        "startChar": 26,
+        "endLine": 148,
+        "endChar": 34
+      },
+      "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cea39f77_71ded42a",
+        "filename": "designs/libocpami.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T03:31:20Z",
+      "side": 1,
+      "message": "Is this referring to the application to read a sensor or some separate test application?  Can we call it a \"sensor daemon\" to be more specific if it is the first case?",
+      "range": {
+        "startLine": 150,
+        "startChar": 2,
+        "endLine": 150,
+        "endChar": 9
       },
       "revId": "b1cff8986f6bc946f752f28625b873f8920d3735",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
