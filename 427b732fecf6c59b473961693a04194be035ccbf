@@ -107,6 +107,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf8acb3f_bfc520b1",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-07T20:32:44Z",
+      "side": 1,
+      "message": "\u003e Can we please add this example to the patch, with an explanation as to why it cannot be handled by the code updater.\n\u003e So that people reading this in the future understand why the hooks where added and their use-case.\n\nThe device reset use case example has already been mentioned in the doc, explaining the reason why the hooks might be needed. Hence, marking this as resolved.",
+      "parentUuid": "a73557c2_89e6cdce",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fae9456_8102aa66",
@@ -156,6 +174,24 @@
       "side": 1,
       "message": "\u003e The Code Updater daemon can check for and execute systemd targets with the\n\nThis sounds like a surprise for the user. Can we change the wording to\n```The Code Updater daemon MUST check for and execute systemd targets ... OR log an error message that indicates it does not support such services.```\n\nThis is to avoid situations where the user has setup a service and then there is no response from the code updater and unclear if the code updater knows about the service. Since those services will be an interface also for downstream.\n\nAlso lets define if the update should proceed if the code updater finds such a service but does not support them.",
       "parentUuid": "e8de32dc_1d3d377b",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9c9f053_1eef98ba",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-07T20:32:44Z",
+      "side": 1,
+      "message": "\u003e \u003e The Code Updater daemon can check for and execute systemd targets with the\n\u003e \n\u003e This sounds like a surprise for the user. Can we change the wording to\n\u003e ```The Code Updater daemon MUST check for and execute systemd targets ... OR log an error message that indicates it does not support such services.```\n\u003e \n\u003e This is to avoid situations where the user has setup a service and then there is no response from the code updater and unclear if the code updater knows about the service. Since those services will be an interface also for downstream.\n\nThe pre and post update services are optional and every component updater is not suppose to have them. The CodeUpdater will try to discover these services via GetUnitFileState. If they exist, CodeUpdater will execute them, otherwise it will log a warning message saying the service doesn\u0027t exist. This warning message can be used by the developer to perform any debugging in their development environments. I have added these details to the doc. \n\n\u003e \n\u003e Also lets define if the update should proceed if the code updater finds such a service but does not support them.\n\nAdded wording for this.",
+      "parentUuid": "1ac91c18_d8da69db",
       "revId": "427b732fecf6c59b473961693a04194be035ccbf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -284,6 +320,42 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c1485ca_2a481426",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-07T20:32:44Z",
+      "side": 1,
+      "message": "Added to the doc.",
+      "parentUuid": "622d1203_b45904a5",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be5a9c13_f4ec45e7",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-07T20:32:44Z",
+      "side": 1,
+      "message": "\u003e \u003e What you are asking for is an implementation level detail such as args being passed in (not part of design). \n\u003e \n\u003e I consider it to be part of the design as it will likely be used downstream and in openbmc/openbmc meta layers. That where people keep many of their systemd services for customization. If i understand correctly, what you are proposing is not something that can be easily refactored later on.\n\nFYI: I have changed the service prototype to accept in args if user wants to pass them.\n\nYes, thats where these services will stay, but what these services are specific to individual type of updaters, just as the EM schemas are specific to individual device configs. For instance, a VR case might need 2 args for VRI2CUpdater (lets say i2c bus number, address) and no args might be needed for BIOS Updater, so it needs to an agreement between the service caller and callee. What i am proposing here is a structure for an agreement but what would the exact terms (in args) for that would vary from Updater to Updater, hence we cannot fix them.\n\n\u003e \n\u003e \n\u003e It would be good if this patch already outlined what the interface will look like between the code updater and systemd services. Will there be a common interface or will it be custom arguments for each device specific code updater? \n\u003e Let\u0027s add that to the patch also.\n\nNo, common structure for in_args for reason mentioned above. I have updated patch to reflect this intent.\n\n\u003e \n\u003e Also, what value does the service return to the code updater?\n\nAdded details on JobRemoved signal.\n\n\u003e If the PreUpdate service fails, will the code updater proceed with the update?\n\u003e What will be logged? \n\u003e How long does the code updater wait until the service hook is considered failed?\n\nUpdated patch to reflect the behavior.",
+      "parentUuid": "5d844ee7_626930d0",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67b751b6_d6c888a2",
@@ -333,6 +405,24 @@
       "side": 1,
       "message": "Nice, let\u0027s add it to the document, like\n```\u003cDeviceName\u003e\\_PostUpdate.service (runs only after successful update)```",
       "parentUuid": "751098ee_d3fa3345",
+      "revId": "427b732fecf6c59b473961693a04194be035ccbf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07bbe052_1bfdd955",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-07T20:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9226dc61_70158604",
       "revId": "427b732fecf6c59b473961693a04194be035ccbf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
