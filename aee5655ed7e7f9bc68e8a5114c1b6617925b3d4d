@@ -273,6 +273,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a9658cb_f899594d",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2025-02-09T16:30:56Z",
+      "side": 1,
+      "message": "I believe instead of providing flexibility to configure TPM handles, its better to go with predefined or randomly generated TPM handles for storing the server private key and certificate.",
+      "parentUuid": "e12bf1d3_27d02029",
+      "range": {
+        "startLine": 157,
+        "startChar": 60,
+        "endLine": 158,
+        "endChar": 71
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "14d76ea8_e0351cc5",
         "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
         "patchSetId": 4
@@ -484,6 +508,30 @@
       "side": 1,
       "message": "Sure, I am willing to do that. But there are issues in sharing the private key between the processes that I have outlined above \u0026 with devices like TPM, we cannot extract the private key out of it - so i took the simplest approach where the daemon that does the TLS handshake interacts with the provider to get/set the keys/certificates.",
       "parentUuid": "b3bbb243_f6f535fb",
+      "range": {
+        "startLine": 282,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 12
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9dc99ea_800c8d0d",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2025-02-09T16:30:56Z",
+      "side": 1,
+      "message": "can we have TPM file handle generate and host on PCM D-bus object which can be used by BMCWEB to retrieve/replace certificate or private key in TPM2?",
+      "parentUuid": "bf6bff92_00b8d0a0",
       "range": {
         "startLine": 282,
         "startChar": 0,

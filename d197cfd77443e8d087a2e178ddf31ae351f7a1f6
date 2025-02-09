@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b237b9e5_0733edca",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2025-02-09T16:30:56Z",
+      "side": 1,
+      "message": "I don\u0027t think all BMC certificates (LDAP or CA) operations can be offloaded to TPM, I am not sure if nslcd works with TPM handles.\n\nI agree that this solution works for https certificates and private key generation",
+      "revId": "d197cfd77443e8d087a2e178ddf31ae351f7a1f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a93d667_2baa2f8b",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2025-02-09T16:30:56Z",
+      "side": 1,
+      "message": "There are use-cases where certificate and its associated private key together uploaded into BMC in a single file when dealing with client authentication.\ndoes this design takes care of these use-cases as well?",
+      "revId": "d197cfd77443e8d087a2e178ddf31ae351f7a1f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b21d602d_eaa170ed",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2025-02-09T16:30:56Z",
+      "side": 1,
+      "message": "does this design proposed to store only HTTPS certificates and private key in TPM?",
+      "revId": "d197cfd77443e8d087a2e178ddf31ae351f7a1f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4354a1c_4f75fb86",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2025-02-09T16:30:56Z",
+      "side": 1,
+      "message": "Looks like DMTF already supports Certificate management under TrustedComponent(TPM) schemas.",
+      "revId": "d197cfd77443e8d087a2e178ddf31ae351f7a1f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
