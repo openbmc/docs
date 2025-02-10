@@ -16,6 +16,74 @@
       "message": "@rushtotom@gmail.com Looks like you resolved all the comments by replying to them. If you haven\u0027t made a change and there is an open question, please keep the comment open until the question is resolved or a conclusion has been reached.",
       "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "431e17e8_6592ec60",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-10T23:59:48Z",
+      "side": 1,
+      "message": "I don\u0027t agree that its not supported. I already provided 2 solutions via our discord conversation earlier -\n\n1. Multipart PLDM Image with Target List supplied - BMCWeb sends the image to individual updater backends by using the Target List (invoked using Update Interface). Based on relevant component descriptors, backends will process the image.\n2. Multipart PLDM Image with no Target List supplied - BMCWeb can discover all update interfaces and send the image to all updater backend. If the backend can parse the image and the package contains the image applicable to it (based on descriptor), it will process it, otherwise it would be dropped.\n\nSo, i think you have to specifically state why above doesn\u0027t work for you which clarifies why you are looking for a different solution.",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0f60fee_818aab8b",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-10T23:59:48Z",
+      "side": 1,
+      "message": "As i mentioned earlier this is something which is already supported by the current design. I was asked to first stabilize the single component update implementation and then implement the multi component flow. That is something you guys can definitely work on in BMCWeb since you have an active use case.",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18b5aff3_00dccbee",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-10T23:59:48Z",
+      "side": 1,
+      "message": "This is intentional and are not suppose to be forwarded. BMCWeb is suppose to discover the update interface and trigger the update directly by passing image and other attributes.",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fda2d7a_a4bebc91",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-10T23:59:48Z",
+      "side": 1,
+      "message": "This was already a requirement in the original design too on not restricting the image packaging.\n\nAs to answer the requirement here - If the updater cannot interpret the PLDM package, it will just ignore or skip it. Why is there a problem in that?",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
