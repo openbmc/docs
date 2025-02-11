@@ -84,6 +84,74 @@
       "message": "This was already a requirement in the original design too on not restricting the image packaging.\n\nAs to answer the requirement here - If the updater cannot interpret the PLDM package, it will just ignore or skip it. Why is there a problem in that?",
       "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e77d0d7_8062d5b9",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-11T07:54:21Z",
+      "side": 1,
+      "message": "\"Provides update method, modified to include \u003cbr\u003e Targets,\"\n\nAlready mentioned above the Update DBus interface doesn\u0027t include the Targets as an arg as this interface already gets implemented on the specific software object path as all other interfaces below.",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e68770c2_0ca3d8d5",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-11T07:54:21Z",
+      "side": 1,
+      "message": "Just to be clear Update interface is associated with a software entity and not the code updater daemon itself as the interface resides on specific software instance path, so i don\u0027t think its applicable here.",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26d2a3a1_9da9fca7",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-11T07:54:21Z",
+      "side": 1,
+      "message": "xyz.openbmc_project.Software.Manager\n\nWhere\u0027s the proposed definition for this Manager interface?",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "943f8d9e_44b73cc8",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-11T07:54:21Z",
+      "side": 1,
+      "message": "How does the BMCWeb will know if the request should go to regular flow or this new flow? Are you suggesting both the flows won\u0027t co-exist at runtime?",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
