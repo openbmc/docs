@@ -58,6 +58,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d64423_f18dc4e9",
+        "filename": "designs/code-update.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T08:59:30Z",
+      "side": 1,
+      "message": "\u003e @paligill@gmail.com One detail missing is that there is a configuration json provided to the CodeUpdater. Why is this not part of the EM configuration?\n\u003e \n\nI remember this question was brought up both by you and Alexander earlier. It was heavily discussed with @spinler@us.ibm.com (EM Maintainer) on https://gerrit.openbmc.org/c/openbmc/docs/+/75500/comment/c8ef7c62_9eb33e40/. Based on discussion we went with implicit ServiceNames (based on device names) for pre/post conditions.\n\nIf you still have some questions around the EM configuration use, please reply on https://gerrit.openbmc.org/c/openbmc/docs/+/75500/comment/c8ef7c62_9eb33e40/ and we can open that comment thread for further discussion. It has good context and history.\n\nI will mark this comment as resolved for now.",
+      "parentUuid": "3264a9f0_7719f1c4",
+      "range": {
+        "startLine": 259,
+        "startChar": 28,
+        "endLine": 260,
+        "endChar": 32
+      },
+      "revId": "abc6433a678ee2eb657bc77f3a2bc24aed602c97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d48b190_94679d98",
@@ -77,6 +101,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5bd0c8a_7f3aef9c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T08:59:30Z",
+      "side": 1,
+      "message": "We named it \u003cDeviceName\u003e_XXX, so we don\u0027t have to rely on any external source to specify it, but implicitly derive it from actual device name (I have captured in doc what does DeviceName map to).\n\nThe whole intent of these hooks is that they are device specific (otherwise they would have been in common code). But one can also say they can be common for some devices, as you brought it up. Do you have any specific use case in mind for it being common for some devices?\n\nAs a solution for your ask, which is around code reuse for common stuff one can also install the same service (via meson) with different names which can be easily achieved in openbmc/openbmc repo where most of platform specific stuff resides. \n\nPlease let me know your thoughts.",
+      "parentUuid": "0d48b190_94679d98",
+      "revId": "abc6433a678ee2eb657bc77f3a2bc24aed602c97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85d251ba_de84faf5",
         "filename": "designs/code-update.md",
         "patchSetId": 10
@@ -88,6 +130,30 @@
       "writtenOn": "2025-02-11T11:47:41Z",
       "side": 1,
       "message": "Why is this a `warning`, pre and post is optional right?",
+      "range": {
+        "startLine": 279,
+        "startChar": 53,
+        "endLine": 279,
+        "endChar": 60
+      },
+      "revId": "abc6433a678ee2eb657bc77f3a2bc24aed602c97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c290a1c4_42134529",
+        "filename": "designs/code-update.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T08:59:30Z",
+      "side": 1,
+      "message": "Yes, pre and post conditions are optional but at the same time there was a ask brought up by @alexander.hansen@9elements.com quoted below -\n\n\"\n the user has setup a service and then there is no response from the code updater and unclear if the code updater knows about the service. Since those services will be an interface also for downstream.\n \"\n \nSo, to accommodate this + the optional part at same time, a middle ground was needed. And that middle ground is this warning message to warn the user that a pre/post service hasn\u0027t been run that they might have implemented. This shouldn\u0027t break the flow but warn the user in case they debug via journalctl.",
+      "parentUuid": "85d251ba_de84faf5",
       "range": {
         "startLine": 279,
         "startChar": 53,
