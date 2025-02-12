@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41244d3f_dd4dd0e8",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T08:54:11Z",
+      "side": 1,
+      "message": "After seeing the TOF issue requesting a repository I added this review to my queue.  After reading the modbus specification twice, then trying to understand the proposed interfaces and compare them to the specification, proceeding to read the exemplar flow meter specification, and commented on the proposed interfaces, I am coming back to this specification.\n\nWhile this proposal sounds like a generic entity manager flow, it is ignoring the issue of serial port access control or arbitration.   \n\nThere could be an initial detection that then closes the network and hands off the inventory to another application (service) that exposes the sensors.   but that would not address requirement 4 to handle the online removal and insertion of devices while other sensors are running.\n\nI am not aware of a Linux kernel uart (tty) line discipline implementing the modbus messaging protocol.  Without one, or closing and opening the port exclusively for each arbitration, I don\u0027t see how the modbus detection daemon described will arbitrate and share access to the uart (serial port) with the sensor monitoring ongoing to the other devices on the network.  There is no source port number (like there would be for tcp connections).\n\nI was expecting to find a modbus application service that would handle all modbus serial communications, including framing messages, calculating and verifying PDU CRCs.  I expected the application to have layers or some kind of async or coroutine processing that would send messages polling sensor readings, and later arbitrate for access to firmware.  While I could see a service implementing the messaging layer and handing off interpreting message results it seems like this would be repeating ipmi on something that has a relatively high, constant periodic and time sensitive data rate.  \n\nI suppose there could be a message injection/ response api added to the main sensor application (and such an interface might be useful as a debug tool for exploration) but I expected the sensors, device specific firmware update, and device detection would be driven by code in a common application managing the modbus.\n\nI guess implementing a TCP gateway would provide this multiplexer but that is explicitly beyond this first proposal (and would imply additional context switching and data copying).",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e62f3d7_0dccdbf5",
         "filename": "designs/modbus-based-inventory.md",
         "patchSetId": 4
@@ -38,6 +55,91 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "255a3da2_c201e1a4",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T08:54:11Z",
+      "side": 1,
+      "message": "so this is trying to say look for flow meter devices, on the server address ranges noted below (but disjointed across start and end  items walking multiple arrays instead of structs of (start, end))",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cb2227e_0e9a8d5a",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T08:54:11Z",
+      "side": 1,
+      "message": "baud rate, parity, and uart tty name are all properties of the network and not the individual devices.  They must be the same for all devices on a given tty port.\n\naddress range start and end would appear to be a description of what addresses to search for devices\n\nwe should define a modbus RTU network then build device discovery on top of it.",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "353acd6c_ea3cd1c6",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T08:54:11Z",
+      "side": 1,
+      "message": "see my comments on the interface proposal.  while these meet the exemplar they are not generic to modbus or the get device identification in the base specification.",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61c068c1_cee10119",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T08:54:11Z",
+      "side": 1,
+      "message": "you mean 6 bytes?  across 3 register addresses?",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "464b322e_ec7f8162",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T08:54:11Z",
+      "side": 1,
+      "message": "how is a string encoded in 16 bit word registers?  what\u0027s the byte order\n\nLets make format include size and endianess",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "543d6092_bed72303",
         "filename": "designs/modbus-based-inventory.md",
         "patchSetId": 4
@@ -67,6 +169,41 @@
       "side": 1,
       "message": "The way EM represents the array of nested configuration objects in Dbus is not ideal, please refer to earlier discussions here - https://discord.com/channels/775381525260664832/1273263354647023616/1313489525846179901\n\n\n@Alexander captured some more detail here on why this happens - \nhttps://discord.com/channels/775381525260664832/1273263354647023616/1313452350626861147\n\nAs part of these discussions it was decided to use arrays of individual properties rather than array of nested objects to overcome the EM limitations.",
       "parentUuid": "543d6092_bed72303",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e38c9b2b_2c97ac89",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T08:54:11Z",
+      "side": 1,
+      "message": "ok for reference that discussion was around adding the cable presence interface to invetory manager (since I had to go to another device to follow the discord link).\n\nbut I the original link reports on how it was creating a unique interface for each object defined an not adding objects according to an interface",
+      "parentUuid": "743a39c3_f429fb22",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f251ba6e_f2d68dfb",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T08:54:11Z",
+      "side": 1,
+      "message": "as described above how does it arbitrate to gain access to the modbus network?",
       "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
