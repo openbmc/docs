@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b0b1492_274943f4",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T09:09:37Z",
+      "side": 1,
+      "message": "\u003e After seeing the TOF issue requesting a repository I added this review to my queue.  After reading the modbus specification twice, then trying to understand the proposed interfaces and compare them to the specification, proceeding to read the exemplar flow meter specification, and commented on the proposed interfaces, I am coming back to this specification.\n\u003e \n\u003e While this proposal sounds like a generic entity manager flow, it is ignoring the issue of serial port access control or arbitration.\n  \n\u003e \n\u003e There could be an initial detection that then closes the network and hands off the inventory to another application (service) that exposes the sensors.   but that would not address requirement 4 to handle the online removal and insertion of devices while other sensors are running.\n\u003e \n\u003e I am not aware of a Linux kernel uart (tty) line discipline implementing the modbus messaging protocol.  Without one, or closing and opening the port exclusively for each arbitration, I don\u0027t see how the modbus detection daemon described will arbitrate and share access to the uart (serial port) with the sensor monitoring ongoing to the other devices on the network.  There is no source port number (like there would be for tcp connections).\n\u003e \n\u003e I was expecting to find a modbus application service that would handle all modbus serial communications, including framing messages, calculating and verifying PDU CRCs.  I expected the application to have layers or some kind of async or coroutine processing that would send messages polling sensor readings, and later arbitrate for access to firmware.  While I could see a service implementing the messaging layer and handing off interpreting message results it seems like this would be repeating ipmi on something that has a relatively high, constant periodic and time sensitive data rate.  \n\u003e \n\u003e I suppose there could be a message injection/ response api added to the main sensor application (and such an interface might be useful as a debug tool for exploration) but I expected the sensors, device specific firmware update, and device detection would be driven by code in a common application managing the modbus.\n\u003e \n\u003e I guess implementing a TCP gateway would provide this multiplexer but that is explicitly beyond this first proposal (and would imply additional context switching and data copying).\n\nI have mentioned in the TOF issue that all the mentioned D-Bus services (Inventory, Sensors, FW Update, Dump Services) are going to be part of the same daemon and how those services would handle/arbitrate the access to the Modbus serial link is mentioned in \"Handle Modbus RTU serial link limitations\".\n\nFor Modbus access there is ModbusLibrary in openembedded which is one possible option to use.",
+      "parentUuid": "41244d3f_dd4dd0e8",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e62f3d7_0dccdbf5",
         "filename": "designs/modbus-based-inventory.md",
         "patchSetId": 4
