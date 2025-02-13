@@ -2,7 +2,7 @@
 
 Author: Zhichuang Sun
 
-Other contributors: Jerome Glisse, Ed Tanous
+Other contributors: Jerome Glisse, Ed Tanous, Manojkiran Eda
 
 Created: June 27th, 2023 Last Updated: Oct 30th, 2023
 
@@ -114,13 +114,21 @@ be MCTP, PCIe-DOE, or even TCP socket. For MCTP, the lower physical layer can be
 PCI-VDM, SMBus/I2C, and so on. Note,
 [`libspdm` already provides transport layer protocol binding](https://github.com/DMTF/libspdm/blob/main/include/internal/libspdm_common_lib.h#L445-L446)
 with message encoding/decoding support. The device send/receive function is left
-for SPDM daemon to implement If the transport layer is using standard MCTP or
-PCIe-DOE, setting up the transport layer connection could be easy. In this
-design, we only consider SPDM over standard MCTP and PCIe-DOE connection.
+for SPDM daemon to implement If the transport layer is using standard MCTP,
+PCIe-DOE, or TCP setting up the transport layer connection could be easy. In
+this design, we only consider SPDM over standard MCTP,TCP & PCIe-DOE connection.
 
 For SPDM-over-MCTP, SPDM daemon can query the mctpd for information about MCTP
 endpoint, including the endpoint id(eid) and upper layer responder, and create a
 connection only for endpoint that has SPDM as its upper layer responder.
+
+For SPDM-over-TCP, SPDM daemon can query phosphor-networkd for information about
+TCP endpoints, including the neighbor ip address and create a connection either
+by using the reach out model (or) reach down model as stated in the [SPDM over
+TCP specification][spdm-tcp-spec]
+
+[spdm-tcp-spec]:
+  https://www.dmtf.org/sites/default/files/standards/documents/DSP0287_1.0.0.pdf
 
 For SPDM-over-PCIe-DOE, SPDM daemon need the PCIe device BDF to handle DOE
 mailbox discovery. Given that not all PCIe devices support DOE support SPDM, we
@@ -155,23 +163,31 @@ up a connection with the SPDM-capable endpoints to get certificates and
 measurements. For signals sent before SPDM daemon launches, SPDM daemon should
 query the `mctpd` for any detected endpoints after it gets launched.
 
+For Network based device detection , SPDM daemon would monitor for
+`InterfacesAdded` signal provided by `xyz.openbmc_project.Network.Neighbor`
+interface, which exposes the `IP address` & `MAC Address` of the neighbor
+endpoint. For signals sent before SPDM daemon launches, SPDM daemon should query
+the `phosphor-networkd` for any detected endpoints after it gets launched.
+
 Below is a high-level diagram showing the relationship between different
 components.
 
 ```
-    +------+            +---------+
-    |Client|            |Inventory|
-    +--+---+            |Manager  |
-       |                +---^-----+           +-------+
-       |                    |                 |PCIe   |
-    +--v---+            +---+---+------------>|Device |
-    |BMCWeb+----------->|SPDM   |             +-------+
-    +------+            |Daemon |
-                        +---+---+------------>+-------+
-                            |                 |MCTP   |
-                        +---v---+             |Device |
-                        |mctpd  |             +-------+
-                        +-------+
+   +------+            +---------+        +-------+
+   |Client|            |Inventory|        |PCIe   |
+   +--+---+            |Manager  |        |Device |
+      |                +---^-----+        +--^----+
+      |                    |                 |
+   +--v---+            +---+---+             |     +---------+
+   |BMCWeb+----------->|SPDM   |-------------+-----> Network |
+   +------+            |Daemon |             |     | Device  |
+                       +---+---+             |     +---------+
+                           |                 |
+                 +----------------+       +--v----+
+                 |                |       |MCTP   |
+        +--------v--------+   +---v---+   |Device |
+        |phosphor-networkd|   |mctpd  |   +-------+
+        +-----------------+   +-------+
 ```
 
 A reference D-Bus Daemon workflow would be like this:
@@ -181,11 +197,12 @@ A reference D-Bus Daemon workflow would be like this:
    for SPDM daemon.
 1. Check transport layer protocol. For MCTP, it queries mctpd to gather all eids
    that support SPDM; For PCIe-DOE, it performs DOE mailbox discovery with the
-   PCIe device ID.
-2. For each endpoint, which could be MCTP or PCIe-DOE, SPDM daemon query Entity
-   Manger for the matching trusted component configuration. It then creates and
-   initializes the corresponding D-Bus object for `TrustedComponent` and
-   `ComponentIntegrity` with device specific information.
+   PCIe device ID; For TCP, it queries phosphor-networkd to gather the
+   neighbours IP address & MAC Address.
+2. For each endpoint, which could be MCTP, PCIe-DOE or TCP, SPDM daemon query
+   Entity Manger for the matching trusted component configuration. It then
+   creates and initializes the corresponding D-Bus object for `TrustedComponent`
+   and `ComponentIntegrity` with device specific information.
 3. Create the associations between the above objects and associations with other
    objects, e.g., protected components, active software images;
 4. Set up a connection between the BMC and each SPDM-capable device;
@@ -194,6 +211,44 @@ A reference D-Bus Daemon workflow would be like this:
 7. Create device certificate objects and create certificate associations for
    trusted component object and component integrity object.
 8. Wait on D-Bus and serve any runtime `SPDMGetSignedMeasurements` requests.
+
+### BMC self Measurements
+
+In a hardware security architecture, a Baseboard Management Controller (BMC) can
+also be considered as a device with its own security mechanisms. A BMC may
+interact with its dedicated Root-of-Trust (RoT) component, such as a Trusted
+Platform Module (TPM), to retrieve cryptographic certificates and platform
+measurement data stored in Platform Configuration Registers (PCRs) and expose
+its own measurements to external world via redfish.
+
+```
+
+    +------------------------------+
+    |                              |
+    |    BMC                       |
+    |                              |
+    | +--------+     +----------+  |     +--------+
+    | | spdm   |     |          |  |     |        |
+    | |Daemon  <-----| bmcweb   |------->| Client |
+    | +--------+     |          |  |     |        |
+    |     |          +----------+  |     +--------+
+    |     |                        |
+    |     |tpm2-tss                |
+    |     |                        |
+    | +---v----+                   |
+    | |        |                   |
+    | |  TPM   |                   |
+    | +--------+                   |
+    |                              |
+    +------------------------------+
+
+```
+
+The SPDM daemon running on the BMC can interact with a TPM 2.0 (Trusted Platform
+Module) using the [TPM2-TSS][tpm2-tss] (Trusted Software Stack) by leveraging
+its standardized API interfaces to retrieve certificates and measurement data.
+
+[tpm2-tss]: https://github.com/tpm2-software/tpm2-tss
 
 ### Device Certificate
 
@@ -297,6 +352,8 @@ For the SPDM Attestation D-Bus Daemon, unit tests should cover the following
 cases:
 
 - Set up a transport layer connection with the device.
+- Unit tests should be implemented to ensure the infrastructure functions
+  reliably, regardless of the underlying transport mechanisms.
 - SPDM connection setup, including get capabilities, negotiate algorithms.
 - Get device certificates from device and create D-Bus object.
 - `SPDMGetSignedMeasurements` method test.
