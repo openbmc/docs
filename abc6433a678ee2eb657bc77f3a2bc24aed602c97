@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec320861_747dd465",
+        "filename": "designs/code-update.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T19:41:05Z",
+      "side": 1,
+      "message": "Got it, understood the reasoning behind not pursuing with EM.\n\nThe comment\u0027s intention is PLDM patch is using config JSON for pre and post and it is not documented here. \n\nhttps://gerrit.openbmc.org/c/openbmc/pldm/+/76704/20/configurations/fw-update-conditions/yv4.json",
+      "parentUuid": "45d64423_f18dc4e9",
+      "range": {
+        "startLine": 259,
+        "startChar": 28,
+        "endLine": 260,
+        "endChar": 32
+      },
+      "revId": "abc6433a678ee2eb657bc77f3a2bc24aed602c97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0d48b190_94679d98",
         "filename": "designs/code-update.md",
         "patchSetId": 10
@@ -113,6 +137,24 @@
       "side": 1,
       "message": "We named it \u003cDeviceName\u003e_XXX, so we don\u0027t have to rely on any external source to specify it, but implicitly derive it from actual device name (I have captured in doc what does DeviceName map to).\n\nThe whole intent of these hooks is that they are device specific (otherwise they would have been in common code). But one can also say they can be common for some devices, as you brought it up. Do you have any specific use case in mind for it being common for some devices?\n\nAs a solution for your ask, which is around code reuse for common stuff one can also install the same service (via meson) with different names which can be easily achieved in openbmc/openbmc repo where most of platform specific stuff resides. \n\nPlease let me know your thoughts.",
       "parentUuid": "0d48b190_94679d98",
+      "revId": "abc6433a678ee2eb657bc77f3a2bc24aed602c97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cec410f_09ff5f4c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T19:41:05Z",
+      "side": 1,
+      "message": "\u003eDo you have any specific use case in mind for it being common for some devices?\n\n1. Chassis power on/off is a common case before the start of the update.\n2. Reset the device after the update using GPIO pin reset.\n\nCan `Device Name` be chassis object name? For eg: if the associated chassis for the component is CPLD_0, CPLD_0_PreUpdate.service etc.\n\nAlso if there are multiple components for a device, is this design flexible to have pre and post after all the components like:\n\n1. PreUpdate.service\n2. Component 1 update\n3. Component 2 update\n4. Component n update\n5. Postupdate.seervice",
+      "parentUuid": "b5bd0c8a_7f3aef9c",
       "revId": "abc6433a678ee2eb657bc77f3a2bc24aed602c97",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -154,6 +196,30 @@
       "side": 1,
       "message": "Yes, pre and post conditions are optional but at the same time there was a ask brought up by @alexander.hansen@9elements.com quoted below -\n\n\"\n the user has setup a service and then there is no response from the code updater and unclear if the code updater knows about the service. Since those services will be an interface also for downstream.\n \"\n \nSo, to accommodate this + the optional part at same time, a middle ground was needed. And that middle ground is this warning message to warn the user that a pre/post service hasn\u0027t been run that they might have implemented. This shouldn\u0027t break the flow but warn the user in case they debug via journalctl.",
       "parentUuid": "85d251ba_de84faf5",
+      "range": {
+        "startLine": 279,
+        "startChar": 53,
+        "endLine": 279,
+        "endChar": 60
+      },
+      "revId": "abc6433a678ee2eb657bc77f3a2bc24aed602c97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b04f545_5fb3fac1",
+        "filename": "designs/code-update.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T19:41:05Z",
+      "side": 1,
+      "message": "\u003ethere is no response from the code updater\nWhat is that code updater has to respond for in this case?\n\n\u003eunclear if the code updater knows about the service.\nGetUnitFileState to know if a service exists and StartUnit/JobRemoved to watch the lifetime of pre and post service. * What is that code updater doesn\u0027t know about*\n\nWarning is misleading if GetUnitFileState says a service doesn\u0027t exist, if there are failures in starting/completion then it is acceptable.\n\nHow will be the RF update task be updated if the pre or post service fails?",
+      "parentUuid": "c290a1c4_42134529",
       "range": {
         "startLine": 279,
         "startChar": 53,
