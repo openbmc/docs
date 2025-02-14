@@ -34,11 +34,12 @@ Add Keys to OpenBMC's Gerrit Server:
 - Your information should be auto-filled, so click "Next".
 - If successful you should see a blank screen, feel free to exit out.
 
-**NOTE** If you receive a "Not found" error while trying to add the keys to Gerrit
-you can add them manually:
+**NOTE** If you receive a "Not found" error while trying to add the keys to
+Gerrit you can add them manually:
 
 - Login to [Gerrit](https://gerrit.openbmc.org/)
-- Enter your public SSH key created before in Settings -> SSH Keys -> New SSH key
+- Enter your public SSH key created before in Settings -> SSH Keys -> New SSH
+key
 - Click on "ADD NEW SSH KEY"
 - If succesfull you should see your public key added and with the status "Valid"
 
