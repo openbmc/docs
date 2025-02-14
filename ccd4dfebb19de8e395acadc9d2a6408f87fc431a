@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e3f49ad_5d5a502c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T05:17:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e750f391_c178c698",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "431e17e8_6592ec60",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-10T23:59:48Z",
       "side": 1,
       "message": "I don\u0027t agree that its not supported. I already provided 2 solutions via our discord conversation earlier -\n\n1. Multipart PLDM Image with Target List supplied - BMCWeb sends the image to individual updater backends by using the Target List (invoked using Update Interface). Based on relevant component descriptors, backends will process the image.\n2. Multipart PLDM Image with no Target List supplied - BMCWeb can discover all update interfaces and send the image to all updater backend. If the backend can parse the image and the package contains the image applicable to it (based on descriptor), it will process it, otherwise it would be dropped.\n\nSo, i think you have to specifically state why above doesn\u0027t work for you which clarifies why you are looking for a different solution.",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08a4a171_e91dc1df",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T05:17:32Z",
+      "side": 1,
+      "message": "\u003eIf the backend can parse the image and the package contains the image applicable to it (based on descriptor), it will process it, otherwise it would be dropped.\n\nThis wouldn\u0027t work for us, we are relying on PLDM packaging as a single package for PLDM and Non-PLDM devices, we cannot expect all code updaters to rewritten or mandated implement PLDM package parsing, this is highlighted in the problem statement. [1]. Code updaters dropping is also not an options.\n\n[1] *5.3 Not all code updaters can be expected to interpret PLDM package format,\nso forwarding the PLDM package to every code updater is not feasible.*",
+      "parentUuid": "431e17e8_6592ec60",
       "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1381c5d_48520010",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T05:17:32Z",
+      "side": 1,
+      "message": "With the current design if multiple targets are passed for update API would it return a single RF task or multiple RF tasks? Our requirement is to return a single RF task.\n\nhttps://github.com/openbmc/docs/blob/master/designs/code-update.md#proposed-end-to-end-flow",
+      "parentUuid": "e0f60fee_818aab8b",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "18b5aff3_00dccbee",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -65,6 +119,24 @@
       "writtenOn": "2025-02-10T23:59:48Z",
       "side": 1,
       "message": "This is intentional and are not suppose to be forwarded. BMCWeb is suppose to discover the update interface and trigger the update directly by passing image and other attributes.",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9647d733_987a543c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T05:17:32Z",
+      "side": 1,
+      "message": "This is discussed in an earlier comment and closure will be tracked there, marking it as resolved.",
+      "parentUuid": "18b5aff3_00dccbee",
       "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e7e16e4a_551891f0",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T05:17:32Z",
+      "side": 1,
+      "message": "This is a combination problem with a single PLDM package for all devices, but all code updaters cannot be expected to support PLDM package format. code-update manager has to offload the component image to these code updaters, skipping is not an option.",
+      "parentUuid": "2fda2d7a_a4bebc91",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e77d0d7_8062d5b9",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -99,6 +189,24 @@
       "writtenOn": "2025-02-11T07:54:21Z",
       "side": 1,
       "message": "\"Provides update method, modified to include \u003cbr\u003e Targets,\"\n\nAlready mentioned above the Update DBus interface doesn\u0027t include the Targets as an arg as this interface already gets implemented on the specific software object path as all other interfaces below.",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7022ee1e_355f14a3",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T05:17:32Z",
+      "side": 1,
+      "message": "This is discussed in an earlier comment regarding Targets and closure will be tracked there, marking it as resolved.",
+      "parentUuid": "8e77d0d7_8062d5b9",
       "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -122,6 +230,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c00ec746_f16d7eae",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T05:17:32Z",
+      "side": 1,
+      "message": "I think this contradicts the existing design in multi-part section, where the Update interface is associated with the CodeUpdater by creating a logical firmware object, the difference being only in semantics.\n\nhttps://github.com/openbmc/docs/blob/master/designs/code-update.md#multi-part-images",
+      "parentUuid": "e68770c2_0ca3d8d5",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26d2a3a1_9da9fca7",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -139,6 +265,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5551d8aa_b54d7af7",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T05:17:32Z",
+      "side": 1,
+      "message": "As a starting proposal, it would be an empty interface with no properties. Further revisions can be tracked through PDI interface review.",
+      "parentUuid": "26d2a3a1_9da9fca7",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "943f8d9e_44b73cc8",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -150,6 +294,24 @@
       "writtenOn": "2025-02-11T07:54:21Z",
       "side": 1,
       "message": "How does the BMCWeb will know if the request should go to regular flow or this new flow? Are you suggesting both the flows won\u0027t co-exist at runtime?",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afd249f6_8b1aa2f6",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T05:17:32Z",
+      "side": 1,
+      "message": "The proposal suggests that both flows co-exist, I can highlight that in the next revision of the proposal.",
+      "parentUuid": "943f8d9e_44b73cc8",
       "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

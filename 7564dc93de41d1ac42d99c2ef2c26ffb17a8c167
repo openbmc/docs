@@ -283,6 +283,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7efebd19_5f27edff",
+        "filename": "designs/code_update_design_new.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-14T05:17:32Z",
+      "side": 1,
+      "message": "1. In the multi-part image section [1], the proposal is to have a logical firmware device as the target, if there are multiple components how can one of the components be updated with a single package (containing multiple components)? I think we are lacking in the current design for this usecase with a single package.\n\n*While performing the firmware device update, the client may target the logical firmware device which further knows how to update the corresponding child components for supplied component images.[1] https://github.com/openbmc/docs/blob/master/designs/code-update.md#multi-part-images*\n\n2. If the bmcweb has to offload to code-update-manager as described in this proposal, it would need to pass the update arguments like package, force update and Targets. If Targets has to be a separate interface, we can explore that possibility.",
+      "parentUuid": "dcba529a_2438e30a",
+      "revId": "7564dc93de41d1ac42d99c2ef2c26ffb17a8c167",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c09e5533_6db15e41",
         "filename": "designs/code_update_design_new.md",
         "patchSetId": 5
