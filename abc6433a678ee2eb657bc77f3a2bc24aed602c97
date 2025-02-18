@@ -185,6 +185,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81434a48_4ee6c2fc",
+        "filename": "designs/code-update.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-18T00:35:20Z",
+      "side": 1,
+      "message": "\u003e \u003eDo you have any specific use case in mind for it being common for some devices?\n\u003e \n\u003e 1. Chassis power on/off is a common case before the start of the update.\n\u003e 2. Reset the device after the update using GPIO pin reset.\n\nNot sure what you mean by chassis power on/off here, probably you are referring to the host? If yes, then both the #1 and #2 have been considered for the design.\n\n\u003e \n\u003e Can `Device Name` be chassis object name? For eg: if the associated chassis for the component is CPLD_0, CPLD_0_PreUpdate.service etc.\n\n`Device Name` maps to `ASCII Model` of downstream device in case of PLDM device. Thats how the plan is to compute the Pre and Post conditions implicitly. If you want to use arbitrary names for pre/post conidtions, then we have to go back to my original proposal of defining the JSON configuration so platform can specify it and CodeUpdater can parse (since we cannot specify it in EM as already discussed) and create this state for which condition to invoke for which kind of device. Seems like thats what you are looking for?\n\n\u003e \n\u003e Also if there are multiple components for a device, is this design flexible to have pre and post after all the components like:\n\u003e \n\u003e 1. PreUpdate.service\n\u003e 2. Component 1 update\n\u003e 3. Component 2 update\n\u003e 4. Component n update\n\u003e 5. Postupdate.seervice\n\nI am not imposing any restriction in this patch on why you cannot have it.",
+      "parentUuid": "2cec410f_09ff5f4c",
+      "revId": "abc6433a678ee2eb657bc77f3a2bc24aed602c97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85d251ba_de84faf5",
         "filename": "designs/code-update.md",
         "patchSetId": 10
@@ -244,6 +262,30 @@
       "side": 1,
       "message": "\u003ethere is no response from the code updater\nWhat is that code updater has to respond for in this case?\n\n\u003eunclear if the code updater knows about the service.\nGetUnitFileState to know if a service exists and StartUnit/JobRemoved to watch the lifetime of pre and post service. * What is that code updater doesn\u0027t know about*\n\nWarning is misleading if GetUnitFileState says a service doesn\u0027t exist, if there are failures in starting/completion then it is acceptable.\n\nHow will be the RF update task be updated if the pre or post service fails?",
       "parentUuid": "c290a1c4_42134529",
+      "range": {
+        "startLine": 279,
+        "startChar": 53,
+        "endLine": 279,
+        "endChar": 60
+      },
+      "revId": "abc6433a678ee2eb657bc77f3a2bc24aed602c97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8632ea13_a5222da5",
+        "filename": "designs/code-update.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-18T00:35:20Z",
+      "side": 1,
+      "message": "\u003e \u003ethere is no response from the code updater\n\n\u003e What is that code updater has to respond for in this case?\n\nMy understanding of what @alexander.hansen@9elements.com meant by this is if the CodeUpdater doesn\u0027t execute the pre/post service even though the service has specified and packaged it, so some signal is needed in that case to show the service didn\u0027t run.\n\n\u003e \n\u003e \u003eunclear if the code updater knows about the service.\n\u003e GetUnitFileState to know if a service exists and StartUnit/JobRemoved to watch the lifetime of pre and post service. * What is that code updater doesn\u0027t know about*\n\u003e \n\u003e Warning is misleading if GetUnitFileState says a service doesn\u0027t exist, if there are failures in starting/completion then it is acceptable.\n\nCodeUpdater has no info if the service exists or not, as its discovered at runtime using GetUnitFileState (ServiceName created implicitly using `Device Name`), a signal is given to the user if the service is not found, which is using this warning message. The failure is an error condition, which would actually fail the update.\n\n\u003e \n\u003e How will be the RF update task be updated if the pre or post service fails?\n\nIf Pre/Post condition exists, then for ApplyTime \u003d\u003d Immediate, any failure in Pre/Post will cause ActivationStatus failure which accordingly update the RF state. For ApplyTime \u003d\u003d OnReset, only pre condition applies and any failure in that will mark the ActivationStatus as failed, which accordingly update the RF state.\nOn how ActivationStatus gets handled in BMCWeb, you can refer to UpdateService in BMCWeb.\n\n\n@rushtotom@gmail.com I think i have answered your questions to much depth, so i am marking this one as resolved. Your main question was around Warning message, so if that is still a concern, we need to move to the JSON configuration specified by CodeUpdater (so it can be known before hand if a pre/post condition is expected and handle it accordingly) which we are already discussing here https://gerrit.openbmc.org/c/openbmc/docs/+/75500/comment/0d48b190_94679d98/. So, lets move the conversation to that thread.",
+      "parentUuid": "0b04f545_5fb3fac1",
       "range": {
         "startLine": 279,
         "startChar": 53,
