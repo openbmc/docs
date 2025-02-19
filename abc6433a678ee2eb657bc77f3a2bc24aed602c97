@@ -221,6 +221,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8b99d81_326b5c95",
+        "filename": "designs/code-update.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-19T19:16:48Z",
+      "side": 1,
+      "message": "\u003e I think the JSON configuration is a preferable option, that gives flexibility and also define clearly if the pre/post is at device or at component level.\n\u003e \n\nWill make change and revert back to original proposal.\n\n\u003e This option can flag as warning when a service file doesn\u0027t exist, which is defined in the config.\n\nIf the pre service is not found but was specified in config, thats an Error and not a Warning as we are bound to run it if specified. As its name states, pre will set stage for update and update is most likely to fail if that specified condition is not run. Now, if you don\u0027t want to run a pre condition, simply don\u0027t specify it in the config (thats what is the meaning of optional). I would prefer to fail early and state the reason.\n\n\u003e \n\u003e The implicit option is not generic and serves only a particular combination of IANA/ASCII model and ambiguous when there are multiple components.",
+      "parentUuid": "2758d858_f50e97f3",
+      "revId": "abc6433a678ee2eb657bc77f3a2bc24aed602c97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85d251ba_de84faf5",
         "filename": "designs/code-update.md",
         "patchSetId": 10
