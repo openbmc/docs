@@ -355,6 +355,30 @@
       },
       "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7071c56e_1c8c9333",
+        "filename": "designs/cable-monitor.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-25T09:56:18Z",
+      "side": 1,
+      "message": "JFYI: I am not familiar with the fan flow, but we have no implicit way to figure out i am in which kind of rack (not chassis) and the same BMC image gets used in all the racks. So, we would be relying on cable-config.json to figure out which ports are connected for rackX.\n\nAs stated in design the purpose of this daemon is -\n\n1. Get -- Expected Connected Cables -- from --\u003e cable-config.json\n2. Get -- Cable Inventory ------------ from --\u003e EntityManager\n3. Diff \u003d #2 minus #1\n4. Generate Cable events for Diff in Step3.\n5. Generate/Resolve the CableEvents based on Cable Inventory changes.\n\nCurrently, in EM there is no way to specify #1, but there is for #2 and thats where #2 will be specified (in Meta case via GPIO HW Inventory for cables).\n\nI am putting this in dbus-sensors as i was asked so as per https://github.com/openbmc/technical-oversight-forum/issues/43.",
+      "parentUuid": "dbc804fc_a6727468",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 3
+      },
+      "revId": "50a3b39fa197a9f1bf515af87c4cc4a443bc2aa1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
