@@ -16,6 +16,24 @@
       "message": "Instead of using PLDM descriptors, can the device be the leaf of the chassis? The reason being that we can separate this from the PLDM semantics and rely on OpenBMC constructs. It will be hard to write generic code if multiple descriptors are part of the PLDM device and which one would match to the identifier.\n\n\"/xyz/openbmc_project/chassis/CPLD_0\"\n\"Identifier\": \"CPLD_0\"\n\nSimilarly for components:\n\n\n\"/xyz/openbmc_project/software/SW_CPLD_0\"\n\"Identifier\": \"SW_CPLD_0\"",
       "revId": "3ad1bbed3a4b08c4c2b5a1269ebc3911eab6b3de",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "101f5800_5975fc9e",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-25T18:56:14Z",
+      "side": 1,
+      "message": "\u003e Instead of using PLDM descriptors, can the device be the leaf of the chassis? \n\nI am not sure what you mean by \"device be the leaf of the chassis\"?\nIf you are saying that only the device can be upateable and not individual components, then that is the use case we have to support for Meta and its part of original design too.\n\n\u003e The reason being that we can separate this from the PLDM semantics and rely on OpenBMC constructs. \n\nIf you are concerned about using word Component, then the other option could be slice, but component sounds better as slice is more networking specific.\n\n\u003e It will be hard to write generic code if multiple descriptors are part of the PLDM device and which one would match to the identifier.\n\u003e \n\u003e \"/xyz/openbmc_project/chassis/CPLD_0\"\n\nFrom where are you getting this \"CPLD_0\"? It has come from the downstream device query which is going to map to one of the descriptors, isn\u0027t it?\n\n\n\u003e \"Identifier\": \"CPLD_0\"\n\u003e \n\u003e Similarly for components:\n\u003e \n\nI have mapped it only to Component Identifier in case of component.\n\n\u003e \n\u003e \"/xyz/openbmc_project/software/SW_CPLD_0\"\n\u003e \"Identifier\": \"SW_CPLD_0\"",
+      "parentUuid": "21f464e9_5d11d2bd",
+      "revId": "3ad1bbed3a4b08c4c2b5a1269ebc3911eab6b3de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
