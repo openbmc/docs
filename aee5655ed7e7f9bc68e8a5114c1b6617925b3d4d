@@ -295,6 +295,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cb4885c_f56bf870",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-02-26T08:52:49Z",
+      "side": 1,
+      "message": "Yes, I am okay with predefined handles too. Just wanted to give the flexibility to the companies to decide which handles they want to assign for what purpose.",
+      "parentUuid": "5a9658cb_f899594d",
+      "range": {
+        "startLine": 157,
+        "startChar": 60,
+        "endLine": 158,
+        "endChar": 71
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14d76ea8_e0351cc5",
@@ -532,6 +556,30 @@
       "side": 1,
       "message": "can we have TPM file handle generate and host on PCM D-bus object which can be used by BMCWEB to retrieve/replace certificate or private key in TPM2?",
       "parentUuid": "bf6bff92_00b8d0a0",
+      "range": {
+        "startLine": 282,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 12
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3a1f568_c3b2c5ba",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-02-26T08:52:49Z",
+      "side": 1,
+      "message": "\u003e can we have TPM file handle generate and host on PCM D-bus object which can be used by BMCWEB to retrieve/replace certificate or private key in TPM2?\n\nNope, that\u0027s not possible (atleast IMO). Reading the key from TPM provider returns a pointer to [EVP_PKEY](https://docs.openssl.org/3.0/man3/EVP_PKEY_new/#synopsis) structure \u0026 also openssl tracks the refcounts to that PKEY structure. I am not sure if exposing that data over dbus is a good idea.",
+      "parentUuid": "f9dc99ea_800c8d0d",
       "range": {
         "startLine": 282,
         "startChar": 0,
