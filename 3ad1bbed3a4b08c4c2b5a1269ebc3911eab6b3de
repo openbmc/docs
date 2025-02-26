@@ -34,6 +34,24 @@
       "parentUuid": "21f464e9_5d11d2bd",
       "revId": "3ad1bbed3a4b08c4c2b5a1269ebc3911eab6b3de",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beee8607_768132c7",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-02-26T17:58:19Z",
+      "side": 1,
+      "message": "I will rewrite the comment, to clear the confusion created :-)\n\nThe hierarchy looks fine. Device -\u003e Components. It works for me.\n\nMy feedback is regarding the Identifier for Device \u0026 Components. In the implementation for CodeUpdater irrespective of whether it is PLDM or Non-PLDM, the CodeUpdater knows the device and components it is updating. The CodeUpdater needs to know which is the \"Identifier\" to look in the configuration to see whether something applicable for itself. \n\nMy suggestion is that the \"Identifier\" for devices and components should match to how it modelled on OpenBMC. So a *Device* is modelled as D-Bus object in the /xyz/openbmc_project/chassis namespace implementing inventory interfaces and *Component* is modelled as D-Bus object in xyz/openbmc_project/software namespace implementing the SW.Version interface. Since the CodeUpdater is aware of the device and respective components it is updating, it can look up the configuration based on that.",
+      "parentUuid": "101f5800_5975fc9e",
+      "revId": "3ad1bbed3a4b08c4c2b5a1269ebc3911eab6b3de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
