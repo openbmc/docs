@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16ea2eb5_3cc6b6ef",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-28T00:35:09Z",
+      "side": 1,
+      "message": "\u003e \u003eIf the backend can parse the image and the package contains the image applicable to it (based on descriptor), it will process it, otherwise it would be dropped.\n\u003e \n\u003e This wouldn\u0027t work for us, we are relying on PLDM packaging as a single package for PLDM and Non-PLDM devices, we cannot expect all code updaters to rewritten or mandated implement PLDM package parsing, \n\nAs i understand correctly in your downstream solution the individual code updaters works on passed in binary blobs (Extracted from PLDM package). So, the main rationale for the new updater is because you don\u0027t want to change the downstream code?\nAlso, how does these code updaters connect to the entity which parses the PLDM package, is it part of same daemon (as Updater) or via D-bus ?\n \n\n\u003e this is highlighted in the problem statement. [1]. Code updaters dropping is also not an options.\n\u003e \n\u003e [1] *5.3 Not all code updaters can be expected to interpret PLDM package format,\n\u003e so forwarding the PLDM package to every code updater is not feasible.*\n\nJust to be clear here Code Updater is not just the entity which acts on binary blob, there is some infra that needs to act before that (Parsing Package, creating interfaces etc), which can be the common code written for non-PLDM devices.",
+      "parentUuid": "08a4a171_e91dc1df",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e0f60fee_818aab8b",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "With the current design if multiple targets are passed for update API would it return a single RF task or multiple RF tasks? Our requirement is to return a single RF task.\n\nhttps://github.com/openbmc/docs/blob/master/designs/code-update.md#proposed-end-to-end-flow",
       "parentUuid": "e0f60fee_818aab8b",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f534a6f_7d1ca379",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-28T00:35:09Z",
+      "side": 1,
+      "message": "\u003e With the current design if multiple targets are passed for update API would it return a single RF task or multiple RF tasks? \n\nThis was discussed with Redfish Forum https://redfishforum.com/post/4045 and the options are mentioned there. \n1. Single Task.\n2. Parent Task with bunch of SubTasks with SubTasks messages flowing to ParentTask.\n\nI had started discussion on discord for this, but it was de-prioritized for single device update feature development.\n\n\u003e Our requirement is to return a single RF task.\n\nAny specific reason for this requirement?\n\nAs mentioned by MichaelR in the post above, all the messages from child shall flow to parent, so i think you should be covered there, in case of option#2 as well.\n\u003e \n\u003e https://github.com/openbmc/docs/blob/master/designs/code-update.md#proposed-end-to-end-flow",
+      "parentUuid": "a1381c5d_48520010",
       "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -178,6 +214,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c5bc1a7_0f4572e3",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-28T00:35:09Z",
+      "side": 1,
+      "message": "\u003e This is a combination problem with a single PLDM package for all devices, but all code updaters cannot be expected to support PLDM package format. code-update manager has to offload the component image to these code updaters, skipping is not an option.\n\nI am not saying \"all code updaters cannot be expected to support PLDM package format\", but the updater needs to understand some imaging format, so it can do some validations otherwise it will start updating without any validations.",
+      "parentUuid": "e7e16e4a_551891f0",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e77d0d7_8062d5b9",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -248,6 +302,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db71a517_f15800cb",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-28T00:35:09Z",
+      "side": 1,
+      "message": "\u003e I think this contradicts the existing design in multi-part section, where the Update interface is associated with the CodeUpdater by creating a logical firmware object, the difference being only in semantics.\n\u003e \n\u003e https://github.com/openbmc/docs/blob/master/designs/code-update.md#multi-part-images\n\n\"the difference being only in semantics.\" Can you clarify on this?",
+      "parentUuid": "c00ec746_f16d7eae",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26d2a3a1_9da9fca7",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -277,6 +349,24 @@
       "side": 1,
       "message": "As a starting proposal, it would be an empty interface with no properties. Further revisions can be tracked through PDI interface review.",
       "parentUuid": "26d2a3a1_9da9fca7",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "018b91e2_5a5bafad",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-28T00:35:09Z",
+      "side": 1,
+      "message": "\u003e As a starting proposal, it would be an empty interface with no properties. Further revisions can be tracked through PDI interface review.\n\nFor the design clarity we need to understand what the PDI interface looks like as i have been asked for it in past. Can you please raise a gerrit PR even if its an empty interface along with the service names and object path specifications and include it in design.",
+      "parentUuid": "5551d8aa_b54d7af7",
       "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

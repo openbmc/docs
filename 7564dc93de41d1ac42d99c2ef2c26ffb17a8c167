@@ -301,6 +301,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d23c62f9_69adbe67",
+        "filename": "designs/code_update_design_new.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-28T00:35:09Z",
+      "side": 1,
+      "message": "\u003e 1. In the multi-part image section [1], the proposal is to have a logical firmware device as the target, if there are multiple components how can one of the components be updated with a single package (containing multiple components)? \n\nThe TargetURIs shall contain the FirmwareInventory targetURI for the component, client wants to update. The BMCWeb will call the StartUpdate interface on the specific target(device/component) based on TargetURI. For BMCWeb its just another target, doesn\u0027t matter if its a component or device.\n\n\u003e I think we are lacking in the current design for this usecase with a single package.\n\u003e \n\u003e *While performing the firmware device update, the client may target the logical firmware device which further knows how to update the corresponding child components for supplied component images.[1] https://github.com/openbmc/docs/blob/master/designs/code-update.md#multi-part-images*\n\n\n\u003e \n\u003e 2. If the bmcweb has to offload to code-update-manager as described in this proposal, it would need to pass the update arguments like package, force update and Targets. \n\nThe Redfish Target URI list cannot be passed further as they get terminated at BMCWeb. The list of D-Bus objectPaths for the updateable targets where the StartUpdate interface resides needs to be passed further.\n\nForceUpdate, Package are generic properties whereas TargetURI is redfish specific property.\n\n\u003e If Targets has to be a separate interface, we can explore that possibility.\n\nThat could be one of the possible options, so we can discuss and explore. Can you please raise gerrit PRs for all the DBus interfaces you are proposing and provide reference in the design, that way it will become clear what are the properties and their corresponding types, service object paths etc.",
+      "parentUuid": "7efebd19_5f27edff",
+      "revId": "7564dc93de41d1ac42d99c2ef2c26ffb17a8c167",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c09e5533_6db15e41",
         "filename": "designs/code_update_design_new.md",
         "patchSetId": 5
