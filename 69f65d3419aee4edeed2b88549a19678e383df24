@@ -16,6 +16,75 @@
       "message": "There is also this pending design which has a lot of overlap. \n https://gerrit.openbmc.org/c/openbmc/docs/+/75641 ... honestly, it is very frustrating that nvidia reviewers have moved so slow on the Meta proposal and now you\u0027re proposing your own thing that is similar but different.\n \nPlease at least reference existing art and indicate why we want to go with this approach.",
       "revId": "69f65d3419aee4edeed2b88549a19678e383df24",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77c81c81_f2dc2dc1",
+        "filename": "designs/redfish-event-aggregation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-03-04T20:04:10Z",
+      "side": 1,
+      "message": "How do we handle Message Registries from the SMC?\n\nThere are a few bit issues I see:\n\n- SMC has its own set of Registries from the BMC, such as OEM registries from the SMC vendor.  How does the BMC aggregate so that these registries can be obtained from the vendor?\n\n- What happens if for some reason the SMC has advertised the same registry as the BMC but has different content?  The BMC is going to forward events that might not match the published registry that it gave out.\n\n- What happens if the BMC and SMC have different versions of the same registry?  This potentially has conflicting information such as the order of MessageArgs.",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "69f65d3419aee4edeed2b88549a19678e383df24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55671b84_64e41f27",
+        "filename": "designs/redfish-event-aggregation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-03-04T20:04:10Z",
+      "side": 1,
+      "message": "What about conversion of Redfish event data, such as URIs in AdditionalData arguments?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 54
+      },
+      "revId": "69f65d3419aee4edeed2b88549a19678e383df24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3af06da5_91673bb0",
+        "filename": "designs/redfish-event-aggregation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-03-04T20:04:10Z",
+      "side": 1,
+      "message": "How is the subscription configured?\n\nSMCs often have an external \"SMC-Ready\" signal, so you can\u0027t just do this immediately upon start up.",
+      "range": {
+        "startLine": 114,
+        "startChar": 7,
+        "endLine": 114,
+        "endChar": 16
+      },
+      "revId": "69f65d3419aee4edeed2b88549a19678e383df24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
