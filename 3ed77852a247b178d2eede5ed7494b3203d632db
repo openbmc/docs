@@ -16,6 +16,52 @@
       "message": "@zhichuang - Thanks for the review. Asking it here since I have not got a response on the mailing list. I have sent out a note for you here:  https://lore.kernel.org/openbmc/e674332a-6956-4184-b077-39a0cc0e624d@gmail.com/T/#u\n\nIt\u0027s quite a while since the original design document was merged - but till now there is no code-drop. Do you still have plans to work on the spdm code ? Can you please take a look at my email and reply back ?",
       "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85c51fbc_f19a55db",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-03-04T19:57:39Z",
+      "side": 1,
+      "message": "This isn\u0027t clear to me how this works.  Do we have documents from phosphor-network already?\n\nI don\u0027t think we should be doing SPDM-over-TCP generically over any network interface.  You likely want this constrained to internal USB-network connections, correct?  (Or at least I think most people would).  I suspect we need some explicit configuration here.\n\nIf you are going to allow generic SPDM-over-TCP, without a known hardware connection, how do you ensure there is no man-in-the-middle and/or emulation of SPDM?  Having the ability to be tricked by some raspberrypi sitting on your network seems undesirable.",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 74
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efbeacf1_df0c0983",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-03-04T19:57:39Z",
+      "side": 1,
+      "message": "I\u0027m missing the context for this change (the whole section).  Is this a new feature?  Is it missing documentation that already existed?  It isn\u0027t clear to me.\n\nWhat does this have to do with SPDM?  Why are we putting it in the SPDM daemon rather than one specific for the local TPM?  It seems strange to me that we have a proposed SPDM daemon (which is its own protocol) and then we bolt on the side this \"oh, and it will do its own TPM too\".",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 78
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
