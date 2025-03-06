@@ -203,6 +203,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eae99fc5_2563591d",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2025-03-06T14:04:33Z",
+      "side": 1,
+      "message": "Who is the verifier in this scenario? Typically, the BMC serves as the verifier, collecting measurements from devices and validating them.\n\nIn the use case you described, where is the verifier located? How does the BMC interact with the TPM, and which protocol is used for this communication?\n\nI am trying to understand where SPDM communication fits into your use case. The only scenario I see is if the BMC supports another mechanism or if the RF SPDM transcript is shared.\n\nAdditionally, I haven’t thoroghly reviewed the SPDM over TCP specification but looks like you want to support SPDM over 4194 if BMC acts as SPDM Reponder.",
+      "parentUuid": "dfa38c65_cf741c32",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 78
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ab8b3db6_75cfa08f",
         "filename": "designs/redfish-spdm-attestation.md",
         "patchSetId": 3
