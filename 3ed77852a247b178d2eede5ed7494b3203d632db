@@ -108,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8f78723_949fb11c",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-06T09:11:24Z",
+      "side": 1,
+      "message": "Actually back up.   The redfish model is about representing physical and logical components of a data center as objects be manipulated through rest.\n\nThis means you should be starting your discovery with inventory objects not random reachable network endpoints just because they are reachable.\n\nIf you are trying to attest other BMCs they should start as managers and have network interfaces.  get the IP from that object.  you can decide how my much of the network switches cables and ports and switches you model before establishing the spdm session.\n\nYou don\u0027t want to identify them by MAC.  you want to ask them for their MAC address.  that\u0027s the point of IP.",
+      "parentUuid": "32a97727_8db25bf3",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 74
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "efbeacf1_df0c0983",
         "filename": "designs/redfish-spdm-attestation.md",
         "patchSetId": 3
@@ -149,6 +173,64 @@
         "endLine": 250,
         "endChar": 78
       },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfa38c65_cf741c32",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-06T09:11:24Z",
+      "side": 1,
+      "message": "so you are talking about how to implement Attestation.MeasurementSet as a responder?\n\nreading below you skipped certificate handling.\n\ndoes/should the BMC require trust in others for it\u0027s own integrity?  \n\nshould this be a separate design?  not sure but seems to need additional focus.",
+      "parentUuid": "a1bf2591_4a9b226f",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 78
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab8b3db6_75cfa08f",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-06T09:11:24Z",
+      "side": 1,
+      "message": "this doesn\u0027t apply to the cert for the BMC itself.  need to adjust.",
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f777ff68_96680b27",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-06T09:11:24Z",
+      "side": 1,
+      "message": "do you plan to code PCIe DOE? missing TCP.",
       "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
