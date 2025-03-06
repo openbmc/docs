@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e6a3157_d64a4a72",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-06T08:37:25Z",
+      "side": 1,
+      "message": "No\n\nspdm over TCP is about communication with an arbitrary remote anywhere on the network.   I didn\u0027t see any mention of physical adjacency.\n\nthe Neighbor interface referenced is about exposing the ARP table translating and IP address to the next hop (router or local subnet) Ethernet (or maybe other technologies) MAC address.   this is evident from both the interface for the entry and the possible states enumerated.\n\nedit: you recognized it as the ARP table but not the implications below.",
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85c51fbc_f19a55db",
         "filename": "designs/redfish-spdm-attestation.md",
         "patchSetId": 3
@@ -55,6 +72,30 @@
       "side": 1,
       "message": "\u003e This isn\u0027t clear to me how this works.  Do we have documents from phosphor-network already?\n\nI don\u0027t think we have any documentation as such apart from the dbus interfaces \u0026 code , a bit more information about this interface can be found at\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/16427\nhttps://github.com/openbmc/phosphor-networkd/blob/master/src/rtnetlink_server.cpp#L73\n\nphosphor-networkd has all the infrastructure to host neighbor information. It uses rtnetlink messages RTM_NEWNEIGH to discover neighbor table entries (i.e the ARP entry).\n\n\u003e \n\u003e I don\u0027t think we should be doing SPDM-over-TCP generically over any network interface.  You likely want this constrained to internal USB-network connections, correct?  (Or at least I think most people would).  I suspect we need some explicit configuration here.\n\u003e \n\nYes that\u0027s right, we don\u0027t plan on running it on any arbitrary ethernet interface. We plan on using an internal ethernet interface which is not exposed to the outside world. But that configuration need not be present in spdm daemon itself right? The neighbor interface can be selectively added for a specific interface of interest by phosphor-networkd (or) someone can use CreateStatic interface https://github.com/openbmc/phosphor-networkd/blob/master/yaml/xyz/openbmc_project/Network/Neighbor/CreateStatic.interface.yaml to configure the neighbor on a desired network interface.\n\n\n\u003e If you are going to allow generic SPDM-over-TCP, without a known hardware connection, how do you ensure there is no man-in-the-middle and/or emulation of SPDM?  Having the ability to be tricked by some raspberrypi sitting on your network seems undesirable.\n\nYes, I agree with you that we should not be running SPDM on unknown hardware in general. But even if we run, the protocol itself has all the safety incorporated in its design. SPDM is a protocol that allows devices to establish trust by validating the measurements \u0026 certificate related information that w passed. Even if someone could emulate SPDM packets, the attestation would fail because the certificates presented by Raspberry Pi fails the verification against a known CA.",
       "parentUuid": "85c51fbc_f19a55db",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 74
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32a97727_8db25bf3",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-06T08:37:25Z",
+      "side": 1,
+      "message": "\u003e RTM_NEWNEIGH to discover neighbor table entries (i.e the ARP entry).\n\nthe ARP table is not a generic IP address registry.\n\nARP is used to identify the physical address of the next hop in the IP network layer.   it\u0027s about translating router IP address to the local media address.\n\nDPZdM over TCP is not restricted to physically adjacent endpoints in the local subnet.\n\nFind another place to discover your endpoints.   maybe it\u0027s a DNS.  or a hostname file.  Even a or a DHCP server would be preferred.\n\nbut not the kernel ARP table.  registering we to static entries will have other negative side effects in addition to limiting the spdm partners.",
+      "parentUuid": "db351a65_fd2a7302",
       "range": {
         "startLine": 167,
         "startChar": 0,
