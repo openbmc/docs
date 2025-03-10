@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abddf156_6d5ced0e",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-10T13:12:48Z",
+      "side": 1,
+      "message": "\u003e I agree with milton and additonaly I wanted to know how the object ID for the SPDM D-Bus objects looks like?\n\u003e \n\nWhat do you mean by object id ? is it an SPDM spec term ? \n\n\u003e How do you map the SPDM D-bus objects(Devices discovered through neighbpur discovery) to the Inventory?\n\nIn my latest patchset , I plan on using the entity manager satellite controller schema (changed based on comments from milton). So the satellite controller object and the Rot(TPM) objects hosted by EM would be associated via the [physical topology design](https://github.com/openbmc/docs/blob/master/designs/physical-topology.md)",
+      "parentUuid": "c1dba5fa_198ae79d",
+      "range": {
+        "startLine": 126,
+        "startChar": 46,
+        "endLine": 126,
+        "endChar": 68
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e6a3157_d64a4a72",
@@ -54,6 +78,24 @@
       "writtenOn": "2025-03-06T08:37:25Z",
       "side": 1,
       "message": "No\n\nspdm over TCP is about communication with an arbitrary remote anywhere on the network.   I didn\u0027t see any mention of physical adjacency.\n\nthe Neighbor interface referenced is about exposing the ARP table translating and IP address to the next hop (router or local subnet) Ethernet (or maybe other technologies) MAC address.   this is evident from both the interface for the entry and the possible states enumerated.\n\nedit: you recognized it as the ARP table but not the implications below.",
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "daade89f_cf725f80",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-10T13:12:48Z",
+      "side": 1,
+      "message": "Yes, that makes sense milton, In the latest patch i have migrated the logic to rely on EM (Satellite controller interface) instead of phosphor-networkd. That should solve the problem you stated above.",
+      "parentUuid": "9e6a3157_d64a4a72",
       "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -143,6 +185,30 @@
       "side": 1,
       "message": "Actually back up.   The redfish model is about representing physical and logical components of a data center as objects be manipulated through rest.\n\nThis means you should be starting your discovery with inventory objects not random reachable network endpoints just because they are reachable.\n\nIf you are trying to attest other BMCs they should start as managers and have network interfaces.  get the IP from that object.  you can decide how my much of the network switches cables and ports and switches you model before establishing the spdm session.\n\nYou don\u0027t want to identify them by MAC.  you want to ask them for their MAC address.  that\u0027s the point of IP.",
       "parentUuid": "32a97727_8db25bf3",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 74
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00bfaae6_6ea68256",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-10T13:12:48Z",
+      "side": 1,
+      "message": "Yeah, I understand your design point and that makes sense.\n\nI have made changes in my latest patchset to look at entity-manager - satellite controller interface (https://github.com/openbmc/entity-manager/blob/master/schemas/satellite_controller.json) rather than phosphor-networkd neighbor interface. That way SPDM does not have to bother if the remote IP provided is a neighbor or not. As long as it is pingable over the network, we should be able to run SPDM protocol to get the measurement \u0026 certificate data from it.",
+      "parentUuid": "c8f78723_949fb11c",
       "range": {
         "startLine": 167,
         "startChar": 0,
@@ -248,6 +314,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb519b7d_8e4ff954",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-10T13:12:48Z",
+      "side": 1,
+      "message": "\u003e so you are talking about how to implement Attestation.MeasurementSet as a responder?\n\nYes, that\u0027s correct.\n\n\u003ereading below you skipped certificate handling.\n\nResponded below.\n\n\u003e does/should the BMC require trust in others for it\u0027s own integrity?\n\nIts not for its own integrity - it requires trust on others for platform integrity.  \n\n\n\u003e Who is the verifier in this scenario? Typically, the BMC serves as the verifier, collecting measurements from devices and validating them.\n\u003e \nIn our use-case BMC is the verifier. But, In the context of security - we should not be designing something for \"a typical verifier, right\" ? Because any device can do attestation for any other device - `that it needs to trust`. Who acts as a verifier completely depends on \"which device wants to trust which device\".\n\nIt can be a HMC verifying an adapter plugging into a motherboard (or) a HMC verifying the measurements of a BMC (or) a BMC verifying the measurements of another BMC.\n\n\u003e In the use case you described, where is the verifier located? How does the BMC interact with the TPM, and which protocol is used for this communication?\n\u003e \n\nBMC talks to TPM using the tpm2-tss library. The TPM Software Stack (TSS) is a software specification that provides a standard API for accessing the functions of the TPM.\nMore details on the specification: https://trustedcomputinggroup.org/wp-content/uploads/TSS_Version_1.2_Level_1_FINAL.pdf\nMore details on the library : https://github.com/tpm2-software/tpm2-tss?tab\u003dreadme-ov-file#overview\n\n\u003e I am trying to understand where SPDM communication fits into your use case. The only scenario I see is if the BMC supports another mechanism or if the RF SPDM transcript is shared.\n\u003e \n\u003e Additionally, I haven’t thoroghly reviewed the SPDM over TCP specification but looks like you want to support SPDM over 4194 if BMC acts as SPDM Reponder.\n\nYes , we plan to use SPDM over TCP to attest another BMC over 4194 as stated in the spec.",
+      "parentUuid": "eae99fc5_2563591d",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 78
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab8b3db6_75cfa08f",
@@ -265,6 +355,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ab6e04a_b4de55eb",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-10T13:12:48Z",
+      "side": 1,
+      "message": "No, The certificates are that are provisioned in to the BMC connected TPM and the ones that SPDM uses are not https server/client certificates. They are the device certificates \u0026 the existing design does not have to change. SPDM daemon would talk to the TPM to get the certificates \u0026 measurements via tpm2-tss and send that over SPDM protocol to the remote entity.",
+      "parentUuid": "ab8b3db6_75cfa08f",
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f777ff68_96680b27",
@@ -278,6 +386,24 @@
       "writtenOn": "2025-03-06T09:11:24Z",
       "side": 1,
       "message": "do you plan to code PCIe DOE? missing TCP.",
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57898b8c_ee096e24",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-10T13:12:48Z",
+      "side": 1,
+      "message": "I plan to write infrastructure in such a way that the framework would scale up for mctp , pcie and TCP. But I plan on implementing the TCP backend.",
+      "parentUuid": "f777ff68_96680b27",
       "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
