@@ -18,6 +18,41 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab159246_00e3a033",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001486
+      },
+      "writtenOn": "2025-03-10T08:36:20Z",
+      "side": 1,
+      "message": "I did talk about the existing design in the alternates considered. I also have update the same with the MR link. I have added details on why we want to go with SSE path. Please take a look.",
+      "parentUuid": "86e19def_462bde26",
+      "revId": "69f65d3419aee4edeed2b88549a19678e383df24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9068280f_462a8b92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001486
+      },
+      "writtenOn": "2025-03-10T08:36:20Z",
+      "side": 1,
+      "message": "I would like further discuss about how we can converge on Redfish Event Aggregation in context of existing design put up in https://gerrit.openbmc.org/c/openbmc/docs/+/75641. \n#75641 does not explicitly call out how event aggregation would work so I will assume logs are polled from the SatMC and stored in the BMC. This might cause performance issue both on BMC and SatMC. This is the reason I would like propose SSE for event aggregation and forward. \nI am fine to collaborate with Redfish Client Daemon if you think we can enhance the same with this concept. If you agree I can also contribute to the development of the same.",
+      "revId": "69f65d3419aee4edeed2b88549a19678e383df24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77c81c81_f2dc2dc1",
@@ -31,6 +66,30 @@
       "writtenOn": "2025-03-04T20:04:10Z",
       "side": 1,
       "message": "How do we handle Message Registries from the SMC?\n\nThere are a few bit issues I see:\n\n- SMC has its own set of Registries from the BMC, such as OEM registries from the SMC vendor.  How does the BMC aggregate so that these registries can be obtained from the vendor?\n\n- What happens if for some reason the SMC has advertised the same registry as the BMC but has different content?  The BMC is going to forward events that might not match the published registry that it gave out.\n\n- What happens if the BMC and SMC have different versions of the same registry?  This potentially has conflicting information such as the order of MessageArgs.",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "69f65d3419aee4edeed2b88549a19678e383df24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3085768_8ad058ce",
+        "filename": "designs/redfish-event-aggregation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001486
+      },
+      "writtenOn": "2025-03-10T08:36:20Z",
+      "side": 1,
+      "message": "1. OEM registry of SatMC would be available from the BMC via RF aggregation feature. BMC aggregates all registries from each of the SatMCs under \n```\nropai@ROPAI:~$ curl -k -u root:0penBmc https://10.114.130.40/redfish/v1/Registries\n{\n  \"@odata.id\": \"/redfish/v1/Registries\",\n  \"@odata.type\": \"#MessageRegistryFileCollection.MessageRegistryFileCollection\",\n  \"Description\": \"Collection of MessageRegistryFiles\",\n  \"Members\": [\n..\n    {\n      \"@odata.id\": \"/redfish/v1/Registries/OpenBMC\"\n    },\n...\n    },\n    {\n      \"@odata.id\": \"/redfish/v1/Registries/HGX_Update\"\n    }\n  ],\n  \"Members@odata.count\": 15,\n  \"Name\": \"MessageRegistryFile Collection\"\n}ropai@ROPAI:~$\n```\n2. The event data and URIs (OriginOfCondition) of any SatMC resource will have SatMC prefix. Looking at this it must be possible to decide if the event is fired from Host BMC or the SatMC and parse the message as per the message registry which belongs to SatMC vs BMC.  \nExample \n```\n{\n  \"@odata.type\": \"#Event.v1_7_0.Event\",\n  \"Context\": \",\n  \"Events\": {\n    \"EventTimeStamp\": \"2023-11-08T19:20:20+00:00\",\n    \"Message\": \"The property ModulePowerCap was assigned the value \u0027420\u0027 due to modification by the service.\",\n    \"MessageArgs\": [\n      \"ModulePowerCap\",\n      \"420\"\n    ],\n    \"MessageId\": \"Base.1.15.PropertyValueModified\",\n    \"MessageSeverity\": \"OK\",\n    \"OriginOfCondition\": {\n      \"@odata.id\": \"/redfish/v1/Systems/HGX_System_0/Processors/inventory/system/processors/GPU_0\"\n    }\n  },\n  \"Id\": \"1\",\n  \"Name\": \"Event Log\"\n}```",
+      "parentUuid": "77c81c81_f2dc2dc1",
       "range": {
         "startLine": 97,
         "startChar": 0,
@@ -64,6 +123,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30679840_2fb18ab9",
+        "filename": "designs/redfish-event-aggregation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001486
+      },
+      "writtenOn": "2025-03-10T08:36:20Z",
+      "side": 1,
+      "message": "added details on the URI fix up.",
+      "parentUuid": "55671b84_64e41f27",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 54
+      },
+      "revId": "69f65d3419aee4edeed2b88549a19678e383df24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3af06da5_91673bb0",
@@ -77,6 +160,30 @@
       "writtenOn": "2025-03-04T20:04:10Z",
       "side": 1,
       "message": "How is the subscription configured?\n\nSMCs often have an external \"SMC-Ready\" signal, so you can\u0027t just do this immediately upon start up.",
+      "range": {
+        "startLine": 114,
+        "startChar": 7,
+        "endLine": 114,
+        "endChar": 16
+      },
+      "revId": "69f65d3419aee4edeed2b88549a19678e383df24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d20b0a70_dcb1e435",
+        "filename": "designs/redfish-event-aggregation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001486
+      },
+      "writtenOn": "2025-03-10T08:36:20Z",
+      "side": 1,
+      "message": "The SMC-Ready signal would be hardware/platform dependent, don\u0027t want to pull that dependency here. Per SMC we run state machine to check if SMC is able to connect and serve on SSE. On failures there would retry happening in the background. We can think of exponentials delays between each retries.",
+      "parentUuid": "3af06da5_91673bb0",
       "range": {
         "startLine": 114,
         "startChar": 7,
