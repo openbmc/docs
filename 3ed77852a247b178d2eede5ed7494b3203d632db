@@ -137,6 +137,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54bac5a8_4982e7bd",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-12T14:34:07Z",
+      "side": 1,
+      "message": "\u003e \u003eIt can be anything, right ? How does the object path matter ?\n\u003e Yes, It can be but if these objects is being used by the bmcweb to show the componnet integrity endpoints, we don\u0027t need to do define a new method in the bmcweb to give a meaningful name to the componnet integrity endpoints\n\nWell, there is no code in bmcweb as of today to show any of this. Not sure which method are you talking about. But it does seem like an implementation detail. Can we figure that out when we get to the implementation ?",
+      "parentUuid": "03fdbbd7_8df3708a",
+      "range": {
+        "startLine": 126,
+        "startChar": 46,
+        "endLine": 126,
+        "endChar": 68
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e6a3157_d64a4a72",
@@ -472,6 +496,30 @@
       "side": 1,
       "message": "Thanks for sharing the design!\n\nSo, there are two BMCs—one active and one passive.\n\nHMC (IBM-Hardware Management Console) → Active BMC:\n\nHow does the HMC obtain attestation data from the active BMC? Is it via SPDM over TCP or Redfish?\n\nActive BMC → Passive BMC:\nYou confirmed that this communication happens over SPDM via TCP.\n\nSince both BMCs have network connectivity to the HMC, I have a few questions:\n\nCan the HMC directly retrieve attestation data from either the active or passive BMC? \n\nOr is it solely the responsibility of the active BMC to provide attestation data for the passive BMC?\n\nUltimately, I want to understand where the D-Bus interface is required in your use case. If both BMCs are accessible from the HMC, wouldn\u0027t it be possible for the HMC to run the SPDM client and directly fetch the data from both the BMC?\n\nor is HMC ---\u003e RF API ---\u003eActive BMC ----\u003e(SPDM over TCP)PassiveBMC?",
       "parentUuid": "f073f206_4ada17a2",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 78
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40efee99_682b8480",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-12T14:34:07Z",
+      "side": 1,
+      "message": "\u003e Thanks for sharing the design!\n\u003e \n\u003e So, there are two BMCs—one active and one passive.\n\u003e \n\u003e HMC (IBM-Hardware Management Console) → Active BMC:\n\u003e \n\u003e How does the HMC obtain attestation data from the active BMC? Is it via SPDM over TCP or Redfish?\n\u003e \n\u003e Active BMC → Passive BMC:\n\u003e You confirmed that this communication happens over SPDM via TCP.\n\u003e \n\u003e Since both BMCs have network connectivity to the HMC, I have a few questions:\n\u003e \n\u003e Can the HMC directly retrieve attestation data from either the active or passive BMC? \n\u003e \nYes it could via redfish. But the requirement for us is *not* HMC attesting BMC\u0027s. Its BMC attesting another BMC.\n\n\u003e Or is it solely the responsibility of the active BMC to provide attestation data for the passive BMC?\n\u003e \nYes, We want the BMC to establish trust on another BMC.\n\n\u003e Ultimately, I want to understand where the D-Bus interface is required in your use case. If both BMCs are accessible from the HMC, wouldn\u0027t it be possible for the HMC to run the SPDM client and directly fetch the data from both the BMC?\n\u003e \n\u003e or is HMC ---\u003e RF API ---\u003eActive BMC ----\u003e(SPDM over TCP)PassiveBMC?\n\nWe are talking two separate things, ratan. \"HMC trusting BMC\u0027s\" is a different thing than \"BMC trusting another BMC\". They both can ideally coexist.\n\nAlthough HMC can do attestation that will be needed if HMC wants to establish trust with the BMC\u0027s , but that\u0027s not what we want, On our platforms at the moment it\u0027s the BMC that needs to establish trust with another BMC. So HMC is out of the picture.",
+      "parentUuid": "8710f3ed_f699d3f3",
       "range": {
         "startLine": 248,
         "startChar": 0,
