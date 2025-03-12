@@ -65,6 +65,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95985c28_2dd0c6bf",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2025-03-12T07:39:11Z",
+      "side": 1,
+      "message": "\u003eWhat do you mean by object id ? is it an SPDM spec term ?\nI’m referring to the D-Bus object identifier.\n\n\u003eIn my latest patchset , I plan on using the entity manager satellite controller schema\nSo, the Satellite Management Controller is also exposed outside the BMC? Can these satellite management controllers be accessed externally?\n\nAre you saying that all device IPs will be statically configured in the Entity Manager configuration file, and Entity Manager will read this configuration to create the Inventory D-Bus Object? Will there then be a \"containing-contained by\" relationship?",
+      "parentUuid": "abddf156_6d5ced0e",
+      "range": {
+        "startLine": 126,
+        "startChar": 46,
+        "endLine": 126,
+        "endChar": 68
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e6a3157_d64a4a72",
@@ -328,6 +352,30 @@
       "side": 1,
       "message": "\u003e so you are talking about how to implement Attestation.MeasurementSet as a responder?\n\nYes, that\u0027s correct.\n\n\u003ereading below you skipped certificate handling.\n\nResponded below.\n\n\u003e does/should the BMC require trust in others for it\u0027s own integrity?\n\nIts not for its own integrity - it requires trust on others for platform integrity.  \n\n\n\u003e Who is the verifier in this scenario? Typically, the BMC serves as the verifier, collecting measurements from devices and validating them.\n\u003e \nIn our use-case BMC is the verifier. But, In the context of security - we should not be designing something for \"a typical verifier, right\" ? Because any device can do attestation for any other device - `that it needs to trust`. Who acts as a verifier completely depends on \"which device wants to trust which device\".\n\nIt can be a HMC verifying an adapter plugging into a motherboard (or) a HMC verifying the measurements of a BMC (or) a BMC verifying the measurements of another BMC.\n\n\u003e In the use case you described, where is the verifier located? How does the BMC interact with the TPM, and which protocol is used for this communication?\n\u003e \n\nBMC talks to TPM using the tpm2-tss library. The TPM Software Stack (TSS) is a software specification that provides a standard API for accessing the functions of the TPM.\nMore details on the specification: https://trustedcomputinggroup.org/wp-content/uploads/TSS_Version_1.2_Level_1_FINAL.pdf\nMore details on the library : https://github.com/tpm2-software/tpm2-tss?tab\u003dreadme-ov-file#overview\n\n\u003e I am trying to understand where SPDM communication fits into your use case. The only scenario I see is if the BMC supports another mechanism or if the RF SPDM transcript is shared.\n\u003e \n\u003e Additionally, I haven’t thoroghly reviewed the SPDM over TCP specification but looks like you want to support SPDM over 4194 if BMC acts as SPDM Reponder.\n\nYes , we plan to use SPDM over TCP to attest another BMC over 4194 as stated in the spec.",
       "parentUuid": "eae99fc5_2563591d",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 78
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "024863d1_70a9fdd3",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2025-03-12T07:39:11Z",
+      "side": 1,
+      "message": "\u003eIn our use-case BMC is the verifier. But, In the context of security - we should not be designing something for \"a typical verifier, right\" ? Because any device can do attestation for any other device - that it needs to trust. Who acts as a verifier completely depends on \"which device wants to trust which device\".\n\nIt can be a HMC verifying an adapter plugging into a motherboard (or) a HMC verifying the measurements of a BMC (or) a BMC verifying the measurements of another BMC.\n\nManoj, my ask is: which device acts as the PA-ROT/Verifier responsible for attesting all other devices? Typically, a platform should have a single PA-ROT.\n\nIn your use case, which MC (BMC/HMC) is exposed for management? Are all satellite management controllers and the BMC accessible externally via IP? Or is only the BMC exposed externally while the satellite management controllers communicate with the BMC over a private network?\n\nIf it\u0027s the latter, then the BMC collects measurement data over SPDM/TCP and verifies it. In this case, the BMC would act as the SPDM requester, while all other devices and satellite management controllers would function as SPDM responders. Is that correct?",
+      "parentUuid": "cb519b7d_8e4ff954",
       "range": {
         "startLine": 248,
         "startChar": 0,
