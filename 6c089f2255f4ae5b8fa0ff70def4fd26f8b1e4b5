@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7812b09a_2401a615",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001486
+      },
+      "writtenOn": "2025-03-12T04:44:59Z",
+      "side": 1,
+      "message": "There is no further details on how log entries are collected from the SatMC in this document. \nIs the proposal to poll for log entries from the SatMC periodically ? If yes have we considered the potential performance impact on both BMC and the SatMC. At lease Nvidia platforms have very stringent perf SLAs and what we have seen from the past experience is that any polling client that can be avoided is beneficial. \n\nMy main purpose is to support event aggregation from SatMC which is missing feature part of bmcweb redfish aggregation support. This document looks like proposing alternate to RFA feature of bmcweb but does not talk about eventing in details. \n\nI prosed an alternate design here for event aggregation (https://gerrit.openbmc.org/c/openbmc/docs/+/78639) and my proposal is to keep this code in bmcweb part of RFA feature. \nIf you feel my proposal overlaps with the current design document then let me know if you are ok for me to contribute to this document. \nMy major requirement is support event aggregation in Host BMC without performance impact. \n\nAlternatively we could have bmcweb support event aggregation via SSE as per my proposal and Redfish Client Daemon could poll for the logs. We can only enable one of these options based on platform and performance requirements. \n\nPlease share your feedback on how we can converge on this.",
+      "revId": "6c089f2255f4ae5b8fa0ff70def4fd26f8b1e4b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
