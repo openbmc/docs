@@ -89,6 +89,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13ca5b51_79a30f19",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-12T09:02:21Z",
+      "side": 1,
+      "message": "\u003e I’m referring to the D-Bus object identifier.\n\nIt can be anything, right ? How does the object path matter ? This is purely an implementation detail, right ? we can do construct something based on the RoT object (or) we can even give random strings like how entity manager does or we can even give 1, 2,3 .. e.t.c  \n\nYes, both the satellite controller and the RoT objects will be associated by containing-contained by relationships.",
+      "parentUuid": "95985c28_2dd0c6bf",
+      "range": {
+        "startLine": 126,
+        "startChar": 46,
+        "endLine": 126,
+        "endChar": 68
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e6a3157_d64a4a72",
@@ -376,6 +400,30 @@
       "side": 1,
       "message": "\u003eIn our use-case BMC is the verifier. But, In the context of security - we should not be designing something for \"a typical verifier, right\" ? Because any device can do attestation for any other device - that it needs to trust. Who acts as a verifier completely depends on \"which device wants to trust which device\".\n\nIt can be a HMC verifying an adapter plugging into a motherboard (or) a HMC verifying the measurements of a BMC (or) a BMC verifying the measurements of another BMC.\n\nManoj, my ask is: which device acts as the PA-ROT/Verifier responsible for attesting all other devices? Typically, a platform should have a single PA-ROT.\n\nIn your use case, which MC (BMC/HMC) is exposed for management? Are all satellite management controllers and the BMC accessible externally via IP? Or is only the BMC exposed externally while the satellite management controllers communicate with the BMC over a private network?\n\nIf it\u0027s the latter, then the BMC collects measurement data over SPDM/TCP and verifies it. In this case, the BMC would act as the SPDM requester, while all other devices and satellite management controllers would function as SPDM responders. Is that correct?",
       "parentUuid": "cb519b7d_8e4ff954",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 78
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f073f206_4ada17a2",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-12T09:02:21Z",
+      "side": 1,
+      "message": "Yes ratan, in our usecase - we have two BMC\u0027s in the system. Where one BMC can attest another BMC over SPDM over TCP. (you can assume one BMC as a requester and another BMC would be acting as responder - and both acts as satellites for each other)\n\nmore information on our redundant bmc design : https://gerrit.openbmc.org/c/openbmc/docs/+/70233",
+      "parentUuid": "024863d1_70a9fdd3",
       "range": {
         "startLine": 248,
         "startChar": 0,
