@@ -113,6 +113,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03fdbbd7_8df3708a",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2025-03-12T13:20:50Z",
+      "side": 1,
+      "message": "\u003eIt can be anything, right ? How does the object path matter ?\nYes, It can be but if these objects is being used by the bmcweb to show the componnet integrity endpoints, we don\u0027t need to do define a new method in the bmcweb to give a meaningful name to the componnet integrity endpoints",
+      "parentUuid": "13ca5b51_79a30f19",
+      "range": {
+        "startLine": 126,
+        "startChar": 46,
+        "endLine": 126,
+        "endChar": 68
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e6a3157_d64a4a72",
@@ -424,6 +448,30 @@
       "side": 1,
       "message": "Yes ratan, in our usecase - we have two BMC\u0027s in the system. Where one BMC can attest another BMC over SPDM over TCP. (you can assume one BMC as a requester and another BMC would be acting as responder - and both acts as satellites for each other)\n\nmore information on our redundant bmc design : https://gerrit.openbmc.org/c/openbmc/docs/+/70233",
       "parentUuid": "024863d1_70a9fdd3",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 78
+      },
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8710f3ed_f699d3f3",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2025-03-12T13:20:50Z",
+      "side": 1,
+      "message": "Thanks for sharing the design!\n\nSo, there are two BMCs—one active and one passive.\n\nHMC (IBM-Hardware Management Console) → Active BMC:\n\nHow does the HMC obtain attestation data from the active BMC? Is it via SPDM over TCP or Redfish?\n\nActive BMC → Passive BMC:\nYou confirmed that this communication happens over SPDM via TCP.\n\nSince both BMCs have network connectivity to the HMC, I have a few questions:\n\nCan the HMC directly retrieve attestation data from either the active or passive BMC? \n\nOr is it solely the responsibility of the active BMC to provide attestation data for the passive BMC?\n\nUltimately, I want to understand where the D-Bus interface is required in your use case. If both BMCs are accessible from the HMC, wouldn\u0027t it be possible for the HMC to run the SPDM client and directly fetch the data from both the BMC?\n\nor is HMC ---\u003e RF API ---\u003eActive BMC ----\u003e(SPDM over TCP)PassiveBMC?",
+      "parentUuid": "f073f206_4ada17a2",
       "range": {
         "startLine": 248,
         "startChar": 0,
