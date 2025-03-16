@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "282140cc_697a34d6",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-03-16T18:54:00Z",
+      "side": 1,
+      "message": "This is a part of the design I\u0027m confused on:\n\nthe existing design calls through libmctp .  Wouldn\u0027t the first step of this (before this design is proposed to OpenBMC) be to send patches to add TCP support to https://github.com/DMTF/libspdm ?\n\nAfter that it\u0027s just a matter of hooking things up to the libspdm source, right?",
+      "range": {
+        "startLine": 127,
+        "startChar": 61,
+        "endLine": 128,
+        "endChar": 6
+      },
+      "revId": "d27d7c2efa264f4a4a3f453afc7f055e629cfcc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4edf23b_29c57b41",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-03-16T18:54:00Z",
+      "side": 1,
+      "message": "We really should have another interface for this.  \"SatelliteController\" Is already a mediocre name that really represents \"RedfishHttpInterface\".  I had asked it be changed, but that patchset never happened.  I will clean it up at some point, but for now lets avoid overloading the interface further.\n\nI would expect this would be a new configuration object, probably something like\n\nxyz.openbmc_project.Configuration.SpdmTcpResponder",
+      "range": {
+        "startLine": 171,
+        "startChar": 35,
+        "endLine": 171,
+        "endChar": 54
+      },
+      "revId": "d27d7c2efa264f4a4a3f453afc7f055e629cfcc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cd638d0_758b1398",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-03-16T18:54:00Z",
+      "side": 1,
+      "message": "Splitting out \"network device\" compared to \"PCIe\" device doesn\u0027t really add value, and makes this diagram look like there\u0027s some splitting off point to the right of spdm daemon.  I think just keeping the diagram the same, and calling out PCIe/Network daemon in the prose is good enough.",
+      "revId": "d27d7c2efa264f4a4a3f453afc7f055e629cfcc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
