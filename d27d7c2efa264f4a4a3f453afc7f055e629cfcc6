@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64c1ecf4_d6318c04",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-17T09:00:03Z",
+      "side": 1,
+      "message": "\u003e This probably should be its own design doc, either as a \"new\" implementation, or adding tcp to the existing design (which still hasn\u0027t been completed yet).\n\u003e \n\u003e This design doc seems to be effectively abandoned.\n\nI understand where you\u0027re coming from, but I have a slightly different perspective on this. I believe there is value in pursuing this approach as part of the current design, rather than treating it as a completely separate implementation. As stated in the commit message, I am just adding another transport mechanism(TCP) much like what was discussed in this document (MCTP \u0026 PCIe). Besides that, even with TCP transport, the methods to expose measurements \u0026 certificates is one and the same. I feel adding it to this document makes people understand how this new transport mechanism plugs into the proposed framework \u0026 makes it easy for any newcomer/reviewers to understand, since all transport mechanisms \u0026 dbus mechanisms are documented at one single place.",
+      "parentUuid": "d0ea9c69_57b07cfa",
+      "range": {
+        "startLine": 5,
+        "startChar": 46,
+        "endLine": 5,
+        "endChar": 60
+      },
+      "revId": "d27d7c2efa264f4a4a3f453afc7f055e629cfcc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "282140cc_697a34d6",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-16T18:54:00Z",
       "side": 1,
       "message": "This is a part of the design I\u0027m confused on:\n\nthe existing design calls through libmctp .  Wouldn\u0027t the first step of this (before this design is proposed to OpenBMC) be to send patches to add TCP support to https://github.com/DMTF/libspdm ?\n\nAfter that it\u0027s just a matter of hooking things up to the libspdm source, right?",
+      "range": {
+        "startLine": 127,
+        "startChar": 61,
+        "endLine": 128,
+        "endChar": 6
+      },
+      "revId": "d27d7c2efa264f4a4a3f453afc7f055e629cfcc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fe2a288_4e251bf4",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-17T09:00:03Z",
+      "side": 1,
+      "message": "Yes, I agree with you. The TCP support is already present (in spdm_emulator currently) \u0026 I have already tested it by running two spdm_emulators on two BMC\u0027s.\n\nRef:  https://github.com/DMTF/spdm-emu/tree/main/library/spdm_transport_tcp_lib\n\nI have been already working with the DMTF SPDM WG committee trying to understand the reasons \u0026 the process to get it migrated to libspdm.",
+      "parentUuid": "282140cc_697a34d6",
       "range": {
         "startLine": 127,
         "startChar": 61,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4ec0159_34afa2c4",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-17T09:00:03Z",
+      "side": 1,
+      "message": "Oh okay, sure. A new configuration object `SpdmTcpResponder` seems reasonable to me. I have updated this patch to use `xyz.openbmc_project.Configuration.SpdmTcpResponder` interface instead of `xyz.openbmc_project.Configuration.SatelliteController`",
+      "parentUuid": "e4edf23b_29c57b41",
+      "range": {
+        "startLine": 171,
+        "startChar": 35,
+        "endLine": 171,
+        "endChar": 54
+      },
+      "revId": "d27d7c2efa264f4a4a3f453afc7f055e629cfcc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cd638d0_758b1398",
@@ -83,6 +155,24 @@
       "writtenOn": "2025-03-16T18:54:00Z",
       "side": 1,
       "message": "Splitting out \"network device\" compared to \"PCIe\" device doesn\u0027t really add value, and makes this diagram look like there\u0027s some splitting off point to the right of spdm daemon.  I think just keeping the diagram the same, and calling out PCIe/Network daemon in the prose is good enough.",
+      "revId": "d27d7c2efa264f4a4a3f453afc7f055e629cfcc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "998fdaa7_d444339b",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-03-17T09:00:03Z",
+      "side": 1,
+      "message": "Sure, I just wanted to convey that SPDM daemon could talk to a device over Network(TCP protocol) much like PCIe device(PCIe protocol) or MCTP device(MCTP protocol). But I did not realize that it could add confusion.\n\nI reverted the diagram to how it was earlier.",
+      "parentUuid": "6cd638d0_758b1398",
       "revId": "d27d7c2efa264f4a4a3f453afc7f055e629cfcc6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
