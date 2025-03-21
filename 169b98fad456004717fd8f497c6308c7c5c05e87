@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "feabd27e_ef111069",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-21T17:47:27Z",
+      "side": 1,
+      "message": "Yes, remote-bios-configuration holds the baseBiosTable which consists of bios attributes. \nBios attributes are obtained through various interfaces like ipmi, pldm and here is a proposal to get bios attributes from redfish. \nThe bios-settings-manager will be used to store bios attributes. However, this document proposes the redfish medium of getting those attributes.",
+      "parentUuid": "4010d7a3_2f681b45",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca630d5a_c53470b4",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -139,6 +157,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6628666a_739b481c",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-21T17:47:27Z",
+      "side": 1,
+      "message": "Yes these properties are needed for creation and management of boot strap account.",
+      "parentUuid": "53d2269d_2d2309b9",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c38bb20_03f171fb",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -173,6 +209,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d1155966_c84cbc3c",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-21T17:47:27Z",
+      "side": 1,
+      "message": "redfish and ipmi daemons dont interact with each other. \nbios interacts with bmc through ipmi and gets bootstrap credentials. \nOnce bios has the credentials bios will communicate to bmc over redfish",
+      "parentUuid": "638f30dc_8c5a389b",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ff6f213_907c536e",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -201,6 +255,24 @@
       "writtenOn": "2025-03-21T17:30:36Z",
       "side": 1,
       "message": "How does the Redfish user interact?",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4606c1b1_a8e39e53",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-21T17:47:27Z",
+      "side": 1,
+      "message": "bios request for bootstrap credentials from bmc. \nUsing the same bios will perform redfish operations (GET/PUT/PATCH)",
+      "parentUuid": "e9ea70df_bbb80b33",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -258,6 +330,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c0ee357_d28031c0",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-21T17:47:27Z",
+      "side": 1,
+      "message": "Current we dont have any repo for host-interface. \nThe proposal is to develop this daemon inside bios-settings-manager under a configurable option.",
+      "parentUuid": "9b088823_8f3d414b",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28c6c5d6_581fdbd2",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -269,6 +359,24 @@
       "writtenOn": "2025-03-21T17:30:36Z",
       "side": 1,
       "message": "Why are several commands OEM? Which OEM? Is the OEM must?",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e00db87f_76217a39",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-21T17:47:27Z",
+      "side": 1,
+      "message": "bios requires oem commands to get IP related information and generate smbios record required for host interface.",
+      "parentUuid": "28c6c5d6_581fdbd2",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -439,6 +547,24 @@
       "writtenOn": "2025-03-21T17:30:36Z",
       "side": 1,
       "message": "Do we plan to support multiple of them?",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fc58eb5_9c864f7c",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-21T17:47:27Z",
+      "side": 1,
+      "message": "No currently we plan to have only 1 connection between host and bmc. \nBut as part of redfish schema host interface is a collection. Hence, added a test case related to the same",
+      "parentUuid": "b0da4ed6_71502115",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
