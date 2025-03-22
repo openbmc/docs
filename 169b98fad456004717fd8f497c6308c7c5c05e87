@@ -1005,6 +1005,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3631e92d_7a70411b",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-22T15:35:38Z",
+      "side": 1,
+      "message": "BMC can register and listen to Operating System Status exposed by `phosphor-host-state.service`.\nBased on that bmc can take take action on deleting the host-iface account. \nOnce host-iface account is deleted all the request from bios through redfish would be rejected. So do we need any special handling ?",
+      "parentUuid": "5b9fbc62_3e36fbf0",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aaa23399_c256f49a",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -1051,6 +1069,24 @@
       "writtenOn": "2025-03-22T00:39:26Z",
       "side": 1,
       "message": "the interface disable should stop the reddish service on the USB device. \n\nit should stop any mdns or other advertising service.\n\nIt probably should remove the USB gadget.\n\n\nthis should probably be managed through service manager starting and stopping targets.\n\nthis wouldn\u0027t be affected by enabling or disabling BIOS or host credentials.\n\n\nthe ip addressing on the manager needs to be managed by phosphor networkd\n\n\nthe host side needs it\u0027s own storage, but we should look at how hypervisor IP is stored (it\u0027s also sent to host from redfish, but the exchange mechanism would be independent design).",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6f138d4_40057c4d",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-22T15:35:38Z",
+      "side": 1,
+      "message": "Once the host-iface account is deleted the request coming from bios through redfish would rejected.",
+      "parentUuid": "10b0e35e_65bdb469",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
