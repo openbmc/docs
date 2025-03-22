@@ -635,6 +635,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ea3e870_935261fd",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-22T15:24:45Z",
+      "side": 1,
+      "message": "As there would be multiple NICs on the host BIOS would not know which one is responsible for Host Interface. \nHost interface in our case is a virtual USB LAN created by AST2600. BMC FW controls everything on this USB LAN.\nIn terms of IP and port number. Redfish service is hosted by bmcweb in BMC FW. BIOS has no way to know bmcweb configuration.\nSo BIOS will send ipmi commands to get these details and generate smbios type 42 records",
+      "parentUuid": "48fca83f_65ae89c8",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c57748b7_bade85a4",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
