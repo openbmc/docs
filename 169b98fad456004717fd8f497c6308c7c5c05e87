@@ -193,6 +193,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26f84766_771c19f6",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-22T04:41:20Z",
+      "side": 1,
+      "message": "We can track host state by the use of dbus signals\n```\nbusctl get-property xyz.openbmc_project.State.Host /xyz/openbmc_project/state/host0 xyz.openbmc_project.State.OperatingSystem.Status OperatingSystemState\n```\n\nDo we need to have any dbus property ?\n\nFor testing(time taken to create account, etc) we can allow creation of bootstrap account. \nShould we be restricting to only one ?",
+      "parentUuid": "b732b331_117004b3",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c38bb20_03f171fb",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -470,6 +488,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5bd555bb_693d9a51",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-22T04:41:20Z",
+      "side": 1,
+      "message": "ipmid creates username and password and passes the same to bios and user manager. \nShould this be off loaded to hif ? \nI have not calculated the timing(when account creation is off loaded to other repos) but too much dbus calls might result KCS/SSIF timeout ?\nPlease share your thoughts on this.",
+      "parentUuid": "53dbd5cd_f109b86a",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd1fbe88_c79ff7f1",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -516,6 +552,24 @@
       "side": 1,
       "message": "note the spec has requirements for naming the account.",
       "parentUuid": "b966f2c3_b3107075",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "306dbc72_ccb8feff",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-03-22T04:41:20Z",
+      "side": 1,
+      "message": "We use `std::random_device` and `std::mt19937` generator to generate random username and password. \nThe user name and password shall:\n• Be valid UTF-8 strings consisting of printable characters.\n• Not include single quote (\u0027) or double quote (\") characters.\n• Not include backslash (\\) characters.\n• Not include whitespace characters.\n• Not include control characters.\n• Be at most 16 characters long.\nAs described by spec",
+      "parentUuid": "bd1fbe88_c79ff7f1",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
