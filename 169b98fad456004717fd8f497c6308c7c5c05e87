@@ -175,6 +175,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b732b331_117004b3",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "no we also need the role and likely others. \n\nwe need to track the Host state to disable the BIOS before transferring to the host os \n\n\nwe need to keep track of credentials we already given without retaining access for additional credential requested in the IPMI command.",
+      "parentUuid": "6628666a_739b481c",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c38bb20_03f171fb",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -383,6 +401,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48fca83f_65ae89c8",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "why can\u0027t the BIOS know the USB port path and use normal USB enumeration to discover the USB description, serial, and MAC?\n\nI understand that obtaining the IP information would be harder if it\u0027s not discoverable from the host (DHCP).",
+      "parentUuid": "e00db87f_76217a39",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c57748b7_bade85a4",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -411,6 +447,23 @@
       "writtenOn": "2025-03-21T17:30:36Z",
       "side": 1,
       "message": "You need to document security impact as this design involves passing credentials (look at the design doc template).",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53dbd5cd_f109b86a",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "why is. this in ipmid?\nI expected user manager or hif daemon. upon message from ipmi.",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -451,6 +504,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "40efc072_0543cc4d",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "note the spec has requirements for naming the account.",
+      "parentUuid": "b966f2c3_b3107075",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ef993c0_4d310b6b",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -462,6 +533,24 @@
       "writtenOn": "2025-03-21T17:30:36Z",
       "side": 1,
       "message": "What privileges does this user have?",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc5c812f_22f80a41",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "why is this shown under ipmi user list?\n\n\nthe privilege is created according to the redfish defined property.   these need to be stored and hosted (probably hif).",
+      "parentUuid": "7ef993c0_4d310b6b",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -485,6 +574,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d20a0721_f1a0d28c",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "it needs to be subject to a DELETE.  \n\nthe standard expects a standard account is created from the bootstrapp account the. the bootstrap account is deleted.",
+      "parentUuid": "e403bb9f_660f08af",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b9fbc62_3e36fbf0",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "BIOS needs to notify the host state before transferring to the os.\nnot clear is it exit boot service or earlier.\n\nThe bootstrap credential is only valid in the designated interface.\nHow will this be enforced?\n\nDo we need a proxy to forward to accepted socket from a new network namespace? \nhow do we pass the interface with the connection fde.  does this work across network namespaces I don\u0027t know.\n  \nAre we satisfied with just the IP routing tables?   \nOr binding the source routing interface?",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaa23399_c256f49a",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "the service needs to know which interface the credential is valid and restrict the bootstrap credential validity.",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10b0e35e_65bdb469",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "the interface disable should stop the reddish service on the USB device. \n\nit should stop any mdns or other advertising service.\n\nIt probably should remove the USB gadget.\n\n\nthis should probably be managed through service manager starting and stopping targets.\n\nthis wouldn\u0027t be affected by enabling or disabling BIOS or host credentials.\n\n\nthe ip addressing on the manager needs to be managed by phosphor networkd\n\n\nthe host side needs it\u0027s own storage, but we should look at how hypervisor IP is stored (it\u0027s also sent to host from redfish, but the exchange mechanism would be independent design).",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74f051eb_35b252f4",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -502,6 +660,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "998c36fa_e6413a2e",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "my take is there are several pieces that need to work together.  while we could split the storage across several repositories but there are several pieces of business logic from enabling the services, managing the lifecycle, and making the combination secure.   but I agree more needs to be discussed.\n\nhttps://discord.com/channels/775381525260664832/1336888338795200597/1336956040792506398\n\nhave you looked at the open bootstrap (asdmutedly it hasi progressed)?\ncan you search for past discord the threads to invite them?",
+      "parentUuid": "74f051eb_35b252f4",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b3569a58_11b5b0aa",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -513,6 +689,24 @@
       "writtenOn": "2025-03-21T17:30:36Z",
       "side": 1,
       "message": "Explain what these repos will do where not obvious.",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "698738a8_c2caedca",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "the flow showa storing the account in user manager but doesn\u0027t list it in the affected repositories.\n\nThe accounts (bios and os) need to be restricted to being valid only on the designated interface.   In the discord discussion I suggested that the account needs additional interface storage, since it\u0027s limited to the shortest lifetime of the host boot and the redfish service it doesn\u0027t need to persistent in flash. or perhaps just a reserved uid.\n\n\nIn discord I suggested consider having these accounts hosted by in the host interface manager installed of in the normal user manager flow.   but this needs evaluation.   st least the storage of which interface is required.\n\n\nnote they must be subject to DELETE \n\n\nhttps://discord.com/channels/775381525260664832/1336888338795200597/1336956040792506398 (again)",
+      "parentUuid": "b3569a58_11b5b0aa",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -565,6 +759,24 @@
       "side": 1,
       "message": "No currently we plan to have only 1 connection between host and bmc. \nBut as part of redfish schema host interface is a collection. Hence, added a test case related to the same",
       "parentUuid": "b0da4ed6_71502115",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "050a61da_522e9e60",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-22T00:39:26Z",
+      "side": 1,
+      "message": "we should plan on allowing at least one per host in the future.   no immediate testing is required.",
+      "parentUuid": "9fc58eb5_9c864f7c",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
