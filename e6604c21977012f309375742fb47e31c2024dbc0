@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7613e344_aaee3e65",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-03-24T07:16:00Z",
+      "side": 1,
+      "message": "I have added the Alternatives section. Please help review.",
+      "parentUuid": "c380d821_b419ab39",
+      "revId": "e6604c21977012f309375742fb47e31c2024dbc0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "18b8c9b3_fc03d8ab",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 9
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-21T20:13:56Z",
       "side": 1,
       "message": "Could we also consider adding TelemetryDataLog?",
+      "revId": "e6604c21977012f309375742fb47e31c2024dbc0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a20509da_3f8b05da",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-03-24T07:16:00Z",
+      "side": 1,
+      "message": "Do you mean log from such devices as PCIe devices, DDRs? Can you clarify a bit?",
+      "parentUuid": "18b8c9b3_fc03d8ab",
       "revId": "e6604c21977012f309375742fb47e31c2024dbc0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d05013f_f90e9f8b",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-03-24T07:16:00Z",
+      "side": 1,
+      "message": "We used to test with [libfuse](https://github.com/libfuse/libfuse) to expose the files as system file (look at first versions of this patch). Those file will appear as the mountpoints of the File Host\u0027s files, and PLDM\u0027s File Transfer commands dfOpen/Read/Close will map to fuseOpen/Read/Close actions to the system file. That needs some C code into the pldmd repo to construct the inodes of the mountpoints.\n\nWe did not have a valid reason for choosing that libfuse approach cuz that was also just a suggestion we got from Discord. We moved to this D-Bus interface approach cuz we agree with [Ed\u0027s opinion](https://gerrit.openbmc.org/c/openbmc/docs/+/76960/comments/fb2570e3_c472dff1).\n\nI have added the `Alternatives` section, please help review.",
+      "parentUuid": "4cd3e5c9_9d61f39f",
+      "revId": "e6604c21977012f309375742fb47e31c2024dbc0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "48bfca83_bb401c11",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 9
@@ -71,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7cce2e9d_48dc11f0",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-03-24T07:16:00Z",
+      "side": 1,
+      "message": "Added. Please help review.",
+      "parentUuid": "48bfca83_bb401c11",
+      "revId": "e6604c21977012f309375742fb47e31c2024dbc0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2f59451_738d9667",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 9
@@ -82,6 +154,24 @@
       "writtenOn": "2025-03-21T18:21:22Z",
       "side": 1,
       "message": "What repos are expected to house the code?",
+      "revId": "e6604c21977012f309375742fb47e31c2024dbc0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b911cb4_630bf41f",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-03-24T07:16:00Z",
+      "side": 1,
+      "message": "Added.",
+      "parentUuid": "c2f59451_738d9667",
       "revId": "e6604c21977012f309375742fb47e31c2024dbc0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
