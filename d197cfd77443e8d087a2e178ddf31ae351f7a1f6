@@ -73,6 +73,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8526cd9c_8a415f91",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2025-03-25T11:36:33Z",
+      "side": 1,
+      "message": "Certificate flow for https:\n - Certificate manager checks, any valid Key\u0027s present in specified path, \n  - If Not create new private Key and continue.\n  - BMCweb continues the operation as mentioend above.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 53
+      },
+      "revId": "d197cfd77443e8d087a2e178ddf31ae351f7a1f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3a93d667_2baa2f8b",
         "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
         "patchSetId": 5
@@ -102,6 +125,24 @@
       "side": 1,
       "message": "Yes.this design also takes care of it. we can import an externally generated key as a TPM-managed key, look at https://github.com/tpm2-software/tpm2-tools/blob/master/man/tpm2_import.1.md for more information.\n\nSimilar functionality can be achieved using openssl API\u0027s.",
       "parentUuid": "3a93d667_2baa2f8b",
+      "revId": "d197cfd77443e8d087a2e178ddf31ae351f7a1f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68a57f35_00362f19",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2025-03-25T11:36:33Z",
+      "side": 1,
+      "message": "Is it supported replacing private key?",
+      "parentUuid": "24a786ed_63397635",
       "revId": "d197cfd77443e8d087a2e178ddf31ae351f7a1f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -172,6 +213,29 @@
       "side": 1,
       "message": "yes, but i dont plan on using any of that. At the moment what ever redfish end points that are being used to add/delete/replace the certificates they remain exactly the same. Its just that the certificates \u0026 keys would be stored on the TPM rather than the filesystem.",
       "parentUuid": "a4354a1c_4f75fb86",
+      "revId": "d197cfd77443e8d087a2e178ddf31ae351f7a1f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "610db6bd_6506187b",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2025-03-25T11:36:33Z",
+      "side": 1,
+      "message": "Multipel certificates mean , is it included Trust store manged known CA certificate also ? better to keep sensitive certifcates and keys. instead of making generic statement. curently trust store holds bunch of known CA certicates",
+      "range": {
+        "startLine": 107,
+        "startChar": 2,
+        "endLine": 108,
+        "endChar": 42
+      },
       "revId": "d197cfd77443e8d087a2e178ddf31ae351f7a1f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
