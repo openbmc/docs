@@ -319,6 +319,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a83cd2db_6110e3ad",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "~~~ Yes we track host state but also need to track if or arm credentials were enabled this boot cycle and have yet to be requested.  or were requetsted with the allow additional requests this boot flag.     ie. Boot started with (is bios cred enabled?) -\u003e cred was delivered. ~~~\n\n\nactually no we don\u0027t, upon reading the model again, it was changed in 1.3 to just be bootstrap account reset in host reset.  the separate enable bios and enable os were deprecated with the move from obtaining them using UEFI variables to using the new ipmi netfn.\n\nI don\u0027t see any mention of limiting the number of concurrent BootStrap accounts for a given interface.",
+      "parentUuid": "26f84766_771c19f6",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cc625ce_3f21bace",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "Something will need to listen to the host reset or a boot reset phase and copy the enable after reset to the current.  This could reasonably be the active component of whichever service is responsible for generating the bootstrap account\n\nThe ipmi extension can then implement the disable if not keep enabled.\n\nAt a mininum we need to store the RoleId for the credential boot strapping object which is used to create the account on request.\n\nwe also need inventory association for the manager network and host\u0027s network interface (or probably the ports), the computer system, and (manager) network protocol for the Link to the appropriate objects.\n\nand some inventory attribute to expose the `ExternallyAccessible` attribute",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c38bb20_03f171fb",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -494,6 +529,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4aae797f_dd0c25bd",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "Agreed, most of it has now been covered in the background.  Feel free to move any remaining points there.",
+      "parentUuid": "86d781a6_d42a2fb8",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "426b4826_29990565",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -653,6 +706,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2827171e_f0014ccb",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "I was thinking the BMC is typically wired to a specific USB port of a USB controller directly connected to a specific PCIe port.  So the BIOS would be able to use this physical connection path to enumerate the pci bus and usb topology and read the descriptors.  The information acquired would then be presented to the HostOS through SMBUS.",
+      "parentUuid": "1ea3e870_935261fd",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c57748b7_bade85a4",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -776,6 +847,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab2d8abe_903113a8",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "Agreeed (if its a local account group; if its a separate interface just the stored account, the current state and probably the next state should be colocated outside ipmid)",
+      "parentUuid": "8a73e294_cbca3020",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd1fbe88_c79ff7f1",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -882,6 +971,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cbabdfb2_23a1ed6e",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "what is `redfish-hostiface`?\nedit your added this group in patchset 9.  still neneds focu\n\nwhat will be performing this account management?",
+      "parentUuid": "25da62a0_60ddcad2",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf91823c_7d2b7366",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "If we store the account it in `/etc/passwd` the username must not include a colon (`:`) or new  line (oh that\u0027s a control character already excluded).  If its a separate interface these additional requirements are relaxed.\n\nstd::mt19937 has internal state  space of 2^19937 and generates a random 32 bit number.   But UTF codepoints are 0-10FFFF, taking 1, 2, or 4 bytes, and only portions are printable, probably not easily described.\n\nSo how do you plan to generate the printable string from a sequence of uint32? \n\n\u003e in this case each std::random_device object may generate the same number sequence.\n\nDo you plan to ensure entropy is available to seed the generator?  I\u0027d hope its connected to the Linux random number but ...",
+      "parentUuid": "306dbc72_ccb8feff",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ef993c0_4d310b6b",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -951,6 +1076,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e62cfef_a9c46d52",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "sorry i missed the NOT",
+      "parentUuid": "b9bc048f_fd2d05ea",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e403bb9f_660f08af",
@@ -1006,6 +1149,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78e0f3f3_029e11bc",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "I need to go back and read, but I though the account was supposed to be visible in the local account collection, findable to be subject to early deletion by an administrator.",
+      "parentUuid": "9670c552_4ee97d07",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5b9fbc62_3e36fbf0",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -1035,6 +1196,24 @@
       "side": 1,
       "message": "BMC can register and listen to Operating System Status exposed by `phosphor-host-state.service`.\nBased on that bmc can take take action on deleting the host-iface account. \nOnce host-iface account is deleted all the request from bios through redfish would be rejected. So do we need any special handling ?",
       "parentUuid": "5b9fbc62_3e36fbf0",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "519f94e1_f945d2eb",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "\u003e BMC can register and listen\n...\n\u003e bmc can take action\n\nWhat on the BMC?  We are designing thw software stack that runs within the BMC.\n\n\u003e Do we need any special handlinig ?\n\nyes.  \n\nthe account is only valid for connections over the designated interface to the host.   \n\nwe need a design for bmcweb to recognise the account for authentication but only accept it for connections on the designated interface.\n\n - how will bmcweb identify the interface\n   - is the community satisfied with identifing the IP subnet?  concerns include\n     - linux accepts any IP assigned to any Interface for local addressing\n     - how do we prevent ip forarding across the interface\n   - Or do we need the interface to be in a private network namespace\n     - then how does it get serviced?  a full bmcweb instance or proxy connections?\n     - what services need to be exposed \n - how will the interface be associated to the account\n    - will it be exposed on a separate dbus interface and require a separate call to a different endopoint after not found in the primary?  \n    - will it be an additional groups added to the user account?\n    - if they are stored in `passwd`, there is a lot more flash activity with these short lifetimes\n    - What will clean up old bootstrap accounts in `passwd` when we crash?\n    - does this require multiple groups \n      - one to identify as bootstrap, to say don\u0027t accept unless\n      - one for each possible host interface to say which its accounted\n   - or do we store these separately",
+      "parentUuid": "3631e92d_7a70411b",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1076,6 +1255,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0e6b47a_fd2198b0",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "it\u0027s not merged if it\u0027s proposed.   \n\nhttps://github.com/search?q\u003drepo%3Aopenbmc%2Fphosphor-dbus-interfaces%20CredentialBootstrap\u0026type\u003dcode\n\ndetails please.  just a property isn\u0027t enough. \nhow will it be exposed? hosted? checked?\nhoping we won\u0027t need another dbus call every redfish credential verification (for the not host interface at least).\n\nSee also prior discussion https://gerrit.openbmc.org/c/openbmc/docs/+/79055/comment/5b9fbc62_3e36fbf0/",
+      "parentUuid": "5737a324_b2857d52",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10b0e35e_65bdb469",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -1105,6 +1302,24 @@
       "side": 1,
       "message": "Once the host-iface account is deleted the request coming from bios through redfish would rejected.",
       "parentUuid": "10b0e35e_65bdb469",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4688120c_addd3ed2",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "I don\u0027t remember a forum discussion about this but the long description in the property guide shows that in addition to the bootstrap account credential enablement the host interface enable can be tied to disable the interface.  \n\nsome may consider the security of the USB network separate from the other network interfaces.  For example some providers absolutely don\u0027t trust the host OS and don\u0027t want to expose the manager to a USB host.",
+      "parentUuid": "d6f138d4_40057c4d",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1217,6 +1432,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26071cb1_b74a0b35",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "[ ] so we need entity manager to associate the computer system, host interface, manager interface.\n- to link to the host network port as described in the standard needs additional inventory objects.  Its not clear how many existing systems even expose the pci slots.  Sending these inventory to the Manager Redfish service it out (it\u0027d be a POST to the collection representing the inventory.  Its closer to aggregating a manager in the Host),  \n\nPossibly needed objects include:\n  - pci slot, \n  - usb controller, \n  - network controller, and \n  - network port object.\n\n[ ] possibly networkd \n- identifying the associated network object with host (or exposing it with a stable name) for inventory\n- if we use a isolated network namespace ...\n\n[ ] an agent for hooks tracking host and enabling disabling \n- if its just bootstrap then hosting in user-manager repository is reasonable\n- Enabling the network interface could be managed by service config manager, or by units from the host state manager if they need to be reset each host boot.\n\n[x] ipmi host to try \n- i forget what I was thinking of here\n\n[x] some storage marking it a bootstrap account, for which host interface it\u0027s restricted to. \n- you identified a bootstrap account group\n\n[ ] method for `bmcweb`. to identify if the account is involved from the corresponding interface.\n- bootstrap account group is the first step.   we have a complicated path taking the groups and mapping some to roles and some to account types.  needs further study",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75773a63_abc4741e",
         "filename": "designs/redfish-host-interface.md",
         "patchSetId": 3
@@ -1246,6 +1478,24 @@
       "side": 1,
       "message": "Is there anything which we can add on top of this ? GTest can be added I will include that",
       "parentUuid": "75773a63_abc4741e",
+      "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f683ce95_8a49ff41",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "tests verifying the accounts are identified as bootstrap accounts",
+      "parentUuid": "7e51cf0f_9a034ced",
       "revId": "169b98fad456004717fd8f497c6308c7c5c05e87",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ffb9e5e_132664d7",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "Ahh, you are proposing to use Redfish over the Host Interface for the BIOS to find the pending BIOS configuration setting changes, and to find the information needed to expose the host interfaec in SMBIOIS.\n\nThe Redfish permissions are not designed, specified or modeled for this. While it can be done through OEM additions, this is also not the reasoning to have the bootstrap account.  The DMTF expects the BIOS to use other unspecified communication channel(s) to the BMC (including PLDM).  (There are older posts in the forum mentioning this in the discussion of permissions and readonly/readwrite objects).\n\nThis doesn\u0027t mean it can\u0027t be done.  But it probably wants to be an account with an OEM role, and have a different lifetime such as only valid while the host is in the BIOS (or some phase of BIOS).",
+      "revId": "85364299b732cc8965dd76d6eee75073b1272bb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0032c294_2d2ce97c",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "It\u0027s not required for the BIOS to acquire credentials, it\u0027s equally valid for only the host os to acquire them.   In this case it\u0027d be expected but not required for the BIOS to add the smbios records to describe how to locate the service.\n\n\nOh, you are describing your proposal to use the Redfish interface and Bootstrap account by the BIOS using the HostInterface, not the interface itself.\n\nHow would the administrator inform the BIOS that it wishes to have the account availbe to UEFI or HostOS?   Disabling it precludes the usage at a later stage.  Enablinig it likewise exposes a security sensive interface that could (with your model) consume the settings meant for the next boot causing a loss of control in addition to the direct acccess to the manager from an untrusted environment.",
+      "revId": "85364299b732cc8965dd76d6eee75073b1272bb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5973d71_d049d57f",
+        "filename": "designs/redfish-host-interface.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-03-27T23:03:11Z",
+      "side": 1,
+      "message": "which properties did you anticipate?   disable bootstrap account until the next boot copies it from enable after reset?   \n\nthis is why I propose storing the role, the bootstrap credential enable, enable after reset, and accounts together in hif and just communicating the account and password back to ipmid (but not sending the password over dbus directly.  Maybe via a fd, but if it goes to the host interface over the standard protocols this security precaution may be mute)",
+      "revId": "85364299b732cc8965dd76d6eee75073b1272bb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
