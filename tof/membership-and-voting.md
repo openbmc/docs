@@ -52,15 +52,15 @@ seven days later. Election schedule is as follows:
 This document shall be maintained with a list of current members and their term
 end (sorted by term conclusion followed by alphabetically by preferred name):
 
-| Name               | Term Conclusion |
-| :----------------- | :-------------: |
-| Andrew Jeffery     |   2025-04-01    |
-| Jason Bills        |   2025-04-01    |
-| Patrick Williams   |   2025-04-01    |
-| William Kennington |   2025-04-01    |
-| Andrew Geissler    |   2025-10-01    |
-| Ed Tanous          |   2025-10-01    |
-| Manojkiran Eda     |   2025-10-01    |
+| Name             | Term Conclusion |
+| :--------------- | :-------------: |
+| Andrew Geissler  |   2025-10-01    |
+| Ed Tanous        |   2025-10-01    |
+| Manojkiran Eda   |   2025-10-01    |
+| Andrew Jeffery   |   2026-04-01    |
+| Patrick Williams |   2026-04-01    |
+| Jagpal Gill      |   2026-04-01    |
+| Jayanth Othayoth |   2026-04-01    |
 
 ## OpenBMC Development Community
 
