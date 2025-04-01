@@ -89,6 +89,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e463b13_38496558",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "As the latest propose, the bootstrap account in phosphor-user-manger D-Bus will be marked with one readonly `IsBootStrap` flag, this flag is created at the time bootstrap account is added and can\u0027t changeable.\nThe BMCWeb will use this flag to identify if the authenticated account by PAM is bootStrap account. And BMCWeb also restricts that account to only configured ethernet interface which will be configured use build option `redfish-host-interfaces`.",
+      "parentUuid": "b51e2004_10af6f36",
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d60834fe_149a72fb",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 6
@@ -160,6 +178,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ddfd2bcc_b5116629",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "As my latest propose, the ethernet interface name will be configured use option `redfish-host-interfaces` in BMCWeb. Because BMC Web has the IP Address of redfish request, which can be mapped to Interface Name uses the D-Bus interface of Network objects.\nIt can also identify if the authenticated account is bootStrap account use.",
+      "parentUuid": "8db57895_a786b1c6",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 26
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea2824c8_eab86783",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 6
@@ -189,6 +231,24 @@
       "side": 1,
       "message": "In the blade server system, we have multiple hosts, that\u0027s why we need hostN for this configuration.",
       "parentUuid": "ea2824c8_eab86783",
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83c7f99b_52737feb",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "787e7213_7c1f5b67",
       "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -381,6 +441,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2733480d_bfc4a7c8",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "I removed the using of entity-manager configuration in latest patch set and move to use the build option `redfish-host-interfaces` in BMC Web. It will resolve your concern about the security.",
+      "parentUuid": "ee3f0f37_54225c47",
+      "range": {
+        "startLine": 142,
+        "startChar": 65,
+        "endLine": 144,
+        "endChar": 40
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fbc568b_f438a9dc",
@@ -418,6 +502,30 @@
       "side": 1,
       "message": "yes, correct, the `CreateUser` method need a flag to know that we want to create a bootstrap account or a normal account.",
       "parentUuid": "9fbc568b_f438a9dc",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 44
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dbd8c97_78adbba8",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "I updated my propose solution, two APIs will be added to phosphor-host-ipmi to create the one user account with the `UserGroups` to `redfish` and `IsBootStrap` flag to `true`.\n\n```\n/** @brief sets user group access data\n *\n *  @param[in] userId - user id\n *  @param[in] chNum - channel number\n *  @param[in] groups - groups data\n *\n *  @return ccSuccess for success, others for failure.\n */\nCc ipmiUserSetGroupAccess(const uint8_t userId, const uint8_t chNum,\n                              const GroupAccess\u0026 groupAccess);\n\n/** @brief sets bootStrap account flag\n *\n *  @param[in] userId - user id\n *  @param[in] chNum - channel number\n *  @param[in] isBootStrap - identify if account is bootStrap\n *\n *  @return ccSuccess for success, others for failure.\n */\nCc ipmiUserSetBootStrapAccount(const uint8_t userId, const uint8_t chNum,\n                              const bool isBootStrap);\n```\n\nSo the bootStrap account will be created with the `UserGroups` to `redfish` and `IsBootStrap` is true.",
+      "parentUuid": "472dc37d_f9d1eadf",
       "range": {
         "startLine": 150,
         "startChar": 0,
@@ -501,6 +609,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d39ca89e_24fc2b24",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "With my latest propose, the interface name is configured directly in BMCWeb option, BMC will find the interface name of the IP address in Redfish requests thru D-Bus object of `xyz.openbmc_project.Network`. If there is no info, the redfish request will be rejected.",
+      "parentUuid": "fd676627_5631111d",
+      "range": {
+        "startLine": 154,
+        "startChar": 9,
+        "endLine": 156,
+        "endChar": 34
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a2b15ad8_4fd202b8",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 6
@@ -560,6 +692,30 @@
       "side": 1,
       "message": "update the doc to that effect.",
       "parentUuid": "af826bb9_036c5c4f",
+      "range": {
+        "startLine": 157,
+        "startChar": 72,
+        "endLine": 158,
+        "endChar": 19
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4890f4a9_5b300c6c",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60cc8dc8_94a2acae",
       "range": {
         "startLine": 157,
         "startChar": 72,
@@ -640,6 +796,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7661d949_292f9904",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "No need to store the IP address in my latest propose.",
+      "parentUuid": "a8570e7b_3f322339",
+      "range": {
+        "startLine": 160,
+        "startChar": 45,
+        "endLine": 161,
+        "endChar": 77
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ebc138d_585a720e",
@@ -677,6 +857,30 @@
       "side": 1,
       "message": "When receing the signals indicating that host is transitioning to off, all of the bootstrap accounts which belong to bootstrap user group will be deleted.",
       "parentUuid": "4ebc138d_585a720e",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 77
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15cdc8f9_db2b5b82",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "When the property `CurrentHostState` of interface `xyz.openbmc_project.State.Host` of object `/xyz/openbmc_project/state/host0` change from `xyz.openbmc_project.State.Host.HostState.Running` to other value. all bootstrap account will be removed.",
+      "parentUuid": "9b8aadeb_de10ab1c",
       "range": {
         "startLine": 171,
         "startChar": 0,
@@ -748,6 +952,30 @@
       "side": 1,
       "message": "I\u0027m not worried about how DSP0270 defines it, I\u0027m worried about how your design defines it.  It might borrow language, but it needs to be defined.",
       "parentUuid": "270ce283_18c2bbea",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 63
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f482d801_e171d3c7",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "When the property `CurrentHostState` of interface `xyz.openbmc_project.State.Host` of object `/xyz/openbmc_project/state/host0` change from `xyz.openbmc_project.State.Host.HostState.Running` to other value. all bootstrap account will be removed.",
+      "parentUuid": "faa7037a_16f58917",
       "range": {
         "startLine": 176,
         "startChar": 0,
@@ -900,6 +1128,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "736731bb_94dfdf71",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "Removed the using of entity-manager in latest patch set.",
+      "parentUuid": "e69f195b_7dc67361",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 71
+      },
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3de7f4c_ee49ba16",
@@ -913,6 +1165,24 @@
       "writtenOn": "2024-03-04T19:42:16Z",
       "side": 1,
       "message": "WAAAAAY longer testing section needed here.  This is making changes to a security boundary in a non trivial way.",
+      "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f7c1cf3_e2fd4360",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "Added more test case in latest patch set. Please check.",
+      "parentUuid": "f3de7f4c_ee49ba16",
       "revId": "6ee0337a8faee89ca7055a5fc6537ec0010b5f48",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

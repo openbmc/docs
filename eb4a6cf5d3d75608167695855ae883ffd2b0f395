@@ -16,6 +16,24 @@
       "message": "Looks like this design is alive again, which is great to see.  PTAL https://github.com/openbmc/bmcweb/commit/796ba93b48f7866630a3c031fd6b01c118202953\n\nWhich should make this design significantly easier to implement from a Redfish perspective.  bmcweb can now socket activate multiple ports, bind them to a specific device, and apply various auth levels and TLS levels to each device.",
       "revId": "eb4a6cf5d3d75608167695855ae883ffd2b0f395",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50f58e91_7bd83472",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-01T23:15:02Z",
+      "side": 1,
+      "message": "\u003e Looks like this design is alive again, which is great to see.  \n\nYes, the old owner leaved so I will take care the patch set.\n\n\u003e PTAL https://github.com/openbmc/bmcweb/commit/796ba93b48f7866630a3c031fd6b01c118202953\n\nI will study the change and update the patch set base on that.\n\n\u003e \n\u003e Which should make this design significantly easier to implement from a Redfish perspective.  bmcweb can now socket activate multiple ports, bind them to a specific device, and apply various auth levels and TLS levels to each device.\n\n\nThere are some problem with Gerrit which causes there are two patch sets with the same change ID https://gerrit.openbmc.org/q/change:+Ibb9eb05ffa283f793b0e757eef6fbd3416dcd3a7. This causes I have to push the design spec to other patch set as the discussion in discord. https://discord.com/channels/775381525260664832/867820390406422538/1356653363835572264\n\nThe new patch set is pushed in https://gerrit.openbmc.org/c/openbmc/docs/+/79327\n\nSummary about the change in new design set which relates your concerns in the comments in this patch set.\n\n+ I change to use `IsBootStrap` flag in `User.Attributes` D-Bus interface to identify bootstrap account instead of add new userGroups.\n+ `InterfaceNames` configurations will be moved to BMCWeb configuration. \n+ Phosphor-host-ipmid will be updated to support add user with only `redfish` userGroup.\n\nWith these change, the security risk will be reduced.",
+      "parentUuid": "ef8f2ace_8a87320e",
+      "revId": "eb4a6cf5d3d75608167695855ae883ffd2b0f395",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
