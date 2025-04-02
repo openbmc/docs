@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1572ffd_3c8ad5e2",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-02T23:10:49Z",
+      "side": 1,
+      "message": "This requirement is limiting the use case. We should not do the aggregation into one single value, but rather show the update status for each component. How aggregation is going to help you? So, lets say you have 5 components and if your progress is 50%, how do you know which progressed or not? Similarly, if Activation failed, how do you know for which failed. Also, in redfish we need to report the status and progress of each target.",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45d433ba_a22e9413",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-02T23:10:49Z",
+      "side": 1,
+      "message": "Why do you have libpldm under NonPLDM Code Updater?",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54ad6b2c_c7f612a5",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-02T23:10:49Z",
+      "side": 1,
+      "message": "Update interface is not a singleton interface as i mentioned above. It resides on the same object Path as the Version interface.",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0f82b0c_52fa6cb2",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-02T23:10:49Z",
+      "side": 1,
+      "message": "Targets is not part of StartUpdate API.",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50532a5c_1bd595cb",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-02T23:10:49Z",
+      "side": 1,
+      "message": "You are returning just one object Path, how would that work for multiple targets? You cannot have multiple interfaces of same type on the same object path.",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ef40905_ba8bc82a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-02T23:10:49Z",
+      "side": 1,
+      "message": "Why do you mean by \"aggregation here\", also if there are multiple targets then you need to report the individual status and progress of each target so it can be reported in the Task messages based on target URI.",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "971419a5_d0d9caae",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-02T23:10:49Z",
+      "side": 1,
+      "message": "You need to report the status of each Target, otherwise how would the client know what failed and what passed?",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
