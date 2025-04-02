@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2eab754a_17bd4b89",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-02T22:42:04Z",
+      "side": 1,
+      "message": "\u003e \u003eAs i understand correctly in your downstream solution the individual code updaters works on passed in binary blobs (Extracted from PLDM package). So, the main rationale for the new updater is because you don\u0027t want to change the downstream code?\n\u003e \n\u003e We are aligned with the upstream design of code updaters of implementing the StartUpdate interface and callers passing the fd, so that firmware blob need not be extracted. We also want vendors to write their code updaters without the requirement that PLDM package is passed to it.  In which case, code-update-manager will bridge from PLDM package to component format which the updater will process.\n\nFirst, there will be some packaging for sure, but who unpackages is the question. Secondly, there still needs to be some code which implements the StartUpdate interface for the vendor, so its not that vendor code will be completely untouched and can just be integrated without any change.\nI can understand we don\u0027t want vendors to unpackage, but that doesn\u0027t mean a new daemon is needed to do that job. We have already written common code in phosphor-bmc-code-mgmt which can do the unpackaging and also provide high level classes to implement required interfaces. This solves both #1 and #2 i mentioned above. This common code can be extended to add support for any kind of packaging.\n\n\u003e \n\u003e \u003eAlso, how does these code updaters connect to the entity which parses the PLDM package, is it part of same daemon (as Updater) or via D-bus ?\n\u003e code\n\u003e \n\u003e It is covered in the block diagram[1]. code-update-manager will parse the PLDM package and forward the component info to updater. The code-update-manager and updater will use D-Bus.\n\u003e [1] https://gist.github.com/tomjoseph83/eb79892d52f95f0fb784599cd7c14808#multi-part-images\n\nSo, this makes it clear that Updater will implement the Update D-Bus interface, then why not use the common code in the Code Updater (which parses image, provides usage classes etc) rather than introducing a middle agent just for image parsing.\n\n\u003e \n\u003e \u003eJust to be clear here Code Updater is not just the entity which acts on binary blob, there is some infra that needs to act before that (Parsing Package, creating interfaces etc), which can be the common code written for non-PLDM devices.\n\u003e \n\u003e We are not maintaining all the code updaters, some are maintained by vendors. \n\nI can understand, but still you need to define a hook into the Update D-Bus interface for this vendor code which i suppose is going to be your code. Rest all logic is already being taken care by the common code.\n\n\u003e This also aligns with the code update design that there is no common packaging format.\n\nThis has already been the requirement in the current design, but that doesn\u0027t mean we need to define a new daemon  for this as i mentioned above that common code is already doing this job.",
+      "parentUuid": "1572aabc_ed89b2ea",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e0f60fee_818aab8b",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -386,6 +404,24 @@
       "side": 1,
       "message": "https://github.com/openbmc/docs/blob/master/designs/code-update.md#multi-part-images\n\nIn the existing design for multi part image, the Update interface is implemented by logical firmware object created by code updater and not a real software entity. So similarly the proposal here is for code-update-manager to implement the Update interface.",
       "parentUuid": "db71a517_f15800cb",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308ed545_080a9f85",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-02T22:42:04Z",
+      "side": 1,
+      "message": "\u003e https://github.com/openbmc/docs/blob/master/designs/code-update.md#multi-part-images\n\u003e \n\u003e In the existing design for multi part image, the Update interface is implemented by logical firmware object created by code updater and not a real software entity. So similarly the proposal here is for code-update-manager to implement the Update interface.\n\nI think there is some misunderstanding, so let me clarify. Here, the logical firmware object is mentioned for the device in case device consists of multiple components. But that doesn\u0027t mean each component will not have its own Version and Update Interface, which it will as i mentioned in another comment too. Each component can be individually representable (via FirmwareInventory URI) and updatable through Redfish.",
+      "parentUuid": "af147035_92281a7d",
       "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
