@@ -1,0 +1,400 @@
+# System Diagnostic Data Collection on OpenBMC
+
+Author: Chau Ly <chaul@amperecomputing.com> <chaulyvietnam>
+
+Created: 2025-03-26
+
+## Problem Description
+
+Users should be able to collect diagnostic data from the system, and track the
+task status.
+
+This design focuses on how users can request to collect host diagnostic data,
+and how BMC handles these requests.
+
+## Background and References
+
+### System diagnostic data
+
+A dump file is diagnostic data collected at any time from the system and stored
+as a file to troubleshoot any abnormal behavior. The recorded data can be
+anything from application core dump to network configuration, system inventory
+configuration, journal log, etc... The file can be stored in Host and then
+offloaded through BMC.
+
+### DMTF proposal
+
+DMTF proposed an enhancement of `LogService` resource for Diagnostic Data before
+(https://www.dmtf.org/sites/default/files/Redfish_Diagnostic_Data_Logging_Proposal_05-2020-WIP.pdf).
+The enhancement has been partly implemented in OpenBMC's `bmcweb` repository,
+which promotes the `CollectDiagnosticData` action in `LogService` schema under
+`ComputerSystem` resource.
+
+### OpenBMC Dump Manager
+
+[Dump Manager design doc](https://github.com/openbmc/docs/blob/master/designs/dump-manager.md)
+in OpenBMC defines a few types of dump in
+[phosphor-dump-manager](https://github.com/openbmc/phosphor-debug-collector)
+service, including: BMC Dump, System Dump, Resource Dump, Hostboot Dump,
+Hardware Dump. Among these, System Dump and Resource Dump refer to debug
+information and host dump that can be initiated to be collected by users and
+offloaded through BMC.
+
+The implementation for System Dump and Resource Dump are placed in IBM's
+[openpower-dump](https://github.com/openbmc/phosphor-debug-collector/tree/master/dump-extensions/openpower-dumps)
+subfolder of phosphor-debug-collector. Both types utilize many OEM-defined
+behaviors, PLDM File Transfer for moving dump records to BMC, and those dump
+files are then exposed as dump entries on D-Bus.
+
+### PLDM File Transfer
+
+[DSP0242 v1.0.0](https://www.dmtf.org/sites/default/files/standards/documents/DSP0242_1.0.0.pdf)
+defines messages and data structures used for transferring files between PLDM
+termini, within a PLDM subsystem. File Transfer specification describes the
+mechanism that allows:
+
+- Discovery of files, directories and file/directory metadata available on a
+  PLDM terminus via PLDM PDR entries and File Transfer specific sensors, for
+  transfer purpose between File Host and File Client
+- Reading regular and serial FIFO type files
+
+## Requirements
+
+1. There should be a way through which user can collect the diagnostic data from
+   the system and offload it through Redfish. These diagnostic data are stored
+   in Host memory and can be collected by users at any time.
+2. Users should be able to monitor the status of the dump collecting task
+   through Redfish.
+3. Users should be able to introspect and download a dump entry through Redfish
+   when the task status is complete.
+4. Users should be able to delete a dump entry from BMC through Redfish.
+5. The dumps represented to users should not be duplicate in content.
+6. BMC should be able to offload diagnostic data files from Host.
+7. The offloading task should be non-blocking.
+8. Host should be able to notify a new system dump to BMC but it will not have
+   data until users request to collect.
+
+## Proposed Design
+
+The proposed design describes related Redfish schemas, corresponding D-Bus Dump
+interfaces, how BMC and Host should communicate, interaction between components,
+a sequence diagram and explanations, and finally some error handling scenarios.
+
+### Redfish interfaces
+
+The `.CollectDiagnosticData` action of
+[LogService 1.4.0](https://www.dmtf.org/sites/default/files/standards/documents/DSP2046_2023.1.pdf)
+schema of Redfish is utilized for gathering system diagnostic data as follows:
+
+`POST /redfish/v1/Systems/{ComputerSystemId}/LogServices/Dump/CollectDiagnosticData {   "DiagnosticDataType": "OEM",   "OEMDiagnosticDataType": "System" }`
+
+The implementation for this action is already supported in `bmcweb`. The `Task`
+and `LogEntry` schemas allow querying the status of log collection task and log
+entry information respectively. These implementations follow the existing
+approaches of BMC Dump and FaultLog Dump collection in `bmcweb`.
+
+The `.ClearLog` action of `LogServices` is used to delete a dump from the entry
+collection.
+
+The `AttachmentURL` property of `LogEntry` schema is used to download the entry.
+
+These schemas fulfilled the requirements 1, 2, 3 and 4.
+
+### Dump interfaces
+
+`phosphor-dbus-interfaces` already has the schema for Dump Entry interfaces, The
+schema for
+[System Dump Entry](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Dump/Entry/System.interface.yaml)
+represents host dump records stored in host memory, generated by system or on
+demand request from users, that can be offloaded through BMC. The dump records
+can be offloaded to BMC.
+
+For Dump Entry in general, there is an
+[Entry interface](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Dump/Entry.interface.yaml)
+that provides required functionalities of a dump.
+[Dump Manager design doc](https://github.com/openbmc/docs/blob/master/designs/dump-manager.md)
+facilitates all the functionalities of interfaces related to a dump record, such
+as
+[Dump.Create](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Dump/Create.interface.yaml)
+and
+[Dump.NewDump](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Dump/NewDump.interface.yaml)
+interfaces. The two interfaces implement `CreateDump` and `Notify` methods
+respectively to support request of a dump type (user-created dump) and
+notification when a new dump record is ready to be offloaded. The `Dump.Entry`
+has an `InitiateOffload` method to initiate offloading a dump.
+
+- A `system-dump-manager` service in `phopsphor-debug-collector` repo handles
+  calls to `CreateDump` and `Notify` methods for system dump path
+  `xyz/openbmc_project/dump/system/` and works with `system-dump-collector` to
+  collect and offload dumps.
+
+  - The `CreateDump` method will result in a temporary dump entry with a
+    `xyz.openbmc_project.Common.Progress.OperationStatus.InProgress` status,
+    invalid
+    [SourceDumpId](https://github.com/openbmc/phosphor-dbus-interfaces/blob/10ad7d8df4dc29778e4ff144c819e1c0210671a3/yaml/xyz/openbmc_project/Dump/Entry/System.interface.yaml#L11)
+    on and zero size to D-Bus. It also requests `system-dump-collector` to
+    collect system dumps. A call to `CreateDump` will return error if there's
+    already a temporary dump present on D-Bus that has not been processed
+    completely yet.
+
+  - The `Notify` method will notify `SourceDumpId` and `Size` of a system dump
+    to D-Bus. If there's one dump with invalid `SourceDumpId`, it will update to
+    this dump. Otherwise, it will create a new entry with increasing entry ID.
+    `Notify` will delete the old dump entry which shares the same `SourceDumpId`
+    property value with the newly-notified dump.
+
+  - The `InitiateOffload` is to trigger offloading each system dump entry to an
+    URI that was passed in.
+
+- A `system-dump-collector` service in the same repo will trigger collecting
+  system dumps from Host. When all the existing dumps are collected, it should
+  call `Notify` for each new dump to create new dump entries, then call
+  `InitiateOffload` for each entry. When the offloading is complete, it should
+  update the dump status to D-Bus and write dump content to the URI. How this
+  service trigger collecting and request offloading dumps from Host is per OEM
+  implementation, but these two tasks must be non-blocking.
+
+- Host can notify a new system dump to BMC by issuing requests to a BMC
+  application to call `Notify` method. How Host conducts this notification is
+  per OEM implementation.
+
+These can fulfilled the requirements 5, 6, 7, and 8.
+
+### BMC-Host interface
+
+The interface for BMC to collect dumps and offload dumps from Host is per OEM
+implementation and out of this design's scope.
+
+### High-level interactions
+
+1. Users request BMC to collect system diagnostic data, introspect task status
+   and dump entry, download or delete dump entry via Redfish out-of-band
+   interface.
+2. `bmcweb` handles Redfish requests and calls to the system dump interface
+   hosted by `system-dump-manager` service in `phophor-debug-collector` repo.
+3. `system-dump-manager` handles download, delete and introspection requests on
+   its own. However, for dump creation request, it interacts with
+   `system-dump-collector` to collect and offload dumps from Host.
+4. How `system-dump-collector` triggers collecting dumps from Host is OEM
+   implementation.
+
+```
+@startuml
+component BMC {
+    component bmcweb
+    component sdm as "system-dump-manager"
+    component sdc as "system-dump-collector"
+}
+component Host
+component User
+interface dump_inf as "System Dump Interface"
+
+User <-> bmcweb: Redfish
+bmcweb ..> () dump_inf: uses
+sdm - dump_inf
+sdm <-> sdc
+sdc <-> Host: OEM
+@enduml
+```
+
+### Diagnostic Data Retrieval sequence
+
+Some error scenarios during Redfish communication and the presence of `D-Bus`
+between `bmcweb` and `system-dump-manager` will be implied and omitted from the
+diagram for simplicity.
+
+1.  Users request to collect Diagnostic Data of the system via Redfish with
+    `POST /redfish/v1/Systems/{ComputerSystemId}/LogServices/{LogServiceId}/CollectDiagnosticData{"DiagnosticDataType": "OEM", "OEMDiagnosticDataType": "System"}`
+
+    1. `bmcweb` calls
+       [CreateDump](https://github.com/openbmc/phosphor-dbus-interfaces/blob/13289c9414b6838eaa8544cbfc393b5f2ef9672b/yaml/xyz/openbmc_project/Dump/Create.interface.yaml#L12)
+       on the system dump path that is handled by `system-dump-manager`.
+       `CreateDump` creates a temporary system dump entry on D-Bus. This will
+       result in an `Running` `Task` in Redfish. Then it calls to
+       `system-dump-collector` to trigger collecting dumps and returns
+       immediately.
+
+2.  When the dump-collecting task completes, `system-dump-collector` calls to
+    `system-dump-manager` to notify about each dump and initiate offloading it.
+
+    1. [Notify](https://github.com/openbmc/phosphor-dbus-interfaces/blob/13289c9414b6838eaa8544cbfc393b5f2ef9672b/yaml/xyz/openbmc_project/Dump/NewDump.interface.yaml#L12)
+       method results in update to the temporary dump entry and maybe the
+       creation of a new dump entry on D-Bus with size and source dump ID.
+
+    2. [InitiateOffload](https://github.com/openbmc/phosphor-dbus-interfaces/blob/13289c9414b6838eaa8544cbfc393b5f2ef9672b/yaml/xyz/openbmc_project/Dump/Entry.interface.yaml#L11)
+       method to the dump entry results in a call to `system-dump-collector` to
+       trigger offloading the dump.
+
+    3. `system-dump-collector` triggers an asynchronous call that is OEM
+       implementation to offload the dump.
+
+3.  When the request to offload each dump completes, `system-dump-collector`
+    will call to `system-dump-manager` to update status of the dump entry to
+    `xyz.openbmc_project.Common.Progress.OperationStatus.Completed` and save the
+    returned fd of the dump to memory (e.g to a file in the hardcoded directory
+    in /tmp/). The corresponding `TaskService` in Redfish will now have
+    `Completed` state.
+
+```
+@startuml
+actor User
+participant bmcweb as "bmcweb"
+participant sdm as "system-dump-manager"
+participant sdc as "system-dump-collector"
+
+==Users request to collect dump==
+User -> bmcweb ++: 1.Request to collect system diagnostic data
+
+bmcweb -> sdm ++: 1.1.Request system dump creation <<CreateDump>>
+sdm ->> sdc: 1.1.2.<<Async>> Trigger collecting dumps
+
+sdm --> bmcweb --: return Dump Entry D-Bus path
+bmcweb --> User --: 200 SUCCESS
+
+==Handler of request to collect dumps==
+note over sdc: 2.Handler of request to collect dumps
+loop Dump files
+    sdc -> sdm: 2.1.<<Notify>> creation of a new dump
+    sdc -> sdm: 2.2.<<InitiateOffload>> the entry
+    sdm ->> sdc: 2.3.<<Async>> Request offloading
+end
+
+==Handler of request to offload a dump==
+note over sdc: 3.Handler of request to offload a dump
+sdc -> sdm: 3.1.Update entry status and save returned fd to memory
+@enduml
+```
+
+### Error handling
+
+`system-dump-manager` will return `xyz.openbmc_project.Common.Error.Unavailable`
+error for a `CreateDump` call if there's already one system dump entry with
+invalid `SourceDumpId`. This will result in a `ResourceInUse` error to the
+Redfish call to `.CollectDiagnosticData`. `system-dump-manager` will return
+`xyz.openbmc_project.Common.Error.NotAllowed` if Host's power is Off, which will
+result in `ResourceInStandby` error to Redfish.
+
+If there should be any error in `system-dump-manager` or `system-dump-collector`
+when they are trying to collect system dump, they should update the temporary
+dump entry's status on D-Bus to
+`xyz.openbmc_project.Common.Progress.OperationStatus.Failed`, which causes the
+corresponding `Task` in Redfish to be in `Cancelled` state. The `Task` will also
+be `Cancelled` if the predefined timeout is reached and it is still in `Running`
+state.
+
+If there should be any error in `system-dump-manager` or `system-dump-collector`
+when they are trying to offload the dump, they should update the notified dump
+entry's status on D-Bus to
+`xyz.openbmc_project.Common.Progress.OperationStatus.Failed` also.
+
+## Alternatives Considered
+
+Make the communication between `system-dump-collector` and Host generic using
+PLDM. However, after consideration, there can be a lot of differences in
+perceptions and perspectives about system diagnostic data retrieval between each
+platform when it comes to implementations. We should not expect all to share the
+same practice because it may not suit their platform requirements. However, the
+communication between system-dump-collector and Host can use PLDM File Transfer.
+The alternative design can be as follows.
+
+### PLDM Fie Transfer for BMC-Host Interface
+
+For `system-dump-collector` to collect dumps from Host to BMC, there needs to be
+an interface to send request to Host and transfer dump data back to BMC.
+Platform Level Data Model (PLDM) can be used to fulfill that with the presence
+of PLDM File Transfer model that is to be implemented in `pldmd` repo as
+described in [PLDM File Transfer](#pldm-file-transfer). In diagnostic data
+collection flow, BMC is File Client, and any Satellite Management Controller
+that is in charge of storing the system diagnostic data is File Host.
+
+With this approach, BMC can have prior knowledge of the diagnostic data files
+possible to be collected from Host in form of File Descriptor PDRs (DSP0248
+v1.3.0 Table 108), and use File Transfer commands described in DSP0242 v1.0.0 to
+offload the dump data (DfOpen/DfRead/DfClose). OEM can use the
+`FileClassification` or `OemFileClassificationName` field in File Descriptor PDR
+to distinguish the diagnostic data files from other files.
+
+`pldmd` can publish these files as FUSE mountpoints or D-Bus file objects
+depending on implementation, so `system-dump-collector` can interact with the
+dump files. The file interface shall provide name, size and allow other
+applications to read the file content. The dump file content shall be stored in
+Host memory and only offloaded through BMC by issuing PLDM commands to Host upon
+read. Users of the file interface will decide how the content will be stored
+afterwards.
+
+### High-level interactions with PLDM File Transfer
+
+The first three interactions are the same to what were described in
+[Component interactions](#component-interactions)
+
+4. `system-dump-collector` looks for file object interfaces that are exposed by
+   `pldmd`, and calls to the interfaces to retrieve dump entry's information and
+   dump content to create/update to dump entries on D-Bus.
+
+5. `pldmd` handles calls from `system-dump-manager` by issuing PLDM requests to
+   Host and returning necessary information. If error happens during PLDM
+   commnunication, `pldmd` will return approriate errors to
+   `system-dump-manager`, which will result in corresponding response to user
+   requests.
+
+```
+@startuml
+component BMC {
+    component bmcweb
+    component sdm as "system-dump-manager"
+    component sdc as "system-dump-collector"
+    component pldmd
+}
+component Host
+component User
+interface dump_inf as "System Dump Interface"
+interface file_inf as "File Interface"
+
+User <-> bmcweb: Redfish
+bmcweb ..> () dump_inf: uses
+dump_inf - sdm
+sdm - sdc
+sdc ..> () file_inf: uses
+file_inf - pldmd
+pldmd <-> Host: PLDM
+@enduml
+```
+
+### Impact Assessment
+
+This alternative design is more complex and require two novice components
+compared to the main design's [impacts](#impacts):
+
+- Add a new file object D-Bus interface to `phosphor-dbus-interfaces` or enlist
+  [libfuse](https://github.com/libfuse/libfuse) to create FUSE mountpoints for
+  File Descriptor PDRs.
+
+- Implement PLDM File Transfer to `libpldm` and `pldmd` repo.
+
+## Impacted Repos
+
+This change will need to:
+
+- Support downloading a dump entry under `ComputerSystem` in `bmcweb` repo.
+- Add a `system-dump-manager` to the existing dump manager classes in the
+  `phosphor-debug-colletor` repo.
+- Add a `system-dump-collector` service to `phosphor-debug-colletor` repo whose
+  implementations can be overriden by OEM in an extension folder in the repo.
+
+### Organizational
+
+The repositories under impact will be: `bmcweb`, `phosphor-debug-collector`.
+
+## Testing
+
+Steps to test this feature out:
+
+1. Request to collect system diagnostic data via Redfish and see if a system
+   dump entry with basic info is created on D-Bus.
+2. Calls Notify for a number of new dumps on system dump path and see if the new
+   dump entries are created or updated to D-Bus.
+3. Request to monitor the task status of the dump collecting action via Redfish
+   and expect it to be In-progress.
+4. This can be tested further by simulating a response to the dump offloading
+   request with valid fd, then see if the status is now completed, and the entry
+   can be introspected and downloaded via Redfish.
