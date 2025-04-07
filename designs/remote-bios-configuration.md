@@ -18,10 +18,18 @@ the host firmware support model.
 
 ## Background and References
 
-[1]
-https://www.dmtf.org/sites/default/files/standards/documents/DSP0247_1.0.0.pdf
-[2] https://redfish.dmtf.org/schemas/v1/Bios.v1_1_0.json [3]
-https://redfish.dmtf.org/schemas/v1/AttributeRegistry.v1_3_2.json
+1. Platform Level Data Model (PLDM) for BIOS Control and Configuration Specification is a spec published by
+[DMTF](https://www.dmtf.org/sites/default/files/standards/documents/DSP0247_1.0.0.pdf)
+2. Redfish Schema for
+[BIOS](https://redfish.dmtf.org/schemas/v1/Bios.v1_1_0.json)
+3. Redfish
+[AttributeRegistry](https://redfish.dmtf.org/schemas/v1/AttributeRegistry.v1_3_2.json)
+4. Redfish Schema for
+[SecureBoot](https://redfish.dmtf.org/schemas/v1/SecureBoot.v1_1_2.json)
+5. Redfish Schema for
+[BootOption](https://redfish.dmtf.org/schemas/v1/BootOption.v1_0_6.json)
+6. Design document for [Redfish-Host-Interface](https://gerrit.openbmc.org/c/openbmc/docs/+/79327)
+7. [Redfish Host Interface Specification](https://www.dmtf.org/dsp/DSP0270)
 
 ## Requirements
 
@@ -43,8 +51,8 @@ https://redfish.dmtf.org/schemas/v1/AttributeRegistry.v1_3_2.json
 8. Remote BIOS configuration daemon should be independent of interface specific
    data format.
 9. BMC should able to take default / current settings from host and store &
-   expose that for out of band updates. 10.BMC should provide the new values to
-   the host.
+   expose that for out of band updates.
+10. BMC should provide the new values to the host.
 
 ## Proposed Design
 
@@ -322,6 +330,109 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
 
 ```
 
+#### Remote BIOS Configuration via Redfish Host Interface
+
+Redfish Host Interface is a spec published by
+[DMTF](https://www.dmtf.org/sites/default/files/standards/documents/DSP0270_1.3.0.pdf).
+It is designed for standardized Redfish-based communication between the host CPU
+and the Redfish service in the management unit.
+
+##### First Boot
+
+```
++----------------------------------------+                    +----------------------------------------+                    +-----------------------------------+
+|                BIOS                    |                    |                  BMC                   |                    |              REDFISH              |
+|                                        |                    |                                        |                    |                                   |
+|  +----------------------------------+  |                    | +------------------------------------+ |                    | +-------------------------------+ |
+|  | Send the Redfish host interface  |  |                    | |1.Get the complete attributes data. | |                    | | BIOS Attributes and Attribute | |
+|  | BIOS configuration data          |  |-----LanOverUSB---->| |2.Validate and convert into         | |------------------->| | Registry available on         | |
+|  | (PUT request to /redfish/v1      |  |-------Redfish----->| |  native to D-bus format.           | |------------------->| | GET /redfish/v1/Systems       | |
+|  |  /Systems/system/Bios URI)       |  |                    | |3.Expose the D-bus interface        | |                    | | /system/Bios and              | |
+|  +----------------------------------+  |                    | |  (RBC Daemon)                      | |                    | | /redfish/v1/Registries        | |
+|                                        |                    | +------------------------------------+ |                    | | /BiosAttributeRegistry URI's  | |
+|                                        |                    |                                        |                    | +-------------------------------+ |
+|  +----------------------------------+  |                    |                                        |                    |                                   |
+|  |  Continue the BIOS boot          |  |                    |                                        |                    |                                   |
+|  +----------------------------------+  |                    |                                        |                    |                                   |
++----------------------------------------+                    +----------------------------------------+                    +-----------------------------------+
+```
+
+1. The first boot can be determined as, there will be empty response for
+   "Attributes" and "AttributeRegistry" redfish properties under
+   /redfish/v1/System/system/Bios URI.
+2. BIOS has to send all the Attributes to BMC via Lan Over USB interface with
+   respect to Redfish Host Interface specification. BIOS will make PUT request
+   with BIOS configuration attributes to "/redfish/v1/Systems/system/Bios" URI.
+3. Once all the attributes are received, then Bios PUT handler will convert JSON
+   data into DBus format and then it will be exposed to DBus via
+   bios-config-manager on "xyz.openbmc_project.BIOSConfig.Manager" DBus
+   interface and update the "BaseBIOSTable" DBus property.
+4. The "BaseBIOSTable" DBus property expects the input likely in the BIOS
+   Attribute Registry format
+
+```
+busctl set-property xyz.openbmc_project.BIOSConfigManager /xyz/openbmc_project/bios_config/manager xyz.openbmc_project.BIOSConfig.Manager BaseBIOSTable a{s\(sbsssvva\(sv\)\)} 2 "DdrFreqLimit" "xyz.openbmc_project.BIOSConfig.Manager.AttributeType.String" false "Memory Operating Speed Selection" "Force specific Memory Operating Speed or use Auto setting." "Advanced/Memory Configuration/Memory Operating Speed Selection" s "0x00" s "0x0B" 5 "xyz.openbmc_project.BIOSConfig.Manager.BoundType.OneOf" s "auto" "xyz.openbmc_project.BIOSConfig.Manager.BoundType.OneOf" s "2133" "xyz.openbmc_project.BIOSConfig.Manager.BoundType.OneOf" s "2400" "xyz.openbmc_project.BIOSConfig.Manager.BoundType.OneOf" s "2664" "xyz.openbmc_project.BIOSConfig.Manager.BoundType.OneOf" s"2933" "BIOSSerialDebugLevel" "xyz.openbmc_project.BIOSConfig.Manager.AttributeType.Integer" false "BIOS Serial Debug level" "BIOS Serial Debug level during system boot." "Advanced/Debug Feature Selection" x 0x00 x 0x01 1 "xyz.openbmc_project.BIOSConfig.Manager.BoundType.ScalarIncrement" x 1
+```
+
+5. Redfish will make use of this dbus interface and property and shows all the
+   BIOS Attributes and BiosAttributeRegistry under
+   "/redfish/v1/Systems/system/Bios/" and
+   "/redfish/v1/Registries/BiosAttributeRegistry" Redfish URI dynamically
+
+##### Second Boot
+
+```
++----------------------------------------+                    +----------------------------------------+                    +-----------------------------------+
+|                BIOS                    |                    |                  BMC                   |                    |              REDFISH              |
+|                                        |                    |                                        |                    |                                   |
+|  +----------------------------------+  |                    |                                        |                    |                                   |
+|  | Get the config status            |  |                    |                                        |                    |                                   |
+|  | (Get updated Settings)           |  |                    |  +-----------------------------------+ |                    |  +-----------------------------+  |
+|  | - Any config changed or not      |  |<-Get config status-|  | Update the Pending Attributes list| |<----Update BIOS----|  | Update the BIOS Attribute   |  |
+|  | - New attribute values exist     |  |<-----from BMC------|  | (PendingAttributes DBus property) | |     Attributes     |  | values (PATCH /redfish/v1   |  |
+|  | (GET /redfish/v1/Systems/system  |  |                    |  +-----------------------------------+ |                    |  | /Systems/system/Settings    |  |
+|  |   /Bios/Settings)                |  |                    |                                        |                    |  +-----------------------------+  |
+|  +----------------------------------+  |                    |                                        |                    |                                   |
+|                                        |                    |  +-----------------------------------+ |                    |                                   |
+|  +----------------------------------+  |                    |  |                                   | |                    |                                   |
+|  | If new attribute value exist     |<-|-----------------------|  Send the new value attributes    | |                    |                                   |
+|  |           then                   |  |                    |  |  (Pending Attributes list)        | |                    |                                   |
+|  | Get & Update the BIOS variables  |--|------+             |  |                                   | |                    |                                   |
+|  |                                  |  |      |             |  +-----------------------------------+ |                    |                                   |
+|  +---------------+------------------+  |      |             |                                        |                    |                                   |
+|                  |                     |      |             |                                        |                    |                                   |
+|                 YES                    |      |             |                                        |                    | +-------------------------------+ |
+|                  |                     |      |             |  +----------------------------------+  |                    | | BIOS Attributes and Attribute | |
+|   +--------------V------------------+  |      |             |  |                                  |  |                    | | Registry available on         | |
+|   | Send the updated data to BMC    |  |      |             |  | Update the BIOS attributes       |  |                    | | GET /redfish/v1/Systems       | |
+|   | (PUT request to /redfish/v1/    |------------------------->| (BaseBIOSTable)                  |  |----Get Updated---->| | /system/Bios and              | |
+|   |  Systems/system/Bios)           |  |      |             |  | Clear Pending Attributes list    |  |    Attributes      | | /redfish/v1/Registries        | |
+|   +---------------------------------+  |      |             |  |                                  |  |                    | | /BiosAttributeRegistry URI's  | |
+|                                        |      |             |  +----------------------------------+  |                    | +-------------------------------+ |
+|                                        |      |             |                                        |                    |                                   |
+|   +---------------------------------+  |      |             |                                        |                    |                                   |
+|   | Reset the BIOS for BIOS conf    |  |     NO             |                                        |                    |                                   |
+|   | update                          |  |      |             |                                        |                    |                                   |
+|   +---------------------------------+  |      |             |                                        |                    |                                   |
+|                                        |      |             |                                        |                    |                                   |
+|  +----------------------------------+  |      |             |                                        |                    |                                   |
+|  |  Continue the BIOS boot          |<--------+             |                                        |                    |                                   |
+|  +----------------------------------+  |                    |                                        |                    |                                   |
++----------------------------------------+                    +----------------------------------------+                    +-----------------------------------+
+```
+
+1. The OOB user can update the BIOS Attribute values with PATCH request to
+   "/redfish/v1/Systems/system/Bios/Settings" Redfish URI.
+2. In Redfish Bios/Settings PATCH request handler, it will first validate the
+   newly requested attribute values with the help of RBC application for the
+   current attribute types and the valid values. If it matches then only PATCH
+   will be allowed, if in case it doesn't match then PATCH will be failed.
+3. On PATCH success, the newly requested attribute values will be set to
+   "PendingAttributes" DBus property. The RBC application will persist the
+   "BaseBIOSTable" and "PendingAttributes" DBus properties on BMC/service reset.
+4. The "PendingAttributes" DBus property will be cleared, whenever the new
+   "BaseBIOSTable" is received from the BIOS.
+
 ##Complete BIOS BMC flow for BIOS configuration in deferred update model
 
 ```
@@ -478,8 +589,8 @@ BIOS.
 7. Update new BIOS settings (multiple attributes): Use to send the new value for
    particular attribute or list of attributes. PATCH Method -
    "https://<BMC IP address>/redfish/v1/Systems/system/Bios/Settings" Ex:
-   Attribute name and new value list : { "DdrFreqLimit" : 2400},"QuietBoot",0x1
-   }
+   Attribute name and new value list : { "DdrFreqLimit" : 2400},{ "QuietBoot" :
+   0x1}
 
 ## Alternatives Considered
 
