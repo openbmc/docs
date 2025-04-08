@@ -142,6 +142,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57f05f37_802aede3",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2025-04-08T08:54:22Z",
+      "side": 1,
+      "message": "Hi Ed/Manoj\n\nlooks like SPDM requires only Hostname/IP address to talk to TCP endpoints.\nIf we are using aggregation service and SPDM parallelly, then entity-manager is going to have two objects both satelliteController and SpdmTcpResponder with the same data.\nI understand that SatelliteController Config has properties specific to redfish\nbut any other application just looking for Hostname/IP address of satellite BMC can re-use same satelliteController objects instead of creating its own configuration file. just thinking if we can common configuration instead of each app defining its own entity-manager object.",
+      "parentUuid": "f4ec0159_34afa2c4",
+      "range": {
+        "startLine": 171,
+        "startChar": 35,
+        "endLine": 171,
+        "endChar": 54
+      },
+      "revId": "d27d7c2efa264f4a4a3f453afc7f055e629cfcc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cd638d0_758b1398",
