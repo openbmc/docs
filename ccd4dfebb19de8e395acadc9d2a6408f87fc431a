@@ -127,6 +127,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6bd4f5c_058c0dd2",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "@deepak.kodihalli.83@gmail.com Can you add your thoughts to suggestions by Jagpal on the specific requirement?\n\n`Not all code updaters can be expected to interpret PLDM package format, so forwarding the PLDM package to every code updater is not feasible.`\n\nThe suggestion is non-PLDM code updaters to use the common code in phosphor-bmc-code-mgmt for non-PLDM code updaters for creating D-Bus interfaces and libpldm for parsing non-PLDM component image. So the expectation is all non-PLDM code updaters will leverage this.",
+      "parentUuid": "2eab754a_17bd4b89",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e0f60fee_818aab8b",
         "filename": "designs/code-update.md",
         "patchSetId": 8
@@ -422,6 +440,24 @@
       "side": 1,
       "message": "\u003e https://github.com/openbmc/docs/blob/master/designs/code-update.md#multi-part-images\n\u003e \n\u003e In the existing design for multi part image, the Update interface is implemented by logical firmware object created by code updater and not a real software entity. So similarly the proposal here is for code-update-manager to implement the Update interface.\n\nI think there is some misunderstanding, so let me clarify. Here, the logical firmware object is mentioned for the device in case device consists of multiple components. But that doesn\u0027t mean each component will not have its own Version and Update Interface, which it will as i mentioned in another comment too. Each component can be individually representable (via FirmwareInventory URI) and updatable through Redfish.",
       "parentUuid": "af147035_92281a7d",
+      "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c43a266_4ff0d6f3",
+        "filename": "designs/code-update.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "I think we are on the same page on this. So marking it resolved.\n\nLogical firmware object can be implemented when a code-updater has to handle multiple components. So PLDM UA will implement logical firmware object to handle a single package which has to handle multiple components.",
+      "parentUuid": "308ed545_080a9f85",
       "revId": "ccd4dfebb19de8e395acadc9d2a6408f87fc431a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },

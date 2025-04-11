@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7aa4f510_f30fbbf2",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "Same comment discussed in multiple places.\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/76645/comment/d1572ffd_3c8ad5e2/",
+      "parentUuid": "3bddf801_59b564c3",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41c5290a_5d0fa960",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5be712cf_7e473954",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "As discussed these are requirements for a single package for a platform and to invoked RF API without targets.",
+      "parentUuid": "41c5290a_5d0fa960",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "042c14a7_f7b20536",
@@ -48,6 +84,24 @@
       "writtenOn": "2025-04-02T23:39:52Z",
       "side": 1,
       "message": "This is a incorrect as i have mentioned multiple times. The design doesn\u0027t impose any restriction to use a specific format. Please remove this.",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bc69ae5_f8615f68",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "I think we are going in circles around this.\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/76645/comment/431e17e8_6592ec60/ Already discussed in length in another comment.",
+      "parentUuid": "042c14a7_f7b20536",
       "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -71,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85155705_1fa2e231",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "We have aggressive redfish telemetry requirements so CPU intensive items like authorisation we want to optimize. Also the keys for authorisation check we want every code updater to be aware about. This is a requirement on code-update-manager and not on other code updaters.",
+      "parentUuid": "bb928298_7acccbe6",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1572ffd_3c8ad5e2",
         "filename": "designs/code-update.md",
         "patchSetId": 12
@@ -88,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2b6d3e2_b0f88bf5",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "```\nAble to aggregate the progress \u0026 status of the code update across multiple code updaters for multi part images.\n```\n\nThis requirement does not limit RF task to add component specific progress (TargetDetermined, TransferInProgress, AwaitToActivate) or record which component update is successful or failed. We have the same requirements. There are additional requirements with a single package and multiple components, that the single task needs to have the details about component images and RF client task to be updated every n minutes to track the update is in progress and not hung.",
+      "parentUuid": "d1572ffd_3c8ad5e2",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "45d433ba_a22e9413",
         "filename": "designs/code-update.md",
         "patchSetId": 12
@@ -99,6 +189,24 @@
       "writtenOn": "2025-04-02T23:10:49Z",
       "side": 1,
       "message": "Why do you have libpldm under NonPLDM Code Updater?",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fbc0501_5d013ef0",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "This is to parse and read the non-PLDM component images from PLDM package. Once libpldm changes are merged, common code in phosphor-bmc-code-mgmt will switch to libpldm.",
+      "parentUuid": "45d433ba_a22e9413",
       "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -122,6 +230,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6ecf6b9_91cfae1a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "In the case of logical firmware object, the object path may not have the version interface. Right?",
+      "parentUuid": "54ad6b2c_c7f612a5",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0f82b0c_52fa6cb2",
         "filename": "designs/code-update.md",
         "patchSetId": 12
@@ -133,6 +259,24 @@
       "writtenOn": "2025-04-02T23:10:49Z",
       "side": 1,
       "message": "Targets is not part of StartUpdate API.",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "485fd6c5_681d85e1",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "Sure, will revisit \u0026 update the flow diagram based on the latest interface",
+      "parentUuid": "a0f82b0c_52fa6cb2",
       "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -156,6 +300,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af5de629_1cb7f8aa",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "The bmcweb will track completion of the package with one object path. For RF task update please review the comment \n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905/comment/2b6c9e71_81d90665/ Please review the comment here.",
+      "parentUuid": "50532a5c_1bd595cb",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ef40905_ba8bc82a",
         "filename": "designs/code-update.md",
         "patchSetId": 12
@@ -167,6 +329,24 @@
       "writtenOn": "2025-04-02T23:10:49Z",
       "side": 1,
       "message": "Why do you mean by \"aggregation here\", also if there are multiple targets then you need to report the individual status and progress of each target so it can be reported in the Task messages based on target URI.",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "356e238f_ae388936",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "Same comment as before, resolving.",
+      "parentUuid": "2ef40905_ba8bc82a",
       "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -184,6 +364,24 @@
       "writtenOn": "2025-04-02T23:10:49Z",
       "side": 1,
       "message": "You need to report the status of each Target, otherwise how would the client know what failed and what passed?",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01c4ec6b_19202be8",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-11T10:39:55Z",
+      "side": 1,
+      "message": "The RF task will have the success/fail of all the targets. I will update the flow diagram based on the latest update. Please review the D-Bus interface proposal to add success/fail for multiple targets.\n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905/comment/2b6c9e71_81d90665/",
+      "parentUuid": "971419a5_d0d9caae",
       "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
