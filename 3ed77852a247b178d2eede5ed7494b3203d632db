@@ -663,6 +663,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff3c5f1e_d8d8b143",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-04-14T04:14:33Z",
+      "side": 1,
+      "message": "Had to recall my train of thought.\n\nThe SPDM daemon can\u0027t just \"talk spdm to the devices\" when its trying to host its own certificate.\n\nThe TPM doesn\u0027t talk SPDM.\n\nWe aren\u0027t interested in establishing trust of a TPM.\n\nWe are interested in establishing trust in the entity that extended the PCRs of the TPM.  That will likely require accepting a certificate rooted in the TPM and possibly though certificate chains going through the CA of TPM manufacturer, the system manufacturer who provisioned the TPM to the component being trusted.\n\nMy point is when hosting certificates on dbus for the BMC itself it will need to obtain the certificate in a different way, and combining this device knowlege into a spdm hosting object seems like a strech.",
+      "parentUuid": "7ab6e04a_b4de55eb",
+      "revId": "3ed77852a247b178d2eede5ed7494b3203d632db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f777ff68_96680b27",
         "filename": "designs/redfish-spdm-attestation.md",
         "patchSetId": 3
