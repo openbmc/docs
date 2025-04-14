@@ -166,6 +166,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de8fc128_648634a6",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-04-14T04:07:22Z",
+      "side": 1,
+      "message": "\u003e Hi Ed/Manoj\n\u003e \n\u003e looks like SPDM requires only Hostname/IP address to talk to TCP endpoints.\n\u003e If we are using aggregation service and SPDM parallelly, then entity-manager is going to have two objects both satelliteController and SpdmTcpResponder with the same data.\n\nWell, this totally depends on system hardware topology, right ? For IBM both might be the same, but that does not mean it\u0027s the same for every one. \n\n@ed@tanous.net is probably the expert in this area, but from my perspective - I don\u0027t think having IP/Hostname in two different objects would be a great deal. Apart from IP address/ Hostname, there might be other properties that differ for satellite controller vs spdm responder (which we may not be able to think now - but from a scalability point of view it\u0027s probably better to have a different EM configs for both ?)\n\n\u003e I understand that SatelliteController Config has properties specific to redfish\n\u003e but any other application just looking for Hostname/IP address of satellite BMC can re-use same satelliteController objects instead of creating its own configuration file. just thinking if we can common configuration instead of each app defining its own entity-manager object.\n\nThat might work for IBM based on its hardware topology - since both might actually be the same thing- but there is no real need/requirement for a SPDM TCP responder to be also a Satellite controller.",
+      "parentUuid": "57f05f37_802aede3",
+      "range": {
+        "startLine": 171,
+        "startChar": 35,
+        "endLine": 171,
+        "endChar": 54
+      },
+      "revId": "d27d7c2efa264f4a4a3f453afc7f055e629cfcc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cd638d0_758b1398",
