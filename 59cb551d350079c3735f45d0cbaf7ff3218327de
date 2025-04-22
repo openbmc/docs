@@ -52,6 +52,24 @@
       "parentUuid": "07265f39_052a36cf",
       "revId": "59cb551d350079c3735f45d0cbaf7ff3218327de",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67462a89_c97327ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-04-22T04:27:06Z",
+      "side": 1,
+      "message": "Below are some concerns in the patch set is covered in this design:\n1. Your concern about setting the `redfish host inband interface name` in EM.\n\nIn new design, The ethernet interface name will be configured use option redfish-host-interfaces in BMCWeb. Because BMC Web has the IP Address of redfish request, which can be mapped to Interface Name uses the D-Bus interface of Network objects. It can also identify if the authenticated account is bootStrap account use.\n\n2. Ed: \"Considering that we today don\u0027t enforce group membership in pam, I see this as a significant change to current. Please comment on the existing mailing list and code reviews that are proposing to change this\"\n\nNew design, does not create new usergroup, I suggest adding one readonly D-Bus property name `IsBootStrap` in `User.Attributes` D-Bus interface to identify the account is bootStrap. This info managed by `phosphor-user-manager` but is updated value while create bootstrap account in phosphor-host-ipmid. No PAM changing is required.\n\n3. Ed: This will make the bootstrap interface available from interfaces that are NOT the host interface. I\u0027m fairly certain you want to provide some way to note that a user is a bootstrap user?\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/68746/comment/9fbc568b_f438a9dc/\n\nIn new design, two new API in phosphor-host-ipmid will be added:\n+ ipmiUserSetGroupAccess -\u003e to set userGroup of bootStrap account to redfish only.\n+ ipmiUserSetBootStrapAccount -\u003e To see `IsBootStrap` in `User.Attributes` D-Bus interface to `True` for bootstrap account.\n\n4. About getting the IP address of the `redfish host interface`\nEd: How will it do this? How do we ensure that there are no conflicts? What if there are two NICs with the same IP address? What if the NIC has ipv4 and ipv6?\n\nLots of questions here; I\u0027m happy to see them answered in code, but just doing a string compare of an ip address isn\u0027t going to work for a security boundary.\n\nNew design, \n```\nUse the options `additional-ports` and `additional-bind-to-device` to different\nthe out-of-band redfish request which will come from port 443 or 80 with the\ninband redfish request. Example: Add `additional-ports\u003d199` and\n`additional-bind-to-device\u003dusb0` to specify that the request to interface `usb0`\nshould using port 199. This will be additional constraints to the\n`redfish-host-interfaces` above option.\n```\n\n5. Ed: How will it do this? There\u0027s no way to map a given user account to a given \"off\" signal.\n\nWhen the property CurrentHostState of interface xyz.openbmc_project.State.Host of object /xyz/openbmc_project/state/host0 change from xyz.openbmc_project.State.Host.HostState.Running to other value. all bootstrap account will be removed.\n\n6. Ed : WAAAAAY longer testing section needed here. This is making changes to a security boundary in a non trivial way.\n\nI added 5 test cases in new design.",
+      "parentUuid": "875fac29_fd4202fb",
+      "revId": "59cb551d350079c3735f45d0cbaf7ff3218327de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
