@@ -143,6 +143,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1b62495_455de432",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-23T01:39:50Z",
+      "side": 1,
+      "message": "\u003e We have aggressive redfish telemetry requirements so CPU intensive items like authorisation we want to optimize. \n\nHow are aggressive telemetry requirements related to authorization? The design needs to be robust to report the correct status at that moment and all authorizations needs to be performed async.\n\n\n\u003e Also the keys for authorisation check we want every code updater to be aware about. This is a requirement on code-update-manager and not on other code updaters.\n\nI think you meant \"We don\u0027t want every code updater to be aware about\" ? If yes, then i don\u0027t think putting the keys in a different daemon is going to be any help. You can always add the authorization logic to some common piece code to be used in multiple updaters.",
+      "parentUuid": "85155705_1fa2e231",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1572ffd_3c8ad5e2",
         "filename": "designs/code-update.md",
         "patchSetId": 12
@@ -172,6 +190,24 @@
       "side": 1,
       "message": "```\nAble to aggregate the progress \u0026 status of the code update across multiple code updaters for multi part images.\n```\n\nThis requirement does not limit RF task to add component specific progress (TargetDetermined, TransferInProgress, AwaitToActivate) or record which component update is successful or failed. We have the same requirements. There are additional requirements with a single package and multiple components, that the single task needs to have the details about component images and RF client task to be updated every n minutes to track the update is in progress and not hung.",
       "parentUuid": "d1572ffd_3c8ad5e2",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c1d5a93_b0ea77f5",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-23T01:39:50Z",
+      "side": 1,
+      "message": "\u003e ```\n\u003e Able to aggregate the progress \u0026 status of the code update across multiple code updaters for multi part images.\n\u003e ```\n\u003e \n\u003e This requirement does not limit RF task to add component specific progress (TargetDetermined, TransferInProgress, AwaitToActivate) or record which component update is successful or failed. We have the same requirements. There are additional requirements with a single package and multiple components, that the single task needs to have the details about component images and RF client task to be updated every n minutes to track the update is in progress and not hung.\n\nThe progress is tracked via ProgressInterface and status via ActivationStatus interface, which you will miss because you are aggregating all this information and then sending it back to BMCWeb. There will be PDI events and errors added but not for uses cases which are already covered by these interfaces. Moreover, the PDI events and errors will have a objectPath as an arg which will be the same objectPath returned by Update interface, so BMCWeb can match the appropriate messages and add it to the Task (especially in case of parallel upgrades initiated by user).",
+      "parentUuid": "c2b6d3e2_b0f88bf5",
       "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -248,6 +284,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b5c0145_b3a9c0dd",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-23T01:39:50Z",
+      "side": 1,
+      "message": "It needs to have a Version interface for something to show up in FirmwareInventory as thats how BMCWeb logic is. And we need it in Inventory so we can use the corresponding TargetURI. Now, one can argue what would that version be - I would say thats a limitation on Redfish side that we cannot map that information appropriately since logical can have multiple different (if not same) versions. So, the updater may choose to keep the version string as empty for logical and fallback to component firmware inventory in such a scenario.",
+      "parentUuid": "c6ecf6b9_91cfae1a",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0f82b0c_52fa6cb2",
         "filename": "designs/code-update.md",
         "patchSetId": 12
@@ -312,6 +366,24 @@
       "side": 1,
       "message": "The bmcweb will track completion of the package with one object path. For RF task update please review the comment \n\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905/comment/2b6c9e71_81d90665/ Please review the comment here.",
       "parentUuid": "50532a5c_1bd595cb",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c77e661f_60effe7c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-23T01:39:50Z",
+      "side": 1,
+      "message": "\u003e The bmcweb will track completion of the package with one object path. For RF task update please review the comment \n\u003e \n\u003e https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905/comment/2b6c9e71_81d90665/ Please review the comment here.\n\nReplied on that comment.",
+      "parentUuid": "af5de629_1cb7f8aa",
       "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
