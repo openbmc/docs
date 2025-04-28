@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30976f89_80ddfd4c",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-04-28T12:23:21Z",
+      "side": 1,
+      "message": "Nope, They are not mutually exclusive.",
+      "parentUuid": "ebec309d_08409bba",
+      "revId": "062847b32d5d7c7282eb37598091b7a136b59154",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ac00e0e_9805112e",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-04-17T09:46:47Z",
       "side": 1,
       "message": "Is this for the reach down or reach up model? Destination port or source port?",
+      "revId": "062847b32d5d7c7282eb37598091b7a136b59154",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b75989f7_7fa5af00",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-04-28T12:23:21Z",
+      "side": 1,
+      "message": "\u003e Is this for the reach down or reach up model? Destination port or source port?\n\nReach down or reach up model totally depends on if BMC is initiating the connection to the remote endpoint (or) the other way round. \n\nIt\u0027s not the source port -  only the destination port of the remote endpoint that we are concerned about. IANA has assigned TCP port 4194 for SPDM communication. We would be probably making this hardcoded in the entity manager config.",
+      "parentUuid": "6ac00e0e_9805112e",
       "revId": "062847b32d5d7c7282eb37598091b7a136b59154",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e2f44ef_c5881f2b",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-04-28T12:23:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "917e57aa_6067bb0a",
+      "revId": "062847b32d5d7c7282eb37598091b7a136b59154",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e542475c_fd1190fb",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-04-17T09:46:47Z",
       "side": 1,
       "message": "I think this needs more details (D-Bus/Redfish/Sequence Flows/).",
+      "revId": "062847b32d5d7c7282eb37598091b7a136b59154",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bddf4c44_2c2f4444",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-04-28T12:23:21Z",
+      "side": 1,
+      "message": "This would exactly look like how the existing design would show the certificates \u0026 measurement information for remote endpoints, except that fact that the measurements will be its own measurements \u0026 it would have an association that points to its local RoT (TPM) object.",
+      "parentUuid": "e542475c_fd1190fb",
       "revId": "062847b32d5d7c7282eb37598091b7a136b59154",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
