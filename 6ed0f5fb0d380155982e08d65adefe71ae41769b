@@ -159,6 +159,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "411d3f4c_a5dea5aa",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-05-05T13:02:13Z",
+      "side": 1,
+      "message": "Integrity and authorisation check is not included in the latest revision of the design document, marking it resolved.",
+      "parentUuid": "f1b62495_455de432",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc8c79f0_9f33ee5c",
@@ -172,6 +190,24 @@
       "writtenOn": "2025-04-23T01:56:27Z",
       "side": 1,
       "message": "Let\u0027s focus on this requirement and add the limitation 5.3 above here. I am trying to understand how would your design handle a situation where BMC can process different multi part package types (at runtime) and the Target URI is not specified. How would your update-manager know at runtime which format the package is and how to interpret it?",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1c372ad_a4419e76",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-05-05T13:02:13Z",
+      "side": 1,
+      "message": "I am reducing the scope of the design document to handle PLDM package with component images for PLDM and non-PLDM types with no Targets specified. Code-update-manager to handle different multi part image formats can be discussed if anyone has that as requirement.",
+      "parentUuid": "bc8c79f0_9f33ee5c",
       "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -225,6 +261,24 @@
       "side": 1,
       "message": "\u003e ```\n\u003e Able to aggregate the progress \u0026 status of the code update across multiple code updaters for multi part images.\n\u003e ```\n\u003e \n\u003e This requirement does not limit RF task to add component specific progress (TargetDetermined, TransferInProgress, AwaitToActivate) or record which component update is successful or failed. We have the same requirements. There are additional requirements with a single package and multiple components, that the single task needs to have the details about component images and RF client task to be updated every n minutes to track the update is in progress and not hung.\n\nThe progress is tracked via ProgressInterface and status via ActivationStatus interface, which you will miss because you are aggregating all this information and then sending it back to BMCWeb. There will be PDI events and errors added but not for uses cases which are already covered by these interfaces. Moreover, the PDI events and errors will have a objectPath as an arg which will be the same objectPath returned by Update interface, so BMCWeb can match the appropriate messages and add it to the Task (especially in case of parallel upgrades initiated by user).",
       "parentUuid": "c2b6d3e2_b0f88bf5",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "891bc814_25d81280",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-05-05T13:02:13Z",
+      "side": 1,
+      "message": "The design documented is updated with how ActivationStatus \u0026 ProgressInterface will be updated by code-update-manager.\n\n\u003eThis requirement is limiting the use case. We should not do the aggregation into one single value, but rather show the update status for each component. How aggregation is going to help you? So, lets say you have 5 components and if your progress is 50%, how do you know which progressed or not?\n\nWhen no Targets are mentioned the progress \u0026 status of the RF task is expected for all the components in the package. If the progress is 50%, it indicates that progress is halfway through, we are using progress to indicate that update is not stalled. The proposal is to use LogService/Logging.PDI to indicate which components are updated successfully and which component updates failed.",
+      "parentUuid": "4c1d5a93_b0ea77f5",
       "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -401,6 +455,24 @@
       "side": 1,
       "message": "\u003e The bmcweb will track completion of the package with one object path. For RF task update please review the comment \n\u003e \n\u003e https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905/comment/2b6c9e71_81d90665/ Please review the comment here.\n\nReplied on that comment.",
       "parentUuid": "af5de629_1cb7f8aa",
+      "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9181b3c_e9ca823a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-05-05T13:02:13Z",
+      "side": 1,
+      "message": "Resolving this duplicate comment.",
+      "parentUuid": "c77e661f_60effe7c",
       "revId": "6ed0f5fb0d380155982e08d65adefe71ae41769b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
