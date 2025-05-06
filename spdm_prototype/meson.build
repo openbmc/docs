@@ -22,6 +22,7 @@ spdmd_src = [
     'spdmd/spdmd_app.cpp',
     'spdmd/spdm_discovery.cpp',
     'spdmd/mctp_discovery.cpp',
+    'spdmd/spdm_dbus_responder.cpp',
 ]
 
 spdmd_includes = include_directories('spdmd')

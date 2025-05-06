@@ -65,8 +65,12 @@ std::vector<ResponderInfo> MCTPDiscovery::discoverDevices()
                            objectPath);
                 continue;
             }
-            ResponderInfo info{eid, objectPath, uuid};
-
+            std::string deviceName = std::to_string(eid);
+            std::string inventoryPath =
+                "/xyz/openbmc_project/inventory/system/chassis/" + deviceName;
+            auto responder = std::make_unique<spdm::SPDMDBusResponder>(
+                bus, deviceName, inventoryPath);
+            ResponderInfo info{eid, objectPath, uuid, std::move(responder)};
             devices.emplace_back(std::move(info));
             lg2::info("Found SPDM device: {PATH}", "PATH", objectPath);
         }

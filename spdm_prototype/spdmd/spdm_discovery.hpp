@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "spdm_dbus_responder.hpp"
+
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/server.hpp>
@@ -39,6 +41,7 @@ struct ResponderInfo
     size_t eid;             ///< Endpoint ID
     std::string objectPath; ///< D-Bus object path
     std::string uuid;       ///< Device UUID
+    std::unique_ptr<spdm::SPDMDBusResponder> responder;
 };
 
 /**
