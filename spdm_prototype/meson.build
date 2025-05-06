@@ -12,9 +12,16 @@ project('spdmcpp',
 # Add optimization flag
 add_project_arguments('-O2', language: 'cpp')
 
+libspdm_dep = dependency('libspdm', required: true)
+
+if not libspdm_dep.found()
+  error('libspdm not found . Please ensure libspdm is installed.')
+endif
+
 spdmd_deps = [
     dependency('phosphor-logging'),
     dependency('sdbusplus'),
+    libspdm_dep,
 ]
 
 spdmd_src = [
@@ -23,6 +30,7 @@ spdmd_src = [
     'spdmd/spdm_discovery.cpp',
     'spdmd/mctp_discovery.cpp',
     'spdmd/spdm_dbus_responder.cpp',
+    'spdmd/spdm_device_secret_lib_stub.cpp',
 ]
 
 spdmd_includes = include_directories('spdmd')
