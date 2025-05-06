@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c0aff2c_0922c9ae",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-05-06T01:29:29Z",
+      "side": 1,
+      "message": "The number of boot strap account is not limited by one. When `Enabled` property to HostInterface.CredentialBootstrapping is set to `false` after on `Get Bootstrap account` is called. The service will stop created new bootstrap account and response `Credential bootstrapping via IPMI commands is disabled` for next `Get Bootstrap account`.",
+      "parentUuid": "052dabd7_afe5524a",
+      "revId": "78f0bc2d68e32ac00e6d41ad58a67eec50115533",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6cb47712_3fd3aa3e",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 9
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9bce37f_15c5735a",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-05-06T01:29:29Z",
+      "side": 1,
+      "message": "\u003e here we expect bmc to support only one physical interface for Host Interface ?\n\n`redfish-host-interfaces` type is array of string so we can have more than one interfaces such as [\"USB0\",\"USB1\"].  \n\n\u003e We limit one account per interface ? \n\nNo we don\u0027t have that limitation.\n\n\u003e so number of boot strap accounts will be limited to 1 ? \n\nNo, we don\u0027t\n\n\u003e what are the thoughts on multi host system ?\n\nBecause we support multiple Redfish host interfaces configuration and multiple bootstrap account for each interface, so I don\u0027t see any problem with that.\n\nHow many IPMI interfaces which the hosts can send GetBootStrap account to BMC to get Boot strap account in your system?\n\n\n\u003e We should call out explicitly if the current design limits one interface and one boot strap account",
+      "parentUuid": "6cb47712_3fd3aa3e",
+      "revId": "78f0bc2d68e32ac00e6d41ad58a67eec50115533",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67be9086_c2e6ce4f",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 9
@@ -65,6 +101,24 @@
       "writtenOn": "2025-05-01T14:19:21Z",
       "side": 1,
       "message": "can OOB admin user delete boot strap account ?",
+      "revId": "78f0bc2d68e32ac00e6d41ad58a67eec50115533",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ac8e979_1da19115",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-05-06T01:29:29Z",
+      "side": 1,
+      "message": "The spec does not detail about that. But I think the answer is No.",
+      "parentUuid": "67be9086_c2e6ce4f",
       "revId": "78f0bc2d68e32ac00e6d41ad58a67eec50115533",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
