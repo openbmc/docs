@@ -17,66 +17,61 @@
 
 #pragma once
 
-#include "component_integrity_dbus.hpp"
-#include "trusted_component_dbus.hpp"
+#include "xyz/openbmc_project/Common/error.hpp"
+#include "xyz/openbmc_project/Inventory/Item/TrustedComponent/server.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/server/object.hpp>
 
 namespace spdm
 {
-
-class SPDMDBusResponder
+/**
+ * @class TrustedComponent
+ * @brief SPDM Responder implementation with D-Bus interfaces
+ * @details Implements TrustedComponent interface for SPDM device management.
+ */
+class TrustedComponent :
+    public sdbusplus::server::object::object<
+        sdbusplus::xyz::openbmc_project::Inventory::Item::server::
+            TrustedComponent>
 {
   public:
     /** @brief Default constructor is deleted */
-    SPDMDBusResponder() = delete;
+    TrustedComponent() = delete;
 
     /** @brief Copy constructor is deleted */
-    SPDMDBusResponder(const SPDMDBusResponder&) = delete;
+    TrustedComponent(const TrustedComponent&) = delete;
 
     /** @brief Assignment operator is deleted */
-    SPDMDBusResponder& operator=(const SPDMDBusResponder&) = delete;
+    TrustedComponent& operator=(const TrustedComponent&) = delete;
 
     /** @brief Move constructor is deleted */
-    SPDMDBusResponder(SPDMDBusResponder&&) = delete;
+    TrustedComponent(TrustedComponent&&) = delete;
 
     /** @brief Move assignment operator is deleted */
-    SPDMDBusResponder& operator=(SPDMDBusResponder&&) = delete;
+    TrustedComponent& operator=(TrustedComponent&&) = delete;
 
     /**
      * @brief Construct a new SPDM DBus Responder
      * @param bus D-Bus connection
-     * @param deviceName Object path for this responder
-     * @param eid MCTP Endpoint ID
-     * @param inventoryPath Associated inventory object path
+     * @param path Object path for this responder
      */
-    SPDMDBusResponder(sdbusplus::bus::bus& bus, const std::string& deviceName,
-                      const std::string& inventoryPath);
+    TrustedComponent(sdbusplus::bus::bus& bus, const std::string& path);
 
     /**
      * @brief Virtual destructor
      */
-    virtual ~SPDMDBusResponder() = default;
+    virtual ~TrustedComponent() = default;
 
     /**
-     * @brief Get the inventory object path
-     * @return D-Bus object path for inventory
+     * @brief Update trusted component type
+     * @param type New trusted component type
+     * @throws std::runtime_error on D-Bus errors
      */
-    const std::string& getInventoryPath() const
-    {
-        return m_inventoryPath;
-    }
+    void updateTrustedComponentType(const std::string& type);
 
   private:
-    /** @brief Device name */
-    std::string m_deviceName;
-
-    /** @brief Associated inventory object path */
-    std::string m_inventoryPath;
-
-    std::unique_ptr<ComponentIntegrity> componentIntegrity;
-    std::unique_ptr<TrustedComponent> trustedComponent;
+    std::string m_path;
 };
 
 } // namespace spdm

@@ -29,6 +29,11 @@ SPDMDBusResponder::SPDMDBusResponder(sdbusplus::bus::bus& bus,
         "/xyz/openbmc_project/ComponentIntegrity/" + deviceName;
     componentIntegrity =
         std::make_unique<ComponentIntegrity>(bus, componentIntegrityPath);
+
+    std::string trustedComponentPath =
+        "/xyz/openbmc_project/TrustedComponent/" + deviceName;
+    trustedComponent = std::make_unique<TrustedComponent>(bus,
+                                                          trustedComponentPath);
 }
 
 } // namespace spdm

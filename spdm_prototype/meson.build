@@ -33,6 +33,7 @@ spdmd_src = [
     'spdmd/spdm_dbus_responder.cpp',
     'spdmd/spdm_device_secret_lib_stub.cpp',
     'spdmd/component_integrity_dbus.cpp',
+    'spdmd/trusted_component_dbus.cpp',
 ]
 
 spdmd_includes = include_directories('spdmd')
