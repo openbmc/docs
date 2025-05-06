@@ -15,7 +15,9 @@
  * limitations under the License.
  */
 
+#include "libspdm_mctp_transport.hpp"
 #include "mctp_discovery.hpp"
+#include "spdm_dbus_responder.hpp"
 #include "spdm_discovery.hpp"
 #include "spdmd_app.hpp"
 
@@ -50,6 +52,18 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
                           << "  Path: " << device.objectPath << "\n"
                           << "  EID: " << device.eid << "\n"
                           << "  UUID: " << device.uuid << "\n";
+                auto initResult = device.transport->initialize();
+                if (!initResult)
+                {
+                    lg2::error("Failed to initialize SPDM transport");
+                    return EXIT_FAILURE;
+                }
+                auto vcaResult = device.transport->doVcaNegotiation();
+                if (!vcaResult)
+                {
+                    lg2::error("Failed to perform SPDM VCA negotiation");
+                    return EXIT_FAILURE;
+                }
             }
         }
         else

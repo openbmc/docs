@@ -17,6 +17,8 @@
 
 #include "mctp_discovery.hpp"
 
+#include "libspdm_mctp_transport.hpp"
+
 namespace spdm
 {
 
@@ -65,12 +67,21 @@ std::vector<ResponderInfo> MCTPDiscovery::discoverDevices()
                            objectPath);
                 continue;
             }
+            if (!mctpIo.createSocket())
+            {
+                lg2::error("Failed to create MCTP socket");
+                return devices;
+            }
+
+            auto transport = std::make_unique<spdm::SpdmMctpTransport>(eid,
+                                                                       mctpIo);
             std::string deviceName = std::to_string(eid);
             std::string inventoryPath =
                 "/xyz/openbmc_project/inventory/system/chassis/" + deviceName;
             auto responder = std::make_unique<spdm::SPDMDBusResponder>(
                 bus, deviceName, inventoryPath);
-            ResponderInfo info{eid, objectPath, uuid, std::move(responder)};
+            ResponderInfo info{eid, objectPath, uuid, std::move(transport),
+                               std::move(responder)};
             devices.emplace_back(std::move(info));
             lg2::info("Found SPDM device: {PATH}", "PATH", objectPath);
         }

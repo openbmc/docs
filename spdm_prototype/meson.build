@@ -34,6 +34,7 @@ spdmd_src = [
     'spdmd/spdm_device_secret_lib_stub.cpp',
     'spdmd/component_integrity_dbus.cpp',
     'spdmd/trusted_component_dbus.cpp',
+    'spdmd/libspdm_mctp_transport.cpp',
 ]
 
 spdmd_includes = include_directories('spdmd')

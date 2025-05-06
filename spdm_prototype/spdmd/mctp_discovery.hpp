@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include "mctp_helper.hpp"
 #include "spdm_discovery.hpp"
 
 #include <phosphor-logging/lg2.hpp>
@@ -56,6 +57,7 @@ class MCTPDiscovery : public DiscoveryProtocol
     }
 
   private:
+    MctpIoClass mctpIo;
     /**
      * @brief Get list of MCTP services from D-Bus
      * @return Vector of pairs containing object path and service name
@@ -95,11 +97,8 @@ class MCTPDiscovery : public DiscoveryProtocol
      */
     std::string getTransportSocket(const std::string& objectPath,
                                    const std::string& service);
-
     sdbusplus::bus::bus& bus;                  ///< D-Bus connection
     static constexpr size_t invalid_eid = 255; ///< Invalid EID marker
-    static constexpr uint8_t MCTP_MESSAGE_TYPE_SPDM = 0x05; ///< SPDM type
-
     /// MCTP endpoint interface name
     static constexpr auto mctpEndpointIntfName =
         "xyz.openbmc_project.MCTP.Endpoint";
