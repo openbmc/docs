@@ -26,7 +26,8 @@ namespace spdm
  *
  * @param transportIn Unique pointer to transport implementation
  */
-SPDMDiscovery::SPDMDiscovery(std::unique_ptr<DiscoveryProtocol> discoveryProtocolIn) :
+SPDMDiscovery::SPDMDiscovery(
+    std::unique_ptr<DiscoveryProtocol> discoveryProtocolIn) :
     discoveryProtocol(std::move(discoveryProtocolIn))
 {}
 

@@ -42,33 +42,31 @@ std::vector<ResponderInfo> MCTPDiscovery::discoverDevices()
         for (const auto& [objectPath, service] : services)
         {
             auto messageTypes = getSupportedMessageTypes(objectPath, service);
-            if (!messageTypes || 
+            if (!messageTypes ||
                 std::find(messageTypes->begin(), messageTypes->end(),
-                         MCTP_MESSAGE_TYPE_SPDM) == messageTypes->end())
+                          MCTP_MESSAGE_TYPE_SPDM) == messageTypes->end())
             {
-                lg2::debug("Endpoint does not support SPDM: {PATH}", 
-                          "PATH", objectPath);
+                lg2::debug("Endpoint does not support SPDM: {PATH}", "PATH",
+                           objectPath);
                 continue;
             }
 
             auto eid = getEID(objectPath, service);
             if (eid == invalid_eid)
             {
-                lg2::error("Invalid EID for object: {PATH}", "PATH", objectPath);
+                lg2::error("Invalid EID for object: {PATH}", "PATH",
+                           objectPath);
                 continue;
             }
             auto uuid = getUUID(objectPath, service);
             if (uuid.empty())
             {
-                lg2::error("Failed to get UUID for object: {PATH}", "PATH", objectPath);
+                lg2::error("Failed to get UUID for object: {PATH}", "PATH",
+                           objectPath);
                 continue;
             }
-            ResponderInfo info{
-                eid,
-                objectPath,
-                uuid
-            };
-            
+            ResponderInfo info{eid, objectPath, uuid};
+
             devices.emplace_back(std::move(info));
             lg2::info("Found SPDM device: {PATH}", "PATH", objectPath);
         }
@@ -82,27 +80,28 @@ std::vector<ResponderInfo> MCTPDiscovery::discoverDevices()
 
 /**
  * @brief Gets list of MCTP services from D-Bus
- * @details Queries ObjectMapper for services implementing MCTP endpoint interface
+ * @details Queries ObjectMapper for services implementing MCTP endpoint
+ * interface
  *
  * @return Vector of pairs containing object path and service name
  * @throws sdbusplus::exception::SdBusError on D-Bus errors
  */
-std::vector<std::pair<std::string, std::string>> 
-MCTPDiscovery::getMCTPServices()
+std::vector<std::pair<std::string, std::string>>
+    MCTPDiscovery::getMCTPServices()
 {
     std::vector<std::pair<std::string, std::string>> services;
     try
     {
-        auto mapper = bus.new_method_call(
-            "xyz.openbmc_project.ObjectMapper",
-            "/xyz/openbmc_project/object_mapper",
-            "xyz.openbmc_project.ObjectMapper",
-            "GetSubTree");
+        auto mapper = bus.new_method_call("xyz.openbmc_project.ObjectMapper",
+                                          "/xyz/openbmc_project/object_mapper",
+                                          "xyz.openbmc_project.ObjectMapper",
+                                          "GetSubTree");
 
-        mapper.append(mctpPath, 0, 
-                     std::array<std::string, 1>{mctpEndpointIntfName});
+        mapper.append(mctpPath, 0,
+                      std::array<std::string, 1>{mctpEndpointIntfName});
 
-        std::map<std::string, std::map<std::string, std::vector<std::string>>> subtree;
+        std::map<std::string, std::map<std::string, std::vector<std::string>>>
+            subtree;
         auto reply = bus.call(mapper);
         reply.read(subtree);
 
@@ -129,18 +128,17 @@ MCTPDiscovery::getMCTPServices()
  * @param objectPath D-Bus object path to query
  * @return EID value or invalid_eid if not found
  */
-size_t MCTPDiscovery::getEID(const std::string& objectPath, const std::string& service)
+size_t MCTPDiscovery::getEID(const std::string& objectPath,
+                             const std::string& service)
 {
     try
     {
-        auto method = bus.new_method_call(
-            service.c_str(),
-            objectPath.c_str(),
-            "org.freedesktop.DBus.Properties",
-            "Get");
-        
+        auto method = bus.new_method_call(service.c_str(), objectPath.c_str(),
+                                          "org.freedesktop.DBus.Properties",
+                                          "Get");
+
         method.append(mctpEndpointIntfName, "EID");
-        
+
         auto reply = bus.call(method);
         std::variant<uint8_t, uint32_t> value;
         reply.read(value);
@@ -168,18 +166,17 @@ size_t MCTPDiscovery::getEID(const std::string& objectPath, const std::string& s
  * @param objectPath D-Bus object path to query
  * @return UUID string or empty if not found
  */
-std::string MCTPDiscovery::getUUID(const std::string& objectPath, const std::string& service)
+std::string MCTPDiscovery::getUUID(const std::string& objectPath,
+                                   const std::string& service)
 {
     try
     {
-        auto method = bus.new_method_call(
-            service.c_str(),
-            objectPath.c_str(),
-            "org.freedesktop.DBus.Properties",
-            "Get");
-            
+        auto method = bus.new_method_call(service.c_str(), objectPath.c_str(),
+                                          "org.freedesktop.DBus.Properties",
+                                          "Get");
+
         method.append(uuidIntfName, "UUID");
-        
+
         auto reply = bus.call(method);
         std::variant<std::string> uuid;
         reply.read(uuid);
@@ -197,20 +194,20 @@ std::string MCTPDiscovery::getUUID(const std::string& objectPath, const std::str
  * @param objectPath D-Bus object path
  * @return Optional vector of supported message types
  */
-std::optional<std::vector<uint8_t>> 
-MCTPDiscovery::getSupportedMessageTypes(const std::string& objectPath, const std::string& service)
+std::optional<std::vector<uint8_t>>
+    MCTPDiscovery::getSupportedMessageTypes(const std::string& objectPath,
+                                            const std::string& service)
 {
-    lg2::error("DEBUG: getSupportedMessageTypes: {OBJECT_PATH} {SERVICE}", "OBJECT_PATH", objectPath, "SERVICE", service);
+    lg2::error("DEBUG: getSupportedMessageTypes: {OBJECT_PATH} {SERVICE}",
+               "OBJECT_PATH", objectPath, "SERVICE", service);
     try
     {
-        auto method = bus.new_method_call(
-            service.c_str(),
-            objectPath.c_str(),
-            "org.freedesktop.DBus.Properties",
-            "Get");
-        
+        auto method = bus.new_method_call(service.c_str(), objectPath.c_str(),
+                                          "org.freedesktop.DBus.Properties",
+                                          "Get");
+
         method.append(mctpEndpointIntfName, "SupportedMessageTypes");
-        
+
         auto reply = bus.call(method);
         std::variant<std::vector<uint8_t>> messageTypes;
         reply.read(messageTypes);
@@ -223,30 +220,34 @@ MCTPDiscovery::getSupportedMessageTypes(const std::string& objectPath, const std
     }
 }
 
-std::string MCTPDiscovery::getTransportSocket(const std::string& objectPath, const std::string& service)
+std::string MCTPDiscovery::getTransportSocket(const std::string& objectPath,
+                                              const std::string& service)
 {
     try
     {
-        auto method = bus.new_method_call(
-            service.c_str(),
-            objectPath.c_str(),
-            "org.freedesktop.DBus.Properties",
-            "Get");
-        
+        auto method = bus.new_method_call(service.c_str(), objectPath.c_str(),
+                                          "org.freedesktop.DBus.Properties",
+                                          "Get");
+
         method.append("xyz.openbmc_project.Common.UnixSocket", "Address");
-        
+
         auto reply = bus.call(method);
         std::variant<std::vector<uint8_t>> address;
         reply.read(address);
-        try {
+        try
+        {
             auto& vec = std::get<std::vector<uint8_t>>(address);
-            if (vec.empty()) {
+            if (vec.empty())
+            {
                 lg2::error("Transport socket address is empty");
                 return {};
             }
             return {vec.begin(), vec.end()};
-        } catch (const std::bad_variant_access& e) {
-            lg2::error("Invalid transport socket address format: {ERROR}", "ERROR", e.what());
+        }
+        catch (const std::bad_variant_access& e)
+        {
+            lg2::error("Invalid transport socket address format: {ERROR}",
+                       "ERROR", e.what());
             return {};
         }
     }

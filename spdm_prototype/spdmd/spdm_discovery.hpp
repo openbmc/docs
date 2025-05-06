@@ -20,6 +20,7 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/server.hpp>
+
 #include <memory>
 #include <optional>
 #include <string>
@@ -30,13 +31,14 @@ namespace spdm
 
 /**
  * @brief Information about a discovered SPDM responder
- * @details Contains identification and connection information for an SPDM device
+ * @details Contains identification and connection information for an SPDM
+ * device
  */
 struct ResponderInfo
 {
-    size_t eid;                    ///< Endpoint ID
-    std::string objectPath;        ///< D-Bus object path
-    std::string uuid;             ///< Device UUID
+    size_t eid;             ///< Endpoint ID
+    std::string objectPath; ///< D-Bus object path
+    std::string uuid;       ///< Device UUID
 };
 
 /**
@@ -46,13 +48,10 @@ struct ResponderInfo
  */
 enum class TransportType
 {
-    MCTP,      ///< Management Component Transport Protocol
-    PCIE_DOE,  ///< PCIe Data Object Exchange
-    TCP        ///< TCP/IP Protocol
+    MCTP,     ///< Management Component Transport Protocol
+    PCIE_DOE, ///< PCIe Data Object Exchange
+    TCP       ///< TCP/IP Protocol
 };
-
-
-
 
 /**
  * @brief Interface for SPDM transport protocols
@@ -61,7 +60,7 @@ enum class TransportType
  */
 class DiscoveryProtocol
 {
-public:
+  public:
     virtual ~DiscoveryProtocol() = default;
 
     /**
@@ -78,21 +77,19 @@ public:
     virtual TransportType getType() const = 0;
 };
 
-
-
-
 /**
  * @brief Main SPDM device discovery class
  * @details Manages the discovery of SPDM devices using a configured transport
  */
 class SPDMDiscovery
 {
-public:
+  public:
     /**
      * @brief Construct a new SPDM Discovery object
      * @param transport Unique pointer to transport implementation
      */
-    explicit SPDMDiscovery(std::unique_ptr<DiscoveryProtocol> discoveryProtocolIn);
+    explicit SPDMDiscovery(
+        std::unique_ptr<DiscoveryProtocol> discoveryProtocolIn);
 
     /**
      * @brief Start device discovery
@@ -104,11 +101,15 @@ public:
      * @brief Get discovered responder information
      * @return Const reference to vector of responder information
      */
-    const auto& getRespondersInfo() const noexcept { return respInfos; }
+    const auto& getRespondersInfo() const noexcept
+    {
+        return respInfos;
+    }
 
-private:
-    std::unique_ptr<DiscoveryProtocol> discoveryProtocol; ///< Transport implementation
-    std::vector<ResponderInfo> respInfos;         ///< Discovered devices
+  private:
+    std::unique_ptr<DiscoveryProtocol>
+        discoveryProtocol;                ///< Transport implementation
+    std::vector<ResponderInfo> respInfos; ///< Discovered devices
 };
 
 } // namespace spdm

@@ -29,6 +29,12 @@ class SPDMDaemon
     SPDMDaemon();
     int run();
 
+    /** @brief Get the D-Bus connection */
+    sdbusplus::bus::bus& getBus()
+    {
+        return bus;
+    }
+
   private:
     sdbusplus::bus::bus bus;
     sdbusplus::server::manager_t objManager;

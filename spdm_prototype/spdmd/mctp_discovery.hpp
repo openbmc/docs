@@ -18,6 +18,7 @@
 #pragma once
 
 #include "spdm_discovery.hpp"
+
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus.hpp>
 #include <sdbusplus/message.hpp>
@@ -31,7 +32,7 @@ namespace spdm
  */
 class MCTPDiscovery : public DiscoveryProtocol
 {
-public:
+  public:
     /**
      * @brief Construct a new MCTP Transport object
      * @param busRef Reference to D-Bus connection
@@ -49,9 +50,12 @@ public:
      * @brief Get the transport type
      * @return TransportType::MCTP
      */
-    TransportType getType() const override { return TransportType::MCTP; }
+    TransportType getType() const override
+    {
+        return TransportType::MCTP;
+    }
 
-private:
+  private:
     /**
      * @brief Get list of MCTP services from D-Bus
      * @return Vector of pairs containing object path and service name
@@ -71,35 +75,37 @@ private:
      * @param objectPath D-Bus object path
      * @return UUID string or empty if not found
      */
-    std::string getUUID(const std::string& objectPath, const std::string& service);
+    std::string getUUID(const std::string& objectPath,
+                        const std::string& service);
 
     /**
      * @brief Get supported message types for an MCTP endpoint
      * @param objectPath D-Bus object path
      * @return Optional vector of supported message types
      */
-    std::optional<std::vector<uint8_t>> getSupportedMessageTypes(
-        const std::string& objectPath, const std::string& service);
-    
+    std::optional<std::vector<uint8_t>>
+        getSupportedMessageTypes(const std::string& objectPath,
+                                 const std::string& service);
+
     /**
      * @brief Get the transport socket for an MCTP endpoint
      * @param objectPath D-Bus object path
      * @param service D-Bus service name
      * @return Transport socket address or empty string if not found
      */
-    std::string getTransportSocket(const std::string& objectPath, const std::string& service);
+    std::string getTransportSocket(const std::string& objectPath,
+                                   const std::string& service);
 
-    sdbusplus::bus::bus& bus;                     ///< D-Bus connection
-    static constexpr size_t invalid_eid = 255;    ///< Invalid EID marker
+    sdbusplus::bus::bus& bus;                  ///< D-Bus connection
+    static constexpr size_t invalid_eid = 255; ///< Invalid EID marker
     static constexpr uint8_t MCTP_MESSAGE_TYPE_SPDM = 0x05; ///< SPDM type
-    
+
     /// MCTP endpoint interface name
-    static constexpr auto mctpEndpointIntfName = 
+    static constexpr auto mctpEndpointIntfName =
         "xyz.openbmc_project.MCTP.Endpoint";
-    
+
     /// UUID interface name
-    static constexpr auto uuidIntfName = 
-        "xyz.openbmc_project.Common.UUID";
+    static constexpr auto uuidIntfName = "xyz.openbmc_project.Common.UUID";
 
     static constexpr auto mctpPath = "/au/com/codeconstruct/mctp1";
 };
