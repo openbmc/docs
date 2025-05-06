@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "component_integrity_dbus.hpp"
+
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/server/object.hpp>
 
@@ -48,8 +50,7 @@ class SPDMDBusResponder
      * @param eid MCTP Endpoint ID
      * @param inventoryPath Associated inventory object path
      */
-    SPDMDBusResponder([[maybe_unused]] sdbusplus::bus::bus& bus,
-                      const std::string& deviceName,
+    SPDMDBusResponder(sdbusplus::bus::bus& bus, const std::string& deviceName,
                       const std::string& inventoryPath);
 
     /**
@@ -72,6 +73,8 @@ class SPDMDBusResponder
 
     /** @brief Associated inventory object path */
     std::string m_inventoryPath;
+
+    std::unique_ptr<ComponentIntegrity> componentIntegrity;
 };
 
 } // namespace spdm

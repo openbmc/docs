@@ -19,12 +19,16 @@
 
 namespace spdm
 {
-
-SPDMDBusResponder::SPDMDBusResponder([[maybe_unused]] sdbusplus::bus::bus& bus,
+SPDMDBusResponder::SPDMDBusResponder(sdbusplus::bus::bus& bus,
                                      const std::string& deviceName,
                                      const std::string& inventoryPath) :
     m_deviceName(deviceName),
     m_inventoryPath(inventoryPath)
-{}
+{
+    std::string componentIntegrityPath =
+        "/xyz/openbmc_project/ComponentIntegrity/" + deviceName;
+    componentIntegrity =
+        std::make_unique<ComponentIntegrity>(bus, componentIntegrityPath);
+}
 
 } // namespace spdm
