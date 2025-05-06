@@ -21,6 +21,7 @@ spdmd_src = [
     'spdmd/spdmd.cpp',
     'spdmd/spdmd_app.cpp',
     'spdmd/spdm_discovery.cpp',
+    'spdmd/mctp_discovery.cpp',
 ]
 
 spdmd_includes = include_directories('spdmd')
