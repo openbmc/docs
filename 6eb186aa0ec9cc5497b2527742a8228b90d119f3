@@ -71,6 +71,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "277f001d_a563c6ce",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8a2c563_15eb4df0",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "255a3da2_c201e1a4",
@@ -84,6 +102,24 @@
       "writtenOn": "2025-02-12T08:54:11Z",
       "side": 1,
       "message": "so this is trying to say look for flow meter devices, on the server address ranges noted below (but disjointed across start and end  items walking multiple arrays instead of structs of (start, end))",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b541fa77_e37bcd4b",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:20:31Z",
+      "side": 1,
+      "message": "In case of daisy chained modbus devices, the same type of device can exist in multiple ranges, so its providing the ranges for all addresses for this device.",
+      "parentUuid": "255a3da2_c201e1a4",
       "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -122,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "097befc8_0dfc8428",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:20:31Z",
+      "side": 1,
+      "message": "These represent the generic registers as per spec.",
+      "parentUuid": "353acd6c_ea3cd1c6",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61c068c1_cee10119",
@@ -139,6 +193,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2197684b_334f7944",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:20:31Z",
+      "side": 1,
+      "message": "Just the specific register with corresponding name. In recent change i have updated this to array f structs, so its more cleaner.",
+      "parentUuid": "61c068c1_cee10119",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "464b322e_ec7f8162",
@@ -152,6 +224,24 @@
       "writtenOn": "2025-02-12T08:54:11Z",
       "side": 1,
       "message": "how is a string encoded in 16 bit word registers?  what\u0027s the byte order\n\nLets make format include size and endianess",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90482a3c_b99e518e",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:20:31Z",
+      "side": 1,
+      "message": "Endianess is device level properties and defined there. Size has already been moved inside RegisterDef.",
+      "parentUuid": "464b322e_ec7f8162",
       "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -276,6 +366,24 @@
       "writtenOn": "2025-02-12T08:54:11Z",
       "side": 1,
       "message": "as described above how does it arbitrate to gain access to the modbus network?",
+      "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c214b9b_d25800a3",
+        "filename": "designs/modbus-based-inventory.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:20:31Z",
+      "side": 1,
+      "message": "Refer to \"Handle Modbus RTU serial link limitations\" and \"Efficient Modbus Access\" section in https://gerrit.openbmc.org/c/openbmc/docs/+/77422.",
+      "parentUuid": "f251ba6e_f2d68dfb",
       "revId": "6eb186aa0ec9cc5497b2527742a8228b90d119f3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
