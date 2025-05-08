@@ -68,6 +68,18 @@ class SPDMDBusResponder
         return m_inventoryPath;
     }
 
+    /**
+     * @brief Update the SPDM version
+     * @param version SPDM version
+     */
+    void updateVersion(spdm_version_number_t version);
+
+    /**
+     * @brief Update the enabled status
+     * @param enabled New enabled status
+     */
+    void updateEnabled(bool enabled);
+
   private:
     /** @brief Device name */
     std::string m_deviceName;

@@ -64,6 +64,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
                     lg2::error("Failed to perform SPDM VCA negotiation");
                     return EXIT_FAILURE;
                 }
+                device.responder->updateEnabled(true);
+                spdm_version_number_t version = device.transport->m_use_version;
+                device.responder->updateVersion(version);
             }
         }
         else

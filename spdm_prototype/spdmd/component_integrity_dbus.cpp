@@ -24,6 +24,24 @@
 namespace spdm
 {
 
+std::string ComponentIntegrity::getTypeVersionStr(spdm_version_number_t version)
+{
+    switch (version)
+    {
+        case SPDM_MESSAGE_VERSION_10:
+            return "1.0";
+        case SPDM_MESSAGE_VERSION_11:
+            return "1.1";
+        case SPDM_MESSAGE_VERSION_12:
+            return "1.2";
+        case SPDM_MESSAGE_VERSION_13:
+            return "1.3";
+        default:
+            lg2::error("Unknown SPDM version: {VERSION}", "VERSION", version);
+            return "Unknown";
+    }
+}
+
 /**
  * @brief Convert hashing algorithm to string representation
  * @param algo Algorithm enumeration value
@@ -93,9 +111,6 @@ void ComponentIntegrity::initializeProperties()
 {
     // Initialize with empty version
     typeVersion("");
-
-    // Enable component integrity checking
-    enabled = true;
 
     // Initialize timestamps
     updateLastUpdateTime();
@@ -171,21 +186,19 @@ void ComponentIntegrity::updateMeasurements(
     }
 }
 
-void ComponentIntegrity::updateVersion(const std::string& newVersion)
+void ComponentIntegrity::updateVersion(spdm_version_number_t newVersion)
 {
-    try
-    {
-        version = newVersion;
+    std::string versionStr = getTypeVersionStr(newVersion);
+    typeVersion(versionStr);
+    lg2::info("Updated SPDM version to {VERSION} for path {OBJ_PATH}",
+              "VERSION", versionStr, "OBJ_PATH", m_path);
+}
 
-        lg2::info("Updated SPDM version to {VERSION} for path {OBJ_PATH}",
-                  "VERSION", newVersion, "OBJ_PATH", m_path);
-    }
-    catch (const std::exception& e)
-    {
-        lg2::error("Failed to update version for path {OBJ_PATH}: {ERROR}",
-                   "OBJ_PATH", m_path, "ERROR", e.what());
-        throw;
-    }
+void ComponentIntegrity::updateEnabled(bool status)
+{
+    enabled(status);
+    lg2::info("Updated enabled status to {ENABLED} for path {OBJ_PATH}",
+              "ENABLED", status, "OBJ_PATH", m_path);
 }
 
 void ComponentIntegrity::updateCertificate(uint8_t slot,

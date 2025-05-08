@@ -100,7 +100,14 @@ class ComponentIntegrity :
      * @param version New version string
      * @throws std::runtime_error on D-Bus errors
      */
-    void updateVersion(const std::string& version);
+    void updateVersion(spdm_version_number_t version);
+
+    /**
+     * @brief Update enabled status
+     * @param status New enabled status
+     * @throws std::runtime_error on D-Bus errors
+     */
+    void updateEnabled(bool status);
 
     // IdentityAuthentication interface methods
     /**
@@ -185,9 +192,6 @@ class ComponentIntegrity :
     /** @brief Version string */
     std::string version;
 
-    /** @brief Enabled status */
-    bool enabled{true};
-
     /** @brief Last update timestamp */
     uint64_t lastUpdate{0};
 
@@ -245,6 +249,13 @@ class ComponentIntegrity :
      * @details Updates lastUpdate property with current system time
      */
     void updateLastUpdateTime();
+
+    /**
+     * @brief Convert SPDM version number to string
+     * @param version SPDM version number
+     * @return String representation of the version
+     */
+    std::string getTypeVersionStr(spdm_version_number_t version);
 
     /**
      * @brief Convert hashing algorithm to string

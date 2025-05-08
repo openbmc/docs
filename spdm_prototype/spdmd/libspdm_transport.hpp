@@ -113,6 +113,8 @@ class SpdmTransport
 
     bool doVcaNegotiation()
     {
+        spdm_version_number_t spdm_responder_version;
+        size_t data_size;
         if (m_spdm_context == nullptr)
         {
             lg2::error("Error: SPDM context is nullptr");
@@ -125,6 +127,66 @@ class SpdmTransport
             lg2::error("Error: Failed to initialize SPDM connection");
             return false;
         }
+        libspdm_zero_mem(&parameter, sizeof(parameter));
+        parameter.location = LIBSPDM_DATA_LOCATION_CONNECTION;
+        data_size = sizeof(spdm_responder_version);
+        libspdm_get_data(m_spdm_context, LIBSPDM_DATA_SPDM_VERSION, &parameter,
+                         &spdm_responder_version, &data_size);
+        spdm_responder_version = spdm_responder_version >>
+                                 SPDM_VERSION_NUMBER_SHIFT_BIT;
+        if (m_use_version == 0)
+        {
+            m_use_version = spdm_responder_version;
+        }
+        if (m_use_version != spdm_responder_version)
+        {
+            lg2::error(
+                "Error: SPDM version mismatch - requester: {REQ_VERSION}, responder: {RESP_VERSION}",
+                "REQ_VERSION", static_cast<int>(m_use_version), "RESP_VERSION",
+                static_cast<int>(spdm_responder_version));
+            return false;
+        }
+        uint32_t respCapabilityFlags;
+        data_size = sizeof(respCapabilityFlags);
+        libspdm_get_data(m_spdm_context, LIBSPDM_DATA_CAPABILITY_FLAGS,
+                         &parameter, &respCapabilityFlags, &data_size);
+        // Check connection state
+        uint32_t connection_state;
+        data_size = sizeof(connection_state);
+        libspdm_get_data(m_spdm_context, LIBSPDM_DATA_CONNECTION_STATE,
+                         &parameter, &connection_state, &data_size);
+
+        // Get negotiated measurement hash algorithm
+        uint32_t negotiated_measurement_hash_algo;
+        data_size = sizeof(negotiated_measurement_hash_algo);
+        libspdm_get_data(m_spdm_context, LIBSPDM_DATA_MEASUREMENT_HASH_ALGO,
+                         &parameter, &negotiated_measurement_hash_algo,
+                         &data_size);
+        // Get negotiated base hash algorithm
+        uint32_t negotiated_hash_algo;
+        data_size = sizeof(negotiated_hash_algo);
+        libspdm_get_data(m_spdm_context, LIBSPDM_DATA_BASE_HASH_ALGO,
+                         &parameter, &negotiated_hash_algo, &data_size);
+        lg2::info("SPDM negotiated base hash algorithm: {HASH_ALGO}",
+                  "HASH_ALGO", negotiated_hash_algo);
+
+        // Get negotiated asymmetric algorithm
+        uint32_t negotiated_asym_algo;
+        data_size = sizeof(negotiated_asym_algo);
+        libspdm_get_data(m_spdm_context, LIBSPDM_DATA_BASE_ASYM_ALGO,
+                         &parameter, &negotiated_asym_algo, &data_size);
+
+        // Get negotiated requester asymmetric algorithm
+        uint16_t negotiated_req_asym_algo;
+        data_size = sizeof(negotiated_req_asym_algo);
+        libspdm_get_data(m_spdm_context, LIBSPDM_DATA_REQ_BASE_ASYM_ALG,
+                         &parameter, &negotiated_req_asym_algo, &data_size);
+
+        // Store the negotiated values in member variables
+        m_use_measurement_hash_algo = negotiated_measurement_hash_algo;
+        m_use_hash_algo = negotiated_hash_algo;
+        m_use_asym_algo = negotiated_asym_algo;
+        m_use_req_asym_algo = negotiated_req_asym_algo;
         return true;
     }
 };

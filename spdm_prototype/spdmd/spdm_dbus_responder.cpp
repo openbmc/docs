@@ -36,4 +36,14 @@ SPDMDBusResponder::SPDMDBusResponder(sdbusplus::bus::bus& bus,
                                                           trustedComponentPath);
 }
 
+void SPDMDBusResponder::updateVersion(spdm_version_number_t version)
+{
+    componentIntegrity->updateVersion(version);
+}
+
+void SPDMDBusResponder::updateEnabled(bool enabled)
+{
+    componentIntegrity->updateEnabled(enabled);
+}
+
 } // namespace spdm
