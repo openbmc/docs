@@ -515,6 +515,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "839dbc16_6afa04f6",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-08T20:25:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3339aaf9_839e001b",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "274cbf0f_de4e0f6a",
@@ -582,6 +600,24 @@
       "side": 1,
       "message": "\u003e So with the following, which does work:\n\u003e 1. multi-user.target is kicked off:\n\u003e 2. Apps with a ConditionFileExists\u003dactive don\u0027t start, but systemd says the units are active so everything can proceed.\n\u003e 3. multi-user.target is reached\n\u003e 4. Sometime later, the new RBMC PSM app starts obmc-bmc-active.target\n\u003e 5. The apps from before now actually start\n\u003e 6. obmc-bmc-active.target is reached\n\u003e \n\u003e Could you point out the better sequence?\n\ncorrection 2.  Apps don\u0027t start but systemd ignores the units when condition not met unless its a Requisite dependency.\n\n2b apps with two configurations are started with passive configuration.\n4a. rbmc psm determines role should be active\n4b. hardware locks obtained, condition created\n4c bcm-active.target started starting other services.\n\n4b might be able to be implicit via after unit creating the condition file.\n\nIs there a statement that Conditions are not evaluated until After is met?  (I knkow we have had trouble with waiting for services even when Condition of the unit is not met, eg network online vs the second ethernet on Bonell).\n\n\u003e \u003e the BMC active target needs to have a hard dependency to being selected as active. not just conditionally starting service to a common ready state.\n\u003e \n\u003e So you don\u0027t think code starting the bmc-active target when the active role is chosen is good enough?  Can you elaborate how you think it should work?\n\nI was trying to say the target shouldn\u0027t be able to be active unless the state was chosen.  Maybe this means the target should have a requisite.  I think I was trying to say some services or state change (eeg stablishing the hardware paths and locks) should be accomplished before starting the active target.  Its good enough to start development.\n\nAlso see my concern about the possible race by using conditions above.",
       "parentUuid": "ee800c58_459ffa5b",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2483151b_e7a6c973",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-08T20:25:26Z",
+      "side": 1,
+      "message": "\u003e . I think I was trying to say some services or state change (eeg stablishing the hardware paths and locks) should be accomplished before starting the active target.\n\nyes, we can grab the bus before starting the target.\n\n\u003e 2b apps with two configurations are started with passive configuration.\n\nI\u0027m not aware of any cases of apps with 2 configurations (maybe PIM? but that\u0027s addressed below)\n\nI still don\u0027t really see any other ways to accomplish what we need aside from writing code in every app that is active only.  I feel that if there is a race that I missed, when we hit it we can then understand it and fix it.\n\nI guess if you have any other proposals, maybe just provide an example of the appropriate service files, links, overrides, etc.",
+      "parentUuid": "ed06909d_151dd879",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -797,6 +833,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "691424d2_c33ea6bf",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-08T20:25:26Z",
+      "side": 1,
+      "message": "I removed the \u0027Force\u0027 from Redfish. We will just keep it on the StartFailover method as a means of last resort at request of field support.",
+      "parentUuid": "0e3322b4_5e5e21bc",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c89d9717_048a7056",
@@ -846,6 +900,24 @@
       "side": 1,
       "message": "so this is rbmc-fsi.   the added comments are useful description, considering adding to the text.  see below for more on the prior comment.",
       "parentUuid": "6b2e47d7_e378ddbc",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcece790_fabe1131",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-08T20:25:26Z",
+      "side": 1,
+      "message": "Done (i think)",
+      "parentUuid": "771769a3_753d5e21",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1111,6 +1183,24 @@
       "side": 1,
       "message": "I\u0027m not thinking about the factory reset in the factory.  More like reet-to-factory-delivered state factory reset in the field as part of a sanitization procedure or recovery procedure (eg admin password or network misconfiguration).\n\nBut I also fail to see the need to detect \"the first time through\" vs \"on subsequent reboots\", when there is already stipulation of an external agent and a provisioning process in the factory.",
       "parentUuid": "6a86be86_b50468e6",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a61a26f_e31406dd",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-08T20:25:26Z",
+      "side": 1,
+      "message": "There are no plans to have anything provisioning related explicitly choose the active BMC (other than by virtual of provisioning one before the other).",
+      "parentUuid": "ebf29871_8aefd87f",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1397,6 +1487,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e163d5ba_b1b72bda",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-08T20:25:26Z",
+      "side": 1,
+      "message": "I don\u0027t think I have anything actionable here, marking as closed. (We don\u0027t have to support generic redfish clients)",
+      "parentUuid": "26efe07e_d8f546c1",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "914f4359_dbd22d38",
@@ -1552,6 +1660,24 @@
       "side": 1,
       "message": "Need to think about this some more.",
       "parentUuid": "7b37a5ae_70d83ea7",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cfa9445_0739f3c7",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-08T20:25:26Z",
+      "side": 1,
+      "message": "\u003e I\u0027m trying to avoid any hang or failure during the critical window where we are holding the alternate bmc(s) in reset\n\nThis has been reduced to a small window now between the reboot blocks.  I guess if someone was still worried about it, due to like a kernel panic in that small window, each BMC could release the reset on startup each time. I made a note of it to look into it further offline, but I don\u0027t think it needs to hold up this doc.\n\n\u003e the force takeover would actively break the hardware locks and set itself as the master, and would be used when \"force takeover\" is selected, or maybe when it knows its holding the other bmc(s) in reset.\n\nI don\u0027t understand this.  Assuming when you say takeover you mean failover, the failover will always take the bus.\n\n\nI\u0027ve spent like 45 minutes now trying to understand everything in this comment and can\u0027t tell if there is something left to address, so I\u0027m going to resolve it.\n\nCan comment again, maybe a separate one for each remaining issue if you think there are any.",
+      "parentUuid": "77f72f58_c2d70dec",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1715,6 +1841,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcd67d98_deae81a7",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-08T20:25:26Z",
+      "side": 1,
+      "message": "\u003e that would imply that the id is part of the provisioning and not part of the hardware state eg plug position. that\u0027s ok but should be specified in the design or implementation.\n\nI updated the doc to say the ID is based on the BMC position.  The ID doesn\u0027t change after its been created.  We talked to field support about swapping BMCs, and they weren\u0027t worried about it. (The BMC SN is in our logs).  Also, they tend to delete logs before they start doing things like that so it\u0027s easier to see new ones.",
+      "parentUuid": "57b97f1e_3de139c5",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51d9afa3_893c5767",
@@ -1764,6 +1908,24 @@
       "side": 1,
       "message": "\u003e \u003e can we instead create a virtual? plug dect when it becomes active?\n\u003e \n\u003e could you elaborate on how this would work?  I would like to avoid restarting it, so definitely open to something else here.\n\n\ninstead of waiting to start the service until reaching active state, start probe on a fru that only gets the system serial and gate probing the rest of the system until a plug detect says active role was selected.  this could also require the hardware access locks have been obtained or acquiring the locks is part of the probe process for each fru.\n\nProbing the system could also be gated by the system serial matching the provisioned value.\n\nOtherwise you need to host this system serial in some other inventory or discovery process.",
       "parentUuid": "70d743a2_775da8b1",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab7a5e54_1185a18a",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-08T20:25:26Z",
+      "side": 1,
+      "message": "Our inventory team has a plan here, I will get some details from them.",
+      "parentUuid": "d9a3cf01_00702a99",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -1874,6 +2036,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4fe1773_326e3590",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-08T20:25:26Z",
+      "side": 1,
+      "message": "Yes, it will leave the default \u0027wants\u0027.\n\nStating again there is no way to remove the multi-user.target link.  Also, I don\u0027t know of any uses of systemctl enable/disable.",
+      "parentUuid": "af04e4eb_bf55f54a",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca9eb37d_7c3a5728",
@@ -1887,6 +2067,24 @@
       "writtenOn": "2024-08-19T10:26:30Z",
       "side": 1,
       "message": "see above discussiin in fallover re BMC ready.",
+      "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86ded401_f66b43ac",
+        "filename": "designs/redundant-bmc.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-08T20:25:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca9eb37d_7c3a5728",
       "revId": "10d7f9f66672f379d918364c88b14d428b115d25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
