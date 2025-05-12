@@ -212,6 +212,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92b3d313_1b95a827",
+        "filename": "spdm_prototype/spdmd/spdmd_app.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-05-12T16:29:35Z",
+      "side": 1,
+      "message": "This code was using sdbusplus sync-generated bindings anyhow and not boost, so the whole \"doesn\u0027t work for TCP\" isn\u0027t relevant (or so it seems).  Yes, new daemons should use the async bindings vs the sync bindings.  We\u0027ve been slowly moving the ones using the sync bindings over to async already (even if you don\u0027t need the async feature, it has better overall ergonomics).",
+      "parentUuid": "4850e88a_7551fa2f",
+      "revId": "b9281d9d3cae5d31a5700d993e0acfada57a2045",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c982c8fe_5a85799c",
         "filename": "spdm_prototype/spdmd/spdmd_app.hpp",
         "patchSetId": 1
