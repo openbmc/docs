@@ -230,6 +230,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f893766_2be3dae7",
+        "filename": "designs/modbus-sensors-and-management.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-12T22:31:11Z",
+      "side": 1,
+      "message": "\u003e how ?  is this standardized?  I didn\u0027t see anything.\n\u003e I saw file records of 9999 records of 16 bits each, with a 16 bit id\n\u003e with a note ids \u003e 10 might be broken on older, and\n\u003e i saw encapsulation to tunnel others and vendor commaands outside the refereced spec\n\nCan you please be more specific which point you are referring to here as its hard to understand?",
+      "parentUuid": "26c63700_fcc2e2eb",
+      "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3431dcdc_cd6b9386",
         "filename": "designs/modbus-sensors-and-management.md",
         "patchSetId": 4
@@ -385,6 +403,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77f79972_c691b7f9",
+        "filename": "designs/modbus-sensors-and-management.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-12T22:31:11Z",
+      "side": 1,
+      "message": "Em configuration, i.e. the Modbus register number is used and value is read for it and Sensor.value D-Bus interface is created by using that value.",
+      "parentUuid": "14dabb85_81197eb4",
+      "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "043b2bd2_26dba04f",
@@ -433,6 +469,24 @@
       "writtenOn": "2025-02-12T02:12:37Z",
       "side": 1,
       "message": "this describes the sensor main loop.  It doesn\u0027t address auxillary services such as firmware versions.\n\nIs this anticipated to be one instance per UART?  (presumable TCP MBAP or MBAP-S)?\n\nhow is the service started?  upon startup from udev on the port?  or from an inventory object exposing the serial port and a fabric connection inventory exposing the bus (how is the uart found in this case)?\n\n(or did you anticipate adding a linux kernel modbus line dicipline?)",
+      "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f445aa28_fea3eef2",
+        "filename": "designs/modbus-sensors-and-management.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-12T22:31:11Z",
+      "side": 1,
+      "message": "This service will be started by default and it will rely on ModbusRTUDevice interfaces from EM to start the processing logic. Please refer to \"Background and References\" section.",
+      "parentUuid": "ab99c522_928e6656",
       "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -489,6 +543,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07dae2b5_1a62e5da",
+        "filename": "designs/modbus-sensors-and-management.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-12T22:31:11Z",
+      "side": 1,
+      "message": "\u003e modbus has officially adoped client-server (client \u003d former master), see press release noted on thier homepage.\n\nclient server is for modbus tcp. Modbus specification still uses master slave terminology.",
+      "parentUuid": "90422ce0_61576b03",
+      "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "800c43bf_e0f30556",
@@ -502,6 +574,24 @@
       "writtenOn": "2025-02-12T02:12:37Z",
       "side": 1,
       "message": "is this a modbus client interface or does it directly implement rtu protocol layer?",
+      "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ee13a35_d58aa235",
+        "filename": "designs/modbus-sensors-and-management.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-12T22:31:11Z",
+      "side": 1,
+      "message": "It will be a modbus client interface that will use some lib, for example libmodbus.",
+      "parentUuid": "800c43bf_e0f30556",
       "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -554,6 +644,24 @@
       "writtenOn": "2025-02-12T02:12:37Z",
       "side": 1,
       "message": "we expect one instance per modbus link, and multiple objeccts in this port?\n\nor multiple links and keep track what network is each?",
+      "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e08ef46_78078f18",
+        "filename": "designs/modbus-sensors-and-management.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-12T22:31:11Z",
+      "side": 1,
+      "message": "\u003e we expect one instance per modbus link, and multiple objeccts in this port?\n\u003e \n\u003e or multiple links and keep track what network is each?\n\nWe need to only keep track of link/serial where that device is discovered.\nIn RS485 multiple devices can be daisy chained on same link.",
+      "parentUuid": "dc5674b2_b348b60d",
       "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -670,6 +778,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f094ec4d_e11605ea",
+        "filename": "designs/modbus-sensors-and-management.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-12T22:31:11Z",
+      "side": 1,
+      "message": "\u003e of the reference implementation? \n\u003e \n\u003e Of this implementation?   or are there externally defined testcases?\n\nThe unit testing of new implementation will be done using gtest.",
+      "parentUuid": "4cefe714_54079e58",
+      "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4801da0e_26c981c3",
@@ -683,6 +809,24 @@
       "writtenOn": "2025-02-12T02:12:37Z",
       "side": 1,
       "message": "any plans to use the emulation layers linked on the modbus.org technology website?",
+      "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "799453c9_6feb46c5",
+        "filename": "designs/modbus-sensors-and-management.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-12T22:31:11Z",
+      "side": 1,
+      "message": "Which emulation layers? Please provide specific link?",
+      "parentUuid": "4801da0e_26c981c3",
       "revId": "b46d59fd19bf8920334425e43d91b48d0788c810",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
