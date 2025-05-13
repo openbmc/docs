@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ec28142_3a3dcb63",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-05-13T10:31:02Z",
+      "side": 1,
+      "message": "Are we planning to use TPM objects hosted by smbios-mdr to read the device info like version?. Or it needs to be fetched from software.version from device inventory?\n\nWe need to update the version in component integrity, for devices which supports SPDM protocol it\u0027s based on requester and responder version.\n\nhttps://github.com/openbmc/smbios-mdr/commit/5af42bbf374907888c09d7aaf2cbf74d74c7707d",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3704a4e7_d14336f3",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-05-13T10:31:02Z",
+      "side": 1,
+      "message": "DMTF libspdm has support for mctp, PCIe DOE, TCP(https://github.com/DMTF/libspdm/issues/3018), are we going to add new bindings for TPM in dmtf libspdm?",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d7faab4_1f70bfd8",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-05-13T10:31:02Z",
+      "side": 1,
+      "message": "Similar as above, Since design will use spdm messages for other transports, if we are planning to use raw APIs directly i think we will not be able to leverage lot of stuff provided by DMTF libspdm and we will have deviation and exceptions for TPM in the current design.",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43824d09_df9e91b4",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-05-13T10:31:02Z",
+      "side": 1,
+      "message": "I think we have to call out here as well if we plan to add SPDM measurement based on TPM for BMC.",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01601abc_ac4d7443",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-05-13T10:31:02Z",
+      "side": 1,
+      "message": "Since TrustedComponents represented are collectively included in TrustedComponent schema in redfish, we will have TPMs for host which may not need any measurements /certs and TPMs for Managers which will those.\n\nTPM for BMC does not come from smbios-mdr in your platform design?\n\n\nI am referring to this MR.\nhttps://gerrit.openbmc.org/c/openbmc/bmcweb/+/79157/comment/f6d641f6_3a90d3b8/",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
