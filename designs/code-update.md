@@ -188,8 +188,7 @@ update. Also, a phosphor-logging event will be created and sent back to client
 via
 [Redfish Log Service](https://redfish.dmtf.org/schemas/v1/LogService.v1_4_0.json).
 
-Another alternative could be to use
-[Redfish Event Services](https://redfish.dmtf.org/schemas/v1/EventService.v1_10_0.json).
+[Redfish events](https://gerrit.openbmc.org/q/topic:%22fw-update-events%22) are proposed to be used for different update stages which will be reported via [Redfish Event Services](https://redfish.dmtf.org/schemas/v1/EventService.v1_10_0.json).
 
 ### Firmware Image Format
 
