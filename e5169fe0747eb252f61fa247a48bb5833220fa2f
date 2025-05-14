@@ -187,6 +187,193 @@
       "message": "nit: missing . at end of each bullet.",
       "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65084d17_35745efe",
+        "filename": "designs/code-update.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T01:25:54Z",
+      "side": 1,
+      "message": "MCTP? Shouldn\u0027t it be PLDM over MCTP",
+      "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4242842f_74b654c4",
+        "filename": "designs/code-update.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T01:25:54Z",
+      "side": 1,
+      "message": "xyz.openbmc_project.Software.MultipartManager",
+      "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f7a32b1_98271f46",
+        "filename": "designs/code-update.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T01:25:54Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be better to call this pldmd instead as thats the actual daemon name in openBMC?",
+      "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d2a2ac6_7448323d",
+        "filename": "designs/code-update.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T01:25:54Z",
+      "side": 1,
+      "message": "JFYI: @unive.tien.wiwynn@gmail.com is working on enabling the v1.3.0 support to pldm and libpldm which is the pre-requisite to use downstream device discovery in the pldmd fw update patches (he is working on).\n\nhttps://gerrit.openbmc.org/c/openbmc/libpldm/+/80255 \nhttps://gerrit.openbmc.org/c/openbmc/pldm/+/80194\n\n@unive.tien.wiwynn@gmail.com Please share any other patches here so Tom is aware of this and can avoid duplicate effort.",
+      "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f19fe8fa_b665315a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T01:25:54Z",
+      "side": 1,
+      "message": "JFYI: This feature is already in progress by @unive.tien.wiwynn@gmail.com. \n@unive.tien.wiwynn@gmail.com Can you please share the FW Update patch stack so Tom is aware of this and can avoid duplicate effort.",
+      "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8acc9ee2_1699c607",
+        "filename": "designs/code-update.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T01:25:54Z",
+      "side": 1,
+      "message": "The Update interface needs to reside on the same object_path as the version interface.",
+      "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "093c8fc6_30b28f19",
+        "filename": "designs/code-update.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T01:25:54Z",
+      "side": 1,
+      "message": "The images are kept in memory and passed as memfd to the updaters.",
+      "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "497af32b_fc266870",
+        "filename": "designs/code-update.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T01:25:54Z",
+      "side": 1,
+      "message": "How do you figure out the objectPath for the Update interface as it needs to be on /xyz/openbmc_project/software/\u003cid\u003e path.",
+      "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f981dfaf_4d8817a6",
+        "filename": "designs/code-update.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T01:25:54Z",
+      "side": 1,
+      "message": "You are missing creating xyz.openbmc_project.Software.Version and xyz.openbmc_project.Software.ActivationBlocksTransition.",
+      "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f63df3e1_d460fc4a",
+        "filename": "designs/code-update.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T01:25:54Z",
+      "side": 1,
+      "message": "How do you figure out the objectPath for the Update interface as it needs to be on /xyz/openbmc_project/software/\u003cid\u003e path.",
+      "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c720016_de080499",
+        "filename": "designs/code-update.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-14T01:25:54Z",
+      "side": 1,
+      "message": "You are missing creating xyz.openbmc_project.Software.Version and xyz.openbmc_project.Software.ActivationBlocksTransition.\n\nJFYI: Both the right side actors (PLDM and Non-PLDM updaters) will continue to act as in the original design and the only change needs to be the MultipartManager in the middle.",
+      "revId": "e5169fe0747eb252f61fa247a48bb5833220fa2f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
