@@ -1,0 +1,291 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f031702_10356360",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "This design hits on a few things that I struggle with:\n1. Passthrough apis, that pass through one protocol to another.  These are difficult to authenticate/authorize/test well, and add dependencies into the chain.\n2. APIs not backed by a standard or specification (OpenBMCs history of adoption of these is spotty).\n3. Protocols that are functionally closed to change (ipmi).\n4. New features that already have an implementation.  IPMI works just fine over the http-dbus-rest protocol that has existed for a long time.  SOL already works fine over a websocket without needing RMCP overhead.  I\u0027m certain there\u0027s improvements here, but we need to articulate those with testing/numbers so that we can tell folks when to use each tool, and to make sure that maintaining two implementations is worth it.\n\nIn the ideal, the ipmi spec could have a new definition for \"ipmi over http\" that we could implement, but as we know, the ipmi specification has been abandoned by it\u0027s owners, so this is functionally just an openbmc OEM interface, even though this design doc makes it appear as a normal interface.  This design needs to make it clear in external naming that this is OpenBMC OEM defined, and has really nothing to do with \"IPMI\" at a protocol layer, aside from sharing some command sets.",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a8decd5_3e144b89",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "This is what\u0027s called a \"passthrough\" api, and is generally not advised at a platform level, as it removes all abstraction.  If this is your goal, we already have the DBus rest API that can already do IPMI transactions using the dbus method on ipmid.  Is there a reason we\u0027re inventing a new interface here?\n\nOn another track, is there a reason we jump directly to HTTP, and not use other tools intended to solve networking level redirection?  (VPNs like wireguard, etc), alternatively tools like SSH port redirection that can solve the same purpose?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 80
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74af2328_86685923",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "I\u0027d like to see a deeper API structure used here so that we\u0027re not constantly adding top level URI actions (which have a potential to conflict).",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 10
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eb2394d_ed6e379a",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "This is a C structure.  HTTP doesn\u0027t use C.  Maybe reorder in bytes on the wire format?",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 6
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba3d9ed7_1e5945fe",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "Remove, this group doesn\u0027t support ipmitool, so you\u0027ll need to take this up with ipmitool maintainers.  Feel free to leave a mention that you intend to upstream an IPMI implementation.",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 0
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0956f3f6_c48aa60e",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "What value does this add on top of the already existing HTTP SOL layer?\n\nFWIW, Redfish just standardized that, so it\u0027s even in the RF standard now.",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 66
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "541ccff5_367f9c7f",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "Can you elaborate on how that would work given redfish uses a privilege registry?",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 57
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01eb9369_ea901fb3",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "Any background or testing for this overhead?  In other avenues we\u0027ve never seen json serialization/deserialization show up in a profile.  We already have dbus access to ipmi, so a quick test should be pretty easy to put together.",
+      "range": {
+        "startLine": 240,
+        "startChar": 30,
+        "endLine": 240,
+        "endChar": 64
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "175b4677_5f29dd0a",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "Remove.  OpenBMC Doesn\u0027t own ipmitool",
+      "range": {
+        "startLine": 251,
+        "startChar": 49,
+        "endLine": 252,
+        "endChar": 63
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07e2ae3f_434a9190",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "Please add the IPMI maintainers to the review, as the design template asks.",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb7df28f_47cd57cb",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "Remove.",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 7
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35286d46_0f4f458c",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "Which system do you intend to test on?",
+      "range": {
+        "startLine": 266,
+        "startChar": 7,
+        "endLine": 266,
+        "endChar": 13
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "375616d2_640a6f97",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-15T15:12:07Z",
+      "side": 1,
+      "message": "This is a binary API at a socket level.  We need some level of non-golden-path testing (bad bytes, bad requests, etc).",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 32
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
