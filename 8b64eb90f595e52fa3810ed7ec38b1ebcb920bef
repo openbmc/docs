@@ -58,6 +58,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc45af3a_2c07dedc",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-16T05:57:47Z",
+      "side": 1,
+      "message": "\u003e we already have the DBus rest API that can already do IPMI transactions using the dbus method on ipmid\n\nThis is not directly support by ipmitool, and as mentioned in `Alternatives`, the performance is poor enough and we propse this design.\n\nIndeed it\u0027s a \"passthrough\" from bmcweb to ipmid, but it\u0027s similar to net-ipmid. In this design we just add a new \"https interface\".\n\n\u003e  is there a reason we jump directly to HTTP, and not use other tools intended to solve networking level redirection? (VPNs like wireguard, etc), alternatively tools like SSH port redirection that can solve the same purpose?\n\nThis is network-related and off-topic to this design.\nThe proposed interface could be a replacement to lanplus, and thus resolve the issue mentioned below (e.g. not more password stored in BMC)",
+      "parentUuid": "6a8decd5_3e144b89",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 80
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74af2328_86685923",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-05-15T15:12:07Z",
       "side": 1,
       "message": "I\u0027d like to see a deeper API structure used here so that we\u0027re not constantly adding top level URI actions (which have a potential to conflict).",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 10
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7afe2898_79cf6f05",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-16T05:57:47Z",
+      "side": 1,
+      "message": "Will elaborate.",
+      "parentUuid": "74af2328_86685923",
       "range": {
         "startLine": 76,
         "startChar": 6,
@@ -106,6 +154,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e91ce3ca_da826c9f",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-16T05:57:47Z",
+      "side": 1,
+      "message": "Will elaborate.",
+      "parentUuid": "8eb2394d_ed6e379a",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 6
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba3d9ed7_1e5945fe",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -129,6 +201,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f47ed50_5a0e7ba9",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-16T05:57:47Z",
+      "side": 1,
+      "message": "This design involves both bmcweb and ipmitool, I would like to keep it here so that we know how the ipmitool will interact with bmcweb.",
+      "parentUuid": "ba3d9ed7_1e5945fe",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 0
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0956f3f6_c48aa60e",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -140,6 +236,30 @@
       "writtenOn": "2025-05-15T15:12:07Z",
       "side": 1,
       "message": "What value does this add on top of the already existing HTTP SOL layer?\n\nFWIW, Redfish just standardized that, so it\u0027s even in the RF standard now.",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 66
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce344c0f_3057cd64",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-16T05:57:47Z",
+      "side": 1,
+      "message": "It does re-use the existing HTTPS SOL. It\u0027s to describe that ipmitool is going to use this URI to open the SOL.",
+      "parentUuid": "0956f3f6_c48aa60e",
       "range": {
         "startLine": 147,
         "startChar": 0,
@@ -175,6 +295,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d1f217d_89d9fb48",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-16T05:57:47Z",
+      "side": 1,
+      "message": "Will elaborate",
+      "parentUuid": "541ccff5_367f9c7f",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 57
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01eb9369_ea901fb3",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -186,6 +330,30 @@
       "writtenOn": "2025-05-15T15:12:07Z",
       "side": 1,
       "message": "Any background or testing for this overhead?  In other avenues we\u0027ve never seen json serialization/deserialization show up in a profile.  We already have dbus access to ipmi, so a quick test should be pretty easy to put together.",
+      "range": {
+        "startLine": 240,
+        "startChar": 30,
+        "endLine": 240,
+        "endChar": 64
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7915991d_4174f067",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-16T05:57:47Z",
+      "side": 1,
+      "message": "Yes, we did test the json based implementation, it\u0027s about 3x slower than the websocket. Will add this information.",
+      "parentUuid": "01eb9369_ea901fb3",
       "range": {
         "startLine": 240,
         "startChar": 30,
@@ -259,6 +427,48 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32bcd5be_6e073f9c",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-16T05:57:47Z",
+      "side": 1,
+      "message": "The goal is to use the existing https session, and in OpenBMC it\u0027s bmcweb, that already handles the user login/privilege management. If we move to another \"ipmi-https-bridge\", it will have to implement the whole https/login/role/privilege stack, that is already done in bmcweb.\nSo reusing bmcweb to serve the `/ipmi` is proposed.\n\nBut indeed it\u0027s yet another bridge.",
+      "parentUuid": "93f9f42b_cc36aa41",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 73
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98b130b3_2e3d6e46",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-16T05:57:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07e2ae3f_434a9190",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb7df28f_47cd57cb",
@@ -307,6 +517,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "abf9d335_bf7e442c",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-16T05:57:47Z",
+      "side": 1,
+      "message": "It\u0027s tested on g220a, will add this info",
+      "parentUuid": "35286d46_0f4f458c",
+      "range": {
+        "startLine": 266,
+        "startChar": 7,
+        "endLine": 266,
+        "endChar": 13
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "375616d2_640a6f97",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -318,6 +552,30 @@
       "writtenOn": "2025-05-15T15:12:07Z",
       "side": 1,
       "message": "This is a binary API at a socket level.  We need some level of non-golden-path testing (bad bytes, bad requests, etc).",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 32
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d57dc48f_37071d02",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-16T05:57:47Z",
+      "side": 1,
+      "message": "Will add this info.",
+      "parentUuid": "375616d2_640a6f97",
       "range": {
         "startLine": 267,
         "startChar": 0,
