@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9ac73a2_c70e361b",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-16T18:14:09Z",
+      "side": 1,
+      "message": "What you proposed isn\u0027t supported by ipmitool either, so I\u0027m not sure what the difference is?\n\n\u003e the performance is poor\n\nCan you quantify that performance somewhere?  When you say it\u0027s poor, can you verify that http2/keepalive were enabled in your tests?  Those will have a significant impact on things like this.",
+      "parentUuid": "bc45af3a_2c07dedc",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 80
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74af2328_86685923",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -225,6 +249,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5a424fa_4c63c9a3",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-16T18:14:09Z",
+      "side": 1,
+      "message": "Feel free to mention it, but OpenBMC can\u0027t \"approve\" ipmitool additions or documentation.  Please feel free to point to the document in the ipmitool repository that you\u0027ve started as reference, but this doc should be about OpenBMC exposing a new protocol (and specifically what that protocol is).  It shouldn\u0027t be about an application OpenBMC has no authority or documentation over.",
+      "parentUuid": "4f47ed50_5a0e7ba9",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 0
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0956f3f6_c48aa60e",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -260,6 +308,30 @@
       "side": 1,
       "message": "It does re-use the existing HTTPS SOL. It\u0027s to describe that ipmitool is going to use this URI to open the SOL.",
       "parentUuid": "0956f3f6_c48aa60e",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 66
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b1a5af_5220e1bf",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-16T18:14:09Z",
+      "side": 1,
+      "message": "Right, I\u0027m not following what the changes are here.  We have SOL, it\u0027s supported.  Is the change that ipmitool will implement redfish-standardized websockets?",
+      "parentUuid": "ce344c0f_3057cd64",
       "range": {
         "startLine": 147,
         "startChar": 0,
@@ -354,6 +426,30 @@
       "side": 1,
       "message": "Yes, we did test the json based implementation, it\u0027s about 3x slower than the websocket. Will add this information.",
       "parentUuid": "01eb9369_ea901fb3",
+      "range": {
+        "startLine": 240,
+        "startChar": 30,
+        "endLine": 240,
+        "endChar": 64
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "723f842c_ae893938",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-16T18:14:09Z",
+      "side": 1,
+      "message": "Please do.  I\u0027m quite surprised there\u0027s a difference in json vs binary for this case, and I suspect your tests might not have implemented http keepalive or http2.  Please verify both are enabled and used.",
+      "parentUuid": "7915991d_4174f067",
       "range": {
         "startLine": 240,
         "startChar": 30,
@@ -465,6 +561,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "07e2ae3f_434a9190",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5314cd0a_61f87496",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-16T18:14:09Z",
+      "side": 1,
+      "message": "\u003e whole https/login/role/privilege stack.\n\nThis is some of the confusion in my mind: You\u0027re reusing essentially all of Redfish at a protocol layer, with the addition of one new TCP implementation.  Why are we not just using Redfish?",
+      "parentUuid": "32bcd5be_6e073f9c",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 73
+      },
       "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
