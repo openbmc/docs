@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "50fdd6cc_b44d3e21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-18T01:28:27Z",
+      "side": 1,
+      "message": "As an alternative that accomplishes the same goal, could we please look at implementing http-connect support?\n\nhttps://datatracker.ietf.org/doc/html/rfc9298\n\nThe advantages are:\n1. In theory no changes to ipmitool are required.  (ipmitool would\u0027ve needed to add an http + websocket dependency for this design).  We could just proxy UDP RMCP using a side application, which would mean that ANY ipmi enabled tool could now work.  If ipmitool wanted to implement http-connect directly, it would reduce the required dependencies a bit (we\u0027d only need HTTP, not websocket implementations).\n2. All network protocols are governed by specifications.  This gives maintainers a way to make sure things are correct without needing to nit pick every item or be an expert on network protocols.\n3. it clearly delineates responsibilities between applications.  bmcweb is responsible for authenticating, and tunneling UDP packets.  IPMI is responsible for IPMI specification correctness.  In the model proposed here, bmcweb is responsible for assembling correct ipmi commands, which is something the webserver shouldn\u0027t be responsible for.\n4. It\u0027s more likely to be generically useful in other situation.  Http-connect would let us proxy.... anything, not just IPMI.\n5. Far more HTTP and UDP experts have reviewed and understand the http-connect protocol than we will get here.  That likely reduces the chance for protocol level CVE events.\n\nThe http connect protocol on top of HTTP seems pretty trivial.  Open the http request, authenticate using headers, then it\u0027s just 16 bit length and udp.  An initial implementation could write only to ipmi if we wanted to.",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a8decd5_3e144b89",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
