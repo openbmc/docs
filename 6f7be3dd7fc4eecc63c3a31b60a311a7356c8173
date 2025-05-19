@@ -20,6 +20,80 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8819b5eb_cc273cea",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-05-19T01:48:20Z",
+      "side": 1,
+      "message": "I think you should discuss why you\u0027re proposing a flat structure up front.",
+      "revId": "6f7be3dd7fc4eecc63c3a31b60a311a7356c8173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dee5ec6e_c052aab4",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-05-19T01:48:20Z",
+      "side": 1,
+      "message": "I feel that using associations to construct a path hierarchy is pretty expensive. D-Bus has paths, why not exploit them?",
+      "revId": "6f7be3dd7fc4eecc63c3a31b60a311a7356c8173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a09bc6c_99aca9e3",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-05-19T01:48:20Z",
+      "side": 1,
+      "message": "I feel this would be better specified as sdbusplus yaml?",
+      "revId": "6f7be3dd7fc4eecc63c3a31b60a311a7356c8173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40dd1c58_faa987b7",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-05-19T01:48:20Z",
+      "side": 1,
+      "message": "I don\u0027t think that\u0027s something that can be left up to some implementation. This needs to be handled by pldmd.",
+      "range": {
+        "startLine": 648,
+        "startChar": 25,
+        "endLine": 649,
+        "endChar": 15
+      },
+      "revId": "6f7be3dd7fc4eecc63c3a31b60a311a7356c8173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2bf5bee7_e383434f",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 12
@@ -31,6 +105,75 @@
       "writtenOn": "2025-04-17T10:29:47Z",
       "side": 1,
       "message": "We should not preclude this from the design.",
+      "revId": "6f7be3dd7fc4eecc63c3a31b60a311a7356c8173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c8c9bee_c04bb1f0",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-05-19T01:48:20Z",
+      "side": 1,
+      "message": "Why is this a concern? This is how async applications are implemented anyway (or via `io_uring`).",
+      "range": {
+        "startLine": 744,
+        "startChar": 0,
+        "endLine": 747,
+        "endChar": 1
+      },
+      "revId": "6f7be3dd7fc4eecc63c3a31b60a311a7356c8173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f56271d_23134321",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-05-19T01:48:20Z",
+      "side": 1,
+      "message": "But we can do this as a stream by sending PLDM messages on demand while not blocking the client application, right?",
+      "range": {
+        "startLine": 769,
+        "startChar": 0,
+        "endLine": 771,
+        "endChar": 72
+      },
+      "revId": "6f7be3dd7fc4eecc63c3a31b60a311a7356c8173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02a49512_4ff8ca1e",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-05-19T01:48:20Z",
+      "side": 1,
+      "message": "I think we want to avoid doing this? Why read it all at once when we can stream chunks all the way from the PLDM endpoint through to the client application?",
+      "range": {
+        "startLine": 773,
+        "startChar": 2,
+        "endLine": 773,
+        "endChar": 66
+      },
       "revId": "6f7be3dd7fc4eecc63c3a31b60a311a7356c8173",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
