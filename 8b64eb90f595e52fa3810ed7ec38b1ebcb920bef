@@ -52,6 +52,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffc7169e_cd3ce479",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-20T06:53:43Z",
+      "side": 1,
+      "message": "The idea of this doc is not only to use `https` as the network layer, but more importantly to replace the RMCP authentication.\n\nWe want to get rid of lanplus so that BMC will not be required to store password at all.",
+      "parentUuid": "50fdd6cc_b44d3e21",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a8decd5_3e144b89",
@@ -113,6 +131,30 @@
       "side": 1,
       "message": "What you proposed isn\u0027t supported by ipmitool either, so I\u0027m not sure what the difference is?\n\n\u003e the performance is poor\n\nCan you quantify that performance somewhere?  When you say it\u0027s poor, can you verify that http2/keepalive were enabled in your tests?  Those will have a significant impact on things like this.",
       "parentUuid": "bc45af3a_2c07dedc",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 80
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27db4834_f77c6eac",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-20T06:53:43Z",
+      "side": 1,
+      "message": "We will test the \"keep-alive\" and feedback",
+      "parentUuid": "c9ac73a2_c70e361b",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -361,6 +403,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e902c14f_cdb527f0",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-20T06:53:43Z",
+      "side": 1,
+      "message": "Yup, it\u0027s the changes to ipmitool to connect to bmcweb\u0027s SOL URI.\nWill elaborate to make it clear.",
+      "parentUuid": "d3b1a5af_5220e1bf",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 66
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "541ccff5_367f9c7f",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -467,6 +533,30 @@
       "side": 1,
       "message": "Please do.  I\u0027m quite surprised there\u0027s a difference in json vs binary for this case, and I suspect your tests might not have implemented http keepalive or http2.  Please verify both are enabled and used.",
       "parentUuid": "7915991d_4174f067",
+      "range": {
+        "startLine": 240,
+        "startChar": 30,
+        "endLine": 240,
+        "endChar": 64
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "839abb7b_f8a534fe",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-20T06:53:43Z",
+      "side": 1,
+      "message": "It\u0027s not json vs binary, but HTTP request/response model vs websocket.\nAs mentioned above, we will test the json imlementation with keep-alive and compare the performance.",
+      "parentUuid": "723f842c_ae893938",
       "range": {
         "startLine": 240,
         "startChar": 30,
@@ -596,6 +686,30 @@
       "side": 1,
       "message": "\u003e whole https/login/role/privilege stack.\n\nThis is some of the confusion in my mind: You\u0027re reusing essentially all of Redfish at a protocol layer, with the addition of one new TCP implementation.  Why are we not just using Redfish?",
       "parentUuid": "32bcd5be_6e073f9c",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 73
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b539c64_5aa01ac7",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-20T06:53:43Z",
+      "side": 1,
+      "message": "It\u0027s reusing bmcweb to handle the whole user authentication and authorization.\nUsing Redfish means it\u0027s request/response model, which is 3x slower than websocket.",
+      "parentUuid": "5314cd0a_61f87496",
       "range": {
         "startLine": 250,
         "startChar": 0,
