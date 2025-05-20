@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0dee94e_db485f58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-20T14:20:00Z",
+      "side": 1,
+      "message": "net-ipmid isn\u0027t a passthrough API, net-ipmid only implements the protocol\n\n\u003e This is proposed as OpenBMC extension to ipmi.\n\nIPMI as a specification doesn\u0027t have a provision for protocol extensions, so I\u0027m not really sure what this means.  This would be a completely new protocol, that\u0027s essentially ipmi remoted over a websocket.\n\n\u003e REST API is going to be deprecated \n\nI\u0027m not really sure what this means, and it\u0027s just that nobody uses that protocol because it\u0027s a passthrough API.\n\n\u003e It has worse performance compared to lanplus.\n\nCitation and example needed.  When you provide results, please make sure you\u0027ve enabled HTTP2.",
+      "parentUuid": "b6e1e1fb_8aa03cc2",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a8decd5_3e144b89",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -227,6 +245,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "baf22dcc_ea02fb34",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-20T14:20:00Z",
+      "side": 1,
+      "message": "http-2 was enabled as well?  I don\u0027t see mention of it in your last message.",
+      "parentUuid": "dabf876c_ec00101b",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 80
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74af2328_86685923",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -298,6 +340,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78dc7ad1_830694ee",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-20T14:20:00Z",
+      "side": 1,
+      "message": "still appears to be /ipmi in your latest.  Forgot to update?",
+      "parentUuid": "6390d3cf_1fc4696c",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 10
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8eb2394d_ed6e379a",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -357,6 +423,30 @@
       "side": 1,
       "message": "It\u0027s binary data on the WebSocket, so it is defined like this as intended.",
       "parentUuid": "e91ce3ca_da826c9f",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 6
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3d25167_f6f51f5e",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-20T14:20:00Z",
+      "side": 1,
+      "message": "Websockets aren\u0027t defined as c structures.  Please look at other protocol docs to see examples of how to represent bytes on the wire.",
+      "parentUuid": "dcdeff41_082f3150",
       "range": {
         "startLine": 88,
         "startChar": 0,
@@ -654,6 +744,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7174c302_c0e6bd04",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-20T14:20:00Z",
+      "side": 1,
+      "message": "I see no mention of privilege registry.  If you could reply with a short sentence of what you changed before you close these in the future, it would save me time as a reviewer.",
+      "parentUuid": "13e23409_e0de0fab",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 57
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01eb9369_ea901fb3",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -773,6 +887,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00da4ae2_3c29f0ca",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-20T14:20:00Z",
+      "side": 1,
+      "message": "In the websocket model you\u0027ve implemented, it\u0027s still request/response, you\u0027ve just encapsulated it in websockets.",
+      "parentUuid": "338501e7_f8255647",
+      "range": {
+        "startLine": 240,
+        "startChar": 30,
+        "endLine": 240,
+        "endChar": 64
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "175b4677_5f29dd0a",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -808,6 +946,30 @@
       "side": 1,
       "message": "Unless it\u0027s very inappropriate, I still intend to mention ipmitool here to make it a whole solution.",
       "parentUuid": "175b4677_5f29dd0a",
+      "range": {
+        "startLine": 251,
+        "startChar": 49,
+        "endLine": 252,
+        "endChar": 63
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8215a3b_49c2d560",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-20T14:20:00Z",
+      "side": 1,
+      "message": "Please mention ipmitool in its own document, using IPMItools process (github bug maybe) and provide a link here.  OpenBMC can\u0027t \"approve\" anything in ipmi.",
+      "parentUuid": "fc142a8f_e0ab6566",
       "range": {
         "startLine": 251,
         "startChar": 49,
@@ -974,6 +1136,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bbc99c60_a3cf42f8",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-20T14:20:00Z",
+      "side": 1,
+      "message": "\u003e Using Redfish means it\u0027s request/response model, which is 3x slower than websocket.\n\nWould love to see those results.  Considering the websocket model here is still essentially request/response (given that dbus is request/response), I\u0027m really surprised there\u0027s a difference.",
+      "parentUuid": "b39b5746_1d99e15e",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 73
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb7df28f_47cd57cb",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -1009,6 +1195,30 @@
       "side": 1,
       "message": "Unless it\u0027s very inappropriate, I still intend to mention ipmitool here to make it a whole solution.",
       "parentUuid": "cb7df28f_47cd57cb",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 7
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a50ea3a6_cd89b3bc",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-20T14:20:00Z",
+      "side": 1,
+      "message": "openbmc doesn\u0027t control ipmitool, so anything \"agreed\" to in this document doesn\u0027t have any impact.",
+      "parentUuid": "5854901b_ea28f216",
       "range": {
         "startLine": 260,
         "startChar": 0,
