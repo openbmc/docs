@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "675b9bdf_14a79aa2",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-23T04:46:14Z",
+      "side": 1,
+      "message": "also, this design does not seem to speak about the FIFO type files ? If this was the intent, can you also document that in the `scope` section ?",
+      "range": {
+        "startLine": 565,
+        "startChar": 22,
+        "endLine": 565,
+        "endChar": 44
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "866d1353_3f235454",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-23T04:46:14Z",
+      "side": 1,
+      "message": "can you explain what do you mean by this ?",
+      "range": {
+        "startLine": 580,
+        "startChar": 56,
+        "endLine": 581,
+        "endChar": 18
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93dfb68d_b7d65126",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-23T04:46:14Z",
+      "side": 1,
+      "message": "I think we would also probably want dbus clients to have an option to read with `exclusivity` ? so that if a dbus client tries to open a file and read - pldm can do a DfOpen with `Exclusivity bit` set so that the file host does not change the file size or the content while the file read session is in progress.\n\nThis might even block multiple reads of the same file from redfish simultaneously.",
+      "range": {
+        "startLine": 630,
+        "startChar": 12,
+        "endLine": 630,
+        "endChar": 16
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1be4a38e_b56d3333",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-23T04:46:14Z",
+      "side": 1,
+      "message": "we probably also want something like `xyz.openbmc_project.Common.File.Error.OpenConflict` to indicate if multiple clients to do a read but with conflicting opens (like for example one with read-only + exclusive, another with read write+exclusive)",
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a867113a_d937b18a",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-23T04:46:14Z",
+      "side": 1,
+      "message": "I would rather suggest to not bunch them together - because each one in this list might have different schema mapping in redfish (might become difficult in future if we bunch them into catagories)",
+      "range": {
+        "startLine": 682,
+        "startChar": 3,
+        "endLine": 684,
+        "endChar": 54
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5eb392b_bff087a9",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-23T04:46:14Z",
+      "side": 1,
+      "message": "`DfOpen` - seems to also have `exclusive` option - It\u0027s a way for the file client to request the file host to not change the file size or the content of the file while a read is in progress.\n\nHow are we planning to enforce this in the current dbus design ? can you also please document if this design handles the case where multiple dbus clients tries to read() the same file at once",
+      "range": {
+        "startLine": 689,
+        "startChar": 0,
+        "endLine": 696,
+        "endChar": 71
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111e0a6f_d87fa854",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-23T04:46:14Z",
+      "side": 1,
+      "message": "can you also add a point mentioning that the PLDM for FILEIO spec 1.0 does not support DfWrite yet ?",
+      "range": {
+        "startLine": 704,
+        "startChar": 0,
+        "endLine": 705,
+        "endChar": 76
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
