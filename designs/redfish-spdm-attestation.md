@@ -238,7 +238,16 @@ follows according to Redfish spec:
 
 - `/redfish/v1/ComponentIntegrity/`
 - `/redfish/v1/Chassis/{ChassisId}/TrustedComponents/`
-- `/redfish/v1/Chassis/{ChassisId}/Certificates/`
+
+The TrustedComponent represents a ROT or TPM, and its associated certificates
+should be represented as subordinate resources under TrustedComponent. For the
+proper URI structure for certificates, please refer to the [Redfish Data Model
+Specification][1]. Look for the CertificatesCollection row in the specification.
+
+- `/redfish/v1/Chassis/{ChassisId}/TrustedComponents/{TrustedComponentId}/`
+  `Certificates`
+- `/redfish/v1/Chassis/{ChassisId}/TrustedComponents/{TrustedComponentId}/`
+  `Certificates/{CertificateId}`
 
 On the D-Bus Daemon side, we propose that the dbus objects are organized in the
 following way:
@@ -314,5 +323,11 @@ requests:
 - Get a collection of `TrustedComponent` resource.
 - Get properties of a `ComponentIntegrity` resources.
 - Get properties of a `TrustedComponent` resource.
-- Follow the resouces link to get the device certificates.
+- Follow the resouces link to get the device certificates and verify that they
+  are correctly structured as subordinate resources under the TrustedComponent.
+- Get properties of `Certificate` resource and verify responses match with leaf
+  certificate in the certificate chain.
 - Call Action on the `ComponentIntegrity` resource to get measurements.
+
+[1]:
+  https://www.dmtf.org/sites/default/files/standards/documents/DSP0268_2024.4.html#resource-collection-uris-in-redfish-v16-and-later
