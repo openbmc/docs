@@ -1,17 +1,21 @@
-Checks: '
-    -*,
+Checks: '-*,
     bugprone-unchecked-optional-access,
     modernize-use-nullptr,
     readability-function-size,
     readability-function-cognitive-complexity
-'
+    '
+
 CheckOptions:
-  - { key: readability-function-size.LineThreshold,             value: 60 } # [1]
-  - { key: readability-function-size.ParameterThreshold,        value: 6 }  # [2]
-  - { key: readability-function-cognitive-complexity.Threshold, value: 25 } # [3]
+-   key: readability-function-size.LineThreshold
+    value: 60 # [1]
+-   key: readability-function-size.ParameterThreshold
+    value: 6  # [2]
+-   key: readability-function-cognitive-complexity.Threshold
+    value: 25 # [3]
+
+HeaderFilterRegex: '(?!^subprojects).*'
 
 WarningsAsErrors: '*'
-HeaderFilterRegex: '(?!^subprojects).*'
 
 # [1] https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple
 # [2] https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f2-a-function-should-perform-a-single-logical-operation
