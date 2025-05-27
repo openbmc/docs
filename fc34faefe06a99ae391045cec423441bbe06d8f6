@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aa9ebe1_077c9d07",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-05-27T03:03:27Z",
+      "side": 1,
+      "message": "Hi @Manoj, thanks for your review. This design is meant to cover both file type. I added for explanations to the Read() method that emphasize the the difference.",
+      "parentUuid": "675b9bdf_14a79aa2",
+      "range": {
+        "startLine": 565,
+        "startChar": 22,
+        "endLine": 565,
+        "endChar": 44
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "866d1353_3f235454",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-05-23T04:46:14Z",
       "side": 1,
       "message": "can you explain what do you mean by this ?",
+      "range": {
+        "startLine": 580,
+        "startChar": 56,
+        "endLine": 581,
+        "endChar": 18
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cd900d6_60b09dff",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-05-27T03:03:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "866d1353_3f235454",
       "range": {
         "startLine": 580,
         "startChar": 56,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8079662e_e5c68682",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-05-27T03:03:27Z",
+      "side": 1,
+      "message": "I have updated the method description, please help review.",
+      "parentUuid": "93dfb68d_b7d65126",
+      "range": {
+        "startLine": 630,
+        "startChar": 12,
+        "endLine": 630,
+        "endChar": 16
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1be4a38e_b56d3333",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 14
@@ -89,6 +161,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ed7b8ac_3497d98f",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-05-27T03:03:27Z",
+      "side": 1,
+      "message": "Can this case share `xyz.openbmc_project.Common.File.Error.Open` error with other open error scenarios? Otherwise, we need to add new error type to PDI. Can any of these https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Common.errors.yaml be used instead?",
+      "parentUuid": "1be4a38e_b56d3333",
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a867113a_d937b18a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 14
@@ -100,6 +190,30 @@
       "writtenOn": "2025-05-23T04:46:14Z",
       "side": 1,
       "message": "I would rather suggest to not bunch them together - because each one in this list might have different schema mapping in redfish (might become difficult in future if we bunch them into catagories)",
+      "range": {
+        "startLine": 682,
+        "startChar": 3,
+        "endLine": 684,
+        "endChar": 54
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1083192f_a182f4dd",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-05-27T03:03:27Z",
+      "side": 1,
+      "message": "I was afraid first that the if we span the Purpose enum to represent each file classification, it will be too adherent to the PLDM spec. Updated to separate these.",
+      "parentUuid": "a867113a_d937b18a",
       "range": {
         "startLine": 682,
         "startChar": 3,
@@ -135,6 +249,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1fa8d262_ecc38829",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-05-27T03:03:27Z",
+      "side": 1,
+      "message": "Updated as mentioned in the above comment.",
+      "parentUuid": "d5eb392b_bff087a9",
+      "range": {
+        "startLine": 689,
+        "startChar": 0,
+        "endLine": 696,
+        "endChar": 71
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "111e0a6f_d87fa854",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 14
@@ -146,6 +284,30 @@
       "writtenOn": "2025-05-23T04:46:14Z",
       "side": 1,
       "message": "can you also add a point mentioning that the PLDM for FILEIO spec 1.0 does not support DfWrite yet ?",
+      "range": {
+        "startLine": 704,
+        "startChar": 0,
+        "endLine": 705,
+        "endChar": 76
+      },
+      "revId": "fc34faefe06a99ae391045cec423441bbe06d8f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a50d2aaf_2c0461b2",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-05-27T03:03:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "111e0a6f_d87fa854",
       "range": {
         "startLine": 704,
         "startChar": 0,
