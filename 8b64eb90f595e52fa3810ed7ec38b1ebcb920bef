@@ -126,6 +126,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d7bbf8d_c6e1eb15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-28T07:49:15Z",
+      "side": 1,
+      "message": "Added results of http2 enabled. It\u0027s improved a bit from 8.2 to 6.8 seconds.\n\nI am not sure how to provide the citation, it\u0027s manually built bmcweb with HTTP2 enabled, and tested with the same ipmi command.",
+      "parentUuid": "d0dee94e_db485f58",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3035f074_4dc9ee73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-28T07:49:15Z",
+      "side": 1,
+      "message": "For the `http-connect` way, I see several questions about the \"advantages\":\n\n\u003e In theory no changes to ipmitool are required\n\nThe goal is to \"bypass\" lanplus, I do not see the appropriate \"interface\" in existing ipmitool that could be used to connect to the http-udp tunnel.\n\nDo you propose which existing interface could be used here?\n\n\u003e All network protocols are governed by specifications.\n\nThis is the same as the proposal of this patch.\n\n\u003e bmcweb is responsible for authenticating, and tunneling UDP packets. IPMI is responsible for IPMI specification correctness. In the model proposed here, bmcweb is responsible for assembling correct ipmi commands, which is something the webserver shouldn\u0027t be responsible for.\n\nAs mentioned above, I do not see which existing interface could be used.\nBtw, in my proposal, bmcweb does \"minimal\" assembling of ipmi commands. It\u0027s basically a bridge between websocket\u0027s binary data and D-Bus data.\n\nIn all, I think HTTP-connect for udp tunnle is an interesting idea, but does not resolve the lanplus/RMCP issue that this proposal is trying to resolve: get rid of lanplus and RMCP.",
+      "parentUuid": "ead73096_eb1cbbf6",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a8decd5_3e144b89",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -267,6 +303,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fb2dd4d_f2adb8bb",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-28T07:49:15Z",
+      "side": 1,
+      "message": "Done. Added result with http2 enabled",
+      "parentUuid": "baf22dcc_ea02fb34",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 80
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74af2328_86685923",
@@ -362,6 +422,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3a3160f_28b6a69f",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-28T07:49:15Z",
+      "side": 1,
+      "message": "It\u0027s as simple as an `/ipmi` URI for websocket.\nI have improved the binary data format by not using C-like structure and use a table instead.",
+      "parentUuid": "78dc7ad1_830694ee",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 10
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8eb2394d_ed6e379a",
@@ -447,6 +531,30 @@
       "side": 1,
       "message": "Websockets aren\u0027t defined as c structures.  Please look at other protocol docs to see examples of how to represent bytes on the wire.",
       "parentUuid": "dcdeff41_082f3150",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 6
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c40f0cc3_d07f1a58",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-28T07:49:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3d25167_f6f51f5e",
       "range": {
         "startLine": 88,
         "startChar": 0,
@@ -768,6 +876,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39d0fcc8_13fa87f7",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-28T07:49:15Z",
+      "side": 1,
+      "message": "There is no change to privilege registry, bmcweb just convert the user role from Redfish into ipmi\u0027s privilege, as described in the doc.\n\nIf you think something is unclear, please suggest a rephrase. Thanks.",
+      "parentUuid": "7174c302_c0e6bd04",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 57
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01eb9369_ea901fb3",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -911,6 +1043,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55eaef98_8fc515b5",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-28T07:49:15Z",
+      "side": 1,
+      "message": "Yes, but it\u0027s binary data in the WebSocket without HTTP\u0027s overhead.",
+      "parentUuid": "00da4ae2_3c29f0ca",
+      "range": {
+        "startLine": 240,
+        "startChar": 30,
+        "endLine": 240,
+        "endChar": 64
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "175b4677_5f29dd0a",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -970,6 +1126,30 @@
       "side": 1,
       "message": "Please mention ipmitool in its own document, using IPMItools process (github bug maybe) and provide a link here.  OpenBMC can\u0027t \"approve\" anything in ipmi.",
       "parentUuid": "fc142a8f_e0ab6566",
+      "range": {
+        "startLine": 251,
+        "startChar": 49,
+        "endLine": 252,
+        "endChar": 63
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5860771f_85991ec4",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-28T07:49:15Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "a8215a3b_49c2d560",
       "range": {
         "startLine": 251,
         "startChar": 49,
@@ -1160,6 +1340,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e6492d6b_eda69500",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-28T07:49:15Z",
+      "side": 1,
+      "message": "Yes, but the binary data transferred on the WebSocke **indeed** gets better performance.\nhttp2\u0027s result is added as well.",
+      "parentUuid": "bbc99c60_a3cf42f8",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 73
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb7df28f_47cd57cb",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -1219,6 +1423,30 @@
       "side": 1,
       "message": "openbmc doesn\u0027t control ipmitool, so anything \"agreed\" to in this document doesn\u0027t have any impact.",
       "parentUuid": "5854901b_ea28f216",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 7
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1227341_1daad6a5",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-05-28T07:49:15Z",
+      "side": 1,
+      "message": "Right, but this still provides enough information and makes it easier for readers to get all the changes.",
+      "parentUuid": "a50ea3a6_cd89b3bc",
       "range": {
         "startLine": 260,
         "startChar": 0,
