@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8d2ba1d_8322f0de",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-29T10:20:45Z",
+      "side": 1,
+      "message": "Nope, IBM systems don\u0027t use SMBIOS. Our BMC has the capability to detect it and host it as Inventory object.Thje version can be read by vpd collecting daemons like openpower-vpd-parser. Usually the inventory objects are hosted by phosphor-inventory-manager or entity-manager.",
+      "parentUuid": "0ec28142_3a3dcb63",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3704a4e7_d14336f3",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-05-13T10:31:02Z",
       "side": 1,
       "message": "DMTF libspdm has support for mctp, PCIe DOE, TCP(https://github.com/DMTF/libspdm/issues/3018), are we going to add new bindings for TPM in dmtf libspdm?",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "974e7888_f28be778",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-29T10:20:45Z",
+      "side": 1,
+      "message": "Nope, we don\u0027t need a transport binding for TPM in libspdm.\n\nDaemons can talk to TPM via TPM Software Stack (TSS) - its is a software specification that provides a standard API for accessing the functions of the TPM.",
+      "parentUuid": "3704a4e7_d14336f3",
       "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a1ea04d_9636102d",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-29T10:20:45Z",
+      "side": 1,
+      "message": "\u003e Similar as above, Since design will use spdm messages for other transports, if we are planning to use raw APIs directly i think we will not be able to leverage lot of stuff provided by DMTF libspdm\n\nThat\u0027s not true, we  use the TSS api\u0027s to only get the self measurements of BMC. The remote endpoints measurements are still obtained using SPDM protocol over TCP (leveraging the transport bindings in libspdm).\n\n\u003e and we will have deviation and exceptions for TPM in the current design.\n\nI don\u0027t see this as a deviation, rather it is an enhancement that enables spdm clients to attest the BMC itself (not just the devices connected).",
+      "parentUuid": "5d7faab4_1f70bfd8",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43824d09_df9e91b4",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3efd3d03_345fc913",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-29T10:20:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43824d09_df9e91b4",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01601abc_ac4d7443",
@@ -82,6 +154,24 @@
       "writtenOn": "2025-05-13T10:31:02Z",
       "side": 1,
       "message": "Since TrustedComponents represented are collectively included in TrustedComponent schema in redfish, we will have TPMs for host which may not need any measurements /certs and TPMs for Managers which will those.\n\nTPM for BMC does not come from smbios-mdr in your platform design?\n\n\nI am referring to this MR.\nhttps://gerrit.openbmc.org/c/openbmc/bmcweb/+/79157/comment/f6d641f6_3a90d3b8/",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d1cef74_18cc9ba1",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-05-29T10:20:45Z",
+      "side": 1,
+      "message": "\u003e Since TrustedComponents represented are collectively included in TrustedComponent schema in redfish, we will have TPMs for host which may not need any measurements /certs and TPMs for Managers which will those.\n\u003e \n\nI don\u0027t understand what this means ? TPM is a chip that can be attached to anything, *NOT* just the host. And Inventory can be populated in so many ways, not just using *SMBIOS* as stated above. \n\n\u003e TPM for BMC does not come from smbios-mdr in your platform design?\n\u003e \n\u003e \n\u003e I am referring to this MR.\n\u003e https://gerrit.openbmc.org/c/openbmc/bmcweb/+/79157/comment/f6d641f6_3a90d3b8/\n\nYes, my comments in the bmcweb patch were only making sure that, we don\u0027t have assumptions baked in on associating TPM to one particular redfish resource(like chassis), rather the infrastructure should be written in such a way that we would be able to reuse the framework to attach TPM for various redfish resources.",
+      "parentUuid": "01601abc_ac4d7443",
       "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
