@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fdd0e8bc_55ddbf26",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-05-30T04:55:04Z",
+      "side": 1,
+      "message": "The current SPDM design in OpenBMC positions SPDM as the requester, with the responsibility for measurement response verification delegated to the client. All SPDM transactions are transport-agnostic and utilize the libspdm requester APIs directly which includes\n\n- Discover devices based on transport protocols (e.g., PCIe, MCTP) and create - corresponding D-Bus objects.\n- Register each transport and implement its specific functions, integrating them with DMTF libspdm callbacks.\n- Initialize the SPDM context and define requester capabilities.\nUse DMTF libspdm APIs to perform VCA negotiation, and retrieve certificates and measurements.\n- Update the D-Bus call with the certificate and measurement responses.\n\nMy question is: how do we plan to incorporate TSS APIs to support BMC self-measurement? Additionally, how will the BMC be represented as an SPDM endpoint in this architecture?",
+      "parentUuid": "7a1ea04d_9636102d",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43824d09_df9e91b4",
         "filename": "designs/redfish-spdm-attestation.md",
         "patchSetId": 6
@@ -172,6 +190,24 @@
       "side": 1,
       "message": "\u003e Since TrustedComponents represented are collectively included in TrustedComponent schema in redfish, we will have TPMs for host which may not need any measurements /certs and TPMs for Managers which will those.\n\u003e \n\nI don\u0027t understand what this means ? TPM is a chip that can be attached to anything, *NOT* just the host. And Inventory can be populated in so many ways, not just using *SMBIOS* as stated above. \n\n\u003e TPM for BMC does not come from smbios-mdr in your platform design?\n\u003e \n\u003e \n\u003e I am referring to this MR.\n\u003e https://gerrit.openbmc.org/c/openbmc/bmcweb/+/79157/comment/f6d641f6_3a90d3b8/\n\nYes, my comments in the bmcweb patch were only making sure that, we don\u0027t have assumptions baked in on associating TPM to one particular redfish resource(like chassis), rather the infrastructure should be written in such a way that we would be able to reuse the framework to attach TPM for various redfish resources.",
       "parentUuid": "01601abc_ac4d7443",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eeb8238_4c64a4d7",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-05-30T04:55:04Z",
+      "side": 1,
+      "message": "How do we differentiate TPM which we need to self attest vs the ones which we not. Because both will be implementing Inventory.Item.Tpm.interface.yaml",
+      "parentUuid": "5d1cef74_18cc9ba1",
       "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
