@@ -162,6 +162,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b33251cb_c890f67d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-02T16:26:25Z",
+      "side": 1,
+      "message": "\u003e For the `http-connect` way, I see several questions about the \"advantages\":\n\u003e \n\u003e \u003e In theory no changes to ipmitool are required\n\u003e \n\u003e The goal is to \"bypass\" lanplus, I do not see the appropriate \"interface\" in existing ipmitool that could be used to connect to the http-udp tunnel.\n\nI\u0027m confused, you would need to write a new interface regardless.\n\n\u003e \n\u003e Do you propose which existing interface could be used here?\n\u003e \n\u003e \u003e All network protocols are governed by specifications.\n\u003e \n\u003e This is the same as the proposal of this patch.\n\nPlease give me the pointer to the specification that specifies IPMI over HTTP.  Maybe I\u0027m not aware of it.\n\n\u003e \n\u003e \u003e bmcweb is responsible for authenticating, and tunneling UDP packets. IPMI is responsible for IPMI specification correctness. In the model proposed here, bmcweb is responsible for assembling correct ipmi commands, which is something the webserver shouldn\u0027t be responsible for.\n\u003e \n\u003e As mentioned above, I do not see which existing interface could be used.\n\nI\u0027ve given pointers to the relevant specifications.  Which part didn\u0027t make sense?\n\nSee 1.7.19 of the ipmi spec for a packet format that could be used.\n\n\u003e Btw, in my proposal, bmcweb does \"minimal\" assembling of ipmi commands. It\u0027s basically a bridge between websocket\u0027s binary data and D-Bus data.\n\u003e \n\u003e In all, I think HTTP-connect for udp tunnle is an interesting idea, but does not resolve the lanplus/RMCP issue that this proposal is trying to resolve: get rid of lanplus and RMCP.\n\nI\u0027m reading this as \"Get rid of something that has a specification, and replace it with something that doesn\u0027t have a specification\"",
+      "parentUuid": "3035f074_4dc9ee73",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a8decd5_3e144b89",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
