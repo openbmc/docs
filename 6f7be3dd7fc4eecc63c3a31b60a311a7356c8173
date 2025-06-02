@@ -344,6 +344,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7ff07f8_92cc9fc4",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-02T01:11:40Z",
+      "side": 1,
+      "message": "\u003e or the kernel buffer will overflow.\n\nWhat do you mean by this? If the socket buffer is full the socket is not write-ready and so pldmd won\u0027t write to it. Overflows are prevented this way. Once a read has been performed the socket buffer is (partially) drained and so becomes write-ready, allowing pldmd to write more data. pldmd continues to read the file from the device until the data transfer is complete or the client application closes its socket.\n\nWhat we\u0027re proposing is that pldmd act like a proxy. That\u0027s not an unusual thing to do.",
+      "parentUuid": "89f1d170_a8000b0e",
+      "range": {
+        "startLine": 744,
+        "startChar": 0,
+        "endLine": 747,
+        "endChar": 1
+      },
+      "revId": "6f7be3dd7fc4eecc63c3a31b60a311a7356c8173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f56271d_23134321",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 12
@@ -403,6 +427,30 @@
       "side": 1,
       "message": "Moreover, I think I was wrong at first by expecting that `pldmd` will write the whole file content to the `memfd`. Instead, the client app\u0027s supposed to specify its read buffer size in the Read() method.\n\nWith socketpair, we have to depend on the client app to read the data from the socket. Otherwise, the kernel buffer will overflow, then `pldmd` will need to cover how long it should poll the socket until it can be written to again.",
       "parentUuid": "13e6180c_f3fa98fa",
+      "range": {
+        "startLine": 769,
+        "startChar": 0,
+        "endLine": 771,
+        "endChar": 72
+      },
+      "revId": "6f7be3dd7fc4eecc63c3a31b60a311a7356c8173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23d09777_4111e862",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-02T01:11:40Z",
+      "side": 1,
+      "message": "I don\u0027t see a problem there? As mentioned above, we\u0027re proposing pldmd act like a proxy.\n\nIf you want to see this strategy in action, have a look at obmc-console. That has some other complications, but the principle is the same (acting as an intermediary between a data producer and a data consumer).",
+      "parentUuid": "0a7d47bb_afdded63",
       "range": {
         "startLine": 769,
         "startChar": 0,
