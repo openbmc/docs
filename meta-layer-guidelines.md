@@ -153,3 +153,25 @@ significantly.
 Point SRCREV to a specific commit of the repository, and increase the revision
 either via the autobump script in CI, which can be requested on the mailing
 list, or manually as new revisions exist.
+
+## Meta-layers should not contain compiled code
+
+**Why?**
+
+The project is set up with separate code repositories from the Yocto meta-layer
+repository and there is distinct continuous-integration style testing on each
+repository type. Having code in the meta-layer omits leveraging this CI
+infrastructure and precludes many types of testing and linting we have in place.
+
+Meta-layers are often set up where company-specific developers have merge
+authority. Placing code into these meta-layers allows practices that do not
+conform to broader expectations, without oversight, and lead to company-specific
+implementations and approaches that do not encourage collaboration.
+
+Furthermore, Yocto has historically not had the same level of support for code
+in a meta-layer compared to code in a separate git repository or archive. This
+has been known to cause compile issues in downstream OpenBMC forks.
+
+**What should I do instead?**
+
+Find an existing code repository aligned with your purpose or propose a new one.
