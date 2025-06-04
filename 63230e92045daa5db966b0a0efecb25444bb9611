@@ -144,6 +144,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7938f53d_990d81f1",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2025-06-04T08:56:58Z",
+      "side": 1,
+      "message": "\u003eHow much code will be shared between SPDM and local-TPM paths?\n\nI also think it will be very minimal between \n\nSPDM as a Requester\n\nSPDM as a Responder\n\nNote: The Requester and Responder handle completely different sets of messages.\nFor example:\n\nThe Requester sends commands like GET_VERSION and GET_MEASUREMENTS.\n\nThe Responder handles corresponding responses like VERSION and MEASUREMENTS.\n\nAdditionally, the TPM will be involved when SPDM operates in Responder mode, as it will be used to fetch and provide stored measurements.\n\nI agree that we should implement the SPDM Responder as a separate daemon. This separation makes sense because the Responder needs to interact with the TPM for measurements, and by using a plugin-based architecture, we maintain flexibility. We can easily support different methods of storing and retrieving measurement data in the future not just limiting ourselves to TPM.",
+      "parentUuid": "dd2f718e_e3294825",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43824d09_df9e91b4",
         "filename": "designs/redfish-spdm-attestation.md",
         "patchSetId": 6
