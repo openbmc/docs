@@ -126,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd2f718e_e3294825",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-04T02:43:10Z",
+      "side": 1,
+      "message": "I agree with Chinmay here.\n\n- How much code will be shared between SPDM and local-TPM paths?  It seems like low to me, so it probably should be in a separate daemon?  That separate daemon likely should be enabled with a different PACKAGECONFIG because there are going to be systems that will want TPM support but not have any SPDM devices.\n\n- It seems like the Redfish schemas here have a distinct reflection of SPDM vs TPM signatures.  See ComponentIntegrity schema for example.  Do we have the appropriate content in the dbus objects to allow bmcweb to appropriately populate the SPDM vs TPM fields in the response?  We should not confuse Redfish clients to thinking they\u0027re all SPDM since the standard treats them differently.",
+      "parentUuid": "fdd0e8bc_55ddbf26",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43824d09_df9e91b4",
         "filename": "designs/redfish-spdm-attestation.md",
         "patchSetId": 6
