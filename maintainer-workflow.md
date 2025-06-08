@@ -8,14 +8,14 @@ for sub-project maintainers to follow before approving patches.
   on an existing CCLA (corporate).
   - Executed CLAs can be found [in the CLA repository][1].
   - If you were not added to the appropriate CLA repository ACL send an email to
-    openbmc@lists.ozlabs.org with a request to be added.
+    `openbmc@lists.ozlabs.org` with a request to be added.
   - If a CLA for the contributor is found, accept the patch(1).
 - If a CLA is not found, request that the contributor execute one and send it to
-  manager@lfprojects.org.
+  `manager@lfprojects.org`.
   - Do not accept the patch(1) until a signed CLA (individual _or_ corporate)
     has been uploaded to the CLA repository.
-  - The CCLA form can be found [here][2].
-  - The ICLA form can be found [here][3].
+  - The CCLA form can be found at [CCLA template][2].
+  - The ICLA form can be found at [ICLA template][3].
 
 An executed OpenBMC CLA is _not_ required to accept contributions to OpenBMC
 forks of upstream projects, like the Linux kernel or U-Boot.

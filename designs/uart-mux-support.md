@@ -216,7 +216,7 @@ effectively creating multiple ways of doing something.
 
 Example:
 
-```
+```bash
 busctl set-property xyz.openbmc_project.Console.host1 \
 /xyz/openbmc_project/console/host2 \
 xyz.openbmc_project.Console.Access Connect ""
@@ -227,7 +227,7 @@ information needs to be exposed to other subprojects.
 
 Unified Tree:
 
-```
+```text
 busctl tree --user xyz.openbmc_project.Console.host1
 └─/xyz
   └─/xyz/openbmc_project
@@ -238,7 +238,7 @@ busctl tree --user xyz.openbmc_project.Console.host1
 
 Split Tree:
 
-```
+```text
 busctl tree --user xyz.openbmc_project.Console.host1
 └─/xyz
   └─/xyz/openbmc_project
@@ -392,7 +392,7 @@ i2c-mux-gpio devicetree binding][linux-i2c-mux-gpio].
 Below is a block diagram of the relationships between the software and hardware
 components:
 
-```
+```text
                                           +--------------------+
                                           | server.conf        |
                                           +--------------------+
@@ -434,7 +434,7 @@ produce the exact same messages, even if unlikely.
 
 The initial format of these messages will be something like:
 
-```
+```text
 [obmc-console] %Y-%m-%d %H:%M:%S UTC CONNECTED
 [obmc-console] %Y-%m-%d %H:%M:%S UTC DISCONNECTED
 ```

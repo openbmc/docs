@@ -16,12 +16,13 @@ OpenBMC's existing firmware update implementation over to Redfish.
 
 ## Background and References
 
-The existing firmware update details for OpenBMC can be found [here][2]. It uses
-a custom REST api for uploading and then activating the input image.
+The existing firmware update details for OpenBMC can be found in the
+[architecture][2]. It uses a custom REST api for uploading and then activating
+the input image.
 
-The Redfish schema for firmware update can be found [here][3]. Note the
-referenced doc points to the most recent version of the schema and that is what
-you'll want to load into your browser (at the time of this writing it is
+The Redfish schema for firmware update can be found in the [DMTF schemas][3].
+Note the referenced doc points to the most recent version of the schema and that
+is what you'll want to load into your browser (at the time of this writing it is
 [v1_4_0][4]).
 
 Some differences between the Redfish API and OpenBMC's existing API:
@@ -106,7 +107,7 @@ nothing in the base design would inhibit the ability to implement these later.
 
 The pseudo flow for an update is:
 
-```
+```bash
 Discover UpdateService location
 HttpPushUri = GET https://${bmc}/redfish/v1/UpdateService
 POST ApplyTime property in
@@ -139,7 +140,7 @@ associated with the software inventory items will be used as a mechanism to
 provide status of inventory items back to the user. Here is the mapping of
 [phosphor activation states][13] to [Redfish Status States][14].
 
-```
+```text
 NotReady   -> Disabled
 Invalid    -> Disabled
 Ready      -> Disabled
@@ -179,7 +180,7 @@ file name so there will be some parsing required.
 
 The pseudo flow for an update is:
 
-```
+```bash
 # Discover SimpleUpdate URI Action location
 GET https://${bmc}/redfish/v1/UpdateService
 

@@ -1,6 +1,6 @@
 # Error handling for power Hardware Abstraction Layer (pHAL)
 
-Author: Devender Rao <devenrao@in.ibm.com> <devenrao>
+Author: Devender Rao <devenrao@in.ibm.com> `devenrao`
 
 Other contributors: None
 

@@ -7,7 +7,7 @@ the scope of this document.
 
 ## D-Bus
 
-```
+```text
 Service     xyx.openbmc_project.LED.GroupManager
 Path        /xyz/openbmc_project/led/groups/<label>
 Interfaces  xyz.openbmc_project.Led.Group
@@ -18,16 +18,16 @@ Attribute: Asserted (boolean)
 
 ## REST
 
-```
+```text
 PUT /xyz/openbmc_project/led/groups/<group>/attr/Asserted
 ```
 
 The LED group state can be changed by setting the Asserted value to boolean 0
 or 1. In the following example, the lamp_test group is being asserted...
 
-```
- curl -b cjar -k -X PUT -H "Content-Type: application/json" -d '{"data":  1}' \
-  https://${bmc}/xyz/openbmc_project/led/groups/lamp_test/attr/Asserted
+```bash
+curl -b cjar -k -X PUT -H "Content-Type: application/json" -d '{"data":  1}' \
+    https://${bmc}/xyz/openbmc_project/led/groups/lamp_test/attr/Asserted
 ```
 
 ## REDFISH
@@ -41,14 +41,14 @@ resource. This is for LED Identify operation only.
 All applicable Inventory D-Bus objects would have a forward association mapping
 to LED Group D-Bus object, namely:
 
-```
+```text
  - identify_led_group
 ```
 
 All applicable LED Group D-Bus objects would have an association mapping to
 inventory D-Bus object, namely:
 
-```
+```text
  - identify_inventory_object
 ```
 
@@ -72,14 +72,14 @@ For representing the fault status of a resource, Redfish `Health` property is
 used. All applicable Inventory D-Bus objects would have a forward association
 mapping to LED Group D-Bus object, namely;
 
-```
+```text
  - fault_led_group
 ```
 
 All applicable LED Group D-Bus objects would have an association mapping to
 inventory D-Bus object, namely:
 
-```
+```text
  - fault_inventory_object
 ```
 
@@ -111,7 +111,7 @@ tree][kernel arm dts]. See the [Palmetto DTS][palmetto dts led] as an example.
 
 _Add a fault LED to the device tree with a corresponding gpio pin..._
 
-```
+```dts
   leds {
     compatible = "gpio-leds";
 
@@ -123,7 +123,7 @@ _Add a fault LED to the device tree with a corresponding gpio pin..._
 
 _The kernel will then create..._
 
-```
+```text
  ls -l /sys/class/leds/fault/
 total 0
 -rw-r--r--    1 root     root          4096 Jun 21 20:04 brightness
@@ -142,7 +142,7 @@ An LED Group can contain zero or more LEDs and is defined in the machines
 machines layout. Customized yaml files are placed into the machines specific
 Yocto location. As an example:
 
-```
+```text
 meta-ibm/meta-palmetto/recipes-phosphor/leds/palmetto-led-manager-config/led.yaml
 ```
 
@@ -156,22 +156,21 @@ In the example, below two URIs would be created:
 `fault` but do so differently. The lamp_test would also drive a blink signal to
 the physical `power` LED if one was created.
 
-```
+```yaml
 EnclosureFault:
-    fault:
-        Action: 'On'
-        DutyOn: 50
-        Period: 0
+  fault:
+    Action: "On"
+    DutyOn: 50
+    Period: 0
 lamp_test:
-    fault:
-        Action: 'Blink'
-        DutyOn: 20
-        Period: 100
-    power:
-        Action: 'Blink'
-        DutyOn: 20
-        Period: 100
-
+  fault:
+    Action: "Blink"
+    DutyOn: 20
+    Period: 100
+  power:
+    Action: "Blink"
+    DutyOn: 20
+    Period: 100
 ```
 
 ### Required Groups
@@ -181,38 +180,37 @@ documented in the [D-Bus interface][led d-bus readme].
 
 ## Yocto packaging
 
-1.  Create a tailored LED manager file
+1. Create a tailored LED manager file
 
-    E.g.
-    `meta-ibm/meta-romulus/recipes-phosphor/leds/romulus-led-manager-config-native.bb`
+   E.g.
+   `meta-ibm/meta-romulus/recipes-phosphor/leds/romulus-led-manager-config-native.bb`
 
-    ```
-    SUMMARY = "Phosphor LED Group Management for Romulus"
-    PR = "r1"
+   ```bitbake
+       SUMMARY = "Phosphor LED Group Management for Romulus"
+       PR = "r1"
 
-    inherit native
-    inherit obmc-phosphor-utils
-    inherit obmc-phosphor-license
+       inherit native
+       inherit obmc-phosphor-utils
+       inherit obmc-phosphor-license
 
-    PROVIDES += "virtual/phosphor-led-manager-config-native"
+       PROVIDES += "virtual/phosphor-led-manager-config-native"
 
-    SRC_URI += "file://led.yaml"
-    S = "${WORKDIR}"
+       SRC_URI += "file://led.yaml"
+       S = "${WORKDIR}"
 
-    # Overwrites the default led.yaml
-    do_install() {
-        SRC=${S}
-        DEST=${D}${datadir}/phosphor-led-manager
-        install -D ${SRC}/led.yaml ${DEST}/led.yaml
-    }
-    ```
+       # Overwrites the default led.yaml
+       do_install() {
+           SRC=${S}
+           DEST=${D}${datadir}/phosphor-led-manager
+           install -D ${SRC}/led.yaml ${DEST}/led.yaml
+       }
+   ```
 
-2.  Change your machine's preferred provider for the led-manager in the conf
-    file
+2. Change your machine's preferred provider for the led-manager in the conf file
 
-    E.g. `meta-ibm/meta-romulus/conf/machine/romulus.conf`
+   E.g. `meta-ibm/meta-romulus/conf/machine/romulus.conf`
 
-    `PREFERRED_PROVIDER_virtual/phosphor-led-manager-config-native = "romulus-led-manager-config-native"`
+   `PREFERRED_PROVIDER_virtual/phosphor-led-manager-config-native = "romulus-led-manager-config-native"`
 
 [led d-bus readme]:
   https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Led/README.md

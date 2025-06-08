@@ -46,7 +46,7 @@ hardware callouts.
   - The halt must only stop the chassis/host instance that encountered the error
   - The halt must allow the host firmware the opportunity to gracefully shut
     itself down
-  - The halt must stop the host (run obmc-host-stop@X.target) associated with
+  - The halt must stop the host (run `obmc-host-stop@X.target`) associated with
     the error and attempt to leave system in the fail state (i.e. chassis power
     remains on if it is on)
   - The chassis/host instance pair will not be allowed to power on until the log

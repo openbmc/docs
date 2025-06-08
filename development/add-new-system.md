@@ -67,7 +67,7 @@ From your openbmc repository you cloned above, the Romulus layer is defined
 within `meta-ibm/meta-romulus/`. The Romulus layer is defined within the `conf`
 subdirectory. Under `conf` you will see a layout like this:
 
-```
+```bash
 meta-ibm/meta-romulus/conf/
 ├── bblayers.conf.sample
 ├── conf-notes.txt
@@ -80,7 +80,7 @@ meta-ibm/meta-romulus/conf/
 To create our new romulus-prime system we are going to start out by copying our
 romulus layer.
 
-```
+```bash
 cp -R meta-ibm/meta-romulus meta-ibm/meta-romulus-prime
 ```
 
@@ -154,7 +154,7 @@ lesson has completed.
    the conf file for your build. You can manually copy in the new files or just
    remove it and let BitBake do it for you:
 
-   ```
+   ```bash
    cd ..
    rm -r ./build/conf
    . setup romulus-prime
@@ -179,7 +179,7 @@ lesson has completed.
 
    Create a config files as follows:
 
-   ```
+   ```bash
    cp meta-ibm/meta-romulus-prime/recipes-phosphor/workbook/romulus-config.bb meta-ibm/meta-romulus-prime/recipes-phosphor/workbook/romulus-prime-config.bb
 
    vi meta-ibm/meta-romulus-prime/recipes-phosphor/workbook/romulus-prime-config.bb
@@ -192,15 +192,15 @@ lesson has completed.
 
    #Use Romulus config
    do_make_setup() {
-           cp ${S}/Romulus.py \
-                   ${S}/obmc_system_config.py
-           cat <<EOF > ${S}/setup.py
+          cp ${S}/Romulus.py \
+                  ${S}/obmc_system_config.py
+          cat <<EOF > ${S}/setup.py
    from distutils.core import setup
 
    setup(name='${BPN}',
-       version='${PR}',
-       py_modules=['obmc_system_config'],
-       )
+      version='${PR}',
+      py_modules=['obmc_system_config'],
+      )
    EOF
    }
 
@@ -215,7 +215,7 @@ lesson has completed.
    romulus-prime to use the romulus.cfg file. We just need to add the `-prime`
    to the prepend path.
 
-   ```
+   ```bash
    vi ./meta-ibm/meta-romulus-prime/recipes-kernel/linux/linux-aspeed_%.bbappend
 
    FILESEXTRAPATHS_prepend_romulus-prime := "${THISDIR}/${PN}:"
@@ -234,7 +234,7 @@ lesson has completed.
    is an example of this process. Upstreaming to the kernel is a lesson in
    itself. For this lesson, we will simply use the Romulus kernel config files.
 
-   ```
+   ```bash
    vi ./meta-ibm/meta-romulus-prime/conf/machine/romulus-prime.conf
    # Replace the ${MACHINE} variable in the KERNEL_DEVICETREE
 
@@ -252,7 +252,7 @@ to be done but let's first verify what you have boots.
 Your new image will be in the following location from where you ran your
 "bitbake" command:
 
-```
+```bash
 ./tmp/deploy/images/romulus-prime/obmc-phosphor-image-romulus-prime.static.mtd
 ```
 
@@ -262,7 +262,7 @@ your new file as input.
 
 Once booted, you should see the following for the login:
 
-```
+```text
 romulus-prime login:
 ```
 
@@ -278,9 +278,9 @@ There are a lot of other areas to customize when creating a new system.
 
 This section describes how you can make changes to the kernel to port OpenBMC to
 a new machine. The device tree is in
-https://github.com/openbmc/linux/tree/dev-4.13/arch/arm/boot/dts. For examples,
-see [aspeed-bmc-opp-romulus.dts][1] or a similar machine. Complete the following
-steps to make kernel changes:
+<https://github.com/openbmc/linux/tree/dev-4.13/arch/arm/boot/dts>. For
+examples, see [aspeed-bmc-opp-romulus.dts][1] or a similar machine. Complete the
+following steps to make kernel changes:
 
 1. Add the new machine device tree:
    - Describe the GPIOs, e.g. LED, FSI, gpio-keys, etc. You should get such info
@@ -387,21 +387,25 @@ sensors of OCC, where on board sensors are via i2c and occ sensors are via FSI.
 
 - [w83773g@4c.conf][8] defines the `w83773` temperature sensor containing 3
   temperatures:
-  ```
+
+```bash
   LABEL_temp1 = "outlet"
   ...
   LABEL_temp2 = "inlet_cpu"
   ...
   LABEL_temp3 = "inlet_io"
-  ```
-  This device is defined in its device tree as [w83773g@4c][9]. When BMC starts,
-  the udev rule will start `phosphor-hwmon` and it will create temperature
-  sensors on below DBus objects based on its sysfs attributes.
-  ```
+```
+
+This device is defined in its device tree as [w83773g@4c][9]. When BMC starts,
+the udev rule will start `phosphor-hwmon` and it will create temperature sensors
+on below DBus objects based on its sysfs attributes.
+
+```bash
   /xyz/openbmc_project/sensors/temperature/outlet
   /xyz/openbmc_project/sensors/temperature/inlet_cpu
   /xyz/openbmc_project/sensors/temperature/inlet_io
-  ```
+```
+
 - [pwm-tacho-controller@1e786000.conf][10] defines the fans and the config is
   similar as above, the difference is that it creates `fan_tach` sensors.
 - [occ-hwmon.1.conf][11] defines the occ hwmon sensor for master CPU. This
@@ -409,7 +413,8 @@ sensors of OCC, where on board sensors are via i2c and occ sensors are via FSI.
   label instead of directly getting the index of the sensor, because CPU cores
   and DIMMs could be dynamic, e.g. CPU cores could be disabled, DIMMs could be
   pulled out.
-  ```
+
+```bash
   MODE_temp1 = "label"
   MODE_temp2 = "label"
   ...
@@ -422,21 +427,22 @@ sensors of OCC, where on board sensors are via i2c and occ sensors are via FSI.
   LABEL_temp34 = "dimm7_temp"
   LABEL_power2 = "p0_power"
   ...
-  ```
-  - The `MODE_temp* = "label"` tells that if it sees `tempX`, it shall read the
-    label which is the sensor id.
-  - And `LABEL_temp* = "xxx"` tells the sensor name for the corresponding sensor
-    id.
-  - For example, if `temp1_input` is 37000 and `temp1_label` is 91 in sysfs,
-    `phosphor-hwmon` knows `temp1_input` is for sensor id 91, which is
-    `p0_core0_temp`, so it creates
-    `/xyz/openbmc_project/sensors/temperature/p0_core0_temp` with sensor
-    value 37000.
-  - For Romulus, the power sensors do not need to read label since all powers
-    are available on a system.
-  - For Witherspoon, the power sensors are similar to temperature sensors, that
-    it shall tell hwmon to read the `function_id` instead of directly getting
-    the index of the sensor.
+```
+
+- The `MODE_temp* = "label"` tells that if it sees `tempX`, it shall read the
+  label which is the sensor id.
+- And `LABEL_temp* = "xxx"` tells the sensor name for the corresponding sensor
+  id.
+- For example, if `temp1_input` is 37000 and `temp1_label` is 91 in sysfs,
+  `phosphor-hwmon` knows `temp1_input` is for sensor id 91, which is
+  `p0_core0_temp`, so it creates
+  `/xyz/openbmc_project/sensors/temperature/p0_core0_temp` with sensor
+  value 37000.
+- For Romulus, the power sensors do not need to read label since all powers are
+  available on a system.
+- For Witherspoon, the power sensors are similar to temperature sensors, that it
+  shall tell hwmon to read the `function_id` instead of directly getting the
+  index of the sensor.
 
 ### LEDs
 
@@ -445,54 +451,59 @@ Several parts are involved for LED.
 1. In kernel dts, LEDs shall be described, e.g. [romulus dts][12] describes 3
    LEDs, `fault`, `identify` and `power`.
 
-   ```
-     leds {
-       compatible = "gpio-leds";
+   ```dts
+    leds {
+      compatible = "gpio-leds";
 
-       fault {
-         gpios = <&gpio ASPEED_GPIO(N, 2) GPIO_ACTIVE_LOW>;
-       };
+      fault {
+        gpios = <&gpio ASPEED_GPIO(N, 2) GPIO_ACTIVE_LOW>;
+      };
 
-       identify {
-         gpios = <&gpio ASPEED_GPIO(N, 4) GPIO_ACTIVE_HIGH>;
-       };
+      identify {
+        gpios = <&gpio ASPEED_GPIO(N, 4) GPIO_ACTIVE_HIGH>;
+      };
 
-       power {
-         gpios = <&gpio ASPEED_GPIO(R, 5) GPIO_ACTIVE_LOW>;
-       };
-     };
+      power {
+        gpios = <&gpio ASPEED_GPIO(R, 5) GPIO_ACTIVE_LOW>;
+      };
+    };
    ```
 
 2. In machine layer, LEDs shall be configured via yaml to describe how it
    functions, e.g. [Romulus led yaml][28]:
-   ```
+
+   ```yaml
    bmc_booted:
-       power:
-           Action: 'Blink'
-           DutyOn: 50
-           Period: 1000
-           Priority: 'On'
+     power:
+       Action: "Blink"
+       DutyOn: 50
+       Period: 1000
+       Priority: "On"
    power_on:
-       power:
-           Action: 'On'
-           DutyOn: 50
-           Period: 0
-           Priority: 'On'
-   ...
+     power:
+       Action: "On"
+       DutyOn: 50
+       Period: 0
+       Priority: "On"
    ```
+
    It tells the LED manager to set the `power` LED to blink when BMC is ready
-   and booted, and set it on when host is powered on.
-3. At runtime, LED manager automatically set LEDs on/off/blink based on the
-   above yaml config.
-4. LED can be accessed manually via /xyz/openbmc_project/led/, e.g.
-   - Get identify LED state:
-     ```
-     curl -b cjar -k https://$bmc/xyz/openbmc_project/led/physical/identify
-     ```
-   - Set identify LED to blink:
-     ```
-     curl -b cjar -k -X PUT -H "Content-Type: application/json" -d '{"data": "xyz.openbmc_project.Led.Physical.Action.Blink" }' https://$bmc/xyz/openbmc_project/led/physical/identify/attr/State
-     ```
+   and booted, and set it on when host is powered on. 3. At runtime, LED manager
+   automatically set LEDs on/off/blink based on the above yaml config. 4. LED
+   can be accessed manually via /xyz/openbmc_project/led/, e.g.
+
+3. Get identify LED state:
+
+   ```bash
+    curl -b cjar -k https://$bmc/xyz/openbmc_project/led/physical/identify
+   ```
+
+4. Set identify LED to blink:
+
+   ```bash
+    curl -b cjar -k -X PUT -H "Content-Type: application/json" -d '{"data": "xyz.openbmc_project.Led.Physical.Action.Blink" }' https://$bmc/xyz/openbmc_project/led/physical/identify/attr/State
+   ```
+
 5. When an error related to a FRU occurs, an event log is created in logging
    with a CALLOUT path. [phosphor-fru-fault-monitor][29] monitors the logs:
    - Assert the related fault LED group when a log with the CALLOUT path is
@@ -522,7 +533,7 @@ systems, you can refer to this example and make one for your system.
 For ipmi-sensor-inventory, the sensors from IPMI are different between systems,
 so you need to define your own sensors, e.g.
 
-```
+```yaml
 0x08:
   sensorType: 0x07
   path: /org/open_power/control/occ0
@@ -566,7 +577,7 @@ presence detection.
 
 Romulus has no GPIO detection for fans, so it checks fan tach sensor:
 
-```
+```yaml
 - name: fan0
   path: /system/chassis/motherboard/fan0
   methods:
@@ -587,17 +598,17 @@ Romulus fans use pwm to control the fan speed, where pwm ranges from 0 to 255,
 and the fan speed ranges from 0 to about 7000. So it needs a factor and offset
 to mapping the pwm to fan speed:
 
-```
-  - inventory: /system/chassis/motherboard/fan0
-    allowed_out_of_range_time: 30
-    deviation: 15
-    num_sensors_nonfunc_for_fan_nonfunc: 1
-    sensors:
-      - name: fan0
-        has_target: true
-        target_interface: xyz.openbmc_project.Control.FanPwm
-        factor: 21
-        offset: 1600
+```yaml
+- inventory: /system/chassis/motherboard/fan0
+  allowed_out_of_range_time: 30
+  deviation: 15
+  num_sensors_nonfunc_for_fan_nonfunc: 1
+  sensors:
+    - name: fan0
+      has_target: true
+      target_interface: xyz.openbmc_project.Control.FanPwm
+      factor: 21
+      offset: 1600
 ```
 
 The yaml config tells that:
@@ -614,7 +625,8 @@ The fan control service requires 4 yaml configuration files:
 - `zone-condition` defines the cooling zone conditions. Romulus is always
   air-cooled, so this config is as simple as defining an `air_cooled_chassis`
   condition based on the cooling type property.
-  ```
+
+```yaml
   - name: air_cooled_chassis
    type: getProperty
    properties:
@@ -623,65 +635,74 @@ The fan control service requires 4 yaml configuration files:
        path: /xyz/openbmc_project/inventory/system/chassis
        type: bool
        value: false
-  ```
+```
+
 - `zone-config` defines the cooling zones. Romulus has only one zone:
-  ```
-  zones:
-   - zone: 0
-     full_speed: 255
-     default_floor: 195
-     increase_delay: 5
-     decrease_interval: 30
-  ```
-  It defines that the zone full speed and default floor speed for the fans, so
-  the fan pwm will be set to 255 if it is in full speed, and set to 195 if fans
-  are in default floor speed.
+
+```yaml
+zones:
+  - zone: 0
+    full_speed: 255
+    default_floor: 195
+    increase_delay: 5
+    decrease_interval: 30
+```
+
+It defines that the zone full speed and default floor speed for the fans, so the
+fan pwm will be set to 255 if it is in full speed, and set to 195 if fans are in
+default floor speed.
+
 - `fan-config` defines which fans are controlled in which zone and which target
   interface shall be used, e.g. below yaml config defines fan0 shall be
   controlled in zone0 and it shall use `FanPwm` interface.
-  ```
+
+```yaml
   - inventory: /system/chassis/motherboard/fan0
    cooling_zone: 0
    sensors:
      - fan0
    target_interface: xyz.openbmc_project.Control.FanPwm
    ...
-  ```
+```
+
 - `events-config` defines the various events and its handlers, e.g. which fan
   targets shall be set in which temperature. This config is a bit complicated,
   the [example event yaml][17] provides documents and examples. Romulus example:
-  ```
-   - name: set_air_cooled_speed_boundaries_based_on_ambient
-     groups:
-         - name: zone0_ambient
-           interface: xyz.openbmc_project.Sensor.Value
-           property:
-               name: Value
-               type: int64_t
-     matches:
-         - name: propertiesChanged
-     actions:
-         - name: set_floor_from_average_sensor_value
-           map:
-               value:
-                   - 27000: 85
-                   - 32000: 112
-                   - 37000: 126
-                   - 40000: 141
-               type: std::map<int64_t, uint64_t>
-         - name: set_ceiling_from_average_sensor_value
-           map:
-               value:
-                   - 25000: 175
-                   - 27000: 255
-               type: std::map<int64_t, uint64_t>
-  ```
-  The above yaml config defines the fan floor and ceiling speed in
-  `zone0_ambient`'s different temperatures. E.g.
-  1.  When the temperature is lower than 27 degreesC, the floor speed (pwm)
-      shall be set to 85.
-  2.  When the temperature is between 27 and 32 degrees C, the floor speed (pwm)
-      shall be set to 112, etc.
+
+```yaml
+- name: set_air_cooled_speed_boundaries_based_on_ambient
+  groups:
+    - name: zone0_ambient
+      interface: xyz.openbmc_project.Sensor.Value
+      property:
+        name: Value
+        type: int64_t
+  matches:
+    - name: propertiesChanged
+  actions:
+    - name: set_floor_from_average_sensor_value
+      map:
+        value:
+          - 27000: 85
+          - 32000: 112
+          - 37000: 126
+          - 40000: 141
+        type: std::map<int64_t, uint64_t>
+    - name: set_ceiling_from_average_sensor_value
+      map:
+        value:
+          - 25000: 175
+          - 27000: 255
+        type: std::map<int64_t, uint64_t>
+```
+
+The above yaml config defines the fan floor and ceiling speed in
+`zone0_ambient`'s different temperatures. E.g.
+
+1. When the temperature is lower than 27 degreesC, the floor speed (pwm) shall
+   be set to 85.
+2. When the temperature is between 27 and 32 degrees C, the floor speed (pwm)
+   shall be set to 112, etc.
 
 With above configs, phosphor-fan will run the fan presence/monitor/control logic
 as configured specifically for the machine.
@@ -710,9 +731,10 @@ device, and `phosphor-gpio-monitor` for monitoring a GPIO.
 
 All the GPIOs to be monitored shall be described in the device tree. E.g.
 
-```
+```dts
   gpio-keys {
     compatible = "gpio-keys";
+
     checkstop {
       label = "checkstop";
       gpios = <&gpio ASPEED_GPIO(J, 2) GPIO_ACTIVE_LOW>;
@@ -729,7 +751,7 @@ All the GPIOs to be monitored shall be described in the device tree. E.g.
 The following code describes two GPIO keys, one for `checkstop` and the other
 for `id-button`, where the key code is calculated from [aspeed-gpio.h][24]:
 
-```
+```bash
 #define ASPEED_GPIO_PORT_A 0
 #define ASPEED_GPIO_PORT_B 1
 ...
@@ -747,24 +769,29 @@ for `id-button`, where the key code is calculated from [aspeed-gpio.h][24]:
 Witherspoon and Zaius have examples for gpio presence.
 
 - [Witherspoon][19]:
-  ```
-  INVENTORY=/system/chassis/motherboard/powersupply0
-  DEVPATH=/dev/input/by-path/platform-gpio-keys-event
-  KEY=104
-  NAME=powersupply0
-  DRIVERS=/sys/bus/i2c/drivers/ibm-cffps,3-0069
-  ```
-  It checks GPIO key 104 for `powersupply0`'s presence, creates the inventory
-  object and bind or unbind the driver.
+
+```bash
+INVENTORY=/system/chassis/motherboard/powersupply0
+DEVPATH=/dev/input/by-path/platform-gpio-keys-event
+KEY=104
+NAME=powersupply0
+DRIVERS=/sys/bus/i2c/drivers/ibm-cffps,3-0069
+```
+
+It checks GPIO key 104 for `powersupply0`'s presence, creates the inventory
+object and bind or unbind the driver.
+
 - [Zaius][20]:
-  ```
-  INVENTORY=/system/chassis/pcie_card_e2b
-  DEVPATH=/dev/input/by-path/platform-gpio-keys-event
-  KEY=39
-  NAME=pcie_card_e2b
-  ```
-  It checks GPIO key 39 for `pcie_card_e2b`'s presence, and creates the
-  inventory object.
+
+```bash
+INVENTORY=/system/chassis/pcie_card_e2b
+DEVPATH=/dev/input/by-path/platform-gpio-keys-event
+KEY=39
+NAME=pcie_card_e2b
+```
+
+It checks GPIO key 39 for `pcie_card_e2b`'s presence, and creates the inventory
+object.
 
 #### GPIO monitor
 
@@ -772,32 +799,36 @@ Typical usage of GPIO monitor is to monitor the checkstop event from the host,
 or button presses.
 
 - [checkstop monitor][21] is a common service for OpenPOWER machines.
-  ```
-  DEVPATH=/dev/input/by-path/platform-gpio-keys-event
-  KEY=74
-  POLARITY=1
-  TARGET=obmc-host-crash@0.target
-  ```
-  By default it monitors GPIO key 74, and if it is triggered, it tells systemd
-  to start `obmc-host-crash@0.target`. For systems using a different GPIO pin
-  for checkstop, it simply overrides the default one by specifying its own
-  config file in meta-machine layer. E.g. [Zaius's checkstop config][22].
-  **Note**: when the key is pressed, `phosphor-gpio-monitor` starts the target
-  unit and exits.
+
+```bash
+DEVPATH=/dev/input/by-path/platform-gpio-keys-event
+KEY=74
+POLARITY=1
+TARGET=obmc-host-crash@0.target
+```
+
+By default it monitors GPIO key 74, and if it is triggered, it tells systemd to
+start `obmc-host-crash@0.target`. For systems using a different GPIO pin for
+checkstop, it simply overrides the default one by specifying its own config file
+in meta-machine layer. E.g. [Zaius's checkstop config][22]. **Note**: when the
+key is pressed, `phosphor-gpio-monitor` starts the target unit and exits.
+
 - [id-button monitor][23] is an example service on Romulus to monitor ID button
   press.
-  ```
-  DEVPATH=/dev/input/by-path/platform-gpio-keys-event
-  KEY=135
-  POLARITY=1
-  TARGET=id-button-pressed.service
-  EXTRA_ARGS=--continue
-  ```
-  It monitors GPIO key 135 for the button press and starts
-  `id-button-pressed.service`, that handles the event by setting the identify
-  LED group's `Assert` property. **Note**: It has an extra argument,
-  `--continue`, that tells `phosphor-gpio-monitor` to not exit and continue
-  running when the key is pressed.
+
+```bash
+DEVPATH=/dev/input/by-path/platform-gpio-keys-event
+KEY=135
+POLARITY=1
+TARGET=id-button-pressed.service
+EXTRA_ARGS=--continue
+```
+
+It monitors GPIO key 135 for the button press and starts
+`id-button-pressed.service`, that handles the event by setting the identify LED
+group's `Assert` property. **Note**: It has an extra argument, `--continue`,
+that tells `phosphor-gpio-monitor` to not exit and continue running when the key
+is pressed.
 
 [1]:
   https://github.com/openbmc/linux/blob/dev-4.13/arch/arm/boot/dts/aspeed-bmc-opp-romulus.dts
@@ -842,7 +873,6 @@ or button presses.
   https://github.com/openbmc/openbmc/tree/master/meta-ibm/meta-romulus/recipes-phosphor/gpio
 [24]:
   https://github.com/openbmc/linux/blob/dev-4.13/include/dt-bindings/gpio/aspeed-gpio.h
-[25]: https://github.com/openbmc/docs/blob/master/development/add-new-system.md
 [26]:
   https://github.com/openbmc/openbmc/commit/e0e69beab7c268e4ad98972016c78b0d7d5769ac
 [27]:
@@ -850,6 +880,5 @@ or button presses.
 [28]:
   https://github.com/openbmc/openbmc/blob/3cce45a96f0416b4c3d8f2b698cb830662a29227/meta-ibm/meta-romulus/recipes-phosphor/leds/romulus-led-manager-config/led.yaml
 [29]: https://github.com/openbmc/phosphor-led-manager/tree/master/fault-monitor
-[30]: https://github.com/openbmc/docs/blob/master/development/dev-environment.md
 [31]: https://github.com/openbmc/docs/blob/master/kernel-development.md
 [32]: https://github.com/openbmc/docs/blob/master/development/dev-environment.md

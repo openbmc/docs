@@ -35,7 +35,7 @@ runtime, the BMC will need to send the mode and the idle power saver settings to
 the OCC.
 
 PowerMode was added to version 2021.1 Redfish Schema Supplement:
-https://www.dmtf.org/sites/default/files/standards/documents/DSP0268_2021.1.pdf
+<https://www.dmtf.org/sites/default/files/standards/documents/DSP0268_2021.1.pdf>
 
 Current Customer Settable System Power Modes that will be sent to the OCCs:
 
@@ -73,7 +73,7 @@ in the OCC poll response data.
 When initiated, the new code will send a SET_MODE_AND_STATE command (0x20) to
 the OCC and a SET_CONFIG_DATA (0x21) command with the Idle Power Saver
 parameters. These commands are defined in the OCC Interface Spec:
-https://github.com/open-power/docs/blob/master/occ/OCC_P9_FW_Interfaces.pdf
+<https://github.com/open-power/docs/blob/master/occ/OCC_P9_FW_Interfaces.pdf>
 
 Default values will also be defined for Power Mode and Idle Power Saver
 parameters for the system. If the customer has not yet set any of these

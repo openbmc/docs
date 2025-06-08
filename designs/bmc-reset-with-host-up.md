@@ -116,8 +116,8 @@ The systemd targets responsible for this and any common services will be hosted
 within phosphor-state-manager. Any system or company specific services can be
 installed in the common targets:
 
-- obmc-chassis-powerreset@.target.require
-- obmc-host-reset@.target.requires
+- `obmc-chassis-powerreset@.target.require`
+- `obmc-host-reset@.target.requires`
 
 ### Automated Recovery when host does not respond
 

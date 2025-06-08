@@ -108,7 +108,7 @@ client.csr     SignCSR()       | pldm call to host  |
 Management console should use the below REST commands to exchange certificates
 with VMI
 
-#### Get Signed certificate:
+#### Get Signed certificate
 
 REST command to get signed client certificate from VMI
 
@@ -122,14 +122,13 @@ curl -k -H "X-Auth-Token:  <token>" -X POST "Content-Type: application/json" -d
 Response: This will return the certificate string which contains signed client
 certificate
 
+```json
+{
+  "Certificate": "<certificate string>"
+}
 ```
- {
-   “Certificate”: "<certificate string>"
- }
 
-```
-
-#### Get Root certificate:
+#### Get Root certificate
 
 REST command to get VMI root certificate
 
@@ -142,21 +141,20 @@ curl -k -H "X-Auth-Token:  <token>" -X GET http://{BMC_IP}/ibm/v1/Host/Certifica
 Response: This will return the certificate string which contains and root CA
 certificate.
 
-```
- {
-   “Certificate”: "<certificate string>"
- }
-
+```json
+{
+  "Certificate": "<certificate string>"
+}
 ```
 
 This interface returns HTTP error codes 5XX/4XX in failure cases
 
-## Alternatives considered:
+## Alternatives considered
 
 Have gone through existing BMC certificate management infrastructure if we can
 extend for this use case.
 
-### Current flow for generating and installing Certificates (CSR Based):
+### Current flow for generating and installing Certificates (CSR Based)
 
 - Certificate Signing Request CSR is a message sent from an applicant to a
   certificate authority in order to apply for a digital identity certificate.

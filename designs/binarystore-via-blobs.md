@@ -1,6 +1,6 @@
 # BMC Generic Binary Blob Store via OEM IPMI Blob Transport
 
-Author: Kun Yi (kunyi@google.com, kunyi!)
+Author: Kun Yi <kunyi@google.com> `kunyi!`
 
 Created: 2018-12-07
 
@@ -37,8 +37,8 @@ Despite its name, the binary blob store cannot be used for everything.
 
 ## Background and References
 
-Please read the IPMI Blob protocol design as primer
-[here](https://github.com/openbmc/phosphor-ipmi-blobs/blob/master/README.md).
+Please read the IPMI Blob protocol design as
+[primer](https://github.com/openbmc/phosphor-ipmi-blobs/blob/master/README.md).
 
 Under the hood, the binary blobs are stored as a binary
 [protocol buffer](https://github.com/protocolbuffers/protobuf), or "protobuf" in

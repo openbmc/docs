@@ -2,8 +2,10 @@
 
 Author: Piotr Matuszczak <piotr.matuszczak@intel.com>
 
-Other contributors: Pawel Rapkiewicz <pawel.rapkiewicz@intel.com> <pawelr>,
-Kamil Kowalski <kamil.kowalski@intel.com>
+Other contributors:
+
+- Pawel Rapkiewicz <pawel.rapkiewicz@intel.com> `pawelr`
+- Kamil Kowalski <kamil.kowalski@intel.com>
 
 Created: 2019-08-07
 
@@ -272,13 +274,13 @@ In case of on demand metric report update, Telemetry service performs no
 additional sensor readings because it already has the latest values, since they
 are updated on PropertiesChanged signal from the D-Bus sensors.
 
-**Telemetry service on [D-Bus][4]**
+### Telemetry service on [D-Bus][4]
 
 Telemetry service exposes specific interfaces on D-Bus. One of them will be used
 for reading report management. The second one will be used for triggers
 management.
 
-**Reading report management**
+### Reading report management
 
 The reading report management D-Bus object:
 
@@ -307,7 +309,7 @@ structures containing reading with its metadata and timestamp of last update of
 this metric. Each report has also the property that stores update interval (for
 periodically updated reports).
 
-**Trigger management**
+### Trigger management
 
 The trigger management D-Bus object:
 
@@ -415,7 +417,7 @@ was defined. It is in a form of structure consisting of three fields.
 | string      | Unique metric Id                                                                                                                                                                         |
 | object path | D-Bus path of existing reading report. This is required when trigger's action is to update metric report. This path shall point to existing reading report within the Telemetry service. |
 
-**Trigger operations**
+### Trigger operations\*\*
 
 Triggers support three types of operation: Log, Event and Update. For each,
 there is a different way of proceeding.
@@ -425,33 +427,33 @@ there is a different way of proceeding.
    Redfish log service shall then retrieve the data by reading system journal.
    All is shown on the diagram below.
 
-```ascii
-+---------------------------+
-|bmcweb|                    |         +----------------------+
-+------/    +-----------+-+ |         |Telemetry|            |
-|           |Redfish    | | |         +---------/            |
-|           |log service| | |         |                      |
-|           +-----------/ | |         |                      |
-|           |             | |         |                      |
-|           |             | |         |                      |
-|           +------^------+ |         +-----------+----------+
-+---------------------------+                     |
-                   |                              |
-                   +----collect----+            event
-                     journal entry |      (write to journal)
-                                   |              |
-       +------------------------------------+     |
-       |systemd|                   |        |     |
-       +-------/ +----------+  +---+------+ |     |
-       |         |journal|  |  |libjournal| |     |
-       |         +-------/  <-->          <-------+
-       |         |          |  +----------+ |
-       |         |          |               |
-       |         |          |               |
-       |         +----------+               |
-       |                                    |
-       +------------------------------------+
-```
+   ```ascii
+   +---------------------------+
+   |bmcweb|                    |         +----------------------+
+   +------/    +-----------+-+ |         |Telemetry|            |
+   |           |Redfish    | | |         +---------/            |
+   |           |log service| | |         |                      |
+   |           +-----------/ | |         |                      |
+   |           |             | |         |                      |
+   |           |             | |         |                      |
+   |           +------^------+ |         +-----------+----------+
+   +---------------------------+                     |
+                      |                              |
+                      +----collect----+            event
+                        journal entry |      (write to journal)
+                                      |              |
+          +------------------------------------+     |
+          |systemd|                   |        |     |
+          +-------/ +----------+  +---+------+ |     |
+          |         |journal|  |  |libjournal| |     |
+          |         +-------/  <-->          <-------+
+          |         |          |  +----------+ |
+          |         |          |               |
+          |         |          |               |
+          |         +----------+               |
+          |                                    |
+          +------------------------------------+
+   ```
 
 2. For action Event, the Telemetry service shall send event using the [Redfish
    Event Service][6] either as push-style event or SSE.
@@ -462,7 +464,7 @@ there is a different way of proceeding.
    signal. This will cause Redfish Metric Report to be streamed out if it was
    configured to do so.
 
-**Redfish Telemetry Service API**
+### Redfish Telemetry Service API
 
 Redfish Telemetry Service shall support 2019.1 Redfish schemas for telemetry
 resources. Metric report definitions determines which metrics are to be include
@@ -661,7 +663,7 @@ Sample trigger, that will trigger metric report update:
 }
 ```
 
-**Performance tests**
+### Performance tests
 
 Performance test were conducted on the AST2500 system with 64 MB flash and 512
 MB RAM. Flash consumption by the Telemetry service is 197.5 kB. The runtime
@@ -769,7 +771,7 @@ shall be done on three basic levels:
 - Functional tests
 - Performance tests
 
-**Unit tests**
+### Unit tests
 
 The Telemetry's code shall be covered by the unit tests. The preferred framework
 is the [GTest/GMock][7]. The unit tests shall be ran before code change is to be
@@ -778,7 +780,7 @@ when new code is introduced, a new set of unit tests shall be committed with it
 according to test-driven development principle. Unit tests shall be also
 carefully reviewed.
 
-**Functional tests**
+### Functional tests
 
 Functional tests will be divided into two steps.
 
@@ -796,7 +798,7 @@ Event Service to be implemented along with Log Service. Tests shall cover all
 scenarios with sending metric report as an event, triggering metric report
 update and logging events.
 
-**Performance tests**
+### Performance tests
 
 Performance tests shall be done using full OpenBMC configuration with all the
 required set of features. The tests shall create a lot of metric reports (up to

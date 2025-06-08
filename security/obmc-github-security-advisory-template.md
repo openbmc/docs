@@ -9,10 +9,12 @@ security advisory "Description" field
 
 [security response team guidelines]: ./obmc-security-response-team-guidelines.md
 
-### Affected Product
+## Affected Product
 
-Ecosystem: Other OpenBMC Package name: <TBD> Affected versions: 2.9 Patched
-versions: <TBD>
+- Ecosystem: Other
+- OpenBMC Package name: `TBD`
+- Affected versions: 2.9
+- Patched versions: `TBD`
 
 ## Severity
 
@@ -20,7 +22,7 @@ Assess the severity using CVSS.
 
 ## CWE
 
-<TBD>
+`TBD`
 
 ## CVE identifier
 

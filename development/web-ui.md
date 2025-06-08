@@ -6,7 +6,7 @@
 
 **Prerequisites:** Current Linux, Mac, or Windows system
 
-# Webui-vue
+## Webui-vue
 
 The [webui-vue](https://github.com/openbmc/webui-vue) repository will replace
 phosphor-webui once it is deprecated. Webui-vue uses the
@@ -41,7 +41,7 @@ needs for:
 - State Store
 - Theming
 
-## Load Web UI against QEMU
+### Load Web UI against QEMU
 
 Connect to Web UI in QEMU
 
@@ -50,7 +50,7 @@ Connect to Web UI in QEMU
    [dev-environment](https://github.com/openbmc/docs/blob/master/development/dev-environment.md).
 
 2. Assuming you used the default of 2443 for the HTTPS port in your QEMU
-   session, you will point your web browser to https://localhost:2443.
+   session, you will point your web browser to <https://localhost:2443>.
 
 3. Login with default username and password and verify basic Web UI features are
    working as expected.
@@ -58,10 +58,10 @@ Connect to Web UI in QEMU
 **Note** You will need to approve the security exception in your browser to
 connect. OpenBMC is running with a self-signed SSL certificate.
 
-# Phosphor-webui
+## Phosphor-webui
 
-The [phosphor-webui](https://github.com/openbmc/phosphor-webui) repository
-provides a web-based interface for an OpenBMC. It uses the
+The [phosphor-webui](https://github.com/openbmc/webui-vue) repository provides a
+web-based interface for an OpenBMC. It uses the
 [AngularJS](https://angularjs.org/) framework to interact with the BMC via REST
 API calls. It allows users to view hardware information, update firmware, set
 network settings, and much more.
@@ -72,11 +72,11 @@ See directions below to learn
 Phosphor-webui was built on AngularJS and AngularJS goes End of Life June
 30, 2021.
 
-## Customize Phosphor-webui
+### Customize Phosphor-webui
 
 1. Clone the repository
 
-   ```
+   ```bash
    git clone https://github.com/openbmc/phosphor-webui.git
    ```
 
@@ -96,19 +96,19 @@ Phosphor-webui was built on AngularJS and AngularJS goes End of Life June
    will use to represent your customized version of OpenBMC. Feel free to use
    any .png you wish for this step.
 
-   ```
+   ```bash
    wget http://www.pngmart.com/files/3/Free-PNG-Transparent-Image.png
    ```
 
    Copy your new .png into the appropriate directory
 
-   ```
+   ```bash
    cp Free-PNG-Transparent-Image.png app/assets/images/
    ```
 
    Point to that new image in the web UI HTML
 
-   ```
+   ```bash
    vi app/login/controllers/login-controller.html
    # Replace the logo.svg near the top with Free-PNG-Transparent-Image.png
    <img src="../../assets/images/Free-PNG-Transparent-Image.png" class="login__logo" alt="OpenBMC logo" role="img"/>
@@ -116,11 +116,11 @@ Phosphor-webui was built on AngularJS and AngularJS goes End of Life June
 
    Start up the server with your change
 
-   ```
+   ```bash
    npm run-script server
    ```
 
-   Load web browser at https://localhost:8080 and verify your new image is on
+   Load web browser at <https://localhost:8080> and verify your new image is on
    the login screen.
 
    Kill your npm run using Ctrl^C.
@@ -131,7 +131,7 @@ Phosphor-webui was built on AngularJS and AngularJS goes End of Life June
 
    Similar to the previous step, modify the appropriate HTML for the header:
 
-   ```
+   ```bash
    vi app/common/directives/app-header.html
    # Replace logo.svg with Free-PNG-Transparent-Image.png again
    <div class="logo__wrapper"><img src="../../assets/images/Free-PNG-Transparent-Image.png" class="header__logo" alt="company logo"/></div>
@@ -139,11 +139,12 @@ Phosphor-webui was built on AngularJS and AngularJS goes End of Life June
 
    Start up the server with your change
 
-   ```
+   ```bash
    npm run-script server
    ```
 
-   Browse to https://localhost:8080 and verify your new image is on the header.
+   Browse to `https://localhost:8080` and verify your new image is on the
+   header.
 
    Note that you will need to log in to view the header. Point the web UI to
    your QEMU session by typing the QEMU session (e.g. localhost:2443) in the
@@ -154,5 +155,5 @@ Phosphor-webui was built on AngularJS and AngularJS goes End of Life June
    your logo is also something you can easily do to customize your creation of
    an OpenBMC system.
 
-   And that's it! You've downloaded, customized, and run the OpenBMC
-   phosphor-webui code!
+And that's it! You've downloaded, customized, and run the OpenBMC phosphor-webui
+code!

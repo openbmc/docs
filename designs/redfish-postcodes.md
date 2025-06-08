@@ -20,7 +20,7 @@ LogServiceCollection.
 
 Sample [LogService](https://redfish.dmtf.org/schemas/LogService_v1.xml) entry:
 
-```
+```json
 https://obmc/redfish/v1/Systems/system/LogServices/PostCodes
 {
     "@odata.context": "/redfish/v1/$metadata#LogService.LogService",
@@ -44,7 +44,7 @@ https://obmc/redfish/v1/Systems/system/LogServices/PostCodes
 Events will be exposed using the
 [LogEntry](https://redfish.dmtf.org/schemas/LogEntry_v1.xml) schema.
 
-```
+```json
 https://obmc/redfish/v1/Systems/system/LogServices/PostCodes/Entries
 {
     "@odata.context": "/redfish/v1/$metadata#LogEntryCollection.LogEntryCollection",
@@ -79,7 +79,7 @@ https://obmc/redfish/v1/Systems/system/LogServices/PostCodes/Entries
 A new [MessageRegistry](https://redfish.dmtf.org/schemas/MessageRegistry_v1.xml)
 schema entry defines the format for the message.
 
-```
+```json
 https://obmc/redfish/v1/Registries/OpenBMC/OpenBMC
 {
     "@Redfish.Copyright": "Copyright 2018 OpenBMC. All rights reserved.",
@@ -123,7 +123,7 @@ Currently, OpenBMC exposes BIOS POST codes on DBus using the
 xyz.openbmc_project.State.Boot.PostCode service. The existing interface tracks
 POST codes for the past 100 host boot events and the current boot cycle index.
 
-```
+```json
 xyz.openbmc_project.State.Boot.PostCode
     GetPostCodes(q undefined) → [uint64] undefined
     CurrentBootCycleIndex = 1
@@ -133,23 +133,12 @@ xyz.openbmc_project.State.Boot.PostCode
 The GetPostCodes method is called using the boot cycle index to retrieve the
 codes for the boot cycle.
 
-```
+```json
 {
   "call": "GetPostCodes",
   "interface": "xyz.openbmc_project.State.Boot.PostCode",
   "obj": "/xyz/openbmc_project/State/Boot/PostCode",
-  "result": [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    17,
-    50,
-    4,
-    173
-  ],
+  "result": [1, 2, 3, 4, 5, 6, 17, 50, 4, 173],
   "status": "ok"
 }
 ```
@@ -158,7 +147,7 @@ The existing DBus GetPostCodes method will remain for backward compatibility. A
 new method GetPostCodesTS will be added to include an ISO formatted time stamp
 with micro-second resolution along with each POST code.
 
-```
+```json
 {
   "call": "GetPostCodesTS",
   "interface": "xyz.openbmc_project.State.Boot.PostCode",
@@ -182,7 +171,7 @@ with micro-second resolution along with each POST code.
 The DBus DeleteAll interface will be implemented to remove entries. The Redfish
 ClearLog action will call the DBus DeleteAll interface.
 
-```
+```json
 {
   "call": "DeleteAll",
   "interface": "xyz.openbmc_project.Collection.DeleteAll",

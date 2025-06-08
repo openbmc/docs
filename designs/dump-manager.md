@@ -37,7 +37,7 @@ provide methods to create, store the dump details, and offload it. Additionally,
 some sources allow the dump to be extracted manually without a failure to
 understand the current state or analyze a suspected problems.
 
-### Type of dumps supported.
+### Type of dumps supported
 
 These are some of the dumps supported by dump manager.
 
@@ -83,7 +83,7 @@ to help to debug the failure.
 
 ![Dump use cases - Users are examples, not a mandatory part of implementation](https://user-images.githubusercontent.com/16666879/70888651-d8f44080-2006-11ea-8596-ed4c321cfaa6.png)
 
-#### Dump manager needs to provide interfaces for
+### Dump manager needs to provide interfaces for
 
 - Create a dump: Initiate the creation of the dump, based on an error condition
   or a user request.
@@ -112,7 +112,7 @@ which collects the dumps from BMC.
 
 ![phosphor-debug-collector](https://user-images.githubusercontent.com/16666879/72070844-7b56c980-3310-11ea-8d26-07d33b84b980.jpeg)
 
-#### Brief design points of existing phosphor-debug-collector
+### Brief design points of existing phosphor-debug-collector
 
 - A create interface which assumes the type is BMC dump and returns an ID to the
   caller for the user-initiated dumps.
@@ -138,7 +138,7 @@ which collects the dumps from BMC.
 - The dump manager calls dreport with a dump type got from the monitor and write
   data to a path based on dump id.
 
-#### Updates proposed to the existing phosphor-debug-collector.
+### Updates proposed to the existing phosphor-debug-collector
 
 - External D-Bus interface needs to specify the type of the dump since a user
   can request multiple types of dumps
@@ -149,7 +149,7 @@ which collects the dumps from BMC.
 - The InitiateOffload function will be implemented to download the dump.
 - Status of the dump, whether offloaded or not, will be added to the dump entry.
 
-### Dump manager interfaces.
+### Dump manager interfaces
 
 - Dump Manager DBus object provides interfaces for creating and managing dump
 

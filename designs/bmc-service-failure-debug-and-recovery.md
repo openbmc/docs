@@ -389,20 +389,20 @@ reduced to reading an appropriate value from IDR. Reducing requirements on the
 BMC's behaviour in this way allows the use of the `serio_raw` driver (which has
 the restriction that userspace can't access the status value).
 
-[1]
-https://lore.kernel.org/lkml/37e75b07-a5c6-422f-84b3-54f2bea0b917@www.fastmail.com/
+[1]:
+  https://lore.kernel.org/lkml/37e75b07-a5c6-422f-84b3-54f2bea0b917@www.fastmail.com/
 
 #### Prototype Implementation Supporting Power10 Platforms
 
 A concrete implementation of the proposal's userspace daemon is available on
 Github:
 
-https://github.com/amboar/debug-trigger/
+<https://github.com/amboar/debug-trigger/>
 
 Deployment requires additional kernel support in the form of patches at [2].
 
-[2]
-https://github.com/amboar/linux/compare/2dbb5aeba6e55e2a97e150f8371ffc1cc4d18180...for/openbmc/kcs-raw
+[2]:
+  https://github.com/amboar/linux/compare/2dbb5aeba6e55e2a97e150f8371ffc1cc4d18180...for/openbmc/kcs-raw
 
 ### Alternatives Considered
 
@@ -458,7 +458,7 @@ failure state are that the BMC:
 
 ### Proposed Design
 
-This will build upon the existing [target-fail-monitoring][1] design. The
+This will build upon the existing [target-fail-monitoring][3] design. The
 monitor service will be enhanced to also take json file(s) which list critical
 services to monitor.
 
@@ -482,7 +482,7 @@ This would look like the following:
   the BMC state into Quiesced
 - bmcweb looks at BMC state to return appropriate state to external clients
 
-[1]:
+[3]:
   https://github.com/openbmc/docs/blob/master/designs/target-fail-monitoring.md
 
 ### Alternatives Considered

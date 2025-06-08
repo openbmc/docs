@@ -12,9 +12,9 @@ Beyond a set of rules that help codify "good" and "bad" C++, we have general
 principles that help us align the software we develop with the constraints
 within the problem domain being solved by OpenBMC. These are:
 
-1.  Code should be clear and concise.
-2.  Code should be written with modern practices.
-3.  Code should be performant.
+1. Code should be clear and concise.
+2. Code should be written with modern practices.
+3. Code should be performant.
 
 ### Code should be clear and concise
 
@@ -52,7 +52,7 @@ For those coming to the project from pre-C++11 environments we strongly
 recommend the book "Effective Modern C++" as a way to get up to speed on the
 differences between C++98/03 and C++11/14/17/20.
 
-### Code should be performant.
+### Code should be performant
 
 OpenBMC targets embedded processors that typically have 32-64MB of flash and
 similar processing power of a typical smart-watch available in 2016. This means
@@ -70,7 +70,7 @@ appropriate algorithmic complexity for the problem at hand. Therefore, an
 
 Please follow the guidelines established by the C++ Core Guidelines (CCG).
 
-https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md
+<https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md>
 
 [[Last reviewed revision is 53bc78f]]
 
@@ -164,14 +164,14 @@ used by CI.
 - Utilize 'Allman' style brackets. Brackets are on their own line at the same
   indentation level as the statement that creates the scope.
 
-```
+```cpp
 if (condition)
 {
     ...
 }
 ```
 
-```
+```cpp
 void foo()
 {
     ...
@@ -180,7 +180,7 @@ void foo()
 
 - Even one line conditional and loop statements should have brackets.
 
-```
+```cpp
 /// Wrong.
 if (condition)
     do_something;
@@ -197,7 +197,7 @@ if (condition)
 - Content within a namespace should be at the same indentation level as the
   namespace itself.
 
-```
+```cpp
 namespace foo
 {
 
@@ -208,7 +208,7 @@ content
 
 - Content within a class / struct should be indented.
 
-```
+```cpp
 class Foo
 {
     public:
@@ -218,7 +218,7 @@ class Foo
 
 - Content within a function / conditional / loop should be indented.
 
-```
+```cpp
 void foo()
 {
     while (1)
@@ -233,7 +233,7 @@ void foo()
 
 - Switch / case statements should be indented.
 
-```
+```cpp
 switch (foo)
 {
     case bar:
@@ -255,7 +255,7 @@ switch (foo)
   labels are preferred or should be regularly used, but simply when they are
   used, this is how they are to be used.)
 
-```
+```cpp
 void foo()
 {
     if (bar)
@@ -275,13 +275,13 @@ void foo()
 }
 ```
 
-### Naming Conventions.
+### Naming Conventions
 
 - We generally abstain from any prefix or suffix on names.
 - Acronyms should be same-case throughout and follow the requirements as in
   their appropriate section.
 
-```
+```cpp
 /// Correct.
 SomeBMCType someBMCVariable = bmcFunction();
 
@@ -293,7 +293,7 @@ SomeBmcType someBmcVariable = BMCFunction();
 
 Header inclusion order for a header file:
 
-```
+```text
 local headers (e.g. "daemon_sys.hpp")
 c-libraries
 cpp-libraries (including openbmc libraries)
@@ -301,7 +301,7 @@ cpp-libraries (including openbmc libraries)
 
 Header inclusion order for a source file:
 
-```
+```text
 source.hpp (if applicable)
 local headers
 c-libraries
@@ -330,7 +330,7 @@ All in alphabetically sorted order.
 - Exception: A for-convenience template type alias of a template class may end
   in `_t` to match the conventions of the STL.
 
-```
+```cpp
 template <typename T>
 class Foo
 {
@@ -371,7 +371,7 @@ Prefer '#pragma once' header guard over '#ifndef'-style.
 
 - Follow NL.18: Use C++-style declarator layout.
 
-```
+```cpp
 foo(T& bar, const S* baz); /// Correct.
 foo(T &bar, const S *baz); /// Incorrect.
 ```
@@ -380,7 +380,7 @@ foo(T &bar, const S *baz); /// Incorrect.
 
 - Insert whitespace after a conditional and before parens.
 
-```
+```cpp
 if (...)
 while (...)
 for (...)
@@ -388,14 +388,14 @@ for (...)
 
 - Insert whitespace around binary operators for readability.
 
-```
+```cpp
 foo((a-1)/b,c-2); /// Incorrect.
 foo((a - 1) / b, c - 2); /// Correct.
 ```
 
 - Do not insert whitespace around unary operators.
 
-```
+```cpp
 a = * b;  /// Incorrect.
 a = & b;  /// Incorrect.
 a = b -> c;  /// Incorrect.
@@ -405,7 +405,7 @@ if (! a)  /// Incorrect.
 - Do not insert whitespace inside parens or between a function call and
   parameters.
 
-```
+```cpp
 foo(x, y); /// Correct.
 foo ( x , y ); /// Incorrect.
 
@@ -416,7 +416,7 @@ do (...)
 
 - Prefer line-breaks after operators to show continuation.
 
-```
+```cpp
 if (this1 == that1 &&
     this2 == that2) /// Correct.
 
@@ -427,7 +427,7 @@ if (this1 == that1
 - Long lines should have continuation start at the same level as the parens or
   all all items inside the parens should be at a 2-level indent.
 
-```
+```cpp
 reallyLongFunctionCall(foo,
                        bar,
                        baz); // Correct.
@@ -445,7 +445,7 @@ reallyLongFunctionCall(foo,
         baz); // Incorrect.
 ```
 
-### Misc Guidelines.
+### Misc Guidelines
 
 - Always use `size_t` or `ssize_t` for things that are sizes, counts, etc. You
   need a strong rationale for using a sized type (ex. `uint8_t`) when a size_t

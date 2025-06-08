@@ -1,6 +1,6 @@
 # Certificate Revocation List on BMC
 
-Author: Nan Zhou (nanzhoumails@gmail.com)
+Author: Nan Zhou <nanzhoumails@gmail.com>
 
 Created: 02/25/2022
 

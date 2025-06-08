@@ -50,11 +50,11 @@ This design includes:
 There are three type of information we will need from an attestation daemon on
 D-Bus:
 
-1.  Basic information, like attestation protocol, enablement status, update
-    timestamp, etc.
-2.  Identity information, e.g., device identity certificates.
-3.  Measurements information, e.g., measurements of the component firmware,
-    hardware configuration, etc.
+1. Basic information, like attestation protocol, enablement status, update
+   timestamp, etc.
+2. Identity information, e.g., device identity certificates.
+3. Measurements information, e.g., measurements of the component firmware,
+   hardware configuration, etc.
 
 So far, phosphor-dbus-interfaces lacks interfaces defined for attestation
 purpose. Thus, we propose three new interfaces:
@@ -145,10 +145,10 @@ far, there is no universal way to map a given device's BDF to its inventory
 path. It is up to the vendor to do the association.
 
 For MCTP devices detection, the community has been working on `mctpreactor`
-daemon in dbus-sensors to handle the configuration. The link to implementation
-is [here](https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/69111), the
-related PR discussion is [here](https://github.com/CodeConstruct/mctp/pull/17).
-SPDM daemon will monitor `mctpd` for `InterfacesAdded` signals providing the
+daemon in dbus-sensors to handle the configuration. The proposed
+[implementation](https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/69111); the
+related [PR discussion](https://github.com/CodeConstruct/mctp/pull/17). SPDM
+daemon will monitor `mctpd` for `InterfacesAdded` signals providing the
 `xyz.openbmc_project.MCTP.Endpoint` interface, which exposes the message types
 supported by the endpoint in the `SupportedMessageTypes` member. SPDM daemon set
 up a connection with the SPDM-capable endpoints to get certificates and
@@ -158,7 +158,7 @@ query the `mctpd` for any detected endpoints after it gets launched.
 Below is a high-level diagram showing the relationship between different
 components.
 
-```
+```ascii
     +------+            +---------+
     |Client|            |Inventory|
     +--+---+            |Manager  |
@@ -292,8 +292,8 @@ This repository requires creating a new repository for the SPDM daemon. In
 addition, the following repositories are expected to be modified to execute this
 design:
 
-- https://github.com/openbmc/bmcweb
-- https://github.com/openbmc/phosphor-dbus-interfaces
+- <https://github.com/openbmc/bmcweb>
+- <https://github.com/openbmc/phosphor-dbus-interfaces>
 
 ## Testing
 

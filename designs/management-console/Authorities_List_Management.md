@@ -1,6 +1,6 @@
 # Authorities List Management
 
-Author: Nan Zhou (nanzhoumails@gmail.com)
+Author: Nan Zhou <nanzhoumails@gmail.com>
 
 Created: 12/01/2021
 

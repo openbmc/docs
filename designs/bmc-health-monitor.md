@@ -1,4 +1,4 @@
-### BMC Health Monitor
+# BMC Health Monitor
 
 Author: Vijay Khemka <vijaykhemka@fb.com>, Sui Chen <suichen@google.com>, Jagpal
 Singh Gill <paligill@gmail.com>
@@ -162,7 +162,7 @@ For 3) Metric staging & disperse, the daemon creates a D-bus service named
 Each metric will be exposed on a specific object path and above interfaces will
 be implemented at these paths.
 
-```
+```text
 /xyz/openbmc_project
     |- /xyz/openbmc_project/metric/bmc/memory/total
     |- /xyz/openbmc_project/metric/bmc/memory/free
@@ -188,7 +188,7 @@ Multiple devices of same type -
 In case there are multiple devices of same type, the D-Bus path can be extended
 to add context about **"which device"**. For example -
 
-```
+```text
 /xyz/openbmc_project/metric/device-0/memory/total
 /xyz/openbmc_project/metric/device-1/memory/total
 ...
@@ -226,7 +226,7 @@ Cons:
   pretty significant. Given the amount of functionality needed for openBMC,
   Collectd seems heavyweight. Majority of phosphor-health-monitor code will be
   around exposing the metrics on Dbus which will also be needed for Collectd
-  plugin. Hence, directly reading from /proc/<fileX> seems lightweight as code
+  plugin. Hence, directly reading from `/proc/<fileX>` seems lightweight as code
   already exist for it.
 - Collected has minimal support for threshold monitoring and doesn't allow
   starting systemd services on threshold violations.

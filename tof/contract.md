@@ -42,8 +42,9 @@ Issues the TOF handle include:
 
 ## Current members
 
-The current TOF members and terms are maintained
-[here](https://github.com/openbmc/docs/blob/master/tof/membership-and-voting.md#terms-and-elections).
+The current TOF members and terms are maintained in the
+[TOF membership](https://github.com/openbmc/docs/blob/master/tof/membership-and-voting.md#terms-and-elections)
+doc.
 
 The TOF shall have a minimum of 5 and maximum of 9 members at any given time.
 

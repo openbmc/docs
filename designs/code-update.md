@@ -28,8 +28,8 @@ This section covers the limitations discoverd with
 
 1. Able to start an update, given a firmware image and update settings.
 
-- Update settings shall be able to specify when to apply the image, for example
-  immediately or on device reset or on-demand.
+   - Update settings shall be able to specify when to apply the image, for
+     example immediately or on device reset or on-demand.
 
 2. Able to retrieve the update progress and status.
 3. Able to produce an interface complaint with
@@ -372,7 +372,7 @@ This fulfills the [Requirement# 9](#requirements).
 - Different type hardware components:
 
   Upgrade for different type hardware components can be handled either by
-  different <deviceX>CodeUpdater daemons or by a single daemon for hardware
+  different `<deviceX>CodeUpdater` daemons or by a single daemon for hardware
   components with common features, for example, PLDMd may handle update for
   devices using PLDM specification. Such updates can be invoked in parallel from
   BMCWeb and tracked via different tasks.
@@ -446,7 +446,7 @@ example, getActivationStatus and getActivationProgress).
 #### Cons
 
 - Server would still need maintain some info so it can map client's task status
-  request to Dbus path for /xyz/openbmc_project/Software/<deviceX> for calling
+  request to Dbus path for `/xyz/openbmc_project/Software/<deviceX>` for calling
   getActivationStatus and getActivationProgress.
 - Aforementioned [issue](https://github.com/openbmc/bmcweb/issues/202) is more
   of an implementation problem which can be resolved through implementation

@@ -1,4 +1,4 @@
-# Memory preserving reboot and System Dump extraction flow on POWER Systems.
+# Memory preserving reboot and System Dump extraction flow on POWER Systems
 
 Author: Dhruvaraj S <dhruvaraj@in.ibm.com>
 
@@ -131,7 +131,7 @@ listener on the BMC detects the attention. In the case of OpenPOWER based Linux
 systems, an additional s0 interrupt will be sent to SBE to stop the cores
 immediately.
 
-#### 2 - Analyze the error data.
+#### 2 - Analyze the error data
 
 The attention listener on the BMC calls a chip-op to analyze the reason for the
 attention.
@@ -192,12 +192,12 @@ and get written to a dump file.
 Hypervisor sends down offload complete message to BMC and BMC sends it to HMC.
 The NBD endpoints are cleared.
 
-#### 12 - HMC verifies dump and send dump DELETE to BMC.
+#### 12 - HMC verifies dump and send dump DELETE to BMC
 
 HMC verifies the dump and send dump delete request to BMC BMC sends the dump
 delete message to hypervisor Hypervisor deletes dump in host memory.
 
-### Memory preserve reboot sequence.
+### Memory preserve reboot sequence
 
 ![Memory preserve reboot sequence](https://user-images.githubusercontent.com/16666879/77681484-64448100-6fbb-11ea-94b4-9f2256241b1c.jpeg)
 

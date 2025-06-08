@@ -75,12 +75,12 @@ on the need_
 User Manager service exposes D-Bus methods for user-management operations. It
 exposes `xyz.openbmc_project.User.Manager` as a service and handles objects
 through `org.freedesktop.DBus.ObjectManager`. Please refer
-https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/User
+<https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/User>
 for detailed user management D-Bus API and interfaces.
 
 ## OpenBMC - User Management - High Level architectural diagram
 
-```
+```ascii
                                 WEBSERVER/REDFISH
      ========================================================================
     ||  ________________  |  ________________  |   |**********************| ||
@@ -122,7 +122,7 @@ for detailed user management D-Bus API and interfaces.
 
 ## User management - overview
 
-```
+```ascii
                              user management
           +---------------------------------------------------------+
           |                phosphor-user-manager                    |
@@ -160,7 +160,7 @@ for detailed user management D-Bus API and interfaces.
 
 ## OpenBMC - User Management - User creation from webserver flow - with all groups
 
-```
+```ascii
 ------------------------------------|---------------------------------- -|-----------------------------|
 WEBSERVER                           | Common User Manager                |   IPMI & REDFISH(webserver) |
 ------------------------------------|------------------------------------|-----------------------------|
@@ -205,7 +205,7 @@ user is part of 'ipmi' Group)       |                                    |      
 
 ## OpenBMC - User Management - User creation from IPMI - 'ipmi' Group only
 
-```
+```ascii
 ------------------------------------|---------------------------------- -|-----------------------------|
 IPMI                                | Common User Manager                |   pam_unix/pam_ipmi storage |
 ------------------------------------|------------------------------------|-----------------------------|
@@ -258,7 +258,7 @@ to login if user is disabled        |                                    |      
 
 ## OpenBMC - User Management - User deletion from webserver flow - with all groups
 
-```
+```ascii
 ------------------------------------|---------------------------------- -|-----------------------------|
 WEBSERVER                           | Common User Manager                |   IPMI & REDFISH(webserver) |
 ------------------------------------|------------------------------------|-----------------------------|
@@ -293,7 +293,7 @@ to be deleted            (REQ)--------->                                 |      
 
 ## OpenBMC - User Management - User deletion from IPMI - 'ipmi' Group only
 
-```
+```ascii
 ------------------------------------|---------------------------------- -|
 IPMI                                | Common User Manager                |
 ------------------------------------|------------------------------------|
@@ -331,7 +331,7 @@ Applications must use `pam_authenticate()` API to authenticate user. Stacked PAM
 modules are used such that `pam_authenticate()` can be used for both local &
 remote users.
 
-```
+```ascii
                 +----------------------------------+
                 |    Stacked PAM Authentication    |
                 |     +-----------------------+    |
@@ -362,7 +362,7 @@ encrypted form, which will be used by IPMI. The same has been performed by
 `pam_ipmicheck` and `pam_ipmisave` modules loaded as first & last modules in
 stacked pam modules.
 
-```
+```ascii
                 +------------------+---------------+
                 |      Stacked PAM - Password      |
                 |                                  |
@@ -401,7 +401,7 @@ stacked pam modules.
 
 ## Authorization flow (except IPMI)
 
-```
+```ascii
                                 +
                                 |
                                 |
@@ -510,7 +510,7 @@ reasonable security expected is
 1. Preprogrammed password unique to each device
 2. Forcing user to generate new authentication account, before using the device.
 
-### Generating user during deployment:
+### Generating user during deployment
 
 To adhere above mentioned guideline and to make OpenBMC more secure, this design
 specifies about forcing end-user to generate a new account, during deployment
@@ -521,7 +521,7 @@ using any generic default user name and password. Accounts created through this
 method have access to IPMI, REDFISH & Webserver and can be used to create more
 accounts through out-of-band interfaces.
 
-### Special user - root – user id 0:
+### Special user - root – user id 0
 
 Exposing root account (user id 0) to end-user by default (other than debug /
 developer scenario) is security risk. Hence current architecture recommends not
@@ -540,7 +540,7 @@ OEM action(TBD) to can be used to set password for the root user, after which
 (Note: `root` user will not be listed as user account in any interfaces like
 IPMI / REDFISH from user management point of view).
 
-### Deployment for systems without in-band interfaces:
+### Deployment for systems without in-band interfaces
 
 Any systems which doesn’t have in-band system interface can generate passwords
 uniquely for each & every device or can expose a default user name & password

@@ -108,7 +108,7 @@ up `/path/to/ci_test_area/openbmc-build-scripts/run-unit-test-docker.sh` and
 find where we call `docker run`, way down at the bottom. Add an additional
 argument, remembering to escape the newline ('\'):
 
-```
+```bash
 PHOSPHOR_IPMI_HOST_PATH="/my/dir/for/phosphor-host-ipmid"
 
 docker run --blah-blah-existing-flags \
@@ -143,7 +143,7 @@ git checkout --detach add-foo
 # Now run the Docker container normally
 ```
 
-#### Interactive Docker Session
+### Interactive Docker Session
 
 To use an interactive session, you can pass the flag `INTERACTIVE=true` to
 `run-unit-test-docker.sh` which will drop you into a bash shell with a default

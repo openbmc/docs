@@ -41,7 +41,7 @@ systemd provides signals when units complete and provides status on that
 completed unit. See the JobNew()/JobRemoved() section in the [systemd dbus
 API][3]. The six different results are:
 
-```
+```text
 done, canceled, timeout, failed, dependency, skipped
 ```
 
@@ -73,7 +73,7 @@ restarts within a 30 second window.
   status that failed (i.e. canceled, timeout, ...)
   - Example:
 
-```
+```text
     xyz.openbmc_project.State.BMC.Error.MultiUserTargetFailure
     STATUS=timeout
 ```
@@ -82,10 +82,10 @@ restarts within a 30 second window.
   targets
   - Critical systemd targets are ones used by phosphor-state-manager
     - BMC: multi-user.target
-    - Chassis: obmc-chassis-poweron@0.target, obmc-chassis-poweroff@0.target
-    - Host: obmc-host-start@0.target, obmc-host-startmin@0.target,
-      obmc-host-shutdown@0.target, obmc-host-stop@0.target,
-      obmc-host-reboot@0.target
+    - Chassis: `obmc-chassis-poweron@0.target, obmc-chassis-poweroff@0.target`
+    - Host: `obmc-host-start@0.target, obmc-host-startmin@0.target`,
+      `obmc-host-shutdown@0.target`, `obmc-host-stop@0.target`,
+      `obmc-host-reboot@0.target`
   - The errors for these must be defined in phosphor-dbus-interfaces
 - Limitations:
   - Fully qualified target name must be input (i.e. no templated / wild card
@@ -108,31 +108,31 @@ json file(s) on startup.
 
 The json file(s) would have the following format for targets:
 
-```
+```json
 {
-    "targets" : [
-        {
-            "name": "multi-user.target",
-            "errorsToMonitor": ["default"],
-            "errorToLog": "xyz.openbmc_project.State.BMC.Error.MultiUserTargetFailure",
-        },
-        {
-            "name": "obmc-chassis-poweron@0.target",
-            "errorsToMonitor": ["timeout", "failed"],
-            "errorToLog": "xyz.openbmc_project.State.Chassis.Error.PowerOnTargetFailure",
-        }
-      ]
+  "targets": [
+    {
+      "name": "multi-user.target",
+      "errorsToMonitor": ["default"],
+      "errorToLog": "xyz.openbmc_project.State.BMC.Error.MultiUserTargetFailure"
+    },
+    {
+      "name": "obmc-chassis-poweron@0.target",
+      "errorsToMonitor": ["timeout", "failed"],
+      "errorToLog": "xyz.openbmc_project.State.Chassis.Error.PowerOnTargetFailure"
+    }
+  ]
 }
 ```
 
 The json (files) would have the following format for services:
 
-```
+```json
 {
-    "services" : [
-        "xyz.openbmc_project.biosconfig_manager.service",
-        "xyz.openbmc_project.Dump.Manager.service"
-        ]
+  "services": [
+    "xyz.openbmc_project.biosconfig_manager.service",
+    "xyz.openbmc_project.Dump.Manager.service"
+  ]
 }
 ```
 

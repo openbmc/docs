@@ -25,9 +25,9 @@ request a power on via the webserver when not all needed services are running.
 
 ## Background and References
 
-The mailing list discussion can be found [here][1]. The BMC currently has three
-major [state][2] management interfaces in a system. The BMC, Chassis, and Host.
-Within each state interface, the current state and requested state are tracked.
+The [mailing list discussion][1] can be found. The BMC currently has three major
+[state][2] management interfaces in a system. The BMC, Chassis, and Host. Within
+each state interface, the current state and requested state are tracked.
 
 The [BMC][3] state object is considered `Ready` once the systemd
 `multi-user.target` has successfully started all if its services.

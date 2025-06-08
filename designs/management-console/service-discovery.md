@@ -6,12 +6,12 @@ Other contributors: Asmitha KR
 
 Created: 2019-07-12
 
-# Background and References
+## Background and References
 
-[1] https://www.engineersgarage.com/Articles/IoT-Service-Discovery-Protocols [2]
-http://www.zeroconf.org/ZeroconfAndUPnP.html : comparison of mDns v/s UPnP. [3]
-https://www.avahi.org/ [4]
-https://github.com/lathiat/avahi/blob/master/avahi-daemon/example.service
+1. <https://www.engineersgarage.com/Articles/IoT-Service-Discovery-Protocols>
+2. <http://www.zeroconf.org/ZeroconfAndUPnP.html> : comparison of mDns v/s UPnP.
+3. <https://www.avahi.org/>
+4. <https://github.com/lathiat/avahi/blob/master/avahi-daemon/example.service>
 
 Apple’s Bonjour uses mDNS and DNS-SD. Linux’s Avahi uses IPv4LL, mDNS, and
 DNS-SD. Linux’s systemd uses resolve hostnames on a network via DNS, mDNS, and
@@ -46,8 +46,8 @@ the vendor-specific information in the avahi service file(under txt-record).
 
 Following commits implements the behaviour.
 
-https://gerrit.openbmc.org/c/openbmc/meta-phosphor/+/22950
-https://gerrit.openbmc.org/c/openbmc/meta-ibm/+/22951
+- <https://gerrit.openbmc.org/c/openbmc/meta-phosphor/+/22950>
+- <https://gerrit.openbmc.org/c/openbmc/meta-ibm/+/22951>
 
 As part of avahi discovery response, the client receives the following:
 
@@ -60,7 +60,7 @@ As part of avahi discovery response, the client receives the following:
 ### How to do discovery through avahi
 
 The following command may be used to discover the BMC systems in the network.
-Avahi-browse -rt <service type> e.g. To discover service type :
+`avahi-browse -rt <service type>` e.g. To discover service type :
 \_obmc_rest.\_tcp avahi-browse -rt \_obmc_rest.\_tcp Output of the above command
 is as follows avahi-browse -rt \_obmc_rest.\_tcp
 

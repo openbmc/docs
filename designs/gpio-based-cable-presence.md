@@ -1,6 +1,6 @@
-## GPIO-based Cable Presence Detection
+# GPIO-based Cable Presence Detection
 
-Author: Chu Lin (linchuyuan@google.com)
+Author: Chu Lin <linchuyuan@google.com>
 
 Created: 2021-07-29
 
@@ -15,8 +15,8 @@ less SDR IDs.
 
 ## Background and References
 
-1. https://www.intel.com/content/www/us/en/products/docs/servers/ipmi/ipmi-second-gen-interface-spec-v2-rev1-1.html
-2. https://www.dmtf.org/sites/default/files/Redfish_Cable_Management_Proposal_WIP_04-2021.pdf
+1. <https://www.intel.com/content/www/us/en/products/docs/servers/ipmi/ipmi-second-gen-interface-spec-v2-rev1-1.html>
+2. <https://www.dmtf.org/sites/default/files/Redfish_Cable_Management_Proposal_WIP_04-2021.pdf>
 
 ## Requirements
 
@@ -31,7 +31,7 @@ Presence states. This new daemon will resIDe in openbmc/dbus-sensors. Its
 runtime configuration will be provIDed by EntityManager during startup. A
 proposed config file looks like the following:
 
-```
+```json
 {
   "Exposes": [
     {
@@ -39,18 +39,14 @@ proposed config file looks like the following:
       "GpioLine": "osfp0",
       "Polarity": "active_low",
       "Type": "GPIOCableSensing",
-      "FaultLedGroup": [
-        "attention"
-      ]
+      "FaultLedGroup": ["attention"]
     },
     {
       "Name": "cable1",
       "GpioLine": "osfp1",
       "Polarity": "active_high",
       "Type": "GPIOCableSensing",
-      "FaultLedGroup": [
-        "attention"
-      ]
+      "FaultLedGroup": ["attention"]
     }
   ]
 }
@@ -69,7 +65,7 @@ if FaultLedGroup is empty.
 On the IPMI sIDe, the presence states will be grouped into fewer SDR IDs in
 order to save SDR IDs for ipmi. Given the following example,
 
-```
+```text
 └─/xyz
   └─/xyz/openbmc_project
     └─/xyz/openbmc_project/inventory
@@ -91,7 +87,7 @@ if there are 20 cable indexed from 0 to 19, we shall see two SDRs. One is
 cable0-13. One is cable[14-19]. If the object path is not indexed by the user,
 it will take one SDR ID.
 
-```
+```text
 ipmitool sdr list event
 # /xyz/openbmc_project/inventory/item/cdfp0 to
 # /xyz/openbmc_project/inventory/item/cdfp3
@@ -106,7 +102,7 @@ example, `/xyz/openbmc_project/inventory/item/cable`. The group handler will not
 try to group it with anything and use 1 SDR ID for its presence state. See the
 following for an example output.
 
-```
+```text
 ipmitool sdr list event
 cdfp[0-3]        | Event-Only        | ns
 # /xyz/openbmc_project/inventory/item/osfp
@@ -140,7 +136,7 @@ implement grouping mechanism. It should work out of the box.
 - Instead of having a sleep-poll mechanism, it is better to have a event
   listener on the gpio signals. However, the gpio_event_wait api requires all
   the lines to come from the same chip. See
-  https://github.com/brgl/libgpiod/blob/cc23ef61f66d5a9055b0e9fbdcfe6744c8a637ae/lib/core.c#L993
+  <https://github.com/brgl/libgpiod/blob/cc23ef61f66d5a9055b0e9fbdcfe6744c8a637ae/lib/core.c#L993>
   We could spawn threads to listen to each chips but I don't think we should
   increase the complexity of such a simple daemon.
 

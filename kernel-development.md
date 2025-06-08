@@ -5,7 +5,7 @@ general development policy is that code must be upstream first. This is a strong
 requirement, not a hard requirement, and exceptions will be made on a
 case-by-case basis. If in doubt, start a discussion on the mailing list.
 
-The OpenBMC kernel tree is hosted at https://github.com/openbmc/linux and
+The OpenBMC kernel tree is hosted at <https://github.com/openbmc/linux> and
 contains the set of patches that we carry. Ideally there would be no patches
 carried, as everything should be upstream.
 
@@ -88,16 +88,16 @@ When modifying the tree we currently test on the following platforms:
 Before submitting patches it is recommended you boot test on at least the Qemu
 platforms, and whatever hardware you have available.
 
-# Tips and Tricks
+## Tips and Tricks
 
 Some general hints for kernel development
 
-## Out-of-tree builds
+### Out-of-tree builds
 
 You can build a kernel out of the yocto environment, by using the initramfs
 (from a pre-existing yocto build) directly:
 
-```
+```sh
 make ARCH=arm \
     O=obj \
     CROSS_COMPILE=arm-linux-gnueabihf- \
@@ -111,15 +111,15 @@ kernel configuration.
 
 The cpio can be found in the following yocto output directory:
 
-```
+```sh
  build/tmp/deploy/images/palmetto/
 ```
 
-## Building a uImage
+### Building a uImage
 
 To build a uImage (for example, to netboot):
 
-```
+```sh
 # build a zImage using the obmc rootfs
 make ARCH=arm \
     O=obj \

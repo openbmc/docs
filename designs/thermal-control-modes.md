@@ -32,7 +32,7 @@ exists on other system where mathematical calculations are done based on the
 overall power dissipation.
 
 Mathematical calculations to logically estimate exit air temps:
-https://github.com/openbmc/dbus-sensors/blob/master/src/ExitAirTempSensor.cpp
+<https://github.com/openbmc/dbus-sensors/blob/master/src/ExitAirTempSensor.cpp>
 
 ## Requirements
 

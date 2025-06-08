@@ -288,7 +288,7 @@ None
 
 The control of this policy can already bet set via the Redfish API.
 
-```
+```bash
 #  Power Restore Policy
 curl -k -H "Content-Type: application/json" -X PATCH -d '{"PowerRestorePolicy":"AlwaysOn"}' https://${bmc}/redfish/v1/Systems/system
 curl -k -H "Content-Type: application/json" -X PATCH -d '{"PowerRestorePolicy":"AlwaysOff"}' https://${bmc}/redfish/v1/Systems/system

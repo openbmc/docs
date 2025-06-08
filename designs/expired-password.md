@@ -1,6 +1,6 @@
 # Initial expired passwords
 
-Author: Joseph Reynolds <josephreynolds1>
+Author: Joseph Reynolds `josephreynolds1`
 
 Other contributors: None
 
@@ -49,14 +49,14 @@ change required".
 
 The meaning of the term "access" varies by context. It could mean:
 
-1.  Access to the BMC's network interfaces.
-2.  Access to the BMC's authentication mechanisms together with correct
-    credentials, whether or not those credentials have expired and must be
-    changed.
-3.  Access to the BMC's function via an authenticated interface, for example,
-    such as establishing a session after you've changed your initial password.
-4.  Access to the BMC's function via an unauthenticated interface such as host
-    IPMI or physical control panel (example: power button).
+1. Access to the BMC's network interfaces.
+2. Access to the BMC's authentication mechanisms together with correct
+   credentials, whether or not those credentials have expired and must be
+   changed.
+3. Access to the BMC's function via an authenticated interface, for example,
+   such as establishing a session after you've changed your initial password.
+4. Access to the BMC's function via an unauthenticated interface such as host
+   IPMI or physical control panel (example: power button).
 
 This design uses meanings 3 and 4 except where indicated.
 
@@ -112,8 +112,8 @@ This design has three main parts:
    correct userid and incorrect password, or with an incorrect userid, the
    behavior must not change. Note the `/login` URI is deprecated.
 
-   The '/redfish/v1/SessionService/Sessions/<session>' and
-   '/redfish/v1/AccountService/Accounts/<account>' resources are enhanced to
+   The `/redfish/v1/SessionService/Sessions/<session>` and
+   `/redfish/v1/AccountService/Accounts/<account>` resources are enhanced to
    indicate PasswordChangeRequired per the Redfish spec.
 
    The `ipmitool` command treats an expired password the same as an invalid
@@ -142,12 +142,12 @@ contains a PasswordChangeRequired message. The session effectively has only the
 ConfigureSelf privilege which allows it to only change the password and
 terminate the session. The usage pattern is:
 
-1.  Create a session.
-2.  If the PasswordChangeRequired message is present:
-    1.  PATCH the new password into the ManagerAccount object.
-    2.  Any other use of the session will get HTTP status code 403 Forbidden.
-    3.  DELETE the Session object to terminate the session.
-    4.  Create a new session and continue.
+1. Create a session.
+2. If the PasswordChangeRequired message is present:
+   1. PATCH the new password into the ManagerAccount object.
+   2. Any other use of the session will get HTTP status code 403 Forbidden.
+   3. DELETE the Session object to terminate the session.
+   4. Create a new session and continue.
 
 This design is intended to cover any cause of expired password, including both
 the BMC's initial expired password and password expired for another cause such

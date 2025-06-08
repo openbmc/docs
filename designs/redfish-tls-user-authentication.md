@@ -50,7 +50,7 @@ After that is completed, user should request a **CSR** (**C**ertificate
 proper `user`'s certificate from `CA`. After this certificate is acquired,
 `User` can use this certificate when initializing HTTPS sessions.
 
-```
+```text
 ┌──┐                           ┌────┐                                 ┌───────┐
 │CA│                           │User│                                 │Redfish│
 └┬─┘                           └─┬──┘                                 └───┬───┘
@@ -135,7 +135,7 @@ User can generate CSR in any way that is convenient to him.
 
 #### Authentication Process
 
-```
+```text
                                     +-+
                                     +++
                                      |
@@ -199,8 +199,8 @@ User can generate CSR in any way that is convenient to him.
 ```
 
 Certificate based authentication has the highest priority, because of the design
-of _Boost.Beast/Boost.ASIO/OpenSSL_ as the certificate verification is being
-done at the very beginning of HTTPS request processing. _OpenSSL_ library is
+of `Boost.Beast/Boost.ASIO/OpenSSL` as the certificate verification is being
+done at the very beginning of HTTPS request processing. `OpenSSL` library is
 responsible for determining whether certificate is valid or not. For certificate
 to be marked as valid, it (and every certificate in chain) has to meet these
 conditions:
@@ -216,9 +216,9 @@ conditions:
 - certificate cannot be self-signed
 - issuer name has to match CA's subject name
 
-After these checks a callback is invoked providing result of user<->CA matching
-status. There, in case of success Redfish extracts username from `CommonName`
-and verifies if user does exist in the system.
+After these checks a callback is invoked providing result of `user<->CA`
+matching status. There, in case of success Redfish extracts username from
+`CommonName` and verifies if user does exist in the system.
 
 As can be seen on the flow diagram, Redfish will use **the first valid**
 credentials according to processing sequence. It is recommended for user to use
@@ -268,8 +268,8 @@ confirm that their behavior did not change, and did not suffer any regression.
 
 As for TLS auth itself:
 
-1. Flow described in [Process overview](###process-overview) should be tested,
-   to confirm that after going through it, everything works as expected.
+1. Flow described in [Process overview](#process-overview) should be tested, to
+   confirm that after going through it, everything works as expected.
 2. Validity period tests - to confirm that certificates that are not-yet-valid
    and expired ones are not accepted, by both - changing validity periods in
    certificates themselves, as well as modifying time on BMC itself

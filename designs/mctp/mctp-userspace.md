@@ -1,6 +1,6 @@
 # OpenBMC platform communication channel: MCTP & PLDM in userspace
 
-Author: Jeremy Kerr <jk@ozlabs.org> <jk>
+Author: Jeremy Kerr <jk@ozlabs.org> `jk`
 
 Please refer to the [MCTP Overview](mctp.md) document for general MCTP design
 description, background and requirements.
@@ -25,12 +25,12 @@ handling local MCTP-stack configuration, like local EID assignments.
 
 This daemon has a few components:
 
-1.  the core MCTP stack
+1. the core MCTP stack
 
-2.  one or more binding implementations (eg, MCTP-over-serial), which interact
-    with the hardware channel(s).
+2. one or more binding implementations (eg, MCTP-over-serial), which interact
+   with the hardware channel(s).
 
-3.  an interface to handler applications over a unix-domain socket.
+3. an interface to handler applications over a unix-domain socket.
 
 The proposed implementation here is to produce an MCTP "library" which provides
 the packetisation and routing functions, between:
@@ -88,7 +88,7 @@ are free to adopt it as they see fit.
 MCTP handlers (ie, clients of the demultiplexer) connect using a unix-domain
 socket, at the abstract socket address:
 
-```
+```text
 \0mctp-demux
 ```
 
@@ -104,7 +104,7 @@ the send/recv syscalls to interact with the socket.
 
 Each message has a fixed small header:
 
-```
+```cpp
 uint8_t eid
 ```
 

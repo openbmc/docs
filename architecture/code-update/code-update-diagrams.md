@@ -4,7 +4,7 @@
 
 ## High-Level Overview
 
-```
+```ascii
 ┌──────────────┐            ┌─────────────┐       ┌────────────┐
 │User Interface│            │Image Manager│       │Item Updater│
 └──────┬───────┘            └──────┬──────┘       └──────┬─────┘

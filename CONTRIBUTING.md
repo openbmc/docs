@@ -17,7 +17,7 @@ help you resolve them.
 OpenBMC relies on the Open Compute Project to provide guidelines on inclusive
 naming. The OCP guidelines can be found here:
 
-https://www.opencompute.org/documents/ocp-terminology-guidelines-for-inclusion-and-openness
+<https://www.opencompute.org/documents/ocp-terminology-guidelines-for-inclusion-and-openness>
 
 ## Structure
 
@@ -47,7 +47,7 @@ If you work for someone, consider asking them to execute the corporate CLA. This
 allows other contributors that work for your employer to skip the CLA signing
 process, they can just be added to the existing CCLA Schedule A.
 
-After signing a CLA, send it to manager@lfprojects.org.
+After signing a CLA, send it to <manager@lfprojects.org>.
 
 If you're looking for a place to get started with OpenBMC, you may want to take
 a look at the issues tagged with 'bitesize'. These are fixes or enhancements
@@ -56,12 +56,12 @@ for a newcomer to start working with.
 
 Check out that list here:
 
-https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3Aopenbmc+label%3Abitesize
+<https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3Aopenbmc+label%3Abitesize>
 
 If you need further details on any of these issues, feel free to add comments.
 
 Performing code reviews is another good way to get started. Go to
-https://gerrit.openbmc.org and click on the "all" and "open" menu items, or if
+<https://gerrit.openbmc.org> and click on the "all" and "open" menu items, or if
 you are interested in a particular repository - for example, "bmcweb" - type
 "status:open project:openbmc/bmcweb" into the search bar and press the "search"
 button. Then select a review. Remember to be positive and add value with every
@@ -78,7 +78,7 @@ upstream project. Otherwise, conventions are chosen based on the language.
 Python source should all conform to PEP8. This style is well established within
 the Python community and can be verified with the 'pycodestyle' tool.
 
-https://www.python.org/dev/peps/pep-0008/
+<https://www.python.org/dev/peps/pep-0008/>
 
 ### Python Formatting
 
@@ -91,7 +91,7 @@ OpenBMC standards for Python match with PEP 8 so in general, a blank setup.cfg
 file is all that's needed. If so desired, enforcement of 80 (vs. the default 79)
 chars is fine as well:
 
-```
+```toml
 [pycodestyle]
 max-line-length = 80
 ```
@@ -102,7 +102,7 @@ they are not unanimously accepted and PEP 8 does not enforce them. It is at the
 repository maintainer's discretion as to whether to enforce the aforementioned
 rules. These rules can be enforced by adding the following to the setup.cfg:
 
-```
+```toml
 [pycodestyle]
 ignore= NONE
 ```
@@ -123,7 +123,7 @@ We follow the
 
 For C code, we typically use the Linux coding style, which is documented at:
 
-http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst
+<http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst>
 
 In short:
 
@@ -135,7 +135,9 @@ In short:
 
 This style can mostly be verified with 'astyle' as follows:
 
-    astyle --style=linux --indent=tab=8 --indent=force-tab=8
+```bash
+astyle --style=linux --indent=tab=8 --indent=force-tab=8
+```
 
 ### C++
 
@@ -235,11 +237,13 @@ practice in many projects which use Git.
 Exceptions to this are allowed in the form of links, which can be represented in
 the form of:
 
-''' This implements [1]
+```markdown
+This implements [1]
 
 ....
 
-[1] https://openbmc.org/myverylongurl. '''
+[1]: https://openbmc.org/myverylongurl.
+```
 
 All commit messages must include a "Signed-off-by" line, which indicates that
 you the contributor have agreed to the Developer Certificate of Origin (see
@@ -258,7 +262,7 @@ different projects depend on each other).
 Commit messages should include a "Tested" field describing how you tested the
 code changes in the patch. Example:
 
-```
+```text
     Tested: I ran unit tests with "make check" (added 2 new tests) and manually
     tested on Witherspoon that Foo daemon no longer crashes at boot.
 ```
@@ -272,9 +276,8 @@ field.
 
 The guidelines in the Linux kernel are very useful:
 
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html
-
-https://www.kernel.org/doc/html/latest/process/submit-checklist.html
+- <https://www.kernel.org/doc/html/latest/process/submitting-patches.html>
+- <https://www.kernel.org/doc/html/latest/process/submit-checklist.html>
 
 Your contribution will generally need to be reviewed before being accepted.
 
@@ -282,22 +285,22 @@ Your contribution will generally need to be reviewed before being accepted.
 
 The OpenBMC Gerrit server supports GitHub credentials, its link is:
 
-https://gerrit.openbmc.org/#/q/status:open
+<https://gerrit.openbmc.org/#/q/status:open>
 
 _One time setup_: Login to the WebUI with your GitHub credentials and verify on
 your Account Settings that your SSH keys were imported:
 
-https://gerrit.openbmc.org/#/settings/
+<https://gerrit.openbmc.org/#/settings/>
 
 Most repositories are supported by the Gerrit server, the current list can be
 found under Projects -> List:
 
-https://gerrit.openbmc.org/#/admin/projects/
+<https://gerrit.openbmc.org/#/admin/projects/>
 
 If you're going to be working with Gerrit often, it's useful to create an SSH
 host block in ~/.ssh/config. Ex:
 
-```
+```text
 Host openbmc.gerrit
         Hostname gerrit.openbmc.org
         Port 29418
@@ -325,7 +328,7 @@ to identify commits that belong to the same review. Configure your git
 repository to automatically add a Change-Id to your commit messages. The steps
 are:
 
-```
+```bash
 gitdir=$(git rev-parse --git-dir)
 curl https://gerrit.openbmc.org/tools/hooks/commit-msg -o ${gitdir}/hooks/commit-msg
 chmod +x ${gitdir}/hooks/commit-msg`
@@ -381,9 +384,9 @@ no dependencies on non-public resources (URLs, repositories, etc).
 
 - D-Bus interfaces are defined in the `phosphor-dbus-interfaces` repository at:
 
-  https://github.com/openbmc/phosphor-dbus-interfaces
+<https://github.com/openbmc/phosphor-dbus-interfaces>
 
-See: http://dbus.freedesktop.org/doc/dbus-api-design.html
+See: <http://dbus.freedesktop.org/doc/dbus-api-design.html>
 
 ## Best practices for C
 
@@ -455,6 +458,7 @@ on its own.
 
 ## Developer's Certificate of Origin 1.1
 
+```text
     By making a contribution to this project, I certify that:
 
     (a) The contribution was created in whole or in part by me and I
@@ -478,3 +482,4 @@ on its own.
         personal information I submit with it, including my sign-off) is
         maintained indefinitely and may be redistributed consistent with
         this project or the open source license(s) involved.
+```

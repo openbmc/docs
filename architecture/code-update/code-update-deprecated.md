@@ -102,12 +102,12 @@ Some optional features are available, see the help for more details:
 An OpenBMC system can download an update image from a TFTP server, and apply
 updates, controlled via REST. The general procedure is:
 
-1.  Prepare system for update
-2.  Configure update settings
-3.  Initiate update
-4.  Check flash status
-5.  Apply update
-6.  Reboot the BMC
+1. Prepare system for update
+2. Configure update settings
+3. Initiate update
+4. Check flash status
+5. Apply update
+6. Reboot the BMC
 
 ### Prepare system for update
 

@@ -1,9 +1,11 @@
 # Hardware Fault Monitor
 
-Author: Claire Weinan (cweinan@google.com), daylight22)
+Author: Claire Weinan <cweinan@google.com> `daylight22`
 
-Other contributors: Heinz Boehmer Fiehn (heinzboehmer@google.com) Drew Walton
-(acwalton@google.com)
+Other contributors:
+
+- Heinz Boehmer Fiehn <heinzboehmer@google.com>
+- Drew Walton <acwalton@google.com>
 
 Created: Aug 5, 2021
 
@@ -31,35 +33,35 @@ The following are a few related existing OpenBMC modules:
 
 - Host Error Monitor logs CPU error information such as CATERR details and takes
   appropriate actions such as performing resets and collecting crashdumps:
-  https://github.com/openbmc/host-error-monitor
+  <https://github.com/openbmc/host-error-monitor>
 
 - bmcweb implements a Redfish webserver for openbmc:
-  https://github.com/openbmc/bmcweb. The Redfish LogService schema is available
-  for logging purposes and the EventService schema is available for a Redfish
-  server to send event notifications to clients.
+  <https://github.com/openbmc/bmcweb>. The Redfish LogService schema is
+  available for logging purposes and the EventService schema is available for a
+  Redfish server to send event notifications to clients.
 
 - Phosphor Debug Collector (phosphor-debug-collector) collects various debug
   dumps and saves them into files:
-  https://github.com/openbmc/phosphor-debug-collector
+  <https://github.com/openbmc/phosphor-debug-collector>
 
 - Dbus-sensors reads and saves sensor values and makes them available to other
-  modules via D-Bus: https://github.com/openbmc/dbus-sensors
+  modules via D-Bus: <https://github.com/openbmc/dbus-sensors>
 
 - SEL logger logs to the IPMI and Redfish system event logs when certain events
   happen, such as sensor readings going beyond their thresholds:
-  https://github.com/openbmc/phosphor-sel-logger
+  <https://github.com/openbmc/phosphor-sel-logger>
 
 - FRU fault manager controls the blinking of LEDs when faults occur:
-  https://github.com/openbmc/phosphor-led-manager/blob/master/fault-monitor/fru-fault-monitor.hpp
+  <https://github.com/openbmc/phosphor-led-manager/blob/master/fault-monitor/fru-fault-monitor.hpp>
 
 - Guard On BMC records and manages a list of faulty components for isolation.
   (Both the host and the BMC may identify faulty components and create guard
   records for them):
-  https://github.com/openbmc/docs/blob/9c79837a8a20dc8e131cc8f046d1ceb4a731391a/designs/guard-on-bmc.md
+  <https://github.com/openbmc/docs/blob/9c79837a8a20dc8e131cc8f046d1ceb4a731391a/designs/guard-on-bmc.md>
 
 There is an OpenCompute Fault Management Infrastructure proposal that also
 recommends delivering error logs from the BMC:
-https://drive.google.com/file/d/1A9Qc7hB3THw0wiEK_dbXYj85_NOJWrb5/
+<https://drive.google.com/file/d/1A9Qc7hB3THw0wiEK_dbXYj85_NOJWrb5/>
 
 ## Requirements
 

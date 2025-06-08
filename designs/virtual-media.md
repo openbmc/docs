@@ -1,10 +1,11 @@
 # Virtual Media (a.k.a. Remote Media)
 
-Author: Pawel Rapkiewicz <pawel.rapkiewicz@intel.com> <pawelr>
+Author: Pawel Rapkiewicz <pawel.rapkiewicz@intel.com> `pawelr`
 
-Other contributors: Przemyslaw Czarnowski
-<przemyslaw.hawrylewicz.czarnowski@intel.com> Anna Platash
-<anna.platash@intel.com>
+Other contributors:
+
+- Przemyslaw Czarnowski <przemyslaw.hawrylewicz.czarnowski@intel.com>
+- Anna Platash <anna.platash@intel.com>
 
 Created: 6/4/2019
 
@@ -291,14 +292,14 @@ next sections. And will be visible despite media is inserted or not.
 Schema will look similar for both Proxy and Legacy Mode. Some key differences as
 follows:
 
-| Field Name           | Proxy Mode | Legacy Mode                      | Comment                                                         |
-| -------------------- | ---------- | -------------------------------- | --------------------------------------------------------------- |
-| InsertMedia          | N/A        | action as described by DMTF spec | Action can return Task object if<br> process is time consumming |
-| Image                | N/A        | image location                   |                                                                 |
-| ImageName            | N/A        | image name                       |                                                                 |
-| ConnectedVia         | "Applet"   | as described by DMTF spec        | applies only for connected media                                |
-| TransferMethod       | "Stream"   | "Stream"                         | "upload" is not supported by design                             |
-| TransferProtocolType | "OEM"      | as described by DMTF spec        |                                                                 |
+| Field Name           | Proxy Mode | Legacy Mode                      | Comment                                                    |
+| -------------------- | ---------- | -------------------------------- | ---------------------------------------------------------- |
+| InsertMedia          | N/A        | action as described by DMTF spec | Action can return Task object if process is time consuming |
+| Image                | N/A        | image location                   |                                                            |
+| ImageName            | N/A        | image name                       |                                                            |
+| ConnectedVia         | "Applet"   | as described by DMTF spec        | applies only for connected media                           |
+| TransferMethod       | "Stream"   | "Stream"                         | "upload" is not supported by design                        |
+| TransferProtocolType | "OEM"      | as described by DMTF spec        |                                                            |
 
 #### Virtual Media OEM Extension
 
@@ -306,7 +307,7 @@ Virtual Media schema is adapted to Legacy Mode where image is given by user
 directly via Redfish action and whole connection is processed between service
 and web server.
 
-For [Proxy Mode](#Proxy-Mode) nbd data is served by client web browser. Having
+For [Proxy Mode](#proxy-mode) nbd data is served by client web browser. Having
 multiple connections, in order to setup connection, client needs the information
 about the location of websocket created by web server. This value is exposed as
 OEM `WebSocketEndpoint` property for each item.

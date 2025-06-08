@@ -86,7 +86,7 @@ Redfish feature and it requires inserting specially formed Redfish-specific
 logging messages into any application that wants to record these events, tightly
 coupling all applications to the Redfish implementation. It has also been
 observed that these [strings][app-example], when used, are often out of date
-with the [message registry][registry-example] advertised by `bmcweb`. Some
+with the [message registry][obmc-registry-example] advertised by `bmcweb`. Some
 maintainers have rejected adding new Redfish-specific logging messages to their
 applications.
 
@@ -102,7 +102,7 @@ applications.
   https://github.com/openbmc/docs/blob/master/architecture/redfish-logging-in-bmcweb.md
 [app-example]:
   https://github.com/openbmc/phosphor-post-code-manager/blob/f2da78deb3a105c7270f74d9d747c77f0feaae2c/src/post_code.cpp#L143
-[registry-example]:
+[obmc-registry-example]:
   https://github.com/openbmc/bmcweb/blob/4ba5be51e3fcbeed49a6a312b4e6b2f1ea7447ba/redfish-core/include/registries/openbmc.json#L5
 
 ### Existing phosphor-logging implementation

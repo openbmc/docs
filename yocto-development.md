@@ -58,7 +58,7 @@ part of your flash image.
 Run the devtool command to add your repo to the workspace. In my example I have
 a repo out on GitHub that contains my code.
 
-```
+```bash
 devtool add welcome https://github.com/causten/hello.git
 ```
 
@@ -68,8 +68,8 @@ the complete path.
 
 Add/Modify these lines.
 
-```
-do_install () {
+```bash
+do_install() {
         install -m 0755 -d ${D}${bindir} ${D}${datadir}/welcome
         install -m 0644 ${S}/hello ${D}${bindir}
         install -m 0644 ${S}/README.md ${D}${datadir}/welcome/
@@ -82,7 +82,7 @@ Now BitBake will pick them up from the traditional `/usr/bin` and
 
 The Final Step is to tell BitBake that you need the `welcome` recipe
 
-```
+```bash
 vim conf/local.conf
 IMAGE_INSTALL_append = " welcome"
 ```
@@ -98,14 +98,14 @@ path is the staging area where files are placed to be packaged.
 
 In my example to check if README.md was going to be added just do...
 
-```
+```bash
 ls build/tmp/work/${MACHINE}-openbmc-linux-gnueabi/obmc-phosphor-image/1.0-r0/rootfs/usr/share/welcome/README.md
 ```
 
 NXP wrote a few examples of [useful](https://community.nxp.com/docs/DOC-94953)
 commands with BitBake that find the file too
 
-```
+```bash
 bitbake -g obmc-phosphor-image && cat pn-depends.dot |grep welcome
 ```
 

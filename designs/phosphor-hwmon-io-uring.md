@@ -71,7 +71,7 @@ operation non-blocking by using an io_uring wrapper. A caching layer will be
 used to store the read results, which will be the main access point for
 obtaining sensor reads in mainloop.cpp.
 
-```
+```ascii
                Interface Layer
 +--------------------------------------------+
 |                                            |

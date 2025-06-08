@@ -1,6 +1,6 @@
 # OpenBMC platform communication channel: MCTP & PLDM
 
-Author: Jeremy Kerr <jk@ozlabs.org> <jk>
+Author: Jeremy Kerr <jk@ozlabs.org> `jk`
 
 ## Problem Description
 
@@ -31,13 +31,13 @@ MCTP defines a standard transport protocol, plus a number of separate physical
 layer bindings for the actual transport of MCTP packets. These are defined by
 the DMTF's Platform Management Working group; standards are available at:
 
-https://www.dmtf.org/standards/pmci
+<https://www.dmtf.org/standards/pmci>
 
 The following diagram shows how these standards map to the areas of
 functionality that we may want to implement for OpenBMC. The DSP numbers
 provided are references to DMTF standard documents.
 
-![](mctp-standards.svg)
+![MCTP Diagram](mctp-standards.svg)
 
 One of the key concepts here is that separation of transport protocol from the
 physical layer bindings; this means that an MCTP "stack" may be using either a
