@@ -65,8 +65,8 @@ HPE-specific bootloader in the block fetches the VPD blob from the secure
 element via third party driver. From here, the data blob is copied to a
 predetermined location in RAM, where it is retrieved and parsed by HPE-specific
 code in u-Boot (open-sourced, and available at
-https://github.com/HewlettPackard/gxp-uboot). In the future, we'll be aiming to
-upstream as much 'HPE-critical' u-boot code as needed so that an HPE-specific
+<https://github.com/HewlettPackard/gxp-uboot>). In the future, we'll be aiming
+to upstream as much 'HPE-critical' u-boot code as needed so that an HPE-specific
 u-boot fork will not be needed to boot HPE hardware.
 
 Additionally, code in u-Boot gathers MAC addresses for the BMC's network
@@ -145,23 +145,23 @@ High Level Flow:
 
 ## Alternatives Considered
 
-### Entity-Manager probes are extended to handle reading data from arbitrary<br/>device-tree nodes
+### Entity-Manager probes are extended to handle reading data from arbitrary device-tree nodes
 
-#### Pros:
+#### Pros
 
 1. No new daemon required
 
-#### Cons:
+#### Cons
 
 1. May encourage undesired device-tree exploitation
 
-### A reserved-memory node in device-tree is used for transport of<br/>'serial-number' and 'model' ID data
+### A reserved-memory node in device-tree is used for transport of 'serial-number' and 'model' ID data
 
-#### Pros:
+#### Pros
 
 1. Reserved-memory is commonly used for passing data from firmware
 
-#### Cons:
+#### Cons
 
 1. Has no well-known handles for common properties like /model or /serial-number
    like device-tree does; makes more sense for keeping arbitrary data instead of
@@ -178,7 +178,7 @@ High Level Flow:
 
 ### All VPD is exposed as devicetree attributes under /chosen/
 
-#### Pros:
+#### Pros
 
 1. Is a well-established device-tree node
 2. Is not being used by other BMC platforms, so easy to enable/disable service
@@ -186,7 +186,7 @@ High Level Flow:
 3. Values can be set from u-Boot via modifications to the flattened device tree
    available to it (applicable to arbitrary device-tree paths)
 
-#### Cons:
+#### Cons
 
 1. Not a 'usual' location for passing this kind HW-tied data. Unlikely to ever
    be used for moving product data by other entities, so such a daemon would be
@@ -194,39 +194,39 @@ High Level Flow:
 2. Presenting HW-specific data here appears to go against the intended use of
    'chosen' node
 
-### Vital product data is published to u-Boot environment variables, then<br/>transferred to D-Bus
+### Vital product data is published to u-Boot environment variables, then transferred to D-Bus
 
-#### Pros:
+#### Pros
 
 1. Would increase code reuse and testing
 
-#### Cons:
+#### Cons
 
 1. Potential issues with limited writes to memory where u-boot env variables are
    stored in memory.
 2. HPE component that retrieves VPD from HPE's secure element has no
    knowledge/ability to alter u-boot environmental variables
 
-### Use an HPE-specific daemon instead of a generalized'[channel]-> D-Bus'<br/>daemon
+### Use an HPE-specific daemon instead of a generalized'[channel]-> D-Bus' daemon
 
-#### Pros:
+#### Pros
 
 1. Simpler (slightly?) code
 2. Would only fire for HPE platforms
 3. Better abstraction
 
-#### Cons:
+#### Cons
 
 1. Doesn't save much effort compared to a generalized non-HPE-specific solution
 2. Harder to leverage code for potential future cases
 
 ### Service is hosted in Entity-Manager [ACCEPTED after TOF re-examination]
 
-#### Pros:
+#### Pros
 
 1. Would operate in parallel to existing Fru_Device daemon
 
-#### Cons:
+#### Cons
 
 1. Community doesn't want to host VPD -> DBus daemons in Entity-Manager repo
 
@@ -235,25 +235,25 @@ would be better to host this device-tree VPD daemon in Entity-Manager alongside
 the existing fru-device daemon rather than to create a dedicated repo for a
 daemon as simple as this one, or to force into another even less-related repo.
 
-https://github.com/openbmc/technical-oversight-forum/issues/38
+<https://github.com/openbmc/technical-oversight-forum/issues/38>
 
 ### Service is hosted in Phosphor-u-boot-env-mgr
 
-#### Pros:
+#### Pros
 
 1. Repo is already associated with u-boot operations
 
-#### Cons:
+#### Cons
 
 1. Current repo maintainer feels the service doesn't fit this repo because the
    purpose is explicitly to deal with manipulation of u-boot env variables,
    which this service is not involved with.
 
-   https://gerrit.openbmc.org/c/openbmc/phosphor-u-boot-env-mgr/+/71512
+   <https://gerrit.openbmc.org/c/openbmc/phosphor-u-boot-env-mgr/+/71512>
 
-### Addendum: Rejected D-Bus interfaces for pending device-tree -> D-Bus<br/>daemon
+### Addendum: Rejected D-Bus interfaces for pending device-tree -> D-Bus daemon
 
-#### Existing interfaces (rejected):
+#### Existing interfaces (rejected)
 
 1. Proposal: xyz.openbmc_project.Decorator.\*
 
@@ -268,7 +268,7 @@ https://github.com/openbmc/technical-oversight-forum/issues/38
    property).
 
    Discussion @
-   https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/73260/comment/e0226ae4_d7e514dd/
+   <https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/73260/comment/e0226ae4_d7e514dd/>
 
    Follow-up 2: Sticking with Inventory.Decorator.Asset, but removing MAC
    address properties to reduce unneeded complexity.
@@ -277,7 +277,7 @@ https://github.com/openbmc/technical-oversight-forum/issues/38
 
    Rejection: The data is not coming from a FRU device
 
-#### Proposed interfaces (rejected):
+#### Proposed interfaces (rejected)
 
 1. Proposal: xyz.openbmc_project.DeviceTree
 2. Proposal: xyz.openbmc_project.uBootHWID
@@ -319,7 +319,7 @@ https://github.com/openbmc/technical-oversight-forum/issues/38
    MACAddress.." - Patrick Williams
 
    Discussion @
-   https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/73260/comment/e0226ae4_d7e514dd/
+   <https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/73260/comment/e0226ae4_d7e514dd/>
 
    Follow-up: Landed on interface: xyz.openbmc_project.Inventory.Decorator.Asset
    @ path xyz/openbmc_project/MachineContext
@@ -334,7 +334,7 @@ device-tree/serial-number), no further work will be done, so there is expected
 to be no noticeable performance or functional impact to platforms that don't
 rely on this service for Entity-Manager HW/config detection.
 
-## Organizational:
+## Organizational
 
 ### Does this design require a new repository?
 

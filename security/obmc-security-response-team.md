@@ -13,16 +13,16 @@ The main pieces are:
 
 The basic workflow is:
 
-1.  A community member reports a problem privately to the security response team
-    (and to the repository maintainers if known).
-2.  The responders (including the security response team, the repository
-    maintainers, and the problem submitter) work to understand the problem.
-3.  The repository maintainer creates an OpenBMC security advisory which
-    explains the problem, its severity, and how to protect your systems that
-    were built on OpenBMC.
-4.  The responders privately engage community members to create workarounds and
-    fixes and to negotiate disclosure dates.
-5.  The OpenBMC security advisory is published along with any accompanying CVEs.
+1. A community member reports a problem privately to the security response team
+   (and to the repository maintainers if known).
+2. The responders (including the security response team, the repository
+   maintainers, and the problem submitter) work to understand the problem.
+3. The repository maintainer creates an OpenBMC security advisory which explains
+   the problem, its severity, and how to protect your systems that were built on
+   OpenBMC.
+4. The responders privately engage community members to create workarounds and
+   fixes and to negotiate disclosure dates.
+5. The OpenBMC security advisory is published along with any accompanying CVEs.
 
 Note that the OpenBMC security response team is distinct from the OpenBMC
 security working group which remains completely open.

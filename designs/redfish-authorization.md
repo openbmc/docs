@@ -1,6 +1,6 @@
 # Dynamic Redfish Authorization
 
-Author: Nan Zhou (nanzhoumails@gmail.com)
+Author: Nan Zhou <nanzhoumails@gmail.com>
 
 Created: 08/08/2022
 
@@ -50,10 +50,10 @@ and properties of `Mappings` are all read-only.
 
 References:
 
-1. https://redfish.dmtf.org/schemas/DSP0266_1.15.1.html#privilege-model
-2. https://redfish.dmtf.org/schemas/DSP0266_1.15.1.html#redfish-service-operation-to-privilege-mapping
-3. https://redfish.dmtf.org/schemas/DSP0266_1.15.1.html#roles
-4. https://redfish.dmtf.org/registries/v1/Redfish_1.3.0_PrivilegeRegistry.json
+1. <https://redfish.dmtf.org/schemas/DSP0266_1.15.1.html#privilege-model>
+2. <https://redfish.dmtf.org/schemas/DSP0266_1.15.1.html#redfish-service-operation-to-privilege-mapping>
+3. <https://redfish.dmtf.org/schemas/DSP0266_1.15.1.html#roles>
+4. <https://redfish.dmtf.org/registries/v1/Redfish_1.3.0_PrivilegeRegistry.json>
 
 ### Phosphor-user-manager
 
@@ -71,11 +71,11 @@ convert Linux system calls to LDAP queries.
 
 References:
 
-1. https://github.com/openbmc/docs/blob/master/architecture/user-management.md
-2. https://github.com/openbmc/phosphor-user-manager
-3. https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/User
-4. https://linux.die.net/man/8/nslcd
-5. https://linux.die.net/man/8/nscd
+1. <https://github.com/openbmc/docs/blob/master/architecture/user-management.md>
+2. <https://github.com/openbmc/phosphor-user-manager>
+3. <https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/User>
+4. <https://linux.die.net/man/8/nslcd>
+5. <https://linux.die.net/man/8/nscd>
 
 ### BMCWeb
 
@@ -121,9 +121,9 @@ of an given resource URI, which is what the BMCWEB_ROUTE macro has defined.
 
 References:
 
-1. https://github.com/openbmc/bmcweb/blob/d9f6c621036162e9071ce3c3a333b4544c6db870/include/authentication.hpp
-2. https://github.com/openbmc/bmcweb/blob/d9f6c621036162e9071ce3c3a333b4544c6db870/http/http_connection.hpp
-3. https://github.com/openbmc/bmcweb/blob/d9f6c621036162e9071ce3c3a333b4544c6db870/redfish-core/lib/roles.hpp
+1. <https://github.com/openbmc/bmcweb/blob/d9f6c621036162e9071ce3c3a333b4544c6db870/include/authentication.hpp>
+2. <https://github.com/openbmc/bmcweb/blob/d9f6c621036162e9071ce3c3a333b4544c6db870/http/http_connection.hpp>
+3. <https://github.com/openbmc/bmcweb/blob/d9f6c621036162e9071ce3c3a333b4544c6db870/redfish-core/lib/roles.hpp>
 
 ### Gaps
 
@@ -256,7 +256,7 @@ privileges "ConfigureSelf" and "OemPrivPower".
 The following diagram shows how assigned privileges of a power control service
 with identity (username in PAM, or CN/SAN in TLS) "power-service" is resolved.
 
-```
+```ascii
  +-----------------+
  |  power service  |
  |                 |
@@ -360,7 +360,7 @@ In summary, a typical workflow to create a new local user with an new OEM
 Redfish role which is assigned a new set of OEM Redfish Privileges is mapped out
 below.
 
-```
+```ascii
          Root User                    BMCWeb                  Phosphor-User-Manager             Linux
               |   PATCH PrivilegeRegistry |                              |                        |
               |-------------------------->|   DBus: createGroup          |                        |
@@ -475,7 +475,7 @@ the Operation-to-Privilege Mapping in-memory Data Structure.
 
 A example execution flow for a read operation is mapped out below.
 
-```
+```ascii
     +---------------+
     |   BMCWeb      | Get
     |    routing    | /redfish/v1/Managers/${ManagerId}/EthernetInterfaces/
@@ -538,7 +538,7 @@ attributes directly, e.g., patch the POST privilege array of OperationMap of
 Entity EthernetInterface so that users with "OemEthernetManager" can also send
 GET to EthernetInterface.
 
-```
+```json
 {
     Entity": "EthernetInterface",
     "OperationMap": {

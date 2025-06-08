@@ -91,7 +91,7 @@ PFR in OpenBMC must support logging of resiliency error detection and
 correction. Below are two metadata entries in redfish message registry for
 redfish event logging capability. For more details on how to log redfish events
 can be found at document
-[Redfish logging in bmcweb ](https://github.com/openbmc/docs/blob/master/redfish-logging-in-bmcweb.md).
+[Redfish logging in bmcweb](https://github.com/openbmc/docs/blob/master/redfish-logging-in-bmcweb.md).
 
 Below type of events should be logged as part of PFR or provisioning. These
 redfish events are created for basic firmware components BIOS, BMC, CPLD and ME
@@ -147,7 +147,7 @@ and must be extended whenever new firmware modules are supported under PFR.
 
 Event logs associated with BMC component is specified here as example.
 
-```
+```text
     MessageEntry{"BMCFirmwareResiliencyError",
                  {
                      "Indicates BMC firmware encountered resilience error",
@@ -199,7 +199,7 @@ Provisiong status:
   Method. Intel uses "Intel PFR" design (via BIOS) to provision and lock the PFR
   provisioning status.
 
-```
+```text
 URI: /redfish/v1/Systems/system
 METHOD: GET
 RESPONSE:
@@ -230,14 +230,14 @@ Event logs:
 
   Few examples to attack Firmware components and validate PFR:
 
-  1.  Corrupt the BMC/BIOS etc... firmware and check Panic events and recovery
-      actions events.
+  1. Corrupt the BMC/BIOS etc... firmware and check Panic events and recovery
+     actions events.
 
-  2.  Induce hardware watchdog trigger using known methods and check. etc..
+  2. Induce hardware watchdog trigger using known methods and check. etc..
 
-  3.  Corrupt the security key's by directly mocking hardware and validate.
+  3. Corrupt the security key's by directly mocking hardware and validate.
 
-```
+```text
 URI: /redfish/v1/Systems/system/LogServices/EventLog/Entries
 METHOD: GET
 ```

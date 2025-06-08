@@ -1,6 +1,6 @@
 # PLDM stack on OpenBMC
 
-Author: Deepak Kodihalli <dkodihal@linux.vnet.ibm.com> <dkodihal>
+Author: Deepak Kodihalli <dkodihal@linux.vnet.ibm.com> `dkodihal`
 
 Created: 2019-01-22
 
@@ -40,7 +40,7 @@ currently defined Types (and corresponding specs) are : PLDM base (with
 associated IDs and states specs), BIOS, FRU, Platform monitoring and control,
 Firmware Update and SMBIOS. All these specifications are available at:
 
-https://www.dmtf.org/standards/pmci
+<https://www.dmtf.org/standards/pmci>
 
 Some of the reasons PLDM sounds promising (some of these are advantages over
 IPMI):
@@ -223,7 +223,7 @@ A requester app/flow comprises of the following :
 
 a) With blocking API
 
-```
+```text
 +---------------+               +----------------+            +----------------+               +-----------------+
 |BMC requester/ |               |PLDM requester  |            |PLDM responder  |               |PLDM Daemon      |
 |client app     |               |lib (part of    |            |                |               |                 |
@@ -277,7 +277,7 @@ a) With blocking API
 
 b) With non-blocking API
 
-```
+```text
 +---------------+               +----------------+            +----------------+             +---------------+
 |BMC requester/ |               |PLDM requester  |            |PLDM responder  |             |PLDM daemon    |
 |client app     |               |lib (part of    |            |                |             |               |
@@ -335,7 +335,7 @@ b) With non-blocking API
 
 a) Define D-Bus interfaces to send and receive PLDM messages :
 
-```
+```python
 method sendPLDM(uint8 mctp_eid, uint8 msg[])
 
 signal recvPLDM(uint8 mctp_eid, uint8 pldm_instance_id, uint8 msg[])
@@ -376,8 +376,8 @@ This design is built around the pldmd on the BMC:
   by sending it the PLDM GetFRURecordTable command. The pldmd should send this
   command if the host indicates support for the PLDM FRU spec. The pldmd
   receives a PLDM FRU record table from the host firmware (
-  www.dmtf.org/sites/default/files/standards/documents/DSP0257_1.0.0.pdf). The
-  daemon parses the FRU record table and hosts the PLDM FRU information on
+  <https://www.dmtf.org/sites/default/files/standards/documents/DSP0257_1.0.0.pdf>).
+  The daemon parses the FRU record table and hosts the PLDM FRU information on
   D-Bus.
 
 - Pldmd will also host the FRU inventory D-Bus from the xyz.openbmc_project.
@@ -517,7 +517,7 @@ PDRs.
 
 After doing the discovery of PLDM sensors, `pldmd` should initialize all found
 sensors by necessary commands (e.g., `SetNumericSensorEnable`,
-`SetSensorThresholds`, `SetSensorHysteresis and `InitNumericSensor`) and then
+`SetSensorThresholds`, `SetSensorHysteresis` and `InitNumericSensor`) and then
 start to update the sensor status to D-bus objects by polling or async event
 method depending on the capability of PLDM terminus.
 

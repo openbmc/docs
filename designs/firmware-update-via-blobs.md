@@ -21,11 +21,11 @@ update mechanism that can be done in-band between the host and the BMC.
 In-band here refers to a communications channel that is directly connected
 between the host and BMC.
 
-1.  Serial
-1.  IPMI over LPC
-1.  IPMI over i2c
-1.  LPC Memory-Mapped Region
-1.  P2A bridge
+1. Serial
+1. IPMI over LPC
+1. IPMI over i2c
+1. LPC Memory-Mapped Region
+1. P2A bridge
 
 ## Primer
 
@@ -186,60 +186,60 @@ the transport mechanism selected. Some mechanisms require a handshake.
 
 #### BlockTransfer Sequence
 
-1.  Open (for Image or tarball)
-1.  Write
-1.  Close
-1.  Open (`/flash/hash`)
-1.  Write
-1.  Close
-1.  Open (`/flash/verify`)
-1.  Commit
-1.  SessionStat (to read back verification status)
-1.  Close
-1.  Open (`/flash/update`)
-1.  Commit
-1.  SessionStat (to read back update status)
-1.  Close
+1. Open (for Image or tarball)
+1. Write
+1. Close
+1. Open (`/flash/hash`)
+1. Write
+1. Close
+1. Open (`/flash/verify`)
+1. Commit
+1. SessionStat (to read back verification status)
+1. Close
+1. Open (`/flash/update`)
+1. Commit
+1. SessionStat (to read back update status)
+1. Close
 
 #### P2A Sequence
 
-1.  Open (for Image or tarball)
-1.  SessionStat (P2A Region for P2A mapping)
-1.  Write
-1.  Close
-1.  Open (`/flash/hash`)
-1.  SessionStat (P2A Region)
-1.  Write
-1.  Close
-1.  Open (`/flash/verify`)
-1.  Commit
-1.  SessionStat (to read back verification status)
-1.  Close
-1.  Open (`/flash/update`)
-1.  Commit
-1.  SessionStat (to read back update status)
-1.  Close
+1. Open (for Image or tarball)
+1. SessionStat (P2A Region for P2A mapping)
+1. Write
+1. Close
+1. Open (`/flash/hash`)
+1. SessionStat (P2A Region)
+1. Write
+1. Close
+1. Open (`/flash/verify`)
+1. Commit
+1. SessionStat (to read back verification status)
+1. Close
+1. Open (`/flash/update`)
+1. Commit
+1. SessionStat (to read back update status)
+1. Close
 
 #### LPC Sequence
 
-1.  Open (for image or tarball)
-1.  WriteMeta (specify region information from host for LPC)
-1.  SessionStat (verify the contents from the above)
-1.  Write
-1.  Close
-1.  Open (`/flash/hash`)
-1.  WriteMeta (LPC Region)
-1.  SessionStat (verify LPC config)
-1.  Write
-1.  Close
-1.  Open (`/flash/verify`)
-1.  Commit
-1.  SessionStat (to read back verification status)
-1.  Close
-1.  Open (`/flash/update`)
-1.  Commit
-1.  SessionStat (to read back update status)
-1.  Close
+1. Open (for image or tarball)
+1. WriteMeta (specify region information from host for LPC)
+1. SessionStat (verify the contents from the above)
+1. Write
+1. Close
+1. Open (`/flash/hash`)
+1. WriteMeta (LPC Region)
+1. SessionStat (verify LPC config)
+1. Write
+1. Close
+1. Open (`/flash/verify`)
+1. Commit
+1. SessionStat (to read back verification status)
+1. Close
+1. Open (`/flash/update`)
+1. Commit
+1. SessionStat (to read back update status)
+1. Close
 
 ### Stale Images
 
@@ -265,7 +265,7 @@ The blob open primitive allows supplying blob specific flags. These flags are
 used for specifying the transport mechanism. To obtain the list of supported
 mechanisms on a platform, see the `Stat` command below.
 
-```
+```cpp
 enum OpenFlags
 {
     read = (1 << 0),
@@ -314,7 +314,7 @@ The data section of the payload is only data.
 
 The data section of the payload is the following structure:
 
-```
+```cpp
 struct ExtChunkHdr
 {
     uint32_t length; /* Length of the data queued (little endian). */
@@ -325,7 +325,7 @@ struct ExtChunkHdr
 
 The data section of the payload is the following structure:
 
-```
+```cpp
 struct ExtChunkHdr
 {
     uint32_t length; /* Length of the data queued (little endian). */
@@ -371,8 +371,8 @@ change this behavior.
 
 Aborts any update that's in progress:
 
-1.  Stops the verify_image.service if started.
-1.  Deletes any staged files.
+1. Stops the verify_image.service if started.
+1. Deletes any staged files.
 
 In the event the update is already in progress, such as the tarball mechanism is
 used and in the middle of updating the files, it cannot be aborted.
@@ -382,7 +382,7 @@ used and in the middle of updating the files, it cannot be aborted.
 Blob stat on a blob_id (not SessionStat) will return the capabilities of the
 blob_id handler.
 
-```
+```cpp
 struct BmcBlobStatRx {
     uint16_t crc16;
     /* This will have the bits set from the FirmwareUpdateFlags enum. */
@@ -396,7 +396,7 @@ struct BmcBlobStatRx {
 
 If called pre-commit, it'll return the following information:
 
-```
+```cpp
 struct BmcBlobStatRx {
     uint16_t crc16;
     uint16_t blob_state; /* OpenFlags::write | (one of the interfaces) */
@@ -409,7 +409,7 @@ If it's called and the data transport mechanism is P2A, it'll return a 32-bit
 address for use to configure the P2A region as part of the metadata portion of
 the `BmcBlobStatRx`.
 
-```
+```cpp
 struct BmcBlobStatRx {
     uint16_t crc16;
     uint16_t blob_state; /* OpenFlags::write | (one of the interfaces) */
@@ -423,7 +423,7 @@ struct BmcBlobStatRx {
 
 If called post-commit on the verify file session, it'll return:
 
-```
+```cpp
 struct BmcBlobStatRx {
     uint16_t crc16;
     uint16_t blob_state; /* OPEN_W | (one of the interfaces) */
@@ -443,7 +443,7 @@ enum VerifyCheckResponses
 
 If called post-commit on the update file session, it'll return:
 
-```
+```cpp
 struct BmcBlobStatRx {
     uint16_t crc16;
     uint16_t blob_state; /* OPEN_W | (one of the interfaces) */
@@ -473,7 +473,7 @@ window.
 
 The write meta command's blob will be this structure:
 
-```
+```cpp
 struct LpcRegion
 {
     uint32_t address; /* Host LPC address where the chunk is to be mapped. */

@@ -58,37 +58,37 @@ the new additions and changes:
 
 1. Driver Provision by BMC Vendors:
 
-- Each BMC vendor must provide a driver to retrieve the BMC reboot cause and
-  record the result at the specified location.
+   - Each BMC vendor must provide a driver to retrieve the BMC reboot cause and
+     record the result at the specified location.
 
 2. Definition and Identification of Reboot Cause Type **Software Reset**:
 
-- This one is still under discussion, please refer to the following link for
-  more detail:
-  https://lore.kernel.org/all/9565c496-44d8-4214-8038-931926210d0f@roeck-us.net/
+   - This one is still under discussion, please refer to the following link for
+     more detail:
+     <https://lore.kernel.org/all/9565c496-44d8-4214-8038-931926210d0f@roeck-us.net/>
 
 3. Revise the Definition of **WDIOF_CARDRESET**:
 
-- The **WDIOF_CARDRESET** type will now specifically indicate resets caused by
-  the watchdog.
+   - The **WDIOF_CARDRESET** type will now specifically indicate resets caused
+     by the watchdog.
 
 4. Clarification of The **Power-on-reset case**:
 
-- When a BMC reset occured, but the flag in the bootstatus remains unchanged by
-  the watchdog driver (i.e., it stays at 0), this indicates that a
-  **Power-on-reset** has occurred.
+   - When a BMC reset occured, but the flag in the bootstatus remains unchanged
+     by the watchdog driver (i.e., it stays at 0), this indicates that a
+     **Power-on-reset** has occurred.
 
 5. Update Reboot Cause Interpretation:
 
-| phosphor-state-manager | bootstatus value | watchdog driver                  |
-| ---------------------- | ---------------- | -------------------------------- |
-| WDIOF_CARDRESET        | 0x20             | return 0x20 if reset by Watchdog |
-| POR                    | 0x00             | Do nothing                       |
+   | phosphor-state-manager | bootstatus value | watchdog driver                  |
+   | ---------------------- | ---------------- | -------------------------------- |
+   | WDIOF_CARDRESET        | 0x20             | return 0x20 if reset by Watchdog |
+   | POR                    | 0x00             | Do nothing                       |
 
 6. Generate Corresponding Event Log:
 
-- After interpreting the reboot cause, the system should issue the corresponding
-  event log based on the determined type.
+   - After interpreting the reboot cause, the system should issue the
+     corresponding event log based on the determined type.
 
 ## Alternatives Considered
 

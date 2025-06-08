@@ -56,7 +56,7 @@ phosphor-usb-code-update). The design process is as follows:
 
 The udev rules files for example:
 
-```
+```udev
 SUBSYSTEM=="block", ACTION=="add", ENV{ID_USB_DRIVER}=="usb-storage", ENV{DEVTYPE}=="partition", ENV{SYSTEMD_WANTS}="usb-code-update@%k", TAG+="systemd"
 ```
 

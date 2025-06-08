@@ -106,7 +106,7 @@ nothing in the base design would inhibit the ability to implement these later.
 
 The pseudo flow for an update is:
 
-```
+```bash
 Discover UpdateService location
 HttpPushUri = GET https://${bmc}/redfish/v1/UpdateService
 POST ApplyTime property in
@@ -139,7 +139,7 @@ associated with the software inventory items will be used as a mechanism to
 provide status of inventory items back to the user. Here is the mapping of
 [phosphor activation states][13] to [Redfish Status States][14].
 
-```
+```text
 NotReady   -> Disabled
 Invalid    -> Disabled
 Ready      -> Disabled
@@ -179,7 +179,7 @@ file name so there will be some parsing required.
 
 The pseudo flow for an update is:
 
-```
+```bash
 # Discover SimpleUpdate URI Action location
 GET https://${bmc}/redfish/v1/UpdateService
 

@@ -150,7 +150,7 @@ guard a unit which is present in the inventory.
 
 #### redfish » v1 » Systems » system » Processors » CPU1
 
-```
+```json
 {
   "@odata.type": "#Processor.v1_7_0.Processor",
   "Id":view details "CPU1",
@@ -181,7 +181,7 @@ guard a unit which is present in the inventory.
 
 #### >> Entries
 
-```
+```json
 {
   "@odata.id": "/redfish/v1/Systems/system/LogServices/IsolatedHardware/Entries",
   "@odata.type": "#LogEntryCollection.LogEntryCollection",

@@ -58,8 +58,6 @@ Follow links to learn more about OpenBMC features:
   https://github.com/openbmc/docs/blob/master/architecture/code-update/code-update.md
 [hardware diagnostics]:
   https://github.com/openbmc/openpower-hw-diags/blob/master/README.md
-[host management]:
-  https://github.com/openbmc/docs/blob/master/host-management.md
 [host management rest apis]:
   https://github.com/openbmc/docs/blob/master/host-management.md
 [ipmi in band]:

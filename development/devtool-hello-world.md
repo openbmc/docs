@@ -21,7 +21,7 @@ environment, right after doing the ". setup" command.
 
 1. Use devtool to extract source code
 
-   ```
+   ```bash
    devtool modify phosphor-state-manager
    ```
 
@@ -29,25 +29,25 @@ environment, right after doing the ". setup" command.
 
 2. Modify a source file and add a cout
 
-   ```
+   ```bash
    vi workspace/sources/phosphor-state-manager/bmc_state_manager_main.cpp
    ```
 
    Your diff should look something like this:
 
-   ```
+   ```bash
    +#include <iostream>
 
    int main(int argc, char**)
    {
    @@ -17,6 +18,8 @@ int main(int argc, char**)
 
-        bus.request_name(BMC_BUSNAME);
+       bus.request_name(BMC_BUSNAME);
 
    +    std::cout<<"Hello World" <<std::endl;
    +
-        while (true)
-        {
+       while (true)
+       {
    ```
 
 3. Rebuild the flash image which will now include your change
@@ -55,7 +55,7 @@ environment, right after doing the ". setup" command.
    This will be a much faster build as bitbake will utilize all of the cache
    from your previous build, only building what is new.
 
-   ```
+   ```bash
    bitbake obmc-phosphor-image
    ```
 
@@ -66,13 +66,13 @@ environment, right after doing the ". setup" command.
 
    After you login to your QEMU session, verify the message is in the journal
 
-   ```
+   ```bash
    journalctl | grep "Hello World"
    ```
 
    You should see something like this:
 
-   ```
+   ```bash
    <date> romulus phosphor-bmc-state-manager[1089]: Hello World
    ```
 
@@ -87,7 +87,7 @@ the required binary and copy it into the running QEMU session and launch it.
 
 1. Modify your hello world
 
-   ```
+   ```bash
    vi workspace/sources/phosphor-state-manager/bmc_state_manager_main.cpp
    ```
 
@@ -99,7 +99,7 @@ the required binary and copy it into the running QEMU session and launch it.
    that you are interested in. In this case, we'll just rebuild the
    phosphor-state-manager repo to pick up your new hello world change.
 
-   ```
+   ```bash
    bitbake phosphor-state-manager
    ```
 
@@ -121,7 +121,7 @@ the required binary and copy it into the running QEMU session and launch it.
    no more bricking the system. Log in to the QEMU instance and run these
    commands.
 
-   ```
+   ```bash
    mkdir -p /tmp/persist/usr
    mkdir -p /tmp/persist/work/usr
    mount -t overlay -o lowerdir=/usr,upperdir=/tmp/persist/usr,workdir=/tmp/persist/work/usr overlay /usr
@@ -133,7 +133,7 @@ the required binary and copy it into the running QEMU session and launch it.
    to run from your phosphor-state-manager directory. If you chose your own port
    then substitute that here for the 2222.
 
-   ```
+   ```bash
    scp -P 2222 ./workspace/sources/phosphor-state-manager/oe-workdir/package/usr/bin/phosphor-bmc-state-manager root@127.0.0.1:/usr/bin/
    ```
 
@@ -141,13 +141,13 @@ the required binary and copy it into the running QEMU session and launch it.
 
 1. Stop the BMC state manager service
 
-   ```
+   ```bash
    systemctl stop xyz.openbmc_project.State.BMC.service
    ```
 
 2. Run the application in your QEMU session:
 
-   ```
+   ```bash
    phosphor-bmc-state-manager
    ```
 
@@ -161,7 +161,7 @@ the required binary and copy it into the running QEMU session and launch it.
    tutorials on this, but for now just run the following to restart the BMC
    state service and have it pick up your new application:
 
-   ```
+   ```bash
    systemctl restart xyz.openbmc_project.State.BMC.service
    ```
 
@@ -169,13 +169,13 @@ the required binary and copy it into the running QEMU session and launch it.
    output to the console, but it will be in the journal. Later tutorials will
    discuss the journal but for now just run:
 
-   ```
+   ```bash
    journalctl | tail
    ```
 
    You should see something like this in one of the journal entries:
 
-   ```
+   ```bash
    <date> romulus phosphor-bmc-state-manager[1089]: Hello World Again
    ```
 

@@ -26,7 +26,7 @@ responses.
 
 IPMI and IPMB System architecture:
 
-```
+```ascii
  +------------------------------------+
  |               BMC                  |
  | +-----------+       +------------+ |      +--------+
@@ -68,11 +68,11 @@ To address issue1 and issue2, we propose the following design changes in
 ipmbbridged and ipmid. To address out-of-band IPMI command from the network,the
 proposal is captured in section "Changes in netipmid".
 
-## Issue1: Changes in ipmbbridged:
+## Issue1: Changes in ipmbbridged
 
 ipmbbridged to send the channel details from where the request is received.
 
-**Change: Sending Host detail as additional parameter**
+### Change: Sending Host detail as additional parameter
 
 While routing the IPMB requests coming from the host channel, We will be adding
 new entry in the json config file for the host ID '"devIndex": 0' ipmbbridged
@@ -84,13 +84,40 @@ The json file looks like below. Each devIndex can have one "me" and "ipmb"
 channel.To ensure existing platforms does not get affected, if the "devIndex"
 key is not present in the file ipmbbridged uses default "devIndex" as 0.
 
-{ "type": "me", "slave-path": "/dev/ipmb-1", "bmc-addr": 32, "remote-addr": 64,
-"devIndex": 0 }, { "type": "ipmb", "slave-path": "/dev/ipmb-2", "bmc-addr": 32,
-"remote-addr": 64, "devIndex": 0 }, { "type": "me", "slave-path": "/dev/ipmb-3",
-"bmc-addr": 32, "remote-addr": 64, "devIndex": 1 }, { "type": "ipmb",
-"slave-path": "/dev/ipmb-4", "bmc-addr": 32, "remote-addr": 64, "devIndex": 1 },
+```json
+[
+  {
+    "type": "me",
+    "slave-path": "/dev/ipmb-1",
+    "bmc-addr": 32,
+    "remote-addr": 64,
+    "devIndex": 0
+  },
+  {
+    "type": "ipmb",
+    "slave-path": "/dev/ipmb-2",
+    "bmc-addr": 32,
+    "remote-addr": 64,
+    "devIndex": 0
+  },
+  {
+    "type": "me",
+    "slave-path": "/dev/ipmb-3",
+    "bmc-addr": 32,
+    "remote-addr": 64,
+    "devIndex": 1
+  },
+  {
+    "type": "ipmb",
+    "slave-path": "/dev/ipmb-4",
+    "bmc-addr": 32,
+    "remote-addr": 64,
+    "devIndex": 1
+  }
+]
+```
 
-## Issue2: Changes in ipmid:
+## Issue2: Changes in ipmid
 
 Receive the optional parameter sent by the ipmbbridged as host details, while
 receiving the parameter in the executionEntry method call the same will be
@@ -103,7 +130,7 @@ gets the host in which the command received. The handler will fetch host1 boot
 order details and respond from the command handler. This is applicable for both
 common and oem handlers.
 
-## Changes in netipmid:
+## Changes in netipmid
 
 The "options" parameter can be used for sending the host information from
 netipmid. The changes proposed for ipmbbridged can be used in netipmid as well.
@@ -125,7 +152,7 @@ and but not limited to this list.
 
 Example implementation of approach1:Virtual ethernet interface.
 
-```
+```ascii
 +--------------------------------------------+
 |           BMC                              |
 | +--------+       +-----------+   +------+  |      +--------+
@@ -160,14 +187,14 @@ The ipmbbridged shall be modified to send the host id in data payload. This
 looks to be a simple change but impacts the existing platforms which are already
 using it.This may not be a right approach.
 
-## Approach2:Create multiple ipmid to handle multihost.One ipmid process per host.
+## Approach2:Create multiple ipmid to handle multihost.One ipmid process per host
 
 This is a multi service appoach,one instance of ipmid service shall be spawned
 to respond each host.The changes looks simple and no major design change from
 the existing design. But many common handlers will be running as duplicate in
 multiple instances.
 
-## Approach3:Using a different IPMI channel for handling multiple host.
+## Approach3:Using a different IPMI channel for handling multiple host
 
 Using a different IPMI channel for handling multiple hosts, in the ipmbbridged
 the channel id can be used to identify host. In this approach we will be having

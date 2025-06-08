@@ -1,10 +1,11 @@
 # phosphor-audit
 
-Author: Ivan Mikhaylov, [i.mikhaylov@yadro.com](mailto:i.mikhaylov@yadro.com)
+Author: Ivan Mikhaylov [i.mikhaylov@yadro.com](mailto:i.mikhaylov@yadro.com)
 
-Other contributors: Alexander Amelkin,
-[a.amelkin@yadro.com](mailto:a.amelkin@yadro.com) Alexander Filippov,
-[a.filippov@yadro.com](mailto:a.filippov@yadro.com)
+Other contributors:
+
+- Alexander Amelkin [a.amelkin@yadro.com](mailto:a.amelkin@yadro.com)
+- Alexander Filippov [a.filippov@yadro.com](mailto:a.filippov@yadro.com)
 
 Created: 2019-07-23
 
@@ -104,7 +105,7 @@ next in audit service's handler depends on user requirements and needs. It is
 possible to just store logs, run arbitrary command or notify someone in handler
 or we can do all of the above and all of this can be optional.
 
-**Audit event call**
+### Audit event call
 
 Audit event call performs preprocessing of incoming data at application side
 before sending it to the audit service, if the request is filtered out, it will
@@ -133,15 +134,18 @@ Service itself can control flow of events with configuration on its side.
 
 Pseudocode for example:
 
+```cpp
     audit_event(NET_IPMI, "access denied"(rc=-1), "ipmi cmd", "qwerty223",
                           "192.168.0.1", <some additional data if needed>)
     audit_event(REST, "login successful"(rc=200), "rest login",
                       "qwerty223", "192.168.0.1", NULL)
     audit_event(HOST_IPMI, "shutting down the host"(rc=0), "host poweroff",
                        NULL, NULL, NULL)
+```
 
 `audit_event(blob_data)` Blob can be described as structure:
 
+```cpp
     struct blob_audit
     {
         uint8_t type;
@@ -151,6 +155,7 @@ Pseudocode for example:
         sockaddr_in6 *addr;
         struct iovec *data;
     }
+```
 
 When the call reaches the server destination via D-Bus, the server already knows
 that the call should be processed via predefined list of actions which are set
@@ -169,18 +174,17 @@ Step by step execution of call:
 
 How the checks will be processed at client's layer:
 
-1.  check the status of service and cache that value
-2.  check the list of possible actions which should be logged and cache them
-    also
-3.  listen on 'propertiesChanged' event in case of changing list or status of
-    service
+1. check the status of service and cache that value
+2. check the list of possible actions which should be logged and cache them also
+3. listen on 'propertiesChanged' event in case of changing list or status of
+   service
 
 ## Service configuration
 
 The configuration structure can be described as tree with set of options, as
 example of structure:
 
-```
+```text
 [IPMI]
    [Enabled]
    [Whitelist]

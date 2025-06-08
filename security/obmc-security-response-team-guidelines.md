@@ -57,9 +57,10 @@ Workflow highlights:
    - Privately engage an OpenBMC maintainer or subject matter expert.
 
 3. For OpenBMC problems.
-   1. Determine if this is a high severity problem. Example using CVSS metrics:
-      a remotely exploitable or low complexity attack that has high impact to
-      the BMC's confidentiality, integrity, or availability.
+   1. Determine if this is a high severity problem. Example using [CVSS
+      metrics](cvss metrics): a remotely exploitable or low complexity attack
+      that has high impact to the BMC's confidentiality, integrity, or
+      availability.
    2. Avoid pre-announcing problems. Be especially careful with high severity
       problems. When fixing the problem, use the contribution process but limit
       the details in the issue or use a private channel to discuss.
@@ -76,7 +77,7 @@ Workflow highlights:
 
 Repository maintainer process steps: 1. Create a private gerrit code review and
 oversee development of the fix. 2. Create a draft advisory under
-github.com/openbmc/<REPO>/security/advisories. Please follow guidance in the
+`github.com/openbmc/<REPO>/security/advisories`. Please follow guidance in the
 [OpenBMC Security Advisory Template][]. Add the openbmc security-response group
 and other stakeholders to the advisory. 3. Review the security bulletin with
 stakeholders to get it ready to publish. 4. Work with the SRT to identify CVEs.
@@ -119,7 +120,7 @@ The OpenBMC security response team has received the problem.
 
 ## Template: OpenBMC Security Advisory
 
-```
+```text
 OpenBMC Security Advisory
 Title: ...
 
@@ -143,7 +144,7 @@ Credit for finding these problems: ...
 When the Security Advisory is created, inform the OpenBMC community by sending
 email like this:
 
-```
+```text
 TO: openbmc-security@lists.ozlabs.org, openbmc@lists.ozlabs.org
 SUBJECT: [Security Advisory] ${subject}
 
@@ -160,9 +161,9 @@ https://github.com/openbmc/docs/blob/master/security/obmc-security-response-team
 
 Some of these guidelines were collected from:
 
-- https://bestpractices.coreinfrastructure.org/en/projects/34
-- https://www.kernel.org/doc/html/v4.16/admin-guide/security-bugs.html
-- https://oss-security.openwall.org/wiki/mailing-lists/distros
+- <https://bestpractices.coreinfrastructure.org/en/projects/34>
+- <https://www.kernel.org/doc/html/v4.16/admin-guide/security-bugs.html>
+- <https://oss-security.openwall.org/wiki/mailing-lists/distros>
 - [ISO/IEC 29147:2018 vulnerability disclosure](https://www.iso.org/standard/72311.html)
 
 ## Team composition and email maintenance
@@ -207,11 +208,11 @@ The email list identification is
 This email list is for privately reporting OpenBMC security vulnerabilities.
 List membership is limited to the OpenBMC security response team. For more
 information, see
-https://github.com/openbmc/docs/blob/master/security/how-to-report-a-security-vulnerability.md
+<https://github.com/openbmc/docs/blob/master/security/how-to-report-a-security-vulnerability.md>
 
 Sample response for denying list membership:
 
-```
+```text
 Thanks for your interest in OpenBMC security.  Subscriptions to the
 openbmc-security@lists.ozlabs.org email list are by invitation only
 and are typically extended only to security response team members.

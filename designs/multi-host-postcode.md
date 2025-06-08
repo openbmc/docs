@@ -25,7 +25,7 @@ Diagram Legend: |Label|Signifies| |-----|---------| |`I:` |D-Bus interface|
 |`S:` |D-Bus service name (well-known bus name)| |`R:` |Repository name| |`U:`
 |Systemd service unit name| |`A:` |Executable name| |`H:` |HW Module|
 
-```
+```text
                                          +-----------+
                        +------+          | 7 segment |
                        | Host |          |  display  |
@@ -94,11 +94,11 @@ Following modules will be updated for this implementation
 - platform specific OEM handler (fb-ipmi-oem).
 - bmcweb (redfish logging service).
 
-**Interface Diagram**
+### Interface Diagram
 
 Provided below the post code interface diagram with flow sequence
 
-```
+```text
 +---------------------------------------------------+
 | BMC                                               |
 |                                                   |
@@ -143,7 +143,7 @@ Provided below the post code interface diagram with flow sequence
 +----------------------------------------------------------+
 ```
 
-**Postcode Flow:**
+### Postcode Flow
 
 - BMC power-on the host.
 - Host starts sending the postcode IPMI message continuously to the BMC.
@@ -178,15 +178,15 @@ This implementation involves the following changes in the phosphor-host-postd.
 - Display the latest postcode of the selected host read through D-Bus on a
   7-segment display.
 
-**D-Bus interface**
+### D-Bus interface
 
 The following D-Bus names need to be created for the multi-host post-code.
 
-    Service name      -- xyz.openbmc_project.State.Boot.Raw
-
-    Obj path name     -- /xyz/openbmc_project/State/Boot/RawX(1,2..N)
-
-    Interface name    -- xyz.openbmc_project.State.Boot.Raw
+```text
+Service name: xyz.openbmc_project.State.Boot.Raw
+Obj path name: /xyz/openbmc_project/State/Boot/RawX(1,2..N)
+Interface name: xyz.openbmc_project.State.Boot.Raw
+```
 
 ## phosphor-post-code-manager
 
@@ -202,15 +202,15 @@ with the community naming scheme.
 - Store/retrieve post-code from directory (/var/lib/phosphor-post-code-manager/
   hostX(1,2,3..N)) based on event received from phosphor-host-postd.
 
-**D-Bus interface**
+### D-Bus interface
 
 The following D-Bus names needs to be created for multi-host post-code.
 
-    Service name     -- xyz.openbmc_project.State.Boot.PostCodeX(1,2..N)
-
-    Obj path name    -- /xyz/openbmc_project/State/Boot/PostCodeX(1,2..N)
-
-    Interface name   -- xyz.openbmc_project.State.Boot.PostCode
+```text
+Service name: xyz.openbmc_project.State.Boot.PostCodeX(1,2..N)
+Obj path name: /xyz/openbmc_project/State/Boot/PostCodeX(1,2..N)
+Interface name: xyz.openbmc_project.State.Boot.PostCode
+```
 
 ## bmcweb
 
@@ -219,7 +219,7 @@ logging service.
 
 ## Alternate design
 
-**phosphor-post-code-manager single process approach**
+### phosphor-post-code-manager single process approach
 
 This implementation consider single service to handle multi-host postcode. In
 this approach, all D-Bus handling will taken care by the single process.

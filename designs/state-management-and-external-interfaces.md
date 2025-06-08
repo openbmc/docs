@@ -43,7 +43,7 @@ The `Reboot` to the host currently causes a power cycle to the chassis.
 
 The Redfish [ResetType][1] has the following operations associated with it:
 
-```
+```json
 "ResetType": {
     "enum": [
         "On",
@@ -180,4 +180,3 @@ are tested in automation.
 [1]: http://redfish.dmtf.org/schemas/v1/Resource.json#/definitions/ResetType
 [2]: https://github.com/openbmc/phosphor-state-manager
 [3]: https://github.com/openbmc/bmcweb
-[4]: https://gerrit.openbmc.org/c/openbmc/docs/+/22358

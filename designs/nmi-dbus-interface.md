@@ -16,7 +16,7 @@ data collected.
 ## Background and References
 
 There is a situation at customer places/lab where the host goes unresponsive
-causing system hang(https://github.com/ibm-openbmc/dev/issues/457). This means
+causing system hang(<https://github.com/ibm-openbmc/dev/issues/457>). This means
 there is no way to figure out what went wrong with the host in a hung state. One
 has to recover the system with no relevant debug data captured.
 

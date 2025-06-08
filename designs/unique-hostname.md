@@ -18,9 +18,9 @@ is to find a solution that resolves these conflicts.
 The detailed issue regarding the hostname and service name conflicts is
 described in the following links.
 
-https://github.com/openbmc/openbmc/issues/1741.
-https://lists.freedesktop.org/archives/avahi/2018-January/002492.html
-https://github.com/lathiat/avahi/issues/117
+- <https://github.com/openbmc/openbmc/issues/1741.>
+- <https://lists.freedesktop.org/archives/avahi/2018-January/002492.html>
+- <https://github.com/lathiat/avahi/issues/117>
 
 ## Requirements
 

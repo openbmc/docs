@@ -1,8 +1,8 @@
 # Physical Topology for Inventory Items
 
-Author: Benjamin Fair <benjaminfair>
+Author: Benjamin Fair `benjaminfair`
 
-Other contributors: Ed Tanous <edtanous>
+Other contributors: Ed Tanous `edtanous`
 
 Created: June 1, 2022
 
@@ -89,34 +89,34 @@ Example JSON configurations:
 
 superchassis.json
 
-```
+```json
 {
-    "Exposes": [
-        {
-            "Name": "MyPort",
-            "Type": "BackplanePort"
-        }
-    ],
-    "Name": "Superchassis",
-    "Probe": "TRUE",
-    "Type": "Chassis"
+  "Exposes": [
+    {
+      "Name": "MyPort",
+      "Type": "BackplanePort"
+    }
+  ],
+  "Name": "Superchassis",
+  "Probe": "TRUE",
+  "Type": "Chassis"
 }
 ```
 
 subchassis.json:
 
-```
+```json
 {
-    "Exposes": [
-        {
-            "ConnectsToType": "BackplanePort",
-            "Name": "MyDownstreamPort",
-            "Type": "DownstreamPort"
-        }
-    ],
-    "Name": "Subchassis",
-    "Probe": "TRUE",
-    "Type": "Chassis"
+  "Exposes": [
+    {
+      "ConnectsToType": "BackplanePort",
+      "Name": "MyDownstreamPort",
+      "Type": "DownstreamPort"
+    }
+  ],
+  "Name": "Subchassis",
+  "Probe": "TRUE",
+  "Type": "Chassis"
 }
 ```
 
@@ -134,7 +134,7 @@ returns a list of all associated items and the relationship types between them.
 
 Example `busctl` calls:
 
-```
+```text
 $ busctl get-property xyz.openbmc_project.ObjectMapper \
 /xyz/openbmc_project/inventory/system/chassis/Superchassis/containing \
 xyz.openbmc_project.Association endpoints

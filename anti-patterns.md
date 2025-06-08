@@ -72,7 +72,7 @@ handy built-in validators, and allows easy customizations to validation.
 
 ### Identification
 
-```
+```bitbake
 RDEPENDS_${PN} = "libsystemd"
 ```
 
@@ -87,9 +87,11 @@ Dependencies change over time, and listing them explicitly is likely prone to
 errors - the net effect being unnecessary shared library packages being
 installed into images.
 
-Consult
-https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-RDEPENDS
-for information on when to use explicit runtime dependencies.
+Consult [Yocto Project Mega-Manual][mega-manual-rdepends] for information on
+when to use explicit runtime dependencies.
+
+[mega-manual-rdepends]:
+  https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-RDEPENDS
 
 ### Background
 
@@ -109,7 +111,7 @@ dependency lists in bitbake metadata.
 
 In systemd unit files:
 
-```
+```systemd
 [Service]
 
 ExecStart=/usr/bin/env some-application
@@ -129,13 +131,13 @@ applications on read-only filesystems. Launching applications in this way was
 part of the implementation that satisfied the live patch requirement. For
 example:
 
-```
+```bash
 /usr/bin/phosphor-hwmon
 ```
 
 on a read-only filesystem becomes:
 
-```
+```bash
 /usr/local/bin/phosphor-hwmon`
 ```
 
@@ -147,7 +149,7 @@ The /usr/bin/env method only enables live patching of applications. A method
 that supports live patching of any file in the read-only filesystem has emerged.
 Assuming a writeable filesystem exists _somewhere_ on the bmc, something like:
 
-```
+```bash
 mkdir -p /var/persist/usr
 mkdir -p /var/persist/work/usr
 mount -t overlay -o lowerdir=/usr,upperdir=/var/persist/usr,workdir=/var/persist/work/usr overlay /usr
@@ -162,7 +164,7 @@ To undo existing instances of this anti-pattern remove /usr/bin/env from systemd
 service files and replace with the fully qualified path to the application being
 launched. For example, given an application in /usr/bin:
 
-```
+```bash
 sed -i s,/usr/bin/env ,/usr/bin/, foo.service
 ```
 
@@ -202,7 +204,7 @@ point in OpenBMC project history, and has proliferated ever since.
 
 From the hier(7) man page:
 
-```
+```bash
 /usr/bin This is the primary directory for executable programs.  Most programs
 executed by normal users which are not needed for booting or for repairing the
 system and which are not installed locally should be placed in this directory.
@@ -238,7 +240,7 @@ not capturing the data needed to resolve the problem.
 
 Example C++ code:
 
-```
+```cpp
 using InternalFailure = sdbusplus::xyz::openbmc_project::Common::Error::InternalFailure;
 try
 {
@@ -314,7 +316,7 @@ In the error handler:
    - Analyzer tool: Consider breaking the log down and including several
      properties which an analyzer can leverage. For instance, tagging the log
      with 'Internal' is not helpful. However, breaking that down into something
-     like [UserInput][ipmi][Network] tells at a quick glance that the input
+     like `[UserInput][IPMI][Network]` tells at a quick glance that the input
      received for configuring the network via an IPMI command was invalid.
      Categorization and system impact are key things to focus on when creating
      logs for an analysis application.
@@ -342,7 +344,7 @@ different mechanisms for enabling debug. For example, different OpenBMC
 applications take the following as command line parameters to enable extra
 debug:
 
-- 0xff, --vv, -vv, -v, --verbose, <and more>
+- 0xff, --vv, -vv, -v, --verbose, `<and more>`
 
 Along these same lines, some applications then have their own internal methods
 of writing debug data. They use std::cout, printf, fprintf, ... Doing this
@@ -372,9 +374,9 @@ certain cases then they can protect these journald debug calls around a
 
 Desire to expose a DBus interface to drive GPIOs, for example:
 
-- https://lore.kernel.org/openbmc/YV21cD3HOOGi7K2f@heinlein/
-- https://lore.kernel.org/openbmc/CAH2-KxBV9_0Dt79Quy0f4HkXXPdHfBw9FsG=4KwdWXBYNEA-ew@mail.gmail.com/
-- https://lore.kernel.org/openbmc/YtPrcDzaxXiM6vYJ@heinlein.stwcx.org.github.beta.tailscale.net/
+- <https://lore.kernel.org/openbmc/YV21cD3HOOGi7K2f@heinlein/>
+- <https://lore.kernel.org/openbmc/CAH2-KxBV9_0Dt79Quy0f4HkXXPdHfBw9FsG=4KwdWXBYNEA-ew@mail.gmail.com/>
+- <https://lore.kernel.org/openbmc/YtPrcDzaxXiM6vYJ@heinlein.stwcx.org.github.beta.tailscale.net/>
 
 ### Description
 
@@ -502,9 +504,9 @@ Attempts at encoding information into the journal's MESSAGE string that is at
 most only plausible to parse using a regex while also reducing human
 readability. For example:
 
-```
+```cpp
 error(
-    "Error getting time, PATH={BMC_TIME_PATH} TIME INTERACE={TIME_INTF}  ERROR={ERR_EXCEP}",
+    "Error getting time, PATH={BMC_TIME_PATH} TIME INTERFACE={TIME_INTF}  ERROR={ERR_EXCEP}",
     "BMC_TIME_PATH", bmcTimePath, "TIME_INTF", timeInterface,
     "ERR_EXCEP", e);
 ```
@@ -546,20 +548,20 @@ logging instance in the code [is as follows][phosphor-time-manager-lg2]:
 [phosphor-time-manager-lg2]:
   https://github.com/openbmc/phosphor-time-manager/blob/5ce9ac0e56440312997b25771507585905e8b360/manager.cpp#L98
 
-```
+```cpp
 info("Time mode has been changed to {MODE}", "MODE", newMode);
 ```
 
 By default, this renders in the output of `journalctl` as:
 
-```
+```text
 Sep 23 06:09:57 bmc phosphor-time-manager[373]: Time mode has been changed to xyz.openbmc_project.Time.Synchronization.Method.NTP
 ```
 
 However, we can use some journalctl commandline options to inspect the
 structured data associated with the log entry:
 
-```
+```bash
 # journalctl --identifier=phosphor-time-manager --boot --output=verbose | grep -v '^    _' | head -n 9
 Sat 2023-09-23 06:09:57.645208 UTC [s=85c1cb5f8e02445aa110a5164c9c07f6;i=244;b=ffd111d3cdca41c8893bb728a1c6cb20;m=133a5a0;t=606009314d0d9;x=9a54e8714754a6cb]
     PRIORITY=6

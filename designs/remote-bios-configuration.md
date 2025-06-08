@@ -18,10 +18,9 @@ the host firmware support model.
 
 ## Background and References
 
-[1]
-https://www.dmtf.org/sites/default/files/standards/documents/DSP0247_1.0.0.pdf
-[2] https://redfish.dmtf.org/schemas/v1/Bios.v1_1_0.json [3]
-https://redfish.dmtf.org/schemas/v1/AttributeRegistry.v1_3_2.json
+1. <https://www.dmtf.org/sites/default/files/standards/documents/DSP0247_1.0.0.pdf>
+2. <https://redfish.dmtf.org/schemas/v1/Bios.v1_1_0.json>
+3. <https://redfish.dmtf.org/schemas/v1/AttributeRegistry.v1_3_2.json>
 
 ## Requirements
 
@@ -48,7 +47,7 @@ https://redfish.dmtf.org/schemas/v1/AttributeRegistry.v1_3_2.json
 
 ## Proposed Design
 
-```
+```text
 +----------------------------------------------------------------------------------------------------------------+
 | Remote BIOS configuration (RBC) via BMC                                                                        |
 |                                                                                                                |
@@ -84,7 +83,7 @@ https://redfish.dmtf.org/schemas/v1/AttributeRegistry.v1_3_2.json
 +----------------------------------------------------------------------------------------------------------------+
 ```
 
-##Intel uses the following logic
+## Intel uses the following logic
 
 BIOS send data in as Proprietary format to the BMC via IPMI interface. There are
 two types of proprietary XML format files in BIOS configuration. Type-0 contain
@@ -115,7 +114,7 @@ RBC daemon should preserve the AllBiosTables, PendingAttributes list in
 non-volatile storage. Pending attributes list will be cleared whenever new
 attributes data received.
 
-```
+```text
 #Intel uses the following logic for BIOS first boot
    +---------------------------------------------------------------------------------------------------------------------+
    |                                                                                                                     |
@@ -152,7 +151,7 @@ attributes data received.
    +---------------------------------------+-----------------------------------------------------------------------------+
 ```
 
-```
+```text
 #Intel uses the following logic for BIOS reset
    +---------------------------------------------------------------------------------------------------------------------+
    |                                                                                                                     |
@@ -189,7 +188,7 @@ attributes data received.
    +---------------------------------------+-----------------------------------------------------------------------------+
 ```
 
-```
+```text
 #Intel uses the following logic for BIOS reset and BMC have new values
    +---------------------------------------------------------------------------------------------------------------------+
    |                                                                                                                     |
@@ -234,7 +233,7 @@ attributes data received.
 
 ```
 
-##BIOS send the data in BIOS configuration PLDM via MCTP
+## BIOS send the data in BIOS configuration PLDM via MCTP
 
 BIOS should update the BIOS settings via Set BIOS table PLDM command- BIOS
 string table, Attribute name table, Attribute value table via MCTP.
@@ -253,9 +252,9 @@ RBC daemon should preserve the AllBaseAttributes, PendingAttributes list in
 non-volatile storage. PLDM daemon should preserve BIOS tables in non-volatile
 storage. RBC and PLDM should restored the data whenever BMC reset.
 
-#BIOS first boot
+## BIOS first boot
 
-```
+```text
 
    +--------------------------------------------------------------------------------------------------------------------+
    | +-----------------------+             +---------------------------------------------------------------------------+|
@@ -322,9 +321,9 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
 
 ```
 
-##Complete BIOS BMC flow for BIOS configuration in deferred update model
+## Complete BIOS BMC flow for BIOS configuration in deferred update model
 
-```
+```text
 +----------------------------------------+                    +----------------------------------------+
 |                BIOS                    |                    |                  BMC                   |
 |                                        |                    |                                        |
@@ -368,9 +367,9 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
 +----------------------------------------+                    +----------------------------------------+
 ```
 
-##Complete BIOS BMC flow for BIOS configuration in immediate update model
+## Complete BIOS BMC flow for BIOS configuration in immediate update model
 
-```
+```text
 +----------------------------------------+                    +----------------------------------------+
 |                BIOS                    |                    |                  BMC                   |
 |                                        |                    |                                        |
@@ -415,9 +414,9 @@ should preserve the Pending Attributes list across the BMC reset and RBC should
 clear the Pending Attributes list whenever new AllBaseBIOSTables received from
 BIOS.
 
-#Redfish interfaces for remote Bios configuration
+## Redfish interfaces for remote Bios configuration
 
-```
+```text
  +-----------------------------------------------------------------------------------------------------------+
  | +-------------------------+             +----------------------------------------------------------------+|
  | | RBC Web tool - POSTMAN  |             |   BMC                                                          ||
@@ -452,34 +451,32 @@ BIOS.
 
 1. Get Current Attributes name and value list: Get the current BIOS settings
    attribute name and value pair list. GET Method -
-   "https://<BMC IP address>/redfish/v1/Systems/system/Bios"
+   `https://<BMC>/redfish/v1/Systems/system/Bios`
 
 2. Get Attribute Registry: Get the detailed information about Bios Attribute
    like current value, supported value, description, Menupath, Default value.
-   GET Method - "https://<BMC IP address>/redfish/v1/Registries/Bios"
+   GET Method - `https://<BMC>/redfish/v1/Registries/Bios`
 
 3. Change BIOS password: ACTION -
-   "https://<BMC IP address>/redfish/v1/Systems/system/Bios/Actions/Bios.ChangePassword"
+   `https://<BMC>/redfish/v1/Systems/system/Bios/Actions/Bios.ChangePassword`
 
 4. Reset To default settings: ACTION -
-   "https://<BMC IP address>/redfish/v1/Systems/system/Bios/Actions/Bios.ResetBios"
+   `https://<BMC>/redfish/v1/Systems/system/Bios/Actions/Bios.ResetBios`
 
 5. Update new BIOS settings (single attribute): Use to send the new value for
    particular attribute or list of attributes. PATCH Method -
-   "https://<BMC IP address>/redfish/v1/Systems/system/Bios/Settings" Ex:
-   Attribute name and new value : { "DdrFreqLimit" : 2400}
+   `https://<BMC>/redfish/v1/Systems/system/Bios/Settings` Ex: Attribute name
+   and new value : `{ "DdrFreqLimit" : 2400 }`
 
 6. Get the new pending value list: Use to get the new pending attributes list.
-   GET Method -
-   "https://<BMC IP address>/redfish/v1/Systems/system/Bios/Settings" -Valid
+   GET Method - `https://<BMC>/redfish/v1/Systems/system/Bios/Settings` - Valid
    only in deferred model. For immediate update model, It will be empty. Ex:
-   Attribute name and new value : { "DdrFreqLimit" : 2400,"QuietBoot",0x1 }
+   Attribute name and new value : `{ "DdrFreqLimit" : 2400, "QuietBoot", 0x1 }`
 
 7. Update new BIOS settings (multiple attributes): Use to send the new value for
    particular attribute or list of attributes. PATCH Method -
-   "https://<BMC IP address>/redfish/v1/Systems/system/Bios/Settings" Ex:
-   Attribute name and new value list : { "DdrFreqLimit" : 2400},"QuietBoot",0x1
-   }
+   `https://<BMC>/redfish/v1/Systems/system/Bios/Settings` Ex: Attribute name
+   and new value list : `{ "DdrFreqLimit" : 2400, "QuietBoot", 0x1 }`
 
 ## Alternatives Considered
 

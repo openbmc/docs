@@ -34,8 +34,7 @@ and also to create LEDs under a single service, a new application is proposed.
 
 The below diagram represents the overview for current physical LED design.
 
-```
-
+```ascii
       KERNEL                 META-PHOSPHOR           PHOSPHOR-LED-SYSFS SERVICE
 
    +------------+  Event 1   +----------+  LED 1  +-----------------------------+
@@ -78,9 +77,9 @@ The existing design uses sysfs entry as udev events for particular LED and
 triggers the necessary action to generate the dbus object path and interface for
 that specified service. It exposes one service per LED.
 
-**Example**
+### Example
 
-```
+```text
      busctl tree xyz.openbmc_project.LED.Controller.led1
      `-/xyz
        `-/xyz/openbmc_project
@@ -107,8 +106,7 @@ that specified service. It exposes one service per LED.
 
 The below diagram represents the overview for proposed physical LED design.
 
-```
-
+```ascii
       KERNEL                               PHOSPHOR-LED-SYSFS DAEMON
 
    +------------+  Event 1   +--------+      +---------+      +--------------+
@@ -139,7 +137,7 @@ This document proposes a new design for physical LED implementation.
 - Physical Leds are defined in the device tree under "leds" section and
   corresponding GPIO pins are configured.
 
-```
+```dts
         leds {
                 compatible = "gpio-leds";
 
@@ -154,7 +152,7 @@ This document proposes a new design for physical LED implementation.
   **_xyz.openbmc_project.Led.Sysfs.Internal_** interface name to add or remove
   the LED, which will be coming from each udev LED event.
 
-```
+```text
     NAME                                   TYPE      SIGNATURE  RESULT/VALUE  FLAGS
 
     xyz.openbmc_project.Led.Sysfs.Internal interface -          -             -
@@ -185,8 +183,7 @@ This document proposes a new design for physical LED implementation.
 
 **_Example_**
 
-```
-
+```text
    SERVICE        xyz.openbmc_project.LED.Controller
 
    INTERFACE      xyz.openbmc_project.LED.Physical
@@ -207,7 +204,7 @@ This document proposes a new design for physical LED implementation.
 
 ## Alternatives Considered
 
-**Approach 1**
+### Approach 1
 
 When the udev event is initialized for the LED, it will save those LED names in
 a file utilizing the script. Phosphor-led-sysfs will monitor the file using

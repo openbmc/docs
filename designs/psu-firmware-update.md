@@ -1,8 +1,11 @@
 # PSU firmware update
 
-Author: Lei YU <mine260309@gmail.com> <LeiYU>
+Author: Lei YU <mine260309@gmail.com> `LeiYU`
 
-Other contributors: Su Xiao <suxiao@inspur.com> Derek Howard <derekh@us.ibm.com>
+Other contributors:
+
+- Su Xiao <suxiao@inspur.com>
+- Derek Howard <derekh@us.ibm.com>
 
 Created: 2019-06-03
 

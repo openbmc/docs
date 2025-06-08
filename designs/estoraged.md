@@ -1,9 +1,12 @@
 # eStoraged Design - Encrypted Secondary Storage Management Daemon
 
-Author: John Wedig (johnwedig@google.com)
+Author: John Wedig <johnwedig@google.com>
 
-Other contributors: John Broadbent (jebr@google.com) Benjamin Fair
-(benjaminfair@google.com) Nancy Yuenn (yuenn@google.com)
+Other contributors:
+
+- John Broadbent <jebr@google.com>
+- Benjamin Fair <benjaminfair@google.com>
+- Nancy Yuenn <yuenn@google.com>
 
 Created: September 2, 2021
 

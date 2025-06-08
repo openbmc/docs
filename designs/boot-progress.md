@@ -1,6 +1,6 @@
 # System Boot Progress on OpenBMC
 
-Author: Andrew Geissler (geissonator)
+Author: Andrew Geissler `geissonator`
 
 Other contributors: None
 
@@ -41,8 +41,7 @@ sensor is not implemented yet in OpenBMC code.
 Redfish represents system state in a variety of ways. The BMC, Chassis, and
 System all implement a [Status][6] object. This provides a list of generic
 `State` options which are applicable to Redfish objects. OpenBMC has the
-following mapping for phosphor-state-manager to the Redfish System
-[Status][state]:
+following mapping for phosphor-state-manager to the Redfish System [Status][7]:
 
 - `xyz.openbmc_project.State.Host.HostState.Running` : `Enabled`
 - `xyz.openbmc_project.State.Host.HostState.Quiesced` : `Quiesced`
@@ -73,7 +72,7 @@ into all or some of the values in this new Redfish property.
 
 Note that this design does not include multi-host computer system concepts but
 it also does not preclude them. The `BootProgress` D-Bus property is associated
-with a `/xyz/openbmc_project/state/host<X>` instance where <X> is the host
+with a `/xyz/openbmc_project/state/host<X>` instance where `<X>` is the host
 instance. Similarly, the Redfish system object is also an instance based object.
 
 ## Requirements

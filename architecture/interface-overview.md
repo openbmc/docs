@@ -24,7 +24,7 @@ and service shown.
 OpenBMC's services and the interfaces they provide are controlled by `systemd`.
 This document references OpenBMC `systemd` unit names to help link concepts to
 the source code. The reader is assumed to be familiar with [systemd concepts][].
-The templated units ("unit@.service") may be omitted for clarity. Relevant
+The templated units (`unit@.service`) may be omitted for clarity. Relevant
 details from the unit file may be shown, such as the program which implements a
 service.
 
@@ -54,7 +54,7 @@ its subsections is intended to illustrate common elements, not to represent any
 particular system. This section is intended to be referenced by additional
 documentation which gives details for specific BMC and host implementations.
 
-```
+```ascii
         +----------------+         +----------------+
         | BMC            |         | Host           |
         |                |         |                |
@@ -99,7 +99,7 @@ OpenBMC provides services via its management network. The default services are
 listed here by port number. More information about each service is given in
 sections below or in the appendix.
 
-```
+```ascii
         +----------------------------------+
         | BMC                              |
         |                                  |
@@ -149,7 +149,7 @@ OpenBMC provides access to its host's serial console in various ways:
 - Client access via ssh port 2200.
 - The hostlogger facility.
 
-```
+```ascii
                 +---------------------------+    +-----------------+
                 | BMC                       |    | Host            |
  ipmitool sol   |                           |    |                 |
@@ -172,7 +172,7 @@ the BMC as a Unix domain socket.
 
 OpenBMC provides a custom HTTP/Web server called BMCWeb.
 
-```
+```ascii
         +--------------------------------------------------+
         | BMC                                              |
         |                                                  |
@@ -213,7 +213,7 @@ Services provided:
 
 OpenBMC provides a host IPMI service.
 
-```
+```ascii
     +---------------+    +-----------------+
     | BMC           |    | Host            |
     |               |    |                 |
@@ -235,7 +235,7 @@ OpenBMC uses D-Bus interfaces as the primary way to communicate (inter-process
 communication) between OpenBMC applications. Note that other methods are used,
 for example Unix domain sockets.
 
-```
+```ascii
         +--------------------------------------------------+
         | BMC                                              |
         |                                                  |
@@ -273,7 +273,7 @@ The BMC may be connected to a network used to manage the BMC. This is dubbed the
 "management network" to distinguish it from the payload network the host system
 is connected to. These are typically separate networks.
 
-```
+```ascii
              +-----------+      +----------------+
              | BMC       |      | Host           |
 management   |           |      |                |
@@ -285,7 +285,7 @@ network   ---+- Network  |      |       Network -+- payload
 The BMC may be served by a Network Controller Sideband Interface (NC-SI) which
 maintains a logically separate network from the host, as shown in this diagram:
 
-```
+```ascii
              +-----------+      +----------------+
              | BMC       |      | Host           |
 management   |           |      |                |
@@ -305,7 +305,7 @@ network           |.........+        |  network
 The BMC's management network may be provided by its host system and have no
 direct connection external to the host, as shown in this diagram:
 
-```
+```ascii
              +-----------+      +----------------+
              | BMC       |      | Host           |
              |           |      |                |
@@ -320,7 +320,7 @@ direct connection external to the host, as shown in this diagram:
 
 The BMC's management network may be connected to USB (LAN over USB):
 
-```
+```ascii
              +-----------+      +----------------+
              | BMC       |      | Host           |
         +-+  |           |      |                |
@@ -381,7 +381,7 @@ resources including host IPMI access, SOL (access to the host console), and
 more. Also known as out of band IPMI. Contrast with host-IPMI which interacts
 with the host and with Redfish which provides alternate function.
 
-The BMC's RMCP+ IPMI interface is designed to be operated by the `[ipmitool][]`
+The BMC's RMCP+ IPMI interface is designed to be operated by the [ipmitool][]
 external command.
 
 [ipmi session management]:
@@ -406,7 +406,7 @@ internal and external interfaces.
 ### obmc-console
 
 This refers to support for multiple independent consoles in
-https://github.com/openbmc/obmc-console and two applications:
+<https://github.com/openbmc/obmc-console> and two applications:
 
 - The `obmc-console-server` abstracts the host console (UART) connection as a
   Unix domain socket.
@@ -417,14 +417,14 @@ Other applications use the console server.
 ### hostlogger
 
 Refers to the BMC service provided by the `hostlogger` program here:
-https://github.com/openbmc/phosphor-hostlogger which listens to the
+<https://github.com/openbmc/phosphor-hostlogger> which listens to the
 `obmc-console-server` and logs host console messages into the BMC's file system.
 
 ### BMCWeb web server
 
 Refers to the custom HTTP/Web server with source here:
-https://github.com/openbmc/bmcweb Note that BMCWeb is configurable per
-https://github.com/openbmc/bmcweb#configuration with build-time options to
+<https://github.com/openbmc/bmcweb> Note that BMCWeb is configurable per
+<https://github.com/openbmc/bmcweb#configuration> with build-time options to
 control which interfaces it provides. For example, there are configurations
 options to:
 
@@ -438,26 +438,26 @@ Virtual-USB, and more.
 ### Redfish
 
 Refers to the set of Redfish REST APIs served by the BMCWeb web server. See
-details here: https://github.com/openbmc/bmcweb/blob/master/Redfish.md with docs
-here: https://github.com/openbmc/docs/blob/master/REDFISH-cheatsheet.md
+details here: <https://github.com/openbmc/bmcweb/blob/master/Redfish.md> with
+docs here: <https://github.com/openbmc/docs/blob/master/REDFISH-cheatsheet.md>
 
 ### phosphor-dbus-rest
 
 Refers to the legacy REST APIs optionally served by the BMCWeb server. Docs:
-https://github.com/openbmc/docs/blob/master/REST-cheatsheet.md
+<https://github.com/openbmc/docs/blob/master/REST-cheatsheet.md>
 
 ### KVM-IP
 
 Refers to the OpenBMC implementation of the Remote Frame Buffer (RFB, aka VNC)
 protocol which lets you operate the host system's keyboard, video, and mouse
-(KVM) remotely. See https://github.com/openbmc/obmc-ikvm/blob/master/README.md
+(KVM) remotely. See <https://github.com/openbmc/obmc-ikvm/blob/master/README.md>
 Also known as IPKvm. Do not confuse with Kernel Virtual Machine (the other KVM).
 
 ### Virtual media
 
-Also known as: remote media and USB-over-IP. Design:
-https://github.com/openbmc/docs/blob/master/designs/VirtualMedia.md Contrast
-with LAN-over-USB.
+- Also known as: remote media and USB-over-IP.
+- Design: <https://github.com/openbmc/docs/blob/master/designs/VirtualMedia.md>
+- Contrast with LAN-over-USB.
 
 ### Virtual USB
 

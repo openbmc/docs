@@ -34,7 +34,7 @@ interfaces.
 The front panel of bmc has buttons like power button, reset button in general
 the code for monitoring these buttons and triggering actions are supported.
 
-```
+```text
    +----------------------------------------------+
    |                                              |
    |       Front panel                            |
@@ -57,7 +57,7 @@ switch
 example for a multihost platform yosemite-V2 it has host selector switch mux as
 additional button in front panel.
 
-```
+```text
 +---------------------------+                                      +------------+
 |                           |                                      |            |
 |       yv2 front panel     |           power/           ---------+|  host 1    |
@@ -111,7 +111,7 @@ This option is to use same power button and reset button for multiple hosts.
 The power/reset button press events are triggered based on the value of host
 selector switch position.
 
-### Example :
+### Example
 
 host selector position value = 0,bmc is mapped to power and reset buttons host
 selector position value = 1,host 1 is mapped to power and reset buttons host
@@ -148,7 +148,7 @@ selector switch position value should be increased up to MaxPosition. If the
 host selector switch value is more than MaxPosition then it should be reset to
 zero.
 
-# Proposed Design
+## Proposed Design
 
 Three high level changes are required in the phosphor button interface class
 
@@ -193,7 +193,7 @@ A separate interface for debug card host selector button is created.
 This button interface monitors the corresponding gpio lines for debug card host
 selection button press and release event via sd-event based loop.
 
-### OCP Debug card host selector button dbus interface details :
+### OCP Debug card host selector button dbus interface details
 
 1. Released(signal) - This is signal is triggered in the ocp debug card event
    handler when the ocp debug card button is pressed and released.

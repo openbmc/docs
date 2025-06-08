@@ -106,9 +106,7 @@ pushed to. If you're pulling in code from a dead project, inquire to the
 community through the mailing list or discord whether or not the OpenBMC
 community would be willing to adopt support and maintenance of said project.
 
-## Meta layers should not point to OpenBMC specific repositories outside of
-
-https://github.com/openbmc
+## Meta layers should not point to OpenBMC specific repositories outside of <https://github.com/openbmc>
 
 **What defines an OpenBMC specific repository?**
 

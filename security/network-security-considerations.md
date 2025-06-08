@@ -106,12 +106,11 @@ Services which are not required should be disabled to limit the BMC's attack
 surface. For example, a large scale data center may not need a Web interface.
 Services can be disabled in several ways:
 
-1.  Configure OpenBMC recipes to build the unwanted feature out of the BMC's
-    firmware image. This gives the BMC the advantage of a smaller attack
-    surface.
-2.  Implement something like the [Redfish ManagerNetworkProtocol][] properties
-    for IPMI, SSH, and other BMC services, possibly by using shell commands like
-    'systemctl disable ipmid' and 'systemctl stop ipmid'.
+1. Configure OpenBMC recipes to build the unwanted feature out of the BMC's
+   firmware image. This gives the BMC the advantage of a smaller attack surface.
+2. Implement something like the [Redfish ManagerNetworkProtocol][] properties
+   for IPMI, SSH, and other BMC services, possibly by using shell commands like
+   'systemctl disable ipmid' and 'systemctl stop ipmid'.
 
 [redfish managernetworkprotocol]:
   https://redfish.dmtf.org/schemas/ManagerNetworkProtocol.v1_4_0.json
@@ -168,12 +167,12 @@ Application Security][].
 
 BMCWeb controls which HTTPS transport layer security (TLS) ciphers it offers via
 compile-time header file `include/ssl_key_handler.hpp` in the
-https://github.com/openbmc/bmcweb repository. The implementation is provided by
-OpenSSL.
+<https://github.com/openbmc/bmcweb> repository. The implementation is provided
+by OpenSSL.
 
 BMCWeb provides appropriate HTTP response headers, for example, in header file
 `include/security_headers_middleware.hpp` and `crow/include/crow/websocket.h` in
-the https://github.com/openbmc/bmcweb repository.
+the <https://github.com/openbmc/bmcweb> repository.
 
 [bmcweb configuration]: https://github.com/openbmc/bmcweb#configuration
 [owasp application security]:
@@ -183,14 +182,13 @@ the https://github.com/openbmc/bmcweb repository.
 
 BMCWeb offers three authentication methods:
 
-1.  The Redfish SessionService, which takes a username and password and provides
-    an X-Auth token.
-2.  The Phosphor D-Bus REST interface '/login' URI, which takes a username and
-    password and provides a session cookie. This method is deprecated in
-    OpenBMC.
-3.  Basic Access Authentication, which takes a username and password (often URL
-    encoded like https://user:pass@host/...) in an "Authorization" request
-    header, and returns no credentials. This method is deprecated by RFC 3986.
+1. The Redfish SessionService, which takes a username and password and provides
+   an X-Auth token.
+2. The Phosphor D-Bus REST interface '/login' URI, which takes a username and
+   password and provides a session cookie. This method is deprecated in OpenBMC.
+3. Basic Access Authentication, which takes a username and password (often URL
+   encoded like `https://user:pass@host/...`) in an "Authorization" request
+   header, and returns no credentials. This method is deprecated by RFC 3986.
 
 The username and password are presented to phosphor-user-manager for
 authentication.
@@ -201,11 +199,11 @@ credentials to invoke Phosphor D-Bus REST APIs. Note, however, that the X-Auth
 tokens are required to use POST, PUT, PATCH, or DELETE methods.
 
 General security considerations for REST APIs apply:
-https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/REST_Security_Cheat_Sheet.md
+<https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/REST_Security_Cheat_Sheet.md>
 
 Redfish provides security considerations in the "Security Detail" section of the
 "Redfish Specification" (document ID DSP0266) available from
-https://www.dmtf.org/standards/redfish.
+<https://www.dmtf.org/standards/redfish>.
 
 #### The webui-vue Web application
 
@@ -235,7 +233,7 @@ outside the scope of this document.
 ### TCP and UDP ports 5355 - mDNS service discovery
 
 General security considerations for service discovery apply. For example,
-described here: https://attack.mitre.org/techniques/T1046/
+described here: <https://attack.mitre.org/techniques/T1046/>
 
 ### UDP port 427 - SLP, Avahi
 
@@ -244,13 +242,13 @@ General security considerations for service discovery apply.
 ### UDP port 623 - IPMI RCMP
 
 The IPMI network-facing design is described here:
-https://github.com/openbmc/docs/blob/master/architecture/ipmi-architecture.md
+<https://github.com/openbmc/docs/blob/master/architecture/ipmi-architecture.md>
 and the implementation is described here:
-https://github.com/openbmc/phosphor-net-ipmid. Note that host IPMI is outside
+<https://github.com/openbmc/phosphor-net-ipmid>. Note that host IPMI is outside
 the scope of this document.
 
 General security considerations for IPMI apply. For example, described here:
-https://www.us-cert.gov/ncas/alerts/TA13-207A
+<https://www.us-cert.gov/ncas/alerts/TA13-207A>
 
 OpenBMC implements RCMP+ and IPMI 2.0. The phosphor-user-manager provides the
 underlying authentication mechanism.

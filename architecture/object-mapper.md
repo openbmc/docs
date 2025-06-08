@@ -30,7 +30,7 @@ Output:
 
 - Map of service names to their interfaces
 
-```
+```bash
 dbus-send --system --print-reply \
 --dest=xyz.openbmc_project.ObjectMapper \
 /xyz/openbmc_project/object_mapper \
@@ -73,7 +73,7 @@ Output:
 
 - Map of object paths to a map of service names to their interfaces
 
-```
+```bash
 dbus-send --system --print-reply \
 --dest=xyz.openbmc_project.ObjectMapper \
 /xyz/openbmc_project/object_mapper \
@@ -137,7 +137,7 @@ Output:
 - Map of object paths to a map of service names to their interfaces that is in
   the associated endpoints
 
-```
+```bash
 dbus-send --system --print-reply \
 --dest=xyz.openbmc_project.ObjectMapper \
 /xyz/openbmc_project/object_mapper \
@@ -213,7 +213,7 @@ Output:
 - Map of object paths to a map of service names to their interfaces that are in
   the associated endpoints that end with `id`
 
-```text
+```bash
 ID="chassis"
 ASSOCIATION="powered_by"
 dbus-send --system --print-reply \
@@ -287,7 +287,7 @@ Output:
 
 - array of object paths in that subtree
 
-```
+```bash
 dbus-send --system --print-reply \
 --dest=xyz.openbmc_project.ObjectMapper \
 /xyz/openbmc_project/object_mapper \
@@ -322,7 +322,7 @@ Output:
 
 - array of object paths in that subtree that is in the associated endpoints
 
-```
+```bash
 dbus-send --system --print-reply \
 --dest=xyz.openbmc_project.ObjectMapper \
 /xyz/openbmc_project/object_mapper \
@@ -370,7 +370,7 @@ Output:
 - Map of object paths to a map of service names to their interfaces that are in
   the associated endpoints that ends with `id`
 
-```text
+```bash
 ID="chassis"
 ASSOCIATION="powered_by"
 dbus-send --system --print-reply \
@@ -419,7 +419,7 @@ Output:
 
 - A map of object paths to a map of services names to their interfaces
 
-```
+```bash
 
 dbus-send --system --print-reply \
 --dest=xyz.openbmc_project.ObjectMapper \
@@ -479,7 +479,7 @@ be written.
 
 This `Associations` property is an array of tuples of the form:
 
-```
+```text
 [forward, reverse, object path]
 ```
 
@@ -490,7 +490,7 @@ This `Associations` property is an array of tuples of the form:
 When an object with, for example, an object path of `pathA` uses the following
 values:
 
-```
+```json
 ["foo", "bar", "pathB"]
 ```
 
@@ -521,11 +521,11 @@ Note: The original name of the association definition interface was
 `org.openbmc.Associations`. While the mapper still supports this interface as
 well for the time being, new code should use the `xyz` version.
 
-#### Example Use Case
+### Example Use Case
 
 Associate an error log with the inventory item that caused it.
 
-```
+```text
 # Error log
 "/xyz/openbmc_project/logging/entry/3": {
 ...

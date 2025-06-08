@@ -158,7 +158,7 @@ updates will be made:
   containing keywords SN, FN and CCIN, the representation in D-Bus would look
   like:
 
-```
+```text
 Interface: com.ibm.ipzvpd.VINI
 Properties:
     SN
@@ -222,9 +222,9 @@ This option was rejected for the following reasons:
 
 ### Build upon the entity manager
 
-Using the entity manager: https://github.com/openbmc/entity-manager. The Entity
-manager has an application called the FruDevice, which probes /dev/i2c/ for
-EEPROMs, reads (IPMI format) VPD and stores it on DBUS.
+Using the entity manager: <https://github.com/openbmc/entity-manager>. The
+Entity manager has an application called the FruDevice, which probes /dev/i2c/
+for EEPROMs, reads (IPMI format) VPD and stores it on DBUS.
 
 The application could be enhanced to:
 

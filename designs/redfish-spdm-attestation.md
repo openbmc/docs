@@ -50,11 +50,11 @@ This design includes:
 There are three type of information we will need from an attestation daemon on
 D-Bus:
 
-1.  Basic information, like attestation protocol, enablement status, update
-    timestamp, etc.
-2.  Identity information, e.g., device identity certificates.
-3.  Measurements information, e.g., measurements of the component firmware,
-    hardware configuration, etc.
+1. Basic information, like attestation protocol, enablement status, update
+   timestamp, etc.
+2. Identity information, e.g., device identity certificates.
+3. Measurements information, e.g., measurements of the component firmware,
+   hardware configuration, etc.
 
 So far, phosphor-dbus-interfaces lacks interfaces defined for attestation
 purpose. Thus, we propose three new interfaces:
@@ -158,7 +158,7 @@ query the `mctpd` for any detected endpoints after it gets launched.
 Below is a high-level diagram showing the relationship between different
 components.
 
-```
+```ascii
     +------+            +---------+
     |Client|            |Inventory|
     +--+---+            |Manager  |
@@ -292,8 +292,8 @@ This repository requires creating a new repository for the SPDM daemon. In
 addition, the following repositories are expected to be modified to execute this
 design:
 
-- https://github.com/openbmc/bmcweb
-- https://github.com/openbmc/phosphor-dbus-interfaces
+- <https://github.com/openbmc/bmcweb>
+- <https://github.com/openbmc/phosphor-dbus-interfaces>
 
 ## Testing
 

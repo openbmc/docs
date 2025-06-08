@@ -1,10 +1,10 @@
-### NVMe-MI over SMBus
+# NVMe-MI over SMBus
 
 Author: Tony Lee <tony.lee@quantatw.com>
 
 Created: 3-8-2019
 
-#### Problem Description
+## Problem Description
 
 Currently, OpenBMC does not support NVMe drive information. NVMe-MI
 specification defines a command that can read the NVMe drive information via
@@ -12,7 +12,7 @@ SMBus directly. The NVMe drive can provide its information or status, like
 vendor ID, temperature, etc. The aim of this proposal is to allow users to
 monitor NVMe drives so appropriate action can be taken.
 
-#### Background and References
+## Background and References
 
 NVMe-MI specification defines a command called
 `NVM Express Basic Management Command` that can read the NVMe drives information
@@ -24,12 +24,14 @@ Express Basic Management Command where describe in NVMe-MI specification to
 communicate with NVMe drives. According to different platforms, temperature
 sensor, present status, LED and power sequence will be customized.
 
-[1] NVM Express Management Interface Revision 1.0a April 8, 2017 in Appendix A.
-(https://nvmexpress.org/wp-content/uploads/NVM_Express_Management_Interface_1_0a_2017.04.08_-_gold.pdf)
-[2] System Management Bus (SMBus) Specification Version 3.0 20 Dec 2014
-(http://smbus.org/specs/SMBus_3_0_20141220.pdf)
+[1]:
+  https://nvmexpress.org/wp-content/uploads/NVM_Express_Management_Interface_1_0a_2017.04.08_-_gold.pdf
+  "NVM Express Management Interface Revision 1.0a April 8, 2017 in Appendix A."
+[2]:
+  http://smbus.org/specs/SMBus_3_0_20141220.pdf
+  "System Management Bus (SMBus) Specification Version 3.0 20 Dec 2014"
 
-#### Requirements
+## Requirements
 
 The implementation should:
 
@@ -41,7 +43,7 @@ The implementation should:
 - Ability to turn the fault LED on/off for each drive by SmartWarnings if the
   object path of fault LED is defined in the configuration file.
 
-#### Proposed Design
+## Proposed Design
 
 Create a D-bus service "xyz.openbmc_project.nvme.manager" with object paths for
 each NVMe sensor: "/xyz/openbmc_project/sensors/temperature/nvme0",
@@ -70,7 +72,7 @@ Structure like:
 
 Under the D-bus named "xyz.openbmc_project.nvme.manager":
 
-```
+```text
     /xyz/openbmc_project
     └─/xyz/openbmc_project/sensors
       └─/xyz/openbmc_project/sensors/temperature/nvme0
@@ -84,7 +86,7 @@ Under the D-bus named "xyz.openbmc_project.nvme.manager":
 
 Under the D-bus named "xyz.openbmc_project.Inventory.Manager":
 
-```
+```text
 /xyz/openbmc_project
     └─/xyz/openbmc_project/inventory
       └─/xyz/openbmc_project/inventory/system
@@ -142,7 +144,7 @@ properties:
 | BuildDate    | bool   | The date of item manufacture in YYYYMMDD format   |
 | Model        | bool   | The model of the item                             |
 
-##### xyz.openbmc_project.nvme.manager.service
+### xyz.openbmc_project.nvme.manager.service
 
 This service has several steps:
 
@@ -165,12 +167,12 @@ This service has several steps:
 
 This service will run automatically and look up NVMe drives every second.
 
-##### Fault LED
+### Fault LED
 
 When the value obtained from the command corresponds to one of the warning
 types, it will trigger the fault LED of corresponding device and issue events.
 
-##### Add SEL related to NVMe
+### Add SEL related to NVMe
 
 The events `TemperatureFault`, `BackupdrivesFault`, `CapacityFault`,
 `DegradesFault` and `MediaFault` will be generated for the NVMe errors.
@@ -181,7 +183,7 @@ The events `TemperatureFault`, `BackupdrivesFault`, `CapacityFault`,
 - Degrades Fault log : when the property `DegradesFault` set to true
 - Media Fault log: when the property `MediaFault` set to true
 
-#### Alternatives Considered
+## Alternatives Considered
 
 NVMe-MI specification defines multiple commands that can communicate with NVMe
 drives over MCTP protocol. The NVMe-MI over MCTP has the following key
@@ -196,12 +198,12 @@ capabilities:
 For monitoring NVMe drives, using NVM Express Basic Management Command over
 SMBus directly is much simpler than NVMe-MI over MCTP protocol.
 
-#### Impacts
+## Impacts
 
 This application is monitoring NVMe drives via SMbus and set values to D-bus.
 The impacts should be small in the system.
 
-#### Testing
+## Testing
 
 This implementation is to use NVMe-MI-Basic command over SMBus and then set the
 response data to D-bus. Testing will send SMBus command to the drives to get the

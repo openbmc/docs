@@ -109,9 +109,7 @@ sections:-
 - Server Sent-Events (Section 12.5)
 - Security (Section 12 & 13.2.8)
 
-**BLOCK DIAGRAM**
-
-```
+```text
 +------------------------------------------------------------------------------------+
 |                                 CLIENT                                             |
 |                             EVENT LISTENER                                         |
@@ -161,7 +159,7 @@ SUBSCRIPTION |         |                                 EVENTS   |  POST   |
 
 Push style events(HTTPS) flow diagram:
 
-```
+```text
 +-------------+   +------------+               +-------------------------------------+ +-----------------+
 |             |   |  CLIENT    |               |              BMCWEB                 | |   EVENT LOG/    |
 |   CLIENT    |   | LISTENERS  |               |RESOURCE SENDER  FORMATTER  MONITOR  | |TELEMETRY SERVICE|
@@ -301,7 +299,7 @@ Push style events(HTTPS) flow diagram:
 
 SSE flow diagram:
 
-```
+```text
 +-------------+   +------------+               +-------------------------------------+ +-----------------+
 |             |   |  CLIENT    |               |              BMCWEB                 | |   EVENT LOG/    |
 |   CLIENT    |   | LISTENERS  |               |RESOURCE SENDER  FORMATTER  MONITOR  | |TELEMETRY SERVICE|
@@ -465,44 +463,40 @@ This document also covers the description of below modules.
 
 This document doesn't cover below component design.
 
-1.  Redfish Event Logs: This is existing implementation. In OpenBMC, All events
-    will be logged to Journal control logs and RSyslog service, monitors event
-    logs associated with "REDFISH_MESSAGE_ID" and write the required information
-    to "/var/log/redfish" for persisting the event logs.
+1. Redfish Event Logs: This is existing implementation. In OpenBMC, All events
+   will be logged to Journal control logs and RSyslog service, monitors event
+   logs associated with "REDFISH_MESSAGE_ID" and write the required information
+   to "/var/log/redfish" for persisting the event logs.
 
-         So EventService design is hooked to Redfish Event Logs majorly for below
-         two reasons.
+   So EventService design is hooked to Redfish Event Logs majorly for below two
+   reasons.
 
-           - Get the notification whenever new event is logged to Redfish event
-             Logs.
-           - Way to read the Redfish event log information.
+   - Get the notification whenever new event is logged to Redfish event Logs.
+   - Way to read the Redfish event log information.
 
-         This document covers one example Redfish Event Log implementation covered
-         under below design. As part of it, it uses inotify for getting
-         notification about new event log and read the log information by accessing
-         the redfish event log file.
+   This document covers one example Redfish Event Log implementation covered
+   under below design. As part of it, it uses inotify for getting notification
+   about new event log and read the log information by accessing the redfish
+   event log file.
 
-         Refer below link for more information on same.
+   Refer below link for more information on same.
+   [link](https://github.com/openbmc/docs/blob/master/redfish-logging-in-bmcweb.md)
 
-    [link](https://github.com/openbmc/docs/blob/master/redfish-logging-in-bmcweb.md)
+   If other OEM's has different implementation for Redfish EventLogs, they can
+   satisfy above mentioned two requirement and can hook it to EventService
+   design specified here. For example, If xyz OEM uses D-Bus based Redfish Event
+   logs, They can use 'signal' for notifying the new redfish event log and event
+   log information. They can replace 'inotify' with 'signal' and hook their OEM
+   specific Redfish event log to this Redfish EventService design.
 
-         If other OEM's has different implementation for Redfish EventLogs, they
-         can satisfy  above mentioned two requirement and can hook it to
-         EventService design specified here.
-         For example, If xyz OEM uses D-Bus based Redfish Event logs, They can
-         use 'signal' for notifying the new redfish event log and event log
-         information. They can replace 'inotify' with 'signal' and hook their
-         OEM specific Redfish event log to this Redfish EventService design.
+2. Telemetry service: Redfish telemetry service is used to gather all the
+   metrics reports associated with different resources such as Power metrics,
+   thermal metrics, memory metrics, processor metrics etc... Monitoring service
+   in telemetry supports different modes along with aggregated
+   operations(Single, average, max, min, sum etc..).
 
-2.  Telemetry service: Redfish telemetry service is used to gather all the
-    metrics reports associated with different resources such as Power metrics,
-    thermal metrics, memory metrics, processor metrics etc... Monitoring service
-    in telemetry supports different modes along with aggregated
-    operations(Single, average, max, min, sum etc..).
-
-         Refer below link for design document of telemetry service.
-
-    [link](https://gerrit.openbmc.org/#/c/openbmc/docs/+/24357/)
+   Refer below link for design document of telemetry service.
+   [link](https://gerrit.openbmc.org/#/c/openbmc/docs/+/24357/)
 
 ### Redfish resource schema's
 
@@ -516,10 +510,8 @@ All the configuration and subscriptions information data will be cached on
 bmcweb webserver and synced with config json file for restoring and persisting
 the data.
 
-**EventService**
-
-Contains the attributes of the service such as Service Enabled, status, delivery
-retry attempts, Event Types, Subscriptions, Actions URI etc.
+**EventService** Contains the attributes of the service such as Service Enabled,
+status, delivery retry attempts, Event Types, Subscriptions, Actions URI etc.
 
 - URI : `/redfish/v1/EventService`
 - SCHEMA :
@@ -567,7 +559,7 @@ of event formats which are define in redfish specification.
 The "Event service sender" is common entity for both type of resources. The
 formatter and monitor entities are different for each type of resources.
 
-**Event log monitor**
+#### Event log monitor
 
 In OpenBMC, all the redfish event logs are currently logged to persistent area
 of BMC filesystem("/var/log/redfish"). The "Event log monitor" service under
@@ -580,7 +572,7 @@ be cached in bmcweb to identify the new events in redfish event log file.
 It monitors the live events for sending asynchronously and does not send the
 events logged before bmcweb service start.
 
-**Event log formatter**
+#### Event log formatter
 
 It is used to format the request body by reading event logs passed from 'Event
 log monitor' and filter the data by reading subscription information. It will
@@ -592,7 +584,7 @@ filtered subscribers.
 
 Refer Tested section for example request body.
 
-**MetricReport monitor**
+#### MetricReport monitor
 
 Telemetry monitoring service ( Not covered in this document) is responsible for
 gathering metrics from D-Bus sensors and exposing them as D-Bus objects.
@@ -612,13 +604,13 @@ and provide it to MetricReport formatter. The EventService should provide a way
 to communicate the subscriptions data whenever user creates or updates or delete
 subscription.
 
-**MetricReport formatter**
+#### MetricReport formatter
 
 The 'MetricReport formatter' is responsible for formatting the data which comes
 from 'MetricReport monitor/agent' by checking subscriptions information such as
 HttpHeaders, Custom text strings along with Telemetry report data.
 
-**Event service sender**
+#### Event service sender
 
 The "Event service sender" is used to send the formatted request body which is
 passed from 'Event log formatter' or 'Telemetry formatter' to all filtered
@@ -734,7 +726,7 @@ Cache implementation includes below major blocks:
 - Subscription structure: It holds the data associated with each
   EventDestination schema properties along with established connection handle.
 
-### Server-Sent Events (SSE):
+### Server-Sent Events (SSE)
 
 Server-Sent Events (SSE) is a server push technology enabling a browser to
 receive automatic updates from a server via HTTP connection. The Server-Sent
@@ -753,7 +745,7 @@ bmcweb server keep the connection open and conform to the HTML5 Specification
 until the client closes the socket. The bmcweb service should sent the response
 to GET URI with following headers.
 
-```
+```text
 'Content-Type': 'text/event-stream',
 'Cache-Control': 'no-cache',
 'Connection': 'keep-alive'
@@ -764,7 +756,7 @@ connection. Response of event message should contain the "data: " prefix and
 postfix "\n" on each line. For representing the end of data, it should end with
 "\n\n". Example sending json response should look like
 
-```
+```text
 data: {\n
 data: "msg": "hello world",\n
 data: "id": 12345\n
@@ -824,10 +816,10 @@ Supported filters are:
 
 Example for subscribing SSE with filters:
 
-```
+```text
 MessageId based filter:
 METHOD: GET
-URi: https://<BMCIP>/redfish/v1/EventService/SSE?MessageId='Alert.1.0.LanDisconnect'
+URI: https://<BMCIP>/redfish/v1/EventService/SSE?MessageId='Alert.1.0.LanDisconnect'
 
 RegistryPrefix based filter:
 https://sseuri?$filter=(RegistryPrefix eq Resource) or (RegistryPrefix eq
@@ -883,19 +875,19 @@ SubmitTestEvent, and add the EventGroupId parameter in SubmitTestEvent.
 
 Example POST Request body:
 
-```
+```json
 {
   "Message": "Test Event for validation",
   "MessageArgs": [],
   "EventId": "OpenBMC.0.1.TestEvent",
-  "EventGroupId" : "",
+  "EventGroupId": "",
   "Severity": "OK"
 }
 ```
 
 ## Alternatives considered
 
-**HTTP POLLING**
+### HTTP POLLING
 
 Polling is a traditional technique where client repeatedly polls a server for
 data. The client makes a request and waits for the server to respond with data.
@@ -908,7 +900,7 @@ Push style(https) eventing or SSE will avoid the http overhead of continuous
 polling and send the data/events when it happens on server side to the
 subscribed clients.
 
-**WEBSOCKET**
+### WEBSOCKET
 
 WebSocket provides a richer protocol to perform bi-directional, full-duplex
 communication. Having a two-way channel is more attractive for some case but in
@@ -920,7 +912,7 @@ do not require a special protocol or server implementation to get working.
 WebSocket on the other hand, require full-duplex connections and new Web Socket
 servers to handle the protocol.
 
-**IPMI PEF**
+### IPMI PEF
 
 Platform Event Filtering (PEF) provides a mechanism for configuring the BMC to
 take selected actions on event messages that it receives. This mechanism is IPMI
@@ -931,7 +923,7 @@ compared with Redfish.
 
 - Direct journal logs vs Redfish event log file using inotify
 
-Considered reading direct journald logs using sd*journal*<xyz> api's but that
+Considered reading direct journald logs using `sd*journal*<xyz>` api's but that
 seems to be in-efficient because
 
 1. sdjournal has multiple logs currently( not just event logs) and so this
@@ -1025,120 +1017,120 @@ User should cover below functionalists.
   should not create any subscription or open any http connection.
 - Max limit check: Creates max supported event subscriptions and validate.
 
-** Push style events: **
+### Push style events
 
 1. EventListner: Client should configure the web service for listening the
-   events (Example: http://192.168.1.2/Events).
+   events (Example: `http://192.168.1.2/Events`).
 
 2. Subscription: Client can subscribe for events on BMC using below
 
-```
-URI: /redfish/v1/EventService/Subscriptions
-METHOD: POST
-REQUEST BODY:
-{
-  "Destination":"http://192.168.1.2/Events",
-  "Context":"CustomText",
-  "Protocol":"Redfish",
-}
-```
+   ```text
+   URI: /redfish/v1/EventService/Subscriptions
+   METHOD: POST
+   REQUEST BODY:
+   {
+   "Destination":"http://192.168.1.2/Events",
+   "Context":"CustomText",
+   "Protocol":"Redfish",
+   }
+   ```
 
-     On successful event subscription client will receive 201(Created) http
-     status code along with created subscription ID. At this point onwards,
-     client will receive events associated with subscribed data.
+   On successful event subscription client will receive 201(Created) http status
+   code along with created subscription ID. At this point onwards, client will
+   receive events associated with subscribed data.
 
-     Client can use "SubmitTestEvent" (Documented above) to test the working
-     state.
+   Client can use "SubmitTestEvent" (Documented above) to test the working
+   state.
 
 3. ViewSubscription: Client can get the subscriptions details using
 
-```
-URI: /redfish/v1/EventService/Subscriptions/<ID>
-METHOD: GET
-```
+   ```text
+   URI: /redfish/v1/EventService/Subscriptions/<ID>
+   METHOD: GET
+   ```
 
 4. UpdateSubscription: At any point client can update the subscription
    information.
 
-```
-URI: /redfish/v1/EventService/Subscriptions/<ID>
-METHOD: PATCH
-REQUEST BODY:
-{
-  "Destination":"http://192.168.1.2/Events",
-  "Context":"Changed Custom Text",
-  "RegistryPrefix": "OpenBMC.0.2"
-}
-```
+   ```text
+   URI: /redfish/v1/EventService/Subscriptions/<ID>
+   METHOD: PATCH
+   REQUEST BODY:
+   {
+     "Destination":"http://192.168.1.2/Events",
+     "Context":"Changed Custom Text",
+     "RegistryPrefix": "OpenBMC.0.2"
+   }
+   ```
 
 5. DeleteSubscription: Client can unsubscribe and stop receiving events by
    deleting the subscription.
 
-```
-URI: /redfish/v1/EventService/Subscriptions/<ID>
-METHOD: DELETE
-```
+   ```text
+   URI: /redfish/v1/EventService/Subscriptions/<ID>
+   METHOD: DELETE
+   ```
 
-** Server-Sent events subscription: **
+### Server-Sent events subscription
 
 1. EventListner and Subscription: Client can open latest browser (chrome) and
    fire GET URI on "ServerSentEventUri" along with filters.
 
-```
-URI: /redfish/v1/EventService/SSE?RegistryPrefix='OpenBMC.0.2'&MessageId='OpenBMC.0.2.xyz"
-METHOD: GET
-```
+   ```text
+   URI: /redfish/v1/EventService/SSE?RegistryPrefix='OpenBMC.0.2'&MessageId='OpenBMC.0.2.xyz"
+   METHOD: GET
+   ```
 
-     On successful event subscription client will receive 200(Created) http
-     status code, subscription id along with below response headers for
-     streaming.
+   On successful event subscription client will receive 200(Created) http status
+   code, subscription id along with below response headers for streaming.
 
-```
-'Content-Type': 'text/event-stream',
-'Cache-Control': 'no-cache',
-'Connection': 'keep-alive'
-```
+   ```text
+   'Content-Type': 'text/event-stream',
+   'Cache-Control': 'no-cache',
+   'Connection': 'keep-alive'
+   ```
 
-     At this point onwards, client browser will receive events associated with
-     subscribed data.
+   At this point onwards, client browser will receive events associated with
+   subscribed data.
 
-     Client can use "SubmitTestEvent" (Documented above) to test the working
-     state.
+   Client can use "SubmitTestEvent" (Documented above) to test the working
+   state.
 
 2. ViewSubscription: Client can get the subscriptions details using
 
-```
-URI: /redfish/v1/EventService/Subscriptions/<ID>
-METHOD: GET
-```
+   ```text
+   URI: /redfish/v1/EventService/Subscriptions/<ID>
+   METHOD: GET
+   ```
 
 3. UpdateSubscription: At any point client can update the subscription
    information. Note Client can't change the destination as that is opaque
    associated with opened SSE connection.
 
-```
-URI: /redfish/v1/EventService/Subscriptions/<ID>
-METHOD: PATCH
-REQUEST BODY:
-{
-  "Context":"Changed Custom Text",
-  "RegistryPrefix": "OpenBMC.0.2"
-}
-```
+   ```text
+   URI: /redfish/v1/EventService/Subscriptions/<ID>
+   METHOD: PATCH
+   REQUEST BODY:
+   {
+     "Context":"Changed Custom Text",
+     "RegistryPrefix": "OpenBMC.0.2"
+   }
+   ```
 
 4. DeleteSubscription: There are two ways to close the connection from client.
+
    - Client can close the browser directly which will close the SSE http
      connection and so bmcweb service can close and delete the subscription
      data.
    - Client can also unsubscribe and stop receiving events by deleting the
      subscription.
 
-```
-URI: /redfish/v1/EventService/Subscriptions/<ID>
-METHOD: DELETE
-```
+   ```text
+   URI: /redfish/v1/EventService/Subscriptions/<ID>
+   METHOD: DELETE
+   ```
 
-** EventListner **
+### EventListner
 
 Push style Events:
 
@@ -1149,22 +1141,26 @@ destination URI.
 There are multiple EventListners exist and here is simple node js server, which
 can be run using "node server.js".
 
-```
+```js
 // server.js
 const http = require("http");
 var displayResponse;
 
-http.createServer((request, response) => {
+http
+  .createServer((request, response) => {
     console.log("Requested url: " + request.url);
     const { headers, method, url } = request;
 
-    if ((method.toLowerCase() == "post") && (url.toLowerCase() === "/events")) {
-        let body = [];
-        request.on('error', (err) => {
+    if (method.toLowerCase() == "post" && url.toLowerCase() === "/events") {
+      let body = [];
+      request
+        .on("error", (err) => {
           console.error(err);
-        }).on('data', (chunk) => {
+        })
+        .on("data", (chunk) => {
           body.push(chunk);
-        }).on('end', () => {
+        })
+        .on("end", () => {
           body = Buffer.concat(body).toString();
 
           console.log(body);
@@ -1173,13 +1169,16 @@ http.createServer((request, response) => {
 
           response.statusCode = 200;
           response.end();
-        })
-    } else if ((method.toLowerCase() == "get") && (url.toLowerCase() === "/display_events")) {
+        });
+    } else if (
+      method.toLowerCase() == "get" &&
+      url.toLowerCase() === "/display_events"
+    ) {
       response.writeHead(200, {
         Connection: "keep-alive",
         "Content-Type": "text/event-stream",
         "Cache-Control": "no-cache",
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
       });
 
       displayResponse = response;
@@ -1187,8 +1186,11 @@ http.createServer((request, response) => {
       response.writeHead(404);
       response.end();
     }
-  }).listen(5000, () => {
-    console.log("Use 'http://<IP>:5000/events' as destination to subscribe for BMC events");
+  })
+  .listen(5000, () => {
+    console.log(
+      "Use 'http://<IP>:5000/events' as destination to subscribe for BMC events",
+    );
     console.log("Open 'http://<IP>:5000/display_events' URL on browser\n");
   });
 ```
@@ -1202,12 +1204,12 @@ authentication and authorization, client connection will be established for
 listening events.
 
 You can also refer below link for details on Server-Sent events.
-(https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)
+<https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events>
 
 Another simple python script for testing SSE using EventSource. Run it using
 "python sse-client.py".
 
-```
+```python
 // sse-client.py
 import requests, json, sys, time, re, os
 import sseclient
@@ -1238,28 +1240,28 @@ except Exception as exc:
   print("\nERROR: Error in subscribing the SSE events\n")
 ```
 
-**EventService**
+#### EventService
 
 Supported properties:
 
-| PROPERTY NAME                | TYPE          | DESCRIPTION                                                                                                                                                                                                                                                                                                     |
-| ---------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ServiceEnabled               | Boolean       | This indicates whether event service is enabled. Default: True                                                                                                                                                                                                                                                  |
-| DeliveryRetryAttempts        | Integer       | This is the number of attempts an event posting is retried before the subscription is terminated. Default: 3                                                                                                                                                                                                    |
-| DeliveryRetryIntervalSeconds | Integer       | This represents the number of seconds between retry attempts for sending any given Event. Default: 30                                                                                                                                                                                                           |
-| EventFormatTypes             | Array(string) | Indicates the content types of the message that this service can send to the event destination. ** Event: ** Resource types of 'Event' sent to subscribed destination. This is default value if nothing is specified. ** MetricReport: ** Resource types of 'MetricReport' only sent to subscribed destination. |
-| RegistryPrefixes             | Array(string) | A list of the Prefixes of the Message Registries that can be used for the RegistryPrefix property on a subscription. If this property is absent or contains an empty array, the service does not support RegistryPrefix-based subscriptions.                                                                    |
-| ResourceTypes                | Array(string) | A list of the Prefixes of the message registries that can be used for the RegistryPrefix property on a subscription. If this property is absent or contains an empty array, the service does not support RegistryPrefix-based subscriptions                                                                     |
-| ServerSentEventUri           | String        | The value of this property shall be a URI that specifies an HTML5 Server-Sent Event conformant endpoint. URI: /redfish/v1/EventService/SSE                                                                                                                                                                      |
-| Subscriptions                | Object        | The value of this property shall contain the link to a collection of type EventDestinationCollection.                                                                                                                                                                                                           |
-| Actions                      | Object        | This action shall add a test event to the event service with the event data specified in the action parameters. More details on TestEvents captured below.                                                                                                                                                      |
+| PROPERTY NAME                | TYPE          | DESCRIPTION                                                                                                                                                                                                                                                                                                 |
+| ---------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ServiceEnabled               | Boolean       | This indicates whether event service is enabled. Default: True                                                                                                                                                                                                                                              |
+| DeliveryRetryAttempts        | Integer       | This is the number of attempts an event posting is retried before the subscription is terminated. Default: 3                                                                                                                                                                                                |
+| DeliveryRetryIntervalSeconds | Integer       | This represents the number of seconds between retry attempts for sending any given Event. Default: 30                                                                                                                                                                                                       |
+| EventFormatTypes             | Array(string) | Indicates the content types of the message that this service can send to the event destination. **Event:** Resource types of 'Event' sent to subscribed destination. This is default value if nothing is specified. **MetricReport:** Resource types of 'MetricReport' only sent to subscribed destination. |
+| RegistryPrefixes             | Array(string) | A list of the Prefixes of the Message Registries that can be used for the RegistryPrefix property on a subscription. If this property is absent or contains an empty array, the service does not support RegistryPrefix-based subscriptions.                                                                |
+| ResourceTypes                | Array(string) | A list of the Prefixes of the message registries that can be used for the RegistryPrefix property on a subscription. If this property is absent or contains an empty array, the service does not support RegistryPrefix-based subscriptions                                                                 |
+| ServerSentEventUri           | String        | The value of this property shall be a URI that specifies an HTML5 Server-Sent Event conformant endpoint. URI: /redfish/v1/EventService/SSE                                                                                                                                                                  |
+| Subscriptions                | Object        | The value of this property shall contain the link to a collection of type EventDestinationCollection.                                                                                                                                                                                                       |
+| Actions                      | Object        | This action shall add a test event to the event service with the event data specified in the action parameters. More details on TestEvents captured below.                                                                                                                                                  |
 
 Note: EventService.v1_3_0 was created to deprecate the EventTypesForSubscription
 and SSEFilterPropertiesSupported\EventType properties.
 
 Example GET Response:
 
-```
+```json
 {
   "@odata.context": "/redfish/v1/$metadata#EventService.EventService",
   "@odata.id": "/redfish/v1/EventService",
@@ -1271,15 +1273,10 @@ Example GET Response:
   },
   "DeliveryRetryAttempts": 3,
   "DeliveryRetryIntervalSeconds": 30,
-  "EventFormatTypes": [
-    "Event"
-  ],
+  "EventFormatTypes": ["Event"],
   "Id": "EventService",
   "Name": "Event Service",
-  "RegistryPrefixes": [
-    "Base",
-    "OpenBMC"
-  ],
+  "RegistryPrefixes": ["Base", "OpenBMC"],
   "ServerSentEventUri": "/redfish/v1/EventService/SSE",
   "ServiceEnabled": true,
   "Subscriptions": {
@@ -1288,11 +1285,11 @@ Example GET Response:
 }
 ```
 
-**Subscription Collections**
+#### Subscription Collections
 
 Example GET output:
 
-```
+```json
 {
   "@odata.type":"#EventDestinationCollection.EventDestinationCollection",
   "@odata.context":"/redfish/v1/$metadata#EventDestinationCollection.EventDestinationCollection",
@@ -1309,7 +1306,7 @@ Example GET output:
 }
 ```
 
-**Subscriptions**
+#### Subscriptions
 
 Supported properties:
 
@@ -1325,37 +1322,27 @@ Supported properties:
 
 Example GET Request:
 
-```
+```json
 {
   "@odata.context": "/redfish/v1/$metadata#EventDestination.EventDestination",
   "@odata.id": "/redfish/v1/EventService/Subscriptions/1",
   "@odata.type": "#EventDestination.v1_5_0.EventDestination",
   "Context": "143TestString",
   "Destination": "http://test3.domain.com/EventListener",
-  "EventFormatTypes": [
-    "Event"
-  ],
-  "HttpHeaders": [
-    "X-Auth-Token:XYZABCDEDF"
-  ],
+  "EventFormatTypes": ["Event"],
+  "HttpHeaders": ["X-Auth-Token:XYZABCDEDF"],
   "Id": "1",
-  "MessageIds": [
-    "InventoryAdded",
-    "InventoryRemoved"
-  ],
+  "MessageIds": ["InventoryAdded", "InventoryRemoved"],
   "Name": "EventSubscription 1",
   "Protocol": "Redfish",
-  "RegistryPrefixes": [
-    "Base",
-    "OpenBMC"
-  ],
+  "RegistryPrefixes": ["Base", "OpenBMC"],
   "SubscriptionType": "Event"
 }
 ```
 
 - Event log formatted response body looks like:
 
-```
+```text
 id: 1
 data:{
 data: "@odata.type": "#Event.v1_1_0.Event",
@@ -1384,7 +1371,7 @@ data:}
 
 - Configuration structure pseudo code:
 
-```
+```cpp
 struct EventSrvConfig
 {
     bool enabled;
@@ -1395,7 +1382,7 @@ struct EventSrvConfig
 
 - Subscription structure pseudo code:
 
-```
+```cpp
 struct EventSrvSubscription
 {
     std::string destinationUri;

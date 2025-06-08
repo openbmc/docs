@@ -44,7 +44,7 @@ Actions:
 This new API is designed to forward calls to RoT devices and avoid and
 inspections of data. An example call would be:
 
-```
+```json
 {
   "#RootOfTrust.Mailbox": {
       "target": "/redfish/v1/RootsOfTrust/0/Actions.Mailbox",
@@ -57,21 +57,21 @@ inspections of data. An example call would be:
 This new service root is very similar to `/ibm/v1`. This would require a new
 dbus interface to service this API:
 
-```
+```yaml
 description: >
-    Forward bytes to Google RoT devices.
+  Forward bytes to Google RoT devices.
 methods:
-    - name: Mailbox
-      description: >
-          A method to forward bytes to RoT device.
-      parameters:
-        - name: rawRequest
-          type: array[byte]
-          description: >
-              Value to be updated for the keyword.
-      errors:
-        - xyz.openbmc_project.Common.Error.InvalidArgument
-        - xyz.openbmc_project.Common.Error.InternalFailure
+  - name: Mailbox
+    description: >
+      A method to forward bytes to RoT device.
+    parameters:
+      - name: rawRequest
+        type: array[byte]
+        description: >
+          Value to be updated for the keyword.
+    errors:
+      - xyz.openbmc_project.Common.Error.InvalidArgument
+      - xyz.openbmc_project.Common.Error.InternalFailure
 ```
 
 ## Alternatives Considered

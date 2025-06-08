@@ -14,7 +14,7 @@ signal on the system.
 
 ## D-Bus
 
-```
+```text
 Service     xyz.openbmc_project.Hwmon-<hash>.Hwmon1
 Path        /xyz/openbmc_project/sensors/<type>/<label>
 Interfaces  xyz.openbmc_project.Sensor.[*], others (see below)
@@ -22,7 +22,7 @@ Interfaces  xyz.openbmc_project.Sensor.[*], others (see below)
 Signals: All properties for an interface will broadcast signal changed
 ```
 
-**Path definitions**
+### Path definitions
 
 - **<type\>** : The [HWMon class][2] name in lower case.
 
@@ -32,9 +32,9 @@ Signals: All properties for an interface will broadcast signal changed
   - Examples include `ambient, cpu0, fan5`
 
 **Note**: The label shall comply with "Valid Object Paths" of [D-Bus Spec][3],
-that shall only contain the ASCII characters "[A-Z][a-z][0-9]\_".
+that shall only contain the ASCII characters `[A-Z][a-z][0-9]\_`.
 
-**Hash definition**
+### Hash definition
 
 The hash value in the service name is used to give the service a unique and
 stable name. It is a decimal number that is obtained by hashing characteristics
@@ -140,21 +140,21 @@ Each 'name' property in the YAML file maps directly to D-Bus properties.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Warning.interface.yaml][6]
 
-```
+```yaml
 properties:
-    - name: WarningHigh
-      type: int64
-    - name: WarningLow
-      type: int64
-    - name: WarningAlarmHigh
-      type: boolean
-    - name: WarningAlarmLow
-      type: boolean
+  - name: WarningHigh
+    type: int64
+  - name: WarningLow
+    type: int64
+  - name: WarningAlarmHigh
+    type: boolean
+  - name: WarningAlarmLow
+    type: boolean
 ```
 
 Maps to
 
-```
+```text
 busctl --system introspect xyz.openbmc_project.Hwmon-3301914901.Hwmon1 \
  /xyz/openbmc_project/Sensors/temperature/ambient \
  xyz.openbmc_project.Sensor.Threshold.Warning | grep property
@@ -168,15 +168,17 @@ busctl --system introspect xyz.openbmc_project.Hwmon-3301914901.Hwmon1 \
 
 ### REST
 
-```
-"/xyz/openbmc_project/Sensors/temperature/ambient": {
-      "Scale": -3,
-      "Unit": "xyz.openbmc_project.Sensor.Value.Unit.DegreesC",
-      "Value": 30125,
-      "WarningAlarmHigh": 0,
-      "WarningAlarmLow": 0,
-      "WarningHigh": 40000,
-      "WarningLow": 10000
+```json
+{
+  "/xyz/openbmc_project/Sensors/temperature/ambient": {
+    "Scale": -3,
+    "Unit": "xyz.openbmc_project.Sensor.Value.Unit.DegreesC",
+    "Value": 30125,
+    "WarningAlarmHigh": 0,
+    "WarningAlarmLow": 0,
+    "WarningHigh": 40000,
+    "WarningLow": 10000
+  }
 }
 ```
 
@@ -185,12 +187,12 @@ busctl --system introspect xyz.openbmc_project.Hwmon-3301914901.Hwmon1 \
 Aside from the `xyz.openbmc_project.Sensor` interfaces, the sensor D-Bus objects
 may also expose the following interfaces:
 
-1.  `xyz.openbmc_project.Control.FanSpeed`
-    - Provides a Target property to set a fan RPM value
-2.  `xyz.openbmc_project.Control.FanPwm`
-    - Provides a Target property to set a fan PWM value
-3.  `xyz.openbmc_project.State.Decorator.OperationalStatus`
-    - Provides a Functional property that tracks the state of any fault files
+1. `xyz.openbmc_project.Control.FanSpeed`
+   - Provides a Target property to set a fan RPM value
+2. `xyz.openbmc_project.Control.FanPwm`
+   - Provides a Target property to set a fan PWM value
+3. `xyz.openbmc_project.State.Decorator.OperationalStatus`
+   - Provides a Functional property that tracks the state of any fault files
 
 ### Signals
 
@@ -217,37 +219,39 @@ HWMon sensors are defined in the `recipes-phosphor/sensor/phosphor-hwmon%` path
 within the [machine configuration][7]. The children of the `obmc/hwmon`
 directory should follow the path of either:
 
-1.  The children of the `devicetree/base` directory path on the system, as
-    defined by the kernel. The code obtains this from the OF_FULLNAME udev
-    environment variable.
+1. The children of the `devicetree/base` directory path on the system, as
+   defined by the kernel. The code obtains this from the OF_FULLNAME udev
+   environment variable.
 
-2.  If the device isn't in the device tree, then the device path can be used.
+2. If the device isn't in the device tree, then the device path can be used.
 
 As an example, the Palmetto [configuration][8] file for the ambient temperature
 sensor.
 
-```
+```text
 recipes-phosphor/sensors/phosphor-hwmon/obmc/hwmon/ahb/apb/bus@1e78a000/i2c-bus@c0/tmp423@4c.conf
+
 ```
 
 which maps to this specific sensor and conf file on the system...
 
-```
+```text
 /sys/firmware/devicetree/base/ahb/apb/bus@1e78a000/i2c-bus@c0/tmp423@4c
 /etc/default/obmc/hwmon/ahb/apb/bus@1e78a000/i2c@c0/tmp423@4c.conf
+
 ```
 
 This next example shows using the device path as opposed to the devicetree path
 for the OCC device on an OpenPOWER system. Note how a '--' replaces a ':' in the
 directory names for the conf file.
 
-```
+```text
 recipes-phosphor/sensors/phosphor-hwmon%/obmc/hwmon/devices/platform/gpio-fsi/fsi0/slave@00--00/00--00--00--06/sbefifo1-dev0/occ-hwmon.1.conf
 ```
 
 which maps to this specific sensor and conf file on the system...
 
-```
+```text
 /sys/devices/platform/gpio-fsi/fsi0/slave@00:00/00:00:00:06/sbefifo1-dev0/occ-hwmon.1
 /etc/default/obmc/hwmon/devices/platform/gpio-fsi/fsi0/slave@00--00/00--00--00--06/sbefifo1-dev0/occ-hwmon.1.conf
 ```
@@ -255,12 +259,15 @@ which maps to this specific sensor and conf file on the system...
 In order for the sensor to be exposed to D-Bus, the configuration file must
 describe the sensor attributes. Attributes follow a format.
 
-```
+```text
 xxx_yyy#=value
 
 xxx = Attribute
-#   = Association number (i.e. 1-n)
+
+# = Association number (i.e. 1-n)
+
 yyy = HWMon sensor type (i.e. temp, pwm)
+
 ```
 
 | Attribute      | Interfaces Added                       |
@@ -283,26 +290,22 @@ details
 In this conf example the tmp423 chip is wired to two temperature sensors. The
 values must be described in 10<sup>-3</sup> degrees Celsius.
 
-```
-LABEL_temp1=ambient
-WARNLO_temp1=10000
-WARNHI_temp1=40000
+```text
+LABEL_temp1=ambient WARNLO_temp1=10000 WARNHI_temp1=40000
 
-LABEL_temp2=cpu
-WARNLO_temp2=10000
-WARNHI_temp2=80000
+LABEL_temp2=cpu WARNLO_temp2=10000 WARNHI_temp2=80000
 ```
 
-#### Additional Config File Entries
+### Additional Config File Entries
 
 The phosphor-hwmon code supports these additional config file entries:
 
-**INTERVAL**
+#### INTERVAL
 
 The interval, in microseconds, at which sensors should be read. If not specified
 the interval is 1000000us (1 second).
 
-```
+```text
 INTERVAL=1000000
 ```
 
@@ -311,21 +314,21 @@ INTERVAL=1000000
 Used to support scaled sensor readings, where value = (raw sensor reading) \*
 gain + offset
 
-```
-GAIN_in3 = 5.0  #GAIN is a double
-OFFSET_in3 = 6  #OFFSET is an integer
+```text
+GAIN_in3 = 5.0 #GAIN is a double OFFSET_in3 = 6 #OFFSET is an integer
 ```
 
-**MINVALUE**, **MAXVALUE**
+#### MINVALUE / MAXVALUE
 
 If found, will be used to set the MinValue/MaxValue properties on the
 `xyz.openbmc_project.Sensor.Value` interface.
 
-```
+```text
 MINVALUE_temp1 = 1
+
 ```
 
-**MODE**
+#### MODE
 
 Needed for certain device drivers, specifically the OpenPOWER OCC driver, where
 the instance number (the N in tempN_input) is dynamic and instead another file
@@ -333,9 +336,8 @@ contains the known ID.
 
 For example
 
-```
-temp26_input:29000
-temp26_label:171
+```text
+temp26_input:29000 temp26_label:171
 ```
 
 Where the 26 is just what hwmon assigns, but the 171 corresponds to something
@@ -343,44 +345,44 @@ like an IPMI sensor value for a DIMM temperature.
 
 The config file would then have:
 
-```
-MODE_temp26 = "label"  #Tells the code to look in temp26_label
-LABEL_temp171 = "dimm3_temp" #Says that temp26_input holds dimm3_temp
+```text
+MODE_temp26 = "label" #Tells the code to look in temp26_label LABEL_temp171 =
+"dimm3_temp" #Says that temp26_input holds dimm3_temp
 ```
 
-**REMOVERCS**
+#### REMOVERCS
 
 Contains a list of device driver errno values where if these are obtained when
 reading the hardware, the corresponding sensor object will be removed from D-Bus
 until it is successfully read again.
 
-```
-REMOVERCS = "5,6"  #If any sensor on the device returns a 5 or 6, remove it.
-REMOVERCS_temp1 = "42"  #If reading temp1_input returns a 42, remove it.
+```text
+REMOVERCS = "5,6" #If any sensor on the device returns a 5 or 6, remove it.
+REMOVERCS_temp1 = "42" #If reading temp1_input returns a 42, remove it.
 ```
 
-**TARGET_MODE**
+#### TARGET_MODE
 
 Allows one to choose the fan target mode, either RPM or PWM, if the device
 driver exposes both methods.
 
-```
+```text
 TARGET_MODE = "RPM"
 ```
 
-**PWM_TARGET**
+#### PWM_TARGET
 
 For fans that are PWM controlled, can be used to map the pwmN file to a fan M.
 
-```
+```text
 PWM_TARGET_fan0 = 1 #Use the pwm1 file to control fan 0
 ```
 
-**ENABLE**
+#### ENABLE
 
 Will write a value to a pwmN_enable file on startup if present.
 
-```
+```text
 ENABLE_fan1 = 2 #Write a 2 to pwm1_enable
 ```
 
@@ -393,7 +395,7 @@ For an example of how sensors entries are defined, consult the
 
 Sensor reading, according to IPMI spec, is calculated as:
 
-```none
+```text
 y = L[(Mx + B * 10^(bExp)) * 10^(rExp)]
 ```
 
@@ -411,14 +413,14 @@ scaled by 10^S.
 As you can tell, one should choose the coefficients based on possible sensor
 reading range and desired resolution. Commonly, B=0, we would have
 
-    Supported range: [0, 255 * M * 10^(scale - rExp)]
-    Resolution: M * 10^(scale - rExp)
+- Supported range: [0, 255 \* M \* 10^(scale - rExp)]
+- Resolution: M \* 10^(scale - rExp)
 
 For a concrete example, let's say a voltage sensor reports between 0 to 5.0V.
 hwmon sysfs scales the value by 1000, so the sensor value read over DBus is
 between 0 and 5000. A possible configuration for this is:
 
-```none
+```text
 multiplierM: 20
 offsetB: 0
 bExp: 0
@@ -429,14 +431,16 @@ scale: -3
 so for a DBus sensor value of 4986 meaning 4.986V, phosphor-ipmi-host would
 encode it as
 
+```text
     x: 4986 / 20 = 249
     M: 20
     rExp: -3
+```
 
 When ipmitool sensor list is called, the tool fetches sensor factors and
 computes value as:
 
-```none
+```text
 y = 20 * 249 * 10^-3 = 4.98 (V)
 ```
 

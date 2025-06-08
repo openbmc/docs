@@ -45,7 +45,7 @@ To start it you would run `systemctl start obmc-host-start@0.target`.
 If you dig into its .requires relationship, you'll see the following in the file
 system
 
-```
+```shell
 ls -1 /lib/systemd/system/obmc-host-start@0.target.requires/
 obmc-host-startmin@0.target
 phosphor-reset-host-reboot-attempts@0.service
@@ -63,7 +63,7 @@ host boot attempt.
 
 Next if we look at the `obmc-host-startmin@0.target`, we see this:
 
-```
+```shell
 ls -1 /lib/systemd/system/obmc-host-startmin@0.target.requires/
 obmc-chassis-poweron@0.target
 start_host@0.service
@@ -76,7 +76,7 @@ there, `obmc-chassis-poweron@0.target`, along with a service aptly named
 The `obmc-chassis-poweron@0.target` has corresponding services associated with
 it:
 
-```
+```shell
 ls -1 /lib/systemd/system/obmc-chassis-poweron@0.target.requires/
 op-power-start@0.service
 op-wait-power-on@0.service
@@ -180,22 +180,22 @@ There are two main failure scenarios when it comes to OpenBMC and systemd usage:
 
 1. A service within a target fails
 
-- If the service is a "oneshot" type, and the service is required (not wanted)
-  by the target then the target will fail if the service fails - Define a
-  behavior for when the target fails using the "OnFailure" option (i.e. go to a
-  new failure target if any required service fails)
-- If the service is not a "oneshot", then it can not fail the target (the target
-  only knows that it started successfully) - Define a behavior for when the
-  service fails (OnFailure) option. - The service can not have
-  "RemainAfterExit=yes" otherwise, the OnFailure action does not occur until the
-  service is stopped (instead of when it fails) - \*See more information below
-  on [RemainAfterExit](#RemainAfterExit)
+   - If the service is a "oneshot" type, and the service is required (not
+     wanted) by the target then the target will fail if the service fails -
+     Define a behavior for when the target fails using the "OnFailure" option
+     (i.e. go to a new failure target if any required service fails)
+   - If the service is not a "oneshot", then it can not fail the target (the
+     target only knows that it started successfully) - Define a behavior for
+     when the service fails (OnFailure) option. - The service can not have
+     "RemainAfterExit=yes" otherwise, the OnFailure action does not occur until
+     the service is stopped (instead of when it fails) - \*See more information
+     below on [RemainAfterExit](#remainafterexit)
 
 2. A failure outside of a normal systemd target/service (host watchdog expires,
    host checkstop detected)
 
-- The service which detects this failure is responsible for logging the
-  appropriate error, and instructing systemd to go to the appropriate target
+   - The service which detects this failure is responsible for logging the
+     appropriate error, and instructing systemd to go to the appropriate target
 
 Within OpenBMC, there is a host quiesce target. This is the target that other
 host related targets should go to when they hit a failure. Other software within
@@ -242,7 +242,7 @@ not generate anything very useful.
 For now, document the current dependencies on a witherspoon system for
 reference.
 
-```
+```text
 R = Requires
 W = Wants
 A = After
@@ -253,7 +253,7 @@ S = Start (runs a command to start another target or service)
 
 ### Soft Power Off
 
-```
+```text
 obmc-host-shutdown.target
   R: xyz.openbmc_project.Ipmi.Internal.SoftPowerOff.service
      W: obmc-host-stopping.target (S)
@@ -288,7 +288,7 @@ obmc-host-shutdown.target
 
 #### Synchronization Target Dependencies
 
-```
+```text
 obmc-power-stop.target
   W: obmc-power-stop-pre.target
   A: obmc-power-stop-pre.target

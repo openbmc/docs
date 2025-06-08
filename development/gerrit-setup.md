@@ -9,14 +9,14 @@ Gerrit and GitHub).
 
 ## Initial Setup
 
-##### Update Git Identity
+### Update Git Identity
 
 - `git config --global --add user.name "Your name" (eg. John Smith)`
 - `git config --global --add user.email "youremail@your-domain" (eg. jsmith@somedomain.com)`
 - (Optional)
   `git config --global --add diff.tool "preferred diff tool" (eg. gvimdiff or meld)`
 
-##### Setup SSH Keys
+### Setup SSH Keys
 
 Create keys: `ssh-keygen -t ed25519 -C "your_email@your-domain"`
 
@@ -43,21 +43,21 @@ Gerrit you can add them manually:
 - Click on "ADD NEW SSH KEY"
 - If succesfull you should see your public key added and with the status "Valid"
 
-##### Add e-mail to Gerrit
+### Add e-mail to Gerrit
 
 - Login to [Gerrit](https://gerrit.openbmc.org/)
 - Enter e-mail in Settings -> Contact Information -> Register New E-Mail
 - Check e-mail for confirmation and click the link to confirm
 
-##### Add full name to Gerrit
+### Add full name to Gerrit
 
 - Enter your full name in Settings -> Profile -> Full name
 
-##### Add SSH config entry
+### Add SSH config entry
 
 Add the following to `~/.ssh/config`:
 
-```
+```bash
 Host openbmc.gerrit
     Hostname gerrit.openbmc.org
     Port 29418
@@ -70,7 +70,7 @@ Host openbmc.gerrit
   Username
 - Ensure proper permissions for for your .ssh directory: `chmod 600 ~/.ssh/*`
 
-##### Confirm Setup Success
+### Confirm Setup Success
 
 Test connectivity to Gerrit by attempting to clone a repo
 
@@ -78,11 +78,11 @@ Test connectivity to Gerrit by attempting to clone a repo
 - If successful you should see something like:
   `Checking out files: 100% (45/45), done.`
 
-##### Add Hooks
+### Add Hooks
 
 Inside the repo you just cloned, enter the following commands:
 
-```
+```bash
 gitdir=$(git rev-parse --git-dir)
 curl https://gerrit.openbmc.org/tools/hooks/commit-msg -o ${gitdir}/hooks/commit-msg
 chmod +x ${gitdir}/hooks/commit-msg
@@ -91,7 +91,7 @@ chmod +x ${gitdir}/hooks/commit-msg
 This will enhance the `git commit` command to add a `Change-Id` to your commit
 message which Gerrit uses to track the review.
 
-##### Push Code Change to Gerrit
+### Push Code Change to Gerrit
 
 Now that your workstation and Gerrit are configured, you are ready to make code
 changes and push them to Gerrit for code review. Here is what the basic workflow
@@ -108,7 +108,7 @@ will look like.
 - Go to [Gerrit web interface](https://gerrit.openbmc.org/), click on your new
   review, and add reviewers based on `OWNERS` file in the repo.
 
-##### Conclusion
+## Conclusion
 
 If you've completed all of the above steps successfully, that's it! You have now
 set up Gerrit and know how to submit your code changes for review!

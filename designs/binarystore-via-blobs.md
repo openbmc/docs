@@ -1,6 +1,6 @@
 # BMC Generic Binary Blob Store via OEM IPMI Blob Transport
 
-Author: Kun Yi (kunyi@google.com, kunyi!)
+Author: Kun Yi <kunyi@google.com> `kunyi!`
 
 Created: 2018-12-07
 

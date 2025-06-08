@@ -10,10 +10,10 @@ See the details on authentication at
 
 This document uses token based authentication method:
 
-```
-$ export bmc=xx.xx.xx.xx
-$ export token=`curl -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d '{"username" :  "root", "password" :  "0penBmc"}' | grep token | awk '{print $2;}' | tr -d '"'`
-$ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/...
+```bash
+export bmc=xx.xx.xx.xx
+export token=`curl -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d '{"username" :  "root", "password" :  "0penBmc"}' | grep token | awk '{print $2;}' | tr -d '"'`
+curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/...
 ```
 
 ## Inventory
@@ -41,11 +41,15 @@ The usual `list` and `enumerate` REST queries allow the system inventory
 structure to be accessed. For example, to enumerate all inventory items and
 their properties:
 
-    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/inventory/enumerate
+```bash
+curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/inventory/enumerate
+```
 
 To list the properties of one item:
 
-    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/inventory/system/chassis/motherboard
+```bash
+curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/inventory/system/chassis/motherboard
+```
 
 ## Sensors
 
@@ -77,7 +81,8 @@ These are some common properties:
 
 A temperature sensor might look like:
 
-    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/sensors/temperature/ocp_zone
+```bash
+    curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/sensors/temperature/ocp_zone
     {
       "data": {
         "CriticalAlarmHigh": false,
@@ -98,6 +103,7 @@ A temperature sensor might look like:
       "message": "200 OK",
       "status": "ok"
     }
+```
 
 Note the value of this sensor is 34.625C (34625 \* 10^-3).
 
@@ -106,11 +112,15 @@ represented in the inventory.
 
 To enumerate all sensors in the system:
 
-    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/sensors/enumerate
+```bash
+curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/sensors/enumerate
+```
 
 List properties of one inventory item:
 
-    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/sensors/temperature/outlet
+```bash
+curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/sensors/temperature/outlet
+```
 
 ## Event Logs
 
@@ -133,7 +143,8 @@ The properties associated with an event log are as follows:
 
 To list all reported event logs:
 
-    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/logging/entry
+```bash
+    curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/logging/entry
     {
       "data": [
         "/xyz/openbmc_project/logging/entry/3",
@@ -147,10 +158,12 @@ To list all reported event logs:
       "message": "200 OK",
       "status": "ok"
     }
+```
 
 To read a specific event log:
 
-    $ curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/logging/entry/1
+```bash
+    curl -k -H "X-Auth-Token: $token" https://${bmc}/xyz/openbmc_project/logging/entry/1
     {
       "data": {
         "AdditionalData": [
@@ -168,15 +181,20 @@ To read a specific event log:
       "message": "200 OK",
       "status": "ok"
     }
+```
 
 To delete an event log (log 1 in this example), call the `Delete` method on the
 event:
 
-    $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data" : []}' https://${bmc}/xyz/openbmc_project/logging/entry/1/action/Delete
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data" : []}' https://${bmc}/xyz/openbmc_project/logging/entry/1/action/Delete
+```
 
 To clear all event logs, call the top-level `DeleteAll` method:
 
-    $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data" : []}' https://${bmc}/xyz/openbmc_project/logging/action/DeleteAll
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data" : []}' https://${bmc}/xyz/openbmc_project/logging/action/DeleteAll
+```
 
 ## Host Boot Options
 
@@ -189,21 +207,21 @@ and if the host is based on x86 CPU also
 
 - Set boot mode:
 
-  ```
-   $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootMode -d '{"data": "xyz.openbmc_project.Control.Boot.Mode.Modes.Regular"}'
-  ```
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootMode -d '{"data": "xyz.openbmc_project.Control.Boot.Mode.Modes.Regular"}'
+```
 
 - Set boot source:
 
-  ```
-  $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootSource -d '{"data": "xyz.openbmc_project.Control.Boot.Source.Sources.Default"}'
-  ```
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootSource -d '{"data": "xyz.openbmc_project.Control.Boot.Source.Sources.Default"}'
+```
 
 - Set boot type (valid only if host is based on the x86 CPU):
 
-  ```
-  $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootType -d '{"data": "xyz.openbmc_project.Control.Boot.Type.Types.EFI"}'
-  ```
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/BootType -d '{"data": "xyz.openbmc_project.Control.Boot.Type.Types.EFI"}'
+```
 
 Also there are boolean
 [`Enable`](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Object/Enable.interface.yaml)
@@ -212,15 +230,15 @@ and if the override is enabled or not.
 
 - Set boot override one-time flag:
 
-  ```
-  $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/one_time/attr/Enabled -d '{"data": "true"}'
-  ```
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/one_time/attr/Enabled -d '{"data": "true"}'
+```
 
 - Enable boot override:
 
-  ```
-  $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/Enabled -d '{"data": "true"}'
-  ```
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT https://${bmc}/xyz/openbmc_project/control/host0/boot/attr/Enabled -d '{"data": "true"}'
+```
 
 ## Host State Control
 
@@ -230,30 +248,30 @@ number of actions including power on and power off. These correspond to the IPMI
 
 Assuming you have logged in, the following will power on the host:
 
-```
-$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -d '{"data": "xyz.openbmc_project.State.Host.Transition.On"}' -X PUT https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -d '{"data": "xyz.openbmc_project.State.Host.Transition.On"}' -X PUT https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 ```
 
 To power off the host:
 
-```
-$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -d '{"data": "xyz.openbmc_project.State.Host.Transition.Off"}' -X PUT https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -d '{"data": "xyz.openbmc_project.State.Host.Transition.Off"}' -X PUT https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 ```
 
 To issue a hard power off (accomplished by powering off the chassis):
 
-```
-$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Chassis.Transition.Off"}' https://${bmc}//xyz/openbmc_project/state/chassis0/attr/RequestedPowerTransition
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Chassis.Transition.Off"}' https://${bmc}//xyz/openbmc_project/state/chassis0/attr/RequestedPowerTransition
 ```
 
 To reboot the host:
 
-```
-$ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Host.Transition.Reboot"}' https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d '{"data":"xyz.openbmc_project.State.Host.Transition.Reboot"}' https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
 ```
 
 More information about Host State Management can be found here:
-https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/State
+<https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/State>
 
 ## Host Clear GARD
 
@@ -266,19 +284,19 @@ can be called as follows:
 
 - Method 1: From the BMC command line:
 
-  ```
+```bash
   busctl call org.open_power.Software.Host.Updater \
     /org/open_power/control/gard \
     xyz.openbmc_project.Common.FactoryReset Reset
-  ```
+```
 
 - Method 2: Using the REST API:
 
-  ```
-  $ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data":[]}' https://${bmc}/org/open_power/control/gard/action/Reset
-  ```
+```bash
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data":[]}' https://${bmc}/org/open_power/control/gard/action/Reset
+```
 
-Implementation: https://github.com/openbmc/openpower-pnor-code-mgmt
+Implementation: <https://github.com/openbmc/openpower-pnor-code-mgmt>
 
 ## Host Watchdog
 
@@ -294,8 +312,10 @@ The host watchdog utilizes the generic [phosphor-watchdog][1] repository. The
 host watchdog service provides 2 files as configuration options into
 phosphor-watchdog:
 
+```text
     /lib/systemd/system/phosphor-watchdog@poweron.service.d/poweron.conf
     /etc/default/obmc/watchdog/poweron
+```
 
 `poweron.conf` contains the "Conflicts" relationships to ensure the watchdog
 service is stopped at the correct times. `poweron` contains the required
@@ -304,8 +324,10 @@ information for phosphor-watchdog (more information on these can be found in the
 
 The 2 service files involved with the host watchdog are:
 
+```text
     phosphor-watchdog@poweron.service
     obmc-enable-host-watchdog@0.service
+```
 
 `phosphor-watchdog@poweron` starts the host watchdog service and
 `obmc-enable-host-watchdog` starts the watchdog timer. Both are run as a part of

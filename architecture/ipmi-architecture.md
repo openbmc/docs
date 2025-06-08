@@ -14,7 +14,7 @@ of a NetFn/LUN, Command, and optional data. Each response is likewise a
 Completion Code and optional data. So the first step is to break apart channels
 and the IPMI queue.
 
-```
+```ascii
                                                      /------------------\
     /----------------------------\                   |                  |
     |      KCS/BT - Host         | <-All IPMI cmds-> |                  |
@@ -264,13 +264,13 @@ C++17's std::optional.
 
 Some types that are supported are as follows:
 
-- standard integer types (uint8_t, uint16_t, uint32_t, int, long, etc.)
-- bool (extracts a single bit, same as uint1_t)
-- multi-precision integers (uint<N>)
-- std::bitset<N>
-- std::optional<T> - extracts T if there are enough remaining bits/bytes
-- std::array<T, N> - extracts N elements of T if possible
-- std::vector<T> - extracts elements of T from the remaining bytes
+- standard integer types (`int8_t`, `uint16_t`, `uint32_t`, `int`, `long`, etc.)
+- `bool` (extracts a single bit, same as `uint1_t`)
+- multi-precision integers (`uint<N>`)
+- `std::bitset<N>`
+- `std::optional<T>` - extracts T if there are enough remaining bits/bytes
+- `std::array<T, N>` - extracts N elements of T if possible
+- `std::vector<T>` - extracts elements of T from the remaining bytes
 - any additional types can be created by making a pack/unpack template
 
 For partial byte types, the least-significant bits of the next full byte are
