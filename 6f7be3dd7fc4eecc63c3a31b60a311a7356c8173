@@ -463,6 +463,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "438fad9f_7b424ccd",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-06-09T02:29:14Z",
+      "side": 1,
+      "message": "I think the main concern is stream or not stream. We are proposing the PLDM file transfer, so I think we don\u0027t need to support stream. In case we want to transfer the serialFifo log, instead of streaming we can get the log in small part (1kB-4kB) then show them to user.\n\nIn the proposal, we are providing D-Bus interface which includes D-Bus APIs to allow the D-Bus consumers retrieves the file from the D-Bus interface provider in this case is `pldmd`. We want to make the D-Bus APIs as much simple as possible.\n\nWith the current proposal, the D-Bus consumer just needs async call the `read` D-Bus API and handle callback to retrieve the file data. It is more simpler then supporting some APIs (Open, Read, Close) to do streaming. Not only simpler D-Bus interface, but also the simpler D-Bus consumer code.\n\nIf the D-Bus consumer wants to get the serial Fifo data as soon as possible, just need call read with small data size. It is worth to add some `open`, `close` PLDM request commands to terminus in `pldmd` to make the D-Bus API simple. And that D-Bus APIs can be applied for other protocol but not only PLDM.",
+      "parentUuid": "23d09777_4111e862",
+      "range": {
+        "startLine": 769,
+        "startChar": 0,
+        "endLine": 771,
+        "endChar": 72
+      },
+      "revId": "6f7be3dd7fc4eecc63c3a31b60a311a7356c8173",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "02a49512_4ff8ca1e",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 12
