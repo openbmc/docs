@@ -2,7 +2,7 @@
 
 Author: Jagpal Singh Gill <paligill@gmail.com>
 
-Created: 4th August 2023
+Created: 4th August 2023 Last Updated: Jun 09, 2025
 
 ## Problem Description
 
@@ -146,6 +146,7 @@ The DBus Interface for code update will consist of following -
 | [xyz.openbmc_project.Software.ActivationProgress](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationProgress.interface.yaml)                 |   Existing   |               Provides activation progress percentage               |
 | [xyz.openbmc_project.Software.ActivationBlocksTransition](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/ActivationBlocksTransition.interface.yaml) |   Existing   | Signifies barrier for state transitions while update is in progress |
 | [xyz.openbmc_project.Software.RedundancyPriority](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Software/RedundancyPriority.interface.yaml)                 |   Existing   |     Provides the redundancy priority for the version interface      |
+| [xyz.openbmc_project.Software.Asset](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Software)                                                                |     New      |         Provides Manufacturer and Release Date information          |
 
 Introduction of xyz.openbmc_project.Software.Update interface streamlines the
 update invocation flow and hence addresses the [Issue# 2](#problem-description)
