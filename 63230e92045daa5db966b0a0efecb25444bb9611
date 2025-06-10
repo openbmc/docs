@@ -162,6 +162,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57c7c601_57fc7dc1",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-06-10T08:59:58Z",
+      "side": 1,
+      "message": "\u003e My question is: how do we plan to incorporate TSS APIs to support BMC self-measurement? Additionally, how will the BMC be represented as an SPDM endpoint in this architecture?\n\nThe idea is, that the SPDM TCP responder would be sending the measurements from its local TPM to the SPDM requester using the SPDM commands like Get certificates/ Get Measurements. SPDM requester would validate the measurements and certificates using its own measurements from its local TPM or a CoRIM file. I plan on writing a separate commit that adds the responder function to the spdm daemon.\n\n\u003e How much code will be shared between SPDM and local-TPM paths? It seems like low to me, so it probably should be in a separate daemon? That separate daemon likely should be enabled with a different PACKAGECONFIG because there are going to be systems that will want TPM support but not have any SPDM devices.\n\nSure, we can make it a PACKAGECONFIG. I am not sure if it needs to be in a different daemon, but we can debate about it in the other document that i am splitting this self measurements into.\n\nThe way that I was imagining this would work is - that Each SPDM end point, after initialization, will have it own measurements read from its local TPM\u0027s (this will be the part that cannot be re-used by companies) - I can make this as part of PACKAGECONFIG.\n\nAnd any endpoint can act as SPDM requester/ SPDM responder - based on who initiates the TCP connect decides who acts as requester/responder (This is based on the SPDM over TCP binding spec)\n\n```\nTPM1 -\u003e SPDM Endpoint(requester \u0026 responder) \u003c\u003c--SPDM Protocol over TCP--\u003e\u003e SPDM Endpoint(requester \u0026 respnder) \u003c- TPM2\n```\n\n\u003e It seems like the Redfish schemas here have a distinct reflection of SPDM vs TPM signatures. See ComponentIntegrity schema for example. Do we have the appropriate content in the dbus objects to allow bmcweb to appropriately populate the SPDM vs TPM fields in the response? We should not confuse Redfish clients to thinking they\u0027re all SPDM since the standard treats them differently.\n\nSPDM is an application layer protocol that only takes care of moving the measurements and certificates via standard sets of commands, and also provides standard ways to attest the measurements, but the SPDM spec does not really mention how those measurements are generated [Look at Root of trust section in the spec], as per the spec those measurements can be provided by any Root of Trust (it\u0027s a TPM in this case). we are not doing any sort of signing/signature generation with TPM, From the redfish point of view the remote measurements (binary data) are still obtained via SPDM protocol, so we would still rely on SPDM based measurements to push the data via redfish (SPDM WG committee thought that this is not illegal and we can do it, I can confirm this with the redfish folks as well if needed)\n\n\u003e Additionally, the TPM will be involved when SPDM operates in Responder mode, as it will be used to fetch and provide stored measurements.\n\n\u003e I agree that we should implement the SPDM Responder as a separate daemon. This separation makes sense because the Responder needs to interact with the TPM for measurements, and by using a plugin-based architecture, we maintain flexibility. We can easily support different methods of storing and retrieving measurement data in the future not just limiting ourselves to TPM.\n\nI agree with you ratan, a responder can be its own daemon - but we should not assume that it\u0027s only responder who would need the TPM interaction - A requester could use a CoRIM or even use its self measurements to complete the attestation. But yes, the parts that interact with the TPM\u0027s can be made to conditionally compile using a PACKAGECONFIG so that companies that does not require this feature can turn off that function.I am splitting the self measurements and responder parts into a new commit. we can talk more about this there.",
+      "parentUuid": "7938f53d_990d81f1",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43824d09_df9e91b4",
         "filename": "designs/redfish-spdm-attestation.md",
         "patchSetId": 6
@@ -244,6 +262,24 @@
       "side": 1,
       "message": "How do we differentiate TPM which we need to self attest vs the ones which we not. Because both will be implementing Inventory.Item.Tpm.interface.yaml",
       "parentUuid": "5d1cef74_18cc9ba1",
+      "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30956384_1448d353",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-06-10T08:59:58Z",
+      "side": 1,
+      "message": "I think there was some confusion. I have never mentioned \"self attestation\" - I was talking about \"self measurements\". Who are \"we\" in your question ? From redfish perspective, we would see two component integrity resources (and each of them would be tied to its own trusted component) and redfish clients can\nchoose to decide which measurements they want by querying the respective resource. How clients choose the URI depends on various factors, pre-established facts (that can differ from company to company).\n\nAnyway, I plan on removing the self measurements section from this design document and make it a separate patch, since that is causing more confusion to the broader audience. we can talk more about the self measurements in that commit.",
+      "parentUuid": "8eeb8238_4c64a4d7",
       "revId": "63230e92045daa5db966b0a0efecb25444bb9611",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
