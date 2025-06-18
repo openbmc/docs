@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bfcbf872_ac8d3dc4",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-18T01:09:17Z",
+      "side": 1,
+      "message": "What happened to the design-point of binding a separate bmcweb instance to a specific interface?\n\nMixing authentication domains in the one bmcweb process feels perilous.",
+      "parentUuid": "f206f9c7_ddafac42",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 65
+      },
+      "revId": "ba91c893c897b323a27017b173941f1140a97a96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fb8c518c_ad5f0783",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 11
@@ -332,6 +356,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8fba1d80_1a767a3c",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-18T01:09:17Z",
+      "side": 1,
+      "message": "What I meant was you should look at `phosphor-host-ipmid` and determine which specific commands it doesn\u0027t yet support, and discuss them, not handwave that it may or may not have the right support. Resolving this just requires doing the leg-work to go look, right?",
+      "parentUuid": "bebe3954_65ed9ae3",
+      "range": {
+        "startLine": 207,
+        "startChar": 22,
+        "endLine": 207,
+        "endChar": 66
+      },
+      "revId": "ba91c893c897b323a27017b173941f1140a97a96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "07514605_3cb346db",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 11
@@ -461,6 +509,30 @@
       "side": 1,
       "message": "I added the value type \"The value type is boolean.\" so the property can only has two possible value `true`, `false`",
       "parentUuid": "e7363dc2_23c988ae",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 67
+      },
+      "revId": "ba91c893c897b323a27017b173941f1140a97a96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53538408_808128ea",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-18T01:09:17Z",
+      "side": 1,
+      "message": "What i was trying to get at was that you have two booleans: `EnabledAfterReset` and `Enabled`, and therefore four states. Can they be combined into an enum with three members: `Disabled`, `Enabled`, `EnabledAfterReset`? That way there\u0027s no mystery fourth state of `!Enabled \u0026\u0026 EnabledAfterReset`.",
+      "parentUuid": "60390ef8_2b9c9c1a",
       "range": {
         "startLine": 228,
         "startChar": 0,
@@ -614,6 +686,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cac12628_4e9897fd",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-18T01:09:17Z",
+      "side": 1,
+      "message": "This problem goes away if you bind the listening socket of the bmcweb process to the specific interface, as a separate instance of bmcweb from any other that we shouldn\u0027t receive bootstrap account requests on.",
+      "parentUuid": "b08719e6_570b7872",
+      "range": {
+        "startLine": 342,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 59
+      },
+      "revId": "ba91c893c897b323a27017b173941f1140a97a96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2472b140_a944d694",
         "filename": "designs/bootstrap-account-access-restriction.md",
         "patchSetId": 11
@@ -649,6 +745,30 @@
       "side": 1,
       "message": "This use \"additional-ports\" and \"additional-bind-to-device\" configurations as one additional security solution for the Redfish Host Interface. In the example, Only the request from physical interface `usb0` with port `199` and using bootStrap account will be accepted by BMCWeb as Redfish host interface request.\n\nActually, Using `redfish-host-interfaces` option is enough to identify the physical interfaces of Redfish Host Interface requests. But is it no hurt to add more security config.",
       "parentUuid": "2472b140_a944d694",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 366,
+        "endChar": 39
+      },
+      "revId": "ba91c893c897b323a27017b173941f1140a97a96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f10c0fc3_06c3fe5a",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-18T01:09:17Z",
+      "side": 1,
+      "message": "If we\u0027re running a bmcweb instance whose listening socket is bound to the device then we don\u0027t need any of this as configuration data for the build.",
+      "parentUuid": "8672cea5_bfa9f1a1",
       "range": {
         "startLine": 359,
         "startChar": 0,
