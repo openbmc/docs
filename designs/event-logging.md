@@ -208,7 +208,6 @@ structure, metadata, or message strings evolve.
 - Applications running on the BMC must be able to report errors and failure
   which are persisted and available for external system management through
   standards such as Redfish.
-
   - These errors must be structured, versioned, and the complete set of errors
     able to be created by the BMC should be available at built-time of a BMC
     image.
@@ -228,7 +227,6 @@ structure, metadata, or message strings evolve.
 - Applications running on the BMC should be able to report important tracing
   events relevant to system management and/or debug, such as the system
   successfully reaching a running state.
-
   - All requirements relevant to errors are also applicable to tracing events.
   - The implementation must have a mechanism for vendors to be able to disable
     specific tracing events to conform to their own system design requirements.
@@ -255,7 +253,6 @@ structure, metadata, or message strings evolve.
   APIs must provide compile-time identification, for applicable programming
   languages, of call sites which do not conform to the BMC error and event
   specifications.
-
   - The generated error classes and APIs should not require exceptions but
     should also integrate with the `sdbusplus` client and server bindings, which
     do leverage exceptions.
@@ -313,7 +310,6 @@ The binding generator(s) will be expanded to do the following:
 - Generate complete C++ exception types, with compile-time checking of missing
   metadata and JSON serialization, for errors and events. Metadata can be of one
   of the following types:
-
   - size-type and signed integer
   - floating-point number
   - string
@@ -732,18 +728,15 @@ other approaches:
 
 - Use a date code (ex. `2024.17.x`) representing the ISO 8601 week when the
   registry was built.
-
   - This does not cover vendors that may choose to branch for stabilization
     purposes, so we can end up with two machines having the same
     OpenBMC-versioned message registry with different content.
 
 - Use the most recent `openbmc/openbmc` tag as the version.
-
   - This does not cover vendors that build off HEAD and may deploy multiple
     images between two OpenBMC releases.
 
 - Generate the version based on the git-history.
-
   - This requires `phosphor-dbus-interfaces` to be built from a git repository,
     which may not always be true for Yocto source mirrors, and requires
     non-trivial processing that continues to scale over time.

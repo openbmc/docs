@@ -53,12 +53,10 @@ obmc-console:
 
 1. What the "connection endpoint" (Unix domain socket, D-Bus object) represents.
    This could be either:
-
    1. The TTY device exposed by Linux
    2. The desired downstream mux port
 
 2. How the mux state is controlled. We might control it by any of:
-
    1. An out-of-band command (e.g. via a D-Bus method that's somehow associated
       with the connection endpoint)
    2. An in-band command (e.g. introducing an SSH-style escape-sequence)
@@ -66,7 +64,6 @@ obmc-console:
       connected
 
 3. The circumstances under which we allow the mux state to be changed
-
    1. Active connections prevent the mux state from being changed
    2. The mux state can always change but will terminate any existing
       conflicting connections

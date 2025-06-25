@@ -154,10 +154,8 @@ which collects the dumps from BMC.
 - Dump Manager DBus object provides interfaces for creating and managing dump
 
 - Interfaces
-
   - **Create**: The interface to create a dump, called by clients to initiate
     user-initiated dump.
-
     - AdditionalData: The additional data, if any, for initiating the dump. The
       key in this case should be an implementation specific enum defined for the
       specific type of dump either in xyz or in a domain. The values can be

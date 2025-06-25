@@ -111,12 +111,10 @@ The properties of each guard entry will be part of this object Properties:
 
 - ID: Id of the record which is part of the entry object path.
 - Associations:
-
   - Guarded hardware inventory path:
     - Forward Name must be "isolated_hw".
     - Reverse Name must be "isolated_hw_entry".
   - BMC Error Log:
-
     - Forward Name must be "isolated_hw_errorlog".
     - Reverse Name must be "isolated_hw_entry".
 
@@ -129,7 +127,6 @@ The properties of each guard entry will be part of this object Properties:
   - Warning - Guarded based on an error which is not critical, but eventually,
     there can be critical failures.
 - Resolved: Status of guarded hardware
-
   - Used to indicate whether guarded hardware is repaired or replaced.
 
     **Note:** Setting this to "true" will not delete this entry because in a few

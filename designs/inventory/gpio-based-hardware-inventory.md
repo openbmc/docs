@@ -98,7 +98,6 @@ and phosphor-inventory-manager configuration:
 
 - Allow configuration of the detectable inventory items through entity-manager
   configuration
-
   - e.g. cable
   - e.g. fan board
   - e.g. daughter board

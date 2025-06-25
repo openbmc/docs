@@ -179,7 +179,6 @@ error data can be collected and the failure can be investigated.
 There are two main failure scenarios when it comes to OpenBMC and systemd usage:
 
 1. A service within a target fails
-
    - If the service is a "oneshot" type, and the service is required (not
      wanted) by the target then the target will fail if the service fails -
      Define a behavior for when the target fails using the "OnFailure" option
@@ -193,7 +192,6 @@ There are two main failure scenarios when it comes to OpenBMC and systemd usage:
 
 2. A failure outside of a normal systemd target/service (host watchdog expires,
    host checkstop detected)
-
    - The service which detects this failure is responsible for logging the
      appropriate error, and instructing systemd to go to the appropriate target
 
