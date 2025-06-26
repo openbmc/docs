@@ -16,6 +16,24 @@
       "message": "How SPDM daemon in BMC will determine to use reach out or reach down model?. Don\u0027t we need something in EM to determine BMC role(requester/responder)?",
       "revId": "dbc328e732b0510e1fa860f2839e0bb77643dde8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29985cd3_b03977d0",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-06-26T10:59:04Z",
+      "side": 1,
+      "message": "\u003e How SPDM daemon in BMC will determine to use reach out or reach down model?.\n\nReach out/ reach down depends on whether the responder initiates the role inquiry message/or not. It can be either and should be done dynamically.\n\n\u003e Don\u0027t we need something in EM to determine BMC role(requester/responder)?\n\nYes, We would probably need that. Its an implementation details, We can discuss which properties are needed in the SpdmTcpResponder schema when we propose it.",
+      "parentUuid": "2b5a9c6f_ce16d784",
+      "revId": "dbc328e732b0510e1fa860f2839e0bb77643dde8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
