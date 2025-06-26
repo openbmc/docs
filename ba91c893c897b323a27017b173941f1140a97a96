@@ -166,6 +166,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "804da23d_aa6df977",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-06-26T06:45:58Z",
+      "side": 1,
+      "message": "Using one BmcWeb instance for redfish host interface use `BindToDevice` option in systemd can make sure the request from the Redfish host interface will be handle by that instance.\nBut to identify which instance supports authenticate use `bootStrap account`, the additional option `additional-support-bootstrap` is be added. Only the BMCWeb instance with this option is `true` will response for the redfish host interface request with bootStrap username.",
+      "parentUuid": "bfcbf872_ac8d3dc4",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 65
+      },
+      "revId": "ba91c893c897b323a27017b173941f1140a97a96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb8c518c_ad5f0783",
@@ -378,6 +402,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5974410_ce4c0867",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-06-26T06:45:58Z",
+      "side": 1,
+      "message": "Because this is background knowledge section which details about EDK2 implementation to get BMC IP in the redfish host interface. Each OEM will have different implementation, So I will remove this part.",
+      "parentUuid": "8fba1d80_1a767a3c",
+      "range": {
+        "startLine": 207,
+        "startChar": 22,
+        "endLine": 207,
+        "endChar": 66
+      },
+      "revId": "ba91c893c897b323a27017b173941f1140a97a96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07514605_3cb346db",
@@ -533,6 +581,30 @@
       "side": 1,
       "message": "What i was trying to get at was that you have two booleans: `EnabledAfterReset` and `Enabled`, and therefore four states. Can they be combined into an enum with three members: `Disabled`, `Enabled`, `EnabledAfterReset`? That way there\u0027s no mystery fourth state of `!Enabled \u0026\u0026 EnabledAfterReset`.",
       "parentUuid": "60390ef8_2b9c9c1a",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 67
+      },
+      "revId": "ba91c893c897b323a27017b173941f1140a97a96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d8c4e73_a69fc329",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-06-26T06:45:58Z",
+      "side": 1,
+      "message": "I understand now, because `EnabledAfterReset` and `Enabled` are already defined in `Redfish Host Interface` DSP0270. So it is better to keep that.",
+      "parentUuid": "53538408_808128ea",
       "range": {
         "startLine": 228,
         "startChar": 0,
@@ -708,6 +780,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "781c7fac_bf10ee31",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-06-26T06:45:58Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "cac12628_4e9897fd",
+      "range": {
+        "startLine": 342,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 59
+      },
+      "revId": "ba91c893c897b323a27017b173941f1140a97a96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2472b140_a944d694",
@@ -769,6 +865,30 @@
       "side": 1,
       "message": "If we\u0027re running a bmcweb instance whose listening socket is bound to the device then we don\u0027t need any of this as configuration data for the build.",
       "parentUuid": "8672cea5_bfa9f1a1",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 366,
+        "endChar": 39
+      },
+      "revId": "ba91c893c897b323a27017b173941f1140a97a96",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cad5a89b_3f424523",
+        "filename": "designs/bootstrap-account-access-restriction.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2025-06-26T06:45:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f10c0fc3_06c3fe5a",
       "range": {
         "startLine": 359,
         "startChar": 0,
