@@ -470,7 +470,6 @@ This document doesn't cover below component design.
 
    So EventService design is hooked to Redfish Event Logs majorly for below two
    reasons.
-
    - Get the notification whenever new event is logged to Redfish event Logs.
    - Way to read the Redfish event log information.
 
@@ -1118,7 +1117,6 @@ User should cover below functionalists.
    ```
 
 4. DeleteSubscription: There are two ways to close the connection from client.
-
    - Client can close the browser directly which will close the SSE http
      connection and so bmcweb service can close and delete the subscription
      data.

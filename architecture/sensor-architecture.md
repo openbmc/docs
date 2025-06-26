@@ -25,7 +25,6 @@ Signals: All properties for an interface will broadcast signal changed
 ### Path definitions
 
 - **<type\>** : The [HWMon class][2] name in lower case.
-
   - Examples include `temperature, fan_tach, voltage`.
 
 - **<label\>** : User defined name of the sensor.
