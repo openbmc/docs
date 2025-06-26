@@ -129,7 +129,6 @@ curl -k -H "X-Auth-Token: $token" https://$bmc/xyz/openbmc_project/...
 ```
 
 - Delete images from system:
-
   - Delete image:
 
 ```bash
@@ -149,7 +148,6 @@ curl -k -H "X-Auth-Token: $token" https://$bmc/xyz/openbmc_project/...
 ```
 
 - Control boot source override:
-
   - Read current boot source override settings:
 
 ```bash
@@ -189,7 +187,6 @@ curl -k -H "X-Auth-Token: $token" https://$bmc/xyz/openbmc_project/...
 - Set NTP and Nameserver:
 
   Examples using public server.
-
   - NTP Server:
 
 ```bash
@@ -218,7 +215,6 @@ curl -k -H "X-Auth-Token: $token" https://$bmc/xyz/openbmc_project/...
   results in
   [openbmc/openbmc#3459](https://github.com/openbmc/openbmc/issues/3459), and
   the related test cases are updated to cooperate with this behavior change.
-
   - Read:
 
 ```bash
@@ -245,7 +241,6 @@ Time sync method:
 ```
 
 - Power Supply Redundancy:
-
   - Read:
 
 ```bash
@@ -260,7 +255,6 @@ Time sync method:
 ```
 
 - Factory Reset:
-
   - Factory reset host and BMC software:
 
 ```bash

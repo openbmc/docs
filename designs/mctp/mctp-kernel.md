@@ -19,7 +19,6 @@ platform.
 
 - Infrastructure should be flexible enough to allow for more complex MCTP
   networks, allowing:
-
   - each MCTP network (as defined by section 3.2.31 of DSP0236) may consist of
     multiple local physical interfaces, and/or multiple EIDs;
 

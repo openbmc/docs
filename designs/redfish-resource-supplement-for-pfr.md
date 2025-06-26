@@ -69,7 +69,6 @@ provisioning status.
 
 - ProvisiongStatus: The value of this property indicates the provisioning status
   of platform firmware. It is of Enum Type with below values.
-
   1. NotProvisioned: Indicates platform firmware is not provisioned. This is an
      unsecured state.
 
@@ -101,7 +100,6 @@ and must be extended whenever new firmware modules are supported under PFR.
    firmware resiliency errors.
 
    MessageID's:
-
    - BIOSFirmwareResiliencyError
    - BMCFirmwareResiliencyError
    - CPLDFirmwareResiliencyError
@@ -110,7 +108,6 @@ and must be extended whenever new firmware modules are supported under PFR.
 
    Below are some cases, where firmware resiliency error events logged for
    specific components.
-
    - Boot failure
    - Update Failure
 
@@ -118,14 +115,12 @@ and must be extended whenever new firmware modules are supported under PFR.
    firmware panic.
 
    MessageID's:
-
    - BIOSFirmwarePanicReason
    - BMCFirmwarePanicReason
    - CPLDFirmwarePanicReason
    - MEFirmwarePanicReason Severity: Warning
 
    Below are some cases, where these events can be logged.
-
    - Boot time watchdog expired
    - Firmware authentication failure
 
@@ -133,14 +128,12 @@ and must be extended whenever new firmware modules are supported under PFR.
    platform firmware component recovery.
 
    MessageID's:
-
    - BIOSFirmwareRecoveryReason
    - BMCFirmwareRecoveryReason
    - CPLDFirmwareRecoveryReason
    - MEFirmwareRecoveryReason Severity: Warning
 
    Below are few cases, where these events can be logged.
-
    - Launch failures
    - Update failures
    - Authentication failures
@@ -229,7 +222,6 @@ Event logs:
   recovery mechanism using below URI.
 
   Few examples to attack Firmware components and validate PFR:
-
   1. Corrupt the BMC/BIOS etc... firmware and check Panic events and recovery
      actions events.
 

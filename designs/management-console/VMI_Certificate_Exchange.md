@@ -253,7 +253,6 @@ extend for this use case.
   secure connection to VMI.
 
 - Certificate exchange fails in the following scenarios
-
   - If PHYP is not up
   - If PHYP throws error for certificate validation. This interface returns
     appropriate HTTP error code (4XX/5XX) based on type of error.

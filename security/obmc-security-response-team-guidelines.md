@@ -17,7 +17,6 @@ Here are the primary expectations:
 Workflow highlights:
 
 1. Handle new problem reports.
-
    - Within a day, acknowledge you received the report. Note that reports are
      archived in the mailing list.
    - Communicate by opening the GitHub draft security advistory as soon as the
@@ -25,7 +24,6 @@ Workflow highlights:
 
 2. Analyze the problem and engage collaborators as needed (upstream, downstream,
    and OpenBMC).
-
    - Determine if the problem is new or known.
    - Determine if the problem is in OpenBMC.
      - If the problem is in a project that OpenBMC uses, re-route the problem to
@@ -51,7 +49,6 @@ Workflow highlights:
    (SPECIAL REPORT CMU/SEI-2017-SR-022) may guide the process.
 
    Example collaborations:
-
    - Submit the problem to another security response team, for example, the
      [UEFI Security Response Team (USRT)][].
    - Privately engage an OpenBMC maintainer or subject matter expert.
