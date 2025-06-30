@@ -198,6 +198,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "838ea8ff_79a3cadb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-06-30T09:59:00Z",
+      "side": 1,
+      "message": "The \"script\" is already in the doc, it\u0027s as sample as the single command `time ./ipmitool -I https -H $bmc -P $token -p 9443 sdr`, with different implementation of `ipmitool` and `bmcweb`.\n\nFor example:\n* `https-json` is based on the ipmitool making RESTful APIs to bmcweb (The code is at local though, and if you **really** need it, I could submit the branch for reference.\n* `https2-json` is based on the above ipmitool with the `bmcweb` built with `experimental-http2` enabled. And it\u0027s confirmed that the libcurl I was using already enables http2 support, and it\u0027s also confirmed through bmcweb\u0027s debug log that http2 connection is really used.",
+      "parentUuid": "64c32ef7_3730f0a6",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c906e196_c3025afb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-06-30T09:59:00Z",
+      "side": 1,
+      "message": "@ed@tanous.net\nIf I understand your comment here correctly, you are proposing a \"http-connect\" way to pass the lanplus\u0027s udp traffic to a tcp tunnel, is it?\n\nIf yes, then as commented above, this proposal is to propose a new way to use ipmitool like D-Bus, except that the connection is based on https session.",
+      "parentUuid": "b33251cb_c890f67d",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a8decd5_3e144b89",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -496,6 +532,30 @@
       "side": 1,
       "message": "Please update so this doesn\u0027t take a top level uri.\n\n/openbmc/v1/ipmi",
       "parentUuid": "f3a3160f_28b6a69f",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 10
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bb2903a_12d35dda",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-06-30T09:59:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a41775a_c81cb6ac",
       "range": {
         "startLine": 76,
         "startChar": 6,
@@ -984,6 +1044,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "031a785e_f76f7bc0",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-06-30T09:59:00Z",
+      "side": 1,
+      "message": "It\u0027s the same for websocket session, e.g. for KVM and SOL.\nBy forwarding the user role to ipmid via DBus call, the rules are obeyed.",
+      "parentUuid": "0d57079e_69edb942",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 57
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01eb9369_ea901fb3",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -1163,6 +1247,30 @@
       "side": 1,
       "message": "Right... it\u0027s still request/response, so you don\u0027t save anything fundamentally there.",
       "parentUuid": "55eaef98_8fc515b5",
+      "range": {
+        "startLine": 240,
+        "startChar": 30,
+        "endLine": 240,
+        "endChar": 64
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1835519c_378a9585",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-06-30T09:59:00Z",
+      "side": 1,
+      "message": "True, but the test result shows significant performance improvement from REST API (json) to websocket (binary).",
+      "parentUuid": "38da560e_89a584a5",
       "range": {
         "startLine": 240,
         "startChar": 30,
@@ -1579,6 +1687,30 @@
       "side": 1,
       "message": "Then move it to the background section.",
       "parentUuid": "e1227341_1daad6a5",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 7
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b14d8609_8d8a9b1e",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-06-30T09:59:00Z",
+      "side": 1,
+      "message": "It\u0027s not really appropriate to mention ipmitool\u0027s changes in the background, and it will read weird.\n\nHow about adding an extra note here like this:\n\n\u003e Note: This design involves ipmitool\u0027s changes that will be sent to codeberg.org[3] for upstream review.",
+      "parentUuid": "a31eb73e_d56fa1ea",
       "range": {
         "startLine": 260,
         "startChar": 0,
