@@ -42,8 +42,8 @@ the host firmware support model.
 8. Remote BIOS configuration daemon should be independent of interface specific
    data format.
 9. BMC should able to take default / current settings from host and store &
-   expose that for out of band updates. 10.BMC should provide the new values to
-   the host.
+   expose that for out of band updates.
+10. BMC should provide the new values to the host.
 
 ## Proposed Design
 
@@ -114,8 +114,9 @@ RBC daemon should preserve the AllBiosTables, PendingAttributes list in
 non-volatile storage. Pending attributes list will be cleared whenever new
 attributes data received.
 
+### Intel uses the following logic for BIOS first boot
+
 ```text
-#Intel uses the following logic for BIOS first boot
    +---------------------------------------------------------------------------------------------------------------------+
    |                                                                                                                     |
    | +-----------------------+             +----------------------------------------------------------------------------+|
@@ -151,8 +152,10 @@ attributes data received.
    +---------------------------------------+-----------------------------------------------------------------------------+
 ```
 
+### Intel uses the following logic for BIOS reset
+
 ```text
-#Intel uses the following logic for BIOS reset
+
    +---------------------------------------------------------------------------------------------------------------------+
    |                                                                                                                     |
    | +-----------------------+             +----------------------------------------------------------------------------+|
@@ -188,8 +191,9 @@ attributes data received.
    +---------------------------------------+-----------------------------------------------------------------------------+
 ```
 
+### Intel uses the following logic for BIOS reset and BMC have new values
+
 ```text
-#Intel uses the following logic for BIOS reset and BMC have new values
    +---------------------------------------------------------------------------------------------------------------------+
    |                                                                                                                     |
    | +-----------------------+             +----------------------------------------------------------------------------+|
@@ -230,7 +234,6 @@ attributes data received.
    | +-----------------------+             |  +-------------------------------+         +-----------------------------+ ||
    |                                       +----------------------------------------------------------------------------+|
    +---------------------------------------+-----------------------------------------------------------------------------+
-
 ```
 
 ## BIOS send the data in BIOS configuration PLDM via MCTP
@@ -252,7 +255,7 @@ RBC daemon should preserve the AllBaseAttributes, PendingAttributes list in
 non-volatile storage. PLDM daemon should preserve BIOS tables in non-volatile
 storage. RBC and PLDM should restored the data whenever BMC reset.
 
-## BIOS first boot
+### BIOS first boot
 
 ```text
 
@@ -286,9 +289,11 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
    | +-----------------------+             |  +-------------------------------+         +-----------------------------+||
    |                                       +---------------------------------------------------------------------------+|
    +---------------------------------------+----------------------------------------------------------------------------+
+```
 
+### BIOS reset
 
-#BIOS reset
+```text
    +--------------------------------------------------------------------------------------------------------------------+
    | +-----------------------+             +---------------------------------------------------------------------------+|
    | | BIOS                  |             |   BMC                                                                     ||
@@ -321,7 +326,7 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
 
 ```
 
-## Complete BIOS BMC flow for BIOS configuration in deferred update model
+### Complete BIOS BMC flow for BIOS configuration in deferred update model
 
 ```text
 +----------------------------------------+                    +----------------------------------------+
@@ -367,7 +372,7 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
 +----------------------------------------+                    +----------------------------------------+
 ```
 
-## Complete BIOS BMC flow for BIOS configuration in immediate update model
+### Complete BIOS BMC flow for BIOS configuration in immediate update model
 
 ```text
 +----------------------------------------+                    +----------------------------------------+
@@ -414,7 +419,7 @@ should preserve the Pending Attributes list across the BMC reset and RBC should
 clear the Pending Attributes list whenever new AllBaseBIOSTables received from
 BIOS.
 
-## Redfish interfaces for remote Bios configuration
+### Redfish interfaces for remote Bios configuration
 
 ```text
  +-----------------------------------------------------------------------------------------------------------+
