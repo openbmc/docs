@@ -83,7 +83,6 @@ OpenBMC.
 - Does this repository require a new repository? Yes
 - Who will be the initial maintainer(s) of this repository? Ed Tanous
 - Which repositories are expected to be modified to execute this design?
-
   - openbmc/openbmc
   - openbmc/libcper
 

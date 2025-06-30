@@ -310,7 +310,6 @@ daemon as simple as this one, or to force into another even less-related repo.
    Rejection: "We have all this stuff [.Model, .SerialNumber, ect. properties]
    defined already. I'm not going to accept a new "bunch of random properties
    HPe thinks are important [today] globbed into a new interface" interface"
-
    - Patrick Williams, Phosphor-dbus-interfaces maintainer.
 
    Counter-proposal: "Reuse the existing dbus interfaces and put them at a

@@ -164,7 +164,6 @@ based on AST2400 and AST2500, but there is no design for managed NAND.
   provided to the kernel to append unused physical blocks.
 
 - Logical Volumes:
-
   - Volume management: LVM. This allows for dynamic partition/removal, similar
     to the current UBI implementation. LVM support increases the size of the
     kernel by ~100kB, but the increase in size is worth the ability of being

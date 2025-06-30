@@ -29,7 +29,6 @@ This section covers the limitations discoverd with
 ## Requirements
 
 1. Able to start an update, given a firmware image and update settings.
-
    - Update settings shall be able to specify when to apply the image, for
      example immediately or on device reset or on-demand.
 

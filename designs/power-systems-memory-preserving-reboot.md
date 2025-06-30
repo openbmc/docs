@@ -243,7 +243,6 @@ performance. - Offloading through BMC has less development impact on the host.
   curl
 
 - Integration testing by
-
   - User-initiated dump testing, which invokes a memory preserving reboot to
     collect dump.
   - Initiate memory preserving reboot by injecting host error

@@ -188,26 +188,22 @@ assume the user wants to use that for configuration.
 ## Alternatives Considered
 
 - Extend phosphor-led-sysfs to expose 2 LEDs (blue/amber) as a single LED.
-
   - This does not work since there may be n different fault LEDs as per
     [Spec](#background-and-references)
   - Also this is basically lying to ourselves and making it difficult for other
     sw to get any meaningful info about LEDs from dbus anymore.
 
 - Allow Priority "Off" for LED config.
-
   - This only solves the issue for very simple configurations.
   - Individual LED priorities are hard to think about when multiple LEDs form an
     indicator
 
 - Allow the mixed use of group and individual led priority
-
   - This will require considering more edge cases arising from the mixed use.
   - Not aware of a use-case which would benefit from mixed use.
 
 - Allow each LED to configure the priority of groups it represents, instead of
   just one state.
-
   - e.g. "Priority": ["enclosure_identify", "fault", "power"]
   - This config would have to be repeated on each instance of an LED
   - Or assumed that the first instance defines it?
@@ -218,7 +214,6 @@ assume the user wants to use that for configuration.
 
 - Allow configuring an "indicator" that's comprised of multiple LEDs and then
   just define states for that indicator.
-
   - Need to translate these states to groups anyways to be compatible with the
     existing internal data structures
   - Handle the case of member LEDs of that indicator also being members of other
