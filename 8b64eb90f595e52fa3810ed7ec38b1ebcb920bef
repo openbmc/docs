@@ -234,6 +234,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f338a4a_c2c01a65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-30T15:50:48Z",
+      "side": 1,
+      "message": "\u003e @ed@tanous.net\n\u003e If I understand your comment here correctly, you are proposing a \"http-connect\" way to pass the lanplus\u0027s udp traffic to a tcp tunnel, is it?\n\u003e \n\u003e If yes, then as commented above, this proposal is to propose a new way to use ipmitool like D-Bus, except that the connection is based on https session.\n\nRight, and http-connect can do the same thing, and is intended for that exact purpose, to expose udp services over an HTTP connection.",
+      "parentUuid": "c906e196_c3025afb",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "216b68f6_98bbac6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-30T15:50:48Z",
+      "side": 1,
+      "message": "Where is that implementation of ipmitool?\n\nipmitool -I https\nError loading interface https\n\nis what gets returned on current ipmitool.",
+      "parentUuid": "838ea8ff_79a3cadb",
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a8decd5_3e144b89",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -1068,6 +1104,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ca1a61d0_2a226600",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-30T15:50:48Z",
+      "side": 1,
+      "message": "\u003e It\u0027s the same for websocket session, e.g. for KVM and SOL.\n\u003e By forwarding the user role to ipmid via DBus call, the rules are obeyed.\n\nNo, it\u0027s not the same.  authentication and authorization is enforced in bmcweb in both of those cases.  In what you\u0027ve proposed, you\u0027ve split authentication and authorization.",
+      "parentUuid": "031a785e_f76f7bc0",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 57
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01eb9369_ea901fb3",
         "filename": "designs/ipmi_https_interface.md",
         "patchSetId": 1
@@ -1271,6 +1331,30 @@
       "side": 1,
       "message": "True, but the test result shows significant performance improvement from REST API (json) to websocket (binary).",
       "parentUuid": "38da560e_89a584a5",
+      "range": {
+        "startLine": 240,
+        "startChar": 30,
+        "endLine": 240,
+        "endChar": 64
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85139e4a_2a91bc3d",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-30T15:50:48Z",
+      "side": 1,
+      "message": "But there\u0027s no fundamental reason why that\u0027s faster aside from it\u0027s \"new\".  I see no attempt to optimize what exists or any analysis on why the existing things are slow.  It\u0027s very likely there\u0027s just some mediocre code, and the existing interfaces could be made just as fast as the websocket implementation.",
+      "parentUuid": "1835519c_378a9585",
       "range": {
         "startLine": 240,
         "startChar": 30,
@@ -1711,6 +1795,30 @@
       "side": 1,
       "message": "It\u0027s not really appropriate to mention ipmitool\u0027s changes in the background, and it will read weird.\n\nHow about adding an extra note here like this:\n\n\u003e Note: This design involves ipmitool\u0027s changes that will be sent to codeberg.org[3] for upstream review.",
       "parentUuid": "a31eb73e_d56fa1ea",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 7
+      },
+      "revId": "8b64eb90f595e52fa3810ed7ec38b1ebcb920bef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e10598b0_be28f877",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-30T15:50:48Z",
+      "side": 1,
+      "message": "Whether or not ipmi supports this is immaterial to the openbmc design, whose API ends at the http socket.  When you test this, we would likely not use ipmitool to ensure that the protocol is correctly handled.",
+      "parentUuid": "b14d8609_8d8a9b1e",
       "range": {
         "startLine": 260,
         "startChar": 0,
