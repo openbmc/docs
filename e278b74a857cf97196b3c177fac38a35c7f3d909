@@ -16,6 +16,24 @@
       "message": "Overall, I\u0027m not in support of this from a maintenance and security perspective.  IPMI as a standard has no new versions, and despite some continued use is deprecated by its creators.  We need to heed that deprecation as a good reason to not continue to extend.  IF there were an IPMI consortium still, this would almost certainly be rejected.\n\nipmitool is one tool of many in the ipmi landscape.  While implementing support for ipmitool for this interface is great, it doesn\u0027t bring the whole industry worth of tooling over to using this new interface, and without a lot of critical mass behind this, I worry a lot about the maintenance aspects including testing that this feature will find.\n\nThis design doc would be helped a lot by articulating what ipmi use cases are missing from the openbmc redfish implementation, so we can get them added.\n\nI\u0027d also add that if this is truly what\u0027s desired there\u0027s already a way to do this over the dbus-rest option, but the lack of use seems to me that there\u0027s not widespread desire for this.\n\nIf this is still something you want to pursue, the things that would convince me that this should be included in openbmc are:\n1. A number of contributors asking for this, testing patches, and providing input.\n2. A defined mechanism for how we handle security for something that has no specification, or tie this design to an existing http proxy specification\n3. Articulating why (at a protocol level) that the existing http request/response mechanisms can\u0027t be made more performant without external interface changes.\n4. Articulating the use cases that Redfish doesn\u0027t have that IPMI requires.\n\nIf you feel like I\u0027m wrong here, please feel free to avail yourself of the technical oversight forum, which can likely offer other input.",
       "revId": "e278b74a857cf97196b3c177fac38a35c7f3d909",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d62e562_2be3ae67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-07-01T07:20:22Z",
+      "side": 1,
+      "message": "Submitted https://github.com/openbmc/technical-oversight-forum/issues/52 for TOF discussion.",
+      "parentUuid": "7b5a0f20_2bc445bd",
+      "revId": "e278b74a857cf97196b3c177fac38a35c7f3d909",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
