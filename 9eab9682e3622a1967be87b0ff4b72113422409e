@@ -22,6 +22,30 @@
       },
       "revId": "9eab9682e3622a1967be87b0ff4b72113422409e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cef54da7_58e7c26e",
+        "filename": "designs/ipmi_https_interface.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000044
+      },
+      "writtenOn": "2025-07-01T11:13:35Z",
+      "side": 1,
+      "message": "\u003e The \"beauty\" of CVE-2013-4786 is that the attacker doesn\u0027t even need the rootfs access to get the password hash, it can be extracted directly from communicating with the BMC, not even by a MitM attack.\n\nExactly, that\u0027s something this design proposed to replace the lanplus protocol.\n\n\u003e IMO, there is no need in introducing any new access interfaces to a legacy protocol.\n\nThis is something I would like to discuss in TOF. Although it\u0027s a legacy protocol, it\u0027s used a lot in our data centers, and that\u0027s why the https interface is introduced.",
+      "parentUuid": "491ee82f_9ed0a4a0",
+      "range": {
+        "startLine": 32,
+        "startChar": 43,
+        "endLine": 33,
+        "endChar": 70
+      },
+      "revId": "9eab9682e3622a1967be87b0ff4b72113422409e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
