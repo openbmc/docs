@@ -217,37 +217,37 @@ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PATCH h
 
 List configured subscriptions:
 
-```
+```bash
 curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" https://${bmc}/redfish/v1/EventService/Subscriptions/
 ```
 
 Setup subscription
 
-```
+```bash
 curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST https://${bmc}/redfish/v1/EventService/Subscriptions -d '{"Context": "My context", "DeliveryRetryPolicy": "RetryForever", "Destination": "http://yy.yy.yy.yy:8888/events", "EventFormatType": "Event", "Protocol": "Redfish", "SubscriptionType": "RedfishEvent"}"
 ```
 
 Store the ID of the first subscription in an environment variable:
 
-```
+```bash
 export subscription_id=$(curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" https://${bmc}/redfish/v1/EventService/Subscriptions/ |jq '.Members[0]."@odata.id"' | cut -d '/' -f 6| cut -d '"' -f 1)
 ```
 
 Display information for the subscription associated with the stored ID:
 
-```
+```bash
 curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" https://${bmc}/redfish/v1/EventService/Subscriptions/${subscription_id}
 ```
 
 Update the subscription corresponding to the stored ID:
 
-```
+```bash
 curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" https://${bmc}/redfish/v1/EventService/Subscriptions/${subscription_id} -X PATCH -d '{"VerifyCertificate": false}'
 ```
 
 Remove the subscription identified by the stored ID:
 
-```
+```bash
 curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" https://${bmc}/redfish/v1/EventService/Subscriptions/${subscription_id} -X DELETE
 ```
 
@@ -255,14 +255,14 @@ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" https://${
 
 Send a test event using embedded into Redfish Event Service facility:
 
-```
+```bash
 curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" https://${bmc}/redfish/v1/EventService/Actions/EventService.SubmitTestEvent -X POST -d '{"EventTimestamp":"2023-02-13T14:49:20Z","Severity":"Warning","Message":"This is a test event message 2","MessageId":"iLOResourceEvents.1.3.DrvArrLogDrvErasing","MessageArgs":["1","slot 3"],"OriginOfCondition":"/redfish/v1/Systems/1/Storage"}'
 ```
 
 Send a test DBus event, it should be picked up by the bmcweb and send event to
 the subscriber (the command should be executed on the BMC):
 
-```
+```bash
 busctl call xyz.openbmc_project.Logging \
 /xyz/openbmc_project/logging \
 xyz.openbmc_project.Logging.Create \
