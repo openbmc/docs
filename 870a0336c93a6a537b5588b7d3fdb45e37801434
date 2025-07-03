@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4bc684dd_585561ee",
+        "filename": "designs/code-update.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-07-03T14:13:07Z",
+      "side": 1,
+      "message": "I don\u0027t mind changing it. Are there boundaries for such a manager, then please describe it.",
+      "parentUuid": "a017db7e_4a516ef6",
+      "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd2d66d3_823d4a27",
         "filename": "designs/code-update.md",
         "patchSetId": 16
@@ -65,6 +83,24 @@
       "writtenOn": "2025-07-02T06:14:36Z",
       "side": 1,
       "message": "What kind of configuration would this be?\nHow would manager know which updater to call based on specific images/parts in multi part image?",
+      "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac7cb13d_0b610e5c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-07-03T14:13:07Z",
+      "side": 1,
+      "message": "The existing design document has section of how a non-pldm updater can read component for itself using EM config. This is vice-versa, code-update-manager parsing the same EM configuration and invoking the non-pldm code updater.\n\n\n[1] https://github.com/openbmc/docs/blob/master/designs/code-update.md#pldm-image-packaging",
+      "parentUuid": "fd2d66d3_823d4a27",
       "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +124,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f00c9d0_39648f74",
+        "filename": "designs/code-update.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-07-03T14:13:07Z",
+      "side": 1,
+      "message": "Yes, will fwd to pldmd and since there is no match it will be no-op.",
+      "parentUuid": "916c4439_2f65ade7",
+      "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f7c68e4_836bd7ee",
         "filename": "designs/code-update.md",
         "patchSetId": 16
@@ -99,6 +153,24 @@
       "writtenOn": "2025-07-02T06:14:36Z",
       "side": 1,
       "message": "PLDMd exposes per component software update interface as per current design, are you suggesting to also expose a singleton PLDMd Manager which can manage multiple components?",
+      "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbfca244_afcec794",
+        "filename": "designs/code-update.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-07-03T14:13:07Z",
+      "side": 1,
+      "message": "Yes, pldmd will be expose a StartUpdate interface at the Manager level and package will be matched against all the PLDM T5 descriptors.",
+      "parentUuid": "0f7c68e4_836bd7ee",
       "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -122,6 +194,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e5076a7_018a050c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-07-03T14:13:07Z",
+      "side": 1,
+      "message": "Any non-PLDM code updater.",
+      "parentUuid": "98719df2_212051cd",
+      "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe158b89_a02bc56e",
         "filename": "designs/code-update.md",
         "patchSetId": 16
@@ -133,6 +223,24 @@
       "writtenOn": "2025-07-02T06:14:36Z",
       "side": 1,
       "message": "xyz.openbmc_project.Software.MultipartManager",
+      "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fbe91f9_933d7db3",
+        "filename": "designs/code-update.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-07-03T14:13:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fe158b89_a02bc56e",
       "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -156,6 +264,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2cd7d67_f085a3af",
+        "filename": "designs/code-update.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-07-03T14:13:07Z",
+      "side": 1,
+      "message": "To parse the component image from the PLDM package for Non-PLDM code updater.",
+      "parentUuid": "824908ad_3fc1129e",
+      "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16ef8d76_b23278f3",
         "filename": "designs/code-update.md",
         "patchSetId": 16
@@ -167,6 +293,24 @@
       "writtenOn": "2025-07-02T06:14:36Z",
       "side": 1,
       "message": "\"Business logic of aggregation the status of individual code updaters handled in bmcweb\"\n\nWhy is this a Con? I can understand that is an approach which BMCWeb maintainer don\u0027t want to take but i am not sure how this is a con?\n\nSo, lets document it accordingly to reflect so.",
+      "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92d89de0_45ec966b",
+        "filename": "designs/code-update.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-07-03T14:13:07Z",
+      "side": 1,
+      "message": "I want to represent the concern of bmcweb maintainter that bmcweb should be a webserver and should contain minimal to zero business logic. I can add this in the next patchset.",
+      "parentUuid": "16ef8d76_b23278f3",
       "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -218,6 +362,60 @@
       "writtenOn": "2025-07-02T06:14:36Z",
       "side": 1,
       "message": "\"code-update-manager extensible to support multiple multi image formats\"\n\nWhy this cannot be done in the first approach? We already have a common layer which parses the image, its a matter of extending that layer to support a new image format.\n\nFor documentation, lets update this accordingly.",
+      "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91003142_75fdf157",
+        "filename": "designs/code-update.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-07-03T14:13:07Z",
+      "side": 1,
+      "message": "If aggregation is done by bmcweb, then all code updaters need changes to understand the common multi part image format like PLDM and extract component images from PLDM package.",
+      "parentUuid": "3fc7349e_edb42060",
+      "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70284906_b1cdec3c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-07-03T14:13:07Z",
+      "side": 1,
+      "message": "The individual code updaters(non-pldm) need not assume the format of the image received in the image is StartUpdate is PLDM package and it has to read the component image from the PLDM package. The code updaters can choose the format of the Image received in StartUpdate API.",
+      "parentUuid": "ab564726_d78724b2",
+      "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fa9b4be_91079ed4",
+        "filename": "designs/code-update.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-07-03T14:13:07Z",
+      "side": 1,
+      "message": "Ok, with the first approach, the multiple image format is not abstracted from all the code updaters. I wanted to highlight that here, will wordsmith that.",
+      "parentUuid": "1dd0c193_022ea2ce",
       "revId": "870a0336c93a6a537b5588b7d3fdb45e37801434",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
