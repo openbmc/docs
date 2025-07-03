@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25134055_a7b3c564",
+        "filename": "designs/multi-chassis-power.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000331
+      },
+      "writtenOn": "2025-07-03T15:42:40Z",
+      "side": 1,
+      "message": "In the last few years there has been a shift to move system-specific configuration files into the same repo that contains the code (such as EM).  Would it make sense to put the JSON file in a subdirectory within phosphor-power?  That is where the other JSON files are for the phosphor-power apps.",
+      "range": {
+        "startLine": 90,
+        "startChar": 45,
+        "endLine": 92,
+        "endChar": 31
+      },
+      "revId": "476ebe193896f7cf8fea22a0dd0f223b71c4bec4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "592ff48d_8e599bcb",
+        "filename": "designs/multi-chassis-power.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000331
+      },
+      "writtenOn": "2025-07-03T15:42:40Z",
+      "side": 1,
+      "message": "In the phosphor-power repository, the current service files are named to match the application, such as `phosphor-regulators.service`.  It is not a hard requirement, but it would be more consistent to name it `phosphor-chassis-power.service`.",
+      "range": {
+        "startLine": 130,
+        "startChar": 1,
+        "endLine": 130,
+        "endChar": 41
+      },
+      "revId": "476ebe193896f7cf8fea22a0dd0f223b71c4bec4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b36da18d_6037a813",
+        "filename": "designs/multi-chassis-power.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000331
+      },
+      "writtenOn": "2025-07-03T15:42:40Z",
+      "side": 1,
+      "message": "From the discussion earlier in this document, maybe tests like the following would be good too?\n* Test where some chassis are removed (not present)\n* Test where power cable is removed from all PSUs\n* Test where cabling / hardware that connects the BMC to a non-BMC chassis is not working (if relevant given hardware design).",
+      "revId": "476ebe193896f7cf8fea22a0dd0f223b71c4bec4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
