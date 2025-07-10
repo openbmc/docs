@@ -16,6 +16,368 @@
       "message": "Please mark comments as resolved if you feel they are so.  There are still 7 unresolved comments on this, which means reviewers are likely to stay away.",
       "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c48c46ae_bff03a09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "ck",
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a9d6506_5d08c8ef",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "This isn\u0027t entirely true, right?  There is also \"ipmi-snoop\" mode.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 38
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c03d27d5_720b0481",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "How is the design going to handle multi-host designs.  1 BMC monitoring N hosts.  The design should be able to have separate post-code \"queues\" for the distinct host slices.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 37
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0752f632_57f1bbdc",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "Is there no possible method of an interrupt here?  Or at least a GPIO asserting something is in the queue?  Having the BMC to have to poll is no ideal, especially because post codes come in very quickly, so I assume you\u0027re going to want a quick polling interval.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 45
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ab9ef7b_73b09668",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "What is a default / expected polling interval for this proposal?\n\nYou might consider some sort of back-off and/or non-linear polling interval.  I see, generally, two states:\n\n1. The system just started booting and you\u0027re going to get a flurry of post codes.\n2. The system is running and you\u0027re rarely going to get a new post code.\n\nState (1) can maybe be identified by PSM dbus properties (ie. a watch on the Chassis or Host).  State (2) can be identified by a long period without post codes.",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 46,
+        "endChar": 44
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f120268d_fd01ed45",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "How is the BMC expected to merge boot entries if they are coming in from multiple sources?  I think you need to specify how this might be done.\n\nIf I have an empty queue and I read socket 0, I might get postcode `{ B, Bp }`.  Immediately after that I read socket 1, I might get postcode `{ A, Ap }`.  I have to have saved `{ B, Bp }` and not emitted the `Raw` update, so that I can first send `{ A, Ap }` even though I didn\u0027t know it existed at the time I got `{B, Bp }`.\n\nHow are you going to ever know when you get a post code that you\u0027ve gotten all the post codes preceding it?",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 39
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae05aa18_9d1026b3",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "Do we need to change the interface to also have a timestamp now?",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 39
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c468f725_0561391e",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "We need more clarity on which are \"update a dbus property in this process\" and which are \"update a dbus property in another process\".  From my reading of your other responses, it seems like `Boot.Raw` is implemented _here_ but `BootProgress` is implemented _elsewhere_.  The diagram needs clarity.",
+      "range": {
+        "startLine": 77,
+        "startChar": 13,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7494371d_674180cb",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "What is the timestamp representing?  clock ticks?  uSec?  How do you deal with:\n\n1. time wrap\n2. post codes with the same timestamp",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 40
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "185c15f7_6e751e0c",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "We have support for post codes which are longer than this.  Please make sure your design aligns there.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 68
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72d6997f_bd72a76c",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "I\u0027ve still gotten this far into the document and not been told that this is an OEM protocol.  At least before you introduce this table you need to identify this as the Nvidia protocol (and specify which chip will support it).",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 7
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82b9d266_2176b257",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "nit: Can you reduce the width of this table by 1 character.  Every single line wraps with just an extra `|`.",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 81
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "410991a1_e64e8ea7",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "This will not be sufficient for:\n\n(1) duplicate timestamps\n(2) timestamp wrapping\n\nHonestly, a vector is probably better here because you at least get stable sorting.  You can insert to the back and use a stable-sort algorithm to bubble it up into the right position.",
+      "range": {
+        "startLine": 164,
+        "startChar": 2,
+        "endLine": 165,
+        "endChar": 47
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd7c2c22_98646069",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "Please ensure your data structure aligns with the types used in Postcode.Raw.  We should as early as possible get from your hardware design to something reusable, so that next generation when your hardware designers realize they want 64 bit post codes we have very little code that needs to be changed.",
+      "range": {
+        "startLine": 165,
+        "startChar": 32,
+        "endLine": 165,
+        "endChar": 47
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef6e0322_79a2f34e",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "How is this decoding going to be specified?  I don\u0027t think this belongs in phosphor-host-postd.  @amithash@meta.com just added support in phosphor-post-code-manager for something very similar (Ibaa09fb88190a344fd7c4fadd24dda4aa4ae0633) and I think it could be enhanced here.  I also gave him feedback on the ML that he has not incorporated yet: https://lore.kernel.org/openbmc/aDmv-MAXX2QFsLlp@heinlein/\n\nThe important thing to me is we should be able to specify these configs on a per-machine / per-processor basis so that the decoding is not deeply embedded in C++ code.  You\u0027re going to need to change this for every processor generation plus you often will have OEM tweaks (ie. Meta\u0027s BIOS might have slightly different, additional post codes).  We don\u0027t want to go down a path where we need N compile flags in phosphor-host-postd to get the correct behavior.",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 39
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86039bd8_222c2895",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-10T12:13:35Z",
+      "side": 1,
+      "message": "Ideally we get phosphor-host-postd to a point where this can be enabled all the time and only used when the EM config points to it.  We\u0027d prefer to stop adding new compile-time options that are machine-specific.",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 69
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
