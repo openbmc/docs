@@ -287,6 +287,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b78f892d_2e21e24d",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-07-11T12:23:30Z",
+      "side": 1,
+      "message": "You\u0027re right — postcodes cannot be guaranteed to arrive from all queues in strict timestamp order, especially when polling from multiple sources such as different sockets. To handle this, postcodes from each queue will be temporarily buffered in memory along with their timestamps during each polling interval.\n\nInstead of immediately emitting a postcode upon reading, all entries will be collected across sources and then sorted using a stable sort based on timestamps. Only after this sorting step will the Raw, BootProgress, and other D-Bus properties be updated in the correct order.\n\nThis ensures that even if a postcode from a later-read queue (e.g., socket 1) has an earlier timestamp than one from a previously-read queue (e.g., socket 0), it will still be emitted in the correct sequence.",
+      "parentUuid": "f120268d_fd01ed45",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 39
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c468f725_0561391e",
@@ -561,6 +585,30 @@
       "range": {
         "startLine": 164,
         "startChar": 2,
+        "endLine": 165,
+        "endChar": 47
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5b46e78_2d0f6609",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-07-11T12:23:30Z",
+      "side": 1,
+      "message": "Yes, while updating the Postcode.Raw will make sure it will be in the format as per https://github.com/openbmc/phosphor-dbus-interfaces/blob/d4830e4242f550734f318c84ceac5960fd7f0be3/yaml/xyz/openbmc_project/State/Boot/Raw.interface.yaml#L3",
+      "parentUuid": "fd7c2c22_98646069",
+      "range": {
+        "startLine": 165,
+        "startChar": 32,
         "endLine": 165,
         "endChar": 47
       },
