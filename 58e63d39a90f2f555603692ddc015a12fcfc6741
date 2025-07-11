@@ -356,6 +356,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7317f354_31ccdf12",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-07-11T11:49:11Z",
+      "side": 1,
+      "message": "Okay the Raw property currently is of std::vector\u003cuint8_t\u003e. \nWhile updating this property will make sure to align with std::vector\u003cuint8_t\u003e.",
+      "parentUuid": "185c15f7_6e751e0c",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 68
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72d6997f_bd72a76c",
@@ -461,6 +485,30 @@
       "writtenOn": "2025-07-10T12:13:35Z",
       "side": 1,
       "message": "How is this decoding going to be specified?  I don\u0027t think this belongs in phosphor-host-postd.  @amithash@meta.com just added support in phosphor-post-code-manager for something very similar (Ibaa09fb88190a344fd7c4fadd24dda4aa4ae0633) and I think it could be enhanced here.  I also gave him feedback on the ML that he has not incorporated yet: https://lore.kernel.org/openbmc/aDmv-MAXX2QFsLlp@heinlein/\n\nThe important thing to me is we should be able to specify these configs on a per-machine / per-processor basis so that the decoding is not deeply embedded in C++ code.  You\u0027re going to need to change this for every processor generation plus you often will have OEM tweaks (ie. Meta\u0027s BIOS might have slightly different, additional post codes).  We don\u0027t want to go down a path where we need N compile flags in phosphor-host-postd to get the correct behavior.",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 39
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53cd7870_4c776e73",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-07-11T11:49:11Z",
+      "side": 1,
+      "message": "Yes, I looked at the recent changes made by @amithash@meta.com. For logging, I can make use of the same. Thanks for this patch @amithash@meta.com. \nDo you think updating BootProgress, BootProgressLastUpdate, BootProgressOem properties from phosphor-host-postd would not be right approach ?",
+      "parentUuid": "ef6e0322_79a2f34e",
       "range": {
         "startLine": 166,
         "startChar": 0,
