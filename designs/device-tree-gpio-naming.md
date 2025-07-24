@@ -106,7 +106,23 @@ Set to initiate power-on or power-off of the chassis.
 
 #### power-chassis-good
 
-Indicates the power good state of the chassis.
+Indicates the power good (fully powered on) state of the chassis.
+
+#### power-chassis-standby-fault-unlatched
+
+This input GPIO represents the status of the unlatched (current) input standby
+power to the chassis. This is a live reading of the input fault status.
+
+#### power-chassis-standby-fault-latched
+
+This input GPIO represents the status of a latched input standby power fault to
+the chassis. Temporary/transient standby power faults will be latched by this
+GPIO until it can be read and reset by firmware.
+
+#### power-chassis-standby-fault-reset
+
+This output GPIO resets the latched fault above. It should be used to reset the
+latch once the fault status has been processed by firmware.
 
 #### power-config-full-load
 
@@ -145,6 +161,8 @@ Pattern: `presence-*`
 
 #### presence-ps0, presence-ps1, ..., presence-ps\<N>
 
+#### presence-chassis0, presence-chassis1, ..., presence-chassis\<N>
+
 ### Reset Cause
 
 These are GPIOs that provide more detail on the reason for a BMC reset. BMC
@@ -163,6 +181,22 @@ scenarios where the BMC is hanging or otherwise unresponsive. Note that this
 GPIO is not utilized to cause the actual reset, it is a GPIO that can be read
 after the BMC reset to know the reason for the reboot was a pinhole reset.
 
+### Reset Enable/Disable
+
+These are GPIOs that can be used to enable or disable hardware from resetting a
+BMC for specific conditions. Hardware may be able to be gated from doing a BMC
+reset for these conditions as needed.
+
+Pattern: `reset-enable-*`
+
+#### reset-enable-chassis-standby-power
+
+In multi-chassis systems, one chassis may lose standby power, while the chassis
+containing the BMC may not lose standby power. It may be advantagous for the
+hardware to reset the BMC in this case for certain scenarios, while not
+resetting the BMC in other scenarios. This GPIO can be used to enable or disable
+this hardware-driven BMC reset for different software logic.
+
 ### Secure Boot
 
 #### bmc-secure-boot
@@ -179,13 +213,30 @@ These are special case and/or grandfathered in pin names.
 
 #### air-water
 
-Indicates whether system is air or water cooled
+Indicates whether system is air or water cooled.
 
 #### factory-reset-toggle
 
 The software records the state of this GPIO and checks upon reboot if the state
 has changed since the last reboot. If it has, it indicates that a factory reset
 should be performed.
+
+### Multi-Chassis System GPIOs
+
+Multi-Chassis systems that need GPIOs to be differentiated per chassis (such as
+when the BMC accesses GPIOs in multiple other chassis) should add "chassis\<N>"
+in the GPIO name. In order to minimize the GPIO name length, the "chassis\<N>"
+text does not need to be located at the beginning or the end of the name. In
+other words, if the text "chassis" already exists in the GPIO name, the chassis
+number should be appended to "chassis" as opposed to requiring another word to
+be added at the end of the name.
+
+Examples:
+
+- presence-chassis0, presence-chassis1, ..., presence-chassis\<N>
+- presence-ps0-chassis0, ..., presence-ps\<M>-chassis\<N>
+- power-chassis0-control, ..., power-chassis\<N>-control
+- power-chassis0-good, ..., power-chassis\<N>-good
 
 ### POWER Specific GPIOs
 
