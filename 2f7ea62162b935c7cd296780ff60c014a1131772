@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55692022_f142a1c3",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T17:23:37Z",
+      "side": 1,
+      "message": "\u003e Overall, this application exists because I don\u0027t see a way technically to make these things entity-manager enabled, and imposing a fru scanning requirement would reduce the reliability, as well as cause a deadlock (some FRUs are behind the Voltage regulator on this platform)\n\nI mean it makes sense for simple initialization cases (single host, fixed board).\nBut if you consider blade servers too then these may need or want custom init routines aswell.\n\nSo the first initialization would need to be done before FruDevice as you said but blade initialization may need to be done based on dynamic detection.\n\nMy point is that there may need to be something in-between detection and EM exposing configuration. Which is the initialization step.\n\nSo having your code be in the EM repo would make it easier to call those handlers.\n\n\nI believe your use-case is similar to the i2c mux feature which is also concerned\nwith initialization\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/75484\n\nThe major difference being the stage at which the initialization happens (before / after FruDevice) and how it is configured static/dynamic.\n\nI see no reason why it cannot be supported to have a custom init routine for some hardware component after dynamic detection has started.\n\n\n\u003e Standby power needs asserted\nWait for power good\nInitialize sgpio\nwait for sgpio good\nInitialize GPIO expander\nRead/write GPIO to init hardware.\n\nMany of your mentioned use-cases also apply after i2c muxes have been configured and dynamic detection has happened.\n\nSo these init handlers will also need to be available at that point and cannot just be something to run once then forget about it.\n\n\u003e \"Entity manager shall not directly participate in management of any specific device\"\n\nMaybe it wont\u0027 be so bad if we have a simple handler architecture.\nWith ability to register fixed init functions based on the board\nand then register init / de-init handlers based on `Type` of configuration and also based on individual boards (once detected, not-fixed init)\n\nThis may be useful in your case aswell. So you can do custom init based on\nfields detected by `FruDevice` and handle some board variants/revisions differently.\n\nLike this:\n\n- fixed init hardcoded based on fw image\n- FruDevice starts\n- custom init based on fields from FRU Devices (handle board variants)\n- EM exposes board inventory\n- run custom handlers based on \u0027Type\u0027 of configuration\n- (e.g. init i2c muxes, gpio expanders, ...)\n- expose configuration record\n...\n\nFor example in the ipmi stack they have a way to register custom handler functions and it does not make the core code any more complicated.\n\nSince these handlers are all treated all the same with same function signature and so on.",
+      "parentUuid": "aa1520c3_60b65ccd",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55383bb5_ace6f6d2",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "\u003e Let\u0027s not from the get-go make it optional.\n\nIn the initial, SOME platform will need to be opt in.  I agree, ideally we\u0027d enable this everywhere, and for platforms that don\u0027t have definitions would just a be no-op.\n\n\u003e If it ends up being a big binary then maybe?\n\u003e \n\u003e There is currently so much optionality in OpenBMC that it is leading to incompatibility between components.\n\nThere\u0027s pros and cons to optionality.  From my perspective, I\u0027d like to see common solutions where there are common problems that can be solved once.  There\u0027s a lot more routines that can be made common by creating this platform init common application.",
       "parentUuid": "55383bb5_ace6f6d2",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31967f51_9fa1bfcd",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T17:23:37Z",
+      "side": 1,
+      "message": "\u003e In the initial, SOME platform will need to be opt in.\n\nWhat about making it opt-out.",
+      "parentUuid": "f2fb0c55_69d42c7b",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -137,6 +173,24 @@
       "side": 1,
       "message": "We also haven\u0027t enforced that in the past, and there are a number of repos that are single active maintainer.  Doing as you ask is certainly something to discuss, but I would ask that it doesn\u0027t block this review specifically.",
       "parentUuid": "4e29fefc_f406a240",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e9f186d_95b0e586",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T17:23:37Z",
+      "side": 1,
+      "message": "\u003e We also haven\u0027t enforced that in the past\n\nThen why not start this good habit now 😊\n\n\u003e That\u0027s fine, and I\u0027m in support, but without someone volunteering this comment isn\u0027t really actionable.\n\nI can volunteer to look at the init code if we can get it into `entity-manager` repo and not create yet another one.\n\nSince initialization and configuration are closely related and need to be coordinated well, i believe this application can go into `entity-manager` repo.\n\nAlso i believe the benefit of having more people to maintain this thing outweighs any benefits a separate repo could provide.",
+      "parentUuid": "c3254d14_e3c39eb0",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
