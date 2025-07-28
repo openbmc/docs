@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "758cb73b_6ee83664",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T13:45:44Z",
+      "side": 1,
+      "message": "s",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd5b48e3_73e8e39c",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T13:45:44Z",
+      "side": 1,
+      "message": "For requirement `4` i would like to propose doing this in `entity-manager` repository.\n\nInitializing hardware and detecting hardware cannot really be separated well currently and there are proposals to initialize i2c gpio muxes and such from entity-manager as well (https://gerrit.openbmc.org/c/openbmc/entity-manager/+/75484).\n\nEven if it is a separate daemon from entity-manager i believe it will be easier to coordinate this development in an existing repo close to the detection and configuration logic.\n\nFrom my viewpoint there is a multi-stage initialization requirement.\n\n- static detection \n- gpio initialization(your proposal?)\n- dynamic detection (FruDevice, gpio presence, ...) \n- dynamic mux initialization\n- dynamic gpio initialization\n- possibly again dynamic detection\n- possibly again dynamic initialization\n- configuration\n- sensor daemons\n\nand EM may need to call into these custom initialization routines \nin case of dynamic initialization. Which is easier if that code is in the same repo.\n\nAlso there may be a preferred or required routine upon removal of a component which may require a custom de-initialization routine. That would also benefit from the code being available there.",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55383bb5_ace6f6d2",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T13:45:44Z",
+      "side": 1,
+      "message": "Let\u0027s not from the get-go make it optional.\nIf it ends up being a big binary then maybe?\n\nThere is currently so much optionality in OpenBMC that it is leading to incompatibility between components.",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f7f29c_c66b7870",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T13:45:44Z",
+      "side": 1,
+      "message": "If there is a new repo, please have at least 2 maintainers, preferably from 2 different companies.\n\nTo provide a balanced viewpoint in the code review process and ensure the knowledge about how the thing works is not contained in just one person.",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
