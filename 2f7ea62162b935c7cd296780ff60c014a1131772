@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "014974ee_f887de82",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-28T17:52:03Z",
+      "side": 1,
+      "message": "\u003e But if you consider blade servers too\n\nFor me that is outside the scope of this design.  I do not support blade servers, and presumably each blade would be a detected entity, so that would be a completely different design.\n\nIf the blade center needed their standby power brought up , that would be a good use case for this.\n\n\u003e Many of your mentioned use-cases also apply after i2c muxes have been configured and dynamic detection has happened.... cannot just be something to run once then forget about it.\n\nAll of the use cases mentioned for my platform are in fact run once and don\u0027t re-run until a reboot.\n\n\n\u003e Maybe it wont\u0027 be so bad if we have a simple handler architecture.\n\nIt\u0027s not about \"being bad\" it\u0027s about entity-manager being a common component that all systems can use, and application support being selectable based on component.\n\nThe point of this repo is for compile-time selection of init.  Entity-manager is for runtime selection of devices, and instantiation of inventory, both of which are not part of platform-init.\n\n\n\u003e So you can do custom init based on fields detected by FruDevice\n\nThis is very explicitly outside of the requirements.  Keep in mind, on some platforms the FRUs are actually behind initted hardware, so no FRUs are available until power rails are initted.",
+      "parentUuid": "55692022_f142a1c3",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55383bb5_ace6f6d2",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -120,6 +138,24 @@
       "side": 1,
       "message": "\u003e In the initial, SOME platform will need to be opt in.\n\nWhat about making it opt-out.",
       "parentUuid": "f2fb0c55_69d42c7b",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa037601_351d232d",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-28T17:52:03Z",
+      "side": 1,
+      "message": "\u003e What about making it opt-out.\n\nCan\u0027t do that until we have something that works, then yes, I would advocate for it being opt-out.",
+      "parentUuid": "31967f51_9fa1bfcd",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -191,6 +227,24 @@
       "side": 1,
       "message": "\u003e We also haven\u0027t enforced that in the past\n\nThen why not start this good habit now 😊\n\n\u003e That\u0027s fine, and I\u0027m in support, but without someone volunteering this comment isn\u0027t really actionable.\n\nI can volunteer to look at the init code if we can get it into `entity-manager` repo and not create yet another one.\n\nSince initialization and configuration are closely related and need to be coordinated well, i believe this application can go into `entity-manager` repo.\n\nAlso i believe the benefit of having more people to maintain this thing outweighs any benefits a separate repo could provide.",
       "parentUuid": "c3254d14_e3c39eb0",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56a2dce6_57eb4ecc",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-28T17:52:03Z",
+      "side": 1,
+      "message": "\u003e \u003e We also haven\u0027t enforced that in the past\n\u003e \n\u003e Then why not start this good habit now 😊\n\u003e \n\nBecause it\u0027s a separate concern.  Many people would debate \"good\".\n\n\u003e \u003e That\u0027s fine, and I\u0027m in support, but without someone volunteering this comment isn\u0027t really actionable.\n\u003e \n\u003e I can volunteer to look at the init code if we can get it into `entity-manager` repo and not create yet another one.\n\u003e \n\u003e Since initialization and configuration are closely related and need to be coordinated well, i believe this application can go into `entity-manager` repo.\n\n\nAs the entity-manager maintainer, I would like to maintain the rule that EM does not participate in hardware management itself.  I do not see how technically one could integrate this application with EM.  Doing so would involve blocking the main dbus reactor, which would be bad for dbus response times.  This application proposed doesn\u0027t have a dbus interface.\n\n\u003e \n\u003e Also i believe the benefit of having more people to maintain this thing outweighs any benefits a separate repo could provide.\n\nI would love to see more people maintain this.  And FWIW, once i get the GPIO things solved, the next thing in my targets are the duplicated host interface scripts:\nhttps://github.com/openbmc/openbmc/blob/master/meta-fii/meta-kudo/recipes-kudo/network/usb-network/usb_network.sh\n\nThat should all be common.  I would expect to see a lot more maintainers be involved once that happens, but at the moment, I need to get the existing code moved to place that can be maintained at all (not in a company-specific meta layer).",
+      "parentUuid": "8e9f186d_95b0e586",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
