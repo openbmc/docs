@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aa1520c3_60b65ccd",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-28T16:04:33Z",
+      "side": 1,
+      "message": "\u003e For requirement `4` i would like to propose doing this in `entity-manager` repository.\n\nAgreed, this is likely where it would go, but this design doesn\u0027t cover those details, just use them as a future requirement for why this repo should exist.\n\n\u003e \n\u003e Initializing hardware and detecting hardware cannot really be separated well currently and there are proposals to initialize i2c gpio muxes and such from entity-manager as well (https://gerrit.openbmc.org/c/openbmc/entity-manager/+/75484).\n\nThese are initting GPIO muxes based on detected components, this repo is for initting based on image defined rules.\n\n\u003e \n\u003e Even if it is a separate daemon from entity-manager i believe it will be easier to coordinate this development in an existing repo close to the detection and configuration logic.\n\u003e \n\u003e From my viewpoint there is a multi-stage initialization requirement.\n\u003e \n\u003e - static detection \n\nThis is intentionally not in EM today.  EM is for per-device configuration.  If you can \"know\" at an image layer that a software resource exists, ideally we shouldn\u0027t try to detect it in EM.\n\n\u003e - gpio initialization(your proposal?)\n\nGPIO isn\u0027t unique here.  There\u0027s a lot more init that happens in platform init than just GPIO, and a lot of it requires a sequence or map of resources that can\u0027t be represented in an EM config.  For example\n\nStandby power needs asserted\nWait for power good\nInitialize sgpio\nwait for sgpio good\nInitialize GPIO expander\nRead/write GPIO to init hardware.\n\n\u003e - dynamic detection (FruDevice, gpio presence, ...) \n\u003e - dynamic mux initialization\n\u003e - dynamic gpio initialization\n\u003e - possibly again dynamic detection\n\u003e - possibly again dynamic initialization\n\u003e - configuration\n\u003e - sensor daemons\n\nYes, the rest is then handled by EM.\n\n\u003e \n\u003e and EM may need to call into these custom initialization routines \n\u003e in case of dynamic initialization. Which is easier if that code is in the same repo.\n\nFrom the \"explicitly out of scope\" section in entity-manager:\n\n\"Entity manager shall not directly participate in management of any specific device\"\n\nhttps://github.com/openbmc/entity-manager/blob/master/README.md\n\n\u003e \n\u003e Also there may be a preferred or required routine upon removal of a component which may require a custom de-initialization routine. That would also benefit from the code being available there.\n\nOverall, this application exists because I don\u0027t see a way technically to make these things entity-manager enabled, and imposing a fru scanning requirement would reduce the reliability, as well as cause a deadlock (some FRUs are behind the Voltage regulator on this platform)",
+      "parentUuid": "fd5b48e3_73e8e39c",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55383bb5_ace6f6d2",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2fb0c55_69d42c7b",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-28T16:04:33Z",
+      "side": 1,
+      "message": "\u003e Let\u0027s not from the get-go make it optional.\n\nIn the initial, SOME platform will need to be opt in.  I agree, ideally we\u0027d enable this everywhere, and for platforms that don\u0027t have definitions would just a be no-op.\n\n\u003e If it ends up being a big binary then maybe?\n\u003e \n\u003e There is currently so much optionality in OpenBMC that it is leading to incompatibility between components.\n\nThere\u0027s pros and cons to optionality.  From my perspective, I\u0027d like to see common solutions where there are common problems that can be solved once.  There\u0027s a lot more routines that can be made common by creating this platform init common application.",
+      "parentUuid": "55383bb5_ace6f6d2",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59f7f29c_c66b7870",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -65,6 +101,24 @@
       "writtenOn": "2025-07-28T13:45:44Z",
       "side": 1,
       "message": "If there is a new repo, please have at least 2 maintainers, preferably from 2 different companies.\n\nTo provide a balanced viewpoint in the code review process and ensure the knowledge about how the thing works is not contained in just one person.",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e29fefc_f406a240",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-28T16:04:33Z",
+      "side": 1,
+      "message": "\u003e If there is a new repo, please have at least 2 maintainers, preferably from 2 different companies.\n\u003e \n\u003e To provide a balanced viewpoint in the code review process and ensure the knowledge about how the thing works is not contained in just one person.\n\nThat\u0027s fine, and I\u0027m in support, but without someone volunteering this comment isn\u0027t really actionable.",
+      "parentUuid": "59f7f29c_c66b7870",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
