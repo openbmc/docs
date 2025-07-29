@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3067910f_793e523a",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-29T10:03:00Z",
+      "side": 1,
+      "message": "\u003e For me that is outside the scope of this design. I do not support blade servers, and presumably each blade would be a detected entity, so that would be a completely different design.\n\n\u003e All of the use cases mentioned for my platform are in fact run once and don\u0027t re-run until a reboot.\n\nSo you are making something like a special purpose application which will likely only work for platforms similar to what you have.\n\nWhy not make something which fits your requirements but can be extended by others to fit their requirements also? \n\n\u003e This is very explicitly outside of the requirements. Keep in mind, on some platforms the FRUs are actually behind initted hardware, so no FRUs are available until power rails are initted.\n\nYes the hardware can look however it was designed. Which is why we may need a flexible design which is not limited by it\u0027s own design to only run at the very beginning.\n\n\n\u003e The point of this repo is for compile-time selection of init. Entity-manager is for runtime selection of devices, and instantiation of inventory, both of which are not part of platform-init.\n\nCompile-time selection of devices is just a fixed case of detection. There is no need to make any explicit distinction here? It is only a different source of information about which devices are present.\n\nCustom init handlers generalize to both statically and dynamically detected devices. It is reasonable to only implement what you need (fixed initialization handlers) but i would love to see something which can be re-used and extended.",
+      "parentUuid": "014974ee_f887de82",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55383bb5_ace6f6d2",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -156,6 +174,24 @@
       "side": 1,
       "message": "\u003e What about making it opt-out.\n\nCan\u0027t do that until we have something that works, then yes, I would advocate for it being opt-out.",
       "parentUuid": "31967f51_9fa1bfcd",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24bffce4_531af379",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-29T10:03:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "aa037601_351d232d",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -245,6 +281,24 @@
       "side": 1,
       "message": "\u003e \u003e We also haven\u0027t enforced that in the past\n\u003e \n\u003e Then why not start this good habit now 😊\n\u003e \n\nBecause it\u0027s a separate concern.  Many people would debate \"good\".\n\n\u003e \u003e That\u0027s fine, and I\u0027m in support, but without someone volunteering this comment isn\u0027t really actionable.\n\u003e \n\u003e I can volunteer to look at the init code if we can get it into `entity-manager` repo and not create yet another one.\n\u003e \n\u003e Since initialization and configuration are closely related and need to be coordinated well, i believe this application can go into `entity-manager` repo.\n\n\nAs the entity-manager maintainer, I would like to maintain the rule that EM does not participate in hardware management itself.  I do not see how technically one could integrate this application with EM.  Doing so would involve blocking the main dbus reactor, which would be bad for dbus response times.  This application proposed doesn\u0027t have a dbus interface.\n\n\u003e \n\u003e Also i believe the benefit of having more people to maintain this thing outweighs any benefits a separate repo could provide.\n\nI would love to see more people maintain this.  And FWIW, once i get the GPIO things solved, the next thing in my targets are the duplicated host interface scripts:\nhttps://github.com/openbmc/openbmc/blob/master/meta-fii/meta-kudo/recipes-kudo/network/usb-network/usb_network.sh\n\nThat should all be common.  I would expect to see a lot more maintainers be involved once that happens, but at the moment, I need to get the existing code moved to place that can be maintained at all (not in a company-specific meta layer).",
       "parentUuid": "8e9f186d_95b0e586",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b38ba306_5b517c89",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-29T10:03:00Z",
+      "side": 1,
+      "message": "\u003e As the entity-manager maintainer, I would like to maintain the rule that EM does not participate in hardware management itself. \n\nThen it will need to be handled with IPC which is even more complicated.\nI thought the intend behind the rule was to keep EM simple.\nExtra IPC interfaces are the opposite of that.\n\n\u003e I do not see how technically one could integrate this application with EM. Doing so would involve blocking the main dbus reactor, which would be bad for dbus response times. This application proposed doesn\u0027t have a dbus interface.\n\nSetting a few gpios as part of initializing a blade should not take too long?\nOtherwise, the init can be done in a separate process which is spawned and we can async wait for it to complete?\n\n\u003e I would love to see more people maintain this.\n\nWhich is at odds with creating new repositories. Creating a lot of busy work and boilerplate code instead of leveraging an existing repo.\n\nFrom my perspective, starting a new repo with no other reviewers is just a way of sidestepping the community code review process.",
+      "parentUuid": "56a2dce6_57eb4ecc",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
