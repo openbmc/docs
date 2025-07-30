@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e237d98f_4b0802ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-30T00:09:12Z",
+      "side": 1,
+      "message": "Thank you for the review.",
+      "parentUuid": "ccb395bd_07c4b9c7",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd5b48e3_73e8e39c",
@@ -120,6 +138,24 @@
       "side": 1,
       "message": "\u003e For me that is outside the scope of this design. I do not support blade servers, and presumably each blade would be a detected entity, so that would be a completely different design.\n\n\u003e All of the use cases mentioned for my platform are in fact run once and don\u0027t re-run until a reboot.\n\nSo you are making something like a special purpose application which will likely only work for platforms similar to what you have.\n\nWhy not make something which fits your requirements but can be extended by others to fit their requirements also? \n\n\u003e This is very explicitly outside of the requirements. Keep in mind, on some platforms the FRUs are actually behind initted hardware, so no FRUs are available until power rails are initted.\n\nYes the hardware can look however it was designed. Which is why we may need a flexible design which is not limited by it\u0027s own design to only run at the very beginning.\n\n\n\u003e The point of this repo is for compile-time selection of init. Entity-manager is for runtime selection of devices, and instantiation of inventory, both of which are not part of platform-init.\n\nCompile-time selection of devices is just a fixed case of detection. There is no need to make any explicit distinction here? It is only a different source of information about which devices are present.\n\nCustom init handlers generalize to both statically and dynamically detected devices. It is reasonable to only implement what you need (fixed initialization handlers) but i would love to see something which can be re-used and extended.",
       "parentUuid": "014974ee_f887de82",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c1f8ae_3601e9ab",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-30T00:09:12Z",
+      "side": 1,
+      "message": "\u003e \u003e For me that is outside the scope of this design. I do not support blade servers, and presumably each blade would be a detected entity, so that would be a completely different design.\n\u003e \n\u003e \u003e All of the use cases mentioned for my platform are in fact run once and don\u0027t re-run until a reboot.\n\u003e \n\u003e So you are making something like a special purpose application which will likely only work for platforms similar to what you have.\n\u003e \n\nI would say I\u0027m making sure that I\u0027m not just reinventing entity-manager/phosphor-inventory in a different form.  If multi-node makes sense to do as a fixed compile-time image thing, I\u0027m open to seeing patches for it, I just don\u0027t have those requirements.  If there are things that need to be changed on reboot, those use cases are handled by other applications today (phosphor-state-manager for example).  The goal is not to duplicate function.\n\n\u003e Why not make something which fits your requirements but can be extended by others to fit their requirements also?\n\nOverall, what you described is the intent.  This requirement set is intentionally minimal in the hope that we can get a home for some of the common init routines, and we can start accepting peoples init routines for other platforms.\n\n\u003e \n\u003e \u003e This is very explicitly outside of the requirements. Keep in mind, on some platforms the FRUs are actually behind initted hardware, so no FRUs are available until power rails are initted.\n\u003e \n\u003e Yes the hardware can look however it was designed. Which is why we may need a flexible design which is not limited by it\u0027s own design to only run at the very beginning.\n\n\nConcretely what changes do you think need made to the application to make a flexible design?  Could you put them in a gerrit review?  Some of what I want this repo for is so we can start to explore some of these ideas in code.\n\n\u003e \n\u003e \n\u003e \u003e The point of this repo is for compile-time selection of init. Entity-manager is for runtime selection of devices, and instantiation of inventory, both of which are not part of platform-init.\n\u003e \n\u003e Compile-time selection of devices is just a fixed case of detection.\n\nI said selection of init.  This design has no concept of a \"device\".  If things can be modeled as a \"device\" that\u0027s detectable, I agree, that\u0027s where the line should end for this and entity-manager/reactors should begin.  In the examples in the repo today, compile-time selection is not just a fixed case of detection.\n\n\u003e There is no need to make any explicit distinction here? It is only a different source of information about which devices are present.\n\nThere are no distinction for \"devices\" here.  There is a known image that does known steps to init the platform its loaded on, no runtime detection.\n\n\u003e \n\u003e Custom init handlers generalize to both statically and dynamically detected devices. It is reasonable to only implement what you need (fixed initialization handlers) but i would love to see something which can be re-used and extended.\n\nMy thinking was that this would look a lot like how qemu is setup.  There are routines for each platform\n\nif (GB200){\n   do_gb200_specific_things();\n   do_common_thing_on_bus(2)\n} else if (TyanS7106){\n   do_tyan_specific_things();\n   do_common_thing_on_bus(3);\n}\n\nFunctions can be as common or as not common as we want them to be.  I\u0027m not really sure what custom init handlers means in code, but I\u0027m open to what it could look like.",
+      "parentUuid": "3067910f_793e523a",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -316,6 +352,24 @@
       "side": 1,
       "message": "\u003e As the entity-manager maintainer, I would like to maintain the rule that EM does not participate in hardware management itself. \n\nThen it will need to be handled with IPC which is even more complicated.\nI thought the intend behind the rule was to keep EM simple.\nExtra IPC interfaces are the opposite of that.\n\n\u003e I do not see how technically one could integrate this application with EM. Doing so would involve blocking the main dbus reactor, which would be bad for dbus response times. This application proposed doesn\u0027t have a dbus interface.\n\nSetting a few gpios as part of initializing a blade should not take too long?\nOtherwise, the init can be done in a separate process which is spawned and we can async wait for it to complete?\n\n\u003e I would love to see more people maintain this.\n\nWhich is at odds with creating new repositories. Creating a lot of busy work and boilerplate code instead of leveraging an existing repo.\n\nFrom my perspective, starting a new repo with no other reviewers is just a way of sidestepping the community code review process.",
       "parentUuid": "56a2dce6_57eb4ecc",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "959a8c8d_b56529e3",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-30T00:09:12Z",
+      "side": 1,
+      "message": "\u003e \u003e As the entity-manager maintainer, I would like to maintain the rule that EM does not participate in hardware management itself. \n\u003e \n\u003e Then it will need to be handled with IPC which is even more complicated.\n\u003e I thought the intend behind the rule was to keep EM simple.\n\u003e Extra IPC interfaces are the opposite of that.\n\nIt\u0027s not clear where this IPC is coming from?  There is currently no IPC in this design, by design.  The moment we get into needing dbus/ipc/state, the design doesn\u0027t belong in this repo/application.\n\n\u003e \n\u003e \u003e I do not see how technically one could integrate this application with EM. Doing so would involve blocking the main dbus reactor, which would be bad for dbus response times. This application proposed doesn\u0027t have a dbus interface.\n\u003e \n\u003e Setting a few gpios as part of initializing a blade should not take too long?\n\nThis design and application does more than set GPIOs.  There are cases where it needs to wait for GPIOs to assert, that does take some time.\n\n\u003e Otherwise, the init can be done in a separate process which is spawned and we can async wait for it to complete?\n\nThat design would make this a full reactor, and largely defeat the purpose of doing a known initialization.\n\n\u003e \n\u003e \u003e I would love to see more people maintain this.\n\u003e \n\u003e Which is at odds with creating new repositories. Creating a lot of busy work and boilerplate code instead of leveraging an existing repo.\n\u003e \n\u003e From my perspective, starting a new repo with no other reviewers is just a way of sidestepping the community code review process.\n\nFWIW, this was discussed some in TOF, and creating a new repository was what was asked for.  This code is currently in a meta layer, which is even worse than a common repo with one maintainer.  I\u0027m actually hoping that by pulling in use cases into a common repo instead of putting it in meta layer scripts that they get more scrutiny and review, not less.\n\nThe structure I\u0027d really like to see in this repo is that each platform is in a folder, and each platform maintainer is in the OWNERS for that folder.  Common layers will be reviewed by all platform maintainers that pull in the common components.\n\nOverall, this is something that I think the project needs, and I\u0027m open to having other maintainers.  The only reason I\u0027m requesting a new repo is that there wasn\u0027t a logical place to put general hardware init code.  Most thusfar have been putting it in meta layers, which makes it harder to share.",
+      "parentUuid": "b38ba306_5b517c89",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
