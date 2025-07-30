@@ -179,6 +179,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ba660ac_d16c2674",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-30T10:07:04Z",
+      "side": 1,
+      "message": "\u003e Concretely what changes do you think need made to the application to make a flexible design? \n\nTo confirm the requirement that hardware initialization is not limited to \u0027before FruDevice starts\u0027 but may need to happen any time a new hardware is added to the system. Including the custom handler functions.\n\nThe system being made up of a \u0027fixed\u0027 hardware and `0 or more` blades / expansion cards.\n\n\u003e I said selection of init. This design has no concept of a \"device\". If things can be modeled as a \"device\" that\u0027s detectable, I agree, that\u0027s where the line should end for this and entity-manager/reactors should begin. In the examples in the repo today, compile-time selection is not just a fixed case of detection.\n\nThere is a difference in compiled kernel modules, target SoC, devicetree, application support and such.\n\nBut that does not need to limit us in the overall architecture?\n\n\u003e There are no distinction for \"devices\" here. There is a known image that does known steps to init the platform its loaded on, no runtime detection.\n\nWe can simply assume that the image is running on the right hardware (otherwise it would make no sense to run hardware specific init functions) and therefore we have \u0027detected\u0027 it.\n\nI think we are running in circles here. My point is to generalize the design and not think in rigid categories like \u0027platform init\u0027. **The platform is just a device which cannot be removed, of which there is always only one, and which does not need to be detected at runtime.**\n\nThese specifics then allow to run the init handlers for the `platform device` before anything else (including `FruDevice`).\n\n```\nif (GB200){\ndo_gb200_specific_things();\ndo_common_thing_on_bus(2)\n} else if (TyanS7106){\ndo_tyan_specific_things();\ndo_common_thing_on_bus(3);\n}\n```\n\nI like this code sample. Here\u0027s another:\n\n```\nvoid gb200_init(){\n    do_gb200_specific_things();\n    do_common_thing_on_bus(2)\n}\n\ninit_routines \u003d {\n  {\"GB200\", gb200_init},\n  {\"TyanS7016, tyan_s7016_init},\n};\n\ninit_routines[fixed_device]();\n```\n\nWith this structure, init routines can be re-used for devices detected at runtime.\n\n```\nvoid onDeviceAdded(std::string\u0026 dynamic_device){\n\n    if (init_routines.contains(dynamic_device)){\n        init_routines[dynamic_device]();\n    }\n\n    logDeviceAdded(device);\n}\n```\n\nThis could work well with the dynamic i2c mux initialization\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/75484",
+      "parentUuid": "15c1f8ae_3601e9ab",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55383bb5_ace6f6d2",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -387,6 +405,24 @@
       "side": 1,
       "message": "\u003e \u003e As the entity-manager maintainer, I would like to maintain the rule that EM does not participate in hardware management itself. \n\u003e \n\u003e Then it will need to be handled with IPC which is even more complicated.\n\u003e I thought the intend behind the rule was to keep EM simple.\n\u003e Extra IPC interfaces are the opposite of that.\n\nIt\u0027s not clear where this IPC is coming from?  There is currently no IPC in this design, by design.  The moment we get into needing dbus/ipc/state, the design doesn\u0027t belong in this repo/application.\n\n\u003e \n\u003e \u003e I do not see how technically one could integrate this application with EM. Doing so would involve blocking the main dbus reactor, which would be bad for dbus response times. This application proposed doesn\u0027t have a dbus interface.\n\u003e \n\u003e Setting a few gpios as part of initializing a blade should not take too long?\n\nThis design and application does more than set GPIOs.  There are cases where it needs to wait for GPIOs to assert, that does take some time.\n\n\u003e Otherwise, the init can be done in a separate process which is spawned and we can async wait for it to complete?\n\nThat design would make this a full reactor, and largely defeat the purpose of doing a known initialization.\n\n\u003e \n\u003e \u003e I would love to see more people maintain this.\n\u003e \n\u003e Which is at odds with creating new repositories. Creating a lot of busy work and boilerplate code instead of leveraging an existing repo.\n\u003e \n\u003e From my perspective, starting a new repo with no other reviewers is just a way of sidestepping the community code review process.\n\nFWIW, this was discussed some in TOF, and creating a new repository was what was asked for.  This code is currently in a meta layer, which is even worse than a common repo with one maintainer.  I\u0027m actually hoping that by pulling in use cases into a common repo instead of putting it in meta layer scripts that they get more scrutiny and review, not less.\n\nThe structure I\u0027d really like to see in this repo is that each platform is in a folder, and each platform maintainer is in the OWNERS for that folder.  Common layers will be reviewed by all platform maintainers that pull in the common components.\n\nOverall, this is something that I think the project needs, and I\u0027m open to having other maintainers.  The only reason I\u0027m requesting a new repo is that there wasn\u0027t a logical place to put general hardware init code.  Most thusfar have been putting it in meta layers, which makes it harder to share.",
       "parentUuid": "b38ba306_5b517c89",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "645d4407_3b9df38a",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-30T10:07:04Z",
+      "side": 1,
+      "message": "\u003e The only reason I\u0027m requesting a new repo is that there wasn\u0027t a logical place to put general hardware init code.\n\nDoes the place to put it really need to be the \u0027logical\u0027 place if there is other convincing advantages?\n\nConsider this:\n\n- strategy A: Make a new repo from the get-go, then perhaps later struggle to integrate it with EM. Create all structure from scratch and maintain by yourself.\n\n- strategy B: Put it in EM repo, get reviewers and existing structure for free.\n You can always later rip it out and put into another repo. Properly structured meson projects are quite portable in this way.\n\n\nWhat\u0027s the advantage in creating another repo?\n\nYou can even create a separate bitbake recipe if the code is in an existing repo.\nJust set the right meson options.\n\nIf you want to keep an existing bitbake recipe, you can deploy or pull things into the image separately due to split pkg.\n\nBecause of the regex matching with gerrit you can have separate reviewers / owners even for code in the same repo.\n\nAnd you only have to declare the wrap files and dependencies once.\n\nWhat do you really get from yet another repo? Another git remote and and a separate url on github? Consider if you really need it.\n\n\nWhat you are proposing is not a library or something that will *certainly* be re-used by other projects, or is it?",
+      "parentUuid": "959a8c8d_b56529e3",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
