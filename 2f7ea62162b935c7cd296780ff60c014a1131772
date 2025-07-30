@@ -70,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c7fb0d4_8a128f07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-30T15:37:34Z",
+      "side": 1,
+      "message": "Thank you for reviewing.",
+      "parentUuid": "883d7a2b_21ed93ab",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd5b48e3_73e8e39c",
@@ -191,6 +209,24 @@
       "side": 1,
       "message": "\u003e Concretely what changes do you think need made to the application to make a flexible design? \n\nTo confirm the requirement that hardware initialization is not limited to \u0027before FruDevice starts\u0027 but may need to happen any time a new hardware is added to the system. Including the custom handler functions.\n\nThe system being made up of a \u0027fixed\u0027 hardware and `0 or more` blades / expansion cards.\n\n\u003e I said selection of init. This design has no concept of a \"device\". If things can be modeled as a \"device\" that\u0027s detectable, I agree, that\u0027s where the line should end for this and entity-manager/reactors should begin. In the examples in the repo today, compile-time selection is not just a fixed case of detection.\n\nThere is a difference in compiled kernel modules, target SoC, devicetree, application support and such.\n\nBut that does not need to limit us in the overall architecture?\n\n\u003e There are no distinction for \"devices\" here. There is a known image that does known steps to init the platform its loaded on, no runtime detection.\n\nWe can simply assume that the image is running on the right hardware (otherwise it would make no sense to run hardware specific init functions) and therefore we have \u0027detected\u0027 it.\n\nI think we are running in circles here. My point is to generalize the design and not think in rigid categories like \u0027platform init\u0027. **The platform is just a device which cannot be removed, of which there is always only one, and which does not need to be detected at runtime.**\n\nThese specifics then allow to run the init handlers for the `platform device` before anything else (including `FruDevice`).\n\n```\nif (GB200){\ndo_gb200_specific_things();\ndo_common_thing_on_bus(2)\n} else if (TyanS7106){\ndo_tyan_specific_things();\ndo_common_thing_on_bus(3);\n}\n```\n\nI like this code sample. Here\u0027s another:\n\n```\nvoid gb200_init(){\n    do_gb200_specific_things();\n    do_common_thing_on_bus(2)\n}\n\ninit_routines \u003d {\n  {\"GB200\", gb200_init},\n  {\"TyanS7016, tyan_s7016_init},\n};\n\ninit_routines[fixed_device]();\n```\n\nWith this structure, init routines can be re-used for devices detected at runtime.\n\n```\nvoid onDeviceAdded(std::string\u0026 dynamic_device){\n\n    if (init_routines.contains(dynamic_device)){\n        init_routines[dynamic_device]();\n    }\n\n    logDeviceAdded(device);\n}\n```\n\nThis could work well with the dynamic i2c mux initialization\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/75484",
       "parentUuid": "15c1f8ae_3601e9ab",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5881253a_c7997479",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-30T15:37:34Z",
+      "side": 1,
+      "message": "\u003e may need to happen any time a new hardware is added to the system\n\nIn my mind there\u0027s a large difference between \"platform init\" and \"device init\". A \"platform\" cannot be removed, it is a property of the image loaded.  I really think that runtime detection is well covered by entity-manager and reactors today, and I do want to draw some amount of a line to it\u0027s clear where each type of init \"should\" go.\n\n\u003e With this structure, init routines can be re-used for devices detected at runtime.\n\nThe code you posted looks like an improvement, but I\u0027m not sure where the detection would happen or how it would happen?  I see a string for \"TyanS7106\" but it\u0027s not clear to me where fixed_device would come from?  If it\u0027s ultimately coming from a meson option, I\u0027m in support of that model, and will pivot the code to do that once this repository is approved.  I don\u0027t have a detection requirement for the platforms that I would like this to target, so that might need to be a different design.\n\nFWIW, two of the platforms I\u0027d like to have common code for are actually Intel platforms not made by my employer, so I\u0027m fairly sure there\u0027s some broad applicability.",
+      "parentUuid": "8ba660ac_d16c2674",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -423,6 +459,24 @@
       "side": 1,
       "message": "\u003e The only reason I\u0027m requesting a new repo is that there wasn\u0027t a logical place to put general hardware init code.\n\nDoes the place to put it really need to be the \u0027logical\u0027 place if there is other convincing advantages?\n\nConsider this:\n\n- strategy A: Make a new repo from the get-go, then perhaps later struggle to integrate it with EM. Create all structure from scratch and maintain by yourself.\n\n- strategy B: Put it in EM repo, get reviewers and existing structure for free.\n You can always later rip it out and put into another repo. Properly structured meson projects are quite portable in this way.\n\n\nWhat\u0027s the advantage in creating another repo?\n\nYou can even create a separate bitbake recipe if the code is in an existing repo.\nJust set the right meson options.\n\nIf you want to keep an existing bitbake recipe, you can deploy or pull things into the image separately due to split pkg.\n\nBecause of the regex matching with gerrit you can have separate reviewers / owners even for code in the same repo.\n\nAnd you only have to declare the wrap files and dependencies once.\n\nWhat do you really get from yet another repo? Another git remote and and a separate url on github? Consider if you really need it.\n\n\nWhat you are proposing is not a library or something that will *certainly* be re-used by other projects, or is it?",
       "parentUuid": "959a8c8d_b56529e3",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b1e1880_de992f77",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-30T15:37:34Z",
+      "side": 1,
+      "message": "\u003e \u003e The only reason I\u0027m requesting a new repo is that there wasn\u0027t a logical place to put general hardware init code.\n\u003e \n\u003e Does the place to put it really need to be the \u0027logical\u0027 place if there is other convincing advantages?\n\u003e \n\u003e Consider this:\n\u003e \n\u003e - strategy A: Make a new repo from the get-go, then perhaps later struggle to integrate it with EM. Create all structure from scratch and maintain by yourself.\n\u003e \n\u003e - strategy B: Put it in EM repo, get reviewers and existing structure for free.\n\u003e  You can always later rip it out and put into another repo. Properly structured meson projects are quite portable in this way.\n\nI don\u0027t believe those are mutually exclusive, and FWIW, there was some consensus before I pushed this that we didn\u0027t want this to go into a reactor, and I was asked by TOF to request a repo.  I absolutely want other people to help maintain this, I don\u0027t think moving the repo itself gets reviewers for free.\n\n\u003e \n\u003e \n\u003e What\u0027s the advantage in creating another repo?\n\nWe have a place where we can start moving the multitude of bash scripts, init routines, and other things that exist in meta layers and could be more common.  Entity-managers folder structure isn\u0027t set up for per-image ownership or code.\n\n\u003e \n\u003e You can even create a separate bitbake recipe if the code is in an existing repo.\n\u003e Just set the right meson options.\n\u003e \n\u003e If you want to keep an existing bitbake recipe, you can deploy or pull things into the image separately due to split pkg.\n\nAgreed, the recipe part is not the concern.\n\n\u003e \n\u003e Because of the regex matching with gerrit you can have separate reviewers / owners even for code in the same repo.\n\nAgreed, in this doc as it stands I intend to use that.\n\n\u003e \n\u003e And you only have to declare the wrap files and dependencies once.\n\u003e \n\u003e What do you really get from yet another repo? Another git remote and and a separate url on github? Consider if you really need it.\n\nopt-in for platforms.  I agree the repo itself isn\u0027t the most important part, but having multiple applications in a single repository has been a source of confusion in the past, and I don\u0027t know of a case where we\u0027ve split the recipe.\n\n\u003e \n\u003e \n\u003e What you are proposing is not a library or something that will *certainly* be re-used by other projects, or is it?\n\nit is _not_ a library, and while it would be reused, it is not intended to be reused in other applications.  It will pull in relevant libraries for IO it needs to do (libgpio etc).",
+      "parentUuid": "645d4407_3b9df38a",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
