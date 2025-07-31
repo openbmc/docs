@@ -233,6 +233,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a24d8bf2_4cc6e878",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-31T10:18:03Z",
+      "side": 1,
+      "message": "\u003e In my mind there\u0027s a large difference between \"platform init\" and \"device init\". A \"platform\" cannot be removed, it is a property of the image loaded.\n\nI see no *fundamental* difference between a platform init and a device init which would *justify* any design constraint which may be limiting for OpenBMC in the future.\n\nThe platform is just a device which is known to exist and initialized first, before other devices. From BMC perspective the `platform` is always present.\n\n\u003e I do want to draw some amount of a line to it\u0027s clear where each type of init \"should\" go.\n\nI am not sure where you would draw that line exactly? To me that sounds like some kind of discrimination where the platform is some kind of blessed device that gets treated differently?\n\n\n\u003e  If it\u0027s ultimately coming from a meson option, I\u0027m in support of that model, and will pivot the code to do that once this repository is approved\n\nYes. The `fixed_device` string is coming from the fw image in my example. It\u0027s known beforehand and not detected at runtime.",
+      "parentUuid": "5881253a_c7997479",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55383bb5_ace6f6d2",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -477,6 +495,24 @@
       "side": 1,
       "message": "\u003e \u003e The only reason I\u0027m requesting a new repo is that there wasn\u0027t a logical place to put general hardware init code.\n\u003e \n\u003e Does the place to put it really need to be the \u0027logical\u0027 place if there is other convincing advantages?\n\u003e \n\u003e Consider this:\n\u003e \n\u003e - strategy A: Make a new repo from the get-go, then perhaps later struggle to integrate it with EM. Create all structure from scratch and maintain by yourself.\n\u003e \n\u003e - strategy B: Put it in EM repo, get reviewers and existing structure for free.\n\u003e  You can always later rip it out and put into another repo. Properly structured meson projects are quite portable in this way.\n\nI don\u0027t believe those are mutually exclusive, and FWIW, there was some consensus before I pushed this that we didn\u0027t want this to go into a reactor, and I was asked by TOF to request a repo.  I absolutely want other people to help maintain this, I don\u0027t think moving the repo itself gets reviewers for free.\n\n\u003e \n\u003e \n\u003e What\u0027s the advantage in creating another repo?\n\nWe have a place where we can start moving the multitude of bash scripts, init routines, and other things that exist in meta layers and could be more common.  Entity-managers folder structure isn\u0027t set up for per-image ownership or code.\n\n\u003e \n\u003e You can even create a separate bitbake recipe if the code is in an existing repo.\n\u003e Just set the right meson options.\n\u003e \n\u003e If you want to keep an existing bitbake recipe, you can deploy or pull things into the image separately due to split pkg.\n\nAgreed, the recipe part is not the concern.\n\n\u003e \n\u003e Because of the regex matching with gerrit you can have separate reviewers / owners even for code in the same repo.\n\nAgreed, in this doc as it stands I intend to use that.\n\n\u003e \n\u003e And you only have to declare the wrap files and dependencies once.\n\u003e \n\u003e What do you really get from yet another repo? Another git remote and and a separate url on github? Consider if you really need it.\n\nopt-in for platforms.  I agree the repo itself isn\u0027t the most important part, but having multiple applications in a single repository has been a source of confusion in the past, and I don\u0027t know of a case where we\u0027ve split the recipe.\n\n\u003e \n\u003e \n\u003e What you are proposing is not a library or something that will *certainly* be re-used by other projects, or is it?\n\nit is _not_ a library, and while it would be reused, it is not intended to be reused in other applications.  It will pull in relevant libraries for IO it needs to do (libgpio etc).",
       "parentUuid": "645d4407_3b9df38a",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d460fc_bff26617",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-31T10:18:03Z",
+      "side": 1,
+      "message": "\u003e FWIW, there was some consensus before I pushed this that we didn\u0027t want this to go into a reactor,\n\nI am not asking for a reactor because initially (fixed initialization) there is not much to react to.\n\n\u003e We have a place where we can start moving the multitude of bash scripts, init routines, and other things that exist in meta layers and could be more common. Entity-managers folder structure isn\u0027t set up for per-image ownership or code.\n\nJust make a change to `OWNERS` file then? Use `mkdir` to create some new directories?\n\n\u003e but having multiple applications in a single repository has been a source of confusion in the past\n\nThis is how `phosphor-bmc-code-mgmt\u0027 is currently being developed. There has not been any pushback on having multiple applications in the same repository.\n\nAlso for the gpio-presence there has not been any issue i am aware of where people had problems to find the code.\n\n\u003e it is not a library, and while it would be reused, it is not intended to be reused in other applications. It will pull in relevant libraries for IO it needs to do (libgpio etc).\n\nSince we know that a hardware can be both a platform and a device, the code developed for hardware init needs to be available for initialization of dynamically detected hardware as well.\n\nSo it makes sense to put it into `entity-manager` repo so anyone who wants to develop that integration will have an easier time doing so, instead of creating multiple patches across 3+ repositories.",
+      "parentUuid": "5b1e1880_de992f77",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
