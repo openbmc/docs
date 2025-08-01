@@ -251,6 +251,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52591009_f3e3c73e",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-01T18:33:50Z",
+      "side": 1,
+      "message": "\u003e \u003e In my mind there\u0027s a large difference between \"platform init\" and \"device init\". A \"platform\" cannot be removed, it is a property of the image loaded.\n\u003e \n\u003e I see no *fundamental* difference between a platform init and a device init which would *justify* any design constraint which may be limiting for OpenBMC in the future.\n\nDevices are detected at runtime, platforms are detected at startup.  That is why there are quite a few scripts now put into meta layers today.  Overall, I think this design is an improvement on what exists.\n\n\u003e \n\u003e The platform is just a device which is known to exist and initialized first, before other devices. From BMC perspective the `platform` is always present.\n\nThe platform will not be self contained in a single inventory item, that is one of the distinctions that have put a number of scripts in meta layers.  The init scripts also don\u0027t host any telemetry or inventory, so enforcing that they do both of those would be a lot of effort.\n\n\u003e \n\u003e \u003e I do want to draw some amount of a line to it\u0027s clear where each type of init \"should\" go.\n\u003e \n\u003e I am not sure where you would draw that line exactly? To me that sounds like some kind of discrimination where the platform is some kind of blessed device that gets treated differently?\n\nBecause we have different images per platform, that is already \"blessed\" by the project.  The goal here is to reduce the variability and copy-based between those already blessed images.\n\n\u003e \n\u003e \n\u003e \u003e  If it\u0027s ultimately coming from a meson option, I\u0027m in support of that model, and will pivot the code to do that once this repository is approved\n\u003e \n\u003e Yes. The `fixed_device` string is coming from the fw image in my example. It\u0027s known beforehand and not detected at runtime.\n\nOk, so I think we\u0027re on the same page on that point.",
+      "parentUuid": "a24d8bf2_4cc6e878",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55383bb5_ace6f6d2",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -513,6 +531,24 @@
       "side": 1,
       "message": "\u003e FWIW, there was some consensus before I pushed this that we didn\u0027t want this to go into a reactor,\n\nI am not asking for a reactor because initially (fixed initialization) there is not much to react to.\n\n\u003e We have a place where we can start moving the multitude of bash scripts, init routines, and other things that exist in meta layers and could be more common. Entity-managers folder structure isn\u0027t set up for per-image ownership or code.\n\nJust make a change to `OWNERS` file then? Use `mkdir` to create some new directories?\n\n\u003e but having multiple applications in a single repository has been a source of confusion in the past\n\nThis is how `phosphor-bmc-code-mgmt\u0027 is currently being developed. There has not been any pushback on having multiple applications in the same repository.\n\nAlso for the gpio-presence there has not been any issue i am aware of where people had problems to find the code.\n\n\u003e it is not a library, and while it would be reused, it is not intended to be reused in other applications. It will pull in relevant libraries for IO it needs to do (libgpio etc).\n\nSince we know that a hardware can be both a platform and a device, the code developed for hardware init needs to be available for initialization of dynamically detected hardware as well.\n\nSo it makes sense to put it into `entity-manager` repo so anyone who wants to develop that integration will have an easier time doing so, instead of creating multiple patches across 3+ repositories.",
       "parentUuid": "5b1e1880_de992f77",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b5d5201_12058554",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-01T18:33:50Z",
+      "side": 1,
+      "message": "\u003e \u003e FWIW, there was some consensus before I pushed this that we didn\u0027t want this to go into a reactor,\n\u003e \n\u003e I am not asking for a reactor because initially (fixed initialization) there is not much to react to.\n\u003e \n\u003e \u003e We have a place where we can start moving the multitude of bash scripts, init routines, and other things that exist in meta layers and could be more common. Entity-managers folder structure isn\u0027t set up for per-image ownership or code.\n\u003e \n\u003e Just make a change to `OWNERS` file then? Use `mkdir` to create some new directories?\n\nThat doesn\u0027t solve the recipe/meson option/dependency issues.  EM specifically have almost no dependencies to try to make it \n\n\u003e \n\u003e \u003e but having multiple applications in a single repository has been a source of confusion in the past\n\u003e \n\u003e This is how `phosphor-bmc-code-mgmt\u0027 is currently being developed. There has not been any pushback on having multiple applications in the same repository.\n\u003e \n\u003e Also for the gpio-presence there has not been any issue i am aware of where people had problems to find the code.\n\u003e \n\u003e \u003e it is not a library, and while it would be reused, it is not intended to be reused in other applications. It will pull in relevant libraries for IO it needs to do (libgpio etc).\n\u003e \n\u003e Since we know that a hardware can be both a platform and a device, the code developed for hardware init needs to be available for initialization of dynamically detected hardware as well.\n\u003e \n\u003e So it makes sense to put it into `entity-manager` repo so anyone who wants to develop that integration will have an easier time doing so, instead of creating multiple patches across 3+ repositories.",
+      "parentUuid": "96d460fc_bff26617",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
