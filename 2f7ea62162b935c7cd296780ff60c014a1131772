@@ -269,6 +269,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "63ee5e53_84a62d07",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-04T09:12:20Z",
+      "side": 1,
+      "message": "\u003e Overall, I think this design is an improvement on what exists.\n\nYes. Having a single application to put the init logic is an improvement and will lead to better re-use of common initialization routines. Error handling and logging of the init logic should also improve as a result.\n\n100% agree on that. The C++ application is better than a bunch of copy-pasted shell scripts.\n\nBut we can go one step further and already think about enabling the next step which would require custom init handlers to be integrated with EM.\n\nIf you make a new repo it will make that next step that much harder and require to redo the whole thing again.",
+      "parentUuid": "52591009_f3e3c73e",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55383bb5_ace6f6d2",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -549,6 +567,24 @@
       "side": 1,
       "message": "\u003e \u003e FWIW, there was some consensus before I pushed this that we didn\u0027t want this to go into a reactor,\n\u003e \n\u003e I am not asking for a reactor because initially (fixed initialization) there is not much to react to.\n\u003e \n\u003e \u003e We have a place where we can start moving the multitude of bash scripts, init routines, and other things that exist in meta layers and could be more common. Entity-managers folder structure isn\u0027t set up for per-image ownership or code.\n\u003e \n\u003e Just make a change to `OWNERS` file then? Use `mkdir` to create some new directories?\n\nThat doesn\u0027t solve the recipe/meson option/dependency issues.  EM specifically have almost no dependencies to try to make it \n\n\u003e \n\u003e \u003e but having multiple applications in a single repository has been a source of confusion in the past\n\u003e \n\u003e This is how `phosphor-bmc-code-mgmt\u0027 is currently being developed. There has not been any pushback on having multiple applications in the same repository.\n\u003e \n\u003e Also for the gpio-presence there has not been any issue i am aware of where people had problems to find the code.\n\u003e \n\u003e \u003e it is not a library, and while it would be reused, it is not intended to be reused in other applications. It will pull in relevant libraries for IO it needs to do (libgpio etc).\n\u003e \n\u003e Since we know that a hardware can be both a platform and a device, the code developed for hardware init needs to be available for initialization of dynamically detected hardware as well.\n\u003e \n\u003e So it makes sense to put it into `entity-manager` repo so anyone who wants to develop that integration will have an easier time doing so, instead of creating multiple patches across 3+ repositories.",
       "parentUuid": "96d460fc_bff26617",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6579b9c5_fa573a3d",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-04T09:12:20Z",
+      "side": 1,
+      "message": "\u003e That doesn\u0027t solve the recipe/meson option/dependency issues. \n\nThere\u0027s a number of recipes already which can add dependencies based on `PKGCONFIG` so it would not be an issue. The dependencies for a recipe do not have to be fixed.\n\n\u003e EM specifically have almost no dependencies to try to make it \n\nTo me this sounds like\n\n`X cannot do Y so we need Z but it\u0027s fine since X has almost no dependencies.`\n\nFor the downstream this can be very confusing. Instead of selection meson options mapping to features, you are making it into a 2-stage problem of first selecting the right applications and then configuring them.\n\nThere is a problem now with `phosphor-sel-logger` https://github.com/openbmc/phosphor-sel-logger/\n(comment reference https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/75997/comments/94d4e919_915a8c55)\n\nwhere the scenario already happened like this.\nThe optional application was created to fill some use-case, but because of the optionality, it cannot be relied upon.\n\nIn the end, the feature had to be implemented `3 times` in the different sensor repos which require structured logging for threshold events.",
+      "parentUuid": "2b5d5201_12058554",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
