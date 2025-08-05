@@ -147,6 +147,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2475eb2_ce87bb1e",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-08-05T01:33:38Z",
+      "side": 1,
+      "message": "Resolving the conflict",
+      "parentUuid": "9e7122f3_64d7f25f",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 37
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0752f632_57f1bbdc",
@@ -325,6 +349,30 @@
       "side": 1,
       "message": "You\u0027re right — postcodes cannot be guaranteed to arrive from all queues in strict timestamp order, especially when polling from multiple sources such as different sockets. To handle this, postcodes from each queue will be temporarily buffered in memory along with their timestamps during each polling interval.\n\nInstead of immediately emitting a postcode upon reading, all entries will be collected across sources and then sorted using a stable sort based on timestamps. Only after this sorting step will the Raw, BootProgress, and other D-Bus properties be updated in the correct order.\n\nThis ensures that even if a postcode from a later-read queue (e.g., socket 1) has an earlier timestamp than one from a previously-read queue (e.g., socket 0), it will still be emitted in the correct sequence.",
       "parentUuid": "f120268d_fd01ed45",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 39
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a2bdd1c_b1e7824b",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-08-05T01:33:38Z",
+      "side": 1,
+      "message": "Resolving the conflicts",
+      "parentUuid": "b1195dd8_9025f907",
       "range": {
         "startLine": 60,
         "startChar": 0,
