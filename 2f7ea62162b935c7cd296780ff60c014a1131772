@@ -287,6 +287,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4580051a_a2726509",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-05T22:56:23Z",
+      "side": 1,
+      "message": "\u003e \n\u003e If you make a new repo it will make that next step that much harder and require to redo the whole thing again.\n\nI\u0027m not sure i understand why where the code is located makes turning this into an EM reactor in the future harder?  There are no EM reactors in the EM repo today, they\u0027re in dbus-sensors or individual repos.  Can you elaborate a little?\n\nIf someone has a design that they want to go through with that requires the code to move, I\u0027m happy to even help move it, but as this design is defined (and carefully crafted to avoid scope creep) EM integration is not required, nor has requirements here.",
+      "parentUuid": "63ee5e53_84a62d07",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55383bb5_ace6f6d2",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -585,6 +603,24 @@
       "side": 1,
       "message": "\u003e That doesn\u0027t solve the recipe/meson option/dependency issues. \n\nThere\u0027s a number of recipes already which can add dependencies based on `PKGCONFIG` so it would not be an issue. The dependencies for a recipe do not have to be fixed.\n\n\u003e EM specifically have almost no dependencies to try to make it \n\nTo me this sounds like\n\n`X cannot do Y so we need Z but it\u0027s fine since X has almost no dependencies.`\n\nFor the downstream this can be very confusing. Instead of selection meson options mapping to features, you are making it into a 2-stage problem of first selecting the right applications and then configuring them.\n\nThere is a problem now with `phosphor-sel-logger` https://github.com/openbmc/phosphor-sel-logger/\n(comment reference https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/75997/comments/94d4e919_915a8c55)\n\nwhere the scenario already happened like this.\nThe optional application was created to fill some use-case, but because of the optionality, it cannot be relied upon.\n\nIn the end, the feature had to be implemented `3 times` in the different sensor repos which require structured logging for threshold events.",
       "parentUuid": "2b5d5201_12058554",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1861727b_2b0e56ba",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-05T22:56:23Z",
+      "side": 1,
+      "message": "\u003e \u003e That doesn\u0027t solve the recipe/meson option/dependency issues. \n\u003e \n\u003e There\u0027s a number of recipes already which can add dependencies based on `PKGCONFIG` so it would not be an issue. The dependencies for a recipe do not have to be fixed.\n\u003e \n\u003e \u003e EM specifically have almost no dependencies to try to make it \n\u003e \n\u003e To me this sounds like\n\u003e \n\u003e `X cannot do Y so we need Z but it\u0027s fine since X has almost no dependencies.`\n\nThat\u0027s not a correct characterization.  Entity-manager cannot take per-plaftorm dependencies BECAUSE it is a common core component that we would expect all systems to be able to take.  Yes, PKGCONFIG can alleviate some of these problems, but doesn\u0027t solve the ability for backends to be swapped out at will (or removed entirely) that was part of why EM and dbus-sensors/other reactors are different repositories.  As EM maintainer, I don\u0027t want to lose that requirement just yet.\n\n\u003e \n\u003e For the downstream this can be very confusing. Instead of selection meson options mapping to features, you are making it into a 2-stage problem of first selecting the right applications and then configuring them.\n\u003e \n\u003e There is a problem now with `phosphor-sel-logger` https://github.com/openbmc/phosphor-sel-logger/\n\u003e (comment reference https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/75997/comments/94d4e919_915a8c55)\n\u003e \n\u003e where the scenario already happened like this.\n\u003e The optional application was created to fill some use-case, but because of the optionality, it cannot be relied upon.\n\u003e \n\u003e In the end, the feature had to be implemented `3 times` in the different sensor repos which require structured logging for threshold events.\n\nLet\u0027s keep this review focused concretely on this design.  While I certainly have opinions on what should happen with the 2 SEL designs, they have very different constraints than this design does in regards to user-facing APIs (that cannot change without breaking people) as well as matching standards bodies that design things that are difficult to implement.  This repository (by design) has ties to neither a user-facing API nor a standard, so it\u0027s largely unrelated.",
+      "parentUuid": "6579b9c5_fa573a3d",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
