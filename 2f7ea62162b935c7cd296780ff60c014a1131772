@@ -659,6 +659,24 @@
       "parentUuid": "1861727b_2b0e56ba",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bb21f52_24581ba5",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-09T07:32:32Z",
+      "side": 1,
+      "message": "\u003e I assume backends can be swapped out via PKGCONFIG and meson options as well?\n\nNot in the design, no.\n\n\u003e In bmcweb we configure which EventLog backend to use based on meson options.\n\nYou\u0027re interchanging two different \"backend\" terms here (and for this reason in bmcweb Gunnar correctly asked they be called \"features\").  In bmcweb, these enable sections of code/paths, in a very similar way to what\u0027s being described here.  In the EM case it could be a completely different implementation, like omnisensor, which doesn\u0027t use meson or c++ at all.\n\n\u003e ultimately the platform maintainer becomes responsible\n\nI would go even beyond that and say that this is free open source software.  By the license there are no guarantees of utility.  Arguably whomever compiles the code is responsible for their own use.",
+      "parentUuid": "8c551928_70906326",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
