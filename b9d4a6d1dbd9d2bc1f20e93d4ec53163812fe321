@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3018e56_fa3d32f2",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2025-08-12T14:06:19Z",
+      "side": 1,
+      "message": "yes, currently we have enabled LLDP service in OpenBMC, where EmitLLDP D-bus property on xyz.openbmc_project.Network.EthernetInterface allows enable/disable transmit/Emit LLDP packets on BMC ethernet interfaces.\n\nplease check these commits\nhttps://gerrit.openbmc.org/c/openbmc/openbmc/+/75749\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-networkd/+/76368\n\nI understand that this proposal to add support for both Trasmit and receive LLDP packets and completely enable LLDP data parsing on BMC and hosting on D-bus on each ethernet interfaces.",
+      "parentUuid": "a76c59e1_e2e8814d",
+      "revId": "b9d4a6d1dbd9d2bc1f20e93d4ec53163812fe321",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc252183_f1c52e15",
         "filename": "designs/lldp/lldp-dbus-service.md",
         "patchSetId": 1
@@ -48,6 +66,30 @@
       "writtenOn": "2025-08-12T12:18:16Z",
       "side": 1,
       "message": "It seems like you\u0027ve deleted entire sections out of the design document template.  Please restore them and fill them out.  We have a design document template for a reason; I\u0027m not reviewing this further.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 24
+      },
+      "revId": "b9d4a6d1dbd9d2bc1f20e93d4ec53163812fe321",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fca3bdcb_d51cdbac",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2025-08-12T14:06:19Z",
+      "side": 1,
+      "message": "can we please add more details on how do we refresh D-bus objects based on LLDP packets received from Peer system connected over each ethernet interfaces.\nsince LLDP packets received in periodic interval\n\n1. does neighbor\u0027s LLDP object goes away if BMC fails to receive LLDP packets after lldp  TTL interval timeout?\n\n2. how are you planning to refresh/manage created LLDP neighbor D-bus objects for each interface.\n   Here is some cases:\n   - Peer Device plugged out and plugged in another device \n   - Peer Device is powered off or stopped emitting LLDP packets \n   \n\n3. Networkd already defined interface for neighbors, are you planning to leverage existing interfaces?\n  https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Network/Neighbor.interface.yaml",
+      "parentUuid": "bc252183_f1c52e15",
       "range": {
         "startLine": 119,
         "startChar": 0,
