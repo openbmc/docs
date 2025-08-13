@@ -38,6 +38,109 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ada4bde5_24e9d9bf",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-13T16:20:16Z",
+      "side": 1,
+      "message": "Do we really want to encourage this?  It seems like it tends to lead to lots of NOLINT adds.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 85
+      },
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f84fd504_fa86ca0a",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-13T16:20:16Z",
+      "side": 1,
+      "message": "I\u0027d like to point maintainers to using `config-clang-tidy` for rolling this out to their repos.  By default it disables all the checks but leaves them commented in and in place.  They can then use the tool to enable them one-by-one.\n\nWhen we add new checks to the list it becomes programmatic to run the tool to apply the new check to all existing .clang-tidy files.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 1
+      },
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e93a945_03ba6e35",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-13T16:20:16Z",
+      "side": 1,
+      "message": "I might put up a patch on top of this of additional opinions on these.  Some of them, especially in the \"stylistic-*\" I don\u0027t like and don\u0027t think they match our coding standards.  We can discuss how to merge them together after that.",
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b321461_f94a0915",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-13T16:20:16Z",
+      "side": 1,
+      "message": "Every cert-* one is an alias to some other check.  Since the cert ones are not well-named, I\u0027d much rather have the alternative alias.",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 17
+      },
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32db713e_2a9bfd4a",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-13T16:20:16Z",
+      "side": 1,
+      "message": "fuschia?",
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e4734a9_7f0ab819",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 1
@@ -67,6 +170,23 @@
       "side": 1,
       "message": "Just so I\u0027m clear, you believe this to be a correct check to enable, but we\u0027ve implemented the fix incorrectly in the past?  Or are you advocating I remove the tidy check from this list?",
       "parentUuid": "0e4734a9_7f0ab819",
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f6d96d8_d80583b0",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-13T16:20:16Z",
+      "side": 1,
+      "message": "This change was there because I think it fixes issues with some subproject builds.  Maybe if we did \"include_type: system\" everywhere we won\u0027t have this trouble?",
       "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
