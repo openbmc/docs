@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "621bf8d9_f4beef3d",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000401
+      },
+      "writtenOn": "2025-08-13T05:05:24Z",
+      "side": 1,
+      "message": "While LLDP itself is small, splitting it into its own service adds minor additional memory overhead.\n\nInstead, have you thought of embedding it in the existing networkd loop, keeping the proposed interfaces same, but hosting it inside networkd?",
+      "revId": "274af1168b2d03c6816c0c292455c0ca26995a69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89e0d80c_ad9e64a7",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000401
+      },
+      "writtenOn": "2025-08-13T05:05:24Z",
+      "side": 1,
+      "message": "Direct liblldpctl’s stable iterator API calls (to get lldp packets from the listening socket) avoids lldpcli subprocess parsing.",
+      "range": {
+        "startLine": 132,
+        "startChar": 74,
+        "endLine": 132,
+        "endChar": 158
+      },
+      "revId": "274af1168b2d03c6816c0c292455c0ca26995a69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
