@@ -24,3 +24,26 @@ WarningsAsErrors: '*'
 # as cyclomatic complexity seems to not be implemented in clang-tidy.
 
 # [1],[2],[3] do not have to be enforced or applied project-wide yet.
+
+# It is okay for subprojects to independently improve their code quality by adding checks.
+
+# There are some checks which do not contribute to code quality but rather cause inconsistency.
+# We want to avoid enabling those checks.
+
+
+# As a ROUGH guideline:
+# These are categories for which we MAY WANT to enable checks:
+# - bugprone-*
+# - cppcoreguidelines-*
+# - misc-*
+# - modernize-*
+# - performance-*
+# - readability-*
+
+# And these are categories for which we MAY NOT WANT to enable checks:
+# - abseil-*
+# - altera-*
+# - android-*
+# - objc-*
+
+# Exceptions to above may happen, use common sense :)
