@@ -16,6 +16,23 @@
       "message": "Would suggest to break this down into one a category of checks per patch.\n\nWhich will make it easier to get a larger number of upvotes from different subproject maintainers.\n\nOtherwise it will be hard for people to find the time to look into the implications of each of those checks.\n\nThen we are just dumping a huge list here without any alignment from the people who are supposed to be reviewing the changes to enable those checks.",
       "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e4734a9_7f0ab819",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-08-13T14:38:50Z",
+      "side": 1,
+      "message": "I\u0027ve raised comments several times that I don\u0027t believe were properly addressed where these functions (`mktemp` `mkstemp`)  were replaced with open coded implementations that hide the usage of these functions without addressing the root of the security concern to my understanding.\n\nUsing their replacements require code restructuring and affects division of responsibilities.\n\nI think any patches implementing these merit special review.  replacing with open coding just hides the issues from audits.\n\nspecifically I think my most recent comment was around certificate handling.",
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
