@@ -67,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d82914bb_2a5bef8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-13T21:42:03Z",
+      "side": 1,
+      "message": "\u003e With this change you are actively working against such a future by removing the check from the list.\n\nFor all the repos I\u0027ve enabled tidy on, the lack of a reference wasn\u0027t what stopped enabling these, it was actual engineering and social problems.  IF we find a way to enable these, and someone is signed up to figure out the technical problems with them, I\u0027m in support, but this reference has been present for almost 2 years, and we haven\u0027t made progress.  I\u0027d rather documentation handle the bulk of our repositories and be generally useful, as the commit message states.",
+      "parentUuid": "fc6a6c06_8b2e88ce",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ee3f925_4dd37447",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -131,6 +149,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5284ac68_cc3e4344",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-13T21:42:03Z",
+      "side": 1,
+      "message": "\u003e Then just remove problem B. It needs to be removed anyways.\n\nSure, lets remove problem B (you and I have both been working on it), but if we had to enable this check and enforce it, it would take effort away from cleaning up B to work on A which is less important.  It is about noting that even IF we were able to enable this check, there are technical limitations in tidy that prevent it being useful in many real contexts.  If you\u0027re suggesting I go fix tidy, I\u0027ve thought about it, but that doesn\u0027t change anything about this path.",
+      "parentUuid": "b54dc7be_45414b43",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a54e04f3_c1ab3c92",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -178,6 +214,24 @@
       "side": 1,
       "message": "\u003e negative experience is certainly a reason for removing this\n\nnegative experience in terms of \"we could not bring the function size down to 60 lines\"\nIMO shows that the project overall is not ready to try and enforce this value.\n\nMaybe we need to come up with a project-specific value which is a more realistic value. Something like 200.\n\nThen in the future if the goal has been reached then the goalpost can be moved.\n\nI guess we did not do that the first time around since people were asking for concrete sources and not arbitrary values (if i remember correctly).",
       "parentUuid": "265adcbc_c7e936a4",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4de6235_71fe9c6b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-13T21:42:03Z",
+      "side": 1,
+      "message": "\u003e IMO shows that the project overall is not ready to try and enforce this value.\n\nThis is exactly what I\u0027m trying to say in this patch.\n\n\u003e I don\u0027t think it is really sufficient to point to the words in the Core Guidelines as the rationale for these.\n\nI had similar thoughts around cppcoreguildelines enforcement recommendations, but I didn\u0027t articulate it in the commit message.\n\n\n\u003e Maybe we need to come up with a project-specific value which is a more realistic value. Something like 200.\n\nI\u0027ve tried exactly this (I think I picked 250) and the number of functions that needed to change was still too high, and because of the lambda problem, didn\u0027t even target the most complex code we had that should be the highest priority to clean up.  If I\u0027m personally going to spend time cleaning things up, it will be the deeply nested lambda garbage that we have a lot of experience to know causes problems (and I greatly appreciate your patches you send to help clean up).  Enabling this check doesn\u0027t align with those goals, and actively distracts from cleanup of the worst code we have.",
+      "parentUuid": "5f88bb7f_796ce861",
       "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
