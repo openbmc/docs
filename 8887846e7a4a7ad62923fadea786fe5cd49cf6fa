@@ -33,6 +33,24 @@
       "message": "I\u0027ve raised comments several times that I don\u0027t believe were properly addressed where these functions (`mktemp` `mkstemp`)  were replaced with open coded implementations that hide the usage of these functions without addressing the root of the security concern to my understanding.\n\nUsing their replacements require code restructuring and affects division of responsibilities.\n\nI think any patches implementing these merit special review.  replacing with open coding just hides the issues from audits.\n\nspecifically I think my most recent comment was around certificate handling.",
       "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e816f8f4_327c4441",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-13T14:53:24Z",
+      "side": 1,
+      "message": "Just so I\u0027m clear, you believe this to be a correct check to enable, but we\u0027ve implemented the fix incorrectly in the past?  Or are you advocating I remove the tidy check from this list?",
+      "parentUuid": "0e4734a9_7f0ab819",
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
