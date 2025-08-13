@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab1d88ba_0f3886a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-13T17:04:01Z",
+      "side": 1,
+      "message": "https://clang.llvm.org/extra/clang-tidy/checks/readability/function-size.html\n\nThe default value is `none` which is no-op, right?\n\nSo the check is enabled without any effect.\n\nThere is a `StatementThreshold` which seems to default to 800.",
+      "parentUuid": "d8d3ea3d_bc9d52c2",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fc6a6c06_8b2e88ce",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -136,6 +160,24 @@
       "side": 1,
       "message": "\u003e We can simply take what\u0027s been written down in those core guidelines\n\nI do agree with the overall intent of the Core Guidelines w.r.t. function length and function behavior.  But, the Core Guidelines are also vague as to what the \"enforcement\" would be of long line length.  The core guidelines do not talk about \"cognative\" or cyclomatic complexity.  I don\u0027t think it is really sufficient to point to the words in the Core Guidelines as the rationale for these.\n\n\u003e There is absolutely no requirement for any \u0027experience\u0027 what-so-ever.\n\nNo, not necessarily, but negative experience is certainly a reason for removing this, which is the data Ed is bringing.",
       "parentUuid": "a54e04f3_c1ab3c92",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f88bb7f_796ce861",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-13T17:04:01Z",
+      "side": 1,
+      "message": "\u003e negative experience is certainly a reason for removing this\n\nnegative experience in terms of \"we could not bring the function size down to 60 lines\"\nIMO shows that the project overall is not ready to try and enforce this value.\n\nMaybe we need to come up with a project-specific value which is a more realistic value. Something like 200.\n\nThen in the future if the goal has been reached then the goalpost can be moved.\n\nI guess we did not do that the first time around since people were asking for concrete sources and not arbitrary values (if i remember correctly).",
+      "parentUuid": "265adcbc_c7e936a4",
       "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
