@@ -61,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "76cde8b0_a742b8f2",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-13T16:32:08Z",
+      "side": 1,
+      "message": "I think it\u0027s better than not enabling the check at all, but it is a judgement call on how much mess it makes.  We could remove the documentation of NOLINT from here if you\u0027d prefer.",
+      "parentUuid": "ada4bde5_24e9d9bf",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 85
+      },
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f84fd504_fa86ca0a",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 1
@@ -72,6 +96,30 @@
       "writtenOn": "2025-08-13T16:20:16Z",
       "side": 1,
       "message": "I\u0027d like to point maintainers to using `config-clang-tidy` for rolling this out to their repos.  By default it disables all the checks but leaves them commented in and in place.  They can then use the tool to enable them one-by-one.\n\nWhen we add new checks to the list it becomes programmatic to run the tool to apply the new check to all existing .clang-tidy files.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 1
+      },
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f592a40_36018a56",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-13T16:32:08Z",
+      "side": 1,
+      "message": "Sure, I can add a reference to that tool here.",
+      "parentUuid": "f84fd504_fa86ca0a",
       "range": {
         "startLine": 1,
         "startChar": 0,
@@ -101,6 +149,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5585af03_067eeffc",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-13T16:32:08Z",
+      "side": 1,
+      "message": "That sounds great.  Things like enforcing the upper or lower casing of uint literals (1u vs 1U) is one I could for sure do without, but I honestly haven\u0027t taken the time to look up what check that is and disable it.  I\u0027m sure there\u0027s more we probably agree on.",
+      "parentUuid": "5e93a945_03ba6e35",
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b321461_f94a0915",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 1
@@ -124,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a333818_bf51b500",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-13T16:32:08Z",
+      "side": 1,
+      "message": "why this is here as it is is two fold:\n1. In the past not all cert checks had a misc-* named equivalent.\n2. Some folks questioned why we had certain cert checks disabled, and it was easier to just have the duplicate than have to explain why we were \"avoiding cert guidelines\"\n\nWith that said, i think both those reasons are mediocre, so I will go through and deduplicate.  ACK",
+      "parentUuid": "8b321461_f94a0915",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 17
+      },
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "32db713e_2a9bfd4a",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 1
@@ -135,6 +225,24 @@
       "writtenOn": "2025-08-13T16:20:16Z",
       "side": 1,
       "message": "fuschia?",
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97ee5c1a_088ed8a3",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-13T16:32:08Z",
+      "side": 1,
+      "message": "Will remove.  Missed that in my dumb-check consolidation.",
+      "parentUuid": "32db713e_2a9bfd4a",
       "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -187,6 +295,24 @@
       "writtenOn": "2025-08-13T16:20:16Z",
       "side": 1,
       "message": "This change was there because I think it fixes issues with some subproject builds.  Maybe if we did \"include_type: system\" everywhere we won\u0027t have this trouble?",
+      "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dab116e3_3e8fb883",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-13T16:32:08Z",
+      "side": 1,
+      "message": "This got pasted out of bmcweb and I should\u0027ve caught that.  bmcweb handles it by just having a null .clang-tidy in the subprojects folder, because this regex fails dependent on the directory you run it from (at least that\u0027s what I could figure out from a while ago).  With that said having the regex doesn\u0027t hurt and is probably a good thing.\n\nI will revert to previous on the next patch.",
+      "parentUuid": "5f6d96d8_d80583b0",
       "revId": "8887846e7a4a7ad62923fadea786fe5cd49cf6fa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
