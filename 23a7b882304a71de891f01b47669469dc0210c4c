@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3be65960_bc07c2ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-14T09:55:17Z",
+      "side": 1,
+      "message": "\u003e I\u0027m in support, but this reference has been present for almost 2 years, and we haven\u0027t made progress.\n\nWe did make progress on this. I sometimes reference cpp core guidelines for function size and having these statements in our documented `.clang-tidy` file here helps to remove any ambiguity about where the project wants to go.\n\n\n\u003e  IF we find a way to enable these, and someone is signed up to figure out the technical problems with them, I\u0027m in support,\n\nYou do not have to go to 60 lines right away. You can start with some realistic goal for the repos you maintain, and `NOLINT` the functions which are too big.\n\nThen at least you do not get any new functions exceeding that size, and people can work on the problematic ones on their own time.\n\n\nI do not see any technical problems. If you refer to inline lambda size, it is an interpretation issue. If you want an option to count inline lambdas towards the size, that\u0027s something to contribute to the clang-tidy project.",
+      "parentUuid": "d82914bb_2a5bef8c",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ee3f925_4dd37447",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -167,6 +185,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0c2eb7b_ab65a607",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-14T09:55:17Z",
+      "side": 1,
+      "message": "\u003e but if we had to enable this check and enforce it, it would take effort away from cleaning up B to work on A which is less important.\n\nIt\u0027s documented that it does not have to be enforced yet, and certainly not at 60 lines per function.\n\nWe can discuss about a realistic line count or parameter count, but there has to be a limit somewhere, and ideally it should be documented.",
+      "parentUuid": "5284ac68_cc3e4344",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a54e04f3_c1ab3c92",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -232,6 +268,24 @@
       "side": 1,
       "message": "\u003e IMO shows that the project overall is not ready to try and enforce this value.\n\nThis is exactly what I\u0027m trying to say in this patch.\n\n\u003e I don\u0027t think it is really sufficient to point to the words in the Core Guidelines as the rationale for these.\n\nI had similar thoughts around cppcoreguildelines enforcement recommendations, but I didn\u0027t articulate it in the commit message.\n\n\n\u003e Maybe we need to come up with a project-specific value which is a more realistic value. Something like 200.\n\nI\u0027ve tried exactly this (I think I picked 250) and the number of functions that needed to change was still too high, and because of the lambda problem, didn\u0027t even target the most complex code we had that should be the highest priority to clean up.  If I\u0027m personally going to spend time cleaning things up, it will be the deeply nested lambda garbage that we have a lot of experience to know causes problems (and I greatly appreciate your patches you send to help clean up).  Enabling this check doesn\u0027t align with those goals, and actively distracts from cleanup of the worst code we have.",
       "parentUuid": "5f88bb7f_796ce861",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e93e4cad_4792dcd8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-14T09:55:17Z",
+      "side": 1,
+      "message": "\u003e I\u0027ve tried exactly this (I think I picked 250) and the number of functions that needed to change was still too high, and because of the lambda problem, didn\u0027t even target the most complex code we had that should be the highest priority to clean up\n\nThen go to 350 or something. Better to have some limit there than no limit at all.\n\nI agree that cleaning up inline lambdas is more important. So if by extracting an inline lambda you exceed the line count, simply NOLINT the function and come back to it at a later time.\nIt\u0027s not a heavy lift.\n\n\n\u003e enabling this check doesn\u0027t align with those goals, and actively distracts from cleanup of the worst code we have.\n\nHow does it distract? You have your own priorities for cleanup. No one is forcing you to prioritize this issue.",
+      "parentUuid": "a4de6235_71fe9c6b",
       "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
