@@ -157,6 +157,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5467a7e2_544cdd6e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-14T22:29:47Z",
+      "side": 1,
+      "message": "\u003e \u003e Putting these checks in the .clang-tidy file means we can\u0027t deploy them across the repos without maintainers doing work.\n\u003e \n\u003e You can not just \u0027deploy\u0027 most of these checks. People have to do the work to enable them.\n\u003e \n\u003e Which is also true for the reference checks you are planning to add here.\n\nThat hasn\u0027t been my experience.  The majority of these checks can be applied without a ton of maintainer effort.  The first tidy file in 2020 was added in a day or two.  Many of the checks have \"fix\" capabilities, that will just fix the code for you.  Put that in a PR, and you\u0027re done.\n\n\u003e \n\u003e \u003e  IMO, if we have limits they should be written down in prose rather than having to dig up a config file.\n\u003e \n\u003e If you want something to just \u0027roll out\u0027 without doing any work, then set the limit to 9000 or something and leave in the comment about cpp core guidelines and their recommended value.\n\nThere is no value in a check that has a limit of 9000, and just adds to our runtime.  I am happy to document it in another file.",
+      "parentUuid": "f0b2ce2d_f0ba7df5",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ee3f925_4dd37447",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -287,6 +305,24 @@
       "side": 1,
       "message": "\u003e Right..... but that\u0027s preventing people from using this file. The next patchset turns this into a \"reference\" of checks that we\u0027ve enabled and know can work on our codebases.\n\nIt works on the 2 codebases you got the list from. Not sure if it will work on any other repos?\n\n\u003e cpp core guidelines warns against enforcement, but does document some recommendations for length and arg count, so I think we have that even after this patch.\n\nI am fine if we drop the checks for complexity and parameter count for now.\n\nBut the function line count is something i want to stay in here.",
       "parentUuid": "4c58284f_44123afd",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ab94edf_b6ccd93a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-14T22:29:47Z",
+      "side": 1,
+      "message": "\u003e \u003e Right..... but that\u0027s preventing people from using this file. The next patchset turns this into a \"reference\" of checks that we\u0027ve enabled and know can work on our codebases.\n\u003e \n\u003e It works on the 2 codebases you got the list from. Not sure if it will work on any other repos?\n\nNo, I don\u0027t know that for a fact, but I would suspect it would.  There are more repositories that have enabled these checks other than the two I mentioned, enough that I believe that the average maintainer can enable these.  With that said, if as we go along, we find specific checks that are too onerous, this list is changable.\n\n\u003e \n\u003e \u003e cpp core guidelines warns against enforcement, but does document some recommendations for length and arg count, so I think we have that even after this patch.\n\u003e \n\u003e I am fine if we drop the checks for complexity and parameter count for now.\n\u003e \n\u003e But the function line count is something i want to stay in here.\n\nCan I document it outside this file somewhere (maybe clang-tidy-next.md)?  I know you mentioned increasing the value to 9000 lines, but I\u0027d rather we document intent with the real number.  Something like \"There is general agreement that we would LIKE code to be able to conform to these checks, but are attempting to roll out changes across the repos, so these checks cannot be enabled yet.\"",
+      "parentUuid": "d2721815_eebb18e8",
       "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
