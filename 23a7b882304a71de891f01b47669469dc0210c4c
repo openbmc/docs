@@ -121,6 +121,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ace346f_9e64ef2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-14T15:17:06Z",
+      "side": 1,
+      "message": "\u003e documented .clang-tidy file here helps to remove any ambiguity about where the project wants to go.\n\nCan we just document that outside of the actual file?  Putting these checks in the .clang-tidy file means we can\u0027t deploy them across the repos without maintainers doing work.  I get wanting some documentation, I\u0027d kind of assume cpp core guidelines does a good job of that, and we just need to amend some other recommendations for limits?  IMO, if we have limits they should be written down in prose rather than having to dig up a config file.\n\n\u003e We can set the line threshold to 170 in EM repo now,\n\nAs the EM maintainer, I\u0027m happy to have that conversation in the EM review, but that still doesn\u0027t allow us to enable this check in EM as it\u0027s defined here, so I\u0027m not sure how it helps.  I\u0027m VERY happy to see some amount of progress on this, but I don\u0027t think that review alone changes the need for this commit.  Most of the checks in the next commit have been enabled for years.\n\n\u003e NOLINT the functions which are too big.\n\nI think I mentioned this in one of the other comments, but this meant that far too many functions needed NOLINT, and it became a maintenance problem.",
+      "parentUuid": "1a8ab14f_27ed25b1",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ee3f925_4dd37447",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -215,6 +233,24 @@
       "side": 1,
       "message": "\u003e but if we had to enable this check and enforce it, it would take effort away from cleaning up B to work on A which is less important.\n\nIt\u0027s documented that it does not have to be enforced yet, and certainly not at 60 lines per function.\n\nWe can discuss about a realistic line count or parameter count, but there has to be a limit somewhere, and ideally it should be documented.",
       "parentUuid": "5284ac68_cc3e4344",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c58284f_44123afd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-14T15:17:06Z",
+      "side": 1,
+      "message": "\u003e \u003e but if we had to enable this check and enforce it, it would take effort away from cleaning up B to work on A which is less important.\n\u003e \n\u003e It\u0027s documented that it does not have to be enforced yet, and certainly not at 60 lines per function.\n\nRight..... but that\u0027s preventing people from using this file.  The next patchset turns this into a \"reference\" of checks that we\u0027ve enabled and know can work on our codebases.\n\n\u003e \n\u003e We can discuss about a realistic line count or parameter count, but there has to be a limit somewhere, and ideally it should be documented.\n\ncpp core guidelines warns against enforcement, but does document some recommendations for length and arg count, so I think we have that even after this patch.",
+      "parentUuid": "b0c2eb7b_ab65a607",
       "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
