@@ -139,6 +139,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0b2ce2d_f0ba7df5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-14T15:25:06Z",
+      "side": 1,
+      "message": "\u003e Putting these checks in the .clang-tidy file means we can\u0027t deploy them across the repos without maintainers doing work.\n\nYou can not just \u0027deploy\u0027 most of these checks. People have to do the work to enable them.\n\nWhich is also true for the reference checks you are planning to add here.\n\n\u003e  IMO, if we have limits they should be written down in prose rather than having to dig up a config file.\n\nIf you want something to just \u0027roll out\u0027 without doing any work, then set the limit to 9000 or something and leave in the comment about cpp core guidelines and their recommended value.",
+      "parentUuid": "6ace346f_9e64ef2a",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ee3f925_4dd37447",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -251,6 +269,24 @@
       "side": 1,
       "message": "\u003e \u003e but if we had to enable this check and enforce it, it would take effort away from cleaning up B to work on A which is less important.\n\u003e \n\u003e It\u0027s documented that it does not have to be enforced yet, and certainly not at 60 lines per function.\n\nRight..... but that\u0027s preventing people from using this file.  The next patchset turns this into a \"reference\" of checks that we\u0027ve enabled and know can work on our codebases.\n\n\u003e \n\u003e We can discuss about a realistic line count or parameter count, but there has to be a limit somewhere, and ideally it should be documented.\n\ncpp core guidelines warns against enforcement, but does document some recommendations for length and arg count, so I think we have that even after this patch.",
       "parentUuid": "b0c2eb7b_ab65a607",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2721815_eebb18e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-14T15:25:06Z",
+      "side": 1,
+      "message": "\u003e Right..... but that\u0027s preventing people from using this file. The next patchset turns this into a \"reference\" of checks that we\u0027ve enabled and know can work on our codebases.\n\nIt works on the 2 codebases you got the list from. Not sure if it will work on any other repos?\n\n\u003e cpp core guidelines warns against enforcement, but does document some recommendations for length and arg count, so I think we have that even after this patch.\n\nI am fine if we drop the checks for complexity and parameter count for now.\n\nBut the function line count is something i want to stay in here.",
+      "parentUuid": "4c58284f_44123afd",
       "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
