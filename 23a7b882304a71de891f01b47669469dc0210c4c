@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6817742_9e6abe52",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-15T07:56:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab1d88ba_0f3886a8",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc6a6c06_8b2e88ce",
@@ -169,6 +193,24 @@
       "side": 1,
       "message": "\u003e \u003e Putting these checks in the .clang-tidy file means we can\u0027t deploy them across the repos without maintainers doing work.\n\u003e \n\u003e You can not just \u0027deploy\u0027 most of these checks. People have to do the work to enable them.\n\u003e \n\u003e Which is also true for the reference checks you are planning to add here.\n\nThat hasn\u0027t been my experience.  The majority of these checks can be applied without a ton of maintainer effort.  The first tidy file in 2020 was added in a day or two.  Many of the checks have \"fix\" capabilities, that will just fix the code for you.  Put that in a PR, and you\u0027re done.\n\n\u003e \n\u003e \u003e  IMO, if we have limits they should be written down in prose rather than having to dig up a config file.\n\u003e \n\u003e If you want something to just \u0027roll out\u0027 without doing any work, then set the limit to 9000 or something and leave in the comment about cpp core guidelines and their recommended value.\n\nThere is no value in a check that has a limit of 9000, and just adds to our runtime.  I am happy to document it in another file.",
       "parentUuid": "f0b2ce2d_f0ba7df5",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d82857_b3c27135",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-15T07:56:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5467a7e2_544cdd6e",
       "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -329,6 +371,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "62eb97cb_0b552e2b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-15T07:56:57Z",
+      "side": 1,
+      "message": "I am fine with this approach if you need something to roll out without too much effort. That way we avoid pulling any value like `9000` or `200` out of thin air.\n\nWould prefer something like `.clang-tidy-next` so people can just copy-past from one to the other. Ideally right next to the `.clang-tidy` file.\n\nSuggested contents:\n\n```\n# This file contains additional checks we would like to enable in the future.\n\nChecks: \u0027-*,\n    readability-function-size,\n    \u0027\nCheckOptions:\n-   key: readability-function-size.LineThreshold\n    value: 60 # [1]\n-   key: readability-function-size.ParameterThreshold\n    value: 6  # [2]\n\n# [1] https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n# [2] https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f2-a-function-should-perform-a-single-logical-operation\n\n```",
+      "parentUuid": "5ab94edf_b6ccd93a",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a54e04f3_c1ab3c92",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -412,6 +472,24 @@
       "side": 1,
       "message": "\u003e I\u0027ve tried exactly this (I think I picked 250) and the number of functions that needed to change was still too high, and because of the lambda problem, didn\u0027t even target the most complex code we had that should be the highest priority to clean up\n\nThen go to 350 or something. Better to have some limit there than no limit at all.\n\nI agree that cleaning up inline lambdas is more important. So if by extracting an inline lambda you exceed the line count, simply NOLINT the function and come back to it at a later time.\nIt\u0027s not a heavy lift.\n\n\n\u003e enabling this check doesn\u0027t align with those goals, and actively distracts from cleanup of the worst code we have.\n\nHow does it distract? You have your own priorities for cleanup. No one is forcing you to prioritize this issue.",
       "parentUuid": "a4de6235_71fe9c6b",
+      "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4fb6871_8d8a2cee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-15T07:56:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e93e4cad_4792dcd8",
       "revId": "23a7b882304a71de891f01b47669469dc0210c4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
