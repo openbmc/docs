@@ -1,7 +1,7 @@
 The following file contains checks and settings that the project would like to
 enable, but has had trouble either in engineering or has other higher priority
-rework.  There is general agreement that the below checks _should_ be useful,
-but have not concretely enabled them across the project.
+rework. There is general agreement that the below checks _should_ be useful, but
+have not concretely enabled them across the project.
 
 ```
 Checks: '-*,
