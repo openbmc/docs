@@ -340,6 +340,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5ccbf4b0_0216fe46",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-18T20:22:54Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of mono-repos.  I don\u0027t see a good overlap between this work and entity-manager.  We can always add service dependencies as/if needed to ensure we do the right thing here.  I think some platforms are going to be able to do their base-board detection without this code and some will not.  There probably isn\u0027t a strong tie between them.  More likely, fru-device might be precluded from running in some platforms until the initial init is done.",
+      "parentUuid": "d57805d8_7009543d",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd5ee6c7_5e688b64",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -755,6 +773,24 @@
       "side": 1,
       "message": "\u003e I assume backends can be swapped out via PKGCONFIG and meson options as well?\n\nNot in the design, no.\n\n\u003e In bmcweb we configure which EventLog backend to use based on meson options.\n\nYou\u0027re interchanging two different \"backend\" terms here (and for this reason in bmcweb Gunnar correctly asked they be called \"features\").  In bmcweb, these enable sections of code/paths, in a very similar way to what\u0027s being described here.  In the EM case it could be a completely different implementation, like omnisensor, which doesn\u0027t use meson or c++ at all.\n\n\u003e ultimately the platform maintainer becomes responsible\n\nI would go even beyond that and say that this is free open source software.  By the license there are no guarantees of utility.  Arguably whomever compiles the code is responsible for their own use.",
       "parentUuid": "8c551928_70906326",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3848a4c_b2ba1649",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-18T20:22:54Z",
+      "side": 1,
+      "message": "You can add my name as a second maintainer if there are no other volunteers.",
+      "parentUuid": "6bb21f52_24581ba5",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
