@@ -375,6 +375,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff3b5ff4_877bf190",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-18T20:33:07Z",
+      "side": 1,
+      "message": "I\u0027m 100% in support of that, but intentionally didn\u0027t add it because I didn\u0027t want to further complicate the doc.  If you think it\u0027s necessary to add a sentence to that effect for this to merge, I can do that, but I\u0027d prefer to keep it to just init for now just for simplicity.\n\nHappy to add a sub command (probably using cli11).   I think starting with something that doesn\u0027t parse CLI at all is easier as a first patchset, but I can put that up as a patchset in short order.",
+      "parentUuid": "fd5ee6c7_5e688b64",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61b6464b_b62311d2",
         "filename": "designs/platform-init.md",
         "patchSetId": 2
@@ -386,6 +404,30 @@
       "writtenOn": "2025-08-18T20:12:12Z",
       "side": 1,
       "message": "I\u0027d prefer we drop this.  No reason to also support bash.",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 40,
+        "endChar": 22
+      },
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd515b7f_e9f0cfa5",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-18T20:33:07Z",
+      "side": 1,
+      "message": "My thinking was that step 1 was to get all the bash scripts into one place so people quit extending and copy/pasting them, then step 2 was to start conslidating them porting them into this application.  Lots of issues stem from folks just copying scripts in the tree without realizing they\u0027re maybe not the best, so my hope was to improve that, but sure, I can remove this.\n\nWith all that said, I\u0027ve dropped this sentence.",
+      "parentUuid": "61b6464b_b62311d2",
       "range": {
         "startLine": 39,
         "startChar": 11,
@@ -409,6 +451,30 @@
       "writtenOn": "2025-08-18T20:12:12Z",
       "side": 1,
       "message": "I see that \"detection\" is left as a future exercise.  Do we want to remove the meson option and compile all platforms in, but have the platform as an argument in the service file?  We can default to \"detect\" (which is maybe a no-op for now).",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 40
+      },
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c528ddb_a82f8245",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-18T20:33:07Z",
+      "side": 1,
+      "message": "My original thinking was that if we have to pull in an odd dependency, like peci-utils, you probably don\u0027t want to have that dependency on a non-intel platform, but sure, I think we can start with just including all platforms and handle that case when and if it comes up.\n\nI\u0027ve updated the doc to swap meson option -\u003e CLI option.",
+      "parentUuid": "d0c6e7c8_6bca6d46",
       "range": {
         "startLine": 46,
         "startChar": 0,
@@ -791,6 +857,24 @@
       "side": 1,
       "message": "You can add my name as a second maintainer if there are no other volunteers.",
       "parentUuid": "6bb21f52_24581ba5",
+      "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df1142f6_a70b3c0b",
+        "filename": "designs/platform-init.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-18T20:33:07Z",
+      "side": 1,
+      "message": "I\u0027ve added your name to the doc.",
+      "parentUuid": "b3848a4c_b2ba1649",
       "revId": "2f7ea62162b935c7cd296780ff60c014a1131772",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
