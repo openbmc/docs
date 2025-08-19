@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "607b5c2b_154f762e",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002604
+      },
+      "writtenOn": "2025-08-19T08:06:14Z",
+      "side": 1,
+      "message": "Patrick and Ravi, thanks you for the quick response.\nYes, Ravi this is correct.\nThe design adds support to control LLDP packets.\nIn transmit object we can both change and retrieve the content of the transmitted LLDP PDU.\nIn receive object we retrieve the content of the received LLDP PDU.\n    \n I added more information about Emit LLDP in Background and References\nsection. \n\nAlso added more explanation in the Operation section.",
+      "parentUuid": "c3018e56_fa3d32f2",
+      "revId": "b9d4a6d1dbd9d2bc1f20e93d4ec53163812fe321",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc252183_f1c52e15",
@@ -126,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e997a634_b54dad7a",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1002604
+      },
+      "writtenOn": "2025-08-19T08:06:14Z",
+      "side": 1,
+      "message": "Patrick, I updated the missing sections.\nRavi, \n1. The neighbor object doesn\u0027t go away. The design doesn\u0027t include polling the lldpd daemon on each TTL interval. It polls it only when required by busctl get-property or set-property command. If the property is not available at that time, it can populate it with \"unavailable\" value. \n2.The objects are created on service bring up according to the configuration files. What you ask can be done by polling the lldpd daemon. I am not sure if that is necessary because the service is only of interest when accessed by busctrl commands. And then it polls the daemon anyway.\n3. LLDP advertises both IPv4 and IPv6 addresses. I didn\u0027t find an interface that provides both options.",
+      "parentUuid": "fca3bdcb_d51cdbac",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 24
+      },
+      "revId": "b9d4a6d1dbd9d2bc1f20e93d4ec53163812fe321",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4cca04a_4cbd695f",
         "filename": "designs/lldp/lldp_dbus_service.png",
         "patchSetId": 1
@@ -137,6 +179,24 @@
       "writtenOn": "2025-08-12T12:18:16Z",
       "side": 1,
       "message": "Please don\u0027t add pictures.  Use mermaid embedded in your markdown to create a diagram.",
+      "revId": "b9d4a6d1dbd9d2bc1f20e93d4ec53163812fe321",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7da939c2_84930f9a",
+        "filename": "designs/lldp/lldp_dbus_service.png",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002604
+      },
+      "writtenOn": "2025-08-19T08:06:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4cca04a_4cbd695f",
       "revId": "b9d4a6d1dbd9d2bc1f20e93d4ec53163812fe321",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
