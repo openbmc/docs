@@ -124,6 +124,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f08f4361_e17c1de4",
+        "filename": "designs/code-update.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-21T22:02:26Z",
+      "side": 1,
+      "message": "Whats \"ML discussion\"?",
+      "parentUuid": "d1089020_c26219b6",
+      "revId": "80fd227434d613de0ed387a2b8d3f7d98f9eecc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a40b7b5_c034deb1",
         "filename": "designs/code-update.md",
         "patchSetId": 20
@@ -153,6 +171,24 @@
       "side": 1,
       "message": "@rushtotom@gmail.com we need to add some options here:\n1) Bmcweb and pldmd use build time flags to enable only one of app-level update and component-level update.\n\n2) Pldmd uses a build time flags to enable only one of app-level update and component-level update. Bmcweb handles this by having a code path for 0 targets specified + only one object implementing StartUpdate (Rajeev has a patch for this).\n\n3) New PDI - we had this before but got pushbac; let\u0027s add this option and point to PDI patch. If bmcweb finds this interface on an object AND no targets are specified then it sends FW image to this target via StartUpdate API.\n\n3 is most elegant and I would prefer that and then 2.\n\nRegardless of the above, when a single target is specified, existing design should be used (call this out in the patch here).\n\nWhat this proposal is not solving yet (and incremental updates should be fine because even the existing design solved only component level update)\n- Multiple Targets\n- Mix on PLDM and Non-PLDM components in PLDM package",
       "parentUuid": "9a40b7b5_c034deb1",
+      "revId": "80fd227434d613de0ed387a2b8d3f7d98f9eecc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1a334e7_79a9a989",
+        "filename": "designs/code-update.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-21T22:02:26Z",
+      "side": 1,
+      "message": "\u003e @rushtotom@gmail.com we need to add some options here:\n\u003e 1) Bmcweb and pldmd use build time flags to enable only one of app-level update and component-level update.\n\u003e \n\u003e 2) Pldmd uses a build time flags to enable only one of app-level update and component-level update. Bmcweb handles this by having a code path for 0 targets specified + only one object implementing StartUpdate (Rajeev has a patch for this).\n\nWe cannot have the assumption in BMCWeb code \"one object implementing StartUpdate\" as this is the common daemon. In future, if there is a usecase to develop Mulitpart-updater that co-exist with Component level updater then this assumption will break and will cause more pain.\n\n\u003e \n\u003e 3) New PDI - we had this before but got pushbac; let\u0027s add this option and point to PDI patch. If bmcweb finds this interface on an object AND no targets are specified then it sends FW image to this target via StartUpdate API.\n\nDesign was in review and was going through review iterations. As part of my last review feedback i had given comments on how to fix/update verbatim of pros and cons stuff with bunch of other questions, after that in my last review design was completely changed. Related to PDI interface https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/78905/comment/2b6c9e71_81d90665/, refer to my last comment. I had clearly mentioned that based on alignment on design (which was in progress) we can come back and brainstorm more on this .\n\n\u003e \n\u003e 3 is most elegant and I would prefer that and then 2.\n\nI would prefer New PDI interface. You can revive that PR for further discussions on the interface.",
+      "parentUuid": "64f05fff_b91b891f",
       "revId": "80fd227434d613de0ed387a2b8d3f7d98f9eecc5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
