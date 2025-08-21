@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6bab69ec_a35c3460",
+        "filename": "designs/code-update.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-08-21T06:25:00Z",
+      "side": 1,
+      "message": "We are not dropping the single component update use-case. @rushtotom@gmail.com please call that out explicitly here.",
+      "parentUuid": "44fea52d_b799236e",
+      "revId": "80fd227434d613de0ed387a2b8d3f7d98f9eecc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a7964ff1_c94408ca",
         "filename": "designs/code-update.md",
         "patchSetId": 20
@@ -88,6 +106,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d1089020_c26219b6",
+        "filename": "designs/code-update.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-08-21T06:25:00Z",
+      "side": 1,
+      "message": "The design doc has been trimmed down to handle the two new requirements you see in the patch for PLDM devices. PLDM itself is a multipart orechestrator for PLDM devices. We\u0027d like to make that work in pldmd regardless of non-pldm device images.\n\nFor handling mix of non-pldm and pldm images in the same package, one option is pldmd. The other option is new orchestrator. There wasn\u0027t much feedback/interest in mixing non-pldm/pldm images so we will follow up on that via ML discussion.",
+      "parentUuid": "b5f36494_0837bbb1",
+      "revId": "80fd227434d613de0ed387a2b8d3f7d98f9eecc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a40b7b5_c034deb1",
         "filename": "designs/code-update.md",
         "patchSetId": 20
@@ -99,6 +135,24 @@
       "writtenOn": "2025-08-19T21:39:22Z",
       "side": 1,
       "message": "How would BMCWeb know where to pass the image? Keep in mind that your design need to co-exist with device/component level update as that is supported by PLDM firmware update spec.",
+      "revId": "80fd227434d613de0ed387a2b8d3f7d98f9eecc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64f05fff_b91b891f",
+        "filename": "designs/code-update.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-08-21T06:25:00Z",
+      "side": 1,
+      "message": "@rushtotom@gmail.com we need to add some options here:\n1) Bmcweb and pldmd use build time flags to enable only one of app-level update and component-level update.\n\n2) Pldmd uses a build time flags to enable only one of app-level update and component-level update. Bmcweb handles this by having a code path for 0 targets specified + only one object implementing StartUpdate (Rajeev has a patch for this).\n\n3) New PDI - we had this before but got pushbac; let\u0027s add this option and point to PDI patch. If bmcweb finds this interface on an object AND no targets are specified then it sends FW image to this target via StartUpdate API.\n\n3 is most elegant and I would prefer that and then 2.\n\nRegardless of the above, when a single target is specified, existing design should be used (call this out in the patch here).\n\nWhat this proposal is not solving yet (and incremental updates should be fine because even the existing design solved only component level update)\n- Multiple Targets\n- Mix on PLDM and Non-PLDM components in PLDM package",
+      "parentUuid": "9a40b7b5_c034deb1",
       "revId": "80fd227434d613de0ed387a2b8d3f7d98f9eecc5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -122,6 +176,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44c06189_ba2b4270",
+        "filename": "designs/code-update.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-08-21T06:25:00Z",
+      "side": 1,
+      "message": "I don\u0027t think we should be bring in mixing of non-PLDM and PLDM component images in a single bundle usecase now. Let\u0027s solve that incremantally. As noted above:\n\nThe design doc has been trimmed down to handle the two new requirements you see in the patch for PLDM devices. PLDM itself is a multipart orechestrator for PLDM devices. We\u0027d like to make that work in pldmd regardless of non-pldm device images.\n\nFor handling mix of non-pldm and pldm images in the same package, one option is pldmd. The other option is new orchestrator. There wasn\u0027t much feedback/interest in mixing non-pldm/pldm images so we will follow up on that via ML discussion.",
+      "parentUuid": "adf984d1_6478e8df",
+      "revId": "80fd227434d613de0ed387a2b8d3f7d98f9eecc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85f0d6fe_afb8d310",
         "filename": "designs/code-update.md",
         "patchSetId": 20
@@ -133,6 +205,24 @@
       "writtenOn": "2025-08-19T21:39:22Z",
       "side": 1,
       "message": "Why it has to be PLDMd?",
+      "revId": "80fd227434d613de0ed387a2b8d3f7d98f9eecc5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a56651_aa099475",
+        "filename": "designs/code-update.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-08-21T06:25:00Z",
+      "side": 1,
+      "message": "I don\u0027t think we should be bring in mixing of non-PLDM and PLDM component images in a single bundle usecase now. Let\u0027s solve that incremantally. As noted above:\n\nThe design doc has been trimmed down to handle the two new requirements you see in the patch for PLDM devices. PLDM itself is a multipart orechestrator for PLDM devices. We\u0027d like to make that work in pldmd regardless of non-pldm device images.\n\nFor handling mix of non-pldm and pldm images in the same package, one option is pldmd. The other option is new orchestrator. There wasn\u0027t much feedback/interest in mixing non-pldm/pldm images so we will follow up on that via ML discussion.",
+      "parentUuid": "85f0d6fe_afb8d310",
       "revId": "80fd227434d613de0ed387a2b8d3f7d98f9eecc5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
