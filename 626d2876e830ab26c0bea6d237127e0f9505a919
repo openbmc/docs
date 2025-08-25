@@ -52,6 +52,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87503c77_4099d661",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-25T08:03:36Z",
+      "side": 1,
+      "message": "Everything about the file data/metadata will be achieved from the file host through PDRs, EAR PDRs and DF commands, BMC does not store any prior information. So, everything will be collected everytime pldmd inits the terminus.",
+      "parentUuid": "4b33b059_cc59a2f5",
+      "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "beeea222_0383ab96",
@@ -65,6 +83,30 @@
       "writtenOn": "2025-08-25T06:18:48Z",
       "side": 1,
       "message": "What applications are these? Do we need to add that to requirements? Is it only debug-collector?",
+      "range": {
+        "startLine": 598,
+        "startChar": 19,
+        "endLine": 598,
+        "endChar": 31
+      },
+      "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c2ff97c_96ad8730",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-25T08:03:36Z",
+      "side": 1,
+      "message": "I mentioned in ###Scope section that \n\n\u003e The users of the `Common.File` D-Bus interface initially will be the\nphosphor-dump-manager service from\n[phosphor-debug-collector](https://github.com/openbmc/phosphor-debug-collector)\nrepository\n...\nBesides, with the defined classifications of `OEM` and `FRU` for `Purpose`\nproperty, the files can also serve sending FRUData of devices and other OEM\npurposes via PLDM File Transfer model.\n\nHowever, I currently don\u0027t have any preservation for any other applications other than phosphor-debug-collector.",
+      "parentUuid": "beeea222_0383ab96",
       "range": {
         "startLine": 598,
         "startChar": 19,
@@ -94,6 +136,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "132ccca0_20ef8626",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-25T08:03:36Z",
+      "side": 1,
+      "message": "File host can unilaterally close the file fd if there\u0027s no DfHeartbeat or DfRead coming from file client within the NegotiatedInterval (see DSP0242 v1.0.0 Section 9.6 DfHeartbeat Command for definition).\n\nMoreover, file host can provide different fds for multiple sessions open simultaneously to the file. Therefore, there\u0027s no use to preserve one single fd always open for one file object (can be achieved by periodically sending DfHeartbeat to File Host). Each D-Bus call will open a session of its own and manipulate its own fd.",
+      "parentUuid": "03f98bf2_fdb72f1b",
+      "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "062f8ae6_59da27bf",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 20
@@ -105,6 +165,24 @@
       "writtenOn": "2025-08-25T06:23:48Z",
       "side": 1,
       "message": "And then pldmd stores this file in tmpfs or somewhere else? Wouldn\u0027t this make the D-Bus call blocking?",
+      "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13fff079_f504a7fa",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-25T08:03:36Z",
+      "side": 1,
+      "message": "\u003e And then pldmd stores this file in tmpfs or somewhere else\n\nAs I mentioned in point number 5.\n\n\"With each part received from `DfRead`, it writes the data to the server socket.\"\n   \nSo with each DfRead response received from File Host, pldmd will write the received data buffer of that part to the server sicde of the socketpair, from which client apps can read out the data. Technically, it does not store the data anywhere, but a small buffer used in each dfRead command.\n\n\u003e Wouldn\u0027t this make the D-Bus call blocking?\n\nAs I mentioned in lines 741-749 in PS 20. Read() calls returns the client side of the socketpair right after pldmd setup this pair. Only after that, pldmd interacts with File Host to DfOpen-\u003eDfRead-\u003eDfRead...-\u003eDfClose the actual file. So, as line 753 of PS 20 says: \"The asynchronous task triggered as a result of `Read()` call will have the following behaviors:\", the points listed here is describing the asynchronous task triggered by the Read() call. They will not block the call.",
+      "parentUuid": "062f8ae6_59da27bf",
       "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -128,6 +206,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4583b22_a70dcf38",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 804,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-25T08:03:36Z",
+      "side": 1,
+      "message": "Users use Read() to achieve the socket, and needs to actively read from the socket to achieve the file data. This socket fd is opened by pldmd and is different from the fd provided by file host in a response to a dfOpen command.\n\nAs I\u0027m proposing a Common.File interface, so I named the method \"Read()\". Although PLDM transfer file data in chunks through a socket, other usage of this interface might not function the same way and can return the whole data package through a memfd or something.\n\nHowever, I started to have second thoughts as it might not be appropriate to have different behaviors on the same D-Bus interface. Can you kindly share your thoughts to this comment thread https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/81694/comment/fb05fb9c_560fd5e0/ in the PDI patch?\n\nIf the interface is created under PLDM folder, maybe I will rename it to something that describe better its functionality.",
+      "parentUuid": "a62323da_d1fe75c3",
+      "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83c694ea_d2e57662",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 20
@@ -139,6 +235,24 @@
       "writtenOn": "2025-08-25T06:18:48Z",
       "side": 1,
       "message": "Would be good to add a sequence diagram to show open/RW/close. I\u0027m confused about D-Bus methods vs operations on fds.",
+      "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62e10d6e_8693e78c",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-25T08:03:36Z",
+      "side": 1,
+      "message": "I should have added it sooner, I\u0027m on my way. Please see my other replies to have a clearer answer while I\u0027m working on the diagram.",
+      "parentUuid": "83c694ea_d2e57662",
       "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
