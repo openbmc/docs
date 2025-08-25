@@ -240,6 +240,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1535829f_c212a33f",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1002604
+      },
+      "writtenOn": "2025-08-25T15:27:21Z",
+      "side": 1,
+      "message": "The D-BUS objects, don\u0027t store LLDP data. when any if their properties are queried (by busctl or right, any other interface to access D-BUS objects) they will in turn query lldpd. lldpd stores up to date neighbor data from the last received LLDP PDU.\n(Invalidated after LLDP TTL if newer PDU was not received).\nSO, the D-BUS will properties always return up to date data.",
+      "parentUuid": "afed7bb7_cbd52055",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 24
+      },
+      "revId": "b9d4a6d1dbd9d2bc1f20e93d4ec53163812fe321",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4cca04a_4cbd695f",
         "filename": "designs/lldp/lldp_dbus_service.png",
         "patchSetId": 1

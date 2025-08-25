@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08e51104_0a4a3520",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1002604
+      },
+      "writtenOn": "2025-08-25T15:27:21Z",
+      "side": 1,
+      "message": "For each interface \u003cif_name\u003e we create 2 objects, for transmit and receive\n/xyz/OpenBMC_project/network/lldp/\u003cif_name\u003e/transmit\n/xyz/OpenBMC_project/network/lldp/\u003cif_name\u003e/receive\n\nWhen accessing the receive object it will retrieve the neighbor information of that interface from lldpd. So, the information will always be up to date with the neighbor that is currently connected.",
+      "parentUuid": "eeb38bd6_21040229",
+      "revId": "274af1168b2d03c6816c0c292455c0ca26995a69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89e0d80c_ad9e64a7",
         "filename": "designs/lldp/lldp-dbus-service.md",
         "patchSetId": 2
@@ -190,6 +208,30 @@
       "side": 1,
       "message": "Right, there will be small runtime and memory overhead. I will update this section.\nRegarding security, we will use the same library lldpcli uses to control lldpd.\nSo, it is as secure as using lldpcli, which we will have to use if don\u0027t implement this service. \nThis is another reason to keep service separated from networkd and not increase networkd\u0027s attack surface.",
       "parentUuid": "c0f87675_49485649",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 87
+      },
+      "revId": "274af1168b2d03c6816c0c292455c0ca26995a69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d128d8a7_5c47accc",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1002604
+      },
+      "writtenOn": "2025-08-25T15:27:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cc4b153_40a8f93e",
       "range": {
         "startLine": 210,
         "startChar": 0,
