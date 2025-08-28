@@ -270,9 +270,9 @@ Specification][1]. Look for the CertificatesCollection row in the specification.
 On the D-Bus Daemon side, we propose that the dbus objects are organized in the
 following way:
 
-- `/xyz/openbmc_project/ComponentIntegrity/{ComponentIntegrityId}`
-- `/xyz/openbmc_project/TrustedComponents/{TrustedComponentId}`
-- `/xyz/openbmc_project/certs/devices/{ChassisId}/{CertId}`
+- `/xyz/openbmc_project/component_integrity/{component_integrity_id}`
+- `/xyz/openbmc_project/trusted_components/{trusted_component_id}`
+- `/xyz/openbmc_project/certs/devices/{chassis_id}/{cert_id}`
 
 In BMCWeb, we can reconstruct the following redfish URI by querying the
 associated Chassis from the trusted component:
