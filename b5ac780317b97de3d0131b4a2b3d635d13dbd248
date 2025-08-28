@@ -1,0 +1,215 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "962f4563_b74d1597",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:18:10Z",
+      "side": 1,
+      "message": "Overall in support of this.",
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "898238a1_7837b7cb",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:18:10Z",
+      "side": 1,
+      "message": "For bmcweb at least, std::bit_cast of pointers is how we avoided reinterpret_cast warnings.  If we want to turn this on, someone would need to go through and figure out the \"right\" way to correctly handle things like: https://github.com/openbmc/bmcweb/blob/70f79752af03b11f5a52d31aaf4c2a0aa9b5c526/http/http2_connection.hpp#L191\n\nWhere we have C dependencies that take char* vs uint8* or vice versa and we need to convert.",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 33
+      },
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d81583_0761db88",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:18:10Z",
+      "side": 1,
+      "message": "This is a good check I\u0027ve been meaning to turn on.  I\u0027ve personally written that bug and gotten a crash a couple of times.",
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82802110_eb002965",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:18:10Z",
+      "side": 1,
+      "message": "I vaugely remember this check being broken, but I don\u0027t remember why..... I guess we can try again.",
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "527410c1_25937f8b",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:18:10Z",
+      "side": 1,
+      "message": "bmcweb used to have this turned on, but this was broken a while ago, and had false positives where it would trigger the warning on elements that couldn\u0027t be forwarded.  Hopefully it\u0027s fixed now",
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3506401_6c7bfc4e",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:18:10Z",
+      "side": 1,
+      "message": "This one causes problems when reading into buffers of std::array.  Even if you have appropriate range checks, it seems to fire and I haven\u0027t been able to figure out the right pattern without just silencing the check.\n\nstd::array\u003cchar, 4096\u003e arr{};\n\nchar foo \u003d arr[1];\n\nWill trigger this warning, and we do that in a lot of places.",
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "254a3055_13611068",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:18:10Z",
+      "side": 1,
+      "message": "I explicitly took this out of the reference.  The check it provides hasn\u0027t found a bug that I\u0027ve seen, and has problems for things that require implicit constructors (std::source_location).\n\nI\u0027d advocate leaving it out for now.",
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cba7d682_a8985cf3",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:18:10Z",
+      "side": 1,
+      "message": "This had to be disabled in bmcweb because it doesn\u0027t understand the difference between forward reference headers and implementation headers, and will always propose replacing the implementation headers with the declaration only.  This happens on nlohmann-json today.  \n\nI\u0027m fine with this being here, it\u0027s good to have for some repos if it can be enabled.",
+      "range": {
+        "startLine": 242,
+        "startChar": 4,
+        "endLine": 242,
+        "endChar": 24
+      },
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c749f2c5_f709014f",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:18:10Z",
+      "side": 1,
+      "message": "This one will be interesting to roll out",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 2
+      },
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69604ede_bf737fdb",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:18:10Z",
+      "side": 1,
+      "message": "I didn\u0027t include anything from portability-* because we don\u0027t really care.  we have one environment.\n\nWith that said, this one check seems fine.",
+      "range": {
+        "startLine": 311,
+        "startChar": 4,
+        "endLine": 311,
+        "endChar": 15
+      },
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02e2fdef_9700b8e9",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:18:10Z",
+      "side": 1,
+      "message": "I had tried to turn this on at one point, and it caused more problems than it solved.  Even if a number is documented in a comment, or in a pointer to a spec, this will flag it.  I would advocate removing it to the \"desired\" file for now.",
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
