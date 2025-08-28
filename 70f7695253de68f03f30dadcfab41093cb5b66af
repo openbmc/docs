@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2151d606_89433935",
+        "filename": "style/cpp/using-clang-tidy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-28T18:48:49Z",
+      "side": 1,
+      "message": "\u003e Shouldn\u0027t we be able to put them in the \"future options\" section then if a maintainer wants to enable them?\n\u003e \n\u003e The purpose of having them in a central place is that we can then encourage discussion before people turn on checks that aren\u0027t appropriate.  That was the biggest hang up with when Jayanth tried to enable everything to me is it was seeming to be an assorted set of things.\n\nWhat if we change to \"If maintainers want to enable a new check, they should first open a review to add it to this list to begin a discussion\".  I don\u0027t want a docs MERGE to be a requirement, but sure, opening a review is reasonable.\n\nIf we had this rule previously, https://gerrit.openbmc.org/c/openbmc/docs/+/82879 would still be stalled waiting on the feedback of a non-maintainer to render an opinion, and that check wouldn\u0027t be available.\n\nI don\u0027t want a case where there\u0027s a check a maintainer thinks is useful for their repository, and is easy to enable, but they\u0027re prevented from doing so because of the lack of merge here.\n\nPersonally when I get time to work on tidy checks, it\u0027s 20 minutes in between meetings to go fix the bugs and enable a check.  In general my workflow is to enable every tidy check, and see which ones are accomplishable in a short timeframe. The more friction we add in waiting on merges for this desired list, the fewer checks I can enable in that 20 minutes I have.\n\nIf there are checks that we KNOW are harmful and should never enable absolutely, lets get those written down to give guard rails (and you\u0027ve already done the start of that).",
+      "parentUuid": "41705d32_0cd48d4e",
+      "range": {
+        "startLine": 8,
+        "startChar": 50,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "70f7695253de68f03f30dadcfab41093cb5b66af",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0071bb73_be16da98",
         "filename": "style/cpp/using-clang-tidy.md",
         "patchSetId": 2
