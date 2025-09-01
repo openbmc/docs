@@ -328,7 +328,7 @@ are:
 ```
 gitdir=$(git rev-parse --git-dir)
 curl https://gerrit.openbmc.org/tools/hooks/commit-msg -o ${gitdir}/hooks/commit-msg
-chmod +x ${gitdir}/hooks/commit-msg`
+chmod +x ${gitdir}/hooks/commit-msg
 ```
 
 To submit a change set, commit your changes, and push to the Gerrit server,
