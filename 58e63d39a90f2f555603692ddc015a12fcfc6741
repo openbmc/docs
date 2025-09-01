@@ -948,6 +948,30 @@
       },
       "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7971ccbf_9af23994",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-09-01T14:35:58Z",
+      "side": 1,
+      "message": "I tried reading this using EM and this works fine. Based on suggestion I will improve\n```\n[\n    {\n        \"Name\": \"Vera BPC Configuration\",\n        \"Type\": \"PlatformBPCConfiguration\",\n        \"Exposes\": [\n            {\n                \"Name\": \"BPC_Configuration\",\n                \"Type\": \"BPCConfiguration\",\n                \"PollInterval\": 10,\n                \"TransportInterface\": \"I2C\",\n                \"QueryBootProgress\": true,\n                \"BootQueues\": [\n                    { \"Address\": \"0x30\", \"Bus\": 0, \"Name\": \"CPU0\" },\n                    { \"Address\": \"0x30\", \"Bus\": 1, \"Name\": \"CPU1\" }\n                ]\n            }\n        ],\n        \"Probe\": \"TRUE\"\n    }\n]\n```\nDbus tree view\n```\nbusctl introspect xyz.openbmc_project.EntityManager\n/xyz/openbmc_project/inventory/system/platformbpcconfiguration/Vera_BPC_Configuration/BPC_Configuration\nNAME                                                           TYPE      SIGNATURE RESULT/VALUE        FLAGS\norg.freedesktop.DBus.Introspectable                            interface -         -                   -\n.Introspect                                                    method    -         s                   -\norg.freedesktop.DBus.Peer                                      interface -         -                   -\n.GetMachineId                                                  method    -         s                   -\n.Ping                                                          method    -         -                   -\norg.freedesktop.DBus.Properties                                interface -         -                   -\n.Get                                                           method    ss        v                   -\n.GetAll                                                        method    s         a{sv}               -\n.Set                                                           method    ssv       -                   -\n.PropertiesChanged                                             signal    sa{sv}as  -                   -\nxyz.openbmc_project.Configuration.BPCConfiguration             interface -         -                   -\n.Name                                                          property  s         \"BPC_Configuration\" emits-change\n.PollInterval                                                  property  t         10                  emits-change\n.QueryBootProgress                                             property  b         true                emits-change\n.TransportInterface                                            property  s         \"I2C\"               emits-change\n.Type                                                          property  s         \"BPCConfiguration\"  emits-change\nxyz.openbmc_project.Configuration.BPCConfiguration.BootQueues0 interface -         -                   -\n.Address                                                       property  t         48                  emits-change\n.Bus                                                           property  t         0                   emits-change\n.Name                                                          property  s         \"CPU0\"              emits-change\nxyz.openbmc_project.Configuration.BPCConfiguration.BootQueues1 interface -         -                   -\n.Address                                                       property  t         48                  emits-change\n.Bus                                                           property  t         1                   emits-change\n.Name                                                          property  s         \"CPU1\"              emits-change\n```",
+      "parentUuid": "ab3bfe3f_2daace7e",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 69
+      },
+      "revId": "58e63d39a90f2f555603692ddc015a12fcfc6741",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
