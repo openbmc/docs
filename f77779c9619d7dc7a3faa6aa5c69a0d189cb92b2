@@ -16,6 +16,247 @@
       "message": "Thanks for reviewing so quickly 😊",
       "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32322cc5_3f8b119c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-02T23:05:03Z",
+      "side": 1,
+      "message": "As an EM/dbus-sensors maintainer, I\u0027m not interested in supporting two different ways of representing DBus.  Supporting the one we have is difficult enough and what\u0027s proposed here isn\u0027t any simpler.  Unfortunately what we have today does allow PDI-based reactors to function, so I\u0027m going to spend time, it likely won\u0027t be on this.\n\nIf there are other reactor maintainers that want to band together and work through all the use cases to make this work, I\u0027m in full support of staging that effort under an option key once we get enough critical mass.\n\nI do worry that we\u0027ve left out a ton of requirements, and every one of these requirements is based on DBus.  We need to refocus them on the developer and the user part of the requirements.  I would far prefer very messy internal DBus structures, and functional user/developer APIs to the alternative.  If we can have both, I\u0027m in full support, and will likely help, but I don\u0027t think this as written gets us there, and the requirements need to be updated to reflect the users of this software, not the developers of this software.",
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cd6f053_3cfa975c",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-02T23:05:03Z",
+      "side": 1,
+      "message": "Can you give links to examples of these in the dbus config?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 61
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a309c10_7d52e8d8",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-02T23:05:03Z",
+      "side": 1,
+      "message": "?  Are there examples of this?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 75
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b21bd7d_b6b4ad55",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-02T23:05:03Z",
+      "side": 1,
+      "message": "To be clear, this is the PDI design intent.  At this time, EM and reactors don\u0027t use PDI, precisely because solving these problems are difficult.",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74df5c40_34c85ae2",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-02T23:05:03Z",
+      "side": 1,
+      "message": "Remove.  This isn\u0027t well documented to be a requirement.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a2165a0_5c994820",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-02T23:05:03Z",
+      "side": 1,
+      "message": "Nit, today we only need to support singly nested, so lets get that listed for now.  Multiple nested would be on different objects.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 74
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc62f669_55928195",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-02T23:05:03Z",
+      "side": 1,
+      "message": "Can we be more precise about what this means?  EM does reuse interfaces across multiple paths.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 64
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17f36b2c_f8253267",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-02T23:05:03Z",
+      "side": 1,
+      "message": "Remove.   I don\u0027t agree this is a requirement until we have a use case that\u0027s actually intended to do this.  EM config files are intentionally very flat to simplify this problem, and to separate out the interfaces that a single device can support.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 79
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84bb901f_8bf09c35",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-02T23:05:03Z",
+      "side": 1,
+      "message": "Please include the requirements of the existing system, in that users need to be able to add/remove/update these nested properties.  If those APIs are changing, please articulate it.",
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42e8f483_7acf3f31",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-02T23:05:03Z",
+      "side": 1,
+      "message": "Remove.  There is no reason to include the type at anything above the root object.  This type would be. SPIFlash.FirmwareInfo, which is trivially findable in code.\n\nSaid another way\n\nType: \"MySpecialFirmware\" here would be wrong, because we\u0027d be mixing types under a single key, so this can be simplified.",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 26
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "395b6464_0b0db293",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-02T23:05:03Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 80,
+        "startChar": 46,
+        "endLine": 80,
+        "endChar": 66
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
