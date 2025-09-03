@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4765b177_ec2f752d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-03T14:42:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7066c570_f6726f8b",
+      "range": {
+        "startLine": 571,
+        "startChar": 3,
+        "endLine": 574,
+        "endChar": 18
+      },
+      "revId": "d4f7e3eb30fa3ac4cf1cd9f615623f15535b4796",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b72ef4a7_68a346b1",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-09-03T05:25:04Z",
       "side": 1,
       "message": "This interface can have one method which can read the full file at once to avoid multiple hops in between applications. This readFullFile() method can also take a input argument of local directory (say /run/crashdump/) where it can save the file content.",
+      "range": {
+        "startLine": 605,
+        "startChar": 33,
+        "endLine": 605,
+        "endChar": 52
+      },
+      "revId": "d4f7e3eb30fa3ac4cf1cd9f615623f15535b4796",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b195ff8_420ba0d4",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-03T14:42:29Z",
+      "side": 1,
+      "message": "Do you mean that we should provide another method aside from streaming, to let user call readFullFile() and receive everything upon the method\u0027s completion? What do you think @manojkiran.eda@gmail.com and anh @thu@os.amperecomputing.com?",
+      "parentUuid": "b72ef4a7_68a346b1",
       "range": {
         "startLine": 605,
         "startChar": 33,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e52a5e6_2ba70636",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-03T14:42:29Z",
+      "side": 1,
+      "message": "As I mentioned in the clarification of Read() in `### Read method flow` section, it spawns an async task and immediately returns an fd for callers to poll the file data from. The async task is the actual operation in which pldmd interacts with the file host to send dfOpen-\u003edfRead-\u003edfClose, and it\u0027s not within the lifetime of the Read() call. With each response from DfRead, pldmd writes that chunk of data to the server socket of the socketpair.\n\nYou can see `### Read method sequence diagram` section for a sequence diagram.\n\nAgree that the name Read() is confusing. Initially, I planned this Common.File interface to not be specific to PLDM, so I don\u0027t want to restrict the Read call to streaming only, which is the method used in this design. I planned to let the interface be common enough that it depends on the application which host the interface to choose which behavior should be implemented for this method.\n\nHowever, it\u0027s getting closer to PLDM specific and currently has no imminent plan to be hosted by any other apps than pldmd, so maybe it can be moved to under PLDM/ in PDI. Can you share some thoughts?. Discussion here: https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/81694/comment/fb05fb9c_560fd5e0/\n\nMaybe I should rename it to something like `GetStreamingFD()` (note that Streaming here is different from the Streaming FIFO type in the spec, but about the way pldmd sends data in small chunks to clients via socketpair). Would you suggest something else?",
+      "parentUuid": "4bae4e8d_aaf910ea",
+      "range": {
+        "startLine": 630,
+        "startChar": 10,
+        "endLine": 633,
+        "endChar": 22
+      },
+      "revId": "d4f7e3eb30fa3ac4cf1cd9f615623f15535b4796",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "47cd26e9_feeef29c",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 21
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "edab30af_8a8183f9",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-03T14:42:29Z",
+      "side": 1,
+      "message": "It\u0027s not specified in the specs. However, I plan for it to allow clients to determine the origin of the file. If the file holds Telemetry data, clients should know from which part of the system it is from, same to FRUData and DiagnosticData.\n\nI drafted a design doc, when System Diagnostic Data is retrieved over PLDM File Transfer, `Purpose`\u003d\u003d`DiagnosticLog` + `Source`\u003d\u003d`ComputerSystem` show that a file holds Computer System diagnostic data ([design doc](https://gerrit.openbmc.org/c/openbmc/docs/+/79448)).",
+      "parentUuid": "47cd26e9_feeef29c",
+      "range": {
+        "startLine": 647,
+        "startChar": 7,
+        "endLine": 649,
+        "endChar": 22
+      },
+      "revId": "d4f7e3eb30fa3ac4cf1cd9f615623f15535b4796",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0740b183_efaf4b2a",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 21
@@ -106,6 +202,30 @@
       "writtenOn": "2025-09-03T05:25:04Z",
       "side": 1,
       "message": "Couple of other major fields which are missing is:\n - FileCapabilities\n - Version (For futuristic purpose)",
+      "range": {
+        "startLine": 731,
+        "startChar": 0,
+        "endLine": 740,
+        "endChar": 9
+      },
+      "revId": "d4f7e3eb30fa3ac4cf1cd9f615623f15535b4796",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "771942d1_6144e9dc",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-03T14:42:29Z",
+      "side": 1,
+      "message": "Version is fine, but is FileCapabilities too detailed and too specific to PLDM File Transfer if I put the interface under Common/?\n\nMoreover, the PLDM File Transfer spec has a lot of corner cases and situations to handle if we expose all functionalities of the file (for example the ability for file clients to set 0 length to the file upon DfClose), so I want to restrict it to serve as simple purpose as possible to avoid complexity. Just my opinions, what do you think?",
+      "parentUuid": "0740b183_efaf4b2a",
       "range": {
         "startLine": 731,
         "startChar": 0,
