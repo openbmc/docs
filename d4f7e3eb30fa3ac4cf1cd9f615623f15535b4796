@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce204e43_02ed9ff1",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-09-04T00:02:14Z",
+      "side": 1,
+      "message": "\u003e Do you mean that we should provide another method aside from streaming, to let user call readFullFile() and receive everything upon the method\u0027s completion?\n\nI prefer we don\u0027t do that.",
+      "parentUuid": "1b195ff8_420ba0d4",
+      "range": {
+        "startLine": 605,
+        "startChar": 33,
+        "endLine": 605,
+        "endChar": 52
+      },
+      "revId": "d4f7e3eb30fa3ac4cf1cd9f615623f15535b4796",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4bae4e8d_aaf910ea",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 21
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "As I mentioned in the clarification of Read() in `### Read method flow` section, it spawns an async task and immediately returns an fd for callers to poll the file data from. The async task is the actual operation in which pldmd interacts with the file host to send dfOpen-\u003edfRead-\u003edfClose, and it\u0027s not within the lifetime of the Read() call. With each response from DfRead, pldmd writes that chunk of data to the server socket of the socketpair.\n\nYou can see `### Read method sequence diagram` section for a sequence diagram.\n\nAgree that the name Read() is confusing. Initially, I planned this Common.File interface to not be specific to PLDM, so I don\u0027t want to restrict the Read call to streaming only, which is the method used in this design. I planned to let the interface be common enough that it depends on the application which host the interface to choose which behavior should be implemented for this method.\n\nHowever, it\u0027s getting closer to PLDM specific and currently has no imminent plan to be hosted by any other apps than pldmd, so maybe it can be moved to under PLDM/ in PDI. Can you share some thoughts?. Discussion here: https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/81694/comment/fb05fb9c_560fd5e0/\n\nMaybe I should rename it to something like `GetStreamingFD()` (note that Streaming here is different from the Streaming FIFO type in the spec, but about the way pldmd sends data in small chunks to clients via socketpair). Would you suggest something else?",
       "parentUuid": "4bae4e8d_aaf910ea",
+      "range": {
+        "startLine": 630,
+        "startChar": 10,
+        "endLine": 633,
+        "endChar": 22
+      },
+      "revId": "d4f7e3eb30fa3ac4cf1cd9f615623f15535b4796",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83f5eb92_6e8bf89f",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-09-04T00:02:14Z",
+      "side": 1,
+      "message": "`Open()`?",
+      "parentUuid": "8e52a5e6_2ba70636",
       "range": {
         "startLine": 630,
         "startChar": 10,
