@@ -22,6 +22,30 @@
       },
       "revId": "032f8b9e06ca89b369a49b421fe81c8e08314276",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83580a36_78bfb235",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-04T09:29:19Z",
+      "side": 1,
+      "message": "Your question hits right at my concern right now.\n\nget-property does not support async so `Size` can\u0027t not be fetched upon request because GetSensorReading command to the File Size Monitoring sensor needs to be async.\n\nIf it should be cached, then it will be polled together with the NumericSensor list of each terminus, based on the default interval of pldmd or of the sensor PDR itself. However this sensor does not fit in the current implementation for NumericSensor class. Its Unit is (Byte), not among the supported list, and NumericSensor class publishes each object to D-Bus which is not necessary for this sensor as its value can be represented under the File object.\n\nStill, not all sensors of this type are for file objects, so maybe publishing them to D-Bus is not redundant. Moreover, the sensor might need to be in the numeric sensor list in order for the terminus to look into it for a File Size Monitoring sensor for each File Descriptor object. As spec DSP0242 v1.0.0 says:\n\n\u003e The File Size Monitoring Sensor shall match the monitored File PDR EntityType, EntityInstance, and ContainerID fields to establish its association to the monitored file.\n\n\u003e If the File PDR does not have an associated File Size Monitoring Sensor, then the File Size is the number of bytes indicated by the File PDR FileMaximumSize field; otherwise the File Size is the value returned by the GetSensorReading command of the associated File Size Monitoring Sensor.\n\n\nSummarily, caching by polling is possibly the direction.",
+      "parentUuid": "ae181f68_1d7e429c",
+      "range": {
+        "startLine": 653,
+        "startChar": 0,
+        "endLine": 655,
+        "endChar": 48
+      },
+      "revId": "032f8b9e06ca89b369a49b421fe81c8e08314276",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
