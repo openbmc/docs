@@ -223,6 +223,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbb98956_639d8948",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-04T08:08:32Z",
+      "side": 1,
+      "message": "Resolved. Please re-open if you think otherwise.",
+      "parentUuid": "13fff079_f504a7fa",
+      "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a62323da_d1fe75c3",
@@ -254,6 +272,24 @@
       "side": 1,
       "message": "Users use Read() to achieve the socket, and needs to actively read from the socket to achieve the file data. This socket fd is opened by pldmd and is different from the fd provided by file host in a response to a dfOpen command.\n\nAs I\u0027m proposing a Common.File interface, so I named the method \"Read()\". Although PLDM transfer file data in chunks through a socket, other usage of this interface might not function the same way and can return the whole data package through a memfd or something.\n\nHowever, I started to have second thoughts as it might not be appropriate to have different behaviors on the same D-Bus interface. Can you kindly share your thoughts to this comment thread https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/81694/comment/fb05fb9c_560fd5e0/ in the PDI patch?\n\nIf the interface is created under PLDM folder, maybe I will rename it to something that describe better its functionality.",
       "parentUuid": "a62323da_d1fe75c3",
+      "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e324160_01b1de1f",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 804,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-04T08:08:32Z",
+      "side": 1,
+      "message": "Read() has been renamed to Open() to better name the function behavior.",
+      "parentUuid": "d4583b22_a70dcf38",
       "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -307,6 +343,24 @@
       "side": 1,
       "message": "Added a sequence diagram to better illustrate the flow.",
       "parentUuid": "62e10d6e_8693e78c",
+      "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "713edfcf_1d3dee38",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-04T08:08:32Z",
+      "side": 1,
+      "message": "The Read() D-Bus method has been renamed to Open(), so it addresses the concern of this comment.",
+      "parentUuid": "5bd1216d_e429d554",
       "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

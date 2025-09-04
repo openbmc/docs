@@ -119,6 +119,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2bc567e_fa51572c",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-04T08:08:32Z",
+      "side": 1,
+      "message": "Considering that that has been a direction that this design has moved away from, so we won\u0027t support the support.\n\nSection `###Data read flow` mentions that if the requested `Length` is 0, `the actual received data size will equal the amount of file data that can currently be read.`, so it maybe can address part of your concern.\n\nPlease reopen if necessary.",
+      "parentUuid": "ce204e43_02ed9ff1",
+      "range": {
+        "startLine": 605,
+        "startChar": 33,
+        "endLine": 605,
+        "endChar": 52
+      },
+      "revId": "d4f7e3eb30fa3ac4cf1cd9f615623f15535b4796",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4bae4e8d_aaf910ea",
@@ -228,6 +252,30 @@
       "side": 1,
       "message": "I was concerned about the need for another D-Bus Read() call if this is named Open(), but since a C read() can represent this action. Therefore, +1 too! Will update the design and the PDI patch to follow the new name.",
       "parentUuid": "43921bf2_393a93c2",
+      "range": {
+        "startLine": 630,
+        "startChar": 10,
+        "endLine": 633,
+        "endChar": 22
+      },
+      "revId": "d4f7e3eb30fa3ac4cf1cd9f615623f15535b4796",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b577db22_58d2edde",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-04T08:08:32Z",
+      "side": 1,
+      "message": "Renamed `Read()` to `Open()`.",
+      "parentUuid": "7ea74ba8_7b76edc7",
       "range": {
         "startLine": 630,
         "startChar": 10,
