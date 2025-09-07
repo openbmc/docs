@@ -336,6 +336,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5798d9bf_510ac529",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1002604
+      },
+      "writtenOn": "2025-09-07T10:00:25Z",
+      "side": 1,
+      "message": "I will add that to the design: \n* If the neighbour BMC is disconnected/stops emitting LLDP packets, then the created dbus object should be deleted\n* If a new BMC is plugged in, then the LLDP DBUS object should be refreshed to reflect the latest data.\n\nRegarding your changes, we prefer to implement a dedicated service. This is discussed in Alternatives Considered section. You prefer to implement it in networkd?\nWe can provide a reference code for a dedicated service.",
+      "parentUuid": "fbe4f2d4_8f92902f",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 24
+      },
+      "revId": "b9d4a6d1dbd9d2bc1f20e93d4ec53163812fe321",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4cca04a_4cbd695f",
         "filename": "designs/lldp/lldp_dbus_service.png",
         "patchSetId": 1
