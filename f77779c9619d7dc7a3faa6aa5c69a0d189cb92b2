@@ -195,6 +195,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "293b897f_b45074ba",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-09-08T02:29:13Z",
+      "side": 1,
+      "message": "I agree with @alexander.hansen@9elements.com, EM\u0027s representation for arrays goes completely against the grain. I don\u0027t think it\u0027s defensible.",
+      "parentUuid": "f8b7380f_d272e9ad",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5c87f65_d81b44b5",
         "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
         "patchSetId": 3
@@ -265,6 +289,30 @@
       "side": 1,
       "message": "I don\u0027t know anyone to ask for DBus design intent.\nSo based on DBus Spec and how systemd uses it, the design intent is inferred.\n\nIn particular, it should be clear that DBus interfaces are not meant to represent deeply nested information, since the length is limited by spec.\n\nAlso, DBus interfaces cannot be numbered to represent array elements.\nMultiple instances of something are always represented by different object paths,\nat least when i look at how systemd uses DBus.\n\nIf we do not follow the design intent, things stop working right. For example ObjectMapper does not work right with unbounded sets of interfaces.",
       "parentUuid": "74df5c40_34c85ae2",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8923ebf_d2bb6bda",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-09-08T02:29:13Z",
+      "side": 1,
+      "message": "D-Bus is specified by freedesktop.org. The documentation at [1] references [2], which has this to say:\n\n\u003e D-Bus interfaces define the methods and signals supported by D-Bus objects. In order to make use of a D-Bus interface it must be known to remote users. This interface definition may be hard coded into an application ...\n\n[1]: https://www.freedesktop.org/wiki/Software/dbus/#documentation\n[2]: https://pythonhosted.org/txdbus/dbus_overview.html#_interfaces\n\nThe strategy used by EM for arrays makes a bit of a mockery of this intent.",
+      "parentUuid": "00ce5f26_32f52d6d",
       "range": {
         "startLine": 47,
         "startChar": 0,
@@ -406,6 +454,30 @@
       "side": 1,
       "message": "\u003e I don\u0027t agree this is a requirement until we have a use case that\u0027s actually intended to do this\n\nConfiguration for hardware does not magically stop at 2 levels of depth.\n\nThat\u0027s something you came up with. Device-tree does not have this limitation.\nFor example\n\n```\n\u0026i2c0 {\n|       status \u003d \"okay\";\n\n|       /* Hardware monitor with temperature sensors */\n|       nct7802@28 {\n|       |       compatible \u003d \"nuvoton,nct7802\";\n|       |       reg \u003d \u003c0x28\u003e;\n\n|       |       #address-cells \u003d \u003c1\u003e;\n|       |       #size-cells \u003d \u003c0\u003e;\n\n|       |       channel@0 { /* LTD */\n|       |       |       reg \u003d \u003c0\u003e;\n|       |       };\n\n|       |       channel@1 { /* RTD1 */\n|       |       |       reg \u003d \u003c1\u003e;\n|       |       |       sensor-type \u003d \"temperature\";\n|       |       |       temperature-mode \u003d \"thermistor\";\n|       |       };\n```\n\n\u003e EM config files are intentionally very flat to simplify this problem\n\nThat\u0027s just ignoring this issue by pretending it does not exist and flattening any config that\u0027s too deep.",
       "parentUuid": "17f36b2c_f8253267",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 79
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba12fa67_537d9f37",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-09-08T02:29:13Z",
+      "side": 1,
+      "message": "I share @alexander.hansen@9elements.com\u0027s concern here that you\u0027re trying to shoehorn inconvenient topology into an unnatural representation.",
+      "parentUuid": "7578f024_7b799f48",
       "range": {
         "startLine": 50,
         "startChar": 0,
