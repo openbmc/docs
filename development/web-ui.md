@@ -32,7 +32,7 @@ find information on:
 - Quick Start References
 
 Visit the
-[OpenBMC Web UI Themes Guide - How to customize](https://openbmc.github.io/webui-vue/themes/customize.html)
+[OpenBMC Web UI Themes Guide - How to customize](https://openbmc.github.io/webui-vue/customization/theme.html)
 to learn how to create custom builds to meet your branding and customization
 needs for:
 
@@ -60,8 +60,8 @@ connect. OpenBMC is running with a self-signed SSL certificate.
 
 ## Phosphor-webui
 
-The [phosphor-webui](https://github.com/openbmc/webui-vue) repository provides a
-web-based interface for an OpenBMC. It uses the
+The [phosphor-webui](https://github.com/openbmc/phosphor-webui) repository
+provides a web-based interface for an OpenBMC. It uses the
 [AngularJS](https://angularjs.org/) framework to interact with the BMC via REST
 API calls. It allows users to view hardware information, update firmware, set
 network settings, and much more.
