@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8bf93fa_49aee20e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "I\u0027ve revised the design to:\n* remove codegen feature but we can rely on simple json parser as starter\n* more detail on how the redfish-\u003eD-bus work\n* correct terms to be close to Redfish\n* some error handling\n* move low priority features to future work session",
+      "parentUuid": "407fae74_b62c7633",
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af61c125_8beb2f87",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "nit, \"read\" and \"write\" aren\u0027t really redfish primitives.  You should really call out which things redfish primitives you\u0027re going to support (actions?  Resource creation?  Get?).",
+      "range": {
+        "startLine": 42,
+        "startChar": 37,
+        "endLine": 42,
+        "endChar": 51
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3012aa08_d72b3597",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "I\u0027ve revised the design to align with redfish primitives, and the design is currently focusing on \"GET\".",
+      "parentUuid": "af61c125_8beb2f87",
       "range": {
         "startLine": 42,
         "startChar": 37,
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e424f337_118acc7d",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "I added \"Https\" and \"Auth\" as optional features for requirements so that the user can decide whether it is needed based on the target SMC. With that being said, this is not a strictly redfish-compliant client and we are taking the position that allowing some out of spec behavior as long as we can keep it modular and configurable.",
+      "parentUuid": "b9ad7a02_57543d4b",
+      "range": {
+        "startLine": 43,
+        "startChar": 32,
+        "endLine": 43,
+        "endChar": 39
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "798e10be_ba0cbe0a",
@@ -77,6 +143,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "In redfish terms, \"sensor monitoring\" is accomplished a bunch of different ways.  This requirement really needs more info.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 19
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2f2ddf1_4f2724cb",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Modified the doc to specify that the requirement is to be able to retrieve a collection of Sensor from SMC via Redfish and host corresponding dbus objects for sensors.",
+      "parentUuid": "798e10be_ba0cbe0a",
       "range": {
         "startLine": 46,
         "startChar": 0,
@@ -110,6 +200,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9799ba73_4207e0bc",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Change to [Software Inventory](https://www.dmtf.org/sites/default/files/standards/documents/DSP0268_2024.4.html#softwareinventory-1102)",
+      "parentUuid": "ec32e057_b867ba40",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 43
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f24fd881_fbc55871",
@@ -123,6 +237,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "If this is part of your requirements, you need to add requirements around handling stateful resources in Redfish, which require special handling.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 22
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21249850_21eabb42",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "I removed this from the requirement and put it in the future work as this is a low priority feature for us.",
+      "parentUuid": "f24fd881_fbc55871",
       "range": {
         "startLine": 50,
         "startChar": 0,
@@ -150,6 +288,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b501dd5b_dc2d4e8e",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Added requirement of \"Being compatible with up to one year old from the latest DMTF released Redfish schema\" and \"OEM schemas\" are not going to be supported.",
+      "parentUuid": "817e8bec_d1c933f1",
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f93d6ee1_f2573da6",
@@ -163,6 +319,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "This is really part of the design, not part of the requirements.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 40
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36ec1128_16f570c1",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Removed from the requirement and mentioned in the design part.",
+      "parentUuid": "f93d6ee1_f2573da6",
       "range": {
         "startLine": 52,
         "startChar": 0,
@@ -196,6 +376,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2620f9a8_d82aa8be",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "remove hard-coded URI",
+      "parentUuid": "ec969e4c_bb2060a3",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 33
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e57cb785_f0563144",
@@ -209,6 +413,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "Considering to go Dbus -\u003e redfish requires the majority of the code in bmcweb, it seems reaaaaaaaallly unlikely we\u0027ll be able to specify this in a config file.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 29
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e6230c4_a3c5e8a6",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Some level of mapping can be done on the configuration side such as map sensor name X in Redfish to Y in dbus with Z namespace etc. Some other common mapping would probably need to reside in daemon code such as message registry mapping for event logs.",
+      "parentUuid": "e57cb785_f0563144",
       "range": {
         "startLine": 57,
         "startChar": 0,
@@ -242,6 +470,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d6f9756_2f7325ff",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Added more detail on how can we do Redfish-\u003eDbus transformation.",
+      "parentUuid": "e53844af_08463dee",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 37
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "871ff950_6f869dbb",
@@ -255,6 +507,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "Can we focus on one example feature or start coding up example flows?  (possibly sensor monitor?)  This design is bypassing lots of complexity in this regard that I think is important.  For example sensor values can be read 4 different ways in Redfish (TelemetryService, MetricReport, Sensor, ThermalSubsystem/PowerSubsystem).  Which are we implementing?  All of them (which would be complete and correct to the redfish spec) or only one flow?\n\nIf we\u0027re implementing only one flow... which one are we doing?",
+      "range": {
+        "startLine": 73,
+        "startChar": 37,
+        "endLine": 75,
+        "endChar": 23
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "075e261a_725e4156",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Added detail on the sensor collection workflow, and we are targeting `Sensors` under `Chassis`",
+      "parentUuid": "871ff950_6f869dbb",
       "range": {
         "startLine": 73,
         "startChar": 37,
@@ -288,6 +564,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a90b833_092c3127",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "I think the concrete mapping can be further discussed and determined at implementation time and iterate over time.",
+      "parentUuid": "984ead23_da3cba01",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 137
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f3b0a5f_6c049b1f",
@@ -301,6 +601,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "Your design implements polling, then you link the Event schema (which doesn\u0027t support polling, as it\u0027s through EventService), so it\u0027s not clear what you\u0027re actually implementing?",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 93
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2670157c_caec4175",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "My mistake, I\u0027ve changed it to collection of LogEntry",
+      "parentUuid": "2f3b0a5f_6c049b1f",
       "range": {
         "startLine": 87,
         "startChar": 0,
@@ -334,6 +658,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dda608c6_92ac75d6",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Removed mentioning \"read/write operation\".",
+      "parentUuid": "3238b72b_2deda01d",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 20
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44586ba0_1059ebbe",
@@ -347,6 +695,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "UpdateService flows through http multipart queries, but you don\u0027t call out how that would map from dbus -\u003e HTTP.....  FYI, the Targets field in Redfish is highly flexible in what it allows, so it\u0027s important that we call this out.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 0
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77d259ba_df506575",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "removed the code update flow as requirement and move it the future work",
+      "parentUuid": "44586ba0_1059ebbe",
       "range": {
         "startLine": 95,
         "startChar": 0,
@@ -380,6 +752,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc84794d_1c2047c9",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Updated the doc with detail on how libcurl work with sdbusplus async library. As for performance, we have developed a prototype of such Redfish client daemon downstream and already have it running on Meta\u0027s platform containing HMC. It sends ~150 http requests to the HMC every 2 seconds and works fine (both the BMC and the HMC). With proper implementation, i.e. using $expand, the number of requests should be way less.",
+      "parentUuid": "4d6f45d8_3d2c3379",
+      "range": {
+        "startLine": 101,
+        "startChar": 66,
+        "endLine": 102,
+        "endChar": 51
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aed5a702_da125fe6",
@@ -393,6 +789,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "If we have per-device files, they probably should be integrated with EM so we can \"detect\" the hardware, just like we do for existing aggregation.  With that said, I really think a per-device/version/manufacturer files breaks the intent of Redfish.  We should be enumerating the interfaces the device supports using the Redfish tree.",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 0
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d8527aa_f6861589",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "I don\u0027t quite understand your comment, but I\u0027ve updated the design doc to have more detail on how the configuration works. I\u0027ll mark this as resolved for now.",
+      "parentUuid": "aed5a702_da125fe6",
       "range": {
         "startLine": 104,
         "startChar": 0,
@@ -426,6 +846,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a234f1a1_204c60c9",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "We don\u0027t look for HMC but look for the platform that contains HMC, i.e. Catalina. This is useful if there are multiple platforms all contains HMC but we want different configuration for each of them.",
+      "parentUuid": "ffa4a6c4_1862645d",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 42
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d472e32_249b7a87",
@@ -439,6 +883,24 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "It\u0027s not clear to me:\n\nA. What does \"SensorA\" refer to.\nB. Why are we remapping names?  Can\u0027t we just use the HMC produced name?\nC. Why are we specifying types?  Redfish tells you the type of a sensor.\n\n\nCouldn\u0027t we just read all sensors, and expose them in dbus?  If we wanted to have a per-system exclude list we could, but starting with \"all sensors\" seems like a much more user friendly default, and in Redfish queries, makes your query a lot more efficient than polling sensors one at a time.",
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "088d7700_90a9545f",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "The idea is to have the capability of doing modification for resources coming out from the SMC so that the resources can be exposed indistinguishably as other BMC-local resources. For example, the HMC has sensor named \"HGX_ProcessorModule_0_AltitudePressure_0\", but the DC tooling in Meta expect certain naming rule for sensors coming out from the BMC and we would like such sensor to expose as \"HGX_HPM0_ALTITUDE_PRESSURE_PA\".\n\nI see that \"ReadingType\" can be used to map to dbus namespace, so remove it from the config example.",
+      "parentUuid": "3d472e32_249b7a87",
       "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -483,6 +945,48 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebff3b91_b9ee17f1",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "513cbe02_1f6619e1",
+      "range": {
+        "startLine": 189,
+        "startChar": 22,
+        "endLine": 189,
+        "endChar": 72
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "132abb7f_268bbb5a",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "I\u0027ve removed the Redfish codegen tool from the design and we can start with simple json parser with manually written c++ data class.",
+      "parentUuid": "818092e5_cef9b59c",
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cfc633c_0e474848",
@@ -496,6 +1000,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "Remove this paragraph.  It\u0027s largely fluff, that doesn\u0027t really specify the engineering.",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 52
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a476e10c_3bab9a06",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cfc633c_0e474848",
       "range": {
         "startLine": 191,
         "startChar": 0,
@@ -552,6 +1080,54 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac3c791a_87646b65",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab8335a8_c6dd22ee",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 27
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b97a0b27_630d3e74",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8900a055_8e146d89",
+      "range": {
+        "startLine": 199,
+        "startChar": 43,
+        "endLine": 199,
+        "endChar": 52
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "339783f3_770eb73c",
@@ -565,6 +1141,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "Nit (not required for this commit) but you might look at something like glaze.  It\u0027s a lot more modern, and implements a lot of the direct struct -\u003e json type things that would simplify a lot of this code and let you generate direct structs.",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 60
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63ce9736_4c10d7a9",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Good to know and just take a quick look at the API, seems to be an easy json library to use. Could be take it into consideration in the future, but for first iteration, I\u0027ll stick with `nlohmann/json` as it is already be used by other openbmc projects.",
+      "parentUuid": "339783f3_770eb73c",
       "range": {
         "startLine": 202,
         "startChar": 0,
@@ -592,6 +1192,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2dc5f4e_71e47e23",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "I\u0027ve removed the Redfish codegen tool from the design and we can start with simple json parser with manually written c++ data class.",
+      "parentUuid": "56e0948a_8c69aa06",
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41bae62a_dd54befc",
@@ -605,6 +1223,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "Nit, needs reconciled with the claim above that you\u0027re using Events in this design.  Probably you meant LogEntryCollection?",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 38
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68750477_ba8b025c",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Changed to proper Redfish terms, LogEntry for pulling and Event for pushing (subscription).",
+      "parentUuid": "41bae62a_dd54befc",
       "range": {
         "startLine": 211,
         "startChar": 0,
@@ -638,6 +1280,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbf6df92_45bcfbe0",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "As I mentioned in other comment, we don\u0027t see any performance issue or overwhelm the HMC after we have such daemon running on our platform. In addition, the user should not enable both redfish client daemon and the aggregator at the same time so that we don\u0027t do duplicate work to the HMC.",
+      "parentUuid": "cc445256_581fc36c",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 226,
+        "endChar": 58
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09548832_b8b2cc8f",
@@ -651,6 +1317,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "?  This really should be in your requirements if this is a consideration, although I\u0027m not really sure what it has to do with \"don\u0027t use aggregation\"",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 55
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65122587_b66e5c51",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "This is not requirement but the benefit of having SMC sensor value reading available on D-Bus and thus can be accessed by other BMC internal applications. I don\u0027t believe this can be achieved using aggregation.",
+      "parentUuid": "09548832_b8b2cc8f",
       "range": {
         "startLine": 229,
         "startChar": 0,
@@ -684,6 +1374,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ab28160_45e0cd63",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "The code for this daemon should not be used outside the BMC, but the D-Bus objects created from Redfish and hosted by this daemon may. And the way they are exposed is handled by other BMC applications.",
+      "parentUuid": "4e6125e7_cef33fee",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 234,
+        "endChar": 59
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f0d3e12_4f3fd0f5",
@@ -697,6 +1411,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "What does this even mean?  \"flavor\" \"seemlessly\" and \"duplicated\" all need defined.  The aggregator currently exposes Redfish to the client \"As the smc implements it\".  If we want to do some kinds of translation, we should call out requirements for that.",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 10
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc95dbf9_6dec02d8",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "I\u0027ve revised this paragraph to be more clear on what this means:\n```\n  - Make SMC resources indistinguishable from normal resources when exposing\n    them outside the BMC, eliminating the need for additional development in\n    external tooling to handle SMC resources. For example, sensor names from the\n    SMC can be transformed to conform to the naming conventions expected by\n    external tools.\n```",
+      "parentUuid": "1f0d3e12_4f3fd0f5",
       "range": {
         "startLine": 235,
         "startChar": 0,
@@ -730,6 +1468,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69133dbc_70c821bc",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "This is basically the requirement of\n```\nEach of the resources should have their corresponding dbus interfaces being\ncreated that are indistinguishable from normal resources, and some of the\ntransformation can be made configurable.\n```\n\n\u003e FWIW, in redfish ideally \"Name\" shouldn\u0027t really be something that\u0027s used for automation directly as this thing proposes. \"RelatedItem\" tends to be the way to determine function/which sensor you\u0027re looking at.\n\nI am not aware of such statement in Redfish spec, and our DC toolings do expect certain naming convention for resources coming out from the BMC, such as sensor naming.",
+      "parentUuid": "031b09be_21b72d94",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 249,
+        "endChar": 27
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20552ff4_1fdc49e7",
@@ -743,6 +1505,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "No mention of how this would work.",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 12
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d633cf5_87f39a48",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "Added more detailed example in line 268:\n```\n  - Change Management: Ensures that changes in the SMC do not require every\n    single downstream tool to change accordingly. For example:\n    - Suppose there is a sensor named X controlled by SMC and multiple\n      downstream tools depend on it to function correctly.\n    - At some point, the SMC vendor decides to rename sensor X to Y.\n    - If the sensor X is directly exposed as it is, then all of the downstream\n      tools need to change because the vendor just changed X to Y.\n    - However, if there is a middle layer that has some sort of configuration to\n      map sensor X to X*, changing that configuration to Y to X* should be good\n      enough to make sure all the downstream tools can still function properly\n      with the updated SMC.\n```",
+      "parentUuid": "20552ff4_1fdc49e7",
       "range": {
         "startLine": 250,
         "startChar": 0,
@@ -776,6 +1562,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d73b7f2_b375a697",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "This is one of the example/use case for \"Middle Layer Control for SMC Resource Exposure\", so I put them into the same session, but probably some of them can actually be achieved by slightly modify the aggregator code.",
+      "parentUuid": "a5f2e5f1_cce46b59",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 256,
+        "endChar": 34
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbed39d9_10745f53",
@@ -789,6 +1599,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "?  The threading and queuing model of libredfish is the same as curl?  I\u0027m not really understanding that comment.",
+      "range": {
+        "startLine": 325,
+        "startChar": 29,
+        "endLine": 327,
+        "endChar": 13
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e71e42c_fa9f4a65",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "libcurl also expose API where you can get the fd do event-based handling, which is how we can integrate with sdbusplus async library. I don\u0027t think the libredfish is doing the same way.",
+      "parentUuid": "dbed39d9_10745f53",
       "range": {
         "startLine": 325,
         "startChar": 29,
@@ -822,6 +1656,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d75f6ba_bd025a3c",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "I\u0027ve changed the design to start with manually written c++ data class and simple json parser so there shouldn\u0027t be much fancy Redfish feature is needed to be considered.",
+      "parentUuid": "85815d37_276b28b5",
+      "range": {
+        "startLine": 338,
+        "startChar": 52,
+        "endLine": 339,
+        "endChar": 14
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbeed46e_d176b6f1",
@@ -845,6 +1703,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebc12b16_8f5b7e52",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "I\u0027ve modified the session to emphasis that it is a preference of not using Boost.Beast as it may be harder to integrate with sdbusplus/async. I also added more detail on how libcurl can work with sdbusplus/async in the design session:\n```\nFor Redfish requests, libcurl will be used to integrate with the\n`sdbusplus/async` library so that the whole daemon can be run under one\n`sdbusplus::async::context` and no extra thread modeling needs to be considered\nwhile ensuring concurrency. The integration can be accomplished by leveraging\nthe [`curl_multi_waitfds`](https://curl.se/libcurl/c/curl_multi_waitfds.html)\nAPI provided by the curl multi interface, and using `sdbusplus::async::fdio` to\nwait for the returned file descriptor. Additionally, the curl multi interface\nprovides connection caching so that each task can reuse connections across\ncycles as they are targeting the same url.\n```\nIf you are interested in the actual code, you can refer to our downstream prototype: https://github.com/facebook/openbmc/blob/helium/common/lfopenbmc/recipes-downstream/redfish-client/files/async_http_client.cpp#L112\n\nAs I mentioned in other comment, we don\u0027t see any performance issue even if we do ~150 http requests to the HMC every 2 seconds.",
+      "parentUuid": "cbeed46e_d176b6f1",
+      "range": {
+        "startLine": 344,
+        "startChar": 71,
+        "endLine": 348,
+        "endChar": 16
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1976baaa_21749a4e",
@@ -858,6 +1740,30 @@
       "writtenOn": "2025-01-29T22:43:37Z",
       "side": 1,
       "message": "Seems like we\u0027d have to define the external facing APIs to be able to use openbmc-test-automation?\n\nI\u0027m not really a stickler for \"how are you going to test this\" being long, but I don\u0027t really see how you can test an inward facing client using a tool hooked to external interfaces.",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 387,
+        "endChar": 18
+      },
+      "revId": "8899e2b9b4a0195421011f500a05070ca9e2fb25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f66f840d_6a71812b",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "removed mentioning of \"openbmc-test-automation\"",
+      "parentUuid": "1976baaa_21749a4e",
       "range": {
         "startLine": 384,
         "startChar": 0,

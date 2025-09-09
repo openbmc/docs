@@ -16,6 +16,24 @@
       "message": "There is no further details on how log entries are collected from the SatMC in this document. \nIs the proposal to poll for log entries from the SatMC periodically ? If yes have we considered the potential performance impact on both BMC and the SatMC. At lease Nvidia platforms have very stringent perf SLAs and what we have seen from the past experience is that any polling client that can be avoided is beneficial. \n\nMy main purpose is to support event aggregation from SatMC which is missing feature part of bmcweb redfish aggregation support. This document looks like proposing alternate to RFA feature of bmcweb but does not talk about eventing in details. \n\nI prosed an alternate design here for event aggregation (https://gerrit.openbmc.org/c/openbmc/docs/+/78639) and my proposal is to keep this code in bmcweb part of RFA feature. \nIf you feel my proposal overlaps with the current design document then let me know if you are ok for me to contribute to this document. \nMy major requirement is support event aggregation in Host BMC without performance impact. \n\nAlternatively we could have bmcweb support event aggregation via SSE as per my proposal and Redfish Client Daemon could poll for the logs. We can only enable one of these options based on platform and performance requirements. \n\nPlease share your feedback on how we can converge on this.",
       "revId": "6c089f2255f4ae5b8fa0ff70def4fd26f8b1e4b5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c50c9b4_5589bedb",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2025-09-09T22:26:02Z",
+      "side": 1,
+      "message": "This design proposes regular polling for log entries as the initial approach, with SatMC push-based event subscription planned as future work. Regarding performance impact, we have already built and run a similar daemon that polls both sensors and event logs from the GB200/300 HMC every 2 seconds, and it has been working well. Therefore, performance should not be a significant concern for either SatMC or the BMC in this context. If a performance bottleneck arises in other scenarios, we can certainly add push support and make it configurable, allowing different use cases to select the most appropriate approach.\n\nI do not see any conflict between this proposal and the event aggregation proposal you put forward. Both can coexist, and users can choose to enable one or the other based on their requirements. If a user needs to minimize performance impact and does not require restructuring of the event log, they should opt for event aggregation. Conversely, if restructuring the event log is necessary and performance is less of a concern, the Redfish client daemon would be the preferred solution.\n\nReference in this design doc:\n\n\u003e Log collection task: This task is configured by `LogServiceConfig` and will periodically send Redfish requests to the target SMC to retrieve all of the log entries that are of interest.\n\n\u003e Enable Event subscription to the SMC",
+      "parentUuid": "7812b09a_2401a615",
+      "revId": "6c089f2255f4ae5b8fa0ff70def4fd26f8b1e4b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
