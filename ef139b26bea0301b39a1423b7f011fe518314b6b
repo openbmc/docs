@@ -20,6 +20,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "440c0175_f5f48bf7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "Overall, I\u0027m not in support of this.\n\nI\u0027d much rather see us go to a pattern similar to libgpio, where the C++ bindings and C bindings are both available in the same repository and the package publishes two libraries, two sets of examples, and has a largely 1:1 abstraction where everything is implemented in portable C, and C++ RAII classes are made available through gpiocxx to implement common safety operations.\n\nOverall, I defer most of my own judgement to Andrew, who has more knowledge of PLDM and has maintained the library.\n\n\nAt a much higher level, we need to understand why the abstractions of one protocol (PLDM) leaked into the greater system.  To some extent that\u0027s because the \"PLDM package\" type really isn\u0027t about PLDM as a protocol;  It\u0027s a file format that just happens to be governed by the same spec, and gets used in other contexts (redfish, ssh, etc).  Given that, a design where pldmd itself wasn\u0027t in charge of the pldm file format would remove the need for shared code entirely keeping the \"unpack a pldm package\" logic in one repository.  Accomplishing that would be difficult and error prone, so people duplicated the code.",
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e189a267_4b4b087a",
+        "filename": "designs/pldm/libpldmplus.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "Can you give a pointer to where these are?",
+      "range": {
+        "startLine": 12,
+        "startChar": 35,
+        "endLine": 14,
+        "endChar": 4
+      },
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "237daf4d_cd7e3cb4",
+        "filename": "designs/pldm/libpldmplus.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be used as justification for a separate library.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 1
+      },
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a9b295d_8e3012ff",
         "filename": "designs/pldm/libpldmplus.md",
         "patchSetId": 1
@@ -43,6 +106,70 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e2aa195_b8069dd1",
+        "filename": "designs/pldm/libpldmplus.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "I\u0027m assuming he actually means ABI given he checked in an ABI file into the repo.\n\nAlexander, lets just remove this section, as it distracts from the goal you\u0027re trying to accomplish.  If we want to argue that libX libraries need to maintain ABI compatibility, that\u0027s probably something to be argued and engineered separately from \"we need a new API\".",
+      "parentUuid": "0a9b295d_8e3012ff",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 46
+      },
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd865a99_9b319aad",
+        "filename": "designs/pldm/libpldmplus.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "With respect, this isn\u0027t a design.  Which interfaces are exposed from this library?  How does this library interact with libpldm?  What code should be checked in here, and what code should be checked into libpldm?",
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45f0fd5c_4c22c079",
+        "filename": "designs/pldm/libpldmplus.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "nit, remove \"continue trying to\".  Also add more details about how the abstraction will work.",
+      "range": {
+        "startLine": 82,
+        "startChar": 7,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b766932_54fd6217",
         "filename": "designs/pldm/libpldmplus.md",
         "patchSetId": 1
@@ -59,6 +186,127 @@
         "startChar": 0,
         "endLine": 84,
         "endChar": 61
+      },
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f23ae0bd_0d7e7df6",
+        "filename": "designs/pldm/libpldmplus.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "+1.  \"Nothing has merged\" isn\u0027t a technical argument.  We need to make the technical argument that this code is quality enough for shared use.",
+      "parentUuid": "3b766932_54fd6217",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 61
+      },
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb086963_2af80c9a",
+        "filename": "designs/pldm/libpldmplus.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "Have the authors/maintainers of the duplicated code reviewed the new code you\u0027re proposing?  I don\u0027t see them on the review?",
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67c2a74f_2bba00a6",
+        "filename": "designs/pldm/libpldmplus.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "With respect, the status quo of implementing a feature in portable C is what the project has decided in the past.   I\u0027m happy to field and welcome challenging assumptions, but if your goal is timeframe, following the status quo, helping others to do the same is the likely the fastest approach.\n\nIf your goal is to build something new, and challenge assumptions (which this doc seems to do a great job of) then you need to expect that things will move slower as consensus is reached.",
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "380d7e8a_c9cf4538",
+        "filename": "designs/pldm/libpldmplus.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "Remove.  Lets keep this doc on technical aspects, not personal.",
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d023cc7f_a753a916",
+        "filename": "designs/pldm/libpldmplus.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "Please make a more technical argument here.",
+      "range": {
+        "startLine": 97,
+        "startChar": 22,
+        "endLine": 97,
+        "endChar": 71
+      },
+      "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0520229_df6c2974",
+        "filename": "designs/pldm/libpldmplus.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:59:25Z",
+      "side": 1,
+      "message": "Lets just remove this.  \"security issues\" are about more than just pointers, and I don\u0027t think this section adequately handles that.",
+      "range": {
+        "startLine": 109,
+        "startChar": 61,
+        "endLine": 110,
+        "endChar": 18
       },
       "revId": "ef139b26bea0301b39a1423b7f011fe518314b6b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
