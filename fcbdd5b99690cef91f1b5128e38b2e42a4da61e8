@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dad60d8_9cded475",
+        "filename": "designs/provisioning.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2025-09-11T14:06:11Z",
+      "side": 1,
+      "message": "Please remove trailing spaces (applies to multiple lines).",
+      "range": {
+        "startLine": 3,
+        "startChar": 49,
+        "endLine": 3,
+        "endChar": 51
+      },
+      "revId": "fcbdd5b99690cef91f1b5128e38b2e42a4da61e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "139e2de4_bcc4a64f",
+        "filename": "designs/provisioning.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2025-09-11T14:06:11Z",
+      "side": 1,
+      "message": "What is a \"distributed BMC network\"?  Is there a reference/link, do we have a shared concept of this, or can you explain in this design?\nIs a \"distributed BMC network\" a collection of \"peer\" BMCs which appears to an Operator as a single BMC for operations such as power control, logs and sensor data, firmware update, user management, etc?",
+      "range": {
+        "startLine": 8,
+        "startChar": 5,
+        "endLine": 8,
+        "endChar": 28
+      },
+      "revId": "fcbdd5b99690cef91f1b5128e38b2e42a4da61e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f447e7ea_924a2295",
+        "filename": "designs/provisioning.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2025-09-11T14:06:11Z",
+      "side": 1,
+      "message": "Do I understand the design intention is for an existing \"distributed BMC network\" (which consists of at least one \"peer\" BMC) to:\n1. Validate a new BMC\u0027s integrity, and\n2. Bring the new BMC into the \"distributed BMC network\", as a new \"peer\" BMC, by provisioning it with certificates.\n\nThe design mentions new D-Bus interface.  Would this be exposed via corresponding new Redfish REST APIs?",
+      "revId": "fcbdd5b99690cef91f1b5128e38b2e42a4da61e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
