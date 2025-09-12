@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8897071d_988d4ad3",
+        "filename": "designs/provisioning.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2025-09-12T15:47:03Z",
+      "side": 1,
+      "message": "We cannot be specific about the network topology here. It could range from a collection of peers, to a master with multiple satellites, or even just dual BMCs for redundancy. This design does not assume any particular topology; it only assumes that any BMC already part of the network can provision newly added BMCs.",
+      "parentUuid": "139e2de4_bcc4a64f",
+      "range": {
+        "startLine": 8,
+        "startChar": 5,
+        "endLine": 8,
+        "endChar": 28
+      },
+      "revId": "fcbdd5b99690cef91f1b5128e38b2e42a4da61e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f447e7ea_924a2295",
         "filename": "designs/provisioning.md",
         "patchSetId": 1
@@ -60,6 +84,24 @@
       "writtenOn": "2025-09-11T14:06:11Z",
       "side": 1,
       "message": "Do I understand the design intention is for an existing \"distributed BMC network\" (which consists of at least one \"peer\" BMC) to:\n1. Validate a new BMC\u0027s integrity, and\n2. Bring the new BMC into the \"distributed BMC network\", as a new \"peer\" BMC, by provisioning it with certificates.\n\nThe design mentions new D-Bus interface.  Would this be exposed via corresponding new Redfish REST APIs?",
+      "revId": "fcbdd5b99690cef91f1b5128e38b2e42a4da61e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97c70d04_c5fa5838",
+        "filename": "designs/provisioning.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2025-09-12T15:47:03Z",
+      "side": 1,
+      "message": "Your understanding of the BMC network definition in this document is correct. \n\nThe design mentions new D-Bus interface. Would this be exposed via corresponding new Redfish REST APIs?\n\nThis design does not specify the consumer of the service. It could be an internal service, such as the BMC discovery service, or an external Redfish client.",
+      "parentUuid": "f447e7ea_924a2295",
       "revId": "fcbdd5b99690cef91f1b5128e38b2e42a4da61e8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
