@@ -46,6 +46,30 @@
       },
       "revId": "765746041de65b8e12b055a74bba2313d382aee4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de085bbf_fd69632c",
+        "filename": "designs/code-update.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-16T22:10:25Z",
+      "side": 1,
+      "message": "I think Patrick\u0027s question has brought up a good point so we shall discuss on this.\n@deepak.kodihalli.83@gmail.com I understand you are adding only a subpart of design with reduced scope to make PLDM update working for Multipart images, but i think it will be good if we have long term direction alignment on this. I am not asking you to add any specific details in design but i think we need to be aligned on where we see this going, so we don\u0027t loose the final intent. I expect any further iterations of multipart flow to start working towards the design which was put up in last iteration by Tom with common daemon for PLDM and Non-PLDM devices. My request intent for a minimal dummy Multipart interface was for reason so we don\u0027t have to change much on BMCWeb side but in further iteration this dummy interface can be moved from PLDMd to this common Multi-part daemon which can directly make a startUpdate call to PLDMd on a fixed object path (for Multi-part use cases) where all update flows/paths can be enabled at runtime without any meson option checks (Since they are all supported by spec). Any concerns on this direction alignment?",
+      "parentUuid": "d3dc08b3_033228c7",
+      "range": {
+        "startLine": 387,
+        "startChar": 54,
+        "endLine": 391,
+        "endChar": 7
+      },
+      "revId": "765746041de65b8e12b055a74bba2313d382aee4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
