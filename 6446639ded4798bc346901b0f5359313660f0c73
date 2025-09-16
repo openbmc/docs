@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "246de2a8_213926ac",
+        "filename": "designs/pcie-port-properties.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2025-09-16T13:30:58Z",
+      "side": 1,
+      "message": "Added information on association.",
+      "parentUuid": "2f7725e2_5b260826",
+      "range": {
+        "startLine": 51,
+        "startChar": 56,
+        "endLine": 51,
+        "endChar": 67
+      },
+      "revId": "6446639ded4798bc346901b0f5359313660f0c73",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b0caf00_7a358c48",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-09-10T21:57:45Z",
       "side": 1,
       "message": "Why do you need a new interface and not https://github.com/openbmc/phosphor-dbus-interfaces/blob/dffc8a8c49797822d60c52550943257aea3ee2a4/yaml/xyz/openbmc_project/Inventory/Connector/Port.interface.yaml ?",
+      "revId": "6446639ded4798bc346901b0f5359313660f0c73",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73b47ac9_f7ef116b",
+        "filename": "designs/pcie-port-properties.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2025-09-16T13:30:58Z",
+      "side": 1,
+      "message": "We also need DBus properties for port type, current speed and\nactive width. That interface does not have these properties. Should we add these properties to that interface?",
+      "parentUuid": "9b0caf00_7a358c48",
       "revId": "6446639ded4798bc346901b0f5359313660f0c73",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -58,6 +100,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38757f94_c2ed1f7d",
+        "filename": "designs/pcie-port-properties.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2025-09-16T13:30:58Z",
+      "side": 1,
+      "message": "No. Since PCIe Device and PCIe Port are already part of DBus Object path, an\nexplicit association is not required. Made it explicit in design doc.",
+      "parentUuid": "c4d6a3ea_6a84a3c9",
+      "revId": "6446639ded4798bc346901b0f5359313660f0c73",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0afefae_1668f300",
@@ -71,6 +131,30 @@
       "writtenOn": "2025-09-10T21:57:45Z",
       "side": 1,
       "message": "any application could put these interfaces / associations out right?",
+      "range": {
+        "startLine": 89,
+        "startChar": 31,
+        "endLine": 89,
+        "endChar": 47
+      },
+      "revId": "6446639ded4798bc346901b0f5359313660f0c73",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d55398a_b4cfbcd0",
+        "filename": "designs/pcie-port-properties.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002395
+      },
+      "writtenOn": "2025-09-16T13:30:58Z",
+      "side": 1,
+      "message": "Yes, any app can put these interfaces and bmcweb should pick it up correctly.",
+      "parentUuid": "a0afefae_1668f300",
       "range": {
         "startLine": 89,
         "startChar": 31,
