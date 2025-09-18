@@ -16,6 +16,161 @@
       "message": "The interface to represent a File Descriptor object on D-Bus is moved from Common/ to PLDM/ as it\u0027s currently serving solely PLDM File Transfer purpose. The PDI patch was updated accordingly https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/81694",
       "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aa3afc7_8bf98618",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-09-18T15:39:05Z",
+      "side": 1,
+      "message": "How do we deal with timeouts where it takes too long to get the data via PLDM vs the dbus timeout?",
+      "range": {
+        "startLine": 610,
+        "startChar": 0,
+        "endLine": 634,
+        "endChar": 59
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "310f6cd7_8b8eb301",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-09-18T15:39:05Z",
+      "side": 1,
+      "message": "Why isn\u0027t PLDM included here if it is a PLDM file?",
+      "range": {
+        "startLine": 714,
+        "startChar": 38,
+        "endLine": 714,
+        "endChar": 42
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43561607_4a8fa807",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-09-18T15:39:05Z",
+      "side": 1,
+      "message": "What is a ParentPath?  This is the first and only reference to it in your changes.\n\nDo we really want clients to have to traverse this deep of a dbus tree?  Should we just use the full path as a dbus-escape for everything after $TerminusName?",
+      "range": {
+        "startLine": 719,
+        "startChar": 41,
+        "endLine": 719,
+        "endChar": 55
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "187c379a_ddb82d5c",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-09-18T15:39:05Z",
+      "side": 1,
+      "message": "spelling",
+      "range": {
+        "startLine": 745,
+        "startChar": 40,
+        "endLine": 745,
+        "endChar": 51
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5817aa4_51ee3b8d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-09-18T15:39:05Z",
+      "side": 1,
+      "message": "This makes it sound like the PLDM daemon will only do reads from the host as the client requests it.  This adds quite a bit of latency.  Is there a reason we aren\u0027t doing the full read into the PLDM daemon automatically?  Please talk about this in the alternatives.",
+      "range": {
+        "startLine": 745,
+        "startChar": 69,
+        "endLine": 747,
+        "endChar": 30
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a7e007_42fca00d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-09-18T15:39:05Z",
+      "side": 1,
+      "message": "github doesn\u0027t support plantuml.  Please convert this to mermaid.",
+      "range": {
+        "startLine": 802,
+        "startChar": 0,
+        "endLine": 803,
+        "endChar": 9
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd5a930_b352dd7e",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-09-18T15:39:05Z",
+      "side": 1,
+      "message": "My gut feel is that this whole design is fairly complicated, but I also understand it is a complicated problem.  I do think there is an alternative that does the file transfer in the opposite way, which should be explored and at least listed here.\n\n1. Create an interface which is something like \"FileRepository\" that is effectively a dictionary of file name + type information.  (I guess these could be separate interface paths instead but that doesn\u0027t seem necessary)\n\n2. Add a method for read where the file descriptor is passed in.  Successful reply on this means \"ok, I\u0027ll start the transfer\".\n\n3. PLDMd transfers the file into the fd and closes it when done.",
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
