@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9e7d340_9cd82a6e",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-19T06:41:00Z",
+      "side": 1,
+      "message": "Open() finishes right after the socketpair is set up, so it does not wait for the PLDM file reading to complete.",
+      "parentUuid": "1aa3afc7_8bf98618",
+      "range": {
+        "startLine": 610,
+        "startChar": 0,
+        "endLine": 634,
+        "endChar": 59
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "310f6cd7_8b8eb301",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-09-18T15:39:05Z",
       "side": 1,
       "message": "Why isn\u0027t PLDM included here if it is a PLDM file?",
+      "range": {
+        "startLine": 714,
+        "startChar": 38,
+        "endLine": 714,
+        "endChar": 42
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bc8625f_23b06eb9",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-19T06:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "310f6cd7_8b8eb301",
       "range": {
         "startLine": 714,
         "startChar": 38,
@@ -87,6 +135,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57106481_69832cf5",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-19T06:41:00Z",
+      "side": 1,
+      "message": "Each directory name in a ParentPath (for example: dir1/dir2/file) is an entity identified by a File Descriptor PDR and has the EntityType set to Device File Directory. A file can be in an overall file hierarchy of a terminus, so dbus-escaping the whole file path omits the visualization of the hierarchy. And a directory object will not implement tis PLDM.File interface.\n\nAdded more description.\n\nPlease re-open if you think otherwise.",
+      "parentUuid": "43561607_4a8fa807",
+      "range": {
+        "startLine": 719,
+        "startChar": 41,
+        "endLine": 719,
+        "endChar": 55
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "187c379a_ddb82d5c",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-09-18T15:39:05Z",
       "side": 1,
       "message": "spelling",
+      "range": {
+        "startLine": 745,
+        "startChar": 40,
+        "endLine": 745,
+        "endChar": 51
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c4b5fdc_5cc2072d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-19T06:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "187c379a_ddb82d5c",
       "range": {
         "startLine": 745,
         "startChar": 40,
@@ -159,6 +255,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0640f5a_15478d6b",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-19T06:41:00Z",
+      "side": 1,
+      "message": "Maybe I did not put the words correctly. But just like Andrew rephrased:\n\nThe async task calls read to the file and write the retrieved part to the socket (data is read in small parts), these 2 actions are repeated until the desired length is reached, as long as the socket is ready for each write. Meanwhile, the client listens on the client socket for the data. So we can say data are automatically read from host by pldmd after Open() is called by the client. The only factor that can affect the possibility of the next part reading to Host is the readiness of the socket.\n\nRephrased it to a better sentence. Does it address the concern?",
+      "parentUuid": "9f5ea40a_eb51cb3f",
+      "range": {
+        "startLine": 745,
+        "startChar": 69,
+        "endLine": 747,
+        "endChar": 30
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5a7e007_42fca00d",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 27
@@ -170,6 +290,30 @@
       "writtenOn": "2025-09-18T15:39:05Z",
       "side": 1,
       "message": "github doesn\u0027t support plantuml.  Please convert this to mermaid.",
+      "range": {
+        "startLine": 802,
+        "startChar": 0,
+        "endLine": 803,
+        "endChar": 9
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4d03235_e94ef9ab",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-19T06:41:00Z",
+      "side": 1,
+      "message": "Replaced with an equivalent mermaid diagram.",
+      "parentUuid": "a5a7e007_42fca00d",
       "range": {
         "startLine": 802,
         "startChar": 0,
@@ -211,6 +355,24 @@
       "side": 1,
       "message": "Interesting idea. However the mechanics of the implementation in the PLDM daemon will largely be the same (can only write to the descriptor when the descriptor becomes writable) because it won\u0027t have control over what type of descriptor it is handed. It\u0027s just that you could hand it a file descriptor which is never not writable (but you could equally hand it a pipe or socket).",
       "parentUuid": "bfd5a930_b352dd7e",
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6daab392_f64f2d49",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-19T06:41:00Z",
+      "side": 1,
+      "message": "I don\u0027t quite get the point of 1. Does it mean that there won\u0027t be multiple file objects but only one with information about all the existing files?\n\nWith 2. and 3. I agree with Andrew about the similar underlying implementation to the current design, different only in who provides the fd. Do you have another  intention with that?",
+      "parentUuid": "9308bb67_3c2ffc0f",
       "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

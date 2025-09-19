@@ -117,6 +117,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ed77690_c3a1096d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-19T06:41:00Z",
+      "side": 1,
+      "message": "Resolved as comments are addressed. Please reopen if you think otherwise.",
+      "parentUuid": "7c2ff97c_96ad8730",
+      "range": {
+        "startLine": 598,
+        "startChar": 19,
+        "endLine": 598,
+        "endChar": 31
+      },
+      "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03f98bf2_fdb72f1b",
@@ -184,6 +208,24 @@
       "side": 1,
       "message": "No, this design covers both file types.\n\nFor SerialFIFO types, the spec says:\n\n\u003e This method (DfHeartbeat) typically is used to inform the File Client when a SerialTxFIFO file is approaching capacity and needs a faster polling DfRead to avoid dropping data.\n\nHowever, this design has not yet specified the poll rate for DfRead. This design let the file be read on user demands, not upon events from File Size/State Monitoring sensor, and file data is not read regularly + stored in BMC, so it\u0027s likely not useful to handle chasing the file content updating rate.\n\nMoreover, as point number 3. specifies, for SerialFIFO type, the design let pldmd call DfRead repeatedly until all the needed data is received, so I don\u0027t think DfHeartbeat is needed here.",
       "parentUuid": "81282a34_e5235775",
+      "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28f9f7de_7f7332d3",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-19T06:41:00Z",
+      "side": 1,
+      "message": "Resolved as comments have been addressed. Please re-open if you think otherwise.",
+      "parentUuid": "7865d968_a6fa7e82",
       "revId": "626d2876e830ab26c0bea6d237127e0f9505a919",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
