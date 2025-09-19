@@ -135,6 +135,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9f5ea40a_eb51cb3f",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-09-19T02:39:32Z",
+      "side": 1,
+      "message": "I expect the implementation should have a subtle difference: The PLDM daemon will do reads from the host _while the client socket is writable_. If the client socket is not writable, then there may not be much point reading more data. If the system enters this state then yes, the PLDM daemon will only read data in response to the client socket becoming writable due to a client read. But otherwise, the PLDM daemon reads from the host are not directly instigated by a client read.\n\nEssentially, the PLDM daemon is acting as a proxy. The client chooses whether it wants that data to hit persistent storage, be accumulated in memory, or streamed out e.g. the web interface. I think that\u0027s reasonable?",
+      "parentUuid": "b5817aa4_51ee3b8d",
+      "range": {
+        "startLine": 745,
+        "startChar": 69,
+        "endLine": 747,
+        "endChar": 30
+      },
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5a7e007_42fca00d",
         "filename": "designs/pldm-stack.md",
         "patchSetId": 27
@@ -169,6 +193,24 @@
       "writtenOn": "2025-09-18T15:39:05Z",
       "side": 1,
       "message": "My gut feel is that this whole design is fairly complicated, but I also understand it is a complicated problem.  I do think there is an alternative that does the file transfer in the opposite way, which should be explored and at least listed here.\n\n1. Create an interface which is something like \"FileRepository\" that is effectively a dictionary of file name + type information.  (I guess these could be separate interface paths instead but that doesn\u0027t seem necessary)\n\n2. Add a method for read where the file descriptor is passed in.  Successful reply on this means \"ok, I\u0027ll start the transfer\".\n\n3. PLDMd transfers the file into the fd and closes it when done.",
+      "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9308bb67_3c2ffc0f",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-09-19T02:39:32Z",
+      "side": 1,
+      "message": "Interesting idea. However the mechanics of the implementation in the PLDM daemon will largely be the same (can only write to the descriptor when the descriptor becomes writable) because it won\u0027t have control over what type of descriptor it is handed. It\u0027s just that you could hand it a file descriptor which is never not writable (but you could equally hand it a pipe or socket).",
+      "parentUuid": "bfd5a930_b352dd7e",
       "revId": "b6f53346e3ca0d4463438810417eacddb06d92e1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
