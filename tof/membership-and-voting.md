@@ -54,13 +54,13 @@ end (sorted by term conclusion followed by alphabetically by preferred name):
 
 | Name             | Term Conclusion |
 | :--------------- | :-------------: |
-| Andrew Geissler  |   2025-10-01    |
-| Ed Tanous        |   2025-10-01    |
-| Manojkiran Eda   |   2025-10-01    |
 | Andrew Jeffery   |   2026-04-01    |
 | Patrick Williams |   2026-04-01    |
 | Jagpal Gill      |   2026-04-01    |
 | Jayanth Othayoth |   2026-04-01    |
+| Andrew Geissler  |   2026-10-01    |
+| Ed Tanous        |   2026-10-01    |
+| Manojkiran Eda   |   2026-10-01    |
 
 ## OpenBMC Development Community
 
