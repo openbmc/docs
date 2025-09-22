@@ -142,6 +142,30 @@
       },
       "revId": "8bc7b4ed153e65f17b5772208a9b5cc894497756",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93d27a09_9fadefe1",
+        "filename": "designs/queued-boot-progress.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002307
+      },
+      "writtenOn": "2025-09-22T09:00:51Z",
+      "side": 1,
+      "message": "The concern is not with the IPMI protocol itself, but rather with the current OpenBMC implementation of SMBus/SSIF POST code delivery, which operates as a real-time push mechanism.\nThis approach relies on both the BMC kernel drivers and the associated userspace daemon being active to receive the messages.\nIf these components are not yet initialized when the host begins transmitting codes, some messages may unfortunately be lost.\nThe proposed hardware-queue design addresses this by allowing the host to write codes into a persistent buffer, which the BMC can safely poll once it becomes available—ensuring reliable capture independent of the BMC’s readiness state",
+      "parentUuid": "996a175a_d322abab",
+      "range": {
+        "startLine": 13,
+        "startChar": 27,
+        "endLine": 14,
+        "endChar": 65
+      },
+      "revId": "8bc7b4ed153e65f17b5772208a9b5cc894497756",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
