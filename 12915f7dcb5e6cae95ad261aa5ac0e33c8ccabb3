@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e5d6c26_b245d5db",
+        "filename": "designs/bios-settings-flags.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-09-22T18:07:46Z",
+      "side": 1,
+      "message": "BootProgressLastUpdate - is meant to understand how long we are at a particular state of the boot.\n\nSo we plan to just check for one property change event to cancel the timer ? and leave the rest of the events ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 24,
+        "endLine": 74,
+        "endChar": 13
+      },
+      "revId": "12915f7dcb5e6cae95ad261aa5ac0e33c8ccabb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6131dcef_fc04a111",
+        "filename": "designs/bios-settings-flags.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-09-22T18:07:46Z",
+      "side": 1,
+      "message": "If the enable flag is `false` - how does bios consume this value ? is it via redfish ? or via IPMI ?  can you add that detail as well ?",
+      "range": {
+        "startLine": 180,
+        "startChar": 9,
+        "endLine": 181,
+        "endChar": 42
+      },
+      "revId": "12915f7dcb5e6cae95ad261aa5ac0e33c8ccabb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35f7bd8a_0ce658fc",
+        "filename": "designs/bios-settings-flags.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-09-22T18:07:46Z",
+      "side": 1,
+      "message": "why ? if it is implemented in IPMI ? can\u0027t it be shown in redfish ?",
+      "range": {
+        "startLine": 247,
+        "startChar": 9,
+        "endLine": 248,
+        "endChar": 60
+      },
+      "revId": "12915f7dcb5e6cae95ad261aa5ac0e33c8ccabb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c476d9cd_4fd5d2ff",
+        "filename": "designs/bios-settings-flags.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-09-22T18:07:46Z",
+      "side": 1,
+      "message": "As per the design document quoted above :\n\n1. Ensure the BootProgress and BootProgressLastUpdate properties are updated appropriately in both IPMI and PLDM based stacks\n2. It is the responsibility of the IPMI or PLDM implementation to update the BootProgress property on D-Bus\n3. **It is the responsibility the phosphor-state-manager to update the BootProgressLastUpdate property on D-Bus when it sees BootProgress updated**\n\nThis completely violates #3. Doesn\u0027t nvidia use phsopshor-state-manager repo ?",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 49
+      },
+      "revId": "12915f7dcb5e6cae95ad261aa5ac0e33c8ccabb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
