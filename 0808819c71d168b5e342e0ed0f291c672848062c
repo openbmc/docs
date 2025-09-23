@@ -84,6 +84,57 @@
       "message": "can you also add a pointer on the limitation of external clients not being able to connect with \u003cbmcip\u003e:\u003cport\u003e directly \u0026 rather why we had to create an SSH tunnel ?",
       "revId": "0808819c71d168b5e342e0ed0f291c672848062c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2c59258_eb5dd155",
+        "filename": "remote-kvm.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2025-09-23T06:10:12Z",
+      "side": 1,
+      "message": "Typically, in production firmware, ssh port forwarding might be disabled due to security concerns. A small note can be added to highlight that, SSH server needs to be configured with local port forwarding option enabled for this access method to work.\n\nIn dropbear case it should be running without \u0027-j\u0027 option.\nhttps://linux.die.net/man/8/dropbear",
+      "revId": "0808819c71d168b5e342e0ed0f291c672848062c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e0ad828_84674c2c",
+        "filename": "remote-kvm.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2025-09-23T06:10:12Z",
+      "side": 1,
+      "message": "Can be updated like below for better readability\n\nssh -L \u003clocalport\u003e:localhost:\u003cbmc-kvm-port\u003e \u003cbmc-user\u003e@\u003cbmc-hostname\u003e\n\nwhere,\nlocalport    - Port number used for VNC client to connect (e.g., 1234)\nbmc-kvm-port - Port number used by for KVM service in BMC firmware (default 5900)\nbmc-user     - BMC firmware SSH username\nbmc-hostname - BMC hostname / IP address for SSH access\n\ne.g., `ssh -L 1234:localhost:5900 root@192.168.1.1`",
+      "revId": "0808819c71d168b5e342e0ed0f291c672848062c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48195e92_3b5c3686",
+        "filename": "remote-kvm.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2025-09-23T06:10:12Z",
+      "side": 1,
+      "message": "Open your preferred VNC client and connect to `localhost:\u003clcoalport\u003e`\n\ne.g., `localhost:1234`",
+      "revId": "0808819c71d168b5e342e0ed0f291c672848062c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
