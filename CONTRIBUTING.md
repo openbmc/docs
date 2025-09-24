@@ -483,3 +483,31 @@ on its own.
         maintained indefinitely and may be redistributed consistent with
         this project or the open source license(s) involved.
 ```
+
+## Copyright Indicators
+
+Contributions to OpenBMC are not required to include an explicit copyright
+statement, but some companies may have a policy that their public contributions
+include one. Contributions to the project may only leverage [SPDX file
+tags][spdx] and shall not include other copyright or license blocks. In
+following the [recommendation][lf-copyright] from the Linux Foundation with
+respect to copyright notices, contributions shall use the phrase "Copyright
+OpenBMC Authors" rather than enumerating individual project members. Taken
+together, the SPDX identifiers should be:
+
+```cpp
+// SPDX-License-Identifier: Apache-2.0
+// SPDX-FileCopyrightText: Copyright OpenBMC Authors
+```
+
+In the event code is reused from an existing Open Source project, and the
+contributor is not the original author, the existing copyright and/or license
+blocks should be preserved. Do not remove copyright notices you do not have
+authority to remove! This exception does not apply to previously non-public code
+you are now contributing to OpenBMC. All contributions directly to OpenBMC
+should use the SPDX records as stated above.
+
+[spdx]:
+  https://github.com/spdx/spdx-spec/blob/support/2.3.1/chapters/file-tags.md#annex-h-specifying-spdx-information-in-source-files-informative
+[lf-copyright]:
+  https://www.linuxfoundation.org/blog/blog/copyright-notices-in-open-source-software-projects
