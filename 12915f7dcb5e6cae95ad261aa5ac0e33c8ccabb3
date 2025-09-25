@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79c23a8c_8c4739d7",
+        "filename": "designs/bios-settings-flags.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1002029
+      },
+      "writtenOn": "2025-09-25T10:14:03Z",
+      "side": 1,
+      "message": "@manojkiran.eda@gmail.com -yes, the BootProgressLastUpdate flag is only for detection of host boot.\nAnd BootProgressLastUpdate represents the time of boot, not the progress.\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/34fde7c0b23a322dd723d4f4998b48f43f349feb/yaml/xyz/openbmc_project/State/Boot/Progress.interface.yaml#L11",
+      "parentUuid": "3e5d6c26_b245d5db",
+      "range": {
+        "startLine": 73,
+        "startChar": 24,
+        "endLine": 74,
+        "endChar": 13
+      },
+      "revId": "12915f7dcb5e6cae95ad261aa5ac0e33c8ccabb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6131dcef_fc04a111",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-09-22T18:07:46Z",
       "side": 1,
       "message": "If the enable flag is `false` - how does bios consume this value ? is it via redfish ? or via IPMI ?  can you add that detail as well ?",
+      "range": {
+        "startLine": 180,
+        "startChar": 9,
+        "endLine": 181,
+        "endChar": 42
+      },
+      "revId": "12915f7dcb5e6cae95ad261aa5ac0e33c8ccabb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31453276_6fc63412",
+        "filename": "designs/bios-settings-flags.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1002029
+      },
+      "writtenOn": "2025-09-25T10:14:03Z",
+      "side": 1,
+      "message": "@manojkiran.eda@gmail.com - it is consumed directly from the D-bus. I have added this to the doc",
+      "parentUuid": "6131dcef_fc04a111",
       "range": {
         "startLine": 180,
         "startChar": 9,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "939ad972_c6834bea",
+        "filename": "designs/bios-settings-flags.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1002029
+      },
+      "writtenOn": "2025-09-25T10:14:03Z",
+      "side": 1,
+      "message": "@manojkiran.eda@gmail.com - The redfish does not define a timeout property. Once it is added (not that I\u0027m aware of this plan), it can use this design.",
+      "parentUuid": "35f7bd8a_0ce658fc",
+      "range": {
+        "startLine": 247,
+        "startChar": 9,
+        "endLine": 248,
+        "endChar": 60
+      },
+      "revId": "12915f7dcb5e6cae95ad261aa5ac0e33c8ccabb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c476d9cd_4fd5d2ff",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-09-22T18:07:46Z",
       "side": 1,
       "message": "As per the design document quoted above :\n\n1. Ensure the BootProgress and BootProgressLastUpdate properties are updated appropriately in both IPMI and PLDM based stacks\n2. It is the responsibility of the IPMI or PLDM implementation to update the BootProgress property on D-Bus\n3. **It is the responsibility the phosphor-state-manager to update the BootProgressLastUpdate property on D-Bus when it sees BootProgress updated**\n\nThis completely violates #3. Doesn\u0027t nvidia use phsopshor-state-manager repo ?",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 49
+      },
+      "revId": "12915f7dcb5e6cae95ad261aa5ac0e33c8ccabb3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f696c3b_db8958b3",
+        "filename": "designs/bios-settings-flags.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1002029
+      },
+      "writtenOn": "2025-09-25T10:14:03Z",
+      "side": 1,
+      "message": "@manojkiran.eda@gmail.com\n1.  BootProgress and BootProgressLastUpdate - there is one property -BootProgressLastUpdate. What do you mean by \"updated appropriately in both IPMI and PLDM based stacks\"? This will be used only in the bios-manager to know that the host booted.\n2. BootProgressLastUpdate - it is the platform\u0027s responsibility to update this D-Bus. \n3. The phosphor-state-manager only gives get and set methods. This property is not updated from BootProgress. Nvidia uses this repository.\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/34fde7c0b23a322dd723d4f4998b48f43f349feb/yaml/xyz/openbmc_project/State/Boot/Progress.interface.yaml#L11",
+      "parentUuid": "c476d9cd_4fd5d2ff",
       "range": {
         "startLine": 262,
         "startChar": 0,
