@@ -616,6 +616,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da618edb_0eaec25a",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000401
+      },
+      "writtenOn": "2025-09-30T15:09:18Z",
+      "side": 1,
+      "message": "The tree looks something like:\n\u0027\u0027\u0027\nbusctl tree xyz.openbmc_project.LLDP\n└─ /xyz\n  └─ /xyz/openbmc_project\n    └─ /xyz/openbmc_project/network\n      └─ /xyz/openbmc_project/network/lldp\n        ├─ /xyz/openbmc_project/network/lldp/eth0 \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003e Implements Settings Intf\n        │ └─ /xyz/openbmc_project/network/lldp/eth0/transmit ----\u003e Implements TLVs\n       │ └─ /xyz/openbmc_project/network/lldp/eth0/receive ----\u003e Implements TLVs\n        └─ /xyz/openbmc_project/network/lldp/eth1 \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003e Implements Settings Intf\n          ├─ /xyz/openbmc_project/network/lldp/eth1/receive ----\u003e Implements TLVs\n          └─ /xyz/openbmc_project/network/lldp/eth1/transmit ----\u003e Implements TLVs\n\u0027\u0027\u0027\n\neth0/eth1 objects will implement Settings Interface (facilitating interface level lldp enable/disable) and, receive/transmit objects will be implementing the TLVs interface.",
+      "parentUuid": "4e4e99ae_524c00d8",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 57
+      },
+      "revId": "a354a3e9f25a44d25d76dab89794c36b86764850",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9420232b_d7227876",
         "filename": "designs/lldp/lldp-dbus-service.md",
         "patchSetId": 17
