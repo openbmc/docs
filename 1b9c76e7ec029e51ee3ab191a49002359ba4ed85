@@ -81,6 +81,24 @@
       "parentUuid": "982dcb46_64413cf3",
       "revId": "1b9c76e7ec029e51ee3ab191a49002359ba4ed85",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "801292f4_38c64855",
+        "filename": "designs/runtime-debug-logging-enablement.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002129
+      },
+      "writtenOn": "2025-10-03T02:52:21Z",
+      "side": 1,
+      "message": "If checking `/run/systemd-debug-enabled` exist or not for every debug-level log is a concern, I think we could alternatively use shared memory?\n\nRegarding DEBUG_INVOCATION, if we want to update it at runtime, we would normally need to set the environment variable and restart the service for it to take effect. With this design, that step would no longer be necessary.",
+      "parentUuid": "cfddcf79_0b33f515",
+      "revId": "1b9c76e7ec029e51ee3ab191a49002359ba4ed85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
