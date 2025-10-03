@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2b80999_384bc4d6",
+        "filename": "designs/runtime-debug-logging-enablement.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002129
+      },
+      "writtenOn": "2025-10-03T02:50:01Z",
+      "side": 1,
+      "message": "I haven’t proposed the new property to upstream yet. If this approach is unlikely to be accepted, would it make sense to add it in another suitable place instead?",
+      "parentUuid": "6fba40fe_7203bc2a",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 48
+      },
+      "revId": "1b9c76e7ec029e51ee3ab191a49002359ba4ed85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "982dcb46_64413cf3",
         "filename": "designs/runtime-debug-logging-enablement.md",
         "patchSetId": 5
@@ -37,6 +61,24 @@
       "writtenOn": "2025-09-25T20:55:24Z",
       "side": 1,
       "message": "Aren\u0027t there changes necessary to phosphor-logging to support this?\n\nI\u0027m not sure how the signal gets sent into each process to let the phosphor-logging library know to \"enable debug mode\".  We certainly don\u0027t want phosphor-logging to check `/run/systemd-debug-enabled` on each journal invocation.  How do we override the existing DEBUG_INVOCATION behavior for an already-running process?",
+      "revId": "1b9c76e7ec029e51ee3ab191a49002359ba4ed85",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfddcf79_0b33f515",
+        "filename": "designs/runtime-debug-logging-enablement.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002129
+      },
+      "writtenOn": "2025-10-03T02:50:01Z",
+      "side": 1,
+      "message": "Yes, phosphor-logging also needs to be modified to support this proposal. The main changes would be:\n1. Update send_debug_to_journal() so that it returns true when DEBUG_INVOCATION is unset or set to true, and returns false only when DEBUG_INVOCATION\u003d0.\n2. Adjust the condition from `if (send_debug_to_journal || l !\u003d level::debug)` to `if (l !\u003d level::debug || (send_debug_to_journal \u0026\u0026 is_systemd_debug_enabled()))`\nThis leverages short-circuit evaluation so that there is no performance impact in normal cases. Only when debug-level logs are being processed will there be extra overhead.\n\nWith this approach, we no longer need to override DEBUG_INVOCATION. Instead, we can simply update .DebugEnable, which changes the return value of is_systemd_debug_enabled() to control whether debug-level logs are emitted.",
+      "parentUuid": "982dcb46_64413cf3",
       "revId": "1b9c76e7ec029e51ee3ab191a49002359ba4ed85",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
