@@ -217,6 +217,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "533f23d3_1e2d50db",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-09T15:28:01Z",
+      "side": 1,
+      "message": "\u003e To be clear, this is the PDI design intent.\n\nIt\u0027s DBus design intent, defined by https://dbus.freedesktop.org/doc/dbus-api-design.html\n\n\u003e At this time, EM and reactors don\u0027t use PDI, precisely because solving these problems are difficult.\n\nIMO EM and reactors don\u0027t follow these guidelines because they do not allow for ad-hoc changes. Not because of some real technical limitation. It\u0027s more of a workflow issue.\n\nThe guidelines present patterns for\n\n- adding properties \n- removing properties\n- changing property type\n- representing optional data\n\nand various other issues. The guidelines apply far beyond just OpenBMC.\n\nIf you have some alternative workflow for designing and changing DBus interfaces i would encourage you to document it somewhere alongside it\u0027s technical merits and how it is a better workflow for OpenBMC specifically.\n\nIf it\u0027s undocumented ad hoc workflow then i don\u0027t get how that works in presence of a well documented guideline and existing tooling.\n\nResolving since there was no further response in 1 month.",
+      "parentUuid": "293b897f_b45074ba",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5c87f65_d81b44b5",
@@ -323,6 +347,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6777b84_53583234",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-09T15:28:01Z",
+      "side": 1,
+      "message": "\u003e Remove. This isn\u0027t well documented to be a requirement.\n\nhttps://github.com/openbmc/docs/blob/b08bcdd03a8fc324e3494d59e6718dba79305fbb/CONTRIBUTING.md?plain\u003d1#L389\n\nIt\u0027s been documented as a design guideline from the very first commit \nof `contributing.md` which was in 2016, 9 years ago.\n\nhttps://github.com/openbmc/docs/commit/2c10dec9317beb03bcf41d0d7e8c4a6c86637a55#diff-0b82d9a8fc9c94f7729e7685fca44dd89a479746f7cb14171e6dcdc7beb94387R9-R93\n\nand 4 different developers signed off on it\n\n```\nSigned-off-by: Jeremy Kerr \u003cjk@ozlabs.org\u003e\nReviewed-by: Andrew Donnellan \u003candrew.donnellan@au1.ibm.com\u003e\nReviewed-by: Stewart Smith \u003cstewart@linux.vnet.ibm.com\u003e\nReviewed-by: Andrew Jeffery \u003candrew@aj.id.au\u003e\n```",
+      "parentUuid": "d8923ebf_d2bb6bda",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a2165a0_5c994820",
@@ -360,6 +408,30 @@
       "side": 1,
       "message": "\u003e Multiple nested would be on different objects.\n\nHow did you reach this conclusion? Is there something documented, or did you just invent this concept. Is there a design to how EM exposes configuration?\n\n\u003e Multiple nested would be on different objects.\n\nThat\u0027s wildly inconsistent, exposing objects differently based on their nesting depth. So level 1 gets interface, level 2 gets nested interface,\nlevel 3 gets a different object path (p2), level 4 gets nested interface on p2,\nlevel 5 gets a different object path (p3) ?\n\nThat\u0027s completely arbitrary. You could also start a new object path at every 3 levels of depth instead.\n\nShould i put this wild idea into the list of alternatives considered?",
       "parentUuid": "8a2165a0_5c994820",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 74
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcefce1a_e63788bd",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-09T15:28:01Z",
+      "side": 1,
+      "message": "\u003e Multiple nested would be on different objects.\n\nClosing due to arbitrary design requirement of unclear origin.",
+      "parentUuid": "97cb8061_c45ba4b4",
       "range": {
         "startLine": 48,
         "startChar": 0,
@@ -478,6 +550,30 @@
       "side": 1,
       "message": "I share @alexander.hansen@9elements.com\u0027s concern here that you\u0027re trying to shoehorn inconvenient topology into an unnatural representation.",
       "parentUuid": "7578f024_7b799f48",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 79
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad8b7088_ebc396cf",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-09T15:28:01Z",
+      "side": 1,
+      "message": "Closing this discussion thread since there were no further responses for 1 month.\n\nWhich implies that there is no interest to come to any conclusion here.",
+      "parentUuid": "ba12fa67_537d9f37",
       "range": {
         "startLine": 50,
         "startChar": 0,
@@ -640,6 +736,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26650a94_022b29dd",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-09T15:28:01Z",
+      "side": 1,
+      "message": "valid comment as of PS3.\nIt\u0027s under `Alternatives Considered` in the newest patchset (PS5), and\nnot every alternative considered is equally good at meeting the requirements.\n\nIn PS5 i have a different conclusion and preferred design based on feedback received.",
+      "parentUuid": "efda24ed_1ebc7c9a",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 58
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5b66bdb_2acda13b",
@@ -724,6 +844,30 @@
       "side": 1,
       "message": "Nested objects are technically PDI compatible, but objects inside arrays are not.\nAt least from what i have seen.\n\nAnyways, i mean `DBus compatible` in the sense of being compatible with DBus design intent.",
       "parentUuid": "eacf738e_a42cd700",
+      "range": {
+        "startLine": 245,
+        "startChar": 30,
+        "endLine": 245,
+        "endChar": 31
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2369b58_d0d20c7d",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-09T15:28:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a7908c6_c1134de1",
       "range": {
         "startLine": 245,
         "startChar": 30,
@@ -982,6 +1126,30 @@
       "side": 1,
       "message": "I thought variant `v` can contain anything, right?\n\nMeant this to represent a dict, which should be able to contain other dicts, or is it not possible?",
       "parentUuid": "e7a639f9_bf6ddecb",
+      "range": {
+        "startLine": 297,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 39
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccaacf28_b3dd5dd1",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-09T15:28:01Z",
+      "side": 1,
+      "message": "closing, no response after 1 month.",
+      "parentUuid": "9b7b18f5_725080c7",
       "range": {
         "startLine": 297,
         "startChar": 0,
@@ -1287,6 +1455,30 @@
       "side": 1,
       "message": "You probably want option 4. (in this revision).\n\nThanks for mentioning, i will keep this comment open and list a few more alternatives, then see what others think 👍\n\nSince the alternative with explicitly typed containers is PDI compatible, it is an alternative where we at least make some progress compared to the current state.\n\nSo i would say that\u0027s an ok solution to me.\n\n\nI will leave the proposed design as is for this revision since new alternatives have been added. Based on further comments by others i can then change the preferred design, if we can all agree on something.",
       "parentUuid": "dae80d5c_d002d914",
+      "range": {
+        "startLine": 401,
+        "startChar": 0,
+        "endLine": 401,
+        "endChar": 35
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9baeac20_c09adc48",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-09T15:28:01Z",
+      "side": 1,
+      "message": "closing this comment since it no longer matches current patchset.",
+      "parentUuid": "f094ff5e_71b915de",
       "range": {
         "startLine": 401,
         "startChar": 0,
