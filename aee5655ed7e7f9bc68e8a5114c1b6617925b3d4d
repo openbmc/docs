@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca957618_4ebe4971",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-10-09T08:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62867a48_757566f5",
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13f9324d_19503b66",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "You are right, but this statement would only hold true for certain TPM devices in market at the moment, correct ?\n\nI would think that the performance would be better if we use another hardware for example : AMD Secure Processor, NXP SE050 Secure Element are definitely faster than the TPM and I do think the in future/In market currently there are general purpose crypto accelerators that are just built for running these cryptographic operations much faster, better \u0026 efficient than BMC.\n\nWould changing the title to `Provider API support in bmcweb \u0026 certificate-manager` a better bit ?",
       "parentUuid": "13f9324d_19503b66",
+      "range": {
+        "startLine": 13,
+        "startChar": 60,
+        "endLine": 14,
+        "endChar": 40
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a05d481e_072759dd",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-10-09T08:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cae6b72_f168165b",
       "range": {
         "startLine": 13,
         "startChar": 60,
@@ -167,6 +209,30 @@
       "side": 1,
       "message": "Potentially, yes -  I do believe that the trust zone secure enclave could be faster than the TPM since the operations don\u0027t leave the CPU over an arbitrary bus like I2C/SPI. And I think most of the ARM based SOC\u0027s implementing trust zone also include crypto engines on SOC for AES, SHA, ECC e.t.c that might make things even faster.\n\nI am not sure how the trust zone secured enclave works in openbmc \u0026 if there are designs out there that would implement it in openbmc. Scaling this design to trust zone secured enclave is a little farfetched idea for me, but I think this solution can coexist with trust zone secured enclave in the future, and users can opt for what they want.",
       "parentUuid": "88615de9_28b4a552",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 80
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f09e5422_1ef32a7b",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-10-09T08:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6aa4af71_12e546da",
       "range": {
         "startLine": 17,
         "startChar": 0,
@@ -461,6 +527,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e9f4e6f_d347b1ed",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-10-09T08:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eebacbeb_de06cb2f",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 3
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7566c635_53514acb",
@@ -492,6 +582,24 @@
       "side": 1,
       "message": "\u003e There is one big issue with TPMs and the Aspeed chip that you might not be aware of.  The SPI hardware in the Aspeed chip does not allow bi-directional data flow, which makes it impossible to use this hardware for TPMs.  You instead have to enable the GPIO bit-bang driver in order to use this chip.\n\u003e \n\u003e You mentioned the performance impact but this decreases performance even further.\n\n\nI was not aware of it, IBM uses [I2C interface connected TPM](https://www.kernel.org/doc/Documentation/devicetree/bindings/tpm/tcg%2Ctpm-tis-i2c.yaml) . Yeah it would reduce the performance but its not just about the TPM that this design talks about - this design is largely valid for any hardware device. With the openssl provider framework it is just as simple as adding the provider into the meson option and loading the shared libary at runtime.",
       "parentUuid": "7566c635_53514acb",
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60da0dd7_34514855",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-10-09T08:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f20a7157_1969d72f",
       "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -533,6 +641,30 @@
       "side": 1,
       "message": "I do have a [sample prototype code](https://github.com/manojkiraneda/mtls-with-tpm2/tree/main) where I have written a small web server and a client using openssl 3.0 API\u0027s that gets the keys \u0026 certificates from the TPM connected over I2C - and I was able to get the mTLS connection working in less than a second. But that\u0027s just one connection.\n\nBut I think the real numbers in bmcweb would be different from the sample web server that wrote. Would you be interested in the numbers on the sample ? are you aware of any benchmarking tools that bmcweb uses as of today ? I could run the same and attach the numbers in the document for reference.\n\n\u003e enabling the TPM only allows you to do 1 connection-per-second, this is a feature nobody will ever enable.\n\nI am a little confused - wouldn\u0027t there be people willing to compromise speed for security ? And also in future may be TPM\u0027s might become better/faster ? May be instead of TPM\u0027s , companies could use crypto cards which could be faster? Since one of the best open-source web servers like **nginx** out there supports it - I do believe there could be community adoption for this feature.",
       "parentUuid": "7c9377c1_db0910db",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 266,
+        "endChar": 67
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8e6c02b_c0d6c155",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-10-09T08:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d1f6f82_c2819fcc",
       "range": {
         "startLine": 264,
         "startChar": 0,
@@ -628,6 +760,30 @@
       "side": 1,
       "message": "\u003e can we have TPM file handle generate and host on PCM D-bus object which can be used by BMCWEB to retrieve/replace certificate or private key in TPM2?\n\nNope, that\u0027s not possible (atleast IMO). Reading the key from TPM provider returns a pointer to [EVP_PKEY](https://docs.openssl.org/3.0/man3/EVP_PKEY_new/#synopsis) structure \u0026 also openssl tracks the refcounts to that PKEY structure. I am not sure if exposing that data over dbus is a good idea.",
       "parentUuid": "f9dc99ea_800c8d0d",
+      "range": {
+        "startLine": 282,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 12
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1821b69c_d44f59b8",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2025-10-09T08:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3a1f568_c3b2c5ba",
       "range": {
         "startLine": 282,
         "startChar": 0,
