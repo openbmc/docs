@@ -127,6 +127,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7858d31_801dc033",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-09T17:10:32Z",
+      "side": 1,
+      "message": "The point here is that the goal here isn\u0027t \"scalability\".  From what I understand of this performance, having to go to a separate hardware component will always be slower, and will introduce a single point that needs to be locked for all connections coming in in parallel.\n\nMy ask was that we just remove these two.  The goal is here limit exposure of sensitive keys, lets keep it about that.",
+      "parentUuid": "a05d481e_072759dd",
+      "range": {
+        "startLine": 13,
+        "startChar": 60,
+        "endLine": 14,
+        "endChar": 40
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c6e4b04_e03cda83",
         "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
         "patchSetId": 4
@@ -162,6 +186,30 @@
       "side": 1,
       "message": "TPM\u0027s are built for doing things like random number generation , key generation \u0026 key management, Digital signatures, asymmetric encryption and decryption, secure key wrapping \u0026 unsealing, HMAC, hashing.\n\nand regarding why :\n\nWhy not offload the above tasks from the BMC CPU, if we have better hardware built for doing the crypto operations in much more secure \u0026 faster way.\n\nI have added these details in the document as well.",
       "parentUuid": "5c6e4b04_e03cda83",
+      "range": {
+        "startLine": 17,
+        "startChar": 45,
+        "endLine": 17,
+        "endChar": 58
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d71ce11_12e66978",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-09T17:10:32Z",
+      "side": 1,
+      "message": "\"why not\" isn\u0027t an argument.\n\n\"we have better hardware built for doing the crypto operations in much more secure \u0026 faster way.\"\n\nIs an argument.",
+      "parentUuid": "dba9dfd3_b46a40ef",
       "range": {
         "startLine": 17,
         "startChar": 45,
@@ -435,6 +483,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57a371a3_a68bbfc4",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-09T17:10:32Z",
+      "side": 1,
+      "message": "If all of this is about moving where the key comes from, that\u0027s fine, but EM owns that.  I get a little worried when we talk about abstract things like \"To enable greater flexibility\"\n\nWe should talk about what we want to solve, and how this solves it.  I find it unlikely that we really need ALL things to be possible.",
+      "parentUuid": "1cb4885c_f56bf870",
+      "range": {
+        "startLine": 157,
+        "startChar": 60,
+        "endLine": 158,
+        "endChar": 71
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "14d76ea8_e0351cc5",
         "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
         "patchSetId": 4
@@ -541,6 +613,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "eebacbeb_de06cb2f",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 3
+      },
+      "revId": "aee5655ed7e7f9bc68e8a5114c1b6617925b3d4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcd3b8a5_36406c72",
+        "filename": "designs/tpm-support-in-bmcweb-certmgr.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-09T17:10:32Z",
+      "side": 1,
+      "message": "I\u0027m not sure this is closed.  The goal here is you want to separate private key and certificate so they\u0027re not in the same file.  Just keep the existing location as the certificate?",
+      "parentUuid": "2e9f4e6f_d347b1ed",
       "range": {
         "startLine": 172,
         "startChar": 0,
