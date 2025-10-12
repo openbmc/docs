@@ -113,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b51ad42_7d7b8c68",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-10-12T00:53:04Z",
+      "side": 1,
+      "message": "Ok?  We don’t use varlink, you didn’t mention varlink, and I don’t know how it is related.  Should we randomly sprinkle around links to Thrift too?\n\nIf it has context, add context. I don’t have any idea what it is right now.",
+      "parentUuid": "c11edc8a_58ae344f",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 31
+      },
+      "revId": "75d45aac3cd37a38287ceebb622d02f84c68b6a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b6fba2f_24296aa3",
         "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
         "patchSetId": 5
@@ -182,6 +206,24 @@
       "side": 1,
       "message": "I\u0027m not following, can you please explain further.",
       "parentUuid": "49c573c1_89bfa5d9",
+      "revId": "75d45aac3cd37a38287ceebb622d02f84c68b6a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d92cead_f0d917d5",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-10-12T00:53:04Z",
+      "side": 1,
+      "message": "See line 334.  You defined something in the YAML that doesn’t exist.",
+      "parentUuid": "bd9fb54e_9dceefd3",
       "revId": "75d45aac3cd37a38287ceebb622d02f84c68b6a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -264,6 +306,24 @@
       "side": 1,
       "message": "PDI would be the source of truth for clients of the configuration interfaces.\n\nOne-time script can be used to create the large amount of PDI yaml for the existing interfaces. But it only works for interfaces which do not have the \u0027optional\u0027 properties and still requires manually entering the DBus types as EM schema does not know them.\n\nPDI cannot yet be the source of truth on EM side since EM still exposes \u0027optional\u0027 properties which is a behavior some clients may rely on in their implementation.\n\nSo it might be problematic to go a route where we expose some config interfaces with a different code than others. \n\nI would like for those 2 problems to be tackled separately so i did not go into the problem of \u0027optional\u0027 properties in this design.",
       "parentUuid": "7aa218b7_03bd1f55",
+      "revId": "75d45aac3cd37a38287ceebb622d02f84c68b6a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4db74109_9dbb9096",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-10-12T00:53:04Z",
+      "side": 1,
+      "message": "I don’t have concerns about your response but I think this warrants additional words in the doc.  If this is a one-time-use, it could be ran locally or done by hand, so the implication to me of “write a script” implies there is some process change you’re looking for that isn’t documented.",
+      "parentUuid": "45d93fc7_5e4d1970",
       "revId": "75d45aac3cd37a38287ceebb622d02f84c68b6a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
