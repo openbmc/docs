@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c11edc8a_58ae344f",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-12T00:23:26Z",
+      "side": 1,
+      "message": "It provides additional context since DBus does not exist in a vacuum.",
+      "parentUuid": "dd29ca59_5e6326c0",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 31
+      },
+      "revId": "75d45aac3cd37a38287ceebb622d02f84c68b6a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b6fba2f_24296aa3",
         "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
         "patchSetId": 5
@@ -146,6 +170,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd9fb54e_9dceefd3",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-12T00:23:26Z",
+      "side": 1,
+      "message": "I\u0027m not following, can you please explain further.",
+      "parentUuid": "49c573c1_89bfa5d9",
+      "revId": "75d45aac3cd37a38287ceebb622d02f84c68b6a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b021691f_197b8423",
         "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
         "patchSetId": 5
@@ -157,6 +199,30 @@
       "writtenOn": "2025-10-09T21:37:10Z",
       "side": 1,
       "message": "It\u0027s hard to identify the difference between these two options.  I don\u0027t know if there is something you can do in the \"Result\" that will make it more explicit.\n\nIt looks like the main difference is the \"SPIFlash\" + \"FirmwareInfo\" were a single configuration in the previous example, but it isn\u0027t obviously clear to me why.  I guess because \"FirmwareInfo\" is a structured JSON rather than a simple property?",
+      "range": {
+        "startLine": 585,
+        "startChar": 0,
+        "endLine": 585,
+        "endChar": 72
+      },
+      "revId": "75d45aac3cd37a38287ceebb622d02f84c68b6a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbc5dd7f_949cfa56",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-12T00:23:26Z",
+      "side": 1,
+      "message": "Yes, currently EM makes a difference between\n\n- property which is primitive or array of primitive\n- property which is object\n- property which is array of object\n\nand expose them as \n\n- property\n- nested intf\n- nested intf with index appended\n\nThe difference in the alternatives is that `fully nested object paths`\ndesign takes the logical route to represent object properties\nunder a separate object path, which `nested object paths` design\ndoes not.\n\nThe relevance is that PDI can already support nested interfaces like \n`xyz.openbmc_project.SPIFlash.FirmwareInfo` so changing that would not be necessary for PDI support.",
+      "parentUuid": "b021691f_197b8423",
       "range": {
         "startLine": 585,
         "startChar": 0,
@@ -186,6 +252,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "45d93fc7_5e4d1970",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-12T00:23:26Z",
+      "side": 1,
+      "message": "PDI would be the source of truth for clients of the configuration interfaces.\n\nOne-time script can be used to create the large amount of PDI yaml for the existing interfaces. But it only works for interfaces which do not have the \u0027optional\u0027 properties and still requires manually entering the DBus types as EM schema does not know them.\n\nPDI cannot yet be the source of truth on EM side since EM still exposes \u0027optional\u0027 properties which is a behavior some clients may rely on in their implementation.\n\nSo it might be problematic to go a route where we expose some config interfaces with a different code than others. \n\nI would like for those 2 problems to be tackled separately so i did not go into the problem of \u0027optional\u0027 properties in this design.",
+      "parentUuid": "7aa218b7_03bd1f55",
+      "revId": "75d45aac3cd37a38287ceebb622d02f84c68b6a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5755bf3_4967eb35",
         "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
         "patchSetId": 5
@@ -197,6 +281,30 @@
       "writtenOn": "2025-10-09T21:37:10Z",
       "side": 1,
       "message": "Why or why not?  Shouldn\u0027t the use of compile-time validation of our dbus interfaces be a good goal?",
+      "range": {
+        "startLine": 716,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 12
+      },
+      "revId": "75d45aac3cd37a38287ceebb622d02f84c68b6a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bb96b87_ce55af8e",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-12T00:23:26Z",
+      "side": 1,
+      "message": "Maintainers will have to make their own decision if they want to use it,\nbut we will require some amount of help to enable this possibility.\n\n#### hesitation of rewrites of working code\n\nSome folks may just not want to go through the effort of migrating their code to use PDI, or may not see the value in reviewing those changes to code that\u0027s already working and tested.\n\n#### minimizing scope of design to secure approvals\n\nI need votes on this design from a number of maintainers so i am carefully choosing the scope to provide a very specific solution with a minimum amount of work. \n\nThis is why i went (based on feedback) from the initial approach of multiple object paths to a design where we only change what\u0027s the most problematic thing (the interfaces with index suffix).\n\n#### amount of changes will be large for even this simple change\n\nThe changes that will need reviewing in e.g. `dbus-sensors` are to change for example the thresholds parsing to be done as per the design.\n\nThe thresholds alone are already a *large* amount of code on clients side and bmcweb side.\n\nIt may be quite some time before we can flip the switch in EM to stop exposing index-suffixed interfaces.\n\n#### respecting the time available for community reviews\n\nWith this design we are already asking a lot by requesting review for the required changes.\n\nReviewing refactors of clients to use PDI is putting too much on maintainers who are already struggling to find time for other reviews, so we can leave that out of this design.",
+      "parentUuid": "b5755bf3_4967eb35",
       "range": {
         "startLine": 716,
         "startChar": 0,
