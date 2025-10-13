@@ -251,6 +251,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aaaa0bc8_608b71c6",
+        "filename": "designs/bios-settings-flags.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2025-10-13T20:22:27Z",
+      "side": 1,
+      "message": "You know this got me digging through the PSM code and it doesn\u0027t look like I ever added support for BootProgressLastUpdate! I\u0027m not sure why. I see phosphor-host-ipmid went ahead and just added support for it (my initial design was ipmi/pldm would own updating it but review comments changed that and moved the responsibility to PSM). So I need to add this support to PSM. If your platform uses PSM then PSM needs to be in control of this property. If you don\u0027t use PSM, then you can write whatever you like to the property.",
+      "parentUuid": "4add7709_383a97f0",
+      "revId": "0e8dc024f997930d8a75a59341cdd23f817efac6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a464900d_d6ee5722",
         "filename": "designs/bios-settings-flags.md",
         "patchSetId": 12
