@@ -6,6 +6,10 @@ Author: [Patrick Williams][patrick-email] `<stwcx>`
 
 Other contributors:
 
+[Thang Tran][thang-email] `<ThangTran>`
+
+[thang-email]: mailto:thuutran@amperecomputing.com
+
 Created: May 16, 2024
 
 ## Problem Description
@@ -404,10 +408,9 @@ for potential future changes to the log-retrieval interfaces used by `bmcweb`.
 In order to decouple the transition to this design, by callers of the logging
 APIs, from the experimentation and improvements in `phosphor-logging`, we will
 add a compile option and Yocto `DISTRO_FEATURE` that can turn `lg2::commit`
-behavior into an `OPENBMC_MESSAGE_ID` record in the journal, along the same
-approach as the previous `REDFISH_MESSAGE_ID`, and corresponding `rsyslog`
-configuration and `bmcweb` support to use these directly. This will allow
-systems which knowingly scale to a large number of event records, using
+behavior into a `REDFISH_MESSAGE_ID` record in the journal and corresponding
+`rsyslog` configuration and `bmcweb` support to use these directly. This will
+allow systems which knowingly scale to a large number of event records, using
 `rsyslog` mechanics, the same level of performance. One caveat of this support
 is that the hint and resolution behavior will not exist when that option is
 enabled.
