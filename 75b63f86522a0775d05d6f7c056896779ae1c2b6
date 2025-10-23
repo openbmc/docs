@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09f18983_f3ef6af1",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2025-10-23T17:16:28Z",
+      "side": 1,
+      "message": "by default systemDescription will be picked from /etc/os-release which publishes fw release version, publishing this information in lldp can be see as security issue.\nmay be we need to use hardcoded default description configured in lldpd.conf",
+      "revId": "75b63f86522a0775d05d6f7c056896779ae1c2b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b72d051_d7f9971a",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000350
+      },
+      "writtenOn": "2025-10-23T17:16:28Z",
+      "side": 1,
+      "message": "Ports schema implementation must be linked to corresponding redfish EtherenetInterfaces resources to represent LLDP packets received from respective physical ethernet interfaces.\n\nplese refer redfish mockups \nThe \"eth0\" EthernetInterface has a link to the port under \"Links\".\n\nhttps://github.com/DMTF/Redfish/blob/master/mockups/public-rackmount1/Managers/BMC/DedicatedNetworkPorts/1/index.json\n\nhttps://github.com/DMTF/Redfish/blob/master/mockups/public-rackmount1/Managers/BMC/EthernetInterfaces/eth0/index.json",
+      "revId": "75b63f86522a0775d05d6f7c056896779ae1c2b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
