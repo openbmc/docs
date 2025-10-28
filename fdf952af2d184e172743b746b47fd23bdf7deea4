@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5cecd42_cf67b5f5",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-28T16:04:32Z",
+      "side": 1,
+      "message": "I really don\u0027t understand, can you give an example of where this would be correct code, but the check fails?",
+      "parentUuid": "e3d3368b_a5dca1c8",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7b95d10_8c7c43bb",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 5
@@ -48,6 +66,24 @@
       "writtenOn": "2025-10-28T09:35:34Z",
       "side": 1,
       "message": "That\u0027s treating `bool` in a special way.\n\nWhy cannot i check a `bool*`? It might be bugprone but it\u0027s a valid code.",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1242c7b_094942de",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-28T16:04:32Z",
+      "side": 1,
+      "message": "Right, the whole point of these checks are to avoid valid code that results in more bugs.  I\u0027d prefer this stay.",
+      "parentUuid": "d7b95d10_8c7c43bb",
       "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -71,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34c62958_08eb7a4a",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-28T16:04:32Z",
+      "side": 1,
+      "message": "That hasn\u0027t been the case in the major repos we\u0027ve enabled this.  Please articulate an example here.",
+      "parentUuid": "c5019cc1_20081361",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0cee8d96_438f9e66",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 5
@@ -82,6 +136,24 @@
       "writtenOn": "2025-10-28T09:35:34Z",
       "side": 1,
       "message": "integer division in floating point context can be intended.\n\nThe example\n```\n// Warn, floating-point values expected.\ndouble d;\nint i \u003d 42;\nd \u003d 32 * 8 / (2 + i);\n```\n\nThe suggested fix is to add a cast but that would make the expression less readable.",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f82034be_ff20adea",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-28T16:04:32Z",
+      "side": 1,
+      "message": "I agree with the check.  Yes, it\u0027s less readable if you put it inline, but you shouldn\u0027t do that, or ideally make sure you use consistent types.  In your code above, you would change \"int i\" to \"double i\" to make the code both readable and correct.",
+      "parentUuid": "0cee8d96_438f9e66",
       "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -111,6 +183,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c47f15b_540a7ee8",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-28T16:04:32Z",
+      "side": 1,
+      "message": "Can you give an example in our code?",
+      "parentUuid": "92b920ae_dc29c6dd",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 2
+      },
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1db61c37_3b1b7cbb",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 5
@@ -122,6 +218,30 @@
       "writtenOn": "2025-10-28T09:35:34Z",
       "side": 1,
       "message": "Always initializing a variable can lead to code bloat.\n\nIt can lead to a situation where an initial value is set but always overwritten in every code path, which is confusing.\n\nThe relevant part is for clang-tidy to figure out if an uninitialized var is used somewhere and there is other checks which can take care of that.\n\n```\n    clang-analyzer-core.uninitialized.ArraySubscript,\n    clang-analyzer-core.uninitialized.Assign,\n    clang-analyzer-core.uninitialized.Branch,\n    clang-analyzer-core.uninitialized.NewArraySize,\n```",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 2
+      },
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d5482d2_8b53c40b",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-28T16:04:32Z",
+      "side": 1,
+      "message": "\u003e Always initializing a variable can lead to code bloat.\n\nPlease articulate this concern using numbers.  We have not seen this, and it\u0027s a very important security issue that we need to catch.",
+      "parentUuid": "1db61c37_3b1b7cbb",
       "range": {
         "startLine": 189,
         "startChar": 0,
