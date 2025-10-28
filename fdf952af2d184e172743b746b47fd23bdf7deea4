@@ -16,6 +16,120 @@
       "message": "I\u0027m pretty sure this can go.",
       "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3d3368b_a5dca1c8",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-28T09:35:34Z",
+      "side": 1,
+      "message": "assignment in a conditional may sometimes result in code that is more compact.\n\nPerhaps we should leave this check to a follow-up patch.",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7b95d10_8c7c43bb",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-28T09:35:34Z",
+      "side": 1,
+      "message": "That\u0027s treating `bool` in a special way.\n\nWhy cannot i check a `bool*`? It might be bugprone but it\u0027s a valid code.",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5019cc1_20081361",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-28T09:35:34Z",
+      "side": 1,
+      "message": "incrementing and decrementing in a conditional is well-defined using pre- and post-increment/decrement semantics.\n\nI feel like this could falsely flag a bunch of correct code.",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cee8d96_438f9e66",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-28T09:35:34Z",
+      "side": 1,
+      "message": "integer division in floating point context can be intended.\n\nThe example\n```\n// Warn, floating-point values expected.\ndouble d;\nint i \u003d 42;\nd \u003d 32 * 8 / (2 + i);\n```\n\nThe suggested fix is to add a cast but that would make the expression less readable.",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92b920ae_dc29c6dd",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-28T09:35:34Z",
+      "side": 1,
+      "message": "We may want to get rid of this check, passing references to coroutines can be perfectly fine.\n\nFor example if we have a local var in `main` function, passing a reference to that var is fine.",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 2
+      },
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1db61c37_3b1b7cbb",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-28T09:35:34Z",
+      "side": 1,
+      "message": "Always initializing a variable can lead to code bloat.\n\nIt can lead to a situation where an initial value is set but always overwritten in every code path, which is confusing.\n\nThe relevant part is for clang-tidy to figure out if an uninitialized var is used somewhere and there is other checks which can take care of that.\n\n```\n    clang-analyzer-core.uninitialized.ArraySubscript,\n    clang-analyzer-core.uninitialized.Assign,\n    clang-analyzer-core.uninitialized.Branch,\n    clang-analyzer-core.uninitialized.NewArraySize,\n```",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 2
+      },
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
