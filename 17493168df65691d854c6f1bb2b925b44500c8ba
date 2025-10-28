@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0dd1dcb5_66eaeee4",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1002604
+      },
+      "writtenOn": "2025-10-28T13:02:59Z",
+      "side": 1,
+      "message": "The idea is that separate files can make it easier for the implementation of the service to change the configuration of specific options.",
+      "parentUuid": "19054634_aef19462",
+      "revId": "17493168df65691d854c6f1bb2b925b44500c8ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12b7e4dc_dbfb56b4",
         "filename": "designs/lldp/lldp-dbus-service.md",
         "patchSetId": 24
@@ -31,6 +49,24 @@
       "writtenOn": "2025-10-27T14:57:11Z",
       "side": 1,
       "message": "there are options to run lldpd with disable_privsep/enable_privsep\nlldpd daemon by default run with privilege separation enabled which needs new lldpd local user created otherwise privilege separation needs to be disabled using disable_privsep, what\u0027s the plan on this privilege separation.",
+      "revId": "17493168df65691d854c6f1bb2b925b44500c8ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15517be4_3648575a",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1002604
+      },
+      "writtenOn": "2025-10-28T13:02:59Z",
+      "side": 1,
+      "message": "The plan is to have privilege separation. This is best to be handles by a systemd service than runs before the lldpd service and created the lldpd user and group.\nThis is to be handled in the scope of lldpd bb files, so I didn\u0027t add it to this design document.\n\nFor example: \n\n# lldpd-setup-user.service\n[Unit]\nDescription\u003dConfigure lldpd user\nAfter\u003dsystemd-remount-fs.service\nAfter\u003dxyz.openbmc_project.User.Manager.service\nBefore\u003dlldpd.service\n\n[Service]\nType\u003doneshot\nExecStart\u003d/usr/bin/lldpd-setup-user.sh\nExecStartPost\u003d/bin/systemctl --no-reload disable lldpd-setup-user.service\nRemainAfterExit\u003dyes\nRestart\u003don-failure\nRestartSec\u003d30\n\n[Install]\nWantedBy\u003dmulti-user.target\n\n\n# lldpd-setup-user.sh\n#!/bin/sh\n\n#Script to ensure lldpd user and group exist\n\ngroupadd --system lldpd 2\u003e/dev/null\n\n#Create user if missing\nif ! id lldpd \u003e/dev/null 2\u003e\u00261; then\n    useradd --system -g lldpd --shell /bin/false lldpd \nfi",
+      "parentUuid": "12b7e4dc_dbfb56b4",
       "revId": "17493168df65691d854c6f1bb2b925b44500c8ba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
