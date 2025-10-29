@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d4e49e8_f048a7fa",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-29T23:11:07Z",
+      "side": 1,
+      "message": "```\nbool has_error;\n\nif (has_error \u003d foo()){\n    // unhappy path\n}\n\nbar(has_error);\n```\n\nkeep in mind i did not test this, going off the documentation here.\n\nClosing the comment since it should be easy to refactor cases like that.",
+      "parentUuid": "b5cecd42_cf67b5f5",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7b95d10_8c7c43bb",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "Right, the whole point of these checks are to avoid valid code that results in more bugs.  I\u0027d prefer this stay.",
       "parentUuid": "d7b95d10_8c7c43bb",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b20ccd3e_cbec64bb",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-29T23:11:07Z",
+      "side": 1,
+      "message": "i don\u0027t care enough, and i don\u0027t know of any example where we actually do this, so have it your way i guess.",
+      "parentUuid": "b1242c7b_094942de",
       "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -123,6 +159,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6fb9df3_a9eb333b",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-29T23:11:07Z",
+      "side": 1,
+      "message": "Closing this. It should be easy to rework any such code.",
+      "parentUuid": "34c62958_08eb7a4a",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0cee8d96_438f9e66",
@@ -154,6 +208,24 @@
       "side": 1,
       "message": "I agree with the check.  Yes, it\u0027s less readable if you put it inline, but you shouldn\u0027t do that, or ideally make sure you use consistent types.  In your code above, you would change \"int i\" to \"double i\" to make the code both readable and correct.",
       "parentUuid": "0cee8d96_438f9e66",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdfdc60a_207817be",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-29T23:11:07Z",
+      "side": 1,
+      "message": "It\u0027s too rare a case for me to worry about it i guess. Closing this one.",
+      "parentUuid": "f82034be_ff20adea",
       "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -231,6 +303,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "090006b9_0c77b663",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-29T23:11:07Z",
+      "side": 1,
+      "message": "Example of a coroutine taking reference parameters:\n\nhttps://github.com/openbmc/phosphor-bmc-code-mgmt/blob/de331ae49afd6fe27271c4081ffa239746bda8b5/bios/bios_software_manager.cpp#L22\n\n```\nsdbusplus::async::task\u003cbool\u003e BIOSSoftwareManager::initDevice(\n    const std::string\u0026 service, const std::string\u0026 path, SoftwareConfig\u0026 config)\n{\n    std::string configIface \u003d\n        \"xyz.openbmc_project.Configuration.\" + config.configType;\n\n    std::optional\u003cuint64_t\u003e spiControllerIndex \u003d\n        co_await dbusGetRequiredProperty\u003cuint64_t\u003e(\n            ctx, service, path, configIface, \"SPIControllerIndex\");\n\n    if (!spiControllerIndex.has_value())\n    {\n        error(\"Missing property: SPIControllerIndex\");\n        co_return false;\n    }\n\n    std::optional\u003cuint64_t\u003e spiDeviceIndex \u003d\n        co_await dbusGetRequiredProperty\u003cuint64_t\u003e(\n            ctx, service, path, configIface, \"SPIDeviceIndex\");\n```\n\nIn that case the `const std::string\u0026 service` reference is used across a `co_await` and could theoretically be dangling at that point.\n\nBut it\u0027s working code. If you intend to rework all cases like that to `shared_ptr` then i guess we can keep the check.\n\nBut `shared_ptr` has it\u0027s own problems.",
+      "parentUuid": "15aafb7c_32661192",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 2
+      },
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1db61c37_3b1b7cbb",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 5
@@ -290,6 +386,30 @@
       "side": 1,
       "message": "I\u0027d also point out that this is a cpp core guidelines check, which is directly the standard we follow.  if we think this check is inappropriate, we should either:\n1. Take this up with cpp core guidelines that we think this is wrong\n2. Take this up with OPenBMC that we should ignore cpp core guidelines for this case.",
       "parentUuid": "3d5482d2_8b53c40b",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 2
+      },
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35a22e4d_ef7059bd",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-29T23:11:07Z",
+      "side": 1,
+      "message": "I don\u0027t have a strong opinion here. And not enough examples of code where this would be an issue. Closing.",
+      "parentUuid": "c85a5adf_2a6eca7e",
       "range": {
         "startLine": 189,
         "startChar": 0,
