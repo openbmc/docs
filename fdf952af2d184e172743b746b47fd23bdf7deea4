@@ -327,6 +327,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "07e49255_84092297",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-30T18:04:33Z",
+      "side": 1,
+      "message": "I think that\u0027s the point of the check, the code \"works\", but it\u0027s highly likely that reference ends up as a use after free at some point in the future.  I suspect that\u0027s the point of the check, to ask you to write that as \n\ninitDevice(std::string service,std::string path, SoftwareConfig config)\n\nTo avoid the use after free footgun.",
+      "parentUuid": "090006b9_0c77b663",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 2
+      },
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1db61c37_3b1b7cbb",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 5
