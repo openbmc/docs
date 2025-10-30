@@ -34,6 +34,24 @@
       "parentUuid": "0a5c1c5a_0cc42ae6",
       "revId": "31ff83196b5e9be60533e7be9dd5e8db2fa69d47",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e632a407_d15b5eb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-10-30T17:59:07Z",
+      "side": 1,
+      "message": "I agree I haven\u0027t been responsive.\n\n\nwhile I agree that these should be avoided because they are subject to symlink attacks, I have seen them replaced with open coded equivalent codes using the race free creation helpers incorrectly \n\nwhich results in the same vulnerabilities that avoiding these was meant to avoid \n\n\nthe actual prevalence of symlink attacks might be minimal for those who limit or block direct logins as I\u0027m not aware of any PO programs that create symlinks (beyond systemd).\n\nif we had comments in the file I\u0027d suggest \u0027If you don\u0027t understand why these are a security concern defer their removal to those who do.\u0027. \n\n(alternatively, find a way to flag or trace usage of temp file name vs continued use of the file descriptor required to make the replacements safe,).\n\n\nagain I\u0027m not against having them suggested project wide but we have actually embedded the open coded errors if these utilities in their place",
+      "parentUuid": "348bafe7_f498cbfc",
+      "revId": "31ff83196b5e9be60533e7be9dd5e8db2fa69d47",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
