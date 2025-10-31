@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d097c171_c5c3b8aa",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2025-10-31T04:48:04Z",
+      "side": 1,
+      "message": "Instead of listing 300+ individual checks explicitly, consider switching to a hybrid .clang-tidy configuration using wildcard-based groups with targeted exclusions.\nThis keeps the config cleaner, easier to maintain, and future-proof—especially as clang-tidy evolves and new checks are added under existing groups.\n\nEg:\nChecks: \u003e\n  clang-analyzer-*,\n  bugprone-*,\n  performance-*,\n  modernize-*,\n  readability-*,\n  -modernize-use-trailing-return-type,\n  -readability-magic-numbers,",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3d3368b_a5dca1c8",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 5
