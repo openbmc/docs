@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "19893446_fd7d81bf",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-31T15:51:06Z",
+      "side": 1,
+      "message": "\u003e explicitly listing 300+ checks doesn’t fully avoid that risk either.\n\nAgreed, but it SIGNIFICANTLY reduces the problem to the point where it\u0027s not a burden.  Clang isn\u0027t in in the business of messing with checks that work and function correctly, and while this concern is real, I haven\u0027t personally seen this outside of a few minor cases.\n\n\u003e we can always disable noisy new checks\n\nThis is something the maintainer now has to proactively evaluate.  Just to show my concern, the workflow with this file as in the review is:\n\nFix compiler warnings -\u003e upgrade clang -\u003e enable new check (per repo).\n\nIf we wildcard this, now clang updates becomes:\n\nFix new compiler warnings -\u003e fix check in all N repositories -\u003e upgrade clang.",
+      "parentUuid": "1cbbe561_53d49f5d",
+      "revId": "fdf952af2d184e172743b746b47fd23bdf7deea4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c2c3e45_25085e90",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 5
