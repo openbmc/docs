@@ -183,16 +183,29 @@ Servers for Metrics Data
 | CPU Utilization    | phosphor-health-manager | /proc/stat                                             |
 | Reboot Statistics  | phosphor-state-manager  | Persistent counters incremented based on reboot status |
 
-Multiple devices of same type -
+### Device Metrics
 
-In case there are multiple devices of same type, the D-Bus path can be extended
-to add context about **"which device"**. For example -
+In case of metrics related to devices (as opposed to the well-known "BMC"
+device), it is not always possbile to document the complete metric D-Bus object
+path in the "Metric.Value" interface YAML. This is because device names and
+pathnames themselves are not standardized in the OpenBMC D-Bus namespace - it
+is not possible to even do this because implementations may choose a device
+path naming scheme that is desired to enable platform expecations/Redfish
+representation/etc.
 
-```text
-/xyz/openbmc_project/metric/device-0/memory/total
-/xyz/openbmc_project/metric/device-1/memory/total
-...
-```
+However, path segments and D-Bus associations for a type of metric applicable
+to a device shall be documented. For example, to implement PCIe metrics for a
+Port, the following apply:
+
+- The metric namespace is documented. This is already present in the
+Metric.Value interface as "xyz/openbmc_project/metric".
+- The metric segment for a PCIe metric is documented. For example,
+"pcie/fatal_error_count".
+- There is a "measured_by"/"measuring" association, as documented in the
+"Metric.Value" and "Inventory.Item" interface YAMLs, setup between the
+"/xyz/openbmc_project/metric/pcie/fatal_error_count/<rest of path>" metric
+object and the inventory object for the Port. This enables consumer apps to
+work with an inventory object and retrieve desired metrics in a well-known way.
 
 These paths can be hosted by different daemons, for example, pldmd can host DBus
 paths for BICs if master BMC uses PLDM to communicate with BIC. The Value
