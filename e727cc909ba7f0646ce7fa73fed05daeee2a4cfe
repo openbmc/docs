@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee45aab7_11bcc327",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2025-11-04T17:53:38Z",
+      "side": 1,
+      "message": "Yes.  In my mind D-Bus service \u003d\u003d daemon but I am happy to change the wording to make this more clear.",
+      "parentUuid": "ff246e91_36f972d9",
+      "range": {
+        "startLine": 46,
+        "startChar": 6,
+        "endLine": 46,
+        "endChar": 19
+      },
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98b48f68_46a487eb",
@@ -71,6 +95,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "515e198a_697df4f3",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2025-11-04T17:53:38Z",
+      "side": 1,
+      "message": "\u003e Will we store the CPER data somewhere?\n\nYes, I was going to store it in the filesystem somewhere (probably a subdir in /var/lib/).\n\n\u003e this data need to be persisted across bmc reboots?\n\nYes.  I tried to capture this in the requirement:\n\n\"A BMC should be able to receive and store from a CPU, and subsequently recall\n  CPERs.\"",
+      "parentUuid": "f1f86feb_b9e1c02b",
+      "range": {
+        "startLine": 57,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 42
+      },
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed879669_649d86bb",
@@ -84,6 +132,30 @@
       "writtenOn": "2025-10-03T23:09:15Z",
       "side": 1,
       "message": "Since phosphor-dbus-interface defined `CPER` types, we might use `PrimaryLogId`[1][2] as file path in FaultLog dump entry and it can be retrieve from bmcweb.\n\n[1]https://github.com/openbmc/pldm/blob/master/platform-mc/event_manager.cpp#L406\n[2] https://github.com/openbmc/phosphor-debug-collector/blob/master/dump_manager_faultlog.cpp#L61",
+      "range": {
+        "startLine": 84,
+        "startChar": 3,
+        "endLine": 84,
+        "endChar": 72
+      },
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d74ce0c_5d67832f",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2025-11-04T17:53:38Z",
+      "side": 1,
+      "message": "Passing filenames around on D-Bus is prone to race conditions so its something we avoid.",
+      "parentUuid": "ed879669_649d86bb",
       "range": {
         "startLine": 84,
         "startChar": 3,
@@ -113,6 +185,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2aabc68_21bf5a88",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2025-11-04T17:53:38Z",
+      "side": 1,
+      "message": "Sorry I don\u0027t fully understand the question.  Yes, CPERs could/would be made available as an attachment in a LogEntry.  Have I suggested something with this design that makes that problematic?",
+      "parentUuid": "a822f5ac_d2acd0a1",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5effeaa_e7f424b5",
         "filename": "designs/cper-repository.md",
         "patchSetId": 3
@@ -124,6 +214,24 @@
       "writtenOn": "2025-11-04T07:21:29Z",
       "side": 1,
       "message": "multiple CPERs can be processed at the same time?",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2a252b2_eebc80dd",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2025-11-04T17:53:38Z",
+      "side": 1,
+      "message": "Can you elaborate on processed?  This is just a storage interface so I wasn\u0027t planning on doing any processing.",
+      "parentUuid": "e5effeaa_e7f424b5",
       "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
