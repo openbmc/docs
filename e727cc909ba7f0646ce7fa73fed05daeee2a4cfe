@@ -101,6 +101,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60024d29_4077cc28",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2025-11-06T18:50:42Z",
+      "side": 1,
+      "message": "I added this because I thought it would be easy to implement and allow bmcweb to remove a bunch of them with one method call.  The use case I pictured was a webui with a bunch of checkboxes next to logs, but I don\u0027t have any plans to implement something like that.  It would be trivial to add this interface later so I\u0027ll remove it.",
+      "parentUuid": "d3e1a51a_661158e6",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98b48f68_46a487eb",
         "filename": "designs/cper-repository.md",
         "patchSetId": 3
@@ -189,6 +207,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7db72719_264b1444",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2025-11-06T18:50:42Z",
+      "side": 1,
+      "message": "\u003e  Posting a dbus-object per entry gets performance-critical on startup if you have a lot of messages.\n\nI don\u0027t think I\u0027m opposed to changing the semantics as you\u0027ve suggested but I wouldn\u0027t expect any messages on startup other than NameOwnerChanged, irrespective of how many logs there are in the store.  This really is a fundamental misunderstanding (I might be the one that is confused) that we need to align on as a project.",
+      "parentUuid": "6f9e497b_14866506",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a7a9053_515fac85",
         "filename": "designs/cper-repository.md",
         "patchSetId": 3
@@ -200,6 +236,24 @@
       "writtenOn": "2025-11-06T17:48:37Z",
       "side": 1,
       "message": "Is there a use case for this?",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcdc4ef0_12b371ae",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2025-11-06T18:50:42Z",
+      "side": 1,
+      "message": "I was planning to implement this in stages, with the first being just raw logs with no parsing.  I don\u0027t remember but think I thought this was an optimization that avoided transferring the entire log.  If we need the entire log even when there is no parsing being done...yeah this is pointless.",
+      "parentUuid": "7a7a9053_515fac85",
       "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
