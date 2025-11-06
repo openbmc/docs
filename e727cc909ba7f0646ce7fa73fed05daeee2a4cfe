@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c8aa03e_90d9718f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-11-06T17:48:37Z",
+      "side": 1,
+      "message": "Overall in support of this.",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbe1a4b8_ff04cf5f",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-11-06T17:48:37Z",
+      "side": 1,
+      "message": "I\u0027d like to see a couple more added here.  If they don\u0027t apply to your case, I\u0027m happy to push them as a dependent patchset on this.\n\n- Must be able to store up to a 3kB CPER\n- Must be able to store 10000 CPER records in the BMC.\n- Must be able to produce a correct Redfish LogEntry, with MessageId in the Platform registry (per Redfish).\n- Must allow polling all CPER stored records within 5 seconds.\n- SHOULD allow reading a CPER in a human readable JSON format through Redfish (format tbd, but this is a should).",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff246e91_36f972d9",
@@ -44,6 +78,23 @@
         "endLine": 46,
         "endChar": 19
       },
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3e1a51a_661158e6",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-11-06T17:48:37Z",
+      "side": 1,
+      "message": "Should we use the existing DeleteAll interface?  Is there a use case for deleting a specific range of entries rather than just the whole store?",
       "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -115,6 +166,57 @@
         "endLine": 57,
         "endChar": 42
       },
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f9e497b_14866506",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-11-06T17:48:37Z",
+      "side": 1,
+      "message": "Should we set this API up more like post codes, where there\u0027s a single method that allows indexing in?  Posting a dbus-object per entry gets performance-critical on startup if you have a lot of messages.\n\nAlso, Redfish has to read a bunch of these to correctly publish the LogService, so minimizing the read size is important.",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a7a9053_515fac85",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-11-06T17:48:37Z",
+      "side": 1,
+      "message": "Is there a use case for this?",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f62e7b34_fd8789da",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-11-06T17:48:37Z",
+      "side": 1,
+      "message": "My name is Ed, and I support this message. 👍",
       "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
