@@ -135,6 +135,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3339323f_4b60cc0a",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-11-06T19:03:44Z",
+      "side": 1,
+      "message": "FWIW, the \"delete a single entry\" use case is something I would want to explicitly disable.  If this is removed, I can just resolve this as \"maybe in the future\"\n\n👍",
+      "parentUuid": "60024d29_4077cc28",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98b48f68_46a487eb",
@@ -243,6 +261,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39fdf1b4_922716f7",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-11-06T19:03:44Z",
+      "side": 1,
+      "message": "If you have a dbus path per entry, you\u0027re right, I think we closed on the \"lots of messages at startup\" thing, but you do end up building a gigantic tree that the mapper has to scan.  If that tree has N thousand entries, that has been slow in the past.",
+      "parentUuid": "7db72719_264b1444",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a7a9053_515fac85",
         "filename": "designs/cper-repository.md",
         "patchSetId": 3
@@ -272,6 +308,24 @@
       "side": 1,
       "message": "I was planning to implement this in stages, with the first being just raw logs with no parsing.  I don\u0027t remember but think I thought this was an optimization that avoided transferring the entire log.  If we need the entire log even when there is no parsing being done...yeah this is pointless.",
       "parentUuid": "7a7a9053_515fac85",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95390361_5beb3bc1",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-11-06T19:03:44Z",
+      "side": 1,
+      "message": "I assumed parsing the whole log (which has a max of 4kB i think?) wasn\u0027t that expensive.",
+      "parentUuid": "bcdc4ef0_12b371ae",
       "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
