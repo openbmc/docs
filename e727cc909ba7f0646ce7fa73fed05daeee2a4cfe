@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aef65625_b5e4a12b",
+        "filename": "designs/cper-repository.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2025-11-06T19:00:24Z",
+      "side": 1,
+      "message": "\u003e Must be able to store up to a 3kB CPER\n\u003e Must be able to store 10000 CPER records in the BMC.\n\u003e Must allow polling all CPER stored records within 5 seconds.\n\nSure.  Is there something behind these numbers?  I think it would be good to document that.\n\n\u003e Must be able to produce a correct Redfish LogEntry, with MessageId in the Platform registry (per Redfish).\n\nThe words I see are:\n\n\u003e The MessageId , event data, or OEM-specific information. This property\n\u003e decodes from the entry type. If the entry type is Event , this property \n\u003e contains a Redfish Specification-defined MessageId . If the entry type is SEL,\n\u003e this property contains the Event Data. Otherwise, this property contains \n\u003e OEM-specific information.\n\nThe entry type is CPER, so this field contains OEM specific information.  I wasn\u0027t planning tackling anything along those lines, but I suspect I am missing something.  What am I missing?\n\n\u003e SHOULD allow reading a CPER in a human readable JSON format through Redfish (format tbd, but this is a should).\n\nI was going to follow up with another patch when we want to start parsing.",
+      "parentUuid": "cbe1a4b8_ff04cf5f",
+      "revId": "e727cc909ba7f0646ce7fa73fed05daeee2a4cfe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff246e91_36f972d9",
         "filename": "designs/cper-repository.md",
         "patchSetId": 3
