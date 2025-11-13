@@ -90,6 +90,7 @@ loop For every RedfishTargetURI
   note over CU: Swid = <DeviceX>_<RandomId>
   note over CU: ObjectPath = /xyz/openbmc_project/Software/<SwId>
   CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at ObjectPath with Status = NotReady
+  CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.ActivationBlocksTransition<br> at ObjectPath
   CU -->> BMCW: {ObjectPath, Success}
   CU ->> CU: << Delegate Update for asynchronous processing >>
 
@@ -107,6 +108,7 @@ loop For every RedfishTargetURI
       note over CU: Verify Image
       break Image Verification FAILED
         CU ->> CU: Activation.Status = Invalid
+        CU ->> CU: Delete Interface<br> xyz.openbmc_project.Software.ActivationProgress
         CU --) BMCW: Notify Activation.Status change
       end
       CU ->> CU: Activation.Status = Ready
@@ -114,7 +116,6 @@ loop For every RedfishTargetURI
 
       CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Version<br> at ObjectPath
       CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.ActivationProgress<br> at ObjectPath
-      CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.ActivationBlocksTransition<br> at ObjectPath
       CU ->> CU: Activation.Status = Activating
       CU --) BMCW: Notify Activation.Status change
       note over CU: Start Update
