@@ -223,3 +223,71 @@ runqemu myBuild/build/tmp/deploy/images/qemux86/ nographic \
 
 - after that the all the a TAP network interface is added, and protocol like
   ssh, scp, http work well.
+
+## Building and Running OpenBMC Using QEMU-ASPEED (evb-ast2600)
+
+   **Note** - When working in environments where the build machine, host machine and client machine are on different networks, accessing the OpenBMC WebUI through standard QEMU networking becomes unreliable. In such cases, the qemu-aspeed wrapper provides a stable, predictable network configuration that solves port-forwarding issues and allows seamless access to WebUI.
+
+1. Clone OpenBMC
+
+   ```bash
+   git clone https://github.com/openbmc/openbmc.git
+   ```
+
+2. Build the evb-ast2600 OpenBMC Image (note this will take 30 - 120 minutes
+   depending on your hardware)
+
+   ```bash
+   . setup evb-ast2600
+   bitbake obmc-phosphor-image
+   ```
+   The evb-ast2600 image is now located in
+   `build/tmp/deploy/images/evb-ast2600/obmc-phosphor-image-evb-ast2600.static.mtd`
+   relative to your current directory.
+
+3. Clone the custom QEMU fork for ASPEED platforms [QEMU-ASPEED](https://github.com/mohammedjavitham/qemu-aspeed) and make the launch script executable
+
+   ```bash
+   git clone https://github.com/mohammedjavitham/qemu-aspeed.git
+   cd qemu-aspeed
+   chmod u+x qemu-aspeed.sh
+   ```
+
+4. Copy the AST2600 image generated from your Yocto build into the qemu-aspeed directory
+
+   ```bash
+   cp ./tmp/deploy/images/evb-ast2600/obmc-phosphor-image-evb-ast2600.static.mtd ./
+   ```
+
+5. Start QEMU-ASPEED with the evb-ast2600 image
+
+   ```bash
+   ./qemu-aspeed.sh -i obmc-phosphor-image-evb-ast2600.static.mtd -m 2600 -w 1234
+   ```
+   Run QEMU using the image and forward the WebUI port (e.g., 1234).
+
+6. Wait for your qemu-aspeed based BMC to boot
+
+   Login using default root/0penBmc login (Note the 0 is a zero).
+
+7. Check the system state
+
+   You'll see a lot of services starting in the console, you can start running
+   the obmcutil tool to check the state of the OpenBMC state services. When you
+   see the following then you have successfully booted to "Ready" state.
+
+   ```bash
+   root@openbmc:~# obmcutil state
+   CurrentBMCState     : xyz.openbmc_project.State.BMC.BMCState.Ready
+   CurrentPowerState   : xyz.openbmc_project.State.Chassis.PowerState.Off
+   CurrentHostState    : xyz.openbmc_project.State.Host.HostState.Off
+   ```
+
+   **Note** To exit (and kill) your QEMU-ASPEED session run: `ctrl+a x`
+
+8. Use a browser and open
+
+   ```bash
+   https://build-server-ip:1234
+   ```
+   Login using the same credentials: root / 0penBmc
