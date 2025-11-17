@@ -1,8 +1,8 @@
 # OpenBMC kernel development
 
 The OpenBMC project maintains a kernel tree for use by the project. The tree's
-general development policy is that code must be upstream first. This is a strong
-requirement, not a hard requirement, and exceptions will be made on a
+general development policy is that code must be upstream first. This is strongly
+desirable but not a hard requirement, and exceptions may be made on a
 case-by-case basis. If in doubt, start a discussion on the mailing list.
 
 The OpenBMC kernel tree is hosted at <https://github.com/openbmc/linux> and
@@ -22,17 +22,17 @@ desirable:
 If you require a patch added to the tree, follow these steps:
 
 1. Submit your patch upstream. It doesn't need to be upstream, but it should be
-   on it's way
+   on it's way, and not have any unresolved design concerns
 2. Use
-   `git format-patch --subject-prefix="PATCH linux dev-4.7" --to=openbmc@lists.ozlabs.org --to=joel@jms.id.au`
+   `git format-patch --subject-prefix="PATCH linux ${BRANCH}" --to=openbmc@lists.ozlabs.org --to=joel@jms.id.au --to=andrew@codeconstruct.com.au`
    to create a formatted patch
 
 ## Developing a new driver
 
 When developing a new driver, your goal is to have the code accepted upstream.
 The first step should be to check that there is no existing driver for the
-hardware you wish to support. Check the OpenBMC `-dev` tree, check upstream, and
-if you do not find support there ask on the mailing list.
+hardware you wish to support. Check the OpenBMC `dev-` branches, check upstream,
+and if you do not find support there ask on the mailing list.
 
 Once you are sure a driver needs to be written, you should develop and test the
 driver, before sending it upstream to the relevant maintainers. You should feel
@@ -55,8 +55,8 @@ decide how best to include your code in the OpenBMC tree.
 There are cases where waiting for upstream acceptance will delay the bring-up of
 a new system. This should be avoided through careful planning and early
 development of the features upstream, but where this has not happened we can
-chose to carry the patches in the OpenBMC tree while the upstream development is
-ongoing.
+choose to carry the patches in the OpenBMC tree while upstream development
+continues.
 
 Another exception to the upstream first rule is where patches are modifying
 files that are not upstream. This currently includes the aspeed board file
@@ -69,21 +69,7 @@ email to the OpenBMC list to get the opinion of the kernel developers. Patches
 to `aspeed.c` will be treated with some prejudice as the file will be removed
 once we have drivers for all of the Aspeed peripherals.
 
-## Getting existing code in the tree
-
-The OpenBMC kernel is currently based on the 4.7 series. If there is upstream
-code you would like backported, send it to the list. Be sure to include the
-upstream commit SHA in the commit message.
-
 ## Testing
-
-When modifying the tree we currently test on the following platforms:
-
-- Palmetto, an OpenPower Power8 box containing an ast2400 with NCSI networking
-- ast2500-evb, the Aspeed dev board with two PHYs
-- Witherspoon, an OpenPower Power9 box containing an ast2500 with NCSI
-  networking
-- qemu-plametto and qemu-romulus
 
 Before submitting patches it is recommended you boot test on at least the Qemu
 platforms, and whatever hardware you have available.
@@ -101,18 +87,19 @@ You can build a kernel out of the yocto environment, by using the initramfs
 make ARCH=arm \
     O=obj \
     CROSS_COMPILE=arm-linux-gnueabihf- \
-    CONFIG_INITRAMFS_SOURCE=/path/tp/obmc-phosphor-image-palmetto.cpio.gz
+    CONFIG_INITRAMFS_SOURCE=.../obmc-phosphor-image-palmetto.cpio.gz
 ```
 
 (adjust `O` and `CROSS_COMPILE` parameters as appropriate).
 
-You'll need to use `aspeed_g4_defconfig` or `aspeed_g5_defconfig` as your base
-kernel configuration.
+You'll need to use a relevant BMC defconfig (e.g. `aspeed_g4_defconfig` or
+`aspeed_g5_defconfig`) as your base kernel configuration.
 
-The cpio can be found in the following yocto output directory:
+The cpio can be found under the relevant machine directory in the following
+yocto output directory:
 
 ```sh
- build/tmp/deploy/images/palmetto/
+ build/tmp/deploy/images/
 ```
 
 ### Building a uImage
