@@ -223,3 +223,25 @@ runqemu myBuild/build/tmp/deploy/images/qemux86/ nographic \
 
 - after that the all the a TAP network interface is added, and protocol like
   ssh, scp, http work well.
+
+## Sharing Downloads and Build Cache
+
+BitBake caches both fetched sources (DL_DIR) and reusable build outputs
+(SSTATE_DIR). Point multiple builds at shared directories to avoid
+re-downloading and re-building, saving time and disk.
+
+1. Create shared cache directories once:
+
+```bash
+mkdir -p "${XDG_CACHE_HOME}/data/bitbake.downloads" "${XDG_CACHE_HOME}/data/bitbake.sstate"
+```
+
+1. Add to build/conf/local.conf:
+
+```bash
+DL_DIR = "${XDG_CACHE_HOME}/data/bitbake.downloads"
+SSTATE_DIR = "${XDG_CACHE_HOME}/data/bitbake.sstate"
+```
+
+This makes every build reuse what was already downloaded and built, so you use
+less disk and finish faster.
