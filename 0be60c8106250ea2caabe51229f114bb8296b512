@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec41c078_31b51fc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002071
+      },
+      "writtenOn": "2025-11-24T15:27:50Z",
+      "side": 1,
+      "message": "Thanks for the patch, it really helps out new openbmc members. However, I have some concerns that I would like you to address.",
+      "revId": "0be60c8106250ea2caabe51229f114bb8296b512",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c925d0c1_eb1e1fe4",
+        "filename": "development/dev-environment.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1002071
+      },
+      "writtenOn": "2025-11-24T15:27:50Z",
+      "side": 1,
+      "message": "It would be better to actually explain how to reuse this folders.\n\nBy default, bitbake generates and mantain the sstate cache and downloads folder by itself, no need to configure anything.\n\nThe only reason I see to actually set up this folders in the local.conf is if you share a common folder between team members, and even then, I\u0027m not sure if bitbake will complain about having them in a nfs.",
+      "revId": "0be60c8106250ea2caabe51229f114bb8296b512",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26342d50_40e1b2c9",
+        "filename": "development/dev-environment.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1002071
+      },
+      "writtenOn": "2025-11-24T15:27:50Z",
+      "side": 1,
+      "message": "Can we make it more generic?\nXDG_CACHE_HOME is specific to some linux distros.\n\nThis change was already requested in patch1, and you then dropped the change.",
+      "revId": "0be60c8106250ea2caabe51229f114bb8296b512",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
