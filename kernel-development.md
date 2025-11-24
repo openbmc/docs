@@ -1,8 +1,9 @@
 # OpenBMC kernel development
 
 > [!IMPORTANT]
-> The kernel development philosphy described below also applies to
-> OpenBMC's u-boot fork.
+>
+> The kernel development philosphy described below also applies to OpenBMC's
+> u-boot fork.
 
 The OpenBMC project maintains a kernel tree for use by the project. The tree's
 general development policy is that code must be upstream first. This is strongly
