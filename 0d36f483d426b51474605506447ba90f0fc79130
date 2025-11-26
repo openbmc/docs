@@ -1,4 +1,39 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "209484cd_cf08d50c",
+        "filename": "development/dev-environment.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-11-26T23:03:13Z",
+      "side": 1,
+      "message": "Probably should\u0027ve addressed this in my earlier comment, however: I\u0027m not sold on the suggested path under `${XDG_CACHE_HOME}`. Why `data/`? Everything that can be cached is data. And why `bitbake.downloads` and `bitbake.sstate`? It\u0027s fine to nest directories.\n\nI\u0027d suggest recommending `${XDG_CACHE_HOME}/bitbake/downloads` and `${XDG_CACHE_HOME}/bitbake/sstate`, however, as this is all just recommendations, people are free to make their own choices anyway, so I\u0027ve marked this resolved.",
+      "revId": "0d36f483d426b51474605506447ba90f0fc79130",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e991599_ecc2f015",
+        "filename": "development/dev-environment.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-11-26T23:03:13Z",
+      "side": 1,
+      "message": "This isn\u0027t the only approach that works - for instance I set it in my (fish) environment:\n\n```\nset -gx DL_DIR /var/cache/bitbake/downloads\nset -gx SSTATE_DIR /var/cache/bitbake/sstate\nset -gx BB_ENV_PASSTHROUGH_ADDITIONS \"DL_DIR SSTATE_DIR\"\n```\n\n`BB_ENV_PASSTHROUGH_ADDITIONS` specifies the variables `bitbake` should allow from the calling environment.\n\nSetting the variables in the shell environment means the shared cache works across multiple build directories without having to edit `local.conf`. Maybe that\u0027s worth mentioning?",
+      "revId": "0d36f483d426b51474605506447ba90f0fc79130",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ],
   "submitRequirementResults": []
 }
