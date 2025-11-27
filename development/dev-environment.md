@@ -233,14 +233,14 @@ re-downloading and re-building, saving time and disk.
 1. Create shared cache directories once:
 
    ```bash
-   mkdir -p "${XDG_CACHE_HOME}/data/bitbake.downloads" "${XDG_CACHE_HOME}/data/bitbake.sstate"
+   mkdir -p "${XDG_CACHE_HOME}/bitbake/downloads" "${XDG_CACHE_HOME}/bitbake/sstate"
    ```
 
 2. Add to build/conf/local.conf:
 
    ```bash
-   DL_DIR = "${XDG_CACHE_HOME}/data/bitbake.downloads"
-   SSTATE_DIR = "${XDG_CACHE_HOME}/data/bitbake.sstate"
+   DL_DIR = "${XDG_CACHE_HOME}/bitbake/downloads"
+   SSTATE_DIR = "${XDG_CACHE_HOME}/bitbake/sstate"
    ```
 
 This makes every build reuse what was already downloaded and built, so you use
