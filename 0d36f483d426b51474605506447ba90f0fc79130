@@ -51,6 +51,24 @@
       "message": "This isn\u0027t the only approach that works - for instance I set it in my (fish) environment:\n\n```\nset -gx DL_DIR /var/cache/bitbake/downloads\nset -gx SSTATE_DIR /var/cache/bitbake/sstate\nset -gx BB_ENV_PASSTHROUGH_ADDITIONS \"DL_DIR SSTATE_DIR\"\n```\n\n`BB_ENV_PASSTHROUGH_ADDITIONS` specifies the variables `bitbake` should allow from the calling environment.\n\nSetting the variables in the shell environment means the shared cache works across multiple build directories without having to edit `local.conf`. Maybe that\u0027s worth mentioning?",
       "revId": "0d36f483d426b51474605506447ba90f0fc79130",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d9387c6_354cfcac",
+        "filename": "development/dev-environment.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2025-11-27T05:35:05Z",
+      "side": 1,
+      "message": "@andrew@codeconstruct.com.au Let me know if anything else needs to be added. I will be raising a PR to include information about sstate mirrors.",
+      "parentUuid": "1e991599_ecc2f015",
+      "revId": "0d36f483d426b51474605506447ba90f0fc79130",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []
