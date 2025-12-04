@@ -415,3 +415,22 @@ Then you are running an OpenBMC with your updated kernel.
   https://github.com/openbmc/openbmc/blob/c53f375a0f92f847d2aa50e19de54840e8472c8e/meta-phosphor/recipes-phosphor/ipmi/phosphor-ipmi-host_git.bb
 [3]:
   https://github.com/openbmc/openbmc/commit/ac7284629ea572cf27d69949dc4014b3b226f14f
+
+## Retrieving Yocto Variable Values
+
+To retrieve the value of a Yocto variable for a specific recipe, use:
+
+```bash
+bitbake-getvar <VARIABLE> -r <recipe>
+```
+
+For example, to get the value of the MACHINE variable for obmc-phosphor-image:
+
+```bash
+bitbake-getvar MACHINE -r obmc-phosphor-image
+```
+
+This is useful for debugging purpose, as Yocto variables can be assigned or
+modified across multiple layers and configuration files. `bitbake-getvar` helps
+to retrieve the final resolved value after all assignments from different
+layers, showing exactly what value will be used during the build.
