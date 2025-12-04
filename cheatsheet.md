@@ -416,3 +416,22 @@ Then you are running an OpenBMC with your updated kernel.
 
 [kernel-recipe-commit]:
   https://github.com/openbmc/openbmc/commit/ac7284629ea572cf27d69949dc4014b3b226f14f
+
+## Retrieving Yocto Variable Values
+
+To retrieve the value of a Yocto variable for a specific recipe, use:
+
+```bash
+bitbake-getvar <VARIABLE> -r <recipe>
+```
+
+For example, to get the value of the MACHINE variable for obmc-phosphor-image:
+
+```bash
+bitbake-getvar MACHINE -r obmc-phosphor-image
+```
+
+This is useful for debugging purpose, as Yocto variables can be assigned or
+modified across multiple layers and configuration files. `bitbake-getvar` helps
+to retrieve the final resolved value after all assignments from different
+layers, showing exactly what value will be used during the build.
