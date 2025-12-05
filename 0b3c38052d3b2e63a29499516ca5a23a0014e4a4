@@ -204,6 +204,30 @@
       },
       "revId": "0b3c38052d3b2e63a29499516ca5a23a0014e4a4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfffd2a2_d77a2f6f",
+        "filename": "designs/lldp/lldp-dbus-service.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000401
+      },
+      "writtenOn": "2025-12-05T07:20:00Z",
+      "side": 1,
+      "message": "Not necessarily right? It is still left to the implementation part.\n\nI have the changes here: https://gerrit.openbmc.org/c/openbmc/phosphor-networkd/+/83719\n\nHere, the phosphor-lldpd daemon can parse all the files under /etc/lldpd.d/* and /etc/lldp.conf, and fetch the values to populate the dbus.\n\nSimilarly for updating, if it\u0027s global config, then the daemon knows /etc/lldpd.conf is the file to be updated, and for port-level config, the files are /etc/lldpd.d/eth*.conf.",
+      "parentUuid": "77fb0a1d_5f3ee815",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 29
+      },
+      "revId": "0b3c38052d3b2e63a29499516ca5a23a0014e4a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
