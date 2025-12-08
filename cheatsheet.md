@@ -308,9 +308,9 @@ Below are real examples.
 ### devtool on ipmi
 
 If you want to debug or add a new function in ipmi, you probably need to change
-the code in [phosphor-host-ipmid][1]. Checking the recipes, you know this repo
-is in [phosphor-ipmi-host.bb][2]. Below are the steps to use devtool to modify
-the code locally, build and test it.
+the code in [phosphor-host-ipmid][ipmid-repo]. Checking the recipes, you know
+this repo is in [phosphor-ipmi-host.bb][ipmid-recipe]. Below are the steps to
+use devtool to modify the code locally, build and test it.
 
 1. Use devtool to create a local repo:
 
@@ -345,6 +345,10 @@ the code locally, build and test it.
 
 5. Now you can test your changes.
 
+[ipmid-repo]: https://github.com/openbmc/phosphor-host-ipmid
+[ipmid-recipe]:
+  https://github.com/openbmc/openbmc/blob/c53f375a0f92f847d2aa50e19de54840e8472c8e/meta-phosphor/recipes-phosphor/ipmi/phosphor-ipmi-host_git.bb
+
 ## Develop linux kernel
 
 ### devtool on linux kernel
@@ -352,10 +356,10 @@ the code locally, build and test it.
 If you want to work on linux kernel, you can use devtool as well, with some
 differences from regular repos.
 
-**Note**: As of [ac72846][3] the linux kernel recipe name is changed to
-`linux-aspeed` for Aspeed based OpenBMC builds. In the following examples,
-replace `linux-obmc` with `linux-aspeed` if you are on a revision later than
-[ac72846][3].
+**Note**: As of [ac72846][kernel-recipe-commit] the linux kernel recipe name is
+changed to `linux-aspeed` for Aspeed based OpenBMC builds. In the following
+examples, replace `linux-obmc` with `linux-aspeed` if you are on a revision
+later than [ac72846][kernel-recipe-commit].
 
 1. devtool does not create the 'devtool' branch. Instead, it checkout the branch
    specified in the recipe. For example, on the OpenBMC v2.2 tag,
@@ -410,8 +414,5 @@ bootm 0x83000000  # Boot from fit image
 
 Then you are running an OpenBMC with your updated kernel.
 
-[1]: https://github.com/openbmc/phosphor-host-ipmid
-[2]:
-  https://github.com/openbmc/openbmc/blob/c53f375a0f92f847d2aa50e19de54840e8472c8e/meta-phosphor/recipes-phosphor/ipmi/phosphor-ipmi-host_git.bb
-[3]:
+[kernel-recipe-commit]:
   https://github.com/openbmc/openbmc/commit/ac7284629ea572cf27d69949dc4014b3b226f14f
