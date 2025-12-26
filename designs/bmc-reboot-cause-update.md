@@ -70,7 +70,7 @@ the new additions and changes:
      by the watchdog.
 
 4. Clarification of The **Power-on-reset case**:
-   - When a BMC reset occured, but the flag in the bootstatus remains unchanged
+   - When a BMC reset occurred, but the flag in the bootstatus remains unchanged
      by the watchdog driver (i.e., it stays at 0), this indicates that a
      **Power-on-reset** has occurred.
 
