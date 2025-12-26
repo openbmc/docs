@@ -38,7 +38,7 @@ that will be pushed to openbmc/libcper, if approved.
 - A BMC should be able to decode binary CPER records originated from a CPER
   compatible CPU.
 
-- BMC should be able to recieve and decode CPER records from a CPU per the [CPER
+- BMC should be able to receive and decode CPER records from a CPU per the [CPER
   specification][arm_sbmr].
 
 - A BIOS/EDK2 build should be able to share decoding code with OpenBMC, to the
