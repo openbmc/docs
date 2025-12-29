@@ -376,7 +376,7 @@ The mux is switched based on the endpoint of the most recent client connection,
 and any conflicting clients are disconnected. This is design option `F` in the
 table above.
 
-The internal datastructures of obmc-console will change to accommodate the
+The internal data structures of obmc-console will change to accommodate the
 design.
 
 We will use one config file for the `N` muxed consoles. The configuration will
