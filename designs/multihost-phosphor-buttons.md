@@ -211,7 +211,7 @@ are called.
 
 This button interface monitors for change in host selector switch Position dbus
 property and based on the dbus property value change, corresponding serial
-console is selected.mux value can be set as configuring 4 gpio lines dedicated
+console is selected. Mux value can be set by configuring 4 GPIO lines dedicated
 for the serial console mux.
 
 ### Example
