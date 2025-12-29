@@ -204,8 +204,8 @@ switch dbus property value is rollover to zero after Position value exceeds
 MaxPosition Value.
 
 This way when power and reset button press events are handled, the Host selector
-Position property is referred and based on the Position respective power events
-are called.
+Position property is referenced and based on the Position respective power
+events are called.
 
 ## serial console MUX interface
 
