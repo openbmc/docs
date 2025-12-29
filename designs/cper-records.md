@@ -6,7 +6,7 @@ Created: 5-22-2024
 
 ## Problem Description
 
-Server CPUs expose a managability interface refered to as CPER records. A user
+Server CPUs expose a manageability interface referred to as CPER records. A user
 outside of the BMC would like to read these records in a decoded state, rather
 than as a raw package.
 
