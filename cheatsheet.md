@@ -62,7 +62,7 @@ bitbake obmc-phosphor-image
 ## Building the OpenBMC SDK
 
 Looking for a way to compile your programs for 'ARM' but you happen to be
-running on a 'PPC' or 'x86' system? You can build the sdk receive a fakeroot
+running on a 'PPC' or 'x86' system? You can build the sdk and receive a fakeroot
 environment.
 
 ```bash
@@ -155,7 +155,7 @@ Built file will be located at: `arm-softmmu/qemu-system-arm`
 
 Using a bridge device requires a bit of root access to set it up. The benefit is
 your qemu session runs in the bridges subnet so no port forwarding is needed.
-There are packages needed to yourself a virbr0 such as...
+There are packages needed to get yourself a virbr0 such as...
 
 ```bash
 apt-get install libvirt libvirt-bin bridge-utils uml-utilities qemu-system-common
@@ -166,7 +166,7 @@ qemu-system-arm -m 256 -M palmetto-bmc -nographic \
     -net bridge,id=net0,helper=/usr/lib/qemu-bridge-helper,br=virbr0
 ```
 
-There are some other useful parms like that can redirect the console to another
+There are some other useful params like that can redirect the console to another
 window. This results in having an easily accessible qemu command session.
 `-monitor stdio -serial pty -nodefaults`
 
@@ -206,7 +206,7 @@ To use GDB:
 
 ```bash
 cd <sysroot_of_sdk_build>
-$GDB <relative_path_to_exeutable> <path_to_core_file>
+$GDB <relative_path_to_executable> <path_to_core_file>
 ```
 
 ## Coredump
