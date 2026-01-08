@@ -388,6 +388,12 @@ no dependencies on non-public resources (URLs, repositories, etc).
 
 See: <http://dbus.freedesktop.org/doc/dbus-api-design.html>
 
+- Hardcoding D-Bus interfaces / service names / property names / method names
+  should be avoided
+  [magic-constants](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#es45-avoid-magic-constants-use-symbolic-constants)
+  when symbols from generated headers are available. Prefer to use these
+  instead.
+
 ## Best practices for C
 
 There are numerous resources available elsewhere, but a few items that are
