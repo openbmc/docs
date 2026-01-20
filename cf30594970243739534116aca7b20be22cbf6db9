@@ -56,6 +56,23 @@
       "message": "I appreciate you trying to build consensus on this.  Good luck.\n\nSome open questions I have are:\n\nWould generated headers be a pre-requisite to using a new language, such as Rust or c, or does this only apply to c++?\n\nDo we require generated headers and constants for interfaces provided by projects such as systemd or the mctp userspace?\n\nAre there any scenarios at all where the use of generated headers would not be mandated?",
       "revId": "cf30594970243739534116aca7b20be22cbf6db9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d00a8148_e38bbdf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-20T18:42:22Z",
+      "side": 1,
+      "message": "This would imply that:\n1. All services use the same bindings\n2. All services use generated bindings\n\nAnd as a result, the code would not be as searchable.  Today you can search for an interface, and find all places that implement it.  If we rely on generated headers, that\u0027s no longer the case.  Overall, I am against this.",
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
