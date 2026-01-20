@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1774e1ad_3127f911",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-20T21:46:33Z",
+      "side": 1,
+      "message": "We definitely can\u0027t constrain code in repositories outside the openbmc org.",
+      "parentUuid": "f21ad0a3_2e01e269",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "79fd8a1c_eda680bb",
@@ -75,6 +99,59 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd5f7c5d_baadc1f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-20T21:46:33Z",
+      "side": 1,
+      "message": "I\u0027m on-board with this being documented as the overall direction.  I\u0027m not 100% sure this is the right place for it, but I\u0027m also not sure what is a better place.",
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c839ba8c_cecfa3d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-20T21:46:33Z",
+      "side": 1,
+      "message": "Grep-ability is the only concern?\n\n\u003e Today you can search for an interface, and find all places that implement it. If we rely on generated headers, that\u0027s no longer the case.\n\nConsidering we currently have 2 different bindings and 1 preference for manual, this isn\u0027t really the case today.  At least the bindings are mostly self-consistent.\n\nEven if you scope to the manual implementations, this isn\u0027t strictly true.  Taken dbus-sensors:\n\n```\n$ rg \"xyz.openbmc_project.Sensor.Threshold\" -l              \nREADME.md\nsrc/Thresholds.cpp\n```\n\nSo, no I can\u0027t find all cases where thresholds are created because we\u0027ve created a \"library\" or \"utility function\" (or one might say \"manually created binding\") so now I also have to find all the cases where _this_ is used.\n\nThe code is just as \"greppable\" when it comes to the bindings, in my opinion (also in dbus-sensors).  I can see all uses of Leak.Detector:\n```\n$ rg \"xyz.openbmc_project.State.Leak.Detector\"\nsrc/leakdetector/LeakGPIODetector.hpp\n12:#include \u003cxyz/openbmc_project/State/Leak/Detector/aserver.hpp\u003e\n\nsrc/leakdetector/LeakGPIODetector.cpp\n9:#include \u003cxyz/openbmc_project/State/Leak/Detector/aserver.hpp\u003e\n\nsrc/leakdetector/LeakEvents.hpp\n5:#include \u003cxyz/openbmc_project/State/Leak/Detector/client.hpp\u003e\n\nsrc/leakdetector/LeakEvents.cpp\n9:#include \u003cxyz/openbmc_project/State/Leak/Detector/event.hpp\u003e\n```",
+      "parentUuid": "d00a8148_e38bbdf8",
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7281247_7b281402",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-20T21:46:33Z",
+      "side": 1,
+      "message": "\u003e Would generated headers be a pre-requisite to using a new language, such as Rust or c, or does this only apply to c++?\n\nWell, this was part of the feedback I left on Rust.  I don\u0027t really want to regress there either.  So, yes, my preference would be if we want to use a new language, someone invests the time in generating a binding generator.\n\n\u003e Do we require generated headers and constants for interfaces provided by projects such as systemd or the mctp userspace?\n\nI\u0027m fine with us going either way on those, but my preference would be to tend towards using a binding.  Someone added `phosphor-dbus-interfaces/yaml/org/freedesktop/UPower/Device.interface.yaml` so that they could use the bindings against it, so there\u0027s no reason you can\u0027t make bindings against non-OpenBMC interfaces.",
+      "parentUuid": "66c2acd3_44f67336",
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee117640_6be3999d",
@@ -88,6 +165,30 @@
       "writtenOn": "2026-01-20T18:44:44Z",
       "side": 1,
       "message": "This rule wouldn\u0027t apply, as it talks about UNNAMED constants.  In the example, integers are used.  The examples here are generally named and are described as part of the API itself.  For example, scripts that hardcode \"/redfish/v1\" or \"https\" would not be covered under this rule.",
+      "range": {
+        "startLine": 393,
+        "startChar": 20,
+        "endLine": 393,
+        "endChar": 130
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "172c35c4_d97ebe3a",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-20T21:46:33Z",
+      "side": 1,
+      "message": "I don\u0027t think the CCG distinguishes between \"named\" and \"unnamed\" contants.\n\n\u003e Enforcement Flag literals in code. Give a pass to 0, 1, nullptr, \\n, \"\", and others on a positive list.\n\nIt says to enforce a flag on all literals and gives an example that the empty string might be [one of the only] on a positive (allow) list.\n\nI agree that `\"/redfish/v1\"` is _probably_ obvious but is it more obvious than `redfish_prefix` is, I guess, a matter of taste preference.  The CCG in my reading says no, but if there were a clang-tidy check for this, there probably would be a \"false positive\" configuration for it and I\u0027d be fine with some \u0027well-known exceptions\u0027 like `\"/redfish/v1\"`.  That doesn\u0027t mean that every static string is fair game though...",
+      "parentUuid": "ee117640_6be3999d",
       "range": {
         "startLine": 393,
         "startChar": 20,
