@@ -48,6 +48,121 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "15ce9cb1_e66b414d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-20T21:57:44Z",
+      "side": 1,
+      "message": "I left an example of how you can at least narrow down the file.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 25
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1bff5c2_62cb8572",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-20T21:57:44Z",
+      "side": 1,
+      "message": "By not using the bindings, there is still an informal dependency on PDI as the documentation.  It\u0027s just no longer enforced by the compiler.\n\nI think we need to quantify why this \"additional dependency\" matters before this objection holds much weight.  There is already a dependency on sdbusplus; you\u0027re just trading that for phosphor-dbus-interfaces instead.  We already have PDI as a dependency in the flash image, as you said, so this isn\u0027t adding size.  We can pretty trivially support meson subprojects now and cross-repository CI.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 58
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15ff3f46_8af50926",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-20T21:57:44Z",
+      "side": 1,
+      "message": "The bindings also support creating an additional `std::optional` or however you want to hold it to instantiate an additional interface at a dbus path.  You don\u0027t _have_ to exclusively use the `object::server\u003c...\u003e` varargs template; that\u0027s just there for ease when you do have a static set.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 17
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0caafd0_09c006b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-20T21:57:44Z",
+      "side": 1,
+      "message": "Didn\u0027t we already agree that PDI is at a minimum the documentation source for all dbus interfaces?  I suspect this is an old objection that is no longer relevant anyhow.",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 67
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bb7db16_a9b32024",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-20T21:57:44Z",
+      "side": 1,
+      "message": "We don\u0027t leverage versioning and I don\u0027t want to give the impression that we\u0027re starting to go in that path by giving credence to its suggestion in a commit message.\n\nTopic based CI is how dependencies (and breaking API changes) should be handled (https://lore.kernel.org/openbmc/Zv2oBkO0J6OEUvie@heinlein.vulture-banana.ts.net/).  It has been in place for 1.5 years now.\n\nI don\u0027t understand this \"objection\" to begin with.  Changing strings at-will and breaking other repositories silently is somehow ... better?",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 18
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "79fd8a1c_eda680bb",
