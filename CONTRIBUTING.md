@@ -382,6 +382,13 @@ no dependencies on non-public resources (URLs, repositories, etc).
 - Type signatures should and use the simplest types possible, appropriate for
   the data passed. For example, don't pass numbers as ASCII strings.
 
+- When hardcoding string literals of D-Bus interfaces / service names / property
+  names / method names in C++ code, prefer to write the full name, e.g.
+  `"xyz.openbmc_project.Inventory.Item.PowerSupply"`, do not construct it from
+  bits and pieces like `"xyz.openbmc_project.Inventory.Item." + type;`. Using
+  the full name ensures that code is searchable and usages of a given interface
+  can be found.
+
 - D-Bus interfaces are defined in the `phosphor-dbus-interfaces` repository at:
 
 <https://github.com/openbmc/phosphor-dbus-interfaces>
