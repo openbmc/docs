@@ -25,7 +25,7 @@ server. The phosphor-rest-server repository was archived in October 2022.
 
 ```bash
  export bmc=xx.xx.xx.xx
- curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d "{\"data\": [ \"root\", \"0penBmc\" ] }"
+ curl -c cjar -b cjar -k -H "Content-Type: application/json" -X POST https://${bmc}/login -d "{\"username\": \"root\", \"password\": \"0penBmc\" }"
 ```
 
 - If passing in the username/password as part of the URL, no unique login call
