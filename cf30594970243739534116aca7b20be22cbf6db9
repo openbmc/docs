@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97b2727d_2571837f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T04:44:36Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t think you are asking enough maintainers.\n\nPlease add anyone that might want to weigh in.\n\nI am mostly going with the assumption that folks interested in changes will be listed in `OWNERS` file.\n\nClosing this since the question has been resolved, please re-open if there\u0027s anything i can do to figure out who to add to this change.",
+      "parentUuid": "1774e1ad_3127f911",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15ce9cb1_e66b414d",
@@ -61,6 +85,30 @@
       "writtenOn": "2026-01-20T21:57:44Z",
       "side": 1,
       "message": "I left an example of how you can at least narrow down the file.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 25
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04633c6a_6c2aa49a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T04:44:36Z",
+      "side": 1,
+      "message": "Added that example. It\u0027s neat how it works for both hardcoded interfaces and generated headers.",
+      "parentUuid": "15ce9cb1_e66b414d",
       "range": {
         "startLine": 71,
         "startChar": 0,
@@ -96,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1eb9694_0fe50463",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T04:44:36Z",
+      "side": 1,
+      "message": "There was a comment [1] that PDI changes can cause unnecessary rebuild of packages in incremental builds.\n\nIf a package depends on PDI, it may get rebuilt even if no interface it depends on has changed.\n\nI am unsure if that\u0027s something which can even be solved in yocto currently. Maybe with split-pkg? \n\nIMO it is a valid concern, just not sure if it\u0027s worth the effort to try and solve it.\n\nReferences:\n[1] https://gerrit.openbmc.org/c/openbmc/phosphor-objmgr/+/85613/comments/aa5bcb92_2d6bd359",
+      "parentUuid": "c1bff5c2_62cb8572",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 58
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15ff3f46_8af50926",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -107,6 +179,30 @@
       "writtenOn": "2026-01-20T21:57:44Z",
       "side": 1,
       "message": "The bindings also support creating an additional `std::optional` or however you want to hold it to instantiate an additional interface at a dbus path.  You don\u0027t _have_ to exclusively use the `object::server\u003c...\u003e` varargs template; that\u0027s just there for ease when you do have a static set.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 17
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95df35bd_14b2d0f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T04:44:36Z",
+      "side": 1,
+      "message": "I added some concrete examples and also mentioned the `std::optional`.",
+      "parentUuid": "15ff3f46_8af50926",
       "range": {
         "startLine": 119,
         "startChar": 0,
@@ -142,6 +238,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06e516e0_e018eb5c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T04:44:36Z",
+      "side": 1,
+      "message": "\u003e Didn\u0027t we already agree that PDI is at a minimum the documentation source for all dbus interfaces?  \n\nMy last status is that there is still an ongoing ToF discussion about \u0027internal\u0027 public interfaces between multiple repositories.\n\n\u003e  I suspect this is an old objection that is no longer relevant anyhow.\n\n@ed@tanous.net Do you agree on this one, shall we remove this section from the message?",
+      "parentUuid": "c0caafd0_09c006b8",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 67
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6bb7db16_a9b32024",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -153,6 +273,30 @@
       "writtenOn": "2026-01-20T21:57:44Z",
       "side": 1,
       "message": "We don\u0027t leverage versioning and I don\u0027t want to give the impression that we\u0027re starting to go in that path by giving credence to its suggestion in a commit message.\n\nTopic based CI is how dependencies (and breaking API changes) should be handled (https://lore.kernel.org/openbmc/Zv2oBkO0J6OEUvie@heinlein.vulture-banana.ts.net/).  It has been in place for 1.5 years now.\n\nI don\u0027t understand this \"objection\" to begin with.  Changing strings at-will and breaking other repositories silently is somehow ... better?",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 18
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e447e8d7_9fa877a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T04:44:36Z",
+      "side": 1,
+      "message": "\u003e We don\u0027t leverage versioning and I don\u0027t want to give the impression \nthat we\u0027re starting to go in that path by giving credence to its \nsuggestion in a commit message.\n\nUnderstood, i added a section with my impression of how things have been changed and which workflows were used. You have a larger (historical) context there so you might have extra comments / corrections there. My context only goes a few years back.",
+      "parentUuid": "6bb7db16_a9b32024",
       "range": {
         "startLine": 136,
         "startChar": 0,
@@ -280,6 +424,24 @@
       "writtenOn": "2026-01-21T01:48:32Z",
       "side": 1,
       "message": "Brad, can you give reasons why your vote went to -1?  You asked questions previously with no score. I’d like to make sure if there is actionable feedback, Alexander has it.",
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7445d09_cb5848bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-21T04:44:36Z",
+      "side": 1,
+      "message": "\u003e Even if you scope to the manual implementations, this isn\u0027t strictly true.  Taken dbus-sensors:\n\nIt\u0027s even worse than that, sometimes we **cannot** find an interface at all since the interface name is concatenated from bits and pieces in both config and code.\n\nTry `cd entity-manager;  rg \"Inventory.Item.PowerSupply\"`\n\nIt definitely does create those interfaces but it is impossible to figure it out  in a simple grep without knowing the implementation detail or running the code.\n\nAnother example, trying to find out who creates the fan inventory.\n\nhttps://github.com/search?q\u003dorg%3Aopenbmc+Inventory.Item.Fan\u0026type\u003dcode\nhttps://github.com/search?q\u003dorg%3Aopenbmc+Inventory%2FItem%2FFan\u0026type\u003dcode",
+      "parentUuid": "c839ba8c_cecfa3d0",
       "revId": "cf30594970243739534116aca7b20be22cbf6db9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
