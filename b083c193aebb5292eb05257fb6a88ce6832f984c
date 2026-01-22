@@ -52,6 +52,24 @@
       "parentUuid": "ed908622_040d7a0a",
       "revId": "b083c193aebb5292eb05257fb6a88ce6832f984c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ee56435_1f32cdbb",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-22T03:26:15Z",
+      "side": 1,
+      "message": "Sorry, missed your reply.\n\n\u003e As worded, this would require like the call below from bmcweb to be rewrote? \n\nIt would create an expectation for changes to be merged if someone were to re-write it. But there are multiple other concerns besides the PDI improvements which may still block the change.\n\nJust re-writing one call would create an inconsistency in the bmcweb so i assume maintainers could expect someone to do a lot more work than just changing one call site.\n\nTo demonstrate (through, perhaps a longer patch series) that they can actually pull off the conversion and do any required testing.\n\n### your example\n\nDepending on which style you want to use from the generated headers, the below would be a simple way to change it. (did not compile it, just to get the idea)\n\nIn this case the improvement is that bmcweb no longer has to define those interface names or namespace paths but can simply get it from the header.\n\n```\n#include \u003c.../Inventory/Item/Cable/common.hpp\u003e\n#include \u003c.../Inventory/Item/common.hpp\u003e\n\nusing InventoryItem \u003d ...;\nusing InventoryItemCable \u003d ...;\n\nsdbusplus::message::object_path inventoryPath(InventoryItem::namespace_path);\n\nconstexpr std::array\u003cstd::string_view, 1\u003e cableInterfaces \u003d {\n    InventoryItemCable::interface};\n\ndbus::utility::getSubTree(inventoryPath, 0, cableInterfaces,\n    std::bind_front(afterHandleCableGet, asyncResp, cableId));\n```\n\nSince bmcweb is using the actual object path type and generated headers are using `char*` that may also be something bmcweb maintainers could ask to get fixed in the generated headers.",
+      "parentUuid": "b4cf9ea2_20c57798",
+      "revId": "b083c193aebb5292eb05257fb6a88ce6832f984c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
