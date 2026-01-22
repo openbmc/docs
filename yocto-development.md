@@ -70,15 +70,15 @@ Add/Modify these lines.
 
 ```bash
 do_install() {
-        install -m 0755 -d ${D}${bindir} ${D}${datadir}/welcome
+        install -m 0755 -d ${D}${bindir} ${D}${docdir}/${PN}
         install -m 0644 ${S}/hello ${D}${bindir}
-        install -m 0644 ${S}/README.md ${D}${datadir}/welcome/
+        install -m 0644 ${S}/README.md ${D}${docdir}/${PN}/
 }
 ```
 
 The install directives create directories and then copies the files into them.
 Now BitBake will pick them up from the traditional `/usr/bin` and
-`/usr/shared/doc/hello/README.md`.
+`/usr/share/doc/welcome/README.md`.
 
 The Final Step is to tell BitBake that you need the `welcome` recipe
 
@@ -88,7 +88,7 @@ IMAGE_INSTALL_append = " welcome"
 ```
 
 That's it, recompile and boot your system, the binary `hello` will be in
-`/usr/bin` and the `README.md` will be in `/usr/shared/doc/welcome`.
+`/usr/bin` and the `README.md` will be in `/usr/share/doc/welcome`.
 
 ### Know what your image has
 
@@ -99,7 +99,7 @@ path is the staging area where files are placed to be packaged.
 In my example to check if README.md was going to be added just do...
 
 ```bash
-ls build/tmp/work/${MACHINE}-openbmc-linux-gnueabi/obmc-phosphor-image/1.0-r0/rootfs/usr/share/welcome/README.md
+ls build/tmp/work/${MACHINE}-openbmc-linux-gnueabi/obmc-phosphor-image/1.0-r0/rootfs/usr/share/doc/welcome/README.md
 ```
 
 NXP wrote a few examples of [useful](https://community.nxp.com/docs/DOC-94953)
