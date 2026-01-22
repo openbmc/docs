@@ -16,6 +16,24 @@
       "message": "Maybe we do this? -\"... should be avoided if symbols from generated headers are available\". \n\nThen we have the incoming document from https://github.com/openbmc/technical-oversight-forum/issues/54 which will spell out which interfaces should have generated headers available.",
       "revId": "b083c193aebb5292eb05257fb6a88ce6832f984c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "001560d8_d0cbbb79",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2026-01-22T01:49:10Z",
+      "side": 1,
+      "message": "As worded, this would require like the call below from bmcweb to be rewrote? \n```\n    dbus::utility::getSubTree(\n        \"/xyz/openbmc_project/inventory\", 0, \"xyz.openbmc_project.Inventory.Item.Cable\",\n        std::bind_front(afterHandleCableGet, asyncResp, cableId));\n```\n\nReplacing with inventoryPath, maxDepth, and cableInterfaces, \n\n```\nsdbusplus::message::object_path inventoryPath(\"/xyz/openbmc_project/inventory\");\n\nconstexpr std::array\u003cstd::string_view, 1\u003e cableInterfaces \u003d {\n    \"xyz.openbmc_project.Inventory.Item.Cable\"};\n\ndbus::utility::getSubTree(inventoryPath, maxDepth, cableInterfaces,\n    std::bind_front(afterHandleCableGet, asyncResp, cableId));\n```",
+      "parentUuid": "ed908622_040d7a0a",
+      "revId": "b083c193aebb5292eb05257fb6a88ce6832f984c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
