@@ -628,6 +628,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0da34cb_a393f268",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-01-23T03:17:44Z",
+      "side": 1,
+      "message": "\u003e This is a maintainer autonomy issue, not a contributor issue.\n\nHow can folks safely make changes across 5+ repositories if they cannot even search for places where a given D-Bus interface is used?\n\nHow can a contributor safely change code they cannot run if the D-Bus interactions are hand-rolled bespoke creations?\n\nMaybe we can think of the contributor\u0027s experience and their requirements since that\u0027s a much bigger group of people than maintainers.\n\nSo IMO ToF should think about how to better leverage the efforts of these 100+ people and figure out how to separate technical improvements like generated headers from the social aspect of \u0027who gets to define our D-Bus interfaces\u0027. Can\u0027t you co-maintain the PDI together with Patrick?\n\nWhen it comes to how the code should be written, maintainer autonomy and their unique (non-technical, as you said) personal preferences directly translate to a worse experience for contributors.\n\n\nThere are multiple repos out there which had code with heavy use of generated headers merged recently and at the same time refuse to merge code with generated headers in other folders in the same repo.\n\nThat\u0027s just beyond confusing and inconsistent. No one can say how it should be written, it\u0027s always different for no good reason.\n\n\u003e Once it is documented here, it will be used in review feedback by \nthose with a preference for generated header constants as a mandate on \nmaintainer behavior.\n\nSo, to increase maintainer autonomy, we can simply delete all the existing contribution guidelines and documentation? Perhaps also remove the review process for creating new repositories?\n\nIt\u0027s natural for a project to document increasingly specific preferences and processes for doing things as experience is accumulated over time. Converging on proven solutions and so on.\n\nThose who seek maximum autonomy in their projects should probably not maintain them inside the OpenBMC org?",
+      "parentUuid": "0a5ce1f4_0d8a5d3b",
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ee117640_6be3999d",
         "filename": "CONTRIBUTING.md",
         "patchSetId": 2
