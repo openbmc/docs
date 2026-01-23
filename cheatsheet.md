@@ -125,8 +125,9 @@ document). If no error and QEMU starts up just change the port when interacting
 with the BMC...
 
 ```bash
-curl -c cjar -b cjar -k -H "Content-Type: application/json" \
-    -X POST https://localhost:2443/login -d "{\"data\": [ \"root\", \"0penBmc\" ] }"
+curl -k -H "Content-Type: application/json" -X POST -D headers.txt \
+    https://${bmc}/redfish/v1/SessionService/Sessions -d \
+    '{"UserName":"root", "Password":"0penBmc"}'
 ```
 
 or
@@ -175,7 +176,13 @@ window. This results in having an easily accessible qemu command session.
 Login:
 
 ```bash
-curl -c cjar -k -X POST -H "Content-Type: application/json" -d '{"data": [ "root", "0penBmc" ] }' https://${bmc}/login
+curl --insecure -H "Content-Type: application/json" -X POST -D headers.txt \
+    https://${bmc}/redfish/v1/SessionService/Sessions -d  \
+    '{"UserName":"root", "Password":"0penBmc"}'
+```
+A file, headers.txt, will be created. Find the "X-Auth-Token" in that file.
+```bash
+export bmc_token=<token>
 ```
 
 Connect to host console:
@@ -187,9 +194,9 @@ ssh -p 2200 root@bmc
 Power on:
 
 ```bash
-curl -c cjar -b cjar -k -H "Content-Type: application/json" -X PUT \
-    -d '{"data": "xyz.openbmc_project.State.Host.Transition.On"}' \
-    https://${bmc}/xyz/openbmc_project/state/host0/attr/RequestedHostTransition
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST \
+    https://${bmc}/redfish/v1/Systems/system/Actions/ComputerSystem.Reset \
+    -d '{"ResetType": "On"}'
 ```
 
 ## GDB
