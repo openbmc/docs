@@ -646,6 +646,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1029173a_2605d392",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-23T21:34:49Z",
+      "side": 1,
+      "message": "\u003e Grep-ability is the only concern?\n\nNot the only concern if we\u0027re including the whole of PDI, but yes, it is one concern that we can no longer search for interfaces.\n\n\u003e so now I also have to find all the cases where this is used.\n\nYes, but the point is that you can now do that, and based on the code.  Sure, there are utility functions that need further traced, but this is now accomplishable.  If we rely on generated strings, this is made harder.  From that helper function it takes maybe another minute to find the uses, but more importantly I know that dbus-sensors uses that interface and know to ask the maintainers what to look for.\n\nIf i do the same search on bmcweb, I can see that it uses those, and can do a similar backtrace to find how they\u0027re used, in this case to create several Redfish APIs.  I now know that if I touch those, I should probably retest the Redfish Sensor/Thermal/Power APIs on my platform.\nhttps://github.com/search?q\u003drepo%3Aopenbmc%2Fbmcweb%20xyz.openbmc_project.Sensor.Threshold\u0026type\u003dcode\n\nAnswering \"Does this application use the foo interface\" is one of the more common questions I need to look for when reviewing code.\n\n\u003e It definitely does create those interfaces but it is impossible to figure it out in a simple grep without knowing the implementation detail or running the code.\n\nFor that cherry-picked case, I agree with you, and I\u0027m not terribly happy that\u0027s the case.  Given we know the allowed dbus types for this, there should\u0027ve been a mapping table similar to:\nhttps://github.com/openbmc/bmcweb/blob/9dec964e45fb11fd495b5e24f2a9e1801a3eb7ba/redfish-core/include/utils/pcie_util.hpp#L55\n\nI\u0027ve tried to accomplish that before, but there are enough people relying on the Item.Type magic to create new undocumented interfaces, that it wasn\u0027t worth it to me to break the community for something relatively minor.  Some day in the future, I will have free time, and it will be worth it.\n\nThat would let you directly find the full interface.  I will fully admit that we can find examples where this doesn\u0027t improve things, but by in large, it is a useful abstraction that I use nearly every day.\n\n\u003e But instead of agreeing to disagree, we are going to codify that one point of view is \"wrong\" \n\nWith you 100% Brad.  I can\u0027t even say I agree with the code in all the repos I directly maintain, but even at a micro level I agreed to disagree to move things forward.\n\n\u003e There\u0027s a lot less friction contributing across the openbmc project when there is consistency.\n\nAndrew, can you comment on how you came to this?  Given that things like phosphor-hwmon, phosphor-rest, and phosphor-inventory-manager were VERY consistent, and ultimately aren\u0027t what the majority of new projects use, how did you come to the conclusion that consistency causes less friction?  From my perspective, trying to keep perfect consistency across projects has held back a lot of contributions.  Even the consistency we do have I worry has gone too far.\n\n\u003e  When I was the king of OpenBMC \n\nROFL\n\n\u003e IMO a preference for PDI generated symbols does not mean we cannot accept any hand-rolled code anymore.\n\nUltimately, I still don\u0027t find PDI in its current form as useful as proper review and testing.  To steal a phrase from Brad, I would prefer to agree to disagree.  For nearly everything I maintain that is PDI, there\u0027s a non PDI equivalent that\u0027s usable.",
+      "parentUuid": "d0da34cb_a393f268",
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ee117640_6be3999d",
         "filename": "CONTRIBUTING.md",
         "patchSetId": 2
@@ -681,6 +699,30 @@
       "side": 1,
       "message": "I don\u0027t think the CCG distinguishes between \"named\" and \"unnamed\" contants.\n\n\u003e Enforcement Flag literals in code. Give a pass to 0, 1, nullptr, \\n, \"\", and others on a positive list.\n\nIt says to enforce a flag on all literals and gives an example that the empty string might be [one of the only] on a positive (allow) list.\n\nI agree that `\"/redfish/v1\"` is _probably_ obvious but is it more obvious than `redfish_prefix` is, I guess, a matter of taste preference.  The CCG in my reading says no, but if there were a clang-tidy check for this, there probably would be a \"false positive\" configuration for it and I\u0027d be fine with some \u0027well-known exceptions\u0027 like `\"/redfish/v1\"`.  That doesn\u0027t mean that every static string is fair game though...",
       "parentUuid": "ee117640_6be3999d",
+      "range": {
+        "startLine": 393,
+        "startChar": 20,
+        "endLine": 393,
+        "endChar": 130
+      },
+      "revId": "cf30594970243739534116aca7b20be22cbf6db9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8d2950c_b9e0bc10",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-23T21:34:49Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t think the CCG distinguishes between \"named\" and \"unnamed\" contants.\n\u003e \n\n\"Reason Unnamed constants embedded in expressions are easily overlooked and often hard to understand:\"\n\nThat\u0027s where I was getting unnamed from.\n\n\u003e \u003e Enforcement Flag literals in code. Give a pass to 0, 1, nullptr, \\n, \"\", and others on a positive list.\n\u003e \n\u003e It says to enforce a flag on all literals and gives an example that the empty string might be [one of the only] on a positive (allow) list.\n\nAlso good info.\n\n\u003e \n\u003e I agree that `\"/redfish/v1\"` is _probably_ obvious but is it more obvious than `redfish_prefix` is, I guess, a matter of taste preference.  The CCG in my reading says no, but if there were a clang-tidy check for this, there probably would be a \"false positive\" configuration for it and I\u0027d be fine with some \u0027well-known exceptions\u0027 like `\"/redfish/v1\"`.  That doesn\u0027t mean that every static string is fair game though...\n\nI think we\u0027re somewhat in agreement here;  There certainly is a class of strings for these that make sense, just that using cpp core guidelines for justification for the overall of this doc I don\u0027t think fits. I believe this link could just be removed, or if there truly is a link, maybe explaining it better would be good.  I\u0027m still not sure I understand it.",
+      "parentUuid": "172c35c4_d97ebe3a",
       "range": {
         "startLine": 393,
         "startChar": 20,
