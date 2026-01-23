@@ -148,6 +148,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aed730f7_085a5e0c",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-23T22:07:16Z",
+      "side": 1,
+      "message": "\u003e You can try it out for yourself. \n\nGiven that I don\u0027t understand what this is saying, I\u0027m not sure how I can try it for myself.  Right, there being no examples is why I asked for one.  It\u0027s not clear to me how to \"try it myself\".",
+      "parentUuid": "45de15a8_93d0b2fc",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 75
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b21bd7d_b6b4ad55",
         "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
         "patchSetId": 3
@@ -231,6 +255,30 @@
       "side": 1,
       "message": "\u003e To be clear, this is the PDI design intent.\n\nIt\u0027s DBus design intent, defined by https://dbus.freedesktop.org/doc/dbus-api-design.html\n\n\u003e At this time, EM and reactors don\u0027t use PDI, precisely because solving these problems are difficult.\n\nIMO EM and reactors don\u0027t follow these guidelines because they do not allow for ad-hoc changes. Not because of some real technical limitation. It\u0027s more of a workflow issue.\n\nThe guidelines present patterns for\n\n- adding properties \n- removing properties\n- changing property type\n- representing optional data\n\nand various other issues. The guidelines apply far beyond just OpenBMC.\n\nIf you have some alternative workflow for designing and changing DBus interfaces i would encourage you to document it somewhere alongside it\u0027s technical merits and how it is a better workflow for OpenBMC specifically.\n\nIf it\u0027s undocumented ad hoc workflow then i don\u0027t get how that works in presence of a well documented guideline and existing tooling.\n\nResolving since there was no further response in 1 month.",
       "parentUuid": "293b897f_b45074ba",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a1391a4_5cc76338",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-23T22:07:16Z",
+      "side": 1,
+      "message": "\u003e How do you draw this conclusion?\n\nBecause I was present when EM was created, before it was called EM and was a python script 😄 and had discussed the design intent with the author at length.\n\n\u003e Can you link to any DBus or systemd related source where people are using unbounded sets of DBus interfaces?\n\nSure, systemd itself adds new interfaces as required, and doesn\u0027t use PDI.\n\n\u003e because they do not allow for ad-hoc changes.\n\nI don\u0027t understand, what is an ad-hoc change?\n\n\u003e If you have some alternative workflow for designing and changing DBus interfaces\nOption 1.\n1. Keep dbus interfaces non typesafe.\n2. Write code that on clients that can parse both the old and the new interfaces.\n3. Write code on the producer that produces the new interface\n4. (optional, and probably not prefered) remove the code from the clients that parses the old way.\n\nYou can look at converting Sensor values from int -\u003e double as an example of this.  Not sure how we could\u0027ve accomplished that in a PDI client.\n\nOption 2: Do what systemd and other dbus interfaces do, and apply a version number to your interfaces, rolling it when there\u0027s incompatible changes made.\n\n\u003e  EM\u0027s representation for arrays goes completely against the grain.\n\n1000000% agreed.  The problem is do we break things that are working to make it the internal APIs better?  There\u0027s really not that many arrays in EM, and most of the objects are flat (the new firmware update stuff messes that up a bit).",
+      "parentUuid": "533f23d3_1e2d50db",
       "range": {
         "startLine": 28,
         "startChar": 4,
@@ -373,6 +421,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55712a6a_3a5728bb",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-23T22:07:16Z",
+      "side": 1,
+      "message": "\u003e The strategy used by EM for arrays makes a bit of a mockery of this intent.\n\nI agree, the EM design for arrays is insane, but I don\u0027t see anything in what you quoted that says \"arrays should be represented thusly\" that\u0027s really my point in asking for this one point to be removed.\n\n\u003e and 4 different developers signed off on it\n\nThis doc also doesn\u0027t say \"arrays should be represented thusly\"",
+      "parentUuid": "f6777b84_53583234",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a2165a0_5c994820",
         "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
         "patchSetId": 3
@@ -432,6 +504,30 @@
       "side": 1,
       "message": "\u003e Multiple nested would be on different objects.\n\nClosing due to arbitrary design requirement of unclear origin.",
       "parentUuid": "97cb8061_c45ba4b4",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 74
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4865f117_5452f618",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-23T22:07:16Z",
+      "side": 1,
+      "message": "\u003e How did you reach this conclusion?\n\nBecause I wrote a lot of the EM documentation, and have reviewed the code heavily?",
+      "parentUuid": "fcefce1a_e63788bd",
       "range": {
         "startLine": 48,
         "startChar": 0,
@@ -574,6 +670,30 @@
       "side": 1,
       "message": "Closing this discussion thread since there were no further responses for 1 month.\n\nWhich implies that there is no interest to come to any conclusion here.",
       "parentUuid": "ba12fa67_537d9f37",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 79
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df4862bd_698dcdc5",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-01-23T22:07:16Z",
+      "side": 1,
+      "message": "\u003e Configuration for hardware does not magically stop at 2 levels of depth.\n\nEM represents depth by referencing the \"NAME\" Field of other exposes records, not by using json depth.  device tree uses brace depth.  We\u0027re comparing different things.\n\nI\u0027d also point out that the equivalent EM config for the above would be:\n{\n   Name: \"My hardware sensor\",\n   Type: NCT7802,\n   IN0_Name: \"LTD\",\n   IN1_Name: \"RTD\",\n}\n\nWhich is representable easily using top level config, given that an NCT7802 has a known number of channels.",
+      "parentUuid": "ad8b7088_ebc396cf",
       "range": {
         "startLine": 50,
         "startChar": 0,
