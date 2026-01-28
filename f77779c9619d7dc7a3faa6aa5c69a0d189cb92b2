@@ -291,6 +291,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d5b5053_3db6334a",
+        "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-01-28T15:11:03Z",
+      "side": 1,
+      "message": "\u003e Sure, systemd itself adds new interfaces as required, and doesn\u0027t use PDI.\n\nThis isn\u0027t an example of an \"unbounded sets of DBus interfaces\".  You are correct that they don\u0027t document using PDI but, you **can** actually document them with PDI and have PDI-based clients interact with systemd.  We have `com.freedesktop.UPower.Device` already documented exactly this way.\n\nTo me there are 3 things that EM especially does that do not conform to either the spec explicitly or generally accepted practices:\n\n* Interfaces having properties missing in some instances.\n* Interface instances having differing types for the same property in different instances.\n* Unique interfaces with numbers prepended as an \"instance value\" rather than a different path. [ie. the array stuff that shows up like `com.foo.Interface9`.\n\nI suspect these are also what Alexander is referring to as \"ad-hoc changes\".\n\n\u003e You can look at converting Sensor values from int -\u003e double as an example of this. Not sure how we could\u0027ve accomplished that in a PDI client.\n\nWe\u0027ve actually gone through these exact changes.  It depends on the complexity but there are two approaches we\u0027ve done:\n\n1. Just change the type and if the users have done enough `decltype`-like declarations it just works.  This typically works for int to size_t style changes.\n\n2. A process like this:\n    a. Temporarily add a new property Foo2 with the new type, have the daemon implement both.\n    b. Convert the clients to the new Foo2.\n    c. Have the daemon make Foo the new type also.\n    d. Move all clients back to Foo2.\n    \nNot too long ago I did (2) for phosphor-logging to change the AdditionalData property from an array to a dict.\n\nSomething like (2) really isn\u0027t much different from what we\u0027d have to do with hand-spun interfaces except that we also get compiler assistance when using the PDI bindings rather than just searching for strings and hoping for correctness.",
+      "parentUuid": "8a1391a4_5cc76338",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "f77779c9619d7dc7a3faa6aa5c69a0d189cb92b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5c87f65_d81b44b5",
         "filename": "designs/configuration/pdi-compatible-config-interfaces.md",
         "patchSetId": 3
