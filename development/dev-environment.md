@@ -119,6 +119,8 @@ relative to your current directory.
    cp ./tmp/deploy/images/romulus/obmc-phosphor-image-romulus.static.mtd ./
    ```
 
+   **Note** - You may want to run `ldd ./qemu-system-arm | grep "not found"` to see if there are any missing dependencies of `qemu-system-arm`.
+
 3. Start QEMU with the Romulus image
 
    **Note** - For REST, SSH and IPMI to work into your QEMU session, you must
