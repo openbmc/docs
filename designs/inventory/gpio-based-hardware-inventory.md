@@ -258,7 +258,7 @@ inventory interfaces for it.
 In case the gpio state changes, 'gpio-presence-sensor' can remove the
 `xyz.openbmc_project.Inventory.Source.DevicePresence` interface and
 entity-manager can have a dbus matcher for that, to then remove the respective
-inventory items and any inventory items detected below it aswell.
+inventory items and any inventory items detected below it as well.
 
 ### Proposed changes in entity-manager
 

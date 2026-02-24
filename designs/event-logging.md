@@ -69,7 +69,7 @@ containing something like:
 
 ```json
 {
-  "Message": "A LAN Disconnnect on EthernetInterface 1 was detected on system /redfish/v1/Systems/1.",
+  "Message": "A LAN Disconnect on EthernetInterface 1 was detected on system /redfish/v1/Systems/1.",
   "MessageId": "Alert.1.0.LanDisconnect",
   "MessageArgs": ["EthernetInterface 1", "/redfish/v1/Systems/1"]
 }
@@ -209,7 +209,7 @@ structure, metadata, or message strings evolve.
   which are persisted and available for external system management through
   standards such as Redfish.
   - These errors must be structured, versioned, and the complete set of errors
-    able to be created by the BMC should be available at built-time of a BMC
+    able to be created by the BMC should be available at build-time of a BMC
     image.
   - The set of errors, able to be created by the BMC, must be able to be
     transformed into relevant data sets, such as Redfish Message Registries.

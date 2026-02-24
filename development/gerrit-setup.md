@@ -41,7 +41,7 @@ Gerrit you can add them manually:
 - Enter your public SSH key created before in Settings -> SSH Keys -> New SSH
   key
 - Click on "ADD NEW SSH KEY"
-- If succesfull you should see your public key added and with the status "Valid"
+- If successful you should see your public key added and with the status "Valid"
 
 ### Add e-mail to Gerrit
 

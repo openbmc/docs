@@ -54,7 +54,7 @@ that will be pushed to openbmc/libcper, if approved.
 ## Proposed Design
 
 While this design fits into a much more elaborate design alluded to in the
-aformentioned ARM document, this document only requests the first step, creating
+aforementioned ARM document, this document only requests the first step, creating
 a shared library implementation within the OpenBMC organization that can be
 built upon over time, but might not implement the complete implementation at
 this time. It is expected that the ubiquity of CPER records in the BMC ecosystem

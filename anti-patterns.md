@@ -481,7 +481,7 @@ the public header files are often placed into an `include/` subdirectory of the
 source tree to mark their importance.
 
 Any functions or structures that are implementation details of the library
-should not be provided in its installed header files. Ignoring this philosphy
+should not be provided in its installed header files. Ignoring this philosophy
 over-exposes the library's design and may lead to otherwise unnecessary API or
 ABI breaks in the future.
 

@@ -111,7 +111,7 @@ https://obmc/redfish/v1/Registries/OpenBMC/OpenBMC
 
 ## Requirements
 
-The Redfish Interface shall be Redfish compliant and pass the Redfish compliancy
+The Redfish Interface shall be Redfish compliant and pass the Redfish compliance
 tests.
 
 The Redfish interface shall expose POST codes tracked on DBUS since the last BMC

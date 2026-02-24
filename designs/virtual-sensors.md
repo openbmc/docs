@@ -100,8 +100,8 @@ Name:       Name of virtual sensor
 SensorType: Unit type of sensors and supported
 Expression: An algorithm to be used to calculate sensor value
 Params:     There are currently 2 types of parameter supported ConstParam
-            and DbusParam. Every pamas should have a name to be reffered
-            in expression
+            and DbusParam. Every parameter should have a name to be referred to
+            in expressions
 ConstParam: This is a parameter which has a constant value defined here
 DbusParam:  This is an existing/virtual sensor which is listed in dbus and
             it's value can be read from dbus path

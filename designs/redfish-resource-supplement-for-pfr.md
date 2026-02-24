@@ -186,7 +186,7 @@ None
 
 ## Testing
 
-Provisiong status:
+Provisioning status:
 
 - User can provision the PFR in OEM specific way and test using below URI and
   Method. Intel uses "Intel PFR" design (via BIOS) to provision and lock the PFR
