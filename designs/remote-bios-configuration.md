@@ -227,7 +227,7 @@ attributes data received.
    | |via GetPayload command.|<---Req-/Res--->| Provide the XML Type 1        |         |                             | ||
    | |                       |             |  |                               |         |                             | ||
    | |Update the new value   |             |  |                               |         |                             | ||
-   | |and new chksum in      |<---Req-/Res--->| Get new XML Type 0 & convert  |--dbus-->| Collect the Atributes info  | ||
+   | |and new chksum in      |<---Req-/Res--->| Get new XML Type 0 & convert  |--dbus-->| Collect the Attributes info | ||
    | |BIOS.                  |             |  | into native to D-bus format   |         | AllBaseAttributes           | ||
    | |Reset the system.      |             |  |                               |         |                             | ||
    | +-----------------------+             |  +-------------------------------+         +-----------------------------+ ||
@@ -332,7 +332,7 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
 |                BIOS                    |                    |                  BMC                   |
 |                                        |                    |                                        |
 |  +----------------------------------+  |                    | +------------------------------------+ |
-|  | Send the BIOS capability  Support|  |--------KCS-------->| |1.Get the complete atttributes data.| |
+|  | Send the BIOS capability  Support|  |--------KCS-------->| |1.Get the complete attributes data. | |
 |  | Send the compressed BIOS file(or)|  |-MCTP/KCS/Redfish-->| |2.Validate and convert into         | |
 |  | Send PLDM data via MCTP  (or)    |  |                    | |  native to D-bus format.           | |
 |  | Send the Redfish host interface  |  |                    | |3.Expose the D-bus interface        | |
@@ -378,7 +378,7 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
 |                BIOS                    |                    |                  BMC                   |
 |                                        |                    |                                        |
 |  +----------------------------------+  |                    | +------------------------------------+ |
-|  | Send the BIOS capability  Support|  |--------KCS-------->| |1.Get the complete atttributes data | |
+|  | Send the BIOS capability  Support|  |--------KCS-------->| |1.Get the complete attributes data  | |
 |  | Send the compressed BIOS file(or)|  |-MCTP/KCS/Redfish-->| |2.Validate and convert into         | |
 |  | Send PLDM data via MCTP  (or)    |  |                    | |  native to D-bus format.           | |
 |  | Send the Redfish host interface  |  |                    | |3.Expose the D-bus interface        | |
@@ -397,14 +397,14 @@ storage. RBC and PLDM should restored the data whenever BMC reset.
 |                                        |                    | | PLDM send the data to the host     | |
 |                                        |                    | +------------------------------------+ |
 |  +----------------------------------+  |                    | +------------------------------------+ |
-|  | Read the new Atributes value     |<-|----------------------| Send new Pending attributes table  | |
+|  | Read the new Attributes value    |<-|----------------------| Send new Pending attributes table  | |
 |  |           and                    |  |                    | |                                    | |
 |  | Update in the BIOS structure     |  |                    | +------------------------------------+ |
 |  +---------------+------------------+  |                    |                                        |
 |                  |                     |                    |                                        |
 |                  YES                   |                    |                                        |
 |                  |                     |                    | +-----------------------------------+  |
-|   +--------------V------------------+  |                    | | Update the BIOS atrributes data.  |  |
+|   +--------------V------------------+  |                    | | Update the BIOS attributes data.  |  |
 |   |  Send the updated data to BMC   |  |                    | | Discard the Pending attributes    |  |
 |   |                                 |------------------------>|                        table      |  |
 |   +---------------------------------+  |                    | +-----------------------------------+  |

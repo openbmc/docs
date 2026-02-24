@@ -54,13 +54,13 @@ that will be pushed to openbmc/libcper, if approved.
 ## Proposed Design
 
 While this design fits into a much more elaborate design alluded to in the
-aformentioned ARM document, this document only requests the first step, creating
-a shared library implementation within the OpenBMC organization that can be
-built upon over time, but might not implement the complete implementation at
-this time. It is expected that the ubiquity of CPER records in the BMC ecosystem
-justifies the creation of the repository, even if the initial implementation
-might not meet all design goals for all contributors, having a common
-contribution model, CI testing, and license is beneficial as a whole.
+aforementioned ARM document, this document only requests the first step,
+creating a shared library implementation within the OpenBMC organization that
+can be built upon over time, but might not implement the complete implementation
+at this time. It is expected that the ubiquity of CPER records in the BMC
+ecosystem justifies the creation of the repository, even if the initial
+implementation might not meet all design goals for all contributors, having a
+common contribution model, CI testing, and license is beneficial as a whole.
 
 Future design docs (or amendments to this design) will iterate on implementing
 more of the design referenced in this [CPER specification][arm_sbmr], for common

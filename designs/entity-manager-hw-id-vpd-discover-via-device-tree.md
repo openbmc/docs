@@ -307,7 +307,7 @@ daemon as simple as this one, or to force into another even less-related repo.
 
 8. Proposal: xyz.openbmc_project.MachineContext
 
-   Rejection: "We have all this stuff [.Model, .SerialNumber, ect. properties]
+   Rejection: "We have all this stuff [.Model, .SerialNumber, etc. properties]
    defined already. I'm not going to accept a new "bunch of random properties
    HPe thinks are important [today] globbed into a new interface" interface"
    - Patrick Williams, Phosphor-dbus-interfaces maintainer.

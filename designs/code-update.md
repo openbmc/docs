@@ -222,7 +222,7 @@ update images for non-PLDM devices as well. For such devices, the CodeUpdater
 will parse the entity manager configuration to identify applicable PLDM
 descriptors, which can include but are not limited to the following -
 
-| PLDM Package Descriptor | Decsriptor Type |                                                                                           Description                                                                                            |
+| PLDM Package Descriptor | Descriptor Type |                                                                                           Description                                                                                            |
 | :---------------------: | :-------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |   IANA Enterprise ID    |    Standard     |                                       [IANA Enterprise Id](https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers) of the hardware vendor                                        |
 |       ASCII Model       |    Standard     | Compatible hardware name (com.\<vendor\>.Hardware.\<XXX\>) specified by hardware vendor in [phosphor-dbus-interfaces](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/com). |

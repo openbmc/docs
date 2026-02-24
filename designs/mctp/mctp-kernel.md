@@ -141,7 +141,7 @@ specified with a new `sockaddr` type:
      */
     #define MCTP_TYPE_MASK      0x7f
 
-    /* MCTP tag defintions; used for smcp_tag field of sockaddr_mctp */
+    /* MCTP tag definitions; used for smcp_tag field of sockaddr_mctp */
     /* MCTP-spec-defined fields */
     #define MCTP_TAG_MASK    0x07
     #define MCTP_TAG_OWNER   0x08
@@ -484,7 +484,7 @@ response. This uses a (fictitious) message type of `MCTP_TYPE_ECHO`.
             addr.smctp_network = MCTP_NET_ANY; /* any network */
             addr.smctp_addr.s_addr = 9;    /* remote eid 9 */
             addr.smctp_tag = MCTP_TAG_OWNER; /* kernel will allocate an owned tag */
-            addr.smctp_type = MCTP_TYPE_ECHO; /* ficticious message type */
+            addr.smctp_type = MCTP_TYPE_ECHO; /* fictitious message type */
             addrlen = sizeof(addr);
 
             /* set message type and payload */
