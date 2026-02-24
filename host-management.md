@@ -273,10 +273,10 @@ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X PUT -d 
 More information about Host State Management can be found here:
 <https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/State>
 
-## Host Clear GARD
+## Host Clear GUARD
 
 On OpenPOWER systems, the host maintains a record of bad or non-working
-components on the GARD partition. This record is referenced by the host on
+components on the GUARD partition. This record is referenced by the host on
 subsequent boots to determine which parts should be ignored.
 
 The BMC implements a function that simply clears this partition. This function
@@ -286,14 +286,14 @@ can be called as follows:
 
 ```bash
   busctl call org.open_power.Software.Host.Updater \
-    /org/open_power/control/gard \
+    /org/open_power/control/guard \
     xyz.openbmc_project.Common.FactoryReset Reset
 ```
 
 - Method 2: Using the REST API:
 
 ```bash
-curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data":[]}' https://${bmc}/org/open_power/control/gard/action/Reset
+curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data":[]}' https://${bmc}/org/open_power/control/guard/action/Reset
 ```
 
 Implementation: <https://github.com/openbmc/openpower-pnor-code-mgmt>

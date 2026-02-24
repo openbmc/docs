@@ -141,10 +141,10 @@ curl -k -H "X-Auth-Token: $token" https://$bmc/xyz/openbmc_project/...
  curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data": []}' https://${bmc}/xyz/openbmc_project/software/action/DeleteAll
 ```
 
-- Clear gard records:
+- Clear guard records:
 
 ```bash
- curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data":[]}' https://${bmc}/org/open_power/control/gard/action/Reset
+ curl -k -H "X-Auth-Token: $token" -H "Content-Type: application/json" -X POST -d '{"data":[]}' https://${bmc}/org/open_power/control/guard/action/Reset
 ```
 
 - Control boot source override:

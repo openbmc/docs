@@ -26,7 +26,7 @@ checked into meta layers, reducing the reuse between platforms.
 
 1. OpenBMC must be able to init a system with devices on power rails that it
    controls.
-2. During the control of aformentioned power rails, the OpenBMC must be able to
+2. During the control of aforementioned power rails, the OpenBMC must be able to
    monitor GPIO signals.
 3. OpenBMC must be able to reset i2c lines that might not be available.
 4. (secondary) Must be able to init multiple platforms from a single binary

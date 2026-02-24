@@ -18,7 +18,7 @@ within the problem domain being solved by OpenBMC. These are:
 
 ### Code should be clear and concise
 
-> Brevity is the soul of wit.
+> Brevity is the soul of with.
 
 It is important that code be optimized for the reviewer and maintainer and not
 for the writer. Solutions should avoid tricks that detract from the clarity of

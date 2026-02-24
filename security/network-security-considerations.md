@@ -16,7 +16,7 @@ Threats to the BMC are classified using the [CIA triad][]. All threat types are
 significant; here is an example of each:
 
 - Confidentiality: If an attacker can get data from the BMC, they may be able to
-  chain other vulnerabilities to establish a covert information channel to get
+  chain other vulnerabilities to establish a convert information channel to get
   sensitive information from the host.
 - Integrity: If an attacker can modify BMC settings or data, they may be able to
   gain additional access, and launch more attacks.
