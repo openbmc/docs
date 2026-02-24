@@ -6,7 +6,7 @@ On systems with multiple processor units and other redundant vital resources,
 the system downtime can be prevented by isolating the faulty components. This
 document discusses the design of the BMC support for such isolation procedures.
 The defective components can be kept isolated until a replacement. Most of the
-actions required to isolate the parts will be dependant on the architecture and
+actions required to isolate the parts will be dependent on the architecture and
 taken care of by the host. But the BMC needs to support a few steps like
 notifying users about the components in isolation, clearing isolation, isolating
 a suspected part, or isolating when the host is down due to a severe fault. The
@@ -200,7 +200,7 @@ guard a unit which is present in the inventory.
                 },
       "Severity": "Critical",
       "SensorType" : "Processor",
-      "AdditionalDataURI": “/redfish/v1/Systems/system/LogServices/EventLog/attachement/111"
+      "AdditionalDataURI": “/redfish/v1/Systems/system/LogServices/EventLog/attachment/111"
       “AddionalDataSizeBytes": "1024"
     }
   ],

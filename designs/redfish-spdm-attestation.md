@@ -201,7 +201,7 @@ A reference D-Bus Daemon workflow would be like this:
    PCIe device ID; For TCP, it queries entity-manager to gather the remote IP
    address & Port.
 2. For each endpoint, which could be MCTP, PCIe-DOE or TCP, SPDM daemon query
-   Entity Manger for the matching trusted component configuration. It then
+   Entity Manager for the matching trusted component configuration. It then
    creates and initializes the corresponding D-Bus object for `TrustedComponent`
    and `ComponentIntegrity` with device specific information.
 3. Create the associations between the above objects and associations with other
@@ -343,7 +343,7 @@ requests:
 - Get a collection of `TrustedComponent` resource.
 - Get properties of a `ComponentIntegrity` resources.
 - Get properties of a `TrustedComponent` resource.
-- Follow the resouces link to get the device certificates and verify that they
+- Follow the resources link to get the device certificates and verify that they
   are correctly structured as subordinate resources under the TrustedComponent.
 - Get properties of `Certificate` resource and verify responses match with leaf
   certificate in the certificate chain.
