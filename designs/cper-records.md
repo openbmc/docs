@@ -38,8 +38,8 @@ that will be pushed to openbmc/libcper, if approved.
 - A BMC should be able to decode binary CPER records originated from a CPER
   compatible CPU.
 
-- BMC should be able to receive and decode CPER records from a CPU per the [CPER
-  specification][arm_sbmr].
+- BMC should be able to receive and decode CPER records from a CPU per the
+  [CPER specification][cper_records].
 
 - A BIOS/EDK2 build should be able to share decoding code with OpenBMC, to the
   end that added records do not require manual effort to implement in each
@@ -98,7 +98,8 @@ Unit tests are already present in the repo to verify basic functionality.
 CPU-model specific error generators will be used to simulate the full path, once
 design is complete.
 
-[arm_sbmr]: https://developer.arm.com/documentation/den0069/latest/
+[cper_records]:
+  https://uefi.org/specs/UEFI/2.10_A/Apx_N_Common_Platform_Error_Record.html
 [uefi_spec]: https://uefi.org/specifications
 [logentry]:
   https://github.com/DMTF/Redfish-Publications/blob/5b217908b5378b24e4f390c063427d7a707cd308/csdl/LogEntry_v1.xml#L1403
