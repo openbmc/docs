@@ -98,7 +98,7 @@ Unit tests are already present in the repo to verify basic functionality.
 CPU-model specific error generators will be used to simulate the full path, once
 design is complete.
 
-[arm_sbmr]: https://developer.arm.com/documentation/den0069/latest/
+[arm_sbmr]: https://uefi.org/specs/UEFI/2.10_A/Apx_N_Common_Platform_Error_Record.html
 [uefi_spec]: https://uefi.org/specifications
 [logentry]:
   https://github.com/DMTF/Redfish-Publications/blob/5b217908b5378b24e4f390c063427d7a707cd308/csdl/LogEntry_v1.xml#L1403
