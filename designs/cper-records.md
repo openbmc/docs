@@ -39,7 +39,7 @@ that will be pushed to openbmc/libcper, if approved.
   compatible CPU.
 
 - BMC should be able to receive and decode CPER records from a CPU per the [CPER
-  specification][arm_sbmr].
+  specification](https://uefi.org/specs/UEFI/2.10_A/Apx_N_Common_Platform_Error_Record.html).
 
 - A BIOS/EDK2 build should be able to share decoding code with OpenBMC, to the
   end that added records do not require manual effort to implement in each
@@ -63,7 +63,7 @@ implementation might not meet all design goals for all contributors, having a
 common contribution model, CI testing, and license is beneficial as a whole.
 
 Future design docs (or amendments to this design) will iterate on implementing
-more of the design referenced in this [CPER specification][arm_sbmr], for common
+more of the design referenced in this [CPER specification](https://uefi.org/specs/UEFI/2.10_A/Apx_N_Common_Platform_Error_Record.html), for common
 ARM platforms, but getting the custody transferred for the libcper repo, getting
 the quality up to standards is the initial goal of this design.
 
