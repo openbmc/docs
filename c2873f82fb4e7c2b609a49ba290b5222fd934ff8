@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0cdc42b_f9074d20",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2026-03-12T03:57:15Z",
+      "side": 1,
+      "message": "Added the downstream implementation reference.",
+      "parentUuid": "2ddce4d7_449f15cf",
+      "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81cba8da_f3a03eb8",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-01-23T05:05:44Z",
       "side": 1,
       "message": "Could you provide comparative data or a technical breakdown regarding implementation complexity? Specifically, I would like to see a side-by-side comparison of integrating boost::awaitable with sdbusplus versus the lib-curl integration with sdbusplus to justify this architectural choice.",
+      "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "198b1563_29b222be",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2026-03-12T03:57:15Z",
+      "side": 1,
+      "message": "Updated the section to give more detail regarding the complexity of using Boost.Beast comparing to using sdbusplus with libcurl:\n\n\u003e Boost.Beast is an alternative HTTP library that the daemon can utilize. However,\nsince this library is built on top of Boost.Asio, it uses\n`boost::asio::awaitable\u003cT\u003e` driven by `boost::asio::io_context`, while sdbusplus\nuses stdexec\u0027s sender/receiver pattern with `exec::task\u003c\u003e` driven by\n`execution::run_loop`. These two coroutine types are not interchangeable — a\n`boost::asio::awaitable\u003cT\u003e` cannot be `co_await`ed inside an `exec::task\u003c\u003e`, and\nvice versa. To bridge the two, one would need to run a separate `io_context` on\nan additional thread and use an `eventfd` with `sdbusplus::async::fdio` to\nsignal completion across event loops. This adds an extra thread for Asio\u0027s event\nloop, requires manual signaling to bridge completion across event loops, and\nintroduces thread-safety concerns when shuttling results between threads. In\ncontrast, libcurl with `curl_multi_waitfds` integrates naturally with sdbusplus\nby providing file descriptors that can be monitored directly via\n`sdbusplus::async::fdio`, requiring no extra threads or event loop bridging.",
+      "parentUuid": "81cba8da_f3a03eb8",
       "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
