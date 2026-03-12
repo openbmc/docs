@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4722175b_c28176b5",
+        "filename": "style/cpp/using-clang-tidy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-12T02:39:51Z",
+      "side": 1,
+      "message": "I\u0027m not sure how to reconcile your suggestion with the next sentence and the goals here.  You wrote:\n\n\u003e What if we change to \"If maintainers want to enable a new check, they should first open a review to add it to this list to begin a discussion\". I don\u0027t want a docs MERGE to be a requirement, but sure, opening a review is reasonable.\n\nTo me that means someone can just propose a change here and merge it in their repo (without any feedback).  I don\u0027t really know how that solves anything.\n\nThe next sentence states:\n\n\u003e If a new `clang-tidy` check is useful, a change to the reference is sufficient and should not have much friction.\n\nThat\u0027s the goal: low friction for new changes.  I don\u0027t think 82879 is a good example because if we were driving to consensus well on the dependent commit, I think we\u0027d just power through the unresponsive feedback (or at least the proposer could ask that we just move forward and I think we should honor that).\n\nI do think it is reasonable:\n  1. make a fix/enable change in one or more repos and push a pending commit to Gerrit to show viability\n  2. make the proposal here\n  3. merge (1) once (2) has consensus.\n\nA later commit here \"catches\" us up to clang-21.  I guess we could make a prereq for a new clang version that we go through and make a disposition on each new clang-tidy warning... do we want to do that?",
+      "parentUuid": "2151d606_89433935",
+      "range": {
+        "startLine": 8,
+        "startChar": 50,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "70f7695253de68f03f30dadcfab41093cb5b66af",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0071bb73_be16da98",
         "filename": "style/cpp/using-clang-tidy.md",
         "patchSetId": 2
@@ -85,6 +109,30 @@
       "writtenOn": "2025-08-28T18:10:05Z",
       "side": 1,
       "message": "Ok, I think we\u0027re on the same page with this statement, I just think it\u0027s in conflict with the last comment.",
+      "range": {
+        "startLine": 18,
+        "startChar": 16,
+        "endLine": 19,
+        "endChar": 62
+      },
+      "revId": "70f7695253de68f03f30dadcfab41093cb5b66af",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6fe20c2_89d03427",
+        "filename": "style/cpp/using-clang-tidy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-12T02:39:51Z",
+      "side": 1,
+      "message": "I made a minor edit here.  What I\u0027m suggesting is that someone makes proposed changes to multiple repositories to show the change is viable, then we approve the change here.",
+      "parentUuid": "0071bb73_be16da98",
       "range": {
         "startLine": 18,
         "startChar": 16,
