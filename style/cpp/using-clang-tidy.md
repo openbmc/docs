@@ -138,27 +138,15 @@ This is an Apple specific check.
 
 These are not certain to be an error and per `clang-tidy` is only advisory.
 
+### `bugprone-throwing-static-initialization`
+
+The example given would be that static initialization of `std::string` is not
+allowed because it has the potential of throwing. This is overly strict and
+therefore not likely to be useful to the project.
+
 ### `cert-*`
 
 The majority of `cert-*` warnings are aliases and should not be enabled.
-
-The following are non-aliases which are to be enabled:
-
-```text
-    cert-dcl50-cpp,
-    cert-dcl58-cpp,
-    cert-env33-c,
-    cert-err34-c,
-    cert-err52-cpp,
-    cert-err58-cpp,
-    cert-err60-cpp,
-    cert-flp30-c,
-    cert-mem57-cpp,
-    cert-msc50-cpp,
-    cert-msc51-cpp,
-    cert-oop57-cpp,
-    cert-oop58-cpp,
-```
 
 ### `cppcoreguidelines-avoid-c-arrays`
 
@@ -204,6 +192,11 @@ This is an alias to `misc-non-private-member-variables-in-class`.
 
 We do not have the "Guidelines Support Library" in use.
 
+### `cppcoreguidelines-pro-bounds-avoid-unchecked-container-access`
+
+There is much use of subscript over `at` in the OpenBMC codebase and would
+require a significant modernization effort.
+
 ### `cppcoreguidelines-use-default-member-init`
 
 This is an alias to `modernize-use-default-member-init`.
@@ -224,7 +217,6 @@ of these are aliases.
 The following are enabled:
 
 ```text
-    google-build-namespaces,
     google-build-using-namespace,
     google-default-arguments,
     google-global-names-in-headers,
@@ -264,6 +256,11 @@ We do not currently limit recursion.
 The use of `static` is pervasive and this check provides no strong technical
 basis for favoring anonymous namespace over static.
 
+### `misc-multiple-inheritance`
+
+There are some safe and valid uses of multiple inheritance and it is sometimes
+encouraged with the generated C++ bindings for dbus.
+
 ### `modernize-replace-disallow-copy-and-assign-macro`
 
 We have no such macro in use in OpenBMC, so this check is unnecessary.
@@ -292,6 +289,10 @@ These are OpenMP specific checks.
 ### `performance-enum-size`
 
 This decreases readability for a minor performance improvement.
+
+### `portability-avoid-pragma-once`
+
+`#pragma once` is encouraged in OpenBMC by the style guilde.
 
 ### `portability-restrict-system-includes`
 
