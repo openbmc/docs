@@ -69,6 +69,24 @@
       "parentUuid": "81cba8da_f3a03eb8",
       "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c989cf60_32718464",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2026-03-12T10:40:42Z",
+      "side": 1,
+      "message": "We don’t actually need an extra thread to integrate Boost.Asio with sdbusplus. It’s entirely possible to run both Boost’s io_context and sdbusplus APIs together under a single event loop using C++20 coroutines. This pattern already works in practice—for example, bmc-pairing-manager uses Boost.Asio coroutines alongside sdbusplus without any additional threading overhead:\nhttps://github.com/ibm-openbmc/bmc-pairing-manager/blob/main/src/provisioningd.cpp\nSo the concern about mandatory extra threads or event-loop bridging doesn’t hold for this use‑case.",
+      "parentUuid": "198b1563_29b222be",
+      "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
