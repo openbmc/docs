@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "873b969d_353323e4",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-12T03:22:42Z",
+      "side": 1,
+      "message": "I don\u0027t think it is unreasonable to NOLINTNEXTLINE those rare cases explicitly though, is it (if you want to enable this)?\n\nThe use of `bit_cast` is pretty rare in the codebase:\n```\nstdplus/include/stdplus/net/addr/ip.hpp\ndbus-sensors/src/MctpAsioEndpoint.cpp\ndbus-sensors/src/nvidia-gpu/OcpMctpVdm.cpp\ndbus-sensors/src/nvidia-gpu/NvidiaGpuMctpVdm.cpp\ndbus-sensors/src/nvidia-gpu/MctpRequester.cpp\ndbus-sensors/src/tests/test_NvidiaGpuSensorTest.cpp\nsdbusplus/include/sdbusplus/message/append.hpp\nsdbusplus/test/message/append.cpp\nentity-manager/src/fru_device/gzip_utils.cpp\nbmcweb/test/http/http2_connection_test.cpp\nbmcweb/src/ssl_key_handler.cpp\nbmcweb/redfish-core/src/filesystem_log_watcher.cpp\nbmcweb/http/http2_connection.hpp\nbmcweb/http/complete_response_fields.hpp\nbmcweb/http/utility.hpp\nbmcweb/http/nghttp2_adapters.hpp\nbmcweb/http/mutual_tls.cpp\nbmcweb/http/logging.hpp\nbmcweb/http/http_connection.hpp\n```\n\nI don\u0027t know if it is better to move this to \u0027future desired\u0027 or leave it here and just let those repositories do whatever is necessary.  Let me know your opinion.",
+      "parentUuid": "898238a1_7837b7cb",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 33
+      },
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "84d81583_0761db88",
@@ -127,6 +151,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6508f994_209542e3",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-12T03:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3506401_6c7bfc4e",
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "254a3055_13611068",
@@ -146,6 +188,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f6bcd98c_fd751755",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-12T03:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "254a3055_13611068",
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cba7d682_a8985cf3",
         "filename": "style/cpp/.clang-tidy",
         "patchSetId": 1
@@ -157,6 +217,30 @@
       "writtenOn": "2025-08-28T18:18:10Z",
       "side": 1,
       "message": "This had to be disabled in bmcweb because it doesn\u0027t understand the difference between forward reference headers and implementation headers, and will always propose replacing the implementation headers with the declaration only.  This happens on nlohmann-json today.  \n\nI\u0027m fine with this being here, it\u0027s good to have for some repos if it can be enabled.",
+      "range": {
+        "startLine": 242,
+        "startChar": 4,
+        "endLine": 242,
+        "endChar": 24
+      },
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "818e0300_235fb190",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-12T03:22:42Z",
+      "side": 1,
+      "message": "There are some clang-tidy hints that need to be given for those kinds of headers.  I think there is work I need to do in sdbusplus as well to make this usable in many cases.  Otherwise the use of it tends to cause people to include implementation-level headers rather than definition-level headers.\n\nFor something like nlohmann we might need to either contribute a fix upstream for them or make a simple header redirect that has these clang-tidy hints.",
+      "parentUuid": "cba7d682_a8985cf3",
       "range": {
         "startLine": 242,
         "startChar": 4,
@@ -237,6 +321,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63ff7fda_fd8a2516",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-12T03:22:42Z",
+      "side": 1,
+      "message": "Agreed.  I left that one in because it explicitly checks for things which are a standard violation and deprecated in clang\u0027s libc++.",
+      "parentUuid": "69604ede_bf737fdb",
+      "range": {
+        "startLine": 311,
+        "startChar": 4,
+        "endLine": 311,
+        "endChar": 15
+      },
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02e2fdef_9700b8e9",
@@ -254,6 +362,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68886167_243b0b6f",
+        "filename": "style/cpp/.clang-tidy",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-12T03:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02e2fdef_9700b8e9",
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eed83062_e44c17d1",
@@ -267,6 +393,24 @@
       "writtenOn": "2026-02-25T15:43:06Z",
       "side": 1,
       "message": "Full disclosure I\u0027m using clang 21 but these appear to be different things.  Did you mean cppcoreguidelines-use-default-member-init?",
+      "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d1a0b4e_9a517a47",
+        "filename": "style/cpp/using-clang-tidy.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-03-12T03:22:42Z",
+      "side": 1,
+      "message": "Yes.  This is a mistake on my part.",
+      "parentUuid": "eed83062_e44c17d1",
       "revId": "b5ac780317b97de3d0131b4a2b3d635d13dbd248",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
