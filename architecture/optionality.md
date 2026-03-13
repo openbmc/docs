@@ -16,7 +16,7 @@ expected to remain widely applicable to all systems.
 These are subsystems that, while widely applicable, a user might choose to
 remove entire portions of the codebase that might not be needed in that
 deployment, or not used. This might be done to save binary size in the flash
-image, or might be done to reduce the security attack surface. These kids of
+image, or might be done to reduce the security attack surface. These kinds of
 features should be architected to ensure that, when removed, they do not cause
 functional impacts to other subsystems. Examples of these include the webui,
 Redfish, IPMI, and others.
@@ -30,7 +30,7 @@ following classes of feature.
 
 ### Non configurable features
 
-Theses are features that are broadly applicable to all all deployments of a
+Theses are features that are broadly applicable to all deployments of a
 subsystem either by general usage, or by requirements in a specification, and
 therefore don't need to be able to be configured. Examples of these would
 include, Http keep alive, Security features like timeouts and payload size

@@ -33,7 +33,7 @@ Some differences between the Redfish API and OpenBMC's existing API:
   same target. OpenBMC does have support for this concept (for example when a
   target like the BMC has multiple flash chips associated with it). A discussion
   has been started with the DMTF on this within [Issue 3357][10]
-  - OpenBMC has the concept of a priority that allows a user to chose an image
+  - OpenBMC has the concept of a priority that allows a user to choose an image
     associated with a target for activation. This allows a user to easily switch
     back and forth between multiple images for a single target without uploading
     each image every time.

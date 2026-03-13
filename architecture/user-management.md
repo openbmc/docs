@@ -491,7 +491,7 @@ configured prior to authenticating with the LDAP user accounts.
 5. IPMI spec doesn't support groups for the user-management. Hence the same can
    be implemented through OEM Commands, thereby creating a user in IPMI with
    different group roles.
-6. Do no use 'Set User Name' IPMI command to extend already existing non-ipmi
+6. Do not use 'Set User Name' IPMI command to extend already existing non-ipmi
    group users to 'ipmi' group. 'Set User Name' IPMI command will not be able to
    differentiate between new user request or request to extend an existing user
    to 'ipmi' group. Use OEM Commands to extend existing users to 'ipmi' group.

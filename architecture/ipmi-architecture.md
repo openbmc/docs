@@ -74,7 +74,7 @@ fields from whatever transport format (RMCP+, IPMB, KCS, etc.) For session-based
 channels (RMCP+) the bridge is responsible for establishing the session with
 credentials and determining the maximum privilege available for this session.
 The bridge then takes the extracted command, data, and possibly user and
-privilge information, and encodes them in a D-Bus method call to send to the
+privilege information, and encodes them in a D-Bus method call to send to the
 IPMI daemon, ipmid. The daemon will take the message, and attempt to find an
 appropriate handler in its handler tables. If a handler is found, it will
 attempt to extract the required parameters for the handler and pass them along.
