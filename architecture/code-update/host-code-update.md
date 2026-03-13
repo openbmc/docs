@@ -22,7 +22,7 @@ the host is not accessing its firmware.
 
    ```bash
      curl -b cjar -k -H "Content-Type: application/json" -X POST \
-       -d '{"data": ["<filename>", "<TFTP server IP address"]}' \
+       -d '{"data": ["<filename>", "<TFTP server IP address>"]}' \
        https://${bmc}/xyz/openbmc_project/software/action/DownloadViaTFTP
    ```
 
