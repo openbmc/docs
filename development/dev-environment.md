@@ -75,8 +75,8 @@ virtualization tool to run the development environment.
    **Note** - In Ubuntu, a "sudo apt-get update" will probably be needed before
    installing the packages.
 
-   **Note** - Ubuntu 24.04 restricts unprivileged user namespaces by default
-   via AppArmor, which causes BitBake workers to fail with a
+   **Note** - Ubuntu 24.04 restricts unprivileged user namespaces by default via
+   AppArmor, which causes BitBake workers to fail with a
    `PermissionError: [Errno 1] Operation not permitted` when writing to
    `/proc/self/uid_map`. Run the following to fix this before building:
 
