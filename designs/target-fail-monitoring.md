@@ -101,6 +101,45 @@ restarts within a 30 second window.
 - Changes BMC state (CurrentBMCState) to indicate a degraded mode of the BMC
 - Report changed state externally via Redfish managers/bmc state
 
+### Immediate-Quiesce Service Monitoring
+
+The service monitoring described above relies on the systemd `JobRemoved` signal
+and its `result` field. This works well for `Restart=no` services that exhaust
+their restart limit, but has two blind spots:
+
+1. **`Restart=always` services** — when such a service crashes, systemd
+   immediately schedules a restart. If the restart succeeds, the `JobRemoved`
+   result is `done`, so the monitor never fires. However, even a brief crash of
+   a critical service (e.g. ObjectMapper) can cause dependent D-Bus calls to
+   fail permanently, leaving the system in a degraded state with no indication.
+
+2. **`Restart=no` services during normal operation** — if these crash outside of
+   a target transition, no new job is created and no `JobRemoved` signal is
+   emitted, so the monitor is also blind.
+
+To address this, an optional `immediate_quiesce_services` key can be added to
+the same JSON file used for service monitoring (`-s`). For each service listed
+under this key, a D-Bus `PropertiesChanged` match is installed on its systemd
+unit's `ActiveState` property. When `ActiveState` becomes `"failed"`, the
+monitor immediately:
+
+- Collects a BMC dump
+- Logs `xyz.openbmc_project.State.Error.CriticalServiceFailure`
+- Triggers BMC quiesce (`obmc-bmc-service-quiesce@0.target`)
+
+This fires as soon as systemd marks the unit failed — before any restart — so
+the failure is always captured regardless of the unit's restart policy.
+
+Note that only `"failed"` triggers quiesce. Normal administrative operations
+(`systemctl stop`, `systemctl restart`, BMC shutdown) transition through
+`"inactive"`, not `"failed"`, so they do not cause false alarms.
+
+**Important:** BMC quiesce is a significant operation — the BMC enters a
+degraded state that typically requires manual intervention to recover. Only add
+services to `immediate_quiesce_services` when a single transient crash truly
+causes irreparable damage. Most services recover fine after a systemd restart
+and should **not** be listed here.
+
 ## Proposed Design
 
 Create a new standalone application in phosphor-state-manager which will load
@@ -136,11 +175,44 @@ The json (files) would have the following format for services:
 }
 ```
 
+An optional `immediate_quiesce_services` key may be included in the same json
+file. Services listed here are monitored via `PropertiesChanged` on their
+systemd unit `ActiveState` property and trigger immediate BMC quiesce on
+failure:
+
+```json
+{
+  "services": [
+    "xyz.openbmc_project.biosconfig_manager.service",
+    "xyz.openbmc_project.Logging.service"
+  ],
+  "immediate_quiesce_services": [
+    "xyz.openbmc_project.ObjectMapper.service",
+    "phosphor-multi-gpio-monitor.service"
+  ]
+}
+```
+
+The two lists serve different severity levels and should generally contain
+different services:
+
+- `services` — quiesce only after all systemd restart retries are exhausted (via
+  JobRemoved). Suitable for services that usually recover fine after a restart.
+- `immediate_quiesce_services` — quiesce on the **first** `ActiveState=failed`,
+  even before systemd attempts a restart. Suitable for services where even a
+  brief crash causes irreparable damage.
+
+A service in `immediate_quiesce_services` does not need to also appear in
+`services` — the immediate mechanism fires first, making the JobRemoved fallback
+redundant. Files without the `immediate_quiesce_services` key are silently
+skipped for that part (backward compatible).
+
 On startup, all input json files will be loaded and monitoring will be setup.
 
 This application will not register any interfaces on D-Bus but will subscribe to
-systemd dbus signals for JobRemoved. sdeventplus will be used for all D-Bus
-communication.
+systemd dbus signals for JobRemoved (target and service monitoring) and
+PropertiesChanged on individual unit objects (immediate-quiesce service
+monitoring). sdeventplus will be used for all D-Bus communication.
 
 For additional debug, the errors may be registered with the BMC Dump function to
 ensure the cause of the failure can be determined. This requires the errors
@@ -187,6 +259,15 @@ in phosphor-state-manager generating an error.
 Need to cause all units mentioned within this design to fail. They should fail
 for each of the reasons defined within this design and the error generated for
 each scenario should be verified.
+
+For immediate-quiesce service monitoring, kill a monitored service (e.g.
+`systemctl kill -s SIGKILL xyz.openbmc_project.ObjectMapper.service`) and
+verify:
+
+- A `CriticalServiceFailure` error is logged with the correct unit name
+- A BMC dump is collected
+- `CurrentBMCState` transitions to `Quiesced`
+- The quiesce fires even if the service restarts successfully afterwards
 
 [1]: https://github.com/openbmc/docs/blob/master/architecture/openbmc-systemd.md
 [2]: https://github.com/openbmc/phosphor-state-manager
