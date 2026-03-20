@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61cb8f0f_69a325f0",
+        "filename": "style/cpp/using-clang-tidy.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-03-20T19:44:39Z",
+      "side": 1,
+      "message": "\u003e To me that means someone can just propose a change here and merge it in their repo (without any feedback). I don\u0027t really know how that solves anything.\n\nYes.  They are maintainers of that piece of code, we already trust them to not do things that impact that code outside of the actual checks enabled.  Adding a new check is significantly less trust than we already put in them.\n\nParaphrasing what\u0027s here diffferently: \"Any experimentation with a tidy check requires all docs maintainers to agree\". I feel like that stalls progress, and I\u0027m ironically proving my own point here by continuing to drag this out.\n\n\u003e If a new clang-tidy check is useful, a change to the reference is sufficient and should not have much friction.\n\nI don\u0027t agree with that sentence.  Lot of these checks look good in the first review, but the implementation of them in practice makes the code worse.  readability-function-cognitive-complexity is a great example of something that might be great in theory, but the check itself has scruples (doesn\u0027t handle lambdas, complexity isn\u0027t well documented, rejects single line patches or reformats) in the implementation that make it really hard to enforce in some repos.",
+      "parentUuid": "78bafe76_c3b328f5",
+      "range": {
+        "startLine": 8,
+        "startChar": 50,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "70f7695253de68f03f30dadcfab41093cb5b66af",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0071bb73_be16da98",
         "filename": "style/cpp/using-clang-tidy.md",
         "patchSetId": 2
