@@ -159,6 +159,24 @@
       "parentUuid": "64e0d337_dba1124b",
       "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93dd4d7c_5fb8cc28",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2026-03-26T03:35:41Z",
+      "side": 1,
+      "message": "Whether we use Boost.Beast or libcurl shouldn\u0027t change the overall direction of the design. This is an implementation detail of the HTTP client layer, and I\u0027d suggest we not let it block the broader design discussion.\n\nOur downstream implementation has been using libcurl in production handling hundreds of Redfish requests every 2 seconds with no performance issues, and the integration with sdbusplus has been straightforward. There is practical evidence that this approach works well at scale.\n\nThat said, as long as we build a clean abstraction around the HTTP client, we can always swap in Boost.Beast later if there\u0027s a concrete need, or even support both behind a build-time configuration. I don\u0027t think we need to settle this before aligning on the rest of the design.",
+      "parentUuid": "a9fe9f08_0233fa2f",
+      "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
