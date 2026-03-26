@@ -177,6 +177,24 @@
       "parentUuid": "a9fe9f08_0233fa2f",
       "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be38e071_44f67aaa",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2026-03-26T11:14:13Z",
+      "side": 1,
+      "message": "I want to highlight that the current design seems to address only a very specific case of a much broader network requirement. If we instead focus on building a proper reusable network library that supports both TCP and HTTP functionality, we can cover a significantly wider range of use cases—not just the immediate Redfish client scenario.\nThere are already several services within the system that need these capabilities. Rather than optimizing solely for the Redfish client, it would be more scalable and sustainable to invest in a general-purpose network infrastructure. Once we have a common TCP + HTTP client layer in place, implementing a Redfish client on top of it becomes straightforward.\nFor reference, you can see how simple it is to build a Redfish client when a proper networking abstraction exists, for example:\nhttps://github.com/abhilashraju/reactor/blob/main/examples/redfish/redfish.cpp#L203\nA broader, reusable design will give us long-term flexibility and prevent multiple ad‑hoc implementations that reinvent the same network stack. Let’s consider evolving the design in that direction.",
+      "parentUuid": "93dd4d7c_5fb8cc28",
+      "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
