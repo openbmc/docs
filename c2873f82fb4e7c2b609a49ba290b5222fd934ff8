@@ -195,6 +195,24 @@
       "parentUuid": "93dd4d7c_5fb8cc28",
       "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68b66e9f_661372c8",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2026-03-28T00:05:16Z",
+      "side": 1,
+      "message": "I think what you described as a \"network library that supports both TCP and HTTP\" operates at a different layer than what this Redfish client design addresses. The primary purpose of this design is to enable discovering and retrieving resources from the HMC via Redfish and making them available to other services running on the BMC through D-Bus. The heavy lifting is specific to: how to discover the HMC IP/port, what Redfish queries to make for different resources, how to parse and transform Redfish responses into their D-Bus equivalents, and how to handle concerns like log deduplication and firmware update orchestration.\n\nHow the HTTP requests are made is a small, encapsulated part of this daemon. In our downstream implementation, only **406 lines (13%)** are dedicated to HTTP networking, while the remaining **2,684 lines (87%)** implement the core business logic described above. The HTTP layer is intentionally thin and could be backed by libcurl, Boost.Beast, a shared networking library, or even a simple `curl` subprocess. The choice has minimal impact on the overall design.\n\n\u003e Once we have a common TCP + HTTP client layer in place, implementing a Redfish client on top of it becomes straightforward.\n\nThis understates the actual complexity. The referenced example ([reactor/redfish.cpp](https://github.com/abhilashraju/reactor/blob/main/examples/redfish/redfish.cpp#L203)) demonstrates making HTTP calls, but a production Redfish client requires far more than that: schema aware response parsing, mapping diverse Redfish resource types to D-Bus interfaces, persistent deduplication of log entries across polling cycles, multi step firmware update workflows with task tracking, and sensor lifecycle management. None of which are simplified by having a better HTTP library.\n\nThat said, I fully agree that a reusable, well optimized networking stack would be valuable for the broader ecosystem. However, that should be pursued as a separate, standalone effort. The Redfish client\u0027s HTTP layer is already cleanly isolated behind a simple interface, so migrating it to use a shared networking library in the future would be straightforward and low risk. It would not require any changes to the core business logic.",
+      "parentUuid": "be38e071_44f67aaa",
+      "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
