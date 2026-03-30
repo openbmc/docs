@@ -231,6 +231,24 @@
       "parentUuid": "68b66e9f_661372c8",
       "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3aa5b2c_0ce4a88b",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2026-03-30T20:38:49Z",
+      "side": 1,
+      "message": "\u003e it does not appear to address the broader and more general set of resources that may exist across BMCs\n\nCould you clarify what specific resources you are referring to? This design intentionally targets Redfish based SMC resources and is not meant to be a general purpose solution for all BMC resources.\n\n\u003e From an architectural standpoint, it may be worth considering whether the existing monolithic design can be decomposed into smaller, reusable services or libraries.\n\nThe current scope does not justify that level of decomposition. There are no concrete use cases today that would benefit from it. The design is already internally modular, so extracting components in the future would be straightforward if the need arises.\n\n\u003e This approach would improve reuse, reduce duplication, and make the system more adaptable to future requirements.\n\nI think we should design for known requirements and extend when concrete needs arise. If a second consumer emerges that would genuinely benefit from a shared networking or discovery library, refactoring the relevant pieces out should not be a problem. But doing so now without concrete cases would be over engineering.",
+      "parentUuid": "a86d8670_3da611e8",
+      "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
