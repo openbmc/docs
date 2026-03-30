@@ -213,6 +213,24 @@
       "parentUuid": "be38e071_44f67aaa",
       "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a86d8670_3da611e8",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1001762
+      },
+      "writtenOn": "2026-03-30T10:21:45Z",
+      "side": 1,
+      "message": "The current design primarily highlights the resources exposed by the SMC, which is valuable in its intended context. However, it does not appear to address the broader and more general set of resources that may exist across BMCs. My earlier feedback was not meant as a critique of the overall direction, but was specifically focused on the communication solution that has been chosen.\nFrom an architectural standpoint, it may be worth considering whether the existing monolithic design can be decomposed into smaller, reusable services or libraries. For example, core capabilities such as a generic network library (for TCP/HTTP communication), a dedicated service for secure satellite discovery and onboarding, or even a generic data‑access layer (for example, a GraphQL‑based service, if appropriate, to simplify flexible data retrieval) could be developed as independent building blocks.\nBy structuring the design around such reusable components, platform‑specific use cases—like SMC‑centric workflows—could be realized more cleanly by composing these services, rather than tightly coupling all assumptions into a single solution. This approach would improve reuse, reduce duplication, and make the system more adaptable to future requirements.",
+      "parentUuid": "68b66e9f_661372c8",
+      "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
