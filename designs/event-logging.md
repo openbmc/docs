@@ -355,41 +355,38 @@ The `Logging.Create` interface will have a new method added:
     - name: Severity
       type: enum[Logging.Entry.Level]
     - name: AdditionalData
-      type: dict[string, variant[string,int64_t,size_t,object_path]]
-    - name: Hint
-      type: string
-      default: ""
+      type: dict[string, string]
   returns:
     - name: Entry
       type: object_path
 ```
 
-The `Hint` parameter is used for daemons to be able to query for their
-previously recorded error, for marking as resolved. These strings need to be
-globally unique and are suggested to be of the format `"<service_name>:<key>"`.
-
-A `Logging.SearchHint` interface will be created, which will be recorded at the
-same object path as a `Logging.Entry` when the `Hint` parameter was not an empty
-string:
-
-```yaml
-- property: Hint
-  type: string
-```
+`AdditionalData` will support a new special `"LOG_ENTRY_HINT"` key where daemons
+can provide a uniquely identifiable entry allowing them to query for their
+previously recorded error for marking as resolved. The value for this data needs
+to be globally unique and suggested to be of the format
+`"<service_name>:<key>"`.
 
 The `Logging.Manager` interface will be added with a single method:
 
 ```yaml
 - name: FindEntry
   parameters:
-    - name: Hint
-      type: String
+    - name: AdditionalDataKey
+      type: string
+    - name: AdditionalDataValue
+      type: string
+    - name: MaxCount
+      type: uint64
+    - name: IncludeResolved
+      type: bool
   returns:
     - name: Entry
-      type: object_path
-  errors:
-    - xyz.openbmc_project.Common.ResourceNotFound
+      type: array[object_path]
 ```
+
+This would allow for users to query the logging services for all log entries
+matching the key/value pair in the entry's `AdditionalData`.
 
 A `lg2::commit` API will be added to support the new `sdbusplus` generated
 exception types, calling the new `Logging.Create.CreateEntry` method proposed
