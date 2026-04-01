@@ -345,51 +345,32 @@ will be able to contribute new error and tracing event definitions.
 The `Logging.Entry` interface's `AdditionalData` property should change to
 `dict[string, variant[string,int64_t,size_t,object_path]]`.
 
-The `Logging.Create` interface will have a new method added:
-
-```yaml
-- name: CreateEntry
-  parameters:
-    - name: Message
-      type: string
-    - name: Severity
-      type: enum[Logging.Entry.Level]
-    - name: AdditionalData
-      type: dict[string, variant[string,int64_t,size_t,object_path]]
-    - name: Hint
-      type: string
-      default: ""
-  returns:
-    - name: Entry
-      type: object_path
-```
-
-The `Hint` parameter is used for daemons to be able to query for their
-previously recorded error, for marking as resolved. These strings need to be
-globally unique and are suggested to be of the format `"<service_name>:<key>"`.
-
-A `Logging.SearchHint` interface will be created, which will be recorded at the
-same object path as a `Logging.Entry` when the `Hint` parameter was not an empty
-string:
-
-```yaml
-- property: Hint
-  type: string
-```
+`AdditionalData` will support a new special `"LOG_ENTRY_HINT"` key where daemons
+can provide a uniquely identifiable error allowing them to query for their
+previously recorded error for marking as resolved. The value for this data needs
+to be a globally unique and suggested to be of the format
+`"<service_name>:<key>"`.
 
 The `Logging.Manager` interface will be added with a single method:
 
 ```yaml
 - name: FindEntry
   parameters:
-    - name: Hint
+    - name: AdditionalDataKey
       type: String
+    - name: AdditionalDataValue
+      type: string
+    - name: MaxCount
+      type: uint64
   returns:
     - name: Entry
-      type: object_path
+      type: array[object_path]
   errors:
     - xyz.openbmc_project.Common.ResourceNotFound
 ```
+
+This would allow for users to query the logging services for all log entries
+matching the key/value pair in the entry's `AdditionalData`.
 
 A `lg2::commit` API will be added to support the new `sdbusplus` generated
 exception types, calling the new `Logging.Create.CreateEntry` method proposed
