@@ -26,5 +26,8 @@
    Instead, email `openbmc-security@lists.ozlabs.org` and follow the [documented
    directions][1]
 
+7. All jobs related posts (including looking for work) must only be posted
+   to the #jobs channel.
+
 [1]:
   https://github.com/openbmc/docs/blob/master/security/how-to-report-a-security-vulnerability.md
