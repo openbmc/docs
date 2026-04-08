@@ -267,6 +267,24 @@
       "parentUuid": "c3aa5b2c_0ce4a88b",
       "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6636fb76_561e0606",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-08T15:28:51Z",
+      "side": 1,
+      "message": "\u003e The current title suggests a generic Redfish client, while the content appears focused on SMC‑specific Redfish resource aggregation.\n\n\u003e From an OpenBMC community standpoint, it would also help to clarify the broader value, as the proposal currently reads as an organization‑specific use case.\n\nCan you clarify which pieces seem organization-specific?\n\nWe already have experience supporting the Nvidia HMC (the downstream code we have pointed to as reference).  We also working on adding support for AMD\u0027s equivalent SMC.  Both of these are SMCs.\n\nThere are some valve, pump and rack controller manufacturers that are also in the process of adding Redfish support to their devices.  It would be useful to add Redfish support for these into a rack manager, which we would plan to leverage the same code.\n\nI don\u0027t think there is any intention for this to only support SMCs or for it to be \"organization-specific\" in any way.  If there is wording that leads you to believe this, we should clean that up.",
+      "parentUuid": "ecbc3915_674fb622",
+      "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
