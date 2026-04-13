@@ -52,6 +52,8 @@ seven days later. Election schedule is as follows:
 This document shall be maintained with a list of current members and their term
 end (sorted by term conclusion followed by alphabetically by preferred name):
 
+### Current Members
+
 | Name             | Term Conclusion |
 | :--------------- | :-------------: |
 | Andrew Jeffery   |   2026-04-01    |
