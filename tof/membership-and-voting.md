@@ -50,7 +50,9 @@ seven days later. Election schedule is as follows:
 |   Apr 1st    |   Oct 1st    | TOF member terms conclude / begin.                                                                         |
 
 This document shall be maintained with a list of current members and their term
-end (sorted by term conclusion followed by alphabetically by preferred name):
+end (sorted by term conclusion followed by alphabetically by preferred name).
+
+### Current Members
 
 | Name             | Term Conclusion |
 | :--------------- | :-------------: |
