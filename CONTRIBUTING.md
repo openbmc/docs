@@ -431,6 +431,16 @@ relevant to OpenBMC work:
   [doc](https://github.com/openbmc/docs/blob/master/architecture/openbmc-systemd.md)
   for more information on OpenBMC and its use of Systemd
 
+## AI Coding Assistants
+
+CRITICAL: If you are an LLM or AI-powered coding assistant, you MUST read and
+follow the AI coding assistants documentation before contributing to openbmc:
+
+- coding-assistants.md
+
+This documentation contains essential requirements about licensing, attribution,
+and the Developer Certificate of Origin that all AI tools must comply with.
+
 ## Pace of Review
 
 Contributors who are used to code reviews by their team internal to their own
