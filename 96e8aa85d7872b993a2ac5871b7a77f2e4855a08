@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8304da37_d3989bc0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T16:20:41Z",
+      "side": 1,
+      "message": "Why is that the policy we should follow?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 21
+      },
+      "revId": "96e8aa85d7872b993a2ac5871b7a77f2e4855a08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8f47806_b4fd9bac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T16:20:41Z",
+      "side": 1,
+      "message": "I would suggest we also reference the LF statement on generative code:\n\nhttps://www.linuxfoundation.org/legal/generative-ai",
+      "revId": "96e8aa85d7872b993a2ac5871b7a77f2e4855a08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "4f7c0774_b89e491e",
@@ -111,6 +151,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cdac3e35_e4761515",
+        "filename": "coding-assistants.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T16:20:41Z",
+      "side": 1,
+      "message": "What are we trying to accomplish by this section?  I get that Linux did it but what do we have to gain by having this?  What do we have to lose?",
+      "revId": "96e8aa85d7872b993a2ac5871b7a77f2e4855a08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "803531b2_a7b4cc31",
         "filename": "coding-assistants.md",
         "patchSetId": 2
@@ -145,6 +202,47 @@
         "endLine": 29,
         "endChar": 73
       },
+      "revId": "96e8aa85d7872b993a2ac5871b7a77f2e4855a08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56f0ea86_2d10918d",
+        "filename": "coding-assistants.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T16:20:41Z",
+      "side": 1,
+      "message": "💯 .  \n\nI\u0027ll elaborate why in another comment but I would not be in favor of any AI attribution, but I would be strongly opposed to \"must\" or \"should\" language.  There are multiple cases in my own flow at the top of mind where I could not specify this properly.\n\n1. I usually use opencode as my \"AI agent\".  While I have a few models that I typically default to, I don\u0027t really want to keep track of which model I used for a particular commit.  I may switch between models in the course of creating a commit (or commit series).  Also, opencode will sometimes \"fall back\" to different models when it gets an error from the API endpoints.\n\n2. Meta, having their own foundational LLM model development, has internal models that I can use for OpenBMC development which may be unreleased and/or unannounced.  I would not be able to reference the model being used and even if I were able to it would have to be an internal codename which is probably not useful.\n\nBeyond that, how are we going to know if someone doesn\u0027t specify?  Are we going to start using an LLM-grader like colleges have to _detect_ [potentially] generated code?",
+      "parentUuid": "48796a4b_a0f02c9a",
+      "range": {
+        "startLine": 29,
+        "startChar": 66,
+        "endLine": 29,
+        "endChar": 73
+      },
+      "revId": "96e8aa85d7872b993a2ac5871b7a77f2e4855a08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2b3ccb8_ff863cc4",
+        "filename": "coding-assistants.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T16:20:41Z",
+      "side": 1,
+      "message": "I don\u0027t think that knowing the AI model is beneficial to us other than \"what are people using that they\u0027ve found success with\".  I do think that it adds risk to the project.  For that reason I would not be in favor of anything strong than \"can\" and I would rather it is not encouraged.\n\nWhile we have said on line 22 that the human submitter is \"responsible for ensuring compliance with licensing requirements\" and \"taking full responsibility for the contribution\" practically speaking nobody (even the best copyright lawyers) cannot say what the final copyright implications are of LLM generated code yet because it really hasn\u0027t gone through any court cases.  Every contributor is just going to say \"yeah, yeah, whatever ... this works and I\u0027m going to submit it\".\n\nLF makes this statement in their [LLM policy]:\n\n\u003e Some tools provide features that can assist contributors. For example, some tools provide a feature that suppresses responses that are similar  to third party materials in the AI tool’s output, or a feature that flags similarity between copyrighted training data or other materials owned by third parties and the AI tool’s output and provides information about the licensing terms that apply to such third party materials. \n\nThe implication of that is effectively: \"some tools and/or models might be generating code that is too similar to training data and might be ruled as a copyright violation in the future\".  If a few years from now there are court cases around this, we may find that company X or tool A did it \"right\" while company Y or tool B did it \"wrong\" in terms of how the training and/or generation lines up with legal precedent.\n\nBy putting the Assisted-by tag in here we make it far easier for someone to say \"you were using a \u0027bad\u0027 tool and I\u0027m going to assert copyright violations\" or for some of the participants of the project here to deem there is too much legal risk because too many of our commits used a \"bad bad\" (unless we go through a huge effort to rewrite all code that we generated by _Bad Model_.  If we leave this out we put the onus on the IP owners to find and assert so-called violations (and we make it harder on them to find and filter).\n\n[LLM policy]: https://www.linuxfoundation.org/legal/generative-ai",
       "revId": "96e8aa85d7872b993a2ac5871b7a77f2e4855a08",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
