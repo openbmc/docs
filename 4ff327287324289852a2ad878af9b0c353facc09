@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf9c4ad6_3ab02c3c",
+        "filename": "designs/drive-state-manager.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T16:45:36Z",
+      "side": 1,
+      "message": "I think this problem can be extended to many devices that are not explicitly drives.  Many PCIe cards can support an independent power-off from the host.  We\u0027ve seen it especially with NICs.  I\u0027d really prefer if we can generalize this to a \"sub-device power cycle\".",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 19
+      },
+      "revId": "4ff327287324289852a2ad878af9b0c353facc09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dfd61a0_7f6bd52a",
+        "filename": "designs/drive-state-manager.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T16:45:36Z",
+      "side": 1,
+      "message": "How do you handle the relationship between the overall system and the sub-device (ie. drive)?  When the host is _off_ you also want the state of the drive to be represented as _off_.  When the host is _off_, you probably want the drive to give an error if someone asks for it to be _on_.  I don\u0027t see any words to talk about this relationship.",
+      "revId": "4ff327287324289852a2ad878af9b0c353facc09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e80e964b_56865afb",
+        "filename": "designs/drive-state-manager.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T16:45:36Z",
+      "side": 1,
+      "message": "How will bmcweb know the relationship between Inventory, exposed by entity-manager, and State, exposed by your proposed daemon?",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 3
+      },
+      "revId": "4ff327287324289852a2ad878af9b0c353facc09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e41e55b_2830c426",
+        "filename": "designs/drive-state-manager.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T16:45:36Z",
+      "side": 1,
+      "message": "You team definitely implemented NICs before. ;)",
+      "range": {
+        "startLine": 151,
+        "startChar": 42,
+        "endLine": 153,
+        "endChar": 73
+      },
+      "revId": "4ff327287324289852a2ad878af9b0c353facc09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df2da429_cb63652c",
+        "filename": "designs/drive-state-manager.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T16:45:36Z",
+      "side": 1,
+      "message": "I would suggest you specify `platform-init` as potentialy impacted as it should be where we write any platform-specific initialization implementation.",
+      "revId": "4ff327287324289852a2ad878af9b0c353facc09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc5f36db_22c950ba",
+        "filename": "designs/drive-state-manager.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-04-21T16:45:36Z",
+      "side": 1,
+      "message": "I don\u0027t see `openbmc/openbmc` listed here and there is a huge gap in your design: how do you specify which drives are managed by this proposal.\n\nphosphor-state-manager was written before entity-manager so it isn\u0027t unexpected that the integration between the two is very weak; effectively non-existent for \"how many chassis and hosts\" do we have.  PSM hard-coded this into openbmc recipe files per-platform.\n\nWhen we start to move into sub-devices, I think integration with EM becomes far more important:\n- How do you express the relationship between a host and a sub-device?\n- How do you express the relationship between a sub-device inventory (FRU) and state management?\n- How do you handle dynamic detection of devices and/or configurations where some devices are not present?  Drives, for example, can have N NVMe slots with only M of them populated.  We shouldn\u0027t show Redfish content for power control of empty slots.",
+      "revId": "4ff327287324289852a2ad878af9b0c353facc09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
