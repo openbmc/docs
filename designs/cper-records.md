@@ -86,7 +86,7 @@ OpenBMC.
   - openbmc/openbmc
   - openbmc/libcper
 
-#### Potentionally in the future
+#### Potentially in the future
 
 - openbmc/phosphor-debug-collector
 - openbmc/bmcweb
