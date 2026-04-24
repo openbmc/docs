@@ -470,6 +470,74 @@ string:"/xyz/openbmc_project/inventory/system" array:string:
 
 Find a parent object that implements a specific interface.
 
+### GetPathsByAssociation
+
+Use this method to find object paths and associations between them where
+specific interfaces are present.
+
+Inputs:
+
+- param reqPath1 Base path to search for interfaces from list 1
+- param reqPath2 Base path to search for interfaces from list 2
+- param interfaces1 Interface filter list 1
+- param interfaces2 Interface filter list 2
+- param associations The associations to query
+- param depth The depth of query on both base paths
+
+Output:
+
+- A vector of a tuple {object path, association, object path}
+
+```bash
+busctl -j  call xyz.openbmc_project.ObjectMapper /xyz/openbmc_project/object_mapper xyz.openbmc_project.ObjectMapper GetPathsByAssociation sasassasi / 1 "xyz.openbmc_project.Inventory.Item.Chassis" 2 "containing" "cooled_by" / 1 "xyz.openbmc_project.Inventory.Item.Fan" 0
+```
+
+```json
+{
+  "type": "a(sss)",
+  "data": [
+    [
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "containing",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_1"
+      ],
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "containing",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_3"
+      ],
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "containing",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_2"
+      ],
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "cooled_by",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_1"
+      ],
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "cooled_by",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_2"
+      ],
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "cooled_by",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_3"
+      ]
+    ]
+  ]
+}
+```
+
+#### Example Use Case
+
+Finding the object paths involved in the Redfish fan collection for a chassis
+and branching into old/new code paths depending on which associations the
+platform supports. Without multiple round-trips to the mapper.
+
 ## Associations
 
 Associations are special D-Bus objects created by the mapper to associate two
