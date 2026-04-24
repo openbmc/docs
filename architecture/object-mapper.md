@@ -470,6 +470,94 @@ string:"/xyz/openbmc_project/inventory/system" array:string:
 
 Find a parent object that implements a specific interface.
 
+### GetPathsByAssociation
+
+Use this method to find object paths with specific interfaces that are an
+association endpoint of object paths with specific interfaces.
+
+Inputs:
+
+- param basePath1 Base path to search for interfaces from list 1
+- param interfaces1 Interface filter list 1
+- param associations The associations to query
+- param basePath2 Base path to search for interfaces from list 2
+- param interfaces2 Interface filter list 2
+- param depth The depth of query on both base paths
+
+Output:
+
+- A vector of a tuple {object path, association, object path}
+
+Abstract Example:
+
+Notation:
+
+- `/..` denoting 0 or more path segments.
+- `-- ${ASSOC_NAME} ->` denoting an association.
+
+We are looking for unique tuples of
+
+`basePath1/../leaf_a -- assoc -> basePath2/../leaf_b`
+
+where:
+
+- `basePath1/../leaf_a` has an interface in the set `interfaces1`
+- the association `assoc` is contained in the set `associations`
+- `basePath2/../leaf_b` has an interface in the set `interfaces2`
+
+Output Concrete Example:
+
+```bash
+busctl -j  call xyz.openbmc_project.ObjectMapper /xyz/openbmc_project/object_mapper xyz.openbmc_project.ObjectMapper GetPathsByAssociation sasassasi / 1 "xyz.openbmc_project.Inventory.Item.Chassis" 2 "containing" "cooled_by" / 1 "xyz.openbmc_project.Inventory.Item.Fan" 0
+```
+
+```json
+{
+  "type": "a(sss)",
+  "data": [
+    [
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "containing",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_1"
+      ],
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "containing",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_3"
+      ],
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "containing",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_2"
+      ],
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "cooled_by",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_1"
+      ],
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "cooled_by",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_2"
+      ],
+      [
+        "/xyz/openbmc_project/inventory/system/chassis/MBX_1_60_Chassis",
+        "cooled_by",
+        "/xyz/openbmc_project/inventory/system/fan/FAN_3"
+      ]
+    ]
+  ]
+}
+```
+
+#### Example Use Case
+
+Finding the object paths involved in the Redfish fan collection for a chassis.
+This helps branching into old/new code paths depending on which associations the
+platform supports without multiple round-trips to the mapper.
+
+
 ## Associations
 
 Associations are special D-Bus objects created by the mapper to associate two
