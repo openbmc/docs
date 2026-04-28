@@ -11,6 +11,7 @@ roles are scoped to these subrepos.
 | Platform Maintainer | Review and maintain contributions to a single platform | History of testing and ownership of a given single platform                                            | [OWNERS] entry within the meta-\* subfolder for the platform |
 | Approver            | Review and maintain contributions to a portion of code | Demonstrated responsibility and excellent technical judgement for the portion of code across platforms | subproject [OWNERS] file _owners_ entry                      |
 | Subproject owner    | Set direction and priorities for a subproject          | Demonstrated responsibility and excellent technical judgement for the subproject across platforms      | subproject [OWNERS] file _owners_ entry                      |
+| Security Response   | Respond to and address undisclosed security issues     | History of engagement on security issues                                                               | Entry in security documentation in docs repository           |
 | TOF Member          | Set direction and priorities for the project           | Elected via [TOF election cycle]                                                                       | Entry in TOF documentation in docs repository                |
 
 ## New contributors
@@ -233,6 +234,34 @@ The following apply to the subproject for which one would be an owner.
 - Keep abreast of technical changes to the overall project and maintain and/or
   delegate maintenance of the subproject to keep it aligned with the overall
   project.
+
+## Security Response Team Member
+
+The security response team is responsible for coordinated disclosure in the
+OpenBMC project. Members are given access to non-public embargoed information.
+
+**Defined by:** Security response team membership in the docs repository.
+
+### Expectations
+
+- Deep technical understanding of the project security architecture.
+- Knowledge of community members, technical experts within and outside the
+  project, along with a history of engagement in security issues for 12 months
+  prior to inclusion.
+- Maintain an "Active" member status at all times.
+- Possess at least one representative BMC system where security issues can be
+  reproduced.
+
+### Responsibilities and privileges
+
+- Maintain the security documentation in the project.
+- Mentor and guide contributors to the project on security infrastructure and
+  best practices.
+- Respond to disclosures in line with the security response team guidelines.
+- Access to the security mailing list.
+- Enforce embargoes and non-disclosure of security issues ahead of release.
+- Maintain a contact email address and presence on the project communication
+  channels.
 
 ## Technical Oversight Forum Member
 
