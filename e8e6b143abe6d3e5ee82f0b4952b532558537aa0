@@ -16,6 +16,24 @@
       "message": "Looks good to me.\nThis is for the D-Bus layer; is there interest in adding this to the Redfish layer?\nAs a minor note: OpenBMC service-config-manager can also disable services (like IPMI on UDP port 623) which overlaps part of the firewall port blocking function.",
       "revId": "e8e6b143abe6d3e5ee82f0b4952b532558537aa0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b316cda_7e47b3e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002754
+      },
+      "writtenOn": "2026-04-29T08:52:09Z",
+      "side": 1,
+      "message": "Yes, Redfish layer support is planned.\n\nYou\u0027re correct that service-config-manager provides per-instance service control. The firewall feature complements this by providing network-level traffic filtering that service-config-manager cannot.\n\nThe firewall can allow or block traffic based on:\n-IP addresses or subnets \n-Time windows \n-Protocol and port ranges \n-MAC addresses",
+      "parentUuid": "32d39cb3_ee2460d2",
+      "revId": "e8e6b143abe6d3e5ee82f0b4952b532558537aa0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
