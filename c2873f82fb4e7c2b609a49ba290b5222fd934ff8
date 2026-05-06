@@ -303,6 +303,24 @@
       "parentUuid": "6636fb76_561e0606",
       "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aec2510_a79b9912",
+        "filename": "designs/redfish-client.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2026-05-06T04:42:30Z",
+      "side": 1,
+      "message": "Added an Extensibility section to the design.\n```\nThe design is not tied to any specific SMC vendor or limited to only mentioned\nresources. Throughout this document, the Nvidia HMC is used for illustration\npurposes, but the design supports any Redfish-compliant device. Extensibility is\nachieved by the following mechanisms:\n\n- **Multi-device support**: Multiple configuration files can be activated\n  simultaneously, each targeting a different satellite controller. A single BMC\n  can communicate with multiple SMCs of different vendors concurrently.\n  Supporting a new vendor requires only a new configuration file; no daemon\n  code changes are needed as long as the device exposes standard Redfish\n  resources.\n- **New resource types**: Each resource type is an independent task with its own\n  configuration, collection logic, and D-Bus transformation. New resource types\n  can be added without modifying existing tasks.\n- **Configurable transformation**: The `Mappers` mechanism allows per-platform\n  customization of how Redfish resources are mapped to D-Bus objects, decoupling\n  the SMC\u0027s Redfish schema from the BMC\u0027s D-Bus representation.\n```\nRegarding your example, the design already supports querying attributes across multiple satellite BMCs as each SMC\u0027s IP is defined in its SatelliteController object exposed by entity-manager, and multiple configurations can be activated simultaneously to target different controllers. And again, the design is not limited to SMCs but should be working with any Redfish-compliant device as Patrick mentioned above.",
+      "parentUuid": "9a37ffc6_826efb66",
+      "revId": "c2873f82fb4e7c2b609a49ba290b5222fd934ff8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
