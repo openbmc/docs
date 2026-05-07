@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf6a46dc_e82dea6b",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-07T12:10:08Z",
+      "side": 1,
+      "message": "\u003e Just to confirm my understanding: with a function-pointer / lookup-table\n approach, would platform-specific hardware operations (GPIO, I2C, etc.)\n need to be compiled into the state manager binary, or would some other \nmechanism be used to keep them separate?\n\nIt would be my preference for things to be compiled into the state manager to reduce the runtime overhead of starting whole new processes for simple operations like i2c transfers or gpio changes. That\u0027s a few function calls in C++ with minimal overhead.\n\nIf you want to have a clean separation then each platform could get it\u0027s own sub-directory similarly to how this is already done in `platform-init` repository.\n\nThe platform could then implement various function calls from an abstract base class which the common code in the device state manager then calls into depending on for which platform it was compiled for or which one was detected at runtime.\n\nThe benefit of this approach is that the platform logic is done in C++, goes through full static analysis, and the maintainer will have full overview into it and is able to refactor things in the future.\n\nA similar design was implemented for `phosphor-bmc-code-mgmt` where common code calls into device specific update code. In that repo there are still multiple binaries and multiple processes though.",
+      "parentUuid": "c878e9ba_c4a5b51c",
+      "range": {
+        "startLine": 63,
+        "startChar": 3,
+        "endLine": 65,
+        "endChar": 57
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4eeae1e_35389f16",
         "filename": "designs/sub-device-state-manager.md",
         "patchSetId": 12
@@ -165,6 +189,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "395bd71f_0929c715",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-07T12:10:08Z",
+      "side": 1,
+      "message": "Alright, it is good to at least have the default case be a builtin. Thanks for explaining it to me 👍",
+      "parentUuid": "daa61bfe_eeaeecc2",
+      "range": {
+        "startLine": 189,
+        "startChar": 62,
+        "endLine": 190,
+        "endChar": 65
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e46c3d0_998632e7",
@@ -249,6 +297,30 @@
       "side": 1,
       "message": "Agreed, meson options can achieve per-platform type selection as well.",
       "parentUuid": "ecf35bf2_e8ee567b",
+      "range": {
+        "startLine": 312,
+        "startChar": 50,
+        "endLine": 313,
+        "endChar": 54
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9729e96_1f3331e3",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-07T12:10:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c5542dba_e185cfe1",
       "range": {
         "startLine": 312,
         "startChar": 50,
