@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c878e9ba_c4a5b51c",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-05-07T11:24:19Z",
+      "side": 1,
+      "message": "Just to confirm my understanding: with a function-pointer / lookup-table approach, would platform-specific hardware operations (GPIO, I2C, etc.) need to be compiled into the state manager binary, or would some other mechanism be used to keep them separate?\n\nThe current PSM pattern uses systemd targets to keep hardware-specific code out of the state daemon entirely. I followed the same approach here.\n@geissonator@yahoo.com, could you share your thoughts on whether a different extension mechanism is preferred for sub-devices?",
+      "parentUuid": "a9e68b83_58616ca6",
+      "range": {
+        "startLine": 63,
+        "startChar": 3,
+        "endLine": 65,
+        "endChar": 57
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4eeae1e_35389f16",
         "filename": "designs/sub-device-state-manager.md",
         "patchSetId": 12
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e57492d5_7e009327",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-05-07T11:24:19Z",
+      "side": 1,
+      "message": "You\u0027re right. I will update it to include all `Item.Drive` properties with their PDI default values.",
+      "parentUuid": "e2753337_71dfbb6e",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 2
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26caa346_f6260ee8",
         "filename": "designs/sub-device-state-manager.md",
         "patchSetId": 12
@@ -83,6 +131,30 @@
       "writtenOn": "2026-04-27T10:51:49Z",
       "side": 1,
       "message": "So platforms need to do their own service wiring to get a sane default behavior?\n\nThis reminds me of the `rsyslog` story where each platform was copy-pasting the same configuration to get Redfish EventLog to work.\n\n\nIs it possible to instead inline that behavior into the code directly or configure it via EM?\n\n\nWhy do we need this infinite flexibility on the platform side to start whichever services when it\u0027s only 2 cases here. Either the drives power off with the host, or they do not. Is there other cases?",
+      "range": {
+        "startLine": 189,
+        "startChar": 62,
+        "endLine": 190,
+        "endChar": 65
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daa61bfe_eeaeecc2",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-05-07T11:24:19Z",
+      "side": 1,
+      "message": "Thank you for the concrete example with rsyslog.\n\nI think for the common case (drives power off with host), the daemon could handle this internally: observe CurrentHostState for the associated host and initiate poweroff for drives with matching `ManagedHost` when the host goes off. That way platforms would not need any systemd wiring for host-drive power dependency.\n\nPlatform-specific target hooks would still be needed for the actual hardware power control (GPIO, I2C), since that varies per platform.\n\nI will update the doc to propose this approach and clarify the distinction.",
+      "parentUuid": "26caa346_f6260ee8",
       "range": {
         "startLine": 189,
         "startChar": 62,
@@ -118,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e91b748_f826a5e1",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-05-07T11:24:19Z",
+      "side": 1,
+      "message": "Agreed, crash isolation is a secondary consideration. The wording in Alternatives could be clearer on that. I will revise it.",
+      "parentUuid": "5e46c3d0_998632e7",
+      "range": {
+        "startLine": 312,
+        "startChar": 2,
+        "endLine": 312,
+        "endChar": 48
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ecf35bf2_e8ee567b",
         "filename": "designs/sub-device-state-manager.md",
         "patchSetId": 12
@@ -141,6 +237,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5542dba_e185cfe1",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-05-07T11:24:19Z",
+      "side": 1,
+      "message": "Agreed, meson options can achieve per-platform type selection as well.",
+      "parentUuid": "ecf35bf2_e8ee567b",
+      "range": {
+        "startLine": 312,
+        "startChar": 50,
+        "endLine": 313,
+        "endChar": 54
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "450307b7_c1af52ac",
         "filename": "designs/sub-device-state-manager.md",
         "patchSetId": 12
@@ -152,6 +272,30 @@
       "writtenOn": "2026-04-27T10:51:49Z",
       "side": 1,
       "message": "The host power state tracking is also replicated. The linux per process overhead is also replicated. The overall binary size increases since `-Osize` does not work properly  due to duplicated codes.\n\nThe overhead of system services and associated metadata tracking is also duplicated. There is also additional logs generated from service startup.\n\n\nOne of my use-cases is to be able to emulate things in qemu.\n\nWhile per-instance and per-type designs may run okay on a real hardware, they are significantly less efficient than single-binary single-process designs.\n\nSince lots of developers rely on qemu, i would be happy if we could prioritize optimal solutions in regards to memory use, binary size and runtime overhead.",
+      "range": {
+        "startLine": 316,
+        "startChar": 55,
+        "endLine": 318,
+        "endChar": 62
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9d1bba6_d555e0af",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-05-07T11:24:19Z",
+      "side": 1,
+      "message": "Thank you for the detailed review and feedback.\n\nThe sub-device daemons are expected to be much smaller than bmcweb, and each new device type would add incrementally (the shared infrastructure is built once, per-type code is minimal). That said, I understand the efficiency argument for a consolidated approach, and a single binary with type selection is feasible.\n\nMy starting point was the existing per-type binary convention in PSM and dbus-sensors, with the practical benefit of recipe-level inclusion/exclusion. But I am open to either direction.\n\n@patrick@stwcx.xyz @geissonator@yahoo.com do you have a preference between per-type binaries vs a single combined sub-device\nbinary? Happy to implement whichever you prefer.",
+      "parentUuid": "450307b7_c1af52ac",
       "range": {
         "startLine": 316,
         "startChar": 55,
