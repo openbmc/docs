@@ -96,6 +96,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90c5fb61_ca5ceacc",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-13T08:32:09Z",
+      "side": 1,
+      "message": "Thanks, since you outlined the benefits of the compiled-in approach, this one is resolved from my side. If they still want to go with a decoupled design based on the tradeoffs then it\u0027s for them to decide i guess.",
+      "parentUuid": "cfb0dc4a_60e7b34b",
+      "range": {
+        "startLine": 63,
+        "startChar": 3,
+        "endLine": 65,
+        "endChar": 57
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4eeae1e_35389f16",
@@ -109,6 +133,30 @@
       "writtenOn": "2026-04-27T10:51:49Z",
       "side": 1,
       "message": "Why a new binary? Can\u0027t the various types not share one binary and then select via `argv[1]` which code path is run?\n\nI would expect the total compressed size of the binaries to be less if it was combined into one binary or even combined with existing state manager binary.\n\nMerging things like that already resulted in compressed size reduction of the bmcweb.",
+      "range": {
+        "startLine": 71,
+        "startChar": 3,
+        "endLine": 72,
+        "endChar": 37
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99c25b6e_e8c0cc6e",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-13T08:32:09Z",
+      "side": 1,
+      "message": "Resolving this since the alternative and tradeoff is now written down. Let\u0027s see what maintainers decide.",
+      "parentUuid": "d4eeae1e_35389f16",
       "range": {
         "startLine": 71,
         "startChar": 3,
@@ -156,6 +204,30 @@
       "side": 1,
       "message": "You\u0027re right. I will update it to include all `Item.Drive` properties with their PDI default values.",
       "parentUuid": "e2753337_71dfbb6e",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 2
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d896666_f6bbad14",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-13T08:32:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e57492d5_7e009327",
       "range": {
         "startLine": 164,
         "startChar": 0,
@@ -308,6 +380,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59ada757_24859b45",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-13T08:32:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0e91b748_f826a5e1",
+      "range": {
+        "startLine": 312,
+        "startChar": 2,
+        "endLine": 312,
+        "endChar": 48
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecf35bf2_e8ee567b",
@@ -416,6 +512,30 @@
       "side": 1,
       "message": "Thank you for the detailed review and feedback.\n\nThe sub-device daemons are expected to be much smaller than bmcweb, and each new device type would add incrementally (the shared infrastructure is built once, per-type code is minimal). That said, I understand the efficiency argument for a consolidated approach, and a single binary with type selection is feasible.\n\nMy starting point was the existing per-type binary convention in PSM and dbus-sensors, with the practical benefit of recipe-level inclusion/exclusion. But I am open to either direction.\n\n@patrick@stwcx.xyz @geissonator@yahoo.com do you have a preference between per-type binaries vs a single combined sub-device\nbinary? Happy to implement whichever you prefer.",
       "parentUuid": "450307b7_c1af52ac",
+      "range": {
+        "startLine": 316,
+        "startChar": 55,
+        "endLine": 318,
+        "endChar": 62
+      },
+      "revId": "d54bfcb4b068b0c7ef04e1a0a72b525bcd7b91f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94fae844_75825748",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-05-13T08:32:09Z",
+      "side": 1,
+      "message": "Thanks for adding all these considerations to \u0027Alternatives considered\u0027.",
+      "parentUuid": "a9d1bba6_d555e0af",
       "range": {
         "startLine": 316,
         "startChar": 55,
