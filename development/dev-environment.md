@@ -252,6 +252,7 @@ re-downloading and re-building, saving time and disk.
    ```bash
    DL_DIR = "${XDG_CACHE_HOME}/bitbake/downloads"
    SSTATE_DIR = "${XDG_CACHE_HOME}/bitbake/sstate"
+   BB_HASHSERVE_DB_DIR = "${SSTATE_DIR}"
    ```
 
 This makes every build reuse what was already downloaded and built, so you use
