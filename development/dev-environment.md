@@ -252,7 +252,16 @@ re-downloading and re-building, saving time and disk.
    ```bash
    DL_DIR = "${XDG_CACHE_HOME}/bitbake/downloads"
    SSTATE_DIR = "${XDG_CACHE_HOME}/bitbake/sstate"
+   BB_HASHSERVE_DB_DIR = "${SSTATE_DIR}"
    ```
 
 This makes every build reuse what was already downloaded and built, so you use
 less disk and finish faster.
+
+3. (Optional) Add to ~/.bashrc to make shared build cache default for all builds:
+   ```bash
+   export SSTATE_DIR="${XDG_CACHE_HOME}/bitbake/sstate"
+   export DL_DIR="${XDG_CACHE_HOME}/bitbake/downloads"
+   export BB_HASHSERVE_DB_DIR="${SSTATE_DIR}"
+   export BB_ENV_PASSTHROUGH_ADDITIONS="SSTATE_DIR DL_DIR BB_HASHSERVE_DB_DIR"
+   ```
