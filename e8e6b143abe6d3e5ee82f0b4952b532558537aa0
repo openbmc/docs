@@ -102,6 +102,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2b557b0_89f1d436",
+        "filename": "designs/firewall-configuration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2026-06-02T17:57:07Z",
+      "side": 1,
+      "message": "Existing BMC configuration controls allow the BMC admin to disable network protocols (such as https://github.com/openbmc/docs/blob/master/REDFISH-cheatsheet.md#disable-ipmi).  This is better than blocking the network port (such as UDP port 623) because the service is not running and not taking BMC resources.\n\nHowever, a firewall provides more function than just blocking ports.  It can allow specific network clients to use specific BMC network services, and block all others.  For example, this can help prevent BMC denial of service conditions due to misconfigured BMC clients.",
+      "parentUuid": "1a6e2465_41a9a61f",
+      "range": {
+        "startLine": 16,
+        "startChar": 13,
+        "endLine": 18,
+        "endChar": 65
+      },
+      "revId": "e8e6b143abe6d3e5ee82f0b4952b532558537aa0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7087cada_68c8c05d",
         "filename": "designs/firewall-configuration.md",
         "patchSetId": 3
