@@ -4,15 +4,16 @@ This doc outlines the various expectations of contributor roles in OpenBMC. The
 OpenBMC project is subdivided into subrepositories. Responsibilities for most
 roles are scoped to these subrepos.
 
-| Role                | Expectations                                           | Requirements                                                                                           | Defined by                                                   |
-| ------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
-| Code Contributor    | Abide by the code of conduct                           | Executed Contributor License Agreement                                                                 | Merged Code                                                  |
-| Designated Reviewer | Review contributions from other members                | History of review in a subproject                                                                      | [OWNERS] file reviewer entry                                 |
-| Platform Maintainer | Review and maintain contributions to a single platform | History of testing and ownership of a given single platform                                            | [OWNERS] entry within the meta-\* subfolder for the platform |
-| Approver            | Review and maintain contributions to a portion of code | Demonstrated responsibility and excellent technical judgement for the portion of code across platforms | subproject [OWNERS] file _owners_ entry                      |
-| Subproject owner    | Set direction and priorities for a subproject          | Demonstrated responsibility and excellent technical judgement for the subproject across platforms      | subproject [OWNERS] file _owners_ entry                      |
-| Security Response   | Respond to and address undisclosed security issues     | History of engagement on security issues                                                               | Entry in security documentation in docs repository           |
-| TOF Member          | Set direction and priorities for the project           | Elected via [TOF election cycle]                                                                       | Entry in TOF documentation in docs repository                |
+| Role                | Expectations                                           | Requirements                                                                                           | Defined by                                                     |
+| ------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| Code Contributor    | Abide by the code of conduct                           | Executed Contributor License Agreement                                                                 | Merged Code                                                    |
+| Active Contributor  | Consistent contributions to the project                | Qualifications set by the [Technical Oversight Forum][TOF election cycle]                              | entry in the ["Roll-call"][tof-rollcall] for the current half. |
+| Designated Reviewer | Review contributions from other members                | History of review in a subproject                                                                      | [OWNERS] file reviewer entry                                   |
+| Platform Maintainer | Review and maintain contributions to a single platform | History of testing and ownership of a given single platform                                            | [OWNERS] entry within the meta-\* subfolder for the platform   |
+| Approver            | Review and maintain contributions to a portion of code | Demonstrated responsibility and excellent technical judgement for the portion of code across platforms | subproject [OWNERS] file _owners_ entry                        |
+| Subproject owner    | Set direction and priorities for a subproject          | Demonstrated responsibility and excellent technical judgement for the subproject across platforms      | subproject [OWNERS] file _owners_ entry                        |
+| Security Response   | Respond to and address undisclosed security issues     | History of engagement on security issues                                                               | Entry in security documentation in docs repository             |
+| TOF Member          | Set direction and priorities for the project           | Elected via [TOF election cycle]                                                                       | Entry in TOF documentation in docs repository                  |
 
 ## New contributors
 
@@ -36,6 +37,13 @@ Gerrit, and pre-submit tests are automatically run for their reviews. Members
 are expected to remain active contributors to the community.
 
 **Defined by:** Listed on a current contributor license agreement.
+
+Once a developer consistently contributes to the project, based on expectations
+set by the Technical Oversight Forum, a developer may be granted "Active"
+status. This is granted for a 6 month period based on the contributions in the
+preceding 6 months.
+
+**Defined by:** Entry in a roll-call for the TOF election.
 
 ### Expectations
 
@@ -312,3 +320,4 @@ promote engagement with the open source community at large.
 [submit a cla]: /CONTRIBUTING.md#starting-out
 [contributor guide]: /CONTRIBUTING.md
 [tof election cycle]: /tof/membership-and-voting.md
+[tof-rollcall]: https://github.com/openbmc/tof-election
