@@ -154,6 +154,16 @@ holistic acceptance of a contribution including: backwards / forwards
 compatibility, adhering to API conventions, subtle performance and correctness
 issues, interactions with other parts of the system, etc.
 
+All approvers should be active contributors to OpenBMC, confirmed by a recent
+[TOF roll-call][tof-rollcall]. Any approver not recently qualified can be
+removed from [OWNERS] files at the discretion of the Subproject Owner(s) or a
+TOF member.
+
+- Starting 2026, approvers should have been qualified sometime since 2024H1.
+- Starting 2027, approvers should have been qualified sometime since 2026H1.
+- In 2028 and after, approvers should have at least "Active" or "Emeritus"
+  status in the most recent half.
+
 **Defined by:** _owners_ entry in an OWNERS file in a repo owned by the OpenBMC
 project.
 
@@ -206,6 +216,17 @@ project. They _MUST_ have demonstrated both good judgement and responsibility
 towards the health of that subproject. Subproject Owners _MUST_ set technical
 direction and make or approve design decisions for their subproject - either
 directly or through delegation of these responsibilities.
+
+All subproject Owners _MUST_ be active contributors to OpenBMC, confirmed by a
+recent [TOF roll-call][tof-rollcall]. Any subproject Owner not recently
+qualified will be removed from [OWNERS] files by a TOF member.
+
+- Starting 2026, subproject owners must have been qualified sometime since
+  2024H1.
+- Starting 2027, subproject owners must have been qualified sometime since
+  2026H1.
+- In 2028 and after, subproject owners must have at least "Active" or "Emeritus"
+  status in the most recent half.
 
 **Defined by:** _owners_ entry in subproject [OWNERS]
 
