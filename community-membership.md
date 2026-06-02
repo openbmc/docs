@@ -202,6 +202,17 @@ towards the health of that subproject. Subproject Owners _MUST_ set technical
 direction and make or approve design decisions for their subproject - either
 directly or through delegation of these responsibilities.
 
+All subproject Owners _MUST_ be active contributors to OpenBMC, confirmed by a
+recent [TOF roll-call][tof-rollcall]. Any subproject Owner not recently
+qualified can be removed from [OWNERS] files.
+
+- Starting 2026, subproject owners must have been qualified sometime since
+  2024H1.
+- Starting 2027, subproject owners must have been qualified sometime since
+  2026H1.
+- In 2028 and after, subproject owners must have at least "Active" or "Emeritus"
+  status in the most recent half.
+
 **Defined by:** _owners_ entry in subproject [OWNERS]
 
 ### Expectations
