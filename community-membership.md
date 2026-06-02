@@ -29,7 +29,7 @@ policies, procedures, conventions, etc., and technical and/or writing ability.
 Role-specific expectations, responsibilities, and requirements are enumerated
 below.
 
-## Member
+## Code Contributor
 
 Members are continuously active contributors in the community. They can have
 issues and reviews assigned to them, participate in design reviews through
@@ -37,6 +37,8 @@ Gerrit, and pre-submit tests are automatically run for their reviews. Members
 are expected to remain active contributors to the community.
 
 **Defined by:** Listed on a current contributor license agreement.
+
+## Active Contributor
 
 Once a developer consistently contributes to the project, based on expectations
 set by the Technical Oversight Forum, a developer may be granted "Active"
