@@ -103,6 +103,8 @@ will look like.
 - Commit your changes, adding a Signed-off-by line to it (more on
   [writing good commit messages](https://github.com/openbmc/docs/blob/master/CONTRIBUTING.md#submitting-changes)):
   `git commit --signoff`
+  - To update an existing review (same `Change-Id`), amend instead:
+    `git commit --amend`
 - Push your changes to Gerrit for code review:
   `git push origin HEAD:refs/for/master`
 - Go to [Gerrit web interface](https://gerrit.openbmc.org/), click on your new
