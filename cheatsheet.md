@@ -239,6 +239,15 @@ prefer the originals or remove the deletion overlay to restore files.
 
 ## Building
 
+### Locate build logs
+
+When a recipe fails during compilation or installation, these task logs are
+usually the fastest way to find the real error instead of scrolling through the
+full BitBake console output.
+
+- Compile logs: `build/tmp/work/<arch>/<recipe>/<version>/temp/log.do_compile`
+- Install logs: `build/tmp/work/<arch>/<recipe>/<version>/temp/log.do_install`
+
 ### Share downloads directory
 
 It takes a long time for the first build of OpenBMC. It downloads various repos
