@@ -227,6 +227,28 @@ echo '/tmp/core_%e.%p' | tee /proc/sys/kernel/core_pattern
 ulimit -c unlimited
 ```
 
+## systemd service troubleshooting
+
+Use these commands to quickly identify and inspect problematic units.
+
+Show units currently in failed state:
+
+```bash
+systemctl --failed
+```
+
+Inspect detailed state and recent activity for a specific unit:
+
+```bash
+systemctl status <service>
+```
+
+Read journal entries for that unit:
+
+```bash
+journalctl -u <service>
+```
+
 ## Cleaning up read-write file system changes
 
 You may want to investigate which file(s) are persisting through the overlay
