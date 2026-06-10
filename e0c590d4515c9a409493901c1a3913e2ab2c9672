@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8da959b3_231b87dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "Overall, this seems like it should be a minor improvement to AdcSensor to add a new type, a little bit of thresholding logic, and some new interfaces rather than requiring a whole new daemon, and Dbus IPC between them.\n\nI think if we do that, this design doc simplifies a lot, but please make sure your requirements section is complete, and system level requirements, not design details.",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7b61e1e8_e7a8ef79",
         "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
         "patchSetId": 5
@@ -19,6 +36,75 @@
         "startChar": 44,
         "endLine": 3,
         "endChar": 46
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4a50279_c6ad5850",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "Just take this out.  There are definitely CMOS batteries represented in EM.  They\u0027re represented as ADC and sensors, which might not be what you want (and I\u0027m in support of changing) but saying that they don\u0027t exist sets the wrong barckground.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 24
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b8f5280_5424175c",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "I\u0027m not aware of this, can you elaborate on what is inconsistent about the existing \"represent a battery voltage as a sensor\" approach? (in your design doc please)",
+      "range": {
+        "startLine": 11,
+        "startChar": 52,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84994947_199e3d1b",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "This is already a non starter.  Batteries are different between machines.  Some have no battery.  The idea that we\u0027ll come up with a completely common configuration seems unlikely to me.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 74
       },
       "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -43,6 +129,327 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d4111d5_cddbc73b",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "+1.  In your requirements section you should enumerate what interfaces you\u0027re trying to publish.",
+      "parentUuid": "eae9c2b0_e597b15f",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afce9231_316aec8d",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "You\u0027ve jumped into design, but this is in the background and references section.  Move to the right section.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 71
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af5da670_efa13a5c",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "What does this even mean?  what is a \"runtime object\" ?  Please put specifics of dbus paths and interface names.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 15
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6cdc327_cb112d4c",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "Remove.  This is an implementation.  The REQUIREMENT is that you expose detect components at runtime, and expose appropriate battery information to Redfish.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 72
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49b58976_0402a137",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "Remove.  This is already a default in EM today.  This design isn\u0027t changing anything.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 62
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54fb11d0_c76b097b",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "reword to \"Batteries should be detectable based on FRU, and expose the telemetry only if present\", or somthing to that effect.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 67
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c84d32a_43b112cb",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "Entity-manager is an implementation detail, not a requirement.  Please keep focused on what the SYSTEM does, not how internal components interact (that is for your design section).",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97dc49ee_26ccf81c",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "This needs to be more specific.  \"Battery state\" and \"runtime objects\" don\u0027t tell me what you\u0027re trying to surface.  Are you trying to surface capacity information?  Voltage?  Serial number?  Please be explicit, as it changes the design dependent on what you\u0027re trying to do.",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbd6dbe7_32aa6818",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure this whole section can be removed once you clarify your requirements.",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9607c706_4f5dc8c1",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "It\u0027s almost impossible to review this if we don\u0027t know what the user interface looks like.",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa3bd972_e1a3ee32",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "You can condense this all down to: \"Will launch an entity-manager configuration using the latest state of the art in dbus-sensors\".",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 77
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b03dcb69_aab4dae8",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "This is where you lose me.  Why wouldn\u0027t adcsensor just do this directly?\n\n(repeating) what is a \"runtime status\".",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 59
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39621c81_15ec9b02",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "Remove.  This is something that got added to some configs incorrectly.  Lets not continue that trend.",
+      "range": {
+        "startLine": 85,
+        "startChar": 2,
+        "endLine": 85,
+        "endChar": 16
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab831f58_846d9550",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "I suspect you need to combine this with Type.",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "223c2610_ae81415a",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "This is far too general, but I don\u0027t know how to suggest because it\u0027s not clear what kind of battery you\u0027re trying to support.\n\nCoinCellBattery might be a way to do it.",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e144995_7098ed0e",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "This is not a \"sensor\" therefore it would go in the state namespace, not sensors.",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3fba4300_c296c9f9",
         "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
         "patchSetId": 5
@@ -54,6 +461,52 @@
       "writtenOn": "2026-06-10T16:16:13Z",
       "side": 1,
       "message": "Please use embedded mermaid rather than attaching pictures.",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b265b1a_85e03fb6",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "Remove.  This is currently a requirement of all EM configs.  We don\u0027t need to repeat it.",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 234,
+        "endChar": 31
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05362775_a4fadcc2",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-06-10T17:02:54Z",
+      "side": 1,
+      "message": "Remove.  We\u0027re not going to debate filenames in a design doc.",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 3
+      },
       "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
