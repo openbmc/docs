@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66651008_caa78aba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-06-12T06:47:22Z",
+      "side": 1,
+      "message": "Addressed. Design now proposes extending AdcSensor within dbus-sensors as a minor enhancement (new type, thresholding logic, state interfaces) rather than a separate daemon. This eliminates unnecessary D-Bus IPC and redundant data sources. Requirements section rewritten to focus on system-level behavior, not implementation internals.",
+      "parentUuid": "8da959b3_231b87dd",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ad61715_86e06c5b",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "773bcb5d_94eab01a",
+        "filename": "designs/sensors/CMOS-Battery-Status-Flow.svg",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-06-12T06:47:22Z",
+      "side": 1,
+      "message": "Addressed. Removed polling approach. Battery health logic now uses D-Bus match expressions to listen for PropertiesChanged events on ADC threshold properties (WarningAlarmLow, CriticalAlarmLow), similar to PSUSensor model. Updates are event-driven, eliminating periodic polling overhead.",
+      "parentUuid": "2ad61715_86e06c5b",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b61e1e8_e7a8ef79",
@@ -48,6 +84,30 @@
       "writtenOn": "2026-06-10T16:16:13Z",
       "side": 1,
       "message": "I don\u0027t know why these stray whitespace aren\u0027t being clean and/or reported by CI.",
+      "range": {
+        "startLine": 3,
+        "startChar": 44,
+        "endLine": 3,
+        "endChar": 46
+      },
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5d0458b_663bcd17",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-06-12T06:47:22Z",
+      "side": 1,
+      "message": "Fixed in latest patchset. CI formatting pass removed trailing whitespace.",
+      "parentUuid": "7b61e1e8_e7a8ef79",
       "range": {
         "startLine": 3,
         "startChar": 44,
@@ -934,6 +994,24 @@
       "writtenOn": "2026-06-10T16:16:13Z",
       "side": 1,
       "message": "Please use embedded mermaid rather than attaching pictures.",
+      "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b0be7f9_73f834a9",
+        "filename": "designs/sensors/CMOS-Battery-Status-Support.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002970
+      },
+      "writtenOn": "2026-06-12T06:47:22Z",
+      "side": 1,
+      "message": "Updated. Replaced the attached SVG with an embedded Mermaid sequence diagram in the design doc showing the runtime flow.",
+      "parentUuid": "3fba4300_c296c9f9",
       "revId": "e0c590d4515c9a409493901c1a3913e2ab2c9672",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
