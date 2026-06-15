@@ -2,7 +2,9 @@
 
 Author: Ed Tanous (edtanous)
 
-Created: 7-21-25
+Other contributors: Oliver Brewka (olek)
+
+Created: 7-21-25 Updated: 6-15-26
 
 ## Problem Description
 
@@ -46,14 +48,32 @@ Top level structure will be
 
 platform_init.cpp platform1/init.cpp platform2/init.cpp
 
-Initially a cli argument will be used to compile the appropriate paths for a
-given platform. At some point in the future, some level of detection _may_ be
-added that allows detecting platforms at runtime. Design for that is to be
-determined based on future requirements.
+Functionality of the platform binary may be expanded through cli subcommands.
 
-Guard rails will need to evolve over time, but initially this repository will
-not interact with DBus or the OpenBMC model. As defined (at this time) it is
-purely for initial bringup of hardware.
+A subcommand may be added if it checks following criteria:
+
+1. The subcommand executes a common platform functionality that solves a problem
+   as described above
+2. The subcommand requires similar project and code structure. Creating a
+   separate repository would duplicate a lot of what this repository already
+   provides.
+3. The subcommand is designed to be common code
+4. The subcommand is designed to expect a single function specific to the
+   platform.
+
+Having these subcommand requirements should help to maintain a uniform software
+architecture and allow for future enhancements to the build process.
+
+Platform hardware initialization is executed through the init subcommand.
+
+Initially a cli argument will be used to determine the correct platform function
+at runtime.
+
+At some point in the future, some level of detection _may_ be added that allows
+detecting platforms at runtime. Design for that is to be determined based on
+future requirements.
+
+Further guard rails will need to evolve over time.
 
 ## Alternatives Considered
 
@@ -81,5 +101,5 @@ Testing section omitted. Platform boot will be tested using individual
 platforms, with no change.
 
 [1]:
-  https://github.com/openbmc/openbmc/blob/master/meta-nvidia/meta-gb200nvl-obmc/recipes-nvidia/platform-init/files/platform_init.cpp
+  https://github.com/openbmc/openbmc/commit/54f1d3a68bf693d0994d2d4df4307bd129990f5f.patch
 [2]: https://github.com/openbmc/technical-oversight-forum/issues/51
