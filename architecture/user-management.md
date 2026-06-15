@@ -36,7 +36,7 @@ this document.
 The purpose of group roles is to determine the first-level authorization of the
 corresponding user. This is used to determine at a high level whether the user
 is authorized to the required interface. In other words, users should not be
-allowed to login to SSH if they only belong to webserver group and not to group
+allowed to login to SSH if they only belong to redfish group and not to group
 SSH. Also having group roles in common user-management (e.g.
 phosphor-user-manager) allows different application to create roles for the
 other (e.g. Administrative user will be able to create a new user through
@@ -50,15 +50,14 @@ based on the need_
 |      1 | ssh         | Users in this group are only allowed to login through SSH.          |
 |      2 | ipmi        | Users in this group are only allowed to use IPMI Interface.         |
 |      3 | redfish     | Users in this group are only allowed to use REDFISH Interface.      |
-|      4 | web         | Users in this group are only allowed to use webserver Interface.    |
-|      5 | hostconsole | Users in this group are only allowed to interact with host console. |
+|      4 | hostconsole | Users in this group are only allowed to interact with host console. |
 
 ## Supported Privilege Roles
 
 OpenBMC supports privilege roles which are common across all the supported
-groups (i.e. User will have same privilege for REDFISH / Webserver / IPMI / SSH
-/ HostConsole). User can belong to any one of the following privilege roles at
-any point of time.
+groups (i.e. User will have same privilege for REDFISH / IPMI / SSH /
+HostConsole). User can belong to any one of the following privilege roles at any
+point of time.
 
 _Note: Privileges are for representation only and can be modified/extended based
 on the need_
@@ -127,19 +126,24 @@ for detailed user management D-Bus API and interfaces.
           |                phosphor-user-manager                    |
           |    +---------------------------------------------+      |
           |    | Local user management:                      |      |
+          |    | PATH: /xyz/openbmc_project/user             |      |
           |    | I: Manager                                  |      |
-          |    | M: CreateUser, RenameUser                   |      |
+          |    | M: CreateGroup, CreateUser, CreateUser2,    |      |
+          |    | DeleteGroup, GetUserInfo, RenameUser        |      |
           |    | P: AllPrivileges, AllGroups                 |      |
           |    | S: UserRenamed                              |      |
           |    |                                             |      |
-          |    | I: Attributes                               |      |
-          |    | PATH: /xyz/openbmc_project/user/<name>      |      |
-          |    | P: UserGroups, UserPrivilege, UserEnabled,  |      |
-          |    | UserLockedForFailAttempt                    |      |
-          |    |                                             |      |
           |    | I: AccountPolicy                            |      |
-          |    | P: MaxLoginBeforeLockout, MinPasswordLength |      |
-          |    | AccountUnlockTimeout, RememberOldPassword   |      |
+          |    | P: MaxLoginAttemptBeforeLockout,            |      |
+          |    | AccountUnlockTimeout,MinPasswordLength,     |      |
+          |    | RememberOldPasswordTimes                    |      |
+          |    |                                             |      |
+          |    | PATH: /xyz/openbmc_project/user/<name>      |      |
+          |    | I: Attributes                               |      |
+          |    | P: PasswordExpiration, RemoteUser,          |      |
+          |    | TOTPSecretkeyRequired, UserEnabled,         |      |
+          |    | UserGroups, UserLockedForFailedAttempt,     |      |
+          |    | UserPasswordExpired, UserPrivilege, UserType|      |
           |    |                                             |      |
           |    | General API (Local/Remote)                  |      |
           |    | M: GetUserInfo()                            |      |
@@ -334,7 +338,7 @@ remote users.
                 +----------------------------------+
                 |    Stacked PAM Authentication    |
                 |     +-----------------------+    |
-                |     | pam_tally2.so         |    |
+                |     | pam_faillock.so       |    |
                 |     | user failed attempt   |    |
                 |     | tracking module.      |    |
                 |     +-----------------------+    |
@@ -346,9 +350,9 @@ remote users.
                 |     +-----------------------+    |
                 |                                  |
                 |     +-----------------------+    |
-                |     | nss_pam_ldap.so / any |    |
-                |     | remote authentication |    |
-                |     | pam modules           |    |
+                |     | pam_ldap.so / ldap    |    |
+                |     | authentication        |    |
+                |     | pam module            |    |
                 |     +-----------------------+    |
                 +----------------------------------+
 ```
@@ -358,15 +362,14 @@ remote users.
 Applications must use `pam_chauthtok()` API to set / change user password.
 Stacked PAM modules allow all 'ipmi' group user passwords to be stored in
 encrypted form, which will be used by IPMI. The same has been performed by
-`pam_ipmicheck` and `pam_ipmisave` modules loaded as first & last modules in
-stacked pam modules.
+`pam_ipmicheck` and `pam_ipmisave` modules loaded in stacked pam modules.
 
 ```ascii
                 +------------------+---------------+
                 |      Stacked PAM - Password      |
                 |                                  |
                 |  +----------------------------+  |
-                |  | pam_cracklib.so.           |  |
+                |  | pam_pwquality.so.          |  |
                 |  | Strength checking the      |  |
                 |  | password for acceptance    |  |
                 |  +----------------------------+  |
@@ -467,30 +470,25 @@ configured prior to authenticating with the LDAP user accounts.
 3. If the user account is not local, read the group name for the user.
 4. Fetch the privilege role corresponding to the group name, update the session
    information with the privilege role.
-5. If there is no mapping for group name to privilege role, default to `user`
-   privilege role for the session.
+5. If there is no mapping for group name to privilege role, the session creation
+   is rejected. The LDAP group to privilege role mapping must be configured for
+   the user to be able to authenticate.
 
 ## Recommended Implementation
 
-1. As per IPMI spec the max user list can be 15 (+1 for NULL User). Hence
-   implementation has to be done in such a way that no more than 15 users are
-   getting added to the 'ipmi' Group. Phosphor-user-manager has to enforce this
-   limitation.
-2. Should add IPMI_NULL_USER by default and keep the user in disabled state.
+1. Should add IPMI_NULL_USER by default and keep the user in disabled state.
    This is to prevent IPMI_NULL_USER from being created as an actual user. This
    is needed as NULL user with NULL password in IPMI can't be added as an entry
    from Unix user-management point of it.
-3. User creation request from IPMI / REDFISH must be handled in the same manner
-   as described in the above flow diagram.
-4. Adding / removing a user name from 'ipmi' Group role must force a Password
+2. Adding / removing a user name from 'ipmi' Group role must force a Password
    change to the user. This is needed as adding to the 'ipmi' Group of existing
    user requires clear text password to be stored in encrypted form. Similarly
    when removing a user from IPMI group, must force the password to be changed
    as part of security measure.
-5. IPMI spec doesn't support groups for the user-management. Hence the same can
+3. IPMI spec doesn't support groups for the user-management. Hence the same can
    be implemented through OEM Commands, thereby creating a user in IPMI with
    different group roles.
-6. Do not use 'Set User Name' IPMI command to extend already existing non-ipmi
+4. Do not use 'Set User Name' IPMI command to extend already existing non-ipmi
    group users to 'ipmi' group. 'Set User Name' IPMI command will not be able to
    differentiate between new user request or request to extend an existing user
    to 'ipmi' group. Use OEM Commands to extend existing users to 'ipmi' group.
