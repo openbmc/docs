@@ -2,7 +2,9 @@
 
 Author: Ed Tanous (edtanous)
 
-Created: 7-21-25
+Other contributors: Oliver Brewka (olek)
+
+Created: 7-21-25 Updated: 6-15-26
 
 ## Problem Description
 
@@ -14,9 +16,6 @@ interacting with hardware in a consolidated way. Some examples of this are:
 3. Initing a power rail dependent on the state of a plug detect pin.
 
 ## Background and References
-
-And any number of other cases. Some concrete examples of this kind of init of
-these things exists here. [1]
 
 Very routinely, significant bash scripts are used to do some of this init. Those
 bash scripts suffer some minor performance penalty on startup, and are generally
@@ -46,14 +45,32 @@ Top level structure will be
 
 platform_init.cpp platform1/init.cpp platform2/init.cpp
 
-Initially a cli argument will be used to compile the appropriate paths for a
-given platform. At some point in the future, some level of detection _may_ be
-added that allows detecting platforms at runtime. Design for that is to be
-determined based on future requirements.
+Functionality of the platform binary may be expanded through cli subcommands.
 
-Guard rails will need to evolve over time, but initially this repository will
-not interact with DBus or the OpenBMC model. As defined (at this time) it is
-purely for initial bringup of hardware.
+A subcommand may be added if it checks following criteria:
+
+1. The subcommand executes a common platform functionality that solves a problem
+   as described above
+2. The subcommand requires similar project and code structure. Creating a
+   separate repository would duplicate a lot of what this repository already
+   provides.
+3. The subcommand is designed to be common code
+4. The subcommand is designed to expect a single function specific to the
+   platform.
+
+Having these subcommand requirements should help to maintain a uniform software
+architecture and allow for future enhancements to the build process.
+
+Platform hardware initialization is executed through the init subcommand.
+
+Initially a cli argument will be used to determine the correct platform function
+at runtime.
+
+At some point in the future, some level of detection _may_ be added that allows
+detecting platforms at runtime. Design for that is to be determined based on
+future requirements.
+
+Further guard rails will need to evolve over time.
 
 ## Alternatives Considered
 
@@ -69,7 +86,7 @@ it's still very difficult to refactor/consolidate.
 ### Organizational
 
 - Does this proposal require a new repository? Yes Request for the repository is
-  available[2]
+  available[1]
 - Who will be the initial maintainer(s) of this repository? Ed Tanous and
   Patrick Williams
 - Which repositories are expected to be modified to execute this design?
@@ -80,6 +97,4 @@ it's still very difficult to refactor/consolidate.
 Testing section omitted. Platform boot will be tested using individual
 platforms, with no change.
 
-[1]:
-  https://github.com/openbmc/openbmc/blob/master/meta-nvidia/meta-gb200nvl-obmc/recipes-nvidia/platform-init/files/platform_init.cpp
-[2]: https://github.com/openbmc/technical-oversight-forum/issues/51
+[1]: https://github.com/openbmc/technical-oversight-forum/issues/51
