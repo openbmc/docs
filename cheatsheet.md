@@ -248,6 +248,27 @@ full BitBake console output.
 - Compile logs: `build/tmp/work/<arch>/<recipe>/<version>/temp/log.do_compile`
 - Install logs: `build/tmp/work/<arch>/<recipe>/<version>/temp/log.do_install`
 
+### Query package contents with oe-pkgdata-util
+
+Use `oe-pkgdata-util` to inspect package ownership and file lists from Yocto 
+package data. Run these commands after a successful build has completed and 
+after your build environment/configuration has been set up (for example by
+running `setup` and entering the build environment).
+
+Syntax:
+
+```bash
+oe-pkgdata-util find-path <target-file-path>
+oe-pkgdata-util list-pkg-files <package-name>
+```
+
+Example:
+
+```bash
+oe-pkgdata-util find-path /usr/bin/ipmitool
+oe-pkgdata-util list-pkg-files ipmitool
+```
+
 ### Share downloads directory
 
 It takes a long time for the first build of OpenBMC. It downloads various repos
