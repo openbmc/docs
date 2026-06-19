@@ -9,7 +9,7 @@ structure. Therefore, the objects, attributes and methods closely map to those
 in the D-Bus schema.
 
 For a quick explanation of HTTP verbs and how they relate to a RESTful API, see
-<http://www.restapitutorial.com/lessons/httpmethods.html>.
+<https://restapitutorial.com/introduction/httpmethods>.
 
 ## Authentication
 
