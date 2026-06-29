@@ -23,3 +23,8 @@ any order you like, but the recommended flow can be found below.
 
    This shows how to setup your environment to utilize Gerrit for submitting
    your changes for code review.
+
+5. [Boot Methods](boot-methods.md)
+
+   This collects common OpenBMC boot workflows for development, including
+   TFTP, NFS, and QEMU-based methods.
