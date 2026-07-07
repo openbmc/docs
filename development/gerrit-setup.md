@@ -110,6 +110,24 @@ will look like.
 - Go to [Gerrit web interface](https://gerrit.openbmc.org/), click on your new
   review, and add reviewers based on `OWNERS` file in the repo.
 
+### Topic-Based Cross-Repository Testing
+
+When a change depends on changes in other OpenBMC repositories, use a Gerrit
+topic so CI can build the related changes together.
+
+```bash
+git push origin HEAD:refs/for/master -o topic=my-feature
+```
+
+#### Notes
+
+- Use the same topic for all related changes.
+- The CI co-requisite build logic supports only one active change per repository
+  for a given topic.
+- If multiple changes from the same repository share a topic, CI may not select
+  the intended dependency. Keep the topic only on the desired change in each
+  repository.
+
 ## Conclusion
 
 If you've completed all of the above steps successfully, that's it! You have now
