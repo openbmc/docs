@@ -509,10 +509,83 @@ the Terminus' `Entity Auxiliary name PDR` will provide `$TerminusName`. And
 PDRs.
 
 - [xyz.openbmc_project.Sensor.Value](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml),
-  the interface exposes the sensor reading unit, value, Max/Min Value.
+  the interface exposes the numeric sensor reading unit, value, Max/Min Value.
+
+- `xyz.openbmc_project.Sensor.Value`, expanded so that it can report a discrete
+  state reading in addition to a numeric reading. A state sensor is exposed
+  through this interface, and the state set it reports is identified by the
+  `<state_set_name>` element of the sensor object path. The state reading is an
+  enumeration of the state values of that state set defined in DSP0249 1.4.0
+  plus an `Unknown` value for the state before initialization or while the
+  terminus is unreachable, mapped from the `presentState` field of the
+  `GetStateSensorReadings` response and the `stateSensorState` event. The
+  expansion of `Sensor.Value` to represent state readings should be proposed to
+  phosphor-dbus-interfaces for review.
 
 - [xyz.openbmc_project.State.Decorator.OperationalStatus](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml),
   the interface exposes the sensor status which is functional or not.
+
+A state sensor contains up to eight component sensors (one per sensor offset),
+each reporting one state set defined in DSP0249 1.4.0. `pldmd` creates one
+object per component sensor at
+`/xyz/openbmc_project/sensors/<state_set_name>/<label>`. The `<state_set_name>`
+path element is the lower snake case form of the component sensor's state set
+name (e.g. `health`, `thermal_trip`, `link_state`). A component sensor whose
+state set has no interface defined in phosphor-dbus-interfaces yet (e.g. an OEM
+state set) gets no object.
+
+The `<label>` is formed from the terminus ID, the sensor identification and the
+component sensor index:
+
+```text
+Terminus_<TID>_<SensorAuxName>_Component_<Index>
+Terminus_<TID>_Sensor_<Sensor ID>_Component_<Index>
+```
+
+`<SensorAuxName>` is taken from the sensor's `Sensor Auxiliary Names PDR` when
+the sensor provides one; the sensor ID is used otherwise. The label is unique
+within a terminus by construction (sensor ID and component sensor index), so a
+composite state sensor reporting the same state set on more than one component
+sensor creates distinct objects in the same `<state_set_name>` namespace.
+
+Each component sensor object implements the `Sensor.Value` interface,
+`State.Decorator.Availability`, and `State.Decorator.OperationalStatus`. A state
+sensor is initialized by the `GetStateSensorReadings` command after discovery,
+and then updated by the `stateSensorState` (one component sensor) and
+`sensorOpState` (all component sensors of the sensor) events, or by the polling
+method below when the terminus cannot generate events. The reading updates the
+state value exposed by `Sensor.Value`, and its `sensorOpState` field updates the
+`Functional` property of `State.Decorator.OperationalStatus` (`true` only when
+`sensorOpState` is `enabled`). If `pldmd` fails to get the
+`GetStateSensorReadings` response or the completion code is not `PLDM_SUCCESS`,
+the `Available` property of `State.Decorator.Availability` is set to `false` and
+the state value is set to `Unknown`. No object is created for the state sensor
+itself; the composite sensor is a packaging of the wire protocol and its
+component sensors stand alone on D-Bus. Supporting a new state set requires the
+expanded `Sensor.Value` to represent its state values, aligned with DSP0249
+1.4.0, in phosphor-dbus-interfaces first.
+
+Each component sensor object is associated to the terminus inventory object with
+a `{"chassis", "all_states", <terminus inventory path>}` association, and an
+object holding the `Inventory.Source.PLDM.Entity` interface is created under the
+terminus inventory path to expose the monitored entity:
+
+```text
+/xyz/openbmc_project/sensors/health/Terminus_<TID>_<SensorAuxName>_Component_0
+|- xyz.openbmc_project.Sensor.Value
+|- xyz.openbmc_project.State.Decorator.Availability
+|- xyz.openbmc_project.State.Decorator.OperationalStatus
+`- xyz.openbmc_project.Association.Definitions
+
+/xyz/openbmc_project/sensors/thermal_trip/Terminus_<TID>_<SensorAuxName>_Component_1
+|- xyz.openbmc_project.Sensor.Value
+|- xyz.openbmc_project.State.Decorator.Availability
+|- xyz.openbmc_project.State.Decorator.OperationalStatus
+`- xyz.openbmc_project.Association.Definitions
+
+/xyz/openbmc_project/inventory/system/board/Terminus_<TID>/Terminus_<TID>_<SensorAuxName>_Component_0
+`- xyz.openbmc_project.Inventory.Source.PLDM.Entity
+```
 
 After doing the discovery of PLDM sensors, `pldmd` should initialize all found
 sensors by necessary commands (e.g., `SetNumericSensorEnable`,
