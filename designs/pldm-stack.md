@@ -509,10 +509,90 @@ the Terminus' `Entity Auxiliary name PDR` will provide `$TerminusName`. And
 PDRs.
 
 - [xyz.openbmc_project.Sensor.Value](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml),
-  the interface exposes the sensor reading unit, value, Max/Min Value.
+  the interface exposes the numeric sensor reading unit, value, Max/Min Value.
+
+- `xyz.openbmc_project.Sensor.State.<StateSetName>`, one interface per state set
+  defined in DSP0249 1.4.0 (e.g. `Sensor.State.Health` for state set ID 1). Each
+  interface exposes the `PresentState` and `PreviousState` properties, typed as
+  an enumeration of the state values of that state set plus an `Unknown` value
+  for the state before initialization or while the terminus is unreachable. The
+  properties map to the `presentState` and `previousState` fields of the
+  `GetStateSensorReadings` response and the `stateSensorState` event. Each
+  interface also exposes the enablement status of its component sensor as two
+  properties, so that the enablement combinations within a composite state
+  sensor stay visible per component sensor: `SensorOperationalState`, an
+  enumeration mapped from the `sensorOpState` field of the
+  `GetStateSensorReadings` response and the `sensorOpState` event, and
+  `EventMessageEnabled`, reflecting whether the component sensor generates event
+  messages as configured by the `SetStateSensorEnables` command. If the
+  interface for a state set does not exist yet, it should first be proposed to
+  phosphor-dbus-interfaces for review; each state set has its own interface
+  file.
+
+- [xyz.openbmc_project.State.Decorator.Availability](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Decorator/Availability.interface.yaml),
+  the interface exposes whether the sensor is reachable. The `Available`
+  property is `true` when the terminus responds to the PLDM request that
+  reads the sensor, and `false` otherwise (for example when the read command
+  times out or returns a completion code other than `PLDM_SUCCESS`).
 
 - [xyz.openbmc_project.State.Decorator.OperationalStatus](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml),
   the interface exposes the sensor status which is functional or not.
+
+A state sensor contains up to eight component sensors (one per sensor offset),
+each reporting one state set defined in DSP0249 1.4.0. `pldmd` creates one
+object per component sensor at
+`/xyz/openbmc_project/sensors/<state_set_name>/<label>`. The `<state_set_name>`
+path element is the lower snake case form of the component sensor's state set
+name (e.g. `health`, `thermal_trip`, `link_state`). A component sensor whose
+state set has no interface defined in phosphor-dbus-interfaces yet (e.g. an OEM
+state set) gets no object.
+
+The `<label>` is formed from the terminus ID, the sensor identification and the
+component sensor index:
+
+```text
+Terminus_<TID>_<SensorAuxName>_Component_<Index>
+Terminus_<TID>_Sensor_<Sensor ID>_Component_<Index>
+```
+
+`<SensorAuxName>` is retrieved through the `getSensorNames()` function whenever
+the sensor provides it through its `Sensor Auxiliary Names PDR`; the sensor ID
+is used otherwise. The label is unique within a terminus by construction (sensor
+ID and component sensor index), so a composite state sensor reporting the same
+state set on more than one component sensor creates distinct objects in the same
+`<state_set_name>` namespace.
+
+Each component sensor object implements its `Sensor.State.<StateSetName>`
+interface, `State.Decorator.Availability`, and
+`State.Decorator.OperationalStatus`. The `Available` property is `true` when
+the terminus responds to the PLDM request reading the component sensor, and
+`false` otherwise. The `Functional` property is `true` only when the component
+sensor's `sensorOpState` is `enabled`, and `false` for any other value. No
+object is created for the state sensor itself; the composite sensor is a
+packaging of the wire protocol and its component sensors stand alone on
+D-Bus.
+
+Each component sensor object is associated to the terminus inventory object with
+a `{"chassis", "all_states", <terminus inventory path>}` association, and an
+object holding the `Inventory.Source.PLDM.Entity` interface is created under the
+terminus inventory path to expose the monitored entity:
+
+```text
+/xyz/openbmc_project/sensors/health/Terminus_<TID>_<SensorAuxName>_Component_0
+|- xyz.openbmc_project.Sensor.State.Health
+|- xyz.openbmc_project.State.Decorator.Availability
+|- xyz.openbmc_project.State.Decorator.OperationalStatus
+`- xyz.openbmc_project.Association.Definitions
+
+/xyz/openbmc_project/sensors/thermal_trip/Terminus_<TID>_<SensorAuxName>_Component_1
+|- xyz.openbmc_project.Sensor.State.ThermalTrip
+|- xyz.openbmc_project.State.Decorator.Availability
+|- xyz.openbmc_project.State.Decorator.OperationalStatus
+`- xyz.openbmc_project.Association.Definitions
+
+/xyz/openbmc_project/inventory/system/board/Terminus_<TID>/Terminus_<TID>_<SensorAuxName>_Component_0
+`- xyz.openbmc_project.Inventory.Source.PLDM.Entity
+```
 
 After doing the discovery of PLDM sensors, `pldmd` should initialize all found
 sensors by necessary commands (e.g., `SetNumericSensorEnable`,
@@ -525,6 +605,20 @@ getting the response of `GetSensorReading` command successfully. If `pldmd`
 failed to get the response from PLDM terminus or the completion code returned by
 PLDM terminus is not `PLDM_SUCCESS`, the Functional property of
 `State.Decorator.OperationalStatus` D-Bus interface should be updated to false.
+
+A state sensor is initialized by the `GetStateSensorReadings` command after
+discovery, and then updated by the `stateSensorState` (one component sensor) and
+`sensorOpState` (all component sensors of the sensor) events, or by the polling
+method below when the terminus cannot generate events. The reading updates the
+`PresentState` and `PreviousState` properties of the component sensor's
+`Sensor.State.<StateSetName>` interface, and its `sensorOpState` field updates
+the `Functional` property of `State.Decorator.OperationalStatus` (`true` only
+when `sensorOpState` is `enabled`). If `pldmd` fails to get the
+`GetStateSensorReadings` response or the completion code is not `PLDM_SUCCESS`,
+the `Available` property of `State.Decorator.Availability` is set to `false`
+and the `PresentState`/`PreviousState` properties are set to `Unknown`.
+Supporting a new state set requires adding its interface, aligned with
+DSP0249 1.4.0, to phosphor-dbus-interfaces first.
 
 #### Polling v.s. Async method
 
