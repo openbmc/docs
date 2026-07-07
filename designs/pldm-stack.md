@@ -551,6 +551,71 @@ from PLDM terminus, `pldmd` should remove the sensor from poll list and then
 send necessary commands (e.g., `EventMessageBufferSize` and `SetEventReceiver`)
 to PLDM terminus for the initialization.
 
+### State sensor creating and monitor
+
+State sensors report one state out of an enumerated set of states (e.g.,
+normal/critical, present/absent). They are described by the `State Sensor PDR`
+(section 28.6 of DSP0248 1.2.1). One state sensor is composed of one or more
+component sensors, and each component sensor reports the states of one state set
+defined in DSP0249.
+
+`pldmd` retrieves state sensor PDRs in the same PDR Repository flow as numeric
+sensors and parses them with the libpldm API `decode_state_sensor_pdr_data()`.
+
+`pldmd` exposes the states to D-Bus by two methods which can coexist in one
+system: a component sensor with an entry in the platform's state sensor
+configuration file is `externally mapped`; all others are `self-describing`.
+
+#### Self-describing state sensors
+
+`pldmd` creates one D-Bus object path per component sensor under
+`/xyz/openbmc_project/sensors/state/SensorName`, named
+`$TerminusName_$SensorAuxName` or `$TerminusName_SensorID#` as numeric sensors,
+with the sensor offset appended (`_Offset#`) for a composite sensor without
+`$SensorAuxName`. Each object implements:
+
+- `xyz.openbmc_project.State.Decorator.Availability`
+- `xyz.openbmc_project.State.Decorator.OperationalStatus`
+- `xyz.openbmc_project.Association.Definitions`, associating the sensor with the
+  monitored entity's inventory path from the `Entity Association PDR`
+- `xyz.openbmc_project.Inventory.Source.PLDM.Entity`, the entity info from the
+  PDR
+
+State values are exposed only through the state set specific interfaces below.
+Interfaces not documented in phosphor-dbus-interfaces must not be used. A
+component sensor whose state set has no mapping yet is created with the above
+interfaces but exposes no state value.
+
+| State set (DSP0249) | D-Bus interface                                       | Value mapping                                                                                     |
+| ------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Health (ID 1)       | xyz.openbmc_project.State.Decorator.OperationalStatus | `Normal` sets `Functional` to true; `Non-Critical`, `Critical`, `Fatal` set `Functional` to false |
+| Presence (ID 13)    | xyz.openbmc_project.Inventory.Item                    | `Present` sets `Present` to true; `Not Present` sets `Present` to false                           |
+| Performance (ID 14) | To be proposed in phosphor-dbus-interfaces            | -                                                                                                 |
+| Link (ID 33)        | To be proposed in phosphor-dbus-interfaces            | -                                                                                                 |
+
+Supporting a new state set requires adding its row to this table first, and
+proposing the D-Bus interface in phosphor-dbus-interfaces if none exists.
+
+#### Externally mapped state sensors
+
+For platforms where the target D-Bus objects are owned by other applications,
+`pldmd` creates no sensor object path. A configuration file maps each component
+sensor — keyed by `$TerminusName`, entity type, entity instance, entity
+container ID, sensor offset and state set ID — to the D-Bus object path,
+interface, property and values to write. `$TerminusName` is part of the key
+because the `Entity Association PDR` is optional. The existing
+`libpldmresponder` state sensor JSON format and matching code are reused.
+
+#### State sensor initialization and update
+
+After discovery, `pldmd` sends `GetStateSensorReadings` once per state sensor to
+initialize its component sensor states. Afterwards, states are updated by the
+async event method: `stateSensorEvent` updates one component sensor state, and
+`sensorOpState` updates the operational state of all component sensors of the
+sensor. State sensors of a terminus which cannot generate events are added to
+the existing polling list instead. A failed `GetStateSensorReadings` sets
+`Functional` to false on the affected sensors.
+
 ## Alternatives Considered
 
 Continue using IPMI, but start making more use of OEM extensions to suit the
