@@ -498,18 +498,37 @@ device needs to be encoded by Platform specific PDR JSON file by the platform
 developer. `pldmd` will generate these sensor PDRs encoded by JSON files and
 parse them as the same as the PDRs fetched by PLDM terminus.
 
-`pldmd` should expose the found PLDM sensor to D-Bus object path
-`/xyz/openbmc*project/sensors/<sensor_type>/SensorName`. The format of
-`sensorName` can be `$TerminusName_$SensorAuxName` or `$TerminusName_SensorID#`.
-`$SensorAuxName` will be included in the `sensorName` whenever they exist. For
-exposing sensor status to D-Bus, `pldmd` should implement following D-Bus
+`pldmd` should expose a found numeric sensor to the D-Bus object path
+`/xyz/openbmc_project/sensors/<sensor_type>/<sensorName>`, where the format of
+`<sensorName>` can be `$TerminusName_$SensorAuxName` or
+`$TerminusName_SensorID#`. `$SensorAuxName` will be included in the
+`<sensorName>` whenever it exists.
+
+A state sensor is not exposed under `/sensors/`. Because a state sensor can
+contain up to eight component sensors, each reporting exactly one state set,
+every component sensor is exposed as its own state object under
+`/xyz/openbmc_project/state/<state_set>/<sensorName>`, where `<state_set>` is
+the lower snake case form of the component sensor's state set name (e.g.
+`health`, `thermal_trip`, `link_state`) and `<sensorName>` follows the same
+`$TerminusName_$SensorAuxName` / `$TerminusName_SensorID#` format.
+
+For exposing sensor status to D-Bus, `pldmd` should implement following D-Bus
 interfaces to the D-Bus object path of PLDM sensor. The EM EID configuration or
 the Terminus' `Entity Auxiliary name PDR` will provide `$TerminusName`. And
 `$SensorAuxName` can be found in the EM EID sensor configuration or the sensor
 PDRs.
 
 - [xyz.openbmc_project.Sensor.Value](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml),
-  the interface exposes the sensor reading unit, value, Max/Min Value.
+  the interface exposes the numeric sensor reading unit, value, Max/Min Value.
+
+- For a state sensor, each component sensor is exposed through a dedicated typed
+  interface under `xyz.openbmc_project.State` that is keyed by the state set it
+  reports. For example, the Health state set is exposed through
+  `xyz.openbmc_project.State.Health`. Each such interface carries an enum
+  property whose values are aligned with the corresponding state set defined in
+  DSP0249 1.4.0, plus an `Unknown` value for the state before initialization or
+  while the terminus is unreachable, mapped from the `presentState` field of the
+  `GetStateSensorReadings` response and the `stateSensorState` event.
 
 - [xyz.openbmc_project.State.Decorator.OperationalStatus](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml),
   the interface exposes the sensor status which is functional or not.
@@ -525,6 +544,15 @@ getting the response of `GetSensorReading` command successfully. If `pldmd`
 failed to get the response from PLDM terminus or the completion code returned by
 PLDM terminus is not `PLDM_SUCCESS`, the Functional property of
 `State.Decorator.OperationalStatus` D-Bus interface should be updated to false.
+
+It is worth noting that no D-Bus object is created for the state sensor itself;
+the composite sensor is a packaging of the wire protocol and its component
+sensors stand alone on D-Bus. Supporting a new state set first requires a typed
+interface for it in phosphor-dbus-interfaces: reuse an existing interface when
+one already models the concept, and only add a new `xyz.openbmc_project.State.*`
+interface, with its enum aligned to DSP0249 1.4.0, when nothing fits. Each
+component sensor object optionally implements a `possessed_by`/`possessing`
+association to the inventory item whose state it reports.
 
 #### Polling v.s. Async method
 
