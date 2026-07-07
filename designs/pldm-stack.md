@@ -551,6 +551,122 @@ from PLDM terminus, `pldmd` should remove the sensor from poll list and then
 send necessary commands (e.g., `EventMessageBufferSize` and `SetEventReceiver`)
 to PLDM terminus for the initialization.
 
+### State sensor creating and monitor
+
+State sensors report one state out of an enumerated set of states (e.g.,
+normal/critical, present/absent). They are described by the `State Sensor PDR`
+(section 28.6 of DSP0248 1.2.1). A simple state sensor reports the states of one
+state set defined in DSP0249; a composite state sensor reports up to eight state
+sets, each addressed by its sensor offset. This design refers to the sensor
+behind one sensor offset (a "sensor within the composite state sensor" in
+DSP0248 terms) as a component sensor.
+
+`pldmd` retrieves state sensor PDRs in the same PDR Repository flow as numeric
+sensors, decodes the fixed portion with the libpldm API
+`decode_pldm_platform_state_sensor_pdr()` and walks the composite sensor
+possible states with the
+`foreach_pldm_platform_state_sensor_pdr_possible_states()` iterator.
+
+`pldmd` exposes the states to D-Bus by two methods which can coexist in one
+system: a component sensor with an entry in the platform's state sensor
+configuration file is `externally mapped`; all others are `self-describing`.
+
+#### Self-describing state sensors
+
+`pldmd` creates one D-Bus object path per component sensor under
+`/xyz/openbmc_project/sensors/state/SensorName`, named
+`$TerminusName_$SensorAuxName` or `$TerminusName_SensorID#` as numeric sensors,
+with the sensor offset appended (`_Offset#`) for a composite sensor without
+`$SensorAuxName`. Each object implements:
+
+- `xyz.openbmc_project.State.Decorator.Availability`
+- `xyz.openbmc_project.State.Decorator.OperationalStatus`
+- `xyz.openbmc_project.Association.Definitions`, associating the sensor with the
+  monitored entity's inventory path from the `Entity Association PDR`
+- `xyz.openbmc_project.Inventory.Source.PLDM.Entity`, the entity info from the
+  PDR
+
+State values are exposed only through the state set specific interfaces below.
+Interfaces not documented in phosphor-dbus-interfaces must not be used. A
+component sensor whose state set has no mapping yet is created with the above
+interfaces but exposes no state value.
+
+| State set (DSP0249) | D-Bus interface                                       | Value mapping                                                                                |
+| ------------------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Health (ID 1)       | xyz.openbmc_project.State.Decorator.OperationalStatus | `Normal` and `Non-Critical` set `Functional` to true; `Critical` and `Fatal` set it to false |
+| Availability (ID 2) | xyz.openbmc_project.State.Decorator.Availability      | `Enabled` sets `Available` to true; all other states set it to false                         |
+
+The Health mapping covers all ten states defined for state set 1: the
+`Upper`/`Lower` directional variants only add the threshold direction, which
+`OperationalStatus` does not model, so each variant maps as its base state.
+`Non-Critical` keeps `Functional` true because it reports a warning level
+condition which the monitored entity survives, while `OperationalStatus` defines
+a `Functional` of false as a Redfish `Status` `Health` of `Critical`. Health
+drives only `Functional` and Availability drives only `Available`: the
+reachability of the component sensor itself is reported through the operational
+state mapping below.
+
+A reported state value which the state set row above does not define, or which
+the `possibleStates` field of the PDR does not advertise, changes no property:
+`pldmd` logs the value and keeps the last known state.
+
+Supporting a new state set requires adding its row to this table first, and
+proposing the D-Bus interface in phosphor-dbus-interfaces if none exists.
+
+Each row of the table is implemented as a state set specific handler in `pldmd`,
+instantiated from the state set ID in the PDR, one instance per component
+sensor. The state sensor itself only runs the PLDM commands and dispatches each
+reading or event to the handler of its sensor offset. Two component sensors of
+one composite sensor may report the same state set (e.g. one sensor reporting
+three watchdogs), so the handlers are held per sensor offset, not per state set
+ID.
+
+#### Externally mapped state sensors
+
+For platforms where the target D-Bus objects are owned by other applications,
+`pldmd` creates no sensor object path. A configuration file maps each component
+sensor — keyed by `$TerminusName`, entity type, entity instance, entity
+container ID, sensor offset and state set ID — to the D-Bus object path,
+interface, property and values to write. `$TerminusName` is part of the key
+because the `Entity Association PDR` is optional. The existing
+`libpldmresponder` state sensor JSON format and matching code are reused. Only
+the sensors discovered through the terminus manager are matched against this
+configuration: the existing host state sensor event handling in
+`libpldmresponder` keeps its own configuration, so one event is never handled by
+both paths.
+
+#### State sensor initialization and update
+
+After discovery, `pldmd` sends `GetStateSensorReadings` once per state sensor to
+initialize its component sensor states. Afterwards, states are updated by the
+async event method: `stateSensorEvent` updates one component sensor state, and
+`sensorOpState` updates the operational state of all component sensors of the
+sensor. State sensors of a terminus which cannot generate events — identified by
+the `EventMessageSupported` check described in the numeric sensor section — are
+added to the existing polling list instead. A failed `GetStateSensorReadings` is
+treated as the `unavailable` operational state for the affected component
+sensors.
+
+The operational state of a component sensor — from the `sensorOpState` field of
+the `GetStateSensorReadings` response or from a `sensorOpState` event — is
+mapped to the `Availability` and `OperationalStatus` interfaces of a
+self-describing sensor the same way `pldmd` already maps the numeric sensor
+operational state:
+
+| Operational state                               | Available | Functional |
+| ----------------------------------------------- | --------- | ---------- |
+| `enabled`                                       | true      | true       |
+| `disabled`                                      | false     | true       |
+| `failed`                                        | true      | false      |
+| `unavailable`, `statusUnknown` and other states | false     | false      |
+
+While a component sensor is not `enabled`, its state value is not updated: the
+state set interfaces of a self-describing sensor keep the last known state, and
+nothing is written for an externally mapped sensor. While it is `enabled`, a
+property mapped by its state set row (e.g. `Functional` for Health) is written
+by the state set value only, and the operational state mapping drives the
+remaining properties.
+
 ## Alternatives Considered
 
 Continue using IPMI, but start making more use of OEM extensions to suit the
