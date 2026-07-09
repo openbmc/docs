@@ -233,10 +233,10 @@ Unlike an unrestricted `bind()`, the socket will now only receive incoming TO=1
 messages from one specific peer. This allows multiple separate sockets to
 receive incoming messages of the same type, but from distinct peers.
 
-##### `sendto()`, `sendmsg()`, `send()` & `write()`: transmit an MCTP message
+##### `sendto()` & `sendmsg()`: transmit an MCTP message
 
-An MCTP message is transmitted using one of the `sendto()`, `sendmsg()`,
-`send()` or `write()` syscalls. Using `sendto()` as the primary example:
+An MCTP message is transmitted using one of the `sendto()` or `sendmsg()`
+syscalls. Using `sendto()` as the primary example:
 
 ```c
     struct sockaddr_mctp addr;
@@ -273,18 +273,6 @@ buffer, and the most-significant bit of the message type byte must be 1.
 If the first byte of the message does not match the message type value, then the
 system call will return an error of `EPROTO`.
 
-The `send()` and `write()` system calls behave in a similar way, but do not
-specify a remote address. Therefore, `connect()` must be called beforehand; if
-not, these calls will return an error of `EDESTADDRREQ` (Destination address
-required).
-
-Using `sendto()` or `sendmsg()` on a connected socket may override the remote
-socket address specified in `connect()`. The `connect()` address and tag will
-remain associated with the socket, for future unaddressed sends. The tag
-allocated through a call to `sendto()` or `sendmsg()` on a connected socket is
-subject to the same invalidation logic as on an unconnected socket: It is
-expired either by timeout or by a subsequent `sendto()`.
-
 The `sendmsg()` system call allows a more compact argument interface, and the
 message buffer to be specified as a scatter-gather list. At present no ancillary
 message types (used for the `msg_control` data passed to `sendmsg()`) are
@@ -298,11 +286,10 @@ outgoing message.
 Sockets will only receive responses to requests they have sent (with TO=1) and
 may only respond (with TO=0) to requests they have received.
 
-##### `recvfrom()`, `recvmsg()`, `recv()` & `read()`: receive an MCTP message
+##### `recvfrom()` & `recvmsg()`: receive an MCTP message
 
-An MCTP message can be received by an application using one of the `recvfrom()`,
-`recvmsg()`, `recv()` or `read()` system calls. Using `recvfrom()` as the
-primary example:
+An MCTP message can be received by an application using one of the `recvfrom()`
+or `recvmsg()` system calls. Using `recvfrom()` as the primary example:
 
 ```c
     struct sockaddr_mctp addr;
@@ -328,10 +315,6 @@ order to reply to the message).
 
 The first byte of the message buffer will contain the message type byte. If an
 integrity check follows the message, it will be included in the received buffer.
-
-The `recv()` and `read()` system calls behave in a similar way, but do not
-provide a remote address to the application. Therefore, these are only useful if
-the remote address is already known, or the message does not require a reply.
 
 Like the send calls, sockets will only receive responses to requests they have
 sent (TO=1) and may only respond (TO=0) to requests they have received.
