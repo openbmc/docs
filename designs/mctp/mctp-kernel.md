@@ -290,13 +290,10 @@ message buffer to be specified as a scatter-gather list. At present no ancillary
 message types (used for the `msg_control` data passed to `sendmsg()`) are
 defined.
 
-Transmitting a message on an unconnected socket with `MCTP_TAG_OWNER` specified
-will cause an allocation of a tag, if no valid tag is already allocated for that
-destination. The (destination-eid,tag) tuple acts as an implicit local socket
-address, to allow the socket to receive responses to this outgoing message. If
-any previous allocation has been performed (to for a different remote EID), that
-allocation is lost. This tag behaviour can be controlled through the
-`MCTP_TAG_CONTROL` socket option.
+Transmitting a message on an a socket with `MCTP_TAG_OWNER` specified will cause
+an allocation of a tag. The (source-eid, destination-eid, tag) tuple acts as an
+implicit local socket address, to allow the socket to receive responses to this
+outgoing message.
 
 Sockets will only receive responses to requests they have sent (with TO=1) and
 may only respond (with TO=0) to requests they have received.
