@@ -16,6 +16,24 @@
       "message": "Hi @chaul@amperecomputing.com,\n\nI am continuing the state sensor work from topic pldm_state_sensor_support in the following link:\nhttps://gerrit.openbmc.org/c/openbmc/pldm/+/85039\n\nFollowing the suggestion by the @manojkiran.eda@gmail.com in the review comments in 85039, I would like to align our implementation rather than keep 2 parallel implementation. I have pushed a design proposal here that covers your externally mapped approach and the self-describing approach from 85039.\n\nPlease walk through the docs and check if you have any concern or missing information that I didn\u0027t catch, and feel free to upload your suggestion if you have any. \n\nThanks!",
       "revId": "5f08c858962f537467df6effd5136b01a14b2e49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d136dcd6_04b16c84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2026-07-09T09:31:33Z",
+      "side": 1,
+      "message": "I don\u0027t especially stick with the direction that state sensor objects are to be created by other services. Historically to prevent the need to propose State interface to D-Bus, I followed IBM design, in which D-Bus objects are created by pldmd from the entity association PDRs, not from the sensor PDR itself.\n\nI see that you updated your patch which is great.",
+      "parentUuid": "2c3c487a_c30679ef",
+      "revId": "5f08c858962f537467df6effd5136b01a14b2e49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
