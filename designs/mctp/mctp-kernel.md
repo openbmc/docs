@@ -240,7 +240,7 @@ syscalls. Using `sendto()` as the primary example:
 
 ```c
     struct sockaddr_mctp addr;
-    char buf[14];
+    char buf[13];
     ssize_t len;
 
     /* set message destination */
@@ -250,9 +250,8 @@ syscalls. Using `sendto()` as the primary example:
     addr.smctp_tag = MCTP_TAG_OWNER;
     addr.smctp_type = MCTP_TYPE_ECHO;
 
-    /* arbitrary message to send, with message-type header */
-    buf[0] = MCTP_TYPE_ECHO;
-    memcpy(buf + 1, "hello, world!", sizeof(buf) - 1);
+    /* arbitrary message to send */
+    memcpy(buf, "hello, world!", sizeof(buf) - 1);
 
     len = sendto(sd, buf, sizeof(buf), 0,
                     (struct sockaddr_mctp *)&addr, sizeof(addr));
@@ -265,13 +264,10 @@ value suitable for the destination EID. If `MCTP_TAG_OWNER` is not set, the
 message will be sent with the tag value as specified. If a tag value cannot be
 allocated, the system call will report an errno of `EAGAIN`.
 
-The application must provide the message type byte as the first byte of the
-message buffer passed to `sendto()`. If a message integrity check is to be
-included in the transmitted message, it must also be provided in the message
-buffer, and the most-significant bit of the message type byte must be 1.
-
-If the first byte of the message does not match the message type value, then the
-system call will return an error of `EPROTO`.
+The message buffer does not include the message type byte; this is specified by
+the `smctp_type` value. If a message integrity check is to be included in the
+transmitted message, it must be provided in the message buffer, and the
+most-significant bit of the `smctp_type` must be 1.
 
 The `sendmsg()` system call allows a more compact argument interface, and the
 message buffer to be specified as a scatter-gather list. At present no ancillary
@@ -294,7 +290,7 @@ or `recvmsg()` system calls. Using `recvfrom()` as the primary example:
 ```c
     struct sockaddr_mctp addr;
     socklen_t addrlen;
-    char buf[14];
+    char buf[13];
     ssize_t len;
 
     addrlen = sizeof(addr);
@@ -306,15 +302,18 @@ or `recvmsg()` system calls. Using `recvfrom()` as the primary example:
     assert(addrlen >= sizeof(buf));
     assert(addr.smctp_family == AF_MCTP);
 
-    printf("received %zd bytes from remote EID %d\n", rc, addr.smctp_addr);
+    printf("received %zd bytes from remote EID %d, type %d\n", rc,
+        addr.smctp_addr, addr.smctp_type);
 ```
 
 The address argument to `recvfrom` and `recvmsg` is populated with the remote
 address of the incoming message, including tag value (this will be needed in
 order to reply to the message).
 
-The first byte of the message buffer will contain the message type byte. If an
-integrity check follows the message, it will be included in the received buffer.
+The `smctp_type` field of the passed address argument will be populated with the
+MCTP message type received, including the IC bit. The type byte does not appear
+in the returned buffer data. If IC is set, the integrity check follows the
+message, and will be included in the received buffer.
 
 Like the send calls, sockets will only receive responses to requests they have
 sent (TO=1) and may only respond (TO=0) to requests they have received.
@@ -826,25 +825,15 @@ functions.
 
 ## Design points & alternatives considered
 
-### Including message-type byte in send/receive buffers
+### Omitting message-type byte in send/receive buffers
 
 This design specifies that message buffers passed to the kernel in send syscalls
-and from the kernel in receive syscalls will have the message type byte as the
-first byte of the buffer. This corresponds to the definition of a MCTP message
-payload in DSP0236.
+and from the kernel in receive syscalls will not have the message type byte
+included in the buffer. This diverges slightly from the composition of a MCTP
+message body in DSP0236, but avoids repeating a value in two distinct places.
 
-This somewhat duplicates the type data provided in `struct sockaddr_mctp`; it's
-superficially possible for the kernel to prepend this byte on send, and remove
-it on receive.
-
-However, the exact format of the MCTP message payload is not precisely defined
-by the specification. Particularly, any message integrity check data (which
-would also need to be appended / stripped in conjunction with the type byte) is
-defined by the type specification, not DSP0236. The kernel would need knowledge
-of all protocols in order to correctly deconstruct the payload data.
-
-Therefore, we transfer the message payload as-is to userspace, without any
-modification by the kernel.
+We need the `smctp_type` field in order to `bind()`, so the address
+representation wins.
 
 ### MCTP message-type specification: using `sockaddr_mctp.smctp_type` rather than protocol
 
