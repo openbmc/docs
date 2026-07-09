@@ -274,12 +274,12 @@ An MCTP message is transmitted using one of the `sendto()`, `sendmsg()`,
                     (struct sockaddr_mctp *)&addr, sizeof(addr));
 ```
 
-The address argument is treated the same way as for `connect()`: The network and
-address fields define the remote address to send to. If `smctp_tag` has the
-`MCTP_TAG_OWNER`, the kernel will ignore any bits set in `MCTP_TAG_VALUE`, and
-generate a tag value suitable for the destination EID. If `MCTP_TAG_OWNER` is
-not set, the message will be sent with the tag value as specified. If a tag
-value cannot be allocated, the system call will report an errno of `EAGAIN`.
+The address argument specifies the peer address: the network and address fields
+define the remote address to send to. If `smctp_tag` has the `MCTP_TAG_OWNER`,
+the kernel will ignore any bits set in `MCTP_TAG_VALUE`, and generate a tag
+value suitable for the destination EID. If `MCTP_TAG_OWNER` is not set, the
+message will be sent with the tag value as specified. If a tag value cannot be
+allocated, the system call will report an errno of `EAGAIN`.
 
 The application must provide the message type byte as the first byte of the
 message buffer passed to `sendto()`. If a message integrity check is to be
