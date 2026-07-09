@@ -202,52 +202,36 @@ The `smctp_type` field specifies which message types to receive. Only the lower
 bit is not part of the match). This results in the socket receiving packets with
 and without a message integrity check footer.
 
-##### `connect()`: set remote socket address
+##### `connect()`: set remote bind address
 
-Sockets may specify a socket's remote address with the `connect()` syscall:
+It is possible to restrict the scope of a `bind()` to a single remote address
+with the `connect()` syscall before the `bind()`:
 
 ```c
-    struct sockaddr_mctp addr;
+    struct sockaddr_mctp peer_addr = { 0 }, local_addr = { 0 };
     int rc;
 
-    addr.smctp_family = AF_MCTP;
-    addr.smctp_network = MCTP_NET_ANY;
-    addr.smctp_addr.s_addr = 8;
-    addr.smctp_tag = MCTP_TAG_OWNER;
-    addr.smctp_type = MCTP_TYPE_PLDM;
+    peer_addr.smctp_family = AF_MCTP;
+    peer_addr.smctp_network = MCTP_NET_ANY;
+    peer_addr.smctp_addr.s_addr = 8; // remote peer EID
+    peer_addr.smctp_type = MCTP_TYPE_PLDM;
 
     rc = connect(sd, (struct sockaddr *)&addr, sizeof(addr));
+    if (rc) {
+        /* handle error */
+    }
+
+    local_addr.smctp_family = AF_MCTP;
+    local_addr.smctp_network = MCTP_NET_ANY;
+    local_addr.smctp_addr.s_addr = MCTP_ADDR_ANY; // local EID
+    local_addr.smctp_type = MCTP_TYPE_PLDM;
+
+    rc = bind(sd, (struct sockaddr *)&local_addr, sizeof(local_addr));
 ```
 
-This establishes the remote address of a socket, used for future message
-transmission. Like other `SOCK_DGRAM` behaviour, this does not generate any MCTP
-traffic directly, but just sets the default destination for messages sent from
-this socket.
-
-The `smctp_network` field may specify a locally-attached network, or the value
-`MCTP_NET_ANY`, in which case the kernel will select a suitable MCTP network.
-This is guaranteed to work for single-network configurations, but may require
-additional routing definitions for endpoints attached to multiple distinct
-networks. See the [Addressing](#addressing) section for details.
-
-The `smctp_addr` field specifies a remote EID. This may be the `MCTP_ADDR_BCAST`
-the MCTP broadcast EID (0xff).
-
-The `smctp_type` field specifies the type field of messages transferred over
-this socket.
-
-The `smctp_tag` value will configure the tag used for the local side of this
-socket. The only valid value is `MCTP_TAG_OWNER`, which will result in an
-"owned" tag to be allocated for this socket, and will remain allocated for all
-future outgoing messages, until either the socket is closed, or `connect()` is
-called again. If a tag cannot be allocated, `connect()` will report an error,
-with an errno value of `EAGAIN`. See the
-[Tag behaviour for transmitted messages](#tag-behaviour-for-transmitted-messages)
-section for more details. If the `MCTP_TAG_OWNER` bit is not set, `connect()`
-will fail with an errno of `EINVAL`.
-
-Requesters which connect to a single responder will typically use `connect()` to
-specify the peer address and tag for future outgoing messages.
+Unlike an unrestricted `bind()`, the socket will now only receive incoming
+TO=1 messages from one specific peer. This allows multiple separate sockets to
+receive incoming messages of the same type, but from distinct peers.
 
 ##### `sendto()`, `sendmsg()`, `send()` & `write()`: transmit an MCTP message
 
