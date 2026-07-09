@@ -331,7 +331,7 @@ Calling `getpeername()` on an unconnected socket will result in an error of
 
 ##### Socket options
 
-The following socket options are defined for MCTP sockets:
+The following socket option is defined for MCTP sockets:
 
 ###### `MCTP_ADDR_EXT`: Use extended addressing information in sendmsg/recvmsg
 
@@ -360,41 +360,74 @@ If the `addrlen` specified to `sendto()` or `recvfrom()` is sufficient to
 contain this larger structure, then the extended addressing fields are consumed
 / populated respectively.
 
-###### `MCTP_TAG_CONTROL`: manage outgoing tag allocation behaviour
+##### `ioctl`s
 
-The set/getsockopt argument is a `mctp_tagctl` structure:
+The following `ioctls` are defined for MCTP sockets:
+
+###### `SIOCMCTPALLOCTAG2` / `SIOCMCTPDROPTAG2`: explicit tag control
+
+If an MCTP application-layer protocol requires advanced tag control (eg,
+something other than a simple 1:1 request/response model, or exact control
+over timeouts), an application can perform explicit tag allocation and release.
+These `ioctl`s both accept a `struct mctp_ioc_tag_ctl2` as an argument:
 
 ```c
-    struct mctp_tagctl {
-        bool            retain;
-        struct timespec timeout;
-    };
+struct mctp_ioc_tag_ctl2 {
+    /* Peer details: network ID, peer EID, local EID. All set by the
+     * caller.
+     *
+     * Local EID must be MCTP_ADDR_NULL or MCTP_ADDR_ANY in current
+     * kernels.
+     */
+    unsigned int  net;
+    mctp_eid_t    peer_addr;
+    mctp_eid_t    local_addr;
+
+    /* Set by caller, but no flags defined currently. Must be 0 */
+    __u16         flags;
+
+    /* For SIOCMCTPALLOCTAG2: must be passed as zero, kernel will
+     * populate with the allocated tag value. Returned tag value will
+     * always have TO and PREALLOC set.
+     *
+     * For SIOCMCTPDROPTAG2: userspace provides tag value to drop, from
+     * a prior SIOCMCTPALLOCTAG2 call (and so must have TO and PREALLOC set).
+     */
+    __u8          tag;
+};
 ```
 
-This allows an application to control the behaviour of allocated tags for
-non-connected sockets when transferring messages to multiple different
-destinations (ie., where a `struct sockaddr_mctp` is provided for individual
-messages, and the `smctp_addr` destination for those sockets may vary across
-calls).
+Tags can be preallocated using the `SIOCMCTPALLOCTAG2` `ioctl`. These tags
+will have the `MCTP_TAG_PREALLOC` bit set.
 
-The `retain` flag indicates to the kernel that the socket should not release tag
-allocations when a message is sent to a new destination EID. This causes the
-socket to continue to receive incoming messages to the old (dest,tag) tuple, in
-addition to the new tuple.
+Allocating a tag gives us a persistent TO=1 tag, for use when sending outgoing
+messages. The tag will not be implicitly released when we receive a reply,
+nor will be subject to tag timeouts.
 
-The `timeout` value specifies a maximum amount of time to retain tag values.
-This should be based on the reply timeout for any upper-level protocol.
+The caller should release the tag when done, using `SIOCMCTPDROPTAG2`. Tags
+will also be released on socket close.
 
-The kernel may reject a request to set values that would cause excessive tag
-allocation by this socket. The kernel may also reject subsequent tag-allocation
-requests (through send or connect syscalls) which would cause excessive tags to
-be consumed by the socket, even though the tag control settings were accepted in
-the setsockopt operation.
+```c
+    struct mctp_ioc_tag_ctl2 ctl = {
+        .peer_addr = 8;
+    };
 
-Changing the default tag control behaviour should only be required when:
+    /* allocate a tag */
+    rc = ioctl(sd, SIOCMCTPALLOCTAG2, &ctl);
 
-- the socket is sending messages with TO=1 (ie, is a requester); and
-- messages are sent to multiple different destination EIDs from the one socket.
+    /* tag will be populated in ctl.tag, which we can pass directly as
+     * smctp_tag value to sendto(): */
+    addr.smctp_family = AF_MCTP;
+    addr.smctp_addr.s_addr = 8;
+    addr.smctp_tag = ctl.tag;
+
+    rc = sendto(sd, buf, len, 0, &addr, sizeof(addr));
+
+    /* we may do other operations using the same tag, as required */
+
+    /* release tag */
+    rc = ioctl(sd, SIOCMCTPDROPTAG2, &ctl);
+```
 
 ##### Syscalls not implemented
 
@@ -403,7 +436,6 @@ not used in `SOCK_DGRAM`-type sockets:
 
 - `listen()`
 - `accept()`
-- `ioctl()`
 - `shutdown()`
 - `mmap()`
 
