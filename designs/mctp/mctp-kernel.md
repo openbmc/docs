@@ -319,16 +319,6 @@ integrity check follows the message, it will be included in the received buffer.
 Like the send calls, sockets will only receive responses to requests they have
 sent (TO=1) and may only respond (TO=0) to requests they have received.
 
-##### `getsockname()` & `getpeername()`: query local/remote socket address
-
-The `getsockname()` system call returns the `struct sockaddr_mctp` value for the
-local side of this socket, `getpeername()` for the remote (ie, that used in a
-connect()). Since the tag value is a property of the remote address,
-`getpeername()` may be used to retrieve a kernel-allocated tag value.
-
-Calling `getpeername()` on an unconnected socket will result in an error of
-`ENOTCONN`.
-
 ##### Socket options
 
 The following socket option is defined for MCTP sockets:
