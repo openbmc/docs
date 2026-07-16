@@ -16,6 +16,52 @@
       "message": "Hi @patrick@stwcx.xyz @geissonator@yahoo.com,\n\nI\u0027ve significantly reworked the design based on earlier feedback, switching to an entity-manager-driven discovery approach.\n\nCould you please take a look when you get a chance? I\u0027m happy to make further adjustments based on your feedback.\n\nThanks.",
       "revId": "ee733902cc8ece8eb26dbeab7487a1f9d4643ae3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "322a7a43_5c85bc1e",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-07-16T21:01:31Z",
+      "side": 1,
+      "message": "Can we _not_ have this requirement?  This seems fairly poor as an implementation and I don\u0027t know why it would become a requirement.\n\nRedfish seems to use ResetType pretty consistently across all of these:\n\n```\n$ rg ResetType -t json -l                         \nredfish-core/schema/dmtf/json-schema/Aggregate.v1_0_3.json\nredfish-core/schema/dmtf/json-schema/Application.v1_0_1.json\nredfish-core/schema/dmtf/json-schema/AggregationService.v1_0_3.json\nredfish-core/schema/dmtf/json-schema/MediaController.v1_3_2.json\nredfish-core/schema/dmtf/json-schema/Container.v1_0_1.json\nredfish-core/schema/dmtf/json-schema/Power.v1_7_3.json\nredfish-core/schema/dmtf/json-schema/Chassis.v1_28_0.json\nredfish-core/schema/dmtf/json-schema/Battery.v1_5_0.json\nredfish-core/schema/dmtf/json-schema/Drive.v1_22_0.json\nredfish-core/schema/dmtf/json-schema/NetworkAdapter.v1_14_0.json\nredfish-core/schema/dmtf/json-schema/Switch.v1_11_0.json\nredfish-core/schema/dmtf/json-schema/ComputerSystem.v1_28_0.json\nredfish-core/schema/dmtf/json-schema/Manager.v1_25_0.json\nredfish-core/schema/dmtf/json-schema/Memory.v1_24_0.json\nredfish-core/schema/dmtf/json-schema/Port.v1_19_0.json\nredfish-core/schema/dmtf/json-schema/PowerSupply.v1_7_0.json\nredfish-core/schema/dmtf/json-schema/Processor.v1_23_0.json\nredfish-core/schema/dmtf/json-schema/StorageController.v1_12_0.json\nredfish-core/schema/dmtf/json-schema/Storage.v1_22_0.json\n```\n\nWhy can\u0027t we make a single dbus interface for this?",
+      "range": {
+        "startLine": 72,
+        "startChar": 3,
+        "endLine": 74,
+        "endChar": 71
+      },
+      "revId": "ee733902cc8ece8eb26dbeab7487a1f9d4643ae3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d41c21c9_7ab9278e",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-07-16T21:01:31Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure ManagedHost is deprecated.  @alexander.hansen@9elements.com - what is the alternative now?",
+      "range": {
+        "startLine": 76,
+        "startChar": 15,
+        "endLine": 77,
+        "endChar": 46
+      },
+      "revId": "ee733902cc8ece8eb26dbeab7487a1f9d4643ae3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
