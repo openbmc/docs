@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c795d7eb_61771f95",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-07-17T12:50:09Z",
+      "side": 1,
+      "message": "Thanks for the feedback.\nCurrently in PDI, the state transitions are split into separate interfaces with different property names and enums. Among these, only `State.Host` has the `AllowedHostTransitions` pattern where the instance declares which transitions it supports and bmcweb reads that dynamically. Chassis and Drive don\u0027t have this and rely on hardcoded mapping or enum defaults instead.\n\nOne approach I was considering is to extract the transition request into a generic interface, something like `State.Decorator.PowerTransition`, with just `RequestedTransition` and `AllowedTransitions`. Any sub-device that supports power control (Drive, NIC, Port, etc.) would implement this and declare its supported transitions. Existing sub-device interfaces like `State.Drive` would then have their transition-related properties removed (e.g. `RequestedDriveTransition`, `CurrentDriveState`), keeping only things like `Rebuilding` or `LastRebootTime` that are truly type-specific.\n\nIf you\u0027d like this to also cover Host and Chassis rather than just sub-devices, they would need to drop `RequestedHostTransition`/`RequestedPowerTransition` and adopt the same generic interface, which would require changes across PSM, bmcweb, and any platform scripts that reference these properties directly.\n\nPlease let me know if either of these works or if you\u0027d prefer a different approach.",
+      "parentUuid": "322a7a43_5c85bc1e",
+      "range": {
+        "startLine": 72,
+        "startChar": 3,
+        "endLine": 74,
+        "endChar": 71
+      },
+      "revId": "ee733902cc8ece8eb26dbeab7487a1f9d4643ae3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d41c21c9_7ab9278e",
         "filename": "designs/sub-device-state-manager.md",
         "patchSetId": 18
