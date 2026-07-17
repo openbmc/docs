@@ -62,6 +62,30 @@
       },
       "revId": "ee733902cc8ece8eb26dbeab7487a1f9d4643ae3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "717421c7_025e4320",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-07-17T09:11:15Z",
+      "side": 1,
+      "message": "What is deprecated/default/experimental in terms of D-Bus interfaces is practically determined by bmcweb as the primary interface.\n\nThere is a patch for bmcweb: https://gerrit.openbmc.org/c/openbmc/bmcweb/+/87160\n\nHere is the discord thread for merging single and multi-host code paths and deprecating ManagedHost:\n\nhttps://discordapp.com/channels/775381525260664832/1482934915950444594/1482934919457013871\n\nSo until things start moving and the community decides what it wants to see,\nManagedHost remains alive and well.\n\nI would prefer to avoid blocking this design on hardstuck migration efforts.\nThis design can just use whatever is the current approach.\n\nThe state manager maintainers have been very responsive and active in the past so i do not see a big issue with going with ManagedHost now and changing it later once the bmcweb patch/discussion gets some traction.\n\nIt will increase the migration effort down the line but what choice do we have.",
+      "parentUuid": "d41c21c9_7ab9278e",
+      "range": {
+        "startLine": 76,
+        "startChar": 15,
+        "endLine": 77,
+        "endChar": 46
+      },
+      "revId": "ee733902cc8ece8eb26dbeab7487a1f9d4643ae3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
