@@ -522,6 +522,15 @@ Note: The original name of the association definition interface was
 `org.openbmc.Associations`. While the mapper still supports this interface as
 well for the time being, new code should use the `xyz` version.
 
+The mappertool can be used to view associations live on a system. It can dump
+them all, or filter based on name or type:
+
+```bash
+mappertool assocs -n Altitude
+/xyz/openbmc_project/inventory/system/chassis  | all_sensors
+/xyz/openbmc_project/sensors/altitude/Altitude | chassis
+```
+
 ### Example Use Case
 
 Associate an error log with the inventory item that caused it.
