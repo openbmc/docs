@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5224b29c_39e88e90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-07-24T16:47:24Z",
+      "side": 1,
+      "message": "Sorry, didn\u0027t see a response to the above.  Does the above statement resonate with you?  What kind of updates have you made?",
+      "parentUuid": "69d94479_9ad20621",
+      "revId": "e8e6b143abe6d3e5ee82f0b4952b532558537aa0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fc61dbda_a8d499f8",
         "filename": "designs/firewall-configuration.md",
         "patchSetId": 3
@@ -285,6 +303,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f94fc185_4f00957f",
+        "filename": "designs/firewall-configuration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-07-24T16:47:24Z",
+      "side": 1,
+      "message": "\"turn off SSH completely\" is already handled.",
+      "parentUuid": "353c25c7_f5b795d8",
+      "revId": "e8e6b143abe6d3e5ee82f0b4952b532558537aa0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4cbc7403_71058a95",
         "filename": "designs/firewall-configuration.md",
         "patchSetId": 3
@@ -320,6 +356,30 @@
       "side": 1,
       "message": "The D-Bus interface is consumed by bmcweb/Redfish, not directly by users. End users interact via Redfish API.",
       "parentUuid": "4cbc7403_71058a95",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 51
+      },
+      "revId": "e8e6b143abe6d3e5ee82f0b4952b532558537aa0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d6f5336_b0882c11",
+        "filename": "designs/firewall-configuration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-07-24T16:47:24Z",
+      "side": 1,
+      "message": "But.... Redfish has rejected firewall proposals in the past due to lack of details.  How would you address that?",
+      "parentUuid": "3f89fe95_7a2b5f25",
       "range": {
         "startLine": 61,
         "startChar": 0,
@@ -426,6 +486,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "468f393a_ba188782",
+        "filename": "designs/firewall-configuration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-07-24T16:47:24Z",
+      "side": 1,
+      "message": "Right, but why would the bmc declare them as a range?  There\u0027s no services on port 80000-9000, so a broad filter like the doesn\u0027t make sense.\n\nAgain, lets keep this to real use cases, with service names and expected bmc behavior.  If all you want to do is to put nftables on dbus, there\u0027s several services that can do that today.",
+      "parentUuid": "794b8a5b_7c09ecd3",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 12
+      },
+      "revId": "e8e6b143abe6d3e5ee82f0b4952b532558537aa0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a563d0d2_539bb876",
         "filename": "designs/firewall-configuration.md",
         "patchSetId": 3
@@ -461,6 +545,30 @@
       "side": 1,
       "message": "Let we conclude this design document first, if design is enough to do the implementation. I will propose the required changes in redfish forum.",
       "parentUuid": "a563d0d2_539bb876",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 24
+      },
+      "revId": "e8e6b143abe6d3e5ee82f0b4952b532558537aa0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "954cb2bb_9d717c52",
+        "filename": "designs/firewall-configuration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-07-24T16:47:24Z",
+      "side": 1,
+      "message": "Sorry, I\u0027m not going to go through this whole design doc just to have DMTF decide to change it later, and I think the details of what ends up in the Redfish interface is important to how we model DBus.  Considering I operate in both forums, I\u0027ll wait for you to propose it to DMTF.",
+      "parentUuid": "adc98786_d3457928",
       "range": {
         "startLine": 115,
         "startChar": 0,
@@ -532,6 +640,30 @@
       "side": 1,
       "message": "Updated Alternatives Considered.",
       "parentUuid": "7c4db3de_842f91e8",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 53
+      },
+      "revId": "e8e6b143abe6d3e5ee82f0b4952b532558537aa0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2080c307_d458e29f",
+        "filename": "designs/firewall-configuration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-07-24T16:47:24Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t see this as closed.  The justification doesn\u0027t really answer the \"why write another\" question.",
+      "parentUuid": "001e604c_675e6ea6",
       "range": {
         "startLine": 122,
         "startChar": 0,
