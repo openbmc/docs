@@ -52,6 +52,24 @@
       "parentUuid": "b9f49a1c_2815e4bf",
       "revId": "36cc5db77931e2ce407eb48548c622d9ed40e394",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e80279c_ce69ca60",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1002885
+      },
+      "writtenOn": "2026-07-28T09:00:37Z",
+      "side": 1,
+      "message": "Thanks @chaul@amperecomputing.com for explaining the mechanism.\nand thanks @roger.gili-coscojuela@sipearl.com for catching this issue.\n\nPersonally, I think this is a legacy issue rather than something specific to state objects. AFAIK, DSP0248 v1.3.0 restrict neither `entityAuxName` nor `sensorName` to be unique across the system. However, the current pldm design uses the name alone for the inventory path, making a restriction doesn\u0027t exist within the spec.\n\nI am happy to file this separately so `pldmd` can publish termini with duplicate names and their sensor as well. My initial thought is to append the TID to the terminus name, which differentiates the 2 entities even when the names collide.\nSimilarly, we can also do the same to sensors having identical `sensorName` within a same terminus.",
+      "parentUuid": "ac09969a_773afeeb",
+      "revId": "36cc5db77931e2ce407eb48548c622d9ed40e394",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
