@@ -483,6 +483,10 @@ action from the user.
 
 ### Sensor creating and monitor
 
+[DSP0248 1.2.1](https://www.dmtf.org/sites/default/files/standards/documents/DSP0248_1.2.1.pdf)
+defines a numeric sensor as a sensor that returns numeric readings. For the rest
+of the context, we use the term "sensor" for a PLDM numeric sensor.
+
 To find out all sensors from PLDM terminus, `pldmd` should retrieve all the
 Sensor PDRs by PDR Repository commands (`GetPDRRepositoryInfo`, `GetPDR`) for
 the necessary parameters (e.g., `sensorID#`, `$SensorAuxName`, unit, etc.).
@@ -498,13 +502,13 @@ device needs to be encoded by Platform specific PDR JSON file by the platform
 developer. `pldmd` will generate these sensor PDRs encoded by JSON files and
 parse them as the same as the PDRs fetched by PLDM terminus.
 
-`pldmd` should expose the found PLDM sensor to D-Bus object path
+`pldmd` should expose the found sensors to D-Bus object path
 `/xyz/openbmc*project/sensors/<sensor_type>/SensorName`. The format of
 `sensorName` can be `$TerminusName_$SensorAuxName` or `$TerminusName_SensorID#`.
 `$SensorAuxName` will be included in the `sensorName` whenever they exist. For
 exposing sensor status to D-Bus, `pldmd` should implement following D-Bus
-interfaces to the D-Bus object path of PLDM sensor. The EM EID configuration or
-the Terminus' `Entity Auxiliary name PDR` will provide `$TerminusName`. And
+interfaces to the D-Bus object path of sensors. The EM EID configuration or the
+Terminus' `Entity Auxiliary name PDR` will provide `$TerminusName`. And
 `$SensorAuxName` can be found in the EM EID sensor configuration or the sensor
 PDRs.
 
@@ -514,7 +518,7 @@ PDRs.
 - [xyz.openbmc_project.State.Decorator.OperationalStatus](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml),
   the interface exposes the sensor status which is functional or not.
 
-After doing the discovery of PLDM sensors, `pldmd` should initialize all found
+After doing the discovery of sensors, `pldmd` should initialize all found
 sensors by necessary commands (e.g., `SetNumericSensorEnable`,
 `SetSensorThresholds`, `SetSensorHysteresis` and `InitNumericSensor`) and then
 start to update the sensor status to D-bus objects by polling or async event
@@ -550,6 +554,72 @@ longer than final polling time. Before `pldmd` starts to receive async event
 from PLDM terminus, `pldmd` should remove the sensor from poll list and then
 send necessary commands (e.g., `EventMessageBufferSize` and `SetEventReceiver`)
 to PLDM terminus for the initialization.
+
+### State object creating and monitor
+
+[DSP0248 1.2.1](https://www.dmtf.org/sites/default/files/standards/documents/DSP0248_1.2.1.pdf)
+defines a state sensor as a sensor that returns one of a set of enumerated
+states rather than a numeric reading. Its parameters are described by a
+`State Sensor PDR` (section 28.6), and the enumerated states it returns belong
+to a `state set` defined by
+[DSP0249 1.4.0](https://www.dmtf.org/sites/default/files/standards/documents/DSP0249_1.4.0.pdf).
+A single state sensor can contain up to 8 component sensors, each reporting
+exactly one state set. For the rest of the context, we use the terms "state
+object" for a PLDM component state sensor, and "composite state object" for a
+PLDM state sensor.
+
+Similar to the creation of sensors (PLDM numeric sensor), `pldmd` should
+retrieve all the Sensor PDRs for the necessary parameters (e.g. `sensorID#`,
+`$SensorAuxName`, `compositeSensorCount`, etc.) from PLDM terminus. The
+retrieval should be done by PDR Repository commands (`GetPDRRepositoryInfo`,
+`GetPDR`), and `pldmd` can use libpldm encode/decode APIs to build the commands
+message and then sends it to PLDM terminus. Note that the policy for static
+device described in section 8.3.1 of DSP0248 1.2.1 is the same as of sensor
+creation. Please refer to the corresponding section for more details.
+
+`pldmd` should expose the found state objects (PLDM component state sensor) to
+D-Bus object path `/xyz/openbmc_project/state/<state_set>/<sensorName>`, where
+`<state_set>` is the lower snake case form of the state object's state set name
+(e.g. `health`, `thermal_trip`, `link_state`) and `sensorName` follows the same
+`$TerminusName_$SensorAuxName` / `$TerminusName_SensorID#` format for sensor
+creation, suffixed with `_Component_<index>`, where `<index>` is the state
+object's index within the composite state object. Note that no D-Bus object
+should be created for composite state object (PLDM state sensor) itself.
+
+For exposing state object status to D-Bus, `pldmd` should implement following
+D-Bus interfaces to the D-Bus object path of state object.
+
+- [xyz.openbmc_project.Object.Enable](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Object/Enable.interface.yaml),
+  the interface exposes the state object status which is functional or not.
+
+- To expose the state set reading, each state object should be embedded with one
+  and only one interface corresponding to the state set it reports. For example,
+  the health state set is exposed through
+  [xyz.openbmc_project.State.Decorator.OperationalStatus](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml),
+  whose `Functional` property carries the health of the monitored entity. Every
+  other state set is exposed through a dedicated interface under
+  `xyz.openbmc_project.State.*`, carrying a property whose values are aligned
+  with the corresponding Redfish property and the state set's enumerated states.
+
+- To link the state object to the inventory item whose state it reports, each
+  state object should create the `monitoring` / `monitored_by` association
+  declared by the interface corresponding to its state set. For example, the
+  leak detection state set is exposed through
+  [xyz.openbmc_project.State.Leak.Detector](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Leak/Detector.interface.yaml),
+  which declares a `monitoring` / `monitored_by` association with the inventory
+  item. Every other state set embedded with the D-Bus interface corresponding to
+  its state set should create such association with the entity it monitors.
+
+After doing the discovery of state objects, `pldmd` should initialize all found
+state objects by necessary commands (e.g. `SetStateSensorEnables`) and then
+start to update the state object status to D-Bus objects by polling or async
+event method depending on the capability of PLDM terminus.
+
+`pldmd` should update the property on the interface corresponding to the state
+set it is having, after getting the response of `GetStateSensorReadings` command
+successfully. If `pldmd` failed to get the response from PLDM terminus or the
+completion code returned by PLDM terminus is not `PLDM_SUCCESS`, the `Enabled`
+property of `Object.Enable` D-Bus interface should be updated to false.
 
 ## Alternatives Considered
 
