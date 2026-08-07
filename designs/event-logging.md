@@ -6,7 +6,8 @@ Author: [Patrick Williams][patrick-email] `<stwcx>`
 
 Other contributors:
 
-Created: May 16, 2024
+- Created: May 16, 2024
+- Updated: Aug 07, 2026
 
 ## Problem Description
 
@@ -349,39 +350,9 @@ The `Logging.Create` interface will have a new method added:
       type: enum[Logging.Entry.Level]
     - name: AdditionalData
       type: dict[string, variant[string,int64_t,size_t,object_path]]
-    - name: Hint
-      type: string
-      default: ""
   returns:
     - name: Entry
       type: object_path
-```
-
-The `Hint` parameter is used for daemons to be able to query for their
-previously recorded error, for marking as resolved. These strings need to be
-globally unique and are suggested to be of the format `"<service_name>:<key>"`.
-
-A `Logging.SearchHint` interface will be created, which will be recorded at the
-same object path as a `Logging.Entry` when the `Hint` parameter was not an empty
-string:
-
-```yaml
-- property: Hint
-  type: string
-```
-
-The `Logging.Manager` interface will be added with a single method:
-
-```yaml
-- name: FindEntry
-  parameters:
-    - name: Hint
-      type: String
-  returns:
-    - name: Entry
-      type: object_path
-  errors:
-    - xyz.openbmc_project.Common.ResourceNotFound
 ```
 
 A `lg2::commit` API will be added to support the new `sdbusplus` generated
@@ -634,6 +605,62 @@ own repositories with a separate identifier. Similarly, if a vendor were to
 _backport_ upstream changes into their fork, they would need to ensure that the
 `foo.events.yaml` file for that version matches identically with the upstream
 implementation.
+
+### Event Extensions
+
+The metadata defined by an event in its `foo.events.yaml` specifically carries
+the information required to create its Redfish Message Args, which are
+standardized through message registries. There is also additional data for
+specific events that can be carried by Redfish, such as the CPER property for
+certain hardware failures. Additionally, some vendors have non-standard schemas
+for OEM data. In order to create an extensible framework for encapsulating
+these, we are allowing events to be extended with additional data represented by
+a method-less dbus interface. This custom data can be populated in this manner:
+
+```cpp
+    lg2::commit(PlatformError(...).extend(CPER::properties_t{...});
+```
+
+In this way we can schematize, through the use of dbus interfaces, these
+extensions to standard events allowing `phosphor-logging` to store them
+along-side the `Logging.Entry` and for other daemons to consume them (such as
+`bmcweb` for CPER data). When `phosphor-logging` creates a `Logging.Entry` at
+`/xyz/openbmc_project/logging/entry/<N>` it would also create any known
+extension interfaces at the same object path if provided.
+
+Currently anticipated extension are:
+
+- Search Hints
+- Processed CPER data
+- Raw CPER data
+
+#### Search Hints
+
+A `SearchHint` is used for daemons to be able to query for their previously
+recorded errors, for uses such as marking them resolved. These strings need to
+be globally unique and are suggested to be of the format
+`"<service_name>:<key>"`. A `Logging.SearchHint` interface will be defined and
+allowed as a supported extension by `phosphor-logging`:
+
+```yaml
+- property: Hint
+  type: string
+```
+
+The `Logging.Manager` interface will be added with a single method at
+`/xyz/openbmc_project/logging`:
+
+```yaml
+- name: FindEntry
+  parameters:
+    - name: Hint
+      type: String
+  returns:
+    - name: Entry
+      type: object_path
+  errors:
+    - xyz.openbmc_project.Common.ResourceNotFound
+```
 
 ## Alternatives Considered
 
