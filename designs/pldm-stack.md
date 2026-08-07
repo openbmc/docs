@@ -469,11 +469,135 @@ steps:
   `$sensorAuxNames` will be included in the PLDM Sensors D-Bus object paths in
   `Sensor creating and monitor` section.
 
-- The `pldmd` then creates the Terminus inventory, sensors, effecters D-Bus
-  object paths.
+- The `pldmd` then creates the Terminus inventory, entity, sensors, effecters
+  D-Bus object paths.
 - At the final steps of `terminus discovery`, `pldmd` will send
   `SetEventReceiver` notifies about the readiness of the BMC for the event
   messages from the terminus.
+
+#### Entity D-Bus objects
+
+`pldmd` creates one D-Bus object for each entity it discovers on a terminus. The
+entity list is built from the PDRs retrieved by `GetPDR`: the
+`Entity Association PDR` gives the containment records, the
+`Entity Auxiliary Names PDR` gives the entity names, and the entity
+identification fields (`entityType`, `entityInstanceNumber`, `containerID`) of
+the sensor, effecter and FRU PDRs give the entities which are not listed in an
+association record. When the `PDR configuration` JSON files are used and the
+`GetPDR` steps are bypassed, the entity list is built from the same fields of
+the PDRs encoded in those files.
+
+The D-Bus object path of an entity is
+`/xyz/openbmc_project/inventory/system/$TerminusName_$EntityName`. `$EntityName`
+comes from the `Entity Auxiliary Names PDR` or from the EM EID configuration
+file. When neither of them provides a name, the entity object name is built from
+the terminus ID and the entity identification fields of the PDR:
+
+```text
+Terminus_<TID>_<EntityTypeName>_<EntityInstanceNumber>_<ContainerID>
+```
+
+`<EntityTypeName>` is the name of the entity type, for example `Chassis` for a
+system chassis entity, `Cpu` for a processor entity and `PowerSupply` for a
+power supply entity. It is unique per entity type, including where two entity
+types are exposed through the same inventory item interface.
+
+All three entity identification fields are part of the name. DSP0248 1.2.1
+identifies an entity by the triple of its entity type, its entity instance
+number and its container ID, and makes the entity instance number unique only
+within the container of the entity, not within the terminus. A name built from
+the entity type and the entity instance number alone therefore collides when a
+terminus reports two entities of the same type and the same instance number in
+two different containers.
+
+For example, the terminus with `TID` 17 reports two power supply entities
+(`entityType` 120) which both have `entityInstanceNumber` 1 and which are in two
+different containers, `containerID` 32 and `containerID` 100, and neither of
+them has an `Entity Auxiliary Names PDR`. They are exposed at:
+
+```text
+/xyz/openbmc_project/inventory/system/Terminus_17_PowerSupply_1_32
+/xyz/openbmc_project/inventory/system/Terminus_17_PowerSupply_1_100
+```
+
+The terminus ID makes the name unique in the system, and the entity type, the
+entity instance number and the container ID make it unique within the terminus.
+
+The entity which the terminus itself represents does not get its own entity
+object. It is exposed by the terminus inventory object, and the entity objects
+are the other entities of that terminus.
+
+Each entity object implements
+[xyz.openbmc_project.Inventory.Item](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item.interface.yaml)
+and the inventory item interface which matches its `entityType`, for example
+`xyz.openbmc_project.Inventory.Item.Cpu` for a processor entity,
+`xyz.openbmc_project.Inventory.Item.Fan` for a fan entity and
+`xyz.openbmc_project.Inventory.Item.PowerSupply` for a power supply entity. An
+entity whose type has no matching inventory item interface will not be exposed.
+
+The containment recorded in the `Entity Association PDR` is exposed by the
+[xyz.openbmc_project.Association.Definitions](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Association/Definitions.interface.yaml)
+interface, with a `containing`/`contained_by` association between the container
+entity object and each of the contained entity objects. The interface is
+implemented on each contained entity object, and its `Associations` property
+holds one entry per container of that entity. When the container of an
+`Entity Association PDR` is the entity which the terminus itself represents, the
+container object of the association is the terminus inventory object.
+
+For example, an `Entity Association PDR` of the terminus with `TID` 17 records
+the entity which that terminus represents as the container of a processor entity
+(`entityType` 135, `entityInstanceNumber` 1, `containerID` 32) and of a power
+supply entity (`entityType` 120, `entityInstanceNumber` 1, `containerID` 32),
+and neither of the two contained entities has an `Entity Auxiliary Names PDR`.
+The two contained entity objects are:
+
+```text
+/xyz/openbmc_project/inventory/system/Terminus_17_Cpu_1_32
+/xyz/openbmc_project/inventory/system/Terminus_17_PowerSupply_1_32
+```
+
+The `Associations` property of each of them holds one entry:
+
+```text
+("contained_by", "containing", "/xyz/openbmc_project/inventory/system/Terminus_17")
+```
+
+The entry gives the contained entity object a `contained_by` association to the
+terminus inventory object, and gives the terminus inventory object a
+`containing` association back to the contained entity object.
+
+The sensors and the effecters of an entity are attached to that entity's D-Bus
+object in two ways.
+
+A sensor keeps its own D-Bus object under `/xyz/openbmc_project/sensors/`, which
+the `Sensor creating and monitor` section describes, and is attached to the
+entity object by an association and by a child object:
+
+- The sensor object implements
+  [xyz.openbmc_project.Association.Definitions](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Association/Definitions.interface.yaml)
+  with the entity object as the endpoint of the association. A sensor which
+  exposes
+  [xyz.openbmc_project.Sensor.Value](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Sensor/Value.interface.yaml)
+  uses a `chassis`/`all_sensors` association and a sensor which exposes
+  [xyz.openbmc_project.Metric.Value](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Metric/Value.interface.yaml)
+  uses a `measuring`/`measured_by` association.
+- A child object of the entity object, at `$EntityObjectPath/$SensorName`,
+  implements
+  [xyz.openbmc_project.Inventory.Source.PLDM.Entity](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Source/PLDM/Entity.interface.yaml).
+  Its `EntityType`, `EntityInstanceNumber` and `ContainerID` properties hold the
+  entity identification fields of the sensor PDR, which records on D-Bus the
+  entity the sensor was resolved to.
+
+An effecter is attached to the entity object the same way as a sensor.
+
+When the entity of a sensor or an effecter has no D-Bus object, the terminus
+inventory object is the endpoint of the association and the parent of the child
+object. This covers the entity which the terminus itself represents and the
+entities whose type has no matching inventory item interface.
+
+The entity objects, their child objects and their associations are removed with
+the other D-Bus objects of the terminus when the terminus is removed from the
+terminus table.
 
 #### Terminus monitor and control
 
@@ -550,6 +674,98 @@ longer than final polling time. Before `pldmd` starts to receive async event
 from PLDM terminus, `pldmd` should remove the sensor from poll list and then
 send necessary commands (e.g., `EventMessageBufferSize` and `SetEventReceiver`)
 to PLDM terminus for the initialization.
+
+### State sensor monitoring
+
+[DSP0248 1.2.1](https://www.dmtf.org/sites/default/files/standards/documents/DSP0248_1.2.1.pdf)
+defines a state sensor as a sensor that returns one of a set of enumerated
+states rather than a numeric reading. Its parameters are described by a
+`State Sensor PDR` (section 28.6), and the enumerated states it returns belong
+to a `state set` defined by
+[DSP0249 1.4.0](https://www.dmtf.org/sites/default/files/standards/documents/DSP0249_1.4.0.pdf).
+A `State Sensor PDR` describes `compositeSensorCount` sensors, from 1 to 8, each
+reporting exactly one state set and identified within the PDR by its
+`sensorOffset`. This document calls each of them a `component sensor`. A
+`State Sensor PDR` whose `compositeSensorCount` is greater than 1 describes a
+composite state sensor. All the component sensors of a `State Sensor PDR` report
+the state of the entity which that PDR identifies.
+
+`pldmd` should retrieve all the State Sensor PDRs for the necessary parameters
+(e.g. `sensorID#`, `compositeSensorCount`, the state set of each component
+sensor, etc.) from PLDM terminus. The retrieval should be done by PDR Repository
+commands (`GetPDRRepositoryInfo`, `GetPDR`), and `pldmd` can use libpldm
+encode/decode APIs to build the commands message and then sends it to PLDM
+terminus. The policy for static device described in section 8.3.1 of DSP0248
+1.2.1 applies to the State Sensor PDRs as well.
+
+`pldmd` should not create a D-Bus object for a state sensor nor for a component
+sensor. The state which a component sensor reports is the state of the entity
+which the `State Sensor PDR` identifies. `pldmd` should implement the D-Bus
+interface which matches the state set of that component sensor on the D-Bus
+object of that entity, which the `Entity D-Bus objects` section describes, and
+should set the property of that interface from the state which the component
+sensor reports.
+
+#### Resolving the entity of a state sensor
+
+`pldmd` should resolve the entity of a state sensor by matching the entity type,
+the entity instance number and the container ID of its `State Sensor PDR`
+against the entities for which it created a D-Bus object on that terminus. The
+resolved entity D-Bus object is the object on which `pldmd` implements the state
+set D-Bus interfaces below.
+
+When no D-Bus object is published for the entity of a `State Sensor PDR`, for
+any reason such as the entity being absent from the `Entity Association PDR` and
+from the `PDR configuration` JSON files, or the creation of its D-Bus object
+having failed, `pldmd` should log the unresolved entity identification and
+should not add that state sensor to the state sensor polling list. The states
+which the state sensor reports have no D-Bus object to be published on, so
+`pldmd` should not send `GetStateSensorReadings` for it. When the D-Bus object
+of an entity is removed, `pldmd` should also remove the state sensors of that
+entity from the state sensor polling list.
+
+#### State set D-Bus interfaces
+
+`pldmd` should implement the D-Bus interface corresponding to the state set of a
+component sensor on the D-Bus object of the entity which that component sensor
+reports the state of. For example, the health state set is exposed through
+[xyz.openbmc_project.State.Decorator.OperationalStatus](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/State/Decorator/OperationalStatus.interface.yaml),
+whose `Functional` property carries the health of the entity. Every other state
+set is exposed through an interface under `xyz.openbmc_project.State.*`,
+carrying a property whose values are aligned with the corresponding Redfish
+property and the state set's enumerated states.
+
+A state set which is exposed through a D-Bus interface that `bmcweb` already
+reads on an inventory object needs no `bmcweb` change. A state set which needs a
+new D-Bus interface also needs the `bmcweb` change which maps that interface to
+the Redfish property of the entity's resource.
+
+The mapping from a state set to a D-Bus interface and property is injective. Two
+state sets are not mapped to the same property of the same D-Bus interface, so
+that the component sensors of one entity do not overwrite each other.
+
+A state set interface does not add an association. The state is a property of
+the entity object, whose containment is carried by the
+`containing`/`contained_by` association which the `Entity D-Bus objects` section
+describes.
+
+#### Monitoring the state sensors
+
+After doing the discovery of state sensors, `pldmd` should implement the state
+set D-Bus interfaces of the entity of each found state sensor, enable all the
+component sensors of those state sensors by the `SetStateSensorEnables` command,
+and then start to update the state set properties by polling or async event
+method depending on the capability of PLDM terminus.
+
+`pldmd` should update the property of a state set interface with the present
+state which the corresponding component sensor reports, after getting the
+response of `GetStateSensorReadings` command successfully.
+
+One `GetStateSensorReadings` response carries the present state of every
+component sensor of the state sensor. `pldmd` should update the property of the
+state set interface of a component sensor from the reading at that component
+sensor's `sensorOffset`, and should skip a component sensor whose state set has
+no D-Bus interface.
 
 ## Alternatives Considered
 
