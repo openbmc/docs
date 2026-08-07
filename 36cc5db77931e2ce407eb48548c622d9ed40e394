@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f99ad19_0707ee75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002885
+      },
+      "writtenOn": "2026-08-07T05:55:38Z",
+      "side": 1,
+      "message": "Hi folks, I have updated a major changes for this design docs.\nPrimarily, I think we shouldn\u0027t create D-Bus object for PLDM state sensors anymore.\nInstead, I think we should create inventory item for each of the entity parsed from either JSON or `getPDR` PLDM command.\n\nThis changes can effectively resolve the following isssues:\n\n1. Creating association between PLDM state sensor and the terminus requires a lot of PDI works, some of them were conflict with the legacy approach. For example, `health` exposed at redfish usually mapped on interface `xyz.openbmc_project.State.Decorator.OperationalStatus`. If this was published by state sensor D-Bus object instead of the entity object itself, some workaround at bmcweb side should be taken.\n\n2. Unlike numeric sensor, state sensor aren\u0027t allowed to be published under the redfish path `/redfish/v1/Chassis/\u003cChassisId\u003e/Sensors/\u003cSensorId\u003e`. In this way, we should create D-bus object for each entity under a terminus and update the state sensor reading directly on the entity itself. For example, if Termimus 19 has a CPU with health state set, we should update this reading directly on the D-Bus object created for this CPU entity.",
+      "revId": "36cc5db77931e2ce407eb48548c622d9ed40e394",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa4b77d3_9b1b8936",
