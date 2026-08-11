@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b20e5532_a4179b37",
+        "filename": "designs/logging-plugin-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2026-08-11T02:19:57Z",
+      "side": 1,
+      "message": "Good point. My intent was:\n\nProducer-initiated plugin:\nThe event producer explicitly requests plugin participation during log creation.\nExample:\n\nlg2::commit().extend(cper)\nFramework-initiated plugin:\nThe logging framework determines that a plugin should participate based on existing metadata, policy, associations, or platform configuration, without the producer explicitly requesting it.\nExamples:\n- Automatically attaching a custom plugin when a diagnostic artifact is present.",
+      "parentUuid": "7f235b07_2ea1cf0b",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 38
+      },
+      "revId": "48d4443e4998cca14fe563348fe5b71e93b03b67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c81050d_864b56fa",
         "filename": "designs/logging-plugin-design.md",
         "patchSetId": 1
@@ -60,6 +84,30 @@
       "writtenOn": "2026-08-10T21:59:23Z",
       "side": 1,
       "message": "nit: this one maybe belongs in above section?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 75
+      },
+      "revId": "48d4443e4998cca14fe563348fe5b71e93b03b67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8f7063d_e2878a49",
+        "filename": "designs/logging-plugin-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2026-08-11T02:19:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7c81050d_864b56fa",
       "range": {
         "startLine": 52,
         "startChar": 0,
@@ -83,6 +131,30 @@
       "writtenOn": "2026-08-10T21:59:23Z",
       "side": 1,
       "message": "I think there\u0027s some changes to this now with a separate .extend() function",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 25
+      },
+      "revId": "48d4443e4998cca14fe563348fe5b71e93b03b67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d11f36d0_32522705",
+        "filename": "designs/logging-plugin-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2026-08-11T02:19:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0f739f0d_94374bb3",
       "range": {
         "startLine": 123,
         "startChar": 0,
@@ -118,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b606e76f_03c69ad7",
+        "filename": "designs/logging-plugin-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2026-08-11T02:19:57Z",
+      "side": 1,
+      "message": "My intent is that the plugin adds additional interfaces on the same log entry object and owns the implementation and lifecycle of those interfaces.\n\nFor example:\n\n/xyz/openbmc_project/logging/entry/123\n\nInterfaces:\n  xyz.openbmc_project.Logging.Entry\n  xyz.openbmc_project.Logging.Diagnostic.CPER\n\nIn this model, phosphor-logging remains responsible for the log entry lifecycle, while the plugin is responsible for creating and restoring any plugin-specific interfaces associated with that log entry.\n\nI wasn\u0027t intending for the plugin framework to require a separate daemon or a separate object hierarchy, \n\nI can clarify this in the document because the current wording around \"plugin-owned artifacts\" and \"plugin-defined interfaces\" may imply that the interfaces are always created somewhere outside of the log entry, which wasn\u0027t my intent.",
+      "parentUuid": "b46326f4_5bfcc562",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 43
+      },
+      "revId": "48d4443e4998cca14fe563348fe5b71e93b03b67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "059ceef1_8cf57bc3",
         "filename": "designs/logging-plugin-design.md",
         "patchSetId": 1
@@ -141,6 +237,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5027c192_e6fc6bbd",
+        "filename": "designs/logging-plugin-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2026-08-11T02:19:57Z",
+      "side": 1,
+      "message": "Just example added , i should remove this from here , to avaoid confusion.",
+      "parentUuid": "059ceef1_8cf57bc3",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 42
+      },
+      "revId": "48d4443e4998cca14fe563348fe5b71e93b03b67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7bc03364_38647bb1",
         "filename": "designs/logging-plugin-design.md",
         "patchSetId": 1
@@ -152,6 +272,24 @@
       "writtenOn": "2026-08-07T22:22:23Z",
       "side": 1,
       "message": "The number of CPER diagnostic interfaces are bounded by the error cap set in the logging. Just something to note that it has to match the number of CPER entries that particular platform can handle.",
+      "revId": "48d4443e4998cca14fe563348fe5b71e93b03b67",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b38b7e27_9e6a7839",
+        "filename": "designs/logging-plugin-design.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2026-08-11T02:19:57Z",
+      "side": 1,
+      "message": "My expectation is that CPER diagnostic interfaces would be naturally bounded by the phosphor-logging entry limit because the CPER interface is attached to an individual log entry rather than existing as an independent object.\n\nThat said, platform-specific CPER retention requirements would need to remain aligned with the configured log retention limits.\n@Matt @Patrick any Thought on this ?",
+      "parentUuid": "7bc03364_38647bb1",
       "revId": "48d4443e4998cca14fe563348fe5b71e93b03b67",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
