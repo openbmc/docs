@@ -52,6 +52,12 @@ Gerrit you can add them manually:
 ### Add full name to Gerrit
 
 - Enter your full name in Settings -> Profile -> Full name
+- If you logged in with GitHub, this field is pre-filled with the Name from your
+  GitHub profile, which may not be the full name you contribute under. Use the
+  same full name as in your `Signed-off-by` lines: Gerrit verifies that the
+  committer e-mail of a push is registered to your account, but it does not
+  check the name, so a mismatch is accepted silently and shows up in every
+  change you push until you notice it.
 
 ### Add SSH config entry
 
@@ -68,11 +74,22 @@ Host openbmc.gerrit
   to the SSH entry if using AFS.
 - Your Gerrit Username can be found in Gerrit under Settings -> Profile ->
   Username
-- Ensure proper permissions for for your .ssh directory: `chmod 600 ~/.ssh/*`
+- Ensure proper permissions for your `.ssh` directory and the files inside it:
+  `chmod 700 ~/.ssh && chmod 600 ~/.ssh/*`
 
 ### Confirm Setup Success
 
-Test connectivity to Gerrit by attempting to clone a repo
+Test the SSH connection first; it is the quickest check and the greeting echoes
+the full name Gerrit has on file, so it confirms connectivity, authentication,
+and your profile in one step:
+
+- `ssh openbmc.gerrit`
+- If successful, Gerrit answers with a welcome message greeting you by the full
+  name registered on your account, and mentions that interactive shells are
+  disabled. If the name in the greeting is not the one you expect, revisit the
+  "Add full name to Gerrit" step above.
+
+Then test connectivity by attempting to clone a repo:
 
 - `git clone ssh://openbmc.gerrit/openbmc/docs`
 - If successful you should see something like:
