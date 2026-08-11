@@ -352,11 +352,22 @@ signal for org.freedesktop.systemd1.Manager interface. Depending on the returned
 status, the CodeUpdater decides to fail or proceed further and updates the
 activation status accordingly.
 
+systemd emits `JobRemoved` exactly once for every job it dequeues, whether that
+job ran to completion, failed to start, was cancelled or superseded by another
+job, or was terminated on a timeout. A job returned by `StartUnit` therefore
+always ends with one such signal, so the CodeUpdater needs no timeout of its own
+to observe completion. Only the job result `done` is treated as success; any
+other result, such as `failed`, `timeout` or `canceled`, fails the condition.
+
 #### Handling Hanging Tasks
 
 To handle ever-hanging tasks, pre and post update services can specify
 `RuntimeMaxSec`, which helps terminate the hanging service and deliver the
 designated state via the JobRemoved signal.
+
+Bounding the runtime is the responsibility of the service, as the CodeUpdater
+applies no timeout of its own. A service that can hang and does not set
+`RuntimeMaxSec` leaves the update waiting indefinitely.
 
 ### Multi part Images
 
