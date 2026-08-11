@@ -135,7 +135,7 @@ for detailed user management D-Bus API and interfaces.
           |    |                                             |      |
           |    | I: AccountPolicy                            |      |
           |    | P: MaxLoginAttemptBeforeLockout,            |      |
-          |    | AccountUnlockTimeout,MinPasswordLength,     |      |
+          |    | AccountUnlockTimeout, MinPasswordLength,    |      |
           |    | RememberOldPasswordTimes                    |      |
           |    |                                             |      |
           |    | PATH: /xyz/openbmc_project/user/<name>      |      |
@@ -363,6 +363,8 @@ Applications must use `pam_chauthtok()` API to set / change user password.
 Stacked PAM modules allow all 'ipmi' group user passwords to be stored in
 encrypted form, which will be used by IPMI. The same has been performed by
 `pam_ipmicheck` and `pam_ipmisave` modules loaded in stacked pam modules.
+Changing a user's 'ipmi' group membership must force password expiry so that the
+IPMI credential is updated.
 
 ```ascii
                 +------------------+---------------+
@@ -480,15 +482,10 @@ configured prior to authenticating with the LDAP user accounts.
    This is to prevent IPMI_NULL_USER from being created as an actual user. This
    is needed as NULL user with NULL password in IPMI can't be added as an entry
    from Unix user-management point of it.
-2. Adding / removing a user name from 'ipmi' Group role must force a Password
-   change to the user. This is needed as adding to the 'ipmi' Group of existing
-   user requires clear text password to be stored in encrypted form. Similarly
-   when removing a user from IPMI group, must force the password to be changed
-   as part of security measure.
-3. IPMI spec doesn't support groups for the user-management. Hence the same can
+2. IPMI spec doesn't support groups for the user-management. Hence the same can
    be implemented through OEM Commands, thereby creating a user in IPMI with
    different group roles.
-4. Do not use 'Set User Name' IPMI command to extend already existing non-ipmi
+3. Do not use 'Set User Name' IPMI command to extend already existing non-ipmi
    group users to 'ipmi' group. 'Set User Name' IPMI command will not be able to
    differentiate between new user request or request to extend an existing user
    to 'ipmi' group. Use OEM Commands to extend existing users to 'ipmi' group.
