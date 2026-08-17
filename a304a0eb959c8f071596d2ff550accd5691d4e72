@@ -87,6 +87,30 @@
       },
       "revId": "a304a0eb959c8f071596d2ff550accd5691d4e72",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c301089_f7b7be39",
+        "filename": "designs/cper-event-logs.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-08-17T21:00:48Z",
+      "side": 1,
+      "message": "\u003e If you are saying RF clients need the phosphor-logging JSON for CPER LogEntries, then I understand the problem. If that is the case...\n\nCorrect.  Because the CPER is just an \"extension\" to an existing event and existing events can have data that is only available by the AD-URI.\n\n\u003e It seems like we\u0027ve kind of gotten ourselves stuck - using this line of reasoning will we ever be able to implement a DiagnosticDataType other than OEM in our unified/multi-type EventLog?\n\nRight, it is unfortunate that we\u0027re \"stuck\" this way.\n\nThat\u0027s why I\u0027m proposing that we have a odata link of some sort over to the CPER-only event.  This could look exactly like the one in the EventLog except that it is of type CPER{Section} and contains the raw CPER data in the AD-URI.\n\nI don\u0027t think this is in any way worse than the \"separate CPER repository\" proposal so while it is not ideal it doesn\u0027t seem unreasonable (in fact it is strictly better than the separate CPER repository because it has both the phosphor-logging and raw CPER representations avaialable).",
+      "parentUuid": "72bfe032_01df3110",
+      "range": {
+        "startLine": 401,
+        "startChar": 31,
+        "endLine": 401,
+        "endChar": 78
+      },
+      "revId": "a304a0eb959c8f071596d2ff550accd5691d4e72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
