@@ -18,6 +18,46 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8a012a0_d3dfc2d4",
+        "filename": "designs/cper-event-logs.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2026-08-18T12:52:58Z",
+      "side": 1,
+      "message": "Patrick, thanks for consolidating the CPER requirements into a clear end-to-end design. I think the proposal does a good job of connecting the producer, processing, phosphor-logging, and Redfish pieces.\n\nI have one clarification around the raw CPER ingestion path.\n\nI understand the purpose of the proposed CPERRaw interface for exposing/retrieving the raw CPER artifact, but I\u0027m not clear on how the CPER processor is expected to transfer ownership of the producer-provided CPER binary into phosphor-logging.\n\nProposed  producer-facing CPER Manager interface(https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/93484/1/yaml/xyz/openbmc_project/Logging/Diagnostic/CPER/Manager.interface.yaml)  and the decoder service can feed processed metadata through the existing lg2::commit(...).extend(...) flow. However, the raw CPER artifact itself doesn\u0027t appear to fit naturally into the current property/JSON-based Event Extension mechanism.\n\nIs the intent that CPERRaw is primarily the retrieval interface, and that a future enhancement to Logging.Create (or a similar artifact-aware API, perhaps using unixfd) would handle ingestion and ownership transfer of the raw CPER data into phosphor-logging?\n\nJust trying to better understand the expected flow for getting the raw CPER artifact from the CPER processor into phosphor-logging.",
+      "revId": "a304a0eb959c8f071596d2ff550accd5691d4e72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "493d2a12_b0dd3984",
+        "filename": "designs/cper-event-logs.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1000086
+      },
+      "writtenOn": "2026-08-18T12:52:58Z",
+      "side": 1,
+      "message": "NIT: One question on the vendor decoder model: should the design explicitly state that decoder failures must not prevent storage and exposure of the raw CPER artifact? This would help ensure that platform diagnostics remain available even if a vendor-specific decoder is unavailable or encounters malformed data.",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 315,
+        "endChar": 5
+      },
+      "revId": "a304a0eb959c8f071596d2ff550accd5691d4e72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e2566156_9c974897",
