@@ -276,6 +276,15 @@ update process for some updaters, it is often ideal to define them as structured
 hooks within the firmware update process. This section aims to establish such
 hooks for applicable updaters.
 
+#### Stop Sensor Polling Condition
+
+Some devices cannot tolerate sensor polling or event traffic while a firmware
+update is in progress. The `StopSensorPolling` condition allows the updater to
+pause sensor polling for the device during the update.
+
+When enabled, sensor polling is stopped before the update starts and resumed
+after the update completes, regardless of whether the update succeeds or fails.
+
 #### JSON schema for Configuration
 
 The Code Updater daemon can be configured to execute platform-specific pre and
@@ -301,6 +310,11 @@ post update systemd targets, as defined by the JSON schema definition below:
         "PostUpdateTarget": {
           "type": "string",
           "description": "The systemd target service that should be run after an update has finished successfully."
+        },
+        "StopSensorPolling": {
+          "type": "boolean",
+          "default": false,
+          "description": "Pause sensor polling during the update and resume it afterward."
         }
       },
       "additionalProperties": false
@@ -328,6 +342,16 @@ post update systemd targets, as defined by the JSON schema definition below:
     "Identifier": "Device3_ComponentY",
     "PreUpdateTarget": "JKL_PreUpdate.service",
     "PostUpdateTarget": "JKL_PostUpdate.service"
+  },
+  {
+    "Identifier": "Device4_ComponentZ",
+    "StopSensorPolling": true
+  },
+  {
+    "Identifier": "Device5_ComponentW",
+    "PreUpdateTarget": "MNO_PreUpdate.service",
+    "PostUpdateTarget": "MNO_PostUpdate.service",
+    "StopSensorPolling": true
   }
 ]
 ```
