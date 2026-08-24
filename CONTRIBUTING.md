@@ -43,9 +43,22 @@ Agreements, _One time only_:
 - [Individual CLA](https://drive.google.com/file/d/1k3fc7JPgzKdItEfyIoLxMCVbPUhTwooY)
 - [Corporate CLA](https://drive.google.com/file/d/1d-2M8ng_Dl2j1odsvZ8o1QHAdHB-pNSH)
 
-If you work for someone, consider asking them to execute the corporate CLA. This
-allows other contributors that work for your employer to skip the CLA signing
-process, they can just be added to the existing CCLA Schedule A.
+If you work for a company in any of the following categories, a Corporate CLA
+(CCLA) executed by your employer is **required** before you may contribute:
+
+- Chip, firmware, or server/hardware vendors
+- Cloud service providers (CSP) — e.g. Meta, Google, Microsoft, Amazon, or
+  similar hyperscalers
+- Any other company that operates in the same technical space as OpenBMC and
+  could reasonably assert an Intellectual Property claim against the project
+
+The CCLA protects the project from a company later claiming that an employee
+contributed proprietary IP without authorization. Once your employer has signed
+a CCLA, additional contributors from that company can be added to the existing
+CCLA Schedule A rather than signing individually.
+
+If you are an individual contributor who does not work for a company in one of
+the above categories, the Individual CLA may be sufficient.
 
 After signing a CLA, send it to <manager@lfprojects.org>.
 
