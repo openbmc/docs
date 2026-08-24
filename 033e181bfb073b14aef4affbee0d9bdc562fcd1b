@@ -16,6 +16,24 @@
       "message": "A POC currently being built over in phosphor-logging\nhttps://gerrit.openbmc.org/c/openbmc/phosphor-logging/+/76959\nMaybe we could introduce a new hardware-focused interface on that existing daemon to handle these state transitions.\nThis would keep all BMC auditing down to a single D-Bus pipe ?",
       "revId": "033e181bfb073b14aef4affbee0d9bdc562fcd1b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25f2428e_30ffb710",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000182
+      },
+      "writtenOn": "2026-08-24T13:03:39Z",
+      "side": 1,
+      "message": "\u003e This would keep all BMC auditing down to a single D-Bus pipe ?\n\nyes.\n\n\n\u003e Maybe we could introduce a new hardware-focused interface on that existing daemon to handle these state transitions.\n\n\nOn idea, shouldn\u0027t be any diff between hardware/software, it would be an audit log in the end.\n\nI\u0027d be glad to see in this way, when you have consumers(bmcweb/ipmi/pldm/spdm/anything else) which using one audit interface from phosphor-logging for everything and back-end as some vendor daemon which stores logs as you wish, creating SEL/notifications/etc or if there is no any.",
+      "parentUuid": "bb0334fe_a566491f",
+      "revId": "033e181bfb073b14aef4affbee0d9bdc562fcd1b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
