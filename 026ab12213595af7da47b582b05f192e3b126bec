@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c749e1c_413e71ae",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1002885
+      },
+      "writtenOn": "2026-08-28T07:15:25Z",
+      "side": 1,
+      "message": "Understood, I have dropped these lines and requires no such interfaces embedded for the created D-Bus object.",
+      "parentUuid": "f92a45cd_60f59cb7",
+      "range": {
+        "startLine": 584,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 36
+      },
+      "revId": "026ab12213595af7da47b582b05f192e3b126bec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ad417fb_a78f7e22",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3512707_e5c311ec",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1002885
+      },
+      "writtenOn": "2026-08-28T07:15:25Z",
+      "side": 1,
+      "message": "Acknowledged, I have added the reasoning here to explicitly tell why is it differs with numeric sensors.",
+      "parentUuid": "3ad417fb_a78f7e22",
+      "range": {
+        "startLine": 711,
+        "startChar": 0,
+        "endLine": 715,
+        "endChar": 27
+      },
+      "revId": "026ab12213595af7da47b582b05f192e3b126bec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5ed3d61_4cf9e406",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-08-27T13:29:59Z",
       "side": 1,
       "message": "How does bmcweb identify State PDIs? Should we say here, at least, that they would exist in the State/ namespace?",
+      "range": {
+        "startLine": 747,
+        "startChar": 0,
+        "endLine": 750,
+        "endChar": 10
+      },
+      "revId": "026ab12213595af7da47b582b05f192e3b126bec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52d6f8ef_22151419",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1002885
+      },
+      "writtenOn": "2026-08-28T07:15:25Z",
+      "side": 1,
+      "message": "Apologizes for the confusing statements.\nAfter removing the `PLDM.Entity` interfaces, every D-Bus object created for PLDM entity is no longer needed the `containing`/`contained_by` interfaces anymore.\n\nIn this case, `bmcweb` can retrieves the state for the D-Bus object using the general approach. \n\nFor example, for a terminus contains Cpu under itself and it may consists of state sensor monitoring for the state set `Health`. \n\n`pldmd` should creates a D-Bus object with appropriate interface (`xyz.openbmc_project.Inventory.Item.Cpu`), representing it is a Cpu. In addition, the D-Bus object should also be having interface `xyz.openbmc_project.State.Decorator.OperationalStatus` for the health property it is holding. \n\nWhenever a redfish request arrives, `bmcweb` can retrieves the D-Bus object path, using the ID and object type parsed from the request.\nAfter that, required properties can be retrieves by through hardcoded interface name in each `bmcweb` function.",
+      "parentUuid": "a5ed3d61_4cf9e406",
       "range": {
         "startLine": 747,
         "startChar": 0,
