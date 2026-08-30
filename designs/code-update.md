@@ -61,6 +61,9 @@ This section covers the limitations discovered with
     specified.
 13. Able to order component updates to a device as defined in the multi part
     image format.
+14. Able to recover a device that cannot boot its operational firmware or
+    communicate through its regular update transport, using a dedicated device
+    recovery protocol.
 
 ## Proposed Design
 
@@ -483,6 +486,142 @@ for that device can be skipped by returning back relevant error (such as
 `ActivationBlocksTransitions` interface only if sensor scanning times out. This
 won't impact average case performance for sensor scanning but only the worst
 case scenario when device is busy, for example, due to update in progress.
+
+### Device Firmware Recovery
+
+The regular update path of a device (for example PLDM over MCTP) is served by
+the device's operational firmware, so it is lost when that firmware is corrupted
+or fails to boot. Some devices therefore expose a dedicated recovery protocol,
+for example
+[OCP Secure Firmware Recovery](https://www.opencompute.org/documents/ocp-recovery-document-1p0-final-1-pdf),
+served by the device's immutable recovery logic (hardware or ROM code) over a
+low level transport such as SMBus. It lets the BMC load a firmware image into a
+device whose operational firmware is not running. Both paths are driven by the
+BMC; the recovery path only removes the dependency on the device's operational
+firmware.
+
+In OCP Secure Firmware Recovery terms, the image delivered over the recovery
+protocol is a transient recovery image (C-image): it is loaded into the device's
+transient memory rather than flash, and its role is to install or update the
+persistent operational images (A/B images). Recovery therefore takes two steps:
+
+1. Recovery: when the device is not reachable over its regular update transport,
+   the client pushes the recovery image through the recovery agent described
+   below. The device boots the recovery image and becomes reachable over its
+   regular update transport again, where its regular code updater discovers it
+   as usual.
+2. Regular update: the client then performs a regular update, already covered by
+   this design, which writes the complete operational firmware to the device.
+   Only after this step is the device fully functional.
+
+The two steps are independent updates issued by the client against different
+FirmwareInventory entries. The client learns that recovery is required the same
+way as for any other device failure: the device's regular FirmwareInventory
+entry is missing or disappears (or its update fails) because the regular code
+updater cannot reach the device, while the recovery entry is always present.
+
+Nothing serializes the two paths. bmcweb forwards each request to the code
+updater that owns the target, and each code updater rejects a second update only
+for its own devices. Before acting on a device, the recovery agent reads its
+recovery status (OCP Secure Firmware Recovery `DEVICE_STATUS`) and leaves a
+device that reports healthy untouched. A device that reports an error, or is
+still booting, is reset into recovery mode, which would abort a regular update
+of that device. Clients must therefore not start a recovery while a regular
+update of the same device is in progress.
+
+A recovery agent is implemented as one more \<deviceX>CodeUpdater daemon
+following this design unchanged:
+
+- The [end to end flow](#proposed-end-to-end-flow) is identical: the daemon
+  exposes the same xyz.openbmc_project.Software.Update, Version and Activation
+  interfaces, a recovery is triggered as a targeted update against the recovery
+  FirmwareInventory entry (a multipart update with `Targets` set to
+  `/redfish/v1/UpdateService/FirmwareInventory/<Id>`, where `<Id>` is the leaf
+  of the recovery software object path, and `@Redfish.OperationApplyTime` set to
+  `Immediate`), and progress is tracked through the same Task/ActivationProgress
+  reporting. No bmcweb or D-Bus interface changes are needed.
+- The recovery software object is a separate object under
+  /xyz/openbmc_project/software, owned by the recovery agent's service and named
+  from its Entity Manager configuration (for example
+  /xyz/openbmc_project/software/GPU_OCP_Recovery_1234). It coexists with the
+  device's regular software object, which is owned by the regular code updater's
+  service under its own name. The recovery object carries the inventory
+  association of the configuration it was created from; clients tell the two
+  apart by the FirmwareInventory Id, so the recovery configuration Name must
+  carry the `Recovery` suffix, which becomes part of the Id. As for any code
+  updater following this design, the Id gets a new random suffix with every
+  update, so clients find the recovery entry by its Name part rather than by a
+  stored Id.
+- Recovery images are packaged and matched using the
+  [PLDM Image Packaging](#pldm-image-packaging) descriptors (VendorIANA and
+  CompatibleHardware).
+- Devices are discovered from
+  [Entity Manager Configuration](#entity-manager-configuration) FirmwareInfo
+  records, extended with the transport specific addressing required by the
+  recovery protocol.
+
+For OCP Secure Firmware Recovery over I2C the record is `OCPRecoveryFirmware`
+([schema](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/93330)):
+
+```json
+{
+  "Name": "GPU_OCP_Recovery",
+  "Type": "OCPRecoveryFirmware",
+  "Bus": "$bus",
+  "Address": "0x69",
+  "FirmwareInfo": {
+    "VendorIANA": 5703,
+    "CompatibleHardware": "com.nvidia.Hardware.Alon8.GPU"
+  }
+}
+```
+
+`Bus` and `Address` locate the device's recovery endpoint. Each configured
+record (one per bus and address) represents one device instance, which is how
+the recovery agent knows the instance exists while the device has no regular
+transport to identify itself on. The optional `ChunkSize`, `MemoryWindow` and
+`ForceRecoveryTimeoutSeconds` tune the transfer.
+
+The recovery path differs from a regular update only in the following recovery
+specific aspects:
+
+- Version reporting: the device's regular software object, owned by its regular
+  code updater, is unaffected and continues to report the running firmware
+  version. The recovery protocol offers no way to read a version from the device
+  and the recovery image is transient, so the recovery software object always
+  reports a default Version value ("unknown") rather than a version read from
+  the device or taken from the recovery package.
+- Apply time: activating a recovery image restarts the device into the new image
+  as defined by the recovery protocol, so only the Immediate apply time is
+  supported. bmcweb defaults a multipart update without an apply time to
+  OnReset, which the recovery agent rejects, so clients must request Immediate.
+- Multi component packages: a recovery package may carry multiple applicable
+  component images (for example an initial firmware pair), which are staged in
+  package order within a single recovery session and activated once at the end.
+  The client pushes the whole package to the single recovery FirmwareInventory
+  entry; components are not targeted individually.
+- Aggregated recovery for same type devices: the identity a device reports over
+  the recovery protocol (OCP `DEVICE_ID`) cannot be matched against the package
+  descriptors (VendorIANA and CompatibleHardware), so a device awaiting recovery
+  cannot be matched to a package record individually; the device instances are
+  known only from the Entity Manager configuration (one record per bus and
+  address). Unlike
+  [regular multi device updates](#update-multiple-devices-of-same-type), same
+  type devices with identical configuration settings (Address, transfer settings
+  and FirmwareInfo) are therefore aggregated behind a single software object,
+  and the client targets its FirmwareInventory entry; individual instances have
+  no entry of their own. A recovery request sweeps all instances of that object,
+  probing each over the recovery protocol: instances that do not respond or
+  report healthy are skipped, instances already in recovery mode are recovered,
+  and instances reporting a boot or firmware error are reset into recovery mode
+  first and then recovered. The update fails if recovering any instance fails;
+  per instance results are logged, while the Task reports a single result for
+  the sweep.
+
+The first implementation of this flow is the
+[OCP Secure Firmware Recovery code updater](https://gerrit.openbmc.org/c/openbmc/phosphor-bmc-code-mgmt/+/92453)
+in phosphor-bmc-code-mgmt, with the recovery protocol implemented as a reusable,
+transport abstract library.
 
 ## Alternatives Considered
 
