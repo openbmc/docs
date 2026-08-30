@@ -61,6 +61,9 @@ This section covers the limitations discovered with
     specified.
 13. Able to order component updates to a device as defined in the multi part
     image format.
+14. Able to recover a device that cannot boot its operational firmware or
+    communicate through its regular update interface, using the device's
+    out-of-band recovery protocol.
 
 ## Proposed Design
 
@@ -469,6 +472,61 @@ for that device can be skipped by returning back relevant error (such as
 `ActivationBlocksTransitions` interface only if sensor scanning times out. This
 won't impact average case performance for sensor scanning but only the worst
 case scenario when device is busy, for example, due to update in progress.
+
+### Device Firmware Recovery
+
+Some devices expose an out-of-band recovery protocol, for example
+[OCP Secure Firmware Recovery](https://www.opencompute.org/documents/ocp-recovery-document-1p0-final-1-pdf),
+to restore firmware on a device that cannot boot its operational firmware or
+communicate through its regular update interface. Recovery may occur in multiple
+stages. In the flow described here, the first stage transfers an initial
+(recovery) firmware over a low level transport such as SMBus, after which the
+second stage updates the complete device firmware through the regular update
+path (for example PLDM over MCTP), which is already covered by this design.
+
+A first stage recovery agent is implemented as one more \<deviceX>CodeUpdater
+daemon following this design unchanged:
+
+- The [end to end flow](#proposed-end-to-end-flow) is identical: the daemon
+  exposes the same xyz.openbmc_project.Software.Update, Version and Activation
+  interfaces, a recovery is triggered as a targeted update against the device's
+  FirmwareInventory entry, and progress is tracked through the same
+  Task/ActivationProgress reporting. No bmcweb or D-Bus interface changes are
+  needed.
+- Recovery images are packaged and matched using the
+  [PLDM Image Packaging](#pldm-image-packaging) descriptors (VendorIANA and
+  CompatibleHardware).
+- Devices are discovered from
+  [Entity Manager Configuration](#entity-manager-configuration) FirmwareInfo
+  records, extended with the transport specific addressing required by the
+  recovery protocol (for example bus and address for SMBus based recovery).
+
+The recovery path differs from a regular update only in the following recovery
+specific aspects:
+
+- Version reporting: the recovery agent exposes its own software object for the
+  recovery path, separate from the device's regular software object. The regular
+  software object, owned by the device's regular code updater, continues to
+  report the running firmware version. The recovery protocol offers no way to
+  read a version from the device, so the recovery software object reports a
+  default Version value (for example "N/A") rather than a version read from the
+  device or taken from the recovery package.
+- Apply time: activating a recovery image restarts the device into the new image
+  as defined by the recovery protocol, so only the Immediate apply time is
+  supported.
+- Multi component packages: a recovery package may carry multiple applicable
+  component images (for example an initial firmware pair), which are staged in
+  package order within a single recovery session and activated once at the end.
+- Aggregated recovery for same type devices: unlike
+  [regular multi device updates](#update-multiple-devices-of-same-type), a
+  device awaiting recovery cannot identify itself, so same type devices sharing
+  one configuration may be aggregated behind a single software object. A
+  recovery request then sweeps all configured device instances, skipping healthy
+  devices and recovering the ones in (or forced into) recovery mode.
+
+The first implementation of this flow is the OCP Secure Firmware Recovery code
+updater in phosphor-bmc-code-mgmt, with the recovery protocol implemented as a
+reusable, transport abstract library.
 
 ## Alternatives Considered
 
