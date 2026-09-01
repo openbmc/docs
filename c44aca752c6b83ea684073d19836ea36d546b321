@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "039c49b7_0e9159cd",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-09-01T13:56:26Z",
+      "side": 1,
+      "message": "When I picked per-type binaries, part of it was matching existing convention, but I also expected each type would need its own D-Bus interface, with its own property names, transition enum and state enum, so the type-specific behavior around that would live in its own binary.\n\nThat\u0027s not the case anymore with `State.Device`: every type binds to the same property set and enums, so what\u0027s left type-specific is configuration, not logic — the daemon just finds the actual devices from entity-manager at runtime. Splitting that into one process per type at that point wouldn\u0027t be separating any logic, just processes.\n\nI\u0027ve moved the design to a single type-agnostic daemon and written this out in the Alternatives section.",
+      "parentUuid": "9a59d8a3_c6c53384",
+      "range": {
+        "startLine": 348,
+        "startChar": 30,
+        "endLine": 350,
+        "endChar": 27
+      },
+      "revId": "c44aca752c6b83ea684073d19836ea36d546b321",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edc4f097_77f5b84d",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-08-31T12:25:19Z",
       "side": 1,
       "message": "Why do EM configs need to go into `openbmc/openbmc` now?\n\nDid Matt sign off on this idea?",
+      "range": {
+        "startLine": 442,
+        "startChar": 2,
+        "endLine": 442,
+        "endChar": 45
+      },
+      "revId": "c44aca752c6b83ea684073d19836ea36d546b321",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05924363_65907efe",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 23
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1002134
+      },
+      "writtenOn": "2026-09-01T13:56:26Z",
+      "side": 1,
+      "message": "You\u0027re right, and that was my mistake. Platform entity-manager configurations belong in entity-manager, not in openbmc/openbmc. Thanks for catching it.",
+      "parentUuid": "edc4f097_77f5b84d",
       "range": {
         "startLine": 442,
         "startChar": 2,
