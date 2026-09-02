@@ -1,5 +1,7 @@
 # Discord Rules
 
+## General Rules
+
 1. This community works together to build an Open Source BMC firmware. It's a
    community expectation that you will provide access to your code in the course
    of discussions. We are unable to build together if you are unable to share
@@ -26,7 +28,23 @@
    Instead, email `openbmc-security@lists.ozlabs.org` and follow the [documented
    directions][1]
 
-7. All jobs related posts (including looking for work) must only be posted to
+## Channel Specific Rules
+
+### #code-reviews
+
+1. All code review requests must be only posted to the #code-reviews channel.
+
+2. Requests must wait at least 48 hours from submission before notification.
+   Maintainers and reviewers should be working in Gerrit primarily; availability
+   on Discord is a curtsey. Avoid unnecessary noise to others.
+
+3. An exception to (2) is for active investigation and resolution of issues
+   being already discussed. For example, "I just uploaded a fix for this problem
+   at ..." is a productive communication.
+
+### #jobs
+
+1. All jobs related posts (including looking for work) must only be posted to
    the #jobs channel.
 
 [1]:
