@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30b9396a_27883cff",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1002885
+      },
+      "writtenOn": "2026-09-03T08:33:59Z",
+      "side": 1,
+      "message": "No, an entity object is created only for the entities which the `Entity Association PDR` records. \n\nI have refined the paragraph in PS28, thanks for the catching!",
+      "parentUuid": "b5ed10d9_2df46ac4",
+      "range": {
+        "startLine": 485,
+        "startChar": 39,
+        "endLine": 486,
+        "endChar": 18
+      },
+      "revId": "366e93b7776150678ae7798e99c7ca043fbe3391",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ce5f589_836912f2",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-09-01T08:33:20Z",
       "side": 1,
       "message": "There is typically only one or few distinct ContainerIDs per TID, right? If yes should we do - `Terminus_\u003cTID\u003e_\u003cContainerID\u003e_\u003cEntityTypeName\u003e_\u003cEntityInstanceNumber\u003e` instead?",
+      "revId": "366e93b7776150678ae7798e99c7ca043fbe3391",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cfbf993_b5fde5a7",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1002885
+      },
+      "writtenOn": "2026-09-03T08:33:59Z",
+      "side": 1,
+      "message": "As the entity instance number is unique only within its container, I think having the container ID as suffix will make it easier to distinguish between different entities.\n\nHowever, I am happy to reorder that if you insist.",
+      "parentUuid": "3ce5f589_836912f2",
       "revId": "366e93b7776150678ae7798e99c7ca043fbe3391",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f16f454_7a971a2d",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1002885
+      },
+      "writtenOn": "2026-09-03T08:33:59Z",
+      "side": 1,
+      "message": "Noted, thanks for the catching!",
+      "parentUuid": "b904ff11_0212fac7",
+      "range": {
+        "startLine": 580,
+        "startChar": 15,
+        "endLine": 580,
+        "endChar": 24
+      },
+      "revId": "366e93b7776150678ae7798e99c7ca043fbe3391",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "191c8459_77850026",
@@ -77,6 +143,30 @@
       "writtenOn": "2026-09-01T08:33:20Z",
       "side": 1,
       "message": "Is this existing behaviour or it has to be implemented in pldm daemon?",
+      "range": {
+        "startLine": 569,
+        "startChar": 1,
+        "endLine": 588,
+        "endChar": 77
+      },
+      "revId": "366e93b7776150678ae7798e99c7ca043fbe3391",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5833960a_0a27f9a8",
+        "filename": "designs/pldm-stack.md",
+        "patchSetId": 27
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1002885
+      },
+      "writtenOn": "2026-09-03T08:33:59Z",
+      "side": 1,
+      "message": "Partially, `pldmd` did remove D-Bus object when terminus leaves its table.\nWhat is new is that the entity object are part of the terminus now.",
+      "parentUuid": "191c8459_77850026",
       "range": {
         "startLine": 569,
         "startChar": 1,
