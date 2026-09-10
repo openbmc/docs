@@ -22,6 +22,29 @@
       },
       "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b1ae776_aa07e618",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001621
+      },
+      "writtenOn": "2026-09-10T21:19:07Z",
+      "side": 1,
+      "message": "Is the intention of this logging for debugging or for security auditing? (\"Diagnosis\" to me implies debugging.)\n\nIf intention is for security auditing then going the route of using one mechanism for all security logging on the OpenBMC would be preferred.\n\nIf the intention is for debugging then would not want to use the same security logging mechanism to avoid problem of non-security events causing security events to be rotated out of the log too early.",
+      "range": {
+        "startLine": 11,
+        "startChar": 22,
+        "endLine": 11,
+        "endChar": 32
+      },
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
