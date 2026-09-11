@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a585a79f_de8bb330",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "Overall I\u0027m not in support of this change.  Power control isn\u0027t \"special\" and at a design level doesn\u0027t need its own dedicated logging service and collection methods.\n\n\nI believe this can be accomplished with the existing methods, with minor tweaks to add your new features, which seems to be event source detection and username tracking, which are generic to any event, not just power events.",
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "abd3a962_cfc29a2a",
         "filename": "designs/state-transition-audit-log.md",
         "patchSetId": 5
@@ -42,6 +59,247 @@
         "startChar": 22,
         "endLine": 11,
         "endChar": 32
+      },
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dfb14ac_cdecd040",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "Can you please write the requirements without mentioning internal code details?  \"phosphor-state-manager\" doesn\u0027t describe a class of events, your requirement should specify what events you want to publish.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 67
+      },
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c41fb475_262ee0d2",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "Remove.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 69
+      },
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec587788_6fd39cdd",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "Write this as a single requirement.",
+      "range": {
+        "startLine": 60,
+        "startChar": 70,
+        "endLine": 62,
+        "endChar": 70
+      },
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a09b1192_db5a0029",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "I see no requirement above that requires \"Create a new log type\" to build an entirely new subsystem.",
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "084bc3f9_2abef262",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "It\u0027s not clear to me what this interface would be to bmcweb?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 47
+      },
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "566863ae_265cc348",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "Why can\u0027t the backend just deal with this?  Why do we have to duplicate the code between ipmi and Redfish?",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 63
+      },
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39e7a32f_bb9a63ea",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "Needs more details on how this would differ\n\"an opaque request ID\" -\u003e Dbus serial number/cookie\n\"target component/instance\" -\u003e Dbus path\n\nexists currently.",
+      "range": {
+        "startLine": 114,
+        "startChar": 9,
+        "endLine": 114,
+        "endChar": 60
+      },
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a80090b_af4ea282",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "This is a feature, not a bug.  I (the bmcweb maintainer) have no interest in maintaining separate logs for every single service that wants to host a log.  Regardless of whether we get logs from dbus or journal,",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 23
+      },
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "381a3900_f7a6eb87",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "By whom?  Can you link the docs where an openbmc authority that did this rejection (Maintainer or TOF)?",
+      "range": {
+        "startLine": 166,
+        "startChar": 62,
+        "endLine": 166,
+        "endChar": 74
+      },
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "607bca15_0899ac06",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "None of this paragraph seems correct to me, but it doesn\u0027t use technical reasons why this can\u0027t work.  Can you please update to use real, technical reasons why phosphor-logging couldn\u0027t meet this purpose with only minor modifications?",
+      "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3de530eb_f6eb26f1",
+        "filename": "designs/state-transition-audit-log.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2026-09-11T17:51:38Z",
+      "side": 1,
+      "message": "Any component can be a \"shared observer\" in this design, it\u0027s not unique to just this audit service.",
+      "range": {
+        "startLine": 176,
+        "startChar": 32,
+        "endLine": 176,
+        "endChar": 47
       },
       "revId": "608687fe5a8e56c6547c0050f2f64c3a2c02442b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
