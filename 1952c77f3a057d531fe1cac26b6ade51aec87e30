@@ -52,6 +52,23 @@
       "parentUuid": "4c877965_5316f82f",
       "revId": "1952c77f3a057d531fe1cac26b6ade51aec87e30",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6dd0427_57801c5a",
+        "filename": "designs/hpe-gxp-secure-boot.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1002090
+      },
+      "writtenOn": "2026-09-23T10:45:23Z",
+      "side": 1,
+      "message": "The GXP bootloader assumes that the u-boot partition is exactly 384 KB in size for signature validation. In CanopyBMC for example, we appended this to u-boot to ensure compliance:\n\n```\nUBOOT_SIZE \u003d \"393216\"\ndo_deploy:append() {\n    uboot_size\u003d$(stat -c%s ${DEPLOYDIR}/${UBOOT_IMAGE})\n    if [ $uboot_size -lt ${UBOOT_SIZE} ]; then\n        bbnote \"Padding u-boot from $uboot_size bytes to ${UBOOT_SIZE} bytes\"\n        truncate -s ${UBOOT_SIZE} ${DEPLOYDIR}/${UBOOT_IMAGE}\n    elif [ $uboot_size -gt ${UBOOT_SIZE} ]; then\n        bbfatal \"u-boot image size ($uboot_size bytes) exceeds maximum allowed size (${UBOOT_SIZE} bytes)\"\n    fi\n}\n```\n\nShould we describe this fact in this section for clarity?",
+      "revId": "1952c77f3a057d531fe1cac26b6ade51aec87e30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
