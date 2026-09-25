@@ -1,0 +1,231 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c018e3d_6688da38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "Although the document follows the design template, the issue I see here is in regards to scope and semantics. This proposal does not describe the full PEF implementation.",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ec51ddf_6b76634b",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "Table 30-1 from the IPMI Spec lists 6 mandatory commands if PEF or Alerting is supported. Arm PEF Postpone Timer, Set Last Processed Event ID and Get Last Processed Event ID.\nThe PEF postpone timer allows the system a window to handle a event before PEF act on it, and also allows to disable the PEF during runtime (IPMI spec section 30.2). And with the set/get last processed event ID it handles pending events across BMC reset.\nI think these should be in scope for this document.",
+      "range": {
+        "startLine": 14,
+        "startChar": 8,
+        "endLine": 18,
+        "endChar": 37
+      },
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eb12eed_e4cfa9ba",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "Actions have priorities so a single action is not accurate with the spec. The matcher should parse the whole table then resolve. This should be clear in design.",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6183eb1_8eb8264a",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "Section 17.4 of IPMI spec requires a mandatory safety mechanism, in this case the startup delay to allow disabling the PEF action in case of filter misconfiguration. This would be addressed by implementing the complete mandatory commands.",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf8c2292_cf2221e1",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "Is the PEF matcher going to be in the sel-logger service?",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b359c61_6651a2cf",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "What is this change? Outside the context of this patch topic it does not make sense.",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90a5cabb_66f321db",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "There might be an issue here, having the raw bytes transported verbatim defeats the purpose of the \"translator\" layer.\nAlso, read-modify-write should be done by the PEF provider since the translator is stateless and can have a race with a write in Dbus from a different session.",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6b3483f_ff8a69ab",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "again, outside this patch topic it does not make sense.",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31d0ce15_4abc0861",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "I think if you are exposing the manager control as dbus properties, you should also follow that behavior for filter entries instead of a raw 20-byte array (not meaningful to other services to interact).",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b459bedd_994d0729",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "I don\u0027t agree with this, as stated before. Maybe I\u0027m wrong, but a readable filter field is easier to maintain than raw bytes. If you want to have a Redfish endpoint to this, for example, you would need to encode the bytes to write a filter instead of typed properties.\nBesides, I don\u0027t see it fitting into PDI as raw bytes, instead of a typed properties.",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ef2267b_599ffe7e",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "There is no mention to the parameter revision byte in the document.",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "017c7eaa_6dfa0874",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "Certainly, for the PEF provider. I don\u0027t see it fitting in any other repository.",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "960ecdad_a725986c",
+        "filename": "designs/platform-event-filtering.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1002746
+      },
+      "writtenOn": "2026-09-25T00:41:21Z",
+      "side": 1,
+      "message": "Shouldn\u0027t new Dbus interfaces should be tested isolated? Instead of relying only on the IPMI handler from ipmid. Setting different filters, triggering different actions to evaluate priotiry, etc.",
+      "revId": "3451089e9146dc04a1dae9535ee3cce27a6ddeed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
