@@ -22,6 +22,75 @@
       },
       "revId": "d288a7b4b79d2dc3b7811a39d885dd1f984d0da6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bbb4f9b_8d39b866",
+        "filename": "designs/redfish-graphql-server.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-30T10:15:16Z",
+      "side": 1,
+      "message": "generating code from redfish schemas sounds like something that bmcweb is already doing or should be doing.\n\nTherefore there is potential to share the code here. Besides that, the bmcweb repo already contains the schemas which can be used to generate.",
+      "range": {
+        "startLine": 289,
+        "startChar": 39,
+        "endLine": 289,
+        "endChar": 78
+      },
+      "revId": "d288a7b4b79d2dc3b7811a39d885dd1f984d0da6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "886fd38d_b1f4fd79",
+        "filename": "designs/redfish-graphql-server.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-30T10:15:16Z",
+      "side": 1,
+      "message": "The section about review focus can be deleted. It\u0027s not an issue to have separate maintainers working in the same repository but maintaining different applications and services. \n\nThis is already being done exactly that way in `libpldm` and `dbus-sensors` where some (sub) maintainers are focused on specific subfolders.",
+      "range": {
+        "startLine": 291,
+        "startChar": 77,
+        "endLine": 294,
+        "endChar": 50
+      },
+      "revId": "d288a7b4b79d2dc3b7811a39d885dd1f984d0da6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2279b6da_0de5fb0e",
+        "filename": "designs/redfish-graphql-server.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-09-30T10:15:16Z",
+      "side": 1,
+      "message": "The argument about `clear architectural boundary` does not apply. We already have very clear architectural boundaries e.g. in `dbus-sensors` where folks maintain separate applications with minimal code sharing.\n\nEven in `entity-manager` you have multiple applications even using different sdbusplus bindings (callback vs async API).\n\nThere is no limitation to the amount of separation you can have in one repository. You can even copy-paste utility functions into your own folder if you do not want to share a single line of code.\n\n\u003e and avoids increasing the complexity and review burden of the bmcweb codebase.\n\nI don\u0027t think you fully understand the implications of maintaining so many different repositories. It actually tends to increase the review burden because folks tend to duplicate utility code and helper functions and then you need to create runtime interfaces between all these services, create multiple gerrit changes in a topic, and synchronize recipe bumps.\n\n\nexample to understand:\n\nif i want to add a parameter to a dbus-sensor, i need:\n  - an implementation patch in `dbus-sensors`\n  - a configuration and schema change in `entity-manager`\n\nand these changes need to go in in the right order. For anything using PDI, that is 3 changes.\n\nIf `dbus-sensors` applications were part of `entity-manager` repo, that would drop down to 2 changes, reducing the review burden.",
+      "range": {
+        "startLine": 295,
+        "startChar": 2,
+        "endLine": 297,
+        "endChar": 18
+      },
+      "revId": "d288a7b4b79d2dc3b7811a39d885dd1f984d0da6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
