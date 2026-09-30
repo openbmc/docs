@@ -138,12 +138,46 @@ hardware units. The application which implements the common guard entry
 interface should map between entry to the underlying guard record in the
 original guard record store.
 
+#### Hardware inventory
+
+The hardware inventory object will implement the
+`xyz.openbmc_project.Inventory.Decorator.Disabled` interface with a boolean
+"Disabled" property. A value of "true" indicates that the unit has been selected
+to remain disabled, either automatically by the system or manually by the user.
+A value of "false" indicates that no such selection is in effect for the unit.
+
+This state is separate from presence, health and availability. A present and
+healthy unit may be manually kept disabled without an active error condition.
+The property reports the decision to keep the unit disabled, which may take
+effect only in a subsequent boot as described above.
+
+The application managing the guard records will initialize this property from
+the active records before publishing the interface and update it when the
+decision changes. The application may host the interface on the hardware
+inventory object or publish the property through the service hosting that
+object, such as phosphor-inventory-manager. The property is writable to allow
+these updates. Writing the property does not create or delete a guard record.
+
 ## Redfish interface
+
+bmcweb will consume the "Disabled" property on the hardware inventory object to
+report the Redfish "Enabled" property for resources supporting hardware
+isolation, such as processors, cores and DIMMs. "Enabled" will be "false" when
+"Disabled" is "true", and "true" when "Disabled" is "false". Absence of the
+interface must not be interpreted as an indication that the unit is enabled.
 
 ### Manual guard
 
 Creating manual gurad record, set the "Enabled" property to "false" to manually
 guard a unit which is present in the inventory.
+
+bmcweb handles this request by calling "Create" on
+`xyz.openbmc_project.HardwareIsolation.Create` with the hardware inventory path
+and "Manual" severity. Setting "Enabled" to "true" requests deletion of the
+associated guard entry through `xyz.openbmc_project.Object.Delete`. These
+requests go through the guard manager, which applies the platform restrictions
+and updates the guard records before publishing the resulting "Disabled" value.
+bmcweb does not control the hardware by writing the "Disabled" property.
 
 #### redfish » v1 » Systems » system » Processors » CPU1
 
