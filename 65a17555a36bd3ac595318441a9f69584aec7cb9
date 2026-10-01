@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97f8241e_028c6a2e",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-10-01T01:07:48Z",
+      "side": 1,
+      "message": "Thanks — I agree the \"one change split into two repo patches\" pattern is something to avoid.\n\nThat said, I\u0027d still prefer to keep this in its own repo, for three reasons:\n\n1. Entity Manager\u0027s role in this design is only to provide the platform configuration. ccid is a *consumer* of xyz.openbmc_project.Configuration.*, in exactly the same position as bmc-code-mgmt, dbus-sensors, pldmd and mctpd. bmc-code-mgmt\u0027s fw-updaters are likewise driven by EM configuration, and it lives in its own repo too. If reading EM configuration is what makes a daemon belong in entity-manager, that argument pulls in every EM consumer, and entity-manager\u0027s own scope (FRU probe + configuration publishing) stops meaning much.\n\n2. This repo is not only the daemon — it also carries the CCI encode/decode layer and ccitool. A protocol codec and a debug CLI are harder to justify in entity-manager than the daemon alone.\n\n3. The synchronization cost here is much lower than dbus-sensors. In dbus-sensors, every new sensor type requires a matched config+code change. In this design the two kinds of change are separate:\n   - Adding a new CCI-capable device or board is a pure EM configuration change — the MCTP event-interrupt policy is added together with that device\u0027s configuration, and ccid needs no modification at all. \n- Adding support for a new CCI command is a pure ccid change and does not touch EM at all.\n\n   So the matched-pair change that hurts dbus-sensors essentially does not arise here.\n\nThanks for the review.",
+      "parentUuid": "a4afefed_87a861c4",
+      "range": {
+        "startLine": 448,
+        "startChar": 49,
+        "endLine": 460,
+        "endChar": 1
+      },
+      "revId": "65a17555a36bd3ac595318441a9f69584aec7cb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c0323c0_c03c1579",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-09-28T14:16:56Z",
       "side": 1,
       "message": "Why is a proxy maintainer needed? Based on your design proposal you are the one who has expertise in this area so it would make sense for you to maintain it?",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 467,
+        "endChar": 23
+      },
+      "revId": "65a17555a36bd3ac595318441a9f69584aec7cb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7103d72e_ee2657f5",
+        "filename": "designs/cxl-cci-over-mctp.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1002522
+      },
+      "writtenOn": "2026-10-01T01:07:48Z",
+      "side": 1,
+      "message": "https://gerrit.openbmc.org/c/openbmc/docs/+/67064/comment/6f47bac1_63f2d3bc/\nNew repos go through the TOF and I\u0027m not a TOF\nmember, so I probably won\u0027t be the maintainer.",
+      "parentUuid": "5c0323c0_c03c1579",
       "range": {
         "startLine": 466,
         "startChar": 0,
