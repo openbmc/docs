@@ -187,6 +187,30 @@
       },
       "revId": "d288a7b4b79d2dc3b7811a39d885dd1f984d0da6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "679f29f9_77a029ea",
+        "filename": "designs/redfish-graphql-server.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-10-05T08:45:04Z",
+      "side": 1,
+      "message": "\u003e downstream projects that need to track the latest changes from only one of these components may still be forced to rebase onto updates from both. \n\nyou always need to track a commit in openbmc/openbmc (or whichever fork you are based on). Bumping SRCREV of some openbmc components but not others is not a (in general) a supported workflow as the different services need to stay in sync regarding their runtime interfaces.\n\n\u003e This could become a significant burden, especially if one component diverges substantially from upstream over time.\n\nif you have patches you can send them upstream. For security reasons you should probably at least have your bmcweb not be outdated. And for your own component you would hopefully maintain it so i do not see the issue with getting changes merged.\n\nAs a result you would only really need to keep downstream patches for bmcweb (for things outside your subfolder) if the maintainers are slow. If they are too slow it\u0027s a social issue and can raise it with ToF, and should not have adverse effect on software architecture.",
+      "parentUuid": "2fe1699e_5f230e7c",
+      "range": {
+        "startLine": 295,
+        "startChar": 2,
+        "endLine": 297,
+        "endChar": 18
+      },
+      "revId": "d288a7b4b79d2dc3b7811a39d885dd1f984d0da6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
