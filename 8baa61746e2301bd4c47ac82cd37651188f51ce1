@@ -16,6 +16,23 @@
       "message": "i believe this is a well defined, performant, generic and future proof solution for sub device state management.",
       "revId": "8baa61746e2301bd4c47ac82cd37651188f51ce1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7693bb76_54322f93",
+        "filename": "designs/sub-device-state-manager.md",
+        "patchSetId": 54
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2026-10-05T18:03:03Z",
+      "side": 1,
+      "message": "A few general comments:\n\n- An 800+ line design doc feels a bit heavy for this feature. It would be a lot more consumable/reviewable in the 400 line area and I feel like the major function points could be made within that limit. \n\n\n- The original goal of phosphor-state-manager was to be a light wrapper around systemd, using systemd targets and services to track state. This design obviously is not that. But over time we have added more and more features to PSM which also do not follow this design point. So, just a general comment on the direction of this repo, and I may at some point need to update that point in the README. Back in the day we would create separate repos for features like this, but the pendulum has swung and we\u0027ve gone in this direction where we group common features into single repos.\n\n- I\u0027m fine with being the initial merger of this function within PSM but I\u0027m also fine with setting someone else as a co-maintainer for this feature at the end so we should be sure it\u0027s all in a sub-directory of PSM to make using the OWNERS file easy to set that up.",
+      "revId": "8baa61746e2301bd4c47ac82cd37651188f51ce1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
