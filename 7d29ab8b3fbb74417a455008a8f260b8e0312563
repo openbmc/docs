@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f5bbd26_f1193404",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "Cleaned up the wording, but yes. First stage here means when the device is not reachable through regular update transport (PLDM for the GPUs in this scenario)",
+      "parentUuid": "cf49503d_236986f7",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2ad011c_9cc2d962",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-10-02T01:17:05Z",
       "side": 1,
       "message": "I suppose after this the device is fully functional, so using the word later stages here creates confusion for understanding purpose.",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3db6e36e_905bbda8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "The device is not fully operational, OCP recovery only brings the minimal functionality so the user can then perform a regular update (via PLDM) to bring back full functionality",
+      "parentUuid": "f2ad011c_9cc2d962",
       "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04bdb9d1_b9c374dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "Since this is triggered through redfish, bmcweb would block the second request. Concurrency is still safe since recovery would only be attempted on devices reporting unhealthy firmware (where PLDM update doesn\u0027t go through in the first place)",
+      "parentUuid": "aa0acb53_120a2755",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99228cf1_07130661",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-10-02T01:17:05Z",
       "side": 1,
       "message": "Is this Image C as per specification since ur mentioning its minimal image.",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02f53df1_50a23d4f",
+        "filename": "designs/code-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "Yes, reworded to make it clearer",
+      "parentUuid": "99228cf1_07130661",
       "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +158,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5a494a4_e7dc669f",
+        "filename": "designs/code-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "Yes, the firmware doesn\u0027t have to be operational for the recovery flow",
+      "parentUuid": "afc40bef_4b26f412",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e2dec38_25d8b4b9",
@@ -99,6 +189,24 @@
       "writtenOn": "2026-10-02T01:17:05Z",
       "side": 1,
       "message": "Isn\u0027t the recovery image suppose to be fully functional image ? Why would it need a second update again ?",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "421dc171_45401253",
+        "filename": "designs/code-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "No, the recovery path only loads a transient and minimal image which would be lost on a device reset. The second update is required to flash the full opeartional firmware on the device which is persistent across resets",
+      "parentUuid": "3e2dec38_25d8b4b9",
       "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +228,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "301f7e98_bda1184f",
+        "filename": "designs/code-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "The update is only triggered through a targeted request on the Recovery object\u0027s FirmwareInventory Object",
+      "parentUuid": "22f4490f_5ed39303",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ec6a7a5_b9298db9",
@@ -133,6 +259,24 @@
       "writtenOn": "2026-10-02T01:17:05Z",
       "side": 1,
       "message": "How would it co-exist ? Which object Path will it use ?",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb232460_d458f39f",
+        "filename": "designs/code-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "The recovery daemon will have its own FirmwareInventory object which handles recovery for all compatible devices. This would coexist with the PLDM\u0027s FirmwareInventory obejct",
+      "parentUuid": "7ec6a7a5_b9298db9",
       "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -154,6 +298,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a2febd4_b05a3f75",
+        "filename": "designs/code-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "By the FirmwareInventory Id, which would be something like `GPU_OCP_Recovery_xxx`",
+      "parentUuid": "79b0d2d9_b679c13d",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d92d7051_ece4153c",
@@ -167,6 +329,24 @@
       "writtenOn": "2026-10-02T01:17:05Z",
       "side": 1,
       "message": "Can you please raise a PR for EM schema change and include it here for better understanding.",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee959873_00851e35",
+        "filename": "designs/code-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "Ack, the PR was already up at https://gerrit.openbmc.org/c/openbmc/entity-manager/+/93330. Added a section here for clarity",
+      "parentUuid": "d92d7051_ece4153c",
       "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -188,6 +368,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82da481c_06f0ca4f",
+        "filename": "designs/code-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "This point is unrelated to the MultipartUpdate implementation, its about how the package can have multiple components for a single recovery operation.",
+      "parentUuid": "18cc4ac0_97c6b573",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1bebbf8_94ccd4a7",
@@ -201,6 +399,24 @@
       "writtenOn": "2026-10-02T01:17:05Z",
       "side": 1,
       "message": "If the device cannot identify itself how would the recovery service know they exist ?",
+      "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6557388a_5d9126c9",
+        "filename": "designs/code-update.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1002297
+      },
+      "writtenOn": "2026-10-06T06:14:55Z",
+      "side": 1,
+      "message": "From the EM configuration, one record per bus and address. The agent sweeps the configured instances and probes each: healthy ones are skipped, ones in recovery mode are recovered, ones reporting a boot or firmware error are reset into recovery mode first.",
+      "parentUuid": "f1bebbf8_94ccd4a7",
       "revId": "7d29ab8b3fbb74417a455008a8f260b8e0312563",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
