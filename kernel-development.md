@@ -33,7 +33,8 @@ If you require a patch added to the OpenBMC tree, follow these steps:
    original commit hash will be added to the commit message
 3. Use
    `git format-patch --subject-prefix="PATCH linux ${BRANCH}" --to=openbmc@lists.ozlabs.org --to=andrew@codeconstruct.com.au --to=tan.siewert@9elements.com --cc=joel@jms.id.au`
-   to create a formatted patch. For u-boot, use `PATCH u-boot` as subject prefix
+   to create a formatted patch. For u-boot, use `PATCH u-boot ${BRANCH}` as
+   subject prefix
 
 ## Developing a new driver
 
