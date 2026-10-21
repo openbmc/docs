@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34813b06_44648184",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-21T02:08:41Z",
+      "side": 1,
+      "message": "Now that the platform schema has landed in entity-manager [1], could bridged devices be described in the platform configuration instead? Since a platform configuration describes the system as a whole, each device behind a bridge could be its own record naming its bridge, the bridge port and its physical address, for example:\n\n    {\n        \"Type\": \"MCTPUSBDevice\", \"Name\": \"Bridge_0\", \"Board\": \"...\",\n        \"RootHubPosition\": 1, \"Port\": [1, 2],\n        \"Configuration\": 1, \"InterfaceNumber\": 0\n    },\n    {\n        \"Type\": \"MCTPBridgedEndpoint\", \"Name\": \"Device_0\", \"Board\": \"...\",\n        \"Bridge\": \"Bridge_0\", \"BridgePort\": 2, \"Address\": \"0x32\"\n    },\n    {\n        \"Type\": \"MCTPBridgedEndpoint\", \"Name\": \"Device_1\", \"Board\": \"...\",\n        \"Bridge\": \"Bridge_0\", \"BridgePort\": 3, \"Address\": \"0x32\"\n    }\n\nThe port and address both come from the bridge\u0027s Get Routing Table Entries response, so an endpoint can be paired with its record without depending on EID assignment order. The two devices here share an address on different ports, which is why the port is part of the key. This suits platforms whose composition is fixed, while the topology model here remains the general answer, and the bridge port is something it would need to express too. Would you consider this as an alternative, or as an interim step until the topology model is in place?\n\n[1] https://github.com/openbmc/entity-manager/blob/master/schemas/platform/mctp.json",
+      "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ec28c98_7d0036de",
         "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
         "patchSetId": 5
