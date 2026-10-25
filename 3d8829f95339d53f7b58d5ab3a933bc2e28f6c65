@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "894b5341_a3cba1aa",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-10-25T23:54:12Z",
+      "side": 1,
+      "message": "That may be the case but I think it\u0027s a tangent to the point. My immediate feeling is this proposal is already dense enough without addressing concerns such as `$index`.",
+      "parentUuid": "4ec28c98_7d0036de",
+      "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1796a39e_106e2943",
         "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
         "patchSetId": 5
@@ -48,6 +66,30 @@
       "writtenOn": "2026-09-21T09:37:16Z",
       "side": 1,
       "message": "Is the intent that mctpd issues `Get Routing Table Entries` during endpoint setup and interprets the port number and binding itself, or that it publishes the entries for something else to read? It does neither today.",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 51
+      },
+      "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "169c1e7a_f14f9330",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-10-25T23:54:12Z",
+      "side": 1,
+      "message": "The latter. There are ideas being floated to add support for exposing on D-Bus the `GRTE`-based path for an endpoint.",
+      "parentUuid": "1796a39e_106e2943",
       "range": {
         "startLine": 172,
         "startChar": 0,
@@ -77,6 +119,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "35918baa_fd49586a",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-10-25T23:54:12Z",
+      "side": 1,
+      "message": "Yes, I plan to add examples that are more complex. This is one of the simpler cases, just to exercise the ideas.",
+      "parentUuid": "44e2c86f_61be70a0",
+      "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "028be341_ec604abb",
         "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
         "patchSetId": 5
@@ -88,6 +148,24 @@
       "writtenOn": "2026-09-29T06:18:35Z",
       "side": 1,
       "message": "Removing $bus/$address interpolation by deriving addresses over the connector path is a clear improvement. A related need this doesn\u0027t seem to cover is naming instances. Where several identical boards are fitted, the published object name and location decorator must differ per instance, and in our case those integers are contractual — Redfish paths and a manufacturing diagnostic depend on specific values. After binding, Entity Manager knows which connector a board is plugged into, which looks like exactly the stable per-instance identity that is otherwise missing. Is exposing that to template substitution in scope here, or is instance naming expected to be solved separately?",
+      "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "066a9660_22506e2b",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-10-25T23:54:12Z",
+      "side": 1,
+      "message": "I think that instance naming should be dealt with separately, but perhaps it can use some of the information derived from this proposal?",
+      "parentUuid": "028be341_ec604abb",
       "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
