@@ -56,6 +56,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5261acd_fad6ebe7",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2026-10-27T05:05:22Z",
+      "side": 1,
+      "message": "Based on the title, I expected this design to focus on endpoints behind an MCTP bridge. However, after an initial review, my understanding is that it addresses configuring endpoints on hot-pluggable boards—or boards connected through physical connectors—rather than endpoints bridged over MCTP. Is that correct?",
+      "range": {
+        "startLine": 1,
+        "startChar": 29,
+        "endLine": 1,
+        "endChar": 51
+      },
+      "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ec28c98_7d0036de",
         "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
         "patchSetId": 5
@@ -85,6 +108,29 @@
       "side": 1,
       "message": "That may be the case but I think it\u0027s a tangent to the point. My immediate feeling is this proposal is already dense enough without addressing concerns such as `$index`.",
       "parentUuid": "4ec28c98_7d0036de",
+      "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0219d098_190ce467",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2026-10-27T05:05:22Z",
+      "side": 1,
+      "message": "We have similar use cases involving the discovery of pluggable devices, as in the example below. However, in our case, the BMC cannot access the FRU EEPROM directly over I²C; instead, the device provides FRU information through PLDM Type 4. Have you given any thoughts on how this scenario could be handled?",
+      "range": {
+        "startLine": 150,
+        "startChar": 10,
+        "endLine": 152,
+        "endChar": 30
+      },
       "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -209,6 +255,75 @@
       "side": 1,
       "message": "Thanks, looking forward to the bridged examples.",
       "parentUuid": "35918baa_fd49586a",
+      "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c27b044_34fa6fa5",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2026-10-27T05:05:22Z",
+      "side": 1,
+      "message": "A diagram might help to understand this easly.",
+      "range": {
+        "startLine": 218,
+        "startChar": 1,
+        "endLine": 229,
+        "endChar": 0
+      },
+      "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5add4ae_cfa9735a",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2026-10-27T05:05:22Z",
+      "side": 1,
+      "message": "I suppose this approach is compatibility with existing $bus/$address configurations where we don\u0027t know the I2C bus numbers ahead?",
+      "range": {
+        "startLine": 324,
+        "startChar": 0,
+        "endLine": 324,
+        "endChar": 30
+      },
+      "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b05ae7a_0790b576",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1000479
+      },
+      "writtenOn": "2026-10-27T05:05:22Z",
+      "side": 1,
+      "message": "This needs to match with ` \"ContactGroup\": \"I2C1\"` I2C bus number or the `\"BusSegment\": \"I2C3\"`?",
+      "range": {
+        "startLine": 338,
+        "startChar": 21,
+        "endLine": 338,
+        "endChar": 25
+      },
       "revId": "3d8829f95339d53f7b58d5ab3a933bc2e28f6c65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
