@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ace80ea_e02950f1",
+        "filename": "designs/mctp-device-discovery.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-28T10:18:21Z",
+      "side": 1,
+      "message": "\u003e Can bridges can be extended over other interfaces?\n\nYes, the flow does not depend on the transport, but the platform schema only defines [`MCTPUSBDevice`](https://github.com/openbmc/entity-manager/blob/94eff0ac21b91489baf3c6f38e0a2f40727f4026/schemas/platform/mctp.json#L19) today.\n\n\u003e Also, can this be extended to bridge two separate MCTP network (where different MCTP Network ID are used)?\n\nYes, the object path of an endpoint in mctpd carries both the network ID and the EID, so a service gets both from the association.\n\nI\u0027ve updated the doc to make both points clear.",
+      "parentUuid": "d11dd545_8bcfdde2",
+      "range": {
+        "startLine": 62,
+        "startChar": 3,
+        "endLine": 63,
+        "endChar": 56
+      },
+      "revId": "32f5689c1cd15b8022b943f6508f375b233fa291",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6bb5126_961dfbbe",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-10-28T09:46:08Z",
       "side": 1,
       "message": "Can we consider the use case where Direct Endpoints use USB or other interfaces supported by MCTP?",
+      "range": {
+        "startLine": 66,
+        "startChar": 3,
+        "endLine": 67,
+        "endChar": 69
+      },
+      "revId": "32f5689c1cd15b8022b943f6508f375b233fa291",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae0c8926_5432e71d",
+        "filename": "designs/mctp-device-discovery.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-10-28T10:18:21Z",
+      "side": 1,
+      "message": "Yes, it is generic. Another transport only needs its record type added to the [EM schema](https://github.com/openbmc/entity-manager/blob/master/schemas/mctp.json) and to phosphor-dbus-interfaces.",
+      "parentUuid": "f6bb5126_961dfbbe",
       "range": {
         "startLine": 66,
         "startChar": 3,
