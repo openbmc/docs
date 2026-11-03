@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf72c4bf_00966f95",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-03T23:48:49Z",
+      "side": 1,
+      "message": "Yes, the the contact group name and protocol relates bus segments over a connector. For any two boards that connect via a given port it\u0027s required that the set of contact groups from each board\u0027s port definition are equivalent with respect to each element\u0027s `Name` and `Protocol` properties.\n\n\nThe contact group coupling is what prevents considering a relationship between bus segments I2C12 and USB1 for instance (the \"USB Port B\" segment on \"BMC Board\" relates to the \"USB1\" segment on \"Peripheral Board\" because the \"Segment\" property of the \"USB1\" contact group on \"BMC Port\" of each board relates to each segment respectively).\n\nDo you feel I need to integrate this explanation into the text somewhere? If so, where do you think is best?",
+      "parentUuid": "20993845_117595b2",
+      "range": {
+        "startLine": 443,
+        "startChar": 33,
+        "endLine": 445,
+        "endChar": 44
+      },
+      "revId": "6f2056d979eaecacc535cdf0b7214fa9847cd32f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b1119951_d9e62ac5",
         "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
         "patchSetId": 11
@@ -60,6 +84,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4695ea9e_8dffb480",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-03T23:48:49Z",
+      "side": 1,
+      "message": "Sorry, in reworking the proposal I decided against using `Group` as the property name. I replaced it with `Name` as this is idiomatic for EM. However, it looks like I was inconsistent in the conversion. I think the use of `Group` above is an error. Let me fix it.",
+      "parentUuid": "b1119951_d9e62ac5",
+      "revId": "6f2056d979eaecacc535cdf0b7214fa9847cd32f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "269faab9_2f46b8e4",
         "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
         "patchSetId": 11
@@ -71,6 +113,24 @@
       "writtenOn": "2026-11-03T09:36:51Z",
       "side": 1,
       "message": "For association to work, is value of this property has to be same as value of `Name` property in config of type `Port` in `BMC Board` config above?",
+      "revId": "6f2056d979eaecacc535cdf0b7214fa9847cd32f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12b2d82d_62f6ad35",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-03T23:48:49Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "269faab9_2f46b8e4",
       "revId": "6f2056d979eaecacc535cdf0b7214fa9847cd32f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -94,6 +154,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b907dc8d_35d09824",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-03T23:48:49Z",
+      "side": 1,
+      "message": "Yes, `configured_by`. I will name it explicitly. Thanks.",
+      "parentUuid": "33203926_ada40d27",
+      "revId": "6f2056d979eaecacc535cdf0b7214fa9847cd32f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ab399339_2fe16cd9",
         "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
         "patchSetId": 11
@@ -105,6 +183,24 @@
       "writtenOn": "2026-11-03T16:56:12Z",
       "side": 1,
       "message": "EM can probe the other board a bit later than mctpd finds the endpoint, so the resolution might abort just because that config isn\u0027t there yet. Would mctpreactor try again when the config shows up?",
+      "revId": "6f2056d979eaecacc535cdf0b7214fa9847cd32f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0f60aa_6b8ba865",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-03T23:48:49Z",
+      "side": 1,
+      "message": "Thanks, I will rework this description to better address arbitrary orderings.\n\nI\u0027m aware that this is a problem. You may find this write-up interesting:\n\nhttps://gist.github.com/amboar/5485218c708c554599d235988d71e85b",
+      "parentUuid": "ab399339_2fe16cd9",
       "revId": "6f2056d979eaecacc535cdf0b7214fa9847cd32f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
