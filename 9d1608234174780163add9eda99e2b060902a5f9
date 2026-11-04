@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c69ed565_933ee225",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-04T08:08:16Z",
+      "side": 1,
+      "message": "\u003e If so, should every I2C bus a config refers to be pinned with a DT alias\n\nOnly bus config referring to root I2C controllers\n\n\u003e including the channels behind a mux?\n\nSo not these. These are can be understood by the topology described using the `Segment` properties.\n\n\u003e USB bus numbers cannot be pinned that way since they follow HCD registration order, so a controller path such as 1e6a3000.usb might be more stable there.\n\nThe proposal is just the existing root hub ID strategy already employed in EM for USB.",
+      "parentUuid": "a1c5a25c_00e212c5",
+      "revId": "9d1608234174780163add9eda99e2b060902a5f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "073e423c_e24307d6",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-04T07:18:55Z",
       "side": 1,
       "message": "The BMC has no GRTE to report a port for its own links, so how does mctpd derive the port in the first tuple to match MCTPPort here? If it follows link creation order it may not be stable, as https://github.com/openbmc/dbus-sensors/issues/42 shows mctpusbN names being reused for a different device after USB re-enumeration.",
+      "revId": "9d1608234174780163add9eda99e2b060902a5f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45119cd0_49f32808",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-04T08:08:16Z",
+      "side": 1,
+      "message": "\u003e The BMC has no GRTE to report a port for its own links\n\nEither we add support to mctpd, or we inspect netlink to derive it directly. For the purpose of the document I\u0027m assuming support exists in mctpd.",
+      "parentUuid": "073e423c_e24307d6",
       "revId": "9d1608234174780163add9eda99e2b060902a5f9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
