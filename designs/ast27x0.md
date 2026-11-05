@@ -56,6 +56,6 @@ process.
 #### UEFI Binary Description
 
 The AST2700 UEFI binary is delivered as a pre-built artifact because it is must
-undergo a vendor-controlled EV (Exended Validation) signing process to satisfy
+undergo a vendor-controlled EV (Extended Validation) signing process to satisfy
 host secure boot requirements. The binary is built and signed in a separate,
 controlled environment prior to delivery.

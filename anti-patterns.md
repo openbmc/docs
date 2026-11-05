@@ -122,7 +122,7 @@ ExecStart=/usr/bin/env some-application
 Outside of OpenBMC, most applications that provide systemd unit files don't
 launch applications in this way. So if nothing else, this just looks strange and
 violates the
-[princple of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment).
+[principle of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment).
 
 ### Background
 
@@ -141,13 +141,13 @@ on a read-only filesystem becomes:
 /usr/local/bin/phosphor-hwmon`
 ```
 
-on a writeable /usr/local filesystem.
+on a writable /usr/local filesystem.
 
 ### Resolution
 
 The /usr/bin/env method only enables live patching of applications. A method
 that supports live patching of any file in the read-only filesystem has emerged.
-Assuming a writeable filesystem exists _somewhere_ on the bmc, something like:
+Assuming a writable filesystem exists _somewhere_ on the bmc, something like:
 
 ```bash
 mkdir -p /var/persist/usr

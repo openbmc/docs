@@ -296,7 +296,7 @@ post update systemd targets, as defined by the JSON schema definition below:
         },
         "PreUpdateTarget": {
           "type": "string",
-          "decsription": "The systemd target service that should be run before starting an update."
+          "description": "The systemd target service that should be run before starting an update."
         },
         "PostUpdateTarget": {
           "type": "string",

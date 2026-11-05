@@ -163,7 +163,7 @@ which collects the dumps from BMC.
       come from a parallel class with this specific Enum name. All of the Enum
       strings should be in the format
       'domain.Dump.Create.CreateParameters.ParamName'. e.g.: { "key1": "value1",
-      "key2": "value2" } ends up in AdditionaData like: ["KEY1=value1",
+      "key2": "value2" } ends up in AdditionalData like: ["KEY1=value1",
       "KEY2=value2"]
 
   - **Notify**: Notify the dump manager that a new dump is created.

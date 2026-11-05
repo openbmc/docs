@@ -189,7 +189,7 @@ using it.This may not be a right approach.
 
 ## Approach2:Create multiple ipmid to handle multihost.One ipmid process per host
 
-This is a multi service appoach,one instance of ipmid service shall be spawned
+This is a multi service approach,one instance of ipmid service shall be spawned
 to respond each host.The changes looks simple and no major design change from
 the existing design. But many common handlers will be running as duplicate in
 multiple instances.
