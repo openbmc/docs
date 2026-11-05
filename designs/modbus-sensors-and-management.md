@@ -84,7 +84,7 @@ MM ->> MM: Setup Polling loop
 loop Each Poll Interval
     loop Each Modbus sensor
         MM ->> MM: Read Modbus sensor register
-        MM ->> MM: Verify thresholds and<br> raise alerts (if necesary)
+        MM ->> MM: Verify thresholds and<br> raise alerts (if necessary)
         MM ->> MM: Update Interface <br> xyz.openbmc_project.Sensor.Value
     end
 end

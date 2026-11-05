@@ -205,7 +205,7 @@ curl -k -H "X-Auth-Token: $token" https://$bmc/xyz/openbmc_project/...
   <https://github.com/openbmc/phosphor-time-manager>
 
   Note: Starting from OpenBMC 2.6 (with systemd v239), systemd's timedated
-  introduces a new beahvior that it checks the NTP services' status during
+  introduces a new behavior that it checks the NTP services' status during
   setting time, instead of checking the NTP setting:
 
   -When NTP server is set to disabled, and the NTP service is stopping but not

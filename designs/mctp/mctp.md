@@ -79,7 +79,7 @@ Any channel between host and BMC should:
 
 ## Proposed Designs
 
-The MCTP infrastrcuture in OpenBMC is implemented in two approaches:
+The MCTP infrastructure in OpenBMC is implemented in two approaches:
 
 - A userspace-based approach, using a core library, plus a demultiplexing
   daemon. This is described in [MCTP Userspace](mctp-userspace.md).

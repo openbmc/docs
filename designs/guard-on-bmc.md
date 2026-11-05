@@ -201,7 +201,7 @@ guard a unit which is present in the inventory.
       "Severity": "Critical",
       "SensorType" : "Processor",
       "AdditionalDataURI": “/redfish/v1/Systems/system/LogServices/EventLog/attachment/111"
-      “AddionalDataSizeBytes": "1024"
+      “AdditionalDataSizeBytes": "1024"
     }
   ],
   "Members@odata.count": 1,

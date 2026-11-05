@@ -216,9 +216,9 @@ attention to attributes like:
 - Section _X509v3 extensions_ in `client-cert.pem` it should contain proper
   values,
 - `Public-Key` length, it cannot be less than 2048 bits.
-- `Subject` CN in `client-cert.pem`, it should match existing OpemBMC user name.
+- `Subject` CN in `client-cert.pem`, it should match existing OpenBMC user name.
   In this example it is **root**.
-- `Subject` CN in `server-cert.pem`, it should match OpemBMC host name. In this
+- `Subject` CN in `server-cert.pem`, it should match OpenBMC host name. In this
   example it is **bmc.example.com**. (see rfc 3280 4.2.1.11 for name
   constraints)
 

@@ -82,7 +82,7 @@ Preconditions for the BMC include:
 
 - The BMC has at least one account with a default password built in.
 - The BMC can update the password; for example, the `/etc/passwd` file is
-  writeable.
+  writable.
 
 ## Proposed Design
 

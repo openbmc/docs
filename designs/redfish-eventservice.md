@@ -1009,7 +1009,7 @@ User should cover below functionalists.
   logs or not. Also modify, delete subscription and see Redfish events are
   logged or not.
 - Validate the authenticity of events sent to client on subscription with proper
-  filtered data(Ex: If RegisteryPrefixes is set to "OpenBMC.0.1", it should not
+  filtered data(Ex: If RegistryPrefixes is set to "OpenBMC.0.1", it should not
   send events with prefixes "OpenBMC.0.2") should be validated.
 - For security, validate GET on URI specified in "ServerSentEventUri" with
   un-authorized users and see it responds with properly http status code and
@@ -1018,7 +1018,7 @@ User should cover below functionalists.
 
 ### Push style events
 
-1. EventListner: Client should configure the web service for listening the
+1. EventListener: Client should configure the web service for listening the
    events (Example: `http://192.168.1.2/Events`).
 
 2. Subscription: Client can subscribe for events on BMC using below
@@ -1072,7 +1072,7 @@ User should cover below functionalists.
 
 ### Server-Sent events subscription
 
-1. EventListner and Subscription: Client can open latest browser (chrome) and
+1. EventListener and Subscription: Client can open latest browser (chrome) and
    fire GET URI on "ServerSentEventUri" along with filters.
 
    ```text
@@ -1128,7 +1128,7 @@ User should cover below functionalists.
    METHOD: DELETE
    ```
 
-### EventListner
+### EventListener
 
 Push style Events:
 
@@ -1136,7 +1136,7 @@ To listen the push style events, client can have web server running on any
 external system and subscribe to BMC with the subscription details along with
 destination URI.
 
-There are multiple EventListners exist and here is simple node js server, which
+There are multiple EventListeners exist and here is simple node js server, which
 can be run using "node server.js".
 
 ```js

@@ -173,7 +173,7 @@ This document proposes a new design for physical LED implementation.
 
 - Once Dbus API method call invoked, phosphor-led-sysfs daemon will retrieve the
   LED name as parameter and map the name with /sys/class/leds path in the
-  hardware. Next, the dbus pbject path and interface will be created under
+  hardware. Next, the dbus object path and interface will be created under
   single systemd service (xyz.openbmc_project.LED.Controller).
 
 - The schema will be implemented in the phosphor-led-sysfs daemon. A group of

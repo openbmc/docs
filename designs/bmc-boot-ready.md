@@ -42,7 +42,7 @@ There are three options that have been discussed to solve this issue:
 
 Option 1 is challenging because D-Bus interfaces provided by OpenBMC state
 applications have a mix of read-only properties (like current state) and
-writeable properties that are used to request state changes. Not showing any
+writable properties that are used to request state changes. Not showing any
 until everything is available could have unknown consequences. This also has
 similar issues to option 2 in that applications and clients must have proper
 code to handle missing interfaces.

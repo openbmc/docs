@@ -67,8 +67,8 @@ manufacturer/provider specific extension moniker.
 Below are property is defined to represent the Platform Firmware Resilience
 provisioning status.
 
-- ProvisiongStatus: The value of this property indicates the provisioning status
-  of platform firmware. It is of Enum Type with below values.
+- ProvisioningStatus: The value of this property indicates the provisioning
+  status of platform firmware. It is of Enum Type with below values.
   1. NotProvisioned: Indicates platform firmware is not provisioned. This is an
      unsecured state.
 
