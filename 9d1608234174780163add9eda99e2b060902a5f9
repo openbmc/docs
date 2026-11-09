@@ -123,6 +123,24 @@
       "parentUuid": "5e6b2053_015aa68d",
       "revId": "9d1608234174780163add9eda99e2b060902a5f9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "959b3138_276dab2a",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-09T07:06:17Z",
+      "side": 1,
+      "message": "Since whoever assigns the port has to identify the link by its parent device anyway, could the first hop be matched by that path instead? For example:\n\n```\n/sys/class/net/mctpusb0/device -\u003e .../usb1/1-1/1-1.2/1-1.2:1.1\n```\n\nBMC Board, root hub 1 and root port 1:\n\n```json\n{\n  \"Type\": \"Bus\",\n  \"Protocol\": \"USB 2.0\",\n  \"Segment\": \"USB Port B\",\n  \"Bus\": \"1\",\n  \"Port\": [1]\n}\n```\n\nPeripheral Board, hub port 2 below its connector:\n\n```json\n{\n  \"Type\": \"MCTPUSBDevice\",\n  \"Name\": \"MCTP Bridge\",\n  \"Segment\": \"USB1\",\n  \"Port\": [2],\n  \"Configuration\": 1,\n  \"Interface\": 1,\n  \"Interfaces\": [\n    {\n      \"Type\": \"Bus\",\n      \"Protocol\": \"I2C\",\n      \"Segment\": \"I2C2\",\n      \"Address\": \"0x10\",\n      \"MCTPPort\": 1\n    }\n  ]\n}\n```\n\nEach board describes its own part of the path, joined at the connector by the contacts, which gives `1-1.2:1.1`. From there the bridge\u0027s GRTE ports match `MCTPPort` as the doc describes. A directly connected I2C link works the same way, with `mctpi2c12` leading to bus 12.",
+      "parentUuid": "ae75d3eb_9291c2cd",
+      "revId": "9d1608234174780163add9eda99e2b060902a5f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
