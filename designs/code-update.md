@@ -167,10 +167,10 @@ and [Requirement# 1 & 2](#requirements).
 
 #### Association
 
-`running` : A `running` association from xyz.openbmc_project.Inventory.Item to
-xyz.openbmc_project.Software.Version represents the current functional or
-running software version for the associated inventory item. The `ran_on` would
-be the corresponding reverse association.
+`running` : A `running` association from xyz.openbmc_project.Software.Version to
+xyz.openbmc_project.Inventory.Item represents the current functional or running
+software version for the associated inventory item. The `ran_on` would be the
+corresponding reverse association.
 
 `activating` : An `activating` association from
 xyz.openbmc_project.Inventory.Item to xyz.openbmc_project.Software.Version
