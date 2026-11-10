@@ -16,6 +16,24 @@
       "message": "So the linked design makes the following proposal:\n\n\u003e entries that share a `Name` are published on one object.\n\nSo far in this proposal I was partly correlating ports across board configurations by `Name`, but under the linked proposal, this would coalesce the ports into one EM object, which is not the behaviour we want.\n\nThe coalescing behaviour described doesn\u0027t seem unreasonable. I\u0027ll leave it to the EM maintainers to judge. That the proposal may be accepted motivates reworking this proposal away from using the `Name` property for establishing candidate ports for resolving the connection topology.\n\nI think it would be helpful if `Name` could match the port name in the schematic rather than represent the `Name` of the class of port as I had intended so far. Again, this better aligns with EM idioms, and allows for natural indexing and uniquely identifying a specific port in the configuration. Some trouble we have is `PortType` is already defined to represent the association, which I think is unfortunate. However, I think we can split the concept in two given connectors are electro-mechanical:\n\n1. Add `FormFactor` as a required property to represent the mechanical design\n   1. Defined as an open set of enumerated values.\n2. Rename `Contacts` to `Pinout` to represent the electrical design\n   1. Consider introducing `Contacts` as a property on `Pinout`\u0027s `Bus` elements to describe bus signals on specific pins of the port, which may be considered when traversing the connectivity graph.\n\nPlease let me know your thoughts.",
       "revId": "30dddef61f7eb5e5f57ae6e1271d6497a3cb56d8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a486e9_b958e945",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-10T02:47:12Z",
+      "side": 1,
+      "message": "Sounds good to me. Would it look roughly like this?\n\n```json\n{\n  \"Name\": \"J12\",\n  \"Type\": \"Port\",\n  \"FormFactor\": \"Ext Port\",\n  \"Pinout\": [\n    { \"Type\": \"Bus\", \"Name\": \"I2C\", \"Protocol\": \"I2C\", \"Segment\": \"I2C12.1\" },\n    { \"Type\": \"Bus\", \"Name\": \"USB\", \"Protocol\": \"USB 2.0\", \"Segment\": \"B.1\" }\n  ]\n},\n{\n  \"Name\": \"J13\",\n  \"Type\": \"Port\",\n  \"FormFactor\": \"Ext Port\",\n  \"Pinout\": [\n    { \"Type\": \"Bus\", \"Name\": \"I2C\", \"Protocol\": \"I2C\", \"Segment\": \"I2C12.2\" },\n    { \"Type\": \"Bus\", \"Name\": \"USB\", \"Protocol\": \"USB 2.0\", \"Segment\": \"B.2\" }\n  ]\n}\n```",
+      "parentUuid": "631bcc19_b86346a6",
+      "revId": "30dddef61f7eb5e5f57ae6e1271d6497a3cb56d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
