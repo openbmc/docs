@@ -34,6 +34,24 @@
       "parentUuid": "631bcc19_b86346a6",
       "revId": "30dddef61f7eb5e5f57ae6e1271d6497a3cb56d8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f7a4952_a18c2dca",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-10T03:01:42Z",
+      "side": 1,
+      "message": "Yep, that looks to match what I had in mind.\n\nI don\u0027t think we have to move away from correlation by name for `Pinout` entries, but an option I\u0027d like to keep open is the `Contacts` property, e.g:\n\n```\n{\n   \"Name\": \"J12\",\n   \"Type\": \"Port\",\n   \"PortType\": \"connecting\",\n   \"FormFactor\": \"Ext Port\",\n   \"Pinout\": [\n       {\n           \"Type\": \"Bus\",\n           \"Name\": \"I2C\",\n           \"Protocol\": \"I2C\",\n           \"Contacts\": {\n               \"SCL\": 5,\n               \"SDA\": 6,\n           },\n           \"Segment\": \"I2C12.1\"\n       },\n       { ... }\n   ]\n}```\n\nWhere the contact value is a specific pin index.\n\nBut I don\u0027t think it\u0027s necessary that we do that yet, just that we don\u0027t preclude ourselves from doing it later (as an escape hatch).",
+      "parentUuid": "d4a486e9_b958e945",
+      "revId": "30dddef61f7eb5e5f57ae6e1271d6497a3cb56d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
