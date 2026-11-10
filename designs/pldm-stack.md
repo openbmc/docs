@@ -542,11 +542,12 @@ uses a `chassis`/`all_sensors` association and a numeric sensor which exposes
 [xyz.openbmc_project.Metric.Value](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Metric/Value.interface.yaml)
 uses a `measuring`/`measured_by` association.
 
-An effecter is associated to the entity object the same way as a numeric sensor.
+A numeric effecter is associated to the entity object the same way as a numeric
+sensor.
 
-When the entity of a numeric sensor or an effecter has no D-Bus object, the
-terminus inventory object is the endpoint of the association. This covers the
-entity which the terminus itself represents, the entities whose type has no
+When the entity of a numeric sensor or a numeric effecter has no D-Bus object,
+the terminus inventory object is the endpoint of the association. This covers
+the entity which the terminus itself represents, the entities whose type has no
 matching inventory item interface, and the entities which no
 `Entity Association PDR` records.
 
@@ -699,6 +700,17 @@ One `GetStateSensorReadings` response carries the present state of every
 of a `sensorOffset` from the reading at that offset, and should skip an offset
 whose state set has no D-Bus property.
 
+When a `sensorOffset` of a state sensor reports a state set which a state
+effecter of the same entity controls, as the `State effecter control` section
+describes, `pldmd` should not set the D-Bus property of that state set from the
+readings of that `sensorOffset`, and should log the terminus ID, the sensor ID,
+the `sensorOffset` and the state set ID. The property is set from the
+`GetStateEffecterStates` readings of the state effecter only.
+
+When every `sensorOffset` of a state sensor is skipped this way, `pldmd` should
+not send `SetStateSensorEnables` or `GetStateSensorReadings` for that state
+sensor.
+
 ##### Polling interval of a state sensor
 
 `Table 81 - State Sensor PDR` of
@@ -726,6 +738,120 @@ sensor whose interval has elapsed, so the interval between two readings of a
 numeric sensor grows by at most the number of state sensors times one round
 trip. For example, a terminus with 7 state sensors and a 10 ms round trip adds
 at most 70 ms, which is within the 999 ms default interval of a sensor.
+
+### State effecter control
+
+A state effecter, described by a `State Effecter PDR` (section 28.13 of
+[DSP0248 1.2.1](https://www.dmtf.org/sites/default/files/standards/documents/DSP0248_1.2.1.pdf)),
+sets the state of the entity which the PDR identifies to one of the enumerated
+states of a `state set` defined by
+[DSP0249 1.4.0](https://www.dmtf.org/sites/default/files/standards/documents/DSP0249_1.4.0.pdf).
+It controls one state set per `effecterOffset` (`compositeEffecterCount`).
+
+`pldmd` should not create a D-Bus object for a state effecter. The state set
+controlled at an `effecterOffset` is a state of the entity which the
+`State Effecter PDR` identifies. `pldmd` should expose that state set as a
+writable D-Bus property on the D-Bus object of that entity which the
+`Entity D-Bus objects` section describes. A D-Bus client sets the state of the
+entity by setting that property.
+
+#### Resolving the entity of a state effecter
+
+`pldmd` should resolve the entity of a state effecter by matching the entity
+type, the entity instance number and the container ID of its
+`State Effecter PDR` against the entities for which it created a D-Bus object on
+that terminus. The resolved entity D-Bus object is the object on which `pldmd`
+exposes the state set properties below.
+
+When no D-Bus object is published for the entity of a `State Effecter PDR`,
+`pldmd` should log the unresolved entity identification and should not expose
+any `effecterOffset` of that state effecter. `pldmd` should not send
+`GetStateEffecterStates` or `SetStateEffecterStates` for it.
+
+#### State set D-Bus properties of a state effecter
+
+`pldmd` should expose the state set of an `effecterOffset` as one D-Bus property
+on the D-Bus object of the entity which the `State Effecter PDR` identifies. The
+property is defined in phosphor-dbus-interfaces without the `const` or
+`readonly` flag, so that a D-Bus client can set it. The values of that property
+are aligned with the state set's enumerated states and with the Redfish property
+of the entity's resource.
+
+`pldmd` should not expose an `effecterOffset` whose state set has no such
+property, and that `effecterOffset` does not control its state set for the
+entity. When no `effecterOffset` of a state effecter is exposed, `pldmd` should
+not send `GetStateEffecterStates` or `SetStateEffecterStates` for that state
+effecter.
+
+A state set which is exposed through a property that `bmcweb` already writes on
+an inventory object needs no `bmcweb` change. A state set which needs a new
+property, on an existing interface or on a new one, also needs the `bmcweb`
+change which maps the Redfish property of the entity's resource to that
+property.
+
+#### State sets controlled by a state effecter
+
+`pldmd` should process the `State Effecter PDR`s of a terminus before its
+`State Sensor PDR`s, and should record, for each entity D-Bus object, the state
+sets which an exposed `effecterOffset` of a state effecter of that entity
+controls.
+
+`pldmd` reads a state effecter only after the discovery of the terminus and
+after a write, so a state which the terminus changes by itself is not reflected
+on D-Bus until the next write.
+
+The recorded state sets are rebuilt when `pldmd` retrieves the PDRs of the
+terminus again.
+
+#### Setting a state effecter
+
+When a D-Bus client sets a state set property which a state effecter controls,
+`pldmd` should map the requested value to a state of that state set and check it
+against the possible states which the `State Effecter PDR` lists for that
+`effecterOffset`. `pldmd` should reject the write with an error when the value
+maps to no possible state, or when a setter or a getter of the same state
+effecter is active.
+
+The setter of a state effecter is active from the time `pldmd` accepts a write
+until the response to its `SetStateEffecterStates` arrives or the command times
+out. When `pldmd` accepts a write, it should send `SetStateEffecterStates` with
+`requestSet` and the mapped state at that `effecterOffset` and `noChange` at
+every other `effecterOffset`, and should leave the property unchanged.
+
+The getter of a state effecter is active from the time `pldmd` sends its first
+`GetStateEffecterStates` until one of the following happens:
+
+- `GetStateEffecterStates` reports an `effecterOperationalState` other than
+  `enabled-updatePending` for every `effecterOffset`.
+- `GetStateEffecterStates` fails, by a timeout or by a completion code other
+  than `PLDM_SUCCESS`.
+- The terminus is removed from the terminus table.
+
+`pldmd` should start the getter of every state effecter which has an exposed
+`effecterOffset` after the discovery of the terminus, and should start it again
+after each setter ends, whatever the completion code of its
+`SetStateEffecterStates`. The getter sets the property from the `presentState`
+of each exposed `effecterOffset` it reads, and sends `GetStateEffecterStates`
+again on each polling pass of the terminus while an `effecterOffset` reports
+`enabled-updatePending`.
+
+`pldmd` does not expose the `effecterOperationalState` of a state effecter on
+D-Bus. `Table 54 - GetStateEffecterStates stateField format` of
+[DSP0248 1.2.1](https://www.dmtf.org/sites/default/files/standards/documents/DSP0248_1.2.1.pdf)
+makes `presentState` meaningful only when `effecterOperationalState` is
+`enabled-updatePending` or `enabled-noUpdatePending`. `pldmd` should set the
+property of an `effecterOffset` from its `presentState` only in those two
+operational states, and should keep the property unchanged for any other
+`effecterOperationalState`.
+
+When `GetStateEffecterStates` reports a `presentState` which maps to no value of
+the property, `pldmd` should keep the property unchanged and log the terminus
+ID, the effecter ID, the `effecterOffset` and the state.
+
+A `SetStateEffecterStates` which fails is logged with the terminus ID, the
+effecter ID and the completion code. The property keeps the state read back from
+the terminus, so a client sees a failed write as a property which did not
+change.
 
 ## Alternatives Considered
 
