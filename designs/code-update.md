@@ -9,7 +9,7 @@ Other contributors:
 
 Created: 4th August 2023
 
-Last Updated: Aug 29, 2025
+Last Updated: Nov 12, 2026
 
 ## Problem Description
 
@@ -61,6 +61,9 @@ This section covers the limitations discovered with
     specified.
 13. Able to order component updates to a device as defined in the multi part
     image format.
+14. A firmware component whose name comes from configuration shall keep the same
+    firmware inventory object, and hence the same Redfish FirmwareInventory Id,
+    across daemon restarts, BMC reboots, device re-discovery and updates.
 
 ## Proposed Design
 
@@ -74,7 +77,7 @@ participant CU as <deviceX>CodeUpdater<br> ServiceName: xyz.openbmc_project.Soft
 
 % Bootstrap Action for CodeUpdater
 note over CU: Get device access info from<br> /xyz/openbmc_project/inventory/system/... path
-note over CU: Swid = <DeviceX>_<RandomId>
+note over CU: SwId = <ConfiguredName> if the name comes from configuration,<br> else <DeviceX>_<RandomId>
 CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Update<br> at /xyz/openbmc_project/Software/<SwId>
 CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Version<br> at /xyz/openbmc_project/Software/<SwId>
 CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at /xyz/openbmc_project/Software/<SwId> <br> with Status = Active
@@ -87,8 +90,8 @@ loop For every RedfishTargetURI
   note over BMCW: Get serviceName corresponding to the object path <br>from mapper.
   BMCW ->> CU: StartUpdate(Image, ApplyTime)
 
-  note over CU: Swid = <DeviceX>_<RandomId>
-  note over CU: ObjectPath = /xyz/openbmc_project/Software/<SwId>
+  note over CU: UpdateId = a new Id unique per StartUpdate,<br> for example <DeviceX>_<RandomId>
+  note over CU: ObjectPath = /xyz/openbmc_project/software/<UpdateId>
   CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.Activation<br> at ObjectPath with Status = NotReady
   CU -->> BMCW: {ObjectPath, Success}
   CU ->> CU: << Delegate Update for asynchronous processing >>
@@ -112,7 +115,9 @@ loop For every RedfishTargetURI
       CU ->> CU: Activation.Status = Ready
       CU --) BMCW: Notify Activation.Status change
 
-      CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Version<br> at ObjectPath
+      opt SwId is not a configured name
+          CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Version<br> at ObjectPath
+      end
       CU ->> CU: Create Interface<br>xyz.openbmc_project.Software.ActivationProgress<br> at ObjectPath
       CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.ActivationBlocksTransition<br> at ObjectPath
       CU ->> CU: Activation.Status = Activating
@@ -122,17 +127,28 @@ loop For every RedfishTargetURI
           CU --) BMCW: Notify ActivationProgress.Progress change
       end
       note over CU: Finish Update
-      CU ->> CU: Activation.Status = Active
-      CU --) BMCW: Notify Activation.Status change
-      CU ->> CU: Delete Interface<br> xyz.openbmc_project.Software.ActivationBlocksTransition
-      CU ->> CU: Delete Interface<br> xyz.openbmc_project.Software.ActivationProgress
-      alt ApplyTime == Immediate
-          note over CU: Reset Device
-          CU ->> CU: Update functional association to System Inventory Item
-          CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Update<br> at ObjectPath
-          note over CU: Delete all interfaces on previous ObjectPath
+      alt ApplyTime != Immediate and SwId is a configured name
+          CU ->> CU: Activation.Status = Staged at ObjectPath
+          CU --) BMCW: Notify Activation.Status change
+          note over CU: When the reset runs the image, update<br> Software.Version properties at<br> /xyz/openbmc_project/software/<SwId>, then<br> Activation.Status = Active at ObjectPath
       else
-          note over CU: Create active association to System Inventory Item
+          CU ->> CU: Activation.Status = Active
+          CU --) BMCW: Notify Activation.Status change
+          CU ->> CU: Delete Interface<br> xyz.openbmc_project.Software.ActivationBlocksTransition
+          CU ->> CU: Delete Interface<br> xyz.openbmc_project.Software.ActivationProgress
+          alt ApplyTime == Immediate
+              note over CU: Reset Device
+              alt SwId is a configured name
+                  CU ->> CU: Update Software.Version properties<br> at /xyz/openbmc_project/software/<SwId>
+                  note over CU: Remove ObjectPath once its final<br> Activation.Status has been emitted
+              else
+                  CU ->> CU: Update functional association to System Inventory Item
+                  CU ->> CU: Create Interface<br> xyz.openbmc_project.Software.Update<br> at ObjectPath
+                  note over CU: Delete all interfaces on previous ObjectPath
+              end
+          else
+              note over CU: Create active association to System Inventory Item
+          end
       end
   end
 end
@@ -441,12 +457,102 @@ pldmd implements standard interfaces:
 
 ### Update multiple devices of same type
 
-- For same type devices, extend the Dbus path to specify device instance, for
-  example, /xyz/openbmc_project/Software/\<deviceX>\_\<InstanceNum>\_\<SwId>.
-  All the corresponding interfaces can reside on this path and same path will be
-  returned from xyz.openbmc_project.Software.Update.StartUpdate.
+- For same type devices, each device instance needs its own D-Bus path. When the
+  name of a component comes from configuration, that name identifies the
+  instance and is the whole path name, see
+  [Firmware Inventory Object Identity](#firmware-inventory-object-identity).
+  Otherwise, extend the Dbus path to specify device instance, for example,
+  /xyz/openbmc_project/Software/\<deviceX>\_\<InstanceNum>\_\<SwId>.
+  xyz.openbmc_project.Software.Update.StartUpdate on this path returns a
+  separate path for each update, as in the
+  [Proposed End to End Flow](#proposed-end-to-end-flow).
 
 This fulfills the [Requirement# 9](#requirements).
+
+### Firmware Inventory Object Identity
+
+BMCWeb uses the last element of a firmware inventory object path as the Redfish
+FirmwareInventory Id. A random part in that element changes the Id on every
+daemon restart, BMC reboot and update, so a client cannot store an Id, reuse a
+`Targets` URI after an update, or follow an event to the object it names.
+
+A firmware component has a configured name when its own configuration names it,
+for example an entity-manager record that lists the component. A name that an
+updater builds from a device name, a bus or transport address, discovery order
+or data the device reports is not a configured name. A component with a
+configured name keeps one firmware inventory object for its whole lifetime:
+
+- The object path is `/xyz/openbmc_project/software/<ConfiguredName>`, a direct
+  child of `/xyz/openbmc_project/software` with no random part. The Redfish
+  FirmwareInventory Id is the configured name.
+- The object hosts xyz.openbmc_project.Software.Version,
+  xyz.openbmc_project.Software.Update and
+  xyz.openbmc_project.Software.Activation with Status = Active, and the
+  `running` association to its inventory item.
+- The object keeps its path across daemon restarts, BMC reboots, re-discovery of
+  the device, including discovery at a new bus or transport address, and
+  updates.
+- After an update, whether it succeeds or fails, and after re-discovery, the
+  object is refreshed in place: changed properties are updated and signaled with
+  PropertiesChanged. The object is not removed and published again.
+
+xyz.openbmc_project.Software.Update.StartUpdate on the object returns a separate
+per-update path, for example `<ConfiguredName>_<RandomId>`:
+
+- The per-update path is unique to the call and never equal to a configured name
+  in use. StartUpdate never returns the firmware inventory object path.
+- The per-update object hosts xyz.openbmc_project.Software.Activation,
+  xyz.openbmc_project.Software.ActivationProgress and
+  xyz.openbmc_project.Software.ActivationBlocksTransition as in the
+  [Proposed End to End Flow](#proposed-end-to-end-flow). It does not host
+  xyz.openbmc_project.Software.Version, so it never appears as a separate
+  FirmwareInventory member.
+- The per-update object stays published at least until its final
+  Activation.Status has been emitted, and may be removed afterwards.
+- When the image is applied at a later reset, the per-update object reports
+  Activation.Status = Staged, and Active once the reset runs the new image. The
+  firmware inventory object is refreshed at that point. An updater that applies
+  images immediately never reports Staged.
+- Update events that refer to the component, for example through their
+  `TARGET_NAME`, name the firmware inventory object path, not the per-update
+  path.
+
+When the device of a configured component is removed but its configuration
+remains, its firmware inventory object stays published with the last known
+version, so the Redfish FirmwareInventory member and its Id remain available.
+While the device is absent the updater removes
+xyz.openbmc_project.Software.Update from the object, which BMCWeb reports as
+`Updateable` false. When the device returns, the updater adds the interface back
+and refreshes the object at the same path. The object is not kept across a
+daemon restart or BMC reboot; it is published again when the device is
+discovered. When the configuration that names the component is removed, the
+object is removed and its name can be used again.
+
+Configured names must be unique across the system and must not use a path
+element that another service already publishes under
+`/xyz/openbmc_project/software`, such as `bmc`, `functional`, `updateable`,
+`active`, `apply_time` or `pldm`. A configuration that applies to more than one
+instance, for example one per slot, makes the name unique for each instance, for
+example by including the instance in the name.
+
+A duplicate configured name is a configuration error: the updater keeps the
+object it published first, does not publish the second one, and logs an error
+naming both configuration records. A configuration record is identified by its
+configuration object, for example its entity-manager object path, and the
+component it names. A record that is discovered again, for example at a new
+transport address, takes its own name over and is not a duplicate. An updater
+can only check the names it publishes itself; uniqueness across services is the
+responsibility of the configuration.
+
+Components whose name does not come from configuration keep the
+`<DeviceX>_<RandomId>` form, and their objects behave as before.
+
+All software objects are direct children of `/xyz/openbmc_project/software`.
+Relationships between them, for example between a device-level object and the
+components of that device, are expressed with associations rather than nested
+paths.
+
+This fulfills the [Requirement# 14](#requirements).
 
 ### Parallel Upgrade
 
@@ -536,6 +642,36 @@ example, getActivationStatus and getActivationProgress).
   [lot of Servers](#organizational). In future, harmonizing the flow to single
   one will involve changing the push to pull model in all those places. With the
   current proposal, the only change will be in update invocation flow.
+
+### Random Ids for all firmware inventory objects
+
+Keeping the `<DeviceX>_<RandomId>` form for every object needs no naming rules.
+The Redfish FirmwareInventory Id then changes on every daemon restart, BMC
+reboot and update, so clients cannot store Ids or reuse `Targets` URIs, and
+events name objects that no longer exist.
+
+### Make the per-update object the firmware inventory object
+
+Replacing the firmware inventory object with the object StartUpdate returned
+keeps the inventory pointing at the last image written. The path and the Redfish
+Id still change on every update, and clients watching the previous object lose
+it.
+
+### Return the firmware inventory object path from StartUpdate
+
+Hosting Activation and ActivationProgress on the firmware inventory object
+itself avoids an extra object per update. A task then cannot tell an update's
+own status changes from those of the steady state, and concurrent updates of one
+component would share one object.
+
+### Remove the firmware inventory object when its device is removed
+
+Removing the object with its device, and publishing it again at the same path
+when the device returns, never reports a stale version. The Id then returns a
+404 while the device is absent, for example during a device reset or a recovery,
+and the last known version is lost for that time. The proposed design keeps the
+member with its last known version and reports the absence through `Updateable`
+instead.
 
 ## Impacts
 
