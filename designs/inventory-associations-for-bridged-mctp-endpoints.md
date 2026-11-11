@@ -976,11 +976,46 @@ Bridge configurations on BMCs running Linux may be dynamic by nature of devices
 coming and going. DSP2036 requires that bridge port numbers are static (v1.4.0,
 Clause 13.13, Table 27). The two must be reconciled.
 
-An intuitive binding of port Ids to ports under Linux is by way of `ifindex`.
-However, this fails quickly for multiple transport types under hot-plug events:
+An intuitive allocation of port IDs under Linux is by way of `ifindex`. However,
+this fails quickly for multiple transport types under hot-plug events:
 
 - For I2C, an interface is created for the root of each bus segment
 - For USB, an interface is created for each device, as USB is point-to-point
+
+`ifindex` values [are also recycled][linux-dev_index_reserve].
+
+[linux-dev_index_reserve]:
+  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/net/core/dev.c?h=v7.3#n10895
+
+For the purpose of MCTP, a connected device is a neighbouring device if there is
+no intervening MCTP bridge. Under this view, any components connecting bus
+segments along the path to the neighbouring device are implementation details
+that the transport binding abstracts over.
+
+For the purposes of MCTP under Linux, an MCTP interface represents the
+out-of-scope addressing required to configure a path over segments of its
+transport to expose the bus address of the neighbouring device, or its pipe
+endpoint in the case of point-to-point transports. The port associated with the
+interface used to access the neighouring device can be resolved to the root
+controller for the interface's bus, as the remaining details are implementation
+concerns of the transport binding that exist beyond the boundary of the local
+physical port.
+
+Concretely, under Scenario 2 above, Linux on the AST2600 may expose the
+following MCTP interfaces:
+
+- `mctpi2c0`: For devices on segment `I2C12`
+- `mctpi2c1`: For devices along path (`I2C12`, `I2C12.1`, `I2C`)
+- `mctpi2c2`: For devices along path (`I2C12`, `I2C12.2`, `I2C`)
+- `mctpusb0`: For the device attached via path (`USB Port B`, `B.1`, `USB`)
+- `mctpusb1`: For the device attached via path (`USB Port B`, `B.2`, `USB`)
+
+This design proposes that the port ID for interfaces `mctpi2c0`, `mctpi2c1`, and
+`mctpi2c2` resolve to the port ID associated with `I2C 12` on the `AST2600`
+component, and the port ID for interfaces `mctpusb0` and `mctpusb1` resolve to
+the port ID associated with `USB 1` on the `AST2600` component. These resolved
+port IDs shall be reflected in `mctpd`'s response for a
+`Get Route Table Entries` query issued to the `AST2600`.
 
 #### Entity Manager
 
