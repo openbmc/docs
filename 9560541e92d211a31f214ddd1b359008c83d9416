@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "408c4568_dfd0947d",
+        "filename": "designs/host-console-log-download.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-11T23:07:04Z",
+      "side": 1,
+      "message": "Are you proposing an archive per console log? Or one archive containing all logs for a given obmc-console-server instance? Or one archive for all console logs available on the system?\n\nPlease clarify up-front.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 4
+      },
+      "revId": "9560541e92d211a31f214ddd1b359008c83d9416",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10728b6d_75a4df52",
+        "filename": "designs/host-console-log-download.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-11T23:07:04Z",
+      "side": 1,
+      "message": "Further, there\u0027s no constraint that says any one machine can\u0027t use all of these at once.\n\nNot sure why anyone would chose to do so, but it\u0027s not prevented.",
+      "range": {
+        "startLine": 29,
+        "startChar": 22,
+        "endLine": 31,
+        "endChar": 63
+      },
+      "revId": "9560541e92d211a31f214ddd1b359008c83d9416",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7d47aaa_061dfbcd",
+        "filename": "designs/host-console-log-download.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-11T23:07:04Z",
+      "side": 1,
+      "message": "Which log does it return in the case there are multiple consoles in the one `obmc-console-server` instance (e.g. muxed consoles) and thus multiple logs?\n\n\nWhat about multiple instances of `obmc-console-server`?\n\nI think this should be clarified earlier in the proposal.",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 9
+      },
+      "revId": "9560541e92d211a31f214ddd1b359008c83d9416",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b708f9dc_aaa36058",
+        "filename": "designs/host-console-log-download.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-11T23:07:04Z",
+      "side": 1,
+      "message": "Which one?",
+      "range": {
+        "startLine": 84,
+        "startChar": 64,
+        "endLine": 85,
+        "endChar": 15
+      },
+      "revId": "9560541e92d211a31f214ddd1b359008c83d9416",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5f8d6c9_ba8adbca",
+        "filename": "designs/host-console-log-download.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-11T23:07:04Z",
+      "side": 1,
+      "message": "Which? There may be many. See https://amboar.github.io/notes/2023/03/31/exploiting-obmc-console-service-units-for-multiple-host-consoles.html",
+      "range": {
+        "startLine": 97,
+        "startChar": 29,
+        "endLine": 97,
+        "endChar": 54
+      },
+      "revId": "9560541e92d211a31f214ddd1b359008c83d9416",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7e06c2b_5650355a",
+        "filename": "designs/host-console-log-download.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-11T23:07:04Z",
+      "side": 1,
+      "message": "I think you should state this earlier in the proposal.\n\nHow are you discovering all the consoles?",
+      "range": {
+        "startLine": 103,
+        "startChar": 51,
+        "endLine": 104,
+        "endChar": 22
+      },
+      "revId": "9560541e92d211a31f214ddd1b359008c83d9416",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aca1c6d1_204db2d2",
+        "filename": "designs/host-console-log-download.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-11T23:07:04Z",
+      "side": 1,
+      "message": "This is an implementation detail. I think you should rather discuss the higher-level property that the compressed archive is transient and why that\u0027s important. Then leave it up to the implementation to decide how that\u0027s upheld.",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 76
+      },
+      "revId": "9560541e92d211a31f214ddd1b359008c83d9416",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec429b1a_4b10a26c",
+        "filename": "designs/host-console-log-download.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-11T23:07:04Z",
+      "side": 1,
+      "message": "Each instance of `obmc-console-server` acquires a distinct D-Bus name, so there\u0027s not \"the name\" as such.",
+      "range": {
+        "startLine": 120,
+        "startChar": 29,
+        "endLine": 120,
+        "endChar": 44
+      },
+      "revId": "9560541e92d211a31f214ddd1b359008c83d9416",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79851901_42dac8a3",
+        "filename": "designs/host-console-log-download.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-11T23:07:04Z",
+      "side": 1,
+      "message": "There can be more than one. How do you know you\u0027ve accounted for any of them, let alone all of them?",
+      "range": {
+        "startLine": 120,
+        "startChar": 70,
+        "endLine": 121,
+        "endChar": 13
+      },
+      "revId": "9560541e92d211a31f214ddd1b359008c83d9416",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
