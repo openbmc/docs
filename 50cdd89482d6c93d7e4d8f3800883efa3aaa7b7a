@@ -16,6 +16,24 @@
       "message": "Can you explain how the following scenario be mapped.\n\nScenario 1: MCTP Bus Owner using I2C (BMC) -\u003e connect to I2C Mux -\u003e multiple MCTP Targets using I2C (let\u0027s say as I2C1.1, I2C1.2 and I2C1.3 as an example).\n\nScenario 2: MCTP Bus Owner using I2C (BMC) -\u003e I2C Mux -\u003e 2 I2C Mux (path generated Dynamically) -\u003e mutiple MCTP Targets using I2C per mux like Scenario 1.\n\nScenario 3: An I3C Hub instead of I2C Mux (which supports I3C and I2C)?",
       "revId": "50cdd89482d6c93d7e4d8f3800883efa3aaa7b7a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e1ef747_be88885f",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-16T03:51:12Z",
+      "side": 1,
+      "message": "\u003e Can you explain how the following scenario be mapped.\n\nWhen you say \u0027mapped\u0027, what is it that you looking for me to describe?\n\nWe need a process for taking the bus\u0027 device ID and resolving it to a particular device in the EM configuration, but that\u0027s an algorithmic problem that involves walking sysfs and EM configs. It seems you\u0027re after something more concrete. Is it how that algorithm would be applied in the contexts you\u0027ve listed? Or are you after diagrams and config snippets like are shown for cases through this document?",
+      "parentUuid": "2c21f16d_414b3573",
+      "revId": "50cdd89482d6c93d7e4d8f3800883efa3aaa7b7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
