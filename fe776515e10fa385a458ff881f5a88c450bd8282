@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5902e9a_087aa644",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-18T23:38:02Z",
+      "side": 1,
+      "message": "Let me think about this.",
+      "parentUuid": "ea0f8fb3_21c9428c",
+      "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ececd652_54bbf372",
         "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
         "patchSetId": 29
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-18T16:58:20Z",
       "side": 1,
       "message": "would this benefit from\n\nhttps://mermaid.js.org/syntax/sequenceDiagram.html\n\n? https://github.com/openbmc/docs/blob/master/designs/code-update.md uses these mermaid sequence diagrams to visualize interactions between different processes over time.\n\nSimilar idea for the other scenarios, in case you consider a sequence diagram helpful.",
+      "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f911a01_00bf661b",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-18T23:38:02Z",
+      "side": 1,
+      "message": "I\u0027m not sure that this section needs it, as the traversals are all done inside the EM process.",
+      "parentUuid": "ececd652_54bbf372",
       "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,47 @@
         "endLine": 1526,
         "endChar": 1
       },
+      "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74504552_29b0534f",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 1526,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-18T23:38:02Z",
+      "side": 1,
+      "message": "\u003e (sorry if i missed any comments in the meantime, there were a lot, so maybe this already got answered)\n\nNo one has really picked on the testing aspect so far, so I don\u0027t think you have missed anything.\n\n\u003e Unit testing is probably not a substitute for end to end / integration testing.\n\nThat\u0027s fair. I am happy to add a proposal for integration testing, just we need to work out what that might look like.\n\n\u003e How does a developer test this? Is there some upstream qemu setup which can be used to confirm it is working ?\n\nI expect we can achieve integration testing without unnatural configurations, using the combination of qemu, a chosen EVB build target, EM configuration for the EVB describing USB connectivity, the usbredir functionality of qemu, and the usbredir functionality of mctp-dev.\n\nBeyond these pieces, we add support for DSP0257 to mctp-dev, then take advantage of the PLDM FRU enumeration sequence outlined in Appendix A below. That way we can plug it all together in software to verify the associations are created.",
+      "parentUuid": "cf01a4e2_041c75f2",
+      "range": {
+        "startLine": 1520,
+        "startChar": 28,
+        "endLine": 1526,
+        "endChar": 1
+      },
+      "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07adcae9_7f46460c",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 1531,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-18T23:38:02Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com this one might benefit from a mermaid sequence diagram though.\n\nDo you agree?",
       "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
