@@ -16,6 +16,46 @@
       "message": "With `UP` at index 0 in the Scenario 2 mux example, channel 0 would resolve to `I2C12` instead of `I2C12.1`. Could each downstream entry carry its channel or port number, for example `\"Channel\": 0` on `CH1` and `\"Port\": 2` on `B.2`? \nOr, if the first entry is always the upstream bus, could the text say counting starts from the second entry, with I2C channels from 0 and USB ports from 1?",
       "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ececd652_54bbf372",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-18T16:58:20Z",
+      "side": 1,
+      "message": "would this benefit from\n\nhttps://mermaid.js.org/syntax/sequenceDiagram.html\n\n? https://github.com/openbmc/docs/blob/master/designs/code-update.md uses these mermaid sequence diagrams to visualize interactions between different processes over time.\n\nSimilar idea for the other scenarios, in case you consider a sequence diagram helpful.",
+      "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf01a4e2_041c75f2",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 1526,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2026-11-18T16:58:20Z",
+      "side": 1,
+      "message": "(sorry if i missed any comments in the meantime, there were a lot, so maybe this already got answered)\n\nHow does a developer test this? Is there some upstream qemu setup which can be used to confirm it is working ?\n\nEach of these components interacting here may need changes done which could require testing. Unit testing is probably not a substitute for end to end / integration testing.",
+      "range": {
+        "startLine": 1520,
+        "startChar": 28,
+        "endLine": 1526,
+        "endChar": 1
+      },
+      "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
