@@ -102,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64af938a_f3ffcbab",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-18T02:22:02Z",
+      "side": 1,
+      "message": "\u003e excluding USB as MCTPUSBTarget covers this\n\nMy view is that using platform schema to describe USB MCTP endpoints is the wrong direction. This proposal is an alternative that allows USB devices to be described in a normal board configuration as the USB topology emerges from the connection of components.\n\n\u003e Can you explain how the following scenario be mapped.\n\nI haven\u0027t added examples specific to your circumstances, but I\u0027ve described the algorithm that I propose EM should use to resolve FRU EEPROM endpoints, which also applies to any other I2C device (e.g. MCTP devices). The algorithm handles any in-scope arrangement of muxes and ports. Please review that when I push it, and let me know if you need further clarification.",
+      "parentUuid": "5a174322_4c8397de",
+      "revId": "50cdd89482d6c93d7e4d8f3800883efa3aaa7b7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fde3e40d_56bf6d20",
         "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
         "patchSetId": 25
@@ -113,6 +131,24 @@
       "writtenOn": "2026-11-16T08:46:17Z",
       "side": 1,
       "message": "When will this flow be triggered for an EID ?",
+      "revId": "50cdd89482d6c93d7e4d8f3800883efa3aaa7b7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b64fc83_31b9e9f0",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-18T02:22:02Z",
+      "side": 1,
+      "message": "When mctpd discovers the presence of a non-local endpoint, which it may do by regularly polling EIDs handed out in pools it has allocated to bridges. In the case of a local endpoint it can publish the information directly as by definition there are no intervening bridges.\n\nHowever, under the proposal, we may also learn of MCTP devices that are bridged by EM announcing the existence of such a device. There may be ways we can use that information to be more intelligent about when polling occurs.",
+      "parentUuid": "fde3e40d_56bf6d20",
       "revId": "50cdd89482d6c93d7e4d8f3800883efa3aaa7b7a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -134,6 +170,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b546ee91_8a288840",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 979,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-18T02:22:02Z",
+      "side": 1,
+      "message": "The specific property and interface is yet to be defined.",
+      "parentUuid": "bb96c5d9_c41e1d86",
+      "revId": "50cdd89482d6c93d7e4d8f3800883efa3aaa7b7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffc3a9f3_a90645d8",
@@ -147,6 +201,30 @@
       "writtenOn": "2026-11-16T09:08:44Z",
       "side": 1,
       "message": "If `$bus` is no longer needed, how would the two Managed Board instances in Scenario 2 be named, and could the name follow the port each one is plugged into?",
+      "range": {
+        "startLine": 1112,
+        "startChar": 0,
+        "endLine": 1115,
+        "endChar": 49
+      },
+      "revId": "50cdd89482d6c93d7e4d8f3800883efa3aaa7b7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61094548_66a04389",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 25
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-18T02:22:02Z",
+      "side": 1,
+      "message": "\u003e could the name follow the port each one is plugged into\n\n\nI think it should be possible to do this, yes.\n\nNote that you may still choose to use `$bus` as you see fit.",
+      "parentUuid": "ffc3a9f3_a90645d8",
       "range": {
         "startLine": 1112,
         "startChar": 0,
