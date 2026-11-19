@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a2ca3868_8480820b",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1002790
+      },
+      "writtenOn": "2026-11-19T08:12:05Z",
+      "side": 1,
+      "message": "Without `UP`, nothing says which bus the mux sits on, so should it carry `Segment` like the EEPROM does, for example:\n```\n{\n  \"Name\": \"I2C Mux\",\n  \"Type\": \"PCA9540B\",\n  \"Address\": \"0x71\",\n  \"Segment\": \"I2C12\",\n  \"Interfaces\": [\n    { \"Name\": \"CH1\", \"Segment\": \"I2C12.1\" },\n    { \"Name\": \"CH2\", \"Segment\": \"I2C12.2\" }\n  ]\n}\n```\nThis would also let a mux behind another mux\u0027s channel be found the same way, with `\"Segment\": \"I2C12.1\"`.\n\nAlso, I2C mux channels are numbered from `0` but USB hub ports from `1`, so is `hub port 1 (1-1.1)` meant to map to `B.1` at `index 0`?",
+      "parentUuid": "67a2ab26_14b4d1c1",
+      "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ececd652_54bbf372",
         "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
         "patchSetId": 29
