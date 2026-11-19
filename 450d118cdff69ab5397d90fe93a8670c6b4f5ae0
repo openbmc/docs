@@ -22,6 +22,80 @@
       },
       "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ffc717d_b8a5ed06",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 31
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-11-19T10:15:05Z",
+      "side": 1,
+      "message": "Is this related or a dependency?",
+      "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4676428_c15eaa02",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 31
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-11-19T10:15:05Z",
+      "side": 1,
+      "message": "Taking the Nvidia IMGX ConnectX8 SuperNIC Switch board as an example, it has a single FRU but two USB SMAs at hub-port paths [1,2,3] and [1,1,2,3]. EM finds one connector from where the FRU is read. If both USB links come through that connector, the Port needs two USB Bus entries - do we have an example for this?. If they arrive on separate connectors, what tells EM which hub port the second SMA is on?",
+      "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "170a8326_8e831615",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 31
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-11-19T10:15:05Z",
+      "side": 1,
+      "message": "Are the concerns raised in https://github.com/CodeConstruct/mctp/issues/106 in terms of using GRTE are not conflicting with the proposal here?",
+      "range": {
+        "startLine": 201,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 36
+      },
+      "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dde2a714_cae578ec",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 31
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2026-11-19T10:15:05Z",
+      "side": 1,
+      "message": "The Address of each hop is well defined for I2C/I3C, but I don\u0027t see where the doc defines it for USB. The MCTPUSBDevice examples no longer carry RootHubPosition/Port, which mctpreactor uses today to resolve the device to a sysfs path and interface.\n\nIs the intent to keep those fields, so the USB device is identified from the config and the walk starts from its known EID? Or to replace them with the Segment chain? If the latter, what is the USB hop address and how does EM derive it?\n\nThis matters on platforms like https://github.com/openbmc/entity-manager/blob/master/configurations/platform/nvidia/mgx_connectx8_supernic_switch_server.json: 10 SMA bridges reached through the BMC\u0027s single USB interface, at hub-port paths [1,2,1], [1,2,2], [1,2,3], [1,4,1] … [1,1,4,2]. The first hop to each is (port 1, USB, \u003caddress\u003e). If the USB address isn\u0027t defined or doesn\u0027t differ, step 6 can\u0027t tell which of the 10 SMAs that hop reaches, so it can\u0027t go on to resolve the devices behind them.",
+      "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
