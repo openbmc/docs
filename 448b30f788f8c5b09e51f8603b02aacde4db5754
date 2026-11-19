@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4228e0cd_42b068bb",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1003181
+      },
+      "writtenOn": "2026-11-19T06:14:03Z",
+      "side": 1,
+      "message": "I think this works when the device\u0027s inventory object has configured_by\nto the same configuration object as the SPDM record, as for an SMA.\n\nHow would it work when EM creates the device itself? For ex, CPU_0\nis a configuration of its own\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/96744\nand its MCTP record VR_C2_MCTP_USB_CPU0 names P5035_C2_HPM in Board\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/96747\n\nThe SPDM record for it would be on the HPM board, with no configures to\nCPU_0.\n\nProtectedBoards can name CPU_0, but how would integrated_into find it\nwithout the array position?",
+      "parentUuid": "ab34f467_a7c4bc8e",
+      "revId": "448b30f788f8c5b09e51f8603b02aacde4db5754",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61d87196_7454dc5d",
         "filename": "designs/redfish-spdm-attestation.md",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2026-11-18T07:20:52Z",
       "side": 1,
       "message": "Could this point to https://gerrit.openbmc.org/c/openbmc/docs/+/96378 instead? That design already proposes this configured_by from inventory items to their record for every producer service. Thanks.",
+      "revId": "448b30f788f8c5b09e51f8603b02aacde4db5754",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d9ff2b4_9fa2c3c6",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1003181
+      },
+      "writtenOn": "2026-11-19T06:14:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "61d87196_7454dc5d",
       "revId": "448b30f788f8c5b09e51f8603b02aacde4db5754",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -48,6 +84,24 @@
       "writtenOn": "2026-11-18T07:20:52Z",
       "side": 1,
       "message": "Could this also point to the Ordering section of https://gerrit.openbmc.org/c/openbmc/docs/+/96378?",
+      "revId": "448b30f788f8c5b09e51f8603b02aacde4db5754",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da182809_21b0c121",
+        "filename": "designs/redfish-spdm-attestation.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1003181
+      },
+      "writtenOn": "2026-11-19T06:14:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4e8dd6a7_2faf65d0",
       "revId": "448b30f788f8c5b09e51f8603b02aacde4db5754",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
