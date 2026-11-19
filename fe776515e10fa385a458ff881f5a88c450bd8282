@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67a2ab26_14b4d1c1",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-19T01:01:18Z",
+      "side": 1,
+      "message": "Oh. I think that was an inconsistency left over from when I was considering `Connects` properties on all `Interfaces` entries, rather than an optional property to be used when the port relationships aren\u0027t defined by the `Type`.\n\n\nFor the PCA954* parts the upstream port is implied by the device\u0027s address on the parent bus so the `Interfaces` list only needs to describe the mux\u0027s channels. The same applies for USB hubs such as USX2422\n\nDo you have any concerns with that?\n\nI have adjusted both accordingly.",
+      "parentUuid": "a5902e9a_087aa644",
+      "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ececd652_54bbf372",
         "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
         "patchSetId": 29
@@ -108,6 +126,30 @@
       "side": 1,
       "message": "\u003e (sorry if i missed any comments in the meantime, there were a lot, so maybe this already got answered)\n\nNo one has really picked on the testing aspect so far, so I don\u0027t think you have missed anything.\n\n\u003e Unit testing is probably not a substitute for end to end / integration testing.\n\nThat\u0027s fair. I am happy to add a proposal for integration testing, just we need to work out what that might look like.\n\n\u003e How does a developer test this? Is there some upstream qemu setup which can be used to confirm it is working ?\n\nI expect we can achieve integration testing without unnatural configurations, using the combination of qemu, a chosen EVB build target, EM configuration for the EVB describing USB connectivity, the usbredir functionality of qemu, and the usbredir functionality of mctp-dev.\n\nBeyond these pieces, we add support for DSP0257 to mctp-dev, then take advantage of the PLDM FRU enumeration sequence outlined in Appendix A below. That way we can plug it all together in software to verify the associations are created.",
       "parentUuid": "cf01a4e2_041c75f2",
+      "range": {
+        "startLine": 1520,
+        "startChar": 28,
+        "endLine": 1526,
+        "endChar": 1
+      },
+      "revId": "fe776515e10fa385a458ff881f5a88c450bd8282",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50910c1c_a133bd92",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 1526,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-19T01:01:18Z",
+      "side": 1,
+      "message": "Done - integrated the proposal above.",
+      "parentUuid": "74504552_29b0534f",
       "range": {
         "startLine": 1520,
         "startChar": 28,
