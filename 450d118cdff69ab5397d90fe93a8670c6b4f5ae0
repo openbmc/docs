@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba2be0ff_37e5a08a",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 31
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-20T00:10:35Z",
+      "side": 1,
+      "message": "actually the other way around! the URL is right, the link label is wrong",
+      "parentUuid": "d36d81ed_43b761a0",
+      "range": {
+        "startLine": 59,
+        "startChar": 41,
+        "endLine": 59,
+        "endChar": 48
+      },
+      "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ffc717d_b8a5ed06",
@@ -41,6 +65,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66316f56_2a13af3d",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 31
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-20T00:10:35Z",
+      "side": 1,
+      "message": "It is related, not a dependency. It motivates some choices below.",
+      "parentUuid": "5ffc717d_b8a5ed06",
+      "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4676428_c15eaa02",
@@ -54,6 +96,24 @@
       "writtenOn": "2026-11-19T10:15:05Z",
       "side": 1,
       "message": "Taking the Nvidia IMGX ConnectX8 SuperNIC Switch board as an example, it has a single FRU but two USB SMAs at hub-port paths [1,2,3] and [1,1,2,3]. EM finds one connector from where the FRU is read. If both USB links come through that connector, the Port needs two USB Bus entries - do we have an example for this?. If they arrive on separate connectors, what tells EM which hub port the second SMA is on?",
+      "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eb9262c_ddef4627",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 31
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-20T00:10:35Z",
+      "side": 1,
+      "message": "Firstly, what is an SMA?\n\n\u003e If they arrive on separate connectors, what tells EM which hub port the second SMA is on?\n\nWe may need more physical port constraints. Can you provide some concrete examples of such a platform configuration? Ideally a description with an ascii diagram as done for scenarios below.\n\nSo long as we\u0027re not precluding describing these constraints I think this might best be addressed as an extension of the current proposal (i.e. add it after it merges).",
+      "parentUuid": "e4676428_c15eaa02",
       "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -81,6 +141,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b22b9709_f9a7641d",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 31
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-20T00:10:35Z",
+      "side": 1,
+      "message": "No.\n\nThe discussion there was around (ab)using GRTE for MCTP network maintenance (EID assignment, EID pool assignment, endpoint availability). MCTP networks must be designed such that GRTE is not necessary for network maintenance.\n\nThe discussion in this proposal is around using GRTE for resolving platform topology. That\u0027s distinct from MCTP network maintenance - it doesn\u0027t involve any act of EID assignment, EID pool assignment, or ensuring endpoint availability - and thus the discussion there isn\u0027t applicable.",
+      "parentUuid": "170a8326_8e831615",
+      "range": {
+        "startLine": 201,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 36
+      },
+      "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dde2a714_cae578ec",
@@ -94,6 +178,24 @@
       "writtenOn": "2026-11-19T10:15:05Z",
       "side": 1,
       "message": "The Address of each hop is well defined for I2C/I3C, but I don\u0027t see where the doc defines it for USB. The MCTPUSBDevice examples no longer carry RootHubPosition/Port, which mctpreactor uses today to resolve the device to a sysfs path and interface.\n\nIs the intent to keep those fields, so the USB device is identified from the config and the walk starts from its known EID? Or to replace them with the Segment chain? If the latter, what is the USB hop address and how does EM derive it?\n\nThis matters on platforms like https://github.com/openbmc/entity-manager/blob/master/configurations/platform/nvidia/mgx_connectx8_supernic_switch_server.json: 10 SMA bridges reached through the BMC\u0027s single USB interface, at hub-port paths [1,2,1], [1,2,2], [1,2,3], [1,4,1] … [1,1,4,2]. The first hop to each is (port 1, USB, \u003caddress\u003e). If the USB address isn\u0027t defined or doesn\u0027t differ, step 6 can\u0027t tell which of the 10 SMAs that hop reaches, so it can\u0027t go on to resolve the devices behind them.",
+      "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f466d9b2_ed16b1e6",
+        "filename": "designs/inventory-associations-for-bridged-mctp-endpoints.md",
+        "patchSetId": 31
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2026-11-20T00:10:35Z",
+      "side": 1,
+      "message": "\u003e Is the intent to keep those fields\n\nMy intent is to make these fields unnecessary where possible.\n\n\u003e Or to replace them with the Segment chain\n\nThis is the intent, barring some yet-to-be-foreseen problem.\n\n\u003e If the latter, what is the USB hop address and how does EM derive it?\n\nI will rework the document to address your query.",
+      "parentUuid": "dde2a714_cae578ec",
       "revId": "450d118cdff69ab5397d90fe93a8670c6b4f5ae0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
