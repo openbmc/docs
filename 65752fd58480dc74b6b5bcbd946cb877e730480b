@@ -16,6 +16,155 @@
       "message": "@Javaneht@ami.com It looks like the formatting failed. Can you run the format script on the markdown file and update the PR?\nformat script: https://github.com/openbmc/openbmc-build-scripts/blob/master/scripts/format-code.sh\nPipeline failure : https://jenkins.openbmc.org/job/ci-repository/157753/consoleFull",
       "revId": "65752fd58480dc74b6b5bcbd946cb877e730480b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb3a0028_cc68ee03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-11-27T01:00:33Z",
+      "side": 1,
+      "message": "Sounds like a great idea! Some comments/queries inline.",
+      "revId": "65752fd58480dc74b6b5bcbd946cb877e730480b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "101f551d_3e93817f",
+        "filename": "designs/mctp/compliance-tool.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-11-27T01:00:33Z",
+      "side": 1,
+      "message": "I\u0027m unclear on whether this is targetting BMC endpoints, or devices that the BMC is communicating with. The wording of this sentence implies the latter, your Users section implies the former.\n\n\nIs the test tool intended to be run on the BMC to test remote devices? or to run on an external non-BMC Linux platform to test the BMC? Or an external non-BMC Linux platform to test arbitrary endpoint devices?\n\nMight be good to indicate:\n - what sort of devices you intent to target (BMC, arbitrary MCTP endpoint device, MCTP bridge, etc)\n - what sort of host devices you intend to support (ie, can the tool be run on any Linux host with AF_MCTP support and a suitable hardware transport? Or specifically an OpenBMC host?)",
+      "range": {
+        "startLine": 11,
+        "startChar": 56,
+        "endLine": 12,
+        "endChar": 9
+      },
+      "revId": "65752fd58480dc74b6b5bcbd946cb877e730480b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8519e60_ba530207",
+        "filename": "designs/mctp/compliance-tool.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-11-27T01:00:33Z",
+      "side": 1,
+      "message": "Sounds good, but you\u0027re foregoing any ability to test edge-cases of remote-endpoint reassembly with this design point. Are you OK with that? Some of the other wording implies that you want to test this.",
+      "range": {
+        "startLine": 49,
+        "startChar": 32,
+        "endLine": 50,
+        "endChar": 8
+      },
+      "revId": "65752fd58480dc74b6b5bcbd946cb877e730480b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96ab8f3e_a0f61f02",
+        "filename": "designs/mctp/compliance-tool.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-11-27T01:00:33Z",
+      "side": 1,
+      "message": "There are no `mctp` utilities in the kernel tree.",
+      "range": {
+        "startLine": 68,
+        "startChar": 39,
+        "endLine": 69,
+        "endChar": 11
+      },
+      "revId": "65752fd58480dc74b6b5bcbd946cb877e730480b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d2e03c2_687ac217",
+        "filename": "designs/mctp/compliance-tool.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-11-27T01:00:33Z",
+      "side": 1,
+      "message": "This worded less like a requirements section and more like a promotional document. Is 18 commands a design requirement? if not, leave it out.",
+      "range": {
+        "startLine": 105,
+        "startChar": 22,
+        "endLine": 105,
+        "endChar": 64
+      },
+      "revId": "65752fd58480dc74b6b5bcbd946cb877e730480b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed4de943_a799bd2a",
+        "filename": "designs/mctp/compliance-tool.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-11-27T01:00:33Z",
+      "side": 1,
+      "message": "Why 6.6? It is pretty ancient now.",
+      "range": {
+        "startLine": 129,
+        "startChar": 58,
+        "endLine": 130,
+        "endChar": 43
+      },
+      "revId": "65752fd58480dc74b6b5bcbd946cb877e730480b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7be1662a_b002d509",
+        "filename": "designs/mctp/compliance-tool.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2026-11-27T01:00:33Z",
+      "side": 1,
+      "message": "I\u0027d say that some elements of the MCTP base protocol would be out-of-scope here. For example, you don\u0027t seem to have a way to test sequence number RX semantics on the remote side.",
+      "revId": "65752fd58480dc74b6b5bcbd946cb877e730480b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
